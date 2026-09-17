@@ -14,8 +14,8 @@ document.querySelectorAll(".pagina").forEach(function(x){x.classList.remove("ati
 var pg=document.getElementById("pagina-detalhes-plano-v16");if(pg)pg.classList.add("ativa");
 document.getElementById("detNomeV16").textContent=d.nome;document.getElementById("detTextoV16").textContent=d.texto;document.getElementById("detPeriodoV16").textContent=d.periodo;document.getElementById("detPrecoV16").textContent=d.preco;
 document.getElementById("detVagasV16").textContent=d.vagas;document.getElementById("detVagasObsV16").textContent=d.vagasObs;document.getElementById("detDestaquesV16").textContent=d.destaques;document.getElementById("detUrgentesV16").textContent=d.urgentes;document.getElementById("detConfV16").textContent=d.conf;document.getElementById("detConfObsV16").textContent=d.confObs;
-var b=document.getElementById("detBeneficiosV16");b.innerHTML="";d.beneficios.forEach(function(x){var e=document.createElement("div");e.className="det-beneficio-v16";e.innerHTML="&lt;b&gt;&amp;#10003;&lt;/b&gt;"+x;b.appendChild(e);});
-var r=document.getElementById("detResumoV16");r.innerHTML="";d.resumo.forEach(function(x){var e=document.createElement("div");e.className="det-resumo-item-v16";e.innerHTML="&lt;strong&gt;"+x[0]+"&lt;/strong&gt;"+x[1];r.appendChild(e);});
+var b=document.getElementById("detBeneficiosV16");b.innerHTML="";d.beneficios.forEach(function(x){var e=document.createElement("div");e.className="det-beneficio-v16";e.innerHTML="<b>&amp;#10003;</b>"+x;b.appendChild(e);});
+var r=document.getElementById("detResumoV16");r.innerHTML="";d.resumo.forEach(function(x){var e=document.createElement("div");e.className="det-resumo-item-v16";e.innerHTML="<strong>"+x[0]+"</strong>"+x[1];r.appendChild(e);});
 document.getElementById("detEscolherV16").onclick=function(){escolherDetalhePlanoV16();};document.getElementById("detEscolher2V16").onclick=function(){escolherDetalhePlanoV16();};window.scrollTo(0,0);
 }
 function voltarPlanosV16(){var p=document.getElementById("pagina-detalhes-plano-v16");if(p)p.classList.remove("ativa");var x=document.getElementById("pagina-planos");if(x)x.classList.add("ativa");window.scrollTo(0,0);}
@@ -31,19 +31,19 @@ function encerrarVagaCorrigidaV18(id){
 var vagas=[];
 try{vagas=carregarVagasPortal()||[];}catch(e){vagas=[];}
 var indice=-1;
-for(var i=0;i&lt;vagas.length;i++){
+for(var i=0;i<vagas.length;i++){
 if(String(vagas[i].id||"")===String(id||"")){
 indice=i;
 break;
 }
 }
-if(indice&lt;0){
+if(indice<0){
 alert("N\u00E3o foi poss\u00EDvel localizar esta vaga.");
 return;
 }
 var vaga=vagas[indice];
 try{
-if(typeof vagaPertenceEmpresaAtual==="function" &amp;&amp; !vagaPertenceEmpresaAtual(vaga)){
+if(typeof vagaPertenceEmpresaAtual==="function" && !vagaPertenceEmpresaAtual(vaga)){
 alert("Esta vaga nao pertence a empresa conectada.");
 return;
 }
@@ -72,7 +72,7 @@ try{
 if(typeof apiEmpregaMaisPost==="function"){
 apiEmpregaMaisPost({acao:"encerrar",id:id})
 .then(function(resultado){
-if(resultado &amp;&amp; resultado.sucesso===true){
+if(resultado && resultado.sucesso===true){
 try{
 if(typeof sincronizarVagasGoogleSheets==="function")sincronizarVagasGoogleSheets();
 }catch(e){}
@@ -84,7 +84,7 @@ if(typeof sincronizarVagasGoogleSheets==="function")sincronizarVagasGoogleSheets
 try{
 if(typeof montarPainelReferenciaRecrutadorEM==="function"){
 var ref=document.getElementById("painelReferenciaRecrutadorEM");
-if(ref &amp;&amp; ref.parentNode)ref.parentNode.removeChild(ref);
+if(ref && ref.parentNode)ref.parentNode.removeChild(ref);
 montarPainelReferenciaRecrutadorEM();
 }
 }catch(e){}
@@ -113,16 +113,16 @@ function prepararMetricasV19(){
 var painel=document.getElementById("pagina-painel-empresa");
 if(!painel)return;
 var candidatos=painel.querySelectorAll("div,article,button");
-for(var i=0;i&lt;candidatos.length;i++){
+for(var i=0;i<candidatos.length;i++){
 var el=candidatos[i];
 if(el.hasAttribute("data-metrica-link-v19"))continue;
 var tx=normalizarV19(el.textContent).trim();
 var tipo="";
-if(tx.indexOf("vagas ativas")&gt;=0 &amp;&amp; tx.length&lt;80)tipo="ativas";
-else if(tx.indexOf("em aprovacao")&gt;=0 &amp;&amp; tx.length&lt;80)tipo="aprovacao";
-else if(tx.indexOf("candidaturas")&gt;=0 &amp;&amp; tx.length&lt;80)tipo="candidaturas";
-else if(tx.indexOf("em processo")&gt;=0 &amp;&amp; tx.length&lt;80)tipo="processo";
-else if(tx.indexOf("contratados")&gt;=0 &amp;&amp; tx.length&lt;80)tipo="contratados";
+if(tx.indexOf("vagas ativas")>=0 && tx.length<80)tipo="ativas";
+else if(tx.indexOf("em aprovacao")>=0 && tx.length<80)tipo="aprovacao";
+else if(tx.indexOf("candidaturas")>=0 && tx.length<80)tipo="candidaturas";
+else if(tx.indexOf("em processo")>=0 && tx.length<80)tipo="processo";
+else if(tx.indexOf("contratados")>=0 && tx.length<80)tipo="contratados";
 if(tipo){
 el.setAttribute("data-metrica-link-v19",tipo);
 el.setAttribute("role","button");
@@ -150,9 +150,9 @@ try{
 if(typeof ativarAbaVagasRefEM==="function"){ativarAbaVagasRefEM("pendentes");return;}
 }catch(e){}
 var botoes=document.querySelectorAll("#pagina-painel-empresa button");
-for(var j=0;j&lt;botoes.length;j++){
+for(var j=0;j<botoes.length;j++){
 var bt=normalizarV19(botoes[j].textContent);
-if(bt.indexOf("aprovacao")&gt;=0){botoes[j].click();return;}
+if(bt.indexOf("aprovacao")>=0){botoes[j].click();return;}
 }
 }
 if(tipo==="candidaturas"){
@@ -173,11 +173,11 @@ if(typeof irPara==="function"){irPara("candidatos-empresa");setTimeout(aplicarFi
 }
 function aplicarFiltroProcessoV19(){
 var sels=document.querySelectorAll("select");
-for(var i=0;i&lt;sels.length;i++){
+for(var i=0;i<sels.length;i++){
 var opts=sels[i].options||[];
-for(var j=0;j&lt;opts.length;j++){
+for(var j=0;j<opts.length;j++){
 var x=normalizarV19(opts[j].text);
-if(x.indexOf("processo")&gt;=0 || x.indexOf("entrevista")&gt;=0){
+if(x.indexOf("processo")>=0 || x.indexOf("entrevista")>=0){
 sels[i].selectedIndex=j;
 sels[i].dispatchEvent(new Event("change",{bubbles:true}));
 return;
@@ -187,10 +187,10 @@ return;
 }
 function aplicarFiltroContratadosV19(){
 var sels=document.querySelectorAll("select");
-for(var i=0;i&lt;sels.length;i++){
+for(var i=0;i<sels.length;i++){
 var opts=sels[i].options||[];
-for(var j=0;j&lt;opts.length;j++){
-if(normalizarV19(opts[j].text).indexOf("contratado")&gt;=0){
+for(var j=0;j<opts.length;j++){
+if(normalizarV19(opts[j].text).indexOf("contratado")>=0){
 sels[i].selectedIndex=j;
 sels[i].dispatchEvent(new Event("change",{bubbles:true}));
 return;
@@ -205,7 +205,7 @@ e.preventDefault();
 abrirMetricaV19(el.getAttribute("data-metrica-link-v19"));
 });
 document.addEventListener("keydown",function(e){
-if(e.key!=="Enter" &amp;&amp; e.key!==" ")return;
+if(e.key!=="Enter" && e.key!==" ")return;
 var el=e.target.closest("[data-metrica-link-v19]");
 if(!el)return;
 e.preventDefault();
@@ -231,11 +231,11 @@ function moverPerfilAntesRodapeV20(){
 var pg=paginaPerfilV20();
 if(!pg)return;
 var rodape=document.querySelector("footer,#footer,.footer,.site-footer,.rodape-em,#rodape");
-if(rodape &amp;&amp; rodape.parentNode &amp;&amp; pg.parentNode===rodape.parentNode &amp;&amp; pg.nextElementSibling!==rodape){
+if(rodape && rodape.parentNode && pg.parentNode===rodape.parentNode && pg.nextElementSibling!==rodape){
 rodape.parentNode.insertBefore(pg,rodape);
 return;
 }
-if(rodape &amp;&amp; rodape.parentNode){
+if(rodape && rodape.parentNode){
 try{
 var pos=rodape.compareDocumentPosition(pg);
 if(pos &amp; Node.DOCUMENT_POSITION_FOLLOWING){
@@ -251,9 +251,9 @@ function prepararVoltarV20(){
 var pg=paginaPerfilV20();
 if(!pg)return;
 var els=pg.querySelectorAll("a,button");
-for(var i=0;i&lt;els.length;i++){
+for(var i=0;i<els.length;i++){
 var txt=String(els[i].textContent||"").toLowerCase();
-if(txt.indexOf("voltar ao meu painel")&gt;=0 || txt.indexOf("voltar ao painel")&gt;=0){
+if(txt.indexOf("voltar ao meu painel")>=0 || txt.indexOf("voltar ao painel")>=0){
 els[i].removeAttribute("href");
 els[i].setAttribute("type","button");
 els[i].onclick=function(e){
@@ -265,8 +265,8 @@ return false;
 }
 var existe=false;
 var todos=pg.querySelectorAll("a,button");
-for(var j=0;j&lt;todos.length;j++){
-if(String(todos[j].textContent||"").toLowerCase().indexOf("voltar ao meu painel")&gt;=0){
+for(var j=0;j<todos.length;j++){
+if(String(todos[j].textContent||"").toLowerCase().indexOf("voltar ao meu painel")>=0){
 existe=true;break;
 }
 }
@@ -293,7 +293,7 @@ document.addEventListener("click",function(e){
 var alvo=e.target.closest("button,a");
 if(!alvo)return;
 var tx=String(alvo.textContent||"").toLowerCase();
-if(tx.indexOf("dados da empresa")&gt;=0){
+if(tx.indexOf("dados da empresa")>=0){
 try{
 var atual=new URL(window.location.href);
 if(atual.searchParams.get("pagina")!=="perfil-empresa"){
@@ -315,7 +315,7 @@ if(!pg)return null;
 var tabs=pg.querySelector(".empresa-perfil-tabs-em");
 if(!tabs)return null;
 var botoes=tabs.querySelectorAll("button");
-if(botoes.length&lt;2)return null;
+if(botoes.length<2)return null;
 var publico=botoes[0];
 var privado=botoes[1];
 publico.textContent="Dados exibidos aos candidatos";
@@ -328,8 +328,8 @@ var campoPublico=document.getElementById("perfilNomeEM");
 var campoPrivado=document.getElementById("contaRazaoEM");
 var painelPublico=campoPublico?campoPublico.closest(".empresa-perfil-card-em"):null;
 var painelPrivado=campoPrivado?campoPrivado.closest(".empresa-perfil-card-em"):null;
-if(!painelPublico &amp;&amp; campoPublico) painelPublico=campoPublico.parentElement;
-if(!painelPrivado &amp;&amp; campoPrivado) painelPrivado=campoPrivado.parentElement;
+if(!painelPublico && campoPublico) painelPublico=campoPublico.parentElement;
+if(!painelPrivado && campoPrivado) painelPrivado=campoPrivado.parentElement;
 if(painelPublico)painelPublico.setAttribute("data-painel-dados-v22","publico");
 if(painelPrivado)painelPrivado.setAttribute("data-painel-dados-v22","privado");
 return {publico:publico,privado:privado,painelPublico:painelPublico,painelPrivado:painelPrivado};
@@ -368,7 +368,7 @@ abrirAbaDadosV22(b.getAttribute("data-aba-dados-v22"));
 },true);
 document.addEventListener("keydown",function(e){
 var b=e.target.closest("[data-aba-dados-v22]");
-if(!b || (e.key!=="Enter" &amp;&amp; e.key!==" "))return;
+if(!b || (e.key!=="Enter" && e.key!==" "))return;
 e.preventDefault();
 abrirAbaDadosV22(b.getAttribute("data-aba-dados-v22"));
 });
@@ -380,7 +380,7 @@ setTimeout(iniciarV22,650);
 document.addEventListener("click",function(e){
 var a=e.target.closest("a,button");
 if(!a)return;
-if(String(a.textContent||"").toLowerCase().indexOf("dados da empresa")&gt;=0){
+if(String(a.textContent||"").toLowerCase().indexOf("dados da empresa")>=0){
 setTimeout(iniciarV22,120);
 }
 });
@@ -403,13 +403,13 @@ function criarBeneficiosV23(container){
 if(!container || container.querySelector(".beneficios-check-v23"))return;
 var box=document.createElement("section");
 box.className="perfil-secao-v23 beneficios-check-v23";
-box.innerHTML="&lt;div class='perfil-secao-titulo-v23'&gt;&lt;div&gt;&lt;span&gt;04&lt;/span&gt;&lt;h3&gt;Beneficios oferecidos&lt;/h3&gt;&lt;p&gt;Selecione os beneficios que fazem parte da experiencia dos colaboradores.&lt;/p&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class='beneficios-grid-v23' id='beneficiosGridV23'&gt;&lt;/div&gt;&lt;div class='perfil-campo-v23 full'&gt;&lt;label&gt;Outros beneficios&lt;/label&gt;&lt;textarea id='perfilOutrosBeneficiosV23' placeholder='Informe outros beneficios ou diferenciais oferecidos pela empresa.' maxlength='700'&gt;&lt;/textarea&gt;&lt;small&gt;&lt;span id='contadorOutrosBeneficiosV23'&gt;0&lt;/span&gt;/700 caracteres&lt;/small&gt;&lt;/div&gt;";
+box.innerHTML="<div class='perfil-secao-titulo-v23'><div><span>04</span><h3>Beneficios oferecidos</h3><p>Selecione os beneficios que fazem parte da experiencia dos colaboradores.</p></div></div><div class='beneficios-grid-v23' id='beneficiosGridV23'></div><div class='perfil-campo-v23 full'><label>Outros beneficios</label><textarea id='perfilOutrosBeneficiosV23' placeholder='Informe outros beneficios ou diferenciais oferecidos pela empresa.' maxlength='700'></textarea><small><span id='contadorOutrosBeneficiosV23'>0</span>/700 caracteres</small></div>";
 container.appendChild(box);
 var grid=box.querySelector("#beneficiosGridV23");
 beneficiosV23.forEach(function(nome,i){
 var label=document.createElement("label");
 label.className="beneficio-item-v23";
-label.innerHTML="&lt;input type='checkbox' value='"+nome+"' data-beneficio-v23='1'/&gt;&lt;span&gt;"+nome+"&lt;/span&gt;";
+label.innerHTML="<input type='checkbox' value='"+nome+"' data-beneficio-v23='1'/><span>"+nome+"</span>";
 grid.appendChild(label);
 });
 }
@@ -438,16 +438,16 @@ campos[id]=w;
 });
 var aviso=document.createElement("div");
 aviso.className="perfil-publico-aviso-v23";
-aviso.innerHTML="&lt;div class='perfil-aviso-icone-v23'&gt;&amp;#128065;&lt;/div&gt;&lt;div&gt;&lt;strong&gt;Estas informacoes serao publicas&lt;/strong&gt;&lt;p&gt;Os dados preenchidos nesta aba poderao aparecer para candidatos no perfil publico da empresa. Dados administrativos permanecem separados e confidenciais.&lt;/p&gt;&lt;/div&gt;";
+aviso.innerHTML="<div class='perfil-aviso-icone-v23'>&amp;#128065;</div><div><strong>Estas informacoes serao publicas</strong><p>Os dados preenchidos nesta aba poderao aparecer para candidatos no perfil publico da empresa. Dados administrativos permanecem separados e confidenciais.</p></div>";
 card.insertBefore(aviso,card.firstChild);
 var intro=document.createElement("div");
 intro.className="perfil-form-intro-v23";
-intro.innerHTML="&lt;div&gt;&lt;span&gt;PERFIL DA EMPRESA&lt;/span&gt;&lt;h2&gt;Construa a pagina da sua empresa&lt;/h2&gt;&lt;p&gt;Apresente sua marca, cultura e proposta de valor para que os candidatos conhecam melhor a organizacao antes de se candidatar.&lt;/p&gt;&lt;/div&gt;&lt;button type='button' id='visualizarComoCandidatoV23'&gt;&amp;#128065; Visualizar como candidato&lt;/button&gt;";
+intro.innerHTML="<div><span>PERFIL DA EMPRESA</span><h2>Construa a pagina da sua empresa</h2><p>Apresente sua marca, cultura e proposta de valor para que os candidatos conhecam melhor a organizacao antes de se candidatar.</p></div><button type='button' id='visualizarComoCandidatoV23'>&amp;#128065; Visualizar como candidato</button>";
 card.insertBefore(intro,aviso.nextSibling);
 function secao(num,titulo,sub,ids){
 var s=document.createElement("section");
 s.className="perfil-secao-v23";
-s.innerHTML="&lt;div class='perfil-secao-titulo-v23'&gt;&lt;div&gt;&lt;span&gt;"+num+"&lt;/span&gt;&lt;h3&gt;"+titulo+"&lt;/h3&gt;&lt;p&gt;"+sub+"&lt;/p&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class='perfil-secao-grid-v23'&gt;&lt;/div&gt;";
+s.innerHTML="<div class='perfil-secao-titulo-v23'><div><span>"+num+"</span><h3>"+titulo+"</h3><p>"+sub+"</p></div></div><div class='perfil-secao-grid-v23'></div>";
 var g=s.querySelector(".perfil-secao-grid-v23");
 ids.forEach(function(id){if(campos[id])g.appendChild(campos[id]);});
 card.appendChild(s);
@@ -464,7 +464,7 @@ secao("05","Presenca digital e contato","Adicione canais oficiais que ajudam o c
 ["perfilSiteEM","perfilLinkedinEM","perfilInstagramEM","perfilFacebookEM","perfilVideoEM","perfilEmailPublicoEM"]);
 var rodape=document.createElement("div");
 rodape.className="perfil-acoes-v23";
-rodape.innerHTML="&lt;div&gt;&lt;strong&gt;Revise antes de salvar&lt;/strong&gt;&lt;span&gt;Confira se as informacoes representam corretamente a empresa.&lt;/span&gt;&lt;/div&gt;&lt;button type='button' id='salvarPerfilPublicoV23'&gt;Salvar informacoes publicas&lt;/button&gt;";
+rodape.innerHTML="<div><strong>Revise antes de salvar</strong><span>Confira se as informacoes representam corretamente a empresa.</span></div><button type='button' id='salvarPerfilPublicoV23'>Salvar informacoes publicas</button>";
 card.appendChild(rodape);
 prepararContadoresV23(card);
 carregarBeneficiosV23();
@@ -498,13 +498,13 @@ if(!antigo)return;
 var partes=antigo.split(",").map(function(x){return x.trim();}).filter(Boolean);
 var reconhecidos=[];
 document.querySelectorAll("[data-beneficio-v23]").forEach(function(cb){
-for(var i=0;i&lt;partes.length;i++){
+for(var i=0;i<partes.length;i++){
 if(partes[i].toLowerCase()===cb.value.toLowerCase()){
 cb.checked=true;reconhecidos.push(partes[i].toLowerCase());break;
 }
 }
 });
-var extras=partes.filter(function(x){return reconhecidos.indexOf(x.toLowerCase())&lt;0;});
+var extras=partes.filter(function(x){return reconhecidos.indexOf(x.toLowerCase())<0;});
 var o=campoV23("perfilOutrosBeneficiosV23");
 if(o)o.value=extras.join(", ");
 }
@@ -535,7 +535,7 @@ document.addEventListener("click",function(e){
 var a=e.target.closest("[data-aba-dados-v22],a,button");
 if(!a)return;
 var tx=String(a.textContent||"").toLowerCase();
-if(a.getAttribute("data-aba-dados-v22")==="publico" || tx.indexOf("dados da empresa")&gt;=0){
+if(a.getAttribute("data-aba-dados-v22")==="publico" || tx.indexOf("dados da empresa")>=0){
 setTimeout(iniciarV23,120);
 }
 });
@@ -556,7 +556,7 @@ if(old)return;
 var a=document.createElement("div");
 a.id="avisoRascunhoPerfilV24";
 a.className="aviso-rascunho-v24";
-a.innerHTML="&lt;strong&gt;Perfil em preparacao&lt;/strong&gt;&lt;p&gt;Voc\u00EA pode preencher, salvar e visualizar a previa agora. A exibicao publica para candidatos sera liberada conforme os recursos do plano contratado.&lt;/p&gt;";
+a.innerHTML="<strong>Perfil em preparacao</strong><p>Voc\u00EA pode preencher, salvar e visualizar a previa agora. A exibicao publica para candidatos sera liberada conforme os recursos do plano contratado.</p>";
 card.insertBefore(a,card.firstChild);
 }
 function garantirV24(){
@@ -571,7 +571,7 @@ avisoV24();
 window.addEventListener("load",function(){setTimeout(garantirV24,300);setTimeout(garantirV24,900);});
 document.addEventListener("click",function(e){
 var b=e.target.closest("[data-aba-dados-v22]");
-if(b&amp;&amp;b.getAttribute("data-aba-dados-v22")==="publico")setTimeout(garantirV24,60);
+if(b&&b.getAttribute("data-aba-dados-v22")==="publico")setTimeout(garantirV24,60);
 });
 })();
 //
@@ -590,9 +590,9 @@ var ids=[
 "pagina-perfil-empresa-em",
 "pagina-perfil-publico-empresa-em"
 ];
-for(var i=0;i&lt;ids.length;i++){
+for(var i=0;i<ids.length;i++){
 var pagina=document.getElementById(ids[i]);
-if(pagina &amp;&amp; pagina.parentNode===footer.parentNode){
+if(pagina && pagina.parentNode===footer.parentNode){
 footer.parentNode.insertBefore(pagina,footer);
 }
 }
@@ -609,16 +609,16 @@ var alvo=e.target.closest("button,a");
 if(!alvo)return;
 var texto=String(alvo.textContent||"").toLowerCase();
 if(
-texto.indexOf("visualizar como candidato")&gt;=0 ||
-texto.indexOf("visualizar perfil publico")&gt;=0 ||
-texto.indexOf("dados da empresa")&gt;=0 ||
+texto.indexOf("visualizar como candidato")>=0 ||
+texto.indexOf("visualizar perfil publico")>=0 ||
+texto.indexOf("dados da empresa")>=0 ||
 alvo.hasAttribute("data-vaga-publica-em")
 ){
 setTimeout(garantirRodapeDepoisConteudoV25,30);
 }
 },true);
 var antigaAbrirEditor=window.abrirEditorPerfilEmpresaEM;
-if(typeof antigaAbrirEditor==="function"&amp;&amp;!window.editorPerfilRodapePatchV25){
+if(typeof antigaAbrirEditor==="function"&&!window.editorPerfilRodapePatchV25){
 window.editorPerfilRodapePatchV25=true;
 window.abrirEditorPerfilEmpresaEM=function(){
 organizarPaginasAntesRodapeV25();
@@ -657,9 +657,9 @@ function trocarPorSelectV26(id,placeholder){
 var antigo=document.getElementById(id);
 if(!antigo || antigo.tagName==="SELECT")return antigo;
 var select=document.createElement("select");
-for(var i=0;i&lt;antigo.attributes.length;i++){
+for(var i=0;i<antigo.attributes.length;i++){
 var a=antigo.attributes[i];
-if(a.name!=="type"&amp;&amp;a.name!=="value"&amp;&amp;a.name!=="placeholder")select.setAttribute(a.name,a.value);
+if(a.name!=="type"&&a.name!=="value"&&a.name!=="placeholder")select.setAttribute(a.name,a.value);
 }
 select.id=id;
 select.name=antigo.name||id;
@@ -676,7 +676,7 @@ select.appendChild(o);
 });
 var atual=String(antigo.value||"").trim();
 if(atual){
-for(var j=0;j&lt;select.options.length;j++){
+for(var j=0;j<select.options.length;j++){
 if(select.options[j].value.toLowerCase()===atual.toLowerCase() ||
 select.options[j].text.toLowerCase()===atual.toLowerCase()){
 select.selectedIndex=j;break;
@@ -717,7 +717,7 @@ window.padronizarPerfilEmpresaV26=padronizarV26;
 window.addEventListener("load",function(){setTimeout(padronizarV26,500);setTimeout(padronizarV26,1200);});
 document.addEventListener("click",function(e){
 var b=e.target.closest("[data-aba-dados-v22]");
-if(b&amp;&amp;b.getAttribute("data-aba-dados-v22")==="publico")setTimeout(padronizarV26,120);
+if(b&&b.getAttribute("data-aba-dados-v22")==="publico")setTimeout(padronizarV26,120);
 });
 })();
 //
@@ -725,14 +725,14 @@ if(b&amp;&amp;b.getAttribute("data-aba-dados-v22")==="publico")setTimeout(padron
 //
 (function(){
 function lerImagemV27(input,tipo){
-var arquivo=input &amp;&amp; input.files ? input.files[0] : null;
+var arquivo=input && input.files ? input.files[0] : null;
 if(!arquivo)return;
 if(!/^image\/(jpeg|png|webp)$/i.test(arquivo.type)){
 alert("Envie uma imagem JPG, PNG ou WEBP.");
 input.value="";
 return;
 }
-if(arquivo.size&gt;2*1024*1024){
+if(arquivo.size>2*1024*1024){
 alert("A imagem deve ter no maximo 2 MB.");
 input.value="";
 return;
@@ -743,7 +743,7 @@ var img=new Image();
 img.onload=function(){
 var minimoW=tipo==="logo"?300:1200;
 var minimoH=tipo==="logo"?300:400;
-if(img.width&lt;minimoW || img.height&lt;minimoH){
+if(img.width<minimoW || img.height<minimoH){
 alert(tipo==="logo"
 ?"Para melhor qualidade, envie uma logo com pelo menos 300 x 300 px."
 :"Para melhor qualidade, envie uma capa com pelo menos 1200 x 400 px.");
@@ -774,14 +774,14 @@ var box=document.createElement("div");
 box.className="upload-imagem-v27 "+(logo?"upload-logo-v27":"upload-capa-v27");
 box.setAttribute("data-upload-v27",tipo);
 box.innerHTML=
-"&lt;div class='upload-titulo-v27'&gt;&lt;strong&gt;"+(logo?"Logo da empresa":"Imagem de capa")+"&lt;/strong&gt;"+
-"&lt;span&gt;"+(logo?"Recomendado: 500 x 500 px &amp;bull; minimo 300 x 300 px":"Recomendado: 1600 x 500 px &amp;bull; minimo 1200 x 400 px")+"&lt;/span&gt;&lt;/div&gt;"+
-"&lt;div class='upload-preview-v27 "+(logo?"quadrado-v27":"capa-v27")+"'&gt;"+
-"&lt;img id='"+(logo?"previewLogoV27":"previewCapaV27")+"' alt='"+(logo?"Previa da logo":"Previa da capa")+"'/&gt;"+
-"&lt;div class='upload-placeholder-v27'&gt;&lt;b&gt;"+(logo?"LOGO":"CAPA")+"&lt;/b&gt;&lt;span&gt;"+(logo?"Formato quadrado":"Formato horizontal")+"&lt;/span&gt;&lt;/div&gt;"+
-"&lt;/div&gt;"+
-"&lt;label class='upload-botao-v27'&gt;Selecionar imagem&lt;input id='"+(logo?"uploadLogoV27":"uploadCapaV27")+"' type='file' accept='image/png,image/jpeg,image/webp'/&gt;&lt;/label&gt;"+
-"&lt;small&gt;JPG, PNG ou WEBP &amp;bull; ate 2 MB&lt;/small&gt;";
+"<div class='upload-titulo-v27'><strong>"+(logo?"Logo da empresa":"Imagem de capa")+"</strong>"+
+"<span>"+(logo?"Recomendado: 500 x 500 px &amp;bull; minimo 300 x 300 px":"Recomendado: 1600 x 500 px &amp;bull; minimo 1200 x 400 px")+"</span></div>"+
+"<div class='upload-preview-v27 "+(logo?"quadrado-v27":"capa-v27")+"'>"+
+"<img id='"+(logo?"previewLogoV27":"previewCapaV27")+"' alt='"+(logo?"Previa da logo":"Previa da capa")+"'/>"+
+"<div class='upload-placeholder-v27'><b>"+(logo?"LOGO":"CAPA")+"</b><span>"+(logo?"Formato quadrado":"Formato horizontal")+"</span></div>"+
+"</div>"+
+"<label class='upload-botao-v27'>Selecionar imagem<input id='"+(logo?"uploadLogoV27":"uploadCapaV27")+"' type='file' accept='image/png,image/jpeg,image/webp'/></label>"+
+"<small>JPG, PNG ou WEBP &amp;bull; ate 2 MB</small>";
 wrap.appendChild(box);
 var atual=String(campo.value||"").trim();
 var prev=box.querySelector("img");
@@ -803,7 +803,7 @@ setTimeout(montarUploadsV27,1400);
 });
 document.addEventListener("click",function(e){
 var b=e.target.closest("[data-aba-dados-v22]");
-if(b&amp;&amp;b.getAttribute("data-aba-dados-v22")==="publico")setTimeout(montarUploadsV27,180);
+if(b&&b.getAttribute("data-aba-dados-v22")==="publico")setTimeout(montarUploadsV27,180);
 });
 })();
 //
@@ -844,9 +844,9 @@ if(!conteudo){
 conteudo=document.createElement("div");
 conteudo.className="empresa-publica-hero-conteudo-em";
 var mover=[];
-for(var i=0;i&lt;hero.children.length;i++){
+for(var i=0;i<hero.children.length;i++){
 var el=hero.children[i];
-if(el!==capa &amp;&amp; el!==conteudo)mover.push(el);
+if(el!==capa && el!==conteudo)mover.push(el);
 }
 mover.forEach(function(el){conteudo.appendChild(el);});
 hero.appendChild(conteudo);
@@ -856,7 +856,7 @@ if(!identidade){
 identidade=document.createElement("div");
 identidade.className="empresa-publica-identidade-v28";
 var filhos=[];
-for(var j=0;j&lt;conteudo.children.length;j++){
+for(var j=0;j<conteudo.children.length;j++){
 if(conteudo.children[j]!==logo)filhos.push(conteudo.children[j]);
 }
 filhos.forEach(function(el){identidade.appendChild(el);});
@@ -880,7 +880,7 @@ document.addEventListener("click",function(e){
 var a=e.target.closest("button,a");
 if(!a)return;
 var tx=String(a.textContent||"").toLowerCase();
-if(tx.indexOf("visualizar como candidato")&gt;=0 || tx.indexOf("perfil da empresa")&gt;=0){
+if(tx.indexOf("visualizar como candidato")>=0 || tx.indexOf("perfil da empresa")>=0){
 setTimeout(corrigirHeroV28,100);
 setTimeout(corrigirHeroV28,400);
 }
@@ -931,7 +931,7 @@ if(empresaVerificadaV29()){
 if(!selo){
 selo=document.createElement("div");
 selo.className="perfil-verificado-v29";
-selo.innerHTML="&lt;span&gt;&amp;#10003;&lt;/span&gt; Empresa com perfil verificado";
+selo.innerHTML="<span>&amp;#10003;</span> Empresa com perfil verificado";
 var capa=hero.querySelector(".empresa-publica-capa-em");
 (capa||hero).appendChild(selo);
 }
@@ -943,20 +943,20 @@ if(stats)stats.remove();
 var vagas=vagasEmpresaV29();
 var ativas=vagas.filter(function(v){
 var s=String(v.status||"").toLowerCase();
-return v.ativa!==false &amp;&amp; s!=="encerrada" &amp;&amp; s!=="inativa";
+return v.ativa!==false && s!=="encerrada" && s!=="inativa";
 });
 var cand=candidaturasV29(vagas);
 var processo=cand.filter(function(c){
 var s=String(c.status||c.etapa||"").toLowerCase();
-return s.indexOf("entrevista")&gt;=0 || s.indexOf("selecion")&gt;=0 || s.indexOf("aprov")&gt;=0;
+return s.indexOf("entrevista")>=0 || s.indexOf("selecion")>=0 || s.indexOf("aprov")>=0;
 }).length;
 stats=document.createElement("div");
 stats.className="perfil-stats-v29";
 stats.innerHTML=
-"&lt;div class='perfil-stat-v29'&gt;&lt;strong&gt;&amp;#9673;&lt;/strong&gt;&lt;span&gt;Visao geral&lt;/span&gt;&lt;/div&gt;"+
-"&lt;div class='perfil-stat-v29'&gt;&lt;strong&gt;"+ativas.length+"&lt;/strong&gt;&lt;span&gt;Vagas abertas&lt;/span&gt;&lt;/div&gt;"+
-"&lt;div class='perfil-stat-v29'&gt;&lt;strong&gt;"+cand.length+"&lt;/strong&gt;&lt;span&gt;Candidaturas&lt;/span&gt;&lt;/div&gt;"+
-"&lt;div class='perfil-stat-v29'&gt;&lt;strong&gt;"+processo+"&lt;/strong&gt;&lt;span&gt;Em processo&lt;/span&gt;&lt;/div&gt;";
+"<div class='perfil-stat-v29'><strong>&amp;#9673;</strong><span>Visao geral</span></div>"+
+"<div class='perfil-stat-v29'><strong>"+ativas.length+"</strong><span>Vagas abertas</span></div>"+
+"<div class='perfil-stat-v29'><strong>"+cand.length+"</strong><span>Candidaturas</span></div>"+
+"<div class='perfil-stat-v29'><strong>"+processo+"</strong><span>Em processo</span></div>";
 hero.appendChild(stats);
 }
 window.montarCabecalhoEmpresaV29=montarCabecalhoV29;
@@ -968,7 +968,7 @@ document.addEventListener("click",function(e){
 var a=e.target.closest("button,a");
 if(!a)return;
 var tx=String(a.textContent||"").toLowerCase();
-if(tx.indexOf("visualizar como candidato")&gt;=0 || tx.indexOf("perfil da empresa")&gt;=0){
+if(tx.indexOf("visualizar como candidato")>=0 || tx.indexOf("perfil da empresa")>=0){
 setTimeout(montarCabecalhoV29,150);
 setTimeout(montarCabecalhoV29,450);
 }
@@ -993,7 +993,7 @@ hero.appendChild(infoDentro);
 info=infoDentro;
 }else{
 var identidade=wrapper.querySelector(".empresa-publica-identidade-v28");
-if(identidade &amp;&amp; !info){
+if(identidade && !info){
 info=document.createElement("div");
 info.className="empresa-publica-info-em";
 while(identidade.firstChild)info.appendChild(identidade.firstChild);
@@ -1006,7 +1006,7 @@ wrapper.remove();
 }
 if(info){
 var logo=info.querySelector(".empresa-publica-logo-em");
-if(logo &amp;&amp; logo.tagName==="IMG"){
+if(logo && logo.tagName==="IMG"){
 logo.style.objectFit="contain";
 logo.style.objectPosition="center";
 }
@@ -1026,7 +1026,7 @@ document.addEventListener("click",function(e){
 var a=e.target.closest("button,a");
 if(!a)return;
 var tx=String(a.textContent||"").toLowerCase();
-if(tx.indexOf("visualizar como candidato")&gt;=0 || tx.indexOf("perfil da empresa")&gt;=0){
+if(tx.indexOf("visualizar como candidato")>=0 || tx.indexOf("perfil da empresa")>=0){
 setTimeout(normalizarHeroV30,180);
 setTimeout(normalizarHeroV30,550);
 }

@@ -8,8 +8,8 @@ var TK="empregaMaisAdminSupabaseToken";
 var cache=[];
 function $id(x){return document.getElementById(x);}
 function token(){try{return localStorage.getItem(TK)||"";}catch(e){return "";}}
-function esc(v){return String(v==null?"":v).replace(/[&amp;&lt;&gt;"']/g,function(c){
-return {"&amp;":"&amp;amp;","&lt;":"&amp;lt;","&gt;":"&amp;gt;",'"':"&amp;quot;","'":"&amp;#39;"}[c];
+function esc(v){return String(v==null?"":v).replace(/[&amp;<>"']/g,function(c){
+return {"&amp;":"&amp;amp;","<":"&amp;lt;",">":"&amp;gt;",'"':"&amp;quot;","'":"&amp;#39;"}[c];
 });}
 function dt(v){if(!v)return "-";try{return new Date(v).toLocaleDateString("pt-BR");}catch(e){return "-";}}
 async function rpc(nome,body){
@@ -22,17 +22,17 @@ body:JSON.stringify(body||{})
 });
 var tx=await r.text(),d=null;
 try{d=tx?JSON.parse(tx):null;}catch(e){d=tx;}
-if(!r.ok) throw new Error((d&amp;&amp;d.message)||String(d||("HTTP "+r.status)));
+if(!r.ok) throw new Error((d&&d.message)||String(d||("HTTP "+r.status)));
 return d;
 }
 function montarPlanos(){
 var p=$id("adminPlanoEscolhidoEM");
 if(!p)return;
 p.innerHTML=
-"&lt;option value='basico'&gt;B\u00E1sico \u2014 Gratuito&lt;/option&gt;"+
-"&lt;option value='trimestral'&gt;Trimestral \u2014 R$ 79,90 / 90 dias&lt;/option&gt;"+
-"&lt;option value='semestral'&gt;Semestral \u2014 R$ 139,90 / 180 dias&lt;/option&gt;"+
-"&lt;option value='anual'&gt;Anual \u2014 R$ 239,90 / 365 dias&lt;/option&gt;";
+"<option value='basico'>B\u00E1sico \u2014 Gratuito</option>"+
+"<option value='trimestral'>Trimestral \u2014 R$ 79,90 / 90 dias</option>"+
+"<option value='semestral'>Semestral \u2014 R$ 139,90 / 180 dias</option>"+
+"<option value='anual'>Anual \u2014 R$ 239,90 / 365 dias</option>";
 }
 function resumo(){
 var sel=$id("adminPlanoEmpresaBuscaEM"), box=$id("adminPlanoResumoEM");
@@ -45,10 +45,10 @@ return;
 var pid=x.plano_id||x.plano||"basico";
 var nomes={basico:"B\u00E1sico",trimestral:"Trimestral",semestral:"Semestral",anual:"Anual"};
 box.innerHTML=
-"&lt;strong&gt;"+esc(x.nome_fantasia||x.razao_social||x.cnpj)+"&lt;/strong&gt;"+
-"&lt;br/&gt;Plano atual: &lt;strong&gt;"+esc(x.plano_nome||nomes[pid]||pid)+"&lt;/strong&gt;"+
-" &amp;nbsp;\u2022&amp;nbsp; Validade: &lt;strong&gt;"+esc(dt(x.plano_valido_ate))+"&lt;/strong&gt;"+
-(x.plano_sem_cobranca?" &amp;nbsp;\u2022&amp;nbsp; &lt;strong&gt;Libera\u00E7\u00E3o administrativa&lt;/strong&gt;":"");
+"<strong>"+esc(x.nome_fantasia||x.razao_social||x.cnpj)+"</strong>"+
+"<br/>Plano atual: <strong>"+esc(x.plano_nome||nomes[pid]||pid)+"</strong>"+
+" &amp;nbsp;\u2022&amp;nbsp; Validade: <strong>"+esc(dt(x.plano_valido_ate))+"</strong>"+
+(x.plano_sem_cobranca?" &amp;nbsp;\u2022&amp;nbsp; <strong>Libera\u00E7\u00E3o administrativa</strong>":"");
 var p=$id("adminPlanoEscolhidoEM");
 if(p)p.value=pid;
 }
@@ -56,23 +56,23 @@ window.preencherEmpresasPlanoAdminEM=async function(){
 var sel=$id("adminPlanoEmpresaBuscaEM");
 if(!sel)return;
 montarPlanos();
-sel.innerHTML="&lt;option value=''&gt;Carregando empresas...&lt;/option&gt;";
+sel.innerHTML="<option value=''>Carregando empresas...</option>";
 try{
 var d=await rpc("admin_listar_empresas",{});
 cache=Array.isArray(d)?d:[];
-sel.innerHTML="&lt;option value=''&gt;Selecione uma empresa&lt;/option&gt;";
+sel.innerHTML="<option value=''>Selecione uma empresa</option>";
 cache.forEach(function(x){
 var o=document.createElement("option");
 o.value=x.empresa_id;
 o.textContent=(x.nome_fantasia||x.razao_social||"Empresa")+" \u2014 "+(x.cnpj||"");
 sel.appendChild(o);
 });
-if(!cache.length)sel.innerHTML="&lt;option value=''&gt;Nenhuma empresa cadastrada&lt;/option&gt;";
+if(!cache.length)sel.innerHTML="<option value=''>Nenhuma empresa cadastrada</option>";
 sel.onchange=resumo;
 resumo();
 }catch(e){
 console.error("admin_listar_empresas:",e);
-sel.innerHTML="&lt;option value=''&gt;Erro ao carregar empresas&lt;/option&gt;";
+sel.innerHTML="<option value=''>Erro ao carregar empresas</option>";
 var box=$id("adminPlanoResumoEM");
 if(box)box.textContent="Erro ao consultar Supabase: "+e.message;
 }
@@ -110,10 +110,10 @@ var sec=$id("adminLiberarPlanoEM");
 if(sec){
 sec.querySelectorAll("button").forEach(function(b){
 var t=(b.textContent||"").toLowerCase();
-if(t.indexOf("liberar plano")&gt;=0){
+if(t.indexOf("liberar plano")>=0){
 b.onclick=function(ev){ev.preventDefault();window.liberarPlanoAdminEM();};
 }
-if(t.indexOf("retornar ao plano b\u00E1sico")&gt;=0||t.indexOf("retornar ao plano basico")&gt;=0){
+if(t.indexOf("retornar ao plano b\u00E1sico")>=0||t.indexOf("retornar ao plano basico")>=0){
 b.onclick=function(ev){ev.preventDefault();window.retornarPlanoBasicoAdminEM();};
 }
 });
@@ -164,8 +164,8 @@ sessionStorage.setItem("empregaMaisPapel","admin");
 return d.access_token;
 }catch(e){return "";}
 }
-function esc(v){return String(v==null?"":v).replace(/[&amp;&lt;&gt;"']/g,function(c){
-return {"&amp;":"&amp;amp;","&lt;":"&amp;lt;","&gt;":"&amp;gt;",'"':"&amp;quot;","'":"&amp;#39;"}[c];
+function esc(v){return String(v==null?"":v).replace(/[&amp;<>"']/g,function(c){
+return {"&amp;":"&amp;amp;","<":"&amp;lt;",">":"&amp;gt;",'"':"&amp;quot;","'":"&amp;#39;"}[c];
 });}
 function dataBR(v){if(!v)return "\u2014";try{return new Date(v).toLocaleDateString("pt-BR");}catch(e){return "\u2014";}}
 async function rpcFinal(nome,body){
@@ -190,7 +190,7 @@ if(novo)r=await chamar(novo);
 }
 var tx=await r.text(), d=null;
 try{d=tx?JSON.parse(tx):null;}catch(e){d=tx;}
-if(!r.ok) throw new Error((d&amp;&amp;d.message)||String(d||("HTTP "+r.status)));
+if(!r.ok) throw new Error((d&&d.message)||String(d||("HTTP "+r.status)));
 return d;
 }
 function montarOpcoesPlanosFinal(){
@@ -198,11 +198,11 @@ var p=E("adminPlanoEscolhidoEM");
 if(!p)return;
 var atual=p.value||"basico";
 p.innerHTML=
-"&lt;option value='basico'&gt;B\u00E1sico \u2014 Gratuito&lt;/option&gt;"+
-"&lt;option value='trimestral'&gt;Trimestral \u2014 R$ 79,90 / 90 dias&lt;/option&gt;"+
-"&lt;option value='semestral'&gt;Semestral \u2014 R$ 139,90 / 180 dias&lt;/option&gt;"+
-"&lt;option value='anual'&gt;Anual \u2014 R$ 239,90 / 365 dias&lt;/option&gt;";
-if(["basico","trimestral","semestral","anual"].indexOf(atual)&gt;=0)p.value=atual;
+"<option value='basico'>B\u00E1sico \u2014 Gratuito</option>"+
+"<option value='trimestral'>Trimestral \u2014 R$ 79,90 / 90 dias</option>"+
+"<option value='semestral'>Semestral \u2014 R$ 139,90 / 180 dias</option>"+
+"<option value='anual'>Anual \u2014 R$ 239,90 / 365 dias</option>";
+if(["basico","trimestral","semestral","anual"].indexOf(atual)>=0)p.value=atual;
 }
 window.resumoPlanoAdminSupabaseFinalEM=function(){
 var sel=E("adminPlanoEmpresaBuscaEM"), box=E("adminPlanoResumoEM");
@@ -215,10 +215,10 @@ return;
 var pid=x.plano_id||x.plano||"basico";
 var nomes={basico:"B\u00E1sico",trimestral:"Trimestral",semestral:"Semestral",anual:"Anual"};
 box.innerHTML=
-"&lt;strong&gt;"+esc(x.nome_fantasia||x.razao_social||x.cnpj)+"&lt;/strong&gt;"+
-" &amp;nbsp; \u2022 &amp;nbsp; Plano atual: &lt;strong&gt;"+esc(x.plano_nome||nomes[pid]||pid)+"&lt;/strong&gt;"+
-" &amp;nbsp; \u2022 &amp;nbsp; V\u00E1lido at\u00E9: &lt;strong&gt;"+esc(dataBR(x.plano_valido_ate))+"&lt;/strong&gt;"+
-(x.plano_sem_cobranca?" &amp;nbsp; \u2022 &amp;nbsp; &lt;strong&gt;Libera\u00E7\u00E3o administrativa&lt;/strong&gt;":"");
+"<strong>"+esc(x.nome_fantasia||x.razao_social||x.cnpj)+"</strong>"+
+" &amp;nbsp; \u2022 &amp;nbsp; Plano atual: <strong>"+esc(x.plano_nome||nomes[pid]||pid)+"</strong>"+
+" &amp;nbsp; \u2022 &amp;nbsp; V\u00E1lido at\u00E9: <strong>"+esc(dataBR(x.plano_valido_ate))+"</strong>"+
+(x.plano_sem_cobranca?" &amp;nbsp; \u2022 &amp;nbsp; <strong>Libera\u00E7\u00E3o administrativa</strong>":"");
 var p=E("adminPlanoEscolhidoEM"); if(p)p.value=pid;
 };
 var carregando=false, carregado=false;
@@ -226,15 +226,15 @@ window.carregarPlanosAdminSupabaseFinalEM=async function(forcar){
 var sel=E("adminPlanoEmpresaBuscaEM"), box=E("adminPlanoResumoEM");
 if(!sel)return;
 if(carregando)return;
-if(carregado&amp;&amp;!forcar)return;
+if(carregado&&!forcar)return;
 carregando=true;
 montarOpcoesPlanosFinal();
-sel.innerHTML="&lt;option value=''&gt;Consultando empresas no Supabase...&lt;/option&gt;";
+sel.innerHTML="<option value=''>Consultando empresas no Supabase...</option>";
 if(box)box.textContent="Consultando empresas cadastradas...";
 try{
 var lista=await rpcFinal("admin_listar_empresas",{});
 cacheFinal=Array.isArray(lista)?lista:[];
-sel.innerHTML="&lt;option value=''&gt;Selecione uma empresa&lt;/option&gt;";
+sel.innerHTML="<option value=''>Selecione uma empresa</option>";
 cacheFinal.forEach(function(x){
 var o=document.createElement("option");
 o.value=x.empresa_id;
@@ -242,7 +242,7 @@ o.textContent=(x.nome_fantasia||x.razao_social||"Empresa")+" \u2014 "+(x.cnpj||"
 sel.appendChild(o);
 });
 if(!cacheFinal.length){
-sel.innerHTML="&lt;option value=''&gt;Nenhuma empresa retornada pelo Supabase&lt;/option&gt;";
+sel.innerHTML="<option value=''>Nenhuma empresa retornada pelo Supabase</option>";
 if(box)box.textContent="A consulta funcionou, mas n\u00E3o retornou empresas.";
 }else{
 if(box)box.textContent=cacheFinal.length+" empresa(s) carregada(s). Selecione uma empresa.";
@@ -250,15 +250,15 @@ if(box)box.textContent=cacheFinal.length+" empresa(s) carregada(s). Selecione um
 carregado=true;
 }catch(err){
 console.error("PLANOS ADMIN FINAL:",err);
-sel.innerHTML="&lt;option value=''&gt;ERRO \u2014 clique para tentar novamente&lt;/option&gt;";
-if(box)box.innerHTML="&lt;strong&gt;Erro ao buscar empresas:&lt;/strong&gt; "+esc(err.message);
+sel.innerHTML="<option value=''>ERRO \u2014 clique para tentar novamente</option>";
+if(box)box.innerHTML="<strong>Erro ao buscar empresas:</strong> "+esc(err.message);
 carregado=false;
 }finally{carregando=false;}
 };
 window.liberarPlanoAdminSupabaseFinalEM=async function(planoForcado){
 var sel=E("adminPlanoEmpresaBuscaEM"), p=E("adminPlanoEscolhidoEM");
 if(!sel||!sel.value){alert("Selecione uma empresa.");return;}
-var plano=planoForcado||((p&amp;&amp;p.value)||"basico");
+var plano=planoForcado||((p&&p.value)||"basico");
 var x=cacheFinal.find(function(a){return String(a.empresa_id)===String(sel.value);});
 var nome=x?(x.nome_fantasia||x.razao_social||"empresa"):"empresa";
 if(!confirm((plano==="basico"?"Retornar ":"Liberar plano ")+
@@ -282,10 +282,10 @@ sel.onclick=function(){window.carregarPlanosAdminSupabaseFinalEM(false);};
 sel.onchange=window.resumoPlanoAdminSupabaseFinalEM;
 sec.querySelectorAll("button").forEach(function(b){
 var t=(b.textContent||"").toLowerCase();
-if(t.indexOf("liberar plano")&gt;=0){
+if(t.indexOf("liberar plano")>=0){
 b.onclick=function(ev){ev.preventDefault();window.liberarPlanoAdminSupabaseFinalEM();};
 }
-if(t.indexOf("retornar ao plano b\u00E1sico")&gt;=0||t.indexOf("retornar ao plano basico")&gt;=0){
+if(t.indexOf("retornar ao plano b\u00E1sico")>=0||t.indexOf("retornar ao plano basico")>=0){
 b.onclick=function(ev){ev.preventDefault();window.liberarPlanoAdminSupabaseFinalEM("basico");};
 }
 });
@@ -295,10 +295,10 @@ return true;
 var tentativas=0;
 var timer=setInterval(function(){
 tentativas++;
-if(bindFinal()||tentativas&gt;40)clearInterval(timer);
+if(bindFinal()||tentativas>40)clearInterval(timer);
 },250);
 document.addEventListener("click",function(ev){
-var tab=ev.target&amp;&amp;ev.target.closest?ev.target.closest("[data-admin-tab-em='planos']"):null;
+var tab=ev.target&&ev.target.closest?ev.target.closest("[data-admin-tab-em='planos']"):null;
 if(tab)setTimeout(function(){bindFinal();window.carregarPlanosAdminSupabaseFinalEM(true);},120);
 },true);
 })();
@@ -324,11 +324,11 @@ body:JSON.stringify(body||{})
 });
 var tx=await r.text(),d=null;
 try{d=tx?JSON.parse(tx):null;}catch(e){d=tx;}
-if(!r.ok)throw new Error((d&amp;&amp;d.message)||String(d||("HTTP "+r.status)));
+if(!r.ok)throw new Error((d&&d.message)||String(d||("HTTP "+r.status)));
 return d;
 }
-function esc(v){return String(v==null?"":v).replace(/[&amp;&lt;&gt;"']/g,function(c){
-return {"&amp;":"&amp;amp;","&lt;":"&amp;lt;","&gt;":"&amp;gt;",'"':"&amp;quot;","'":"&amp;#39;"}[c];
+function esc(v){return String(v==null?"":v).replace(/[&amp;<>"']/g,function(c){
+return {"&amp;":"&amp;amp;","<":"&amp;lt;",">":"&amp;gt;",'"':"&amp;quot;","'":"&amp;#39;"}[c];
 });}
 function brl(v){return Number(v||0).toLocaleString("pt-BR",{style:"currency",currency:"BRL"});}
 function dataBR(v){
@@ -349,19 +349,19 @@ var d=new Date(t); return isNaN(d.getTime())?null:d;
 function vagaDaEmpresa(v,a){
 var vc=nums(v.empresaCnpj||v.cnpj||v.cnpjEmpresa);
 var ac=nums(a.cnpj);
-if(vc&amp;&amp;ac)return vc===ac;
+if(vc&&ac)return vc===ac;
 var vn=norm(v.empresa||v.empresaNome||v.nomeEmpresa);
 var an=norm(a.nome_fantasia||a.razao_social);
-return !!(vn&amp;&amp;an&amp;&amp;vn===an);
+return !!(vn&&an&&vn===an);
 }
 function statsVagas(vagas,a){
 var hoje=new Date(),mes=hoje.getMonth(),ano=hoje.getFullYear(),qtd=0,destaques=0;
 vagas.forEach(function(v){
 if(!vagaDaEmpresa(v,a))return;
 var d=parseDataVaga(v);
-if(d&amp;&amp;d.getMonth()===mes&amp;&amp;d.getFullYear()===ano)qtd++;
-var ativa=norm(v.status||"ativa")!=="encerrada"&amp;&amp;norm(v.status)!=="excluida";
-if(ativa&amp;&amp;bool(v.destaque))destaques++;
+if(d&&d.getMonth()===mes&&d.getFullYear()===ano)qtd++;
+var ativa=norm(v.status||"ativa")!=="encerrada"&&norm(v.status)!=="excluida";
+if(ativa&&bool(v.destaque))destaques++;
 });
 return {mes:qtd,destaques:destaques};
 }
@@ -369,7 +369,7 @@ async function carregarVagas(){
 try{
 if(typeof apiEmpregaMaisGet==="function"){
 var r=await apiEmpregaMaisGet("listar");
-if(r&amp;&amp;r.sucesso===true&amp;&amp;Array.isArray(r.vagas))return r.vagas;
+if(r&&r.sucesso===true&&Array.isArray(r.vagas))return r.vagas;
 }
 }catch(e){console.warn("Assinantes / vagas remotas:",e);}
 try{return typeof carregarVagasPortal==="function"?(carregarVagasPortal()||[]):[];}catch(e){return [];}
@@ -380,7 +380,7 @@ var d=await rpc("admin_listar_empresas",{});
 empresasCacheEM=Array.isArray(d)?d:[];
 var sel=document.getElementById("adminAssinaturaEmpresaEM");
 if(!sel)return;
-sel.innerHTML="&lt;option value=''&gt;Selecione uma empresa&lt;/option&gt;";
+sel.innerHTML="<option value=''>Selecione uma empresa</option>";
 empresasCacheEM.forEach(function(x){
 var o=document.createElement("option");
 o.value=x.empresa_id;
@@ -407,7 +407,7 @@ var vagas=Array.isArray(respostas[1])?respostas[1]:[];
 var receita=0,vencendo=0,totalVagasMes=0;
 assinantesCacheEM.forEach(function(a){
 if(a.origem==="pagamento")receita+=Number(a.valor_pago||0);
-if(Number(a.dias_restantes)&gt;=0&amp;&amp;Number(a.dias_restantes)&lt;=30)vencendo++;
+if(Number(a.dias_restantes)>=0&&Number(a.dias_restantes)<=30)vencendo++;
 totalVagasMes+=statsVagas(vagas,a).mes;
 });
 var set=function(id,v){var e=document.getElementById(id);if(e)e.textContent=v;};
@@ -416,7 +416,7 @@ set("admReceitaAssinantesEM",brl(receita));
 set("admAssinantesVencendoEM",vencendo);
 set("admVagasMesAssinantesEM",totalVagasMes);
 if(!assinantesCacheEM.length){
-lista.innerHTML="&lt;div class='admin-assinantes-vazio-em'&gt;Nenhuma assinatura ativa registrada ainda.&lt;/div&gt;";
+lista.innerHTML="<div class='admin-assinantes-vazio-em'>Nenhuma assinatura ativa registrada ainda.</div>";
 status.textContent="Consulta conclu\u00EDda. N\u00E3o h\u00E1 assinaturas ativas cadastradas.";
 return;
 }
@@ -425,22 +425,22 @@ var st=statsVagas(vagas,a);
 var nome=a.nome_fantasia||a.razao_social||"Empresa";
 var plano={trimestral:"Trimestral",semestral:"Semestral",anual:"Anual"}[a.plano_id]||a.plano_id||"\u2014";
 var cortesia=a.origem==="cortesia_admin";
-return "&lt;article class='admin-assinante-card-em'&gt;"+
-"&lt;div class='admin-assinante-cab-em'&gt;&lt;div&gt;&lt;h4&gt;"+esc(nome)+"&lt;/h4&gt;&lt;p&gt;CNPJ "+esc(a.cnpj||"\u2014")+"&lt;/p&gt;&lt;/div&gt;"+
-"&lt;span class='admin-assinante-selo-em"+(cortesia?" cortesia":"")+"'&gt;"+(cortesia?"Cortesia":"Pago")+"&lt;/span&gt;&lt;/div&gt;"+
-"&lt;div class='admin-assinante-dados-em'&gt;"+
-"&lt;div class='admin-assinante-dado-em'&gt;&lt;small&gt;Plano&lt;/small&gt;&lt;strong&gt;"+esc(plano)+"&lt;/strong&gt;&lt;/div&gt;"+
-"&lt;div class='admin-assinante-dado-em'&gt;&lt;small&gt;Valor pago&lt;/small&gt;&lt;strong&gt;"+brl(a.valor_pago)+"&lt;/strong&gt;&lt;/div&gt;"+
-"&lt;div class='admin-assinante-dado-em'&gt;&lt;small&gt;Encerramento&lt;/small&gt;&lt;strong&gt;"+dataBR(a.termina_em)+"&lt;br/&gt;"+Number(a.dias_restantes||0)+" dia(s)&lt;/strong&gt;&lt;/div&gt;"+
-"&lt;div class='admin-assinante-dado-em'&gt;&lt;small&gt;Vagas neste m\u00EAs&lt;/small&gt;&lt;strong&gt;"+st.mes+"&lt;/strong&gt;&lt;/div&gt;"+
-"&lt;div class='admin-assinante-dado-em'&gt;&lt;small&gt;Em destaque&lt;/small&gt;&lt;strong&gt;"+st.destaques+"&lt;/strong&gt;&lt;/div&gt;"+
-"&lt;/div&gt;&lt;/article&gt;";
+return "<article class='admin-assinante-card-em'>"+
+"<div class='admin-assinante-cab-em'><div><h4>"+esc(nome)+"</h4><p>CNPJ "+esc(a.cnpj||"\u2014")+"</p></div>"+
+"<span class='admin-assinante-selo-em"+(cortesia?" cortesia":"")+"'>"+(cortesia?"Cortesia":"Pago")+"</span></div>"+
+"<div class='admin-assinante-dados-em'>"+
+"<div class='admin-assinante-dado-em'><small>Plano</small><strong>"+esc(plano)+"</strong></div>"+
+"<div class='admin-assinante-dado-em'><small>Valor pago</small><strong>"+brl(a.valor_pago)+"</strong></div>"+
+"<div class='admin-assinante-dado-em'><small>Encerramento</small><strong>"+dataBR(a.termina_em)+"<br/>"+Number(a.dias_restantes||0)+" dia(s)</strong></div>"+
+"<div class='admin-assinante-dado-em'><small>Vagas neste m\u00EAs</small><strong>"+st.mes+"</strong></div>"+
+"<div class='admin-assinante-dado-em'><small>Em destaque</small><strong>"+st.destaques+"</strong></div>"+
+"</div></article>";
 }).join("");
 status.textContent=assinantesCacheEM.length+" assinatura(s) ativa(s) carregada(s).";
 }catch(e){
 console.error("Admin assinantes:",e);
 status.textContent="Erro ao consultar assinaturas: "+e.message;
-lista.innerHTML="&lt;div class='admin-assinantes-vazio-em'&gt;N\u00E3o foi poss\u00EDvel carregar os assinantes.&lt;/div&gt;";
+lista.innerHTML="<div class='admin-assinantes-vazio-em'>N\u00E3o foi poss\u00EDvel carregar os assinantes.</div>";
 }
 };
 window.registrarAssinaturaPagaAdminEM=async function(){
@@ -450,7 +450,7 @@ var valor=document.getElementById("adminAssinaturaValorEM");
 var pg=document.getElementById("adminAssinaturaPagamentoEM");
 if(!empresa||!empresa.value){alert("Selecione a empresa.");return;}
 var n=Number(String(valor.value||"").replace(/\./g,"").replace(",","."));
-if(!isFinite(n)||n&lt;0){alert("Informe um valor pago v\u00E1lido.");return;}
+if(!isFinite(n)||n<0){alert("Informe um valor pago v\u00E1lido.");return;}
 var x=empresasCacheEM.find(function(a){return String(a.empresa_id)===String(empresa.value);});
 var nome=x?(x.nome_fantasia||x.razao_social||"empresa"):"empresa";
 if(!confirm("Registrar assinatura "+plano.options[plano.selectedIndex].text+" para "+nome+"?"))return;
@@ -467,7 +467,7 @@ await window.carregarAssinantesAdminEM(true);
 };
 function ligar(){
 var p=document.getElementById("adminAssinaturaPlanoEM");
-if(p&amp;&amp;!p.dataset.ligado){p.dataset.ligado="1";p.onchange=atualizarValorPadrao;}
+if(p&&!p.dataset.ligado){p.dataset.ligado="1";p.onchange=atualizarValorPadrao;}
 }
 document.addEventListener("DOMContentLoaded",function(){setTimeout(ligar,350);});
 window.addEventListener("load",function(){setTimeout(ligar,600);});
@@ -488,34 +488,34 @@ return r;
 (function(){
 var U="https://mkezlcewyengejdmtppl.supabase.co",K="sb_publishable_8YnXpzGX8zj-tvzvcMYdyw_FVBhQutR",TK="empregaMaisAdminSupabaseToken",CE=[],CA=[],CV=[];
 function tk(){try{return localStorage.getItem(TK)||sessionStorage.getItem(TK)||"";}catch(x){return"";}}
-async function rpc(n,b){var t=tk();if(!t)throw Error("Sess\u00E3o administrativa n\u00E3o encontrada.");var r=await fetch(U+"/rest/v1/rpc/"+n,{method:"POST",headers:{"apikey":K,"Authorization":"Bearer "+t,"Content-Type":"application/json"},body:JSON.stringify(b||{})}),z=await r.text(),d;try{d=z?JSON.parse(z):null;}catch(x){d=z;}if(!r.ok)throw Error((d&amp;&amp;d.message)||String(d||r.status));return d;}
-function e(v){return String(v==null?"":v).replace(/[&amp;&lt;&gt;"']/g,function(c){return{"&amp;":"&amp;amp;","&lt;":"&amp;lt;","&gt;":"&amp;gt;",'"':"&amp;quot;","'":"&amp;#39;"}[c];});}
+async function rpc(n,b){var t=tk();if(!t)throw Error("Sess\u00E3o administrativa n\u00E3o encontrada.");var r=await fetch(U+"/rest/v1/rpc/"+n,{method:"POST",headers:{"apikey":K,"Authorization":"Bearer "+t,"Content-Type":"application/json"},body:JSON.stringify(b||{})}),z=await r.text(),d;try{d=z?JSON.parse(z):null;}catch(x){d=z;}if(!r.ok)throw Error((d&&d.message)||String(d||r.status));return d;}
+function e(v){return String(v==null?"":v).replace(/[&amp;<>"']/g,function(c){return{"&amp;":"&amp;amp;","<":"&amp;lt;",">":"&amp;gt;",'"':"&amp;quot;","'":"&amp;#39;"}[c];});}
 function dg(v){return String(v||"").replace(/\D/g,"");}function nm(v){return String(v||"").trim().toLowerCase();}function bv(v){return v===true||String(v).toLowerCase()==="true"||String(v)==="1";}
 function nome(x){return x.nome_fantasia||x.razao_social||x.nome||"Empresa";}function ini(x){var a=nome(x).split(/\s+/);return((a[0]||"E")[0]+(a[1]||"")[0]).toUpperCase();}
-function lg(x,c){return x.logo_url?"&lt;div class='"+c+"'&gt;&lt;img alt='' src='"+e(x.logo_url)+"'/&gt;&lt;/div&gt;":"&lt;div class='"+c+"'&gt;"+e(ini(x))+"&lt;/div&gt;";}
+function lg(x,c){return x.logo_url?"<div class='"+c+"'><img alt='' src='"+e(x.logo_url)+"'/></div>":"<div class='"+c+"'>"+e(ini(x))+"</div>";}
 function brl(v){return Number(v||0).toLocaleString("pt-BR",{style:"currency",currency:"BRL"});}function dt(v){if(!v)return"\u2014";var d=new Date(v);return isNaN(d.getTime())?"\u2014":d.toLocaleDateString("pt-BR");}
 function pn(x){return x.plano_nome||({basico:"B\u00E1sico",trimestral:"Trimestral",semestral:"Semestral",anual:"Anual"}[x.plano_id||x.plano]||x.plano_id||x.plano||"B\u00E1sico");}
 function ass(x){return CA.find(function(a){return String(a.empresa_id)===String(x.empresa_id);})||null;}
-function ve(v,x){var a=dg(v.empresaCnpj||v.cnpj||v.cnpjEmpresa),b=dg(x.cnpj);if(a&amp;&amp;b)return a===b;return nm(v.empresa||v.empresaNome||v.nomeEmpresa)===nm(nome(x));}
+function ve(v,x){var a=dg(v.empresaCnpj||v.cnpj||v.cnpjEmpresa),b=dg(x.cnpj);if(a&&b)return a===b;return nm(v.empresa||v.empresaNome||v.nomeEmpresa)===nm(nome(x));}
 function pd(v){var x=v.dataPublicacao||v.publicadoEm||v.publicadaEm||v.criadoEm||v.criado_em||v.data||"",m;if(!x)return null;x=String(x).trim();if((m=x.match(/^(\d{2})\/(\d{2})\/(\d{4})/)))return new Date(+m[3],+m[2]-1,+m[1]);if((m=x.match(/^(\d{4})-(\d{2})-(\d{2})/)))return new Date(+m[1],+m[2]-1,+m[3]);var d=new Date(x);return isNaN(d.getTime())?null:d;}
-function st(x){var vs=CV.filter(function(v){return ve(v,x);}),h=new Date(),mes=0,dest=0,at=0,an=0;vs.forEach(function(v){var d=pd(v),q=nm(v.status||"");if(d&amp;&amp;d.getMonth()===h.getMonth()&amp;&amp;d.getFullYear()===h.getFullYear())mes++;if(bv(v.destaque))dest++;if(q.indexOf("pend")&gt;=0||q.indexOf("an")===0)an++;if(q==="ativa"||q==="aprovada"||q==="publicada"||!q)at++;});
+function st(x){var vs=CV.filter(function(v){return ve(v,x);}),h=new Date(),mes=0,dest=0,at=0,an=0;vs.forEach(function(v){var d=pd(v),q=nm(v.status||"");if(d&&d.getMonth()===h.getMonth()&&d.getFullYear()===h.getFullYear())mes++;if(bv(v.destaque))dest++;if(q.indexOf("pend")>=0||q.indexOf("an")===0)an++;if(q==="ativa"||q==="aprovada"||q==="publicada"||!q)at++;});
 var cs=[];try{cs=typeof carregarCandidaturas==="function"?(carregarCandidaturas()||[]):JSON.parse(localStorage.getItem("candidaturasEmpregaMais")||"[]");}catch(z){cs=[];}
 var ids=vs.map(function(v){return String(v.id||v.vagaId||"");});
-var ce=cs.filter(function(c){return ids.indexOf(String(c.vagaId||c.idVaga||""))&gt;=0;});
+var ce=cs.filter(function(c){return ids.indexOf(String(c.vagaId||c.idVaga||""))>=0;});
 var aprov=ce.filter(function(c){return nm(c.status)==="aprovado";}).length;
 var contrat=ce.filter(function(c){return nm(c.status)==="contratado";}).length;
-var entrev=ce.filter(function(c){return nm(c.status).indexOf("entrevista")&gt;=0;}).length;
+var entrev=ce.filter(function(c){return nm(c.status).indexOf("entrevista")>=0;}).length;
 var selec=ce.filter(function(c){return nm(c.status)==="selecionado";}).length;
 return{vs:vs,mes:mes,dest:dest,at:at,an:an,cands:ce.length,entrev:entrev,selec:selec,aprov:aprov,contrat:contrat,candidaturas:ce};}
-async function vagas(){try{if(typeof apiEmpregaMaisGet==="function"){var r=await apiEmpregaMaisGet("listar");if(r&amp;&amp;r.sucesso===true&amp;&amp;Array.isArray(r.vagas))return r.vagas;}}catch(x){}try{return typeof carregarVagasPortal==="function"?(carregarVagasPortal()||[]):[];}catch(x){return[];}}
-function inf(k,v){return"&lt;div class='admin-empresa-info-item-em'&gt;&lt;small&gt;"+e(k)+"&lt;/small&gt;&lt;strong&gt;"+e(v||"\u2014")+"&lt;/strong&gt;&lt;/div&gt;";}
+async function vagas(){try{if(typeof apiEmpregaMaisGet==="function"){var r=await apiEmpregaMaisGet("listar");if(r&&r.sucesso===true&&Array.isArray(r.vagas))return r.vagas;}}catch(x){}try{return typeof carregarVagasPortal==="function"?(carregarVagasPortal()||[]):[];}catch(x){return[];}}
+function inf(k,v){return"<div class='admin-empresa-info-item-em'><small>"+e(k)+"</small><strong>"+e(v||"\u2014")+"</strong></div>";}
 window.carregarEmpresasMasterEM=async function(){var l=document.getElementById("adminEmpresasMasterListaEM"),q=document.getElementById("adminEmpresasMasterStatusEM");if(!l)return;try{var r=await Promise.all([rpc("admin_listar_empresas",{}),rpc("admin_listar_assinantes",{}),vagas()]);CE=Array.isArray(r[0])?r[0]:[];CA=Array.isArray(r[1])?r[1]:[];CV=Array.isArray(r[2])?r[2]:[];renderEmpresasMasterEM(CE);q.textContent=CE.length+" empresa(s) cadastrada(s). Clique para abrir o painel individual.";}catch(x){q.textContent="Erro: "+x.message;}};
-window.renderEmpresasMasterEM=function(a){var l=document.getElementById("adminEmpresasMasterListaEM");if(!l)return;l.innerHTML=a.length?a.map(function(x){var A=ass(x),S=st(x),V=x.verificada===true||x.verificacao_status==="verificada";return"&lt;article class='admin-empresa-master-card-em' onclick='abrirFichaEmpresaAdminEM(\""+e(x.empresa_id)+"\")'&gt;&lt;div class='admin-empresa-master-cab-em'&gt;"+lg(x,"admin-empresa-master-logo-em")+"&lt;div&gt;&lt;h3&gt;"+e(nome(x))+"&lt;/h3&gt;&lt;div class='cnpj'&gt;"+e(x.cnpj||"CNPJ n\u00E3o informado")+"&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class='admin-empresa-master-tags-em'&gt;&lt;span class='admin-empresa-master-tag-em "+(V?"ok":"")+"'&gt;"+(V?"Verificada":"N\u00E3o verificada")+"&lt;/span&gt;&lt;span class='admin-empresa-master-tag-em plano'&gt;"+e(pn(x))+"&lt;/span&gt;"+(A?"&lt;span class='admin-empresa-master-tag-em'&gt;"+(A.origem==="pagamento"?"Assinante":"Cortesia")+"&lt;/span&gt;":"")+"&lt;/div&gt;&lt;div class='admin-empresa-master-rodape-em'&gt;&lt;span&gt;Vagas no m\u00EAs&lt;br/&gt;&lt;strong&gt;"+S.mes+"&lt;/strong&gt;&lt;/span&gt;&lt;span&gt;Destaques&lt;br/&gt;&lt;strong&gt;"+S.dest+"&lt;/strong&gt;&lt;/span&gt;&lt;span&gt;Ativas&lt;br/&gt;&lt;strong&gt;"+S.at+"&lt;/strong&gt;&lt;/span&gt;&lt;span&gt;Contratados&lt;br/&gt;&lt;strong&gt;"+S.contrat+"&lt;/strong&gt;&lt;/span&gt;&lt;/div&gt;&lt;/article&gt;";}).join(""):"&lt;div class='vazio'&gt;Nenhuma empresa encontrada.&lt;/div&gt;";};
-window.filtrarEmpresasMasterEM=function(){var q=nm((document.getElementById("adminBuscaEmpresasMasterEM")||{}).value);renderEmpresasMasterEM(CE.filter(function(x){return nm(nome(x)).indexOf(q)&gt;=0||dg(x.cnpj).indexOf(dg(q))&gt;=0;}));};
-window.abrirFichaEmpresaAdminEM=function(id){var x=CE.find(function(y){return String(y.empresa_id)===String(id);});if(!x)return;var A=ass(x),S=st(x),V=x.verificada===true||x.verificacao_status==="verificada",m=document.getElementById("adminEmpresasMasterEM"),f=document.getElementById("adminEmpresaFichaEM"),c=document.getElementById("adminEmpresaFichaConteudoEM");m.classList.add("oculto");f.classList.remove("oculto");var vh=S.vs.slice(0,20).map(function(v){return"&lt;div class='admin-empresa-vaga-linha-em'&gt;&lt;div&gt;&lt;strong&gt;"+e(v.cargo||v.titulo||"Vaga")+"&lt;/strong&gt;&lt;br/&gt;&lt;span&gt;"+e(v.cidade||"")+" "+e(v.uf||"")+"&lt;/span&gt;&lt;/div&gt;&lt;span&gt;"+e(v.status||"\u2014")+(bv(v.destaque)?" \u00B7 Destaque":"")+"&lt;/span&gt;&lt;/div&gt;";}).join("")||"&lt;div class='vazio'&gt;Nenhuma vaga localizada.&lt;/div&gt;";c.innerHTML="&lt;div class='admin-empresa-ficha-cab-em'&gt;&lt;div class='admin-empresa-ficha-identidade-em'&gt;"+lg(x,"admin-empresa-ficha-logo-em")+"&lt;div&gt;&lt;span class='admin-eyebrow-em'&gt;PAINEL INDIVIDUAL DA EMPRESA&lt;/span&gt;&lt;h2&gt;"+e(nome(x))+"&lt;/h2&gt;&lt;p&gt;CNPJ "+e(x.cnpj||"\u2014")+"&lt;/p&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class='admin-empresa-ficha-status-em'&gt;&lt;span class='admin-empresa-master-tag-em "+(V?"ok":"")+"'&gt;"+(V?"Verificada":"N\u00E3o verificada")+"&lt;/span&gt;&lt;span class='admin-empresa-master-tag-em plano'&gt;"+e(pn(x))+"&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class='admin-empresa-ficha-grid-em'&gt;&lt;div class='admin-empresa-ficha-metrica-em'&gt;&lt;span&gt;Vagas neste m\u00EAs&lt;/span&gt;&lt;strong&gt;"+S.mes+"&lt;/strong&gt;&lt;/div&gt;&lt;div class='admin-empresa-ficha-metrica-em'&gt;&lt;span&gt;Candidaturas&lt;/span&gt;&lt;strong&gt;"+S.cands+"&lt;/strong&gt;&lt;/div&gt;&lt;div class='admin-empresa-ficha-metrica-em'&gt;&lt;span&gt;Entrevistas&lt;/span&gt;&lt;strong&gt;"+S.entrev+"&lt;/strong&gt;&lt;/div&gt;&lt;div class='admin-empresa-ficha-metrica-em'&gt;&lt;span&gt;Selecionados&lt;/span&gt;&lt;strong&gt;"+S.selec+"&lt;/strong&gt;&lt;/div&gt;&lt;div class='admin-empresa-ficha-metrica-em'&gt;&lt;span&gt;Aprovados&lt;/span&gt;&lt;strong&gt;"+S.aprov+"&lt;/strong&gt;&lt;/div&gt;&lt;div class='admin-empresa-ficha-metrica-em admin-metrica-contratados-em'&gt;&lt;span&gt;Contratados pelo portal&lt;/span&gt;&lt;strong&gt;"+S.contrat+"&lt;/strong&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class='admin-empresa-ficha-secoes-em'&gt;&lt;section class='admin-empresa-ficha-bloco-em'&gt;&lt;h3&gt;Cadastro da empresa&lt;/h3&gt;&lt;div class='admin-empresa-info-grid-em'&gt;"+inf("Raz\u00E3o social",x.razao_social)+inf("Nome fantasia",x.nome_fantasia)+inf("CNPJ",x.cnpj)+inf("E-mail",x.email_corporativo||x.email)+inf("Site",x.site)+inf("Matriz",x.matriz)+inf("Setor",x.setor)+inf("Funcion\u00E1rios",x.funcionarios)+"&lt;/div&gt;&lt;/section&gt;&lt;section class='admin-empresa-ficha-bloco-em'&gt;&lt;h3&gt;Assinatura e plano&lt;/h3&gt;&lt;div class='admin-empresa-info-grid-em'&gt;"+inf("Plano atual",pn(x))+inf("Tipo",A?(A.origem==="pagamento"?"Assinatura paga":"Cortesia administrativa"):"Sem assinatura registrada")+inf("Valor pago",A?brl(A.valor_pago):"R$ 0,00")+inf("In\u00EDcio",A?dt(A.inicio_em):dt(x.plano_inicio))+inf("Vencimento",A?dt(A.termina_em):dt(x.plano_valido_ate))+inf("Tempo restante",A?(Number(A.dias_restantes||0)+" dia(s)"):"\u2014")+inf("Pagamento",A?(A.forma_pagamento||"\u2014"):"\u2014")+"&lt;/div&gt;&lt;/section&gt;&lt;section class='admin-empresa-ficha-bloco-em'&gt;&lt;h3&gt;Verifica\u00E7\u00E3o&lt;/h3&gt;&lt;div class='admin-empresa-info-grid-em'&gt;"+inf("Status",x.verificacao_status||"n\u00E3o verificada")+inf("Resultado",V?"Verificada":"Pendente / n\u00E3o verificada")+"&lt;/div&gt;&lt;/section&gt;&lt;section class='admin-empresa-ficha-bloco-em'&gt;&lt;h3&gt;Atividade&lt;/h3&gt;&lt;div class='admin-empresa-info-grid-em'&gt;"+inf("Vagas cadastradas",S.vs.length)+inf("Publicadas no m\u00EAs",S.mes)+inf("Ativas",S.at)+inf("Em destaque",S.dest)+inf("Candidaturas recebidas",S.cands)+inf("Entrevistas",S.entrev)+inf("Selecionados",S.selec)+inf("Aprovados",S.aprov)+inf("Contratados pelo portal",S.contrat)+"&lt;/div&gt;&lt;/section&gt;&lt;section class='admin-empresa-ficha-bloco-em admin-empresa-ficha-vagas-em'&gt;&lt;h3&gt;Vagas da empresa&lt;/h3&gt;"+vh+"&lt;/section&gt;&lt;/div&gt;";window.scrollTo({top:0,behavior:"smooth"});};
+window.renderEmpresasMasterEM=function(a){var l=document.getElementById("adminEmpresasMasterListaEM");if(!l)return;l.innerHTML=a.length?a.map(function(x){var A=ass(x),S=st(x),V=x.verificada===true||x.verificacao_status==="verificada";return"<article class='admin-empresa-master-card-em' onclick='abrirFichaEmpresaAdminEM(\""+e(x.empresa_id)+"\")'><div class='admin-empresa-master-cab-em'>"+lg(x,"admin-empresa-master-logo-em")+"<div><h3>"+e(nome(x))+"</h3><div class='cnpj'>"+e(x.cnpj||"CNPJ n\u00E3o informado")+"</div></div></div><div class='admin-empresa-master-tags-em'><span class='admin-empresa-master-tag-em "+(V?"ok":"")+"'>"+(V?"Verificada":"N\u00E3o verificada")+"</span><span class='admin-empresa-master-tag-em plano'>"+e(pn(x))+"</span>"+(A?"<span class='admin-empresa-master-tag-em'>"+(A.origem==="pagamento"?"Assinante":"Cortesia")+"</span>":"")+"</div><div class='admin-empresa-master-rodape-em'><span>Vagas no m\u00EAs<br/><strong>"+S.mes+"</strong></span><span>Destaques<br/><strong>"+S.dest+"</strong></span><span>Ativas<br/><strong>"+S.at+"</strong></span><span>Contratados<br/><strong>"+S.contrat+"</strong></span></div></article>";}).join(""):"<div class='vazio'>Nenhuma empresa encontrada.</div>";};
+window.filtrarEmpresasMasterEM=function(){var q=nm((document.getElementById("adminBuscaEmpresasMasterEM")||{}).value);renderEmpresasMasterEM(CE.filter(function(x){return nm(nome(x)).indexOf(q)>=0||dg(x.cnpj).indexOf(dg(q))>=0;}));};
+window.abrirFichaEmpresaAdminEM=function(id){var x=CE.find(function(y){return String(y.empresa_id)===String(id);});if(!x)return;var A=ass(x),S=st(x),V=x.verificada===true||x.verificacao_status==="verificada",m=document.getElementById("adminEmpresasMasterEM"),f=document.getElementById("adminEmpresaFichaEM"),c=document.getElementById("adminEmpresaFichaConteudoEM");m.classList.add("oculto");f.classList.remove("oculto");var vh=S.vs.slice(0,20).map(function(v){return"<div class='admin-empresa-vaga-linha-em'><div><strong>"+e(v.cargo||v.titulo||"Vaga")+"</strong><br/><span>"+e(v.cidade||"")+" "+e(v.uf||"")+"</span></div><span>"+e(v.status||"\u2014")+(bv(v.destaque)?" \u00B7 Destaque":"")+"</span></div>";}).join("")||"<div class='vazio'>Nenhuma vaga localizada.</div>";c.innerHTML="<div class='admin-empresa-ficha-cab-em'><div class='admin-empresa-ficha-identidade-em'>"+lg(x,"admin-empresa-ficha-logo-em")+"<div><span class='admin-eyebrow-em'>PAINEL INDIVIDUAL DA EMPRESA</span><h2>"+e(nome(x))+"</h2><p>CNPJ "+e(x.cnpj||"\u2014")+"</p></div></div><div class='admin-empresa-ficha-status-em'><span class='admin-empresa-master-tag-em "+(V?"ok":"")+"'>"+(V?"Verificada":"N\u00E3o verificada")+"</span><span class='admin-empresa-master-tag-em plano'>"+e(pn(x))+"</span></div></div><div class='admin-empresa-ficha-grid-em'><div class='admin-empresa-ficha-metrica-em'><span>Vagas neste m\u00EAs</span><strong>"+S.mes+"</strong></div><div class='admin-empresa-ficha-metrica-em'><span>Candidaturas</span><strong>"+S.cands+"</strong></div><div class='admin-empresa-ficha-metrica-em'><span>Entrevistas</span><strong>"+S.entrev+"</strong></div><div class='admin-empresa-ficha-metrica-em'><span>Selecionados</span><strong>"+S.selec+"</strong></div><div class='admin-empresa-ficha-metrica-em'><span>Aprovados</span><strong>"+S.aprov+"</strong></div><div class='admin-empresa-ficha-metrica-em admin-metrica-contratados-em'><span>Contratados pelo portal</span><strong>"+S.contrat+"</strong></div></div><div class='admin-empresa-ficha-secoes-em'><section class='admin-empresa-ficha-bloco-em'><h3>Cadastro da empresa</h3><div class='admin-empresa-info-grid-em'>"+inf("Raz\u00E3o social",x.razao_social)+inf("Nome fantasia",x.nome_fantasia)+inf("CNPJ",x.cnpj)+inf("E-mail",x.email_corporativo||x.email)+inf("Site",x.site)+inf("Matriz",x.matriz)+inf("Setor",x.setor)+inf("Funcion\u00E1rios",x.funcionarios)+"</div></section><section class='admin-empresa-ficha-bloco-em'><h3>Assinatura e plano</h3><div class='admin-empresa-info-grid-em'>"+inf("Plano atual",pn(x))+inf("Tipo",A?(A.origem==="pagamento"?"Assinatura paga":"Cortesia administrativa"):"Sem assinatura registrada")+inf("Valor pago",A?brl(A.valor_pago):"R$ 0,00")+inf("In\u00EDcio",A?dt(A.inicio_em):dt(x.plano_inicio))+inf("Vencimento",A?dt(A.termina_em):dt(x.plano_valido_ate))+inf("Tempo restante",A?(Number(A.dias_restantes||0)+" dia(s)"):"\u2014")+inf("Pagamento",A?(A.forma_pagamento||"\u2014"):"\u2014")+"</div></section><section class='admin-empresa-ficha-bloco-em'><h3>Verifica\u00E7\u00E3o</h3><div class='admin-empresa-info-grid-em'>"+inf("Status",x.verificacao_status||"n\u00E3o verificada")+inf("Resultado",V?"Verificada":"Pendente / n\u00E3o verificada")+"</div></section><section class='admin-empresa-ficha-bloco-em'><h3>Atividade</h3><div class='admin-empresa-info-grid-em'>"+inf("Vagas cadastradas",S.vs.length)+inf("Publicadas no m\u00EAs",S.mes)+inf("Ativas",S.at)+inf("Em destaque",S.dest)+inf("Candidaturas recebidas",S.cands)+inf("Entrevistas",S.entrev)+inf("Selecionados",S.selec)+inf("Aprovados",S.aprov)+inf("Contratados pelo portal",S.contrat)+"</div></section><section class='admin-empresa-ficha-bloco-em admin-empresa-ficha-vagas-em'><h3>Vagas da empresa</h3>"+vh+"</section></div>";window.scrollTo({top:0,behavior:"smooth"});};
 window.fecharFichaEmpresaAdminEM=function(){var m=document.getElementById("adminEmpresasMasterEM"),f=document.getElementById("adminEmpresaFichaEM");if(m)m.classList.remove("oculto");if(f)f.classList.add("oculto");};
 var aa=window.abrirAbaAdminEM;if(typeof aa==="function"){window.abrirAbaAdminEM=function(a,b){var r=aa.apply(this,arguments);if(a==="empresas")setTimeout(function(){fecharFichaEmpresaAdminEM();carregarEmpresasMasterEM();},100);return r;};}
-document.addEventListener("DOMContentLoaded",function(){setTimeout(function(){var p=document.getElementById("pagina-painel-admin");if(p&amp;&amp;p.classList.contains("ativa")){var b=document.querySelector("#adminTabsPrincipaisEM [data-admin-tab-em='empresas']");if(b)abrirAbaAdminEM("empresas",b);}},700);});
+document.addEventListener("DOMContentLoaded",function(){setTimeout(function(){var p=document.getElementById("pagina-painel-admin");if(p&&p.classList.contains("ativa")){var b=document.querySelector("#adminTabsPrincipaisEM [data-admin-tab-em='empresas']");if(b)abrirAbaAdminEM("empresas",b);}},700);});
 })();
 //
 ;
@@ -526,7 +526,7 @@ var K="sb_publishable_8YnXpzGX8zj-tvzvcMYdyw_FVBhQutR";
 var cache={};
 function dig(v){return String(v||"").replace(/\D/g,"");}
 function norm(v){return String(v||"").trim().toLowerCase();}
-function esc(v){return String(v==null?"":v).replace(/[&amp;&lt;&gt;"']/g,function(c){return{"&amp;":"&amp;amp;","&lt;":"&amp;lt;","&gt;":"&amp;gt;",'"':"&amp;quot;","'":"&amp;#39;"}[c];});}
+function esc(v){return String(v==null?"":v).replace(/[&amp;<>"']/g,function(c){return{"&amp;":"&amp;amp;","<":"&amp;lt;",">":"&amp;gt;",'"':"&amp;quot;","'":"&amp;#39;"}[c];});}
 function vagaAtual(){
 try{
 var u=new URL(window.location.href),id=u.searchParams.get("id");
@@ -564,16 +564,16 @@ var arr=[];
 try{
 if(typeof apiEmpregaMaisGet==="function"){
 var r=await apiEmpregaMaisGet("listar");
-if(r&amp;&amp;r.sucesso===true&amp;&amp;Array.isArray(r.vagas))arr=r.vagas;
+if(r&&r.sucesso===true&&Array.isArray(r.vagas))arr=r.vagas;
 }
 }catch(e){}
 if(!arr.length){try{arr=typeof carregarVagasPortal==="function"?(carregarVagasPortal()||[]):[];}catch(e){}}
 var nomes=[norm(p.nome_fantasia),norm(p.razao_social)].filter(Boolean);
 return arr.filter(function(v){
 var n=norm(v.empresa||v.empresaNome||v.nomeEmpresa);
-var ok=nomes.indexOf(n)&gt;=0;
+var ok=nomes.indexOf(n)>=0;
 var st=norm(v.status||""),ap=norm(v.aprovacao||"");
-return ok &amp;&amp; st!=="encerrada" &amp;&amp; st!=="excluida" &amp;&amp; (ap===""||ap==="aprovada");
+return ok && st!=="encerrada" && st!=="excluida" && (ap===""||ap==="aprovada");
 });
 }
 function setTxt(id,v){var el=document.getElementById(id);if(el)el.textContent=v||"N\u00E3o informado";}
@@ -587,13 +587,13 @@ setTxt("empresaPublicaFuncionarios",p.funcionarios);
 setTxt("empresaPublicaSetor",p.setor);
 setTxt("empresaPublicaSobre",p.sobre_institucional||"Informa\u00E7\u00F5es n\u00E3o fornecidas.");
 var fat=document.getElementById("empresaPublicaFaturamento");
-if(fat&amp;&amp;fat.parentElement)fat.parentElement.style.display="none";
+if(fat&&fat.parentElement)fat.parentElement.style.display="none";
 var logo=document.getElementById("empresaPublicaLogo");
 if(logo){if(p.logo_url){logo.src=p.logo_url;logo.style.display="block";}else logo.style.display="none";}
 var siteAnt=document.getElementById("empresaPublicaSiteSeguroEM");if(siteAnt)siteAnt.remove();
 if(p.site){
 var alvo=document.getElementById("empresaPublicaSobre");
-if(alvo&amp;&amp;alvo.parentElement){
+if(alvo&&alvo.parentElement){
 var a=document.createElement("a");a.id="empresaPublicaSiteSeguroEM";a.className="empresa-publica-site-em";a.target="_blank";a.rel="noopener noreferrer";a.href=p.site;a.textContent="Visitar site oficial";alvo.parentElement.appendChild(a);
 }
 }
@@ -603,7 +603,7 @@ var bloco=document.getElementById("empresaPublicaListaVagas");
 if(bloco){
 bloco.innerHTML="";
 vs.forEach(function(v){try{bloco.appendChild(criarCardVaga(v,false));}catch(e){}});
-if(!vs.length)bloco.innerHTML="&lt;div class='vazio'&gt;Esta empresa n\u00E3o possui vagas abertas no momento.&lt;/div&gt;";
+if(!vs.length)bloco.innerHTML="<div class='vazio'>Esta empresa n\u00E3o possui vagas abertas no momento.</div>";
 }
 if(typeof mostrarPagina==="function")mostrarPagina("empresa-publica");
 }
@@ -628,7 +628,7 @@ document.addEventListener("click",function(){setTimeout(conectarDetalhe,100);});
 ;
 //
 (function(){
-function esc(v){return String(v==null?"":v).replace(/[&amp;&lt;&gt;"']/g,function(c){return{"&amp;":"&amp;amp;","&lt;":"&amp;lt;","&gt;":"&amp;gt;",'"':"&amp;quot;","'":"&amp;#39;"}[c];});}
+function esc(v){return String(v==null?"":v).replace(/[&amp;<>"']/g,function(c){return{"&amp;":"&amp;amp;","<":"&amp;lt;",">":"&amp;gt;",'"':"&amp;quot;","'":"&amp;#39;"}[c];});}
 function rolar(id){var e=document.getElementById(id);if(e)e.scrollIntoView({behavior:"smooth",block:"start"});}
 window.rolarPerfilEmpresaEM=rolar;
 function reconstruir(){
@@ -642,9 +642,9 @@ var total=document.getElementById("empresaPublicaTotalVagas");
 var lista=document.getElementById("empresaPublicaListaVagas");
 if(!nome||!sobre||!lista)return;
 var topo=pag.querySelector(".empresa-publica-premium-topo-em");
-if(topo&amp;&amp;!topo.querySelector(".empresa-publica-nav-em")){
+if(topo&&!topo.querySelector(".empresa-publica-nav-em")){
 var nav=document.createElement("nav");nav.className="empresa-publica-nav-em";
-nav.innerHTML="&lt;button onclick='rolarPerfilEmpresaEM(\"empresaPerfilSobreEM\")' type='button'&gt;Sobre&lt;/button&gt;&lt;button onclick='rolarPerfilEmpresaEM(\"empresaPerfilVagasEM\")' type='button'&gt;Vagas&lt;/button&gt;&lt;button onclick='rolarPerfilEmpresaEM(\"empresaPerfilResumoEM\")' type='button'&gt;Informa\u00E7\u00F5es da empresa&lt;/button&gt;";
+nav.innerHTML="<button onclick='rolarPerfilEmpresaEM(\"empresaPerfilSobreEM\")' type='button'>Sobre</button><button onclick='rolarPerfilEmpresaEM(\"empresaPerfilVagasEM\")' type='button'>Vagas</button><button onclick='rolarPerfilEmpresaEM(\"empresaPerfilResumoEM\")' type='button'>Informa\u00E7\u00F5es da empresa</button>";
 var inn=topo.querySelector(".empresa-publica-premium-inner-em")||topo;inn.appendChild(nav);
 }
 var sobreCard=sobre.closest(".empresa-publica-card-em")||sobre.parentElement;
@@ -663,12 +663,12 @@ var cards=Array.prototype.slice.call(lista.children);
 if(cards.length){
 var frag=document.createDocumentFragment();
 cards.forEach(function(card){
-if(card.classList&amp;&amp;card.classList.contains("vazio")){frag.appendChild(card);return;}
+if(card.classList&&card.classList.contains("vazio")){frag.appendChild(card);return;}
 var titulo=card.querySelector(".vaga-titulo");
 var cidade=card.querySelector(".tags .tag,.vaga-local,.localidade");
 var id=card.getAttribute("data-id")||"";
 var linha=document.createElement("article");linha.className="empresa-publica-vaga-premium-em";
-linha.innerHTML="&lt;div&gt;&lt;h3&gt;"+esc(titulo?titulo.textContent:"Vaga")+"&lt;/h3&gt;&lt;p&gt;"+esc(cidade?cidade.textContent:"")+"&lt;/p&gt;&lt;/div&gt;&lt;button type='button'&gt;Ver vaga&lt;/button&gt;";
+linha.innerHTML="<div><h3>"+esc(titulo?titulo.textContent:"Vaga")+"</h3><p>"+esc(cidade?cidade.textContent:"")+"</p></div><button type='button'>Ver vaga</button>";
 linha.querySelector("button").onclick=function(){if(typeof abrirVaga==="function")abrirVaga(id);};
 frag.appendChild(linha);
 });
@@ -676,19 +676,19 @@ lista.innerHTML="";lista.appendChild(frag);
 }
 if(side){
 var card=side.querySelector(".empresa-publica-card-em")||side;
-card.innerHTML="&lt;h2&gt;Resumo da empresa&lt;/h2&gt;&lt;div class='empresa-publica-resumo-em'&gt;"+
-"&lt;div class='empresa-publica-resumo-item-em'&gt;&lt;small&gt;Matriz&lt;/small&gt;&lt;strong&gt;"+esc(matriz?matriz.textContent:"N\u00E3o informada")+"&lt;/strong&gt;&lt;/div&gt;"+
-"&lt;div class='empresa-publica-resumo-item-em'&gt;&lt;small&gt;Funcion\u00E1rios&lt;/small&gt;&lt;strong&gt;"+esc(func?func.textContent:"N\u00E3o informado")+"&lt;/strong&gt;&lt;/div&gt;"+
-"&lt;div class='empresa-publica-resumo-item-em'&gt;&lt;small&gt;Setor&lt;/small&gt;&lt;strong&gt;"+esc(setor?setor.textContent:"N\u00E3o informado")+"&lt;/strong&gt;&lt;/div&gt;"+
-"&lt;div class='empresa-publica-resumo-item-em'&gt;&lt;small&gt;Vagas abertas&lt;/small&gt;&lt;strong&gt;"+esc(total?total.textContent:"0")+"&lt;/strong&gt;&lt;/div&gt;"+
-"&lt;/div&gt;";
+card.innerHTML="<h2>Resumo da empresa</h2><div class='empresa-publica-resumo-em'>"+
+"<div class='empresa-publica-resumo-item-em'><small>Matriz</small><strong>"+esc(matriz?matriz.textContent:"N\u00E3o informada")+"</strong></div>"+
+"<div class='empresa-publica-resumo-item-em'><small>Funcion\u00E1rios</small><strong>"+esc(func?func.textContent:"N\u00E3o informado")+"</strong></div>"+
+"<div class='empresa-publica-resumo-item-em'><small>Setor</small><strong>"+esc(setor?setor.textContent:"N\u00E3o informado")+"</strong></div>"+
+"<div class='empresa-publica-resumo-item-em'><small>Vagas abertas</small><strong>"+esc(total?total.textContent:"0")+"</strong></div>"+
+"</div>";
 var site=document.getElementById("empresaPublicaSiteSeguroEM");
 if(site){site.className="empresa-publica-site-novo-em";card.appendChild(site);}
 }
 }
 var obs=new MutationObserver(function(){
 var p=document.getElementById("pagina-empresa-publica");
-if(p&amp;&amp;p.style.display!=="none")setTimeout(reconstruir,80);
+if(p&&p.style.display!=="none")setTimeout(reconstruir,80);
 });
 document.addEventListener("DOMContentLoaded",function(){
 var p=document.getElementById("pagina-empresa-publica");
@@ -717,14 +717,14 @@ var req=[
 ["experienciaVaga","Informe a experi\u00EAncia exigida."],["jornadaVaga","Selecione a jornada de trabalho."],
 ["descricaoVaga","Escreva a descri\u00E7\u00E3o da vaga."],["requisitosVaga","Informe os requisitos da vaga."]
 ];
-for(var i=0;i&lt;req.length;i++){if(!val(req[i][0])){falha(req[i][1],req[i][0]);return false;}}
+for(var i=0;i<req.length;i++){if(!val(req[i][0])){falha(req[i][1],req[i][0]);return false;}}
 var cepNumeros=val("cepVaga").replace(/\D/g,"");
 if(cepNumeros.length!==8){falha("Informe um CEP válido do local de trabalho.","cepVaga");return false;}
 var r=document.querySelector("input[name='tipoContatoVaga']:checked");
 var tipo=r?r.value:"email";
-if(tipo==="email"&amp;&amp;!val("emailCandidaturaVaga")){falha("Informe o e-mail para receber as candidaturas.","emailCandidaturaVaga");return false;}
-if(tipo==="whatsapp"&amp;&amp;typeof normalizarWhatsappVaga==="function"&amp;&amp;normalizarWhatsappVaga(val("whatsappCandidaturaVaga")).length&lt;10){falha("Informe um WhatsApp v\u00E1lido com DDI e DDD.","whatsappCandidaturaVaga");return false;}
-if(tipo==="link"&amp;&amp;!/^https?:\/\//i.test(val("linkCandidaturaVaga"))){falha("Informe um link completo come\u00E7ando com https://","linkCandidaturaVaga");return false;}
+if(tipo==="email"&&!val("emailCandidaturaVaga")){falha("Informe o e-mail para receber as candidaturas.","emailCandidaturaVaga");return false;}
+if(tipo==="whatsapp"&&typeof normalizarWhatsappVaga==="function"&&normalizarWhatsappVaga(val("whatsappCandidaturaVaga")).length<10){falha("Informe um WhatsApp v\u00E1lido com DDI e DDD.","whatsappCandidaturaVaga");return false;}
+if(tipo==="link"&&!/^https?:\/\//i.test(val("linkCandidaturaVaga"))){falha("Informe um link completo come\u00E7ando com https://","linkCandidaturaVaga");return false;}
 return true;
 }
 function montar(empresa,plano){
@@ -733,7 +733,7 @@ if(tipo==="email")cont=val("emailCandidaturaVaga");
 if(tipo==="whatsapp")cont=typeof normalizarWhatsappVaga==="function"?normalizarWhatsappVaga(val("whatsappCandidaturaVaga")):val("whatsappCandidaturaVaga");
 if(tipo==="link")cont=val("linkCandidaturaVaga");
 var sal=val("salarioVaga")||"Sal\u00E1rio a combinar";
-var dias=(plano&amp;&amp;plano.diasVaga)||30;
+var dias=(plano&&plano.diasVaga)||30;
 return {
 id:"vaga_"+Date.now(),empresa:empresa.nomeFantasia||empresa.nome||empresa.razaoSocial||"Empresa",
 empresaCnpj:empresa.cnpj||"",empresaEmail:empresa.email||empresa.email_corporativo||"",
@@ -745,35 +745,35 @@ enderecoPublico:(val("enderecoVisibilidadeV130")==="completo"
 ? [val("ruaVagaV130"),val("bairroVagaV130"),val("cidadeVaga"),val("estadoVaga")].filter(Boolean).join(" · ")
 : (val("enderecoVisibilidadeV130")==="cidade"
 ? [val("cidadeVaga"),val("estadoVaga")].filter(Boolean).join(" · ")
-: [val("bairroVagaV130"),val("cidadeVaga"),val("estadoVaga")].filter(Boolean).join(" · "))),    latitude:(typeof coordenadasCepVagaEM!=="undefined"&amp;&amp;coordenadasCepVagaEM)?coordenadasCepVagaEM.latitude:"",
-longitude:(typeof coordenadasCepVagaEM!=="undefined"&amp;&amp;coordenadasCepVagaEM)?coordenadasCepVagaEM.longitude:"",
+: [val("bairroVagaV130"),val("cidadeVaga"),val("estadoVaga")].filter(Boolean).join(" · "))),    latitude:(typeof coordenadasCepVagaEM!=="undefined"&&coordenadasCepVagaEM)?coordenadasCepVagaEM.latitude:"",
+longitude:(typeof coordenadasCepVagaEM!=="undefined"&&coordenadasCepVagaEM)?coordenadasCepVagaEM.longitude:"",
 area:val("areaVaga"),contrato:val("contratoVaga"),modalidade:val("modalidadeVaga"),
 escolaridade:val("escolaridadeVaga"),experiencia:val("experienciaVaga"),jornada:val("jornadaVaga"),
 beneficiosTags:typeof beneficiosTagsSelecionados==="function"?beneficiosTagsSelecionados():[],
 pcd:val("pcdVaga"),salario:sal,salarioNumero:typeof extrairSalarioNumero==="function"?extrairSalarioNumero(sal):0,
 descricao:val("descricaoVaga"),requisitos:val("requisitosVaga"),beneficios:val("beneficiosVaga"),
 sobreEmpresa:val("sobreEmpresaVaga"),logo:typeof logoAtual!=="undefined"?logoAtual:"",
-planoDias:dias,planoId:(plano&amp;&amp;plano.id)||"basico",planoNome:(plano&amp;&amp;plano.nome)||"B\u00E1sico",
-planoPreco:(plano&amp;&amp;plano.preco)||0,dataPublicacao:typeof dataHoje==="function"?dataHoje():"",
+planoDias:dias,planoId:(plano&&plano.id)||"basico",planoNome:(plano&&plano.nome)||"B\u00E1sico",
+planoPreco:(plano&&plano.preco)||0,dataPublicacao:typeof dataHoje==="function"?dataHoje():"",
 expiraEm:typeof calcularExpiracao==="function"?calcularExpiracao(dias):"",visualizacoes:0,destaque:false,
 status:"ativa",aprovacao:"pendente",jaFoiAprovada:false,edicoesAposAprovacao:0,
-confidencial:!!(el("vagaConfidencialEM")&amp;&amp;el("vagaConfidencialEM").checked&amp;&amp;typeof planoPermiteConfidencialEM==="function"&amp;&amp;planoPermiteConfidencialEM()),
-contratacaoUrgente:!!(el("contratacaoUrgenteEmpregaMais")&amp;&amp;el("contratacaoUrgenteEmpregaMais").checked)
+confidencial:!!(el("vagaConfidencialEM")&&el("vagaConfidencialEM").checked&&typeof planoPermiteConfidencialEM==="function"&&planoPermiteConfidencialEM()),
+contratacaoUrgente:!!(el("contratacaoUrgenteEmpregaMais")&&el("contratacaoUrgenteEmpregaMais").checked)
 };
 }
 async function enviar(event){
 if(event){event.preventDefault();event.stopPropagation();if(event.stopImmediatePropagation)event.stopImmediatePropagation();}
 if(enviando)return false;
-if(typeof modoPublicacaoAdminEM!=="undefined"&amp;&amp;modoPublicacaoAdminEM)return false;
-if(typeof empresaEstaLogada==="function"&amp;&amp;!empresaEstaLogada()){if(typeof irPara==="function")irPara("login-empresa");return false;}
-if(typeof vagaEdicaoId!=="undefined"&amp;&amp;vagaEdicaoId){
+if(typeof modoPublicacaoAdminEM!=="undefined"&&modoPublicacaoAdminEM)return false;
+if(typeof empresaEstaLogada==="function"&&!empresaEstaLogada()){if(typeof irPara==="function")irPara("login-empresa");return false;}
+if(typeof vagaEdicaoId!=="undefined"&&vagaEdicaoId){
 return publicarVagaAntesAdminEM?publicarVagaAntesAdminEM(event):false;
 }
 if(!validar())return false;
 var empresa=typeof obterEmpresaAtual==="function"?obterEmpresaAtual():null;
 if(!empresa){falha("N\u00E3o foi poss\u00EDvel identificar a empresa logada.");return false;}
 var plano=typeof planoEmpresaAtual==="function"?planoEmpresaAtual():null;
-if(plano&amp;&amp;typeof contarVagasEmpresaMes==="function"&amp;&amp;contarVagasEmpresaMes(empresa.cnpj)&gt;=plano.vagasMes){
+if(plano&&typeof contarVagasEmpresaMes==="function"&&contarVagasEmpresaMes(empresa.cnpj)>=plano.vagasMes){
 falha("O limite mensal de vagas do seu plano foi atingido.");return false;
 }
 var vaga=montar(empresa,plano),btn=el("btnSalvarVaga");
@@ -784,7 +784,7 @@ if(typeof apiEmpregaMaisPost==="function")resp=await apiEmpregaMaisPost({acao:"p
 else{
 resp=await fetch(EMPREGAMAIS_API_URL,{method:"POST",headers:{"Content-Type":"text/plain;charset=utf-8"},body:JSON.stringify({acao:"publicar",vaga:vaga})}).then(function(r){return r.json();});
 }
-if(!resp||resp.sucesso!==true)throw new Error((resp&amp;&amp;resp.erro)||"O servidor n\u00E3o confirmou a publica\u00E7\u00E3o.");
+if(!resp||resp.sucesso!==true)throw new Error((resp&&resp.erro)||"O servidor n\u00E3o confirmou a publica\u00E7\u00E3o.");
 var vagas=typeof carregarVagasPortal==="function"?carregarVagasPortal():[];
 var existe=vagas.some(function(v){return String(v.id)===String(vaga.id);});
 if(!existe){vagas.unshift(vaga);if(typeof salvarVagasPortal==="function")salvarVagasPortal(vagas);}
@@ -811,7 +811,7 @@ form.dataset.publicacaoModernaEM="1";
 form.removeAttribute("onsubmit");
 form.addEventListener("submit",enviar,true);
 var a=form.querySelector(".acoes-publicar-estaveis");
-if(a&amp;&amp;!el("statusPublicacaoModernaEM")){var st=document.createElement("span");st.id="statusPublicacaoModernaEM";st.setAttribute("aria-live","polite");a.insertBefore(st,a.firstChild);}
+if(a&&!el("statusPublicacaoModernaEM")){var st=document.createElement("span");st.id="statusPublicacaoModernaEM";st.setAttribute("aria-live","polite");a.insertBefore(st,a.firstChild);}
 }
 document.addEventListener("DOMContentLoaded",instalar);
 window.addEventListener("load",function(){setTimeout(instalar,300);});
@@ -823,9 +823,9 @@ window.addEventListener("load",function(){setTimeout(instalar,300);});
 var timer=null;
 function paginaPesadaDeFormulario(){
 var pub=document.getElementById("pagina-publicar");
-if(pub&amp;&amp;(pub.classList.contains("ativa")||getComputedStyle(pub).display!=="none"))return true;
+if(pub&&(pub.classList.contains("ativa")||getComputedStyle(pub).display!=="none"))return true;
 var cad=document.getElementById("pagina-cadastro-empresa");
-if(cad&amp;&amp;(cad.classList.contains("ativa")||getComputedStyle(cad).display!=="none"))return true;
+if(cad&&(cad.classList.contains("ativa")||getComputedStyle(cad).display!=="none"))return true;
 return false;
 }
 function atualizarLeve(){
@@ -844,8 +844,8 @@ if(!alvo)return;
 var obs=new MutationObserver(function(muts){
 if(paginaPesadaDeFormulario())return;
 var relevante=false;
-for(var i=0;i&lt;muts.length;i++){
-if(muts[i].addedNodes&amp;&amp;muts[i].addedNodes.length){relevante=true;break;}
+for(var i=0;i<muts.length;i++){
+if(muts[i].addedNodes&&muts[i].addedNodes.length){relevante=true;break;}
 }
 if(relevante)atualizarLeve();
 });
@@ -865,11 +865,11 @@ sessionStorage.removeItem("empregaMaisAdminSupabaseToken");
 sessionStorage.removeItem("empregaMaisPapel");
 } catch(err){}
 try {
-if (window.supabaseClient &amp;&amp; window.supabaseClient.auth) {
+if (window.supabaseClient && window.supabaseClient.auth) {
 Promise.resolve(window.supabaseClient.auth.signOut()).finally(finalizar);
 return false;
 }
-if (window.supabase &amp;&amp; window.supabase.auth &amp;&amp; typeof window.supabase.auth.signOut === "function") {
+if (window.supabase && window.supabase.auth && typeof window.supabase.auth.signOut === "function") {
 Promise.resolve(window.supabase.auth.signOut()).finally(finalizar);
 return false;
 }
@@ -904,9 +904,9 @@ candidatos.forEach(function(el){
 var txt=(el.textContent||"").trim().toLowerCase();
 var id=(el.id||"").toLowerCase();
 var cls=(el.className||"").toString().toLowerCase();
-if(txt==="sair" || txt.indexOf("deslog")&gt;=0 || txt.indexOf("logout")&gt;=0 ||
-id.indexOf("logout")&gt;=0 || id.indexOf("sairadmin")&gt;=0 ||
-cls.indexOf("logout")&gt;=0){
+if(txt==="sair" || txt.indexOf("deslog")>=0 || txt.indexOf("logout")>=0 ||
+id.indexOf("logout")>=0 || id.indexOf("sairadmin")>=0 ||
+cls.indexOf("logout")>=0){
 if(el.dataset.logoutAdminCorrigido==="1") return;
 el.dataset.logoutAdminCorrigido="1";
 el.addEventListener("click", logoutAdminEmpregaMais, true);
@@ -915,11 +915,11 @@ el.addEventListener("click", logoutAdminEmpregaMais, true);
 }
 document.addEventListener("DOMContentLoaded", instalar);
 document.addEventListener("click", function(e){
-var el=e.target &amp;&amp; e.target.closest ? e.target.closest("button,a") : null;
+var el=e.target && e.target.closest ? e.target.closest("button,a") : null;
 if(!el) return;
 var txt=(el.textContent||"").trim().toLowerCase();
 var contexto=el.closest("#painelAdmin,.admin-panel,.painel-admin,[data-pagina='admin']");
-if(contexto &amp;&amp; (txt==="sair" || txt.indexOf("deslog")&gt;=0 || txt.indexOf("logout")&gt;=0)){
+if(contexto && (txt==="sair" || txt.indexOf("deslog")>=0 || txt.indexOf("logout")>=0)){
 logoutAdminEmpregaMais(e);
 }
 }, true);
@@ -985,14 +985,14 @@ window.logoutAdminEmpregaMais=sairAdminRealEM;
 window.sairAdminEmpregaMais=sairAdminRealEM;
 window.logoutAdminSupabaseEM=sairAdminRealEM;
 document.addEventListener("click",function(ev){
-var b=ev.target&amp;&amp;ev.target.closest?ev.target.closest("button,a,input[type='button'],input[type='submit']"):null;
+var b=ev.target&&ev.target.closest?ev.target.closest("button,a,input[type='button'],input[type='submit']"):null;
 if(!b)return;
 var texto=((b.textContent||b.value||"")+" "+(b.id||"")+" "+(b.className||"")+" "+(b.getAttribute("onclick")||"")).toLowerCase();
 var painel=b.closest("#pagina-admin,#admin,.pagina-admin,.admin-panel,.painel-admin,[data-pagina='admin']");
-if(painel &amp;&amp; (
-texto.indexOf("sair")&gt;=0 ||
-texto.indexOf("logout")&gt;=0 ||
-texto.indexOf("deslog")&gt;=0
+if(painel && (
+texto.indexOf("sair")>=0 ||
+texto.indexOf("logout")>=0 ||
+texto.indexOf("deslog")>=0
 )){
 sairAdminRealEM(ev);
 }
@@ -1005,8 +1005,8 @@ function alternarSenhaPortalEmpresaEM(id,b){var c=document.getElementById(id);if
 function abrirCadastroEmpresaProfissionalEM(){var m=document.getElementById("cadastroEmpresaModalEM");if(m){m.classList.add("ativo");m.setAttribute("aria-hidden","false");document.body.style.overflow="hidden";}}
 function fecharCadastroEmpresaProfissionalEM(){var m=document.getElementById("cadastroEmpresaModalEM");if(m){m.classList.remove("ativo");m.setAttribute("aria-hidden","true");document.body.style.overflow="";}}
 function loginEmpresaProfissionalEM(e){
-if(e&amp;&amp;typeof e.preventDefault==="function")e.preventDefault();
-if(e&amp;&amp;typeof e.stopPropagation==="function")e.stopPropagation();
+if(e&&typeof e.preventDefault==="function")e.preventDefault();
+if(e&&typeof e.stopPropagation==="function")e.stopPropagation();
 var campoAcesso=document.getElementById("loginEmpresaIdentificadorEM");
 var campoSenha=document.getElementById("loginEmpresaSenhaEM");
 var acesso=String(campoAcesso?campoAcesso.value:"").trim();
@@ -1021,9 +1021,9 @@ if(acesso.indexOf("@")!==-1){
 var lista=[];
 try{lista=empresasCadastradas()||[];}catch(err){lista=[];}
 var empresa=null;
-for(var i=0;i&lt;lista.length;i++){
+for(var i=0;i<lista.length;i++){
 if(
-String(lista[i].email||"").trim().toLowerCase()===email &amp;&amp;
+String(lista[i].email||"").trim().toLowerCase()===email &&
 String(lista[i].senha||"")===senha
 ){
 empresa=lista[i];
@@ -1059,8 +1059,8 @@ return false;
 }
 function cadastrarEmpresaProfissionalEM(e){
 e.preventDefault();var c=String(document.getElementById("cadEmpresaCnpjEM").value||"").replace(/\D/g,""),cpf=String(document.getElementById("cadEmpresaCpfEM").value||"").replace(/\D/g,""),em=String(document.getElementById("cadEmpresaEmailEM").value||"").trim().toLowerCase(),s=document.getElementById("cadEmpresaSenhaEM").value,sc=document.getElementById("cadEmpresaConfirmarSenhaEM").value;
-if(c.length!==14){alert("Informe um CNPJ com 14 n\u00FAmeros.");return;}if(cpf.length!==11){alert("Informe um CPF com 11 n\u00FAmeros.");return;}if(s.length&lt;6){alert("A senha deve possuir pelo menos 6 caracteres.");return;}if(s!==sc){alert("As senhas n\u00E3o coincidem.");return;}
-var l=empresasCadastradas();for(var i=0;i&lt;l.length;i++){if(String(l[i].cnpj||"").replace(/\D/g,"")===c){alert("Este CNPJ j\u00E1 possui cadastro.");return;}if(String(l[i].email||"").trim().toLowerCase()===em){alert("Este e-mail corporativo j\u00E1 possui cadastro.");return;}}
+if(c.length!==14){alert("Informe um CNPJ com 14 n\u00FAmeros.");return;}if(cpf.length!==11){alert("Informe um CPF com 11 n\u00FAmeros.");return;}if(s.length<6){alert("A senha deve possuir pelo menos 6 caracteres.");return;}if(s!==sc){alert("As senhas n\u00E3o coincidem.");return;}
+var l=empresasCadastradas();for(var i=0;i<l.length;i++){if(String(l[i].cnpj||"").replace(/\D/g,"")===c){alert("Este CNPJ j\u00E1 possui cadastro.");return;}if(String(l[i].email||"").trim().toLowerCase()===em){alert("Este e-mail corporativo j\u00E1 possui cadastro.");return;}}
 var x={id:"empresa_"+new Date().getTime(),nome:document.getElementById("cadEmpresaNomeEM").value,cnpj:c,cpf:cpf,responsavel:document.getElementById("cadEmpresaResponsavelEM").value,cargoResponsavel:document.getElementById("cadEmpresaCargoEM").value,email:em,telefone:document.getElementById("cadEmpresaTelefoneEM").value,telefoneEmpresa:document.getElementById("cadEmpresaTelefoneFixoEM").value,cep:document.getElementById("cadEmpresaCepEM").value,cidade:document.getElementById("cadEmpresaCidadeEM").value,uf:document.getElementById("cadEmpresaUfEM").value,setor:document.getElementById("cadEmpresaSetorEM").value,funcionarios:document.getElementById("cadEmpresaFuncionariosEM").value,sobre:document.getElementById("cadEmpresaSobreEM").value,plano:"essencial",verificacaoStatus:"nao_verificada",verificada:false,aprovacaoAutomaticaSuspensa:false,senha:s};
 l.push(x);salvarArray("empresasEmpregaMais",l);entrarComoEmpresa(x);fecharCadastroEmpresaProfissionalEM();irPara("publicar");return false;
 }
@@ -1100,7 +1100,7 @@ ev.stopImmediatePropagation();
 return false;
 },true);
 var campos=form.querySelectorAll("input");
-for(var i=0;i&lt;campos.length;i++){
+for(var i=0;i<campos.length;i++){
 campos[i].addEventListener("keydown",function(ev){
 if(ev.key==="Enter"){
 ev.preventDefault();

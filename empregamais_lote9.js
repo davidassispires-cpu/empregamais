@@ -7,7 +7,7 @@ return "Candidatar-se";
 };
 window.abrirContatoExternoVaga=function(vaga){
 var v=vaga||window.vagaAtual;
-if(window.EmpregaMaisCandidaturaV94 &amp;&amp; typeof window.EmpregaMaisCandidaturaV94.abrir==="function"){
+if(window.EmpregaMaisCandidaturaV94 && typeof window.EmpregaMaisCandidaturaV94.abrir==="function"){
 window.EmpregaMaisCandidaturaV94.abrir(v);
 return;
 }
@@ -18,9 +18,9 @@ var p=document.getElementById("pagina-vaga"); if(!p)return;
 p.querySelectorAll("a,button").forEach(function(b){
 var t=String(b.textContent||"").trim().toLowerCase();
 var h=String(b.getAttribute("href")||"").toLowerCase();
-if(t.indexOf("candidatar-se por e-mail")&gt;=0 ||
-t.indexOf("candidatar-se pelo whatsapp")&gt;=0 ||
-t.indexOf("candidatar-se no site da empresa")&gt;=0 ||
+if(t.indexOf("candidatar-se por e-mail")>=0 ||
+t.indexOf("candidatar-se pelo whatsapp")>=0 ||
+t.indexOf("candidatar-se no site da empresa")>=0 ||
 h.indexOf("mailto:")===0){
 b.textContent="Candidatar-se";
 if(b.tagName==="A")b.setAttribute("href","#");
@@ -64,7 +64,7 @@ var ks=[
 "curriculoEmpregaMais_"+email,
 "curriculoEmpregaMais"
 ];
-for(var i=0;i&lt;ks.length;i++){
+for(var i=0;i<ks.length;i++){
 var raw=localStorage.getItem(ks[i]);
 if(raw){try{curriculo=JSON.parse(raw);break}catch(e){}}
 }
@@ -90,7 +90,7 @@ if(areaArquivo)areaArquivo.style.display="block";
 }
 modal.classList.add("aberto");
 modal.setAttribute("aria-hidden","false");
-if(window.EmpregaMaisCandidaturaV94 &amp;&amp;
+if(window.EmpregaMaisCandidaturaV94 &&
 typeof window.EmpregaMaisCandidaturaV94.verificar==="function"){
 window.EmpregaMaisCandidaturaV94.verificar(v).then(function(ja){
 if(!ja)return;
@@ -122,9 +122,9 @@ setTimeout(instalar,500);
 function go(p){if(typeof window.irPara==="function")window.irPara(p);else location.href="/?pagina="+encodeURIComponent(p)}
 function findButton(words){
 var all=document.querySelectorAll("header a,header button");
-for(var i=0;i&lt;all.length;i++){
+for(var i=0;i<all.length;i++){
 var t=String(all[i].textContent||"").trim().toLowerCase();
-for(var j=0;j&lt;words.length;j++)if(t===words[j]||t.indexOf(words[j])&gt;=0)return all[i];
+for(var j=0;j<words.length;j++)if(t===words[j]||t.indexOf(words[j])>=0)return all[i];
 }
 return null;
 }
@@ -188,7 +188,7 @@ new MutationObserver(limparV99).observe(document.documentElement,{childList:true
 (function(){
 function neutralizarV100(){
 document.querySelectorAll(".header-v98-area").forEach(function(area){
-var gatilho=area.querySelector(":scope &gt; a, :scope &gt; button");
+var gatilho=area.querySelector(":scope > a, :scope > button");
 if(!gatilho||gatilho.getAttribute("data-v100-pronto")==="1")return;
 gatilho.setAttribute("data-v100-pronto","1");
 if(gatilho.tagName==="A"){
@@ -283,7 +283,7 @@ setTimeout(function(){if(typeof window.irPara==="function")window.irPara("curric
 });
 function rota(){
 var q=new URLSearchParams(location.search);
-if(q.get("pagina")===PAGE&amp;&amp;!logado())setTimeout(abrir,80);
+if(q.get("pagina")===PAGE&&!logado())setTimeout(abrir,80);
 }
 window.addEventListener("load",rota);
 })();
@@ -302,12 +302,12 @@ pagina.parentNode.insertBefore(footer,pagina.nextSibling);
 }
 var cidadeAntiga=document.getElementById("cv101Cidade");
 var uf=document.getElementById("cv101Uf");
-if(cidadeAntiga &amp;&amp; cidadeAntiga.tagName!=="SELECT"){
+if(cidadeAntiga && cidadeAntiga.tagName!=="SELECT"){
 var sel=document.createElement("select");
 sel.id="cv101Cidade";
 sel.required=true;
 sel.disabled=true;
-sel.innerHTML="&lt;option value=''&gt;Selecione primeiro o estado&lt;/option&gt;";
+sel.innerHTML="<option value=''>Selecione primeiro o estado</option>";
 cidadeAntiga.parentNode.replaceChild(sel,cidadeAntiga);
 var info=document.createElement("div");
 info.className="cv101-city-loading";
@@ -317,15 +317,15 @@ sel.parentNode.appendChild(info);
 function carregarCidades(){
 var cidade=document.getElementById("cv101Cidade");
 var info=document.getElementById("cv101CidadeInfo");
-var sigla=String(uf&amp;&amp;uf.value||"").trim();
+var sigla=String(uf&&uf.value||"").trim();
 if(!cidade)return;
 cidade.disabled=true;
 if(!sigla){
-cidade.innerHTML="&lt;option value=''&gt;Selecione primeiro o estado&lt;/option&gt;";
+cidade.innerHTML="<option value=''>Selecione primeiro o estado</option>";
 if(info)info.textContent="";
 return;
 }
-cidade.innerHTML="&lt;option value=''&gt;Carregando cidades...&lt;/option&gt;";
+cidade.innerHTML="<option value=''>Carregando cidades...</option>";
 if(info)info.textContent="Buscando municípios oficiais do estado selecionado...";
 fetch("https://servicodados.ibge.gov.br/api/v1/localidades/estados/"+encodeURIComponent(sigla)+"/municipios?orderBy=nome")
 .then(function(r){
@@ -333,7 +333,7 @@ if(!r.ok)throw new Error("IBGE");
 return r.json();
 })
 .then(function(lista){
-cidade.innerHTML="&lt;option value=''&gt;Selecione sua cidade&lt;/option&gt;";
+cidade.innerHTML="<option value=''>Selecione sua cidade</option>";
 (lista||[]).forEach(function(m){
 var op=document.createElement("option");
 op.value=m.nome;
@@ -344,7 +344,7 @@ cidade.disabled=false;
 if(info)info.textContent="";
 })
 .catch(function(){
-cidade.innerHTML="&lt;option value=''&gt;Não foi possível carregar as cidades&lt;/option&gt;";
+cidade.innerHTML="<option value=''>Não foi possível carregar as cidades</option>";
 cidade.disabled=true;
 if(info)info.textContent="Tente selecionar o estado novamente.";
 });
@@ -353,7 +353,7 @@ if(uf){
 uf.addEventListener("change",carregarCidades);
 }
 function preparar(){
-if(uf &amp;&amp; uf.value)carregarCidades();
+if(uf && uf.value)carregarCidades();
 }
 if(document.readyState==="loading"){
 document.addEventListener("DOMContentLoaded",preparar);
@@ -376,7 +376,7 @@ return document.querySelector("footer");
 }
 function posicionar(){
 var f=footerReal();
-if(f &amp;&amp; p.nextElementSibling!==f){
+if(f && p.nextElementSibling!==f){
 f.parentNode.insertBefore(p,f);
 }
 }
@@ -407,7 +407,7 @@ document.addEventListener("click",function(e){
 var b=e.target.closest("a,button");
 if(!b)return;
 var t=String(b.textContent||"").replace(/\s+/g," ").trim().toLowerCase();
-if(false &amp;&amp; t==="cadastrar currículo"){
+if(false && t==="cadastrar currículo"){
 e.preventDefault();
 e.stopImmediatePropagation();
 abrirPaginaCadastroV103();
@@ -452,36 +452,36 @@ function montar(){
 var pg=document.getElementById("pagina-como-funciona");if(!pg||document.getElementById("comoFuncionaV106"))return;
 var x=document.createElement("div");x.id="comoFuncionaV106";
 x.innerHTML=`
-&lt;div class="cf106-hero"&gt;&lt;span class="cf106-kicker"&gt;COMO FUNCIONA&lt;/span&gt;&lt;h1&gt;Um portal. Duas jornadas.&lt;/h1&gt;&lt;p&gt;O EmpregaMais conecta profissionais e empresas em uma experiência simples, organizada e pensada para cada lado do processo seletivo.&lt;/p&gt;&lt;/div&gt;
-&lt;div class="cf106-tabs-wrap"&gt;&lt;div class="cf106-tabs"&gt;&lt;button class="cf106-tab cand ativo" data-cf106="candidato"&gt;👤 Para candidatos&lt;/button&gt;&lt;button class="cf106-tab emp" data-cf106="empresa"&gt;▦ Para empresas&lt;/button&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;div class="cf106-content"&gt;
-&lt;div class="cf106-panel candidato ativo"&gt;
-&lt;div class="cf106-intro"&gt;&lt;small&gt;PARA CANDIDATOS&lt;/small&gt;&lt;h2&gt;Da criação do currículo à candidatura&lt;/h2&gt;&lt;p&gt;Organize seu perfil profissional, encontre oportunidades e acompanhe sua jornada dentro do EmpregaMais.&lt;/p&gt;&lt;/div&gt;
-&lt;div class="cf106-journey"&gt;
-&lt;div class="cf106-card"&gt;&lt;div class="cf106-num"&gt;01&lt;/div&gt;&lt;h3&gt;Crie sua conta gratuitamente&lt;/h3&gt;&lt;p&gt;Cadastre seus dados básicos e tenha acesso à sua área exclusiva de candidato.&lt;/p&gt;&lt;/div&gt;
-&lt;div class="cf106-card"&gt;&lt;div class="cf106-num"&gt;02&lt;/div&gt;&lt;h3&gt;Construa seu currículo profissional&lt;/h3&gt;&lt;p&gt;Monte seu currículo online e mantenha suas informações profissionais organizadas e atualizadas.&lt;/p&gt;&lt;/div&gt;
-&lt;div class="cf106-card"&gt;&lt;div class="cf106-num"&gt;03&lt;/div&gt;&lt;h3&gt;Encontre oportunidades&lt;/h3&gt;&lt;p&gt;Pesquise vagas publicadas no portal e encontre oportunidades de acordo com seus interesses.&lt;/p&gt;&lt;/div&gt;
-&lt;div class="cf106-card"&gt;&lt;div class="cf106-num"&gt;04&lt;/div&gt;&lt;h3&gt;Candidate-se pelo EmpregaMais&lt;/h3&gt;&lt;p&gt;Envie sua candidatura pela própria oportunidade utilizando as opções disponibilizadas no portal.&lt;/p&gt;&lt;/div&gt;
-&lt;div class="cf106-card"&gt;&lt;div class="cf106-num"&gt;05&lt;/div&gt;&lt;h3&gt;Acompanhe suas candidaturas&lt;/h3&gt;&lt;p&gt;Consulte as oportunidades às quais você se candidatou e acompanhe as movimentações disponíveis.&lt;/p&gt;&lt;/div&gt;
-&lt;div class="cf106-card"&gt;&lt;div class="cf106-num"&gt;06&lt;/div&gt;&lt;h3&gt;Mantenha seu perfil atualizado&lt;/h3&gt;&lt;p&gt;Atualize suas experiências, formação e demais informações para manter seu currículo sempre atual.&lt;/p&gt;&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class="cf106-free"&gt;✓ &lt;b&gt;Criar currículo, pesquisar vagas e enviar candidaturas é gratuito para candidatos.&lt;/b&gt;&lt;/div&gt;
-&lt;div class="cf106-cta"&gt;&lt;div&gt;&lt;h3&gt;Seu próximo passo profissional pode começar aqui.&lt;/h3&gt;&lt;p&gt;Crie seu currículo e comece a explorar as oportunidades disponíveis.&lt;/p&gt;&lt;/div&gt;&lt;div class="cf106-actions"&gt;&lt;button class="cf106-btn primary" onclick="irPara('cadastro-curriculo')"&gt;Criar meu currículo&lt;/button&gt;&lt;button class="cf106-btn secondary" onclick="irPara('home')"&gt;Buscar vagas&lt;/button&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class="cf106-panel empresa"&gt;
-&lt;div class="cf106-intro"&gt;&lt;small&gt;PARA EMPRESAS&lt;/small&gt;&lt;h2&gt;Da publicação à gestão de candidatos&lt;/h2&gt;&lt;p&gt;Centralize suas oportunidades e organize o recebimento de candidaturas em uma área empresarial própria.&lt;/p&gt;&lt;/div&gt;
-&lt;div class="cf106-journey"&gt;
-&lt;div class="cf106-card"&gt;&lt;div class="cf106-num"&gt;01&lt;/div&gt;&lt;h3&gt;Cadastre sua empresa&lt;/h3&gt;&lt;p&gt;Crie a conta empresarial e informe os dados necessários para começar a utilizar o portal.&lt;/p&gt;&lt;/div&gt;
-&lt;div class="cf106-card"&gt;&lt;div class="cf106-num"&gt;02&lt;/div&gt;&lt;h3&gt;Complete o perfil da empresa&lt;/h3&gt;&lt;p&gt;Adicione informações institucionais e mantenha os dados da organização atualizados.&lt;/p&gt;&lt;/div&gt;
-&lt;div class="cf106-card"&gt;&lt;div class="cf106-num"&gt;03&lt;/div&gt;&lt;h3&gt;Publique uma oportunidade&lt;/h3&gt;&lt;p&gt;Informe cargo, local, modalidade, requisitos, benefícios e os demais detalhes da vaga.&lt;/p&gt;&lt;/div&gt;
-&lt;div class="cf106-card"&gt;&lt;div class="cf106-num"&gt;04&lt;/div&gt;&lt;h3&gt;Receba candidaturas&lt;/h3&gt;&lt;p&gt;Os profissionais interessados enviam suas candidaturas diretamente pela oportunidade.&lt;/p&gt;&lt;/div&gt;
-&lt;div class="cf106-card"&gt;&lt;div class="cf106-num"&gt;05&lt;/div&gt;&lt;h3&gt;Analise os candidatos&lt;/h3&gt;&lt;p&gt;Consulte os currículos recebidos e utilize as informações disponíveis para organizar sua análise.&lt;/p&gt;&lt;/div&gt;
-&lt;div class="cf106-card"&gt;&lt;div class="cf106-num"&gt;06&lt;/div&gt;&lt;h3&gt;Gerencie o processo seletivo&lt;/h3&gt;&lt;p&gt;Acompanhe suas vagas e candidaturas pela área empresarial e mantenha o processo organizado.&lt;/p&gt;&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class="cf106-cta"&gt;&lt;div&gt;&lt;h3&gt;Sua empresa está contratando?&lt;/h3&gt;&lt;p&gt;Cadastre sua empresa, publique oportunidades e centralize o recebimento de candidatos.&lt;/p&gt;&lt;/div&gt;&lt;div class="cf106-actions"&gt;&lt;button class="cf106-btn primary" onclick="irPara('cadastro-empresa')"&gt;Cadastrar empresa&lt;/button&gt;&lt;button class="cf106-btn secondary" onclick="irPara('publicar-vaga')"&gt;+ Publicar vaga&lt;/button&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class="cf106-faq"&gt;&lt;div class="cf106-faq-head"&gt;&lt;h2&gt;Perguntas frequentes&lt;/h2&gt;&lt;p&gt;As respostas mudam automaticamente conforme a jornada selecionada.&lt;/p&gt;&lt;/div&gt;&lt;div class="cf106-faq-list" id="cf106Faq"&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;/div&gt;`;
+<div class="cf106-hero"><span class="cf106-kicker">COMO FUNCIONA</span><h1>Um portal. Duas jornadas.</h1><p>O EmpregaMais conecta profissionais e empresas em uma experiência simples, organizada e pensada para cada lado do processo seletivo.</p></div>
+<div class="cf106-tabs-wrap"><div class="cf106-tabs"><button class="cf106-tab cand ativo" data-cf106="candidato">👤 Para candidatos</button><button class="cf106-tab emp" data-cf106="empresa">▦ Para empresas</button></div></div>
+<div class="cf106-content">
+<div class="cf106-panel candidato ativo">
+<div class="cf106-intro"><small>PARA CANDIDATOS</small><h2>Da criação do currículo à candidatura</h2><p>Organize seu perfil profissional, encontre oportunidades e acompanhe sua jornada dentro do EmpregaMais.</p></div>
+<div class="cf106-journey">
+<div class="cf106-card"><div class="cf106-num">01</div><h3>Crie sua conta gratuitamente</h3><p>Cadastre seus dados básicos e tenha acesso à sua área exclusiva de candidato.</p></div>
+<div class="cf106-card"><div class="cf106-num">02</div><h3>Construa seu currículo profissional</h3><p>Monte seu currículo online e mantenha suas informações profissionais organizadas e atualizadas.</p></div>
+<div class="cf106-card"><div class="cf106-num">03</div><h3>Encontre oportunidades</h3><p>Pesquise vagas publicadas no portal e encontre oportunidades de acordo com seus interesses.</p></div>
+<div class="cf106-card"><div class="cf106-num">04</div><h3>Candidate-se pelo EmpregaMais</h3><p>Envie sua candidatura pela própria oportunidade utilizando as opções disponibilizadas no portal.</p></div>
+<div class="cf106-card"><div class="cf106-num">05</div><h3>Acompanhe suas candidaturas</h3><p>Consulte as oportunidades às quais você se candidatou e acompanhe as movimentações disponíveis.</p></div>
+<div class="cf106-card"><div class="cf106-num">06</div><h3>Mantenha seu perfil atualizado</h3><p>Atualize suas experiências, formação e demais informações para manter seu currículo sempre atual.</p></div>
+</div>
+<div class="cf106-free">✓ <b>Criar currículo, pesquisar vagas e enviar candidaturas é gratuito para candidatos.</b></div>
+<div class="cf106-cta"><div><h3>Seu próximo passo profissional pode começar aqui.</h3><p>Crie seu currículo e comece a explorar as oportunidades disponíveis.</p></div><div class="cf106-actions"><button class="cf106-btn primary" onclick="irPara('cadastro-curriculo')">Criar meu currículo</button><button class="cf106-btn secondary" onclick="irPara('home')">Buscar vagas</button></div></div>
+</div>
+<div class="cf106-panel empresa">
+<div class="cf106-intro"><small>PARA EMPRESAS</small><h2>Da publicação à gestão de candidatos</h2><p>Centralize suas oportunidades e organize o recebimento de candidaturas em uma área empresarial própria.</p></div>
+<div class="cf106-journey">
+<div class="cf106-card"><div class="cf106-num">01</div><h3>Cadastre sua empresa</h3><p>Crie a conta empresarial e informe os dados necessários para começar a utilizar o portal.</p></div>
+<div class="cf106-card"><div class="cf106-num">02</div><h3>Complete o perfil da empresa</h3><p>Adicione informações institucionais e mantenha os dados da organização atualizados.</p></div>
+<div class="cf106-card"><div class="cf106-num">03</div><h3>Publique uma oportunidade</h3><p>Informe cargo, local, modalidade, requisitos, benefícios e os demais detalhes da vaga.</p></div>
+<div class="cf106-card"><div class="cf106-num">04</div><h3>Receba candidaturas</h3><p>Os profissionais interessados enviam suas candidaturas diretamente pela oportunidade.</p></div>
+<div class="cf106-card"><div class="cf106-num">05</div><h3>Analise os candidatos</h3><p>Consulte os currículos recebidos e utilize as informações disponíveis para organizar sua análise.</p></div>
+<div class="cf106-card"><div class="cf106-num">06</div><h3>Gerencie o processo seletivo</h3><p>Acompanhe suas vagas e candidaturas pela área empresarial e mantenha o processo organizado.</p></div>
+</div>
+<div class="cf106-cta"><div><h3>Sua empresa está contratando?</h3><p>Cadastre sua empresa, publique oportunidades e centralize o recebimento de candidatos.</p></div><div class="cf106-actions"><button class="cf106-btn primary" onclick="irPara('cadastro-empresa')">Cadastrar empresa</button><button class="cf106-btn secondary" onclick="irPara('publicar-vaga')">+ Publicar vaga</button></div></div>
+</div>
+<div class="cf106-faq"><div class="cf106-faq-head"><h2>Perguntas frequentes</h2><p>As respostas mudam automaticamente conforme a jornada selecionada.</p></div><div class="cf106-faq-list" id="cf106Faq"></div></div>
+</div>`;
 pg.appendChild(x);
 var faqs={
 candidato:[
@@ -501,7 +501,7 @@ function faq(tipo){
 var el=document.getElementById("cf106Faq");el.innerHTML="";
 faqs[tipo].forEach(function(a){
 var d=document.createElement("div");d.className="cf106-faq-item";
-d.innerHTML='&lt;button class="cf106-faq-q" type="button"&gt;'+a[0]+'&lt;span&gt;＋&lt;/span&gt;&lt;/button&gt;&lt;div class="cf106-faq-a"&gt;'+a[1]+'&lt;/div&gt;';
+d.innerHTML='<button class="cf106-faq-q" type="button">'+a[0]+'<span>＋</span></button><div class="cf106-faq-a">'+a[1]+'</div>';
 d.querySelector("button").onclick=function(){d.classList.toggle("open")};el.appendChild(d);
 });
 }

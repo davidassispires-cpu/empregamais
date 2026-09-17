@@ -36,23 +36,23 @@ var e=null;
 try{
 if(typeof window.empresaLogadaPainelEM==="function"){
 e=window.empresaLogadaPainelEM();
-if(e&amp;&amp;Object.keys(e).length)return e;
+if(e&&Object.keys(e).length)return e;
 }
 }catch(x){}
 try{
 if(typeof window.obterEmpresaAtual==="function"){
 e=window.obterEmpresaAtual();
-if(e&amp;&amp;Object.keys(e).length)return e;
+if(e&&Object.keys(e).length)return e;
 }
 }catch(x){}
 try{
 var lista=JSON.parse(localStorage.getItem("empresasEmpregaMais")||"[]");
 var c=String(sessionStorage.getItem("empresaCnpj")||"").replace(/\D/g,"");
 var m=String(sessionStorage.getItem("empresaEmail")||"").trim().toLowerCase();
-for(var i=0;i&lt;lista.length;i++){
+for(var i=0;i<lista.length;i++){
 var ec=String(lista[i].cnpj||"").replace(/\D/g,"");
 var em=String(lista[i].email||"").trim().toLowerCase();
-if((c&amp;&amp;ec===c)||(m&amp;&amp;em===m))return lista[i];
+if((c&&ec===c)||(m&&em===m))return lista[i];
 }
 }catch(x){}
 return {};
@@ -127,7 +127,7 @@ var c=cfg(),e=empresaAtual();
 var selo=document.getElementById("contatoPlanoSelo");
 if(selo)selo.textContent="Plano "+c.nome;
 var email=document.getElementById("emailCandidaturaVaga");
-if(email&amp;&amp;!email.value&amp;&amp;e)email.value=e.email_corporativo||e.email||"";
+if(email&&!email.value&&e)email.value=e.email_corporativo||e.email||"";
 var w=document.getElementById("tipoContatoWhatsapp");
 var l=document.getElementById("tipoContatoLink");
 var ow=document.getElementById("opcaoContatoWhatsapp");

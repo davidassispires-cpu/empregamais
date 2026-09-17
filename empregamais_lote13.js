@@ -11,21 +11,21 @@ var box=document.createElement("div");
 box.id="enderecoCepV130";
 box.className="endereco-cep-v130";
 box.innerHTML=
-'&lt;div class="endereco-linha-v130"&gt;'+
-'&lt;div class="endereco-campo-v130"&gt;&lt;label for="ruaVagaV130"&gt;Rua / logradouro&lt;/label&gt;&lt;input class="campo" id="ruaVagaV130" type="text" readonly="readonly" placeholder="Preenchido automaticamente pelo CEP"/&gt;&lt;/div&gt;'+
-'&lt;div class="endereco-campo-v130"&gt;&lt;label for="bairroVagaV130"&gt;Bairro&lt;/label&gt;&lt;input class="campo" id="bairroVagaV130" type="text" readonly="readonly" placeholder="Preenchido automaticamente"/&gt;&lt;/div&gt;'+
-'&lt;/div&gt;'+
-'&lt;div class="endereco-status-v130"&gt;O número do imóvel não é solicitado pelo EmpregaMais.&lt;/div&gt;'+
-'&lt;div class="privacidade-endereco-v130"&gt;'+
-'&lt;strong&gt;O que deseja mostrar aos candidatos?&lt;/strong&gt;'+
-'&lt;div class="privacidade-opcoes-v130"&gt;'+
-'&lt;div class="privacidade-opcao-v130"&gt;&lt;input id="enderecoCompletoV130" name="enderecoVisibilidadeRadioV130" type="radio" value="completo"/&gt;&lt;label for="enderecoCompletoV130"&gt;&lt;span&gt;&lt;b&gt;Endereço do local de trabalho&lt;/b&gt;&lt;small&gt;Mostra rua/logradouro, bairro, cidade e estado — sem número.&lt;/small&gt;&lt;/span&gt;&lt;/label&gt;&lt;/div&gt;'+
-'&lt;div class="privacidade-opcao-v130"&gt;&lt;input checked="checked" id="enderecoBairroV130" name="enderecoVisibilidadeRadioV130" type="radio" value="bairro"/&gt;&lt;label for="enderecoBairroV130"&gt;&lt;span&gt;&lt;b&gt;Somente cidade e bairro&lt;/b&gt;&lt;small&gt;Oculta a rua. O candidato verá bairro, cidade e estado.&lt;/small&gt;&lt;/span&gt;&lt;/label&gt;&lt;/div&gt;'+
-'&lt;div class="privacidade-opcao-v130"&gt;&lt;input id="enderecoCidadeV150" name="enderecoVisibilidadeRadioV130" type="radio" value="cidade"/&gt;&lt;label for="enderecoCidadeV150"&gt;&lt;span&gt;&lt;b&gt;Somente cidade&lt;/b&gt;&lt;small&gt;Mostra apenas a cidade e o estado ao candidato.&lt;/small&gt;&lt;/span&gt;&lt;/label&gt;&lt;/div&gt;'+
-'&lt;/div&gt;'+
-'&lt;div class="endereco-preview-v150" id="enderecoPreviewV150"&gt;&lt;/div&gt;'+
-'&lt;/div&gt;'+
-'&lt;input id="enderecoVisibilidadeV130" type="hidden" value="bairro"/&gt;';
+'<div class="endereco-linha-v130">'+
+'<div class="endereco-campo-v130"><label for="ruaVagaV130">Rua / logradouro</label><input class="campo" id="ruaVagaV130" type="text" readonly="readonly" placeholder="Preenchido automaticamente pelo CEP"/></div>'+
+'<div class="endereco-campo-v130"><label for="bairroVagaV130">Bairro</label><input class="campo" id="bairroVagaV130" type="text" readonly="readonly" placeholder="Preenchido automaticamente"/></div>'+
+'</div>'+
+'<div class="endereco-status-v130">O número do imóvel não é solicitado pelo EmpregaMais.</div>'+
+'<div class="privacidade-endereco-v130">'+
+'<strong>O que deseja mostrar aos candidatos?</strong>'+
+'<div class="privacidade-opcoes-v130">'+
+'<div class="privacidade-opcao-v130"><input id="enderecoCompletoV130" name="enderecoVisibilidadeRadioV130" type="radio" value="completo"/><label for="enderecoCompletoV130"><span><b>Endereço do local de trabalho</b><small>Mostra rua/logradouro, bairro, cidade e estado — sem número.</small></span></label></div>'+
+'<div class="privacidade-opcao-v130"><input checked="checked" id="enderecoBairroV130" name="enderecoVisibilidadeRadioV130" type="radio" value="bairro"/><label for="enderecoBairroV130"><span><b>Somente cidade e bairro</b><small>Oculta a rua. O candidato verá bairro, cidade e estado.</small></span></label></div>'+
+'<div class="privacidade-opcao-v130"><input id="enderecoCidadeV150" name="enderecoVisibilidadeRadioV130" type="radio" value="cidade"/><label for="enderecoCidadeV150"><span><b>Somente cidade</b><small>Mostra apenas a cidade e o estado ao candidato.</small></span></label></div>'+
+'</div>'+
+'<div class="endereco-preview-v150" id="enderecoPreviewV150"></div>'+
+'</div>'+
+'<input id="enderecoVisibilidadeV130" type="hidden" value="bairro"/>';
 grupo.appendChild(box);
 function atualizarPreviewV150(){
 var marcado=box.querySelector("input[name='enderecoVisibilidadeRadioV130']:checked");
@@ -41,7 +41,7 @@ modo==="cidade" ? [cidade,estado] :
 [bairro,cidade,estado];
 var exibido=partes.filter(Boolean).join(" · ");
 var prev=document.getElementById("enderecoPreviewV150");
-if(prev)prev.innerHTML="&lt;strong&gt;O candidato verá:&lt;/strong&gt; "+(exibido||"preencha o CEP para visualizar.");
+if(prev)prev.innerHTML="<strong>O candidato verá:</strong> "+(exibido||"preencha o CEP para visualizar.");
 }
 box.querySelectorAll("input[name='enderecoVisibilidadeRadioV130']").forEach(function(r){
 r.addEventListener("change",atualizarPreviewV150);
@@ -57,9 +57,9 @@ window.preencherEnderecoCepV130=function(geo){
 criarEnderecoV130();
 var rua=document.getElementById("ruaVagaV130");
 var bairro=document.getElementById("bairroVagaV130");
-if(rua)rua.value=geo&amp;&amp;geo.rua?geo.rua:"";
-if(bairro)bairro.value=geo&amp;&amp;geo.bairro?geo.bairro:"";
-if(geo &amp;&amp; typeof window.preencherEstadoCidadePeloCepV151==="function"){
+if(rua)rua.value=geo&&geo.rua?geo.rua:"";
+if(bairro)bairro.value=geo&&geo.bairro?geo.bairro:"";
+if(geo && typeof window.preencherEstadoCidadePeloCepV151==="function"){
 window.preencherEstadoCidadePeloCepV151(
 geo.uf || geo.estado || "",
 geo.cidade || geo.localidade || ""
@@ -69,12 +69,12 @@ setTimeout(function(){
 if(typeof window.atualizarPreviewEnderecoV150==="function")window.atualizarPreviewEnderecoV150();
 },180);
 var estado=document.getElementById("estadoVaga");
-if(estado&amp;&amp;geo&amp;&amp;geo.uf){
+if(estado&&geo&&geo.uf){
 var alvo=Array.from(estado.options||[]).find(function(o){
 return String(o.value||"").toUpperCase()===String(geo.uf).toUpperCase() ||
-String(o.textContent||"").toUpperCase().indexOf(String(geo.uf).toUpperCase())&gt;=0;
+String(o.textContent||"").toUpperCase().indexOf(String(geo.uf).toUpperCase())>=0;
 });
-if(alvo &amp;&amp; estado.value!==alvo.value){
+if(alvo && estado.value!==alvo.value){
 estado.value=alvo.value;
 estado.dispatchEvent(new Event("change",{bubbles:true}));
 }

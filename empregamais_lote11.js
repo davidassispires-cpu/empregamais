@@ -22,7 +22,7 @@ localStorage.getItem("planoEmpresaEmpregaMais") ||
 ""
 ).toLowerCase();
 }
-if(["trimestral","semestral","anual"].indexOf(plano)&gt;=0)return true;
+if(["trimestral","semestral","anual"].indexOf(plano)>=0)return true;
 if(typeof planoPagoRecrutadorEM==="function"){
 try{return !!planoPagoRecrutadorEM(plano);}catch(e){}
 }
@@ -44,19 +44,19 @@ var lista=[];
 try{lista=typeof empresasCadastradas==="function"?(empresasCadastradas()||[]):[];}catch(e){}
 var c=String(sessionStorage.getItem("empresaCnpj")||"").replace(/\D/g,"");
 var mail=String(sessionStorage.getItem("empresaEmail")||"").toLowerCase();
-for(var i=0;i&lt;lista.length;i++){
-if((c&amp;&amp;String(lista[i].cnpj||"").replace(/\D/g,"")===c)||(mail&amp;&amp;String(lista[i].email||"").toLowerCase()===mail))return lista[i];
+for(var i=0;i<lista.length;i++){
+if((c&&String(lista[i].cnpj||"").replace(/\D/g,"")===c)||(mail&&String(lista[i].email||"").toLowerCase()===mail))return lista[i];
 }
 return{};
 }
 function escPerfilEM(v){
-return String(v==null?"":v).replace(/&amp;/g,"&amp;amp;").replace(/&lt;/g,"&amp;lt;").replace(/&gt;/g,"&amp;gt;").replace(/"/g,"&amp;quot;");
+return String(v==null?"":v).replace(/&amp;/g,"&amp;amp;").replace(/</g,"&amp;lt;").replace(/>/g,"&amp;gt;").replace(/"/g,"&amp;quot;");
 }
 function preencher(id,v){var el=document.getElementById(id);if(el)el.value=v||"";}
 function abrirPaginaPerfilEditorEM(){
 var p=document.getElementById("pagina-perfil-empresa-em");if(!p)return;
 var paginas=document.querySelectorAll("[id^='pagina-']");
-for(var i=0;i&lt;paginas.length;i++)paginas[i].style.display="none";
+for(var i=0;i<paginas.length;i++)paginas[i].style.display="none";
 p.style.display="block";
 var emp=empresaAtualPerfilEM(), pf=perfilSalvoEM();
 preencher("perfilNomeEM",pf.nome||emp.nomeFantasia||emp.nome||"");
@@ -98,7 +98,7 @@ bloquearPerfilPublicoEM();
 window.scrollTo(0,0);
 }
 window.abaDadosEmpresaEM=function(aba){
-if(aba!=="conta"&amp;&amp;!assinantePerfilPublicoEM()){
+if(aba!=="conta"&&!assinantePerfilPublicoEM()){
 bloquearPerfilPublicoEM();
 }
 var pub=document.getElementById("formPerfilPublicoEM"),conta=document.getElementById("formDadosContaEM");
@@ -138,7 +138,7 @@ emp.ufAdministrativa=v("contaUfEM").toUpperCase();
 try{
 var lista=empresasCadastradas()||[];
 var c=String(emp.cnpj||"").replace(/\D/g,"");
-for(var i=0;i&lt;lista.length;i++)if(String(lista[i].cnpj||"").replace(/\D/g,"")===c){lista[i]=Object.assign({},lista[i],emp);break;}
+for(var i=0;i<lista.length;i++)if(String(lista[i].cnpj||"").replace(/\D/g,"")===c){lista[i]=Object.assign({},lista[i],emp);break;}
 salvarArray("empresasEmpregaMais",lista);
 }catch(e){}
 alert("Dados da conta salvos.");
@@ -149,45 +149,45 @@ var pf=perfilSalvoEM(),emp=empresaAtualPerfilEM();
 if(!pf.nome)pf.nome=emp.nomeFantasia||emp.nome||"Empresa";
 var vagas=[];
 try{vagas=typeof vagasDaEmpresa==="function"?(vagasDaEmpresa()||[]):[];}catch(e){}
-vagas=vagas.filter(function(x){return String(x.aprovacao||"").toLowerCase()==="aprovada"&amp;&amp;String(x.status||"").toLowerCase()!=="encerrada";});
+vagas=vagas.filter(function(x){return String(x.aprovacao||"").toLowerCase()==="aprovada"&&String(x.status||"").toLowerCase()!=="encerrada";});
 var vagasHtml=vagas.map(function(x){
 var titulo=x.cargo||x.titulo||x.vaga||"Vaga";
 var local=(x.cidade||"")+(x.uf?" - "+x.uf:"");
-return "&lt;div class='empresa-publica-vaga-em'&gt;&lt;div&gt;&lt;strong&gt;"+escPerfilEM(titulo)+"&lt;/strong&gt;&lt;small&gt;"+escPerfilEM(local)+" &amp;bull; "+escPerfilEM(x.modalidade||"")+"&lt;/small&gt;&lt;/div&gt;&lt;button type='button' data-vaga-publica-em='"+escPerfilEM(x.id)+"'&gt;Ver vaga&lt;/button&gt;&lt;/div&gt;";
+return "<div class='empresa-publica-vaga-em'><div><strong>"+escPerfilEM(titulo)+"</strong><small>"+escPerfilEM(local)+" &amp;bull; "+escPerfilEM(x.modalidade||"")+"</small></div><button type='button' data-vaga-publica-em='"+escPerfilEM(x.id)+"'>Ver vaga</button></div>";
 }).join("");
-var logo=pf.logo?"&lt;img class='empresa-publica-logo-em' src='"+escPerfilEM(pf.logo)+"' alt='Logo da empresa'/&gt;":"&lt;div class='empresa-publica-logo-em'&gt;&lt;/div&gt;";
+var logo=pf.logo?"<img class='empresa-publica-logo-em' src='"+escPerfilEM(pf.logo)+"' alt='Logo da empresa'/>":"<div class='empresa-publica-logo-em'></div>";
 var capa=pf.capa?" style='background-image:url(&amp;quot;"+escPerfilEM(pf.capa)+"&amp;quot;)'":"";
-var html="&lt;button class='empresa-perfil-voltar-em' type='button' onclick='abrirEditorPerfilEmpresaEM()'&gt;&amp;#8592; Voltar&lt;/button&gt;"+
-"&lt;section class='empresa-publica-hero-em'&gt;&lt;div class='empresa-publica-capa-em'"+capa+"&gt;&lt;/div&gt;&lt;div class='empresa-publica-info-em'&gt;"+logo+
-"&lt;h1&gt;"+escPerfilEM(pf.nome)+"&lt;/h1&gt;"+(pf.slogan?"&lt;p class='empresa-publica-slogan-v21'&gt;"+escPerfilEM(pf.slogan)+"&lt;/p&gt;":"")+"&lt;div class='empresa-publica-meta-em'&gt;"+escPerfilEM(pf.segmento||"Empresa")+" &amp;bull; "+escPerfilEM([pf.cidade,pf.uf].filter(Boolean).join(" / "))+"&lt;/div&gt;"+
-"&lt;span class='empresa-publica-selo-em'&gt;Perfil da empresa&lt;/span&gt;&lt;/div&gt;&lt;/section&gt;"+
-"&lt;div class='empresa-publica-grid-em'&gt;&lt;section class='empresa-publica-box-em'&gt;&lt;h3&gt;Sobre a empresa&lt;/h3&gt;&lt;p&gt;"+escPerfilEM(pf.sobre||"A empresa ainda nao adicionou uma apresentacao.")+"&lt;/p&gt;"+
-(pf.missao?"&lt;h3&gt;Missao&lt;/h3&gt;&lt;p&gt;"+escPerfilEM(pf.missao)+"&lt;/p&gt;":"")+
-(pf.visao?"&lt;h3&gt;Visao&lt;/h3&gt;&lt;p&gt;"+escPerfilEM(pf.visao)+"&lt;/p&gt;":"")+
-(pf.valores?"&lt;h3&gt;Valores&lt;/h3&gt;&lt;p&gt;"+escPerfilEM(pf.valores)+"&lt;/p&gt;":"")+
-"&lt;h3&gt;Cultura e ambiente&lt;/h3&gt;&lt;p&gt;"+escPerfilEM(pf.cultura||"Informacao ainda nao adicionada.")+"&lt;/p&gt;"+
-(pf.ambiente?"&lt;h3&gt;Como e trabalhar aqui&lt;/h3&gt;&lt;p&gt;"+escPerfilEM(pf.ambiente)+"&lt;/p&gt;":"")+
-"&lt;h3&gt;Beneficios&lt;/h3&gt;&lt;p&gt;"+escPerfilEM(pf.beneficios||"Informacao ainda nao adicionada.")+"&lt;/p&gt;"+
-(pf.carreira?"&lt;h3&gt;Carreira e desenvolvimento&lt;/h3&gt;&lt;p&gt;"+escPerfilEM(pf.carreira)+"&lt;/p&gt;":"")+"&lt;/section&gt;"+
-"&lt;aside class='empresa-publica-box-em'&gt;&lt;h3&gt;Informacoes&lt;/h3&gt;&lt;div class='empresa-publica-lista-em'&gt;"+
-(pf.porte?"&lt;span&gt;&lt;strong&gt;Porte:&lt;/strong&gt; "+escPerfilEM(pf.porte)+"&lt;/span&gt;":"")+
-(pf.fundacao?"&lt;span&gt;&lt;strong&gt;Fundacao:&lt;/strong&gt; "+escPerfilEM(pf.fundacao)+"&lt;/span&gt;":"")+
-(pf.modalidades?"&lt;span&gt;&lt;strong&gt;Trabalho:&lt;/strong&gt; "+escPerfilEM(pf.modalidades)+"&lt;/span&gt;":"")+
-(pf.areas?"&lt;span&gt;&lt;strong&gt;Areas que mais contratam:&lt;/strong&gt; "+escPerfilEM(pf.areas)+"&lt;/span&gt;":"")+
-(pf.site?"&lt;span&gt;&lt;strong&gt;Site:&lt;/strong&gt; "+escPerfilEM(pf.site)+"&lt;/span&gt;":"")+
-(pf.linkedin?"&lt;span&gt;&lt;strong&gt;LinkedIn:&lt;/strong&gt; "+escPerfilEM(pf.linkedin)+"&lt;/span&gt;":"")+
-(pf.instagram?"&lt;span&gt;&lt;strong&gt;Instagram:&lt;/strong&gt; "+escPerfilEM(pf.instagram)+"&lt;/span&gt;":"")+
-(pf.facebook?"&lt;span&gt;&lt;strong&gt;Facebook:&lt;/strong&gt; "+escPerfilEM(pf.facebook)+"&lt;/span&gt;":"")+
-(pf.video?"&lt;span&gt;&lt;strong&gt;Video institucional:&lt;/strong&gt; "+escPerfilEM(pf.video)+"&lt;/span&gt;":"")+
-(pf.emailPublico?"&lt;span&gt;&lt;strong&gt;Contato:&lt;/strong&gt; "+escPerfilEM(pf.emailPublico)+"&lt;/span&gt;":"")+
-"&lt;/div&gt;&lt;/aside&gt;&lt;/div&gt;"+
-"&lt;section class='empresa-publica-box-em empresa-publica-vagas-em'&gt;&lt;h3&gt;Vagas abertas &lt;span&gt;("+vagas.length+")&lt;/span&gt;&lt;/h3&gt;"+(vagasHtml||"&lt;p&gt;Nenhuma oportunidade aberta no momento.&lt;/p&gt;")+"&lt;/section&gt;";
+var html="<button class='empresa-perfil-voltar-em' type='button' onclick='abrirEditorPerfilEmpresaEM()'>&amp;#8592; Voltar</button>"+
+"<section class='empresa-publica-hero-em'><div class='empresa-publica-capa-em'"+capa+"></div><div class='empresa-publica-info-em'>"+logo+
+"<h1>"+escPerfilEM(pf.nome)+"</h1>"+(pf.slogan?"<p class='empresa-publica-slogan-v21'>"+escPerfilEM(pf.slogan)+"</p>":"")+"<div class='empresa-publica-meta-em'>"+escPerfilEM(pf.segmento||"Empresa")+" &amp;bull; "+escPerfilEM([pf.cidade,pf.uf].filter(Boolean).join(" / "))+"</div>"+
+"<span class='empresa-publica-selo-em'>Perfil da empresa</span></div></section>"+
+"<div class='empresa-publica-grid-em'><section class='empresa-publica-box-em'><h3>Sobre a empresa</h3><p>"+escPerfilEM(pf.sobre||"A empresa ainda nao adicionou uma apresentacao.")+"</p>"+
+(pf.missao?"<h3>Missao</h3><p>"+escPerfilEM(pf.missao)+"</p>":"")+
+(pf.visao?"<h3>Visao</h3><p>"+escPerfilEM(pf.visao)+"</p>":"")+
+(pf.valores?"<h3>Valores</h3><p>"+escPerfilEM(pf.valores)+"</p>":"")+
+"<h3>Cultura e ambiente</h3><p>"+escPerfilEM(pf.cultura||"Informacao ainda nao adicionada.")+"</p>"+
+(pf.ambiente?"<h3>Como e trabalhar aqui</h3><p>"+escPerfilEM(pf.ambiente)+"</p>":"")+
+"<h3>Beneficios</h3><p>"+escPerfilEM(pf.beneficios||"Informacao ainda nao adicionada.")+"</p>"+
+(pf.carreira?"<h3>Carreira e desenvolvimento</h3><p>"+escPerfilEM(pf.carreira)+"</p>":"")+"</section>"+
+"<aside class='empresa-publica-box-em'><h3>Informacoes</h3><div class='empresa-publica-lista-em'>"+
+(pf.porte?"<span><strong>Porte:</strong> "+escPerfilEM(pf.porte)+"</span>":"")+
+(pf.fundacao?"<span><strong>Fundacao:</strong> "+escPerfilEM(pf.fundacao)+"</span>":"")+
+(pf.modalidades?"<span><strong>Trabalho:</strong> "+escPerfilEM(pf.modalidades)+"</span>":"")+
+(pf.areas?"<span><strong>Areas que mais contratam:</strong> "+escPerfilEM(pf.areas)+"</span>":"")+
+(pf.site?"<span><strong>Site:</strong> "+escPerfilEM(pf.site)+"</span>":"")+
+(pf.linkedin?"<span><strong>LinkedIn:</strong> "+escPerfilEM(pf.linkedin)+"</span>":"")+
+(pf.instagram?"<span><strong>Instagram:</strong> "+escPerfilEM(pf.instagram)+"</span>":"")+
+(pf.facebook?"<span><strong>Facebook:</strong> "+escPerfilEM(pf.facebook)+"</span>":"")+
+(pf.video?"<span><strong>Video institucional:</strong> "+escPerfilEM(pf.video)+"</span>":"")+
+(pf.emailPublico?"<span><strong>Contato:</strong> "+escPerfilEM(pf.emailPublico)+"</span>":"")+
+"</div></aside></div>"+
+"<section class='empresa-publica-box-em empresa-publica-vagas-em'><h3>Vagas abertas <span>("+vagas.length+")</span></h3>"+(vagasHtml||"<p>Nenhuma oportunidade aberta no momento.</p>")+"</section>";
 var pagina=document.getElementById("pagina-perfil-publico-empresa-em"),box=document.getElementById("conteudoPerfilPublicoEmpresaEM");
 var paginas=document.querySelectorAll("[id^='pagina-']");
-for(var i=0;i&lt;paginas.length;i++)paginas[i].style.display="none";
+for(var i=0;i<paginas.length;i++)paginas[i].style.display="none";
 box.innerHTML=html;pagina.style.display="block";window.scrollTo(0,0);
 var bs=box.querySelectorAll("[data-vaga-publica-em]");
-for(var j=0;j&lt;bs.length;j++)bs[j].onclick=function(){
+for(var j=0;j<bs.length;j++)bs[j].onclick=function(){
 var id=this.getAttribute("data-vaga-publica-em");
 if(typeof irPara==="function"){irPara("vaga",id);return;}
 if(typeof abrirVaga==="function"){abrirVaga(id);return;}
@@ -196,7 +196,7 @@ if(typeof abrirDetalheVaga==="function")abrirDetalheVaga(id);
 };
 window.abrirEditorPerfilEmpresaEM=abrirPaginaPerfilEditorEM;
 var old=window.irPara;
-if(typeof old==="function"&amp;&amp;!window.perfilEmpresaRotaPatchEM){
+if(typeof old==="function"&&!window.perfilEmpresaRotaPatchEM){
 window.perfilEmpresaRotaPatchEM=true;
 window.irPara=function(pagina){
 if(pagina==="perfil-empresa"){abrirPaginaPerfilEditorEM();return false;}

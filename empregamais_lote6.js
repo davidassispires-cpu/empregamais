@@ -7,12 +7,12 @@ function encontrarSecoes(){
 var form=document.getElementById("formVaga");
 if(!form)return [];
 var titulos=Array.from(form.querySelectorAll(".publicar-secao-titulo-em"));
-if(titulos.length&lt;2)return [];
+if(titulos.length<2)return [];
 var grupos=[];
 titulos.forEach(function(titulo,idx){
 var itens=[titulo], el=titulo.nextElementSibling;
 var proximo=titulos[idx+1]||null;
-while(el &amp;&amp; el!==proximo){
+while(el && el!==proximo){
 if(!el.classList.contains("navegacao-v132"))itens.push(el);
 el=el.nextElementSibling;
 }
@@ -27,9 +27,9 @@ var spans=Array.from(barra.querySelectorAll("span"));
 spans.forEach(function(sp,i){
 sp.classList.add("passo-v132");
 sp.classList.toggle("ativo-v132",i===etapaAtualV132);
-sp.classList.toggle("concluido-v132",i&lt;etapaAtualV132);
+sp.classList.toggle("concluido-v132",i<etapaAtualV132);
 sp.onclick=function(){
-if(i&lt;=etapaAtualV132)mostrarEtapa(i,false);
+if(i<=etapaAtualV132)mostrarEtapa(i,false);
 };
 });
 }
@@ -38,12 +38,12 @@ if(!etapasV132[idx])return true;
 var campos=[];
 etapasV132[idx].forEach(function(el){
 campos=campos.concat(Array.from(el.querySelectorAll ? el.querySelectorAll("input,select,textarea") : []));
-if(el.matches&amp;&amp;el.matches("input,select,textarea"))campos.push(el);
+if(el.matches&&el.matches("input,select,textarea"))campos.push(el);
 });
-for(var i=0;i&lt;campos.length;i++){
+for(var i=0;i<campos.length;i++){
 var c=campos[i];
 if(c.disabled || c.type==="hidden" || c.offsetParent===null)continue;
-if(c.required &amp;&amp; !String(c.value||"").trim()){
+if(c.required && !String(c.value||"").trim()){
 if(typeof c.reportValidity==="function")c.reportValidity();
 c.focus();
 return false;
@@ -53,7 +53,7 @@ return true;
 }
 function mostrarEtapa(idx,validar){
 if(!etapasV132.length)return;
-if(validar &amp;&amp; idx&gt;etapaAtualV132 &amp;&amp; !validarEtapa(etapaAtualV132))return;
+if(validar && idx>etapaAtualV132 && !validarEtapa(etapaAtualV132))return;
 idx=Math.max(0,Math.min(idx,etapasV132.length-1));
 etapaAtualV132=idx;
 etapasV132.forEach(function(grupo,i){
@@ -95,16 +95,16 @@ function montar(){
 var form=document.getElementById("formVaga");
 if(!form || form.dataset.etapasV132==="1")return;
 etapasV132=encontrarSecoes();
-if(etapasV132.length&lt;2)return;
+if(etapasV132.length<2)return;
 form.dataset.etapasV132="1";
 var nav=document.createElement("div");
 nav.id="navegacaoV132";
 nav.className="navegacao-v132";
-nav.innerHTML='&lt;div class="nav-esquerda-v132"&gt;&lt;/div&gt;&lt;div class="nav-botoes-v132"&gt;&lt;button class="btn-etapa-v132" data-ant="1" type="button"&gt;Voltar&lt;/button&gt;&lt;button class="btn-etapa-v132 primario" data-prox="1" type="button"&gt;Continuar&lt;/button&gt;&lt;/div&gt;';
+nav.innerHTML='<div class="nav-esquerda-v132"></div><div class="nav-botoes-v132"><button class="btn-etapa-v132" data-ant="1" type="button">Voltar</button><button class="btn-etapa-v132 primario" data-prox="1" type="button">Continuar</button></div>';
 form.appendChild(nav);
 nav.querySelector("[data-ant]").onclick=function(){mostrarEtapa(etapaAtualV132-1,false)};
 var submit=form.querySelector("button[type='submit'],input[type='submit']");
-if(submit &amp;&amp; !submit.closest(".navegacao-v132")){
+if(submit && !submit.closest(".navegacao-v132")){
 var wrap=submit.parentElement;
 if(wrap)wrap.classList.add("submit-original-v132");
 }
@@ -129,12 +129,12 @@ ov=document.createElement("div");
 ov.id="emLoadingGlobalV134";
 ov.setAttribute("aria-live","polite");
 ov.setAttribute("aria-busy","true");
-ov.innerHTML='&lt;div class="loading-box-v134"&gt;&lt;span class="spinner-v134"&gt;&lt;/span&gt;&lt;span&gt;&lt;strong id="emLoadingTituloV134"&gt;Aguarde...&lt;/strong&gt;&lt;small id="emLoadingSubV134"&gt;Estamos processando sua solicitação.&lt;/small&gt;&lt;/span&gt;&lt;/div&gt;';
+ov.innerHTML='<div class="loading-box-v134"><span class="spinner-v134"></span><span><strong id="emLoadingTituloV134">Aguarde...</strong><small id="emLoadingSubV134">Estamos processando sua solicitação.</small></span></div>';
 document.body.appendChild(ov);
 return ov;
 }
 function textoAcao(el){
-var txt=String((el&amp;&amp;((el.getAttribute("aria-label")||"")+" "+(el.textContent||"")+" "+(el.value||"")))||"").toLowerCase();
+var txt=String((el&&((el.getAttribute("aria-label")||"")+" "+(el.textContent||"")+" "+(el.value||"")))||"").toLowerCase();
 if(/entrar|login|acessar/.test(txt))return ["Entrando...","Validando seus dados."];
 if(/publicar.*vaga|enviar.*vaga|cadastrar.*vaga/.test(txt))return ["Publicando vaga...","Aguarde enquanto enviamos as informações."];
 if(/candidatar|enviar.*candidat|enviar.*curr[ií]culo/.test(txt))return ["Enviando candidatura...","Aguarde enquanto processamos sua candidatura."];
@@ -156,7 +156,7 @@ el.dataset.emHtmlOriginalV134=el.innerHTML;
 el.dataset.emDisabledOriginalV134=el.disabled?"1":"0";
 el.classList.add("em-processando-v134");
 el.disabled=true;
-el.innerHTML='&lt;span class="em-spinner-btn-v134"&gt;&lt;/span&gt;'+textoBotao(mensagens[0]);
+el.innerHTML='<span class="em-spinner-btn-v134"></span>'+textoBotao(mensagens[0]);
 botaoAtual=el;
 clearTimeout(timerOverlay);
 timerOverlay=setTimeout(function(){
@@ -175,7 +175,7 @@ var ov=document.getElementById("emLoadingGlobalV134");
 if(ov)ov.classList.remove("ativo");
 document.body.classList.remove("em-bloqueado-v134");
 el=el||botaoAtual;
-if(el &amp;&amp; el.dataset.emHtmlOriginalV134!==undefined){
+if(el && el.dataset.emHtmlOriginalV134!==undefined){
 el.innerHTML=el.dataset.emHtmlOriginalV134;
 el.disabled=el.dataset.emDisabledOriginalV134==="1";
 delete el.dataset.emHtmlOriginalV134;
@@ -188,22 +188,22 @@ function ehAcaoProcessavel(el){
 return false;
 }
 document.addEventListener("click",function(ev){
-var el=ev.target&amp;&amp;ev.target.closest?ev.target.closest("button,input[type='submit'],a"):null;
+var el=ev.target&&ev.target.closest?ev.target.closest("button,input[type='submit'],a"):null;
 if(!ehAcaoProcessavel(el))return;
-var form=el.form||el.closest&amp;&amp;el.closest("form");
-if(form &amp;&amp; typeof form.checkValidity==="function" &amp;&amp; !form.checkValidity())return;
+var form=el.form||el.closest&&el.closest("form");
+if(form && typeof form.checkValidity==="function" && !form.checkValidity())return;
 iniciar(el,true);
 setTimeout(function(){
-if(document.visibilityState==="visible" &amp;&amp; el.classList.contains("em-processando-v134")){
+if(document.visibilityState==="visible" && el.classList.contains("em-processando-v134")){
 finalizar(el);
 }
 },15000);
 },true);
 document.addEventListener("submit",function(ev){
 var form=ev.target;
-if(!form || (typeof form.checkValidity==="function" &amp;&amp; !form.checkValidity()))return;
+if(!form || (typeof form.checkValidity==="function" && !form.checkValidity()))return;
 var el=form.querySelector("button[type='submit'],input[type='submit']");
-if(el &amp;&amp; !el.classList.contains("em-processando-v134"))iniciar(el,true);
+if(el && !el.classList.contains("em-processando-v134"))iniciar(el,true);
 },true);
 window.addEventListener("pageshow",function(){finalizar()});
 window.addEventListener("beforeunload",function(){
@@ -233,8 +233,8 @@ if(!window.EmpregaMaisLoadingV134)return;
 var api=window.EmpregaMaisLoadingV134;
 var emAndamento=0;
 function mensagemPorFormulario(form,submit){
-var id=((form&amp;&amp;form.id)||"").toLowerCase();
-var txt=String((submit&amp;&amp;((submit.textContent||"")+" "+(submit.value||"")))||"").toLowerCase();
+var id=((form&&form.id)||"").toLowerCase();
+var txt=String((submit&&((submit.textContent||"")+" "+(submit.value||"")))||"").toLowerCase();
 if(/login|entrar|acesso/.test(id+" "+txt))
 return ["Entrando...","Validando seus dados."];
 if(/vaga|publicar/.test(id+" "+txt))
@@ -256,7 +256,7 @@ emAndamento=Math.max(0,emAndamento-1);
 if(emAndamento===0)api.ocultar();
 }
 document.addEventListener("click",function(ev){
-var el=ev.target&amp;&amp;ev.target.closest?ev.target.closest("a,button,input[type='submit']"):null;
+var el=ev.target&&ev.target.closest?ev.target.closest("a,button,input[type='submit']"):null;
 if(!el)return;
 if(el.tagName==="A" || String(el.type||"").toLowerCase()==="button"){
 el.setAttribute("data-sem-loading","1");
@@ -264,7 +264,7 @@ el.setAttribute("data-sem-loading","1");
 },true);
 document.addEventListener("submit",function(ev){
 var form=ev.target;
-if(!form || (typeof form.checkValidity==="function" &amp;&amp; !form.checkValidity()))return;
+if(!form || (typeof form.checkValidity==="function" && !form.checkValidity()))return;
 var submit=(ev.submitter)||form.querySelector("button[type='submit'],input[type='submit']");
 if(submit)submit.setAttribute("data-sem-loading","1");
 var m=mensagemPorFormulario(form,submit);
@@ -299,7 +299,7 @@ var topo=document.getElementById("nomeEmpresaTopo");
 var menu=document.getElementById("nomeEmpresaMenuV140");
 var avatar=document.querySelector("#menuContaEmpresa .menu-empresa-avatar-v140");
 if(!menu)return;
-var nome=(topo&amp;&amp;topo.textContent||"").replace(/\s+/g," ").trim();
+var nome=(topo&&topo.textContent||"").replace(/\s+/g," ").trim();
 if(!nome || nome==="Empresa"){
 nome=sessionStorage.getItem("empresaNome")||localStorage.getItem("empresaNome")||"Empresa";
 }
@@ -310,7 +310,7 @@ document.addEventListener("click",function(ev){
 var topo=document.getElementById("contaEmpresaTopo");
 var menu=document.getElementById("menuContaEmpresa");
 if(!topo||!menu)return;
-if(menu.classList.contains("ativo") &amp;&amp; !topo.contains(ev.target)){
+if(menu.classList.contains("ativo") && !topo.contains(ev.target)){
 menu.classList.remove("ativo");
 }
 });
@@ -357,7 +357,7 @@ var email=String(sessionStorage.getItem("empresaEmail")||"").toLowerCase();
 lista.forEach(function(x){
 var xc=String(x.cnpj||"").replace(/\D/g,"");
 var xe=String(x.email||"").toLowerCase();
-if((cnpj&amp;&amp;xc===cnpj)||(email&amp;&amp;xe===email)){
+if((cnpj&&xc===cnpj)||(email&&xe===email)){
 x.plano=p;x.planoId=p;x.plano_id=p;
 x.planoNome=emp.plano_nome||p;x.plano_nome=emp.plano_nome||p;
 x.planoValidoAte=emp.plano_valido_ate||x.planoValidoAte;
@@ -394,7 +394,7 @@ function salvarRascunho(){
 var f=formVaga();if(!f)return;
 var d={_salvoEm:Date.now()};
 [].slice.call(f.elements||[]).forEach(function(el){
-if(!el.name&amp;&amp;!el.id)return;
+if(!el.name&&!el.id)return;
 if(/password|file/i.test(el.type||""))return;
 var k=el.name||el.id;
 if(el.type==="checkbox"||el.type==="radio")d[k]=!!el.checked;
@@ -407,7 +407,7 @@ var f=formVaga();if(!f)return;
 var d=null;
 try{d=JSON.parse(localStorage.getItem(DRAFT)||"null");}catch(e){}
 if(!d||!d._salvoEm)return;
-if(Date.now()-Number(d._salvoEm)&gt;2592000000){
+if(Date.now()-Number(d._salvoEm)>2592000000){
 try{localStorage.removeItem(DRAFT);}catch(e){}
 return;
 }
@@ -419,10 +419,10 @@ try{el.dispatchEvent(new Event("change",{bubbles:true}));}catch(e){}
 });
 }
 document.addEventListener("input",function(e){
-var f=formVaga();if(f&amp;&amp;f.contains(e.target))salvarRascunho();
+var f=formVaga();if(f&&f.contains(e.target))salvarRascunho();
 },true);
 document.addEventListener("change",function(e){
-var f=formVaga();if(f&amp;&amp;f.contains(e.target))salvarRascunho();
+var f=formVaga();if(f&&f.contains(e.target))salvarRascunho();
 },true);
 window.restaurarRascunhoVagaV145=restaurarRascunho;
 window.limparRascunhoVagaV145=function(){
@@ -475,7 +475,7 @@ window.lerRotaUrl=function(){
 var r=rotaAntes.apply(this,arguments);
 setTimeout(function(){
 var p=document.getElementById("pagina-painel-admin");
-if(p &amp;&amp; (p.classList.contains("ativa") || p.style.display!=="none")){
+if(p && (p.classList.contains("ativa") || p.style.display!=="none")){
 window.renderizarFilaPendentesAdmin();
 }
 },250);
@@ -507,7 +507,7 @@ v=String(v||"").trim().toLowerCase();
 if(v==="gratis"||v==="gratuito"||v==="free"||v==="basic"||v==="essencial")return "basico";
 if(v==="profissional")return "trimestral";
 if(v==="premium")return "anual";
-return ["basico","trimestral","semestral","anual"].indexOf(v)&gt;=0?v:"basico";
+return ["basico","trimestral","semestral","anual"].indexOf(v)>=0?v:"basico";
 }
 async function sincronizarPlanoV146(){
 var t=tokenEmpresaV146();
@@ -542,7 +542,7 @@ var achou=false;
 lista.forEach(function(x){
 var xc=String(x.cnpj||"").replace(/\D/g,"");
 var xe=String(x.email||x.email_corporativo||"").toLowerCase();
-if((cnpj&amp;&amp;xc===cnpj)||(email&amp;&amp;xe===email)){
+if((cnpj&&xc===cnpj)||(email&&xe===email)){
 achou=true;
 x.plano=p;x.planoId=p;x.plano_id=p;
 x.planoNome=emp.plano_nome||p;x.plano_nome=emp.plano_nome||p;
@@ -576,7 +576,7 @@ window.atualizarTipoContatoVaga();
 try{
 if(typeof window.montarCentralRecrutadorEM==="function"){
 var pag=document.getElementById("pagina-painel-empresa");
-if(pag&amp;&amp;pag.classList.contains("ativa"))window.montarCentralRecrutadorEM();
+if(pag&&pag.classList.contains("ativa"))window.montarCentralRecrutadorEM();
 }
 }catch(e){}
 return true;
@@ -622,7 +622,7 @@ var f=formV146();if(!f)return;
 var d=null;
 try{d=JSON.parse(localStorage.getItem(DRAFT)||"null");}catch(e){}
 if(!d||!d._salvoEm)return;
-if(Date.now()-Number(d._salvoEm)&gt;2592000000){
+if(Date.now()-Number(d._salvoEm)>2592000000){
 try{localStorage.removeItem(DRAFT);}catch(e){}
 return;
 }
@@ -635,10 +635,10 @@ try{el.dispatchEvent(new Event("change",{bubbles:true}));}catch(e){}
 });
 }
 document.addEventListener("input",function(e){
-var f=formV146();if(f&amp;&amp;f.contains(e.target))salvarDraftV146();
+var f=formV146();if(f&&f.contains(e.target))salvarDraftV146();
 },true);
 document.addEventListener("change",function(e){
-var f=formV146();if(f&amp;&amp;f.contains(e.target))salvarDraftV146();
+var f=formV146();if(f&&f.contains(e.target))salvarDraftV146();
 },true);
 window.restaurarRascunhoVagaV146=restaurarDraftV146;
 window.limparRascunhoVagaV146=function(){
@@ -667,7 +667,7 @@ if(a==="aprovado")a="aprovada";
 if(a==="reprovada")a="rejeitada";
 }
 }
-if(!a &amp;&amp; (v.empresaCnpj||v.cnpj||v.empresaEmail||v.email))a="pendente";
+if(!a && (v.empresaCnpj||v.cnpj||v.empresaEmail||v.email))a="pendente";
 return a||"aprovada";
 }
 function normalizarListaV146(){
@@ -677,10 +677,10 @@ if(!Array.isArray(vagas))vagas=[];
 vagas.forEach(function(v){
 if(!v||typeof v!=="object")return;
 v.aprovacao=aprovacaoV146(v);
-if(!v.empresa &amp;&amp; v.empresaNome)v.empresa=v.empresaNome;
-if(!v.empresaNome &amp;&amp; v.empresa)v.empresaNome=v.empresa;
-if(!v.empresaCnpj &amp;&amp; v.cnpj)v.empresaCnpj=v.cnpj;
-if(!v.cnpj &amp;&amp; v.empresaCnpj)v.cnpj=v.empresaCnpj;
+if(!v.empresa && v.empresaNome)v.empresa=v.empresaNome;
+if(!v.empresaNome && v.empresa)v.empresaNome=v.empresa;
+if(!v.empresaCnpj && v.cnpj)v.empresaCnpj=v.cnpj;
+if(!v.cnpj && v.empresaCnpj)v.cnpj=v.empresaCnpj;
 if(!v.dataPublicacao)v.dataPublicacao=v.data||v.criado_em||v.created_at||"";
 });
 return vagas;
@@ -703,12 +703,12 @@ var contador=document.getElementById("adminFilaPendentesNumero");
 if(!bloco)return;
 var vagas=normalizarListaV146();
 var pendentes=vagas.filter(function(v){
-return normTxt(v.status)!=="encerrada" &amp;&amp; aprovacaoV146(v)==="pendente";
+return normTxt(v.status)!=="encerrada" && aprovacaoV146(v)==="pendente";
 });
 if(contador)contador.textContent=pendentes.length;
 bloco.innerHTML="";
 if(!pendentes.length){
-bloco.innerHTML="&lt;div class='vazio'&gt;Nenhuma vaga aguardando aprovação.&lt;/div&gt;";
+bloco.innerHTML="<div class='vazio'>Nenhuma vaga aguardando aprovação.</div>";
 return;
 }
 pendentes.forEach(function(v){
@@ -717,13 +717,13 @@ card.className="admin-pendente-card";
 var empresa=v.empresa||v.empresaNome||"Empresa";
 var local=[v.cidade,v.uf].filter(Boolean).join(" / ");
 card.innerHTML=
-"&lt;div class='admin-pendente-info'&gt;"+
-"&lt;h3&gt;"+(typeof escaparTexto==="function"?escaparTexto(v.cargo||"Vaga"):String(v.cargo||"Vaga"))+"&lt;/h3&gt;"+
-"&lt;p&gt;&lt;strong&gt;"+(typeof escaparTexto==="function"?escaparTexto(empresa):empresa)+"&lt;/strong&gt;"+
+"<div class='admin-pendente-info'>"+
+"<h3>"+(typeof escaparTexto==="function"?escaparTexto(v.cargo||"Vaga"):String(v.cargo||"Vaga"))+"</h3>"+
+"<p><strong>"+(typeof escaparTexto==="function"?escaparTexto(empresa):empresa)+"</strong>"+
 (local?" • "+(typeof escaparTexto==="function"?escaparTexto(local):local):"")+
 (v.modalidade?" • "+(typeof escaparTexto==="function"?escaparTexto(v.modalidade):v.modalidade):"")+
-"&lt;br/&gt;Aguardando análise administrativa&lt;/p&gt;"+
-"&lt;/div&gt;";
+"<br/>Aguardando análise administrativa</p>"+
+"</div>";
 var ac=document.createElement("div");
 ac.className="admin-pendente-acoes";
 function botao(txt,cls,fn){
@@ -776,7 +776,7 @@ setTimeout(function(){
 restaurarDraftV146();
 sincronizarPlanoV146();
 var pa=document.getElementById("pagina-painel-admin");
-if(pa&amp;&amp;(pa.classList.contains("ativa")||pa.style.display!=="none")){
+if(pa&&(pa.classList.contains("ativa")||pa.style.display!=="none")){
 atualizarAdminV146();
 }
 },700);
@@ -797,7 +797,7 @@ window.__EmpregaMaisV148Salvamento=true;
 var FORM_IDS=["formVaga","formPublicarVaga","form-publicar-vaga"];
 var TIMER_MAX=null;
 function formVagaV148(){
-for(var i=0;i&lt;FORM_IDS.length;i++){
+for(var i=0;i<FORM_IDS.length;i++){
 var f=document.getElementById(FORM_IDS[i]);
 if(f)return f;
 }
@@ -805,13 +805,13 @@ return null;
 }
 function fecharLoadingV148(){
 try{
-if(window.EmpregaMaisProcessamentoV136 &amp;&amp;
+if(window.EmpregaMaisProcessamentoV136 &&
 typeof window.EmpregaMaisProcessamentoV136.finalizar==="function"){
 window.EmpregaMaisProcessamentoV136.finalizar();
 }
 }catch(e){}
 try{
-if(window.EmpregaMaisLoadingV134 &amp;&amp;
+if(window.EmpregaMaisLoadingV134 &&
 typeof window.EmpregaMaisLoadingV134.ocultar==="function"){
 window.EmpregaMaisLoadingV134.ocultar();
 }
@@ -838,8 +838,8 @@ try{
 var vagas=typeof carregarVagasPortal==="function"
 ? carregarVagasPortal()
 : [];
-return Array.isArray(vagas) &amp;&amp; vagas.some(function(v){
-return String(v&amp;&amp;v.id||"")===String(id);
+return Array.isArray(vagas) && vagas.some(function(v){
+return String(v&&v.id||"")===String(id);
 });
 }catch(e){
 return false;
@@ -852,21 +852,21 @@ snapshotFormularioV148(form);
 var idEdicao="";
 try{
 idEdicao=String(
-(typeof vagaEdicaoId!=="undefined" &amp;&amp; vagaEdicaoId) ||
+(typeof vagaEdicaoId!=="undefined" && vagaEdicaoId) ||
 ((document.getElementById("vagaEditandoId")||{}).value) ||
 ""
 );
 }catch(e){}
 clearTimeout(TIMER_MAX);
 setTimeout(function(){
-if(idEdicao &amp;&amp; vagaExisteV148(idEdicao)){
+if(idEdicao && vagaExisteV148(idEdicao)){
 fecharLoadingV148();
 }
 },450);
 TIMER_MAX=setTimeout(function(){
 fecharLoadingV148();
 var pagina=document.getElementById("pagina-publicar");
-if(pagina &amp;&amp; (pagina.classList.contains("ativa") || pagina.style.display!=="none")){
+if(pagina && (pagina.classList.contains("ativa") || pagina.style.display!=="none")){
 try{
 if(typeof mostrarModalSite==="function"){
 mostrarModalSite(
@@ -891,12 +891,12 @@ window.fecharLoadingSalvamentoV148=fecharLoadingV148;
 if(window.__EmpregaMaisV149Localizacao)return;
 window.__EmpregaMaisV149Localizacao=true;
 function escV149(v){
-return String(v==null?"":v).replace(/[&amp;&lt;&gt;"']/g,function(c){
-return {"&amp;":"&amp;amp;","&lt;":"&amp;lt;","&gt;":"&amp;gt;",'"':"&amp;quot;","'":"&amp;#39;"}[c];
+return String(v==null?"":v).replace(/[&amp;<>"']/g,function(c){
+return {"&amp;":"&amp;amp;","<":"&amp;lt;",">":"&amp;gt;",'"':"&amp;quot;","'":"&amp;#39;"}[c];
 });
 }
 function campoV149(ids){
-for(var i=0;i&lt;ids.length;i++){
+for(var i=0;i<ids.length;i++){
 var e=document.getElementById(ids[i]);
 if(e)return e;
 }
@@ -924,16 +924,16 @@ if(!box)return;
 var val=escolhaV149();
 box.querySelectorAll(".localizacao-opcao-v149").forEach(function(l){
 var r=l.querySelector("input");
-l.classList.toggle("selecionada",!!r &amp;&amp; r.checked);
+l.classList.toggle("selecionada",!!r && r.checked);
 });
 var cidade=cidadeAtualV149(), uf=ufAtualV149(), end=enderecoAtualV149();
 var vis="";
 if(val==="oculto"){
 vis="A localização não será exibida aos candidatos.";
 }else if(val==="cidade"){
-vis="O candidato verá: &lt;strong&gt;"+escV149(cidade+(cidade&amp;&amp;uf?" - ":"")+uf || "somente a cidade informada")+"&lt;/strong&gt;.";
+vis="O candidato verá: <strong>"+escV149(cidade+(cidade&&uf?" - ":"")+uf || "somente a cidade informada")+"</strong>.";
 }else{
-vis="O candidato verá a localização cadastrada"+(end?": &lt;strong&gt;"+escV149(end)+"&lt;/strong&gt;":".");
+vis="O candidato verá a localização cadastrada"+(end?": <strong>"+escV149(end)+"</strong>":".");
 }
 var p=document.getElementById("localizacaoPreviewV149");
 if(p)p.innerHTML=vis;
@@ -949,23 +949,23 @@ var box=document.createElement("div");
 box.id="localizacaoPrivacidadeV149";
 box.className="localizacao-privacidade-v149";
 box.innerHTML=
-"&lt;strong&gt;O que deseja mostrar aos candidatos?&lt;/strong&gt;"+
-"&lt;p&gt;Escolha o nível de privacidade da localização desta vaga. A opção selecionada ficará destacada.&lt;/p&gt;"+
-"&lt;div class='localizacao-opcoes-v149'&gt;"+
-"&lt;label class='localizacao-opcao-v149'&gt;"+
-"&lt;input type='radio' name='exibicaoLocalizacaoV149' value='completo'/&gt;"+
-"&lt;b&gt;Endereço completo&lt;/b&gt;&lt;span&gt;Exibe a localização cadastrada para a vaga.&lt;/span&gt;"+
-"&lt;/label&gt;"+
-"&lt;label class='localizacao-opcao-v149 selecionada'&gt;"+
-"&lt;input type='radio' name='exibicaoLocalizacaoV149' value='cidade' checked='checked'/&gt;"+
-"&lt;b&gt;Somente cidade&lt;/b&gt;&lt;span&gt;Oculta rua, número e demais detalhes do endereço.&lt;/span&gt;"+
-"&lt;/label&gt;"+
-"&lt;label class='localizacao-opcao-v149'&gt;"+
-"&lt;input type='radio' name='exibicaoLocalizacaoV149' value='oculto'/&gt;"+
-"&lt;b&gt;Não exibir localização&lt;/b&gt;&lt;span&gt;Nenhuma informação de endereço será mostrada publicamente.&lt;/span&gt;"+
-"&lt;/label&gt;"+
-"&lt;/div&gt;"+
-"&lt;div class='localizacao-preview-v149' id='localizacaoPreviewV149'&gt;&lt;/div&gt;";
+"<strong>O que deseja mostrar aos candidatos?</strong>"+
+"<p>Escolha o nível de privacidade da localização desta vaga. A opção selecionada ficará destacada.</p>"+
+"<div class='localizacao-opcoes-v149'>"+
+"<label class='localizacao-opcao-v149'>"+
+"<input type='radio' name='exibicaoLocalizacaoV149' value='completo'/>"+
+"<b>Endereço completo</b><span>Exibe a localização cadastrada para a vaga.</span>"+
+"</label>"+
+"<label class='localizacao-opcao-v149 selecionada'>"+
+"<input type='radio' name='exibicaoLocalizacaoV149' value='cidade' checked='checked'/>"+
+"<b>Somente cidade</b><span>Oculta rua, número e demais detalhes do endereço.</span>"+
+"</label>"+
+"<label class='localizacao-opcao-v149'>"+
+"<input type='radio' name='exibicaoLocalizacaoV149' value='oculto'/>"+
+"<b>Não exibir localização</b><span>Nenhuma informação de endereço será mostrada publicamente.</span>"+
+"</label>"+
+"</div>"+
+"<div class='localizacao-preview-v149' id='localizacaoPreviewV149'></div>";
 grupo.insertAdjacentElement("afterend",box);
 box.addEventListener("change",atualizarVisualV149);
 ["cidadeVaga","cidade","localVaga","estadoVaga","ufVaga","estado","uf",
@@ -1008,7 +1008,7 @@ if(!vaga)return "";
 var cidade=String(vaga.cidade||vaga.local||vaga.localidade||"").trim();
 var uf=String(vaga.uf||vaga.estado||"").trim();
 if(vaga.cidade)cidade=String(vaga.cidade).trim();
-return cidade+(cidade&amp;&amp;uf?" - ":"")+uf;
+return cidade+(cidade&&uf?" - ":"")+uf;
 }
 window.aplicarPrivacidadeLocalizacaoV149=function(vaga,raiz){
 if(!vaga)return;
@@ -1054,7 +1054,7 @@ localStorage.setItem("empregaMaisExibicaoLocalizacaoRascunho",escolhaV149());
 (function(){
 function obterVagaAtualV149(){
 try{
-if(typeof vagaAtual!=="undefined" &amp;&amp; vagaAtual)return vagaAtual;
+if(typeof vagaAtual!=="undefined" && vagaAtual)return vagaAtual;
 }catch(e){}
 return null;
 }
@@ -1062,10 +1062,10 @@ window.addEventListener("load",function(){
 setTimeout(function(){
 try{
 var v=obterVagaAtualV149();
-if(v &amp;&amp; typeof preencherPrivacidadeLocalizacaoV149==="function"){
+if(v && typeof preencherPrivacidadeLocalizacaoV149==="function"){
 preencherPrivacidadeLocalizacaoV149(v);
 }
-if(v &amp;&amp; typeof aplicarPrivacidadeLocalizacaoV149==="function"){
+if(v && typeof aplicarPrivacidadeLocalizacaoV149==="function"){
 aplicarPrivacidadeLocalizacaoV149(v,document);
 }
 }catch(e){}
@@ -1099,7 +1099,7 @@ if(!cep || !cidade || !estado)return;
 var gCep=grupoDo(cep);
 var gCidade=grupoDo(cidade);
 if(!gCep || !gCidade)return;
-if(gCidade.parentNode &amp;&amp; gCep!==gCidade){
+if(gCidade.parentNode && gCep!==gCidade){
 gCidade.parentNode.insertBefore(gCep,gCidade);
 }
 gCidade.classList.add("cep-auto-v151");
@@ -1122,7 +1122,7 @@ var op=opts.find(function(o){
 var tx=String(o.textContent||"").trim().toLowerCase();
 var vl=String(o.value||"").trim().toLowerCase();
 return tx===alvo || vl===alvo ||
-tx.indexOf(alvo)&gt;=0 || alvo.indexOf(tx)&gt;=0;
+tx.indexOf(alvo)>=0 || alvo.indexOf(tx)>=0;
 });
 if(op){
 select.value=op.value;
@@ -1139,7 +1139,7 @@ selecionarPorTextoV151(estado,ufOuEstado);
 var tentativas=0;
 var timer=setInterval(function(){
 tentativas++;
-if(selecionarPorTextoV151(cidade,cidadeNome) || tentativas&gt;=20){
+if(selecionarPorTextoV151(cidade,cidadeNome) || tentativas>=20){
 clearInterval(timer);
 if(typeof window.atualizarPreviewEnderecoV150==="function"){
 window.atualizarPreviewEnderecoV150();
@@ -1160,7 +1160,7 @@ window.addEventListener("load",function(){
 setTimeout(reorganizarV151,250);
 });
 document.addEventListener("change",function(e){
-if(e.target &amp;&amp; (e.target.id==="cidadeVaga" || e.target.id==="estadoVaga")){
+if(e.target && (e.target.id==="cidadeVaga" || e.target.id==="estadoVaga")){
 sincronizarPreviewV151();
 }
 });
@@ -1219,14 +1219,14 @@ aviso.className="endereco-auto-aviso-v153";
 aviso.innerHTML="&amp;#9679;&amp;nbsp; Rua, bairro, cidade e estado são preenchidos automaticamente pelo CEP. O número do imóvel não é solicitado.";
 grid.appendChild(aviso);
 var alvo=priv || caixaRua.firstChild;
-if(priv &amp;&amp; priv.parentNode===caixaRua){
+if(priv && priv.parentNode===caixaRua){
 caixaRua.insertBefore(grid,priv);
 }else{
 caixaRua.insertBefore(grid,caixaRua.firstChild);
 }
 [paiRua,paiBairro,grupoCidade,grupoEstado].forEach(function(g){
 if(!g || g===caixaRua || g===grid)return;
-var temCampo=g.querySelector &amp;&amp; g.querySelector("input,select,textarea");
+var temCampo=g.querySelector && g.querySelector("input,select,textarea");
 if(!temCampo){
 g.style.display="none";
 g.setAttribute("aria-hidden","true");
