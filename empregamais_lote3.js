@@ -1148,7 +1148,7 @@ var v=acharV54(id);if(!v)return;
 var p=document.getElementById("popupAcoesVagaV54");
 if(!p){
 p=document.createElement("div");p.id="popupAcoesVagaV54";p.className="popup-acoes-v54";
-p.innerHTML="<div class='caixa-acoes-v54'><div class='topo-acoes-v54'><div><small>A\u00C7\u00D5ES DA VAGA</small><strong id='tituloAcoesV54'></strong></div><button class='fechar-acoes-v54' type='button'>&amp;times;</button></div><div class='lista-acoes-v54' id='listaAcoesV54'></div></div>";
+p.innerHTML="<div class='caixa-acoes-v54'><div class='topo-acoes-v54'><div><small>A\u00C7\u00D5ES DA VAGA</small><strong id='tituloAcoesV54'></strong></div><button class='fechar-acoes-v54' type='button'>&times;</button></div><div class='lista-acoes-v54' id='listaAcoesV54'></div></div>";
 document.body.appendChild(p);
 p.querySelector(".fechar-acoes-v54").onclick=fecharV54;
 p.onclick=function(e){if(e.target===p)fecharV54();};
@@ -1211,7 +1211,7 @@ continue;
 }
 var b=document.createElement("button");b.type="button";b.className="acao-menu-v54";
 b.title="Gerenciar vaga";b.setAttribute("aria-label","Gerenciar vaga");b.setAttribute("data-vaga-id",String(v.id));
-b.innerHTML="<span class='dots'>&amp;#8230;</span><svg viewBox='0 0 24 24' aria-hidden='true'><path d='M4 20h4l11-11a2.8 2.8 0 0 0-4-4L4 16v4zM13.5 6.5l4 4'/></svg>";
+b.innerHTML="<span class='dots'>&#8230;</span><svg viewBox='0 0 24 24' aria-hidden='true'><path d='M4 20h4l11-11a2.8 2.8 0 0 0-4-4L4 16v4zM13.5 6.5l4 4'/></svg>";
 b.onclick=(function(id){return function(e){e.preventDefault();e.stopPropagation();abrirV54(id);};})(v.id);
 td.appendChild(b);
 }
@@ -1222,7 +1222,7 @@ function prepararPopupV58(){
 reconstruirMapaV58();
 if(document.getElementById("popupAcoesVagaV54"))return;
 var p=document.createElement("div");p.id="popupAcoesVagaV54";p.className="popup-acoes-v54";
-p.innerHTML="<div class='caixa-acoes-v54'><div class='topo-acoes-v54'><div><small>A\u00C7\u00D5ES DA VAGA</small><strong id='tituloAcoesV54'></strong></div><button class='fechar-acoes-v54' type='button' aria-label='Fechar'>&amp;times;</button></div><div class='lista-acoes-v54' id='listaAcoesV54'></div></div>";
+p.innerHTML="<div class='caixa-acoes-v54'><div class='topo-acoes-v54'><div><small>A\u00C7\u00D5ES DA VAGA</small><strong id='tituloAcoesV54'></strong></div><button class='fechar-acoes-v54' type='button' aria-label='Fechar'>&times;</button></div><div class='lista-acoes-v54' id='listaAcoesV54'></div></div>";
 document.body.appendChild(p);
 p.querySelector(".fechar-acoes-v54").onclick=fecharV54;
 p.onclick=function(e){if(e.target===p)fecharV54();};

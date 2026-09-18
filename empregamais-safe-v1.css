@@ -283,3 +283,117 @@ body.empresa-premium-v44 .plano-premium-v44{min-height:96px!important;margin:0 0
 #pagina-painel-admin{background:#f5f7fa!important}#pagina-painel-admin .container-dashboard{max-width:1280px!important;padding-top:28px!important}#pagina-painel-admin .dashboard-topo{margin-bottom:18px!important}#pagina-painel-admin .dashboard-topo h1{color:#122f49!important;font-size:27px!important;letter-spacing:-.35px!important}#pagina-painel-admin .dashboard-topo p{color:#718196!important}#pagina-painel-admin .metricas{gap:12px!important;margin-bottom:18px!important}#pagina-painel-admin .metrica{min-height:105px!important;padding:18px!important;border:1px solid #e1e8ef!important;border-radius:15px!important;box-shadow:0 5px 18px rgba(17,50,77,.035)!important}#pagina-painel-admin .admin-fila-pendentes-box{overflow:hidden!important;margin-bottom:18px!important;border:1px solid #dce5ed!important;border-radius:16px!important;background:#fff!important;box-shadow:0 8px 24px rgba(17,50,77,.045)!important}#pagina-painel-admin .admin-fila-pendentes-cab{display:flex!important;align-items:center!important;justify-content:space-between!important;gap:16px!important;padding:18px 20px!important;background:#fbfcfe!important;border-bottom:1px solid #e8eef3!important}#pagina-painel-admin .admin-fila-pendentes-cab h2{margin:0 0 4px!important;color:#173b5a!important;font-size:17px!important}#pagina-painel-admin .admin-fila-pendentes-cab p{margin:0!important;color:#77889a!important;font-size:11px!important}#pagina-painel-admin .admin-fila-pendentes-numero{min-width:36px!important;height:36px!important;display:flex!important;align-items:center!important;justify-content:center!important;border-radius:10px!important;background:#fff4d8!important;color:#8b6100!important;font-size:14px!important;font-weight:700!important}#pagina-painel-admin .admin-empresa-pendentes-em{margin:14px!important;overflow:hidden!important;border:1px solid #e2e9ef!important;border-radius:14px!important;background:#fff!important}#pagina-painel-admin .admin-empresa-pendentes-cab-em{padding:14px 16px!important;background:#f8fafc!important;border-bottom:1px solid #e8eef3!important}#pagina-painel-admin .admin-pendente-card{margin:0!important;padding:16px!important;border:0!important;border-bottom:1px solid #edf1f5!important;border-radius:0!important;box-shadow:none!important}#pagina-painel-admin .admin-pendente-card:last-child{border-bottom:0!important}#pagina-painel-admin .admin-pendente-info h3{color:#173b5a!important;font-size:14px!important}#pagina-painel-admin .admin-pendente-info p{color:#718196!important;font-size:10.5px!important;line-height:1.65!important}#pagina-painel-admin .admin-pendente-acoes{display:flex!important;flex-wrap:wrap!important;gap:7px!important}#pagina-painel-admin .admin-barra{padding:14px!important;border:1px solid #e1e8ef!important;border-radius:14px!important;background:#fff!important}#pagina-painel-admin .admin-vaga{border:1px solid #e1e8ef!important;border-radius:15px!important;box-shadow:0 5px 18px rgba(17,50,77,.035)!important}#adminStatusPendentesV146{display:none;margin:12px 14px;padding:11px 13px;border-radius:10px;background:#eef6fd;color:#315b7d;font:400 11px Questrial,Inter,Arial,sans-serif}#adminStatusPendentesV146.ativo{display:block}
 
 .localizacao-privacidade-v149{margin-top:18px;padding:18px;border:1px solid #dbe5ee;border-radius:14px;background:#f9fbfd}.localizacao-privacidade-v149 >strong{display:block;margin-bottom:5px;color:#18324b;font-size:13px}.localizacao-privacidade-v149 >p{margin:0 0 13px;color:#667085;font-size:11px;line-height:1.55}.localizacao-opcoes-v149{display:grid;grid-template-columns:repeat(3,1fr);gap:9px}.localizacao-opcao-v149{position:relative;display:block;padding:14px 13px;border:1.5px solid #d0d9e3;border-radius:11px;background:#fff;cursor:pointer;transition:.18s ease}.localizacao-opcao-v149:hover{border-color:#9fc8e7}.localizacao-opcao-v149 input{position:absolute;opacity:0;pointer-events:none}.localizacao-opcao-v149 b{display:flex;align-items:center;gap:7px;margin-bottom:5px;color:#344054;font-size:11px}.localizacao-opcao-v149 b:before{content:"";width:15px;height:15px;flex:none;border:2px solid #aab7c5;border-radius:50%;background:#fff;box-sizing:border-box}.localizacao-opcao-v149 span{display:block;color:#7b8794;font-size:9.5px;line-height:1.45}.localizacao-opcao-v149.selecionada{border-color:#1769aa;background:#eef7ff;box-shadow:0 0 0 2px rgba(23,105,170,.07)}.localizacao-opcao-v149.selecionada b{color:#0d4f82}.localizacao-opcao-v149.selecionada b:before{border:4px solid #1769aa}.localizacao-preview-v149{margin-top:12px;padding:11px 12px;border-radius:9px;background:#fff;border:1px solid #e1e7ee;color:#536273;font-size:10px;line-height:1.5}.localizacao-preview-v149 strong{color:#173f63}@media(max-width:720px){.localizacao-opcoes-v149{grid-template-columns:1fr}}
+
+/* ==========================================================
+   EMPREGAMAIS — CORREÇÃO MOBILE PAINEL DA EMPRESA V176
+   Mantém desktop intacto e transforma a tabela em cards.
+========================================================== */
+@media (max-width:800px){
+  #painelReferenciaRecrutadorEM .recrutador-boasvindas-topo-ref-em{
+    display:flex!important;
+    flex-direction:column!important;
+    align-items:stretch!important;
+    gap:14px!important;
+  }
+  #painelReferenciaRecrutadorEM .recrutador-publicar-ref-em{
+    width:100%!important;
+    min-height:48px!important;
+    display:flex!important;
+    align-items:center!important;
+    justify-content:center!important;
+    white-space:normal!important;
+  }
+  #painelReferenciaRecrutadorEM .recrutador-vagas-box-ref-em{
+    padding:0 12px 16px!important;
+    overflow:visible!important;
+  }
+  #painelReferenciaRecrutadorEM .recrutador-tabs-ref-em{
+    display:flex!important;
+    flex-wrap:wrap!important;
+    gap:4px 12px!important;
+  }
+  #painelReferenciaRecrutadorEM .recrutador-busca-ref-em{
+    width:100%!important;
+    margin:4px 0 10px!important;
+  }
+  #painelReferenciaRecrutadorEM .recrutador-busca-ref-em input{
+    width:100%!important;
+    max-width:none!important;
+  }
+  #painelReferenciaRecrutadorEM .recrutador-tabela-wrap-ref-em{
+    overflow:visible!important;
+    width:100%!important;
+  }
+  #painelReferenciaRecrutadorEM .recrutador-tabela-ref-em,
+  #painelReferenciaRecrutadorEM .recrutador-tabela-ref-em tbody{
+    display:block!important;
+    width:100%!important;
+  }
+  #painelReferenciaRecrutadorEM .recrutador-tabela-ref-em thead{
+    display:none!important;
+  }
+  #painelReferenciaRecrutadorEM .recrutador-tabela-ref-em tr{
+    display:grid!important;
+    grid-template-columns:1fr 1fr!important;
+    gap:0!important;
+    width:100%!important;
+    margin:12px 0!important;
+    padding:14px!important;
+    background:#fff!important;
+    border:1px solid #dfe9f2!important;
+    border-radius:13px!important;
+    box-sizing:border-box!important;
+    box-shadow:0 5px 16px rgba(20,62,96,.05)!important;
+  }
+  #painelReferenciaRecrutadorEM .recrutador-tabela-ref-em td{
+    display:block!important;
+    width:auto!important;
+    min-width:0!important;
+    padding:9px 7px!important;
+    border:0!important;
+    overflow-wrap:anywhere!important;
+  }
+  #painelReferenciaRecrutadorEM .recrutador-tabela-ref-em td:first-child{
+    grid-column:1/-1!important;
+    padding-bottom:12px!important;
+    border-bottom:1px solid #e8eef4!important;
+  }
+  #painelReferenciaRecrutadorEM .recrutador-tabela-ref-em td:nth-child(7),
+  #painelReferenciaRecrutadorEM .recrutador-tabela-ref-em td:nth-child(8){
+    border-top:1px solid #eef3f7!important;
+    margin-top:5px!important;
+  }
+  #painelReferenciaRecrutadorEM .recrutador-tabela-ref-em td::before{
+    display:block!important;
+    margin-bottom:4px!important;
+    color:#6a8299!important;
+    font-size:9px!important;
+    font-weight:600!important;
+    text-transform:uppercase!important;
+    letter-spacing:.35px!important;
+  }
+  #painelReferenciaRecrutadorEM .recrutador-tabela-ref-em td:nth-child(1)::before{content:"Vaga";}
+  #painelReferenciaRecrutadorEM .recrutador-tabela-ref-em td:nth-child(2)::before{content:"Cidade";}
+  #painelReferenciaRecrutadorEM .recrutador-tabela-ref-em td:nth-child(3)::before{content:"Modalidade";}
+  #painelReferenciaRecrutadorEM .recrutador-tabela-ref-em td:nth-child(4)::before{content:"Salário";}
+  #painelReferenciaRecrutadorEM .recrutador-tabela-ref-em td:nth-child(5)::before{content:"Publicada em";}
+  #painelReferenciaRecrutadorEM .recrutador-tabela-ref-em td:nth-child(6)::before{content:"Status";}
+  #painelReferenciaRecrutadorEM .recrutador-tabela-ref-em td:nth-child(7)::before{content:"Candidaturas";}
+  #painelReferenciaRecrutadorEM .recrutador-tabela-ref-em td:nth-child(8)::before{content:"Ações";}
+  #painelReferenciaRecrutadorEM .acao-menu-v54{
+    min-width:42px!important;
+    min-height:38px!important;
+    display:inline-flex!important;
+    align-items:center!important;
+    justify-content:center!important;
+  }
+  #painelReferenciaRecrutadorEM .acao-menu-v54 .dots{
+    line-height:1!important;
+    font-size:20px!important;
+  }
+  #painelReferenciaRecrutadorEM .recrutador-rodape-tabela-ref-em{
+    flex-direction:column!important;
+    align-items:flex-start!important;
+    gap:10px!important;
+  }
+}

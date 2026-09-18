@@ -90,14 +90,14 @@ shell.innerHTML=
 "<section class='recrutador-boasvindas-ref-em'>"+
 "<div class='recrutador-boasvindas-topo-ref-em'>"+
 "<div><h2>Ol\u00e1, "+txtRefEM(nome)+"!</h2><p>Gerencie suas vagas, acompanhe candidaturas e encontre os melhores talentos.</p></div>"+
-"<button class='recrutador-publicar-ref-em' type='button' data-ref-publicar='+'>+ &amp;nbsp; Publicar nova vaga</button>"+
+"<button class='recrutador-publicar-ref-em' type='button' data-ref-publicar='+'>+ &nbsp; Publicar nova vaga</button>"+
 "</div>"+
 "<div class='recrutador-cards-ref-em'>"+
 "<div class='recrutador-card-ref-em'><div class='recrutador-card-icone-ref-em'><svg viewBox='0 0 24 24' aria-hidden='true'><rect x='3' y='7' width='18' height='13' rx='2'/><path d='M8 7V5.5A1.5 1.5 0 0 1 9.5 4h5A1.5 1.5 0 0 1 16 5.5V7M3 12h18M10 12v2h4v-2'/></svg></div><div><strong>"+aprovadas.length+"</strong><span>Vagas ativas</span></div></div>"+
 "<div class='recrutador-card-ref-em'><div class='recrutador-card-icone-ref-em'><svg viewBox='0 0 24 24' aria-hidden='true'><circle cx='8' cy='8' r='3'/><circle cx='16.5' cy='9' r='2.5'/><path d='M2.5 19v-2a5 5 0 0 1 5-5h1a5 5 0 0 1 5 5v2M14 13h2.5a4.5 4.5 0 0 1 4.5 4.5V19'/></svg></div><div><strong>"+pendentes.length+"</strong><span>Em aprova\u00e7\u00e3o</span></div></div>"+
 "<div class='recrutador-card-ref-em'><div class='recrutador-card-icone-ref-em'><svg viewBox='0 0 24 24' aria-hidden='true'><path d='M2.5 12s3.5-6 9.5-6 9.5 6 9.5 6-3.5 6-9.5 6-9.5-6-9.5-6Z'/><circle cx='12' cy='12' r='2.8'/></svg></div><div><strong>"+cs.length+"</strong><span>Candidaturas</span></div></div>"+
 "<div class='recrutador-card-ref-em'><div class='recrutador-card-icone-ref-em'><svg viewBox='0 0 24 24' aria-hidden='true'><rect x='5' y='3' width='14' height='18' rx='2'/><path d='M9 7h6M9 11h6M9 15h4'/></svg></div><div><strong>"+processo+"</strong><span>Em processo</span></div></div>"+
-"<div class='recrutador-card-ref-em'><div class='recrutador-card-icone-ref-em'>&amp;#10003;</div><div><strong>"+contratados+"</strong><span>Contratados</span></div></div>"+
+"<div class='recrutador-card-ref-em'><div class='recrutador-card-icone-ref-em'>&#10003;</div><div><strong>"+contratados+"</strong><span>Contratados</span></div></div>"+
 "</div>"+
 "</section>"+
 "<section class='recrutador-vagas-box-ref-em'>"+
@@ -111,7 +111,7 @@ shell.innerHTML=
 "<thead><tr><th>T\u00edtulo da vaga</th><th>Cidade</th><th>Modalidade</th><th>Sal\u00e1rio</th><th>Publicada em</th><th>Status</th><th>Candidaturas</th><th>A\u00e7\u00f5es</th></tr></thead>"+
 "<tbody id='corpoTabelaPainelRefEM'></tbody>"+
 "</table></div>"+
-"<div class='recrutador-rodape-tabela-ref-em'><span id='textoRodapePainelRefEM'></span><div class='recrutador-paginacao-ref-em'><button type='button' disabled='disabled'>&amp;#8249;</button><button class='ativo' type='button'>1</button><button type='button' disabled='disabled'></button></div></div>"+
+"<div class='recrutador-rodape-tabela-ref-em'><span id='textoRodapePainelRefEM'></span><div class='recrutador-paginacao-ref-em'><button type='button' disabled='disabled'>&#8249;</button><button class='ativo' type='button'>1</button><button type='button' disabled='disabled'></button></div></div>"+
 "</section>"+
 "</main>";
 var filhos=pagina.children;
