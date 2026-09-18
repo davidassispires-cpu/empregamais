@@ -32,14 +32,41 @@ var marcado=box.querySelector("input[name='enderecoVisibilidadeRadioV130']:check
 var modo=marcado?marcado.value:"bairro";
 var h=document.getElementById("enderecoVisibilidadeV130");
 if(h)h.value=modo;
-var rua=(document.getElementById("ruaVagaV130")||{}).value||"";
-var bairro=(document.getElementById("bairroVagaV130")||{}).value||"";
-var cidade=(document.getElementById("cidadeVaga")||{}).value||"";
-var estado=(document.getElementById("estadoVaga")||{}).value||"";
-var partes=modo==="completo" ? [rua,bairro,cidade,estado] :
-modo==="cidade" ? [cidade,estado] :
-[bairro,cidade,estado];
-var exibido=partes.filter(Boolean).join(" · ");
+
+function valorCampo(ids){
+for(var i=0;i<ids.length;i++){
+var el=document.getElementById(ids[i]);
+if(!el)continue;
+var v=String(el.value||"").trim();
+if(v)return v;
+}
+return "";
+}
+function textoSelect(id){
+var el=document.getElementById(id);
+if(!el)return "";
+if(el.tagName==="SELECT" && el.selectedIndex>=0){
+var op=el.options[el.selectedIndex];
+var t=String((op&&op.textContent)||"").trim();
+if(t && !/^selecione/i.test(t))return t;
+}
+return String(el.value||"").trim();
+}
+
+var geo=window.__enderecoCepUltimoV130||{};
+var rua=String(geo.rua||geo.logradouro||"").trim() ||
+valorCampo(["ruaVagaV130","logradouroVaga","ruaVaga","enderecoVaga","logradouroLocalVaga"]);
+var bairro=String(geo.bairro||"").trim() ||
+valorCampo(["bairroVagaV130","bairroVaga","bairroLocalVaga"]);
+var cidade=String(geo.cidade||geo.localidade||"").trim() || textoSelect("cidadeVaga");
+var estado=String(geo.uf||geo.estado||"").trim() || textoSelect("estadoVaga");
+
+var partes;
+if(modo==="completo")partes=[rua,bairro,cidade,estado];
+else if(modo==="cidade")partes=[cidade,estado];
+else partes=[bairro,cidade,estado];
+
+var exibido=partes.filter(function(v){return String(v||"").trim();}).join(" · ");
 var prev=document.getElementById("enderecoPreviewV150");
 if(prev)prev.innerHTML="<strong>O candidato verá:</strong> "+(exibido||"preencha o CEP para visualizar.");
 }
@@ -55,10 +82,17 @@ atualizarPreviewV150();
 }
 window.preencherEnderecoCepV130=function(geo){
 criarEnderecoV130();
+geo=geo||{};
+window.__enderecoCepUltimoV130={
+rua:geo.rua||geo.logradouro||geo.street||geo.address||"",
+bairro:geo.bairro||geo.neighborhood||"",
+cidade:geo.cidade||geo.localidade||geo.city||"",
+uf:geo.uf||geo.estado||geo.state||""
+};
 var rua=document.getElementById("ruaVagaV130");
 var bairro=document.getElementById("bairroVagaV130");
-if(rua)rua.value=geo&&geo.rua?geo.rua:"";
-if(bairro)bairro.value=geo&&geo.bairro?geo.bairro:"";
+if(rua)rua.value=window.__enderecoCepUltimoV130.rua;
+if(bairro)bairro.value=window.__enderecoCepUltimoV130.bairro;
 if(geo && typeof window.preencherEstadoCidadePeloCepV151==="function"){
 window.preencherEstadoCidadePeloCepV151(
 geo.uf || geo.estado || "",
