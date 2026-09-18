@@ -4,7 +4,7 @@
 (function(){
 "use strict";
 if(window.__EM_SELECTS_VAGA_V3)return;
-window.__EM_SELECTS_VAGA_V3=true;
+window.__EM_SELECTS_VAGA_V3=true;\n\nvar css=document.createElement("style");\ncss.textContent=".em-select-original-v3{position:absolute!important;opacity:0!important;pointer-events:none!important;width:1px!important;height:1px!important}.em-select-v3{position:relative;width:100%;font-family:inherit}.em-select-v3-btn{width:100%;min-height:44px;padding:10px 38px 10px 12px;text-align:left;border:1px solid #d3e0eb;border-radius:9px;background:#fff;color:#173b5d;font:inherit;cursor:pointer;position:relative}.em-select-v3-btn:after{content:\\\"⌄\\\";position:absolute;right:13px;top:50%;transform:translateY(-50%);font-size:18px}.em-select-v3-btn:disabled{background:#f4f7fa;color:#8a9aaa;cursor:not-allowed}.em-select-v3-lista{display:none;position:absolute;left:0;right:0;top:calc(100% + 5px);z-index:2147483000;max-height:260px;overflow:auto;padding:5px;background:#fff;border:1px solid #cbdbea;border-radius:10px;box-shadow:0 12px 28px rgba(20,48,75,.16)}.em-select-v3.aberto .em-select-v3-lista{display:block}.em-select-v3-opcao{display:block;width:100%;padding:10px 11px;border:0;border-radius:7px;background:#fff;text-align:left;color:#173b5d;font:inherit;cursor:pointer}.em-select-v3-opcao:hover,.em-select-v3-opcao.selecionada{background:#eef6ff}.em-select-v3-opcao:disabled{opacity:.5;cursor:not-allowed}";\ndocument.head.appendChild(css);
 
 function form(){return document.getElementById("formVaga");}
 function fecharTodos(exceto){
