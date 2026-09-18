@@ -79,9 +79,25 @@ function montar(sel){
  mo.observe(sel,{childList:true,subtree:true,attributes:true,attributeFilter:["disabled"]});
  sincronizar(sel,w);
 }
+function restaurarSelectsBeneficios(){
+ ["planoSaudeCusteioV181","planoSaudeDependentesV181"].forEach(function(id){
+   var sel=document.getElementById(id); if(!sel)return;
+   sel.classList.remove("em-select-original-v3");
+   sel.removeAttribute("data-em-select-v3");
+   sel.style.removeProperty("position");sel.style.removeProperty("opacity");sel.style.removeProperty("pointer-events");
+   sel.style.removeProperty("width");sel.style.removeProperty("height");
+   var prox=sel.nextElementSibling;
+   if(prox&&prox.classList.contains("em-select-v3"))prox.remove();
+ });
+}
 function instalar(){
  var f=form();if(!f)return;
- f.querySelectorAll("select").forEach(montar);
+ restaurarSelectsBeneficios();
+ f.querySelectorAll("select").forEach(function(sel){
+  /* Os selects internos de benefícios/plano de saúde permanecem nativos. */
+  if(sel.closest("#beneficiosCardsV128") || sel.id==="planoSaudeCusteioV181" || sel.id==="planoSaudeDependentesV181") return;
+  montar(sel);
+});
 }
 document.addEventListener("click",function(e){
  if(!e.target.closest(".em-select-v3"))fecharTodos();
