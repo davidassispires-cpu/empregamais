@@ -75,7 +75,15 @@ function atualizar(sel,w,forcar){
   lista.appendChild(b);
  });
 }
+function desembrulharLegado(sel){
+ var legado=sel.closest(".em-select-estavel-v3");
+ if(legado&&legado.parentNode){
+  legado.parentNode.insertBefore(sel,legado);
+  legado.remove();
+ }
+}
 function limparAntigo(sel){
+ desembrulharLegado(sel);
  sel.classList.remove("em-select-original-v3","em-benefit-native-v10");
  sel.removeAttribute("data-em-select-v3");
  var p=sel.nextElementSibling;
@@ -108,6 +116,7 @@ function restaurarIgnorados(){
  var f=form();if(!f)return;
  f.querySelectorAll("select").forEach(function(sel){
   if(!ignorado(sel))return;
+   desembrulharLegado(sel);
   sel.classList.remove("em-select-original-v3","em-select-real-v4","em-benefit-native-v10");
   sel.removeAttribute("data-em-select-v3");
   var p=sel.nextElementSibling;
