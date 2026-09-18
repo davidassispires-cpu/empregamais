@@ -202,6 +202,8 @@ finalizar(el);
 document.addEventListener("submit",function(ev){
 var form=ev.target;
 if(!form || (typeof form.checkValidity==="function" && !form.checkValidity()))return;
+/* O formulário de vagas possui fluxo próprio (V221). Não abrir o loader global aqui. */
+if(form.id==="formVaga")return;
 var el=form.querySelector("button[type='submit'],input[type='submit']");
 if(el && !el.classList.contains("em-processando-v134"))iniciar(el,true);
 },true);
