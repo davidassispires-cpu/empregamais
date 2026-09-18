@@ -1,21 +1,22 @@
-/* EmpregaMais - Controles do formulário de vaga - v4
+/* EmpregaMais - Controles do formulário de vaga - v5
    Módulo único para SELECTs do formVaga.
    Mantém os SELECTs reais como fonte de verdade e cria somente a interface visual.
    Não altera IDs, names, values, validação, envio ou regras de negócio. */
 (function(){
 "use strict";
-if(window.__EM_SELECTS_VAGA_V4)return;
-window.__EM_SELECTS_VAGA_V4=true;
+if(window.__EM_SELECTS_VAGA_V5)return;
+window.__EM_SELECTS_VAGA_V5=true;
 
 var FORM_ID="formVaga";
-var IGNORAR=["planoSaudeCusteioV181","planoSaudeDependentesV181"];
+var IGNORAR=["planoSaudeCusteioV181","planoSaudeDependentesV181","estadoVaga","cidadeVaga"];
 var wrappers=new WeakMap();
 
 var css=document.createElement("style");
 css.id="em-selects-v4-css";
 css.textContent=[
 ".em-select-real-v4{position:absolute!important;opacity:0!important;pointer-events:none!important;width:1px!important;height:1px!important;overflow:hidden!important}",
-".em-select-v4{position:relative!important;width:100%!important;font-family:inherit!important;z-index:1}",
+".em-select-v4{box-sizing:border-box!important;position:relative!important;width:100%!important;min-width:0!important;max-width:100%!important;margin:0!important;font-family:inherit!important;z-index:1}",
+"#pagina-publicar #formVaga .grupo,#pagina-publicar #formVaga .campo{min-width:0!important}",
 ".em-select-v4.aberto{z-index:2147483600!important}",
 ".em-select-v4-btn{box-sizing:border-box!important;width:100%!important;height:46px!important;min-height:46px!important;padding:0 40px 0 13px!important;display:flex!important;align-items:center!important;text-align:left!important;border:1px solid #c8dceb!important;border-radius:10px!important;background:#fff!important;color:#173b5d!important;font:inherit!important;font-size:14px!important;cursor:pointer!important;position:relative!important}",
 ".em-select-v4-btn:after{content:''!important;position:absolute!important;right:15px!important;top:50%!important;width:0!important;height:0!important;border-left:5px solid transparent!important;border-right:5px solid transparent!important;border-top:6px solid #58758e!important;transform:translateY(-25%)!important}",
@@ -107,10 +108,10 @@ function restaurarIgnorados(){
  var f=form();if(!f)return;
  f.querySelectorAll("select").forEach(function(sel){
   if(!ignorado(sel))return;
-  sel.classList.remove("em-select-original-v3","em-select-real-v4");
+  sel.classList.remove("em-select-original-v3","em-select-real-v4","em-benefit-native-v10");
   sel.removeAttribute("data-em-select-v3");
   var p=sel.nextElementSibling;
-  while(p&&(p.classList.contains("em-select-v3")||p.classList.contains("em-select-v4"))){var r=p;p=p.nextElementSibling;r.remove()}
+  while(p&&(p.classList.contains("em-select-v3")||p.classList.contains("em-select-v4")||p.classList.contains("em-benefit-select-v10"))){var r=p;p=p.nextElementSibling;r.remove()}
  });
 }
 function instalar(){
