@@ -10,15 +10,27 @@ anual:{nome:"Plano Anual",periodo:"12 meses",preco:"R$ 239,90",texto:"Maior capa
 var detPlanoAtualV16="basico";
 function abrirDetalhesPlanoV16(chave){
 var d=DET_PLANOS_V16[chave]||DET_PLANOS_V16.basico;detPlanoAtualV16=DET_PLANOS_V16[chave]?chave:"basico";
-document.querySelectorAll(".pagina").forEach(function(x){x.classList.remove("ativa");});
-var pg=document.getElementById("pagina-detalhes-plano-v16");if(pg)pg.classList.add("ativa");
+var pg=document.getElementById("pagina-detalhes-plano-v16");
+if(typeof window.mostrarPagina==="function")window.mostrarPagina("detalhes-plano-v16");
+else{
+ document.querySelectorAll(".pagina").forEach(function(x){x.classList.remove("ativa");});
+ if(pg)pg.classList.add("ativa");
+}
 document.getElementById("detNomeV16").textContent=d.nome;document.getElementById("detTextoV16").textContent=d.texto;document.getElementById("detPeriodoV16").textContent=d.periodo;document.getElementById("detPrecoV16").textContent=d.preco;
 document.getElementById("detVagasV16").textContent=d.vagas;document.getElementById("detVagasObsV16").textContent=d.vagasObs;document.getElementById("detDestaquesV16").textContent=d.destaques;document.getElementById("detUrgentesV16").textContent=d.urgentes;document.getElementById("detConfV16").textContent=d.conf;document.getElementById("detConfObsV16").textContent=d.confObs;
 var b=document.getElementById("detBeneficiosV16");b.innerHTML="";d.beneficios.forEach(function(x){var e=document.createElement("div");e.className="det-beneficio-v16";e.innerHTML="<b>&amp;#10003;</b>"+x;b.appendChild(e);});
 var r=document.getElementById("detResumoV16");r.innerHTML="";d.resumo.forEach(function(x){var e=document.createElement("div");e.className="det-resumo-item-v16";e.innerHTML="<strong>"+x[0]+"</strong>"+x[1];r.appendChild(e);});
 document.getElementById("detEscolherV16").onclick=function(){escolherDetalhePlanoV16();};document.getElementById("detEscolher2V16").onclick=function(){escolherDetalhePlanoV16();};window.scrollTo(0,0);
 }
-function voltarPlanosV16(){var p=document.getElementById("pagina-detalhes-plano-v16");if(p)p.classList.remove("ativa");var x=document.getElementById("pagina-planos");if(x)x.classList.add("ativa");window.scrollTo(0,0);}
+function voltarPlanosV16(){
+if(typeof window.irPara==="function")window.irPara("planos");
+else if(typeof window.mostrarPagina==="function")window.mostrarPagina("planos");
+else{
+ var p=document.getElementById("pagina-detalhes-plano-v16");if(p)p.classList.remove("ativa");
+ var x=document.getElementById("pagina-planos");if(x)x.classList.add("ativa");
+}
+window.scrollTo(0,0);
+}
 function escolherDetalhePlanoV16(){var chave=detPlanoAtualV16;voltarPlanosV16();setTimeout(function(){var b=document.querySelector('[data-plano-em="'+chave+'"]');if(b)b.click();},80);}
 document.addEventListener("click",function(e){var b=e.target.closest("[data-info-plano-v16]");if(b){e.preventDefault();abrirDetalhesPlanoV16(b.getAttribute("data-info-plano-v16"));}});
 document.addEventListener("DOMContentLoaded",function(){var b=document.getElementById("detVoltarV16");if(b)b.onclick=voltarPlanosV16;});
