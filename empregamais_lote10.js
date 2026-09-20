@@ -174,6 +174,40 @@ if(cv.online){
 alert("Esta candidatura não possui currículo anexado ou currículo online disponível.");
 return false;
 };
+function dadosContatoCandRefEM(c){
+var vagaId=idVagaCandRefEM(c),vaga=null;
+try{vaga=vagasEmpresaRefEM().find(function(v){return String(v&&v.id||"")===String(vagaId);})||null;}catch(e){}
+var nome=String(c&& (c.nome||c.candidatoNome||c.candidato_nome||c.nomeCandidato)||"candidato(a)").trim();
+var empresa=String(vaga&&(vaga.empresa||vaga.empresaNome)||"nossa empresa").trim();
+var cargo=String(vaga&&(vaga.cargo||vaga.titulo)||c&&(c.cargoVaga||c.vaga||c.titulo)||"oportunidade").trim();
+var tel=String(c&&(c.whatsapp||c.telefone||c.celular||c.phone)||"").replace(/\D/g,"");
+var email=String(c&&(c.email||c.candidato_email||c.candidatoEmail)||"").trim();
+var msg="Olá, "+nome+"! Meu nome é [SEU NOME] e falo em nome da "+empresa+". Recebemos seu currículo pelo EmpregaMais para a vaga de "+cargo+" e gostaríamos de conversar com você sobre o processo seletivo.";
+return{vaga:vaga,nome:nome,empresa:empresa,cargo:cargo,telefone:tel,email:email,mensagem:msg};
+}
+window.contatarCandidatoEmpregaMais=async function(candidatura,canal){
+if(!candidatura)return false;
+var d=dadosContatoCandRefEM(candidatura);
+if(!d.vaga){alert("Não foi possível validar a vaga desta candidatura.");return false;}
+var ch=String(canal||"").toLowerCase(),destino="";
+if(ch==="whatsapp"){
+ if(!d.telefone){alert("O candidato não possui WhatsApp/telefone cadastrado.");return false;}
+ var n=d.telefone;if(n.length===10||n.length===11)n="55"+n;
+ destino="https://wa.me/"+n+"?text="+encodeURIComponent(d.mensagem);
+}else if(ch==="email"){
+ if(!d.email){alert("O candidato não possui e-mail cadastrado.");return false;}
+ destino="mailto:"+encodeURIComponent(d.email)+"?subject="+encodeURIComponent("Processo seletivo - "+d.cargo)+"&body="+encodeURIComponent(d.mensagem);
+}else if(ch==="ligacao"||ch==="telefone"){
+ if(!d.telefone){alert("O candidato não possui telefone cadastrado.");return false;}
+ destino="tel:+"+(d.telefone.length===10||d.telefone.length===11?"55":"")+d.telefone;
+}else{alert("Selecione WhatsApp, e-mail ou ligação.");return false;}
+try{await window.atualizarEtapaCandidaturaEM(idCandRefEM(candidatura),"em contato");}catch(e){}
+if(ch==="whatsapp"){window.open(destino,"_blank","noopener");}else{window.location.href=destino;}
+return true;
+};
+window.mensagemContatoCandidatoEmpregaMais=function(candidatura){
+return dadosContatoCandRefEM(candidatura).mensagem;
+};
 function verVagaRefEM(id){
 if(typeof abrirVaga==="function"){abrirVaga(id);return;}
 if(typeof abrirDetalheVaga==="function"){abrirDetalheVaga(id);return;}
