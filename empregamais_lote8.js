@@ -85,9 +85,22 @@ q("cvEyeV86").onclick=abrir;q("cvOpenFullV86").onclick=abrir;q("cvCloseV86").onc
 modal.addEventListener("click",function(e){if(e.target===modal)fechar()});
 cv.addEventListener("input",atualizar);cv.addEventListener("change",atualizar);
 var exp=q("cvExperienciasV84"),form=q("cvFormacoesV84");
-if(exp&&window.MutationObserver)new MutationObserver(atualizar).observe(exp,{childList:true,subtree:true});
-if(form&&window.MutationObserver)new MutationObserver(atualizar).observe(form,{childList:true,subtree:true});
-setTimeout(atualizar,800);
+var timerPreviewV86=0;
+function agendarPreviewV86(){
+ clearTimeout(timerPreviewV86);
+ timerPreviewV86=setTimeout(atualizar,60);
+}
+if(exp&amp;&amp;window.MutationObserver)new MutationObserver(function(muts){
+ for(var i=0;i&lt;muts.length;i++){
+  if((muts[i].addedNodes&amp;&amp;muts[i].addedNodes.length)||(muts[i].removedNodes&amp;&amp;muts[i].removedNodes.length)){agendarPreviewV86();break;}
+ }
+}).observe(exp,{childList:true,subtree:true});
+if(form&amp;&amp;window.MutationObserver)new MutationObserver(function(muts){
+ for(var i=0;i&lt;muts.length;i++){
+  if((muts[i].addedNodes&amp;&amp;muts[i].addedNodes.length)||(muts[i].removedNodes&amp;&amp;muts[i].removedNodes.length)){agendarPreviewV86();break;}
+ }
+}).observe(form,{childList:true,subtree:true});
+setTimeout(atualizar,180);
 }
 window.EmpregaMaisAtualizarPreviewCurriculoV86=atualizar;
 function iniciarPreviewCurriculoV86(){if(q("curriculoOnlineV84"))montar()}
