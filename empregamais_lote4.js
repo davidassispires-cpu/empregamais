@@ -785,21 +785,40 @@ if(typeof publicarVagaAntesAdminEM!=="function"){
 /* Mantém a identidade e o histórico da vaga durante o fluxo legado de edição. */
 try{window.vagaEdicaoId=String(original.id);}catch(e){}
 try{sessionStorage.setItem("empregaMaisVagaEdicaoId",String(original.id));}catch(e){}
-var retorno=publicarVagaAntesAdminEM(event);
-/* Só limpa a referência quando o fluxo legado conclui com sucesso.
-   Promises são respeitadas para não liberar o modo edição antes da confirmação. */
-if(retorno&&typeof retorno.then==="function"){
- return retorno.then(function(res){
-  if(res!==false){
-   try{sessionStorage.removeItem("empregaMaisVagaEdicaoId");}catch(e){}
+function finalizarEdicaoSeguraEM(res){
+ if(res===false)return res;
+ var atualizadas=[];
+ try{atualizadas=typeof carregarVagasPortal==="function"?(carregarVagasPortal()||[]):[];}catch(e){atualizadas=[];}
+ if(Array.isArray(atualizadas)){
+  var pos=atualizadas.findIndex(function(v){return String(v&&v.id||"")===String(original.id);});
+  if(pos>=0){
+   /* A edição nunca cria uma segunda identidade nem devolve uma vaga já aprovada
+      para a fila pendente. Mantém também o histórico de edição pós-aprovação. */
+   atualizadas[pos].id=original.id;
+   if(jaAprovada){
+    atualizadas[pos].aprovacao="aprovada";
+    atualizadas[pos].jaFoiAprovada=true;
+    atualizadas[pos].edicoesAposAprovacao=edicoes+1;
+   }else{
+    atualizadas[pos].aprovacao=original.aprovacao||atualizadas[pos].aprovacao||"pendente";
+    atualizadas[pos].jaFoiAprovada=original.jaFoiAprovada===true;
+    atualizadas[pos].edicoesAposAprovacao=edicoes;
+   }
+   try{if(typeof salvarVagasPortal==="function")salvarVagasPortal(atualizadas);}catch(e){}
   }
-  return res;
- });
-}
-if(retorno!==false){
+ }
  try{sessionStorage.removeItem("empregaMaisVagaEdicaoId");}catch(e){}
+ try{window.vagaEdicaoId="";}catch(e){}
+ try{var h=document.getElementById("vagaEditandoId");if(h)h.value="";}catch(e){}
+ try{if(typeof montarPainelReferenciaRecrutadorEM==="function")montarPainelReferenciaRecrutadorEM();}catch(e){}
+ return res;
 }
-return retorno;
+var retorno=publicarVagaAntesAdminEM(event);
+/* Só finaliza a referência e os contadores quando o salvamento realmente conclui. */
+if(retorno&&typeof retorno.then==="function"){
+ return retorno.then(finalizarEdicaoSeguraEM);
+}
+return finalizarEdicaoSeguraEM(retorno);
 }
 async function enviar(event){
 if(event){event.preventDefault();event.stopPropagation();if(event.stopImmediatePropagation)event.stopImmediatePropagation();}
