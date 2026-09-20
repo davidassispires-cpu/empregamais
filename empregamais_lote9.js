@@ -395,9 +395,17 @@ document.addEventListener("DOMContentLoaded",preparar);
 preparar();
 }
 window.addEventListener("load",function(){setTimeout(corrigirRodape,150)});
-new MutationObserver(function(){
-if(pagina.classList.contains("ativa"))corrigirRodape();
+if(window.MutationObserver){
+var timerRodapeV101=0;
+new MutationObserver(function(muts){
+if(!pagina.classList.contains("ativa"))return;
+var relevante=false;
+for(var i=0;i<muts.length;i++)if(muts[i].addedNodes&&muts[i].addedNodes.length){relevante=true;break;}
+if(!relevante)return;
+clearTimeout(timerRodapeV101);
+timerRodapeV101=setTimeout(corrigirRodape,80);
 }).observe(document.body,{childList:true,subtree:false});
+}
 })();
 //
 ;
