@@ -95,8 +95,20 @@ function agendar(){clearTimeout(timer);timer=setTimeout(aplicar,30);}
 document.addEventListener("DOMContentLoaded",function(){setTimeout(aplicar,200);});
 window.addEventListener("load",function(){setTimeout(aplicar,350);setTimeout(aplicar,900);});
 document.addEventListener("click",function(){setTimeout(aplicar,80);},true);
-var obs=new MutationObserver(agendar);
-if(document.documentElement)obs.observe(document.documentElement,{childList:true,subtree:true});
+var obs=null;
+function observarConfidencialidade(){
+ if(obs||!window.MutationObserver)return;
+ var alvos=[
+  document.getElementById("listaVagas"),
+  document.getElementById("listaDestaques"),
+  document.getElementById("pagina-vaga")
+ ].filter(Boolean);
+ if(!alvos.length)return;
+ obs=new MutationObserver(agendar);
+ alvos.forEach(function(alvo){obs.observe(alvo,{childList:true,subtree:true});});
+}
+observarConfidencialidade();
+document.addEventListener("DOMContentLoaded",observarConfidencialidade);
 
 /* Mantém compatibilidade com as rotinas existentes sem alterar os dados salvos. */
 window.vagaEhConfidencialEM=confidencial;
