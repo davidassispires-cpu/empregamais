@@ -484,7 +484,7 @@ document.addEventListener("empregamais:navegacao",function(ev){
 var pagina=ev&&ev.detail&&ev.detail.pagina;
 if(pagina&&pagina!=="cadastro-curriculo"){
  p.classList.remove("ativa");
- p.style.display="none";
+ p.style.removeProperty("display");
 }
 });
 window.addEventListener("load",function(){setTimeout(pelaURL,100)});
