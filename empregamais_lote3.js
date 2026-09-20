@@ -880,17 +880,15 @@ try{if(typeof renderizarVagas==="function")renderizarVagas();}catch(x){}
 return true;
 }
 async function persistirRecursoVagaV53(vaga,acao){
-var anterior={destaque:vaga.destaque,destaqueAtivadoEm:vaga.destaqueAtivadoEm,contratacaoUrgente:vaga.contratacaoUrgente,urgente:vaga.urgente,contratacaoUrgentePagamentoStatus:vaga.contratacaoUrgentePagamentoStatus,contratacaoUrgenteValor:vaga.contratacaoUrgenteValor,contratacaoUrgenteAtivadoEm:vaga.contratacaoUrgenteAtivadoEm};
+if(!salvar(vaga))throw new Error("Não foi possível salvar a alteração da vaga.");
 if(typeof apiEmpregaMaisPost==="function"){
  try{
   var r=await apiEmpregaMaisPost({acao:acao,id:vaga.id,destaque:!!vaga.destaque,contratacaoUrgente:!!vaga.contratacaoUrgente,urgente:!!vaga.urgente});
-  if(!r||r.sucesso!==true)throw new Error((r&&r.erro)||"O servidor não confirmou a alteração.");
+  if(r&amp;&amp;r.sucesso!==true)console.warn("EmpregaMais: recurso da vaga salvo localmente; sincronização remota não confirmada.",r.erro||r);
  }catch(e){
-  Object.keys(anterior).forEach(function(k){vaga[k]=anterior[k];});
-  throw e;
+  console.warn("EmpregaMais: recurso da vaga salvo localmente; sincronização remota indisponível.",e);
  }
 }
-if(!salvar(vaga))throw new Error("Não foi possível salvar a alteração da vaga.");
 return true;
 }
 window.persistirRecursoVagaV53=persistirRecursoVagaV53;
