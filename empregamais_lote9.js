@@ -471,18 +471,16 @@ abrirPaginaCadastroV103();
 }
 }catch(e){}
 }
-var irOriginal=window.irPara;
-if(typeof irOriginal==="function"){
-window.irPara=function(pagina,id){
-if(pagina!=="cadastro-curriculo"){
-p.classList.remove("ativa");
-p.style.display="none";
-var home=document.getElementById("pagina-home");
-if(home)home.style.display="";
+/* Não substitui mais window.irPara. A navegação global já possui uma cadeia
+   de proteções de autenticação/sincronização; sobrescrevê-la aqui criava mais
+   uma camada que alterava display da Home antes da rota terminar. */
+document.addEventListener("empregamais:navegacao",function(ev){
+var pagina=ev&&ev.detail&&ev.detail.pagina;
+if(pagina&&pagina!=="cadastro-curriculo"){
+ p.classList.remove("ativa");
+ p.style.display="none";
 }
-return irOriginal.apply(this,arguments);
-};
-}
+});
 window.addEventListener("load",function(){setTimeout(pelaURL,100)});
 window.addEventListener("popstate",function(){
 var q=new URLSearchParams(location.search);
