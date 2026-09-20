@@ -742,11 +742,32 @@ ac.appendChild(botao("Ver vaga","btn-claro",function(){
 if(typeof verVagaAdminEmpregaMais==="function")verVagaAdminEmpregaMais(v.id);
 else if(typeof abrirVaga==="function")abrirVaga(v.id);
 }));
+function concluirAprovacaoV146(status,b){
+if(typeof atualizarAprovacaoVaga!=="function"){
+ alert("Não foi possível atualizar esta vaga.");return;
+}
+if(b)b.disabled=true;
+var retorno;
+try{retorno=atualizarAprovacaoVaga(v.id,status);}catch(e){
+ if(b)b.disabled=false;alert("Não foi possível atualizar esta vaga.");return;
+}
+Promise.resolve(retorno).then(function(res){
+ if(res===false)throw new Error("Atualização não confirmada");
+ /* Sincroniza todas as visões somente depois da confirmação da alteração. */
+ try{if(typeof renderizarFilaPendentesAdmin==="function")renderizarFilaPendentesAdmin();}catch(e){}
+ try{if(typeof montarPainelReferenciaRecrutadorEM==="function")montarPainelReferenciaRecrutadorEM();}catch(e){}
+ try{if(typeof renderizarVagas==="function")renderizarVagas();}catch(e){}
+ try{if(typeof renderizarHome==="function")renderizarHome();}catch(e){}
+ try{document.dispatchEvent(new CustomEvent("empregamais:vaga-aprovacao-atualizada",{detail:{id:v.id,status:status}}));}catch(e){}
+}).catch(function(){
+ alert("A alteração não foi confirmada. A vaga continuará no estado anterior.");
+}).finally(function(){if(b)b.disabled=false;});
+}
 ac.appendChild(botao("Aprovar","btn-verde",function(){
-if(typeof atualizarAprovacaoVaga==="function")atualizarAprovacaoVaga(v.id,"aprovada");
+concluirAprovacaoV146("aprovada",this);
 }));
 ac.appendChild(botao("Reprovar","btn-perigo",function(){
-if(typeof atualizarAprovacaoVaga==="function")atualizarAprovacaoVaga(v.id,"rejeitada");
+concluirAprovacaoV146("rejeitada",this);
 }));
 card.appendChild(ac);
 bloco.appendChild(card);
