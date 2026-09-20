@@ -124,15 +124,14 @@ try{grade.appendChild(criarCardVaga(a[i]));}catch(e){}
 }
 }
 function esconderPaginasV60(){
-var ids=["pagina-inicial","pagina-vagas","pagina-vaga","pagina-cadastro","pagina-candidato","pagina-empresa","pagina-painel-empresa","pagina-planos","pagina-contato","pagina-ajuda"];
-for(var i=0;i<ids.length;i++){
-var el=document.getElementById(ids[i]);if(el)el.style.display="none";
-}
+if(typeof window.esconderPaginas==="function"){window.esconderPaginas();return;}
+document.querySelectorAll(".pagina").forEach(function(el){el.classList.remove("ativa");});
 }
 window.abrirPaginaDestaquesV60=function(semHistorico){
 var p=garantirPaginaV60();
 esconderPaginasV60();
-p.style.display="block";
+p.classList.add("ativa");
+p.style.removeProperty("display");
 renderPaginaV60();
 if(!semHistorico){
 try{history.pushState({pagina:"destaques-v60"},"","?pagina=vagas-em-destaque");}catch(e){}
@@ -148,7 +147,8 @@ window.addEventListener("popstate",function(){
 var q="";
 try{q=new URLSearchParams(location.search).get("pagina")||"";}catch(e){}
 if(q==="vagas-em-destaque"){abrirPaginaDestaquesV60(true);return;}
-var p=document.getElementById("pagina-destaques-v60");if(p)p.style.display="none";
+var p=document.getElementById("pagina-destaques-v60");
+if(p){p.classList.remove("ativa");p.style.removeProperty("display");}
 try{if(typeof irPara==="function")irPara(q||"inicio");}catch(e){location.reload();}
 });
 function aplicarV60(){
