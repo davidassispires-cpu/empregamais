@@ -135,7 +135,12 @@ if(t&&!t.value)t.value=c.telefone||c.celular||"";
 }
 }catch(e){}
 }
-function salvar(){var d={};ids.forEach(function(id){var el=document.getElementById(id);if(el)d[id]=el.value});try{localStorage.setItem(key(),JSON.stringify(d))}catch(e){}}
+var timerSalvarDadosV87=0;
+function salvarAgoraV87(){var d={};ids.forEach(function(id){var el=document.getElementById(id);if(el)d[id]=el.value});try{localStorage.setItem(key(),JSON.stringify(d))}catch(e){}}
+function salvar(){
+clearTimeout(timerSalvarDadosV87);
+timerSalvarDadosV87=setTimeout(salvarAgoraV87,180);
+}
 function atualizarPreview(){
 var paper=document.getElementById("cvPreviewPaperV86");if(!paper)return;
 var nome=document.getElementById("cvNomeV87"),cidade=document.getElementById("cvCidadePessoalV87"),tel=document.getElementById("cvTelefoneV87"),em=document.getElementById("cvEmailV87");
@@ -163,7 +168,7 @@ ids.forEach(function(id){
 var save=document.getElementById("cvSalvarV84");
 if(save&amp;&amp;save.getAttribute("data-dados-v87-instalado")!=="1"){
  save.setAttribute("data-dados-v87-instalado","1");
- save.addEventListener("click",salvar);
+ save.addEventListener("click",function(){clearTimeout(timerSalvarDadosV87);salvarAgoraV87();});
 }
 setTimeout(function(){if(window.EmpregaMaisAtualizarPreviewCurriculoV86)window.EmpregaMaisAtualizarPreviewCurriculoV86();atualizarPreview()},180);
 }
