@@ -785,7 +785,21 @@ if(typeof publicarVagaAntesAdminEM!=="function"){
 /* Mantém a identidade e o histórico da vaga durante o fluxo legado de edição. */
 try{window.vagaEdicaoId=String(original.id);}catch(e){}
 try{sessionStorage.setItem("empregaMaisVagaEdicaoId",String(original.id));}catch(e){}
-return publicarVagaAntesAdminEM(event);
+var retorno=publicarVagaAntesAdminEM(event);
+/* Só limpa a referência quando o fluxo legado conclui com sucesso.
+   Promises são respeitadas para não liberar o modo edição antes da confirmação. */
+if(retorno&&typeof retorno.then==="function"){
+ return retorno.then(function(res){
+  if(res!==false){
+   try{sessionStorage.removeItem("empregaMaisVagaEdicaoId");}catch(e){}
+  }
+  return res;
+ });
+}
+if(retorno!==false){
+ try{sessionStorage.removeItem("empregaMaisVagaEdicaoId");}catch(e){}
+}
+return retorno;
 }
 async function enviar(event){
 if(event){event.preventDefault();event.stopPropagation();if(event.stopImmediatePropagation)event.stopImmediatePropagation();}
