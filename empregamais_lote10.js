@@ -54,8 +54,30 @@ if(typeof abrirVaga==="function"){abrirVaga(id);return;}
 if(typeof abrirDetalheVaga==="function"){abrirDetalheVaga(id);return;}
 }
 function editarVagaRefEM(id){
+var vaga=null;
+try{
+ var lista=typeof carregarVagasPortal==="function"?(carregarVagasPortal()||[]):[];
+ if(Array.isArray(lista))vaga=lista.find(function(v){return String(v&&v.id||"")===String(id||"");})||null;
+}catch(e){}
+if(!vaga){alert("Não foi possível localizar esta vaga para edição.");return;}
+try{
+ if(typeof vagaPertenceEmpresaAtual==="function"&&!vagaPertenceEmpresaAtual(vaga)){
+  alert("Esta vaga não pertence à empresa conectada.");return;
+ }
+}catch(e){}
+try{sessionStorage.setItem("empregaMaisVagaEdicaoId",String(id));}catch(e){}
+try{
+ var oculto=document.getElementById("vagaEditandoId");
+ if(!oculto){
+  oculto=document.createElement("input");oculto.type="hidden";oculto.id="vagaEditandoId";oculto.name="vagaEditandoId";
+  var form=document.getElementById("formVaga");if(form)form.appendChild(oculto);
+ }
+ if(oculto)oculto.value=String(id);
+}catch(e){}
+try{window.vagaEdicaoId=String(id);}catch(e){}
 if(typeof editarVagaEmpresa==="function"){editarVagaEmpresa(id);return;}
 if(typeof editarVaga==="function"){editarVaga(id);return;}
+alert("A edição desta vaga ainda não está disponível nesta versão.");
 }
 function encerrarVagaRefEM(id){
 if(typeof encerrarVagaEmpresa==="function"){encerrarVagaEmpresa(id);return;}
