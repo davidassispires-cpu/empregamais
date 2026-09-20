@@ -124,6 +124,49 @@ try{document.dispatchEvent(new CustomEvent("empregamais:candidatura-atualizada",
 try{if(typeof montarPainelReferenciaRecrutadorEM==="function")montarPainelReferenciaRecrutadorEM();}catch(e){}
 return true;
 };
+function curriculoCandRefEM(c){
+if(!c)return null;
+var url=c.curriculoUrl||c.curriculo_url||c.cvUrl||c.cv_url||c.arquivoCurriculo||c.arquivo_curriculo||"";
+var online=c.curriculo||c.curriculoOnline||c.curriculo_online||c.cv||null;
+return {url:String(url||""),online:online};
+}
+function marcarCurriculoVisualizadoRefEM(c){
+var id=idCandRefEM(c);if(!id)return false;
+var lista=candidaturasRefEM();if(!Array.isArray(lista))return false;
+var idx=lista.findIndex(function(x){return idCandRefEM(x)===id;});if(idx<0)return false;
+var agora=new Date().toISOString();
+lista[idx].visualizada=true;
+lista[idx].curriculo_visualizado=true;
+lista[idx].visualizado_em=lista[idx].visualizado_em||agora;
+lista[idx].visualizadoEm=lista[idx].visualizadoEm||agora;
+try{
+ if(typeof salvarCandidaturas==="function")salvarCandidaturas(lista);
+ else localStorage.setItem("candidaturasEmpregaMais",JSON.stringify(lista));
+}catch(e){return false;}
+try{
+ if(typeof apiEmpregaMaisPost==="function"){
+  apiEmpregaMaisPost({acao:"visualizar_candidatura",id:id,visualizada:true,visualizado_em:agora}).catch(function(){});
+ }
+}catch(e){}
+try{document.dispatchEvent(new CustomEvent("empregamais:candidatura-atualizada",{detail:{id:id,visualizada:true}}));}catch(e){}
+return true;
+}
+window.abrirCurriculoCandidaturaEM=function(candidatura){
+if(!candidatura)return false;
+var cv=curriculoCandRefEM(candidatura);
+marcarCurriculoVisualizadoRefEM(candidatura);
+if(cv.url){
+ try{window.open(cv.url,"_blank","noopener");return true;}catch(e){}
+}
+if(cv.online){
+ try{
+  if(typeof abrirCurriculoCandidato==="function"){abrirCurriculoCandidato(candidatura);return true;}
+  if(typeof visualizarCurriculoCandidato==="function"){visualizarCurriculoCandidato(candidatura);return true;}
+ }catch(e){}
+}
+alert("Esta candidatura não possui currículo anexado ou currículo online disponível.");
+return false;
+};
 function verVagaRefEM(id){
 if(typeof abrirVaga==="function"){abrirVaga(id);return;}
 if(typeof abrirDetalheVaga==="function"){abrirDetalheVaga(id);return;}
