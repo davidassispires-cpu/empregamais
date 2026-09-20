@@ -201,7 +201,7 @@ window.addEventListener("resize",liberarStickyV89);
 ;
 //
 (function(){
-var ticking=false, side=null, ws=null, placeholder=null;
+var ticking=false, side=null, ws=null, placeholder=null, listenersV90Instalados=false;
 function resetV90(){
 if(!side)return;
 side.classList.remove("cv90-fixed","cv90-bottom");
@@ -263,8 +263,8 @@ if(!placeholder){
 side.style.gridColumn="2";
 var editor=ws.querySelector(".cv86-editor");
 if(editor)editor.style.gridColumn="1";
-if(ws.getAttribute("data-sticky-v90-instalado")!=="1"){
- ws.setAttribute("data-sticky-v90-instalado","1");
+if(!listenersV90Instalados){
+ listenersV90Instalados=true;
  window.addEventListener("scroll",requestV90,{passive:true});
  window.addEventListener("resize",function(){resetV90();setTimeout(requestV90,50)});
 }
