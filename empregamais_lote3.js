@@ -858,21 +858,40 @@ return null;
 }
 function salvar(vaga){
 try{
-if(typeof salvarVagaV9==="function"){
-salvarVagaV9(vaga);
+ if(typeof salvarVagaV9==="function"){
+  salvarVagaV9(vaga);
+ }else if(typeof carregarVagasPortal==="function"&&typeof salvarVagasPortal==="function"){
+  var lista=carregarVagasPortal()||[],ok=false;
+  for(var i=0;i<lista.length;i++)if(String(lista[i].id)===String(vaga.id)){lista[i]=Object.assign({},lista[i],vaga);ok=true;break;}
+  if(ok)salvarVagasPortal(lista);
+ }else{
+  var keys=["vagasEmpregaMais","vagas"];
+  keys.forEach(function(k){
+   try{
+    var a=JSON.parse(localStorage.getItem(k)||"[]"),achou=false;
+    if(!Array.isArray(a))return;
+    for(var j=0;j<a.length;j++)if(String(a[j].id)===String(vaga.id)){a[j]=Object.assign({},a[j],vaga);achou=true;break;}
+    if(achou)localStorage.setItem(k,JSON.stringify(a));
+   }catch(e){}
+  });
+ }
+}catch(e){return false;}
 try{if(typeof renderizarVagas==="function")renderizarVagas();}catch(x){}
-return;
+return true;
 }
-}catch(e){}
-var keys=["vagasEmpregaMais","vagas"];
-keys.forEach(function(k){
-try{
-var a=JSON.parse(localStorage.getItem(k)||"[]"),ok=false;
-if(!Array.isArray(a))return;
-for(var i=0;i<a.length;i++)if(String(a[i].id)===String(vaga.id)){a[i]=Object.assign({},a[i],vaga);ok=true;break;}
-if(ok)localStorage.setItem(k,JSON.stringify(a));
-}catch(e){}
-});
+async function persistirRecursoVagaV53(vaga,acao){
+var anterior={destaque:vaga.destaque,destaqueAtivadoEm:vaga.destaqueAtivadoEm,contratacaoUrgente:vaga.contratacaoUrgente,urgente:vaga.urgente,contratacaoUrgentePagamentoStatus:vaga.contratacaoUrgentePagamentoStatus,contratacaoUrgenteValor:vaga.contratacaoUrgenteValor,contratacaoUrgenteAtivadoEm:vaga.contratacaoUrgenteAtivadoEm};
+if(typeof apiEmpregaMaisPost==="function"){
+ try{
+  var r=await apiEmpregaMaisPost({acao:acao,id:vaga.id,destaque:!!vaga.destaque,contratacaoUrgente:!!vaga.contratacaoUrgente,urgente:!!vaga.urgente});
+  if(!r||r.sucesso!==true)throw new Error((r&&r.erro)||"O servidor não confirmou a alteração.");
+ }catch(e){
+  Object.keys(anterior).forEach(function(k){vaga[k]=anterior[k];});
+  throw e;
+ }
+}
+if(!salvar(vaga))throw new Error("Não foi possível salvar a alteração da vaga.");
+return true;
 }
 function atualizar(){
 try{if(typeof montarPainelReferenciaRecrutadorEM==="function")montarPainelReferenciaRecrutadorEM();}catch(e){}
@@ -928,7 +947,7 @@ v.urgente=true;
 v.contratacaoUrgentePagamentoStatus="incluido_plano";
 v.contratacaoUrgenteValor=0;
 v.contratacaoUrgenteAtivadoEm=new Date().toISOString();
-salvar(v);atualizar();
+persistirRecursoVagaV53(v,"atualizar_recursos_vaga").then(atualizar).catch(function(e){alert(e.message||"Não foi possível ativar a urgência.");});
 }
 if(restam===1){
 popup("\u00DAltimo selo dispon\u00EDvel",
@@ -940,14 +959,14 @@ window.ativarUrgentePlanoV53=ativarUrgente;
 function alternarDestaque(id){
 var v=localizar(id),r=regra();if(!v)return;
 if(!r.pago){alert("Vagas em destaque est\u00E3o dispon\u00EDveis nos planos pagos.");return;}
-if(bool(v.destaque)){v.destaque=false;salvar(v);atualizar();return;}
+if(bool(v.destaque)){v.destaque=false;v.destaqueAtivadoEm="";persistirRecursoVagaV53(v,"atualizar_recursos_vaga").then(atualizar).catch(function(e){alert(e.message||"Não foi possível remover o destaque.");});return;}
 var usados=destaquesAtivos().length;
 if(usados>=r.destaques){
 popup("Limite de destaques atingido",
 "Seu "+r.nome+" permite at\u00E9 "+r.destaques+" vagas em destaque ao mesmo tempo. Remova o destaque de uma vaga atual para destacar outra.");
 return;
 }
-v.destaque=true;v.destaqueAtivadoEm=new Date().toISOString();salvar(v);atualizar();
+v.destaque=true;v.destaqueAtivadoEm=new Date().toISOString();persistirRecursoVagaV53(v,"atualizar_recursos_vaga").then(atualizar).catch(function(e){alert(e.message||"Não foi possível ativar o destaque.");});
 }
 window.alternarDestaquePlanoV53=alternarDestaque;
 var abrirAntigo=window.abrirContratacaoUrgenteV9;
