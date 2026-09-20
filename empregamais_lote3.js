@@ -1058,9 +1058,25 @@ document.addEventListener("empregamais:empresa-sincronizada",function(){setTimeo
 //
 (function(){
 function vagasV54(){
-try{return carregarVagasPortal()||[];}catch(e){}
-try{return typeof vagasDaEmpresa==="function"?(vagasDaEmpresa()||[]):[];}catch(e){}
-return [];
+var todas=[];
+try{todas=carregarVagasPortal()||[];}catch(e){todas=[];}
+if(!Array.isArray(todas))todas=[];
+/* O menu Gerenciar vaga só pode mapear vagas da empresa conectada.
+   Usar todas as vagas do portal fazia títulos iguais apontarem para outra empresa. */
+try{
+ if(typeof vagaPertenceEmpresaAtual==="function"){
+  return todas.filter(function(v){
+   try{return vagaPertenceEmpresaAtual(v);}catch(x){return false;}
+  });
+ }
+}catch(e){}
+try{
+ if(typeof vagasDaEmpresa==="function"){
+  var proprias=vagasDaEmpresa()||[];
+  if(Array.isArray(proprias))return proprias;
+ }
+}catch(e){}
+return todas;
 }
 var mapaVagasV58={};
 function reconstruirMapaV58(){
