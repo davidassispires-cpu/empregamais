@@ -132,6 +132,11 @@ return {url:String(url||""),online:online};
 }
 function marcarCurriculoVisualizadoRefEM(c){
 var id=idCandRefEM(c);if(!id)return false;
+/* Só a empresa dona da vaga pode registrar a visualização do currículo. */
+try{
+ var vagaId=idVagaCandRefEM(c),vagas=vagasEmpresaRefEM();
+ if(!vagaId||!vagas.some(function(v){return String(v&&v.id||"")===String(vagaId);})){return false;}
+}catch(e){return false;}
 var lista=candidaturasRefEM();if(!Array.isArray(lista))return false;
 var idx=lista.findIndex(function(x){return idCandRefEM(x)===id;});if(idx<0)return false;
 var agora=new Date().toISOString();
@@ -154,7 +159,9 @@ return true;
 window.abrirCurriculoCandidaturaEM=function(candidatura){
 if(!candidatura)return false;
 var cv=curriculoCandRefEM(candidatura);
-marcarCurriculoVisualizadoRefEM(candidatura);
+if(!marcarCurriculoVisualizadoRefEM(candidatura)){
+ alert("Não foi possível validar esta candidatura para a empresa conectada.");return false;
+}
 if(cv.url){
  try{window.open(cv.url,"_blank","noopener");return true;}catch(e){}
 }
