@@ -67,6 +67,25 @@ if(typeof irPara==="function"){
  },80);
 }
 }
+function normEtapaCandRefEM(v){
+var s=String(v||"").trim().toLowerCase();
+try{s=s.normalize("NFD").replace(/[\u0300-\u036f]/g,"");}catch(e){}
+var mapa={
+ "candidatura enviada":"em avaliacao","enviada":"em avaliacao","pendente":"em avaliacao",
+ "em analise":"em avaliacao","em avaliacao":"em avaliacao","avaliacao":"em avaliacao",
+ "selecionada":"selecionado","selecionado":"selecionado",
+ "contato":"em contato","em contato":"em contato",
+ "entrevista":"entrevista","em entrevista":"entrevista",
+ "aprovada":"aprovado","aprovado":"aprovado",
+ "rejeitada":"reprovado","rejeitado":"reprovado","reprovada":"reprovado","reprovado":"reprovado",
+ "contratada":"contratado","contratado":"contratado"
+};
+return mapa[s]||s||"em avaliacao";
+}
+window.EmpregaMaisEtapasCandidatoEM={
+ordem:["em avaliacao","selecionado","em contato","entrevista","aprovado","reprovado","contratado"],
+normalizar:normEtapaCandRefEM
+};
 function verVagaRefEM(id){
 if(typeof abrirVaga==="function"){abrirVaga(id);return;}
 if(typeof abrirDetalheVaga==="function"){abrirDetalheVaga(id);return;}
@@ -143,10 +162,12 @@ var encerradas=vagas.filter(function(v){
 return encerradaRefEM(v);
 });
 var processo=cs.filter(function(c){
-var s=String(c.status||"").toLowerCase();
-return s.indexOf("entrevista")>=0||s==="selecionado"||s==="aprovado"||s.indexOf("pr\u00e9-selecionado")>=0;
+var s=normEtapaCandRefEM(c.status_processo||c.statusProcesso||c.etapa||c.status);
+return ["selecionado","em contato","entrevista","aprovado"].indexOf(s)>=0;
 }).length;
-var contratados=cs.filter(function(c){return String(c.status||"").toLowerCase()==="contratado";}).length;
+var contratados=cs.filter(function(c){
+return normEtapaCandRefEM(c.status_processo||c.statusProcesso||c.etapa||c.status)==="contratado";
+}).length;
 var shell=document.createElement("div");
 shell.id="painelReferenciaRecrutadorEM";
 shell.className="recrutador-shell-ref-em";
