@@ -477,6 +477,7 @@ if(typeof antigaIrPara==="function"&&!window.irParaPainelRefPatchedEM){
 window.irParaPainelRefPatchedEM=true;
 window.irPara=function(pagina){
 var r=antigaIrPara.apply(this,arguments);
+try{document.dispatchEvent(new CustomEvent("empregamais:navegacao",{detail:{pagina:String(pagina||"")}}));}catch(e){}
 if(pagina==="painel-empresa")setTimeout(window.montarPainelReferenciaRecrutadorEM,120);
 return r;
 };
