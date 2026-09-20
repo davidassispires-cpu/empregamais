@@ -214,6 +214,14 @@ var el=form.querySelector("button[type='submit'],input[type='submit']");
 if(el && !el.classList.contains("em-processando-v134"))iniciar(el,true);
 },true);
 window.addEventListener("pageshow",function(){finalizar()});
+window.addEventListener("load",function(){
+/* Nunca mantém bloqueio visual herdado de uma navegação/reload anterior. */
+clearTimeout(timerOverlay);
+var ov=document.getElementById("emLoadingGlobalV134");
+if(ov)ov.classList.remove("ativo");
+document.body.classList.remove("em-bloqueado-v134");
+if(botaoAtual)finalizar(botaoAtual);
+});
 window.addEventListener("beforeunload",function(){
 clearTimeout(timerOverlay);
 });
