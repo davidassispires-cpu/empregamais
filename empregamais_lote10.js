@@ -86,6 +86,44 @@ window.EmpregaMaisEtapasCandidatoEM={
 ordem:["em avaliacao","selecionado","em contato","entrevista","aprovado","reprovado","contratado"],
 normalizar:normEtapaCandRefEM
 };
+function idCandRefEM(c){
+return String(c&&(c.id||c.candidaturaId||c.candidatura_id||c.applicationId||c.application_id)||"");
+}
+function salvarEtapaCandLocalRefEM(id,etapa){
+var lista=candidaturasRefEM(),alvo=null,idx=-1;
+if(!Array.isArray(lista))lista=[];
+for(var i=0;i<lista.length;i++){
+ if(String(idCandRefEM(lista[i]))===String(id)){idx=i;alvo=lista[i];break;}
+}
+if(idx<0)return false;
+var normal=normEtapaCandRefEM(etapa);
+alvo.status=normal;
+alvo.etapa=normal;
+alvo.statusProcesso=normal;
+alvo.status_processo=normal;
+alvo.atualizadoEm=new Date().toISOString();
+try{
+ if(typeof salvarCandidaturas==="function")salvarCandidaturas(lista);
+ else localStorage.setItem("candidaturasEmpregaMais",JSON.stringify(lista));
+}catch(e){return false;}
+return true;
+}
+window.atualizarEtapaCandidaturaEM=async function(id,etapa){
+var normal=normEtapaCandRefEM(etapa);
+if(window.EmpregaMaisEtapasCandidatoEM.ordem.indexOf(normal)<0)throw new Error("Etapa de recrutamento inválida.");
+var confirmado=false,resp=null;
+try{
+ if(typeof apiEmpregaMaisPost==="function"){
+  resp=await apiEmpregaMaisPost({acao:"atualizar_candidatura",id:id,status:normal,etapa:normal});
+  confirmado=!!(resp&&resp.sucesso===true);
+ }
+}catch(e){}
+if(typeof apiEmpregaMaisPost==="function"&&!confirmado)throw new Error((resp&&resp.erro)||"O servidor não confirmou a alteração.");
+if(!salvarEtapaCandLocalRefEM(id,normal))throw new Error("Não foi possível localizar a candidatura.");
+try{document.dispatchEvent(new CustomEvent("empregamais:candidatura-atualizada",{detail:{id:String(id),status:normal}}));}catch(e){}
+try{if(typeof montarPainelReferenciaRecrutadorEM==="function")montarPainelReferenciaRecrutadorEM();}catch(e){}
+return true;
+};
 function verVagaRefEM(id){
 if(typeof abrirVaga==="function"){abrirVaga(id);return;}
 if(typeof abrirDetalheVaga==="function"){abrirDetalheVaga(id);return;}
