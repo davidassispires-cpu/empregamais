@@ -201,7 +201,18 @@ if(ch==="whatsapp"){
  if(!d.telefone){alert("O candidato não possui telefone cadastrado.");return false;}
  destino="tel:+"+(d.telefone.length===10||d.telefone.length===11?"55":"")+d.telefone;
 }else{alert("Selecione WhatsApp, e-mail ou ligação.");return false;}
-try{await window.atualizarEtapaCandidaturaEM(idCandRefEM(candidatura),"em contato");}catch(e){}
+var idCand=idCandRefEM(candidatura);
+if(idCand){
+ try{await window.atualizarEtapaCandidaturaEM(idCand,"em contato");}
+ catch(e){console.warn("EmpregaMais - contato aberto sem atualização de etapa:",e);}
+}
+try{
+ var registro={id:idCand,vagaId:idVagaCandRefEM(candidatura),canal:ch,data:new Date().toISOString()};
+ var hist=JSON.parse(localStorage.getItem("empregaMaisHistoricoContatos")||"[]");
+ if(!Array.isArray(hist))hist=[];
+ hist.push(registro);if(hist.length>500)hist=hist.slice(-500);
+ localStorage.setItem("empregaMaisHistoricoContatos",JSON.stringify(hist));
+}catch(e){}
 if(ch==="whatsapp"){window.open(destino,"_blank","noopener");}else{window.location.href=destino;}
 return true;
 };
