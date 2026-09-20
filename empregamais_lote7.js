@@ -351,12 +351,15 @@ window.addEventListener("load",function(){
 setTimeout(atualizarUnicaDistanciaV76,ms);
 });
 });
-var alvo=document.getElementById("pagina-home")||document.body;
-if(alvo){
+var alvo=document.getElementById("pagina-home");
+if(alvo&&window.MutationObserver){
 var timerV76=null;
-new MutationObserver(function(){
+new MutationObserver(function(muts){
+var precisa=false;
+for(var i=0;i<muts.length;i++)if(muts[i].addedNodes&&muts[i].addedNodes.length){precisa=true;break;}
+if(!precisa)return;
 clearTimeout(timerV76);
-timerV76=setTimeout(atualizarUnicaDistanciaV76,60);
+timerV76=setTimeout(atualizarUnicaDistanciaV76,80);
 }).observe(alvo,{childList:true,subtree:true});
 }
 })();
@@ -748,9 +751,12 @@ setTimeout(garantirDistanciaPreviaV83,ms);
 var home=document.getElementById("pagina-home");
 if(home){
 var timerV83=null;
-new MutationObserver(function(){
+new MutationObserver(function(muts){
+var precisa=false;
+for(var i=0;i<muts.length;i++)if(muts[i].addedNodes&&muts[i].addedNodes.length){precisa=true;break;}
+if(!precisa)return;
 clearTimeout(timerV83);
-timerV83=setTimeout(garantirDistanciaPreviaV83,100);
+timerV83=setTimeout(garantirDistanciaPreviaV83,120);
 }).observe(home,{childList:true,subtree:true});
 }
 })();
