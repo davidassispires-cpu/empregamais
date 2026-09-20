@@ -296,6 +296,7 @@ e.preventDefault();e.stopImmediatePropagation();abrir();
 }
 },true);
 var f=document.getElementById("formCadastroCandidatoV101");
+if(!f)return;
 f.addEventListener("submit",function(e){
 e.preventDefault();
 var senha=document.getElementById("cv101Senha").value,senha2=document.getElementById("cv101Senha2").value;
