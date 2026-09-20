@@ -76,6 +76,9 @@ if(ref && ref.parentNode)ref.parentNode.removeChild(ref);
 montarPainelReferenciaRecrutadorEM();
 }
 }catch(e){}
+try{if(typeof renderizarVagasAprovadasEmpresa==="function")renderizarVagasAprovadasEmpresa();}catch(e){}
+try{if(typeof renderizarPainelEmpresa==="function")renderizarPainelEmpresa();}catch(e){}
+try{if(typeof renderizarHome==="function")renderizarHome();}catch(e){}
 return true;
 }
 if(typeof apiEmpregaMaisPost==="function"){
@@ -96,9 +99,6 @@ return;
 }catch(e){}
 }
 if(!aplicarEncerramentoLocalV18())return;
-try{if(typeof renderizarVagasAprovadasEmpresa==="function")renderizarVagasAprovadasEmpresa();}catch(e){}
-try{if(typeof renderizarPainelEmpresa==="function")renderizarPainelEmpresa();}catch(e){}
-try{if(typeof renderizarHome==="function")renderizarHome();}catch(e){}
 }
 window.encerrarVagaEmpresa=encerrarVagaCorrigidaV18;
 window.encerrarVaga=encerrarVagaCorrigidaV18;
