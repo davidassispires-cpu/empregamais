@@ -345,21 +345,30 @@ window.scrollTo(0,0);
 }
 window.abrirPainelAdminEM=abrirPainelAdminEM;
 var ultimoToken="";
-setInterval(function(){
-var t="";
-try{t=localStorage.getItem("empregaMaisAdminSupabaseToken")||"";}catch(e){}
-if(t &amp;&amp; t!==ultimoToken){
-ultimoToken=t;
-setTimeout(abrirPainelAdminEM,180);
+function tokenAdminAtualEM(){
+try{return localStorage.getItem("empregaMaisAdminSupabaseToken")||"";}catch(e){return "";}
 }
-if(!t) ultimoToken="";
-},250);
+function sincronizarTokenAdminEM(){
+var t=tokenAdminAtualEM();
+if(t &amp;&amp; t!==ultimoToken){
+ ultimoToken=t;
+ setTimeout(abrirPainelAdminEM,180);
+}
+if(!t)ultimoToken="";
+}
+/* Evita polling a cada 250 ms, que podia reabrir o painel durante outras
+   navegações. Reage apenas à inicialização e a mudanças reais no storage. */
+window.addEventListener("storage",function(ev){
+if(ev.key==="empregaMaisAdminSupabaseToken")sincronizarTokenAdminEM();
+});
 document.addEventListener("DOMContentLoaded",function(){
-var t="";
-try{t=localStorage.getItem("empregaMaisAdminSupabaseToken")||"";}catch(e){}
+var t=tokenAdminAtualEM();
 if(t){
-ultimoToken=t;
-setTimeout(abrirPainelAdminEM,300);
+ ultimoToken=t;
+ var q=new URLSearchParams(location.search);
+ if(q.get("pagina")==="painel-admin" || q.get("pagina")==="admin"){
+  setTimeout(abrirPainelAdminEM,300);
+ }
 }
 });
 })();
