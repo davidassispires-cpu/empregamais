@@ -294,20 +294,23 @@ function encerrarVagaRefEM(id){
 if(typeof encerrarVagaEmpresa==="function"){encerrarVagaEmpresa(id);return;}
 if(typeof encerrarVaga==="function"){encerrarVaga(id);return;}
 }
-window.montarPainelReferenciaRecrutadorEM=function(){
+function restaurarConteudoPainelRefEM(){
 var pagina=document.getElementById("pagina-painel-empresa");
 if(!pagina)return;
-var anterior=document.getElementById("painelReferenciaRecrutadorEM");
-if(anterior)anterior.remove();
-/* Restaura filhos originais escondidos por uma renderização anterior.
-   Sem isso, cada reconstrução do painel podia deixar o conteúdo-base
-   permanentemente com display:none. */
+var shell=document.getElementById("painelReferenciaRecrutadorEM");
+if(shell)shell.remove();
 Array.prototype.forEach.call(pagina.children,function(el){
- if(el.id!=="painelReferenciaRecrutadorEM" && el.getAttribute("data-oculto-painel-ref-em")==="1"){
+ if(el.getAttribute("data-oculto-painel-ref-em")==="1"){
   el.style.removeProperty("display");
   el.removeAttribute("data-oculto-painel-ref-em");
  }
 });
+}
+window.restaurarConteudoPainelRefEM=restaurarConteudoPainelRefEM;
+window.montarPainelReferenciaRecrutadorEM=function(){
+var pagina=document.getElementById("pagina-painel-empresa");
+if(!pagina)return;
+restaurarConteudoPainelRefEM();
 var emp={};
 try{emp=typeof empresaLogadaPainelEM==="function"?(empresaLogadaPainelEM()||{}):{};}catch(e){}
 var nome=emp.nomeFantasia||emp.nome||emp.razaoSocial||sessionStorage.getItem("empresaNome")||"Sua empresa";
@@ -496,6 +499,7 @@ try{document.dispatchEvent(new CustomEvent("empregamais:navegacao",{detail:{pagi
 document.addEventListener("empregamais:navegacao",function(ev){
 var pagina=String((ev&&ev.detail&&ev.detail.pagina)||"");
 if(pagina==="painel-empresa")setTimeout(window.montarPainelReferenciaRecrutadorEM,120);
+else restaurarConteudoPainelRefEM();
 });
 document.addEventListener("DOMContentLoaded",function(){setTimeout(window.montarPainelReferenciaRecrutadorEM,500);});
 window.addEventListener("load",function(){setTimeout(window.montarPainelReferenciaRecrutadorEM,700);});
