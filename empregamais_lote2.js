@@ -328,19 +328,10 @@ try{
 localStorage.setItem("empregaMaisPapel","admin");
 sessionStorage.setItem("empregaMaisPapel","admin");
 }catch(e){}
-if(typeof mostrarPagina==="function"){
-try{mostrarPagina("painel-admin");}catch(e){}
-}
 if(typeof irPara==="function"){
 try{irPara("painel-admin");}catch(e){}
-}
-var painel=document.getElementById("pagina-painel-admin");
-if(painel){
-document.querySelectorAll(".pagina").forEach(function(p){
-if(p!==painel) p.classList.remove("ativa");
-});
-painel.classList.add("ativa");
-painel.style.display="";
+}else if(typeof mostrarPagina==="function"){
+try{mostrarPagina("painel-admin");}catch(e){}
 }
 if(typeof renderizarPainelAdmin==="function"){
 try{renderizarPainelAdmin();}catch(e){}
