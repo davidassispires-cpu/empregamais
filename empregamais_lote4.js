@@ -766,8 +766,17 @@ if(event){event.preventDefault();event.stopPropagation();if(event.stopImmediateP
 if(enviando)return false;
 if(typeof modoPublicacaoAdminEM!=="undefined"&&modoPublicacaoAdminEM)return false;
 if(typeof empresaEstaLogada==="function"&&!empresaEstaLogada()){if(typeof irPara==="function")irPara("login-empresa");return false;}
-if(typeof vagaEdicaoId!=="undefined"&&vagaEdicaoId){
-return publicarVagaAntesAdminEM?publicarVagaAntesAdminEM(event):false;
+var idEdicaoAtual="";
+try{
+ idEdicaoAtual=String(
+  (typeof vagaEdicaoId!=="undefined"&&vagaEdicaoId) ||
+  ((document.getElementById("vagaEditandoId")||{}).value) ||
+  sessionStorage.getItem("empregaMaisVagaEdicaoId") || ""
+ );
+}catch(e){}
+if(idEdicaoAtual){
+ try{window.vagaEdicaoId=idEdicaoAtual;}catch(e){}
+ return typeof publicarVagaAntesAdminEM==="function"?publicarVagaAntesAdminEM(event):false;
 }
 if(!validar())return false;
 var empresa=typeof obterEmpresaAtual==="function"?obterEmpresaAtual():null;
