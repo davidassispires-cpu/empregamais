@@ -20,7 +20,12 @@ carregarExtras();root.addEventListener("input",progresso);root.addEventListener(
 var save=document.getElementById("cvSalvarV84");if(save)save.addEventListener("click",salvarExtras);
 setTimeout(progresso,700);
 }
-window.addEventListener("load",function(){setTimeout(init,500)});
+function iniciarExtrasCurriculoV85(){
+var p=document.getElementById("curriculoOnlineV84");
+if(p)init();
+}
+window.addEventListener("load",function(){setTimeout(iniciarExtrasCurriculoV85,350)});
+document.addEventListener("empregamais:navegacao",function(){setTimeout(iniciarExtrasCurriculoV85,80)});
 })();
 //
 ;
@@ -76,7 +81,9 @@ if(form&&window.MutationObserver)new MutationObserver(atualizar).observe(form,{c
 setTimeout(atualizar,800);
 }
 window.EmpregaMaisAtualizarPreviewCurriculoV86=atualizar;
-window.addEventListener("load",function(){setTimeout(montar,650)});
+function iniciarPreviewCurriculoV86(){if(q("curriculoOnlineV84"))montar()}
+window.addEventListener("load",function(){setTimeout(iniciarPreviewCurriculoV86,400)});
+document.addEventListener("empregamais:navegacao",function(){setTimeout(iniciarPreviewCurriculoV86,100)});
 })();
 //
 ;
@@ -120,7 +127,9 @@ ids.forEach(function(id){var e=document.getElementById(id);if(e)e.addEventListen
 var save=document.getElementById("cvSalvarV84");if(save)save.addEventListener("click",salvar);
 setTimeout(function(){if(window.EmpregaMaisAtualizarPreviewCurriculoV86)window.EmpregaMaisAtualizarPreviewCurriculoV86();atualizarPreview()},900);
 }
-window.addEventListener("load",function(){setTimeout(init,750)});
+function iniciarDadosCurriculoV87(){if(document.getElementById("cvNomeV87"))init()}
+window.addEventListener("load",function(){setTimeout(iniciarDadosCurriculoV87,450)});
+document.addEventListener("empregamais:navegacao",function(){setTimeout(iniciarDadosCurriculoV87,120)});
 })();
 //
 ;
@@ -139,7 +148,8 @@ p.style.overflowY="visible";
 p=p.parentElement;
 }
 }
-window.addEventListener("load",function(){setTimeout(liberarStickyV89,900)});
+window.addEventListener("load",function(){setTimeout(liberarStickyV89,500)});
+document.addEventListener("empregamais:navegacao",function(){setTimeout(liberarStickyV89,150)});
 window.addEventListener("resize",liberarStickyV89);
 })();
 //
@@ -209,7 +219,8 @@ window.addEventListener("scroll",requestV90,{passive:true});
 window.addEventListener("resize",function(){resetV90();setTimeout(requestV90,50)});
 setTimeout(requestV90,300);
 }
-window.addEventListener("load",function(){setTimeout(initV90,900)});
+window.addEventListener("load",function(){setTimeout(initV90,550)});
+document.addEventListener("empregamais:navegacao",function(){setTimeout(initV90,180)});
 })();
 //
 ;
