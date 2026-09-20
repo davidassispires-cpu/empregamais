@@ -70,8 +70,9 @@ function fechar(){modal.classList.remove("ativo");document.body.style.overflow="
 q("cvEyeV86").onclick=abrir;q("cvOpenFullV86").onclick=abrir;q("cvCloseV86").onclick=fechar;
 modal.addEventListener("click",function(e){if(e.target===modal)fechar()});
 cv.addEventListener("input",atualizar);cv.addEventListener("change",atualizar);
-new MutationObserver(atualizar).observe(q("cvExperienciasV84"),{childList:true,subtree:true});
-new MutationObserver(atualizar).observe(q("cvFormacoesV84"),{childList:true,subtree:true});
+var exp=q("cvExperienciasV84"),form=q("cvFormacoesV84");
+if(exp&&window.MutationObserver)new MutationObserver(atualizar).observe(exp,{childList:true,subtree:true});
+if(form&&window.MutationObserver)new MutationObserver(atualizar).observe(form,{childList:true,subtree:true});
 setTimeout(atualizar,800);
 }
 window.EmpregaMaisAtualizarPreviewCurriculoV86=atualizar;
