@@ -389,17 +389,13 @@ return true;
 }catch(e){return false;}
 }
 window.sincronizarPlanoPublicacaoV145=sincronizarPlanoPublicacaoV145;
-var irAntes=window.irPara;
-if(typeof irAntes==="function"){
-window.irPara=function(pagina){
-var r=irAntes.apply(this,arguments);
+document.addEventListener("empregamais:navegacao",function(ev){
+var pagina=String((ev&&ev.detail&&ev.detail.pagina)||"");
 if(pagina==="publicar"){
 setTimeout(sincronizarPlanoPublicacaoV145,80);
 setTimeout(sincronizarPlanoPublicacaoV145,700);
 }
-return r;
-};
-}
+});
 var DRAFT="empregaMaisRascunhoVagaV145";
 function formVaga(){
 return document.getElementById("formVaga")||
@@ -602,10 +598,8 @@ return false;
 }
 }
 window.sincronizarPlanoPublicacaoV146=sincronizarPlanoV146;
-var irV146=window.irPara;
-if(typeof irV146==="function"){
-window.irPara=function(pagina){
-var r=irV146.apply(this,arguments);
+document.addEventListener("empregamais:navegacao",function(ev){
+var pagina=String((ev&&ev.detail&&ev.detail.pagina)||"");
 if(pagina==="publicar"){
 setTimeout(sincronizarPlanoV146,40);
 setTimeout(sincronizarPlanoV146,450);
@@ -613,9 +607,7 @@ setTimeout(sincronizarPlanoV146,450);
 if(pagina==="painel-admin"){
 setTimeout(atualizarAdminV146,80);
 }
-return r;
-};
-}
+});
 var DRAFT="empregaMaisRascunhoVagaV146";
 function formV146(){
 return document.getElementById("formVaga")||
