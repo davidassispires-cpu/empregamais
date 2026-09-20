@@ -476,7 +476,16 @@ setTimeout(adicionarBotoesVer,350);
 }catch(e){}
 return r;
 };
-var obs=new MutationObserver(function(){adicionarBotoesVer();});
+var obsTimerVerEM=0;
+var obs=new MutationObserver(function(muts){
+var precisa=false;
+for(var i=0;i<muts.length;i++){
+ if(muts[i].addedNodes&amp;&amp;muts[i].addedNodes.length){precisa=true;break;}
+}
+if(!precisa)return;
+clearTimeout(obsTimerVerEM);
+obsTimerVerEM=setTimeout(adicionarBotoesVer,80);
+});
 document.addEventListener("DOMContentLoaded",function(){
 var box=document.getElementById("listaVerificacoesAdmin");
 if(box) obs.observe(box,{childList:true,subtree:true});
