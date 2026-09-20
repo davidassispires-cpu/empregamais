@@ -82,8 +82,14 @@ if(prox){
 if(etapaAtualV132===etapasV132.length-1){
 prox.textContent="Revisar e publicar";
 prox.onclick=function(){
-var submit=document.querySelector("#pagina-publicar #formVaga button[type='submit'],#pagina-publicar #formVaga input[type='submit']");
-if(submit)submit.click();
+if(!validarEtapa(etapaAtualV132))return;
+var form=document.getElementById("formVaga");
+if(!form)return;
+var submit=form.querySelector("button[type='submit'],input[type='submit']");
+if(submit){
+ if(typeof form.requestSubmit==="function")form.requestSubmit(submit);
+ else submit.click();
+}
 };
 }else{
 prox.textContent="Continuar";
