@@ -219,6 +219,47 @@ return true;
 window.mensagemContatoCandidatoEmpregaMais=function(candidatura){
 return dadosContatoCandRefEM(candidatura).mensagem;
 };
+window.registrarContratacaoEmpregaMais=async function(candidatura){
+if(!candidatura)return false;
+var id=idCandRefEM(candidatura),vagaId=idVagaCandRefEM(candidatura);
+if(!id||!vagaId){alert("Não foi possível identificar a candidatura ou a vaga.");return false;}
+var vaga=null;
+try{vaga=vagasEmpresaRefEM().find(function(v){return String(v&&v.id||"")===String(vagaId);})||null;}catch(e){}
+if(!vaga){alert("Esta candidatura não pertence a uma vaga da empresa conectada.");return false;}
+var agora=new Date().toISOString(),resp=null;
+try{
+ if(typeof apiEmpregaMaisPost==="function"){
+  resp=await apiEmpregaMaisPost({acao:"registrar_contratacao",candidaturaId:id,vagaId:vagaId,dataContratacao:agora});
+  if(!resp||resp.sucesso!==true)throw new Error((resp&&resp.erro)||"Contratação não confirmada pelo servidor.");
+ }
+ await window.atualizarEtapaCandidaturaEM(id,"contratado");
+}catch(e){alert(e&&e.message?e.message:"Não foi possível registrar a contratação.");return false;}
+var lista=candidaturasRefEM();
+if(Array.isArray(lista)){
+ var pos=lista.findIndex(function(x){return idCandRefEM(x)===String(id);});
+ if(pos>=0){
+  lista[pos].contratadoPeloEmpregaMais=true;
+  lista[pos].contratado_pelo_empregamais=true;
+  lista[pos].dataContratacao=agora;
+  lista[pos].data_contratacao=agora;
+  try{
+   if(typeof salvarCandidaturas==="function")salvarCandidaturas(lista);
+   else localStorage.setItem("candidaturasEmpregaMais",JSON.stringify(lista));
+  }catch(e){}
+ }
+}
+try{
+ var hist=JSON.parse(localStorage.getItem("empregaMaisContratacoes")||"[]");if(!Array.isArray(hist))hist=[];
+ if(!hist.some(function(x){return String(x.candidaturaId||"")===String(id);})){
+  hist.push({candidaturaId:String(id),vagaId:String(vagaId),empresaCnpj:vaga.empresaCnpj||vaga.cnpj||"",cargo:vaga.cargo||vaga.titulo||"",dataContratacao:agora});
+  localStorage.setItem("empregaMaisContratacoes",JSON.stringify(hist));
+ }
+}catch(e){}
+try{if(typeof montarPainelReferenciaRecrutadorEM==="function")montarPainelReferenciaRecrutadorEM();}catch(e){}
+try{if(typeof carregarEmpresasMasterEM==="function")carregarEmpresasMasterEM();}catch(e){}
+try{document.dispatchEvent(new CustomEvent("empregamais:contratacao-registrada",{detail:{candidaturaId:String(id),vagaId:String(vagaId),data:agora}}));}catch(e){}
+return true;
+};
 function verVagaRefEM(id){
 if(typeof abrirVaga==="function"){abrirVaga(id);return;}
 if(typeof abrirDetalheVaga==="function"){abrirDetalheVaga(id);return;}
