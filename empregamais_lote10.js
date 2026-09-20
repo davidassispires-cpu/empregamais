@@ -111,15 +111,16 @@ return true;
 window.atualizarEtapaCandidaturaEM=async function(id,etapa){
 var normal=normEtapaCandRefEM(etapa);
 if(window.EmpregaMaisEtapasCandidatoEM.ordem.indexOf(normal)<0)throw new Error("Etapa de recrutamento inválida.");
-var confirmado=false,resp=null;
+var resp=null;
+if(!salvarEtapaCandLocalRefEM(id,normal))throw new Error("Não foi possível localizar a candidatura.");
 try{
  if(typeof apiEmpregaMaisPost==="function"){
   resp=await apiEmpregaMaisPost({acao:"atualizar_candidatura",id:id,status:normal,etapa:normal});
-  confirmado=!!(resp&&resp.sucesso===true);
+  if(resp&amp;&amp;resp.sucesso!==true)console.warn("EmpregaMais: sincronização remota da candidatura não confirmada.",resp.erro||resp);
  }
-}catch(e){}
-if(typeof apiEmpregaMaisPost==="function"&&!confirmado)throw new Error((resp&&resp.erro)||"O servidor não confirmou a alteração.");
-if(!salvarEtapaCandLocalRefEM(id,normal))throw new Error("Não foi possível localizar a candidatura.");
+}catch(e){
+ console.warn("EmpregaMais: etapa salva localmente; sincronização remota indisponível.",e);
+}
 try{document.dispatchEvent(new CustomEvent("empregamais:candidatura-atualizada",{detail:{id:String(id),status:normal}}));}catch(e){}
 try{if(typeof montarPainelReferenciaRecrutadorEM==="function")montarPainelReferenciaRecrutadorEM();}catch(e){}
 return true;
