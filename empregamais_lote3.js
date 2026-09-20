@@ -1206,16 +1206,30 @@ var corpo=document.getElementById("corpoTabelaPainelRefEM");if(!corpo)return;
 var a=reconstruirMapaV58(),porTitulo={};
 for(var j=0;j<a.length;j++){
 var tit=String(a[j].cargo||a[j].titulo||a[j].vaga||"").trim();
-if(tit&&!porTitulo[tit])porTitulo[tit]=a[j];
+if(tit){
+ if(!porTitulo[tit])porTitulo[tit]=[];
+ porTitulo[tit].push(a[j]);
+}
 }
 var linhas=corpo.querySelectorAll("tr");
 for(var i=0;i<linhas.length;i++){
 var tr=linhas[i],v=null,primeira=tr.querySelector("td");
 if(!primeira)continue;
-var texto=String(primeira.textContent||"").trim();
-var nomes=Object.keys(porTitulo);
-for(var n=0;n<nomes.length;n++){
-if(texto.indexOf(nomes[n])>=0){v=porTitulo[nomes[n]];break;}
+/* Prioriza o ID gravado na própria linha/card. Isso evita abrir a vaga errada
+   quando a mesma empresa possui duas oportunidades com o mesmo cargo. */
+var idLinha=tr.getAttribute("data-vaga-id")||tr.getAttribute("data-id")||
+ (tr.querySelector("[data-vaga-id]")&&tr.querySelector("[data-vaga-id]").getAttribute("data-vaga-id"))||"";
+if(idLinha)v=acharV54(idLinha);
+if(!v){
+ var texto=String(primeira.textContent||"").trim();
+ var nomes=Object.keys(porTitulo);
+ for(var n=0;n<nomes.length;n++){
+  if(texto.indexOf(nomes[n])>=0){
+   var candidatas=porTitulo[nomes[n]];
+   if(candidatas.length===1)v=candidatas[0];
+   break;
+  }
+ }
 }
 if(!v)continue;
 var td=tr.querySelector("td:last-child");if(!td)continue;
