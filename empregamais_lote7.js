@@ -255,15 +255,6 @@ var old=itens[j].querySelector('.info-icone-v30');if(old)old.remove();
 var sp=document.createElement('span');sp.className='info-icone-v30';sp.innerHTML=icons[j];itens[j].insertBefore(sp,itens[j].firstChild);
 }
 var v=window.vagaAtual||{};
-var emp=p.querySelector('.vaga-cab-empresa');
-if(emp){
-var oldBadge=emp.querySelector('.empresa-verificada-v30');if(oldBadge)oldBadge.remove();
-if(verificadaPublica(v)){
-var b=document.createElement('span');b.className='empresa-verificada-v30';b.title='Empresa verificada: os dados empresariais foram analisados e aprovados pelo EmpregaMais.';
-b.innerHTML='<svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.2 1.7 2.8-.2 1.1 2.6 2.4 1.5-.6 2.8 1.4 2.4-1.9 2.1-.1 2.8-2.7.8-1.6 2.3-2.7-.9-2.7.9-1.6-2.3-2.7-.8-.1-2.8-1.9-2.1 1.4-2.4-.6-2.8 2.4-1.5 1.1-2.6 2.8.2L12 2z"/><path d="M8.2 12.1l2.4 2.4 5.2-5.2" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Empresa verificada</span>';
-emp.appendChild(b);
-}
-}
 }
 if(typeof abrirVaga==='function'){
 var originalV30=abrirVaga;
