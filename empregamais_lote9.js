@@ -119,55 +119,103 @@ setTimeout(instalar,500);
 ;
 //
 (function(){
-/* EmpregaMais - cabeçalho/menu canônico */
-function go(p){
- if(typeof window.irPara==="function")window.irPara(p);
- else location.href="/?pagina="+encodeURIComponent(p);
-}
-function norm(t){return String(t||"").replace(/\s+/g," ").trim().toLowerCase();}
+function go(p){if(typeof window.irPara==="function")window.irPara(p);else location.href="/?pagina="+encodeURIComponent(p)}
 function findButton(words){
- var all=document.querySelectorAll("header a,header button");
- for(var i=0;i<all.length;i++){
-  if(all[i].closest(".header-v98-menu"))continue;
-  var t=norm(all[i].textContent);
-  for(var j=0;j<words.length;j++)if(t===words[j]||t.indexOf(words[j])>=0)return all[i];
- }
- return null;
+var all=document.querySelectorAll("header a,header button");
+for(var i=0;i<all.length;i++){
+var t=String(all[i].textContent||"").trim().toLowerCase();
+for(var j=0;j<words.length;j++)if(t===words[j]||t.indexOf(words[j])>=0)return all[i];
 }
-function closeAll(except){
- document.querySelectorAll(".header-v98-area.open").forEach(function(x){if(x!==except)x.classList.remove("open")});
+return null;
 }
-function build(btn,type){
- if(!btn||btn.closest(".header-v98-area"))return;
- var wrap=document.createElement("span");wrap.className="header-v98-area";
- btn.parentNode.insertBefore(wrap,btn);wrap.appendChild(btn);
- btn.textContent=type==="cand"?"Área do candidato ▾":"Área da empresa ▾";
- if(btn.tagName==="A"){btn.removeAttribute("href");btn.setAttribute("role","button")}
- var menu=document.createElement("div");menu.className="header-v98-menu";
- var itens=type==="cand"?
- [["login-candidato","Entrar na minha conta"],["curriculo","Cadastrar currículo"],["candidaturas","Minhas candidaturas"],["vagas-salvas","Vagas salvas"],["como-funciona","Como funciona"]]:
- [["login-empresa","Entrar na minha conta"],["cadastro-empresa","Cadastrar empresa"],["publicar-vaga","Publicar vaga"],["painel-recrutador","Minhas vagas"],["planos","Planos"],["como-funciona","Como funciona"]];
- itens.forEach(function(x,k){
-  if(k===itens.length-1){var sep=document.createElement("div");sep.className="header-v98-sep";menu.appendChild(sep)}
-  var b=document.createElement("button");b.type="button";b.textContent=x[1];
-  b.addEventListener("click",function(e){e.preventDefault();e.stopPropagation();wrap.classList.remove("open");go(x[0])});
-  menu.appendChild(b);
- });
- wrap.appendChild(menu);
- btn.addEventListener("click",function(e){e.preventDefault();e.stopPropagation();closeAll(wrap);wrap.classList.toggle("open")});
+function menu(btn,type){
+if(!btn||btn.closest(".header-v98-area"))return;
+var wrap=document.createElement("span");wrap.className="header-v98-area";
+btn.parentNode.insertBefore(wrap,btn);wrap.appendChild(btn);
+var m=document.createElement("div");m.className="header-v98-menu";
+var itens=type==="cand"?
+[["login-candidato","↪ Entrar na minha conta"],["curriculo","▤ Cadastrar currículo"],["candidaturas","☷ Minhas candidaturas"],["vagas-salvas","♡ Vagas salvas"],["como-funciona","? Como funciona"]]:
+[["login-empresa","↪ Entrar na minha conta"],["cadastro-empresa","▦ Cadastrar empresa"],["publicar-vaga","＋ Publicar vaga"],["painel-recrutador","☷ Minhas vagas"],["planos","◇ Planos"],["como-funciona","? Como funciona"]];
+itens.forEach(function(x,k){if(k===itens.length-1){var sp=document.createElement("div");sp.className="header-v98-sep";m.appendChild(sp)}var b=document.createElement("button");b.type="button";b.textContent=x[1];b.onclick=function(e){e.stopPropagation();wrap.classList.remove("open");go(x[0])};m.appendChild(b)});
+wrap.appendChild(m);
+btn.addEventListener("click",function(e){e.preventDefault();e.stopPropagation();document.querySelectorAll(".header-v98-area").forEach(function(w){if(w!==wrap)w.classList.remove("open")});wrap.classList.toggle("open")});
 }
-function install(){
- build(findButton(["candidato","área do candidato"]),"cand");
- build(findButton(["empresa","área da empresa"]),"emp");
- document.querySelectorAll("header a,header button").forEach(function(el){
-  if(el.closest(".header-v98-menu"))return;
-  var t=norm(el.textContent);
-  if(t==="planos"||t==="empresa")el.classList.add("v99-removido");
- });
+function instalar(){
+var cand=findButton(["candidato"]);
+var emp=findButton(["empresa"]);
+if(cand){cand.textContent="👤 Área do candidato ▾";menu(cand,"cand")}
+if(emp){emp.textContent="▦ Área da empresa ▾";menu(emp,"emp")}
 }
-document.addEventListener("click",function(){closeAll(null)});
-if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",install);else install();
-window.addEventListener("load",function(){setTimeout(install,200)});
+document.addEventListener("click",function(){document.querySelectorAll(".header-v98-area").forEach(function(w){w.classList.remove("open")})});
+if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",instalar);else instalar();
+window.addEventListener("load",function(){setTimeout(instalar,300)});
+})();
+//
+;
+//
+(function(){
+function norm(t){
+return String(t||"").replace(/\s+/g," ").trim().toLowerCase();
+}
+function limparV99(){
+var headers=document.querySelectorAll("header");
+headers.forEach(function(header){
+var itens=header.querySelectorAll("a,button");
+itens.forEach(function(el){
+if(el.closest(".header-v98-menu"))return;
+var t=norm(el.textContent);
+if(t==="planos"){
+el.classList.add("v99-removido");
+return;
+}
+if(t==="empresa"){
+el.classList.add("v99-removido");
+}
+});
+});
+}
+if(document.readyState==="loading"){
+document.addEventListener("DOMContentLoaded",limparV99);
+}else{
+limparV99();
+}
+window.addEventListener("load",function(){setTimeout(limparV99,250)});
+new MutationObserver(limparV99).observe(document.documentElement,{childList:true,subtree:true});
+})();
+//
+;
+//
+(function(){
+function neutralizarV100(){
+document.querySelectorAll(".header-v98-area").forEach(function(area){
+var gatilho=area.querySelector(":scope > a, :scope > button");
+if(!gatilho||gatilho.getAttribute("data-v100-pronto")==="1")return;
+gatilho.setAttribute("data-v100-pronto","1");
+if(gatilho.tagName==="A"){
+gatilho.removeAttribute("href");
+gatilho.setAttribute("role","button");
+}
+gatilho.addEventListener("click",function(e){
+e.preventDefault();
+e.stopImmediatePropagation();
+area.classList.toggle("open");
+return false;
+},true);
+area.addEventListener("mouseenter",function(){
+document.querySelectorAll(".header-v98-area").forEach(function(x){
+if(x!==area)x.classList.remove("open");
+});
+area.classList.add("open");
+});
+area.addEventListener("mouseleave",function(){
+area.classList.remove("open");
+});
+});
+}
+if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",neutralizarV100);
+else neutralizarV100();
+window.addEventListener("load",function(){setTimeout(neutralizarV100,200)});
+new MutationObserver(neutralizarV100).observe(document.documentElement,{childList:true,subtree:true});
 })();
 //
 ;
