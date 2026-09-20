@@ -1131,16 +1131,15 @@ persistirV54(v);redesenharV54();
 setTimeout(function(){try{if(typeof atualizarTagsVagasV55==="function")atualizarTagsVagasV55();}catch(e){}},320);
 }
 function excluirV54(v){
-if(!window.confirm("Deseja realmente excluir esta vaga? Ela ser\u00E1 retirada do painel da empresa."))return;
-var a=vagasV54().filter(function(x){return String(x.id)!==String(v.id);});
-try{salvarVagasPortal(a);}catch(e){return alert("N\u00E3o foi poss\u00EDvel excluir esta vaga.");}
-try{
-if(typeof apiEmpregaMaisPost==="function"){
-apiEmpregaMaisPost({acao:"encerrar",id:v.id}).catch(function(){});
-}
-}catch(e){}
-try{if(typeof mostrarToast==="function")mostrarToast("Vaga exclu\u00EDda do painel.");}catch(e){}
-redesenharV54();
+if(!v||!v.id)return;
+if(!window.confirm("Deseja retirar esta vaga? Ela será encerrada e mantida no histórico da empresa."))return;
+/* A API disponível trata retirada de vaga como encerramento. Não removemos mais
+   o registro local antes da confirmação do servidor, pois isso fazia a vaga
+   desaparecer do painel e reaparecer após uma nova sincronização. */
+if(typeof encerrarVagaRefEM==="function"){encerrarVagaRefEM(v.id);return;}
+if(typeof encerrarVagaEmpresa==="function"){encerrarVagaEmpresa(v.id);return;}
+if(typeof encerrarVaga==="function"){encerrarVaga(v.id);return;}
+alert("Não foi possível iniciar o encerramento desta vaga.");
 }
 function fecharV54(){
 var p=document.getElementById("popupAcoesVagaV54");if(p)p.classList.remove("aberto");
@@ -1198,7 +1197,7 @@ if(typeof ativarUrgentePlanoV53==="function")ativarUrgentePlanoV53(v.id);
 }));
 }
 var sep2=document.createElement("div");sep2.className="separador-acoes-v54";l.appendChild(sep2);
-l.appendChild(itemV54(icons.trash,"Excluir vaga","Remover esta vaga do painel","perigo",function(){excluirV54(v);}));
+l.appendChild(itemV54(icons.trash,"Retirar vaga","Encerrar e manter esta vaga no histórico","perigo",function(){excluirV54(v);}));
 p.classList.add("aberto");
 }
 function aplicarBotoesV54(){
