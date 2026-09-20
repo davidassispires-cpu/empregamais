@@ -224,19 +224,25 @@ ws=document.getElementById("cvWorkspaceV86");
 if(!ws)return;
 side=ws.querySelector(".cv86-preview-col");
 if(!side)return;
-placeholder=document.createElement("div");
-placeholder.id="cvPreviewPlaceholderV90";
-placeholder.style.display="none";
-placeholder.style.width="100%";
-placeholder.style.minHeight="1px";
-ws.insertBefore(placeholder,side);
-placeholder.style.gridColumn="2";
+placeholder=document.getElementById("cvPreviewPlaceholderV90");
+if(!placeholder){
+ placeholder=document.createElement("div");
+ placeholder.id="cvPreviewPlaceholderV90";
+ placeholder.style.display="none";
+ placeholder.style.width="100%";
+ placeholder.style.minHeight="1px";
+ ws.insertBefore(placeholder,side);
+ placeholder.style.gridColumn="2";
+}
 side.style.gridColumn="2";
 var editor=ws.querySelector(".cv86-editor");
 if(editor)editor.style.gridColumn="1";
-window.addEventListener("scroll",requestV90,{passive:true});
-window.addEventListener("resize",function(){resetV90();setTimeout(requestV90,50)});
-setTimeout(requestV90,300);
+if(ws.getAttribute("data-sticky-v90-instalado")!=="1"){
+ ws.setAttribute("data-sticky-v90-instalado","1");
+ window.addEventListener("scroll",requestV90,{passive:true});
+ window.addEventListener("resize",function(){resetV90();setTimeout(requestV90,50)});
+}
+setTimeout(requestV90,120);
 }
 window.addEventListener("load",function(){setTimeout(initV90,550)});
 document.addEventListener("empregamais:navegacao",function(){setTimeout(initV90,180)});
