@@ -761,6 +761,32 @@ confidencial:!!(el("vagaConfidencialEM")&&el("vagaConfidencialEM").checked&&type
 contratacaoUrgente:!!(el("contratacaoUrgenteEmpregaMais")&&el("contratacaoUrgenteEmpregaMais").checked)
 };
 }
+function salvarEdicaoSeguraEM(id,event){
+var vagas=[];
+try{vagas=typeof carregarVagasPortal==="function"?(carregarVagasPortal()||[]):[];}catch(e){vagas=[];}
+if(!Array.isArray(vagas))vagas=[];
+var idx=vagas.findIndex(function(v){return String(v&&v.id||"")===String(id||"");});
+if(idx<0){falha("Não foi possível localizar a vaga original para edição.");return false;}
+var original=vagas[idx];
+try{
+ if(typeof vagaPertenceEmpresaAtual==="function"&&!vagaPertenceEmpresaAtual(original)){
+  falha("Esta vaga não pertence à empresa conectada.");return false;
+ }
+}catch(e){}
+var aprov=String(original.aprovacao||original.statusAprovacao||"").toLowerCase();
+var jaAprovada=original.jaFoiAprovada===true||aprov==="aprovada"||aprov==="aprovado";
+var edicoes=parseInt(original.edicoesAposAprovacao||0,10)||0;
+if(jaAprovada&&edicoes>=1){
+ falha("Esta vaga já utilizou a edição permitida após a aprovação.");return false;
+}
+if(typeof publicarVagaAntesAdminEM!=="function"){
+ falha("Não foi possível iniciar o salvamento da edição.");return false;
+}
+/* Mantém a identidade e o histórico da vaga durante o fluxo legado de edição. */
+try{window.vagaEdicaoId=String(original.id);}catch(e){}
+try{sessionStorage.setItem("empregaMaisVagaEdicaoId",String(original.id));}catch(e){}
+return publicarVagaAntesAdminEM(event);
+}
 async function enviar(event){
 if(event){event.preventDefault();event.stopPropagation();if(event.stopImmediatePropagation)event.stopImmediatePropagation();}
 if(enviando)return false;
@@ -775,8 +801,7 @@ try{
  );
 }catch(e){}
 if(idEdicaoAtual){
- try{window.vagaEdicaoId=idEdicaoAtual;}catch(e){}
- return typeof publicarVagaAntesAdminEM==="function"?publicarVagaAntesAdminEM(event):false;
+ return salvarEdicaoSeguraEM(idEdicaoAtual,event);
 }
 if(!validar())return false;
 var empresa=typeof obterEmpresaAtual==="function"?obterEmpresaAtual():null;
