@@ -92,7 +92,15 @@ setTimeout(atualizar,800);
 window.EmpregaMaisAtualizarPreviewCurriculoV86=atualizar;
 function iniciarPreviewCurriculoV86(){if(q("curriculoOnlineV84"))montar()}
 window.addEventListener("load",function(){setTimeout(iniciarPreviewCurriculoV86,400)});
-document.addEventListener("empregamais:navegacao",function(){setTimeout(iniciarPreviewCurriculoV86,100)});
+document.addEventListener("empregamais:navegacao",function(ev){
+var pagina=String((ev&amp;&amp;ev.detail&amp;&amp;ev.detail.pagina)||"");
+var modal=q("cvModalV86");
+if(modal &amp;&amp; pagina!=="curriculo" &amp;&amp; pagina!=="cadastro-curriculo"){
+ modal.classList.remove("ativo");
+ document.body.style.removeProperty("overflow");
+}
+setTimeout(iniciarPreviewCurriculoV86,100);
+});
 })();
 //
 ;
