@@ -41,13 +41,31 @@ return proprias;
 function candidaturasRefEM(){
 try{return typeof carregarCandidaturas==="function"?(carregarCandidaturas()||[]):[];}catch(e){return[];}
 }
+function idVagaCandRefEM(c){
+return String(c&&(
+ c.vagaId||c.idVaga||c.vaga_id||c.jobId||c.job_id||
+ (c.vaga&&c.vaga.id)||""
+)||"");
+}
 function pertenceRefEM(c,ids){
-return ids.indexOf(String(c.vagaId||c.idVaga||""))>=0;
+return ids.indexOf(idVagaCandRefEM(c))>=0;
 }
 function abrirCandRefEM(id){
-try{sessionStorage.setItem("vagaCandidatosSelecionada",String(id));}catch(e){}
-if(typeof abrirCandidatosDaVaga==="function"){abrirCandidatosDaVaga(id);return;}
-if(typeof irPara==="function")irPara("candidatos-empresa");
+var vagaId=String(id||"");
+if(!vagaId)return;
+try{
+ var vagas=vagasEmpresaRefEM();
+ var pertence=vagas.some(function(v){return String(v&&v.id||"")===vagaId;});
+ if(!pertence){alert("Não foi possível localizar esta vaga entre as vagas da empresa.");return;}
+}catch(e){}
+try{sessionStorage.setItem("vagaCandidatosSelecionada",vagaId);}catch(e){}
+if(typeof abrirCandidatosDaVaga==="function"){abrirCandidatosDaVaga(vagaId);return;}
+if(typeof irPara==="function"){
+ irPara("candidatos-empresa");
+ setTimeout(function(){
+  try{document.dispatchEvent(new CustomEvent("empregamais:filtrar-candidaturas",{detail:{vagaId:vagaId}}));}catch(e){}
+ },80);
+}
 }
 function verVagaRefEM(id){
 if(typeof abrirVaga==="function"){abrirVaga(id);return;}
