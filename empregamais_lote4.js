@@ -942,7 +942,7 @@ try{if(typeof aplicarSegurancaDetalheEM==="function")aplicarSegurancaDetalheEM()
 },180);
 }
 document.addEventListener("DOMContentLoaded",function(){
-var alvo=document.querySelector("main")||document.body;
+var alvo=document.querySelector("main");
 if(!alvo)return;
 var obs=new MutationObserver(function(muts){
 if(paginaPesadaDeFormulario())return;
