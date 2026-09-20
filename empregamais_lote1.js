@@ -191,13 +191,20 @@ var oldIrPara=window.irPara;
 window.irPara=function(page){
 var p=String(page||"");
 var protectedPage=["painel-empresa","perfil-empresa","verificacao-empresa","publicar-vaga"].indexOf(p)&gt;=0;
-if(!protectedPage) return oldIrPara.apply(this,arguments);
+if(!protectedPage){
+var r=oldIrPara.apply(this,arguments);
+if(typeof window.EmpregaMaisNavegacaoCentralEM==="function")window.EmpregaMaisNavegacaoCentralEM(p);
+return r;
+}
 var args=arguments, self=this;
 companySessionValid().then(function(ok){
-if(ok) oldIrPara.apply(self,args);
-else{
-clearToken(); clearLegacySession();
-oldIrPara.call(self,"login-empresa");
+if(ok){
+ oldIrPara.apply(self,args);
+ if(typeof window.EmpregaMaisNavegacaoCentralEM==="function")window.EmpregaMaisNavegacaoCentralEM(p);
+}else{
+ clearToken(); clearLegacySession();
+ oldIrPara.call(self,"login-empresa");
+ if(typeof window.EmpregaMaisNavegacaoCentralEM==="function")window.EmpregaMaisNavegacaoCentralEM("login-empresa");
 }
 });
 return false;
