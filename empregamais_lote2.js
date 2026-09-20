@@ -727,18 +727,15 @@ console.error("EmpregaMais / status Supabase:",e);
 return null;
 }
 };
-var ir=window.irPara;
-if(typeof ir==="function"){
-window.irPara=function(p){
-var r=ir.apply(this,arguments);
-var pg=String(p||"");
+/* A sincronização de verificação reage ao evento central de navegação.
+   Evita adicionar mais uma sobrescrita de window.irPara. */
+document.addEventListener("empregamais:navegacao",function(ev){
+var pg=String((ev&&ev.detail&&ev.detail.pagina)||"");
 if(pg==="painel-empresa" || pg==="verificacao-empresa" || pg==="perfil-empresa"){
 setTimeout(window.sincronizarVerificacaoEmpresaSupabaseEM,100);
 setTimeout(window.sincronizarVerificacaoEmpresaSupabaseEM,500);
 }
-return r;
-};
-}
+});
 document.addEventListener("DOMContentLoaded",function(){
 if(token()){
 setTimeout(window.sincronizarVerificacaoEmpresaSupabaseEM,250);
