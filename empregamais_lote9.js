@@ -579,6 +579,10 @@ var pagina=q.get("pagina");
 if(pagina)return;
 var home=document.getElementById("pagina-home");
 if(!home)return;
+/* Só restaura a Home quando nenhuma outra página já está ativa.
+   Evita o timer de inicialização trocar uma tela válida após o F5. */
+var ativa=document.querySelector(".pagina.ativa");
+if(ativa && ativa!==home)return;
 home.style.removeProperty("display");
 if(typeof window.mostrarPagina==="function"){
 window.mostrarPagina("home");
