@@ -317,9 +317,17 @@ setTimeout(function(){if(typeof window.irPara==="function")window.irPara("curric
 });
 function rota(){
 var q=new URLSearchParams(location.search);
-if(q.get("pagina")===PAGE&&!logado())setTimeout(abrir,80);
+if(q.get("pagina")!==PAGE)return;
+if(logado()){
+ if(typeof window.irPara==="function")window.irPara("curriculo");
+ return;
 }
-window.addEventListener("load",rota);
+if(typeof window.abrirPaginaCadastroCandidatoV103==="function")window.abrirPaginaCadastroCandidatoV103();
+else abrir();
+}
+/* Uma única restauração de rota evita duas implementações diferentes
+   disputarem a página após o F5. */
+window.addEventListener("load",function(){setTimeout(rota,80);});
 })();
 //
 ;
@@ -475,7 +483,7 @@ if(home)home.style.display="";
 return irOriginal.apply(this,arguments);
 };
 }
-window.addEventListener("load",function(){setTimeout(pelaURL,80)});
+window.addEventListener("load",function(){setTimeout(pelaURL,100)});
 window.addEventListener("popstate",function(){
 var q=new URLSearchParams(location.search);
 if(q.get("pagina")==="cadastro-curriculo")abrirPaginaCadastroV103();
