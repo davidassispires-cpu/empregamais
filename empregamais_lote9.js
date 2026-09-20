@@ -443,7 +443,9 @@ return;
 if(typeof window.esconderPaginas==="function"){
 window.esconderPaginas();
 }else{
-document.querySelectorAll(".pagina").forEach(function(x){x.classList.remove("ativa")});
+/* Fallback restrito: não altera páginas fora do contêiner principal. */
+var main=document.querySelector("main");
+if(main)main.querySelectorAll(".pagina").forEach(function(x){x.classList.remove("ativa")});
 }
 var home=document.getElementById("pagina-home");
 if(home)home.classList.remove("ativa");
