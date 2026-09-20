@@ -277,41 +277,7 @@ document.addEventListener('DOMContentLoaded',function(){setTimeout(aplicarV30,25
 ;
 //
 (function(){
-function simV73(v){
-return v===true || v===1 ||
-String(v||'').toLowerCase()==='true' ||
-String(v||'').toLowerCase()==='sim';
-}
-function aplicarCabecalhoPremiumV73(){
-var pagina=document.getElementById('pagina-vaga');
-if(!pagina)return;
-var cab=pagina.querySelector('.vaga-cabecalho');
-if(!cab)return;
-var antigo=pagina.querySelector('.oportunidade-premium-v73');
-if(antigo)antigo.remove();
-var vaga=window.vagaAtual||{};
-var destaque=simV73(vaga.destaque);
-cab.classList.toggle('destaque-premium-v73',destaque);
-if(destaque){
-var selo=document.createElement('div');
-selo.className='oportunidade-premium-v73';
-selo.innerHTML=
-'<svg viewBox="0 0 24 24" aria-hidden="true">'+
-'<path d="M3 7l4 4 5-7 5 7 4-4-2 11H5L3 7Zm2 14h14v-2H5v2Z"/>'+
-'</svg>'+
-'<strong>OPORTUNIDADE<br/>EM DESTAQUE</strong>';
-cab.appendChild(selo);
-}
-}
-if(typeof abrirVaga==='function'){
-var abrirVagaAntesV73=abrirVaga;
-abrirVaga=function(id){
-var r=abrirVagaAntesV73(id);
-setTimeout(aplicarCabecalhoPremiumV73,40);
-setTimeout(aplicarCabecalhoPremiumV73,220);
-return r;
-};
-}
+
 document.addEventListener('DOMContentLoaded',function(){
 setTimeout(aplicarCabecalhoPremiumV73,300);
 });
