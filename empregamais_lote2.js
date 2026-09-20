@@ -765,15 +765,27 @@ var cards=box.querySelectorAll(".admin-verificacao-card").length;
 bver.textContent=String(cards);
 }
 }
+var obsBadgesAdminEM=null,timerBadgesAdminEM=0;
 function iniciar(){
 var pagina=document.getElementById("pagina-painel-admin");
 if(!pagina) return;
 window.abrirAbaAdminEM(abaAtual);
 badges();
-var obs=new MutationObserver(badges);
+if(obsBadgesAdminEM)obsBadgesAdminEM.disconnect();
+obsBadgesAdminEM=new MutationObserver(function(muts){
+var precisa=false;
+for(var i=0;i<muts.length;i++){
+ if((muts[i].addedNodes&amp;&amp;muts[i].addedNodes.length) ||
+    (muts[i].removedNodes&amp;&amp;muts[i].removedNodes.length) ||
+    muts[i].type==="characterData"){precisa=true;break;}
+}
+if(!precisa)return;
+clearTimeout(timerBadgesAdminEM);
+timerBadgesAdminEM=setTimeout(badges,60);
+});
 ["adminPendentes","listaVerificacoesAdmin"].forEach(function(id){
 var el=document.getElementById(id);
-if(el) obs.observe(el,{childList:true,subtree:true,characterData:true});
+if(el) obsBadgesAdminEM.observe(el,{childList:true,subtree:true,characterData:true});
 });
 }
 document.addEventListener("DOMContentLoaded",function(){setTimeout(iniciar,250);});
