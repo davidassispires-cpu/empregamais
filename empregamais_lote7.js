@@ -178,9 +178,7 @@ if(tags){
 var antigo=document.getElementById('detalheSelosV27');if(antigo)antigo.remove();
 var box=document.createElement('div');box.id='detalheSelosV27';box.className='detalhe-selos-v27';
 var urgente=sim(v.urgente)||sim(v.contratacaoUrgente)||sim(v.prioridadeUrgente);
-var destaque=sim(v.destaque);
 if(urgente){var u=document.createElement('div');u.className='detalhe-selo-v27 urgente';u.innerHTML='<span class="ico">&amp;#10148;</span><span>CONTRATA\u00C7\u00C3O URGENTE</span>';box.appendChild(u);}
-if(destaque){var d=document.createElement('div');d.className='detalhe-selo-v27 destaque';d.innerHTML='<span class="ico">&amp;#9737;</span><span>VAGA EM DESTAQUE</span>';box.appendChild(d);}
 if(box.children.length)tags.parentNode.insertBefore(box,tags.nextSibling);
 }
 var cidade=document.getElementById('detalheCidade');if(cidade){var c=v.cidade||'';var uf=v.uf||v.estado||'';cidade.textContent=(c+(uf?' - '+uf:'')).toUpperCase();}
