@@ -189,7 +189,19 @@ document.addEventListener("DOMContentLoaded",limparV99);
 limparV99();
 }
 window.addEventListener("load",function(){setTimeout(limparV99,250)});
-new MutationObserver(limparV99).observe(document.documentElement,{childList:true,subtree:true});
+var headerV99=document.querySelector("header");
+if(headerV99 && window.MutationObserver){
+var timerV99=null;
+new MutationObserver(function(muts){
+var precisa=false;
+for(var i=0;i<muts.length;i++){
+if(muts[i].addedNodes&&muts[i].addedNodes.length){precisa=true;break;}
+}
+if(!precisa)return;
+clearTimeout(timerV99);
+timerV99=setTimeout(limparV99,60);
+}).observe(headerV99,{childList:true,subtree:true});
+}
 })();
 //
 ;
@@ -224,7 +236,19 @@ area.classList.remove("open");
 if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",neutralizarV100);
 else neutralizarV100();
 window.addEventListener("load",function(){setTimeout(neutralizarV100,200)});
-new MutationObserver(neutralizarV100).observe(document.documentElement,{childList:true,subtree:true});
+var headerV100=document.querySelector("header");
+if(headerV100 && window.MutationObserver){
+var timerV100=null;
+new MutationObserver(function(muts){
+var precisa=false;
+for(var i=0;i<muts.length;i++){
+if(muts[i].addedNodes&&muts[i].addedNodes.length){precisa=true;break;}
+}
+if(!precisa)return;
+clearTimeout(timerV100);
+timerV100=setTimeout(neutralizarV100,60);
+}).observe(headerV100,{childList:true,subtree:true});
+}
 })();
 //
 ;
