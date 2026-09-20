@@ -753,6 +753,21 @@ try{retorno=atualizarAprovacaoVaga(v.id,status);}catch(e){
 }
 Promise.resolve(retorno).then(function(res){
  if(res===false)throw new Error("Atualização não confirmada");
+ /* Garante no cache local o mesmo estado confirmado pelo admin. */
+ try{
+  var lista=typeof carregarVagasPortal==="function"?(carregarVagasPortal()||[]):[];
+  if(Array.isArray(lista)){
+   var pos=lista.findIndex(function(x){return String(x&&x.id||"")===String(v.id);});
+   if(pos>=0){
+    lista[pos].aprovacao=status;
+    if(status==="aprovada"){
+     lista[pos].jaFoiAprovada=true;
+     if(lista[pos].ativa===undefined)lista[pos].ativa=true;
+    }
+    if(typeof salvarVagasPortal==="function")salvarVagasPortal(lista);
+   }
+  }
+ }catch(e){}
  /* Sincroniza todas as visões somente depois da confirmação da alteração. */
  try{if(typeof renderizarFilaPendentesAdmin==="function")renderizarFilaPendentesAdmin();}catch(e){}
  try{if(typeof montarPainelReferenciaRecrutadorEM==="function")montarPainelReferenciaRecrutadorEM();}catch(e){}
