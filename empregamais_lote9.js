@@ -30,7 +30,16 @@ b.setAttribute("data-candidatar-v94","1");
 }
 window.addEventListener("load",function(){setTimeout(corrigirBotoesV95,600)});
 document.addEventListener("click",function(){setTimeout(corrigirBotoesV95,80)},false);
-new MutationObserver(corrigirBotoesV95).observe(document.documentElement,{childList:true,subtree:true});
+/* Observa somente a página da vaga. Evita varrer o documento inteiro a cada
+   alteração de DOM, o que podia gerar lentidão e interferir nos cliques. */
+var paginaV95=document.getElementById("pagina-vaga");
+if(paginaV95 && window.MutationObserver){
+var timerV95=null;
+new MutationObserver(function(){
+clearTimeout(timerV95);
+timerV95=setTimeout(corrigirBotoesV95,80);
+}).observe(paginaV95,{childList:true,subtree:true});
+}
 window.corrigirBotoesV95=corrigirBotoesV95;
 })();
 //
