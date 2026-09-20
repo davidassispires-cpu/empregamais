@@ -912,7 +912,10 @@ var c=[];
 try{
 if(typeof carregarCandidaturas==="function")c=carregarCandidaturas()||[];
 }catch(e){}
-return c.filter(function(x){return ids[String(x.vagaId||"")];});
+return c.filter(function(x){
+var id=String(x&&(x.vagaId||x.idVaga||x.vaga_id||x.jobId||x.job_id||(x.vaga&&x.vaga.id))||"");
+return !!ids[id];
+});
 }
 function empresaVerificadaV29(){
 try{
