@@ -503,9 +503,15 @@ var cs=[];try{cs=typeof carregarCandidaturas==="function"?(carregarCandidaturas(
 var ids=vs.map(function(v){return String(v.id||v.vagaId||"");});
 var ce=cs.filter(function(c){return ids.indexOf(String(c.vagaId||c.idVaga||""))>=0;});
 var aprov=ce.filter(function(c){return nm(c.status)==="aprovado";}).length;
-var contrat=ce.filter(function(c){return nm(c.status)==="contratado";}).length;
-var entrev=ce.filter(function(c){return nm(c.status).indexOf("entrevista")>=0;}).length;
-var selec=ce.filter(function(c){return nm(c.status)==="selecionado";}).length;
+function etapaCandAdminEM(c){
+ var s=nm(c.status_processo||c.statusProcesso||c.etapa||c.status);
+ if(window.EmpregaMaisEtapasCandidatoEM&&typeof window.EmpregaMaisEtapasCandidatoEM.normalizar==="function")return window.EmpregaMaisEtapasCandidatoEM.normalizar(s);
+ if(s==="contratada")return"contratado";if(s==="selecionada")return"selecionado";if(s==="em entrevista")return"entrevista";if(s==="aprovada")return"aprovado";
+ return s;
+}
+var contrat=ce.filter(function(c){return etapaCandAdminEM(c)==="contratado"||c.contratadoPeloEmpregaMais===true||c.contratado_pelo_empregamais===true;}).length;
+var entrev=ce.filter(function(c){return etapaCandAdminEM(c)==="entrevista";}).length;
+var selec=ce.filter(function(c){return etapaCandAdminEM(c)==="selecionado";}).length;
 return{vs:vs,mes:mes,dest:dest,at:at,an:an,cands:ce.length,entrev:entrev,selec:selec,aprov:aprov,contrat:contrat,candidaturas:ce};}
 async function vagas(){try{if(typeof apiEmpregaMaisGet==="function"){var r=await apiEmpregaMaisGet("listar");if(r&&r.sucesso===true&&Array.isArray(r.vagas))return r.vagas;}}catch(x){}try{return typeof carregarVagasPortal==="function"?(carregarVagasPortal()||[]):[];}catch(x){return[];}}
 function inf(k,v){return"<div class='admin-empresa-info-item-em'><small>"+e(k)+"</small><strong>"+e(v||"\u2014")+"</strong></div>";}
