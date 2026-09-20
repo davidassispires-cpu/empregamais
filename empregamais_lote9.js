@@ -128,27 +128,27 @@ function norm(t){return String(t||"").replace(/\s+/g," ").trim().toLowerCase();}
 function findButton(words){
  var all=document.querySelectorAll("header a,header button");
  for(var i=0;i<all.length;i++){
-  if(all[i].closest(".em-header-menu"))continue;
+  if(all[i].closest(".header-v98-menu"))continue;
   var t=norm(all[i].textContent);
   for(var j=0;j<words.length;j++)if(t===words[j]||t.indexOf(words[j])>=0)return all[i];
  }
  return null;
 }
 function closeAll(except){
- document.querySelectorAll(".em-header-area.open").forEach(function(x){if(x!==except)x.classList.remove("open")});
+ document.querySelectorAll(".header-v98-area.open").forEach(function(x){if(x!==except)x.classList.remove("open")});
 }
 function build(btn,type){
- if(!btn||btn.closest(".em-header-area"))return;
- var wrap=document.createElement("span");wrap.className="em-header-area";
+ if(!btn||btn.closest(".header-v98-area"))return;
+ var wrap=document.createElement("span");wrap.className="header-v98-area";
  btn.parentNode.insertBefore(wrap,btn);wrap.appendChild(btn);
  btn.textContent=type==="cand"?"Área do candidato ▾":"Área da empresa ▾";
  if(btn.tagName==="A"){btn.removeAttribute("href");btn.setAttribute("role","button")}
- var menu=document.createElement("div");menu.className="em-header-menu";
+ var menu=document.createElement("div");menu.className="header-v98-menu";
  var itens=type==="cand"?
  [["login-candidato","Entrar na minha conta"],["curriculo","Cadastrar currículo"],["candidaturas","Minhas candidaturas"],["vagas-salvas","Vagas salvas"],["como-funciona","Como funciona"]]:
  [["login-empresa","Entrar na minha conta"],["cadastro-empresa","Cadastrar empresa"],["publicar-vaga","Publicar vaga"],["painel-recrutador","Minhas vagas"],["planos","Planos"],["como-funciona","Como funciona"]];
  itens.forEach(function(x,k){
-  if(k===itens.length-1){var sep=document.createElement("div");sep.className="em-header-sep";menu.appendChild(sep)}
+  if(k===itens.length-1){var sep=document.createElement("div");sep.className="header-v98-sep";menu.appendChild(sep)}
   var b=document.createElement("button");b.type="button";b.textContent=x[1];
   b.addEventListener("click",function(e){e.preventDefault();e.stopPropagation();wrap.classList.remove("open");go(x[0])});
   menu.appendChild(b);
@@ -160,9 +160,9 @@ function install(){
  build(findButton(["candidato","área do candidato"]),"cand");
  build(findButton(["empresa","área da empresa"]),"emp");
  document.querySelectorAll("header a,header button").forEach(function(el){
-  if(el.closest(".em-header-menu"))return;
+  if(el.closest(".header-v98-menu"))return;
   var t=norm(el.textContent);
-  if(t==="planos"||t==="empresa")el.classList.add("em-header-legado-oculto");
+  if(t==="planos"||t==="empresa")el.classList.add("v99-removido");
  });
 }
 document.addEventListener("click",function(){closeAll(null)});
