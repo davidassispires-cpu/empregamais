@@ -61,26 +61,14 @@ vaga.ativa=false;
 vaga.encerrada=true;
 vaga.dataEncerramento=agora;
 vaga.encerradaEm=agora;
+/* Primeiro confirma o encerramento no servidor. O painel só é alterado
+   definitivamente depois da confirmação, evitando a vaga sumir apenas localmente. */
+function aplicarEncerramentoLocalV18(){
 try{salvarVagasPortal(vagas);}catch(e){
 alert("N\u00E3o foi poss\u00EDvel salvar o encerramento da vaga.");
-return;
+return false;
 }
-try{
-if(typeof mostrarToast==="function")mostrarToast("Vaga encerrada com sucesso.");
-}catch(e){}
-try{
-if(typeof apiEmpregaMaisPost==="function"){
-apiEmpregaMaisPost({acao:"encerrar",id:id})
-.then(function(resultado){
-if(resultado && resultado.sucesso===true){
-try{
-if(typeof sincronizarVagasGoogleSheets==="function")sincronizarVagasGoogleSheets();
-}catch(e){}
-}
-})
-.catch(function(){});
-}
-}catch(e){}
+try{if(typeof mostrarToast==="function")mostrarToast("Vaga encerrada com sucesso.");}catch(e){}
 try{
 if(typeof montarPainelReferenciaRecrutadorEM==="function"){
 var ref=document.getElementById("painelReferenciaRecrutadorEM");
@@ -88,6 +76,26 @@ if(ref && ref.parentNode)ref.parentNode.removeChild(ref);
 montarPainelReferenciaRecrutadorEM();
 }
 }catch(e){}
+return true;
+}
+if(typeof apiEmpregaMaisPost==="function"){
+try{
+apiEmpregaMaisPost({acao:"encerrar",id:id})
+.then(function(resultado){
+if(!resultado || resultado.sucesso!==true){
+alert((resultado&&resultado.erro)||"N\u00E3o foi poss\u00EDvel confirmar o encerramento da vaga.");
+return;
+}
+if(!aplicarEncerramentoLocalV18())return;
+try{if(typeof sincronizarVagasGoogleSheets==="function")sincronizarVagasGoogleSheets();}catch(e){}
+})
+.catch(function(){
+alert("N\u00E3o foi poss\u00EDvel confirmar o encerramento da vaga. Tente novamente.");
+});
+return;
+}catch(e){}
+}
+if(!aplicarEncerramentoLocalV18())return;
 try{if(typeof renderizarVagasAprovadasEmpresa==="function")renderizarVagasAprovadasEmpresa();}catch(e){}
 try{if(typeof renderizarPainelEmpresa==="function")renderizarPainelEmpresa();}catch(e){}
 try{if(typeof renderizarHome==="function")renderizarHome();}catch(e){}
