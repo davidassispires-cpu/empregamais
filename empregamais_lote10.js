@@ -472,16 +472,17 @@ var inp=document.getElementById("buscaPainelRefEM");
 inp.oninput=function(){busca=String(this.value||"").toLowerCase().trim();renderTabela();};
 renderTabela();
 }
-var antigaIrPara=window.irPara;
-if(typeof antigaIrPara==="function"&&!window.irParaPainelRefPatchedEM){
-window.irParaPainelRefPatchedEM=true;
-window.irPara=function(pagina){
-var r=antigaIrPara.apply(this,arguments);
+/* Mantém apenas a navegação protegida principal. Recursos auxiliares
+   escutam um evento central, sem empilhar novas sobrescritas de irPara. */
+if(!window.EmpregaMaisNavegacaoCentralEM){
+window.EmpregaMaisNavegacaoCentralEM=function(pagina){
 try{document.dispatchEvent(new CustomEvent("empregamais:navegacao",{detail:{pagina:String(pagina||"")}}));}catch(e){}
-if(pagina==="painel-empresa")setTimeout(window.montarPainelReferenciaRecrutadorEM,120);
-return r;
 };
 }
+document.addEventListener("empregamais:navegacao",function(ev){
+var pagina=String((ev&&ev.detail&&ev.detail.pagina)||"");
+if(pagina==="painel-empresa")setTimeout(window.montarPainelReferenciaRecrutadorEM,120);
+});
 document.addEventListener("DOMContentLoaded",function(){setTimeout(window.montarPainelReferenciaRecrutadorEM,500);});
 window.addEventListener("load",function(){setTimeout(window.montarPainelReferenciaRecrutadorEM,700);});
 })();
