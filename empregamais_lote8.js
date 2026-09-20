@@ -132,9 +132,19 @@ var modal=document.getElementById("cvModalPaperV86");if(modal)modal.innerHTML=pa
 function init(){
 if(!document.getElementById("cvNomeV87"))return;
 carregar();
-ids.forEach(function(id){var e=document.getElementById(id);if(e)e.addEventListener("input",function(){salvar();setTimeout(atualizarPreview,0)})});
-var save=document.getElementById("cvSalvarV84");if(save)save.addEventListener("click",salvar);
-setTimeout(function(){if(window.EmpregaMaisAtualizarPreviewCurriculoV86)window.EmpregaMaisAtualizarPreviewCurriculoV86();atualizarPreview()},900);
+ids.forEach(function(id){
+ var e=document.getElementById(id);
+ if(e&amp;&amp;e.getAttribute("data-dados-v87-instalado")!=="1"){
+  e.setAttribute("data-dados-v87-instalado","1");
+  e.addEventListener("input",function(){salvar();setTimeout(atualizarPreview,0)});
+ }
+});
+var save=document.getElementById("cvSalvarV84");
+if(save&amp;&amp;save.getAttribute("data-dados-v87-instalado")!=="1"){
+ save.setAttribute("data-dados-v87-instalado","1");
+ save.addEventListener("click",salvar);
+}
+setTimeout(function(){if(window.EmpregaMaisAtualizarPreviewCurriculoV86)window.EmpregaMaisAtualizarPreviewCurriculoV86();atualizarPreview()},180);
 }
 function iniciarDadosCurriculoV87(){if(document.getElementById("cvNomeV87"))init()}
 window.addEventListener("load",function(){setTimeout(iniciarDadosCurriculoV87,450)});
