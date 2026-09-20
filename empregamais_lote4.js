@@ -692,13 +692,26 @@ var site=document.getElementById("empresaPublicaSiteSeguroEM");
 if(site){site.className="empresa-publica-site-novo-em";card.appendChild(site);}
 }
 }
-var obs=new MutationObserver(function(){
+var obsTimer=0,obsExecutando=false;
+var obs=new MutationObserver(function(muts){
+if(obsExecutando)return;
+var precisa=false;
+for(var i=0;i<muts.length;i++){
+ if(muts[i].addedNodes&&muts[i].addedNodes.length){precisa=true;break;}
+}
+if(!precisa)return;
 var p=document.getElementById("pagina-empresa-publica");
-if(p&&p.style.display!=="none")setTimeout(reconstruir,80);
+if(p&&p.style.display!=="none"){
+ clearTimeout(obsTimer);
+ obsTimer=setTimeout(function(){
+  obsExecutando=true;
+  try{reconstruir();}finally{setTimeout(function(){obsExecutando=false;},0);}
+ },80);
+}
 });
 document.addEventListener("DOMContentLoaded",function(){
 var p=document.getElementById("pagina-empresa-publica");
-if(p)obs.observe(p,{subtree:true,childList:true,characterData:true});
+if(p)obs.observe(p,{subtree:true,childList:true});
 });
 window.addEventListener("load",function(){setTimeout(reconstruir,1000);});
 })();
