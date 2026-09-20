@@ -893,6 +893,7 @@ if(typeof apiEmpregaMaisPost==="function"){
 if(!salvar(vaga))throw new Error("Não foi possível salvar a alteração da vaga.");
 return true;
 }
+window.persistirRecursoVagaV53=persistirRecursoVagaV53;
 function atualizar(){
 try{if(typeof montarPainelReferenciaRecrutadorEM==="function")montarPainelReferenciaRecrutadorEM();}catch(e){}
 setTimeout(injetarAcoes,140);
@@ -1139,15 +1140,26 @@ function removerUrgenteV54(v){
 v.contratacaoUrgente=false;v.urgente=false;
 v.contratacaoUrgentePagamentoStatus="";
 v.contratacaoUrgenteAtivadoEm="";
-persistirV54(v);
-try{if(typeof removerUrgentePlanoV50==="function")removerUrgentePlanoV50(v.id);}catch(e){}
-redesenharV54();
-setTimeout(function(){try{if(typeof atualizarTagsVagasV55==="function")atualizarTagsVagasV55();}catch(e){}},320);
+if(typeof persistirRecursoVagaV53==="function"){
+ persistirRecursoVagaV53(v,"atualizar_recursos_vaga").then(function(){
+  try{if(typeof removerUrgentePlanoV50==="function")removerUrgentePlanoV50(v.id);}catch(e){}
+  redesenharV54();
+  setTimeout(function(){try{if(typeof atualizarTagsVagasV55==="function")atualizarTagsVagasV55();}catch(e){}},320);
+ }).catch(function(e){alert(e.message||"Não foi possível remover a urgência.");});
+ return;
+}
+persistirV54(v);redesenharV54();
 }
 function removerDestaqueV54(v){
 v.destaque=false;v.destaqueAtivadoEm="";
+if(typeof persistirRecursoVagaV53==="function"){
+ persistirRecursoVagaV53(v,"atualizar_recursos_vaga").then(function(){
+  redesenharV54();
+  setTimeout(function(){try{if(typeof atualizarTagsVagasV55==="function")atualizarTagsVagasV55();}catch(e){}},320);
+ }).catch(function(e){alert(e.message||"Não foi possível remover o destaque.");});
+ return;
+}
 persistirV54(v);redesenharV54();
-setTimeout(function(){try{if(typeof atualizarTagsVagasV55==="function")atualizarTagsVagasV55();}catch(e){}},320);
 }
 function excluirV54(v){
 if(!v||!v.id)return;
