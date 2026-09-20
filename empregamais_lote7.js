@@ -296,11 +296,18 @@ setTimeout(prepararSeloVerificadoV74,250);
 }else{
 setTimeout(prepararSeloVerificadoV74,250);
 }
-var obsV74=new MutationObserver(function(){
-prepararSeloVerificadoV74();
-});
 var paginaV74=document.getElementById('pagina-vaga');
-if(paginaV74){
+if(paginaV74 && window.MutationObserver){
+var timerV74=null;
+var obsV74=new MutationObserver(function(muts){
+var precisa=false;
+for(var i=0;i<muts.length;i++){
+if(muts[i].addedNodes&&muts[i].addedNodes.length){precisa=true;break;}
+}
+if(!precisa)return;
+clearTimeout(timerV74);
+timerV74=setTimeout(prepararSeloVerificadoV74,80);
+});
 obsV74.observe(paginaV74,{childList:true,subtree:true});
 }
 })();
