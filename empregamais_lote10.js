@@ -229,12 +229,16 @@ try{vaga=vagasEmpresaRefEM().find(function(v){return String(v&&v.id||"")===Strin
 if(!vaga){alert("Esta candidatura não pertence a uma vaga da empresa conectada.");return false;}
 var agora=new Date().toISOString(),resp=null;
 try{
+ await window.atualizarEtapaCandidaturaEM(id,"contratado");
+}catch(e){alert(e&amp;&amp;e.message?e.message:"Não foi possível registrar a contratação.");return false;}
+try{
  if(typeof apiEmpregaMaisPost==="function"){
   resp=await apiEmpregaMaisPost({acao:"registrar_contratacao",candidaturaId:id,vagaId:vagaId,dataContratacao:agora});
-  if(!resp||resp.sucesso!==true)throw new Error((resp&&resp.erro)||"Contratação não confirmada pelo servidor.");
+  if(resp&amp;&amp;resp.sucesso!==true)console.warn("EmpregaMais: contratação registrada localmente; sincronização remota não confirmada.",resp.erro||resp);
  }
- await window.atualizarEtapaCandidaturaEM(id,"contratado");
-}catch(e){alert(e&&e.message?e.message:"Não foi possível registrar a contratação.");return false;}
+}catch(e){
+ console.warn("EmpregaMais: contratação registrada localmente; sincronização remota indisponível.",e);
+}
 var lista=candidaturasRefEM();
 if(Array.isArray(lista)){
  var pos=lista.findIndex(function(x){return idCandRefEM(x)===String(id);});
