@@ -356,9 +356,9 @@ limparDistanciasDuplicadasV76(document);
 }
 window.EmpregaMaisAtualizarDistanciaUnica=atualizarUnicaDistanciaV76;
 window.addEventListener("load",function(){
-[150,700,1400,2400].forEach(function(ms){
-setTimeout(atualizarUnicaDistanciaV76,ms);
-});
+/* Uma passagem inicial; alterações posteriores na Home são tratadas
+   pelo observer abaixo sem repetir quatro varreduras após o F5. */
+setTimeout(atualizarUnicaDistanciaV76,300);
 });
 var alvo=document.getElementById("pagina-home");
 if(alvo&&window.MutationObserver){
