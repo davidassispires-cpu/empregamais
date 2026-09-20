@@ -790,6 +790,10 @@ var existe=vagas.some(function(v){return String(v.id)===String(vaga.id);});
 if(!existe){vagas.unshift(vaga);if(typeof salvarVagasPortal==="function")salvarVagasPortal(vagas);}
 try{if(typeof sincronizarVagasGoogleSheets==="function")await sincronizarVagasGoogleSheets();}catch(e){}
 var form=el("formVaga");if(form)form.reset();
+try{
+ if(typeof window.limparRascunhoVagaV145==="function")window.limparRascunhoVagaV145();
+ localStorage.removeItem("empregaMaisBackupEdicaoV148");
+}catch(e){}
 if(typeof logoAtual!=="undefined")logoAtual="";
 var prev=el("previewLogo");if(prev)prev.style.display="none";
 if(typeof prepararContatoPublicacao==="function")prepararContatoPublicacao();
