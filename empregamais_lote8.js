@@ -341,9 +341,15 @@ else if(typeof renderizarAderenciaVagaEM==="function")renderizarAderenciaVagaEM(
 }catch(e){}
 }
 window.EmpregaMaisPremiumCandidatoV92={atualizar:aplicar,ehPremium:function(){return premium(achar())}};
-window.addEventListener("load",function(){setTimeout(aplicar,1000);setTimeout(aplicar,2200)});
+window.addEventListener("load",function(){setTimeout(aplicar,700)});
 window.addEventListener("storage",function(e){if(e.key==="candidatosEmpregaMais")aplicar()});
-document.addEventListener("click",function(){setTimeout(aplicar,120)},true);
+var timerPremiumV92=0;
+document.addEventListener("click",function(e){
+var alvo=e.target&amp;&amp;e.target.closest?e.target.closest("#pagina-painel-candidato button,#pagina-painel-candidato a,[data-candidato-tab]"):null;
+if(!alvo)return;
+clearTimeout(timerPremiumV92);
+timerPremiumV92=setTimeout(aplicar,120);
+},true);
 })();
 //
 ;
