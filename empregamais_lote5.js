@@ -83,8 +83,11 @@ return true;
 }
 if(typeof apiEmpregaMaisPost==="function"){
 try{
+var botaoAcao=document.activeElement;
+if(botaoAcao&&botaoAcao.tagName==="BUTTON")botaoAcao.disabled=true;
 apiEmpregaMaisPost({acao:"encerrar",id:id})
 .then(function(resultado){
+if(botaoAcao)botaoAcao.disabled=false;
 if(!resultado || resultado.sucesso!==true){
 alert((resultado&&resultado.erro)||"N\u00E3o foi poss\u00EDvel confirmar o encerramento da vaga.");
 return;
@@ -93,6 +96,7 @@ if(!aplicarEncerramentoLocalV18())return;
 try{if(typeof sincronizarVagasGoogleSheets==="function")sincronizarVagasGoogleSheets();}catch(e){}
 })
 .catch(function(){
+if(botaoAcao)botaoAcao.disabled=false;
 alert("N\u00E3o foi poss\u00EDvel confirmar o encerramento da vaga. Tente novamente.");
 });
 return;
