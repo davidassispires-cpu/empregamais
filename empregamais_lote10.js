@@ -19,7 +19,24 @@ if(v[campos[i]]!==undefined&&v[campos[i]]!==null&&String(v[campos[i]]).trim()!==
 return padrao;
 }
 function vagasEmpresaRefEM(){
-try{return typeof vagasDaEmpresa==="function"?(vagasDaEmpresa()||[]):[];}catch(e){return[];}
+var proprias=[];
+try{
+ if(typeof vagasDaEmpresa==="function"){
+  proprias=vagasDaEmpresa()||[];
+  if(Array.isArray(proprias)&&proprias.length)return proprias;
+ }
+}catch(e){}
+var todas=[];
+try{todas=typeof carregarVagasPortal==="function"?(carregarVagasPortal()||[]):[];}catch(e){todas=[];}
+if(!Array.isArray(todas))return [];
+try{
+ if(typeof vagaPertenceEmpresaAtual==="function"){
+  return todas.filter(function(v){
+   try{return vagaPertenceEmpresaAtual(v);}catch(x){return false;}
+  });
+ }
+}catch(e){}
+return proprias;
 }
 function candidaturasRefEM(){
 try{return typeof carregarCandidaturas==="function"?(carregarCandidaturas()||[]):[];}catch(e){return[];}
