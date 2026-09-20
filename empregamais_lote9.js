@@ -446,9 +446,11 @@ window.esconderPaginas();
 document.querySelectorAll(".pagina").forEach(function(x){x.classList.remove("ativa")});
 }
 var home=document.getElementById("pagina-home");
-if(home){home.classList.remove("ativa");home.style.display="none"}
+if(home)home.classList.remove("ativa");
 p.classList.add("ativa");
-p.style.display="flex";
+/* A visibilidade fica a cargo das classes/CSS da página; display inline
+   fazia o layout sobreviver à navegação seguinte e causava troca visual. */
+p.style.removeProperty("display");
 if(typeof window.fecharMenusConta==="function")window.fecharMenusConta();
 if(typeof window.atualizarTopo==="function")window.atualizarTopo();
 try{
@@ -490,8 +492,8 @@ window.addEventListener("popstate",function(){
 var q=new URLSearchParams(location.search);
 if(q.get("pagina")==="cadastro-curriculo")abrirPaginaCadastroV103();
 else{
-p.classList.remove("ativa");p.style.display="none";
-var home=document.getElementById("pagina-home");if(home)home.style.display="";
+p.classList.remove("ativa");p.style.removeProperty("display");
+var home=document.getElementById("pagina-home");if(home)home.style.removeProperty("display");
 }
 });
 window.abrirPaginaCadastroCandidatoV103=abrirPaginaCadastroV103;
