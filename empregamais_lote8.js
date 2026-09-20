@@ -408,5 +408,6 @@ window.EmpregaMaisCentralPremiumV93={atualizar:render};
 window.addEventListener("load",function(){setTimeout(montar,1500)});
 document.addEventListener("click",function(){setTimeout(render,250)},true);
 window.addEventListener("storage",function(){setTimeout(render,100)});
+document.addEventListener("empregamais:candidatura-atualizada",function(){setTimeout(render,60)});
 })();
 //
