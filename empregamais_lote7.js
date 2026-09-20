@@ -579,8 +579,14 @@ setTimeout(prepararV81,950);
 setTimeout(prepararV81,1800);
 });
 var alvo=document.getElementById("pagina-painel-empresa");
-if(alvo){
-new MutationObserver(function(){prepararV81();}).observe(alvo,{childList:true,subtree:true});
+if(alvo&&window.MutationObserver){
+var tmV81=0;
+new MutationObserver(function(muts){
+var mudou=false;
+for(var i=0;i<muts.length;i++)if(muts[i].addedNodes&&muts[i].addedNodes.length){mudou=true;break;}
+if(!mudou)return;
+clearTimeout(tmV81);tmV81=setTimeout(prepararV81,80);
+}).observe(alvo,{childList:true,subtree:true});
 }
 })();
 //
