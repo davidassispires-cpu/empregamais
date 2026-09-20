@@ -190,7 +190,7 @@ return false;
 var oldIrPara=window.irPara;
 window.irPara=function(page){
 var p=String(page||"");
-var protectedPage=["painel-empresa","perfil-empresa","verificacao-empresa","publicar-vaga"].indexOf(p)&gt;=0;
+var protectedPage=["painel-empresa","perfil-empresa","verificacao-empresa","publicar","publicar-vaga"].indexOf(p)&gt;=0;
 if(!protectedPage){
 var r=oldIrPara.apply(this,arguments);
 if(typeof window.EmpregaMaisNavegacaoCentralEM==="function")window.EmpregaMaisNavegacaoCentralEM(p);
