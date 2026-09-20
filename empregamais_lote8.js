@@ -16,9 +16,18 @@ var p=Math.round(ok/total*100),n=document.getElementById("cvProgressoV85"),b=doc
 }
 function init(){
 var root=document.getElementById("curriculoOnlineV84");if(!root)return;
-carregarExtras();root.addEventListener("input",progresso);root.addEventListener("change",progresso);
-var save=document.getElementById("cvSalvarV84");if(save)save.addEventListener("click",salvarExtras);
-setTimeout(progresso,700);
+carregarExtras();
+if(root.getAttribute("data-extras-v85-instalado")!=="1"){
+ root.setAttribute("data-extras-v85-instalado","1");
+ root.addEventListener("input",progresso);
+ root.addEventListener("change",progresso);
+ var save=document.getElementById("cvSalvarV84");
+ if(save&amp;&amp;save.getAttribute("data-extras-v85-instalado")!=="1"){
+  save.setAttribute("data-extras-v85-instalado","1");
+  save.addEventListener("click",salvarExtras);
+ }
+}
+setTimeout(progresso,120);
 }
 function iniciarExtrasCurriculoV85(){
 var p=document.getElementById("curriculoOnlineV84");
