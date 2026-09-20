@@ -1330,14 +1330,21 @@ var a=vagas();
 for(var i=0;i<a.length;i++){
 var v=a[i],tr=acharLinha(v);if(!tr)continue;
 var td=tr.querySelector("td");if(!td)continue;
-var old=td.querySelector(".tags-vaga-v55");if(old)old.remove();
-if(!sim(v.destaque)&&!sim(v.contratacaoUrgente)&&!sim(v.urgente))continue;
+var old=td.querySelector(".tags-vaga-v55");
+var querDestaque=sim(v.destaque),querUrgente=sim(v.contratacaoUrgente)||sim(v.urgente);
+if(!querDestaque&&!querUrgente){if(old)old.remove();continue;}
+var atualD=!!(old&&old.querySelector(".tag-vaga-v55.destaque"));
+var atualU=!!(old&&old.querySelector(".tag-vaga-v55.urgente"));
+/* Não recria as tags quando o estado visual já corresponde à vaga.
+   Isso evita o MutationObserver disparar novamente por uma mutação criada por ele próprio. */
+if(old&&atualD===querDestaque&&atualU===querUrgente)continue;
+if(old)old.remove();
 var box=document.createElement("div");box.className="tags-vaga-v55";
-if(sim(v.destaque)){
+if(querDestaque){
 var d=document.createElement("span");d.className="tag-vaga-v55 destaque";
 d.innerHTML=svgStar()+" Destaque";box.appendChild(d);
 }
-if(sim(v.contratacaoUrgente)||sim(v.urgente)){
+if(querUrgente){
 var u=document.createElement("span");u.className="tag-vaga-v55 urgente";
 u.innerHTML=svgBolt()+" Contrata\u00E7\u00E3o Urgente";box.appendChild(u);
 }
@@ -1357,7 +1364,16 @@ document.addEventListener("empregamais:empresa-sincronizada",refresh);
 var corpo=document.getElementById("corpoTabelaPainelRefEM");
 if(corpo&&window.MutationObserver){
 var tm=0;
-new MutationObserver(function(){
+new MutationObserver(function(muts){
+var externa=false;
+for(var i=0;i<muts.length&&!externa;i++){
+ var nodes=[].slice.call(muts[i].addedNodes||[]).concat([].slice.call(muts[i].removedNodes||[]));
+ for(var j=0;j<nodes.length;j++){
+  var n=nodes[j];
+  if(!(n.nodeType===1&&(n.classList&&n.classList.contains("tags-vaga-v55")))){externa=true;break;}
+ }
+}
+if(!externa)return;
 clearTimeout(tm);tm=setTimeout(tags,100);
 }).observe(corpo,{childList:true,subtree:true});
 }
