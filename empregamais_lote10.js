@@ -299,6 +299,15 @@ var pagina=document.getElementById("pagina-painel-empresa");
 if(!pagina)return;
 var anterior=document.getElementById("painelReferenciaRecrutadorEM");
 if(anterior)anterior.remove();
+/* Restaura filhos originais escondidos por uma renderização anterior.
+   Sem isso, cada reconstrução do painel podia deixar o conteúdo-base
+   permanentemente com display:none. */
+Array.prototype.forEach.call(pagina.children,function(el){
+ if(el.id!=="painelReferenciaRecrutadorEM" && el.getAttribute("data-oculto-painel-ref-em")==="1"){
+  el.style.removeProperty("display");
+  el.removeAttribute("data-oculto-painel-ref-em");
+ }
+});
 var emp={};
 try{emp=typeof empresaLogadaPainelEM==="function"?(empresaLogadaPainelEM()||{}):{};}catch(e){}
 var nome=emp.nomeFantasia||emp.nome||emp.razaoSocial||sessionStorage.getItem("empresaNome")||"Sua empresa";
@@ -387,8 +396,13 @@ shell.innerHTML=
 "<div class='recrutador-rodape-tabela-ref-em'><span id='textoRodapePainelRefEM'></span><div class='recrutador-paginacao-ref-em'><button type='button' disabled='disabled'>&#8249;</button><button class='ativo' type='button'>1</button><button type='button' disabled='disabled'></button></div></div>"+
 "</section>"+
 "</main>";
-var filhos=pagina.children;
-for(var i=0;i<filhos.length;i++){filhos[i].style.display="none";}
+var filhos=Array.prototype.slice.call(pagina.children);
+for(var i=0;i<filhos.length;i++){
+ if(filhos[i]!==shell){
+  filhos[i].setAttribute("data-oculto-painel-ref-em","1");
+  filhos[i].style.display="none";
+ }
+}
 pagina.appendChild(shell);
 var aba="aprovadas";
 var busca="";
