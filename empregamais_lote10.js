@@ -501,7 +501,17 @@ var pagina=String((ev&&ev.detail&&ev.detail.pagina)||"");
 if(pagina==="painel-empresa")setTimeout(window.montarPainelReferenciaRecrutadorEM,120);
 else restaurarConteudoPainelRefEM();
 });
-document.addEventListener("DOMContentLoaded",function(){setTimeout(window.montarPainelReferenciaRecrutadorEM,500);});
-window.addEventListener("load",function(){setTimeout(window.montarPainelReferenciaRecrutadorEM,700);});
+function iniciarPainelReferenciaRecrutadorEM(){
+var pagina=document.getElementById("pagina-painel-empresa");
+var rota="";
+try{rota=String(new URLSearchParams(location.search).get("pagina")||"")}catch(e){}
+if(rota==="painel-empresa"||(pagina&amp;&amp;pagina.classList.contains("ativa"))){
+ setTimeout(window.montarPainelReferenciaRecrutadorEM,120);
+}else{
+ restaurarConteudoPainelRefEM();
+}
+}
+document.addEventListener("DOMContentLoaded",iniciarPainelReferenciaRecrutadorEM);
+window.addEventListener("load",iniciarPainelReferenciaRecrutadorEM);
 })();
 //
