@@ -263,6 +263,10 @@ if(logado()){
 if(typeof window.irPara==="function")window.irPara("curriculo");
 return;
 }
+if(typeof window.abrirPaginaCadastroCandidatoV103==="function"){
+window.abrirPaginaCadastroCandidatoV103();
+return;
+}
 if(typeof window.mostrarPagina==="function"){
 window.mostrarPagina("cadastro-curriculo-v101");
 }else{
