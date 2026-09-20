@@ -588,7 +588,6 @@ btn.setAttribute("aria-label","Gerenciar plano da empresa");
 window.abrirGerenciarPlanoEmpresaV81=abrirPlanoV81;
 window.addEventListener("load",function(){
 setTimeout(prepararV81,950);
-setTimeout(prepararV81,1800);
 });
 var alvo=document.getElementById("pagina-painel-empresa");
 if(alvo&&window.MutationObserver){
