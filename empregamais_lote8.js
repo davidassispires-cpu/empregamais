@@ -412,9 +412,23 @@ if(!a.length)return"<div class='cp93-empty'>Suas candidaturas aparecerão aqui a
 return a.slice().reverse().slice(0,5).map(function(x){var ad=aderencia(x),vi=visto(x),cargo=x.cargo||x.vaga||x.titulo||"Vaga",emp=x.empresa||x.empresa_nome||x.empresaNome||"Empresa";return"<div class='cp93-app'><div class='cp93-app-top'><div><strong>"+cargo+"</strong><br/><small>"+emp+"</small></div><span class='cp93-status "+(vi?"visto":"")+"'>"+status(x)+"</span></div><div class='cp93-line'><i class='cp93-dot ok'></i>Candidatura enviada <i class='cp93-dot "+(vi?"ok":"")+"'></i>"+(vi?"Visualizada pela empresa":"Aguardando visualização")+"</div>"+(ad?"<div class='cp93-aderencia'><div class='cp93-ad-top'><span>Aderência à vaga</span><b>"+ad+"%</b></div><div class='cp93-bar'><i style='width:"+ad+"%'></i></div></div>":"")+"</div>"}).join("");
 }
 window.EmpregaMaisCentralPremiumV93={atualizar:render};
-window.addEventListener("load",function(){setTimeout(montar,1500)});
-document.addEventListener("click",function(){setTimeout(render,250)},true);
-window.addEventListener("storage",function(){setTimeout(render,100)});
-document.addEventListener("empregamais:candidatura-atualizada",function(){setTimeout(render,60)});
+window.addEventListener("load",function(){setTimeout(montar,700)});
+var timerCentralPremiumV93=0;
+document.addEventListener("click",function(e){
+var alvo=e.target&amp;&amp;e.target.closest?e.target.closest("#pagina-painel-candidato button,#pagina-painel-candidato a,[data-candidato-tab]"):null;
+if(!alvo)return;
+clearTimeout(timerCentralPremiumV93);
+timerCentralPremiumV93=setTimeout(render,180);
+},true);
+window.addEventListener("storage",function(e){
+if(!e.key || ["candidaturasEmpregaMais","candidaturas","candidatosEmpregaMais"].indexOf(e.key)&gt;=0){
+ clearTimeout(timerCentralPremiumV93);
+ timerCentralPremiumV93=setTimeout(render,100);
+}
+});
+document.addEventListener("empregamais:candidatura-atualizada",function(){
+clearTimeout(timerCentralPremiumV93);
+timerCentralPremiumV93=setTimeout(render,60);
+});
 })();
 //
