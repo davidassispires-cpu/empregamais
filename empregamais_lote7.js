@@ -752,9 +752,9 @@ executandoV83=false;
 }
 window.EmpregaMaisAtualizarDistanciaPreviaV83=garantirDistanciaPreviaV83;
 window.addEventListener("load",function(){
-[150,500,1000,1800,3000].forEach(function(ms){
-setTimeout(garantirDistanciaPreviaV83,ms);
-});
+/* Uma execução inicial é suficiente; novas vagas são tratadas pelo observer
+   abaixo, evitando cinco reconstruções visuais após cada F5. */
+setTimeout(garantirDistanciaPreviaV83,300);
 });
 var home=document.getElementById("pagina-home");
 if(home){
