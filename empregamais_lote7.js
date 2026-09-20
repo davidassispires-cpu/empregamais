@@ -72,7 +72,16 @@ var lista=listaV60();if(!lista)return;
 lista.classList.add("carrossel-destaques-v60");
 if(timerV60)clearInterval(timerV60);
 timerV60=setInterval(function(){
-if(pausadoV60||!lista.isConnected||lista.children.length<2)return;
+if(!lista.isConnected){
+ clearInterval(timerV60);
+ timerV60=null;
+ return;
+}
+var paginaDestaques=document.getElementById("pagina-destaques-v60");
+var home=document.getElementById("pagina-home");
+var visivel=(paginaDestaques&amp;&amp;paginaDestaques.classList.contains("ativa")) ||
+            (home&amp;&amp;home.classList.contains("ativa")&amp;&amp;home.contains(lista));
+if(!visivel||document.hidden||pausadoV60||lista.children.length&lt;2)return;
 var primeiro=lista.querySelector(".vaga-card")||lista.firstElementChild;
 if(!primeiro)return;
 var passo=primeiro.getBoundingClientRect().width+16;
