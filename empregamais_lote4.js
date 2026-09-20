@@ -791,6 +791,19 @@ function finalizarEdicaoSeguraEM(res){
  try{atualizadas=typeof carregarVagasPortal==="function"?(carregarVagasPortal()||[]):[];}catch(e){atualizadas=[];}
  if(Array.isArray(atualizadas)){
   var pos=atualizadas.findIndex(function(v){return String(v&&v.id||"")===String(original.id);});
+  /* Remove eventual duplicata criada pelo fluxo antigo durante a edição. */
+  if(pos>=0){
+   atualizadas=atualizadas.filter(function(v,i){
+    if(i===pos)return true;
+    var mesmoId=String(v&&v.id||"")===String(original.id);
+    var criadoNaEdicao=String(v&&v.id||"")!==String(original.id) &&
+     String(v&&v.empresaCnpj||"")===String(original.empresaCnpj||"") &&
+     String(v&&v.cargo||v&&v.titulo||"")===String(original.cargo||original.titulo||"") &&
+     Math.abs((new Date(v&&v.dataAtualizacao||v&&v.updated_at||0)).getTime()-(new Date()).getTime())<120000;
+    return !mesmoId&&!criadoNaEdicao;
+   });
+   pos=atualizadas.findIndex(function(v){return String(v&&v.id||"")===String(original.id);});
+  }
   if(pos>=0){
    /* A edição nunca cria uma segunda identidade nem devolve uma vaga já aprovada
       para a fila pendente. Mantém também o histórico de edição pós-aprovação. */
