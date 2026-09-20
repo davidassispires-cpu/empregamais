@@ -360,7 +360,22 @@ var em=email(),all=arr("candidaturasEmpregaMais").concat(arr("candidaturas"));
 return all.filter(function(x){return norm(x.email||x.candidato_email||x.candidatoEmail)===em})
 }
 function visto(x){return x.visualizada===true||x.curriculo_visualizado===true||!!x.visualizado_em||!!x.visualizadoEm}
-function status(x){return x.status_processo||x.statusProcesso||x.status||"Candidatura enviada"}
+function status(x){return x.status_processo||x.statusProcesso||x.etapa||x.status||"Candidatura enviada"}
+function statusNormalizadoV93(x){
+var s=norm(status(x));
+try{s=s.normalize("NFD").replace(/[\u0300-\u036f]/g,"")}catch(e){}
+if(window.EmpregaMaisEtapasCandidatoEM&&typeof window.EmpregaMaisEtapasCandidatoEM.normalizar==="function"){
+ return window.EmpregaMaisEtapasCandidatoEM.normalizar(s);
+}
+if(s==="enviada"||s==="candidatura enviada"||s==="pendente"||s==="em analise")return "em avaliacao";
+if(s==="selecionada")return "selecionado";
+if(s==="contato")return "em contato";
+if(s==="em entrevista")return "entrevista";
+if(s==="aprovada")return "aprovado";
+if(s==="rejeitada"||s==="reprovada"||s==="rejeitado")return "reprovado";
+if(s==="contratada")return "contratado";
+return s;
+}
 function aderencia(x){var n=Number(x.aderencia||x.percentual_aderencia||x.percentualAderencia);return isFinite(n)&&n>0?Math.min(100,Math.round(n)):0}
 function montar(){
 var page=document.getElementById("pagina-painel-candidato");if(!page)return;
@@ -373,7 +388,7 @@ render();
 }
 function render(){
 var box=document.getElementById("centralPremiumV93");if(!box)return;
-var a=minhas(),vis=a.filter(visto).length,processo=a.filter(function(x){var s=norm(status(x));return s!=="candidatura enviada"&&s!=="enviada"}).length,entrev=a.filter(function(x){return norm(status(x)).includes("entrevista")}).length,max=a.reduce(function(m,x){return Math.max(m,aderencia(x))},0);
+var a=minhas(),vis=a.filter(visto).length,processo=a.filter(function(x){var s=statusNormalizadoV93(x);return ["selecionado","em contato","entrevista","aprovado"].indexOf(s)>=0}).length,entrev=a.filter(function(x){return statusNormalizadoV93(x)==="entrevista"}).length,max=a.reduce(function(m,x){return Math.max(m,aderencia(x))},0);
 box.innerHTML="<div class='cp93-head'><div><small>CENTRAL PREMIUM</small><h2>Inteligência da sua busca por emprego</h2><p>Acompanhe suas candidaturas e os recursos avançados da sua conta.</p></div><span class='cp93-pill'>★ PREMIUM ATIVO</span></div>"+
 "<div class='cp93-metrics'><div class='cp93-metric'><span>CANDIDATURAS</span><strong>"+a.length+"</strong><em>enviadas</em></div><div class='cp93-metric'><span>VISUALIZADAS</span><strong>"+vis+"</strong><em>pela empresa</em></div><div class='cp93-metric'><span>EM PROCESSO</span><strong>"+processo+"</strong><em>com atualização</em></div><div class='cp93-metric'><span>ENTREVISTAS</span><strong>"+entrev+"</strong><em>registradas</em></div><div class='cp93-metric'><span>MAIOR ADERÊNCIA</span><strong>"+(max?max+"%":"—")+"</strong><em>entre candidaturas</em></div></div>"+
 "<div class='cp93-grid'><div class='cp93-box'><h3>Minhas candidaturas</h3><p>Movimentações mais recentes do seu processo seletivo.</p><div id='cp93Apps'>"+apps(a)+"</div></div>"+
