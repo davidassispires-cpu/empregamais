@@ -55,14 +55,35 @@ var nome=emp.nomeFantasia||emp.nome||emp.razaoSocial||sessionStorage.getItem("em
 var vagas=vagasEmpresaRefEM();
 var ids=vagas.map(function(v){return String(v.id);});
 var cs=candidaturasRefEM().filter(function(c){return pertenceRefEM(c,ids);});
+function normStatusRefEM(v){
+return String(v==null?"":v).trim().toLowerCase()
+.normalize?String(v==null?"":v).trim().toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g,""):String(v==null?"":v).trim().toLowerCase();
+}
+function aprovacaoRefEM(v){
+var a=normStatusRefEM(v.aprovacao||v.statusAprovacao||v.status_aprovacao||v.approvalStatus||"");
+var st=normStatusRefEM(v.status||"");
+if(a==="aprovado")a="aprovada";
+if(a==="reprovada"||a==="reprovado")a="rejeitada";
+if(a==="aguardando aprovacao"||a==="em analise")a="pendente";
+if(!a){
+ if(st==="pendente"||st==="em analise")a="pendente";
+ else if(st==="aprovada"||st==="aprovado"||st==="publicada"||st==="ativa")a="aprovada";
+ else if(st==="rejeitada"||st==="reprovada"||st==="reprovado")a="rejeitada";
+}
+return a;
+}
+function encerradaRefEM(v){
+var st=normStatusRefEM(v.status||"");
+return st==="encerrada"||st==="excluida"||st==="cancelada"||v.ativa===false;
+}
 var aprovadas=vagas.filter(function(v){
-return String(v.aprovacao||"").toLowerCase()==="aprovada"&&String(v.status||"").toLowerCase()!=="encerrada";
+return !encerradaRefEM(v)&&aprovacaoRefEM(v)==="aprovada";
 });
 var pendentes=vagas.filter(function(v){
-return String(v.aprovacao||"").toLowerCase()==="pendente"&&String(v.status||"").toLowerCase()!=="encerrada";
+return !encerradaRefEM(v)&&aprovacaoRefEM(v)==="pendente";
 });
 var encerradas=vagas.filter(function(v){
-return String(v.status||"").toLowerCase()==="encerrada";
+return encerradaRefEM(v);
 });
 var processo=cs.filter(function(c){
 var s=String(c.status||"").toLowerCase();
@@ -145,6 +166,7 @@ try{n=typeof contarCandidaturasVaga==="function"?contarCandidaturasVaga(v.id):0;
 var st=aba==="pendentes"?"Em aprova\u00e7\u00e3o":(aba==="encerradas"?"Encerrada":"Ativa");
 var cls=aba==="pendentes"?"pendente":(aba==="encerradas"?"encerrada":"");
 var tr=document.createElement("tr");
+tr.setAttribute("data-vaga-id",String(v.id||""));
 tr.innerHTML=
 "<td><strong>"+txtRefEM(titulo)+"</strong>"+(empresa?"<small>"+txtRefEM(empresa)+"</small>":"")+"</td>"+
 "<td>"+txtRefEM(local)+"</td><td>"+txtRefEM(modalidade)+"</td><td>"+txtRefEM(salario)+"</td>"+
