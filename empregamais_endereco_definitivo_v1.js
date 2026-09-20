@@ -77,8 +77,22 @@ document.addEventListener("click",function(e){
  var l=e.target&&e.target.closest?e.target.closest(".privacidade-opcao-v130 label"):null;
  if(l)setTimeout(atualizar,0);
 },true);
-var obs=new MutationObserver(function(){if(campo("enderecoPreviewV150"))setTimeout(atualizar,0);});
-if(document.documentElement)obs.observe(document.documentElement,{childList:true,subtree:true});
+var obs=null;
+function observarEndereco(){
+ if(obs||!window.MutationObserver)return;
+ var formulario=document.getElementById("formVaga");
+ if(!formulario)return;
+ obs=new MutationObserver(function(muts){
+  var precisa=false;
+  for(var i=0;i<muts.length;i++){
+   if(muts[i].addedNodes&&muts[i].addedNodes.length){precisa=true;break;}
+  }
+  if(precisa&&campo("enderecoPreviewV150"))setTimeout(atualizar,40);
+ });
+ obs.observe(formulario,{childList:true,subtree:true});
+}
+observarEndereco();
+document.addEventListener("DOMContentLoaded",observarEndereco);
 if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",function(){setTimeout(atualizar,250);});
 else setTimeout(atualizar,250);
 window.addEventListener("load",function(){setTimeout(atualizar,500);});
