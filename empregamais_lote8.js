@@ -286,7 +286,19 @@ function salvarCand(c){var ix=candidatos.findIndex(function(x){return norm(x.ema
 function darPremium(c,m){var d=new Date();d.setMonth(d.getMonth()+m);c.plano_candidato="premium";c.premium_valido_ate=d.toISOString();c.premium_origem="presente_admin";salvarCand(c);alert("Premium concedido ao candidato por "+m+" meses.");detCand(c)}
 function removerPremium(c){c.plano_candidato="gratuito";delete c.premium_valido_ate;delete c.premiumValidoAte;salvarCand(c);alert("Premium removido do candidato.");detCand(c)}
 window.EmpregaMaisAdminV91={abrir:abrir,recarregar:carregar};
-window.addEventListener("load",function(){setTimeout(montar,1100)});
+function iniciarAdminV91(){
+var q="";
+try{q=new URLSearchParams(location.search).get("pagina")||"";}catch(e){}
+var pagina=document.getElementById("pagina-painel-admin");
+if(q==="painel-admin" || q==="admin" || (pagina&amp;&amp;pagina.classList.contains("ativa"))){
+ montar();
+}
+}
+window.addEventListener("load",function(){setTimeout(iniciarAdminV91,500)});
+document.addEventListener("empregamais:navegacao",function(ev){
+var p=String((ev&amp;&amp;ev.detail&amp;&amp;ev.detail.pagina)||"");
+if(p==="painel-admin" || p==="admin")setTimeout(iniciarAdminV91,120);
+});
 })();
 //
 ;
