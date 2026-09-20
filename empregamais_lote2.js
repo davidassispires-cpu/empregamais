@@ -156,26 +156,12 @@ box.innerHTML="&lt;div class='vazio'&gt;N\u00E3o foi poss\u00EDvel carregar as v
 });
 };
 window.carregarVerificacoesAdminSupabaseEM=window.renderizarVerificacoesAdmin;
-var irAnterior=window.irPara;
-if(typeof irAnterior==="function"){
-window.irPara=function(p){
-var r=irAnterior.apply(this,arguments);
-if(String(p)==="painel-admin" || String(p)==="admin"){
+document.addEventListener("empregamais:navegacao",function(ev){
+var p=String((ev&amp;&amp;ev.detail&amp;&amp;ev.detail.pagina)||"");
+if(p==="painel-admin" || p==="admin"){
 setTimeout(window.renderizarVerificacoesAdmin,180);
 }
-return r;
-};
-}
-var mostrarAnterior=window.mostrarPagina;
-if(typeof mostrarAnterior==="function"){
-window.mostrarPagina=function(p){
-var r=mostrarAnterior.apply(this,arguments);
-if(String(p)==="painel-admin" || String(p)==="admin"){
-setTimeout(window.renderizarVerificacoesAdmin,180);
-}
-return r;
-};
-}
+});
 document.addEventListener("DOMContentLoaded",function(){
 if(localStorage.getItem(TOKEN_KEY)){
 setTimeout(window.renderizarVerificacoesAdmin,700);
@@ -602,22 +588,12 @@ console.error("Status verifica\u00E7\u00E3o recrutador:",e);
 return null;
 }
 };
-var ir0=window.irPara;
-if(typeof ir0==="function"){
-window.irPara=function(p){
-var r=ir0.apply(this,arguments);
-if(String(p).indexOf("recrut")&gt;=0) setTimeout(window.atualizarStatusVerificacaoRecrutadorEM,180);
-return r;
-};
+document.addEventListener("empregamais:navegacao",function(ev){
+var p=String((ev&amp;&amp;ev.detail&amp;&amp;ev.detail.pagina)||"");
+if(p.indexOf("recrut")&gt;=0 || p==="painel-empresa"){
+setTimeout(window.atualizarStatusVerificacaoRecrutadorEM,180);
 }
-var mostrar0=window.mostrarPagina;
-if(typeof mostrar0==="function"){
-window.mostrarPagina=function(p){
-var r=mostrar0.apply(this,arguments);
-if(String(p).indexOf("recrut")&gt;=0) setTimeout(window.atualizarStatusVerificacaoRecrutadorEM,180);
-return r;
-};
-}
+});
 document.addEventListener("DOMContentLoaded",function(){
 setTimeout(window.atualizarStatusVerificacaoRecrutadorEM,500);
 setTimeout(window.atualizarStatusVerificacaoRecrutadorEM,1400);
