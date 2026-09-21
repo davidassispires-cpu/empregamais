@@ -24,9 +24,16 @@ el.style.display="none";
 }
 }
 window.limparUrgenciaDaPontaV59=limparUrgenciaDaPontaV59;
+function painelEmpresaAtivoV59(){
+var p=document.getElementById("pagina-painel-empresa");
+return !!(p&amp;&amp;(p.classList.contains("ativa")||p.classList.contains("pagina-ativa")));
+}
 window.addEventListener("load",function(){
-setTimeout(limparUrgenciaDaPontaV59,150);
-setTimeout(limparUrgenciaDaPontaV59,700);
+if(painelEmpresaAtivoV59())setTimeout(limparUrgenciaDaPontaV59,180);
+});
+document.addEventListener("empregamais:navegacao",function(ev){
+var p=String((ev&amp;&amp;ev.detail&amp;&amp;ev.detail.pagina)||"");
+if(p==="painel-empresa")setTimeout(limparUrgenciaDaPontaV59,120);
 });
 var corpo=document.getElementById("corpoTabelaPainelRefEM");
 if(corpo&&window.MutationObserver){
