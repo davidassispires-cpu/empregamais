@@ -1101,9 +1101,14 @@ var stats=hero.querySelector(".perfil-stats-v29");
 if(stats)hero.appendChild(stats);
 }
 window.normalizarHeroEmpresaV30=normalizarHeroV30;
-window.addEventListener("load",function(){
-setTimeout(normalizarHeroV30,450);
-setTimeout(normalizarHeroV30,1100);
+function perfilPublicoAtivoV30(){
+var p=document.getElementById("pagina-perfil-publico-empresa-em");
+return !!(p&amp;&amp;(p.classList.contains("ativa")||p.classList.contains("pagina-ativa")));
+}
+window.addEventListener("load",function(){if(perfilPublicoAtivoV30())setTimeout(normalizarHeroV30,220);});
+document.addEventListener("empregamais:navegacao",function(ev){
+var p=String((ev&amp;&amp;ev.detail&amp;&amp;ev.detail.pagina)||"");
+if(p==="perfil-publico-empresa"||p==="empresa-publica")setTimeout(normalizarHeroV30,180);
 });
 document.addEventListener("click",function(e){
 var a=e.target.closest("button,a");
