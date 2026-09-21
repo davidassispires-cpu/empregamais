@@ -1108,3 +1108,36 @@ body.sessao-empresa .menu-publico,body.sessao-empresa .menu-drop-candidato{displ
 #pagina-vaga .vaga-curriculo-side{background:var(--vaga-soft)!important}
 #pagina-vaga .vaga-curriculo-side-icone{background:#e1f0fb!important;color:var(--vaga-blue)!important}
 @media(max-width:760px){#pagina-vaga .vaga-info-grid{grid-template-columns:1fr 1fr!important}#pagina-vaga .vaga-info-grid>div:nth-child(3){border-left:0!important;border-top:1px solid #dbe7f0!important}#pagina-vaga .vaga-info-grid>div:nth-child(4){border-top:1px solid #dbe7f0!important}}
+
+/* EMPREGAMAIS-VAGA-REDESIGN-V11 — mudança estrutural visível */
+#pagina-vaga{background:#f5f8fb!important}
+#pagina-vaga .vaga-layout-v2{grid-template-columns:minmax(0,1fr) 330px!important;gap:24px!important;max-width:1220px!important}
+#pagina-vaga .vaga-hero-card{padding:0!important;overflow:hidden!important;border:1px solid #dce6ee!important;border-radius:18px!important;background:#fff!important}
+#pagina-vaga .vaga-hero-identidade{padding:26px 28px 18px!important;background:linear-gradient(105deg,#f0f8ff 0%,#fff 62%)!important;gap:20px!important}
+#pagina-vaga .vaga-hero-logo{width:104px!important;height:104px!important;flex-basis:104px!important;border-radius:16px!important;padding:10px!important}
+#pagina-vaga .vaga-hero-texto h1{font-size:32px!important;letter-spacing:-.8px!important;margin-bottom:7px!important}
+#pagina-vaga .vaga-hero-empresa{font-size:15px!important}
+#pagina-vaga .vaga-hero-selos span{padding:7px 11px!important;border-radius:20px!important}
+#pagina-vaga .vaga-info-grid{margin:0!important;border:0!important;border-top:1px solid #e0eaf2!important;border-radius:0!important;background:#fff!important;grid-template-columns:repeat(4,1fr)!important}
+#pagina-vaga .vaga-info-grid>div{min-height:82px!important;padding:18px 12px 16px 52px!important;background:#fff!important}
+#pagina-vaga .vaga-info-grid>div+div{border-left:1px solid #e4ebf1!important}
+#pagina-vaga .vaga-info-grid .info-svg{left:17px!important;top:26px!important;width:25px!important;height:25px!important}
+#pagina-vaga .vaga-info-grid small{font-size:9px!important;color:#7890a5!important;margin-bottom:6px!important}
+#pagina-vaga .vaga-info-grid strong{font-size:13.5px!important;color:#143d61!important}
+#pagina-vaga .vaga-conteudo-v2{padding:0 28px 30px!important;border-radius:18px!important}
+#pagina-vaga .vaga-tabs{margin:0 -28px 25px!important;padding:0 28px!important;background:#fbfdff!important}
+#pagina-vaga .vaga-tabs a{font-size:13px!important;padding:18px 0 15px!important}
+#pagina-vaga .vaga-conteudo-v2 h2{font-size:22px!important;margin-top:2px!important}
+#pagina-vaga .vaga-texto{font-size:14.5px!important;line-height:1.8!important}
+#pagina-vaga .vaga-layout-v2 aside{gap:16px!important}
+#pagina-vaga .vaga-acao-v2{padding:24px!important;border-radius:18px!important;background:linear-gradient(155deg,#073f70 0%,#0875d1 100%)!important;color:#fff!important;box-shadow:0 12px 28px rgba(7,79,137,.16)!important}
+#pagina-vaga .vaga-acao-v2:before{display:none!important}
+#pagina-vaga .vaga-acao-v2 h2{font-size:21px!important;color:#fff!important}
+#pagina-vaga .vaga-acao-v2>p{color:#d9ecfb!important;font-size:12.5px!important}
+#pagina-vaga .vaga-candidatar-principal{background:#fff!important;color:#075b9e!important;height:52px!important;box-shadow:none!important}
+#pagina-vaga .vaga-salvar-principal{background:rgba(255,255,255,.08)!important;color:#fff!important;border:1px solid rgba(255,255,255,.48)!important}
+#pagina-vaga .vaga-publicacao{color:#d9ecfb!important}
+#pagina-vaga .denunciar-vaga{color:#fff!important;opacity:.78!important}
+#pagina-vaga .vaga-curriculo-side{border-radius:18px!important;background:#fff!important;border:1px solid #dce6ee!important;padding:20px!important}
+#pagina-vaga .vaga-empresa-side{border-radius:18px!important;padding:20px!important}
+@media(max-width:900px){#pagina-vaga .vaga-layout-v2{grid-template-columns:1fr!important}#pagina-vaga .vaga-hero-identidade{padding:20px!important}#pagina-vaga .vaga-info-grid{grid-template-columns:1fr 1fr!important}}
