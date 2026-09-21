@@ -96,3 +96,86 @@ loginEmpresa=function(e){e.preventDefault();const cnpj=nums($("#loginEmpresaCnpj
 
 async function validarSessaoSupabaseEmpresaEM(){const token=sbTokenEM();if(!token)return false;try{const u=await sbJsonEM(EMPREGAMAIS_SUPABASE_URL+"/auth/v1/user",{method:"GET",headers:sbHeadersEM(token)});const e=await sbBuscarMinhaEmpresaEM();return !!(u?.id&&e?.id)}catch(err){sessionStorage.removeItem(EMPREGAMAIS_SB_TOKEN);sessionStorage.removeItem(EMPREGAMAIS_SB_REFRESH);return false}}
 window.addEventListener("load",()=>{if(sessionStorage.getItem(EMPREGAMAIS_SB_TOKEN))validarSessaoSupabaseEmpresaEM()});
+
+/* =========================================================
+   EMPREGAMAIS — VAGAS NO SUPABASE
+   Fonte persistente: public.vagas
+========================================================= */
+let sbVagasCacheEM=[];
+
+function sbMapVagaEM(v){
+  if(!v)return null;
+  return {
+    id:v.id, empresaId:v.empresa_id, userId:v.user_id,
+    empresa:v.empresa||'', empresaCnpj:v.empresa_cnpj||'',
+    cargo:v.cargo||'', area:v.area||'', contrato:v.contrato||'',
+    modalidade:v.modalidade||'', cep:v.cep||'', estado:v.estado||'', cidade:v.cidade||'',
+    dataEncerramento:v.data_encerramento||'', escolaridade:v.escolaridade||'',
+    experiencia:v.experiencia||'', jornada:v.jornada||'', pcd:v.pcd||'',
+    salario:v.salario||'', salarioMax:v.salario_max||'', salarioCombinar:!!v.salario_combinar,
+    horarioEntrada:v.horario_entrada||'', horarioSaida:v.horario_saida||'',
+    descricao:v.descricao||'', requisitos:v.requisitos||'', beneficios:v.beneficios||'',
+    beneficiosLista:Array.isArray(v.beneficios_lista)?v.beneficios_lista:[],
+    beneficiosOutros:v.beneficios_outros||'', sobreEmpresa:v.sobre_empresa||'',
+    senior50:!!v.senior50, confidencial:!!v.confidencial, destaque:!!v.destaque, urgente:!!v.urgente,
+    destaqueSolicitado:!!v.destaque_solicitado, urgenciaSolicitada:!!v.urgencia_solicitada,
+    status:v.status||'pendente', criadoEm:v.criado_em||'', editadoEm:v.editado_em||'',
+    destaqueAte:v.destaque_ate||'', motivoReprovacao:v.motivo_reprovacao||'',
+    edicoesAposAprovacao:Number(v.edicoes_apos_aprovacao||0)
+  };
+}
+function sbUsuarioAtualEM(){const t=sbTokenEM();if(!t)return Promise.reject(new Error('Sessão Supabase ausente.'));return sbJsonEM(EMPREGAMAIS_SUPABASE_URL+'/auth/v1/user',{method:'GET',headers:sbHeadersEM(t)})}
+function sbCarregarVagasEM(){
+  const t=sbTokenEM();
+  const publico=sbJsonEM(EMPREGAMAIS_SUPABASE_URL+'/rest/v1/vagas?select=*&status=eq.aprovada&order=criado_em.desc',{method:'GET',headers:sbHeadersEM()});
+  const proprio=t?sbUsuarioAtualEM().then(u=>sbJsonEM(EMPREGAMAIS_SUPABASE_URL+'/rest/v1/vagas?select=*&user_id=eq.'+encodeURIComponent(u.id)+'&order=criado_em.desc',{method:'GET',headers:sbHeadersEM(t)})).catch(()=>[]):Promise.resolve([]);
+  return Promise.all([publico,proprio]).then(r=>{const mapa={};r.flat().forEach(v=>{if(v&&v.id)mapa[v.id]=v});sbVagasCacheEM=Object.values(mapa).map(sbMapVagaEM);gravar('empregaMaisVagas',sbVagasCacheEM);return sbVagasCacheEM})
+}
+function sbEmpresaAtualEM(){
+  return sbUsuarioAtualEM().then(u=>sbJsonEM(EMPREGAMAIS_SUPABASE_URL+'/rest/v1/empresas?select=*&user_id=eq.'+encodeURIComponent(u.id)+'&limit=1',{method:'GET',headers:sbHeadersEM(sbTokenEM())}).then(a=>Array.isArray(a)&&a[0]?a[0]:null))
+}
+function sbDadosVagaAtualEM(){
+  const v=id=>$('#'+id)?.value.trim()||'';
+  return sbEmpresaAtualEM().then(emp=>{
+    if(!emp)throw new Error('Empresa não encontrada no Supabase.');
+    return {empresaId:emp.id,userId:emp.user_id,empresa:v('empresaVaga')||emp.nome_fantasia||emp.nome||'',empresaCnpj:emp.cnpj||sessionStorage.getItem('empresaCnpj')||'',cargo:v('cargoVaga'),area:v('areaVaga'),contrato:v('contratoVaga'),modalidade:v('modalidadeVaga'),cep:v('cepVaga'),estado:v('estadoVaga'),cidade:v('cidadeVaga'),dataEncerramento:v('dataEncerramentoVaga')||null,escolaridade:v('escolaridadeVaga'),experiencia:v('experienciaVaga'),jornada:v('jornadaVaga'),pcd:v('pcdVaga'),salario:$('#salarioCombinarVaga')?.checked?'A combinar':v('salarioVaga'),salarioMax:v('salarioMaxVaga'),salarioCombinar:!!$('#salarioCombinarVaga')?.checked,horarioEntrada:v('horarioEntradaVaga'),horarioSaida:v('horarioSaidaVaga'),descricao:v('descricaoVaga'),requisitos:v('requisitosVaga'),beneficios:beneficiosSelecionados().join(' · '),beneficiosLista:beneficiosSelecionados().filter(x=>x!==v('beneficiosVaga')),beneficiosOutros:v('beneficiosVaga'),sobreEmpresa:v('sobreEmpresaVaga'),senior50:!!$('#senior50Vaga')?.checked,confidencial:!!$('#vagaConfidencial')?.checked,destaque:!!$('#vagaDestaque')?.checked,urgente:!!$('#vagaUrgente')?.checked}
+  })
+}
+function sbVagaPayloadEM(d,editId){
+  const gratuito=planoEmpresaAtual().nome==='Grátis';
+  if(gratuito&&d.destaque&&!editId){d.destaque_solicitado=true;d.destaque=false}
+  if(gratuito&&d.urgente&&!editId){d.urgencia_solicitada=true;d.urgente=false}
+  return {user_id:d.userId,empresa_id:d.empresaId,empresa:d.empresa,empresa_cnpj:nums(d.empresaCnpj),cargo:d.cargo,area:d.area,contrato:d.contrato,modalidade:d.modalidade,cep:d.cep,estado:d.estado,cidade:d.cidade,data_encerramento:d.dataEncerramento||null,escolaridade:d.escolaridade,experiencia:d.experiencia,jornada:d.jornada,pcd:d.pcd,salario:d.salario,salario_max:d.salarioMax,salario_combinar:d.salarioCombinar,horario_entrada:d.horarioEntrada,horario_saida:d.horarioSaida,descricao:d.descricao,requisitos:d.requisitos,beneficios:d.beneficios,beneficios_lista:d.beneficiosLista||[],beneficios_outros:d.beneficiosOutros,sobre_empresa:d.sobreEmpresa,senior50:d.senior50,confidencial:d.confidencial,destaque:d.destaque,urgente:d.urgente,destaque_solicitado:d.destaque_solicitado||false,urgencia_solicitada:d.urgencia_solicitada||false,status:'pendente'}
+}
+publicarVagaNova=async function(e){
+  e.preventDefault();
+  if(!sbTokenEM()){msg('#msgPublicarVaga','Sua sessão de empresa expirou. Entre novamente.');setTimeout(()=>irPara('login-empresa'),700);return}
+  const fim=$('#dataEncerramentoVaga')?.value||'';
+  if(fim&&new Date(fim+'T23:59:59')<new Date()){msg('#msgPublicarVaga','A data de encerramento precisa ser futura.');mostrarEtapa(2);return}
+  const editId=sessionStorage.getItem('vagaEdicao');
+  const btn=$('#btnPublicarVaga');if(btn){btn.disabled=true;btn.textContent='Enviando...'}
+  try{
+    const dados=await sbDadosVagaAtualEM(), payload=sbVagaPayloadEM(dados,editId);
+    const erroPlano=validarRecursosPlano(Object.assign({},dados,{destaque:payload.destaque,urgente:payload.urgente}),editId);
+    if(erroPlano)throw new Error(erroPlano);
+    if(editId){
+      const antigo=sbVagasCacheEM.find(v=>v.id===editId)||ler('empregaMaisVagas').find(v=>v.id===editId);
+      if(!antigo)throw new Error('Não foi possível localizar esta vaga para edição.');
+      const precisaReanalise=antigo.status==='aprovada';
+      payload.status=precisaReanalise?'pendente':antigo.status||'pendente';
+      payload.editado_em=new Date().toISOString();
+      payload.edicoes_apos_aprovacao=precisaReanalise?Number(antigo.edicoesAposAprovacao||0)+1:Number(antigo.edicoesAposAprovacao||0);
+      payload.motivo_reprovacao=null;
+      const r=await sbJsonEM(EMPREGAMAIS_SUPABASE_URL+'/rest/v1/vagas?id=eq.'+encodeURIComponent(editId),{method:'PATCH',headers:Object.assign(sbHeadersEM(sbTokenEM()),{'Prefer':'return=representation'}),body:JSON.stringify(payload)});
+      if(!Array.isArray(r)||!r[0])throw new Error('O Supabase não confirmou a alteração da vaga.');
+    }else{
+      const r=await sbJsonEM(EMPREGAMAIS_SUPABASE_URL+'/rest/v1/vagas',{method:'POST',headers:Object.assign(sbHeadersEM(sbTokenEM()),{'Prefer':'return=representation'}),body:JSON.stringify(payload)});
+      if(!Array.isArray(r)||!r[0])throw new Error('O Supabase não confirmou a publicação da vaga.');
+    }
+    sessionStorage.removeItem('vagaEdicao');$('#formVaga')?.reset();await sbCarregarVagasEM();msg('#msgPublicarVaga',editId?'Alterações salvas. A vaga voltou para análise.':'Vaga enviada para análise.',true);setTimeout(()=>irPara('painel-empresa'),900)
+  }catch(err){console.error('EmpregaMais/Supabase vaga:',err);msg('#msgPublicarVaga',err.message||'Não foi possível salvar a vaga.')}finally{if(btn){btn.disabled=false;btn.textContent='Publicar vaga'}}
+};
+vagasDaEmpresa=function(){const c=nums(sessionStorage.getItem('empresaCnpj')||'');return sbVagasCacheEM.length?sbVagasCacheEM.filter(v=>nums(v.empresaCnpj)===c):ler('empregaMaisVagas').filter(v=>nums(v.empresaCnpj)===c)};
+const _renderizarVagasPortalLocalEM=renderizarVagasPortal;
+renderizarVagasPortal=function(){const box=$('#listaVagasPortal');if(box&&sbVagasCacheEM.length)return _renderizarVagasPortalLocalEM();if(box&&!sbVagasCacheEM.length)sbCarregarVagasEM().then(()=>{try{_renderizarVagasPortalLocalEM()}catch(e){console.error(e)}}).catch(e=>{console.error('Supabase vagas:',e);try{_renderizarVagasPortalLocalEM()}catch(x){}})};
+document.addEventListener('DOMContentLoaded',()=>{setTimeout(()=>{if(sbTokenEM())sbCarregarVagasEM().catch(()=>{});else sbCarregarVagasEM().catch(()=>{})},250)});
