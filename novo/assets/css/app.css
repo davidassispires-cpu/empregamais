@@ -519,3 +519,25 @@ body.sessao-empresa .menu-publico,body.sessao-empresa .menu-drop-candidato{displ
 #pagina-publicar .em-local-opcoes{display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:12px!important;max-width:720px!important;margin:0 auto!important}#pagina-publicar .em-local-opcoes label{min-height:112px!important;padding:17px 14px!important;border:1px solid #d9e4e6!important;border-radius:13px!important;background:#fff!important;display:flex!important;align-items:center!important;justify-content:center!important;gap:13px!important;text-align:left!important;cursor:pointer!important}#pagina-publicar .em-local-opcoes label:hover{border-color:#91bdc2!important;background:#f8fcfc!important}#pagina-publicar .em-local-opcoes label:focus-within{border:2px solid #0b6572!important;background:#eef8f8!important;box-shadow:0 5px 16px rgba(11,101,114,.07)!important}
 #pagina-publicar .em-local-opcoes input[type=radio]{width:22px!important;height:22px!important;min-width:22px!important;accent-color:#0b6572!important;margin:0!important}#pagina-publicar .em-local-opcoes span{display:flex!important;flex-direction:column!important;gap:4px!important}#pagina-publicar .em-local-opcoes b{font-size:14px!important;line-height:1.15!important;color:#153d46!important}#pagina-publicar .em-local-opcoes small{font-size:12px!important;line-height:1.3!important;color:#71858a!important}
 #pagina-publicar .em-local-preview{max-width:720px!important;margin:15px auto 0!important;padding:13px 16px!important;border-radius:10px!important;background:#eaf5f6!important;display:flex!important;align-items:center!important;justify-content:center!important;gap:10px!important;flex-wrap:wrap!important;text-align:center!important}#pagina-publicar .em-local-preview span{color:#698087!important;font-size:13px!important}#pagina-publicar .em-local-preview strong{color:#0b6572!important;font-size:14px!important}@media(max-width:700px){#pagina-publicar .em-local-opcoes{grid-template-columns:1fr!important}#pagina-publicar .em-local-opcoes label{min-height:88px!important;justify-content:flex-start!important}}
+
+/* EMPREGAMAIS-LOCALIZACAO-PETROLEO-V9 */
+#pagina-publicar{--empresa-petroleo:#0b6673;--empresa-petroleo-escuro:#084d59;--empresa-petroleo-claro:#edf7f7}
+#pagina-publicar .job-card h2,#pagina-publicar .job-card h3,#pagina-publicar .job-card strong{color:var(--empresa-petroleo-escuro)}
+#pagina-publicar .job-card label{font-size:15px;color:#173f4b}#pagina-publicar .job-card input,#pagina-publicar .job-card select,#pagina-publicar .job-card textarea{font-size:16px}
+#pagina-publicar .em-privacidade-local{margin-top:14px;padding:24px;border:1px solid #cfe1e3;border-radius:16px;background:#f8fbfb;text-align:center}
+#pagina-publicar .em-privacidade-local>strong{display:block;font-size:19px;line-height:1.25;margin-bottom:6px}
+#pagina-publicar .em-privacidade-local>p{font-size:14px;line-height:1.5;color:#647d83;margin:0 auto 18px;max-width:650px}
+#pagina-publicar .em-local-opcoes{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;max-width:720px;margin:0 auto}
+#pagina-publicar .em-local-opcoes label{position:relative;display:flex;align-items:center;justify-content:flex-start;gap:13px;min-height:104px;padding:16px 17px;border:1px solid #d6e2e4;border-radius:13px;background:#fff;text-align:left;cursor:pointer;transition:.18s}
+#pagina-publicar .em-local-opcoes label:hover{border-color:#8bbbc0;background:#fbfefe}
+#pagina-publicar .em-local-opcoes label:has(input:checked){border:2px solid var(--empresa-petroleo);background:var(--empresa-petroleo-claro);box-shadow:0 0 0 3px rgba(11,102,115,.06)}
+#pagina-publicar .em-local-opcoes input[type=radio]{appearance:none;-webkit-appearance:none;width:22px;height:22px;min-width:22px;border:1.5px solid #8ba0a5;border-radius:50%;background:#fff;margin:0;padding:0}
+#pagina-publicar .em-local-opcoes input[type=radio]:checked{border:6px solid var(--empresa-petroleo)}
+#pagina-publicar .em-local-opcoes span{display:flex;flex-direction:column;gap:4px}
+#pagina-publicar .em-local-opcoes b{font-size:15px;line-height:1.15;color:#173f4b}
+#pagina-publicar .em-local-opcoes small{font-size:12.5px;line-height:1.3;color:#72868b}
+#pagina-publicar .em-local-preview{max-width:720px;margin:15px auto 0;padding:13px 16px;border-radius:10px;background:#eaf5f5;display:flex;align-items:center;justify-content:center;gap:9px;flex-wrap:wrap}
+#pagina-publicar .em-local-preview span{font-size:13px;color:#698087}#pagina-publicar .em-local-preview strong{font-size:14px;color:var(--empresa-petroleo)}
+#pagina-publicar .job-actions .btn-azul,#pagina-publicar button.btn-azul{background:var(--empresa-petroleo)!important;border-color:var(--empresa-petroleo)!important}
+#pagina-publicar .job-actions .btn-azul:hover,#pagina-publicar button.btn-azul:hover{background:var(--empresa-petroleo-escuro)!important}
+@media(max-width:720px){#pagina-publicar .em-local-opcoes{grid-template-columns:1fr}#pagina-publicar .em-privacidade-local{padding:18px}}
