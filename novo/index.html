@@ -447,6 +447,41 @@ background:linear-gradient(112deg,#006b72 0%,#007b82 48%,#00868c 100%)!important
 #pagina-candidatos-empresa .candidato-acoes .btn-azul{background:#087b83!important;border-color:#087b83!important}
 #pagina-candidatos-empresa .vagas-vazio{min-height:170px!important;display:grid!important;place-items:center!important;text-align:center!important;color:#748797!important;background:#fbfdfe!important;border:1px dashed #d5e1e8!important;border-radius:12px!important}
 @media(max-width:1000px){#pagina-candidatos-empresa .etapas-tabs{grid-template-columns:repeat(4,1fr)!important}#pagina-candidatos-empresa .candidato-card{grid-template-columns:1fr!important}.candidato-acoes{justify-content:flex-start!important}}@media(max-width:650px){#pagina-candidatos-empresa .vagas-cab{display:block!important}.candidato-ferramentas{margin-top:14px!important;display:grid!important}.etapas-tabs{grid-template-columns:repeat(2,1fr)!important}}
+</style><style id="EMPREGAMAIS-CABECALHOS-INTERNOS-V23">
+/* Cabeçalho moderno das páginas internas do recrutador */
+#pagina-candidatos-empresa .page-head,
+#pagina-publicar .page-head,
+#pagina-planos .page-head,
+#pagina-perfil-empresa .page-head{
+position:relative!important;overflow:hidden!important;
+background:linear-gradient(112deg,#05666f 0%,#087b83 58%,#078b91 100%)!important;
+padding:28px 5%!important;color:#fff!important;border:0!important
+}
+#pagina-candidatos-empresa .page-head:before,
+#pagina-publicar .page-head:before,
+#pagina-planos .page-head:before,
+#pagina-perfil-empresa .page-head:before{content:""!important;position:absolute!important;width:360px!important;height:360px!important;border-radius:50%!important;right:7%!important;top:-245px!important;background:rgba(130,229,231,.09)!important}
+#pagina-candidatos-empresa .page-head:after,
+#pagina-publicar .page-head:after,
+#pagina-planos .page-head:after,
+#pagina-perfil-empresa .page-head:after{content:""!important;position:absolute!important;width:180px!important;height:180px!important;border-radius:50%!important;right:2%!important;bottom:-125px!important;border:1px solid rgba(170,239,241,.16)!important}
+#pagina-candidatos-empresa .page-head>div,
+#pagina-publicar .page-head>div,
+#pagina-planos .page-head>div,
+#pagina-perfil-empresa .page-head>div{position:relative!important;z-index:1!important;max-width:1240px!important;margin:auto!important}
+#pagina-candidatos-empresa .page-head .voltar-link,
+#pagina-publicar .page-head .voltar-link,
+#pagina-planos .page-head .voltar-link,
+#pagina-perfil-empresa .page-head .voltar-link{display:inline-flex!important;align-items:center!important;gap:7px!important;color:#cceff1!important;background:rgba(255,255,255,.08)!important;border:1px solid rgba(255,255,255,.15)!important;border-radius:999px!important;padding:7px 12px!important;font-size:11.5px!important;font-weight:700!important;margin:0 0 11px!important}
+#pagina-candidatos-empresa .page-head h1,
+#pagina-publicar .page-head h1,
+#pagina-planos .page-head h1,
+#pagina-perfil-empresa .page-head h1{color:#fff!important;font-size:29px!important;line-height:1.12!important;margin:0 0 6px!important;letter-spacing:-.5px!important}
+#pagina-candidatos-empresa .page-head p,
+#pagina-publicar .page-head p,
+#pagina-planos .page-head p,
+#pagina-perfil-empresa .page-head p{color:#d9f1f2!important;font-size:13px!important;line-height:1.5!important;margin:0!important;max-width:680px!important}
+@media(max-width:700px){#pagina-candidatos-empresa .page-head,#pagina-publicar .page-head,#pagina-planos .page-head,#pagina-perfil-empresa .page-head{padding:22px 20px!important}.page-head h1{font-size:25px!important}}
 </style></head><body><header class="topo"><div class="topo-inner"><button type="button" class="marca" data-rota="home"><span class="marca-icone">E+</span><span class="marca-nome">Emprega<span>Mais</span></span></button><nav class="menu menu-publico"><button type="button" data-rota="home">Buscar vagas</button><button type="button" data-rota="senior">EmpregaMais Sênior</button><button type="button" data-rota="como-funciona">Como funciona</button>
 <div class="menu-drop menu-drop-empresa"><button type="button" class="menu-drop-gatilho" onclick="alternarMenuTopo('empresa',event)">Para empresas <span>⌄</span></button><div class="menu-drop-painel"><div class="menu-drop-titulo">Área da empresa</div><button onclick="rotaMenuTopo('painel-empresa')">Painel da empresa</button><button onclick="abrirPublicacao();fecharMenusTopo()">+ Publicar vaga</button><button onclick="rotaMenuTopo('painel-empresa')">Minhas vagas</button><button onclick="rotaMenuTopo('candidatos-empresa')">Candidatos</button><button onclick="rotaMenuTopo('perfil-empresa')">Perfil empresarial</button><button onclick="rotaMenuTopo('planos')">Planos e preços</button><div class="menu-drop-separador"></div><button class="menu-auth empresa-auth-deslogado" onclick="rotaMenuTopo('login-empresa')">Entrar como empresa</button><button class="menu-auth empresa-auth-deslogado" onclick="rotaMenuTopo('cadastro-empresa')">Cadastrar empresa</button><button class="menu-auth empresa-auth-logado" onclick="sair();fecharMenusTopo()">Sair da conta</button></div></div>
 </nav><nav class="menu menu-empresa-logada"><button type="button" data-rota="painel-empresa">Painel</button><button type="button" data-rota="painel-empresa">Minhas vagas</button><button type="button" data-rota="candidatos-empresa">Candidatos</button><button type="button" data-rota="planos">Planos</button></nav><nav class="menu menu-candidato-logado"><button type="button" data-rota="home">Buscar vagas</button><button type="button" data-rota="salvas">Vagas salvas</button><button type="button" data-rota="candidaturas">Minhas candidaturas</button><button type="button" data-rota="curriculo">Meu currículo</button></nav><div class="acoes"><div class="menu-drop menu-drop-candidato"><button type="button" class="btn secundario menu-drop-gatilho" onclick="alternarMenuTopo('candidato',event)">Área do candidato <span>⌄</span></button><div class="menu-drop-painel"><div class="menu-drop-titulo">Área do candidato</div><button onclick="rotaMenuTopo('painel-candidato')">Meu painel</button><button onclick="rotaMenuTopo('curriculo')">Meu currículo</button><button onclick="rotaMenuTopo('candidaturas-candidato')">Minhas candidaturas</button><button onclick="rotaMenuTopo('salvas')">Vagas salvas</button><button onclick="rotaMenuTopo('perfil-candidato')">Meu perfil</button><div class="menu-drop-separador"></div><button class="menu-auth candidato-auth-deslogado" onclick="rotaMenuTopo('login-candidato')">Entrar</button><button class="menu-auth candidato-auth-deslogado" onclick="rotaMenuTopo('cadastro-candidato')">Cadastrar currículo</button><button class="menu-auth candidato-auth-logado" onclick="sair();fecharMenusTopo()">Sair da conta</button></div></div><button type="button" class="btn btn-azul" onclick="abrirPublicacao()">+ Publicar vaga</button><div class="sessao-empresa-topo"><button class="sessao-conta-btn" onclick="this.parentElement.classList.toggle('aberto')"><span class="sessao-avatar" id="topoEmpresaAvatar">E</span><span><b id="topoEmpresaNome">Empresa</b><small id="topoEmpresaPlano">Conta da empresa</small></span><em>⌄</em></button><div class="sessao-conta-menu"><div class="conta-menu-head"><span class="conta-menu-avatar" id="topoEmpresaAvatarMenu">E</span><div><b id="topoEmpresaNomeMenu">Empresa</b><small id="topoEmpresaPlanoMenu">Conta da empresa</small><i>Plano ativo</i></div></div><div class="conta-menu-nav"><button onclick="irPara('painel-empresa')">Painel da empresa</button><button onclick="irPara('perfil-empresa')">Perfil da empresa</button><button onclick="irPara('planos')">Meu plano</button><button class="conta-sair-pro" onclick="sair()">Sair</button></div></div></div><div class="sessao-candidato-topo"><button class="sessao-conta-btn" onclick="this.parentElement.classList.toggle('aberto')"><span class="sessao-avatar" id="topoCandidatoAvatar">C</span><span><b id="topoCandidatoNome">Candidato</b><small>Minha conta</small></span><em>⌄</em></button><div class="sessao-conta-menu"><button onclick="irPara('painel-candidato')">Meu painel</button><button onclick="irPara('perfil-candidato')">Meu perfil</button><button onclick="sair()">Sair</button></div></div></div></div></header><main><section class="pagina ativa" id="pagina-home">
