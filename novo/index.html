@@ -251,4 +251,22 @@
 #pagina-painel-empresa .empresa-pago-resumo{margin:0 0 18px!important}#pagina-painel-empresa .empresa-recursos-card{padding:0!important;background:transparent!important;border:0!important;box-shadow:none!important}#pagina-painel-empresa .empresa-recursos-card>h2{display:none}#pagina-painel-empresa .empresa-recursos-grid{display:grid!important;grid-template-columns:repeat(6,1fr)!important;gap:14px!important}#pagina-painel-empresa .recurso-progresso{min-height:134px;background:#fff;border:1px solid #d8e4ef;border-top:4px solid #168bc8;border-radius:15px;padding:18px!important;cursor:pointer}#pagina-painel-empresa .recurso-progresso:nth-child(2){border-top-color:#36a27e}#pagina-painel-empresa .recurso-progresso:nth-child(3){border-top-color:#7064c8}#pagina-painel-empresa .recurso-progresso:nth-child(4){border-top-color:#c78926}#pagina-painel-empresa .recurso-progresso span{font-size:12px!important;font-weight:700!important;letter-spacing:.08em;text-transform:uppercase;color:#71859b!important}#pagina-painel-empresa .recurso-progresso b{font-size:22px!important;color:#153654!important;margin-top:8px;display:block}#pagina-painel-empresa .recurso-barra{margin-top:17px!important}
 @media(max-width:950px){.em-ref-wrap{padding:14px}.em-ref-hero-art{display:none}.em-ref-hero>div:first-child{padding:27px 24px}#pagina-painel-empresa .empresa-metricas{grid-template-columns:repeat(2,1fr)!important}#pagina-painel-empresa .empresa-recursos-grid{grid-template-columns:repeat(2,1fr)!important}}@media(max-width:560px){#pagina-painel-empresa .empresa-metricas,#pagina-painel-empresa .empresa-recursos-grid{grid-template-columns:1fr!important}}
 </style>
+
+<!-- EMPREGAMAIS-PAINEL-GRID-HOTFIX-V8 -->
+<style>
+/* Mantém os indicadores do painel em cards horizontais, anulando regras antigas concorrentes */
+#pagina-painel-empresa .em-ref-wrap #empresaMetricasNovas.empresa-metricas{display:grid!important;grid-template-columns:repeat(5,minmax(0,1fr))!important;grid-auto-flow:row!important;gap:14px!important;border:0!important;background:transparent!important;box-shadow:none!important;overflow:visible!important;margin:0 0 18px!important}
+#pagina-painel-empresa .em-ref-wrap #empresaMetricasNovas>.empresa-metrica-v2{width:auto!important;min-width:0!important;min-height:98px!important;margin:0!important;border:1px solid #dbe6f0!important;border-top:3px solid #168bc8!important;border-radius:14px!important;background:#fff!important;display:flex!important;align-items:center!important;gap:13px!important;padding:17px 18px!important;box-shadow:0 5px 16px rgba(24,61,98,.05)!important}
+#pagina-painel-empresa .em-ref-wrap #empresaMetricasNovas>.empresa-metrica-v2:nth-child(2){border-top-color:#e6a719!important}
+#pagina-painel-empresa .em-ref-wrap #empresaMetricasNovas>.empresa-metrica-v2:nth-child(3){border-top-color:#7368e8!important}
+#pagina-painel-empresa .em-ref-wrap #empresaMetricasNovas>.empresa-metrica-v2:nth-child(4){border-top-color:#27a77c!important}
+#pagina-painel-empresa .em-ref-wrap #empresaMetricasNovas>.empresa-metrica-v2:nth-child(5){border-top-color:#df7180!important}
+#pagina-painel-empresa .em-ref-wrap #empresaMetricasNovas>.empresa-metrica-v2>div{display:flex!important;flex-direction:column!important;align-items:flex-start!important}
+#pagina-painel-empresa .em-ref-wrap #empresaMetricasNovas>.empresa-metrica-v2 strong{order:1!important;font-size:24px!important;line-height:1.05!important}
+#pagina-painel-empresa .em-ref-wrap #empresaMetricasNovas>.empresa-metrica-v2 span{order:2!important;margin-top:5px!important;white-space:nowrap!important}
+#pagina-painel-empresa .em-ref-wrap #empresaResumoRecursos .empresa-recursos-grid{display:grid!important;grid-template-columns:repeat(6,minmax(0,1fr))!important;gap:14px!important}
+#pagina-painel-empresa .em-ref-wrap #empresaResumoRecursos .recurso-progresso{width:auto!important;min-width:0!important;margin:0!important;text-align:left!important;display:block!important}
+@media(max-width:1100px){#pagina-painel-empresa .em-ref-wrap #empresaMetricasNovas.empresa-metricas{grid-template-columns:repeat(3,minmax(0,1fr))!important}#pagina-painel-empresa .em-ref-wrap #empresaResumoRecursos .empresa-recursos-grid{grid-template-columns:repeat(3,minmax(0,1fr))!important}}
+@media(max-width:700px){#pagina-painel-empresa .em-ref-wrap #empresaMetricasNovas.empresa-metricas,#pagina-painel-empresa .em-ref-wrap #empresaResumoRecursos .empresa-recursos-grid{grid-template-columns:1fr!important}}
+</style>
 </body></html>
