@@ -528,3 +528,78 @@ document.addEventListener('click',function(e){
  e.stopPropagation();
  escolherPlanoAtual(btn.dataset.plano);
 },false);
+
+
+/* EMPREGAMAIS — IMPORTAÇÃO DE VAGAS EM LOTE V1 */
+function adminImportadorTelaEM(){
+ return '<div class="admin-bloco admin-importador"><div class="admin-importador-head"><div><span class="admin-importador-tag">IMPORTAÇÃO EM LOTE</span><h2>Importar vagas</h2><p class="admin-sub">Cole abaixo o conteúdo recebido por e-mail. Separe as vagas com uma linha em branco, traços ou numeração. O EmpregaMais organiza os dados para você revisar antes de publicar.</p></div></div><textarea id="adminImportarTexto" class="admin-importar-texto" placeholder="Exemplo:\n1. Auxiliar Administrativo\nEmpresa: Empresa Exemplo\nCidade: Belo Horizonte - MG\nSalário: R$ 1.800,00\nContrato: CLT\nDescrição: ...\n\n2. Vendedor\nEmpresa: Outra Empresa\nCidade: Contagem - MG\n..."></textarea><div class="admin-importar-acoes"><button type="button" class="btn btn-azul" onclick="adminAnalisarImportacaoEM()">Analisar vagas</button><button type="button" class="btn" onclick="document.getElementById(\'adminImportarTexto\').value=\'\';document.getElementById(\'adminImportarPreview\').innerHTML=\'\'">Limpar</button></div><div id="adminImportarPreview"></div></div>'
+}
+function adminCampoImportadoEM(txt,rotulos){
+ for(const r of rotulos){const re=new RegExp('(?:^|\\n)\\s*'+r+'\\s*[:\\-]\\s*([^\\n]+)','i'),m=txt.match(re);if(m)return m[1].trim()}
+ return ''
+}
+function adminSepararVagasEM(texto){
+ let t=String(texto||'').replace(/\r/g,'').trim();if(!t)return[];
+ let partes=t.split(/\n\s*(?:-{3,}|={3,}|\*{3,})\s*\n|\n\s*(?=\d{1,3}[\.\)\-]\s+[A-ZÁÉÍÓÚÂÊÔÃÕÇ])/g).map(x=>x.trim()).filter(Boolean);
+ if(partes.length===1){const p=t.split(/\n{2,}(?=(?:Vaga|Cargo|Função|Oportunidade)\s*[:\-])/i).map(x=>x.trim()).filter(Boolean);if(p.length>1)partes=p}
+ return partes
+}
+function adminExtrairVagaEM(bloco,i){
+ const linhas=bloco.split('\n').map(x=>x.trim()).filter(Boolean);
+ let cargo=adminCampoImportadoEM(bloco,['Cargo','Vaga','Função','Oportunidade']);
+ if(!cargo&&linhas[0])cargo=linhas[0].replace(/^\d{1,3}[\.\)\-]\s*/,'').replace(/^(vaga|cargo|função|oportunidade)\s*[:\-]\s*/i,'').trim();
+ const empresa=adminCampoImportadoEM(bloco,['Empresa','Contratante']);
+ let cidade=adminCampoImportadoEM(bloco,['Cidade','Local','Localidade']);
+ const estado=adminCampoImportadoEM(bloco,['Estado','UF']);
+ const salario=adminCampoImportadoEM(bloco,['Salário','Salario','Remuneração','Remuneracao'])||((bloco.match(/R\$\s*[\d\.\,]+/i)||[])[0]||'');
+ let modalidade=adminCampoImportadoEM(bloco,['Modalidade']);if(!modalidade){if(/\bremoto\b/i.test(bloco))modalidade='Remoto';else if(/\bh[ií]brido\b/i.test(bloco))modalidade='Híbrido';else if(/\bpresencial\b/i.test(bloco))modalidade='Presencial'}
+ let contrato=adminCampoImportadoEM(bloco,['Contrato','Tipo de contrato','Regime']);if(!contrato){if(/\bCLT\b/i.test(bloco))contrato='Efetivo – CLT';else if(/\best[aá]gio\b/i.test(bloco))contrato='Estágio';else if(/\btempor[aá]ri/i.test(bloco))contrato='Temporário';else if(/\btrainee\b/i.test(bloco))contrato='Trainee';else if(/\bjovem aprendiz\b/i.test(bloco))contrato='Jovem Aprendiz'}
+ const area=adminCampoImportadoEM(bloco,['Área','Area']);
+ const escolaridade=adminCampoImportadoEM(bloco,['Escolaridade','Formação','Formacao']);
+ const experiencia=adminCampoImportadoEM(bloco,['Experiência','Experiencia']);
+ const jornada=adminCampoImportadoEM(bloco,['Jornada','Horário','Horario']);
+ const requisitos=adminCampoImportadoEM(bloco,['Requisitos','Requisito']);
+ const beneficios=adminCampoImportadoEM(bloco,['Benefícios','Beneficios']);
+ const descricao=adminCampoImportadoEM(bloco,['Descrição','Descricao','Atividades','Responsabilidades'])||bloco;
+ if(!estado&&cidade&&/\s*[-\/]\s*[A-Z]{2}\s*$/.test(cidade)){const m=cidade.match(/\s*[-\/]\s*([A-Z]{2})\s*$/);cidade=cidade.replace(/\s*[-\/]\s*[A-Z]{2}\s*$/,'').trim();return {tmpId:'imp_'+Date.now()+'_'+i,cargo,empresa,cidade,estado:m[1],salario,modalidade,contrato,area,escolaridade,experiencia,jornada,requisitos,beneficios,descricao,original:bloco}}
+ return {tmpId:'imp_'+Date.now()+'_'+i,cargo,empresa,cidade,estado,salario,modalidade,contrato,area,escolaridade,experiencia,jornada,requisitos,beneficios,descricao,original:bloco}
+}
+window.__adminImportadasEM=[];
+function adminAnalisarImportacaoEM(){
+ const texto=document.getElementById('adminImportarTexto')?.value||'',box=document.getElementById('adminImportarPreview');if(!box)return;
+ const blocos=adminSepararVagasEM(texto);if(!blocos.length){box.innerHTML='<div class="admin-warning">Cole a lista de vagas antes de analisar.</div>';return}
+ window.__adminImportadasEM=blocos.map(adminExtrairVagaEM);
+ adminRenderPreviewImportacaoEM()
+}
+function adminRenderPreviewImportacaoEM(){
+ const box=document.getElementById('adminImportarPreview'),vs=window.__adminImportadasEM||[];if(!box)return;
+ const completas=vs.filter(v=>v.cargo&&v.cidade).length;
+ box.innerHTML='<div class="admin-importar-resumo"><strong>'+vs.length+' vaga(s) identificada(s)</strong><span>'+completas+' pronta(s) para revisão · '+(vs.length-completas)+' com dados essenciais faltando</span></div><div class="admin-importar-lista">'+vs.map((v,i)=>'<article class="admin-importar-card"><div class="admin-importar-num">'+(i+1)+'</div><div class="admin-importar-campos"><label>Cargo<input data-imp="'+i+'" data-campo="cargo" value="'+esc(v.cargo)+'"></label><label>Empresa<input data-imp="'+i+'" data-campo="empresa" value="'+esc(v.empresa)+'"></label><label>Cidade<input data-imp="'+i+'" data-campo="cidade" value="'+esc(v.cidade)+'"></label><label>UF<input data-imp="'+i+'" data-campo="estado" value="'+esc(v.estado)+'" maxlength="2"></label><label>Salário<input data-imp="'+i+'" data-campo="salario" value="'+esc(v.salario)+'"></label><label>Modalidade<input data-imp="'+i+'" data-campo="modalidade" value="'+esc(v.modalidade)+'"></label><label>Contrato<input data-imp="'+i+'" data-campo="contrato" value="'+esc(v.contrato)+'"></label><label>Área<input data-imp="'+i+'" data-campo="area" value="'+esc(v.area)+'"></label><label class="admin-importar-largo">Descrição<textarea data-imp="'+i+'" data-campo="descricao">'+esc(v.descricao)+'</textarea></label></div><button type="button" class="admin-importar-remover" onclick="adminRemoverImportadaEM('+i+')">Remover</button></article>').join('')+'</div><div class="admin-importar-publicar"><div><strong>Revise antes de publicar</strong><small>As vagas serão identificadas como importadas e terão encerramento automático em 30 dias.</small></div><button type="button" class="btn btn-azul" onclick="adminPublicarImportadasEM()">Publicar vagas revisadas</button></div>';
+ box.querySelectorAll('[data-imp]').forEach(el=>el.addEventListener('input',()=>{const i=Number(el.dataset.imp);if(window.__adminImportadasEM[i])window.__adminImportadasEM[i][el.dataset.campo]=el.value}))
+}
+function adminRemoverImportadaEM(i){window.__adminImportadasEM.splice(i,1);adminRenderPreviewImportacaoEM()}
+async function adminPublicarImportadasEM(){
+ const vs=window.__adminImportadasEM||[];if(!vs.length)return alert('Nenhuma vaga para publicar.');
+ const invalidas=vs.filter(v=>!String(v.cargo||'').trim()||!String(v.cidade||'').trim());if(invalidas.length)return alert('Revise as vagas destacadas: cargo e cidade são obrigatórios.');
+ if(!confirm('Publicar '+vs.length+' vaga(s) importada(s)?'))return;
+ const btn=document.querySelector('.admin-importar-publicar .btn');if(btn){btn.disabled=true;btn.textContent='Publicando...'}
+ try{
+  const t=await adminSbToken(),u=await sbJsonEM(EMPREGAMAIS_SUPABASE_URL+'/auth/v1/user',{method:'GET',headers:sbHeadersEM(t)});
+  const agora=new Date(),fim=new Date(agora.getTime()+30*86400000);
+  const payloads=vs.map(v=>({user_id:u.id,empresa_id:null,empresa:v.empresa||'Empresa não informada',empresa_cnpj:'',cargo:v.cargo,area:v.area||'',contrato:v.contrato||'',modalidade:v.modalidade||'',cep:'',estado:String(v.estado||'').toUpperCase(),cidade:v.cidade,data_encerramento:fim.toISOString().slice(0,10),escolaridade:v.escolaridade||'',experiencia:v.experiencia||'',jornada:v.jornada||'',pcd:'',salario:v.salario||'A combinar',salario_max:'',salario_combinar:!v.salario,horario_entrada:'',horario_saida:'',descricao:v.descricao||'',requisitos:v.requisitos||'',beneficios:v.beneficios||'',sobre_empresa:'',senior50:false,confidencial:false,destaque:false,urgente:false,status:'aprovada',criado_em:agora.toISOString()}));
+  await sbJsonEM(EMPREGAMAIS_SUPABASE_URL+'/rest/v1/vagas',{method:'POST',headers:Object.assign(sbHeadersEM(t),{'Prefer':'return=representation'}),body:JSON.stringify(payloads)});
+  adminHistoricoRegistrar('Importação de vagas',vs.length+' vaga(s) publicadas em lote');
+  window.__adminImportadasEM=[];const ta=document.getElementById('adminImportarTexto');if(ta)ta.value='';
+  alert(vs.length+' vaga(s) publicadas com sucesso.');await adminCarregarVagasSupabase();adminAba('vagas')
+ }catch(err){console.error('Importação de vagas:',err);alert('Não foi possível publicar as vagas: '+err.message)}
+ finally{if(btn){btn.disabled=false;btn.textContent='Publicar vagas revisadas'}}
+}
+const _adminAbaImportadorEM=adminAba;
+adminAba=async function(aba,btn){
+ if(aba==='importar'){
+  if(sessionStorage.getItem('empregaMaisAdmin')!=='1'){irPara('login-admin');return}
+  document.querySelectorAll('[data-admin-tab]').forEach(b=>b.classList.toggle('ativo',b.dataset.adminTab===aba));
+  const out=document.getElementById('adminConteudo');if(out)out.innerHTML=adminImportadorTelaEM();return
+ }
+ return _adminAbaImportadorEM(aba,btn)
+};
