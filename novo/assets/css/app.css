@@ -645,3 +645,13 @@ body.sessao-empresa .menu-publico,body.sessao-empresa .menu-drop-candidato{displ
 .plano-resultados>i{width:42px;height:42px;flex:0 0 42px;border-radius:50%;background:#d6f5e5;color:#15805d;display:grid;place-items:center;font-style:normal}
 .plano-resultados strong{display:block;font-size:14px;color:#123c43;margin-bottom:3px}.plano-resultados p{margin:0;font-size:11px;line-height:1.45;color:#5c7776}
 @media(max-width:850px){.plano-recursos-grid{grid-template-columns:1fr!important}.plano-recurso-card{min-height:auto!important}}
+
+/* Pagamento planos v5 — Pix vetorial e parcela sem duplicidade */
+.em-pix-brand{min-width:102px!important;gap:7px!important}
+.em-pix-svg{width:42px!important;height:42px!important;display:block!important;fill:#00b3a4!important}
+.em-pix-brand b{font:400 22px/1 Arial,sans-serif!important;color:#68787b!important}
+.em-credit-brand{grid-template-rows:1fr!important}
+.em-credit-brand small{display:none!important}
+.em-card-installment{font-size:12px!important;color:#61757d!important;margin-top:1px!important}
+#planoBEscolher{position:relative!important;z-index:999!important;pointer-events:auto!important;touch-action:manipulation!important;cursor:pointer!important}
+#planoBEscolher:after{pointer-events:none!important}
