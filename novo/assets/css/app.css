@@ -681,3 +681,40 @@ body.sessao-empresa .menu-publico,body.sessao-empresa .menu-drop-candidato{displ
 .em-pay-approved .em-bandeiras{padding:14px 0 11px!important}.em-pay-approved .em-bandeiras .em-card-brand{height:40px!important}
 .em-pay-approved .em-pay-secure{padding:1px 8px 14px!important;font-size:9.5px!important}
 @media(max-width:520px){.em-pay-approved-row{grid-template-columns:40% 60%!important;margin:0 11px!important;padding:14px 1px!important}.em-pay-approved-pix{min-height:100px!important}.em-pay-approved-card{min-height:88px!important}.em-pay-approved .em-pix-svg{width:42px!important;height:42px!important}.em-pay-approved .em-pix-brand b{font-size:21px!important}.em-pay-approved .em-pay-copy strong{font-size:17px!important}.em-pay-approved .em-bandeiras{margin:0 11px!important}}
+
+/* PAINEL EMPRESA — visual executivo profissional v3 */
+#pagina-painel-empresa{background:#f5f8fa!important}
+#pagina-painel-empresa .em-ref-wrap{max-width:1240px!important;padding:22px 26px 50px!important}
+#pagina-painel-empresa .em-ref-hero{min-height:136px!important;border-radius:18px!important;margin-bottom:18px!important;background:linear-gradient(118deg,#073e50 0%,#086777 62%,#0b8c98 100%)!important;box-shadow:0 10px 28px rgba(6,63,76,.10)!important}
+#pagina-painel-empresa .em-ref-hero>div:first-child{padding:23px 30px!important}
+#pagina-painel-empresa .em-ref-hero h1{font-size:27px!important;letter-spacing:-.4px!important;margin-bottom:6px!important}
+#pagina-painel-empresa .em-ref-hero p{font-size:12px!important;opacity:.9!important;margin-bottom:15px!important}
+#pagina-painel-empresa .em-ref-hero button{min-height:43px!important;padding:0 20px!important;border:0!important;border-radius:10px!important;background:#fff!important;color:#075467!important;font-weight:800!important;box-shadow:0 5px 14px rgba(0,0,0,.08)!important}
+#pagina-painel-empresa .em-ref-hero-art{border-left:1px solid rgba(255,255,255,.14)!important}
+#pagina-painel-empresa .em-ref-hero-art span{font-size:18px!important;line-height:1.15!important}
+
+/* KPIs executivos */
+#pagina-painel-empresa #empresaMetricasNovas{gap:11px!important;margin-bottom:16px!important}
+#pagina-painel-empresa #empresaMetricasNovas>.empresa-metrica-v2{min-height:102px!important;padding:16px 15px!important;border:1px solid #dde7ea!important;border-top:0!important;border-radius:14px!important;background:#fff!important;box-shadow:0 4px 14px rgba(19,58,70,.04)!important;align-items:center!important}
+#pagina-painel-empresa #empresaMetricasNovas>.empresa-metrica-v2:before{width:3px!important;background:#0a7c87!important}
+#pagina-painel-empresa #empresaMetricasNovas>.empresa-metrica-v2:nth-child(n){background:#fff!important}
+#pagina-painel-empresa #empresaMetricasNovas>.empresa-metrica-v2 i{position:static!important;order:0!important;width:38px!important;height:38px!important;flex:0 0 38px!important;border-radius:11px!important;background:#eaf5f5!important;border:0!important;color:#087480!important;font-size:17px!important;display:grid!important;place-items:center!important}
+#pagina-painel-empresa #empresaMetricasNovas>.empresa-metrica-v2 i:before{display:none!important}
+#pagina-painel-empresa #empresaMetricasNovas>.empresa-metrica-v2>div{order:1!important}
+#pagina-painel-empresa #empresaMetricasNovas strong{font-size:25px!important;color:#123e50!important;line-height:1!important}
+#pagina-painel-empresa #empresaMetricasNovas span{font-size:11.5px!important;color:#6b7f87!important;margin-top:5px!important}
+#pagina-painel-empresa #empresaMetricasNovas em{margin-left:auto!important;color:#9eb0b6!important;font-style:normal!important;font-size:15px!important}
+
+/* Card único do plano */
+#pagina-painel-empresa #empresaResumoRecursos{margin:0 0 18px!important}
+.empresa-plano-premium{background:#fff;border:1px solid #dce7ea;border-radius:17px;box-shadow:0 6px 20px rgba(14,57,70,.045);overflow:hidden}
+.empresa-plano-head{padding:18px 21px 14px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #e8eef0}
+.empresa-plano-head span{font-size:9px;font-weight:900;letter-spacing:.1em;color:#0a7c87}.empresa-plano-head h2{margin:3px 0 2px;font-size:21px;color:#123d50}.empresa-plano-head p{margin:0;font-size:11px;color:#71858c}.empresa-plano-head button{border:1px solid #cfe0e3;background:#fff;color:#086a75;border-radius:9px;padding:9px 12px;font:700 11px Questrial,sans-serif;cursor:pointer}
+.empresa-plano-body{padding:18px 21px 20px;display:grid;grid-template-columns:minmax(300px,1.45fr) minmax(390px,1fr);gap:24px;align-items:center}
+.empresa-plano-uso-top{display:flex;justify-content:space-between;align-items:end;margin-bottom:10px}.empresa-plano-uso-top>div{display:flex;flex-direction:column}.empresa-plano-uso-top span{font-size:11px;color:#6c8087}.empresa-plano-uso-top strong{font-size:25px;color:#103f50;margin-top:3px}.empresa-plano-uso-top strong small{font-size:12px;color:#75878d;font-weight:500}.empresa-plano-uso-top>b{padding:6px 9px;border-radius:999px;background:#e9f7f3;color:#14775f;font-size:10px}
+.empresa-plano-bar{height:9px;background:#e8eff1;border-radius:999px;overflow:hidden}.empresa-plano-bar i{display:block;height:100%;border-radius:999px;background:linear-gradient(90deg,#08727c,#12a098)}.empresa-plano-uso>small{display:block;margin-top:7px;font-size:9.5px;color:#829299}
+.empresa-plano-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:9px}.empresa-plano-stats button{min-height:86px;border:1px solid #e0e9eb;background:#fafcfc;border-radius:12px;padding:11px;display:grid;grid-template-columns:29px 1fr;grid-template-rows:auto auto;text-align:left;cursor:pointer}.empresa-plano-stats i{grid-row:1/3;width:29px;height:29px;border-radius:9px;background:#e8f5f5;color:#087783;display:grid;place-items:center;font-style:normal}.empresa-plano-stats span{font-size:9.5px;color:#71858c;margin-left:7px}.empresa-plano-stats strong{font-size:13px;color:#173f50;margin-left:7px;overflow-wrap:anywhere}
+#pagina-painel-empresa .empresa-dashboard-grid{gap:16px!important}
+#pagina-painel-empresa .empresa-box{border:1px solid #dce7ea!important;border-radius:16px!important;box-shadow:0 5px 17px rgba(18,57,70,.04)!important}
+@media(max-width:1050px){.empresa-plano-body{grid-template-columns:1fr}.empresa-plano-stats{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:700px){#pagina-painel-empresa .em-ref-wrap{padding:12px!important}.empresa-plano-head{align-items:flex-start;gap:12px;flex-direction:column}.empresa-plano-body{padding:15px}.empresa-plano-stats{grid-template-columns:1fr}.empresa-plano-stats button{min-height:64px}}
