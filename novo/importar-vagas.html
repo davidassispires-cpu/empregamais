@@ -10,7 +10,7 @@
 .review-modal{position:fixed;inset:0;background:rgba(9,35,42,.62);z-index:9999;display:none;align-items:center;justify-content:center;padding:22px}.review-modal.open{display:flex}.review-dialog{width:min(1050px,96vw);max-height:92vh;overflow:auto;background:#fff;border-radius:20px;box-shadow:0 28px 80px rgba(0,0,0,.28)}.review-head{position:sticky;top:0;z-index:2;background:#0d4650;color:#fff;padding:18px 22px;display:flex;justify-content:space-between;align-items:center}.review-head h2{margin:0;font-size:21px}.review-close{border:0;background:#ffffff20;color:#fff;width:38px;height:38px;border-radius:50%;font-size:24px;cursor:pointer}.review-body{padding:22px}.review-tools{display:grid;grid-template-columns:1.2fr 1fr;gap:18px;margin-bottom:18px}.logo-box,.boost-box{border:1px solid #dce6e8;border-radius:14px;padding:16px;background:#f8fbfb}.logo-preview{width:76px;height:76px;border-radius:13px;border:1px solid #d7e3e5;background:#fff;object-fit:contain;padding:6px;margin-top:10px}.check-row{display:flex;gap:12px;align-items:flex-start;padding:11px 0}.check-row input{width:auto;margin-top:3px}.check-row b{display:block;color:#0d4650}.check-row small{color:#718287}.review-actions{display:flex;justify-content:flex-end;gap:10px;margin-top:20px;border-top:1px solid #e5ecee;padding-top:18px}@media(max-width:800px){.review-tools{grid-template-columns:1fr}.review-dialog{max-height:96vh}.review-body{padding:15px}}</style>
 </head>
 <body>
-<header class="top"><b>EmpregaMais · Importador <small style="opacity:.7">v3.3</small></b><a href="index.html">← Voltar ao painel</a></header>
+<header class="top"><b>EmpregaMais · Importador <small style="opacity:.7">v3.4</small></b><a href="index.html">← Voltar ao painel</a></header>
 <main class="wrap">
 <section class="hero"><h1>Importar vagas</h1><p>Cole os anúncios e deixe o EmpregaMais organizar os dados. A revisão completa acontece em uma janela antes do cadastro.</p></section>
 <section class="card">
@@ -56,7 +56,17 @@ function parse(t,i){
  var v={id:i,cargo:cargo,empresa:empresa,area:area,contrato:contrato,modalidade:modalidade,cidade:cidade,uf:uf,bairro:bairro,cep:field(t,['CEP']),salario:salario,escolaridade:escolaridade,experiencia:experiencia,jornada:field(t,['Jornada de Trabalho','Jornada','Horário','Horario']),beneficios:field(t,['Benefícios','Beneficios']),descricao:descricao,atividades:atividades,requisitos:requisitos,adicionais:adicionais,email:email,whatsapp:whatsapp,assunto:assunto,candidatura:candidatura,divergencia:divergencia,divergenciaAprovada:false};
  return infer(v,t)
 }
-function split(t){var p=clean(t).split(/(?=^\s*(?:Vaga|Cargo|Oportunidade)\s*[:\-])/gim).map(function(x){return x.trim()}).filter(Boolean);return p.length?p:[]}
+function split(t){
+ t=clean(t);if(!t)return[];
+ /* Só separa múltiplas vagas quando há marcadores inequívocos.
+    Palavras como "vaga:", "cargo:" e "oportunidade:" dentro do próprio anúncio
+    são campos da mesma vaga e nunca devem criar registros extras. */
+ var blocos=t.split(/(?:^|\n)\s*(?:={3,}|-{5,}|\*{3,})\s*(?=\n|$)/g).map(function(x){return x.trim()}).filter(Boolean);
+ if(blocos.length>1)return blocos;
+ var numerados=t.split(/(?=^\s*(?:VAGA|OPORTUNIDADE)\s*(?:#|N[º°]?\s*)?\d+\s*[:\-–—]?\s*$)/gim).map(function(x){return x.trim()}).filter(Boolean);
+ if(numerados.length>1)return numerados;
+ return[t]
+}
 async function completarCidade(v){
  if(!v||!v.cidade)return v;
  try{
