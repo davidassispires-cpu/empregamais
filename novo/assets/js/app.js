@@ -440,3 +440,9 @@ function atualizarHeaderContextualEM(){
 }
 addEventListener('DOMContentLoaded',atualizarHeaderContextualEM);
 const _irParaHeaderContextualEM=irPara;irPara=function(p){const r=_irParaHeaderContextualEM(p);setTimeout(atualizarHeaderContextualEM,0);return r};
+
+/* EMPREGAMAIS-PERFIL-EMPRESA-WIZARD-V1 */
+function perfilEmpresaEtapa(n){document.querySelectorAll('#formPerfilEmpresa .perfil-step').forEach(x=>x.classList.toggle('ativo',+x.dataset.perfilPanel===n));document.querySelectorAll('#perfilProgress [data-perfil-step]').forEach(x=>{const k=+x.dataset.perfilStep;x.classList.toggle('ativo',k===n);x.classList.toggle('feito',k<n)});document.querySelector('#pagina-perfil-empresa')?.scrollIntoView({behavior:'smooth',block:'start'})}
+function prepararChoicesPerfilEmpresa(){document.querySelectorAll('#formPerfilEmpresa .perfil-choice-row').forEach(g=>{if(g.dataset.ready)return;g.dataset.ready='1';const inp=document.getElementById(g.dataset.target);g.querySelectorAll('button').forEach(b=>b.addEventListener('click',()=>{b.classList.toggle('ativo');if(inp)inp.value=[...g.querySelectorAll('button.ativo')].map(x=>x.textContent.trim()).join(', ')}));if(inp?.value){const vals=inp.value.split(',').map(x=>x.trim());g.querySelectorAll('button').forEach(b=>b.classList.toggle('ativo',vals.includes(b.textContent.trim())))}})}
+const _carregarPerfilEmpresaWizard=carregarPerfilEmpresa;carregarPerfilEmpresa=function(){const r=_carregarPerfilEmpresaWizard();setTimeout(()=>{perfilEmpresaEtapa(1);prepararChoicesPerfilEmpresa()},0);return r};
+addEventListener('DOMContentLoaded',prepararChoicesPerfilEmpresa);
