@@ -503,6 +503,8 @@ if(!e.key || ["candidaturasEmpregaMais","candidaturas","candidatosEmpregaMais"].
 }
 });
 document.addEventListener("empregamais:candidatura-atualizada",function(){
+var p=document.getElementById("pagina-painel-candidato");
+if(!p||(!p.classList.contains("ativa")&amp;&amp;!p.classList.contains("pagina-ativa")))return;
 clearTimeout(timerCentralPremiumV93);
 timerCentralPremiumV93=setTimeout(render,60);
 });
