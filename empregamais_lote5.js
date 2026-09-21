@@ -862,9 +862,14 @@ blocoUploadV27("logo",document.getElementById("perfilLogoEM"));
 blocoUploadV27("capa",document.getElementById("perfilCapaEM"));
 }
 window.montarUploadsPerfilV27=montarUploadsV27;
-window.addEventListener("load",function(){
-setTimeout(montarUploadsV27,650);
-setTimeout(montarUploadsV27,1400);
+function uploadsPerfilAtivoV27(){
+var p=document.getElementById("pagina-perfil-empresa-em");
+return !!(p&amp;&amp;(p.classList.contains("ativa")||p.classList.contains("pagina-ativa")));
+}
+window.addEventListener("load",function(){if(uploadsPerfilAtivoV27())setTimeout(montarUploadsV27,240);});
+document.addEventListener("empregamais:navegacao",function(ev){
+var p=String((ev&amp;&amp;ev.detail&amp;&amp;ev.detail.pagina)||"");
+if(p==="perfil-empresa")setTimeout(montarUploadsV27,180);
 });
 document.addEventListener("click",function(e){
 var b=e.target.closest("[data-aba-dados-v22]");
