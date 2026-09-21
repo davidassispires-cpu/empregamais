@@ -84,8 +84,15 @@ const EMPREGAMAIS_SB_REFRESH="empregaMaisSupabaseRefreshToken";
 function sbEmailEmpresaEM(cnpj){return nums(cnpj)+"@auth.empregamais.com.br"}
 function sbHeadersEM(token){const h={"apikey":EMPREGAMAIS_SUPABASE_KEY,"Content-Type":"application/json"};if(token)h.Authorization="Bearer "+token;return h}
 function sbJsonEM(url,opt){return fetch(url,opt).then(async r=>{const t=await r.text();let j={};try{j=t?JSON.parse(t):{}}catch(e){}if(!r.ok)throw new Error(j.msg||j.message||j.error_description||j.error||("Erro "+r.status));return j})}
-function sbSalvarSessaoEM(a){if(a?.access_token)sessionStorage.setItem(EMPREGAMAIS_SB_TOKEN,a.access_token);if(a?.refresh_token)sessionStorage.setItem(EMPREGAMAIS_SB_REFRESH,a.refresh_token)}
-function sbTokenEM(){return sessionStorage.getItem(EMPREGAMAIS_SB_TOKEN)||""}
+function sbSalvarSessaoEM(a){if(a?.access_token){sessionStorage.setItem(EMPREGAMAIS_SB_TOKEN,a.access_token);localStorage.setItem(EMPREGAMAIS_SB_TOKEN,a.access_token)}if(a?.refresh_token){sessionStorage.setItem(EMPREGAMAIS_SB_REFRESH,a.refresh_token);localStorage.setItem(EMPREGAMAIS_SB_REFRESH,a.refresh_token)}}
+function sbTokenEM(){return sessionStorage.getItem(EMPREGAMAIS_SB_TOKEN)||localStorage.getItem(EMPREGAMAIS_SB_TOKEN)||""}
+function sbRefreshTokenEM(){return sessionStorage.getItem(EMPREGAMAIS_SB_REFRESH)||localStorage.getItem(EMPREGAMAIS_SB_REFRESH)||""}
+async function sbGarantirSessaoEM(){
+ const token=sbTokenEM(),refresh=sbRefreshTokenEM();
+ if(token){try{await sbJsonEM(EMPREGAMAIS_SUPABASE_URL+"/auth/v1/user",{method:"GET",headers:sbHeadersEM(token)});return token}catch(e){}}
+ if(!refresh)return "";
+ try{const a=await sbJsonEM(EMPREGAMAIS_SUPABASE_URL+"/auth/v1/token?grant_type=refresh_token",{method:"POST",headers:sbHeadersEM(),body:JSON.stringify({refresh_token:refresh})});sbSalvarSessaoEM(a);return a.access_token||""}catch(e){return ""}
+}
 function sbCadastrarAuthEmpresaEM(cnpj,senha){return sbJsonEM(EMPREGAMAIS_SUPABASE_URL+"/auth/v1/signup",{method:"POST",headers:sbHeadersEM(),body:JSON.stringify({email:sbEmailEmpresaEM(cnpj),password:senha})}).then(a=>{sbSalvarSessaoEM(a);return a})}
 function sbLoginAuthEmpresaEM(cnpj,senha){return sbJsonEM(EMPREGAMAIS_SUPABASE_URL+"/auth/v1/token?grant_type=password",{method:"POST",headers:sbHeadersEM(),body:JSON.stringify({email:sbEmailEmpresaEM(cnpj),password:senha})}).then(a=>{sbSalvarSessaoEM(a);return a})}
 function sbBuscarMinhaEmpresaEM(){const token=sbTokenEM();if(!token)return Promise.resolve(null);return sbJsonEM(EMPREGAMAIS_SUPABASE_URL+"/rest/v1/empresas?select=*&limit=1",{method:"GET",headers:sbHeadersEM(token)}).then(a=>Array.isArray(a)&&a.length?a[0]:null)}
@@ -150,9 +157,24 @@ function sbVagaPayloadEM(d,editId){
   if(gratuito&&d.urgente&&!editId){d.urgencia_solicitada=true;d.urgente=false}
   return {user_id:d.userId,empresa_id:d.empresaId,empresa:d.empresa,empresa_cnpj:nums(d.empresaCnpj),cargo:d.cargo,area:d.area,contrato:d.contrato,modalidade:d.modalidade,cep:d.cep,estado:d.estado,cidade:d.cidade,data_encerramento:d.dataEncerramento||null,escolaridade:d.escolaridade,experiencia:d.experiencia,jornada:d.jornada,pcd:d.pcd,salario:d.salario,salario_max:d.salarioMax,salario_combinar:d.salarioCombinar,horario_entrada:d.horarioEntrada,horario_saida:d.horarioSaida,descricao:d.descricao,requisitos:d.requisitos,beneficios:d.beneficios,beneficios_lista:d.beneficiosLista||[],beneficios_outros:d.beneficiosOutros,sobre_empresa:d.sobreEmpresa,senior50:d.senior50,confidencial:d.confidencial,destaque:d.destaque,urgente:d.urgente,destaque_solicitado:d.destaque_solicitado||false,urgencia_solicitada:d.urgencia_solicitada||false,status:'pendente'}
 }
+
+/* EMPREGAMAIS-RASCUNHO-SESSAO-V1 */
+function salvarRascunhoVagaEM(){
+ const f=document.getElementById('formVaga');if(!f)return;
+ const d={};f.querySelectorAll('input:not([type="file"]),select,textarea').forEach(el=>{if(!el.id)return;if(el.type==='checkbox'||el.type==='radio')d[el.id]={checked:el.checked,value:el.value};else d[el.id]=el.value});
+ d._etapa=Number(document.querySelector('#formVaga .job-card.ativo')?.dataset.panel||1);try{localStorage.setItem('empregaMaisRascunhoVaga',JSON.stringify(d))}catch(e){}
+}
+function restaurarRascunhoVagaEM(){
+ let d;try{d=JSON.parse(localStorage.getItem('empregaMaisRascunhoVaga')||'null')}catch(e){}if(!d)return;
+ const f=document.getElementById('formVaga');if(!f)return;
+ Object.keys(d).forEach(id=>{if(id==='_etapa')return;const el=document.getElementById(id);if(!el)return;const v=d[id];if(v&&typeof v==='object'&&('checked'in v)){el.checked=!!v.checked}else el.value=v});
+ if(typeof mostrarEtapa==='function')mostrarEtapa(d._etapa||1);
+}
+addEventListener('DOMContentLoaded',()=>{const f=document.getElementById('formVaga');if(f&&!f.dataset.rascunhoSessao){f.dataset.rascunhoSessao='1';f.addEventListener('input',()=>{clearTimeout(window.__emDraftT);window.__emDraftT=setTimeout(salvarRascunhoVagaEM,250)});f.addEventListener('change',salvarRascunhoVagaEM);restaurarRascunhoVagaEM()}});
 publicarVagaNova=async function(e){
   e.preventDefault();
-  if(!sbTokenEM()){msg('#msgPublicarVaga','Sua sessão de empresa expirou. Entre novamente.');setTimeout(()=>irPara('login-empresa'),700);return}
+  const tokenAtivo=await sbGarantirSessaoEM();
+  if(!tokenAtivo){msg('#msgPublicarVaga','Não foi possível renovar sua sessão. Seus dados da vaga foram preservados; entre novamente para continuar.');salvarRascunhoVagaEM();setTimeout(()=>irPara('login-empresa'),1200);return}
   const fim=$('#dataEncerramentoVaga')?.value||'';
   if(fim&&new Date(fim+'T23:59:59')<new Date()){msg('#msgPublicarVaga','A data de encerramento precisa ser futura.');mostrarEtapa(2);return}
   const editId=sessionStorage.getItem('vagaEdicao');
@@ -175,7 +197,7 @@ publicarVagaNova=async function(e){
       const r=await sbJsonEM(EMPREGAMAIS_SUPABASE_URL+'/rest/v1/vagas',{method:'POST',headers:Object.assign(sbHeadersEM(sbTokenEM()),{'Prefer':'return=representation'}),body:JSON.stringify(payload)});
       if(!Array.isArray(r)||!r[0])throw new Error('O Supabase não confirmou a publicação da vaga.');
     }
-    sessionStorage.removeItem('vagaEdicao');$('#formVaga')?.reset();await sbCarregarVagasEM();msg('#msgPublicarVaga',editId?'Alterações salvas. A vaga voltou para análise.':'Vaga enviada para análise.',true);setTimeout(()=>irPara('painel-empresa'),900)
+    sessionStorage.removeItem('vagaEdicao');localStorage.removeItem('empregaMaisRascunhoVaga');$('#formVaga')?.reset();await sbCarregarVagasEM();msg('#msgPublicarVaga',editId?'Alterações salvas. A vaga voltou para análise.':'Vaga enviada para análise.',true);setTimeout(()=>irPara('painel-empresa'),900)
   }catch(err){console.error('EmpregaMais/Supabase vaga:',err);msg('#msgPublicarVaga',err.message||'Não foi possível salvar a vaga.')}finally{if(btn){btn.disabled=false;btn.textContent='Publicar vaga'}}
 };
 vagasDaEmpresa=function(){const c=nums(sessionStorage.getItem('empresaCnpj')||'');return sbVagasCacheEM.length?sbVagasCacheEM.filter(v=>nums(v.empresaCnpj)===c):ler('empregaMaisVagas').filter(v=>nums(v.empresaCnpj)===c)};
