@@ -101,8 +101,17 @@ function payloadImportado(v,userId){
  var desc=[v.descricao,v.atividades?('Atividades / responsabilidades:\n'+v.atividades):''].filter(Boolean).join('\n\n');
  return {user_id:userId,empresa_id:null,empresa:v.empresa||'',empresa_cnpj:'',cargo:v.cargo||'',area:v.area||'',contrato:v.contrato||'',modalidade:v.modalidade||'Presencial',cep:v.cep||'',estado:v.uf||'',cidade:v.cidade||'',data_encerramento:dataFim(),escolaridade:v.escolaridade||'',experiencia:v.experiencia||'',jornada:v.jornada||'',pcd:'',salario:v.salario==='A combinar'?'':(v.salario||''),salario_max:'',salario_combinar:!v.salario||v.salario==='A combinar',horario_entrada:'',horario_saida:'',descricao:desc,requisitos:v.requisitos||'',beneficios:v.beneficios||'',beneficios_lista:listaBeneficios(v.beneficios),beneficios_outros:'',sobre_empresa:v.adicionais||'',senior50:false,confidencial:false,destaque:false,urgente:false,destaque_solicitado:false,urgencia_solicitada:false,logo:null,status:'pendente'}
 }
+async function empresaImportadora(t,u,v){
+ var nome=String(v.empresa||'Empresa importada').trim()||'Empresa importada';
+ var q=await sbReq(SB_URL+'/rest/v1/empresas?select=*&user_id=eq.'+encodeURIComponent(u.id)+'&limit=1',{headers:sbH(t)});
+ if(Array.isArray(q)&&q[0])return q[0];
+ var body={user_id:u.id,nome:nome,nome_fantasia:nome,cnpj:''};
+ var criada=await sbReq(SB_URL+'/rest/v1/empresas',{method:'POST',headers:Object.assign(sbH(t),{'Prefer':'return=representation'}),body:JSON.stringify(body)});
+ if(!Array.isArray(criada)||!criada[0])throw new Error('Não foi possível criar o vínculo da empresa para a vaga importada.');
+ return criada[0]
+}
 async function cadastrarSupabase(v){
- var t=await tokenAdmin(),u=await sbReq(SB_URL+'/auth/v1/user',{headers:sbH(t)}),p=payloadImportado(v,u.id);
+ var t=await tokenAdmin(),u=await sbReq(SB_URL+'/auth/v1/user',{headers:sbH(t)}),emp=await empresaImportadora(t,u,v),p=payloadImportado(v,u.id);p.empresa_id=emp.id;
  var r=await sbReq(SB_URL+'/rest/v1/vagas',{method:'POST',headers:Object.assign(sbH(t),{'Prefer':'return=representation'}),body:JSON.stringify(p)});
  if(!Array.isArray(r)||!r[0])throw new Error('O Supabase não confirmou o cadastro da vaga.');v.cadastrada=true;v.supabaseId=r[0].id;return r[0]
 }
