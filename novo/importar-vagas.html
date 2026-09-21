@@ -10,7 +10,7 @@
 .review-modal{position:fixed;inset:0;background:rgba(9,35,42,.62);z-index:9999;display:none;align-items:center;justify-content:center;padding:22px}.review-modal.open{display:flex}.review-dialog{width:min(1050px,96vw);max-height:92vh;overflow:auto;background:#fff;border-radius:20px;box-shadow:0 28px 80px rgba(0,0,0,.28)}.review-head{position:sticky;top:0;z-index:2;background:#0d4650;color:#fff;padding:18px 22px;display:flex;justify-content:space-between;align-items:center}.review-head h2{margin:0;font-size:21px}.review-close{border:0;background:#ffffff20;color:#fff;width:38px;height:38px;border-radius:50%;font-size:24px;cursor:pointer}.review-body{padding:22px}.review-tools{display:grid;grid-template-columns:1.2fr 1fr;gap:18px;margin-bottom:18px}.logo-box,.boost-box{border:1px solid #dce6e8;border-radius:14px;padding:16px;background:#f8fbfb}.logo-preview{width:76px;height:76px;border-radius:13px;border:1px solid #d7e3e5;background:#fff;object-fit:contain;padding:6px;margin-top:10px}.check-row{display:flex;gap:12px;align-items:flex-start;padding:11px 0}.check-row input{width:auto;margin-top:3px}.check-row b{display:block;color:#0d4650}.check-row small{color:#718287}.review-actions{display:flex;justify-content:flex-end;gap:10px;margin-top:20px;border-top:1px solid #e5ecee;padding-top:18px}@media(max-width:800px){.review-tools{grid-template-columns:1fr}.review-dialog{max-height:96vh}.review-body{padding:15px}}</style>
 </head>
 <body>
-<header class="top"><b>EmpregaMais · Importador <small style="opacity:.7">v3.5</small></b><a href="index.html">← Voltar ao painel</a></header>
+<header class="top"><b>EmpregaMais · Importador <small style="opacity:.7">v3.6</small></b><a href="index.html">← Voltar ao painel</a></header>
 <main class="wrap">
 <section class="hero"><h1>Importar vagas</h1><p>Cole os anúncios e deixe o EmpregaMais organizar os dados. A revisão completa acontece em uma janela antes do cadastro.</p></section>
 <section class="card">
@@ -60,7 +60,7 @@ function parse(t,i){
  var assunto='',asm=t.match(/(?:com o assunto|assunto)\s*:\s*([^\n]+)/i);if(asm)assunto=clean(asm[1]);
  var candidatura=email&&whatsapp?'E-mail + WhatsApp':email?'E-mail':whatsapp?'WhatsApp':'EmpregaMais';
  var v={id:i,cargo:cargo,empresa:empresa,area:area,contrato:contrato,modalidade:modalidade,cidade:cidade,uf:uf,bairro:bairro,cep:valorLinha(t,['CEP']),salario:salario,escolaridade:escolaridade,experiencia:experiencia,jornada:jornada,beneficios:beneficios,descricao:descricao,atividades:atividades,requisitos:requisitos,adicionais:adicionais,email:email,whatsapp:whatsapp,assunto:assunto,candidatura:candidatura,divergencia:'',divergenciaAprovada:false};
- return infer(v,t)
+ v=infer(v,t);v.descricao=limparDescricaoExtraida(v.descricao,v);return v
 }
 function split(t){
  t=clean(t);if(!t)return[];
@@ -89,6 +89,18 @@ async function completarCidade(v){
 }
 async function completarTodas(vs){try{await Promise.all(vs.map(completarCidade))}catch(e){console.warn('Enriquecimento de localização ignorado',e)}return vs}
 function completeness(v){var ks=['cargo','empresa','area','contrato','modalidade','cidade','uf','salario','escolaridade','experiencia','jornada','beneficios','descricao','atividades','requisitos','adicionais'],n=ks.filter(function(k){return String(v[k]||'').trim()}).length;return {pct:Math.round(n/ks.length*100),n:n,total:ks.length}}
+function limparDescricaoExtraida(desc,v){
+ var s=String(desc||'').trim();if(!s)return'';
+ var valores=[v.cargo,v.empresa,v.area,v.contrato,v.modalidade,v.cidade,v.uf,v.bairro,v.cep,v.salario,v.escolaridade,v.experiencia,v.jornada,v.beneficios,v.atividades,v.requisitos,v.adicionais,v.email,v.whatsapp,v.assunto].filter(Boolean).map(function(x){return String(x).trim()});
+ var rot=/^(?:vaga|cargo|fun[cç][aã]o|oportunidade|empresa|contratante|[aá]rea|setor|contrata[cç][aã]o|contrato|regime|modalidade|modelo de trabalho|cidade|local|localidade|local de trabalho|uf|estado|bairro|cep|sal[aá]rio|remunera[cç][aã]o|escolaridade|forma[cç][aã]o|experi[eê]ncia|jornada|hor[aá]rio|benef[ií]cios?|oferecemos|atividades|responsabilidades|requisitos|qualifica[cç][oõ]es|informa[cç][oõ]es adicionais|como se candidatar|candidatura|contato|whatsapp|e-?mail|assunto)\s*[:\-]/i;
+ var linhas=s.split('\n').map(function(x){return x.trim()}).filter(function(x){
+   if(!x||rot.test(x))return false;
+   var nx=x.toLowerCase().replace(/\s+/g,' ');
+   return !valores.some(function(vl){var nv=vl.toLowerCase().replace(/\s+/g,' ');return nv&&nx===nv})
+ });
+ s=linhas.join('\n').replace(/\n{3,}/g,'\n\n').trim();
+ return s
+}
 function infer(v,t){var all=(String(v.cargo||'')+' '+t).toLowerCase();
 if(!v.empresa){var em=t.match(/(?:empresa|rede|grupo)\s+([A-ZÁÉÍÓÚÂÊÔÃÕÇ][^\n,.;]{2,60})/i)||t.match(/\b(O Botic[aá]rio)\b/i);if(em)v.empresa=em[1]}
 if(!v.area){if(/venda|comercial|consultor de loja|vendedor/.test(all))v.area='Vendas';else if(/atendimento|auxiliar de loja|caixa|recepcion/.test(all))v.area='Atendimento';else if(/estoque|logística|logistica|expedi|almoxarif/.test(all))v.area='Logística';else if(/administrativ|assistente administrativo/.test(all))v.area='Administrativo';else if(/financeir|contab|fiscal/.test(all))v.area='Financeiro';else if(/rh|recursos humanos|recrut/.test(all))v.area='Recursos Humanos';else if(/desenvolvedor|programador|tecnologia|suporte ti|\bti\b/.test(all))v.area='TI e Tecnologia'}
