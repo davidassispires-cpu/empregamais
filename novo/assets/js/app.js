@@ -397,3 +397,34 @@ async function adminCarregarVagasSupabase(){
  }
  sbVagasCacheEM=vs;gravar('empregaMaisVagas',vs);return vs
 }
+
+/* EMPREGAMAIS-PAINEL-AUTOREFRESH-V1
+   Mantém o painel da empresa sincronizado sem F5.
+   Consulta apenas enquanto a página do painel está aberta. */
+let empresaPainelAutoRefreshTimerEM=null,empresaPainelAutoRefreshBusyEM=false,empresaPainelAssinaturaEM='';
+function empresaPainelEstaAbertoEM(){return !!document.querySelector('#pagina-painel-empresa.ativa')&&papelAtual()==='empresa'}
+function empresaPainelAssinaturaVagasEM(vs){return (vs||[]).map(v=>[v.id,v.status,v.editadoEm||'',v.motivoReprovacao||''].join(':')).sort().join('|')}
+async function empresaPainelAtualizarSemF5EM(forcar){
+ if(!empresaPainelEstaAbertoEM()||empresaPainelAutoRefreshBusyEM)return;
+ empresaPainelAutoRefreshBusyEM=true;
+ try{
+   const vs=await sbCarregarVagasEmpresaAtualEM(),sig=empresaPainelAssinaturaVagasEM(vs);
+   if(forcar||sig!==empresaPainelAssinaturaEM){empresaPainelAssinaturaEM=sig;_renderizarPainelEmpresaSyncV4()}
+ }catch(e){console.warn('Atualização automática do painel:',e)}
+ finally{empresaPainelAutoRefreshBusyEM=false}
+}
+function empresaPainelIniciarAutoRefreshEM(){
+ if(empresaPainelAutoRefreshTimerEM)clearInterval(empresaPainelAutoRefreshTimerEM);
+ empresaPainelAssinaturaEM='';
+ setTimeout(()=>empresaPainelAtualizarSemF5EM(true),300);
+ empresaPainelAutoRefreshTimerEM=setInterval(()=>empresaPainelAtualizarSemF5EM(false),5000)
+}
+document.addEventListener('visibilitychange',()=>{if(!document.hidden&&empresaPainelEstaAbertoEM())empresaPainelAtualizarSemF5EM(false)});
+const _abrirRotaAutoRefreshEM=abrirRota;
+abrirRota=function(p){
+ const r=_abrirRotaAutoRefreshEM(p);
+ if(p==='painel-empresa')empresaPainelIniciarAutoRefreshEM();
+ else if(empresaPainelAutoRefreshTimerEM){clearInterval(empresaPainelAutoRefreshTimerEM);empresaPainelAutoRefreshTimerEM=null}
+ return r
+};
+if(new URLSearchParams(location.search).get('pagina')==='painel-empresa')setTimeout(empresaPainelIniciarAutoRefreshEM,700);
