@@ -797,10 +797,16 @@ canonicas[0].removeAttribute("hidden");
 executandoV83=false;
 }
 window.EmpregaMaisAtualizarDistanciaPreviaV83=garantirDistanciaPreviaV83;
+function homeAtivaV83(){
+var p=document.getElementById("pagina-home");
+return !!(p&amp;&amp;(p.classList.contains("ativa")||p.classList.contains("pagina-ativa")));
+}
 window.addEventListener("load",function(){
-/* Uma execução inicial é suficiente; novas vagas são tratadas pelo observer
-   abaixo, evitando cinco reconstruções visuais após cada F5. */
-setTimeout(garantirDistanciaPreviaV83,300);
+if(homeAtivaV83())setTimeout(garantirDistanciaPreviaV83,220);
+});
+document.addEventListener("empregamais:navegacao",function(ev){
+var p=String((ev&amp;&amp;ev.detail&amp;&amp;ev.detail.pagina)||"");
+if(p==="inicio"||p==="home")setTimeout(garantirDistanciaPreviaV83,160);
 });
 var home=document.getElementById("pagina-home");
 if(home){
