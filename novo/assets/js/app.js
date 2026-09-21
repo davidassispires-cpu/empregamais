@@ -352,6 +352,24 @@ let planoBAtual='trimestral';
 function selecionarAbaPlano(chave){if(!DETALHES_PLANOS[chave])chave='basico';planoBAtual=chave;const d=DETALHES_PLANOS[chave];document.querySelectorAll('.planos-b-tabs button').forEach(b=>b.classList.toggle('ativo',b.dataset.plano===chave));const set=(id,t)=>{const e=document.getElementById(id);if(e)e.textContent=t};set('planoBTag',d.etiqueta);set('planoBNome','Plano '+d.nome);set('planoBResumo',d.resumo);set('planoBPreco',d.preco);set('planoBPeriodo',d.periodo);const precoBox=document.querySelector('.plano-b-preco');if(precoBox){let pg=precoBox.querySelector('.em-pagamento-plano');if(pg)pg.remove();if(chave!=='basico'){const periodo=document.getElementById('planoBPeriodo');periodo.insertAdjacentHTML('afterend',emPagamentoPlano(chave));}}set('planoBTituloBeneficios','O que está incluído no plano '+d.nome+'?');const l=document.getElementById('planoBLista');if(l){const icons=['▣','★','⚡','◈','♟','◉','▥','◌'];l.innerHTML='<div class="plano-recursos-grid">'+d.beneficios.map((x,i)=>'<article class="plano-recurso-card"><i>'+icons[i%icons.length]+'</i><div><strong>'+esc(x[0])+'</strong><p>'+esc(x[1])+'</p></div></article>').join('')+'</div>'+(chave!=='basico'?'<div class="plano-resultados"><i>◆</i><div><strong>Mais resultados para sua empresa</strong><p>Publique mais vagas, destaque suas oportunidades e encontre talentos com mais agilidade.</p></div></div>':'');}const bt=document.getElementById('planoBEscolher');if(bt){bt.textContent=chave==='basico'?'Começar grátis →':'Escolher este plano →';bt.type='button';bt.dataset.plano=chave;bt.onclick=null;}}
 function renderizarPlanosModeloB(){renderizarPlanosAtuais();selecionarAbaPlano(planoBAtual||'trimestral')}
 
+
+/* CANDIDATURA EXTERNA — RECURSO EXCLUSIVO DOS PLANOS PAGOS V2 */
+function candidaturaExternaLiberadaEM(){return planoEmpresaAtual().nome!=='Grátis'}
+function aplicarRegraCandidaturaPlanoEM(){
+ const box=document.querySelector('.em-candidatura-config');if(!box)return;const pago=candidaturaExternaLiberadaEM();
+ box.classList.toggle('recurso-bloqueado',!pago);
+ box.querySelectorAll('input[name="formaCandidaturaVaga"]').forEach(r=>{if(r.value!=='site')r.disabled=!pago});
+ let aviso=box.querySelector('.em-candidatura-plano-aviso');
+ if(!aviso){aviso=document.createElement('div');aviso.className='em-candidatura-plano-aviso';box.querySelector('.em-candidatura-head')?.appendChild(aviso)}
+ aviso.innerHTML=pago?'✓ Seu plano permite receber candidaturas por e-mail, WhatsApp ou site da empresa.':'🔒 <b>Recurso dos planos pagos.</b> No plano Grátis, as candidaturas são recebidas pelo EmpregaMais. <button type="button" onclick="irPara(\'planos\')">Conhecer planos</button>';
+ if(!pago){const site=box.querySelector('input[name="formaCandidaturaVaga"][value="site"]');if(site)site.checked=true}
+ atualizarFormaCandidaturaEM()
+}
+const _atualizarFormaPlanoEM=atualizarFormaCandidaturaEM;atualizarFormaCandidaturaEM=function(){if(!candidaturaExternaLiberadaEM()){const s=document.querySelector('input[name="formaCandidaturaVaga"][value="site"]');if(s)s.checked=true}return _atualizarFormaPlanoEM()};
+const _validarFormaPlanoEM=validarFormaCandidaturaEM;validarFormaCandidaturaEM=function(){const f=document.querySelector('input[name="formaCandidaturaVaga"]:checked')?.value||'site';if(f!=='site'&&!candidaturaExternaLiberadaEM())return 'Candidatura por e-mail, WhatsApp ou site da empresa está disponível somente nos planos pagos.';return _validarFormaPlanoEM()};
+const _mostrarEtapaCandidaturaPlanoEM=mostrarEtapa;mostrarEtapa=function(n){const r=_mostrarEtapaCandidaturaPlanoEM(n);if(Number(n)===3)setTimeout(aplicarRegraCandidaturaPlanoEM,0);return r};
+['mensal','trimestral','semestral','anual'].forEach(k=>{const d=DETALHES_PLANOS[k];if(d&&!d.beneficios.some(x=>x[0]==='Candidatura externa'))d.beneficios.push(['Candidatura externa','Escolha receber candidatos pelo EmpregaMais, por e-mail, WhatsApp ou direcioná-los ao site de carreiras da sua empresa.'])});
+
 const ORDEM_PLANOS=['basico','mensal','trimestral','semestral','anual'];
 function podeUpgradePlano(atual,novo){return ORDEM_PLANOS.indexOf(novo)>ORDEM_PLANOS.indexOf(atual)}
 function diasPlano(chave){return {basico:0,mensal:30,trimestral:90,semestral:180,anual:365}[chave]||0}
