@@ -718,3 +718,49 @@ body.sessao-empresa .menu-publico,body.sessao-empresa .menu-drop-candidato{displ
 #pagina-painel-empresa .empresa-box{border:1px solid #dce7ea!important;border-radius:16px!important;box-shadow:0 5px 17px rgba(18,57,70,.04)!important}
 @media(max-width:1050px){.empresa-plano-body{grid-template-columns:1fr}.empresa-plano-stats{grid-template-columns:repeat(3,1fr)}}
 @media(max-width:700px){#pagina-painel-empresa .em-ref-wrap{padding:12px!important}.empresa-plano-head{align-items:flex-start;gap:12px;flex-direction:column}.empresa-plano-body{padding:15px}.empresa-plano-stats{grid-template-columns:1fr}.empresa-plano-stats button{min-height:64px}}
+
+
+/* HOME HERO PROFISSIONAL V2 — aplicado 2026-09-21 */
+#pagina-home .home-hero-visual{height:560px!important;min-height:560px!important;background:#eef7fd!important;overflow:hidden!important}
+#pagina-home .home-hero-photo{inset:0 0 0 48%!important;background:linear-gradient(90deg,#eef7fd 0%,rgba(238,247,253,.2) 22%,rgba(238,247,253,0) 44%),url("https://images.unsplash.com/photo-1758873268663-5a362616b5a7?auto=format&fit=crop&fm=jpg&ixlib=rb-4.1.0&q=82&w=1800") center 38%/cover no-repeat!important}
+#pagina-home .home-hero-photo:after{content:""!important;display:block!important;position:absolute!important;inset:0!important;width:auto!important;height:auto!important;right:auto!important;top:auto!important;border-radius:0!important;background:linear-gradient(90deg,#eef7fd 0%,rgba(238,247,253,.92) 18%,rgba(238,247,253,.18) 55%,rgba(7,68,86,.05) 100%)!important;opacity:1!important;box-shadow:none!important}
+#pagina-home .home-hero-content{position:relative!important;z-index:2!important;max-width:1200px!important;height:100%!important;margin:0 auto!important;padding:55px 22px 112px!important;display:flex!important;align-items:flex-start!important}
+#pagina-home .home-hero-copy{width:min(650px,57%)!important}
+#pagina-home .home-hero-kicker{display:flex!important;align-items:center!important;gap:14px!important;color:#075f7a!important;font-size:13px!important;font-weight:800!important;letter-spacing:.28em!important;margin-bottom:22px!important}
+#pagina-home .home-hero-kicker:before{content:""!important;width:40px!important;height:3px!important;border-radius:999px!important;background:#08778d!important}
+#pagina-home .home-hero-copy h1{margin:0!important;max-width:650px!important;color:#082d45!important;font-size:clamp(42px,4.3vw,68px)!important;line-height:.98!important;letter-spacing:-.045em!important;font-weight:800!important}
+#pagina-home .home-hero-copy h1 em{display:block!important;color:#087c96!important;font-style:normal!important}
+#pagina-home .home-hero-copy>p{max-width:620px!important;margin:22px 0 27px!important;color:#526b7d!important;font-size:18px!important;line-height:1.48!important}
+#pagina-home .home-hero-benefits{display:grid!important;grid-template-columns:repeat(4,minmax(0,1fr))!important;gap:13px!important;max-width:700px!important}
+#pagina-home .home-hero-benefits>span{display:grid!important;grid-template-columns:40px 1fr!important;gap:9px!important;align-items:center!important;min-width:0!important}
+#pagina-home .home-hero-benefits b{width:40px!important;height:40px!important;border-radius:50%!important;background:rgba(255,255,255,.72)!important;color:#08758d!important;display:grid!important;place-items:center!important;font-size:16px!important;border:1px solid rgba(8,117,141,.1)!important}
+#pagina-home .home-hero-benefits strong{color:#17374d!important;font-size:12px!important;line-height:1.2!important}
+#pagina-home .home-hero-benefits small{display:block!important;margin-top:3px!important;color:#6c8090!important;font-size:11px!important;font-weight:400!important}
+#pagina-home .home-hero-card{position:absolute!important;right:32px!important;bottom:112px!important;display:flex!important;align-items:center!important;gap:20px!important;padding:18px 20px!important;border:1px solid rgba(255,255,255,.7)!important;border-radius:18px!important;background:rgba(242,249,253,.9)!important;box-shadow:0 18px 40px rgba(8,49,71,.13)!important;backdrop-filter:blur(9px)!important;color:#103b54!important;font-size:17px!important;font-weight:800!important;line-height:1.2!important}
+#pagina-home .home-hero-card b{width:42px!important;height:42px!important;border-radius:50%!important;background:#fff!important;display:grid!important;place-items:center!important;font-size:22px!important;color:#075c76!important}
+#pagina-home .home-search-wrap{bottom:28px!important;width:min(1200px,calc(100% - 44px))!important}
+#pagina-home .home-search-wrap .busca{grid-template-columns:1.25fr 1fr .95fr 1fr!important;padding:12px!important;border-radius:18px!important;gap:8px!important;box-shadow:0 16px 45px rgba(12,55,78,.16)!important}
+#pagina-home .home-search-wrap .busca input,#pagina-home .home-search-wrap .busca select{height:58px!important;border:1px solid #cddce7!important;border-radius:11px!important;background:#fff!important;padding:0 17px!important;font-size:15px!important}
+#pagina-home .home-search-wrap .busca .btn{height:58px!important;border-radius:11px!important;background:linear-gradient(135deg,#075e78,#087f8c)!important;font-size:16px!important;font-weight:700!important}
+@media(max-width:1000px){
+ #pagina-home .home-hero-visual{height:620px!important;min-height:620px!important}
+ #pagina-home .home-hero-photo{inset:0!important;opacity:.34!important}
+ #pagina-home .home-hero-content{padding-top:42px!important}
+ #pagina-home .home-hero-copy{width:72%!important}
+ #pagina-home .home-hero-card{display:none!important}
+ #pagina-home .home-hero-benefits{grid-template-columns:1fr 1fr!important}
+ #pagina-home .home-search-wrap .busca{grid-template-columns:1fr 1fr!important}
+}
+@media(max-width:650px){
+ #pagina-home .home-hero-visual{height:760px!important;min-height:760px!important}
+ #pagina-home .home-hero-photo{inset:0!important;background-position:65% center!important;opacity:.2!important}
+ #pagina-home .home-hero-content{padding:36px 18px 310px!important}
+ #pagina-home .home-hero-copy{width:100%!important}
+ #pagina-home .home-hero-kicker{font-size:10px!important;letter-spacing:.2em!important}
+ #pagina-home .home-hero-copy h1{font-size:42px!important}
+ #pagina-home .home-hero-copy>p{font-size:16px!important}
+ #pagina-home .home-hero-benefits{grid-template-columns:1fr 1fr!important;gap:12px 8px!important}
+ #pagina-home .home-search-wrap{width:calc(100% - 28px)!important;bottom:16px!important}
+ #pagina-home .home-search-wrap .busca{grid-template-columns:1fr!important;padding:10px!important}
+ #pagina-home .home-search-wrap .busca input,#pagina-home .home-search-wrap .busca select,#pagina-home .home-search-wrap .busca .btn{height:52px!important}
+}
