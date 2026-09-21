@@ -326,3 +326,37 @@ body.sessao-empresa .menu-publico,body.sessao-empresa .menu-drop-candidato{displ
 .perfil-wizard-card{background:#fff;border:1px solid #dfe6ed;border-radius:18px;box-shadow:0 10px 32px rgba(29,58,84,.06);padding:34px 38px}.perfil-step{display:none}.perfil-step.ativo{display:block}.perfil-step-title{border-bottom:1px solid #edf1f4;padding-bottom:20px;margin-bottom:26px}.perfil-step-title h2{font:700 25px/1.2 Arial,sans-serif;color:#173c59;letter-spacing:-.5px;margin:6px 0}.perfil-step-title p{color:#718598;margin:0}.perfil-wizard-card .perfil-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px 22px}.perfil-wizard-card label{font:600 13px Arial,sans-serif;color:#294a63}.perfil-wizard-card .campo{margin-top:8px;min-height:48px;border:1px solid #ccd9e3;border-radius:10px;background:#fff;font:15px Arial,sans-serif;padding:12px 14px}.perfil-wizard-card textarea.campo{min-height:110px;resize:vertical}.perfil-wizard-card .full{grid-column:1/-1}.perfil-step-actions{display:flex;align-items:center;justify-content:space-between;border-top:1px solid #edf1f4;margin-top:30px;padding-top:22px}.perfil-step-actions>div{display:flex;gap:10px}
 .perfil-choice-row{display:flex;gap:10px;flex-wrap:wrap;margin-top:9px}.perfil-choice-row button{border:1px solid #ccd9e3;background:#fff;color:#49657b;border-radius:9px;padding:11px 18px;font:600 14px Arial,sans-serif;cursor:pointer}.perfil-choice-row button.ativo{background:#eaf6f8;border-color:#5caabd;color:#0e627b}.perfil-private-note{background:#fff8e9;border:1px solid #f0dfb7;border-radius:10px;padding:13px 15px;color:#785d22;font-size:13px;margin-bottom:22px}
 @media(max-width:700px){.perfil-wizard-shell{padding-top:18px}.perfil-wizard-head h1{font-size:28px}.perfil-progress span{display:none}.perfil-progress i{width:25px;margin-bottom:0}.perfil-progress button{gap:0}.perfil-wizard-card{padding:24px 18px}.perfil-wizard-card .perfil-grid{grid-template-columns:1fr}.perfil-wizard-card .full{grid-column:auto}.perfil-step-actions{gap:10px}.perfil-step-actions>div{flex-direction:column}}
+
+/* EMPREGAMAIS-PERFIL-EMPRESA-PRO-V2 */
+#pagina-perfil-empresa{background:#f7f9fc!important}
+#pagina-perfil-empresa .perfil-wizard-shell{max-width:1120px!important;padding:24px 24px 72px!important}
+#pagina-perfil-empresa .voltar-link{display:inline-flex;align-items:center;border:0;background:transparent;color:#587188;font:600 13px Arial,sans-serif;padding:7px 0}
+#pagina-perfil-empresa .perfil-wizard-head{text-align:left!important;max-width:none!important;margin:22px 0 28px!important;padding:0!important}
+#pagina-perfil-empresa .perfil-wizard-head>span{color:#5b748b!important;font-size:10px!important;letter-spacing:1.5px!important}
+#pagina-perfil-empresa .perfil-wizard-head h1{font-size:32px!important;letter-spacing:-.9px!important;color:#173b5a!important;margin:7px 0!important}
+#pagina-perfil-empresa .perfil-wizard-head p{font:15px/1.55 Arial,sans-serif!important;color:#71869a!important;margin:0!important}
+#pagina-perfil-empresa .perfil-progress{justify-content:flex-start!important;max-width:none!important;margin:0 0 22px!important;background:#fff;border:1px solid #e1e7ed;border-radius:14px;padding:18px 24px;box-shadow:0 4px 16px rgba(27,55,82,.035)}
+#pagina-perfil-empresa .perfil-progress button{flex-direction:row!important;gap:9px!important;color:#73879a!important;font-size:12px!important;white-space:nowrap}
+#pagina-perfil-empresa .perfil-progress button b{width:30px!important;height:30px!important;border-radius:8px!important;background:#f5f7f9!important;border-color:#e0e6ec!important;color:#60778b!important}
+#pagina-perfil-empresa .perfil-progress button.ativo{color:#173e5d!important}#pagina-perfil-empresa .perfil-progress button.ativo b{background:#173f61!important;border-color:#173f61!important;color:#fff!important}
+#pagina-perfil-empresa .perfil-progress button.feito b{background:#edf6f4!important;border-color:#cce3dc!important;color:#28745d!important}
+#pagina-perfil-empresa .perfil-progress i{flex:1!important;max-width:80px!important;min-width:22px!important;margin:0 10px!important;background:#e2e8ed!important}
+#pagina-perfil-empresa .perfil-wizard-card{border-radius:16px!important;border:1px solid #e0e6ec!important;box-shadow:0 8px 26px rgba(25,52,78,.05)!important;padding:0!important;overflow:hidden!important}
+#pagina-perfil-empresa .perfil-step{padding:34px 38px 30px!important}
+#pagina-perfil-empresa .perfil-step-title{margin:-34px -38px 28px!important;padding:27px 38px 22px!important;background:#fbfcfd!important;border-bottom:1px solid #e6ebef!important}
+#pagina-perfil-empresa .perfil-step-title>span{color:#688096!important;font-size:10px!important}
+#pagina-perfil-empresa .perfil-step-title h2{font-size:24px!important;color:#173a57!important;margin:6px 0!important}
+#pagina-perfil-empresa .perfil-step-title p{font:14px/1.5 Arial,sans-serif!important;color:#718599!important}
+#pagina-perfil-empresa .perfil-wizard-card .perfil-grid{gap:22px 24px!important}
+#pagina-perfil-empresa .perfil-wizard-card label{font:600 13px Arial,sans-serif!important;color:#334f66!important}
+#pagina-perfil-empresa .perfil-wizard-card .campo{width:100%!important;min-height:50px!important;border:1px solid #d3dde5!important;border-radius:9px!important;background:#fff!important;font:15px Arial,sans-serif!important;color:#243f55!important;padding:13px 14px!important;box-shadow:inset 0 1px 1px rgba(25,52,78,.015)!important}
+#pagina-perfil-empresa .perfil-wizard-card .campo:focus{outline:none!important;border-color:#6d9eb9!important;box-shadow:0 0 0 3px rgba(66,132,167,.09)!important}
+#pagina-perfil-empresa .perfil-wizard-card textarea.campo{min-height:124px!important;line-height:1.55!important}
+#pagina-perfil-empresa .perfil-choice-row{gap:9px!important}
+#pagina-perfil-empresa .perfil-choice-row button{border:1px solid #d5dfe7!important;border-radius:8px!important;background:#f9fbfc!important;color:#536d82!important;padding:10px 16px!important;font:600 13px Arial,sans-serif!important;box-shadow:none!important}
+#pagina-perfil-empresa .perfil-choice-row button.ativo{background:#edf5f8!important;border-color:#91b6c7!important;color:#174e67!important}
+#pagina-perfil-empresa .perfil-private-note{background:#f7f9fb!important;border-color:#e0e6ec!important;color:#657b8d!important}
+#pagina-perfil-empresa .perfil-step-actions{margin-top:34px!important;padding-top:24px!important}
+#pagina-perfil-empresa .perfil-step-actions .btn{min-height:44px!important;border-radius:8px!important;font:600 13px Arial,sans-serif!important;padding:0 18px!important}
+#pagina-perfil-empresa .perfil-step-actions .btn-azul{background:#174b73!important;border-color:#174b73!important}
+@media(max-width:760px){#pagina-perfil-empresa .perfil-wizard-shell{padding:16px 14px 50px!important}#pagina-perfil-empresa .perfil-progress{overflow-x:auto;justify-content:flex-start!important;padding:14px!important}#pagina-perfil-empresa .perfil-progress span{display:block!important}#pagina-perfil-empresa .perfil-progress i{min-width:18px!important;margin:0 5px!important}#pagina-perfil-empresa .perfil-step{padding:25px 18px!important}#pagina-perfil-empresa .perfil-step-title{margin:-25px -18px 24px!important;padding:22px 18px 18px!important}}
