@@ -313,9 +313,16 @@ moverPerfilAntesRodapeV20();
 prepararVoltarV20();
 }
 window.voltarPainelDadosEmpresaV20=voltarPainelV20;
+function perfilEmpresaAtivoV20(){
+var p=document.getElementById(paginaIdV20);
+return !!(p&amp;&amp;(p.classList.contains("ativa")||p.classList.contains("pagina-ativa")));
+}
 window.addEventListener("load",function(){
-setTimeout(corrigirPerfilV20,150);
-setTimeout(corrigirPerfilV20,700);
+if(perfilEmpresaAtivoV20())setTimeout(corrigirPerfilV20,150);
+});
+document.addEventListener("empregamais:navegacao",function(ev){
+var p=String((ev&amp;&amp;ev.detail&amp;&amp;ev.detail.pagina)||"");
+if(p==="perfil-empresa")setTimeout(corrigirPerfilV20,100);
 });
 document.addEventListener("click",function(e){
 var alvo=e.target.closest("button,a");
