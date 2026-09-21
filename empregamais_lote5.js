@@ -572,7 +572,15 @@ outros.addEventListener("input",atual);atual();
 function iniciarV23(){
 window.montarFormularioV23();
 }
-window.addEventListener("load",function(){setTimeout(iniciarV23,250);setTimeout(iniciarV23,900);});
+function formularioPerfilAtivoV23(){
+var p=document.getElementById("pagina-perfil-empresa-em");
+return !!(p&amp;&amp;(p.classList.contains("ativa")||p.classList.contains("pagina-ativa")));
+}
+window.addEventListener("load",function(){if(formularioPerfilAtivoV23())setTimeout(iniciarV23,180);});
+document.addEventListener("empregamais:navegacao",function(ev){
+var p=String((ev&amp;&amp;ev.detail&amp;&amp;ev.detail.pagina)||"");
+if(p==="perfil-empresa")setTimeout(iniciarV23,140);
+});
 document.addEventListener("click",function(e){
 var a=e.target.closest("[data-aba-dados-v22],a,button");
 if(!a)return;
