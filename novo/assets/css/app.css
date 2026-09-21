@@ -604,3 +604,29 @@ body.sessao-empresa .menu-publico,body.sessao-empresa .menu-drop-candidato{displ
 .em-pay-secure:first-letter{color:#087b84}
 .plano-b-escolher{position:relative!important;z-index:5!important;pointer-events:auto!important;cursor:pointer!important}
 @media(max-width:600px){.em-pagamento-plano .em-pagamento-linha{grid-template-columns:65px 1fr!important}.em-pix-oficial{width:62px}.em-pix-oficial b{font-size:18px}.em-pagamento-plano .em-bandeiras{grid-template-columns:repeat(5,minmax(0,1fr))!important;gap:5px!important}.em-pagamento-plano .em-bandeiras .em-card-brand{height:34px!important}}
+
+/* PLANOS — layout de pagamento aprovado v4 */
+.plano-b-preco .em-pagamento-plano{margin:16px 0!important;border:1px solid rgba(255,255,255,.72)!important;border-radius:16px!important;background:#fff!important;overflow:hidden!important;box-shadow:0 8px 22px rgba(0,47,55,.12)!important}
+.em-pagamento-plano .em-pay-title{padding:11px 14px!important;background:linear-gradient(135deg,#08737d,#0b8c94)!important}
+.em-pagamento-plano .em-pay-title span{font-size:14px!important}.em-pagamento-plano .em-pay-title small{font-size:10px!important}
+.em-pay-option{display:grid!important;grid-template-columns:105px 1fr!important;align-items:center!important;margin:0 13px!important;padding:13px 0!important;border-bottom:1px solid #e2ebed!important;min-height:82px!important}
+.em-pay-copy{display:flex!important;flex-direction:column!important;align-items:flex-start!important;gap:2px!important}
+.em-pay-copy em{padding:4px 8px!important;border-radius:999px!important;background:#d9f7e9!important;color:#08704f!important;font-size:8px!important;font-style:normal!important;font-weight:800!important;text-transform:uppercase}
+.em-pay-copy strong{font-size:18px!important;line-height:1.15!important;color:#063e4e!important;font-weight:800!important}.em-pay-copy strong small{font-size:13px!important;color:#063e4e!important}
+.em-pay-copy span{font-size:10.5px!important;color:#61757d!important}
+.em-pix-brand{display:flex!important;align-items:center!important;justify-content:center!important;gap:6px!important}
+.em-pix-brand b{font:400 21px/1 Arial,sans-serif!important;color:#667579!important}
+.pix-mark{position:relative!important;width:34px!important;height:34px!important;display:block!important}
+.pix-mark i{position:absolute!important;width:18px!important;height:18px!important;border:4px solid #00b3a4!important;border-radius:6px!important;transform:rotate(45deg)!important}
+.pix-mark i:nth-child(1){left:0!important;top:8px!important;border-right-color:transparent!important;border-top-color:transparent!important}
+.pix-mark i:nth-child(2){right:0!important;top:8px!important;border-left-color:transparent!important;border-bottom-color:transparent!important}
+.pix-mark i:nth-child(3){left:8px!important;top:0!important;border-left-color:transparent!important;border-bottom-color:transparent!important}
+.pix-mark i:nth-child(4){left:8px!important;bottom:0!important;border-right-color:transparent!important;border-top-color:transparent!important}
+.em-credit-brand{display:grid!important;grid-template-columns:48px 1fr!important;grid-template-rows:auto auto!important;align-items:center!important;column-gap:8px!important}
+.em-credit-brand .em-card-icon{grid-row:1/3!important;width:45px!important;height:32px!important;margin:0!important;border-width:3px!important}
+.em-credit-brand b{font-size:13px!important;line-height:1.05!important;color:#073e4e!important}.em-credit-brand small{font-size:9px!important;color:#657980!important}
+.em-pagamento-plano .em-bandeiras{margin:0 13px!important;padding:12px 0 10px!important;grid-template-columns:repeat(5,1fr)!important;gap:7px!important}
+.em-pagamento-plano .em-bandeiras .em-card-brand{height:37px!important}
+.em-pagamento-plano .em-pay-secure{padding:0 8px 11px!important;font-size:9px!important}
+.plano-b-escolher{display:block!important;width:100%!important;min-height:50px!important;position:relative!important;z-index:20!important;pointer-events:auto!important;cursor:pointer!important}
+@media(max-width:520px){.em-pay-option{grid-template-columns:92px 1fr!important;min-height:76px!important;padding:11px 0!important}.em-pay-copy strong{font-size:16px!important}.em-pix-brand b{font-size:19px!important}.pix-mark{transform:scale(.9)}.em-pagamento-plano .em-bandeiras{gap:5px!important}.em-pagamento-plano .em-bandeiras .em-card-brand{height:34px!important}}
