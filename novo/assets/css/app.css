@@ -360,3 +360,36 @@ body.sessao-empresa .menu-publico,body.sessao-empresa .menu-drop-candidato{displ
 #pagina-perfil-empresa .perfil-step-actions .btn{min-height:44px!important;border-radius:8px!important;font:600 13px Arial,sans-serif!important;padding:0 18px!important}
 #pagina-perfil-empresa .perfil-step-actions .btn-azul{background:#174b73!important;border-color:#174b73!important}
 @media(max-width:760px){#pagina-perfil-empresa .perfil-wizard-shell{padding:16px 14px 50px!important}#pagina-perfil-empresa .perfil-progress{overflow-x:auto;justify-content:flex-start!important;padding:14px!important}#pagina-perfil-empresa .perfil-progress span{display:block!important}#pagina-perfil-empresa .perfil-progress i{min-width:18px!important;margin:0 5px!important}#pagina-perfil-empresa .perfil-step{padding:25px 18px!important}#pagina-perfil-empresa .perfil-step-title{margin:-25px -18px 24px!important;padding:22px 18px 18px!important}}
+
+/* EMPREGAMAIS-PERFIL-EMPRESA-7ETAPAS-V2 */
+#pagina-perfil-empresa{background:#f5f8fb!important;padding:26px 0 70px!important}
+#pagina-perfil-empresa .perfil-wizard-shell{max-width:1080px!important}
+#pagina-perfil-empresa .perfil-wizard-head{background:transparent!important;padding:22px 0 24px!important;border:0!important}
+#pagina-perfil-empresa .perfil-wizard-head>span{font-size:11px!important;letter-spacing:.12em!important;font-weight:800!important;color:#1973ae!important}
+#pagina-perfil-empresa .perfil-wizard-head h1{font-family:Arial,"Helvetica Neue",sans-serif!important;font-size:32px!important;letter-spacing:-.7px!important;color:#163b5b!important;margin:7px 0!important}
+#pagina-perfil-empresa .perfil-wizard-head p{font-size:14px!important;color:#667d90!important}
+#pagina-perfil-empresa .perfil-progress{display:flex!important;align-items:center!important;justify-content:space-between!important;background:#fff!important;border:1px solid #e0e7ee!important;border-radius:15px!important;padding:18px 20px!important;margin-bottom:18px!important;overflow-x:auto!important}
+#pagina-perfil-empresa .perfil-progress button{border:0!important;background:transparent!important;display:flex!important;align-items:center!important;gap:7px!important;color:#8293a2!important;white-space:nowrap!important}
+#pagina-perfil-empresa .perfil-progress button b{width:29px!important;height:29px!important;border-radius:50%!important;display:grid!important;place-items:center!important;background:#edf2f6!important;color:#63798b!important;font-size:12px!important}
+#pagina-perfil-empresa .perfil-progress button.ativo b,#pagina-perfil-empresa .perfil-progress button.feito b{background:#126ea8!important;color:#fff!important}
+#pagina-perfil-empresa .perfil-progress button.ativo span{color:#174768!important;font-weight:700!important}
+#pagina-perfil-empresa .perfil-progress>i{height:1px!important;min-width:14px!important;flex:1!important;background:#e2e8ee!important;margin:0 5px!important}
+#pagina-perfil-empresa .perfil-wizard-card{background:#fff!important;border:1px solid #dfe7ee!important;border-radius:18px!important;padding:32px!important;box-shadow:0 10px 32px rgba(26,58,88,.055)!important}
+#pagina-perfil-empresa .perfil-step{display:none!important}#pagina-perfil-empresa .perfil-step.ativo{display:block!important}
+#pagina-perfil-empresa .perfil-step-title{border-bottom:1px solid #edf1f4!important;padding-bottom:20px!important;margin-bottom:24px!important}
+#pagina-perfil-empresa .perfil-step-title>span{font-size:10px!important;letter-spacing:.11em!important;color:#1780ba!important;font-weight:800!important}
+#pagina-perfil-empresa .perfil-step-title h2{font-family:Arial,"Helvetica Neue",sans-serif!important;font-size:24px!important;color:#173b59!important;margin:6px 0!important}
+#pagina-perfil-empresa .perfil-step-title p{font-size:13px!important;color:#718596!important;margin:0!important}
+#pagina-perfil-empresa .perfil-grid{gap:19px!important}
+#pagina-perfil-empresa .perfil-grid label{font-size:12px!important;color:#314d64!important;font-weight:700!important}
+#pagina-perfil-empresa .perfil-grid .campo{min-height:48px!important;border:1px solid #cfdae4!important;border-radius:10px!important;padding:12px 14px!important;font-size:14px!important;background:#fff!important}
+#pagina-perfil-empresa .perfil-grid textarea.campo{min-height:125px!important;line-height:1.6!important}
+#pagina-perfil-empresa .perfil-choice-row{display:flex!important;flex-wrap:wrap!important;gap:8px!important;margin-top:9px!important}
+#pagina-perfil-empresa .perfil-choice-row button{border:1px solid #d7e1e9!important;background:#f9fbfc!important;color:#48657b!important;border-radius:9px!important;padding:10px 14px!important;font-size:12px!important;cursor:pointer!important}
+#pagina-perfil-empresa .perfil-choice-row button.ativo{background:#eaf5fb!important;border-color:#67a8cf!important;color:#0d679c!important;font-weight:700!important}
+#pagina-perfil-empresa .perfil-private-note{background:#f5f7f9!important;border:1px solid #e1e6eb!important;border-radius:10px!important;padding:13px 15px!important;margin-bottom:20px!important;color:#5c7081!important;font-size:12px!important}
+#pagina-perfil-empresa .perfil-step-actions{display:flex!important;justify-content:space-between!important;align-items:center!important;gap:12px!important;border-top:1px solid #edf1f4!important;margin-top:28px!important;padding-top:20px!important}
+#pagina-perfil-empresa .perfil-review{display:grid!important;grid-template-columns:1fr 1fr!important;gap:10px!important}
+#pagina-perfil-empresa .perfil-review>div{border:1px solid #e2e8ee!important;background:#f9fbfc!important;border-radius:10px!important;padding:14px!important}
+#pagina-perfil-empresa .perfil-review span,#pagina-perfil-empresa .perfil-review strong{display:block!important}#pagina-perfil-empresa .perfil-review span{font-size:10px!important;text-transform:uppercase!important;color:#7a8d9d!important;margin-bottom:5px!important}#pagina-perfil-empresa .perfil-review strong{font-size:14px!important;color:#23445f!important}
+@media(max-width:760px){#pagina-perfil-empresa{padding-top:14px!important}#pagina-perfil-empresa .perfil-wizard-card{padding:18px!important}#pagina-perfil-empresa .perfil-progress button span{display:none!important}#pagina-perfil-empresa .perfil-progress>i{min-width:8px!important}#pagina-perfil-empresa .perfil-review{grid-template-columns:1fr!important}}
