@@ -942,9 +942,14 @@ img.style.objectPosition="center";
 }
 }
 window.corrigirHeroPerfilEmpresaV28=corrigirHeroV28;
-window.addEventListener("load",function(){
-setTimeout(corrigirHeroV28,250);
-setTimeout(corrigirHeroV28,900);
+function perfilPublicoVisivelV28(){
+var p=document.getElementById("pagina-perfil-publico-empresa-em");
+return !!(p&amp;&amp;(p.classList.contains("ativa")||p.classList.contains("pagina-ativa")));
+}
+window.addEventListener("load",function(){if(perfilPublicoVisivelV28())setTimeout(corrigirHeroV28,180);});
+document.addEventListener("empregamais:navegacao",function(ev){
+var p=String((ev&amp;&amp;ev.detail&amp;&amp;ev.detail.pagina)||"");
+if(p==="perfil-publico-empresa"||p==="empresa-publica")setTimeout(corrigirHeroV28,140);
 });
 document.addEventListener("click",function(e){
 var a=e.target.closest("button,a");
