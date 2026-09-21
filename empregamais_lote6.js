@@ -1201,12 +1201,21 @@ if(typeof window.atualizarPreviewEnderecoV150==="function"){
 window.atualizarPreviewEnderecoV150();
 }
 }
+function publicacaoAtivaV151(){
+var p=document.getElementById("pagina-publicar");
+return !!(p&amp;&amp;(p.classList.contains("ativa")||p.classList.contains("pagina-ativa")));
+}
 document.addEventListener("DOMContentLoaded",function(){
+if(!publicacaoAtivaV151())return;
 setTimeout(reorganizarV151,150);
-setTimeout(sincronizarPreviewV151,500);
+setTimeout(sincronizarPreviewV151,220);
 });
-window.addEventListener("load",function(){
-setTimeout(reorganizarV151,250);
+document.addEventListener("empregamais:navegacao",function(ev){
+var p=String((ev&amp;&amp;ev.detail&amp;&amp;ev.detail.pagina)||"");
+if(p==="publicar"||p==="publicar-vaga"){
+ setTimeout(reorganizarV151,120);
+ setTimeout(sincronizarPreviewV151,180);
+}
 });
 document.addEventListener("change",function(e){
 if(e.target && (e.target.id==="cidadeVaga" || e.target.id==="estadoVaga")){
