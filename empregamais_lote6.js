@@ -815,15 +815,20 @@ statusAdminV146("",false);
 });
 }
 window.atualizarAdminV146=atualizarAdminV146;
+function painelAdminAtivoV146(){
+var pa=document.getElementById("pagina-painel-admin");
+return !!(pa&amp;&amp;(pa.classList.contains("ativa")||pa.classList.contains("pagina-ativa")));
+}
 window.addEventListener("load",function(){
 setTimeout(function(){
 restaurarDraftV146();
 sincronizarPlanoV146();
-var pa=document.getElementById("pagina-painel-admin");
-if(pa&&(pa.classList.contains("ativa")||pa.style.display!=="none")){
-atualizarAdminV146();
-}
-},700);
+if(painelAdminAtivoV146())atualizarAdminV146();
+},300);
+});
+document.addEventListener("empregamais:navegacao",function(ev){
+var p=String((ev&amp;&amp;ev.detail&amp;&amp;ev.detail.pagina)||"");
+if(p==="painel-admin"||p==="admin")setTimeout(atualizarAdminV146,120);
 });
 window.addEventListener("pageshow",function(){
 try{
