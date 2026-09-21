@@ -561,3 +561,20 @@ body.sessao-empresa .menu-publico,body.sessao-empresa .menu-drop-candidato{displ
 .em-bandeiras .amex{color:#1774a7;font-size:8px}
 .plano-detalhe-top .em-pagamento-plano{max-width:330px;margin-top:14px}
 @media(max-width:600px){.em-bandeiras{gap:4px}.em-bandeiras span{min-width:34px;padding:0 5px}}
+
+/* Bandeiras de pagamento — acabamento visual v2 */
+.em-bandeiras{gap:8px!important;padding-top:10px!important}
+.em-bandeiras .em-card-brand{position:relative!important;width:54px!important;height:34px!important;min-width:54px!important;padding:0!important;border:1px solid #d8e1e5!important;border-radius:7px!important;background:#fff!important;box-shadow:0 2px 6px rgba(18,63,74,.06)!important;overflow:hidden!important;display:flex!important;align-items:center!important;justify-content:center!important}
+.em-card-brand b{font-family:Arial,sans-serif!important;font-style:normal!important;line-height:1!important}
+.em-card-brand.visa b{font-size:14px!important;font-weight:900!important;font-style:italic!important;color:#172b85!important;letter-spacing:-1px!important}
+.em-card-brand.master{gap:0!important}
+.em-card-brand.master i{position:absolute!important;width:17px!important;height:17px!important;border-radius:50%!important;top:5px!important}
+.em-card-brand.master i:first-child{left:15px!important;background:#e43b35!important}
+.em-card-brand.master i:nth-child(2){left:24px!important;background:#f39a28!important;opacity:.92!important}
+.em-card-brand.master b{position:absolute!important;bottom:3px!important;font-size:5.5px!important;color:#2c3135!important;font-weight:700!important}
+.em-card-brand.elo b{font-size:15px!important;font-weight:900!important;color:#1f2528!important;letter-spacing:-1px!important}
+.em-card-brand.elo i{width:5px!important;height:5px!important;border-radius:50%!important;background:#f2b22b!important;margin-left:2px!important}
+.em-card-brand.hiper b{font-size:8px!important;font-weight:800!important;font-style:italic!important;color:#b31f29!important;letter-spacing:-.4px!important}
+.em-card-brand.amex{background:#1476a8!important;border-color:#1476a8!important}
+.em-card-brand.amex b{font-size:6.5px!important;line-height:.9!important;text-align:center!important;font-weight:900!important;color:#fff!important;letter-spacing:-.2px!important}
+@media(max-width:600px){.em-bandeiras .em-card-brand{width:49px!important;min-width:49px!important;height:31px!important}}
