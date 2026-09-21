@@ -1045,3 +1045,19 @@ body.sessao-empresa .menu-publico,body.sessao-empresa .menu-drop-candidato{displ
 #pagina-vaga .vaga-empresa-side{background:#fff!important;border-top:3px solid #d9e8f4!important;box-shadow:0 5px 18px rgba(18,62,98,.045)!important}
 #pagina-vaga .relacionadas-wrap{max-width:1280px!important;width:calc(100% - 64px)!important}
 @media(max-width:900px){#pagina-vaga .vaga-topbar .container,#pagina-vaga .vaga-layout-v2,#pagina-vaga .relacionadas-wrap{width:calc(100% - 30px)!important}}
+
+/* EMPREGAMAIS-VAGA-FAIXA-CURRICULO-V8 */
+#pagina-vaga .vaga-topbar{padding:0!important;background:#fff!important;border-bottom:1px solid #dce8f2!important}
+#pagina-vaga .vaga-topbar>.container:first-child{height:48px!important;min-height:48px!important;display:flex!important;align-items:center!important}
+#pagina-vaga .vaga-curriculo-faixa{max-width:1280px!important;width:calc(100% - 64px)!important;min-height:102px!important;margin:0 auto 16px!important;padding:16px 20px!important;display:grid!important;grid-template-columns:minmax(360px,1.35fr) minmax(360px,1fr) auto!important;align-items:center!important;gap:22px!important;background:linear-gradient(110deg,#073d6c 0%,#07558f 58%,#0874bf 100%)!important;border-radius:14px!important;color:#fff!important;box-shadow:0 10px 26px rgba(4,65,111,.13)!important}
+#pagina-vaga .vaga-curriculo-chamada{display:flex!important;align-items:center!important;gap:14px!important;min-width:0!important}
+#pagina-vaga .vaga-curriculo-icone{width:52px!important;height:52px!important;flex:0 0 52px!important;border-radius:12px!important;background:rgba(255,255,255,.13)!important;border:1px solid rgba(255,255,255,.2)!important;display:grid!important;place-items:center!important;font-size:15px!important;font-weight:900!important;letter-spacing:.5px!important}
+#pagina-vaga .vaga-curriculo-chamada strong{display:block!important;font-size:18px!important;line-height:1.15!important;font-weight:800!important;margin-bottom:5px!important;color:#fff!important}
+#pagina-vaga .vaga-curriculo-chamada p{margin:0!important;font-size:12px!important;line-height:1.45!important;color:#dceeff!important;max-width:510px!important}
+#pagina-vaga .vaga-curriculo-dicas{display:flex!important;flex-wrap:wrap!important;gap:7px 13px!important;padding-left:20px!important;border-left:1px solid rgba(255,255,255,.18)!important}
+#pagina-vaga .vaga-curriculo-dicas span{font-size:11.5px!important;font-weight:650!important;color:#eff8ff!important;white-space:nowrap!important}
+#pagina-vaga .vaga-curriculo-faixa>button{height:43px!important;padding:0 17px!important;border:1px solid rgba(255,255,255,.35)!important;border-radius:9px!important;background:#fff!important;color:#07538c!important;font-size:12px!important;font-weight:800!important;white-space:nowrap!important;cursor:pointer!important;box-shadow:0 5px 13px rgba(0,32,60,.12)!important}
+#pagina-vaga .vaga-curriculo-faixa>button b{margin-left:8px!important;font-size:15px!important}
+#pagina-vaga .vaga-layout-v2{padding-top:0!important}
+@media(max-width:1000px){#pagina-vaga .vaga-curriculo-faixa{grid-template-columns:1fr!important;gap:12px!important}.vaga-curriculo-dicas{border-left:0!important;padding-left:66px!important}}
+@media(max-width:640px){#pagina-vaga .vaga-curriculo-faixa{width:calc(100% - 24px)!important;padding:15px!important}.vaga-curriculo-dicas{padding-left:0!important}#pagina-vaga .vaga-curriculo-faixa>button{width:100%!important}}
