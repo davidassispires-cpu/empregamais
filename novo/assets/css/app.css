@@ -416,3 +416,21 @@ body.sessao-empresa .menu-publico,body.sessao-empresa .menu-drop-candidato{displ
 #pagina-perfil-empresa .perfil-aside-status strong{font-size:15px;margin:4px 0;color:#fff}
 #pagina-perfil-empresa .perfil-aside-status small{font-size:10px;color:#cbe3e6}
 @media(max-width:980px){#pagina-perfil-empresa .perfil-wizard-layout-split{grid-template-columns:1fr}#pagina-perfil-empresa .perfil-wizard-aside{position:relative;top:auto;order:-1}}
+
+/* EMPREGAMAIS-PERFIL-EMPRESA-PETROLEO-V3 */
+#pagina-perfil-empresa{--perfil-petroleo:#087f8c;--perfil-petroleo-escuro:#075d68;background:#f4f7f8!important}
+#pagina-perfil-empresa .perfil-wizard-shell{max-width:1240px!important;padding-top:0!important}
+#pagina-perfil-empresa .perfil-wizard-head{margin:0 -24px 24px!important;padding:32px 36px 30px!important;border-radius:0 0 18px 18px;background:linear-gradient(135deg,#075d68,#087f8c)!important}
+#pagina-perfil-empresa .perfil-wizard-head>span,#pagina-perfil-empresa .perfil-wizard-head h1,#pagina-perfil-empresa .perfil-wizard-head p{color:#fff!important}
+#pagina-perfil-empresa .perfil-wizard-head h1{font-size:34px!important}#pagina-perfil-empresa .perfil-wizard-head p{opacity:.88!important}
+#pagina-perfil-empresa .perfil-progress button.ativo{color:#075d68!important}#pagina-perfil-empresa .perfil-progress button.ativo b{background:#087f8c!important;border-color:#087f8c!important;color:#fff!important}
+#pagina-perfil-empresa .perfil-wizard-layout-split{display:grid!important;grid-template-columns:minmax(0,1.65fr) minmax(300px,.72fr)!important;gap:22px!important;align-items:start!important}
+#pagina-perfil-empresa .perfil-wizard-card{min-width:0!important;padding:32px!important;border-color:#dce7e8!important}
+#pagina-perfil-empresa .perfil-step-title>span{color:#087f8c!important}#pagina-perfil-empresa .perfil-step-title h2{color:#123f45!important}
+#pagina-perfil-empresa .perfil-wizard-card .campo:focus{border-color:#087f8c!important;box-shadow:0 0 0 3px rgba(8,127,140,.10)!important}
+#pagina-perfil-empresa .perfil-choice-row button.ativo{background:#e8f6f5!important;border-color:#8cc9c8!important;color:#075d68!important}
+#pagina-perfil-empresa .perfil-wizard-card .btn-azul{background:#087f8c!important;border-color:#087f8c!important}
+.perfil-wizard-aside-v3{position:sticky;top:86px;border:1px solid #d8e5e6;border-radius:18px;background:#fff;overflow:hidden;box-shadow:0 12px 32px rgba(19,62,67,.07)}
+.perfil-aside-visual{padding:30px 27px 28px;background:linear-gradient(145deg,#07545e,#087f8c 64%,#1598a3);color:#fff;position:relative;overflow:hidden}.perfil-aside-visual:after{content:"";position:absolute;width:150px;height:150px;border-radius:50%;background:rgba(255,255,255,.08);right:-50px;top:-55px}.perfil-aside-visual span{font:700 10px Arial,sans-serif;letter-spacing:1.3px;opacity:.75}.perfil-aside-visual h2{font:700 25px/1.15 Arial,sans-serif;letter-spacing:-.6px;margin:12px 0 10px;position:relative;z-index:1}.perfil-aside-visual p{font:14px/1.55 Arial,sans-serif;margin:0;opacity:.88;position:relative;z-index:1}
+.perfil-aside-body{padding:25px 24px}.perfil-aside-body>h3{font:700 17px Arial,sans-serif;color:#153f45;margin:0 0 20px}.perfil-aside-body>div{display:grid;grid-template-columns:32px 1fr;gap:11px;padding:14px 0;border-top:1px solid #edf2f2}.perfil-aside-body b{width:28px;height:28px;border-radius:8px;background:#e9f6f5;color:#087f8c;display:grid;place-items:center;font:700 10px Arial,sans-serif}.perfil-aside-body span{display:flex;flex-direction:column;gap:4px}.perfil-aside-body strong{font:700 13px Arial,sans-serif;color:#23474b}.perfil-aside-body small{font:12px/1.45 Arial,sans-serif;color:#718487}
+@media(max-width:960px){#pagina-perfil-empresa .perfil-wizard-layout-split{grid-template-columns:1fr!important}.perfil-wizard-aside-v3{position:static!important;order:-1}.perfil-aside-body{display:none}}
