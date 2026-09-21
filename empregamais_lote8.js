@@ -416,7 +416,7 @@ else if(typeof renderizarAderenciaVagaEM==="function")renderizarAderenciaVagaEM(
 }
 window.EmpregaMaisPremiumCandidatoV92={atualizar:aplicar,ehPremium:function(){return premium(achar())}};
 window.addEventListener("load",function(){setTimeout(function(){var p=document.getElementById("pagina-painel-candidato");if(p&&(p.classList.contains("ativa")||p.classList.contains("pagina-ativa")))aplicar();},300)});
-window.addEventListener("storage",function(e){if(e.key==="candidatosEmpregaMais")aplicar()});
+window.addEventListener("storage",function(e){if(e.key!=="candidatosEmpregaMais")return;var p=document.getElementById("pagina-painel-candidato");if(p&&(p.classList.contains("ativa")||p.classList.contains("pagina-ativa")))aplicar()});
 var timerPremiumV92=0;
 document.addEventListener("click",function(e){
 var alvo=e.target&amp;&amp;e.target.closest?e.target.closest("#pagina-painel-candidato button,#pagina-painel-candidato a,[data-candidato-tab]"):null;
@@ -496,6 +496,8 @@ timerCentralPremiumV93=setTimeout(render,180);
 },true);
 window.addEventListener("storage",function(e){
 if(!e.key || ["candidaturasEmpregaMais","candidaturas","candidatosEmpregaMais"].indexOf(e.key)&gt;=0){
+ var p=document.getElementById("pagina-painel-candidato");
+ if(!p||(!p.classList.contains("ativa")&amp;&amp;!p.classList.contains("pagina-ativa")))return;
  clearTimeout(timerCentralPremiumV93);
  timerCentralPremiumV93=setTimeout(render,100);
 }
