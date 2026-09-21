@@ -10,7 +10,7 @@
 </style>
 </head>
 <body>
-<header class="top"><b>EmpregaMais · Importador <small style="opacity:.7">v2</small></b><a href="index.html">← Voltar ao painel</a></header>
+<header class="top"><b>EmpregaMais · Importador <small style="opacity:.7">v3</small></b><a href="index.html">← Voltar ao painel</a></header>
 <main class="wrap">
 <section class="hero"><h1>Importar vagas</h1><p>Ferramenta independente do portal principal. Um erro nesta página não interfere no login, nas vagas ou nos demais botões do EmpregaMais.</p></section>
 <section class="card">
@@ -104,14 +104,17 @@ function payloadImportado(v,userId){
 async function empresaImportadora(t,u,v){
  var nome=String(v.empresa||'Empresa importada').trim()||'Empresa importada';
  var q=await sbReq(SB_URL+'/rest/v1/empresas?select=*&limit=1',{headers:sbH(t)});
- if(Array.isArray(q)&&q[0])return q[0];
+ if(Array.isArray(q)&&q[0]&&q[0].id)return q[0];
  var body={user_id:u.id,nome:nome,cnpj:'00000000000000',email:'',sobre:'',plano:'basico',plano_id:'basico',verificacao_status:'nao_verificada',verificada:false,plano_liberado_admin:false,plano_sem_cobranca:false,aprovacao_automatica_suspensa:false};
  var criada=await sbReq(SB_URL+'/rest/v1/empresas',{method:'POST',headers:Object.assign(sbH(t),{'Prefer':'return=representation'}),body:JSON.stringify(body)});
- if(!Array.isArray(criada)||!criada[0])throw new Error('Não foi possível criar o vínculo da empresa para a vaga importada.');
+ if(!Array.isArray(criada)||!criada[0]||!criada[0].id)throw new Error('O Supabase não retornou um ID válido para a empresa importadora.');
  return criada[0]
 }
 async function cadastrarSupabase(v){
- var t=await tokenAdmin(),u=await sbReq(SB_URL+'/auth/v1/user',{headers:sbH(t)}),emp=await empresaImportadora(t,u,v),p=payloadImportado(v,u.id);p.empresa_id=emp.id;
+ var t=await tokenAdmin(),u=await sbReq(SB_URL+'/auth/v1/user',{headers:sbH(t)}),emp=await empresaImportadora(t,u,v);
+ if(!emp||!emp.id)throw new Error('Empresa sem ID válido. Cadastro cancelado antes de enviar a vaga.');
+ var p=payloadImportado(v,u.id);p.empresa_id=emp.id;
+ if(p.empresa_id===null||p.empresa_id===undefined||p.empresa_id==='')throw new Error('empresa_id não foi preenchido. Cadastro cancelado antes do Supabase.');
  var r=await sbReq(SB_URL+'/rest/v1/vagas',{method:'POST',headers:Object.assign(sbH(t),{'Prefer':'return=representation'}),body:JSON.stringify(p)});
  if(!Array.isArray(r)||!r[0])throw new Error('O Supabase não confirmou o cadastro da vaga.');v.cadastrada=true;v.supabaseId=r[0].id;return r[0]
 }
