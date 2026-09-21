@@ -325,3 +325,39 @@ adminAba=async function(aba,btn){
  try{await adminCarregarVagasSupabase()}catch(err){console.error('ADM / Supabase:',err);if(out)out.innerHTML='<div class="admin-bloco"><h2>Não foi possível carregar as vagas</h2><div class="admin-warning">O acesso administrativo ao Supabase foi bloqueado: '+esc(err.message)+'.</div></div>';return}
  return _adminAbaSyncV4(aba,btn)
 };
+
+/* EMPREGAMAIS-EMPRESA-VAGAS-USERID-V5 */
+function vagasDaEmpresa(){
+ const uid=sessionStorage.getItem('empresaSupabaseUserId')||'';
+ const cnpj=nums(sessionStorage.getItem('empresaCnpj')||'');
+ const fonte=sbVagasCacheEM.length?sbVagasCacheEM:ler('empregaMaisVagas');
+ return fonte.filter(v=>(uid&&String(v.userId||'')===uid)||(!uid&&cnpj&&nums(v.empresaCnpj||'')===cnpj))
+}
+const _loginEmpresaUserIdV5=loginEmpresa;
+loginEmpresa=function(e){
+ e.preventDefault();
+ const cnpj=nums($('#loginEmpresaCnpj')?.value||''),senha=$('#loginEmpresaSenha')?.value||'';
+ if(cnpj.length!==14)return msg('#msgLoginEmpresa','Informe um CNPJ válido.');
+ if(!senha)return msg('#msgLoginEmpresa','Informe sua senha.');
+ msg('#msgLoginEmpresa','Entrando...');
+ sbLoginAuthEmpresaEM(cnpj,senha).then(auth=>{
+   if(auth?.user?.id)sessionStorage.setItem('empresaSupabaseUserId',auth.user.id);
+   return sbBuscarMinhaEmpresaEM()
+ }).then(remota=>{
+   if(!remota)throw new Error('Cadastro da empresa não encontrado no Supabase.');
+   if(nums(remota.cnpj)!==cnpj)throw new Error('O cadastro autenticado não corresponde ao CNPJ informado.');
+   if(remota.user_id)sessionStorage.setItem('empresaSupabaseUserId',remota.user_id);
+   const d=sbEmpresaParaLocalEM(remota,senha);sbSalvarEmpresaLocalEM(d);
+   entrar('empresa',d);
+   if(remota.user_id)sessionStorage.setItem('empresaSupabaseUserId',remota.user_id);
+   msg('#msgLoginEmpresa','');
+   if(sessionStorage.getItem('planoPretendido'))setTimeout(()=>irPara('planos'),30)
+ }).catch(err=>{console.error('Supabase login empresa:',err);const texto=/rate limit/i.test(err.message)?'O Supabase bloqueou temporariamente novas tentativas. Aguarde alguns minutos e tente novamente.':/invalid login|invalid credentials/i.test(err.message)?'CNPJ ou senha incorretos.':'Não foi possível entrar: '+err.message;msg('#msgLoginEmpresa',texto)})
+};
+async function sbCarregarVagasEmpresaAtualEM(){
+ const t=await sbGarantirSessaoEM();if(!t)throw new Error('Sessão da empresa expirada.');
+ const u=await sbUsuarioAtualEM();sessionStorage.setItem('empresaSupabaseUserId',u.id);
+ const a=await sbJsonEM(EMPREGAMAIS_SUPABASE_URL+'/rest/v1/vagas?select=*&user_id=eq.'+encodeURIComponent(u.id)+'&order=criado_em.desc',{method:'GET',headers:sbHeadersEM(t)});
+ const proprias=(Array.isArray(a)?a:[]).map(sbMapVagaEM);
+ sbVagasCacheEM=proprias;gravar('empregaMaisVagas',proprias);return proprias
+}
