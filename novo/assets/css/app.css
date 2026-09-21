@@ -541,3 +541,23 @@ body.sessao-empresa .menu-publico,body.sessao-empresa .menu-drop-candidato{displ
 #pagina-publicar .job-actions .btn-azul,#pagina-publicar button.btn-azul{background:var(--empresa-petroleo)!important;border-color:var(--empresa-petroleo)!important}
 #pagina-publicar .job-actions .btn-azul:hover,#pagina-publicar button.btn-azul:hover{background:var(--empresa-petroleo-escuro)!important}
 @media(max-width:720px){#pagina-publicar .em-local-opcoes{grid-template-columns:1fr}#pagina-publicar .em-privacidade-local{padding:18px}}
+
+
+/* EmpregaMais — condições de pagamento dos planos */
+.em-pagamento-plano{margin:14px 0 17px;padding:13px;border:1px solid #d8e7e9;border-radius:13px;background:#f7fbfb;display:grid;gap:9px}
+.em-pagamento-linha{display:flex;align-items:center;gap:10px;color:#123f4a}
+.em-pagamento-linha>div{display:flex;flex-direction:column;gap:2px}
+.em-pagamento-linha strong{font-size:14px;line-height:1.2}
+.em-pagamento-linha small{font-size:11px;color:#64777d}
+.em-pay-logo{width:31px;height:25px;flex:0 0 31px;border-radius:7px;display:grid;place-items:center;font-size:13px;font-weight:800;background:#fff;border:1px solid #d6e3e5}
+.em-pay-logo.pix{color:#00a88e;font-size:17px}
+.em-pay-logo.cartao{color:#0d5964}
+.em-bandeiras{display:flex;align-items:center;flex-wrap:wrap;gap:6px;padding-top:7px;border-top:1px solid #e1ebed}
+.em-bandeiras span{height:22px;min-width:38px;padding:0 6px;border:1px solid #d9e2e5;border-radius:5px;background:#fff;display:inline-flex;align-items:center;justify-content:center;font:800 9px/1 Arial,sans-serif;letter-spacing:-.2px}
+.em-bandeiras .visa{color:#143b83;font-style:italic;font-size:10px}
+.em-bandeiras .master{color:#d54b3f;letter-spacing:-5px;padding-right:10px}
+.em-bandeiras .elo{color:#222;font-size:11px}
+.em-bandeiras .hiper{color:#b3282d;font-size:8px}
+.em-bandeiras .amex{color:#1774a7;font-size:8px}
+.plano-detalhe-top .em-pagamento-plano{max-width:330px;margin-top:14px}
+@media(max-width:600px){.em-bandeiras{gap:4px}.em-bandeiras span{min-width:34px;padding:0 5px}}
