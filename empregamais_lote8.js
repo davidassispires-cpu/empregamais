@@ -415,7 +415,7 @@ else if(typeof renderizarAderenciaVagaEM==="function")renderizarAderenciaVagaEM(
 }catch(e){}
 }
 window.EmpregaMaisPremiumCandidatoV92={atualizar:aplicar,ehPremium:function(){return premium(achar())}};
-window.addEventListener("load",function(){setTimeout(aplicar,700)});
+window.addEventListener("load",function(){setTimeout(function(){var p=document.getElementById("pagina-painel-candidato");if(p&&(p.classList.contains("ativa")||p.classList.contains("pagina-ativa")))aplicar();},300)});
 window.addEventListener("storage",function(e){if(e.key==="candidatosEmpregaMais")aplicar()});
 var timerPremiumV92=0;
 document.addEventListener("click",function(e){
@@ -486,7 +486,7 @@ if(!a.length)return"<div class='cp93-empty'>Suas candidaturas aparecerão aqui a
 return a.slice().reverse().slice(0,5).map(function(x){var ad=aderencia(x),vi=visto(x),cargo=x.cargo||x.vaga||x.titulo||"Vaga",emp=x.empresa||x.empresa_nome||x.empresaNome||"Empresa";return"<div class='cp93-app'><div class='cp93-app-top'><div><strong>"+cargo+"</strong><br/><small>"+emp+"</small></div><span class='cp93-status "+(vi?"visto":"")+"'>"+status(x)+"</span></div><div class='cp93-line'><i class='cp93-dot ok'></i>Candidatura enviada <i class='cp93-dot "+(vi?"ok":"")+"'></i>"+(vi?"Visualizada pela empresa":"Aguardando visualização")+"</div>"+(ad?"<div class='cp93-aderencia'><div class='cp93-ad-top'><span>Aderência à vaga</span><b>"+ad+"%</b></div><div class='cp93-bar'><i style='width:"+ad+"%'></i></div></div>":"")+"</div>"}).join("");
 }
 window.EmpregaMaisCentralPremiumV93={atualizar:render};
-window.addEventListener("load",function(){setTimeout(montar,700)});
+window.addEventListener("load",function(){setTimeout(function(){var p=document.getElementById("pagina-painel-candidato");if(p&&(p.classList.contains("ativa")||p.classList.contains("pagina-ativa")))montar();},300)});
 var timerCentralPremiumV93=0;
 document.addEventListener("click",function(e){
 var alvo=e.target&amp;&amp;e.target.closest?e.target.closest("#pagina-painel-candidato button,#pagina-painel-candidato a,[data-candidato-tab]"):null;
