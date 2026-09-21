@@ -826,3 +826,8 @@ body.sessao-empresa .menu-publico,body.sessao-empresa .menu-drop-candidato{displ
 /* BENEFÍCIO ÁREAS — duas linhas */
 #pagina-home .home-hero-benefits .beneficio-areas strong{font-size:13px!important;line-height:1.28!important;font-weight:800!important;color:#12364d!important;white-space:nowrap!important}
 @media(max-width:650px){#pagina-home .home-hero-benefits .beneficio-areas strong{font-size:11.5px!important;white-space:normal!important}}
+
+/* Painel admin: cards de métricas e ações com interação clara */
+#pagina-painel-admin .admin-metricas article[role="button"],#pagina-painel-admin .admin-acao-card{cursor:pointer;transition:transform .18s ease,box-shadow .18s ease,border-color .18s ease}
+#pagina-painel-admin .admin-metricas article[role="button"]:hover,#pagina-painel-admin .admin-acao-card:hover{transform:translateY(-2px);box-shadow:0 10px 24px rgba(17,63,78,.10);border-color:#8fb7c0}
+#pagina-painel-admin .admin-metricas article[role="button"]:focus-visible,#pagina-painel-admin .admin-acao-card:focus-visible{outline:3px solid rgba(13,70,80,.18);outline-offset:2px}
