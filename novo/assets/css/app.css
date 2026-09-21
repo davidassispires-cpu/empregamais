@@ -863,3 +863,8 @@ body.sessao-empresa .menu-publico,body.sessao-empresa .menu-drop-candidato{displ
 #pagina-home .destaque-nav:hover{background:#06488f!important;color:#fff!important}
 @media(max-width:950px){#pagina-home .destaques-carrossel{grid-auto-columns:calc((100% - 14px)/2)!important}}
 @media(max-width:640px){#pagina-home .destaques-wrap{padding:0 25px!important}#pagina-home .destaques-carrossel{grid-auto-columns:88%!important}#pagina-home .destaque-nav{width:36px!important;height:36px!important;font-size:26px!important}}
+
+/* Logos mais presentes nos cards para reforçar identificação da empresa */
+#pagina-home .portal-vaga-nova .vaga-logo{width:72px!important;height:72px!important;min-width:72px!important;border-radius:13px!important;padding:7px!important;background:#fff!important;object-fit:contain!important}
+#pagina-home .portal-vaga-nova .vaga-identidade{gap:13px!important}
+@media(max-width:640px){#pagina-home .portal-vaga-nova .vaga-logo{width:64px!important;height:64px!important;min-width:64px!important}}
