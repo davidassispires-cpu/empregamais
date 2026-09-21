@@ -659,8 +659,7 @@ function garantirRodapeDepoisConteudoV25(){
 organizarPaginasAntesRodapeV25();
 }
 window.addEventListener("load",function(){
-setTimeout(garantirRodapeDepoisConteudoV25,100);
-setTimeout(garantirRodapeDepoisConteudoV25,700);
+setTimeout(garantirRodapeDepoisConteudoV25,120);
 });
 document.addEventListener("click",function(e){
 var alvo=e.target.closest("button,a");
