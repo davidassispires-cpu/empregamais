@@ -269,4 +269,18 @@
 @media(max-width:1100px){#pagina-painel-empresa .em-ref-wrap #empresaMetricasNovas.empresa-metricas{grid-template-columns:repeat(3,minmax(0,1fr))!important}#pagina-painel-empresa .em-ref-wrap #empresaResumoRecursos .empresa-recursos-grid{grid-template-columns:repeat(3,minmax(0,1fr))!important}}
 @media(max-width:700px){#pagina-painel-empresa .em-ref-wrap #empresaMetricasNovas.empresa-metricas,#pagina-painel-empresa .em-ref-wrap #empresaResumoRecursos .empresa-recursos-grid{grid-template-columns:1fr!important}}
 </style>
+
+<!-- EMPREGAMAIS-RESTAURA-SIDEBAR-V9 -->
+<style>
+/* Restaura a navegação lateral do painel conforme a referência aprovada */
+#pagina-painel-empresa .empresa-app-shell{display:grid!important;grid-template-columns:230px minmax(0,1fr)!important;align-items:start!important}
+#pagina-painel-empresa .empresa-side{display:flex!important;flex-direction:column!important;position:sticky!important;top:74px!important;height:calc(100vh - 74px)!important;background:#fff!important;border-right:1px solid #dfe7ef!important;padding:26px 12px 20px!important;overflow-y:auto!important;z-index:8}
+#pagina-painel-empresa .empresa-main.em-ref-main{grid-column:2!important;min-width:0!important}
+#pagina-painel-empresa .empresa-side .empresa-side-brand{display:flex!important;align-items:center!important;gap:10px!important;margin:0 6px 26px!important}
+#pagina-painel-empresa .empresa-side nav{display:flex!important;flex-direction:column!important;gap:7px!important}
+#pagina-painel-empresa .empresa-side nav button,#pagina-painel-empresa .empresa-side nav a{width:100%!important;min-height:41px!important;border-radius:9px!important;text-align:left!important;padding:10px 12px!important}
+#pagina-painel-empresa .empresa-side nav .ativo{background:#eaf4fc!important;color:#075a97!important}
+#pagina-painel-empresa .em-ref-wrap{max-width:none!important;padding:16px 28px 50px!important}
+@media(max-width:900px){#pagina-painel-empresa .empresa-app-shell{display:block!important}#pagina-painel-empresa .empresa-side{display:none!important}#pagina-painel-empresa .empresa-main.em-ref-main{width:100%!important}.em-ref-wrap{padding:12px!important}}
+</style>
 </body></html>
