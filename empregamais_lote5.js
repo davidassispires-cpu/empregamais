@@ -1033,3 +1033,16 @@ setTimeout(normalizarHeroV30,550);
 },true);
 })();
 //
+// ===== Perfil Empresa banner lateral profissional v130 =====
+(function(){
+function montarLateralV130(){
+ var pg=document.getElementById("pagina-perfil-empresa-em"); if(!pg)return;
+ var painel=pg.querySelector('[data-painel-dados-v22="publico"]'); if(!painel||painel.querySelector(".perfil-lateral-pro-v130"))return;
+ var aside=document.createElement("aside"); aside.className="perfil-lateral-pro-v130";
+ aside.innerHTML="<div class='arte-v130'><div class='ilustra-v130'><svg viewBox='0 0 240 240' aria-hidden='true'><rect x='54' y='58' width='132' height='118' rx='13'/><path d='M87 58V43h66v15M54 92h132M78 118h34M78 137h57M78 156h42'/><circle cx='159' cy='126' r='18'/><path d='M146 151c5-10 21-14 31-5 4 3 6 7 7 12'/><path d='M154 126l4 4 8-10'/></svg></div></div><div class='texto-v130'><span class='tag-v130'>PERFIL DA EMPRESA</span><h3>Mostre por que vale a pena trabalhar na sua empresa.</h3><p>Um perfil completo ajuda candidatos a conhecer sua marca, cultura e oportunidades antes mesmo da candidatura.</p><ul><li>Fortaleça a presença da sua marca empregadora</li><li>Apresente cultura, benefícios e ambiente de trabalho</li><li>Deixe seu perfil mais completo e confiável</li></ul></div>";
+ var primeiro=painel.firstElementChild; if(primeiro)painel.insertBefore(aside,primeiro);else painel.appendChild(aside);
+}
+window.montarLateralPerfilV130=montarLateralV130;
+window.addEventListener("load",function(){setTimeout(montarLateralV130,450);setTimeout(montarLateralV130,1200);});
+document.addEventListener("click",function(e){var b=e.target.closest("[data-aba-dados-v22],a,button");if(!b)return;var t=String(b.textContent||"").toLowerCase();if(b.getAttribute("data-aba-dados-v22")==="publico"||t.indexOf("dados da empresa")>=0)setTimeout(montarLateralV130,100);});
+})();
