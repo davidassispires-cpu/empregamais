@@ -307,16 +307,14 @@ semestral:{nome:'Semestral',etiqueta:'6 MESES',preco:'R$ 179,90',periodo:'Pagame
 anual:{nome:'Anual',etiqueta:'12 MESES',preco:'R$ 329,00',periodo:'Pagamento único · 12 meses',resumo:'Maior capacidade de publicação para recrutamento ao longo do ano.',beneficios:[['60 vagas por mês','Publique até 60 vagas por mês, chegando a até 720 durante os 12 meses.'],['10 Destaques por mês','Até 10 vagas por mês podem receber destaque.'],['10 Urgentes por mês','Até 10 vagas por mês podem receber a identificação de contratação urgente.'],['8 vagas confidenciais por mês','Até 8 vagas por mês podem ocultar a identidade da empresa.'],['Banco de talentos','Acesso ao recurso de banco de talentos incluído neste plano.'],['5 usuários','Permite acesso de até 5 usuários da empresa.']]}
 };
 function emPagamentoPlano(chave){
-  if(chave==='basico')return '';
-  const valor=valorPlano(chave),pix=valor*.94,parcela=valor/3;
-  const moeda=v=>v.toLocaleString('pt-BR',{style:'currency',currency:'BRL'});
-  return '<div class="em-pagamento-plano">'+
-    '<div class="em-pay-title"><span>Formas de pagamento</span><small>Escolha a melhor forma para sua empresa</small></div>'+
-    '<div class="em-pagamento-linha em-pix"><span class="em-pix-oficial" aria-label="Pix"><i></i><b>pix</b></span><div><em>6% DE DESCONTO</em><strong>'+moeda(pix)+' no Pix</strong><small>Pagamento rápido e seguro</small></div></div>'+
-    '<div class="em-pagamento-linha em-credito"><span class="em-card-icon"><i></i></span><div><strong>3x de '+moeda(parcela)+'</strong><small>sem juros no cartão</small></div></div>'+
-    '<div class="em-bandeiras" aria-label="Cartões aceitos"><span class="em-card-brand visa"><b>VISA</b></span><span class="em-card-brand master"><i></i><i></i><b>mastercard</b></span><span class="em-card-brand elo"><b>elo</b><i></i></span><span class="em-card-brand hiper"><b>Hipercard</b></span><span class="em-card-brand amex"><b>AMERICAN<br>EXPRESS</b></span></div>'+
-    '<div class="em-pay-secure">▣ <span>Pagamento seguro via nossa plataforma</span></div>'+
-  '</div>';
+ if(chave==='basico')return '';
+ const valor=valorPlano(chave),pix=valor*.94,parcela=valor/3,moeda=v=>v.toLocaleString('pt-BR',{style:'currency',currency:'BRL'});
+ return '<div class="em-pagamento-plano">'+
+ '<div class="em-pay-title"><span>Formas de pagamento</span><small>Escolha a melhor forma para sua empresa</small></div>'+
+ '<div class="em-pay-option em-pay-pix"><div class="em-pix-brand"><span class="pix-mark"><i></i><i></i><i></i><i></i></span><b>pix</b></div><div class="em-pay-copy"><em>6% de desconto</em><strong>'+moeda(pix)+' <small>no Pix</small></strong><span>Pagamento instantâneo e seguro</span></div></div>'+
+ '<div class="em-pay-option em-pay-card"><div class="em-credit-brand"><span class="em-card-icon"><i></i></span><b>Cartão<br>de crédito</b><small>Até 3x sem juros</small></div><div class="em-pay-copy"><strong>3x de '+moeda(parcela)+'</strong><span>sem juros no cartão</span></div></div>'+
+ '<div class="em-bandeiras"><span class="em-card-brand visa"><b>VISA</b></span><span class="em-card-brand master"><i></i><i></i><b>mastercard</b></span><span class="em-card-brand elo"><b>elo</b><i></i></span><span class="em-card-brand hiper"><b>Hipercard</b></span><span class="em-card-brand amex"><b>AMERICAN<br>EXPRESS</b></span></div>'+
+ '<div class="em-pay-secure">▣ <span>Pagamento 100% seguro via nossa plataforma.</span></div></div>';
 }
 function verDetalhesPlano(plano){sessionStorage.setItem('planoDetalhe',plano);irPara('plano-detalhe')}
 function renderizarDetalhesPlano(){const chave=sessionStorage.getItem('planoDetalhe')||'basico',d=DETALHES_PLANOS[chave]||DETALHES_PLANOS.basico,p=PLANOS_EMPRESA[chave]||PLANOS_EMPRESA.basico;const set=(id,t)=>{const e=document.getElementById(id);if(e)e.textContent=t};set('planoDetalheNome','Plano '+d.nome);set('planoDetalheResumo',d.resumo);set('planoDetalheEtiqueta',d.etiqueta);set('planoDetalhePreco',d.preco);set('planoDetalhePeriodo',d.periodo);const topo=document.querySelector('.plano-detalhe-top>div');if(topo){let pg=topo.querySelector('.em-pagamento-plano');if(pg)pg.remove();if(chave!=='basico')topo.insertAdjacentHTML('beforeend',emPagamentoPlano(chave));}const b=document.getElementById('planoDetalheBeneficios');if(b)b.innerHTML=d.beneficios.map((x,i)=>'<article class="beneficio-detalhado"><i>'+(i===0?'✓':'•')+'</i><div><strong>'+esc(x[0])+'</strong><p>'+esc(x[1])+'</p></div></article>').join('');const r=document.getElementById('planoDetalheResumoLateral');if(r)r.innerHTML='<div class="plano-resumo-item"><span>Vagas/mês</span><b>'+p.vagas+'</b></div><div class="plano-resumo-item"><span>Destaques/mês</span><b>'+p.destaques+'</b></div><div class="plano-resumo-item"><span>Urgências/mês</span><b>'+p.urgentes+'</b></div><div class="plano-resumo-item"><span>Confidenciais/mês</span><b>'+p.confidenciais+'</b></div><div class="plano-resumo-item"><span>Valor</span><b>'+esc(d.preco)+'</b></div>';['planoDetalheEscolher','planoDetalheEscolher2'].forEach(id=>{const x=document.getElementById(id);if(x)x.onclick=()=>selecionarPlano(chave)})}
@@ -491,7 +489,10 @@ function dataEncerramentoAutomaticaEM(){const d=new Date();d.setDate(d.getDate()
 document.addEventListener('click',function(e){
  const btn=e.target.closest('#planoBEscolher');
  if(!btn)return;
- e.preventDefault();
- e.stopImmediatePropagation();
- selecionarPlano(planoBAtual);
-},true);
+ e.preventDefault(); e.stopPropagation();
+ const plano=planoBAtual;
+ if(!plano||plano==='basico'){selecionarPlano('basico');return;}
+ sessionStorage.setItem('planoPretendido',plano);
+ if(papelAtual()!=='empresa'){irPara('login-empresa');return;}
+ selecionarPlano(plano);
+});
