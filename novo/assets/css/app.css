@@ -274,3 +274,32 @@ body.sessao-empresa .menu-publico,body.sessao-empresa .menu-drop-candidato{displ
 #pagina-painel-empresa .empresa-recursos-grid>div{background:#fff!important;border:1px solid #e1e8ef!important;border-radius:13px!important;box-shadow:0 3px 12px rgba(28,55,82,.035)!important;position:relative;overflow:hidden}
 #pagina-painel-empresa .empresa-recursos-grid>div:before{content:"";position:absolute;left:0;top:0;bottom:0;width:3px;background:#d8e4ed}
 #pagina-painel-empresa .empresa-recursos-grid>div:nth-child(1):before{background:#3f86b4}#pagina-painel-empresa .empresa-recursos-grid>div:nth-child(2):before{background:#66a48a}#pagina-painel-empresa .empresa-recursos-grid>div:nth-child(3):before{background:#dfb255}#pagina-painel-empresa .empresa-recursos-grid>div:nth-child(4):before{background:#7e91bd}#pagina-painel-empresa .empresa-recursos-grid>div:nth-child(5):before{background:#cf8179}#pagina-painel-empresa .empresa-recursos-grid>div:nth-child(6):before{background:#7b9bad}
+
+/* EMPREGAMAIS-PAINEL-CORPORATIVO-V8 */
+#pagina-painel-empresa .empresa-metricas-v2{gap:14px!important}
+#pagina-painel-empresa .empresa-metrica-v2{background:#fff!important;border:1px solid #e3e8ee!important;border-top:1px solid #e3e8ee!important;border-radius:16px!important;box-shadow:0 8px 24px rgba(25,52,78,.055)!important;min-height:132px!important;padding:20px 18px!important;display:flex!important;flex-direction:column!important;align-items:flex-start!important;justify-content:center!important;text-align:left!important}
+#pagina-painel-empresa .empresa-metrica-v2:before{display:none!important}
+#pagina-painel-empresa .empresa-metrica-v2 i{width:38px!important;height:38px!important;min-width:38px!important;border-radius:10px!important;background:#f5f7f9!important;border:1px solid #e7ebef!important;color:#52697d!important;display:flex!important;align-items:center!important;justify-content:center!important;margin:0 0 12px!important;font-size:0!important;box-shadow:none!important}
+#pagina-painel-empresa .empresa-metrica-v2 i:before{font-family:Arial,"Helvetica Neue",sans-serif!important;font-size:15px!important;font-weight:700!important;line-height:1!important;color:#52697d!important}
+#pagina-painel-empresa .empresa-metrica-v2:nth-child(1) i:before{content:"▦"!important}
+#pagina-painel-empresa .empresa-metrica-v2:nth-child(2) i:before{content:"◷"!important}
+#pagina-painel-empresa .empresa-metrica-v2:nth-child(3) i:before{content:"●"!important;font-size:10px!important}
+#pagina-painel-empresa .empresa-metrica-v2:nth-child(4) i:before{content:"▤"!important}
+#pagina-painel-empresa .empresa-metrica-v2:nth-child(5) i:before{content:"◇"!important}
+#pagina-painel-empresa .empresa-metrica-v2 strong{font-family:Arial,"Helvetica Neue",sans-serif!important;font-size:27px!important;line-height:1!important;letter-spacing:-.6px!important;font-weight:700!important;color:#17344e!important;margin:0 0 7px!important}
+#pagina-painel-empresa .empresa-metrica-v2 span{font-family:Arial,"Helvetica Neue",sans-serif!important;font-size:13px!important;line-height:1.3!important;font-weight:600!important;color:#708394!important;margin:0!important}
+#pagina-painel-empresa .empresa-metrica-v2 em{display:none!important}
+
+/* segunda linha: sem barra azul; detalhes cromáticos discretos */
+#pagina-painel-empresa .empresa-recursos-card{background:transparent!important;border:0!important;box-shadow:none!important}
+#pagina-painel-empresa .empresa-recursos-grid{gap:14px!important}
+#pagina-painel-empresa .empresa-recursos-grid>div{border:1px solid #e3e8ee!important;border-top:1px solid #e3e8ee!important;border-radius:16px!important;background:#fff!important;box-shadow:0 7px 22px rgba(25,52,78,.045)!important;padding:22px 18px!important;min-height:138px!important}
+#pagina-painel-empresa .empresa-recursos-grid>div:before{display:none!important}
+#pagina-painel-empresa .empresa-recursos-grid>div:nth-child(1){background:#f8fafc!important}
+#pagina-painel-empresa .empresa-recursos-grid>div:nth-child(2){background:#f5f9fd!important}
+#pagina-painel-empresa .empresa-recursos-grid>div:nth-child(3){background:#f5faf7!important}
+#pagina-painel-empresa .empresa-recursos-grid>div:nth-child(4){background:#fffaf0!important}
+#pagina-painel-empresa .empresa-recursos-grid>div:nth-child(5){background:#fff7f5!important}
+#pagina-painel-empresa .empresa-recursos-grid>div:nth-child(6){background:#f8f7fb!important}
+#pagina-painel-empresa .empresa-recursos-grid strong,#pagina-painel-empresa .empresa-recursos-grid b{font-family:Arial,"Helvetica Neue",sans-serif!important;color:#17344e!important}
+@media(max-width:760px){#pagina-painel-empresa .empresa-metricas-v2{grid-template-columns:1fr 1fr!important}#pagina-painel-empresa .empresa-metrica-v2{min-height:120px!important}}
