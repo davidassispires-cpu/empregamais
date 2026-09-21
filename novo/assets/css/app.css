@@ -578,3 +578,29 @@ body.sessao-empresa .menu-publico,body.sessao-empresa .menu-drop-candidato{displ
 .em-card-brand.amex{background:#1476a8!important;border-color:#1476a8!important}
 .em-card-brand.amex b{font-size:6.5px!important;line-height:.9!important;text-align:center!important;font-weight:900!important;color:#fff!important;letter-spacing:-.2px!important}
 @media(max-width:600px){.em-bandeiras .em-card-brand{width:49px!important;min-width:49px!important;height:31px!important}}
+
+/* Pagamentos dos planos — versão profissional proporcional */
+.plano-b-preco .em-pagamento-plano{margin:18px 0 16px!important;padding:0!important;border:1px solid #cfe1e4!important;border-radius:16px!important;background:#fff!important;overflow:hidden!important;box-shadow:0 8px 22px rgba(8,77,88,.08)!important}
+.em-pay-title{padding:13px 15px!important;background:linear-gradient(135deg,#08737d,#0b8790)!important;color:#fff!important;display:flex!important;flex-direction:column!important;gap:2px!important}
+.em-pay-title span{font-size:15px!important;font-weight:800!important}
+.em-pay-title small{font-size:10.5px!important;color:rgba(255,255,255,.82)!important}
+.em-pagamento-plano .em-pagamento-linha{margin:0 13px!important;padding:14px 2px!important;display:grid!important;grid-template-columns:72px 1fr!important;gap:13px!important;align-items:center!important;border-bottom:1px solid #e5edef!important}
+.em-pagamento-plano .em-pagamento-linha>div{gap:3px!important}
+.em-pagamento-plano .em-pagamento-linha strong{font-size:17px!important;color:#073f50!important;font-weight:800!important}
+.em-pagamento-plano .em-pagamento-linha small{font-size:11px!important;color:#667b83!important}
+.em-pagamento-plano .em-pagamento-linha em{width:max-content;padding:4px 7px;border-radius:999px;background:#dff8ed;color:#087454;font-size:8px;font-style:normal;font-weight:900;letter-spacing:.04em}
+.em-pix-oficial{width:68px;height:54px;display:flex;align-items:center;justify-content:center;gap:6px}
+.em-pix-oficial i{position:relative;width:27px;height:27px;display:block;transform:rotate(45deg)}
+.em-pix-oficial i:before,.em-pix-oficial i:after{content:"";position:absolute;border:4px solid #00a99d;width:15px;height:15px;border-radius:5px}
+.em-pix-oficial i:before{left:-2px;top:5px;border-right-color:transparent;border-top-color:transparent}
+.em-pix-oficial i:after{right:-2px;bottom:5px;border-left-color:transparent;border-bottom-color:transparent}
+.em-pix-oficial b{font:400 20px/1 Arial,sans-serif;color:#68777a;letter-spacing:-1px}
+.em-card-icon{width:56px;height:39px;border:3px solid #0a6470;border-radius:7px;position:relative;display:block;margin-left:5px}
+.em-card-icon:before{content:"";position:absolute;left:0;right:0;top:9px;height:5px;background:#0a6470}
+.em-card-icon i{position:absolute;left:7px;bottom:6px;width:13px;height:4px;border-radius:2px;background:#0a6470}
+.em-pagamento-plano .em-bandeiras{margin:0 13px!important;padding:13px 0!important;border-top:0!important;display:grid!important;grid-template-columns:repeat(5,1fr)!important;gap:7px!important}
+.em-pagamento-plano .em-bandeiras .em-card-brand{width:100%!important;min-width:0!important;height:38px!important;border-radius:7px!important}
+.em-pay-secure{display:flex;align-items:center;justify-content:center;gap:6px;padding:0 10px 13px;color:#74858b;font-size:9.5px}
+.em-pay-secure:first-letter{color:#087b84}
+.plano-b-escolher{position:relative!important;z-index:5!important;pointer-events:auto!important;cursor:pointer!important}
+@media(max-width:600px){.em-pagamento-plano .em-pagamento-linha{grid-template-columns:65px 1fr!important}.em-pix-oficial{width:62px}.em-pix-oficial b{font-size:18px}.em-pagamento-plano .em-bandeiras{grid-template-columns:repeat(5,minmax(0,1fr))!important;gap:5px!important}.em-pagamento-plano .em-bandeiras .em-card-brand{height:34px!important}}
