@@ -67,3 +67,5 @@ function renderizarVagasSenior(){const box=$('#listaVagasSenior');if(!box)return
 function filtrarSenior(){renderizarVagasSenior();document.querySelector('#listaVagasSenior')?.scrollIntoView({behavior:'smooth'})}
 
 window.addEventListener('popstate',lerRota);
+
+(function(){function iniciarNavegacao(){document.querySelectorAll('[data-rota]').forEach(function(el){el.addEventListener('click',function(ev){ev.preventDefault();var rota=el.getAttribute('data-rota');if(typeof irPara==='function')irPara(rota);else location.href=location.pathname+'?pagina='+encodeURIComponent(rota);});});var rota=new URLSearchParams(location.search).get('pagina');if(rota&&typeof abrirRota==='function')abrirRota(rota);}if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',iniciarNavegacao);else iniciarNavegacao();})();
