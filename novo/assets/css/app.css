@@ -837,3 +837,11 @@ body.sessao-empresa .menu-publico,body.sessao-empresa .menu-drop-candidato{displ
 #pagina-home .destaques-carrossel>.portal-vaga-nova{box-sizing:border-box!important;width:100%!important;min-width:0!important;max-width:none!important;margin:0!important;position:relative!important;left:auto!important;right:auto!important;transform:none!important;scroll-snap-align:start!important}
 @media(max-width:950px){#pagina-home .destaques-carrossel{grid-auto-columns:minmax(320px,46%)!important}}
 @media(max-width:640px){#pagina-home .destaques-carrossel{grid-auto-columns:88%!important;column-gap:14px!important}}
+
+/* Ajuste visual dos cards: metadados maiores e card mais compacto */
+#pagina-home .portal-vaga-nova{min-height:0!important;height:auto!important;padding:16px 18px!important}
+#pagina-home .portal-vaga-nova .vaga-meta{margin:10px 0 11px!important;gap:7px!important}
+#pagina-home .portal-vaga-nova .vaga-meta span{font-size:13px!important;line-height:1.15!important;padding:6px 10px!important}
+#pagina-home .portal-vaga-nova .vaga-meta span:first-child{font-size:14px!important;font-weight:700!important;color:#174f90!important;padding:7px 11px!important}
+#pagina-home .portal-vaga-nova .vaga-resumo{margin:9px 0 11px!important;line-height:1.42!important}
+#pagina-home .portal-vaga-nova .vaga-salario-data{margin-top:8px!important}
