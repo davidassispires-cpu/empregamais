@@ -771,7 +771,15 @@ if(porte)porte.setAttribute("aria-label","Porte ou numero aproximado de colabora
 if(uf)uf.setAttribute("aria-label","Estado");
 }
 window.padronizarPerfilEmpresaV26=padronizarV26;
-window.addEventListener("load",function(){setTimeout(padronizarV26,500);setTimeout(padronizarV26,1200);});
+function perfilPadronizavelAtivoV26(){
+var p=document.getElementById("pagina-perfil-empresa-em");
+return !!(p&amp;&amp;(p.classList.contains("ativa")||p.classList.contains("pagina-ativa")));
+}
+window.addEventListener("load",function(){if(perfilPadronizavelAtivoV26())setTimeout(padronizarV26,220);});
+document.addEventListener("empregamais:navegacao",function(ev){
+var p=String((ev&amp;&amp;ev.detail&amp;&amp;ev.detail.pagina)||"");
+if(p==="perfil-empresa")setTimeout(padronizarV26,160);
+});
 document.addEventListener("click",function(e){
 var b=e.target.closest("[data-aba-dados-v22]");
 if(b&&b.getAttribute("data-aba-dados-v22")==="publico")setTimeout(padronizarV26,120);
