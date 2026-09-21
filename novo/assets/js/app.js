@@ -431,3 +431,12 @@ if(new URLSearchParams(location.search).get('pagina')==='painel-empresa')setTime
 
 /* EMPREGAMAIS-VAGA-VALIDADE-30D-V1 */
 function dataFimPadraoVagaEM(v){const base=new Date(v.criadoEm||Date.now());base.setDate(base.getDate()+30);return base}
+
+/* EMPREGAMAIS-HEADER-CONTEXTUAL-V1 */
+function atualizarHeaderContextualEM(){
+ const papel=papelAtual(),body=document.body;body.classList.remove('sessao-empresa','sessao-candidato','sessao-publica');body.classList.add(papel==='empresa'?'sessao-empresa':papel==='candidato'?'sessao-candidato':'sessao-publica');
+ if(papel==='empresa'){const e=empresaLogada(),nome=e?.nome||sessionStorage.getItem('empresaNome')||'Empresa',plano=(typeof planoEmpresaAtual==='function'?planoEmpresaAtual()?.nome:'')||'Conta da empresa';const n=document.getElementById('topoEmpresaNome'),p=document.getElementById('topoEmpresaPlano'),a=document.getElementById('topoEmpresaAvatar');if(n)n.textContent=nome;if(p)p.textContent='Plano '+plano;if(a)a.textContent=(nome.trim()[0]||'E').toUpperCase()}
+ if(papel==='candidato'){const nome=sessionStorage.getItem('candidatoNome')||'Candidato',n=document.getElementById('topoCandidatoNome'),a=document.getElementById('topoCandidatoAvatar');if(n)n.textContent=nome;if(a)a.textContent=(nome.trim()[0]||'C').toUpperCase()}
+}
+addEventListener('DOMContentLoaded',atualizarHeaderContextualEM);
+const _irParaHeaderContextualEM=irPara;irPara=function(p){const r=_irParaHeaderContextualEM(p);setTimeout(atualizarHeaderContextualEM,0);return r};
