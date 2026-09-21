@@ -225,3 +225,25 @@
 .vaga-conteudo-v2 h2{font-size:22px}.vaga-texto,.vaga-conteudo-v2 section>p,.beneficios-tags p{font-size:18px;line-height:1.72}.beneficio-tag{font-size:15px}.vaga-complementares span{font-size:15px;line-height:1.5}
 @media(max-width:800px){.vaga-hero-identidade{padding-right:0}.vaga-validade-topo{position:static;margin:18px 0 4px}.vaga-info-grid{grid-template-columns:1fr 1fr}.vaga-texto,.vaga-conteudo-v2 section>p,.beneficios-tags p{font-size:17px}}
 @media(max-width:520px){.vaga-info-grid{grid-template-columns:1fr}.vaga-hero-identidade{align-items:flex-start}.vaga-hero-logo{width:86px;height:86px;flex-basis:86px}}
+
+/* EMPREGAMAIS-VAGA-PREMIUM-V5
+   Detalhe de vaga mais sóbrio/profissional: sem faixa azul, tipografia compacta e selos refinados */
+#pagina-vaga{font-family:Arial,"Helvetica Neue",sans-serif;background:#f6f8fb}
+#pagina-vaga .vaga-topbar{background:transparent!important;padding:18px 0 6px;border:0}
+#pagina-vaga .vaga-topbar .container{min-height:34px}
+#pagina-vaga .vaga-topbar .voltar-link,#pagina-vaga .vaga-topbar-acoes button{color:#173f70!important;font-family:Arial,"Helvetica Neue",sans-serif;font-size:14px;font-weight:700}
+.vaga-layout-v2{padding-top:14px;gap:22px}
+.vaga-hero-card,.vaga-conteudo-v2,.vaga-acao-v2,.vaga-empresa-side{border-color:#e1e7ef;border-radius:14px;box-shadow:0 3px 14px rgba(20,50,82,.045)}
+.vaga-hero-card{padding:30px}.vaga-hero-identidade{gap:24px}.vaga-hero-logo{border-radius:12px;background:#f8fafc}
+.vaga-hero-texto h1{font-family:Arial,"Helvetica Neue",sans-serif;font-size:32px;line-height:1.04;letter-spacing:-1.05px;font-weight:750;color:#0b315f}
+.vaga-hero-empresa{font-family:Arial,"Helvetica Neue",sans-serif;font-size:17px;letter-spacing:-.2px}
+.vaga-hero-empresa span{font-family:Arial,"Helvetica Neue",sans-serif;font-size:11px;font-weight:700;border-radius:5px;padding:5px 9px}
+.vaga-hero-selos{gap:8px;margin-top:16px}.vaga-hero-selos span{font-family:Arial,"Helvetica Neue",sans-serif;border:1px solid #e3e9f0;border-radius:6px;background:#f5f8fb;color:#31577e;font-size:12px;font-weight:650;padding:7px 11px}
+.vaga-hero-selos .hero-destaque{background:#fff8e8;border-color:#f3e1ad;color:#765500}.vaga-hero-selos .hero-urgente{background:#fff4f4;border-color:#f1d4d7;color:#b42335}
+.vaga-validade-topo{font-family:Arial,"Helvetica Neue",sans-serif}
+.vaga-info-grid{gap:10px;margin-top:26px}.vaga-info-grid>div{min-height:88px;border:1px solid transparent!important;border-radius:10px;padding:17px 13px 15px 52px}
+.vaga-info-grid>div.info-local{background:#f1f7fc;border-color:#e3edf5!important}.vaga-info-grid>div.info-contrato{background:#f6f3fb;border-color:#ebe5f5!important}.vaga-info-grid>div.info-modalidade{background:#f1f8f5;border-color:#e2f0e9!important}.vaga-info-grid>div.info-salario{background:#f2f8f2;border-color:#e1eee2!important}
+.vaga-info-grid i{left:14px;font-family:Arial,"Helvetica Neue",sans-serif}.vaga-info-grid small{font-family:Arial,"Helvetica Neue",sans-serif;font-size:10px;letter-spacing:.35px}.vaga-info-grid strong{font-family:Arial,"Helvetica Neue",sans-serif;font-size:15px;letter-spacing:-.25px;font-weight:700}
+.vaga-tabs a,.vaga-conteudo-v2,.vaga-acao-v2,.vaga-empresa-side{font-family:Arial,"Helvetica Neue",sans-serif}.vaga-tabs a{font-size:14px;font-weight:600}.vaga-conteudo-v2 h2{font-family:Arial,"Helvetica Neue",sans-serif;font-size:23px;letter-spacing:-.55px;font-weight:750}.vaga-texto,.vaga-conteudo-v2 section>p,.beneficios-tags p{font-family:Arial,"Helvetica Neue",sans-serif;font-size:18px;line-height:1.68;letter-spacing:-.12px;color:#3c5875}
+.vaga-acao-v2 h2,.vaga-empresa-side h2{font-family:Arial,"Helvetica Neue",sans-serif;letter-spacing:-.55px}.vaga-candidatar-principal,.vaga-salvar-principal,.vaga-empresa-side>button{font-family:Arial,"Helvetica Neue",sans-serif}
+@media(max-width:800px){#pagina-vaga .vaga-topbar{padding:12px 0 2px}.vaga-layout-v2{padding-top:10px}.vaga-hero-texto h1{font-size:27px}.vaga-texto,.vaga-conteudo-v2 section>p,.beneficios-tags p{font-size:17px}}
