@@ -78,7 +78,7 @@ const EMPREGAMAIS_SUPABASE_URL="https://mkezlcewyengejdmtppl.supabase.co";
 const EMPREGAMAIS_SUPABASE_KEY="sb_publishable_8YnXpzGX8zj-tvzvcMYdyw_FVBhQutR";
 const EMPREGAMAIS_SB_TOKEN="empregaMaisSupabaseAccessToken";
 const EMPREGAMAIS_SB_REFRESH="empregaMaisSupabaseRefreshToken";
-function sbEmailEmpresaEM(cnpj){return nums(cnpj)+"@empresa.empregamais.local"}
+function sbEmailEmpresaEM(cnpj){return "empresa."+nums(cnpj)+"@auth.empregamais.com.br"}
 function sbHeadersEM(token){const h={"apikey":EMPREGAMAIS_SUPABASE_KEY,"Content-Type":"application/json"};if(token)h.Authorization="Bearer "+token;return h}
 function sbJsonEM(url,opt){return fetch(url,opt).then(async r=>{const t=await r.text();let j={};try{j=t?JSON.parse(t):{}}catch(e){}if(!r.ok)throw new Error(j.msg||j.message||j.error_description||j.error||("Erro "+r.status));return j})}
 function sbSalvarSessaoEM(a){if(a?.access_token)sessionStorage.setItem(EMPREGAMAIS_SB_TOKEN,a.access_token);if(a?.refresh_token)sessionStorage.setItem(EMPREGAMAIS_SB_REFRESH,a.refresh_token)}
