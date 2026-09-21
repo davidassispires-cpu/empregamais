@@ -313,7 +313,7 @@ function emPagamentoPlano(chave){
   return '<div class="em-pagamento-plano">'+
     '<div class="em-pagamento-linha em-pix"><span class="em-pay-logo pix">◆</span><div><strong>'+moeda(pix)+' no Pix</strong><small>6% de desconto à vista</small></div></div>'+
     '<div class="em-pagamento-linha"><span class="em-pay-logo cartao">▣</span><div><strong>3x de '+moeda(parcela)+' sem juros</strong><small>Cartões de crédito</small></div></div>'+
-    '<div class="em-bandeiras" aria-label="Bandeiras aceitas"><span class="visa">VISA</span><span class="master">●●</span><span class="elo">elo</span><span class="hiper">Hipercard</span><span class="amex">AMEX</span></div>'+
+    '<div class="em-bandeiras" aria-label="Cartões aceitos"><span class="em-card-brand visa"><b>VISA</b></span><span class="em-card-brand master"><i></i><i></i><b>mastercard</b></span><span class="em-card-brand elo"><b>elo</b><i></i></span><span class="em-card-brand hiper"><b>Hipercard</b></span><span class="em-card-brand amex"><b>AMERICAN<br>EXPRESS</b></span></div>'+
   '</div>';
 }
 function verDetalhesPlano(plano){sessionStorage.setItem('planoDetalhe',plano);irPara('plano-detalhe')}
