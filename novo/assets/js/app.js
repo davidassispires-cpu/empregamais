@@ -361,3 +361,16 @@ async function sbCarregarVagasEmpresaAtualEM(){
  const proprias=(Array.isArray(a)?a:[]).map(sbMapVagaEM);
  sbVagasCacheEM=proprias;gravar('empregaMaisVagas',proprias);return proprias
 }
+
+/* EMPREGAMAIS-ADMIN-RLS-DIAGNOSTICO-V6 */
+async function adminCarregarVagasSupabase(){
+ const t=await adminSbToken();
+ const u=await sbJsonEM(EMPREGAMAIS_SUPABASE_URL+'/auth/v1/user',{method:'GET',headers:sbHeadersEM(t)});
+ const a=await sbJsonEM(EMPREGAMAIS_SUPABASE_URL+'/rest/v1/vagas?select=*&order=criado_em.desc',{method:'GET',headers:sbHeadersEM(t)});
+ const vs=(Array.isArray(a)?a:[]).map(sbMapVagaEM);
+ if(!vs.length){
+   const err=new Error('A sessão ADM está autenticada, mas o Supabase não liberou nenhuma vaga para este usuário. A política RLS atual só permite à empresa ver as próprias vagas e ao público ver vagas aprovadas.');
+   err.code='ADMIN_RLS_SEM_ACESSO';err.userId=u?.id||'';throw err
+ }
+ sbVagasCacheEM=vs;gravar('empregaMaisVagas',vs);return vs
+}
