@@ -302,3 +302,26 @@ function abrirMetricaEmpresa(tipo){
  if(tipo==='entrevistas'){sessionStorage.setItem('filtroCandidatos','Entrevista');sessionStorage.removeItem('vagaCandidatosSelecionada');irPara('candidatos-empresa');return}
  if(tipo==='contratacoes'){sessionStorage.setItem('filtroCandidatos','Contratados');sessionStorage.removeItem('vagaCandidatosSelecionada');irPara('candidatos-empresa')}
 }
+
+
+/* EMPREGAMAIS-VAGAS-SYNC-CONTEXTO-V4 */
+async function sbCarregarVagasEmpresaAtualEM(){
+ const t=await sbGarantirSessaoEM();if(!t)throw new Error('Sessão da empresa expirada.');
+ const u=await sbUsuarioAtualEM();
+ const a=await sbJsonEM(EMPREGAMAIS_SUPABASE_URL+'/rest/v1/vagas?select=*&user_id=eq.'+encodeURIComponent(u.id)+'&order=criado_em.desc',{method:'GET',headers:sbHeadersEM(t)});
+ const proprias=(Array.isArray(a)?a:[]).map(sbMapVagaEM),publicas=ler('empregaMaisVagas').filter(v=>v.status==='aprovada'&&!proprias.some(p=>p.id===v.id));
+ sbVagasCacheEM=[...proprias,...publicas];gravar('empregaMaisVagas',sbVagasCacheEM);return proprias
+}
+const _renderizarPainelEmpresaSyncV4=renderizarPainelEmpresa;
+renderizarPainelEmpresa=async function(){
+ const box=$('#empresaVagasRecentes');if(box)box.innerHTML='<div class="vagas-vazio">Carregando suas vagas...</div>';
+ try{await sbCarregarVagasEmpresaAtualEM()}catch(err){console.error('Painel empresa / Supabase:',err)}
+ return _renderizarPainelEmpresaSyncV4()
+};
+const _adminAbaSyncV4=adminAba;
+adminAba=async function(aba,btn){
+ if(sessionStorage.getItem('empregaMaisAdmin')!=='1'){irPara('login-admin');return}
+ const out=$('#adminConteudo');if(out&&aba==='vagas')out.innerHTML='<div class="admin-bloco"><h2>Gestão de vagas</h2><div class="admin-empty">Carregando vagas do Supabase...</div></div>';
+ try{await adminCarregarVagasSupabase()}catch(err){console.error('ADM / Supabase:',err);if(out)out.innerHTML='<div class="admin-bloco"><h2>Não foi possível carregar as vagas</h2><div class="admin-warning">O acesso administrativo ao Supabase foi bloqueado: '+esc(err.message)+'.</div></div>';return}
+ return _adminAbaSyncV4(aba,btn)
+};
