@@ -505,11 +505,19 @@ var r=abrirAntesV77.apply(this,arguments);
 return r;
 };
 }
+function vagaDetalheAtivaV77(){
+var p=document.getElementById("pagina-vaga");
+return !!(p&amp;&amp;(p.classList.contains("ativa")||p.classList.contains("pagina-ativa")));
+}
 window.addEventListener("load",function(){
-[100,350,800,1500,2500].forEach(function(ms){setTimeout(renderV77,ms);});
+if(vagaDetalheAtivaV77())setTimeout(renderV77,220);
 });
 window.addEventListener("popstate",function(){
-[50,250,700].forEach(function(ms){setTimeout(renderV77,ms);});
+if(vagaDetalheAtivaV77())setTimeout(renderV77,120);
+});
+document.addEventListener("empregamais:navegacao",function(ev){
+var p=String((ev&amp;&amp;ev.detail&amp;&amp;ev.detail.pagina)||"");
+if(p==="vaga"||p==="detalhe-vaga")setTimeout(renderV77,140);
 });
 })();
 //
