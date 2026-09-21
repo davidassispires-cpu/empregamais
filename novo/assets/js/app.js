@@ -311,8 +311,8 @@ function emPagamentoPlano(chave){
  const valor=valorPlano(chave),pix=valor*.94,parcela=valor/3,moeda=v=>v.toLocaleString('pt-BR',{style:'currency',currency:'BRL'});
  return '<div class="em-pagamento-plano">'+
  '<div class="em-pay-title"><span>Formas de pagamento</span><small>Escolha a melhor forma para sua empresa</small></div>'+
- '<div class="em-pay-option em-pay-pix"><div class="em-pix-brand"><span class="pix-mark"><i></i><i></i><i></i><i></i></span><b>pix</b></div><div class="em-pay-copy"><em>6% de desconto</em><strong>'+moeda(pix)+' <small>no Pix</small></strong><span>Pagamento instantâneo e seguro</span></div></div>'+
- '<div class="em-pay-option em-pay-card"><div class="em-credit-brand"><span class="em-card-icon"><i></i></span><b>Cartão<br>de crédito</b><small>Até 3x sem juros</small></div><div class="em-pay-copy"><strong>3x de '+moeda(parcela)+'</strong><span>sem juros no cartão</span></div></div>'+
+ '<div class="em-pay-option em-pay-pix"><div class="em-pix-brand" aria-label="Pix"><svg class="em-pix-svg" viewBox="0 0 64 64" aria-hidden="true"><path d="M23.7 7.6a9.7 9.7 0 0 1 13.7 0l7.1 7.1a6.1 6.1 0 0 0 4.3 1.8h4.5l-12-12a13.2 13.2 0 0 0-18.6 0L10.6 16.6h4.5a6.1 6.1 0 0 0 4.3-1.8l4.3-4.3zm29.6 39.8h-4.5a6.1 6.1 0 0 0-4.3 1.8l-7.1 7.1a9.7 9.7 0 0 1-13.7 0l-4.3-4.3a6.1 6.1 0 0 0-4.3-1.8h-4.5l12.1 12.1a13.2 13.2 0 0 0 18.6 0l12-12.1zM4.5 22.7a13.2 13.2 0 0 0 0 18.6l6.1 6.1h4.5a6.1 6.1 0 0 0 4.3-1.8l4.3-4.3a9.7 9.7 0 0 1 13.7 0l7.1 7.1a6.1 6.1 0 0 0 4.3 1.8h4.5l6.2-6.2a13.2 13.2 0 0 0 0-18.6l-6.2-6.2h-4.5a6.1 6.1 0 0 0-4.3 1.8l-7.1 7.1a9.7 9.7 0 0 1-13.7 0l-4.3-4.3a6.1 6.1 0 0 0-4.3-1.8h-4.5z"/></svg><b>pix</b></div><div class="em-pay-copy"><em>6% de desconto</em><strong>'+moeda(pix)+' <small>no Pix</small></strong><span>Pagamento instantâneo e seguro</span></div></div>'+
+ '<div class="em-pay-option em-pay-card"><div class="em-credit-brand"><span class="em-card-icon"><i></i></span><b>Cartão<br>de crédito</b></div><div class="em-pay-copy"><strong>3x de '+moeda(parcela)+'</strong><span class="em-card-installment">sem juros no cartão</span></div></div>'+
  '<div class="em-bandeiras"><span class="em-card-brand visa"><b>VISA</b></span><span class="em-card-brand master"><i></i><i></i><b>mastercard</b></span><span class="em-card-brand elo"><b>elo</b><i></i></span><span class="em-card-brand hiper"><b>Hipercard</b></span><span class="em-card-brand amex"><b>AMERICAN<br>EXPRESS</b></span></div>'+
  '<div class="em-pay-secure">▣ <span>Pagamento 100% seguro via nossa plataforma.</span></div></div>';
 }
@@ -320,7 +320,7 @@ function verDetalhesPlano(plano){sessionStorage.setItem('planoDetalhe',plano);ir
 function renderizarDetalhesPlano(){const chave=sessionStorage.getItem('planoDetalhe')||'basico',d=DETALHES_PLANOS[chave]||DETALHES_PLANOS.basico,p=PLANOS_EMPRESA[chave]||PLANOS_EMPRESA.basico;const set=(id,t)=>{const e=document.getElementById(id);if(e)e.textContent=t};set('planoDetalheNome','Plano '+d.nome);set('planoDetalheResumo',d.resumo);set('planoDetalheEtiqueta',d.etiqueta);set('planoDetalhePreco',d.preco);set('planoDetalhePeriodo',d.periodo);const topo=document.querySelector('.plano-detalhe-top>div');if(topo){let pg=topo.querySelector('.em-pagamento-plano');if(pg)pg.remove();if(chave!=='basico')topo.insertAdjacentHTML('beforeend',emPagamentoPlano(chave));}const b=document.getElementById('planoDetalheBeneficios');if(b)b.innerHTML=d.beneficios.map((x,i)=>'<article class="beneficio-detalhado"><i>'+(i===0?'✓':'•')+'</i><div><strong>'+esc(x[0])+'</strong><p>'+esc(x[1])+'</p></div></article>').join('');const r=document.getElementById('planoDetalheResumoLateral');if(r)r.innerHTML='<div class="plano-resumo-item"><span>Vagas/mês</span><b>'+p.vagas+'</b></div><div class="plano-resumo-item"><span>Destaques/mês</span><b>'+p.destaques+'</b></div><div class="plano-resumo-item"><span>Urgências/mês</span><b>'+p.urgentes+'</b></div><div class="plano-resumo-item"><span>Confidenciais/mês</span><b>'+p.confidenciais+'</b></div><div class="plano-resumo-item"><span>Valor</span><b>'+esc(d.preco)+'</b></div>';['planoDetalheEscolher','planoDetalheEscolher2'].forEach(id=>{const x=document.getElementById(id);if(x)x.onclick=()=>selecionarPlano(chave)})}
 
 let planoBAtual='trimestral';
-function selecionarAbaPlano(chave){if(!DETALHES_PLANOS[chave])chave='basico';planoBAtual=chave;const d=DETALHES_PLANOS[chave];document.querySelectorAll('.planos-b-tabs button').forEach(b=>b.classList.toggle('ativo',b.dataset.plano===chave));const set=(id,t)=>{const e=document.getElementById(id);if(e)e.textContent=t};set('planoBTag',d.etiqueta);set('planoBNome','Plano '+d.nome);set('planoBResumo',d.resumo);set('planoBPreco',d.preco);set('planoBPeriodo',d.periodo);const precoBox=document.querySelector('.plano-b-preco');if(precoBox){let pg=precoBox.querySelector('.em-pagamento-plano');if(pg)pg.remove();if(chave!=='basico'){const periodo=document.getElementById('planoBPeriodo');periodo.insertAdjacentHTML('afterend',emPagamentoPlano(chave));}}set('planoBTituloBeneficios','O que está incluído no plano '+d.nome+'?');const l=document.getElementById('planoBLista');if(l){const icons=['▣','★','⚡','◈','♟','◉','▥','◌'];l.innerHTML='<div class="plano-recursos-grid">'+d.beneficios.map((x,i)=>'<article class="plano-recurso-card"><i>'+icons[i%icons.length]+'</i><div><strong>'+esc(x[0])+'</strong><p>'+esc(x[1])+'</p></div></article>').join('')+'</div>'+(chave!=='basico'?'<div class="plano-resultados"><i>◆</i><div><strong>Mais resultados para sua empresa</strong><p>Publique mais vagas, destaque suas oportunidades e encontre talentos com mais agilidade.</p></div></div>':'');}const bt=document.getElementById('planoBEscolher');if(bt){bt.textContent=chave==='basico'?'Começar grátis →':'Escolher este plano →';bt.type='button';bt.setAttribute('onclick','return escolherPlanoAtual()')}}
+function selecionarAbaPlano(chave){if(!DETALHES_PLANOS[chave])chave='basico';planoBAtual=chave;const d=DETALHES_PLANOS[chave];document.querySelectorAll('.planos-b-tabs button').forEach(b=>b.classList.toggle('ativo',b.dataset.plano===chave));const set=(id,t)=>{const e=document.getElementById(id);if(e)e.textContent=t};set('planoBTag',d.etiqueta);set('planoBNome','Plano '+d.nome);set('planoBResumo',d.resumo);set('planoBPreco',d.preco);set('planoBPeriodo',d.periodo);const precoBox=document.querySelector('.plano-b-preco');if(precoBox){let pg=precoBox.querySelector('.em-pagamento-plano');if(pg)pg.remove();if(chave!=='basico'){const periodo=document.getElementById('planoBPeriodo');periodo.insertAdjacentHTML('afterend',emPagamentoPlano(chave));}}set('planoBTituloBeneficios','O que está incluído no plano '+d.nome+'?');const l=document.getElementById('planoBLista');if(l){const icons=['▣','★','⚡','◈','♟','◉','▥','◌'];l.innerHTML='<div class="plano-recursos-grid">'+d.beneficios.map((x,i)=>'<article class="plano-recurso-card"><i>'+icons[i%icons.length]+'</i><div><strong>'+esc(x[0])+'</strong><p>'+esc(x[1])+'</p></div></article>').join('')+'</div>'+(chave!=='basico'?'<div class="plano-resultados"><i>◆</i><div><strong>Mais resultados para sua empresa</strong><p>Publique mais vagas, destaque suas oportunidades e encontre talentos com mais agilidade.</p></div></div>':'');}const bt=document.getElementById('planoBEscolher');if(bt){bt.textContent=chave==='basico'?'Começar grátis →':'Escolher este plano →';bt.type='button';bt.dataset.plano=chave;bt.onclick=null;}}
 function renderizarPlanosModeloB(){renderizarPlanosAtuais();selecionarAbaPlano(planoBAtual||'trimestral')}
 
 const ORDEM_PLANOS=['basico','mensal','trimestral','semestral','anual'];
@@ -486,16 +486,16 @@ function dataEncerramentoAutomaticaEM(){const d=new Date();d.setDate(d.getDate()
 
 
 /* EMPREGAMAIS-PLANOS-CLICK-FIX-V3 */
-function escolherPlanoAtual(){
- const plano=planoBAtual||'basico';
- sessionStorage.setItem('planoPretendido',plano);
- if(papelAtual()!=='empresa'){irPara('login-empresa');return false;}
- selecionarPlano(plano);
- return false;
+function escolherPlanoAtual(plano){
+ const p=plano||document.getElementById('planoBEscolher')?.dataset.plano||planoBAtual||'basico';
+ sessionStorage.setItem('planoPretendido',p);
+ if(papelAtual()!=='empresa'){irPara('login-empresa');return;}
+ selecionarPlano(p);
 }
 document.addEventListener('click',function(e){
  const btn=e.target.closest('#planoBEscolher');
  if(!btn)return;
  e.preventDefault();
- escolherPlanoAtual();
-});
+ e.stopPropagation();
+ escolherPlanoAtual(btn.dataset.plano);
+},false);
