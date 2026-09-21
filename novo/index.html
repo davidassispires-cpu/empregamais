@@ -552,6 +552,61 @@ padding:28px 5%!important;color:#fff!important;border:0!important
 .menu-candidato-publico .menu-candidato-login{width:100%!important;min-height:40px!important;margin-top:3px!important;border:1px solid #b8d3da!important;background:#fff!important;color:#086b76!important;font-weight:700!important;justify-content:center!important}
 .menu-candidato-publico .menu-candidato-cadastro{width:100%!important;min-height:40px!important;margin-top:6px!important;background:#087b83!important;color:#fff!important;font-weight:700!important;justify-content:center!important}
 .menu-candidato-publico .menu-candidato-cadastro:hover{background:#066b73!important;color:#fff!important}
+</style><style id="EMPREGAMAIS-MENUS-PUBLICOS-UNIFICADOS-V29">
+/* Empresa e candidato usam exatamente a mesma linguagem visual */
+.menu-drop-empresa .menu-empresa-publico,
+.menu-drop-candidato .menu-candidato-publico{
+width:320px!important;padding:12px!important;border:1px solid #d9e6ec!important;
+border-radius:16px!important;background:#fff!important;
+box-shadow:0 18px 45px rgba(16,55,73,.15)!important
+}
+.menu-empresa-publico .menu-drop-titulo,
+.menu-candidato-publico .menu-drop-titulo{
+padding:5px 8px 10px!important;color:#087b83!important;font-size:10px!important;
+font-weight:800!important;letter-spacing:1.05px!important
+}
+.menu-empresa-intro,.menu-candidato-intro{
+margin:0 0 9px!important;padding:13px!important;border-radius:12px!important;
+background:linear-gradient(135deg,#eaf8f7 0%,#f7fbfc 100%)!important;
+border:1px solid #d7ecec!important;position:relative!important;overflow:hidden!important
+}
+.menu-empresa-intro:after,.menu-candidato-intro:after{
+content:""!important;position:absolute!important;width:75px!important;height:75px!important;
+border-radius:50%!important;right:-30px!important;top:-38px!important;background:rgba(8,123,131,.08)!important
+}
+.menu-empresa-intro strong,.menu-candidato-intro strong{
+display:block!important;color:#103b50!important;font-size:14px!important;font-weight:750!important;margin-bottom:4px!important
+}
+.menu-empresa-intro span,.menu-candidato-intro span{
+display:block!important;color:#657e8e!important;font-size:11.5px!important;line-height:1.45!important
+}
+.menu-empresa-publico .menu-empresa-link,
+.menu-candidato-publico .menu-candidato-link{
+display:flex!important;flex-direction:column!important;align-items:flex-start!important;
+gap:3px!important;width:100%!important;padding:10px 11px!important;border-radius:9px!important
+}
+.menu-empresa-publico .menu-empresa-link:hover,
+.menu-candidato-publico .menu-candidato-link:hover{background:#f0f8f8!important}
+.menu-empresa-publico .menu-empresa-link b,
+.menu-candidato-publico .menu-candidato-link b{font-size:13px!important;color:#173b50!important;font-weight:700!important}
+.menu-empresa-publico .menu-empresa-link span,
+.menu-candidato-publico .menu-candidato-link span{font-size:10.5px!important;color:#81929f!important}
+.menu-empresa-publico .menu-drop-separador,
+.menu-candidato-publico .menu-drop-separador{margin:8px 2px!important;background:#e3ebf0!important}
+.menu-empresa-publico .menu-empresa-login,
+.menu-candidato-publico .menu-candidato-login{
+display:flex!important;width:100%!important;min-height:41px!important;margin-top:4px!important;
+border:1px solid #b7d2d8!important;border-radius:9px!important;background:#fff!important;
+color:#086b76!important;font-size:12.5px!important;font-weight:700!important;justify-content:center!important;align-items:center!important
+}
+.menu-empresa-publico .menu-empresa-cadastro,
+.menu-candidato-publico .menu-candidato-cadastro{
+display:flex!important;width:100%!important;min-height:41px!important;margin-top:7px!important;
+border:1px solid #087b83!important;border-radius:9px!important;background:#087b83!important;
+color:#fff!important;font-size:12.5px!important;font-weight:700!important;justify-content:center!important;align-items:center!important
+}
+.menu-empresa-publico .menu-empresa-cadastro:hover,
+.menu-candidato-publico .menu-candidato-cadastro:hover{background:#066b73!important;border-color:#066b73!important;color:#fff!important}
 </style></head><body><header class="topo"><div class="topo-inner"><button type="button" class="marca" data-rota="home"><span class="marca-icone">E+</span><span class="marca-nome">Emprega<span>Mais</span></span></button><nav class="menu menu-publico"><button type="button" data-rota="home">Buscar vagas</button><button type="button" data-rota="senior">EmpregaMais Sênior</button><button type="button" data-rota="como-funciona">Como funciona</button>
 <div class="menu-drop menu-drop-empresa"><button type="button" class="menu-drop-gatilho" onclick="alternarMenuTopo('empresa',event)">Para empresas <span>⌄</span></button><div class="menu-drop-painel menu-empresa-publico"><div class="menu-drop-titulo">PARA EMPRESAS</div><div class="menu-empresa-intro"><strong>Encontre os talentos certos</strong><span>Publique vagas e gerencie seus processos seletivos em um só lugar.</span></div><button class="menu-empresa-link" onclick="rotaMenuTopo('como-funciona')"><b>Como funciona</b><span>Conheça a plataforma para empresas</span></button><button class="menu-empresa-link" onclick="rotaMenuTopo('planos')"><b>Planos e preços</b><span>Veja os recursos disponíveis</span></button><div class="menu-drop-separador"></div><button class="menu-empresa-login" onclick="rotaMenuTopo('login-empresa')">Entrar como empresa</button><button class="menu-empresa-cadastro" onclick="rotaMenuTopo('cadastro-empresa')">Cadastrar empresa</button></div></div>
 </nav><nav class="menu menu-empresa-logada"><button type="button" data-rota="painel-empresa">Painel</button><button type="button" data-rota="painel-empresa">Minhas vagas</button><button type="button" data-rota="candidatos-empresa">Candidatos</button><button type="button" data-rota="planos">Planos</button></nav><nav class="menu menu-candidato-logado"><button type="button" data-rota="home">Buscar vagas</button><button type="button" data-rota="salvas">Vagas salvas</button><button type="button" data-rota="candidaturas">Minhas candidaturas</button><button type="button" data-rota="curriculo">Meu currículo</button></nav><div class="acoes"><div class="menu-drop menu-drop-candidato"><button type="button" class="btn secundario menu-drop-gatilho" onclick="alternarMenuTopo('candidato',event)">Área do candidato <span>⌄</span></button><div class="menu-drop-painel menu-candidato-publico"><div class="menu-drop-titulo">PARA CANDIDATOS</div><div class="menu-candidato-intro"><strong>Encontre sua próxima oportunidade</strong><span>Busque vagas, crie seu currículo e acompanhe seus processos em um só lugar.</span></div><button class="menu-candidato-link" onclick="rotaMenuTopo('home')"><b>Buscar vagas</b><span>Encontre oportunidades para o seu perfil</span></button><button class="menu-candidato-link" onclick="rotaMenuTopo('cadastro-candidato')"><b>Criar currículo</b><span>Cadastre seu perfil profissional gratuitamente</span></button><div class="menu-drop-separador"></div><button class="menu-candidato-login" onclick="rotaMenuTopo('login-candidato')">Entrar como candidato</button><button class="menu-candidato-cadastro" onclick="rotaMenuTopo('cadastro-candidato')">Cadastrar currículo</button></div></div><button type="button" class="btn btn-azul" onclick="abrirPublicacao()">+ Publicar vaga</button><div class="sessao-empresa-topo"><button class="sessao-conta-btn" onclick="this.parentElement.classList.toggle('aberto')"><span class="sessao-avatar" id="topoEmpresaAvatar">E</span><span><b id="topoEmpresaNome">Empresa</b><small id="topoEmpresaPlano">Conta da empresa</small></span><em>⌄</em></button><div class="sessao-conta-menu"><div class="conta-menu-head"><span class="conta-menu-avatar" id="topoEmpresaAvatarMenu">E</span><div><b id="topoEmpresaNomeMenu">Empresa</b><small id="topoEmpresaPlanoMenu">Conta da empresa</small><i>Plano ativo</i></div></div><div class="conta-menu-nav"><button onclick="irPara('painel-empresa')">Painel da empresa</button><button onclick="irPara('perfil-empresa')">Perfil da empresa</button><button onclick="irPara('planos')">Meu plano</button><button class="conta-sair-pro" onclick="sair()">Sair</button></div></div></div><div class="sessao-candidato-topo"><button class="sessao-conta-btn" onclick="this.parentElement.classList.toggle('aberto')"><span class="sessao-avatar" id="topoCandidatoAvatar">C</span><span><b id="topoCandidatoNome">Candidato</b><small>Minha conta</small></span><em>⌄</em></button><div class="sessao-conta-menu"><button onclick="irPara('painel-candidato')">Meu painel</button><button onclick="irPara('perfil-candidato')">Meu perfil</button><button onclick="sair()">Sair</button></div></div></div></div></header><main><section class="pagina ativa" id="pagina-home">
