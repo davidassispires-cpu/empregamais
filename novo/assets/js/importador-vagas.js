@@ -1,0 +1,37 @@
+/* EmpregaMais - Importador de vagas isolado V1 */
+(function(){
+'use strict';
+var state=[];
+function clean(s){return String(s||'').replace(/\*\*/g,'').replace(/\\:/g,':').replace(/\r/g,'').replace(/\[([^\]]+)\]\((?:mailto:|https?:\/\/)[^)]+\)/gi,'$1').trim()}
+function esc(s){return String(s??'').replace(/[&<>"']/g,function(c){return({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'})[c]})}
+function field(t,names){t=clean(t);for(var i=0;i<names.length;i++){var m=t.match(new RegExp('(?:^|\\n)\\s*'+names[i]+'\\s*[:\\-]\\s*([^\\n]+)','i'));if(m)return m[1].trim()}return''}
+function section(t,names,next){var re=new RegExp('(?:^|\\n)\\s*(?:'+names+')\\s*:\\s*([\\s\\S]*?)(?=\\n\\s*(?:'+next+')\\s*:|$)','i'),m=clean(t).match(re);return m?m[1].replace(/^\\s*[-•]\\s*/gm,'').trim():''}
+function splitJobs(t){t=clean(t);if(!t)return[];var p=t.split(/(?=^\\s*(?:Vaga|Cargo|Oportunidade)\\s*[:\\-])/gim).map(function(x){return x.trim()}).filter(Boolean);return p.length?p:[t]}
+function parse(t,i){
+ t=clean(t);var lines=t.split('\n').map(function(x){return x.trim()}).filter(Boolean);
+ var cargo=field(t,['Cargo','Vaga','Função','Oportunidade'])||((lines[0]||'').replace(/^\\d+[.)-]\\s*/,''));
+ var empresa=field(t,['Empresa','Contratante','Empresa contratante']);
+ if(!empresa){var em=t.match(/(?:empresa|rede|grupo)\s+([A-ZÁÉÍÓÚÂÊÔÃÕÇ][^\n,.;]{2,50})/i)||t.match(/\b(O Botic[aá]rio)\b/i);if(em)empresa=em[1]}
+ var local=field(t,['Local de trabalho','Localidade','Local','Cidade']),cidade=local,uf=field(t,['UF','Estado']),bairro='';
+ if(local){var a=local.split(/\s+[–—-]\s+/).map(function(x){return x.trim()}).filter(Boolean);if(a.length>1){bairro=a[0];cidade=a[a.length-1]}var um=cidade.match(/(?:[-\/]\s*|\s+)([A-Z]{2})$/);if(um){uf=um[1];cidade=cidade.replace(/(?:[-\/]\s*|\s+)[A-Z]{2}$/,'').trim()}}
+ var contrato=field(t,['Contratação','Contratacao','Contrato','Tipo de contrato','Regime','Vínculo','Vinculo']);
+ if(/\bCLT\b/i.test(contrato||t))contrato='Efetivo – CLT';else if(/est[aá]gio/i.test(contrato||t))contrato='Estágio';else if(/tempor[aá]ri/i.test(contrato||t))contrato='Temporário';else if(/jovem aprendiz/i.test(contrato||t))contrato='Jovem Aprendiz';else if(/trainee/i.test(contrato||t))contrato='Trainee';
+ var modalidade=field(t,['Modalidade','Modelo de trabalho']);var modConf='alta';
+ if(!modalidade){modConf='media';if(/home\s*office|remot[oa]/i.test(t))modalidade='Remoto';else if(/h[ií]brid[oa]/i.test(t))modalidade='Híbrido';else if(/loja|presencial|local de trabalho|atendimento ao cliente/i.test(t))modalidade='Presencial';else{modalidade='';modConf='baixa'}}
+ var area=field(t,['Área','Area','Setor']);var areaConf=area?'alta':'media';if(!area){var b=(cargo+' '+t).toLowerCase();if(/venda|comercial/.test(b))area='Vendas';else if(/atendimento|loja|caixa/.test(b))area='Atendimento';else if(/estoque|logística|logistica|expedi/.test(b))area='Logística';else if(/administrativ|recepcion/.test(b))area='Administrativo';else if(/desenvolvedor|programador|tecnologia|\bti\b/.test(b))area='TI e Tecnologia';else{area='';areaConf='baixa'}}
+ var salario=field(t,['Salário','Salario','Remuneração','Remuneracao'])||((t.match(/R\$\s*[\d.,]+/)||[])[0]||'');
+ var escolaridade=field(t,['Escolaridade','Formação','Formacao']);if(!escolaridade){if(/ensino m[eé]dio completo/i.test(t))escolaridade='Médio completo';else if(/superior completo/i.test(t))escolaridade='Superior completo';else if(/superior (?:em curso|cursando)/i.test(t))escolaridade='Superior cursando'}
+ var experiencia=field(t,['Experiência','Experiencia','Tempo de experiência','Tempo de experiencia']);if(!experiencia&&/experi[eê]ncia[^.\n]*(?:diferencial|desej[aá]vel)/i.test(t))experiencia='Desejável / diferencial';
+ var next='Requisitos|Qualificações|Qualificacoes|Local de trabalho|Localidade|Local|Benefícios|Beneficios|Jornada de Trabalho|Jornada|Horário|Horario|Informações adicionais|Informacoes adicionais|Formas de candidatura|Como se candidatar';
+ var descricao=section(t,'Descrição da Vaga|Descrição|Descricao|Atividades|Responsabilidades|O que você vai fazer',next)||'';
+ var requisitos=section(t,'Requisitos|Qualificações|Qualificacoes','Local de trabalho|Localidade|Local|Benefícios|Beneficios|Jornada de Trabalho|Jornada|Informações adicionais|Informacoes adicionais|Formas de candidatura|Como se candidatar');
+ var beneficios=field(t,['Benefícios','Beneficios']);var jornada=field(t,['Jornada de Trabalho','Jornada','Horário','Horario']);
+ var email=(t.match(/[\w.+-]+@[\w.-]+\.[A-Za-z]{2,}/)||[])[0]||'',wh=(t.match(/(?:whatsapp|whats)[^\d+]*(\+?\d[\d\s()-]{8,}\d)/i)||[])[1]||'',link=(t.match(/https?:\/\/[^\s)]+/i)||[])[0]||'';
+ return {id:i,cargo:cargo,empresa:empresa,area:area,contrato:contrato,modalidade:modalidade,cidade:cidade,uf:uf,bairro:bairro,cep:field(t,['CEP']),salario:salario,escolaridade:escolaridade,experiencia:experiencia,jornada:jornada,pcd:field(t,['PcD','PCD']),beneficios:beneficios,descricao:descricao,requisitos:requisitos,email:email,whatsapp:wh,link:link,confidence:{cargo:cargo?'alta':'baixa',empresa:empresa?'alta':'baixa',area:areaConf,modalidade:modConf,cidade:cidade?'alta':'baixa'},original:t}
+}
+function badge(x){return '<span class="imp-confidence '+x+'">'+(x==='alta'?'✓ alta':x==='media'?'~ revisar':'! conferir')+'</span>'}
+function input(v,k,label){return '<label>'+label+(v.confidence&&v.confidence[k]?badge(v.confidence[k]):'')+'<input data-i="'+v.id+'" data-k="'+k+'" value="'+esc(v[k])+'"></label>'}
+function render(){var box=document.getElementById('adminImportarPreview');if(!box)return;box.innerHTML=state.map(function(v){return '<article class="imp-card"><h3>'+(v.id+1)+'. '+esc(v.cargo||'Cargo não identificado')+'</h3><div class="imp-grid">'+input(v,'cargo','Cargo')+input(v,'empresa','Empresa')+input(v,'area','Área')+input(v,'contrato','Contrato')+input(v,'modalidade','Modalidade')+input(v,'cidade','Cidade')+input(v,'uf','UF')+input(v,'bairro','Bairro/região')+input(v,'cep','CEP')+input(v,'salario','Salário')+input(v,'escolaridade','Escolaridade')+input(v,'experiencia','Experiência')+input(v,'jornada','Jornada')+input(v,'pcd','PcD')+input(v,'beneficios','Benefícios')+'</div><label>Descrição<textarea data-i="'+v.id+'" data-k="descricao">'+esc(v.descricao)+'</textarea></label><label>Requisitos<textarea data-i="'+v.id+'" data-k="requisitos">'+esc(v.requisitos)+'</textarea></label><div class="imp-contact">Candidatura detectada: '+esc(v.email||v.whatsapp||v.link||'não identificada')+'</div></article>'}).join('');box.querySelectorAll('[data-i]').forEach(function(el){el.addEventListener('input',function(){var v=state[Number(el.dataset.i)];if(v)v[el.dataset.k]=el.value})})}
+window.EmpregaMaisImportador={analisar:function(){var ta=document.getElementById('adminImportarTexto');state=splitJobs(ta?ta.value:'').map(parse);render();return state},dados:function(){return state.slice()}};
+window.adminImportadorTelaEM=function(){return '<div class="admin-importador-isolado"><h2>Importar vagas</h2><p>Cole o e-mail ou anúncio completo. O leitor extrai o máximo possível e deixa informações inferidas sinalizadas para conferência antes do cadastro.</p><textarea id="adminImportarTexto" rows="14" placeholder="Cole aqui uma ou várias vagas..."></textarea><button type="button" class="btn btn-azul" onclick="EmpregaMaisImportador.analisar()">Analisar e preencher cadastros</button><div id="adminImportarPreview"></div></div>'};
+})();
