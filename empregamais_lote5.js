@@ -618,7 +618,15 @@ card.style.display="block";
 try{if(typeof window.montarFormularioV23==="function")window.montarFormularioV23();}catch(e){}
 avisoV24();
 }
-window.addEventListener("load",function(){setTimeout(garantirV24,300);setTimeout(garantirV24,900);});
+function perfilPublicoAtivoV24(){
+var p=document.getElementById("pagina-perfil-empresa-em");
+return !!(p&amp;&amp;(p.classList.contains("ativa")||p.classList.contains("pagina-ativa")));
+}
+window.addEventListener("load",function(){if(perfilPublicoAtivoV24())setTimeout(garantirV24,220);});
+document.addEventListener("empregamais:navegacao",function(ev){
+var p=String((ev&amp;&amp;ev.detail&amp;&amp;ev.detail.pagina)||"");
+if(p==="perfil-empresa")setTimeout(garantirV24,160);
+});
 document.addEventListener("click",function(e){
 var b=e.target.closest("[data-aba-dados-v22]");
 if(b&&b.getAttribute("data-aba-dados-v22")==="publico")setTimeout(garantirV24,60);
