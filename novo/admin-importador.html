@@ -103,9 +103,9 @@ function payloadImportado(v,userId){
 }
 async function empresaImportadora(t,u,v){
  var nome=String(v.empresa||'Empresa importada').trim()||'Empresa importada';
- var q=await sbReq(SB_URL+'/rest/v1/empresas?select=*&user_id=eq.'+encodeURIComponent(u.id)+'&limit=1',{headers:sbH(t)});
+ var q=await sbReq(SB_URL+'/rest/v1/empresas?select=*&limit=1',{headers:sbH(t)});
  if(Array.isArray(q)&&q[0])return q[0];
- var body={user_id:u.id,nome:nome,nome_fantasia:nome,cnpj:''};
+ var body={user_id:u.id,nome:nome,cnpj:'00000000000000',email:'',sobre:'',plano:'basico',plano_id:'basico',verificacao_status:'nao_verificada',verificada:false,plano_liberado_admin:false,plano_sem_cobranca:false,aprovacao_automatica_suspensa:false};
  var criada=await sbReq(SB_URL+'/rest/v1/empresas',{method:'POST',headers:Object.assign(sbH(t),{'Prefer':'return=representation'}),body:JSON.stringify(body)});
  if(!Array.isArray(criada)||!criada[0])throw new Error('Não foi possível criar o vínculo da empresa para a vaga importada.');
  return criada[0]
