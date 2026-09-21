@@ -845,3 +845,21 @@ body.sessao-empresa .menu-publico,body.sessao-empresa .menu-drop-candidato{displ
 #pagina-home .portal-vaga-nova .vaga-meta span:first-child{font-size:14px!important;font-weight:700!important;color:#174f90!important;padding:7px 11px!important}
 #pagina-home .portal-vaga-nova .vaga-resumo{margin:9px 0 11px!important;line-height:1.42!important}
 #pagina-home .portal-vaga-nova .vaga-salario-data{margin-top:8px!important}
+
+/* Carrossel destaque: 4 cards por visão, compacto, infinito e com setas */
+#pagina-home .destaques-wrap{position:relative!important;padding:0 34px!important}
+#pagina-home .destaques-carrossel{grid-auto-columns:calc((100% - 42px)/4)!important;column-gap:14px!important;padding:10px 2px 8px!important;scrollbar-width:none!important}
+#pagina-home .destaques-carrossel::-webkit-scrollbar{display:none!important}
+#pagina-home .destaques-carrossel>.portal-vaga-nova{padding:14px 16px!important;min-height:340px!important;height:340px!important;border-radius:14px!important}
+#pagina-home .portal-vaga-nova .vaga-logo{width:58px!important;height:58px!important}
+#pagina-home .portal-vaga-nova h3{font-size:17px!important;margin:7px 0 3px!important}
+#pagina-home .portal-vaga-nova .vaga-meta{margin:8px 0 9px!important;gap:5px!important}
+#pagina-home .portal-vaga-nova .vaga-meta span{font-size:11.5px!important;padding:5px 7px!important}
+#pagina-home .portal-vaga-nova .vaga-meta span:first-child{font-size:12.5px!important;padding:6px 8px!important}
+#pagina-home .portal-vaga-nova .vaga-resumo{font-size:12.5px!important;line-height:1.4!important;-webkit-line-clamp:2!important}
+#pagina-home .portal-vaga-nova .salario-card{font-size:17px!important}
+#pagina-home .destaque-nav{position:absolute!important;top:50%!important;transform:translateY(-50%)!important;z-index:6!important;width:42px!important;height:42px!important;border-radius:50%!important;border:1px solid #d5e2ec!important;background:#fff!important;color:#06488f!important;box-shadow:0 6px 18px rgba(15,55,85,.16)!important;font-size:30px!important;line-height:1!important;cursor:pointer!important;display:flex!important;align-items:center!important;justify-content:center!important}
+#pagina-home .destaque-prev{left:0!important}#pagina-home .destaque-next{right:0!important}
+#pagina-home .destaque-nav:hover{background:#06488f!important;color:#fff!important}
+@media(max-width:950px){#pagina-home .destaques-carrossel{grid-auto-columns:calc((100% - 14px)/2)!important}}
+@media(max-width:640px){#pagina-home .destaques-wrap{padding:0 25px!important}#pagina-home .destaques-carrossel{grid-auto-columns:88%!important}#pagina-home .destaque-nav{width:36px!important;height:36px!important;font-size:26px!important}}
