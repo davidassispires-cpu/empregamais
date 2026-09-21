@@ -190,7 +190,7 @@ function sbMapVagaEM(v){
     destaqueSolicitado:!!v.destaque_solicitado, urgenciaSolicitada:!!v.urgencia_solicitada,
     status:v.status||'pendente', criadoEm:v.criado_em||'', editadoEm:v.editado_em||'',
     destaqueAte:v.destaque_ate||'', motivoReprovacao:v.motivo_reprovacao||'',
-    edicoesAposAprovacao:Number(v.edicoes_apos_aprovacao||0)
+    edicoesAposAprovacao:Number(v.edicoes_apos_aprovacao||0), logo:v.logo||v.logo_url||''
   };
 }
 function sbUsuarioAtualEM(){const t=sbTokenEM();if(!t)return Promise.reject(new Error('Sessão Supabase ausente.'));return sbJsonEM(EMPREGAMAIS_SUPABASE_URL+'/auth/v1/user',{method:'GET',headers:sbHeadersEM(t)})}
@@ -207,15 +207,35 @@ function sbDadosVagaAtualEM(){
   const v=id=>$('#'+id)?.value.trim()||'';
   return sbEmpresaAtualEM().then(emp=>{
     if(!emp)throw new Error('Empresa não encontrada no Supabase.');
-    return {empresaId:emp.id,userId:emp.user_id,empresa:v('empresaVaga')||emp.nome_fantasia||emp.nome||'',empresaCnpj:emp.cnpj||sessionStorage.getItem('empresaCnpj')||'',cargo:v('cargoVaga'),area:v('areaVaga'),contrato:v('contratoVaga'),modalidade:v('modalidadeVaga'),cep:v('cepVaga'),estado:v('estadoVaga'),cidade:v('cidadeVaga'),dataEncerramento:v('dataEncerramentoVaga')||null,escolaridade:v('escolaridadeVaga'),experiencia:v('experienciaVaga'),jornada:v('jornadaVaga'),pcd:v('pcdVaga'),salario:$('#salarioCombinarVaga')?.checked?'A combinar':v('salarioVaga'),salarioMax:v('salarioMaxVaga'),salarioCombinar:!!$('#salarioCombinarVaga')?.checked,horarioEntrada:v('horarioEntradaVaga'),horarioSaida:v('horarioSaidaVaga'),descricao:v('descricaoVaga'),requisitos:v('requisitosVaga'),beneficios:beneficiosSelecionados().join(' · '),beneficiosLista:beneficiosSelecionados().filter(x=>x!==v('beneficiosVaga')),beneficiosOutros:v('beneficiosVaga'),sobreEmpresa:v('sobreEmpresaVaga'),senior50:!!$('#senior50Vaga')?.checked,confidencial:!!$('#vagaConfidencial')?.checked,destaque:!!$('#vagaDestaque')?.checked,urgente:!!$('#vagaUrgente')?.checked}
+    return {empresaId:emp.id,userId:emp.user_id,empresa:v('empresaVaga')||emp.nome_fantasia||emp.nome||'',empresaCnpj:emp.cnpj||sessionStorage.getItem('empresaCnpj')||'',cargo:v('cargoVaga'),area:v('areaVaga'),contrato:v('contratoVaga'),modalidade:v('modalidadeVaga'),cep:v('cepVaga'),estado:v('estadoVaga'),cidade:v('cidadeVaga'),dataEncerramento:v('dataEncerramentoVaga')||null,escolaridade:v('escolaridadeVaga'),experiencia:v('experienciaVaga'),jornada:v('jornadaVaga'),pcd:v('pcdVaga'),salario:$('#salarioCombinarVaga')?.checked?'A combinar':v('salarioVaga'),salarioMax:v('salarioMaxVaga'),salarioCombinar:!!$('#salarioCombinarVaga')?.checked,horarioEntrada:v('horarioEntradaVaga'),horarioSaida:v('horarioSaidaVaga'),descricao:v('descricaoVaga'),requisitos:v('requisitosVaga'),beneficios:beneficiosSelecionados().join(' · '),beneficiosLista:beneficiosSelecionados().filter(x=>x!==v('beneficiosVaga')),beneficiosOutros:v('beneficiosVaga'),sobreEmpresa:v('sobreEmpresaVaga'),senior50:!!$('#senior50Vaga')?.checked,confidencial:!!$('#vagaConfidencial')?.checked,destaque:!!$('#vagaDestaque')?.checked,urgente:!!$('#vagaUrgente')?.checked,logo:window.__empregaMaisLogoVagaUrl||''}
   })
 }
 function sbVagaPayloadEM(d,editId){
   const gratuito=planoEmpresaAtual().nome==='Grátis';
   if(gratuito&&d.destaque&&!editId){d.destaque_solicitado=true;d.destaque=false}
   if(gratuito&&d.urgente&&!editId){d.urgencia_solicitada=true;d.urgente=false}
-  return {user_id:d.userId,empresa_id:d.empresaId,empresa:d.empresa,empresa_cnpj:nums(d.empresaCnpj),cargo:d.cargo,area:d.area,contrato:d.contrato,modalidade:d.modalidade,cep:d.cep,estado:d.estado,cidade:d.cidade,data_encerramento:d.dataEncerramento||null,escolaridade:d.escolaridade,experiencia:d.experiencia,jornada:d.jornada,pcd:d.pcd,salario:d.salario,salario_max:d.salarioMax,salario_combinar:d.salarioCombinar,horario_entrada:d.horarioEntrada,horario_saida:d.horarioSaida,descricao:d.descricao,requisitos:d.requisitos,beneficios:d.beneficios,beneficios_lista:d.beneficiosLista||[],beneficios_outros:d.beneficiosOutros,sobre_empresa:d.sobreEmpresa,senior50:d.senior50,confidencial:d.confidencial,destaque:d.destaque,urgente:d.urgente,destaque_solicitado:d.destaque_solicitado||false,urgencia_solicitada:d.urgencia_solicitada||false,status:'pendente'}
+  return {user_id:d.userId,empresa_id:d.empresaId,empresa:d.empresa,empresa_cnpj:nums(d.empresaCnpj),cargo:d.cargo,area:d.area,contrato:d.contrato,modalidade:d.modalidade,cep:d.cep,estado:d.estado,cidade:d.cidade,data_encerramento:d.dataEncerramento||null,escolaridade:d.escolaridade,experiencia:d.experiencia,jornada:d.jornada,pcd:d.pcd,salario:d.salario,salario_max:d.salarioMax,salario_combinar:d.salarioCombinar,horario_entrada:d.horarioEntrada,horario_saida:d.horarioSaida,descricao:d.descricao,requisitos:d.requisitos,beneficios:d.beneficios,beneficios_lista:d.beneficiosLista||[],beneficios_outros:d.beneficiosOutros,sobre_empresa:d.sobreEmpresa,senior50:d.senior50,confidencial:d.confidencial,destaque:d.destaque,urgente:d.urgente,destaque_solicitado:d.destaque_solicitado||false,urgencia_solicitada:d.urgencia_solicitada||false,logo:d.logo||null,status:'pendente'}
 }
+
+/* EMPREGAMAIS-LOGO-STORAGE-V1 */
+window.__empregaMaisLogoVagaUrl=window.__empregaMaisLogoVagaUrl||'';
+async function uploadLogoVagaEM(file){
+ if(!file)return window.__empregaMaisLogoVagaUrl||'';
+ if(file.size>2*1024*1024)throw new Error('A logo deve ter no máximo 2MB.');
+ if(!/^image\/(png|jpeg|svg\+xml)$/i.test(file.type))throw new Error('Envie a logo em PNG, JPG ou SVG.');
+ const token=await sbGarantirSessaoEM();if(!token)throw new Error('Sua sessão expirou. Entre novamente para enviar a logo.');
+ const u=await sbUsuarioAtualEM(),ext=(file.name.split('.').pop()||'png').toLowerCase().replace(/[^a-z0-9]/g,'')||'png';
+ const path=u.id+'/logo-vaga-'+Date.now()+'.'+ext;
+ const r=await fetch(EMPREGAMAIS_SUPABASE_URL+'/storage/v1/object/logos-empresas/'+encodeURI(path),{method:'POST',headers:{apikey:EMPREGAMAIS_SUPABASE_KEY,Authorization:'Bearer '+token,'Content-Type':file.type,'x-upsert':'true'},body:file});
+ if(!r.ok){let m='';try{m=(await r.json()).message||''}catch(e){}throw new Error(m||'Não foi possível enviar a logo.')}
+ const url=EMPREGAMAIS_SUPABASE_URL+'/storage/v1/object/public/logos-empresas/'+path;
+ window.__empregaMaisLogoVagaUrl=url;return url
+}
+function prepararUploadLogoVagaEM(){
+ const input=document.getElementById('logoVagaInput'),preview=document.getElementById('logoVagaPreview');if(!input||input.dataset.storageLogo)return;input.dataset.storageLogo='1';
+ input.addEventListener('change',async()=>{const file=input.files&&input.files[0];if(!file)return;try{if(preview)preview.innerHTML='<span>Enviando logo...</span>';const url=await uploadLogoVagaEM(file);if(preview)preview.innerHTML='<img src="'+esc(url)+'" alt="Prévia da logo" style="max-width:100%;max-height:110px;object-fit:contain"><small>Logo salva</small>'}catch(err){input.value='';window.__empregaMaisLogoVagaUrl='';if(preview)preview.innerHTML='<span>'+esc(err.message)+'</span>'}})
+}
+addEventListener('DOMContentLoaded',prepararUploadLogoVagaEM);
 
 /* EMPREGAMAIS-RASCUNHO-SESSAO-V1 */
 function salvarRascunhoVagaEM(){
