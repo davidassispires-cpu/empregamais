@@ -310,4 +310,22 @@
 @media(max-width:1180px) and (min-width:901px){#pagina-painel-empresa .empresa-app-shell{grid-template-columns:205px minmax(0,1fr)!important}#pagina-painel-empresa .empresa-side{width:205px!important;min-width:205px!important}#pagina-painel-empresa .em-ref-wrap{padding:16px!important}#pagina-painel-empresa .em-ref-wrap #empresaResumoRecursos .empresa-recursos-grid{grid-template-columns:repeat(3,minmax(0,1fr))!important}}
 @media(max-width:900px){#pagina-painel-empresa .empresa-app-shell{display:block!important}#pagina-painel-empresa .empresa-side{display:none!important}#pagina-painel-empresa .em-ref-wrap{max-width:760px!important;margin:auto!important;padding:12px!important}}
 </style>
+
+<!-- EMPREGAMAIS-PAINEL-FINAL-GRID-V11 -->
+<style>
+/* Correção definitiva: o dashboard ocupa somente a coluna à direita da lateral */
+#pagina-painel-empresa .empresa-app-shell{display:grid!important;grid-template-columns:228px minmax(0,1fr)!important;column-gap:0!important;align-items:start!important}
+#pagina-painel-empresa .empresa-side{grid-column:1!important;grid-row:1!important;width:228px!important;min-width:228px!important;max-width:228px!important}
+#pagina-painel-empresa .empresa-main.em-ref-main{grid-column:2!important;grid-row:1!important;display:block!important;width:auto!important;min-width:0!important;max-width:none!important;margin:0!important;padding:0!important}
+#pagina-painel-empresa .em-ref-wrap{display:block!important;width:auto!important;max-width:1180px!important;min-width:0!important;margin:0 auto!important;padding:18px 22px 44px!important}
+#pagina-painel-empresa .em-ref-hero{display:flex!important;width:100%!important;box-sizing:border-box!important}
+#pagina-painel-empresa #empresaMetricasNovas.empresa-metricas{display:grid!important;grid-template-columns:repeat(5,minmax(0,1fr))!important;grid-auto-columns:auto!important;grid-auto-flow:row!important;width:100%!important;max-width:none!important;gap:12px!important}
+#pagina-painel-empresa #empresaMetricasNovas>.empresa-metrica-v2{display:flex!important;position:relative!important;width:100%!important;max-width:none!important;min-width:0!important;float:none!important;box-sizing:border-box!important}
+#pagina-painel-empresa #empresaResumoRecursos .empresa-recursos-grid{display:grid!important;grid-template-columns:repeat(6,minmax(0,1fr))!important;width:100%!important;gap:12px!important}
+#pagina-painel-empresa #empresaResumoRecursos .recurso-progresso{display:block!important;width:100%!important;max-width:none!important;min-width:0!important;float:none!important;box-sizing:border-box!important}
+#pagina-painel-empresa .empresa-dashboard-grid{display:grid!important;grid-template-columns:minmax(0,2fr) minmax(280px,1fr)!important;gap:14px!important}
+#pagina-painel-empresa .empresa-atalhos{display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:14px!important}
+@media(max-width:1200px) and (min-width:901px){#pagina-painel-empresa .empresa-app-shell{grid-template-columns:210px minmax(0,1fr)!important}#pagina-painel-empresa .empresa-side{width:210px!important;min-width:210px!important;max-width:210px!important}#pagina-painel-empresa .em-ref-wrap{padding:16px!important}#pagina-painel-empresa #empresaMetricasNovas.empresa-metricas{grid-template-columns:repeat(5,minmax(120px,1fr))!important}#pagina-painel-empresa #empresaResumoRecursos .empresa-recursos-grid{grid-template-columns:repeat(3,minmax(0,1fr))!important}}
+@media(max-width:900px){#pagina-painel-empresa .empresa-app-shell{display:block!important}#pagina-painel-empresa .empresa-side{display:none!important}#pagina-painel-empresa .empresa-main.em-ref-main{display:block!important;width:100%!important}#pagina-painel-empresa #empresaMetricasNovas.empresa-metricas{grid-template-columns:repeat(2,minmax(0,1fr))!important}#pagina-painel-empresa #empresaResumoRecursos .empresa-recursos-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important}#pagina-painel-empresa .empresa-dashboard-grid,#pagina-painel-empresa .empresa-atalhos{grid-template-columns:1fr!important}}
+</style>
 </body></html>
