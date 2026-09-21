@@ -372,10 +372,16 @@ try{ aplicarDistanciaCanonicaCardsEM(); }catch(e){}
 limparDistanciasDuplicadasV76(document);
 }
 window.EmpregaMaisAtualizarDistanciaUnica=atualizarUnicaDistanciaV76;
+function homeAtivaV76(){
+var p=document.getElementById("pagina-home");
+return !!(p&amp;&amp;(p.classList.contains("ativa")||p.classList.contains("pagina-ativa")));
+}
 window.addEventListener("load",function(){
-/* Uma passagem inicial; alterações posteriores na Home são tratadas
-   pelo observer abaixo sem repetir quatro varreduras após o F5. */
-setTimeout(atualizarUnicaDistanciaV76,300);
+if(homeAtivaV76())setTimeout(atualizarUnicaDistanciaV76,220);
+});
+document.addEventListener("empregamais:navegacao",function(ev){
+var p=String((ev&amp;&amp;ev.detail&amp;&amp;ev.detail.pagina)||"");
+if(p==="inicio"||p==="home")setTimeout(atualizarUnicaDistanciaV76,140);
 });
 var alvo=document.getElementById("pagina-home");
 if(alvo&&window.MutationObserver){
