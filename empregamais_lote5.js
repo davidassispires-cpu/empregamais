@@ -408,9 +408,16 @@ e.preventDefault();
 abrirAbaDadosV22(b.getAttribute("data-aba-dados-v22"));
 });
 window.abrirAbaDadosEmpresaV22=abrirAbaDadosV22;
+function dadosEmpresaAtivoV22(){
+var p=document.getElementById("pagina-perfil-empresa-em");
+return !!(p&amp;&amp;(p.classList.contains("ativa")||p.classList.contains("pagina-ativa")));
+}
 window.addEventListener("load",function(){
-setTimeout(iniciarV22,150);
-setTimeout(iniciarV22,650);
+if(dadosEmpresaAtivoV22())setTimeout(iniciarV22,150);
+});
+document.addEventListener("empregamais:navegacao",function(ev){
+var p=String((ev&amp;&amp;ev.detail&amp;&amp;ev.detail.pagina)||"");
+if(p==="perfil-empresa")setTimeout(iniciarV22,120);
 });
 document.addEventListener("click",function(e){
 var a=e.target.closest("a,button");
