@@ -235,12 +235,16 @@ if(!el)return;
 e.preventDefault();
 abrirMetricaV19(el.getAttribute("data-metrica-link-v19"));
 });
+function metricasPainelAtivoV19(){
+var p=document.getElementById("pagina-painel-empresa");
+return !!(p&amp;&amp;(p.classList.contains("ativa")||p.classList.contains("pagina-ativa")));
+}
 window.addEventListener("load",function(){
-setTimeout(prepararMetricasV19,300);
-setTimeout(prepararMetricasV19,1000);
+if(metricasPainelAtivoV19())setTimeout(prepararMetricasV19,300);
 });
-document.addEventListener("click",function(){
-setTimeout(prepararMetricasV19,120);
+document.addEventListener("empregamais:navegacao",function(ev){
+var p=String((ev&amp;&amp;ev.detail&amp;&amp;ev.detail.pagina)||"");
+if(p==="painel-empresa")setTimeout(prepararMetricasV19,120);
 });
 })();
 //
