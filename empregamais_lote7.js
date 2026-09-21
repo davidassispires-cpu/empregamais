@@ -171,9 +171,19 @@ function aplicarV60(){
 prepararCabecalhoV60();
 iniciarCarrosselV60();
 }
+function destaquesAtivosV60(){
+var q="";
+try{q=new URLSearchParams(location.search).get("pagina")||"";}catch(e){}
+var p=document.getElementById("pagina-destaques-v60");
+return q==="vagas-em-destaque" || !!(p&amp;&amp;(p.classList.contains("ativa")||p.classList.contains("pagina-ativa")));
+}
 window.addEventListener("load",function(){
 garantirPaginaV60();rotaInicialV60();
-setTimeout(aplicarV60,250);setTimeout(aplicarV60,1100);
+if(destaquesAtivosV60())setTimeout(aplicarV60,220);
+});
+document.addEventListener("empregamais:navegacao",function(ev){
+var p=String((ev&amp;&amp;ev.detail&amp;&amp;ev.detail.pagina)||"");
+if(p==="vagas-em-destaque")setTimeout(aplicarV60,140);
 });
 var lista=listaV60();
 if(lista&&window.MutationObserver){
