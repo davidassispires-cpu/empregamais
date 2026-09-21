@@ -41006,4 +41006,28 @@ header .v99-removido{display:none!important}
 @media(max-width:1180px){#emPainelRecrutadorNovoV1 .em-pr-assinatura-v9{grid-template-columns:repeat(3,minmax(0,1fr))!important}}
 @media(max-width:760px){#emPainelRecrutadorNovoV1 .em-pr-assinatura-v9{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:10px!important}#emPainelRecrutadorNovoV1 .em-pr-plano-info-v9,#emPainelRecrutadorNovoV1 .em-pr-ass-stat-v9{min-height:122px!important;padding:16px 14px!important}#emPainelRecrutadorNovoV1 .em-pr-plano-info-v9{grid-column:auto!important;flex-direction:column!important}#emPainelRecrutadorNovoV1 .em-pr-plano-icone-v9{width:36px!important;height:36px!important;min-width:36px!important}#emPainelRecrutadorNovoV1 .em-pr-plano-info-v9 strong,#emPainelRecrutadorNovoV1 .em-pr-ass-stat-v9 strong{font-size:19px!important}}
 @media(max-width:430px){#emPainelRecrutadorNovoV1 .em-pr-assinatura-v9{grid-template-columns:1fr!important}#emPainelRecrutadorNovoV1 .em-pr-plano-info-v9{flex-direction:row!important}}
-</style></body></html>
+</style>
+<!-- EMPREGAMAIS-FIX-WIZARD-V202 -->
+<script id="empregamais-fix-wizard-v202">
+(function(){
+ function mostrarEtapaEM(n){
+  var form=document.getElementById('formVaga'); if(!form)return;
+  var cards=form.querySelectorAll('.em-job-card[data-panel]');
+  for(var i=0;i<cards.length;i++){var ativo=String(cards[i].getAttribute('data-panel'))===String(n);cards[i].classList.toggle('active',ativo);cards[i].style.display=ativo?'block':'none';}
+  var passos=document.querySelectorAll('#emJobProgress .em-job-step');
+  for(var j=0;j<passos.length;j++){var k=Number(passos[j].getAttribute('data-step'));passos[j].classList.toggle('active',k===Number(n));passos[j].classList.toggle('done',k<Number(n));}
+  if(Number(n)===4 && typeof window.emBuildJobReview==='function'){try{window.emBuildJobReview();}catch(e){}}
+  var top=document.getElementById('emJobProgress');if(top)top.scrollIntoView({behavior:'smooth',block:'start'});
+ }
+ function proximaEtapaEM(n){
+  var form=document.getElementById('formVaga');if(!form)return;
+  var card=form.querySelector('.em-job-card[data-panel="'+n+'"]');if(!card)return;
+  var obrig=card.querySelectorAll('[required]');for(var i=0;i<obrig.length;i++){if(!obrig[i].checkValidity()){obrig[i].reportValidity();return;}}
+  mostrarEtapaEM(Number(n)+1);
+ }
+ window.emShowJobStep=mostrarEtapaEM;window.emNextJob=proximaEtapaEM;
+ document.addEventListener('click',function(e){var b=e.target.closest&&e.target.closest('#formVaga .em-btn-next');if(!b)return;var card=b.closest('.em-job-card[data-panel]');if(!card)return;e.preventDefault();e.stopImmediatePropagation();proximaEtapaEM(Number(card.getAttribute('data-panel')));},true);
+ setTimeout(function(){var f=document.getElementById('formVaga');if(f){var ativo=f.querySelector('.em-job-card.active[data-panel]');mostrarEtapaEM(ativo?Number(ativo.getAttribute('data-panel')):1);}},500);
+})();
+</script>
+</body></html>
