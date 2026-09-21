@@ -701,7 +701,7 @@ for(var i=0;i<muts.length;i++){
 }
 if(!precisa)return;
 var p=document.getElementById("pagina-empresa-publica");
-if(p&&p.style.display!=="none"){
+if(p&&(p.classList.contains("ativa")||p.classList.contains("pagina-ativa"))){
  clearTimeout(obsTimer);
  obsTimer=setTimeout(function(){
   obsExecutando=true;
@@ -713,7 +713,7 @@ document.addEventListener("DOMContentLoaded",function(){
 var p=document.getElementById("pagina-empresa-publica");
 if(p)obs.observe(p,{subtree:true,childList:true});
 });
-window.addEventListener("load",function(){setTimeout(reconstruir,1000);});
+window.addEventListener("load",function(){setTimeout(function(){var p=document.getElementById("pagina-empresa-publica");if(p&&(p.classList.contains("ativa")||p.classList.contains("pagina-ativa")))reconstruir();},300);});
 })();
 //
 ;
