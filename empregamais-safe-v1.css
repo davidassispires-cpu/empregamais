@@ -395,3 +395,87 @@ body.empresa-premium-v44 .plano-premium-v44{min-height:96px!important;margin:0 0
     gap:10px!important;
   }
 }
+
+/* ===== EmpregaMais • Painel Empresa SaaS Professional v2026-09-21 ===== */
+#pagina-painel-empresa{background:#f6f8fb!important;color:#16324f!important}
+#pagina-painel-empresa .recrutador-shell-ref-em{grid-template-columns:228px minmax(0,1fr)!important;background:#f6f8fb!important;border-top:1px solid #e8edf3!important}
+#pagina-painel-empresa .recrutador-sidebar-ref-em{padding:22px 12px!important;background:#fff!important;border-right:1px solid #e4eaf0!important}
+#pagina-painel-empresa .recrutador-sidebar-ref-em button{min-height:44px!important;margin:2px 0!important;padding:11px 12px!important;border-radius:10px!important;color:#29445f!important;font-size:13px!important;font-weight:600!important}
+#pagina-painel-empresa .recrutador-sidebar-ref-em button:hover{background:#f3f7fb!important;color:#075fae!important;transform:translateX(1px)!important}
+#pagina-painel-empresa .recrutador-sidebar-ref-em button.ativo{background:#eaf4fc!important;color:#075fae!important;box-shadow:inset 3px 0 0 #0b74c9!important}
+#pagina-painel-empresa .recrutador-sidebar-ref-em .icone-ref-em{width:20px!important;height:20px!important;display:inline-flex!important;align-items:center!important;justify-content:center!important;font-size:0!important;color:#315c7c!important}
+#pagina-painel-empresa .recrutador-sidebar-ref-em .icone-ref-em:before{content:"";width:15px;height:15px;border:1.7px solid currentColor;border-radius:4px;box-sizing:border-box}
+#pagina-painel-empresa .recrutador-main-ref-em{padding:16px 24px 38px!important;max-width:1380px!important;margin:0 auto!important;width:100%!important;box-sizing:border-box!important}
+
+/* Hero mais baixo, elegante e menos dominante */
+#pagina-painel-empresa .recrutador-boasvindas-ref-em{position:relative!important;overflow:hidden!important;padding:24px 30px!important;border:0!important;border-radius:18px!important;background:linear-gradient(118deg,#123f5d 0%,#12627c 62%,#1788a4 100%)!important;box-shadow:0 10px 28px rgba(24,67,93,.12)!important}
+#pagina-painel-empresa .recrutador-boasvindas-ref-em:after{content:"";position:absolute;right:-40px;top:-90px;width:250px;height:250px;border-radius:50%;background:rgba(255,255,255,.055);pointer-events:none}
+#pagina-painel-empresa .recrutador-boasvindas-topo-ref-em{position:relative;z-index:1;align-items:center!important}
+#pagina-painel-empresa .recrutador-boasvindas-topo-ref-em h2{color:#fff!important;font-size:27px!important;font-weight:750!important;letter-spacing:-.45px!important}
+#pagina-painel-empresa .recrutador-boasvindas-topo-ref-em p{color:rgba(255,255,255,.82)!important;font-size:13px!important}
+#pagina-painel-empresa .recrutador-publicar-ref-em{min-height:44px!important;padding:0 18px!important;border:1px solid rgba(255,255,255,.65)!important;border-radius:10px!important;background:#fff!important;color:#0b5579!important;font-weight:750!important;box-shadow:0 5px 15px rgba(4,31,47,.10)!important}
+#pagina-painel-empresa .recrutador-publicar-ref-em:hover{transform:translateY(-1px)!important;box-shadow:0 8px 20px rgba(4,31,47,.16)!important}
+
+/* Indicadores: cards SaaS, cores suaves, sem aparência de emoji */
+#pagina-painel-empresa .recrutador-cards-ref-em{grid-template-columns:repeat(5,minmax(0,1fr))!important;gap:14px!important;margin-top:18px!important}
+#pagina-painel-empresa .recrutador-card-ref-em{position:relative!important;min-height:118px!important;display:block!important;padding:18px 18px 16px 20px!important;border:1px solid #e1e8ef!important;border-top:0!important;border-radius:15px!important;background:#fff!important;box-shadow:0 5px 18px rgba(25,55,85,.045)!important;overflow:hidden!important;cursor:pointer!important}
+#pagina-painel-empresa .recrutador-card-ref-em:before{content:"";position:absolute;left:0;top:0;bottom:0;width:4px;background:#83b7d9}
+#pagina-painel-empresa .recrutador-card-ref-em:nth-child(1){background:#f4fbf7!important}.recrutador-card-ref-em:nth-child(1):before{background:#54aa78!important}
+#pagina-painel-empresa .recrutador-card-ref-em:nth-child(2){background:#fffaf0!important}.recrutador-card-ref-em:nth-child(2):before{background:#d9a83c!important}
+#pagina-painel-empresa .recrutador-card-ref-em:nth-child(3){background:#f3f8fd!important}.recrutador-card-ref-em:nth-child(3):before{background:#4f91c7!important}
+#pagina-painel-empresa .recrutador-card-ref-em:nth-child(4){background:#f8f5fc!important}.recrutador-card-ref-em:nth-child(4):before{background:#8d75b5!important}
+#pagina-painel-empresa .recrutador-card-ref-em:nth-child(5){background:#f3faf8!important}.recrutador-card-ref-em:nth-child(5):before{background:#3f9a88!important}
+#pagina-painel-empresa .recrutador-card-ref-em:hover{transform:translateY(-2px)!important;border-color:#cedae5!important;box-shadow:0 10px 24px rgba(25,55,85,.08)!important}
+#pagina-painel-empresa .recrutador-card-icone-ref-em{width:36px!important;height:36px!important;margin:0 0 11px!important;border:1px solid rgba(80,110,135,.13)!important;border-radius:10px!important;background:rgba(255,255,255,.78)!important;font-size:0!important;color:#315b78!important}
+#pagina-painel-empresa .recrutador-card-icone-ref-em:before{content:"";display:block;width:15px;height:15px;border:1.8px solid currentColor;border-radius:4px;box-sizing:border-box}
+#pagina-painel-empresa .recrutador-card-ref-em:nth-child(2) .recrutador-card-icone-ref-em:before{border-radius:50%;border-width:1.8px}
+#pagina-painel-empresa .recrutador-card-ref-em:nth-child(3) .recrutador-card-icone-ref-em:before{border-radius:50% 50% 5px 5px}
+#pagina-painel-empresa .recrutador-card-ref-em:nth-child(4) .recrutador-card-icone-ref-em:before{border-radius:2px}
+#pagina-painel-empresa .recrutador-card-ref-em:nth-child(5) .recrutador-card-icone-ref-em:before{transform:rotate(45deg);border-radius:3px}
+#pagina-painel-empresa .recrutador-card-ref-em strong{color:#17364f!important;font-size:24px!important;font-weight:800!important;line-height:1!important}
+#pagina-painel-empresa .recrutador-card-ref-em span{margin-top:7px!important;color:#60758a!important;font-size:12px!important;font-weight:650!important}
+
+/* Blocos de plano: leitura clara e barras discretas */
+#pagina-painel-empresa [class*="plano"][class*="card"],#pagina-painel-empresa [class*="resumo"][class*="card"],#pagina-painel-empresa [class*="recurso"][class*="card"]{border:1px solid #e1e8ef!important;border-radius:15px!important;background:#fff!important;box-shadow:0 5px 18px rgba(25,55,85,.04)!important}
+#pagina-painel-empresa [class*="plano"] strong,#pagina-painel-empresa [class*="recurso"] strong{color:#17364f!important}
+#pagina-painel-empresa progress{height:7px!important;border:0!important;border-radius:999px!important;overflow:hidden!important}
+
+/* Suas vagas / tabelas: visual de produto corporativo */
+#pagina-painel-empresa .recrutador-vagas-box-ref-em,#pagina-painel-empresa #listaVagasAprovadasEmpresa{margin-top:18px!important;border:1px solid #e1e8ef!important;border-radius:17px!important;background:#fff!important;box-shadow:0 7px 22px rgba(25,55,85,.045)!important}
+#pagina-painel-empresa .recrutador-tabs-ref-em{min-height:55px!important;border-bottom:1px solid #e7edf2!important}
+#pagina-painel-empresa .recrutador-tabs-ref-em button{font-size:12px!important;font-weight:650!important}
+#pagina-painel-empresa .recrutador-tabela-ref-em th{padding:12px!important;background:#f8fafc!important;color:#64778b!important;font-size:10.5px!important;text-transform:uppercase!important;letter-spacing:.35px!important}
+#pagina-painel-empresa .recrutador-tabela-ref-em td{padding:14px 12px!important;font-size:12px!important}
+#pagina-painel-empresa .recrutador-tabela-ref-em tbody tr:hover{background:#f8fbfd!important}
+#pagina-painel-empresa .recrutador-acao-ref-em{min-height:34px!important;padding:0 11px!important;border-radius:8px!important;font-weight:650!important}
+#pagina-painel-empresa .recrutador-busca-ref-em input{height:40px!important;border-radius:9px!important;background:#fbfcfd!important}
+
+/* Consistência tipográfica e responsiva */
+#pagina-painel-empresa h1,#pagina-painel-empresa h2,#pagina-painel-empresa h3,#pagina-painel-empresa strong{letter-spacing:-.01em}
+@media(max-width:1100px){#pagina-painel-empresa .recrutador-cards-ref-em{grid-template-columns:repeat(3,minmax(0,1fr))!important}}
+@media(max-width:800px){#pagina-painel-empresa .recrutador-main-ref-em{padding:14px!important}#pagina-painel-empresa .recrutador-sidebar-ref-em{padding:9px!important}#pagina-painel-empresa .recrutador-boasvindas-ref-em{padding:22px!important}}
+@media(max-width:560px){#pagina-painel-empresa .recrutador-cards-ref-em{grid-template-columns:1fr 1fr!important;gap:10px!important}#pagina-painel-empresa .recrutador-card-ref-em{min-height:108px!important;padding:15px!important}#pagina-painel-empresa .recrutador-boasvindas-topo-ref-em{display:block!important}#pagina-painel-empresa .recrutador-publicar-ref-em{width:100%!important;margin-top:16px!important}}
+
+
+/* ===== Correção visual Painel Empresa v2026-09-21b ===== */
+#pagina-painel-empresa .recrutador-boasvindas-ref-em{padding:20px 30px!important;min-height:132px!important}
+#pagina-painel-empresa .recrutador-boasvindas-topo-ref-em h2{font-size:26px!important}
+#pagina-painel-empresa .recrutador-cards-ref-em{gap:14px!important}
+#pagina-painel-empresa .recrutador-card-ref-em{min-height:138px!important;padding:20px 20px 18px!important;border:1px solid #e0e7ee!important;border-radius:16px!important;box-shadow:0 6px 18px rgba(24,55,83,.045)!important}
+#pagina-painel-empresa .recrutador-card-ref-em:nth-child(1){background:#f1faf5!important;border-color:#d8eade!important}
+#pagina-painel-empresa .recrutador-card-ref-em:nth-child(2){background:#fff9ed!important;border-color:#eee2c7!important}
+#pagina-painel-empresa .recrutador-card-ref-em:nth-child(3){background:#eff7fd!important;border-color:#d5e6f2!important}
+#pagina-painel-empresa .recrutador-card-ref-em:nth-child(4){background:#f7f2fb!important;border-color:#e6daef!important}
+#pagina-painel-empresa .recrutador-card-ref-em:nth-child(5){background:#f0f9f7!important;border-color:#d4e9e4!important}
+#pagina-painel-empresa .recrutador-card-ref-em:before{width:4px!important}
+#pagina-painel-empresa .recrutador-card-icone-ref-em{display:none!important}
+#pagina-painel-empresa .recrutador-card-ref-em strong{margin-top:18px!important;font-size:27px!important}
+#pagina-painel-empresa .recrutador-card-ref-em span{font-size:12.5px!important}
+#pagina-painel-empresa .recrutador-card-ref-em:after{position:absolute;right:18px;top:17px;display:flex;align-items:center;justify-content:center;width:34px;height:34px;border-radius:10px;border:1px solid rgba(38,80,110,.11);background:rgba(255,255,255,.68);color:#315c79;font-size:10px;font-weight:800;letter-spacing:.03em}
+#pagina-painel-empresa .recrutador-card-ref-em:nth-child(1):after{content:"ATV"}
+#pagina-painel-empresa .recrutador-card-ref-em:nth-child(2):after{content:"APR"}
+#pagina-painel-empresa .recrutador-card-ref-em:nth-child(3):after{content:"CND"}
+#pagina-painel-empresa .recrutador-card-ref-em:nth-child(4):after{content:"PRC"}
+#pagina-painel-empresa .recrutador-card-ref-em:nth-child(5):after{content:"CTR"}
+#pagina-painel-empresa [class*="plano"][class*="card"],#pagina-painel-empresa [class*="resumo"][class*="card"],#pagina-painel-empresa [class*="recurso"][class*="card"]{box-shadow:none!important}
+@media(max-width:560px){#pagina-painel-empresa .recrutador-card-ref-em{min-height:125px!important}}
