@@ -979,3 +979,42 @@ body.sessao-empresa .menu-publico,body.sessao-empresa .menu-drop-candidato{displ
 #pagina-home .destaques-carrossel .vaga-card-rodape{min-height:45px!important}
 #pagina-home .destaques-carrossel .vaga-ver-btn{height:44px!important}
 @media(max-width:640px){#pagina-home .destaques-carrossel>.portal-vaga-nova{height:365px!important}}
+
+/* EMPREGAMAIS-VAGA-MODELO-6-V6 — referência aprovada */
+#pagina-vaga{background:linear-gradient(180deg,#f2f8fd 0,#f7f9fc 330px)!important}
+#pagina-vaga .vaga-layout-v2{grid-template-columns:minmax(0,2.65fr) minmax(310px,.78fr)!important;gap:18px!important;padding-top:16px!important}
+#pagina-vaga .vaga-hero-card{background:linear-gradient(120deg,#eef8ff 0%,#fff 72%)!important;border:1px solid #d9e9f6!important;padding:22px 24px!important;box-shadow:0 5px 18px rgba(15,65,105,.05)!important}
+#pagina-vaga .vaga-hero-identidade{gap:18px!important;padding-right:58px!important}
+#pagina-vaga .vaga-hero-logo{width:94px!important;height:94px!important;flex:0 0 94px!important;background:#fff!important;border:1px solid #d8e6f1!important;border-radius:12px!important}
+#pagina-vaga .vaga-hero-texto h1{font-size:29px!important;line-height:1.08!important;color:#082e5c!important;margin-bottom:6px!important}
+#pagina-vaga .vaga-hero-empresa{font-size:15px!important;color:#164a7e!important}
+#pagina-vaga .vaga-validade-topo{display:none!important}
+#pagina-vaga .vaga-hero-selos{margin-top:12px!important;gap:7px!important}
+#pagina-vaga .vaga-hero-selos span{font-size:11px!important;padding:7px 10px!important;border-radius:6px!important}
+#pagina-vaga .vaga-info-grid{margin-top:18px!important;gap:8px!important}
+#pagina-vaga .vaga-info-grid>div{min-height:66px!important;padding:11px 9px 10px 43px!important;border-radius:9px!important}
+#pagina-vaga .vaga-info-grid i{left:11px!important;top:18px!important;width:23px!important;height:23px!important;font-size:15px!important}
+#pagina-vaga .vaga-info-grid small{font-size:8.5px!important;letter-spacing:.6px!important;text-transform:uppercase!important}
+#pagina-vaga .vaga-info-grid strong{font-size:12.5px!important;margin-top:2px!important}
+#pagina-vaga .vaga-info-grid .info-salario strong{font-size:14px!important}
+#pagina-vaga .vaga-conteudo-v2{margin-top:14px!important;padding:0 23px 27px!important;border-radius:13px!important}
+#pagina-vaga .vaga-tabs{margin:0 -23px 21px!important;padding:0 23px!important;gap:31px!important;background:#fff!important}
+#pagina-vaga .vaga-tabs a{font-size:12px!important;font-weight:700!important;padding:15px 0 13px!important}
+#pagina-vaga .vaga-conteudo-v2 h2{font-size:21px!important;margin-bottom:11px!important;color:#082e5c!important}
+#pagina-vaga .vaga-texto,#pagina-vaga .vaga-conteudo-v2 section>p,#pagina-vaga .beneficios-tags p{font-size:14px!important;line-height:1.65!important;color:#355979!important}
+#pagina-vaga .vaga-conteudo-v2 section{padding:3px 0 20px!important;margin-bottom:17px!important}
+#pagina-vaga .vaga-complementares span{font-size:12px!important;padding:11px!important}
+#pagina-vaga .vaga-layout-v2 aside{gap:13px!important}
+#pagina-vaga .vaga-acao-v2{background:linear-gradient(160deg,#fff 0%,#f4faff 100%)!important;border:1px solid #d8e8f5!important;padding:21px!important;border-radius:13px!important}
+#pagina-vaga .vaga-acao-v2 h2{font-size:20px!important;color:#082e5c!important;margin-bottom:7px!important}
+#pagina-vaga .vaga-acao-v2>p{font-size:12.5px!important;line-height:1.5!important;margin-bottom:12px!important}
+#pagina-vaga .vaga-candidatar-principal{background:linear-gradient(135deg,#075a9f,#0876cf)!important;border:0!important;padding:14px 15px!important;font-size:14px!important;box-shadow:0 7px 16px rgba(7,91,159,.16)!important}
+#pagina-vaga .vaga-salvar-principal{padding:12px 15px!important;font-size:13px!important;background:#fff!important}
+#pagina-vaga .vaga-publicacao{font-size:10.5px!important;margin:13px 0 6px!important}
+#pagina-vaga .vaga-empresa-side{padding:19px!important;border-radius:13px!important}
+#pagina-vaga .vaga-empresa-side h2{font-size:18px!important}
+#pagina-vaga .empresa-side-identidade img,#pagina-vaga .empresa-side-logo{width:54px!important;height:54px!important;flex-basis:54px!important}
+#pagina-vaga .empresa-side-identidade strong{font-size:13px!important}#pagina-vaga .empresa-side-identidade p,#pagina-vaga .empresa-side-dados{font-size:11.5px!important}
+#pagina-vaga .vaga-empresa-side>button{padding:12px!important;font-size:12px!important}
+@media(min-width:1000px){#pagina-vaga .vaga-acao-v2{position:sticky!important;top:82px!important}}
+@media(max-width:900px){#pagina-vaga .vaga-layout-v2{grid-template-columns:1fr!important}#pagina-vaga .vaga-hero-identidade{padding-right:0!important}}
