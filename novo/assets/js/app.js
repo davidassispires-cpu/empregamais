@@ -533,3 +533,7 @@ document.addEventListener('click',function(e){
  e.stopPropagation();
  escolherPlanoAtual(btn.dataset.plano);
 },false);
+
+/* Navegação do carrossel de vagas em destaque */
+function moverDestaques(dir){const el=document.getElementById('listaDestaques');if(!el)return;const card=el.querySelector('.portal-vaga-nova');const passo=card?card.getBoundingClientRect().width+14:Math.max(280,el.clientWidth*.25);el.scrollBy({left:dir*passo,behavior:'smooth'})}
+(function(){let timer=null,pausado=false;function iniciar(){clearInterval(timer);timer=setInterval(function(){const el=document.getElementById('listaDestaques');if(!el||pausado||el.scrollWidth<=el.clientWidth+5)return;const fim=el.scrollLeft+el.clientWidth>=el.scrollWidth-8;if(fim)el.scrollTo({left:0,behavior:'smooth'});else moverDestaques(1)},4500)}document.addEventListener('mouseover',function(e){if(e.target.closest&&e.target.closest('#listaDestaques'))pausado=true});document.addEventListener('mouseout',function(e){if(e.target.closest&&e.target.closest('#listaDestaques'))pausado=false});iniciar()})();
