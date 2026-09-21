@@ -320,7 +320,7 @@ function verDetalhesPlano(plano){sessionStorage.setItem('planoDetalhe',plano);ir
 function renderizarDetalhesPlano(){const chave=sessionStorage.getItem('planoDetalhe')||'basico',d=DETALHES_PLANOS[chave]||DETALHES_PLANOS.basico,p=PLANOS_EMPRESA[chave]||PLANOS_EMPRESA.basico;const set=(id,t)=>{const e=document.getElementById(id);if(e)e.textContent=t};set('planoDetalheNome','Plano '+d.nome);set('planoDetalheResumo',d.resumo);set('planoDetalheEtiqueta',d.etiqueta);set('planoDetalhePreco',d.preco);set('planoDetalhePeriodo',d.periodo);const topo=document.querySelector('.plano-detalhe-top>div');if(topo){let pg=topo.querySelector('.em-pagamento-plano');if(pg)pg.remove();if(chave!=='basico')topo.insertAdjacentHTML('beforeend',emPagamentoPlano(chave));}const b=document.getElementById('planoDetalheBeneficios');if(b)b.innerHTML=d.beneficios.map((x,i)=>'<article class="beneficio-detalhado"><i>'+(i===0?'✓':'•')+'</i><div><strong>'+esc(x[0])+'</strong><p>'+esc(x[1])+'</p></div></article>').join('');const r=document.getElementById('planoDetalheResumoLateral');if(r)r.innerHTML='<div class="plano-resumo-item"><span>Vagas/mês</span><b>'+p.vagas+'</b></div><div class="plano-resumo-item"><span>Destaques/mês</span><b>'+p.destaques+'</b></div><div class="plano-resumo-item"><span>Urgências/mês</span><b>'+p.urgentes+'</b></div><div class="plano-resumo-item"><span>Confidenciais/mês</span><b>'+p.confidenciais+'</b></div><div class="plano-resumo-item"><span>Valor</span><b>'+esc(d.preco)+'</b></div>';['planoDetalheEscolher','planoDetalheEscolher2'].forEach(id=>{const x=document.getElementById(id);if(x)x.onclick=()=>selecionarPlano(chave)})}
 
 let planoBAtual='trimestral';
-function selecionarAbaPlano(chave){if(!DETALHES_PLANOS[chave])chave='basico';planoBAtual=chave;const d=DETALHES_PLANOS[chave];document.querySelectorAll('.planos-b-tabs button').forEach(b=>b.classList.toggle('ativo',b.dataset.plano===chave));const set=(id,t)=>{const e=document.getElementById(id);if(e)e.textContent=t};set('planoBTag',d.etiqueta);set('planoBNome','Plano '+d.nome);set('planoBResumo',d.resumo);set('planoBPreco',d.preco);set('planoBPeriodo',d.periodo);const precoBox=document.querySelector('.plano-b-preco');if(precoBox){let pg=precoBox.querySelector('.em-pagamento-plano');if(pg)pg.remove();if(chave!=='basico'){const periodo=document.getElementById('planoBPeriodo');periodo.insertAdjacentHTML('afterend',emPagamentoPlano(chave));}}set('planoBTituloBeneficios','O que está incluído no plano '+d.nome+'?');const l=document.getElementById('planoBLista');if(l)l.innerHTML=d.beneficios.slice(0,7).map((x,i)=>'<div class="plano-b-lista-item"><i>'+(['✓','▣','★','⚡','◈','◎','◇'][i]||'✓')+'</i><div><strong>'+esc(x[0])+'</strong><p>'+esc(x[1])+'</p></div></div>').join('');const bt=document.getElementById('planoBEscolher');if(bt){bt.textContent=chave==='basico'?'Começar grátis →':'Escolher este plano →';bt.type='button';bt.onclick=(e)=>{e.preventDefault();e.stopPropagation();selecionarPlano(chave)}}}
+function selecionarAbaPlano(chave){if(!DETALHES_PLANOS[chave])chave='basico';planoBAtual=chave;const d=DETALHES_PLANOS[chave];document.querySelectorAll('.planos-b-tabs button').forEach(b=>b.classList.toggle('ativo',b.dataset.plano===chave));const set=(id,t)=>{const e=document.getElementById(id);if(e)e.textContent=t};set('planoBTag',d.etiqueta);set('planoBNome','Plano '+d.nome);set('planoBResumo',d.resumo);set('planoBPreco',d.preco);set('planoBPeriodo',d.periodo);const precoBox=document.querySelector('.plano-b-preco');if(precoBox){let pg=precoBox.querySelector('.em-pagamento-plano');if(pg)pg.remove();if(chave!=='basico'){const periodo=document.getElementById('planoBPeriodo');periodo.insertAdjacentHTML('afterend',emPagamentoPlano(chave));}}set('planoBTituloBeneficios','O que está incluído no plano '+d.nome+'?');const l=document.getElementById('planoBLista');if(l){const icons=['▣','★','⚡','◈','♟','◉','▥','◌'];l.innerHTML='<div class="plano-recursos-grid">'+d.beneficios.map((x,i)=>'<article class="plano-recurso-card"><i>'+icons[i%icons.length]+'</i><div><strong>'+esc(x[0])+'</strong><p>'+esc(x[1])+'</p></div></article>').join('')+'</div>'+(chave!=='basico'?'<div class="plano-resultados"><i>◆</i><div><strong>Mais resultados para sua empresa</strong><p>Publique mais vagas, destaque suas oportunidades e encontre talentos com mais agilidade.</p></div></div>':'');}const bt=document.getElementById('planoBEscolher');if(bt){bt.textContent=chave==='basico'?'Começar grátis →':'Escolher este plano →';bt.type='button';bt.setAttribute('onclick','return escolherPlanoAtual()')}}
 function renderizarPlanosModeloB(){renderizarPlanosAtuais();selecionarAbaPlano(planoBAtual||'trimestral')}
 
 const ORDEM_PLANOS=['basico','mensal','trimestral','semestral','anual'];
@@ -486,13 +486,16 @@ function dataEncerramentoAutomaticaEM(){const d=new Date();d.setDate(d.getDate()
 
 
 /* EMPREGAMAIS-PLANOS-CLICK-FIX-V3 */
+function escolherPlanoAtual(){
+ const plano=planoBAtual||'basico';
+ sessionStorage.setItem('planoPretendido',plano);
+ if(papelAtual()!=='empresa'){irPara('login-empresa');return false;}
+ selecionarPlano(plano);
+ return false;
+}
 document.addEventListener('click',function(e){
  const btn=e.target.closest('#planoBEscolher');
  if(!btn)return;
- e.preventDefault(); e.stopPropagation();
- const plano=planoBAtual;
- if(!plano||plano==='basico'){selecionarPlano('basico');return;}
- sessionStorage.setItem('planoPretendido',plano);
- if(papelAtual()!=='empresa'){irPara('login-empresa');return;}
- selecionarPlano(plano);
+ e.preventDefault();
+ escolherPlanoAtual();
 });
