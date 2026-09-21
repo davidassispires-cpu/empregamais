@@ -58,6 +58,21 @@ function parse(t,i){
  return infer(v,t)
 }
 function split(t){var p=clean(t).split(/(?=^\s*(?:Vaga|Cargo|Oportunidade)\s*[:\-])/gim).map(function(x){return x.trim()}).filter(Boolean);return p.length?p:[]}
+async function completarCidade(v){
+ if(!v||!v.cidade)return v;
+ try{
+  if(!v.uf){
+   var r=await fetch('https://servicodados.ibge.gov.br/api/v1/localidades/municipios');
+   if(r.ok){var lista=await r.json(),alvo=String(v.cidade).normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase(),achou=lista.find(function(m){return String(m.nome).normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase()===alvo});if(achou&&achou.microrregiao&&achou.microrregiao.mesorregiao&&achou.microrregiao.mesorregiao.UF)v.uf=achou.microrregiao.mesorregiao.UF.sigla||''}
+  }
+  if(v.uf&&!v.cep){
+   var vr=await fetch('https://viacep.com.br/ws/'+encodeURIComponent(v.uf)+'/'+encodeURIComponent(v.cidade)+'/Praça/json/');
+   if(vr.ok){var ceps=await vr.json();if(Array.isArray(ceps)&&ceps.length){var unicos=Array.from(new Set(ceps.map(function(x){return x.cep}).filter(Boolean)));if(unicos.length===1)v.cep=unicos[0]}}
+  }
+ }catch(e){console.warn('Localização não completada',e)}
+ return v
+}
+async function completarTodas(vs){try{await Promise.all(vs.map(completarCidade))}catch(e){console.warn('Enriquecimento de localização ignorado',e)}return vs}
 function completeness(v){var ks=['cargo','empresa','area','contrato','modalidade','cidade','uf','salario','escolaridade','experiencia','jornada','beneficios','descricao','atividades','requisitos','adicionais'],n=ks.filter(function(k){return String(v[k]||'').trim()}).length;return {pct:Math.round(n/ks.length*100),n:n,total:ks.length}}
 function infer(v,t){var all=(String(v.cargo||'')+' '+t).toLowerCase();
 if(!v.empresa){var em=t.match(/(?:empresa|rede|grupo)\s+([A-ZÁÉÍÓÚÂÊÔÃÕÇ][^\n,.;]{2,60})/i)||t.match(/\b(O Botic[aá]rio)\b/i);if(em)v.empresa=em[1]}
