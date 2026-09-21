@@ -244,88 +244,42 @@
 })();
 </script>
 
-<!-- EMPREGAMAIS-PAINEL-REFERENCIA-V7 -->
-<style>
-#pagina-painel-empresa .empresa-side{display:none!important}#pagina-painel-empresa .empresa-app-shell{display:block!important;background:#f4f8fc!important;min-height:100vh}#pagina-painel-empresa .empresa-main.em-ref-main{margin:0!important;width:100%!important;max-width:none!important;padding:0!important;background:#f4f8fc!important}.em-ref-wrap{max-width:1440px;margin:auto;padding:26px 28px 50px}.em-ref-hero{min-height:174px;border-radius:22px;overflow:hidden;background:linear-gradient(110deg,#073e6a 0%,#075a8d 57%,#087bab 100%);display:flex;justify-content:space-between;align-items:stretch;color:#fff;margin-bottom:18px}.em-ref-hero>div:first-child{padding:32px 40px}.em-ref-hero h1{font-size:31px;line-height:1.1;margin:0 0 10px;color:#fff}.em-ref-hero p{font-size:13px;margin:0 0 18px;color:#fff}.em-ref-hero button{border:0;border-radius:11px;background:#fff;color:#07518a;font-weight:700;padding:13px 21px;cursor:pointer}.em-ref-hero-art{position:relative;width:39%;border-left:1px solid rgba(255,255,255,.12);background:linear-gradient(120deg,rgba(255,255,255,.03),rgba(80,189,235,.17));overflow:hidden}.em-ref-hero-art span{position:absolute;z-index:3;left:35%;top:38px;font-size:21px;font-weight:700;line-height:1.08}.em-ref-hero-art:after{content:"";position:absolute;width:125px;height:125px;border-radius:50%;right:65px;top:14px;background:rgba(255,255,255,.17)}.em-ref-hero-art b{position:absolute;width:120px;height:120px;border-radius:50%;right:-25px;bottom:-24px;background:rgba(49,174,222,.36)}.em-ref-hero-art i{position:absolute;bottom:31px;width:45px;height:69px;border-radius:22px 22px 12px 12px;border:1px solid rgba(255,255,255,.22);background:rgba(255,255,255,.13)}.em-ref-hero-art i:nth-of-type(1){left:24px}.em-ref-hero-art i:nth-of-type(2){left:90px;height:76px}
-#pagina-painel-empresa .empresa-metricas{display:grid!important;grid-template-columns:repeat(5,1fr)!important;gap:0!important;margin:0 0 18px!important;border:1px solid #dbe6f0;border-radius:15px;overflow:hidden;background:#fff;box-shadow:0 5px 18px rgba(25,61,99,.05)}#pagina-painel-empresa .empresa-metrica-v2{border:0!important;border-right:1px solid #dbe6f0!important;border-top:3px solid #168bc8!important;border-radius:0!important;min-height:98px!important;background:#fff!important;box-shadow:none!important;padding:18px!important;text-align:left!important}#pagina-painel-empresa .empresa-metrica-v2:nth-child(2){border-top-color:#e6a719!important}#pagina-painel-empresa .empresa-metrica-v2:nth-child(3){border-top-color:#7368e8!important}#pagina-painel-empresa .empresa-metrica-v2:nth-child(4){border-top-color:#27a77c!important}#pagina-painel-empresa .empresa-metrica-v2:nth-child(5){border-top-color:#df7180!important}#pagina-painel-empresa .empresa-metrica-v2 i{width:42px;height:42px;border-radius:11px;background:#eef7fd;color:#0875b8;display:grid;place-items:center;font-style:normal}#pagina-painel-empresa .empresa-metrica-v2 strong{font-size:24px;color:#173451}#pagina-painel-empresa .empresa-metrica-v2 span{font-size:14px;color:#6c8198}#pagina-painel-empresa .empresa-metrica-v2 em{display:none}
-#pagina-painel-empresa .empresa-pago-resumo{margin:0 0 18px!important}#pagina-painel-empresa .empresa-recursos-card{padding:0!important;background:transparent!important;border:0!important;box-shadow:none!important}#pagina-painel-empresa .empresa-recursos-card>h2{display:none}#pagina-painel-empresa .empresa-recursos-grid{display:grid!important;grid-template-columns:repeat(6,1fr)!important;gap:14px!important}#pagina-painel-empresa .recurso-progresso{min-height:134px;background:#fff;border:1px solid #d8e4ef;border-top:4px solid #168bc8;border-radius:15px;padding:18px!important;cursor:pointer}#pagina-painel-empresa .recurso-progresso:nth-child(2){border-top-color:#36a27e}#pagina-painel-empresa .recurso-progresso:nth-child(3){border-top-color:#7064c8}#pagina-painel-empresa .recurso-progresso:nth-child(4){border-top-color:#c78926}#pagina-painel-empresa .recurso-progresso span{font-size:12px!important;font-weight:700!important;letter-spacing:.08em;text-transform:uppercase;color:#71859b!important}#pagina-painel-empresa .recurso-progresso b{font-size:22px!important;color:#153654!important;margin-top:8px;display:block}#pagina-painel-empresa .recurso-barra{margin-top:17px!important}
-@media(max-width:950px){.em-ref-wrap{padding:14px}.em-ref-hero-art{display:none}.em-ref-hero>div:first-child{padding:27px 24px}#pagina-painel-empresa .empresa-metricas{grid-template-columns:repeat(2,1fr)!important}#pagina-painel-empresa .empresa-recursos-grid{grid-template-columns:repeat(2,1fr)!important}}@media(max-width:560px){#pagina-painel-empresa .empresa-metricas,#pagina-painel-empresa .empresa-recursos-grid{grid-template-columns:1fr!important}}
-</style>
 
-<!-- EMPREGAMAIS-PAINEL-GRID-HOTFIX-V8 -->
-<style>
-/* Mantém os indicadores do painel em cards horizontais, anulando regras antigas concorrentes */
-#pagina-painel-empresa .em-ref-wrap #empresaMetricasNovas.empresa-metricas{display:grid!important;grid-template-columns:repeat(5,minmax(0,1fr))!important;grid-auto-flow:row!important;gap:14px!important;border:0!important;background:transparent!important;box-shadow:none!important;overflow:visible!important;margin:0 0 18px!important}
-#pagina-painel-empresa .em-ref-wrap #empresaMetricasNovas>.empresa-metrica-v2{width:auto!important;min-width:0!important;min-height:98px!important;margin:0!important;border:1px solid #dbe6f0!important;border-top:3px solid #168bc8!important;border-radius:14px!important;background:#fff!important;display:flex!important;align-items:center!important;gap:13px!important;padding:17px 18px!important;box-shadow:0 5px 16px rgba(24,61,98,.05)!important}
-#pagina-painel-empresa .em-ref-wrap #empresaMetricasNovas>.empresa-metrica-v2:nth-child(2){border-top-color:#e6a719!important}
-#pagina-painel-empresa .em-ref-wrap #empresaMetricasNovas>.empresa-metrica-v2:nth-child(3){border-top-color:#7368e8!important}
-#pagina-painel-empresa .em-ref-wrap #empresaMetricasNovas>.empresa-metrica-v2:nth-child(4){border-top-color:#27a77c!important}
-#pagina-painel-empresa .em-ref-wrap #empresaMetricasNovas>.empresa-metrica-v2:nth-child(5){border-top-color:#df7180!important}
-#pagina-painel-empresa .em-ref-wrap #empresaMetricasNovas>.empresa-metrica-v2>div{display:flex!important;flex-direction:column!important;align-items:flex-start!important}
-#pagina-painel-empresa .em-ref-wrap #empresaMetricasNovas>.empresa-metrica-v2 strong{order:1!important;font-size:24px!important;line-height:1.05!important}
-#pagina-painel-empresa .em-ref-wrap #empresaMetricasNovas>.empresa-metrica-v2 span{order:2!important;margin-top:5px!important;white-space:nowrap!important}
-#pagina-painel-empresa .em-ref-wrap #empresaResumoRecursos .empresa-recursos-grid{display:grid!important;grid-template-columns:repeat(6,minmax(0,1fr))!important;gap:14px!important}
-#pagina-painel-empresa .em-ref-wrap #empresaResumoRecursos .recurso-progresso{width:auto!important;min-width:0!important;margin:0!important;text-align:left!important;display:block!important}
-@media(max-width:1100px){#pagina-painel-empresa .em-ref-wrap #empresaMetricasNovas.empresa-metricas{grid-template-columns:repeat(3,minmax(0,1fr))!important}#pagina-painel-empresa .em-ref-wrap #empresaResumoRecursos .empresa-recursos-grid{grid-template-columns:repeat(3,minmax(0,1fr))!important}}
-@media(max-width:700px){#pagina-painel-empresa .em-ref-wrap #empresaMetricasNovas.empresa-metricas,#pagina-painel-empresa .em-ref-wrap #empresaResumoRecursos .empresa-recursos-grid{grid-template-columns:1fr!important}}
-</style>
 
-<!-- EMPREGAMAIS-RESTAURA-SIDEBAR-V9 -->
+
+
+
+
+
+
+
+
+<!-- EMPREGAMAIS-PAINEL-LIMPO-V12 -->
 <style>
-/* Restaura a navegação lateral do painel conforme a referência aprovada */
-#pagina-painel-empresa .empresa-app-shell{display:grid!important;grid-template-columns:230px minmax(0,1fr)!important;align-items:start!important}
-#pagina-painel-empresa .empresa-side{display:flex!important;flex-direction:column!important;position:sticky!important;top:74px!important;height:calc(100vh - 74px)!important;background:#fff!important;border-right:1px solid #dfe7ef!important;padding:26px 12px 20px!important;overflow-y:auto!important;z-index:8}
-#pagina-painel-empresa .empresa-main.em-ref-main{grid-column:2!important;min-width:0!important}
-#pagina-painel-empresa .empresa-side .empresa-side-brand{display:flex!important;align-items:center!important;gap:10px!important;margin:0 6px 26px!important}
+#pagina-painel-empresa{background:#f4f8fc!important;overflow-x:hidden!important}
+#pagina-painel-empresa .empresa-app-shell{display:grid!important;grid-template-columns:228px minmax(0,1fr)!important;min-height:100vh!important;width:100%!important}
+#pagina-painel-empresa .empresa-side{display:flex!important;grid-column:1!important;flex-direction:column!important;width:228px!important;min-width:228px!important;height:calc(100vh - 74px)!important;position:sticky!important;top:74px!important;padding:26px 12px 20px!important;background:#fff!important;border-right:1px solid #dfe7ef!important;overflow-y:auto!important;box-sizing:border-box!important}
 #pagina-painel-empresa .empresa-side nav{display:flex!important;flex-direction:column!important;gap:7px!important}
-#pagina-painel-empresa .empresa-side nav button,#pagina-painel-empresa .empresa-side nav a{width:100%!important;min-height:41px!important;border-radius:9px!important;text-align:left!important;padding:10px 12px!important}
+#pagina-painel-empresa .empresa-side nav button{width:100%!important;min-height:41px!important;text-align:left!important;padding:10px 12px!important;border-radius:9px!important}
 #pagina-painel-empresa .empresa-side nav .ativo{background:#eaf4fc!important;color:#075a97!important}
-#pagina-painel-empresa .em-ref-wrap{max-width:none!important;padding:16px 28px 50px!important}
-@media(max-width:900px){#pagina-painel-empresa .empresa-app-shell{display:block!important}#pagina-painel-empresa .empresa-side{display:none!important}#pagina-painel-empresa .empresa-main.em-ref-main{width:100%!important}.em-ref-wrap{padding:12px!important}}
-</style>
-
-<!-- EMPREGAMAIS-PAINEL-ALIGN-V10 -->
-<style>
-/* Painel do recrutador: proporções e alinhamento desktop */
-#pagina-painel-empresa{overflow-x:hidden!important}
-#pagina-painel-empresa .empresa-app-shell{display:grid!important;grid-template-columns:228px minmax(0,1fr)!important;width:100%!important;max-width:100%!important}
-#pagina-painel-empresa .empresa-side{width:228px!important;min-width:228px!important;box-sizing:border-box!important}
-#pagina-painel-empresa .empresa-main.em-ref-main{grid-column:2!important;width:100%!important;min-width:0!important;overflow:hidden!important}
-#pagina-painel-empresa .em-ref-wrap{width:100%!important;max-width:1180px!important;margin:0 auto!important;padding:18px 24px 44px!important;box-sizing:border-box!important}
-#pagina-painel-empresa .em-ref-hero{width:100%!important;min-height:164px!important;margin:0 auto 18px!important}
-#pagina-painel-empresa .em-ref-hero>div:first-child{padding:28px 32px!important}
-#pagina-painel-empresa .em-ref-hero h1{font-size:28px!important}
-#pagina-painel-empresa .em-ref-hero-art{width:40%!important}
-#pagina-painel-empresa .em-ref-wrap #empresaMetricasNovas.empresa-metricas{width:100%!important;grid-template-columns:repeat(5,minmax(0,1fr))!important;gap:12px!important}
-#pagina-painel-empresa .em-ref-wrap #empresaMetricasNovas>.empresa-metrica-v2{min-height:96px!important;padding:15px 14px!important}
-#pagina-painel-empresa .em-ref-wrap #empresaMetricasNovas>.empresa-metrica-v2 i{flex:0 0 40px!important}
-#pagina-painel-empresa .em-ref-wrap #empresaMetricasNovas>.empresa-metrica-v2 strong{font-size:22px!important}
-#pagina-painel-empresa .em-ref-wrap #empresaMetricasNovas>.empresa-metrica-v2 span{font-size:13px!important;white-space:normal!important}
-#pagina-painel-empresa .em-ref-wrap #empresaResumoRecursos{width:100%!important}
-#pagina-painel-empresa .em-ref-wrap #empresaResumoRecursos .empresa-recursos-grid{grid-template-columns:repeat(6,minmax(0,1fr))!important;gap:12px!important}
-#pagina-painel-empresa .em-ref-wrap #empresaResumoRecursos .recurso-progresso{min-height:126px!important;padding:15px!important;box-sizing:border-box!important}
-#pagina-painel-empresa .em-ref-wrap #empresaResumoRecursos .recurso-progresso b{font-size:19px!important}
-#pagina-painel-empresa .empresa-dashboard-grid,#pagina-painel-empresa .empresa-atalhos,#pagina-painel-empresa .empresa-gratis-extras,#pagina-painel-empresa .empresa-todas-vagas{width:100%!important;max-width:100%!important;box-sizing:border-box!important}
-@media(min-width:1500px){#pagina-painel-empresa .em-ref-wrap{max-width:1260px!important}}
-@media(max-width:1180px) and (min-width:901px){#pagina-painel-empresa .empresa-app-shell{grid-template-columns:205px minmax(0,1fr)!important}#pagina-painel-empresa .empresa-side{width:205px!important;min-width:205px!important}#pagina-painel-empresa .em-ref-wrap{padding:16px!important}#pagina-painel-empresa .em-ref-wrap #empresaResumoRecursos .empresa-recursos-grid{grid-template-columns:repeat(3,minmax(0,1fr))!important}}
-@media(max-width:900px){#pagina-painel-empresa .empresa-app-shell{display:block!important}#pagina-painel-empresa .empresa-side{display:none!important}#pagina-painel-empresa .em-ref-wrap{max-width:760px!important;margin:auto!important;padding:12px!important}}
-</style>
-
-<!-- EMPREGAMAIS-PAINEL-FINAL-GRID-V11 -->
-<style>
-/* Correção definitiva: o dashboard ocupa somente a coluna à direita da lateral */
-#pagina-painel-empresa .empresa-app-shell{display:grid!important;grid-template-columns:228px minmax(0,1fr)!important;column-gap:0!important;align-items:start!important}
-#pagina-painel-empresa .empresa-side{grid-column:1!important;grid-row:1!important;width:228px!important;min-width:228px!important;max-width:228px!important}
-#pagina-painel-empresa .empresa-main.em-ref-main{grid-column:2!important;grid-row:1!important;display:block!important;width:auto!important;min-width:0!important;max-width:none!important;margin:0!important;padding:0!important}
-#pagina-painel-empresa .em-ref-wrap{display:block!important;width:auto!important;max-width:1180px!important;min-width:0!important;margin:0 auto!important;padding:18px 22px 44px!important}
-#pagina-painel-empresa .em-ref-hero{display:flex!important;width:100%!important;box-sizing:border-box!important}
-#pagina-painel-empresa #empresaMetricasNovas.empresa-metricas{display:grid!important;grid-template-columns:repeat(5,minmax(0,1fr))!important;grid-auto-columns:auto!important;grid-auto-flow:row!important;width:100%!important;max-width:none!important;gap:12px!important}
-#pagina-painel-empresa #empresaMetricasNovas>.empresa-metrica-v2{display:flex!important;position:relative!important;width:100%!important;max-width:none!important;min-width:0!important;float:none!important;box-sizing:border-box!important}
-#pagina-painel-empresa #empresaResumoRecursos .empresa-recursos-grid{display:grid!important;grid-template-columns:repeat(6,minmax(0,1fr))!important;width:100%!important;gap:12px!important}
-#pagina-painel-empresa #empresaResumoRecursos .recurso-progresso{display:block!important;width:100%!important;max-width:none!important;min-width:0!important;float:none!important;box-sizing:border-box!important}
-#pagina-painel-empresa .empresa-dashboard-grid{display:grid!important;grid-template-columns:minmax(0,2fr) minmax(280px,1fr)!important;gap:14px!important}
-#pagina-painel-empresa .empresa-atalhos{display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:14px!important}
-@media(max-width:1200px) and (min-width:901px){#pagina-painel-empresa .empresa-app-shell{grid-template-columns:210px minmax(0,1fr)!important}#pagina-painel-empresa .empresa-side{width:210px!important;min-width:210px!important;max-width:210px!important}#pagina-painel-empresa .em-ref-wrap{padding:16px!important}#pagina-painel-empresa #empresaMetricasNovas.empresa-metricas{grid-template-columns:repeat(5,minmax(120px,1fr))!important}#pagina-painel-empresa #empresaResumoRecursos .empresa-recursos-grid{grid-template-columns:repeat(3,minmax(0,1fr))!important}}
-@media(max-width:900px){#pagina-painel-empresa .empresa-app-shell{display:block!important}#pagina-painel-empresa .empresa-side{display:none!important}#pagina-painel-empresa .empresa-main.em-ref-main{display:block!important;width:100%!important}#pagina-painel-empresa #empresaMetricasNovas.empresa-metricas{grid-template-columns:repeat(2,minmax(0,1fr))!important}#pagina-painel-empresa #empresaResumoRecursos .empresa-recursos-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important}#pagina-painel-empresa .empresa-dashboard-grid,#pagina-painel-empresa .empresa-atalhos{grid-template-columns:1fr!important}}
+#pagina-painel-empresa .empresa-main.em-ref-main{display:block!important;grid-column:2!important;width:100%!important;min-width:0!important;margin:0!important;padding:0!important;background:#f4f8fc!important;overflow:visible!important}
+#pagina-painel-empresa .em-ref-wrap{display:block!important;width:100%!important;max-width:1180px!important;margin:0 auto!important;padding:18px 24px 44px!important;box-sizing:border-box!important}
+#pagina-painel-empresa .em-ref-hero{display:flex!important;width:100%!important;min-height:164px!important;margin:0 0 18px!important;border-radius:22px!important;overflow:hidden!important;background:linear-gradient(110deg,#073e6a,#075a8d 57%,#087bab)!important;color:#fff!important}
+#pagina-painel-empresa .em-ref-hero>div:first-child{padding:28px 32px!important;flex:1!important}
+#pagina-painel-empresa .em-ref-hero h1{font-size:28px!important;color:#fff!important;margin:0 0 10px!important}
+#pagina-painel-empresa .em-ref-hero p{color:#fff!important}.em-ref-hero-art{display:block!important;width:40%!important;position:relative!important}
+#pagina-painel-empresa #empresaMetricasNovas{display:grid!important;grid-template-columns:repeat(5,minmax(0,1fr))!important;gap:12px!important;width:100%!important;margin:0 0 18px!important;border:0!important;background:transparent!important;box-shadow:none!important;overflow:visible!important}
+#pagina-painel-empresa #empresaMetricasNovas>.empresa-metrica-v2{display:flex!important;width:100%!important;min-width:0!important;min-height:98px!important;margin:0!important;padding:15px!important;align-items:center!important;gap:12px!important;border:1px solid #dbe6f0!important;border-top:3px solid #168bc8!important;border-radius:14px!important;background:#fff!important;box-sizing:border-box!important;float:none!important}
+#pagina-painel-empresa #empresaMetricasNovas>.empresa-metrica-v2:nth-child(2){border-top-color:#e6a719!important}#pagina-painel-empresa #empresaMetricasNovas>.empresa-metrica-v2:nth-child(3){border-top-color:#7368e8!important}#pagina-painel-empresa #empresaMetricasNovas>.empresa-metrica-v2:nth-child(4){border-top-color:#27a77c!important}#pagina-painel-empresa #empresaMetricasNovas>.empresa-metrica-v2:nth-child(5){border-top-color:#df7180!important}
+#pagina-painel-empresa #empresaMetricasNovas>.empresa-metrica-v2>div{display:flex!important;flex-direction:column!important;align-items:flex-start!important}#pagina-painel-empresa #empresaMetricasNovas strong{font-size:22px!important;color:#173451!important}#pagina-painel-empresa #empresaMetricasNovas span{font-size:13px!important;color:#6c8198!important}
+#pagina-painel-empresa #empresaResumoRecursos{width:100%!important;margin:0 0 18px!important}
+#pagina-painel-empresa #empresaResumoRecursos .empresa-recursos-card{padding:0!important;border:0!important;background:transparent!important;box-shadow:none!important}
+#pagina-painel-empresa #empresaResumoRecursos .empresa-recursos-grid{display:grid!important;grid-template-columns:repeat(6,minmax(0,1fr))!important;gap:12px!important;width:100%!important}
+#pagina-painel-empresa #empresaResumoRecursos .recurso-progresso{display:block!important;width:100%!important;min-width:0!important;min-height:126px!important;margin:0!important;padding:15px!important;text-align:left!important;border:1px solid #d8e4ef!important;border-top:4px solid #168bc8!important;border-radius:15px!important;background:#fff!important;box-sizing:border-box!important;float:none!important}
+#pagina-painel-empresa .empresa-dashboard-grid{display:grid!important;grid-template-columns:minmax(0,2fr) minmax(280px,1fr)!important;gap:14px!important;width:100%!important}
+#pagina-painel-empresa .empresa-atalhos{display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:14px!important;width:100%!important}
+#pagina-painel-empresa .empresa-todas-vagas{width:100%!important;box-sizing:border-box!important}
+@media(max-width:1100px) and (min-width:901px){#pagina-painel-empresa .empresa-app-shell{grid-template-columns:205px minmax(0,1fr)!important}#pagina-painel-empresa .empresa-side{width:205px!important;min-width:205px!important}#pagina-painel-empresa .em-ref-wrap{padding:16px!important}#pagina-painel-empresa #empresaMetricasNovas{grid-template-columns:repeat(5,minmax(110px,1fr))!important}#pagina-painel-empresa #empresaResumoRecursos .empresa-recursos-grid{grid-template-columns:repeat(3,minmax(0,1fr))!important}}
+@media(max-width:900px){#pagina-painel-empresa .empresa-app-shell{display:block!important}#pagina-painel-empresa .empresa-side{display:none!important}#pagina-painel-empresa .em-ref-wrap{max-width:760px!important;padding:12px!important}#pagina-painel-empresa #empresaMetricasNovas{grid-template-columns:repeat(2,minmax(0,1fr))!important}#pagina-painel-empresa #empresaResumoRecursos .empresa-recursos-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important}#pagina-painel-empresa .empresa-dashboard-grid,#pagina-painel-empresa .empresa-atalhos{grid-template-columns:1fr!important}}
 </style>
 </body></html>
