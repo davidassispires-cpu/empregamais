@@ -813,3 +813,11 @@ body.sessao-empresa .menu-publico,body.sessao-empresa .menu-drop-candidato{displ
 #pagina-home .home-premium{padding-top:24px!important}
 @media(max-width:1000px){#pagina-home .home-hero-visual{height:470px!important;min-height:470px!important}#pagina-home .home-hero-copy{width:78%!important}#pagina-home .home-hero-art.home-hero-popular{display:none!important}#pagina-home .home-hero-content{padding-top:30px!important}}
 @media(max-width:650px){#pagina-home .home-hero-visual{height:650px!important;min-height:650px!important}#pagina-home .home-hero-content{padding:27px 18px 300px!important}#pagina-home .home-hero-copy{width:100%!important}#pagina-home .home-hero-copy h1{font-size:38px!important}#pagina-home .home-hero-benefits{grid-template-columns:1fr 1fr!important}}
+
+
+/* HERO LIMPO V5 */
+#pagina-home .home-search-wrap .busca{grid-template-columns:1.35fr 1fr .72fr 1fr!important}
+#pagina-home .home-hero-art.home-hero-art-clean{background:rgba(255,255,255,.28)!important;border:1px solid rgba(8,131,151,.13)!important;box-shadow:none!important}
+#pagina-home .home-hero-art.home-hero-art-clean i{display:block!important;position:absolute!important;inset:22px!important;width:auto!important;height:auto!important;border:2px solid rgba(8,131,151,.14)!important;border-radius:52px 18px 52px 18px!important;background:transparent!important;transform:rotate(7deg)!important}
+@media(max-width:1000px){#pagina-home .home-search-wrap .busca{grid-template-columns:1fr 1fr!important}}
+@media(max-width:650px){#pagina-home .home-search-wrap .busca{grid-template-columns:1fr!important}}
