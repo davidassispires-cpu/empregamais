@@ -16317,7 +16317,7 @@ Atualize a etapa de cada processo seletivo.
 <div class='em-field'><label>Área de atuação *</label><select id='areaVaga' required='required'><option value=''>Selecione</option><option value='Administração'>Administração</option><option value='Agricultura, Pecuária, Veterinária'>Agricultura, Pecuária, Veterinária</option><option value='Alimentação / Gastronomia'>Alimentação / Gastronomia</option><option value='Arquitetura, Decoração, Design'>Arquitetura, Decoração, Design</option><option value='Artes'>Artes</option><option value='Auditoria'>Auditoria</option><option value='Ciências, Pesquisa'>Ciências, Pesquisa</option><option value='Comercial, Vendas'>Comercial, Vendas</option><option value='Comércio Exterior, Importação, Exportação'>Comércio Exterior, Importação, Exportação</option><option value='Compras'>Compras</option><option value='Comunicação, TV, Cinema'>Comunicação, TV, Cinema</option><option value='Construção, Manutenção'>Construção, Manutenção</option><option value='Contábil, Finanças, Economia'>Contábil, Finanças, Economia</option><option value='Cultura, Lazer, Entretenimento'>Cultura, Lazer, Entretenimento</option><option value='Educação, Ensino, Idiomas'>Educação, Ensino, Idiomas</option><option value='Engenharia'>Engenharia</option><option value='Estética'>Estética</option><option value='Hotelaria, Turismo'>Hotelaria, Turismo</option><option value='Industrial, Produção, Fábrica'>Industrial, Produção, Fábrica</option><option value='Informática, TI, Telecomunicações'>Informática, TI, Telecomunicações</option><option value='Jurídica'>Jurídica</option><option value='Logística'>Logística</option><option value='Marketing'>Marketing</option><option value='Meio Ambiente, Ecologia'>Meio Ambiente, Ecologia</option></select></div>
 <div class='em-field'><label>Tipo de contrato *</label><select id='contratoVaga' required='required'><option value=''>Selecione</option><option value='Efetivo – CLT'>Efetivo &#8211; CLT</option><option value='Autônomo'>Autônomo</option><option value='Prestador de Serviços'>Prestador de Serviços</option><option value='Cooperado'>Cooperado</option><option value='Jovem Aprendiz'>Jovem Aprendiz</option><option value='Estágio'>Estágio</option><option value='Temporário'>Temporário</option><option value='Trainee'>Trainee</option><option value='Outros'>Outros</option></select></div>
 <div class='em-field'><label>Modalidade</label><select id='modalidadeVaga'><option value='Presencial'>Presencial</option><option value='Remoto'>Remoto</option><option value='Híbrido'>Híbrido</option></select></div>
-</div></div><div class='em-job-actions'><span></span><button class='em-btn em-btn-next' onclick='emNextJob(1)' type='button'>Próximo &#8594;</button></div></section>
+</div></div><div class='em-job-actions'><span></span><button class='em-btn em-btn-next' id='emWizardNext1' type='button'>Próximo &#8594;</button></div></section>
 <section class='em-job-card' data-panel='2'><div class='em-job-card-head'><h2>Detalhes da vaga</h2><p>Informe localização, jornada, experiência e remuneração.</p></div><div class='em-job-body'><div class='em-grid'>
 <div class='em-field'><label>CEP</label><input id='cepVaga' maxlength='9' placeholder='00000-000' type='text'/><small id='cepStatusEM'/></div>
 <div class='em-field'><label>Estado</label><input id='estadoVaga' maxlength='2' placeholder='UF' type='text'/></div>
@@ -16355,13 +16355,13 @@ Não exigida
 <div class='em-field'><label>PcD</label><select id='pcdVaga'><option value='Não exclusiva para PcD'>Não exclusiva para PcD</option><option value='Auditiva'>Auditiva</option><option value='Física'>Física</option><option value='Visual'>Visual</option><option value='Mental'>Mental</option><option value='Reabilitados'>Reabilitados</option><option value='Psicossocial'>Psicossocial</option><option value='Fala'>Fala</option><option value='Intelectual'>Intelectual</option><option value='TEA - Transtornos do espectro autista'>TEA - Transtornos do espectro autista</option></select></div>
 <div class='em-field'><label>Faixa salarial</label><input id='salarioVaga' placeholder='Ex.: R$ 2.500,00' type='text'/></div>
 <div class='em-field full'><label class='em-check'><input id='senior50VagaEM' type='checkbox'/> Oportunidade aberta também para profissionais 50+</label></div>
-</div></div><div class='em-job-actions'><button class='em-btn em-btn-back' onclick='emShowJobStep(1)' type='button'>&#8592; Voltar</button><button class='em-btn em-btn-next' onclick='emNextJob(2)' type='button'>Próximo &#8594;</button></div></section>
+</div></div><div class='em-job-actions'><button class='em-btn em-btn-back' onclick='emShowJobStep(1)' type='button'>&#8592; Voltar</button><button class='em-btn em-btn-next' id='emWizardNext2' type='button'>Próximo &#8594;</button></div></section>
 <section class='em-job-card' data-panel='3'><div class='em-job-card-head'><h2>Descrição e benefícios</h2><p>Apresente a oportunidade de forma clara para os candidatos.</p></div><div class='em-job-body'><div class='em-grid'>
 <div class='em-field full'><label>Descrição da vaga *</label><textarea id='descricaoVaga' required='required' placeholder='Descreva as atividades, responsabilidades e rotina da vaga.'></textarea></div>
 <div class='em-field full'><label>Requisitos *</label><textarea id='requisitosVaga' required='required' placeholder='Liste os requisitos necessários.'></textarea></div>
 <div class='em-field full'><label>Benefícios</label><textarea id='beneficiosVaga' placeholder='Ex.: Vale alimentação, vale transporte, plano de saúde...'></textarea></div>
 <div class='em-field full'><label>Sobre a empresa</label><textarea id='sobreEmpresaVaga' placeholder='Conte brevemente sobre a empresa e o ambiente de trabalho.'></textarea></div>
-</div></div><div class='em-job-actions'><button class='em-btn em-btn-back' onclick='emShowJobStep(2)' type='button'>&#8592; Voltar</button><button class='em-btn em-btn-next' onclick='emNextJob(3)' type='button'>Revisar vaga &#8594;</button></div></section>
+</div></div><div class='em-job-actions'><button class='em-btn em-btn-back' onclick='emShowJobStep(2)' type='button'>&#8592; Voltar</button><button class='em-btn em-btn-next' id='emWizardNext3' type='button'>Revisar vaga &#8594;</button></div></section>
 <section class='em-job-card' data-panel='4'><div class='em-job-card-head'><h2>Revisar e publicar</h2><p>Confira todas as informações antes de disponibilizar a oportunidade.</p></div><div class='em-job-body'><div class='em-review-grid'>
 <div class='em-review-box'><h3>Resumo da vaga</h3><div id='emReviewContent'></div></div>
 <div><div class='em-review-box'><h3>Prévia da vaga</h3><div class='em-preview-card' id='emPreviewCard'></div></div>
@@ -41006,4 +41006,31 @@ header .v99-removido{display:none!important}
 @media(max-width:1180px){#emPainelRecrutadorNovoV1 .em-pr-assinatura-v9{grid-template-columns:repeat(3,minmax(0,1fr))!important}}
 @media(max-width:760px){#emPainelRecrutadorNovoV1 .em-pr-assinatura-v9{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:10px!important}#emPainelRecrutadorNovoV1 .em-pr-plano-info-v9,#emPainelRecrutadorNovoV1 .em-pr-ass-stat-v9{min-height:122px!important;padding:16px 14px!important}#emPainelRecrutadorNovoV1 .em-pr-plano-info-v9{grid-column:auto!important;flex-direction:column!important}#emPainelRecrutadorNovoV1 .em-pr-plano-icone-v9{width:36px!important;height:36px!important;min-width:36px!important}#emPainelRecrutadorNovoV1 .em-pr-plano-info-v9 strong,#emPainelRecrutadorNovoV1 .em-pr-ass-stat-v9 strong{font-size:19px!important}}
 @media(max-width:430px){#emPainelRecrutadorNovoV1 .em-pr-assinatura-v9{grid-template-columns:1fr!important}#emPainelRecrutadorNovoV1 .em-pr-plano-info-v9{flex-direction:row!important}}
-</style></body></html>
+</style>
+<!-- EMPREGAMAIS-WIZARD-FIX-V204 -->
+<script id="empregamais-wizard-fix-v204">
+(function(){
+ function showStep(n){
+  var form=document.getElementById('formVaga'); if(!form)return;
+  var cards=form.querySelectorAll('.em-job-card[data-panel]');
+  for(var i=0;i<cards.length;i++){var on=Number(cards[i].getAttribute('data-panel'))===Number(n);cards[i].classList.toggle('active',on);cards[i].style.display=on?'block':'none';}
+  var steps=document.querySelectorAll('#emJobProgress .em-job-step');
+  for(var j=0;j<steps.length;j++){var k=Number(steps[j].getAttribute('data-step'));steps[j].classList.toggle('active',k===Number(n));steps[j].classList.toggle('done',k<Number(n));}
+  if(Number(n)===4&&typeof window.emBuildJobReview==='function'){try{window.emBuildJobReview();}catch(e){}}
+ }
+ function next(n){
+  var form=document.getElementById('formVaga');if(!form)return;
+  var panel=form.querySelector('.em-job-card[data-panel="'+n+'"]');if(!panel)return;
+  var req=panel.querySelectorAll('[required]');
+  for(var i=0;i<req.length;i++){if(!req[i].checkValidity()){req[i].reportValidity();return;}}
+  showStep(Number(n)+1);
+ }
+ function bind(){
+  [[1,'emWizardNext1'],[2,'emWizardNext2'],[3,'emWizardNext3']].forEach(function(a){var el=document.getElementById(a[1]);if(el&&!el.__emBound){el.__emBound=true;el.addEventListener('click',function(e){e.preventDefault();e.stopPropagation();next(a[0]);});}});
+ }
+ window.emShowJobStep=showStep;window.emNextJob=next;
+ if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',bind);}else{bind();}
+ setTimeout(bind,300);setTimeout(bind,1000);
+})();
+</script>
+</body></html>
