@@ -1103,18 +1103,23 @@ if(typeof vagaAtual!=="undefined" && vagaAtual)return vagaAtual;
 }catch(e){}
 return null;
 }
-window.addEventListener("load",function(){
-setTimeout(function(){
+function detalheVagaAtivoV149(){
+var p=document.getElementById("pagina-vaga");
+return !!(p&amp;&amp;(p.classList.contains("ativa")||p.classList.contains("pagina-ativa")));
+}
+function aplicarLocalizacaoAtualV149(){
 try{
 var v=obterVagaAtualV149();
-if(v && typeof preencherPrivacidadeLocalizacaoV149==="function"){
-preencherPrivacidadeLocalizacaoV149(v);
-}
-if(v && typeof aplicarPrivacidadeLocalizacaoV149==="function"){
-aplicarPrivacidadeLocalizacaoV149(v,document);
-}
+if(v &amp;&amp; typeof preencherPrivacidadeLocalizacaoV149==="function")preencherPrivacidadeLocalizacaoV149(v);
+if(v &amp;&amp; typeof aplicarPrivacidadeLocalizacaoV149==="function")aplicarPrivacidadeLocalizacaoV149(v,document);
 }catch(e){}
-},650);
+}
+window.addEventListener("load",function(){
+if(detalheVagaAtivoV149())setTimeout(aplicarLocalizacaoAtualV149,220);
+});
+document.addEventListener("empregamais:navegacao",function(ev){
+var p=String((ev&amp;&amp;ev.detail&amp;&amp;ev.detail.pagina)||"");
+if(p==="vaga"||p==="detalhe-vaga")setTimeout(aplicarLocalizacaoAtualV149,140);
 });
 window.completarDadosLocalizacaoV149=function(dados){
 if(typeof salvarPreferenciaLocalizacaoV149==="function"){
