@@ -1061,3 +1061,19 @@ body.sessao-empresa .menu-publico,body.sessao-empresa .menu-drop-candidato{displ
 #pagina-vaga .vaga-layout-v2{padding-top:0!important}
 @media(max-width:1000px){#pagina-vaga .vaga-curriculo-faixa{grid-template-columns:1fr!important;gap:12px!important}.vaga-curriculo-dicas{border-left:0!important;padding-left:66px!important}}
 @media(max-width:640px){#pagina-vaga .vaga-curriculo-faixa{width:calc(100% - 24px)!important;padding:15px!important}.vaga-curriculo-dicas{padding-left:0!important}#pagina-vaga .vaga-curriculo-faixa>button{width:100%!important}}
+
+/* EMPREGAMAIS-VAGA-TOPO-COMPACTO-V9 */
+#pagina-vaga .vaga-topbar{height:46px!important;min-height:46px!important;padding:0!important;background:#fff!important;border-bottom:1px solid #e2ebf3!important}
+#pagina-vaga .vaga-topbar>.container:first-child{height:46px!important;min-height:46px!important;width:calc(100% - 64px)!important;max-width:1280px!important;padding:0!important}
+#pagina-vaga .vaga-layout-v2{padding-top:14px!important}
+#pagina-vaga .vaga-curriculo-faixa{display:none!important}
+#pagina-vaga .vaga-curriculo-side{background:linear-gradient(145deg,#f4faff 0%,#fff 80%)!important;border:1px solid #d7e7f3!important;border-radius:13px!important;padding:18px!important;box-shadow:0 5px 18px rgba(18,62,98,.045)!important;display:grid!important;grid-template-columns:42px 1fr!important;gap:10px 12px!important}
+#pagina-vaga .vaga-curriculo-side-icone{width:42px!important;height:42px!important;border-radius:10px!important;background:#e4f1fc!important;color:#075b9d!important;display:grid!important;place-items:center!important;font-size:13px!important;font-weight:900!important}
+#pagina-vaga .vaga-curriculo-side-texto span{display:block!important;font-size:9px!important;font-weight:800!important;letter-spacing:.8px!important;color:#1680c9!important;margin-bottom:3px!important}
+#pagina-vaga .vaga-curriculo-side-texto h3{font-size:17px!important;line-height:1.15!important;color:#0a3764!important;margin:0 0 5px!important}
+#pagina-vaga .vaga-curriculo-side-texto p{font-size:11.5px!important;line-height:1.45!important;color:#627c93!important;margin:0!important}
+#pagina-vaga .vaga-curriculo-side-dicas{grid-column:1/-1!important;display:grid!important;gap:6px!important;padding:10px 0!important;border-top:1px solid #e5eef5!important;border-bottom:1px solid #e5eef5!important}
+#pagina-vaga .vaga-curriculo-side-dicas span{font-size:11px!important;font-weight:650!important;color:#365e7f!important}
+#pagina-vaga .vaga-curriculo-side>button{grid-column:1/-1!important;width:100%!important;height:40px!important;border:1px solid #b9d9ef!important;border-radius:8px!important;background:#fff!important;color:#0864aa!important;font-size:11.5px!important;font-weight:800!important;cursor:pointer!important}
+#pagina-vaga .vaga-curriculo-side>button b{margin-left:8px!important}
+@media(max-width:900px){#pagina-vaga .vaga-topbar>.container:first-child{width:calc(100% - 30px)!important}.vaga-curriculo-side{display:none!important}}
