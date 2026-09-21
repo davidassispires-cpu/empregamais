@@ -965,3 +965,17 @@ body.sessao-empresa .menu-publico,body.sessao-empresa .menu-drop-candidato{displ
 #pagina-home .destaque-nav{width:46px!important;height:46px!important;background:#fff!important;border:1px solid #e1eaf0!important;color:#063d72!important;box-shadow:0 7px 20px rgba(15,55,85,.12)!important}
 @media(max-width:1100px){#pagina-home .destaques-carrossel{grid-auto-columns:calc((100% - 18px)/2)!important}}
 @media(max-width:640px){#pagina-home .home-destaques{padding:22px 8px!important}#pagina-home .destaques-carrossel{grid-auto-columns:92%!important}#pagina-home .destaques-carrossel>.portal-vaga-nova{height:430px!important;padding:16px!important}#pagina-home .destaques-carrossel .vaga-identidade{grid-template-columns:76px minmax(0,1fr)!important}#pagina-home .destaques-carrossel .vaga-logo{width:76px!important;height:76px!important;min-width:76px!important}}
+
+/* Cards destaque mais compactos verticalmente */
+#pagina-home .destaques-carrossel>.portal-vaga-nova{height:370px!important;min-height:370px!important;padding:14px 18px!important}
+#pagina-home .destaques-carrossel .vaga-card-topo{height:32px!important;min-height:32px!important;margin-bottom:7px!important}
+#pagina-home .destaques-carrossel .vaga-identidade{min-height:80px!important;margin-bottom:7px!important;grid-template-columns:76px minmax(0,1fr)!important;gap:12px!important}
+#pagina-home .destaques-carrossel .vaga-logo{width:76px!important;height:76px!important;min-width:76px!important}
+#pagina-home .destaques-carrossel .vaga-meta{min-height:52px!important;margin-bottom:7px!important;gap:5px!important}
+#pagina-home .destaques-carrossel .vaga-meta span{height:27px!important}
+#pagina-home .destaques-carrossel .vaga-meta span:first-child{min-height:21px!important;font-size:13px!important}
+#pagina-home .destaques-carrossel .vaga-salario-data{margin-bottom:5px!important;min-height:22px!important}
+#pagina-home .destaques-carrossel .vaga-resumo{height:38px!important;min-height:38px!important;max-height:38px!important;line-height:1.5!important;margin-bottom:7px!important}
+#pagina-home .destaques-carrossel .vaga-card-rodape{min-height:45px!important}
+#pagina-home .destaques-carrossel .vaga-ver-btn{height:44px!important}
+@media(max-width:640px){#pagina-home .destaques-carrossel>.portal-vaga-nova{height:365px!important}}
