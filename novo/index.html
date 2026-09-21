@@ -157,21 +157,6 @@
 })();
 </script>
 
-<!-- EMPREGAMAIS-REVIEW-SUBMIT-FIX-V2 -->
-<script>
-(function(){
- function bind(){
-  var form=document.getElementById('formVaga');if(!form||form.dataset.submitFixV2)return;
-  form.dataset.submitFixV2='1';
-  form.addEventListener('submit',function(e){
-   if(typeof window.publicarVagaNova==='function'){e.preventDefault();window.publicarVagaNova(e);}
-  });
- }
- if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',bind);else bind();
- setTimeout(bind,500);
-})();
-</script>
-
 <!-- EMPREGAMAIS-PUBLICAR-PREMIUM-V3 -->
 <style id="empregamais-publicar-premium-v3">
 #pagina-publicar{background:#f6f9fd;padding-bottom:70px}#pagina-publicar .page-head{max-width:1180px;margin:0 auto;padding:34px 24px 18px}#pagina-publicar .page-head h1{font-size:34px;color:#102a56;margin:8px 0}#pagina-publicar .job-shell{max-width:1180px;margin:0 auto;padding:0 24px}#pagina-publicar .job-progress{background:#fff;border:1px solid #e2eaf4;border-radius:18px;padding:24px 30px;margin-bottom:22px;box-shadow:0 8px 28px rgba(16,42,86,.05)}#pagina-publicar .job-card{background:#fff;border:1px solid #dfe8f3;border-radius:20px;padding:30px;box-shadow:0 12px 35px rgba(16,42,86,.06)}#pagina-publicar .job-card>h2{font-size:25px;color:#102a56;margin:0 0 6px}#pagina-publicar .job-card>p{color:#6d7f98;margin-bottom:26px}#pagina-publicar .job-grid{gap:20px}#pagina-publicar .job-grid>label{font-weight:600;color:#17335d}#pagina-publicar input,#pagina-publicar select,#pagina-publicar textarea{border:1px solid #cad8e8;border-radius:10px;background:#fff;min-height:46px;font-family:Questrial,sans-serif}#pagina-publicar input:focus,#pagina-publicar select:focus,#pagina-publicar textarea:focus{border-color:#0b70d8;box-shadow:0 0 0 3px rgba(11,112,216,.1);outline:0}.em-secao-titulo{display:flex;gap:12px;align-items:center;border-bottom:1px solid #e9eef5;padding-bottom:14px;margin-bottom:18px}.em-secao-titulo>span{width:42px;height:42px;border-radius:12px;background:#eaf4ff;color:#0868c9;display:grid;place-items:center;font-size:21px}.em-secao-titulo h3{margin:0;color:#102a56;font-size:20px}.em-secao-titulo p{margin:3px 0 0;color:#708198;font-size:14px}.em-privacidade-local{background:#f8fbff;border:1px solid #dce8f5;border-radius:16px;padding:20px;margin-top:4px}.em-privacidade-local>strong{font-size:16px;color:#102a56}.em-privacidade-local>p{margin:5px 0 15px;color:#718198}.em-local-opcoes{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.em-local-opcoes label{position:relative;display:flex;gap:10px;padding:15px;border:1px solid #d9e3ef;border-radius:13px;background:#fff;cursor:pointer;align-items:flex-start}.em-local-opcoes label:has(input:checked){border-color:#0872d8;box-shadow:0 0 0 2px rgba(8,114,216,.08);background:#f6fbff}.em-local-opcoes input{min-height:auto;margin-top:3px}.em-local-opcoes span{display:flex;flex-direction:column;gap:4px}.em-local-opcoes b{color:#15345e}.em-local-opcoes small{color:#7b899d}.em-local-preview{margin-top:14px;padding:13px 16px;border-radius:11px;background:#eef7ff;display:flex;gap:12px;align-items:center}.em-local-preview span{color:#607590;font-size:13px}.em-local-preview strong{color:#0b5eae}.em-beneficios-premium{border:1px solid #e0e9f3;border-radius:18px;padding:22px;background:#fbfdff}.em-beneficios-premium .beneficios-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}.em-beneficios-premium .beneficios-grid>label{min-height:72px;border:1px solid #dce5ef;border-radius:14px;padding:13px;background:#fff;display:flex;align-items:center;gap:9px;cursor:pointer;transition:.18s}.em-beneficios-premium .beneficios-grid>label:hover{border-color:#91bce9;box-shadow:0 7px 18px rgba(16,42,86,.06)}.em-beneficios-premium .beneficios-grid>label:has(.beneficio-check:checked){border-color:#0872d8;background:#f4faff;box-shadow:0 0 0 2px rgba(8,114,216,.07)}.em-beneficios-premium .beneficio-check{min-height:auto;accent-color:#0872d8}.em-beneficios-premium .beneficio-valor{min-height:34px!important;max-width:105px;margin-left:auto}.em-beneficios-premium .beneficios-grid span{color:#18375f}.job-actions{border-top:1px solid #e7edf5;margin-top:26px;padding-top:20px}.job-actions .btn-azul,.job-actions .btn-publicar{border-radius:10px;padding:12px 24px;font-size:15px}.review-box{border-radius:16px!important;border-color:#e0e8f2!important}
