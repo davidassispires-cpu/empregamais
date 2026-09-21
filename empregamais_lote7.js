@@ -618,8 +618,16 @@ btn.setAttribute("aria-label","Gerenciar plano da empresa");
 });
 }
 window.abrirGerenciarPlanoEmpresaV81=abrirPlanoV81;
+function painelEmpresaAtivoV81(){
+var p=document.getElementById("pagina-painel-empresa");
+return !!(p&amp;&amp;(p.classList.contains("ativa")||p.classList.contains("pagina-ativa")));
+}
 window.addEventListener("load",function(){
-setTimeout(prepararV81,950);
+if(painelEmpresaAtivoV81())setTimeout(prepararV81,220);
+});
+document.addEventListener("empregamais:navegacao",function(ev){
+var p=String((ev&amp;&amp;ev.detail&amp;&amp;ev.detail.pagina)||"");
+if(p==="painel-empresa")setTimeout(prepararV81,140);
 });
 var alvo=document.getElementById("pagina-painel-empresa");
 if(alvo&&window.MutationObserver){
