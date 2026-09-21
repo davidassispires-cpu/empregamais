@@ -479,3 +479,40 @@ body.empresa-premium-v44 .plano-premium-v44{min-height:96px!important;margin:0 0
 #pagina-painel-empresa .recrutador-card-ref-em:nth-child(5):after{content:"CTR"}
 #pagina-painel-empresa [class*="plano"][class*="card"],#pagina-painel-empresa [class*="resumo"][class*="card"],#pagina-painel-empresa [class*="recurso"][class*="card"]{box-shadow:none!important}
 @media(max-width:560px){#pagina-painel-empresa .recrutador-card-ref-em{min-height:125px!important}}
+
+/* ===== Perfil Empresa • formulário + banner lateral v2026-09-21 ===== */
+#pagina-perfil-empresa-em{background:#f4f7fb!important;padding:28px 24px 60px!important}
+#pagina-perfil-empresa-em .perfil-empresa-wrap-em,#pagina-perfil-empresa-em .perfil-empresa-shell-em{max-width:1180px!important;margin:0 auto!important}
+#pagina-perfil-empresa-em .empresa-perfil-tabs-em{max-width:1180px!important;margin:0 auto 14px!important}
+#pagina-perfil-empresa-em [data-painel-dados-v22="publico"]{position:relative!important;padding:24px!important;padding-right:382px!important;min-height:760px!important;background:#fff!important;border:1px solid #e0e7ef!important;border-radius:18px!important;box-shadow:0 12px 34px rgba(22,49,82,.06)!important;overflow:visible!important}
+#pagina-perfil-empresa-em [data-painel-dados-v22="publico"]>.perfil-publico-aviso-v23,
+#pagina-perfil-empresa-em [data-painel-dados-v22="publico"]>.perfil-form-intro-v23,
+#pagina-perfil-empresa-em [data-painel-dados-v22="publico"]>.perfil-secao-v23,
+#pagina-perfil-empresa-em [data-painel-dados-v22="publico"]>.perfil-acoes-v23,
+#pagina-perfil-empresa-em [data-painel-dados-v22="publico"]>#avisoRascunhoPerfilV24{max-width:100%!important}
+#pagina-perfil-empresa-em .perfil-publico-aviso-v23{background:#f4f9fd!important;border:1px solid #d9e8f4!important;border-radius:12px!important;padding:13px 15px!important;margin:0 0 14px!important}
+#pagina-perfil-empresa-em .perfil-form-intro-v23{padding:20px 22px!important;border-radius:14px!important;margin-bottom:14px!important;box-shadow:none!important}
+#pagina-perfil-empresa-em .perfil-form-intro-v23 h2{font-size:24px!important}
+#pagina-perfil-empresa-em .perfil-form-intro-v23 p{font-size:12px!important}
+#pagina-perfil-empresa-em .perfil-secao-v23{padding:21px!important;border-radius:14px!important;margin-bottom:14px!important;box-shadow:none!important}
+#pagina-perfil-empresa-em .perfil-secao-titulo-v23 h3{font-size:18px!important}
+#pagina-perfil-empresa-em .perfil-secao-titulo-v23 p{font-size:11px!important}
+#pagina-perfil-empresa-em .perfil-secao-grid-v23{gap:16px!important}
+#pagina-perfil-empresa-em .empresa-perfil-campo-em label,#pagina-perfil-empresa-em .perfil-campo-v23 label{font-size:12px!important;color:#213b5b!important;margin-bottom:7px!important}
+#pagina-perfil-empresa-em .empresa-perfil-campo-em input,#pagina-perfil-empresa-em .empresa-perfil-campo-em select,#pagina-perfil-empresa-em .empresa-perfil-campo-em textarea,#pagina-perfil-empresa-em .perfil-campo-v23 textarea{border:1px solid #ccd9e6!important;border-radius:10px!important;background:#fff!important;min-height:44px!important;font-size:13px!important;padding:11px 13px!important;transition:border-color .18s,box-shadow .18s!important}
+#pagina-perfil-empresa-em .empresa-perfil-campo-em input:focus,#pagina-perfil-empresa-em .empresa-perfil-campo-em select:focus,#pagina-perfil-empresa-em .empresa-perfil-campo-em textarea:focus{border-color:#3182c9!important;box-shadow:0 0 0 3px rgba(49,130,201,.10)!important;outline:0!important}
+#pagina-perfil-empresa-em .perfil-lateral-pro-v130{position:absolute;right:24px;top:24px;width:334px;border-radius:18px;overflow:hidden;background:#0d4e70;box-shadow:0 18px 38px rgba(16,52,80,.16);color:#fff}
+#pagina-perfil-empresa-em .perfil-lateral-pro-v130 .arte-v130{height:315px;position:relative;overflow:hidden;background:linear-gradient(145deg,#0b4163 0%,#117e94 58%,#21a0b2 100%)}
+#pagina-perfil-empresa-em .perfil-lateral-pro-v130 .arte-v130:before{content:"";position:absolute;width:230px;height:230px;border-radius:50%;right:-68px;top:-52px;background:rgba(255,255,255,.10)}
+#pagina-perfil-empresa-em .perfil-lateral-pro-v130 .arte-v130:after{content:"";position:absolute;width:170px;height:170px;border-radius:50%;left:-54px;bottom:-70px;background:rgba(255,255,255,.08)}
+#pagina-perfil-empresa-em .perfil-lateral-pro-v130 .ilustra-v130{position:absolute;inset:0;display:flex;align-items:center;justify-content:center}
+#pagina-perfil-empresa-em .perfil-lateral-pro-v130 .ilustra-v130 svg{width:225px;height:225px;stroke:#fff;stroke-width:1.25;fill:none;opacity:.94}
+#pagina-perfil-empresa-em .perfil-lateral-pro-v130 .texto-v130{padding:24px 24px 26px;background:#fff;color:#173653}
+#pagina-perfil-empresa-em .perfil-lateral-pro-v130 .tag-v130{display:inline-flex;font-size:9px;font-weight:800;letter-spacing:.08em;color:#0b7190;background:#e8f6f8;border-radius:999px;padding:6px 9px;margin-bottom:12px}
+#pagina-perfil-empresa-em .perfil-lateral-pro-v130 h3{font-size:22px;line-height:1.15;margin:0 0 9px;color:#143957}
+#pagina-perfil-empresa-em .perfil-lateral-pro-v130 p{font-size:12px;line-height:1.6;color:#66798c;margin:0}
+#pagina-perfil-empresa-em .perfil-lateral-pro-v130 ul{list-style:none;padding:0;margin:18px 0 0;display:grid;gap:10px}
+#pagina-perfil-empresa-em .perfil-lateral-pro-v130 li{display:flex;gap:9px;align-items:flex-start;font-size:11px;color:#4c6378}
+#pagina-perfil-empresa-em .perfil-lateral-pro-v130 li:before{content:"✓";display:flex;align-items:center;justify-content:center;width:18px;height:18px;border-radius:50%;background:#e6f6f0;color:#16855f;font-weight:800;flex:0 0 auto}
+@media(max-width:980px){#pagina-perfil-empresa-em [data-painel-dados-v22="publico"]{padding-right:24px!important}.perfil-lateral-pro-v130{position:relative!important;right:auto!important;top:auto!important;width:100%!important;margin:0 0 16px!important}.perfil-lateral-pro-v130 .arte-v130{height:240px!important}}
+@media(max-width:620px){#pagina-perfil-empresa-em{padding:16px 12px 42px!important}#pagina-perfil-empresa-em [data-painel-dados-v22="publico"]{padding:14px!important}.perfil-lateral-pro-v130 .arte-v130{height:205px!important}}
