@@ -868,3 +868,9 @@ body.sessao-empresa .menu-publico,body.sessao-empresa .menu-drop-candidato{displ
 #pagina-home .portal-vaga-nova .vaga-logo{width:72px!important;height:72px!important;min-width:72px!important;border-radius:13px!important;padding:7px!important;background:#fff!important;object-fit:contain!important}
 #pagina-home .portal-vaga-nova .vaga-identidade{gap:13px!important}
 @media(max-width:640px){#pagina-home .portal-vaga-nova .vaga-logo{width:64px!important;height:64px!important;min-width:64px!important}}
+
+/* Destaques: quatro cards completos por quadro, sem quinto card cortado */
+#pagina-home .destaques-wrap{overflow:hidden!important;padding:0 34px!important}
+#pagina-home .destaques-carrossel{width:100%!important;box-sizing:border-box!important;grid-auto-columns:calc((100% - 42px)/4)!important;column-gap:14px!important;overflow-x:auto!important;overscroll-behavior-x:contain!important;scroll-snap-type:x mandatory!important;scroll-padding:0!important}
+#pagina-home .destaques-carrossel>.portal-vaga-nova{scroll-snap-align:start!important;scroll-snap-stop:always!important}
+@media(min-width:1200px){#pagina-home .destaques-carrossel{grid-auto-columns:calc((100% - 42px)/4)!important}}
