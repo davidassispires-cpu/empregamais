@@ -572,9 +572,16 @@ if(bloquearAderenciaV78())return false;
 return typeof aderenciaAnteriorV78==="function"?aderenciaAnteriorV78.apply(this,arguments):false;
 };
 window.renderizarAderenciaFinalEM=window.renderizarAderenciaVagaEM;
+function vagaAtivaV78(){
+var p=document.getElementById("pagina-vaga");
+return !!(p&amp;&amp;(p.classList.contains("ativa")||p.classList.contains("pagina-ativa")));
+}
 window.addEventListener("load",function(){
-setTimeout(bloquearAderenciaV78,350);
-setTimeout(bloquearAderenciaV78,1000);
+if(vagaAtivaV78())setTimeout(bloquearAderenciaV78,220);
+});
+document.addEventListener("empregamais:navegacao",function(ev){
+var p=String((ev&amp;&amp;ev.detail&amp;&amp;ev.detail.pagina)||"");
+if(p==="vaga"||p==="detalhe-vaga")setTimeout(bloquearAderenciaV78,140);
 });
 })();
 //
