@@ -630,3 +630,18 @@ body.sessao-empresa .menu-publico,body.sessao-empresa .menu-drop-candidato{displ
 .em-pagamento-plano .em-pay-secure{padding:0 8px 11px!important;font-size:9px!important}
 .plano-b-escolher{display:block!important;width:100%!important;min-height:50px!important;position:relative!important;z-index:20!important;pointer-events:auto!important;cursor:pointer!important}
 @media(max-width:520px){.em-pay-option{grid-template-columns:92px 1fr!important;min-height:76px!important;padding:11px 0!important}.em-pay-copy strong{font-size:16px!important}.em-pix-brand b{font-size:19px!important}.pix-mark{transform:scale(.9)}.em-pagamento-plano .em-bandeiras{gap:5px!important}.em-pagamento-plano .em-bandeiras .em-card-brand{height:34px!important}}
+
+/* PLANOS — grade de benefícios aprovada */
+.plano-b-principal{align-items:stretch!important}
+.plano-b-beneficios{padding:28px 30px!important}
+.plano-b-beneficios>span{font-size:11px!important;letter-spacing:.08em!important}
+.plano-b-beneficios>h2{font-size:24px!important;margin:5px 0 18px!important;color:#123c54!important}
+.plano-recursos-grid{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:13px!important;width:100%!important}
+.plano-recurso-card{min-height:126px!important;padding:17px!important;border:1px solid #dbe6eb!important;border-radius:15px!important;background:linear-gradient(145deg,#fff,#f8fbfc)!important;box-shadow:0 4px 13px rgba(22,63,80,.04)!important;display:grid!important;grid-template-columns:43px 1fr!important;gap:12px!important;align-items:start!important}
+.plano-recurso-card>i{width:43px!important;height:43px!important;border-radius:50%!important;background:#e1f5f4!important;color:#087781!important;display:grid!important;place-items:center!important;font-size:19px!important;font-style:normal!important;font-weight:800!important}
+.plano-recurso-card strong{display:block!important;font-size:14px!important;line-height:1.25!important;color:#0a3048!important;margin:3px 0 6px!important}
+.plano-recurso-card p{font-size:11px!important;line-height:1.5!important;color:#657b89!important;margin:0!important}
+.plano-resultados{margin-top:13px!important;padding:15px 17px!important;border:1px solid #bde7d4!important;border-radius:14px!important;background:#effbf5!important;display:flex!important;gap:12px!important;align-items:center!important}
+.plano-resultados>i{width:42px;height:42px;flex:0 0 42px;border-radius:50%;background:#d6f5e5;color:#15805d;display:grid;place-items:center;font-style:normal}
+.plano-resultados strong{display:block;font-size:14px;color:#123c43;margin-bottom:3px}.plano-resultados p{margin:0;font-size:11px;line-height:1.45;color:#5c7776}
+@media(max-width:850px){.plano-recursos-grid{grid-template-columns:1fr!important}.plano-recurso-card{min-height:auto!important}}
