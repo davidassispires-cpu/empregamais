@@ -831,3 +831,9 @@ body.sessao-empresa .menu-publico,body.sessao-empresa .menu-drop-candidato{displ
 #pagina-painel-admin .admin-metricas article[role="button"],#pagina-painel-admin .admin-acao-card{cursor:pointer;transition:transform .18s ease,box-shadow .18s ease,border-color .18s ease}
 #pagina-painel-admin .admin-metricas article[role="button"]:hover,#pagina-painel-admin .admin-acao-card:hover{transform:translateY(-2px);box-shadow:0 10px 24px rgba(17,63,78,.10);border-color:#8fb7c0}
 #pagina-painel-admin .admin-metricas article[role="button"]:focus-visible,#pagina-painel-admin .admin-acao-card:focus-visible{outline:3px solid rgba(13,70,80,.18);outline-offset:2px}
+
+/* Correção 2026-09-21: cards do carrossel de destaques não podem se sobrepor */
+#pagina-home .destaques-carrossel{display:grid!important;grid-auto-flow:column!important;grid-template-columns:none!important;grid-auto-columns:minmax(350px,390px)!important;column-gap:18px!important;row-gap:0!important;overflow-x:auto!important;overflow-y:visible!important;align-items:stretch!important;scroll-snap-type:x proximity!important}
+#pagina-home .destaques-carrossel>.portal-vaga-nova{box-sizing:border-box!important;width:100%!important;min-width:0!important;max-width:none!important;margin:0!important;position:relative!important;left:auto!important;right:auto!important;transform:none!important;scroll-snap-align:start!important}
+@media(max-width:950px){#pagina-home .destaques-carrossel{grid-auto-columns:minmax(320px,46%)!important}}
+@media(max-width:640px){#pagina-home .destaques-carrossel{grid-auto-columns:88%!important;column-gap:14px!important}}
