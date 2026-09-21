@@ -454,3 +454,22 @@ addEventListener('DOMContentLoaded',prepararCepPerfilEmpresa);
 
 /* EMPREGAMAIS-VAGA-30-DIAS-PUBLICACAO-V2 */
 function dataEncerramentoAutomaticaEM(){const d=new Date();d.setDate(d.getDate()+30);return d.toISOString().slice(0,10)}
+
+/* EMPREGAMAIS-LOCAL-CORPORATIVO-V7 */
+(function(){
+ const q=s=>document.querySelector(s),qa=s=>[...document.querySelectorAll(s)];
+ function atualizarLocalCorporativo(){
+  const tipo=q('input[name="tipoLocalVaga"]:checked')?.value||'propria',aj=q('#localAjudaVaga'),multi=q('#multiplosLocaisVaga');
+  qa('.em-endereco-campo,.em-cidade-campo').forEach(el=>el.style.display=tipo==='remoto'||tipo==='multiplos'?'none':'');
+  if(multi)multi.classList.toggle('ativo',tipo==='multiplos');
+  if(aj)aj.textContent=tipo==='propria'?'Selecione ou informe a unidade onde o profissional trabalhará.':tipo==='outro'?'Informe o endereço do cliente, filial ou local onde o profissional trabalhará.':tipo==='remoto'?'Vaga remota: informe no anúncio a abrangência desejada, como Brasil, estado ou região.':'Adicione abaixo todas as localidades desta oportunidade.';
+ }
+ document.addEventListener('change',e=>{
+  if(e.target?.name==='tipoLocalVaga')atualizarLocalCorporativo();
+  if(e.target?.id==='vagaParaCliente'){const box=q('#vagaClienteCampos');if(box)box.classList.toggle('ativo',e.target.checked)}
+ });
+ document.addEventListener('click',e=>{
+  if(e.target?.id==='adicionarLocalVaga'){const nome=prompt('Informe a cidade, unidade ou região:');if(!nome?.trim())return;const item=document.createElement('span');item.className='em-local-chip';item.innerHTML='<b>'+nome.trim().replace(/[<>]/g,'')+'</b><button type="button" aria-label="Remover">×</button>';item.querySelector('button').onclick=()=>item.remove();q('#listaLocaisVaga')?.appendChild(item)}
+ });
+ document.addEventListener('DOMContentLoaded',atualizarLocalCorporativo);
+})();
