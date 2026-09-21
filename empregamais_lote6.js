@@ -1082,12 +1082,8 @@ el.style.display="";
 };
 window.preencherPrivacidadeLocalizacaoV149=preencherEdicaoV149;
 window.salvarPreferenciaLocalizacaoV149=salvarPreferenciaV149;
-document.addEventListener("DOMContentLoaded",function(){
-setTimeout(criarControleV149,250);
-});
-window.addEventListener("load",function(){
-setTimeout(criarControleV149,400);
-});
+/* O controle V149 está desativado na própria criarControleV149().
+   Não agenda timers globais para uma função que retorna imediatamente. */
 document.addEventListener("submit",function(ev){
 var f=ev.target;
 if(!f)return;
