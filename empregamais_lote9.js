@@ -28,8 +28,19 @@ b.setAttribute("data-candidatar-v94","1");
 }
 });
 }
-window.addEventListener("load",function(){setTimeout(corrigirBotoesV95,600)});
-document.addEventListener("click",function(){setTimeout(corrigirBotoesV95,80)},false);
+function vagaAtivaV95(){
+var p=document.getElementById("pagina-vaga");
+return !!(p&amp;&amp;(p.classList.contains("ativa")||p.classList.contains("pagina-ativa")));
+}
+window.addEventListener("load",function(){if(vagaAtivaV95())setTimeout(corrigirBotoesV95,220)});
+document.addEventListener("click",function(e){
+var p=document.getElementById("pagina-vaga");
+if(p&amp;&amp;p.contains(e.target))setTimeout(corrigirBotoesV95,80);
+},false);
+document.addEventListener("empregamais:navegacao",function(ev){
+var p=String((ev&amp;&amp;ev.detail&amp;&amp;ev.detail.pagina)||"");
+if(p==="vaga"||p==="detalhe-vaga")setTimeout(corrigirBotoesV95,140);
+});
 /* Observa somente a página da vaga. Evita varrer o documento inteiro a cada
    alteração de DOM, o que podia gerar lentidão e interferir nos cliques. */
 var paginaV95=document.getElementById("pagina-vaga");
