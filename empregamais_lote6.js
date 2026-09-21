@@ -1287,16 +1287,20 @@ if(typeof window.atualizarPreviewEnderecoV150==="function"){
 setTimeout(window.atualizarPreviewEnderecoV150,50);
 }
 }
+function formularioPublicacaoAtivoV153(){
+var p=document.getElementById("pagina-publicar");
+return !!(p&amp;&amp;(p.classList.contains("ativa")||p.classList.contains("pagina-ativa")));
+}
 document.addEventListener("DOMContentLoaded",function(){
-setTimeout(unificarEnderecoV153,180);
+if(formularioPublicacaoAtivoV153())setTimeout(unificarEnderecoV153,180);
 });
 window.addEventListener("load",function(){
-setTimeout(unificarEnderecoV153,300);
-setTimeout(unificarEnderecoV153,700);
+if(formularioPublicacaoAtivoV153())setTimeout(unificarEnderecoV153,240);
 });
-document.addEventListener("click",function(){
-setTimeout(unificarEnderecoV153,180);
-},true);
+document.addEventListener("empregamais:navegacao",function(ev){
+var p=String((ev&amp;&amp;ev.detail&amp;&amp;ev.detail.pagina)||"");
+if(p==="publicar"||p==="publicar-vaga")setTimeout(unificarEnderecoV153,160);
+});
 window.unificarEnderecoV153=unificarEnderecoV153;
 })();
 //
