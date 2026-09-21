@@ -187,3 +187,10 @@ function atalhoArea(area){const f=document.getElementById('filtroArea');if(f){f.
 
 function alternarSenhaCandidato(btn){const input=document.getElementById('loginCandSenha');if(!input)return;const ver=input.type==='password';input.type=ver?'text':'password';btn.textContent=ver?'◌':'◉';btn.setAttribute('aria-label',ver?'Ocultar senha':'Mostrar senha')}
 function recuperarSenhaCandidato(){const email=(document.getElementById('loginCandEmail')?.value||'').trim();if(!email){msg('#msgLoginCandidato','Informe seu e-mail para recuperar a senha.');return}msg('#msgLoginCandidato','A recuperação de senha será disponibilizada quando a autenticação do candidato estiver conectada ao Supabase.')}
+
+function atualizarMenusTopo(){const p=papelAtual();document.body.classList.toggle('tem-empresa',p==='empresa');document.body.classList.toggle('tem-candidato',p==='candidato')}
+function fecharMenusTopo(){document.querySelectorAll('.menu-drop').forEach(x=>x.classList.remove('aberto'))}
+function alternarMenuTopo(tipo,event){event?.stopPropagation();const alvo=document.querySelector('.menu-drop-'+tipo),abrir=!alvo?.classList.contains('aberto');fecharMenusTopo();atualizarMenusTopo();if(abrir)alvo?.classList.add('aberto')}
+function rotaMenuTopo(rota){fecharMenusTopo();irPara(rota)}
+document.addEventListener('click',e=>{if(!e.target.closest('.menu-drop'))fecharMenusTopo()});
+window.addEventListener('DOMContentLoaded',atualizarMenusTopo);
