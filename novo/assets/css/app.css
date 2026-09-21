@@ -826,3 +826,6 @@ body.sessao-empresa .menu-publico,body.sessao-empresa .menu-drop-candidato{displ
 /* BENEFÍCIO ÁREAS — duas linhas */
 #pagina-home .home-hero-benefits .beneficio-areas strong{font-size:13px!important;line-height:1.28!important;font-weight:800!important;color:#12364d!important;white-space:nowrap!important}
 @media(max-width:650px){#pagina-home .home-hero-benefits .beneficio-areas strong{font-size:11.5px!important;white-space:normal!important}}
+
+/* EMPREGAMAIS-SELO-NOVA-48H */
+.vaga-selo.nova-selo{background:#e8f7ef;color:#12623a;border:1px solid #b8e3ca;font-weight:900;letter-spacing:.45px}.vaga-hero-selos .nova-selo,.vaga-hero-selos .hero-nova{display:inline-flex;align-items:center;background:#e8f7ef;color:#12623a;border:1px solid #b8e3ca;font-weight:900;letter-spacing:.45px}
