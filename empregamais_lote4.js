@@ -925,10 +925,12 @@ window.addEventListener("load",function(){setTimeout(instalar,300);});
 (function(){
 var timer=null;
 function paginaPesadaDeFormulario(){
-var pub=document.getElementById("pagina-publicar");
-if(pub&&(pub.classList.contains("ativa")||getComputedStyle(pub).display!=="none"))return true;
-var cad=document.getElementById("pagina-cadastro-empresa");
-if(cad&&(cad.classList.contains("ativa")||getComputedStyle(cad).display!=="none"))return true;
+var ids=["pagina-publicar","pagina-cadastro-empresa"];
+for(var i=0;i&lt;ids.length;i++){
+ var p=document.getElementById(ids[i]);
+ if(!p)continue;
+ if(p.classList.contains("ativa")||p.classList.contains("pagina-ativa"))return true;
+}
 return false;
 }
 function atualizarLeve(){
