@@ -780,3 +780,9 @@ body.sessao-empresa .menu-publico,body.sessao-empresa .menu-drop-candidato{displ
 #pagina-home .home-search-extra select{height:48px!important;border:1px solid #d3e0e8!important;border-radius:9px!important;padding:0 12px!important;background:#fff!important;color:#29495b!important}
 @media(max-width:1000px){#pagina-home .home-hero-copy{width:70%!important}#pagina-home .home-hero-art{opacity:.35!important;right:2%!important}#pagina-home .home-search-wrap .busca{grid-template-columns:1fr 1fr!important}#pagina-home .home-search-extra{grid-template-columns:1fr 1fr!important;top:auto!important;bottom:82px!important}}
 @media(max-width:650px){#pagina-home .home-hero-art{display:none!important}#pagina-home .home-hero-copy{width:100%!important}#pagina-home .home-search-extra{grid-template-columns:1fr!important;bottom:72px!important;max-height:245px!important;overflow:auto!important}}
+
+
+/* CTA ANUNCIAR VAGA GRÁTIS — topo */
+.topo .btn-anunciar-vaga{min-height:46px!important;padding:0 18px!important;border-radius:11px!important;background:linear-gradient(135deg,#076b78,#078a91)!important;color:#fff!important;display:inline-flex!important;align-items:center!important;justify-content:center!important;gap:9px!important;font-size:14px!important;font-weight:800!important;white-space:nowrap!important;box-shadow:0 5px 14px rgba(5,105,119,.16)!important;transition:transform .16s ease,box-shadow .16s ease!important}
+.topo .btn-anunciar-vaga:hover{transform:translateY(-1px)!important;box-shadow:0 8px 20px rgba(5,105,119,.22)!important}
+.topo .btn-anunciar-icone{font-size:18px!important;line-height:1!important;color:#fff!important}
