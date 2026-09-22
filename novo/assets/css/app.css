@@ -2720,3 +2720,37 @@ padding:14px 14px!important;align-items:center!important
 #pagina-painel-candidato .cand-hero-actions button{min-height:36px!important;padding:8px 13px!important;border-radius:7px!important;font-size:11px!important;box-shadow:none!important}
 #pagina-painel-candidato .cand-hero-visual,#pagina-painel-candidato .cand-hero-visual-pro{display:none!important}
 @media(max-width:760px){#pagina-painel-candidato .cand-dashboard-hero{padding:21px 20px!important;border-radius:12px!important}#pagina-painel-candidato .cand-dashboard-hero h1{font-size:25px!important}.cand-hero-actions{flex-wrap:wrap!important}}
+
+/* EMPREGAMAIS-AJUSTES-VAGA-CANDIDATO-V22 */
+/* Texto da página completa da vaga: dois níveis maior */
+#pagina-vaga .vaga-texto,#pagina-vaga .vaga-conteudo-v2 section>p,#pagina-vaga .beneficios-tags p{font-size:17px!important;line-height:1.78!important}
+#pagina-vaga .vaga-conteudo-v2 h2{font-size:23px!important}
+/* Selos do hero: maiores, contidos e frase 50+ preservada */
+#pagina-vaga .vaga-hero-selos{display:flex!important;flex-flow:row nowrap!important;align-items:flex-end!important;gap:8px!important;max-width:100%!important;overflow-x:auto!important;overflow-y:hidden!important;scrollbar-width:none!important}
+#pagina-vaga .vaga-hero-selos::-webkit-scrollbar{display:none!important}
+#pagina-vaga .vaga-hero-selos>span{font-size:12.5px!important;height:34px!important;min-height:34px!important;padding:0 13px!important;flex:0 0 auto!important}
+#pagina-vaga .hero-50-bloco{min-width:154px!important;max-width:174px!important;flex:0 0 154px!important}
+#pagina-vaga .hero-50-bloco>small{display:block!important;font-size:9px!important;line-height:1.05!important;margin:0 0 3px!important;white-space:nowrap!important;text-align:center!important}
+#pagina-vaga .vaga-hero-selos .hero-50mais{width:100%!important;min-width:0!important;height:34px!important;min-height:34px!important;font-size:12px!important;padding:0 11px!important;overflow:hidden!important}
+/* Vagas relacionadas: 5 por tela, cards baixos e encerrados no salário */
+#pagina-vaga .relacionadas-wrap{max-width:1320px!important}
+#pagina-vaga #vagasRelacionadas{display:flex!important;gap:12px!important;overflow-x:auto!important;scroll-snap-type:x mandatory!important;padding:3px 2px 12px!important;scrollbar-width:thin!important}
+#pagina-vaga #vagasRelacionadas>.portal-vaga-nova{flex:0 0 calc((100% - 48px)/5)!important;min-width:0!important;min-height:250px!important;height:250px!important;padding:15px!important;scroll-snap-align:start!important}
+#pagina-vaga #vagasRelacionadas .vaga-card-topo{min-height:26px!important;margin-bottom:8px!important}
+#pagina-vaga #vagasRelacionadas .vaga-identidade{margin:5px 0 10px!important;gap:9px!important}
+#pagina-vaga #vagasRelacionadas .vaga-logo{width:48px!important;height:48px!important;flex-basis:48px!important}
+#pagina-vaga #vagasRelacionadas .vaga-identidade h3{font-size:15px!important;line-height:1.2!important}
+#pagina-vaga #vagasRelacionadas .vaga-identidade p{font-size:11.5px!important}
+#pagina-vaga #vagasRelacionadas .vaga-meta{gap:5px!important;margin:0 0 10px!important}
+#pagina-vaga #vagasRelacionadas .vaga-meta span{font-size:9.5px!important;padding:5px 6px!important}
+#pagina-vaga #vagasRelacionadas .vaga-salario-data{margin-top:auto!important;padding-top:7px!important}
+#pagina-vaga #vagasRelacionadas .salario-card{font-size:16px!important}
+#pagina-vaga #vagasRelacionadas .data-card{font-size:9px!important}
+#pagina-vaga #vagasRelacionadas .vaga-resumo,#pagina-vaga #vagasRelacionadas .vaga-card-rodape{display:none!important}
+/* Painel candidato: hero compacto, corporativo e sem emoji/ilustração */
+#pagina-painel-candidato .cand-dashboard-hero,#pagina-painel-candidato .cand-dash-hero,#pagina-painel-candidato .candidato-dashboard-hero{min-height:0!important;height:auto!important;padding:30px 40px!important;border-radius:16px!important;background:linear-gradient(120deg,#0868ad,#0878c7)!important}
+#pagina-painel-candidato .cand-dashboard-hero-art,#pagina-painel-candidato .cand-dash-hero-art,#pagina-painel-candidato .candidato-dashboard-hero-art{display:none!important}
+#pagina-painel-candidato .cand-dashboard-hero h1,#pagina-painel-candidato .cand-dash-hero h1,#pagina-painel-candidato .candidato-dashboard-hero h1{font-size:30px!important;line-height:1.1!important;margin:5px 0 7px!important}
+#pagina-painel-candidato .cand-dashboard-hero h1 .emoji,#pagina-painel-candidato .cand-dash-hero h1 .emoji{display:none!important}
+@media(max-width:1100px){#pagina-vaga #vagasRelacionadas>.portal-vaga-nova{flex-basis:calc((100% - 24px)/3)!important}}
+@media(max-width:650px){#pagina-vaga #vagasRelacionadas>.portal-vaga-nova{flex-basis:82%!important}#pagina-vaga .vaga-texto{font-size:16px!important}}
