@@ -4284,3 +4284,47 @@ overflow:visible!important
  #pagina-candidatos-empresa .cand-processo-expandido{padding:14px!important}
  #pagina-candidatos-empresa .cand-acoes-secundarias{grid-template-columns:1fr!important}
 }
+
+/* EMPREGAMAIS-PROCESSO-LAYOUT-REFERENCIA-V7 */
+#pagina-candidatos-empresa .candidato-card-compacto.processo-aberto .cand-gerenciar-linha{display:none!important}
+#pagina-candidatos-empresa .candidato-card-compacto.processo-aberto .cand-resumo-compacto{
+ display:grid!important;grid-template-columns:240px minmax(0,1fr)!important;gap:26px!important;
+ padding:24px 28px 20px!important;align-items:start!important
+}
+#pagina-candidatos-empresa .candidato-card-compacto.processo-aberto .cand-dados{
+ grid-column:1!important;grid-row:1!important;padding:12px 24px 18px 0!important;border-right:1px solid #dce7ee!important
+}
+#pagina-candidatos-empresa .candidato-card-compacto.processo-aberto .cand-aderencia{
+ grid-column:1!important;grid-row:2!important;width:100%!important;min-width:0!important;padding:18px!important;
+ border:1px solid #e3edf3!important;border-radius:12px!important;background:#f8fbfd!important
+}
+#pagina-candidatos-empresa .candidato-card-compacto.processo-aberto .candidato-acoes-compactas{display:none!important}
+#pagina-candidatos-empresa .candidato-card-compacto.processo-aberto .cand-processo-expandido{
+ display:block!important;grid-column:2!important;grid-row:1/3!important;border-top:0!important;padding:0!important;background:#fff!important
+}
+#pagina-candidatos-empresa .candidato-card-compacto.processo-aberto .cand-resumo-compacto>.cand-processo-expandido{display:block!important}
+#pagina-candidatos-empresa .cand-processo-toolbar{grid-template-columns:minmax(210px,.8fr) minmax(0,2.2fr)!important}
+#pagina-candidatos-empresa .cand-processo-toolbar:before{
+ content:"SITUAÇÃO DO CANDIDATO";position:absolute;left:0;top:-13px;font-size:8px;font-weight:900;letter-spacing:.08em;color:#657f92
+}
+#pagina-candidatos-empresa .cand-acoes-secundarias{grid-template-columns:repeat(4,minmax(110px,1fr))!important}
+#pagina-candidatos-empresa .cand-acoes-secundarias .btn{
+ min-height:48px!important;padding:10px 12px!important;display:flex!important;align-items:center!important;justify-content:center!important;
+ border-radius:10px!important;font-size:12px!important;font-weight:900!important;line-height:1.2!important
+}
+#pagina-candidatos-empresa .cand-acoes-secundarias .btn:first-child{background:#078aa0!important;border-color:#078aa0!important;color:#fff!important}
+#pagina-candidatos-empresa .cand-acoes-secundarias .btn:nth-child(2){background:#effaf5!important;border-color:#bfe6d2!important;color:#126c49!important}
+#pagina-candidatos-empresa .cand-processo-voltar{
+ grid-column:1/-1!important;margin-top:20px!important;padding-top:18px!important;border-top:1px solid #dce7ee!important
+}
+#pagina-candidatos-empresa .cand-processo-voltar button{
+ min-height:40px;padding:9px 16px;border:1px solid #8eb7ca;border-radius:9px;background:#fff;color:#075e78;
+ font:900 12px Questrial,sans-serif;cursor:pointer
+}
+#pagina-candidatos-empresa .cand-processo-voltar button:hover{background:#eef8fb}
+@media(max-width:900px){
+ #pagina-candidatos-empresa .candidato-card-compacto.processo-aberto .cand-resumo-compacto{grid-template-columns:1fr!important}
+ #pagina-candidatos-empresa .candidato-card-compacto.processo-aberto .cand-dados{grid-column:1!important;grid-row:auto!important;border-right:0!important;border-bottom:1px solid #dce7ee!important;padding-right:0!important}
+ #pagina-candidatos-empresa .candidato-card-compacto.processo-aberto .cand-aderencia{grid-column:1!important;grid-row:auto!important}
+ #pagina-candidatos-empresa .candidato-card-compacto.processo-aberto .cand-processo-expandido{grid-column:1!important;grid-row:auto!important}
+}
