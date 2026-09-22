@@ -2865,3 +2865,13 @@ padding:14px 14px!important;align-items:center!important
 .premium-v2-bottom{margin-top:18px;display:flex;justify-content:space-between;align-items:center;gap:25px;background:#eef4f8;border:1px solid #d6e2ea;border-radius:14px;padding:22px 27px}.premium-v2-bottom h2{font-size:20px;margin:4px 0;color:#143d5e}.premium-v2-bottom p{font-size:11px;color:#718596;margin:0}.premium-v2-bottom>div:last-child{display:grid;grid-template-columns:auto auto;align-items:center;gap:5px 13px}.premium-v2-bottom strong{font-size:21px;color:#123f66}.premium-v2-bottom strong small{font-size:10px;font-weight:600}.premium-v2-bottom>div:last-child>small{grid-column:1/-1;font-size:8.5px;color:#8193a1;text-align:right}
 @media(max-width:900px){.premium-v2-hero{grid-template-columns:1fr}.premium-v2-summary{padding:22px 28px}.premium-v2-grid{grid-template-columns:1fr 1fr}.premium-v2-free{grid-template-columns:1fr}.premium-v2-bottom{align-items:flex-start;flex-direction:column}}
 @media(max-width:600px){.premium-v2-wrap{padding:12px 11px 45px}.premium-v2-copy{padding:25px 21px}.premium-v2-copy h1{font-size:25px}.premium-v2-grid{grid-template-columns:1fr}.premium-v2-bottom>div:last-child{grid-template-columns:1fr}.premium-v2-bottom>div:last-child>small{text-align:left}.premium-v2-actions{align-items:flex-start;flex-direction:column}}
+
+/* EMPREGAMAIS-HOME-RECENTES-3-COLUNAS-NOVA48-V20 */
+#pagina-home .home-recentes-layout{grid-template-columns:minmax(0,1fr) 238px!important;gap:18px!important;align-items:start!important}
+#pagina-home .home-recentes .home-recentes-main .vagas-grid{display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:12px!important}
+#pagina-home .home-recentes .portal-vaga-nova{min-width:0!important;width:100%!important}
+.portal-vaga-nova .nova-selo{background:#eef8f4!important;border:1px solid #b9ddcf!important;color:#147454!important;font-weight:900!important;letter-spacing:.04em!important}
+#pagina-home .home-recentes .vaga-selos{gap:3px!important}
+#pagina-home .home-recentes .vaga-selo{padding-left:5px!important;padding-right:5px!important;font-size:8px!important}
+@media(max-width:1100px){#pagina-home .home-recentes .home-recentes-main .vagas-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important}}
+@media(max-width:760px){#pagina-home .home-recentes-layout{grid-template-columns:1fr!important}#pagina-home .home-recentes .home-recentes-main .vagas-grid{grid-template-columns:1fr!important}}
