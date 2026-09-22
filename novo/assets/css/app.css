@@ -2689,3 +2689,23 @@ padding:14px 14px!important;align-items:center!important
  #pagina-vaga .vaga-conteudo-v2 .beneficios-tags p{font-size:18px!important;line-height:1.68!important}
  #pagina-vaga .vaga-conteudo-v2 h2{font-size:23px!important}
 }
+
+/* EMPREGAMAIS-VAGAS-RELACIONADAS-5-CARROSSEL-V19 */
+#pagina-vaga #vagasRelacionadas{display:flex!important;grid-template-columns:none!important;gap:12px!important;overflow-x:auto!important;overflow-y:hidden!important;scroll-snap-type:x mandatory!important;padding:2px 2px 12px!important;scrollbar-width:thin!important}
+#pagina-vaga #vagasRelacionadas>.portal-vaga-nova{flex:0 0 calc((100% - 48px)/5)!important;width:calc((100% - 48px)/5)!important;min-width:0!important;min-height:285px!important;height:285px!important;padding:15px!important;scroll-snap-align:start!important;display:flex!important;flex-direction:column!important;overflow:hidden!important}
+#pagina-vaga #vagasRelacionadas .vaga-card-topo{min-height:26px!important;height:26px!important;margin-bottom:7px!important}
+#pagina-vaga #vagasRelacionadas .vaga-selo{height:23px!important;min-height:23px!important;font-size:7.8px!important;padding:0 5px!important}
+#pagina-vaga #vagasRelacionadas .vaga-logo{width:48px!important;height:48px!important;flex:0 0 48px!important}
+#pagina-vaga #vagasRelacionadas .vaga-identidade{gap:9px!important;margin-bottom:8px!important}
+#pagina-vaga #vagasRelacionadas .vaga-identidade h3{font-size:15px!important;line-height:1.15!important;margin-bottom:3px!important}
+#pagina-vaga #vagasRelacionadas .vaga-identidade p{font-size:10.5px!important}
+#pagina-vaga #vagasRelacionadas .vaga-meta{gap:4px!important;margin:6px 0 8px!important}
+#pagina-vaga #vagasRelacionadas .vaga-meta span{font-size:8.5px!important;padding:5px 6px!important}
+#pagina-vaga #vagasRelacionadas .vaga-salario{font-size:16px!important;margin-top:auto!important;margin-bottom:8px!important}
+#pagina-vaga #vagasRelacionadas .vaga-data{font-size:8.5px!important}
+#pagina-vaga #vagasRelacionadas .vaga-resumo,#pagina-vaga #vagasRelacionadas .vaga-descricao,#pagina-vaga #vagasRelacionadas .vaga-card-descricao{display:none!important}
+#pagina-vaga #vagasRelacionadas .vaga-card-rodape{margin-top:0!important;padding-top:0!important;border-top:0!important}
+#pagina-vaga #vagasRelacionadas .vaga-card-rodape .btn,#pagina-vaga #vagasRelacionadas .vaga-card-rodape button,#pagina-vaga #vagasRelacionadas .ver-vaga{height:35px!important;min-height:35px!important;padding:0 10px!important;font-size:10.5px!important;border-radius:8px!important}
+@media(max-width:1100px){#pagina-vaga #vagasRelacionadas>.portal-vaga-nova{flex-basis:calc((100% - 36px)/4)!important;width:calc((100% - 36px)/4)!important}}
+@media(max-width:850px){#pagina-vaga #vagasRelacionadas>.portal-vaga-nova{flex-basis:calc((100% - 24px)/3)!important;width:calc((100% - 24px)/3)!important}}
+@media(max-width:600px){#pagina-vaga #vagasRelacionadas>.portal-vaga-nova{flex-basis:82%!important;width:82%!important;height:275px!important;min-height:275px!important}}
