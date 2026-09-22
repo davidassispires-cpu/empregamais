@@ -3742,3 +3742,49 @@ overflow:visible!important
     background:#f8fcfc!important;box-shadow:none!important;z-index:1!important;
   }
 }
+
+/* EMPREGAMAIS-BANNER-PUBLICAR-FIXO-V49
+   Banner permanece visível na viewport no desktop, no mesmo tamanho compacto.
+   A coluna reserva o espaço para não sobrepor o formulário. */
+@media (min-width:901px){
+ #pagina-publicar .em-publish-layout{
+   grid-template-columns:minmax(0,1fr) 315px!important;
+   gap:24px!important;
+   align-items:start!important;
+ }
+ #pagina-publicar .em-publish-visual-v2{
+   position:fixed!important;
+   top:88px!important;
+   right:max(24px,calc((100vw - 1460px)/2 + 24px))!important;
+   left:auto!important;
+   width:315px!important;
+   height:auto!important;
+   min-height:0!important;
+   max-height:calc(100vh - 112px)!important;
+   margin:0!important;
+   overflow:hidden!important;
+   z-index:20!important;
+ }
+ #pagina-publicar .em-publish-visual-v2 .em-visual-content{
+   padding:22px!important;
+ }
+}
+@media (min-width:901px) and (max-width:1180px){
+ #pagina-publicar .em-publish-layout{grid-template-columns:minmax(0,1fr) 280px!important;gap:18px!important}
+ #pagina-publicar .em-publish-visual-v2{
+   width:280px!important;
+   right:24px!important;
+   top:88px!important;
+ }
+ #pagina-publicar .em-publish-visual-v2 .em-visual-content{padding:18px!important}
+}
+@media (max-width:900px){
+ #pagina-publicar .em-publish-visual-v2{
+   position:relative!important;
+   inset:auto!important;
+   width:100%!important;
+   max-height:none!important;
+   margin:18px 0 0!important;
+   z-index:1!important;
+ }
+}
