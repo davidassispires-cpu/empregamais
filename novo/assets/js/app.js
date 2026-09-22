@@ -783,6 +783,35 @@ function fecharSucessoCurriculoEM(){document.getElementById('cvSuccessModal')?.c
 document.addEventListener('click',e=>{const m=document.getElementById('cvSuccessModal');if(e.target===m)fecharSucessoCurriculoEM()});
 
 
+/* EMPREGAMAIS-ADMIN-CENTRAL-PENDENCIAS-V1 */
+function adminColetarPendenciasEM(){
+ const vs=ler('empregaMaisVagas'),es=ler('empregaMaisEmpresas'),den=ler('empregaMaisDenuncias'),pedidos=ler('empregaMaisPedidosPlano'),extras=ler('empregaMaisExtras'),premium=ler('empregaMaisPedidosPremiumCandidato');
+ const vagas=vs.filter(v=>v.status==='pendente');
+ const verificacoes=es.filter(e=>e.verificacaoStatus==='pendente'||e.verificacaoStatus==='em_analise');
+ const denuncias=den.filter(d=>d.status==='pendente');
+ const planos=pedidos.filter(x=>!['ativo','aprovado','pago','concluido','cancelado','reprovado'].includes(String(x.status||'').toLowerCase()));
+ const extrasPend=extras.filter(x=>!['ativo','concluido','cancelado','reprovado'].includes(String(x.status||'').toLowerCase()));
+ const premiumPend=premium.filter(x=>!['ativo','aprovado','pago','concluido','cancelado','reprovado'].includes(String(x.status||'').toLowerCase()));
+ return {vagas,verificacoes,denuncias,planos,extras:extrasPend,premium:premiumPend,total:vagas.length+verificacoes.length+denuncias.length+planos.length+extrasPend.length+premiumPend.length};
+}
+function adminAtualizarBadgePendenciasEM(){
+ const p=adminColetarPendenciasEM(),b=document.getElementById('adminBadgePendencias');
+ if(b){b.textContent=p.total||'';b.style.display=p.total?'grid':'none'}
+ return p;
+}
+function adminRenderPendenciasEM(){
+ const p=adminAtualizarBadgePendenciasEM(),sec=(titulo,qtd,html,aba)=>qtd?'<section class="admin-bloco"><h2>'+titulo+' <span class="admin-pill">'+qtd+'</span></h2>'+html+(aba?'<div style="margin-top:12px"><button class="btn" onclick="adminAba(\''+aba+'\')">Abrir área completa</button></div>':'')+'</section>':'';
+ if(!p.total)return '<div class="admin-bloco"><h2>Central de pendências</h2><div class="admin-empty">Tudo em dia. Não há nenhuma pendência no portal.</div></div>';
+ const esPend=p.verificacoes.map(e=>Object.assign({},e,{verificacaoStatus:e.verificacaoStatus||'pendente'}));
+ const planosHtml='<div class="admin-lista">'+p.planos.concat(p.premium).map(x=>'<div class="admin-linha"><div><strong>'+esc(x.empresaNome||x.candidatoNome||x.nome||'Solicitação de plano')+'</strong><small>'+esc(x.plano||x.tipo||'Plano')+' · '+esc(x.status||'Pendente')+'</small></div></div>').join('')+'</div>';
+ return '<div class="admin-bloco"><h2>Central de pendências</h2><p class="admin-sub">Tudo que exige atenção administrativa aparece aqui automaticamente.</p><div class="admin-warning"><strong>'+p.total+'</strong> pendência(s) aguardando ação.</div></div>'+
+ sec('Vagas aguardando análise',p.vagas.length,adminTabelaVagas(p.vagas),'vagas')+
+ sec('Verificações de empresas',p.verificacoes.length,adminVerificacoesEmpresasEM(esPend),'verificacoes')+
+ sec('Denúncias pendentes',p.denuncias.length,adminTabelaDenuncias(p.denuncias,ler('empregaMaisVagas')),'denuncias')+
+ sec('Solicitações de planos',p.planos.length+p.premium.length,planosHtml,'planos')+
+ sec('Extras aguardando ação',p.extras.length,adminTabelaExtras(p.extras,ler('empregaMaisVagas')),'extras');
+}
+
 /* EMPREGAMAIS-ADMIN-VERIFICACAO-EMPRESAS-V1 */
 async function adminCarregarEmpresasSupabaseEM(){
  const t=await adminSbToken();
@@ -1052,4 +1081,16 @@ sbCarregarCandidaturasEM=async function(renderizar){
   if(renderizar!==false){if(papelAtual()==="empresa"&&document.getElementById("listaCandidatosEmpresa"))renderizarCandidatosEmpresa();if(papelAtual()==="candidato"){if(document.getElementById("listaCandidaturas"))renderizarCandidaturasCandidato();if(document.getElementById("candMetricaCandidaturas"))atualizarPainelCandidato()}}
   return sbCandidaturasCacheEM
  }finally{sbCandidaturasCarregandoEM=false}
+};
+
+/* EMPREGAMAIS-ADMIN-CENTRAL-PENDENCIAS-ROTA-V1 */
+const _adminAbaPendenciasEM=adminAba;
+adminAba=async function(aba,btn){
+ if(aba!=='pendencias'){const r=await _adminAbaPendenciasEM(aba,btn);adminAtualizarBadgePendenciasEM();return r}
+ if(sessionStorage.getItem('empregaMaisAdmin')!=='1'){irPara('login-admin');return}
+ document.querySelectorAll('[data-admin-tab]').forEach(b=>b.classList.toggle('ativo',b.dataset.adminTab===aba));
+ const out=document.getElementById('adminConteudo');if(!out)return;
+ out.innerHTML='<div class="admin-bloco"><h2>Central de pendências</h2><div class="admin-empty">Atualizando pendências...</div></div>';
+ try{await adminSincronizarPainelSupabase()}catch(err){console.error('ADM pendências:',err)}
+ out.innerHTML=adminRenderPendenciasEM();
 };
