@@ -1023,3 +1023,30 @@ loginCandidato=function(e){
   console.error("Login candidato / Supabase:",err);const t=/email not confirmed/i.test(err.message)?"Confirme seu e-mail antes de entrar.":/invalid login|invalid credentials/i.test(err.message)?"E-mail ou senha incorretos.":("Não foi possível entrar: "+err.message);msg("#msgLoginCandidato",t)
  })
 };
+
+
+/* EMPREGAMAIS-CANDIDATURAS-LEGADO-MIGRACAO-V1 */
+const _sbCarregarCandidaturasBaseEM=sbCarregarCandidaturasEM;
+sbCarregarCandidaturasEM=async function(renderizar){
+ if(sbCandidaturasCarregandoEM)return sbCandidaturasCacheEM;
+ const legado=ler("empregaMaisCandidaturas").slice(),token=await sbGarantirSessaoEM();if(!token)return candidaturas();
+ sbCandidaturasCarregandoEM=true;
+ try{
+  let rows=await sbJsonEM(EMPREGAMAIS_SUPABASE_URL+"/rest/v1/candidaturas?select=*&order=criado_em.desc",{method:"GET",headers:sbHeadersEM(token)});rows=Array.isArray(rows)?rows:[];
+  if(papelAtual()==="candidato"){
+   const u=await sbUsuarioAtualEM(),email=String(sessionStorage.getItem("candidatoEmail")||u.email||"").toLowerCase(),ids=new Set(rows.map(x=>x.id));
+   const antigas=legado.filter(c=>String(c.email||"").toLowerCase()===email&&!ids.has(c.id));
+   for(const c of antigas){
+    const v=(sbVagasCacheEM.length?sbVagasCacheEM:ler("empregaMaisVagas")).find(x=>x.id===c.vagaId);if(!v?.userId)continue;
+    const criado=c.criadoEm||new Date().toISOString(),hist=Array.isArray(c.historico)&&c.historico.length?c.historico:[{status:"Candidatura enviada",data:criado},{status:c.status||"Em avaliação",data:c.atualizadoEm||criado}];
+    try{
+     const payload={id:c.id,vaga_id:c.vagaId,candidato_user_id:u.id,empresa_user_id:v.userId,candidato_nome:c.candidato||c.nome||"",candidato_email:c.email||u.email||"",candidato_telefone:c.telefone||"",status:c.status||"Em avaliação",historico:hist,entrevista:c.entrevista||null,curriculo:c.curriculo||null,perfil_profissional:c.perfilProfissional||null,curriculo_origem:c.curriculoOrigem||"",aderencia:Number.isFinite(c.aderencia)?c.aderencia:calcularAderenciaCandidatoEM(c,v),criado_em:criado,atualizado_em:c.atualizadoEm||criado,contratado_em:c.contratadoEm||null};
+     const ins=await sbJsonEM(EMPREGAMAIS_SUPABASE_URL+"/rest/v1/candidaturas",{method:"POST",headers:Object.assign(sbHeadersEM(token),{"Prefer":"return=representation"}),body:JSON.stringify(payload)});if(Array.isArray(ins)&&ins[0])rows.push(ins[0])
+    }catch(err){console.warn("Candidatura antiga não migrada:",c.id,err)}
+   }
+  }
+  sbEspelharCandidaturasEM(rows.map(sbMapCandidaturaEM));
+  if(renderizar!==false){if(papelAtual()==="empresa"&&document.getElementById("listaCandidatosEmpresa"))renderizarCandidatosEmpresa();if(papelAtual()==="candidato"){if(document.getElementById("listaCandidaturas"))renderizarCandidaturasCandidato();if(document.getElementById("candMetricaCandidaturas"))atualizarPainelCandidato()}}
+  return sbCandidaturasCacheEM
+ }finally{sbCandidaturasCarregandoEM=false}
+};
