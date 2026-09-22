@@ -225,17 +225,10 @@ async function adminSolicitarCorrecaoVaga(id){const motivo=prompt('Informe o que
 const adminVerVagaLocal=adminVerVaga;
 adminVerVaga=function(id){adminVerVagaLocal(id);const box=$('#adminVagaConteudo'),v=ler('empregaMaisVagas').find(x=>x.id===id);if(!box||!v)return;const a=box.querySelector('.admin-modal-acoes');if(!a)return;const add=(txt,cls,fn)=>{const b=document.createElement('button');b.className='btn '+(cls||'');b.textContent=txt;b.onclick=fn;a.appendChild(b)};add('Editar vaga','',()=>adminEditarVaga(id));add(v.destaque?'Retirar destaque':'Colocar em destaque','',()=>adminAlternarDestaqueVaga(id));add(v.urgente?'Remover urgência':'Marcar como urgente','',()=>adminAlternarUrgenciaVaga(id));if(v.status!=='encerrada')add('Solicitar correção','admin-correcao-btn',()=>adminSolicitarCorrecaoVaga(id));add('Excluir vaga','btn-perigo',()=>adminExcluirVaga(id))}
 async function adminCarregarCandidatosSupabaseEM(){
- const t=await adminSbToken(),locais=ler('empregaMaisCandidatos'),map=new Map();
- locais.forEach(x=>{const k=String(x.userId||x.email||x.id||'').toLowerCase();if(k)map.set(k,x)});
- const rows=await sbJsonEM(EMPREGAMAIS_SUPABASE_URL+'/rest/v1/candidaturas?select=candidato_user_id,candidato_nome,candidato_email,candidato_telefone,perfil_profissional,criado_em&order=criado_em.desc',{method:'GET',headers:sbHeadersEM(t)});
- (Array.isArray(rows)?rows:[]).forEach(x=>{
-  const email=String(x.candidato_email||'').toLowerCase(),uid=String(x.candidato_user_id||''),k=String(uid||email).toLowerCase();
-  if(!k)return;
-  const ant=map.get(k)||[...map.values()].find(y=>email&&String(y.email||'').toLowerCase()===email)||{};
-  const perfil=(x.perfil_profissional&&typeof x.perfil_profissional==='object')?x.perfil_profissional:(ant.perfil||{});
-  map.set(k,Object.assign({},ant,{id:ant.id||('candidato_'+(uid||email||Date.now())),userId:uid||ant.userId||'',nome:x.candidato_nome||ant.nome||'',email:email||ant.email||'',telefone:x.candidato_telefone||ant.telefone||'',cidade:ant.cidade||perfil.cidade||'',perfil:perfil,criadoEm:ant.criadoEm||x.criado_em||''}));
- });
- const todas=[...map.values()];gravar('empregaMaisCandidatos',todas);return todas
+ const t=await adminSbToken();
+ const rows=await sbJsonEM(EMPREGAMAIS_SUPABASE_URL+'/rest/v1/candidatos?select=*&order=criado_em.desc',{method:'GET',headers:sbHeadersEM(t)});
+ const todas=(Array.isArray(rows)?rows:[]).map(x=>({id:x.id||'',userId:x.user_id||'',nome:x.nome||'',email:String(x.email||'').toLowerCase(),telefone:x.telefone||'',cidade:x.cidade||'',perfil:(x.perfil&&typeof x.perfil==='object')?x.perfil:{},premium:x.premium===true,premiumAtivo:x.premium===true,premiumCortesiaAdmin:x.premium_cortesia_admin===true,planoCandidato:x.premium===true?'premium':'',premiumAtivadoEm:x.premium_ativado_em||'',premiumValidoAte:x.premium_valido_ate||'',criadoEm:x.criado_em||'',atualizadoEm:x.atualizado_em||''}));
+ gravar('empregaMaisCandidatos',todas);return todas
 }
 async function adminSincronizarPainelSupabase(){let ok=true;try{await adminCarregarVagasSupabase()}catch(err){console.error('ADM sincronização vagas Supabase:',err);ok=false}try{await adminCarregarEmpresasSupabaseEM()}catch(err){console.error('ADM sincronização empresas Supabase:',err);ok=false}try{await adminCarregarCandidatosSupabaseEM()}catch(err){console.error('ADM sincronização candidatos Supabase:',err);ok=false}return ok}
 /* EMPREGAMAIS-ADMIN-CENTRAL-FUNCOES-V2 */
@@ -1000,6 +993,13 @@ function sbSalvarCandidatoLocalEM(d){
  if(i>=0)a[i]={...a[i],...d,senha:a[i].senha||""};else a.push(d);
  gravar("empregaMaisCandidatos",a);return i>=0?a[i]:d
 }
+async function sbUpsertCandidatoSupabaseEM(d,token){
+ if(!d?.userId||!token)return d;
+ const payload={user_id:d.userId,nome:d.nome||"",email:String(d.email||"").toLowerCase(),telefone:d.telefone||"",cidade:d.cidade||"",perfil:(d.perfil&&typeof d.perfil==="object")?d.perfil:{}};
+ const rows=await sbJsonEM(EMPREGAMAIS_SUPABASE_URL+"/rest/v1/candidatos?on_conflict=user_id",{method:"POST",headers:Object.assign(sbHeadersEM(token),{"Prefer":"resolution=merge-duplicates,return=representation"}),body:JSON.stringify(payload)});
+ const x=Array.isArray(rows)?rows[0]:rows;if(!x)return d;
+ return Object.assign({},d,{id:x.id||d.id,userId:x.user_id||d.userId,nome:x.nome||d.nome,email:String(x.email||d.email||"").toLowerCase(),telefone:x.telefone||d.telefone,cidade:x.cidade||d.cidade,perfil:(x.perfil&&typeof x.perfil==="object")?x.perfil:(d.perfil||{}),premium:x.premium===true,premiumAtivo:x.premium===true,premiumCortesiaAdmin:x.premium_cortesia_admin===true,planoCandidato:x.premium===true?"premium":"",premiumAtivadoEm:x.premium_ativado_em||"",premiumValidoAte:x.premium_valido_ate||"",criadoEm:x.criado_em||d.criadoEm,atualizadoEm:x.atualizado_em||""})
+}
 function sbCandidatoDoAuthEM(auth,fallback){
  const u=auth?.user||auth||{},m=u.user_metadata||{},f=fallback||{};
  return {id:f.id||("candidato_"+(u.id||Date.now())),userId:u.id||f.userId||"",nome:m.nome||f.nome||"",email:String(u.email||f.email||"").toLowerCase(),telefone:m.telefone||f.telefone||"",cidade:m.cidade||f.cidade||"",perfil:f.perfil||{},criadoEm:f.criadoEm||u.created_at||new Date().toISOString()}
@@ -1021,9 +1021,10 @@ cadastrarCandidato=function(e){
  if(senha.length<6)return msg("#msgCadastroCandidato","A senha deve ter pelo menos 6 caracteres.");
  if(senha!==$("#cadCandSenha2").value)return msg("#msgCadastroCandidato","As senhas não conferem.");
  msg("#msgCadastroCandidato","Criando sua conta...");
- sbCadastrarAuthCandidatoEM(email,senha,nome,telefone,cidade).then(auth=>{
-   const d=sbSalvarCandidatoLocalEM(sbCandidatoDoAuthEM(auth,{nome,email,telefone,cidade}));
+ sbCadastrarAuthCandidatoEM(email,senha,nome,telefone,cidade).then(async auth=>{
+   let d=sbSalvarCandidatoLocalEM(sbCandidatoDoAuthEM(auth,{nome,email,telefone,cidade}));
    if(!auth?.access_token){msg("#msgCadastroCandidato","Cadastro criado. Confirme seu e-mail para ativar a conta.",true);return}
+   d=sbSalvarCandidatoLocalEM(await sbUpsertCandidatoSupabaseEM(d,auth.access_token));
    concluirEntradaCandidatoSupabaseEM(d)
  }).catch(err=>{console.error("Cadastro candidato / Supabase:",err);const t=/already|registered|exists/i.test(err.message)?"Já existe uma conta com este e-mail.":("Não foi possível criar a conta: "+err.message);msg("#msgCadastroCandidato",t)})
 };
@@ -1033,9 +1034,10 @@ loginCandidato=function(e){
  if(!email.includes("@"))return msg("#msgLoginCandidato","Informe um e-mail válido.");
  if(!senha)return msg("#msgLoginCandidato","Informe sua senha.");
  msg("#msgLoginCandidato","Entrando...");
- sbLoginAuthCandidatoEM(email,senha).then(auth=>{
+ sbLoginAuthCandidatoEM(email,senha).then(async auth=>{
    const antigo=ler("empregaMaisCandidatos").find(x=>String(x.email||"").toLowerCase()===email)||{email};
-   const d=sbSalvarCandidatoLocalEM(sbCandidatoDoAuthEM(auth,antigo));
+   let d=sbSalvarCandidatoLocalEM(sbCandidatoDoAuthEM(auth,antigo));
+   d=sbSalvarCandidatoLocalEM(await sbUpsertCandidatoSupabaseEM(d,auth.access_token));
    concluirEntradaCandidatoSupabaseEM(d)
  }).catch(err=>{console.error("Login candidato / Supabase:",err);const t=/email not confirmed/i.test(err.message)?"Confirme seu e-mail antes de entrar.":/invalid login|invalid credentials/i.test(err.message)?"E-mail ou senha incorretos.":("Não foi possível entrar: "+err.message);msg("#msgLoginCandidato",t)})
 };
@@ -1144,10 +1146,10 @@ loginCandidato=function(e){
  e.preventDefault();const email=$("#loginCandEmail").value.trim().toLowerCase(),senha=$("#loginCandSenha").value;
  if(!email.includes("@"))return msg("#msgLoginCandidato","Informe um e-mail válido.");if(!senha)return msg("#msgLoginCandidato","Informe sua senha.");
  msg("#msgLoginCandidato","Entrando...");
- sbLoginAuthCandidatoEM(email,senha).then(auth=>{const antigo=ler("empregaMaisCandidatos").find(x=>String(x.email||"").toLowerCase()===email)||{email};const d=sbSalvarCandidatoLocalEM(sbCandidatoDoAuthEM(auth,antigo));concluirEntradaCandidatoSupabaseEM(d)}).catch(async err=>{
+ sbLoginAuthCandidatoEM(email,senha).then(async auth=>{const antigo=ler("empregaMaisCandidatos").find(x=>String(x.email||"").toLowerCase()===email)||{email};let d=sbSalvarCandidatoLocalEM(sbCandidatoDoAuthEM(auth,antigo));d=sbSalvarCandidatoLocalEM(await sbUpsertCandidatoSupabaseEM(d,auth.access_token));concluirEntradaCandidatoSupabaseEM(d)}).catch(async err=>{
   const antigo=ler("empregaMaisCandidatos").find(x=>String(x.email||"").toLowerCase()===email&&x.senha===senha);
   if(antigo&&/invalid login|invalid credentials/i.test(err.message||"")){
-   try{const auth=await sbCadastrarAuthCandidatoEM(email,senha,antigo.nome||"",antigo.telefone||"",antigo.cidade||"");const d=sbSalvarCandidatoLocalEM(sbCandidatoDoAuthEM(auth,antigo));if(!auth?.access_token){msg("#msgLoginCandidato","Sua conta foi migrada. Confirme seu e-mail para entrar.",true);return}concluirEntradaCandidatoSupabaseEM(d);return}catch(mig){console.error("Migração candidato legado:",mig)}
+   try{const auth=await sbCadastrarAuthCandidatoEM(email,senha,antigo.nome||"",antigo.telefone||"",antigo.cidade||"");let d=sbSalvarCandidatoLocalEM(sbCandidatoDoAuthEM(auth,antigo));if(!auth?.access_token){msg("#msgLoginCandidato","Sua conta foi migrada. Confirme seu e-mail para entrar.",true);return}d=sbSalvarCandidatoLocalEM(await sbUpsertCandidatoSupabaseEM(d,auth.access_token));concluirEntradaCandidatoSupabaseEM(d);return}catch(mig){console.error("Migração candidato legado:",mig)}
   }
   console.error("Login candidato / Supabase:",err);const t=/email not confirmed/i.test(err.message)?"Confirme seu e-mail antes de entrar.":/invalid login|invalid credentials/i.test(err.message)?"E-mail ou senha incorretos.":("Não foi possível entrar: "+err.message);msg("#msgLoginCandidato",t)
  })
