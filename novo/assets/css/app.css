@@ -4090,3 +4090,18 @@ overflow:visible!important
  font:800 11px Questrial,sans-serif;cursor:pointer;transition:.18s ease
 }
 #pagina-candidatos-empresa .cand-voltar-vagas:hover{background:#edf7f9;border-color:#7fb5c3;transform:translateX(-1px)}
+
+/* EMPREGAMAIS-CANDIDATO-NOME-GERENCIAR-V4 */
+#pagina-candidatos-empresa .cand-resumo-compacto{position:relative;padding-bottom:54px}
+#pagina-candidatos-empresa .candidato-acoes-compactas{grid-template-columns:122px minmax(125px,auto);grid-template-rows:auto;align-items:end}
+#pagina-candidatos-empresa .candidato-acoes-compactas>.btn-azul{grid-column:1;grid-row:1}
+#pagina-candidatos-empresa .cand-situacao-wrap{grid-column:2;grid-row:1;align-self:end}
+#pagina-candidatos-empresa .cand-gerenciar-linha{position:absolute;right:18px;bottom:14px;display:flex;justify-content:flex-end}
+#pagina-candidatos-empresa .cand-gerenciar-linha .cand-gerenciar-btn{
+ position:static!important;display:inline-flex!important;align-items:center;justify-content:center;
+ width:auto!important;min-width:155px!important;max-width:none!important;min-height:34px!important;
+ padding:7px 14px!important;margin:0!important;border:1px solid #9ebfce!important;border-radius:9px!important;
+ background:#f8fcfd!important;color:#075e73!important;font-weight:900!important
+}
+#pagina-candidatos-empresa .cand-gerenciar-linha .cand-gerenciar-btn:hover{background:#edf8fa!important;border-color:#6da7b8!important}
+@media(max-width:650px){#pagina-candidatos-empresa .cand-resumo-compacto{padding-bottom:62px}#pagina-candidatos-empresa .cand-gerenciar-linha{left:14px;right:14px;bottom:13px;justify-content:stretch}#pagina-candidatos-empresa .cand-gerenciar-linha .cand-gerenciar-btn{width:100%!important;min-width:0!important}}
