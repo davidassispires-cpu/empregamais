@@ -109,10 +109,27 @@ const _atualizarPainelCandidatoLocalEM=atualizarPainelCandidato;
 atualizarPainelCandidato=async function(){
  await sincronizarCandidatoLogadoSupabaseEM();
  _atualizarPainelCandidatoLocalEM();
- const c=candidatoLogado(),ativo=candidatoPremiumAtivoEM(c),nav=document.querySelector('.cand-premium-nav span');
+ const c=candidatoLogado(),ativo=candidatoPremiumAtivoEM(c),nav=document.querySelector('.cand-premium-nav span'),pagina=document.getElementById('pagina-painel-candidato');
  if(nav)nav.textContent=ativo?'Premium ✓':'Premium';
  const side=document.querySelector('.cand-side-user small');
  if(side)side.textContent=ativo?'Candidato Premium':'Área do candidato';
+ if(pagina)pagina.classList.toggle('cand-dashboard-premium',ativo);
+ let faixa=document.getElementById('candPremiumStatusCard');
+ if(!faixa&&pagina){
+  const hero=pagina.querySelector('.cand-dashboard-hero');
+  if(hero){faixa=document.createElement('section');faixa.id='candPremiumStatusCard';faixa.className='cand-premium-status-card';hero.insertAdjacentElement('afterend',faixa)}
+ }
+ if(faixa){
+  if(!ativo){faixa.hidden=true}
+  else{
+   faixa.hidden=false;
+   const ate=c?.premiumValidoAte?new Date(c.premiumValidoAte).toLocaleDateString('pt-BR'):'Sem prazo definido',origem=c?.premiumCortesiaAdmin?'Cortesia administrativa':'Assinatura Premium';
+   faixa.innerHTML='<div class="cand-premium-status-icon">★</div><div class="cand-premium-status-copy"><span>EMPREGAMAIS PREMIUM</span><strong>Seu Premium está ativo</strong><p>'+esc(origem)+' · acesso liberado até <b>'+esc(ate)+'</b></p></div><div class="cand-premium-status-badge"><i></i><span>STATUS</span><b>ATIVO</b></div><button type="button" onclick="irPara(\'premium-candidato\')">Ver benefícios →</button>';
+  }
+ }
+ const titulo=document.getElementById('candHeroTitulo'),saudacao=document.getElementById('candidatoSaudacao');
+ if(ativo&&titulo)titulo.textContent='Olá, '+String(c?.nome||sessionStorage.getItem('candidatoNome')||'Candidato').split(' ')[0]+'! Seu Premium está ativo.';
+ if(ativo&&saudacao)saudacao.textContent='Aproveite seus recursos Premium para acompanhar sua jornada profissional com mais inteligência e controle.';
 }
 const _atualizarPremiumCandidatoLocalEM=atualizarPremiumCandidatoEM;
 atualizarPremiumCandidatoEM=async function(){await sincronizarCandidatoLogadoSupabaseEM();_atualizarPremiumCandidatoLocalEM()}
