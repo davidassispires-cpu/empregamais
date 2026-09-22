@@ -1566,3 +1566,23 @@ body.cv-success-open{overflow:hidden}.cv-success-modal{position:fixed;inset:0;z-
 
 /* VAGA - PADRONIZACAO DE FONTE V1 (2026-09-22) */
 #pagina-vaga,#pagina-vaga *{font-family:Questrial,Arial,sans-serif!important}
+
+
+/* VAGA - CABECALHO SOFISTICADO V1 (2026-09-22) */
+#pagina-vaga .vaga-hero-card{position:relative;overflow:hidden;padding:31px 31px 0!important;border:1px solid #d8e3ec!important;border-radius:18px!important;background:linear-gradient(145deg,#fff 0%,#fff 72%,#f8fbfd 100%)!important;box-shadow:0 12px 32px rgba(17,55,84,.07)!important}
+#pagina-vaga .vaga-hero-card:before{content:"";position:absolute;left:0;top:0;width:100%;height:4px;background:linear-gradient(90deg,#0c6fb2,#1488bd 58%,#39a6b6)}
+#pagina-vaga .vaga-hero-identidade{gap:20px!important;align-items:center!important;padding:2px 0 24px!important}
+#pagina-vaga .vaga-hero-logo{width:86px!important;height:86px!important;flex:0 0 86px!important;padding:8px!important;border:1px solid #d9e4ec!important;border-radius:16px!important;background:linear-gradient(145deg,#fff,#f7fafc)!important;box-shadow:0 5px 16px rgba(21,67,98,.05)!important}
+#pagina-vaga .vaga-hero-texto h1{font-size:29px!important;line-height:1.12!important;letter-spacing:-.02em!important;color:#103a58!important;margin:0 0 8px!important}
+#pagina-vaga .vaga-hero-empresa{font-size:14px!important;color:#2c6388!important;font-weight:600!important}
+#pagina-vaga .vaga-hero-selos{gap:8px!important;margin-top:15px!important}
+#pagina-vaga .vaga-hero-selos span{padding:7px 11px!important;border:1px solid #d9e5ed!important;border-radius:8px!important;background:#f7fafc!important;color:#365e79!important;font-size:11px!important;font-weight:600!important}
+#pagina-vaga .vaga-hero-selos .hero-destaque{border-color:#e7cd83!important;background:#fff9e9!important;color:#85620d!important;box-shadow:0 2px 8px rgba(165,126,25,.05)!important}
+#pagina-vaga .vaga-hero-selos .hero-urgente{border-color:#f0cbd0!important;background:#fff5f6!important;color:#bd3344!important}
+#pagina-vaga .vaga-info-grid{margin:0 -31px!important;border:0!important;border-top:1px solid #e1e8ee!important;border-radius:0!important;background:#f8fafc!important}
+#pagina-vaga .vaga-info-grid>div{min-height:78px!important;padding:17px 15px 15px 54px!important;background:transparent!important;border-right:1px solid #e1e8ee!important;display:flex!important;flex-direction:column!important;justify-content:center!important}
+#pagina-vaga .vaga-info-grid i{left:18px!important;top:50%!important;transform:translateY(-50%)!important;width:27px!important;height:27px!important;border-radius:8px!important;background:#edf6fb!important;color:#1376aa!important;font-size:15px!important}
+#pagina-vaga .vaga-info-grid small{font-size:9px!important;letter-spacing:.09em!important;color:#72879a!important;font-weight:800!important;text-transform:uppercase!important}
+#pagina-vaga .vaga-info-grid strong{font-size:13px!important;line-height:1.25!important;color:#163f5b!important;margin-top:4px!important;font-weight:700!important}
+#pagina-vaga .vaga-info-grid>div:last-child strong{color:#15805d!important}
+@media(max-width:700px){#pagina-vaga .vaga-hero-card{padding:23px 18px 0!important}#pagina-vaga .vaga-hero-identidade{align-items:flex-start!important}#pagina-vaga .vaga-hero-logo{width:70px!important;height:70px!important;flex-basis:70px!important}#pagina-vaga .vaga-hero-texto h1{font-size:24px!important}#pagina-vaga .vaga-info-grid{margin:0 -18px!important;grid-template-columns:repeat(2,1fr)!important}#pagina-vaga .vaga-info-grid>div{border-bottom:1px solid #e1e8ee!important}}
