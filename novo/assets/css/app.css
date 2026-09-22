@@ -1623,3 +1623,16 @@ body.cv-success-open{overflow:hidden}.cv-success-modal{position:fixed;inset:0;z-
 #pagina-vagas .empresa-verificada-card,
 .empresa-verificada-card{display:inline-grid!important;place-items:center!important;width:17px!important;height:17px!important;margin-left:5px!important;border-radius:50%!important;background:#0877d1!important;color:#fff!important;font-size:10px!important;font-weight:800!important;line-height:1!important;vertical-align:middle!important;box-shadow:0 2px 6px rgba(8,119,209,.18)!important}
 .vaga-identidade p{display:flex!important;align-items:center!important;gap:2px!important}
+
+
+/* VAGA - POPOVER EMPRESA VERIFICADA V1 (2026-09-22) */
+#pagina-vaga .em-verificado-wrap{position:relative;display:inline-flex;align-items:center;gap:7px;margin-left:6px;vertical-align:middle;outline:none}
+#pagina-vaga .em-verificado-check{display:inline-grid!important;place-items:center!important;width:19px!important;height:19px!important;border-radius:50%!important;background:#0877db!important;color:#fff!important;font-size:11px!important;line-height:1!important;cursor:pointer!important}
+#pagina-vaga .em-verificado-label{display:inline-block!important;margin-left:0!important;padding:5px 9px!important;border-radius:6px!important;background:#edf5ff!important;color:#1764ad!important;font-size:11px!important;font-weight:700!important;cursor:pointer!important}
+#pagina-vaga .em-verificado-pop{position:absolute;z-index:80;left:50%;top:calc(100% + 13px);width:340px;max-width:calc(100vw - 34px);padding:18px 19px;border:1px solid #cfdeea;border-radius:13px;background:#fff;box-shadow:0 14px 38px rgba(15,52,79,.16);opacity:0;visibility:hidden;transform:translate(-50%,-5px);transition:.18s ease;text-align:left;pointer-events:none}
+#pagina-vaga .em-verificado-pop:before{content:"";position:absolute;top:-7px;left:50%;width:12px;height:12px;background:#fff;border-left:1px solid #cfdeea;border-top:1px solid #cfdeea;transform:translateX(-50%) rotate(45deg)}
+#pagina-vaga .em-verificado-pop strong{position:relative;display:flex;align-items:center;gap:10px;color:#103a58;font-size:16px;font-weight:800}
+#pagina-vaga .em-verificado-pop strong i{display:grid;place-items:center;width:28px;height:28px;border-radius:50%;background:#0877db;color:#fff;font-style:normal;font-size:15px}
+#pagina-vaga .em-verificado-pop small{display:block;margin-top:11px;color:#5f7182;font-size:13px;line-height:1.55;font-weight:500;letter-spacing:0;text-transform:none}
+#pagina-vaga .em-verificado-wrap:hover .em-verificado-pop,#pagina-vaga .em-verificado-wrap:focus .em-verificado-pop,#pagina-vaga .em-verificado-wrap:focus-within .em-verificado-pop{opacity:1;visibility:visible;transform:translate(-50%,0)}
+@media(max-width:700px){#pagina-vaga .em-verificado-wrap{margin-left:3px}#pagina-vaga .em-verificado-pop{left:auto;right:-20px;transform:translateY(-5px);width:300px}#pagina-vaga .em-verificado-pop:before{left:auto;right:37px}#pagina-vaga .em-verificado-wrap:hover .em-verificado-pop,#pagina-vaga .em-verificado-wrap:focus .em-verificado-pop,#pagina-vaga .em-verificado-wrap:focus-within .em-verificado-pop{transform:translateY(0)}}
