@@ -2558,3 +2558,21 @@ padding:14px 14px!important;align-items:center!important
 /* EMPREGAMAIS-50MAIS-PREVIA-SOMENTE-SELO-V13 */
 .portal-vaga-nova .selo-50-bloco>small{display:none!important}
 .portal-vaga-nova .selo-50-bloco{display:contents!important}
+
+/* EMPREGAMAIS-SELOS-LINHA-NEUTROS-V14 */
+/* Cards: os três selos ficam sempre lado a lado no topo, sem quebra */
+.portal-vaga-nova .vaga-card-topo{display:flex!important;align-items:flex-start!important;gap:5px!important;min-width:0!important}
+.portal-vaga-nova .vaga-selos{display:flex!important;flex:1 1 auto!important;flex-wrap:nowrap!important;align-items:center!important;gap:5px!important;min-width:0!important;overflow:visible!important}
+.portal-vaga-nova .vaga-selo{box-sizing:border-box!important;flex:0 1 auto!important;height:27px!important;min-height:27px!important;padding:0 8px!important;border-radius:8px!important;font-size:9.5px!important;line-height:1!important;font-weight:800!important;white-space:nowrap!important;letter-spacing:0!important;box-shadow:none!important}
+.portal-vaga-nova .destaque-selo{background:#fffaf0!important;border:1px solid #e5c779!important;color:#8b6710!important}
+.portal-vaga-nova .urgente-selo{background:#fff4f5!important;border:1px solid #efb0ba!important;color:#b92e46!important}
+.portal-vaga-nova .senior-selo{background:#f7f4ff!important;border:1px solid #cfc2f2!important;color:#6549a8!important}
+.portal-vaga-nova .vaga-favorito{flex:0 0 26px!important;width:26px!important;height:27px!important;font-size:23px!important;line-height:27px!important;margin:0!important;padding:0!important}
+#pagina-home .destaques-carrossel .vaga-card-topo{height:31px!important;min-height:31px!important;margin-bottom:10px!important}
+#pagina-home .destaques-carrossel .vaga-selos{gap:4px!important}
+#pagina-home .destaques-carrossel .vaga-selo{height:27px!important;min-height:27px!important;padding:0 7px!important;font-size:9px!important;border-radius:8px!important}
+#pagina-home .destaques-carrossel .destaque-selo{background:#fffaf0!important;border:1px solid #e5c779!important;color:#8b6710!important}
+#pagina-home .destaques-carrossel .urgente-selo{background:#fff4f5!important;border:1px solid #efb0ba!important;color:#b92e46!important}
+#pagina-home .destaques-carrossel .senior-selo,#pagina-home .destaques-carrossel>.portal-vaga-nova:not(.vaga-urgente):has(.senior-selo) .senior-selo{background:#f7f4ff!important;border:1px solid #cfc2f2!important;color:#6549a8!important}
+#pagina-home .destaques-carrossel .vaga-favorito{flex:0 0 24px!important;width:24px!important;height:27px!important;font-size:22px!important}
+@media(max-width:480px){.portal-vaga-nova .vaga-selos{gap:3px!important}.portal-vaga-nova .vaga-selo{padding:0 5px!important;font-size:8.5px!important}.portal-vaga-nova .vaga-favorito{flex-basis:22px!important;width:22px!important;font-size:20px!important}}
