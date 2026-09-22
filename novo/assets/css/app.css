@@ -3029,3 +3029,9 @@ html,body,#app,#pagina-premium-candidato,#pagina-premium-candidato *{font-family
 #pagina-premium-candidato .premium-plano-destaque .premium-pagamento-box{border-color:#cfe2f0!important;background:linear-gradient(135deg,#fff,#eef7fd)!important}
 @media(max-width:1100px) and (min-width:901px){#pagina-premium-candidato .premium-pagamento-box{grid-template-columns:1fr!important;gap:9px!important}#pagina-premium-candidato .premium-pagamento-divisor{width:70%!important;height:1px!important;margin:auto!important}}
 @media(max-width:500px){#pagina-premium-candidato .premium-pagamento-box{grid-template-columns:1fr!important}#pagina-premium-candidato .premium-pagamento-divisor{width:70%!important;height:1px!important;margin:auto!important}}
+
+
+/* EMPREGAMAIS-MONTSERRAT-GLOBAL-DEFINITIVA-V28 */
+:root{--font-family:"Montserrat",Arial,sans-serif!important;--em-font-global:"Montserrat",Arial,sans-serif!important}
+html,body,body *,#app,#app *,header,header *,main,main *,footer,footer *,nav,nav *,section,section *,article,article *,aside,aside *,div,div *,span,p,a,button,input,select,textarea,option,label,h1,h2,h3,h4,h5,h6,strong,b,small,table,thead,tbody,tr,th,td,ul,ol,li,dialog{font-family:"Montserrat",Arial,sans-serif!important}
+input::placeholder,textarea::placeholder{font-family:"Montserrat",Arial,sans-serif!important}
