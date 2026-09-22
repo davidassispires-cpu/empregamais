@@ -4975,3 +4975,85 @@ overflow:visible!important
 #pagina-painel-empresa .empresa-atalhos{margin-top:18px!important}
 @media(max-width:1050px){#pagina-painel-empresa .empresa-kpis-clean{grid-template-columns:repeat(3,1fr)!important}#pagina-painel-empresa .empresa-dashboard-clean{grid-template-columns:1fr!important}}
 @media(max-width:700px){#pagina-painel-empresa .empresa-wrap-v7{padding:22px 14px 42px!important}#pagina-painel-empresa .empresa-head-clean{align-items:flex-start!important;flex-direction:column!important}#pagina-painel-empresa .empresa-head-actions-v3{width:100%!important}#pagina-painel-empresa .empresa-head-actions-v3 button{flex:1!important}#pagina-painel-empresa .empresa-kpis-clean{grid-template-columns:repeat(2,1fr)!important}#pagina-painel-empresa .empresa-dashboard-clean .vagas-cab{align-items:flex-start!important;flex-direction:column!important;gap:12px!important}#pagina-painel-empresa .empresa-dashboard-clean .filtro-vagas{width:100%!important}}
+
+
+/* EMPREGAMAIS-CANDIDATURAS-GRID-2COL-V1 */
+/* Duas candidaturas por linha no desktop, preservando todos os dados e o andamento completo. */
+#pagina-candidaturas .container{max-width:1180px!important}
+#pagina-candidaturas #candListaElegante{
+ display:grid!important;
+ grid-template-columns:repeat(2,minmax(0,1fr))!important;
+ gap:18px!important;
+ align-items:start!important;
+}
+#pagina-candidaturas #candListaElegante>.candidatura-card.cand-elegante{
+ min-width:0!important;
+ width:100%!important;
+ height:auto!important;
+ margin:0!important;
+ overflow:hidden!important;
+}
+#pagina-candidaturas .cand-elegante .cand-card-head{padding:16px 16px 13px!important;gap:12px!important}
+#pagina-candidaturas .cand-elegante .cand-identidade{min-width:0!important}
+#pagina-candidaturas .cand-elegante .cand-identidade>div:last-child{min-width:0!important}
+#pagina-candidaturas .cand-elegante .cand-identidade h3{font-size:17px!important;line-height:1.2!important;overflow-wrap:anywhere!important}
+#pagina-candidaturas .cand-elegante .cand-processo-snippet{padding:13px 16px!important;gap:10px!important}
+#pagina-candidaturas .cand-elegante .cand-processo-snippet>div{min-width:0!important}
+#pagina-candidaturas .cand-elegante .cand-processo-snippet button{white-space:nowrap!important;padding:8px 10px!important}
+#pagina-candidaturas .cand-elegante .cand-card-bottom{
+ grid-template-columns:1fr!important;
+ gap:11px!important;
+ padding:13px 16px 15px!important;
+}
+#pagina-candidaturas .cand-elegante .cand-envio-ok{width:100%!important}
+#pagina-candidaturas .cand-elegante .cand-card-actions{
+ display:grid!important;
+ grid-template-columns:repeat(3,minmax(0,1fr))!important;
+ width:100%!important;
+ gap:7px!important;
+}
+#pagina-candidaturas .cand-elegante .cand-card-actions button{
+ min-width:0!important;
+ width:100%!important;
+ padding:8px 7px!important;
+ white-space:normal!important;
+ line-height:1.2!important;
+}
+#pagina-candidaturas .cand-elegante .cand-timeline-detalhe.aberto{padding:0 14px 10px!important;margin-bottom:0!important}
+#pagina-candidaturas .cand-elegante .cand-timeline-detalhe.aberto>.candidatura-timeline{
+ display:grid!important;
+ grid-template-columns:repeat(4,minmax(0,1fr))!important;
+ grid-template-rows:auto auto!important;
+ gap:14px 6px!important;
+ overflow:visible!important;
+ padding:15px 4px 5px!important;
+}
+#pagina-candidaturas .cand-elegante .cand-timeline-detalhe.aberto>.candidatura-timeline>div{
+ grid-column:auto!important;
+ min-width:0!important;
+}
+#pagina-candidaturas .cand-elegante .cand-timeline-detalhe.aberto>.candidatura-timeline>div:nth-child(n){
+ grid-column:auto!important;
+}
+#pagina-candidaturas .cand-elegante .cand-timeline-detalhe.aberto>.candidatura-timeline>div span{
+ font-size:10px!important;
+ line-height:1.2!important;
+ white-space:normal!important;
+}
+#pagina-candidaturas .cand-elegante .cand-timeline-detalhe.aberto>.candidatura-timeline>div small{font-size:9px!important}
+#pagina-candidaturas .cand-elegante .entrevista-resumo{margin:10px 16px!important}
+#pagina-candidaturas #candListaElegante>.vagas-vazio{grid-column:1/-1!important}
+@media(max-width:1100px){
+ #pagina-candidaturas #candListaElegante{grid-template-columns:1fr!important}
+ #pagina-candidaturas .cand-elegante .cand-timeline-detalhe.aberto>.candidatura-timeline{
+  grid-template-columns:repeat(7,minmax(105px,1fr))!important;
+  grid-template-rows:1fr!important;
+  overflow-x:auto!important;
+ }
+}
+@media(max-width:650px){
+ #pagina-candidaturas #candListaElegante{gap:14px!important}
+ #pagina-candidaturas .cand-elegante .cand-card-actions{grid-template-columns:1fr!important}
+ #pagina-candidaturas .cand-elegante .cand-card-head{padding:14px!important}
+ #pagina-candidaturas .cand-elegante .cand-processo-snippet{padding:12px 14px!important}
+}
