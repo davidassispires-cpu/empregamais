@@ -3551,3 +3551,10 @@ box-shadow:0 22px 54px rgba(4,55,65,.18)!important;color:#fff!important;z-index:
 @media(max-width:900px){
 #pagina-publicar .em-publish-visual-v2{position:relative!important;inset:auto!important;width:100%!important;height:auto!important;min-height:420px!important;margin-top:20px!important}
 }
+
+/* EMPREGAMAIS-CONFIDENCIAL-PLANO-PAGO-V1 */
+#pagina-publicar .em-recurso-pago em{display:inline-flex;margin-left:7px;padding:3px 7px;border-radius:999px;background:#e7f4f4;color:#087d84;font-size:8.5px;font-style:normal;font-weight:800;letter-spacing:.06em;vertical-align:middle}
+#pagina-publicar .em-recurso-pago.bloqueado{background:#f7f9fa!important;border-color:#dfe6e9!important}
+#pagina-publicar .em-recurso-pago.bloqueado input{cursor:not-allowed!important;opacity:.7}
+#pagina-publicar .em-recurso-pago.bloqueado b{color:#526875!important}
+#pagina-publicar .em-recurso-pago.bloqueado small{color:#7c8d98!important}
