@@ -1793,3 +1793,31 @@ body.cv-success-open{overflow:hidden}.cv-success-modal{position:fixed;inset:0;z-
 @media(min-width:1180px){
  #listaCandidatosEmpresa .candidato-card{grid-template-columns:minmax(230px,.95fr) minmax(190px,.65fr) minmax(620px,1.9fr)!important}
 }
+
+/* PAINEL RECRUTADOR - TIMELINE MODELO APROVADO V4 (2026-09-22) */
+@media(min-width:1000px){
+ #listaCandidatosEmpresa .candidato-card{grid-template-rows:auto auto auto!important}
+ #listaCandidatosEmpresa .cand-fluxo-progressivo{grid-row:2!important;grid-template-columns:repeat(7,minmax(90px,1fr))!important;padding:30px 12px 14px!important}
+ #listaCandidatosEmpresa .cand-fluxo-aviso{grid-column:1/-1!important;grid-row:3!important}
+}
+#listaCandidatosEmpresa .cand-fluxo-progressivo>div:before{top:12px!important;height:2px!important}
+#listaCandidatosEmpresa .cand-fluxo-progressivo i{width:26px!important;height:26px!important;display:flex!important;align-items:center!important;justify-content:center!important;margin:0 auto 10px!important;border-width:3px!important;font-style:normal!important;font-size:12px!important;color:#fff!important}
+#listaCandidatosEmpresa .cand-fluxo-progressivo span{font-size:11px!important;color:#153d5b!important}
+#listaCandidatosEmpresa .cand-fluxo-progressivo small{display:block;margin-top:7px;font-size:10px;color:#8192a0}
+#listaCandidatosEmpresa .cand-fluxo-progressivo .etapa-0.feito i{background:#1679d4!important;border-color:#1679d4!important}
+#listaCandidatosEmpresa .cand-fluxo-progressivo .etapa-0.feito:before{background:#1679d4!important}
+#listaCandidatosEmpresa .cand-fluxo-progressivo .etapa-1.feito i{background:#369de4!important;border-color:#369de4!important}
+#listaCandidatosEmpresa .cand-fluxo-progressivo .etapa-1.feito:before{background:#369de4!important}
+#listaCandidatosEmpresa .cand-fluxo-progressivo .etapa-2.feito i,#listaCandidatosEmpresa .cand-fluxo-progressivo .etapa-2.atual i{background:#149ca0!important;border-color:#149ca0!important}
+#listaCandidatosEmpresa .cand-fluxo-progressivo .etapa-2.feito:before,#listaCandidatosEmpresa .cand-fluxo-progressivo .etapa-2.atual:before{background:#149ca0!important}
+#listaCandidatosEmpresa .cand-fluxo-progressivo .etapa-3.feito i,#listaCandidatosEmpresa .cand-fluxo-progressivo .etapa-3.atual i{background:#287fc0!important;border-color:#287fc0!important}
+#listaCandidatosEmpresa .cand-fluxo-progressivo .etapa-3.feito:before,#listaCandidatosEmpresa .cand-fluxo-progressivo .etapa-3.atual:before{background:#287fc0!important}
+#listaCandidatosEmpresa .cand-fluxo-progressivo .etapa-4.feito i,#listaCandidatosEmpresa .cand-fluxo-progressivo .etapa-4.atual i{background:#7954ad!important;border-color:#7954ad!important}
+#listaCandidatosEmpresa .cand-fluxo-progressivo .etapa-4.feito:before,#listaCandidatosEmpresa .cand-fluxo-progressivo .etapa-4.atual:before{background:#7954ad!important}
+#listaCandidatosEmpresa .cand-fluxo-progressivo .etapa-5.feito i,#listaCandidatosEmpresa .cand-fluxo-progressivo .etapa-5.atual i{background:#2c9666!important;border-color:#2c9666!important}
+#listaCandidatosEmpresa .cand-fluxo-progressivo .etapa-5.feito:before,#listaCandidatosEmpresa .cand-fluxo-progressivo .etapa-5.atual:before{background:#2c9666!important}
+#listaCandidatosEmpresa .cand-fluxo-progressivo .etapa-6.feito i,#listaCandidatosEmpresa .cand-fluxo-progressivo .etapa-6.atual i{background:#176e4b!important;border-color:#176e4b!important}
+#listaCandidatosEmpresa .cand-fluxo-progressivo .etapa-6.feito:before,#listaCandidatosEmpresa .cand-fluxo-progressivo .etapa-6.atual:before{background:#176e4b!important}
+#listaCandidatosEmpresa .cand-fluxo-aviso{display:flex;align-items:center;gap:14px;margin-top:6px;padding:14px 18px;border-radius:11px;background:#f4f8fb;color:#557086}
+#listaCandidatosEmpresa .cand-fluxo-aviso b{color:#1d536f;font-size:11px;white-space:nowrap}#listaCandidatosEmpresa .cand-fluxo-aviso span{font-size:11px}
+@media(max-width:999px){#listaCandidatosEmpresa .cand-fluxo-progressivo{grid-template-columns:repeat(7,115px)!important}#listaCandidatosEmpresa .cand-fluxo-aviso{width:100%;flex-wrap:wrap}}
