@@ -728,3 +728,17 @@ document.addEventListener('click',e=>{document.querySelectorAll('.cv-inst-result
 
 function alternarEmpregoAtualCV(chk){const item=chk.closest('.cv-repeat-item'),fim=item?.querySelector('.cv-exp-fim');if(fim){fim.disabled=chk.checked;if(chk.checked)fim.value=''}salvarCurriculoOnlineEM()}
 function alternarSituacaoFormacaoCV(sel){const item=sel.closest('.cv-repeat-item'),titulo=item?.querySelector('.cv-for-date-title');if(titulo)titulo.textContent=sel.value==='Cursando'?'Previsão de conclusão':sel.value==='Interrompido'?'Data de interrupção':'Data de conclusão';salvarCurriculoOnlineEM()}
+
+/* VALIDACAO GLOBAL EMPREGAMAIS */
+let emPrimeiroCampoInvalido=null;
+function nomeCampoEM(el){const lab=el.closest('label');if(lab){const t=[...lab.childNodes].filter(n=>n.nodeType===3).map(n=>n.textContent.trim()).filter(Boolean).join(' ');if(t)return t.replace(/[?:*]+$/,'').trim()}return el.getAttribute('aria-label')||el.getAttribute('placeholder')||el.name||'Informação obrigatória'}
+function abrirValidacaoEM(campos,titulo='Revise as informações'){const m=document.getElementById('emValidationModal'),l=document.getElementById('emValidationList'),t=document.getElementById('emValidationTitle');if(!m||!l)return;emPrimeiroCampoInvalido=campos[0]||null;t.textContent=titulo;l.innerHTML=campos.slice(0,8).map(x=>'<div><i>!</i><span>Preencha <b>'+esc(nomeCampoEM(x))+'</b></span></div>').join('')+(campos.length>8?'<small>e mais '+(campos.length-8)+' informação(ões).</small>':'');campos.forEach(x=>x.classList.add('em-campo-pendente'));m.classList.remove('oculto');document.body.classList.add('em-modal-open')}
+function fecharValidacaoEM(){document.getElementById('emValidationModal')?.classList.add('oculto');document.body.classList.remove('em-modal-open')}
+function revisarValidacaoEM(){const x=emPrimeiroCampoInvalido;fecharValidacaoEM();if(x){x.scrollIntoView({behavior:'smooth',block:'center'});setTimeout(()=>x.focus?.(),350)}}
+function validarObrigatoriosEM(form){const campos=[...form.querySelectorAll('input,select,textarea')].filter(x=>x.required&&!x.disabled&&x.type!=='hidden'&&!x.checkValidity());if(campos.length){abrirValidacaoEM(campos,'Faltam algumas informações');return false}return true}
+document.addEventListener('invalid',e=>{if(!e.target.closest('form'))return;e.preventDefault()},true);
+document.addEventListener('submit',e=>{const f=e.target;if(!(f instanceof HTMLFormElement))return;if(!validarObrigatoriosEM(f)){e.preventDefault();e.stopImmediatePropagation()}},true);
+document.addEventListener('input',e=>e.target?.classList?.remove('em-campo-pendente'),true);
+document.addEventListener('change',e=>e.target?.classList?.remove('em-campo-pendente'),true);
+document.addEventListener('click',e=>{const m=document.getElementById('emValidationModal');if(e.target===m)fecharValidacaoEM()});
+document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!document.getElementById('emValidationModal')?.classList.contains('oculto'))fecharValidacaoEM()});
