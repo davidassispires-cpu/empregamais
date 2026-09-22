@@ -2151,3 +2151,33 @@ input,select,textarea,button{max-width:100%;box-sizing:border-box}
 #pagina-painel-empresa .empresa-plano-inline-item em{display:block!important;margin-top:4px!important;font-size:9px!important;line-height:1!important;font-weight:800!important;font-style:normal!important;color:#16836f!important}
 @media(max-width:900px){#pagina-painel-empresa #empresaResumoRecursos>.empresa-plano-inline-v4{display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important}#pagina-painel-empresa #empresaResumoRecursos>.empresa-plano-inline-v4>*{border-bottom:1px solid #e6ecef!important}}
 @media(max-width:560px){#pagina-painel-empresa #empresaResumoRecursos>.empresa-plano-inline-v4{grid-template-columns:repeat(2,minmax(0,1fr))!important}}
+
+/* EMPREGAMAIS — BARRA PLANO V6: neutraliza regras legadas do card */
+#pagina-painel-empresa #empresaResumoRecursos{height:auto!important;min-height:0!important;max-height:none!important}
+#pagina-painel-empresa #empresaResumoRecursos .empresa-plano-premium.empresa-plano-inline-v4{
+display:grid!important;grid-template-columns:1.25fr 1fr .9fr .9fr 1fr 120px!important;grid-template-rows:76px!important;
+width:100%!important;height:76px!important;min-height:76px!important;max-height:76px!important;
+align-items:stretch!important;align-content:stretch!important;justify-items:stretch!important;
+padding:0!important;margin:0!important;gap:0!important;overflow:hidden!important;
+}
+#pagina-painel-empresa #empresaResumoRecursos .empresa-plano-premium.empresa-plano-inline-v4>div,
+#pagina-painel-empresa #empresaResumoRecursos .empresa-plano-premium.empresa-plano-inline-v4>button{
+position:relative!important;inset:auto!important;float:none!important;clear:none!important;
+display:flex!important;flex-direction:column!important;justify-content:center!important;align-items:flex-start!important;
+width:100%!important;min-width:0!important;max-width:none!important;height:76px!important;min-height:76px!important;max-height:76px!important;
+padding:10px 16px!important;margin:0!important;box-sizing:border-box!important;
+border-top:0!important;border-bottom:0!important;border-left:0!important;border-right:1px solid #e6ecef!important;
+}
+#pagina-painel-empresa #empresaResumoRecursos .empresa-plano-premium.empresa-plano-inline-v4>.empresa-plano-inline-link{
+align-items:center!important;border-right:0!important;height:76px!important;min-height:76px!important;max-height:76px!important;padding:0 12px!important;
+}
+@media(max-width:900px){
+#pagina-painel-empresa #empresaResumoRecursos .empresa-plano-premium.empresa-plano-inline-v4{grid-template-columns:repeat(3,minmax(0,1fr))!important;grid-template-rows:repeat(2,70px)!important;height:140px!important;max-height:140px!important}
+#pagina-painel-empresa #empresaResumoRecursos .empresa-plano-premium.empresa-plano-inline-v4>div,
+#pagina-painel-empresa #empresaResumoRecursos .empresa-plano-premium.empresa-plano-inline-v4>button{height:70px!important;min-height:70px!important;max-height:70px!important}
+}
+@media(max-width:560px){
+#pagina-painel-empresa #empresaResumoRecursos .empresa-plano-premium.empresa-plano-inline-v4{grid-template-columns:repeat(2,minmax(0,1fr))!important;grid-template-rows:repeat(3,68px)!important;height:204px!important;max-height:204px!important}
+#pagina-painel-empresa #empresaResumoRecursos .empresa-plano-premium.empresa-plano-inline-v4>div,
+#pagina-painel-empresa #empresaResumoRecursos .empresa-plano-premium.empresa-plano-inline-v4>button{height:68px!important;min-height:68px!important;max-height:68px!important}
+}
