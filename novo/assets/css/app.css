@@ -1747,3 +1747,30 @@ body.cv-success-open{overflow:hidden}.cv-success-modal{position:fixed;inset:0;z-
  #listaCandidatosEmpresa .candidato-acoes .btn,#listaCandidatosEmpresa .candidato-acoes select{white-space:nowrap!important;margin:0!important}
  #listaCandidatosEmpresa .cand-fluxo-progressivo{grid-column:1/-1!important}
 }
+
+/* CANDIDATO CARD PROPORCOES E FLUXO CORRIGIDOS V2 (2026-09-22) */
+@media(min-width:1000px){
+ #listaCandidatosEmpresa .candidato-card{width:100%!important;display:grid!important;grid-template-columns:minmax(260px,1.05fr) minmax(210px,.72fr) minmax(610px,auto)!important;grid-template-rows:auto auto!important;gap:18px 22px!important;align-items:center!important;padding:22px 26px!important;box-sizing:border-box!important}
+ #listaCandidatosEmpresa .candidato-card>div:first-child{grid-column:1!important;grid-row:1!important}
+ #listaCandidatosEmpresa .cand-aderencia-pro{grid-column:2!important;grid-row:1!important;width:100%!important;max-width:none!important;margin:0!important}
+ #listaCandidatosEmpresa .candidato-acoes{grid-column:3!important;grid-row:1!important;width:100%!important;min-width:0!important;display:grid!important;grid-template-columns:auto minmax(145px,1fr) auto auto auto auto!important;gap:8px!important;align-items:center!important}
+ #listaCandidatosEmpresa .candidato-acoes>*{width:auto!important;min-width:0!important}
+ #listaCandidatosEmpresa .cand-fluxo-progressivo{grid-column:1/-1!important;grid-row:2!important;display:grid!important;grid-template-columns:repeat(5,minmax(100px,1fr))!important;width:100%!important;margin:0!important;padding:20px 30px 4px!important;border-top:1px solid #dce8ee!important;overflow:visible!important}
+}
+#listaCandidatosEmpresa .cand-fluxo-progressivo>div{position:relative!important;text-align:center!important;color:#8a9da9!important}
+#listaCandidatosEmpresa .cand-fluxo-progressivo>div:before{content:""!important;position:absolute!important;z-index:0!important;top:8px!important;right:50%!important;width:100%!important;height:3px!important;background:#dfe8ed!important}
+#listaCandidatosEmpresa .cand-fluxo-progressivo>div:first-child:before{display:none!important}
+#listaCandidatosEmpresa .cand-fluxo-progressivo i{position:relative!important;z-index:2!important;display:block!important;width:18px!important;height:18px!important;margin:0 auto 8px!important;border:3px solid #d1dee6!important;border-radius:50%!important;background:#fff!important}
+#listaCandidatosEmpresa .cand-fluxo-progressivo span{display:block!important;font-size:11px!important;font-weight:800!important}
+#listaCandidatosEmpresa .cand-fluxo-progressivo .feito,#listaCandidatosEmpresa .cand-fluxo-progressivo .atual{color:#087b88!important}
+#listaCandidatosEmpresa .cand-fluxo-progressivo .feito:before,#listaCandidatosEmpresa .cand-fluxo-progressivo .atual:before{background:#1199a5!important}
+#listaCandidatosEmpresa .cand-fluxo-progressivo .feito i{border-color:#1199a5!important;background:#1199a5!important}
+#listaCandidatosEmpresa .cand-fluxo-progressivo .atual i{border-color:#078995!important;background:#fff!important;box-shadow:0 0 0 5px #dff4f5!important}
+#listaCandidatosEmpresa .cand-status-select.status-selecionado{background:#087f8b!important;border-color:#087f8b!important;color:#fff!important;box-shadow:0 4px 12px rgba(8,127,139,.15)!important}
+#listaCandidatosEmpresa .cand-status-select.status-em-contato{background:#2879ba!important;border-color:#2879ba!important;color:#fff!important}
+#listaCandidatosEmpresa .cand-status-select.status-entrevista-agendada{background:#7c52ae!important;border-color:#7c52ae!important;color:#fff!important}
+#listaCandidatosEmpresa .cand-status-select.status-aprovado{background:#278a5d!important;border-color:#278a5d!important;color:#fff!important}
+#listaCandidatosEmpresa .cand-status-select.status-contratado{background:#126c47!important;border-color:#126c47!important;color:#fff!important}
+#listaCandidatosEmpresa .cand-aderencia-pro>div strong{padding:4px 9px;border-radius:999px;background:#e2f5f1!important;color:#087568!important}
+#listaCandidatosEmpresa .cand-aderencia-pro>i{height:9px!important}
+@media(max-width:999px){#listaCandidatosEmpresa .candidato-card{display:flex!important;flex-direction:column!important}#listaCandidatosEmpresa .candidato-acoes{display:flex!important;flex-wrap:wrap!important;flex-direction:row!important;width:100%!important}#listaCandidatosEmpresa .cand-fluxo-progressivo{width:100%!important;overflow-x:auto!important}}
