@@ -4227,3 +4227,29 @@ overflow:visible!important
  #modalFichaCandidato.ficha-ampla .ficha-cv-title h3{font-size:23px!important}
  #modalFichaCandidato.ficha-ampla .ficha-cv-grid{grid-template-columns:1fr!important}
 }
+
+/* EMPREGAMAIS-FICHA-INFERIOR-CENTRALIZADA-V6 */
+#modalFichaCandidato.ficha-ampla .ficha-curriculo,
+#modalFichaCandidato.ficha-ampla .ficha-links,
+#modalFichaCandidato.ficha-ampla .chat-em-box{
+ width:100%!important;max-width:1020px!important;margin-left:auto!important;margin-right:auto!important
+}
+#modalFichaCandidato.ficha-ampla .ficha-curriculo{
+ margin-top:24px!important;padding:22px 24px!important;border:1px solid #d8e6ef!important;border-radius:14px!important;
+ background:#fbfdff!important
+}
+#modalFichaCandidato.ficha-ampla .ficha-curriculo h3{margin:0 0 8px!important}
+#modalFichaCandidato.ficha-ampla .ficha-curriculo p{margin:0!important}
+#modalFichaCandidato.ficha-ampla .ficha-links{
+ display:flex!important;align-items:center!important;justify-content:center!important;gap:10px!important;
+ margin-top:14px!important;padding:4px 0 2px!important
+}
+#modalFichaCandidato.ficha-ampla .chat-em-box{
+ margin-top:18px!important;margin-bottom:28px!important;border-radius:15px!important
+}
+#modalFichaCandidato.ficha-ampla .chat-em-head{padding-left:22px!important;padding-right:22px!important}
+#modalFichaCandidato.ficha-ampla .chat-em-historico{min-height:108px}
+@media(max-width:760px){
+ #modalFichaCandidato.ficha-ampla .ficha-curriculo{padding:18px 16px!important}
+ #modalFichaCandidato.ficha-ampla .ficha-links{justify-content:flex-start!important;flex-wrap:wrap!important}
+}
