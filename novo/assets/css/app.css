@@ -5033,3 +5033,53 @@ overflow:visible!important
 .recruta-cand-card.status-selecionado{border-color:#8771d5}.recruta-cand-card.status-selecionado .recruta-cand-status>span{background:#eee9ff;color:#6347bf}.recruta-cand-card.status-em-contato{border-color:#5b98ca}.recruta-cand-card.status-em-contato .recruta-cand-status>span{background:#e7f2fb;color:#176697}.recruta-cand-card.status-entrevista-agendada{border-color:#d8a14d}.recruta-cand-card.status-entrevista-agendada .recruta-cand-status>span{background:#fff0dc;color:#9a5e10}.recruta-cand-card.status-aprovado,.recruta-cand-card.status-contratado{border-color:#51a87f}.recruta-cand-card.status-aprovado .recruta-cand-status>span,.recruta-cand-card.status-contratado .recruta-cand-status>span{background:#e5f6ee;color:#237754}.recruta-cand-card.status-reprovado{border-color:#e48585}.recruta-cand-card.status-reprovado .recruta-cand-status>span{background:#fde8e8;color:#bf3333}
 @media(max-width:1100px){#pagina-candidatos-empresa #listaCandidatosEmpresa{grid-template-columns:1fr}}
 @media(max-width:650px){.recruta-cand-head,.recruta-processo-head{align-items:flex-start;flex-direction:column}.recruta-cand-status{text-align:left}.recruta-cand-info{grid-template-columns:1fr}.recruta-cand-actions{grid-template-columns:1fr}.recruta-more{min-height:38px!important}.recruta-processo-head .cand-status-select{width:100%;max-width:none}}
+
+/* EMPREGAMAIS-RECRUTADOR-CANDIDATURAS-ESPELHO-V1 */
+#pagina-candidatos-empresa .recruta-cand-card{border:2px solid #6fa1c7!important;border-radius:17px!important;background:#fff!important;overflow:hidden!important;margin:16px 0!important;box-shadow:none!important;color:#073d63!important}
+#pagina-candidatos-empresa .recruta-cand-head{display:flex!important;justify-content:space-between!important;align-items:center!important;gap:18px!important;padding:16px!important;background:#fff!important;border-bottom:1px solid #dbe7ef!important}
+#pagina-candidatos-empresa .recruta-cand-ident{display:flex!important;align-items:center!important;gap:13px!important;min-width:0!important}
+#pagina-candidatos-empresa .recruta-cand-monograma{width:58px!important;height:58px!important;flex:0 0 58px!important;border:1px solid #cadde9!important;border-radius:11px!important;background:#f7fbfd!important;display:grid!important;place-items:center!important;color:#075d83!important;font-size:22px!important;font-weight:900!important}
+#pagina-candidatos-empresa .recruta-cand-vaga{display:block!important;font-size:14px!important;font-weight:900!important;color:#063d67!important;text-transform:uppercase!important;line-height:1.2!important}
+#pagina-candidatos-empresa .recruta-cand-head h3{margin:4px 0 3px!important;font-size:14px!important;color:#0b5278!important}
+#pagina-candidatos-empresa .recruta-cand-head p{margin:0!important;font-size:11px!important;color:#688196!important}
+#pagina-candidatos-empresa .recruta-cand-status{text-align:right!important;flex:0 0 auto!important}
+#pagina-candidatos-empresa .recruta-cand-status>span{display:inline-flex!important;padding:8px 15px!important;border-radius:999px!important;background:#e8f2fa!important;color:#17618d!important;font-size:12px!important;font-weight:900!important}
+#pagina-candidatos-empresa .recruta-cand-status small{display:block!important;margin-top:8px!important;font-size:9px!important;color:#71889b!important}
+#pagina-candidatos-empresa .recruta-processo-head{display:flex!important;justify-content:space-between!important;align-items:center!important;gap:16px!important;padding:13px 16px!important;background:#f3f8fb!important;border-bottom:1px solid #d7e4ec!important}
+#pagina-candidatos-empresa .recruta-processo-head small{display:block!important;font-size:10px!important;font-weight:900!important;letter-spacing:.08em!important;color:#496b83!important}
+#pagina-candidatos-empresa .recruta-processo-head strong{display:block!important;margin:4px 0!important;font-size:14px!important;color:#075d83!important}
+#pagina-candidatos-empresa .recruta-processo-head p{margin:0!important;font-size:10px!important;color:#72889b!important}
+#pagina-candidatos-empresa .cand-status-select{min-width:132px!important;height:38px!important;border:2px solid #16232b!important;border-radius:10px!important;padding:0 9px!important;background:#2d86c4!important;color:#fff!important;font-size:11px!important;font-weight:800!important}
+#pagina-candidatos-empresa .recruta-timeline{padding:15px 14px 8px!important;background:#fff!important}
+#pagina-candidatos-empresa .cand-fluxo-progressivo{display:grid!important;grid-template-columns:repeat(7,minmax(70px,1fr))!important;position:relative!important;padding:17px 0 9px!important;overflow-x:auto!important}
+#pagina-candidatos-empresa .cand-fluxo-progressivo:before{content:""!important;position:absolute!important;left:7%!important;right:7%!important;top:31px!important;height:2px!important;background:#cbdde8!important}
+#pagina-candidatos-empresa .cand-fluxo-progressivo button{position:relative!important;z-index:1!important;border:0!important;background:transparent!important;min-width:70px!important;padding:0 3px!important;color:#073d63!important;text-align:center!important}
+#pagina-candidatos-empresa .cand-fluxo-progressivo button i{width:27px!important;height:27px!important;margin:0 auto 8px!important;border:3px solid #c5d9e5!important;border-radius:50%!important;background:#fff!important;display:grid!important;place-items:center!important;font-style:normal!important;font-size:10px!important;color:#5f8095!important}
+#pagina-candidatos-empresa .cand-fluxo-progressivo button span{display:block!important;font-size:9px!important;line-height:1.15!important;font-weight:850!important;white-space:normal!important}
+#pagina-candidatos-empresa .cand-fluxo-progressivo button small{display:block!important;margin-top:8px!important;font-size:8px!important;color:#7c91a0!important}
+#pagina-candidatos-empresa .cand-fluxo-progressivo button.feito i{border-color:#1685d2!important;background:#1685d2!important;color:#fff!important}
+#pagina-candidatos-empresa .cand-fluxo-progressivo button.atual i{border-color:#77b9e7!important;background:#fff!important;box-shadow:0 0 0 5px #e5f3fc!important;color:#1685d2!important}
+#pagina-candidatos-empresa .cand-fluxo-progressivo button.etapa-2.feito i,#pagina-candidatos-empresa .cand-fluxo-progressivo button.etapa-2.atual i{border-color:#149da1!important;background:#149da1!important;color:#fff!important}
+#pagina-candidatos-empresa .cand-fluxo-progressivo button.etapa-3.feito i,#pagina-candidatos-empresa .cand-fluxo-progressivo button.etapa-3.atual i{border-color:#2b86c5!important;background:#2b86c5!important;color:#fff!important}
+#pagina-candidatos-empresa .cand-fluxo-progressivo button.etapa-4.feito i,#pagina-candidatos-empresa .cand-fluxo-progressivo button.etapa-4.atual i{border-color:#8b6bc5!important;background:#8b6bc5!important;color:#fff!important}
+#pagina-candidatos-empresa .cand-fluxo-progressivo button.etapa-5.feito i,#pagina-candidatos-empresa .cand-fluxo-progressivo button.etapa-5.atual i{border-color:#32a56f!important;background:#32a56f!important;color:#fff!important}
+#pagina-candidatos-empresa .cand-fluxo-progressivo button.etapa-6.feito i,#pagina-candidatos-empresa .cand-fluxo-progressivo button.etapa-6.atual i{border-color:#16835c!important;background:#16835c!important;color:#fff!important}
+#pagina-candidatos-empresa .cand-fluxo-aviso{display:none!important}
+#pagina-candidatos-empresa .recruta-cand-info{display:grid!important;grid-template-columns:repeat(3,1fr)!important;gap:9px!important;padding:10px 14px!important}
+#pagina-candidatos-empresa .recruta-cand-info>div{min-height:66px!important;border:1px solid #d6e3eb!important;border-radius:10px!important;background:#f5f9fb!important;padding:10px!important}
+#pagina-candidatos-empresa .recruta-cand-info span,#pagina-candidatos-empresa .recruta-cand-info strong,#pagina-candidatos-empresa .recruta-cand-info small{display:block!important}
+#pagina-candidatos-empresa .recruta-cand-info span{font-size:9px!important;color:#698398!important}
+#pagina-candidatos-empresa .recruta-cand-info strong{margin-top:5px!important;font-size:11px!important;color:#073d63!important}
+#pagina-candidatos-empresa .recruta-cand-info small{margin-top:3px!important;font-size:8px!important;color:#7d91a0!important}
+#pagina-candidatos-empresa .recruta-cand-actions{display:grid!important;grid-template-columns:1.05fr .9fr 1.15fr 42px!important;gap:8px!important;padding:0 14px 14px!important}
+#pagina-candidatos-empresa .recruta-cand-actions .btn{min-height:39px!important;border-radius:9px!important;font-size:10px!important;font-weight:850!important;display:flex!important;align-items:center!important;justify-content:center!important}
+#pagina-candidatos-empresa .recruta-cand-actions .btn-azul{background:#0b8b96!important;border-color:#0b8b96!important;color:#fff!important}
+#pagina-candidatos-empresa .recruta-more{padding:0!important;font-size:15px!important}
+#pagina-candidatos-empresa .recruta-extra{display:none!important;padding:0 14px 14px!important}
+#pagina-candidatos-empresa .recruta-extra.aberto{display:block!important}
+#pagina-candidatos-empresa .cand-processo-toolbar{border-top:1px solid #e1eaf0!important;padding-top:11px!important}
+#pagina-candidatos-empresa .cand-acoes-secundarias{display:flex!important;gap:7px!important;flex-wrap:wrap!important}
+#pagina-candidatos-empresa .status-reprovado{border-color:#e3a1a1!important}
+#pagina-candidatos-empresa .cand-fluxo-encerrado{margin:10px!important;border-radius:9px!important;background:#fff1f1!important;color:#a33c3c!important;padding:11px!important;text-align:center!important;font-size:10px!important;font-weight:800!important}
+@media(min-width:1000px){#pagina-candidatos-empresa .recruta-cand-card{width:calc(50% - 8px)!important;display:inline-block!important;vertical-align:top!important;margin:8px 6px!important}#pagina-candidatos-empresa .cand-fluxo-progressivo{grid-template-columns:repeat(4,minmax(72px,1fr))!important;row-gap:16px!important}#pagina-candidatos-empresa .cand-fluxo-progressivo:before{display:none!important}}
+@media(max-width:700px){#pagina-candidatos-empresa .recruta-cand-head,#pagina-candidatos-empresa .recruta-processo-head{align-items:flex-start!important;flex-direction:column!important}#pagina-candidatos-empresa .recruta-cand-status{text-align:left!important}#pagina-candidatos-empresa .recruta-cand-info{grid-template-columns:1fr!important}#pagina-candidatos-empresa .recruta-cand-actions{grid-template-columns:1fr!important}#pagina-candidatos-empresa .recruta-more{min-height:38px!important}}
