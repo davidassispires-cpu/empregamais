@@ -1422,4 +1422,4 @@ document.addEventListener('keydown',e=>{if(e.key==='Escape')fecharDetalhesLocalV
 function alternarTimelineCandidatoEM(btn){const card=btn&&btn.closest('.candidatura-card');if(!card)return;const box=card.querySelector('.cand-timeline-detalhe');if(!box)return;const aberto=box.classList.toggle('aberto');btn.textContent=aberto?'Ocultar andamento ↑':'Ver andamento completo →';}
 
 /* EMPREGAMAIS-CANDIDATOS-COMPACTOS-V1 */
-function alternarProcessoCandidatoEmpresaEM(btn){const card=btn?.closest('.candidato-card-compacto');if(!card)return;const aberto=card.classList.toggle('processo-aberto');btn.textContent=aberto?'Fechar processo ↑':'Gerenciar processo ›';}
+function alternarProcessoCandidatoEmpresaEM(btn){const card=btn?.closest('.recruta-cand-card');if(!card)return;const box=card.querySelector('.recruta-extra');if(!box)return;const aberto=box.classList.toggle('aberto');btn.classList.toggle('ativo',aberto);}
