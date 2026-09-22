@@ -3160,3 +3160,15 @@ padding-left:13px!important;padding-right:13px!important
 .vaga-50mais,.vaga-50-plus,.tag-50mais,.tag-50-plus,[class*="50mais"],[class*="50-plus"]{
 min-width:0!important;white-space:normal!important;line-height:1.25!important
 }}
+
+
+/* EMPREGAMAIS-TITULOS-PAGINAS-MAIUSCULOS-V36 */
+/* Títulos principais/chamadas de todas as páginas sempre em maiúsculas */
+.page-title,.page-heading h1,.page-heading h2,.pagina-titulo,
+.section-hero h1,.hero h1,.hero h2,
+main>section>h1,main>section>h2,
+#pagina-premium-candidato .premium-v2-copy h1,
+#pagina-premium-candidato .premium-v2-heading h2,
+.vaga-hero-texto h1{
+text-transform:uppercase!important
+}
