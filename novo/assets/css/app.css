@@ -1862,3 +1862,43 @@ body.cv-success-open{overflow:hidden}.cv-success-modal{position:fixed;inset:0;z-
  #listaCandidatosEmpresa .candidato-card .cand-fluxo-progressivo{grid-column:1/-1!important;grid-row:2!important}
  #listaCandidatosEmpresa .candidato-card .cand-fluxo-aviso{grid-column:1/-1!important;grid-row:3!important}
 }
+
+
+/* VAGA - VISUAL PREMIUM DA REFERENCIA V6 (2026-09-22) */
+#pagina-vaga .vaga-hero-card{padding:0!important;overflow:hidden!important;border:1px solid #cbdbe8!important;border-top:4px solid #1386b7!important;border-radius:18px!important;box-shadow:0 12px 34px rgba(18,63,98,.10)!important}
+#pagina-vaga .vaga-hero-identidade{padding:30px 31px 24px!important;gap:25px!important}
+#pagina-vaga .vaga-hero-logo{width:118px!important;height:118px!important;flex:0 0 118px!important;border-radius:18px!important;border:1px solid #d3e0eb!important;background:#fbfdff!important;padding:10px!important}
+#pagina-vaga .vaga-hero-texto h1{font-size:32px!important;font-weight:800!important;color:#07365f!important;margin-bottom:12px!important}
+#pagina-vaga .vaga-hero-empresa{font-size:17px!important;font-weight:500!important}
+#pagina-vaga .vaga-hero-selos{gap:10px!important;margin-top:17px!important;align-items:center!important}
+#pagina-vaga .vaga-hero-selos>span{display:inline-flex!important;align-items:center!important;justify-content:center!important;min-height:34px!important;padding:7px 14px!important;border-radius:9px!important;font-size:12px!important;font-weight:700!important;border:1px solid #cfe0ed!important;background:#f7fbfe!important;color:#175f8e!important;box-shadow:0 2px 5px rgba(12,57,91,.04)!important}
+#pagina-vaga .vaga-hero-selos .hero-destaque{color:#fff!important;border-color:#d69300!important;background:linear-gradient(180deg,#efa90c 0%,#c98300 100%)!important;box-shadow:0 6px 14px rgba(202,132,0,.20)!important}
+#pagina-vaga .vaga-hero-selos .hero-urgente{color:#fff!important;border-color:#dc1539!important;background:linear-gradient(180deg,#f12f50 0%,#ce0e2f 100%)!important;box-shadow:0 6px 14px rgba(215,22,55,.18)!important}
+#pagina-vaga .vaga-hero-selos .hero-50mais{color:#fff!important;border-color:#5336c7!important;background:linear-gradient(180deg,#7051e5 0%,#4f31c8 100%)!important;box-shadow:0 6px 14px rgba(79,49,200,.18)!important}
+#pagina-vaga .vaga-hero-selos .selo-icone{display:inline-grid!important;place-items:center!important;width:22px!important;height:22px!important;margin-right:7px!important;border-radius:50%!important;background:rgba(255,255,255,.18)!important;color:#fff!important;font-style:normal!important;font-size:15px!important;line-height:1!important}
+#pagina-vaga .vaga-info-grid{margin:0!important;border:0!important;border-top:1px solid #d5e1eb!important;border-radius:0!important;overflow:hidden!important}
+#pagina-vaga .vaga-info-grid>div{min-height:88px!important;padding:20px 14px 17px 58px!important;background:#fbfdff!important;border-right:1px solid #d7e2eb!important}
+#pagina-vaga .vaga-info-grid>div:last-child{border-right:0!important}
+#pagina-vaga .vaga-info-grid .info-svg{left:18px!important;top:25px!important;width:30px!important;height:30px!important;border-radius:50%!important;background:#e4f3ff!important;color:#147bc4!important}
+#pagina-vaga .vaga-info-grid .info-contrato .info-svg{background:#e1f6f2!important;color:#008c82!important}
+#pagina-vaga .vaga-info-grid .info-modalidade .info-svg{background:#eee8ff!important;color:#6b48cf!important}
+#pagina-vaga .vaga-info-grid .info-salario .info-svg{background:#e3f6e8!important;color:#168348!important}
+#pagina-vaga .vaga-info-grid .info-svg svg{width:17px!important;height:17px!important;fill:none!important;stroke:currentColor!important;stroke-width:1.8!important}
+#pagina-vaga .vaga-info-grid small{font-size:10px!important;letter-spacing:.05em!important;font-weight:800!important;color:#44728f!important}
+#pagina-vaga .vaga-info-grid strong{font-size:14px!important;margin-top:6px!important;color:#0b537f!important}
+#pagina-vaga .vaga-info-grid .info-contrato strong{color:#007c73!important}
+#pagina-vaga .vaga-info-grid .info-modalidade strong{color:#5c3eb5!important}
+#pagina-vaga .vaga-info-grid .info-salario strong{color:#07833f!important;font-size:15px!important}
+#pagina-vaga .vaga-acao-v2{border-radius:18px!important;border:1px solid #d2e0ea!important;box-shadow:0 9px 27px rgba(16,58,91,.07)!important}
+#pagina-vaga .aderencia-card{border:0!important;background:#fff!important;padding:0!important}
+#pagina-vaga .aderencia-card .aderencia-top strong{font-size:34px!important;color:#0879bb!important}
+#pagina-vaga .aderencia-bar{height:7px!important;background:#e4eef5!important;border-radius:99px!important;overflow:hidden!important}
+#pagina-vaga .aderencia-bar i{background:#0783bf!important;border-radius:99px!important}
+#pagina-vaga .aderencia-itens>div{padding:11px 8px!important;border-radius:10px!important;background:#fbfdff!important;margin-top:5px!important}
+#pagina-vaga .aderencia-itens>div>i{width:25px!important;height:25px!important;border-radius:50%!important}
+@media(max-width:600px){
+ #pagina-vaga .vaga-hero-identidade{padding:20px!important}
+ #pagina-vaga .vaga-hero-logo{width:78px!important;height:78px!important;flex-basis:78px!important}
+ #pagina-vaga .vaga-hero-texto h1{font-size:23px!important}
+ #pagina-vaga .vaga-info-grid>div{min-height:78px!important}
+}
