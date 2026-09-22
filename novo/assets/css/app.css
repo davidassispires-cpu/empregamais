@@ -3327,3 +3327,49 @@ min-width:280px!important;height:auto!important;min-height:300px!important
 .topo .btn-area-candidato{padding-left:11px!important;padding-right:11px!important}
 .topo .btn-anunciar-vaga{padding-left:12px!important;padding-right:12px!important;font-size:12.5px!important}
 }
+
+
+/* EMPREGAMAIS-CTA-CANDIDATURA-CENTRAL-V41 */
+/* Card lateral de candidatura: conteúdo centralizado e CTA principal mais forte */
+#pagina-vaga .vaga-acao-v2{text-align:center!important;padding:26px 21px!important}
+#pagina-vaga .vaga-acao-v2 h3{margin:0 0 9px!important;text-align:center!important;font-size:19px!important;line-height:1.25!important}
+#pagina-vaga .vaga-acao-v2>p{max-width:230px!important;margin:0 auto 20px!important;text-align:center!important;font-size:12.5px!important;line-height:1.55!important}
+#pagina-vaga .vaga-acao-v2 .btn-candidatar,
+#pagina-vaga .vaga-acao-v2 button[onclick*="candidat"],
+#pagina-vaga .vaga-acao-v2 a[onclick*="candidat"]{
+width:100%!important;min-height:52px!important;margin:0 auto 10px!important;
+display:flex!important;align-items:center!important;justify-content:center!important;
+position:relative!important;border:0!important;border-radius:11px!important;
+background:linear-gradient(135deg,#0876c9 0%,#075fa9 100%)!important;
+color:#fff!important;font-size:14px!important;font-weight:800!important;
+box-shadow:0 10px 24px rgba(7,101,176,.24)!important;
+transition:transform .2s ease,box-shadow .2s ease,filter .2s ease!important
+}
+#pagina-vaga .vaga-acao-v2 .btn-candidatar:hover,
+#pagina-vaga .vaga-acao-v2 button[onclick*="candidat"]:hover,
+#pagina-vaga .vaga-acao-v2 a[onclick*="candidat"]:hover{
+transform:translateY(-2px)!important;filter:brightness(1.04)!important;
+box-shadow:0 14px 30px rgba(7,101,176,.31)!important
+}
+#pagina-vaga .vaga-acao-v2 .btn-candidatar:after,
+#pagina-vaga .vaga-acao-v2 button[onclick*="candidat"]:after,
+#pagina-vaga .vaga-acao-v2 a[onclick*="candidat"]:after{
+content:"→"!important;position:absolute!important;right:17px!important;
+top:50%!important;transform:translateY(-50%)!important;font-size:17px!important;font-weight:500!important
+}
+#pagina-vaga .vaga-acao-v2 .btn-salvar,
+#pagina-vaga .vaga-acao-v2 button[onclick*="salvar"]{
+width:100%!important;min-height:43px!important;display:flex!important;
+align-items:center!important;justify-content:center!important;margin:0 auto!important
+}
+#pagina-vaga .vaga-acao-v2 .vaga-prazo,
+#pagina-vaga .vaga-acao-v2 .vaga-publicacao,
+#pagina-vaga .vaga-acao-v2 small{
+display:block!important;width:100%!important;margin:14px auto 0!important;
+text-align:center!important;font-size:10.5px!important;line-height:1.4!important
+}
+#pagina-vaga .vaga-acao-v2 .denunciar-vaga,
+#pagina-vaga .vaga-acao-v2 [onclick*="denunciar"]{
+display:inline-flex!important;justify-content:center!important;align-items:center!important;
+margin:18px auto 0!important;text-align:center!important;font-size:10.5px!important
+}
