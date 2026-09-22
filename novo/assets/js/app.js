@@ -816,7 +816,12 @@ function adminRenderPendenciasEM(){
 async function adminCarregarEmpresasSupabaseEM(){
  const t=await adminSbToken();
  const a=await sbJsonEM(EMPREGAMAIS_SUPABASE_URL+'/rest/v1/empresas?select=*&order=criado_em.desc',{method:'GET',headers:sbHeadersEM(t)});
- const es=(Array.isArray(a)?a:[]).map(e=>sbEmpresaParaLocalEM(e,''));
+ const remotas=(Array.isArray(a)?a:[]).map(e=>sbEmpresaParaLocalEM(e,'')).filter(Boolean);
+ const locais=ler('empregaMaisEmpresas'),map=new Map();
+ const chave=e=>nums(e?.cnpj||'')||e?.userId||e?.id||String(e?.email||'').toLowerCase();
+ locais.forEach(e=>{const k=chave(e);if(k)map.set(k,e)});
+ remotas.forEach(e=>{const k=chave(e);if(!k)return;const ant=map.get(k)||{};map.set(k,Object.assign({},ant,e,{senha:ant.senha||''}))});
+ const es=[...map.values()];
  gravar('empregaMaisEmpresas',es);
  return es;
 }
