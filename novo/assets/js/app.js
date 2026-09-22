@@ -1135,16 +1135,24 @@ async function loginCandidatoSupabaseEM(e){
  e.preventDefault();const email=$("#loginCandEmail").value.trim().toLowerCase(),senha=$("#loginCandSenha").value;
  if(!email.includes("@"))return msg("#msgLoginCandidato","Informe um e-mail válido.");if(!senha)return msg("#msgLoginCandidato","Informe sua senha.");
  msg("#msgLoginCandidato","Entrando...");
- const legado=ler("empregaMaisCandidatos").find(x=>String(x.email||"").toLowerCase()===email&&x.senha===senha);
+ const candidatosLegados=ler("empregaMaisCandidatos");
+ const legadoEmail=candidatosLegados.find(x=>String(x.email||"").trim().toLowerCase()===email);
+ const legadoSenha=legadoEmail&&String(legadoEmail.senha??"")===String(senha);
  try{
   let auth;
   try{auth=await sbLoginAuthCandidatoEM(email,senha)}
   catch(loginErr){
-   if(!legado||!/invalid login|invalid credentials/i.test(loginErr.message||""))throw loginErr;
-   auth=await sbCadastrarAuthCandidatoEM(email,senha,legado.nome||"",legado.telefone||"",legado.cidade||"");
-   if(!auth?.access_token){msg("#msgLoginCandidato","Sua conta foi migrada. Confirme seu e-mail para entrar.",true);return}
+   if(!/invalid login|invalid credentials/i.test(loginErr.message||""))throw loginErr;
+   if(!legadoEmail)throw loginErr;
+   if(!legadoSenha){
+    msg("#msgLoginCandidato","Encontramos seu cadastro antigo, mas a senha salva nele não corresponde à informada. Use a senha original desse cadastro.");
+    return
+   }
+   msg("#msgLoginCandidato","Migrando seu cadastro antigo...");
+   auth=await sbCadastrarAuthCandidatoEM(email,senha,legadoEmail.nome||"",legadoEmail.telefone||"",legadoEmail.cidade||"");
+   if(!auth?.access_token){msg("#msgLoginCandidato","Sua conta foi migrada para o Supabase. Confirme seu e-mail para entrar.",true);return}
   }
-  const base=legado||ler("empregaMaisCandidatos").find(x=>String(x.email||"").toLowerCase()===email)||{email};
+  const base=legadoEmail||{email};
   let d=sbSalvarCandidatoLocalEM(sbCandidatoDoAuthEM(auth,base));
   try{d=sbSalvarCandidatoLocalEM(await sbUpsertCandidatoSupabaseEM(d,auth.access_token))}
   catch(syncErr){console.error("Sincronização do cadastro do candidato:",syncErr);msg("#msgLoginCandidato","Conta autenticada, mas não foi possível sincronizar seu cadastro. Atualize a página e tente novamente.");return}
