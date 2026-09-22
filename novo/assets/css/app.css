@@ -1223,3 +1223,14 @@ body.sessao-empresa .menu-publico,body.sessao-empresa .menu-drop-candidato{displ
 #pagina-perfil-empresa .pv-benefits>div{display:grid;grid-template-columns:28px 1fr;gap:9px;padding:13px 0;border-top:1px solid #e7edef}.pv-benefits>div:first-of-type{margin-top:12px}.pv-benefits i{width:25px;height:25px;border-radius:50%;display:grid;place-items:center;background:#e5f5f0;color:#087967;font-style:normal;font-weight:900}.pv-benefits p{margin:0}.pv-benefits b{display:block;color:#274a59;font-size:12px}.pv-benefits small{display:block;color:#73868e;font-size:10.5px;line-height:1.45;margin-top:3px}
 @media(max-width:900px){#pagina-perfil-empresa .pv-grid{grid-template-columns:1fr}#pagina-perfil-empresa .pv-title{grid-template-columns:52px 1fr}.pv-title>b{grid-column:2;justify-self:start}#pagina-perfil-empresa .perfil-verificacao-em{padding-left:14px;padding-right:14px}}
 @media(max-width:600px){#pagina-perfil-empresa .pv-top{padding:21px 18px}.pv-title h1{font-size:22px!important}#pagina-perfil-empresa .pv-steps{grid-template-columns:1fr;gap:10px}.pv-steps>span{display:none}#pagina-perfil-empresa .pv-data{grid-template-columns:1fr}.pv-card-head{flex-direction:column}}
+
+#pagina-perfil-empresa .pv-approved-card{margin-top:20px;background:#fff;border:1px solid #dce7ea;border-radius:18px;padding:28px;display:grid;grid-template-columns:100px 1fr auto;gap:24px;align-items:center;box-shadow:0 8px 24px rgba(15,59,70,.06)}
+#pagina-perfil-empresa .pv-approved-card .pv-seal{margin:0;background:#e6f5f1;border-color:#b8e1d6}
+#pagina-perfil-empresa .pv-approved-card .pv-seal svg{stroke:#087765}
+#pagina-perfil-empresa .pv-approved-card span{font-size:9px;letter-spacing:.12em;font-weight:900;color:#087782}
+#pagina-perfil-empresa .pv-approved-card h2{margin:5px 0 7px;color:#153d4d;font-size:21px}
+#pagina-perfil-empresa .pv-approved-card p{margin:0;color:#6a8089;font-size:12px;line-height:1.55}
+#pagina-perfil-empresa .pv-approved-card button{border:0;border-radius:10px;background:#087984;color:#fff;padding:11px 15px;font-weight:800;cursor:pointer}
+#pagina-perfil-empresa .pv-approved-badge{background:#dff5ec!important;color:#08765f!important}
+#pagina-perfil-empresa .pv-check{background:rgba(217,248,239,.18)}
+@media(max-width:700px){#pagina-perfil-empresa .pv-approved-card{grid-template-columns:1fr;text-align:center}.pv-approved-card .pv-seal{margin:auto}}
