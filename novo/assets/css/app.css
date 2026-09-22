@@ -1328,3 +1328,16 @@ header nav a,header nav button,.menu-drop button{font-size:15px}
 #pagina-painel-empresa .empresa-box-head h2{font-size:21px!important}
 @media(max-width:1200px){#pagina-painel-empresa .em-ref-hero{grid-template-columns:1.15fr .85fr!important}.hero-v17-right{display:none!important}#pagina-painel-empresa .em-ref-kpis{grid-template-columns:repeat(2,1fr)!important}}
 @media(max-width:850px){#pagina-painel-empresa .empresa-app-shell{grid-template-columns:1fr!important}#pagina-painel-empresa .empresa-side-ref{position:relative;height:auto;display:none}#pagina-painel-empresa .empresa-main{padding:10px!important}#pagina-painel-empresa .em-ref-hero{grid-template-columns:1fr!important;padding:25px 20px!important}.hero-v17-center{display:none!important}#pagina-painel-empresa .em-ref-kpis,#pagina-painel-empresa .empresa-dashboard-grid{grid-template-columns:1fr!important}}
+
+
+/* CHAT INTERNO DO PROCESSO SELETIVO */
+.btn-chat-em{background:#eef8f8!important;border-color:#b9dddd!important;color:#08737b!important}.btn-chat-em.bloqueado{opacity:.65}
+.chat-em-box{margin-top:20px;border:1px solid #d8e5e9;border-radius:15px;background:#f8fbfc;overflow:hidden}
+.chat-em-head{display:flex;justify-content:space-between;align-items:center;gap:15px;padding:17px 19px;background:#fff;border-bottom:1px solid #e2ebee}
+.chat-em-head span{font-size:11px;letter-spacing:.1em;font-weight:900;color:#087982}.chat-em-head h3{margin:4px 0 0!important;font-size:19px!important;color:#153e4e}.chat-em-head>b{font-size:12px;color:#6b8189;background:#eef5f6;padding:7px 10px;border-radius:999px}
+.chat-em-historico{max-height:330px;overflow:auto;padding:18px;display:flex;flex-direction:column;gap:11px;background:#f4f8f9}
+.chat-em-msg{max-width:78%;padding:11px 13px;border-radius:13px;background:#fff;border:1px solid #dfe9ec;align-self:flex-start}.chat-em-msg.minha{align-self:flex-end;background:#e2f4f3;border-color:#b9dfdd}.chat-em-msg small{display:block;font-size:11px;font-weight:800;color:#08737b}.chat-em-msg p{margin:5px 0!important;font-size:14px!important;line-height:1.5;color:#294c59}.chat-em-msg time{display:block;font-size:10px;color:#83939a;text-align:right}
+.chat-em-vazio,.chat-em-bloqueado{padding:25px;text-align:center;color:#73868e;font-size:14px}.chat-em-bloqueado{background:#fff8e8;color:#7b641d}
+.chat-em-compose{padding:16px 18px;background:#fff;border-top:1px solid #e2ebee}.chat-em-compose textarea{width:100%;box-sizing:border-box;border:1px solid #cbdde1;border-radius:10px;padding:12px;font:inherit;font-size:14px;resize:vertical;outline:none}.chat-em-compose textarea:focus{border-color:#087b83;box-shadow:0 0 0 3px rgba(8,123,131,.08)}.chat-em-compose>div{display:flex;justify-content:flex-end;gap:9px;margin-top:10px}
+.candidatura-acompanhamento .chat-em-box{grid-column:1/-1;width:100%}
+@media(max-width:600px){.chat-em-head{align-items:flex-start;flex-direction:column}.chat-em-msg{max-width:92%}.chat-em-compose>div{flex-direction:column}.chat-em-compose .btn{width:100%}}
