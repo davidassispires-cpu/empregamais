@@ -3577,3 +3577,68 @@ body.em-local-pop-open:after{content:"";position:fixed;inset:0;background:rgba(1
 #pagina-vaga .em-local-popover:before{display:none!important}
 #pagina-vaga .em-local-pop-head strong{font-size:14px!important}
 }
+
+/* EMPREGAMAIS-BANNER-PUBLICAR-HARMONIOSO-V47 */
+@media(min-width:901px){
+#pagina-publicar{overflow:visible!important}
+#pagina-publicar .em-publish-layout{
+grid-template-columns:minmax(0,1fr) 330px!important;
+gap:22px!important;
+align-items:start!important;
+padding-bottom:36px!important
+}
+#pagina-publicar .em-publish-visual-v2{
+grid-column:2!important;
+position:sticky!important;
+top:92px!important;
+right:auto!important;
+width:100%!important;
+height:auto!important;
+max-height:calc(100vh - 116px)!important;
+min-height:0!important;
+margin:0!important;
+border:1px solid #d7e6e8!important;
+border-radius:18px!important;
+background:linear-gradient(160deg,#f9fdfd 0%,#f2f9f9 52%,#eaf5f5 100%)!important;
+box-shadow:0 10px 28px rgba(19,72,78,.08)!important;
+color:#163f47!important;
+overflow:hidden!important;
+z-index:3!important
+}
+#pagina-publicar .em-visual-v2-glow{right:-80px!important;top:-95px!important;width:220px!important;height:220px!important;background:rgba(13,137,145,.09)!important}
+#pagina-publicar .em-visual-v2-grid{opacity:.35!important;background-image:linear-gradient(rgba(12,102,112,.035) 1px,transparent 1px),linear-gradient(90deg,rgba(12,102,112,.035) 1px,transparent 1px)!important}
+#pagina-publicar .em-publish-visual-v2 .em-visual-content{
+height:auto!important;
+min-height:0!important;
+padding:24px!important;
+justify-content:flex-start!important;
+overflow:visible!important
+}
+#pagina-publicar .em-visual-v2-brand{margin-bottom:16px!important;color:#0b6572!important;font-size:9.5px!important}
+#pagina-publicar .em-visual-v2-icon{width:32px!important;height:32px!important;border:1px solid #cde3e5!important;background:#fff!important;color:#0b6572!important;box-shadow:0 4px 10px rgba(11,101,114,.06)!important}
+#pagina-publicar .em-publish-visual-v2 .em-visual-kicker{color:#26838b!important;font-size:9px!important}
+#pagina-publicar .em-publish-visual-v2 h2{margin:8px 0 10px!important;font-size:28px!important;line-height:1.08!important;letter-spacing:-.025em!important;color:#123f48!important}
+#pagina-publicar .em-publish-visual-v2 h2 strong{color:#0b7d84!important}
+#pagina-publicar .em-publish-visual-v2>div.em-visual-content>p{margin:0 0 16px!important;color:#58747a!important;font-size:11.5px!important;line-height:1.5!important}
+#pagina-publicar .em-visual-v2-stats{gap:8px!important;margin-bottom:14px!important}
+#pagina-publicar .em-visual-v2-stats>div{padding:10px 11px!important;border:1px solid #d8e7e9!important;border-radius:10px!important;background:#fff!important}
+#pagina-publicar .em-visual-v2-stats strong{color:#164b54!important;font-size:12px!important}
+#pagina-publicar .em-visual-v2-stats span{color:#72898e!important;font-size:8.5px!important}
+#pagina-publicar .em-publish-visual-v2 .em-visual-benefits{gap:2px!important}
+#pagina-publicar .em-publish-visual-v2 .em-visual-benefits>div{grid-template-columns:26px 1fr!important;gap:9px!important;padding:6px 0!important}
+#pagina-publicar .em-publish-visual-v2 .em-visual-benefits i{width:25px!important;height:25px!important;border:1px solid #d3e5e7!important;background:#fff!important;color:#0b7d84!important}
+#pagina-publicar .em-publish-visual-v2 .em-visual-benefits b{color:#264d54!important;font-size:10.5px!important}
+#pagina-publicar .em-publish-visual-v2 .em-visual-benefits small{display:none!important}
+#pagina-publicar .em-visual-v2-foot{margin-top:13px!important;padding-top:11px!important;border-top:1px solid #d8e6e8!important}
+#pagina-publicar .em-visual-v2-foot span{color:#43858b!important;font-size:8px!important}
+#pagina-publicar .em-visual-v2-foot strong{color:#365e64!important;font-size:9.5px!important}
+}
+@media(min-width:901px) and (max-width:1180px){
+#pagina-publicar .em-publish-layout{grid-template-columns:minmax(0,1fr) 290px!important}
+#pagina-publicar .em-publish-visual-v2{width:100%!important;right:auto!important}
+#pagina-publicar .em-publish-visual-v2 .em-visual-content{padding:19px!important}
+#pagina-publicar .em-publish-visual-v2 h2{font-size:24px!important}
+}
+@media(max-width:900px){
+#pagina-publicar .em-publish-visual-v2{position:relative!important;top:auto!important;width:100%!important;height:auto!important;min-height:0!important;margin:18px 0 0!important;border:1px solid #d7e6e8!important;border-radius:16px!important;background:#f6fbfb!important;box-shadow:none!important}
+}
