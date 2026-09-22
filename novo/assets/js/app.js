@@ -1254,3 +1254,24 @@ document.addEventListener('change',e=>{
   const x=document.getElementById('vagaConfidencialEtapa2');if(x)x.checked=e.target.checked;
  }
 });
+
+/* EMPREGAMAIS-CONFIDENCIAL-SOMENTE-PLANO-PAGO-V1 */
+function empresaTemPlanoPagoEM(){
+ const e=typeof empresaLogada==='function'?empresaLogada():null;
+ const chave=String(e?.plano||sessionStorage.getItem('empresaPlano')||'basico').toLowerCase();
+ const status=String(e?.planoStatus||e?.assinaturaStatus||'ativo').toLowerCase();
+ return !['basico','gratis','grátis','free',''].includes(chave)&&!['cancelado','inativo','expirado'].includes(status);
+}
+function atualizarConfidencialPlanoEM(){
+ const pago=empresaTemPlanoPagoEM(),box=document.getElementById('vagaConfidencialPlanoBox'),inp=document.getElementById('vagaConfidencialEtapa2'),txt=document.getElementById('vagaConfidencialPlanoTexto');
+ if(inp){inp.disabled=!pago;if(!pago)inp.checked=false}
+ if(box)box.classList.toggle('bloqueado',!pago);
+ if(txt)txt.textContent=pago?'O candidato verá “Empresa confidencial” no anúncio.':'Recurso disponível exclusivamente nos planos pagos.';
+ if(!pago){const principal=document.getElementById('vagaConfidencial');if(principal)principal.checked=false}
+}
+const _sincronizarConfidencialVagaEMPlano=sincronizarConfidencialVagaEM;
+sincronizarConfidencialVagaEM=function(checked){
+ if(checked&&!empresaTemPlanoPagoEM()){atualizarConfidencialPlanoEM();return false}
+ return _sincronizarConfidencialVagaEMPlano.call(this,checked);
+};
+document.addEventListener('DOMContentLoaded',()=>setTimeout(atualizarConfidencialPlanoEM,0));
