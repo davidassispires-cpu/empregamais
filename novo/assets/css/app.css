@@ -1821,3 +1821,44 @@ body.cv-success-open{overflow:hidden}.cv-success-modal{position:fixed;inset:0;z-
 #listaCandidatosEmpresa .cand-fluxo-aviso{display:flex;align-items:center;gap:14px;margin-top:6px;padding:14px 18px;border-radius:11px;background:#f4f8fb;color:#557086}
 #listaCandidatosEmpresa .cand-fluxo-aviso b{color:#1d536f;font-size:11px;white-space:nowrap}#listaCandidatosEmpresa .cand-fluxo-aviso span{font-size:11px}
 @media(max-width:999px){#listaCandidatosEmpresa .cand-fluxo-progressivo{grid-template-columns:repeat(7,115px)!important}#listaCandidatosEmpresa .cand-fluxo-aviso{width:100%;flex-wrap:wrap}}
+
+/* HOTFIX TIMELINE RECRUTADOR - FORCA LAYOUT HORIZONTAL V5 */
+#listaCandidatosEmpresa .candidato-card .cand-fluxo-progressivo{
+ display:grid!important;
+ grid-template-columns:repeat(7,minmax(0,1fr))!important;
+ grid-auto-flow:column!important;
+ width:100%!important;
+ max-width:none!important;
+ gap:0!important;
+ padding:28px 12px 14px!important;
+ margin:10px 0 0!important;
+ border-top:1px solid #dce8ee!important;
+ box-sizing:border-box!important;
+}
+#listaCandidatosEmpresa .candidato-card .cand-fluxo-progressivo>div{
+ display:block!important;position:relative!important;width:auto!important;min-width:0!important;
+ margin:0!important;padding:0 4px!important;text-align:center!important;float:none!important;
+}
+#listaCandidatosEmpresa .candidato-card .cand-fluxo-progressivo>div:before{
+ display:block!important;content:""!important;position:absolute!important;left:-50%!important;right:auto!important;
+ top:12px!important;width:100%!important;height:2px!important;background:#d6e2ea!important;z-index:0!important;
+}
+#listaCandidatosEmpresa .candidato-card .cand-fluxo-progressivo>div:first-child:before{display:none!important}
+#listaCandidatosEmpresa .candidato-card .cand-fluxo-progressivo i{
+ position:relative!important;z-index:2!important;display:flex!important;width:26px!important;height:26px!important;
+ align-items:center!important;justify-content:center!important;margin:0 auto 10px!important;padding:0!important;
+ border:3px solid #bfd2df!important;border-radius:50%!important;background:#fff!important;line-height:1!important;
+}
+#listaCandidatosEmpresa .candidato-card .cand-fluxo-progressivo span,
+#listaCandidatosEmpresa .candidato-card .cand-fluxo-progressivo small{
+ display:block!important;position:relative!important;width:100%!important;margin-left:0!important;margin-right:0!important;
+ text-align:center!important;white-space:nowrap!important;
+}
+#listaCandidatosEmpresa .candidato-card .cand-fluxo-progressivo span{font-size:11px!important;font-weight:800!important;line-height:1.25!important}
+#listaCandidatosEmpresa .candidato-card .cand-fluxo-progressivo small{margin-top:7px!important;font-size:9px!important;line-height:1.2!important;color:#8093a1!important}
+#listaCandidatosEmpresa .candidato-card .cand-fluxo-aviso{width:100%!important;box-sizing:border-box!important;margin:10px 0 0!important}
+@media(min-width:1000px){
+ #listaCandidatosEmpresa .candidato-card{grid-template-columns:minmax(250px,.9fr) minmax(190px,.6fr) minmax(600px,1.7fr)!important}
+ #listaCandidatosEmpresa .candidato-card .cand-fluxo-progressivo{grid-column:1/-1!important;grid-row:2!important}
+ #listaCandidatosEmpresa .candidato-card .cand-fluxo-aviso{grid-column:1/-1!important;grid-row:3!important}
+}
