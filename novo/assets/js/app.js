@@ -603,6 +603,20 @@ const _renderizarPainelEmpresaVerEM=renderizarPainelEmpresa;
 renderizarPainelEmpresa=function(){const r=_renderizarPainelEmpresaVerEM.apply(this,arguments);renderStatusVerificacaoEmpresaEM();return r};
 
 
+/* EMPREGAMAIS — acesso inteligente à verificação empresarial */
+async function abrirVerificacaoEmpresaEM(){
+ let emp=empresaLogada();
+ try{
+  const token=await sbGarantirSessaoEM();
+  if(token){
+   const remota=await sbBuscarMinhaEmpresaEM();
+   if(remota){const atual=sbEmpresaParaLocalEM(remota,emp?.senha||'');if(atual){sbSalvarEmpresaLocalEM(atual);emp=atual}}
+  }
+ }catch(err){console.warn('Não foi possível atualizar o status da verificação:',err)}
+ irPara('perfil-empresa');
+ setTimeout(()=>{renderPerfilVerificacaoEmpresaEM()},80);
+}
+
 /* EMPREGAMAIS-PERFIL-VERIFICACAO-ISOLADA-V2 */
 function renderPerfilVerificacaoEmpresaEM(){
  const pagina=document.getElementById('pagina-perfil-empresa'),emp=empresaLogada();if(!pagina||!emp)return;
