@@ -4034,3 +4034,17 @@ overflow:visible!important
  #pagina-candidatos-empresa .cand-gerenciar-btn{grid-row:2}
  #pagina-candidatos-empresa .cand-situacao-wrap{grid-row:3}
 }
+
+/* EMPREGAMAIS-GERENCIAR-ALINHADO-V2 */
+#pagina-candidatos-empresa .candidato-acoes-compactas{
+ grid-template-columns:122px minmax(125px,auto);
+ column-gap:8px
+}
+#pagina-candidatos-empresa .candidato-acoes-compactas>.btn-azul,
+#pagina-candidatos-empresa .cand-gerenciar-btn{
+ width:122px!important;min-width:122px!important;max-width:122px!important;
+ box-sizing:border-box;margin:0!important
+}
+#pagina-candidatos-empresa .cand-gerenciar-btn{
+ grid-column:1;grid-row:2;justify-self:start!important
+}
