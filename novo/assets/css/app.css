@@ -2250,3 +2250,22 @@ padding:14px 14px!important;align-items:center!important
 #pagina-painel-empresa.empresa-dashboard-v7 #empresaResumoRecursos .empresa-plano-inline-ident:before{left:14px!important;top:13px!important;width:42px!important;height:48px!important;font-size:19px!important}
 #pagina-painel-empresa.empresa-dashboard-v7 #empresaResumoRecursos .empresa-plano-inline-ident span{position:relative!important;z-index:2!important;white-space:nowrap!important}
 #pagina-painel-empresa.empresa-dashboard-v7 #empresaResumoRecursos .empresa-plano-inline-ident strong{position:relative!important;z-index:2!important;white-space:nowrap!important}
+
+/* EMPREGAMAIS V7.4 — petróleo + correção definitiva de cortes */
+#pagina-painel-empresa.empresa-dashboard-v7{--petroleo:#07566d;--petroleo-escuro:#063e53;--petroleo-claro:#e7f2f5}
+#pagina-painel-empresa.empresa-dashboard-v7 .empresa-side-v7{background:linear-gradient(180deg,#06445d 0%,#07566d 58%,#06465d 100%)!important}
+#pagina-painel-empresa.empresa-dashboard-v7 .empresa-btn-main-v3{background:var(--petroleo)!important;border-color:var(--petroleo)!important}
+#pagina-painel-empresa.empresa-dashboard-v7 .empresa-kpis-v7 .empresa-metrica-v2{min-height:124px!important;height:124px!important;max-height:none!important;padding:13px 14px 15px!important;overflow:hidden!important}
+#pagina-painel-empresa.empresa-dashboard-v7 .empresa-kpis-v7 .empresa-metrica-v2>div{align-self:center!important;overflow:visible!important;padding-bottom:3px!important}
+#pagina-painel-empresa.empresa-dashboard-v7 .empresa-kpis-v7 .empresa-metrica-v2 span{line-height:1.2!important}
+#pagina-painel-empresa.empresa-dashboard-v7 .empresa-kpis-v7 .empresa-metrica-v2 small{display:block!important;line-height:1.25!important;min-height:12px!important}
+#pagina-painel-empresa.empresa-dashboard-v7 .empresa-kpis-v7 .empresa-metrica-v2 .kpi-num{display:block!important;line-height:1!important;margin-top:7px!important;padding-bottom:2px!important}
+#pagina-painel-empresa.empresa-dashboard-v7 #empresaResumoRecursos>.empresa-plano-inline-v4{grid-template-columns:1.35fr 1fr .9fr .9fr 1fr 120px!important}
+#pagina-painel-empresa.empresa-dashboard-v7 #empresaResumoRecursos .empresa-plano-inline-ident{padding:10px 12px 10px 72px!important;overflow:visible!important}
+#pagina-painel-empresa.empresa-dashboard-v7 #empresaResumoRecursos .empresa-plano-inline-ident:before{left:14px!important;top:12px!important;width:44px!important;height:50px!important}
+#pagina-painel-empresa.empresa-dashboard-v7 #empresaResumoRecursos .empresa-plano-inline-ident span,
+#pagina-painel-empresa.empresa-dashboard-v7 #empresaResumoRecursos .empresa-plano-inline-ident strong{display:block!important;position:relative!important;left:0!important;top:0!important;margin-left:0!important;transform:none!important;white-space:nowrap!important;overflow:visible!important}
+#pagina-painel-empresa.empresa-dashboard-v7 #empresaResumoRecursos .empresa-plano-inline-ident span{font-size:9px!important;line-height:1.1!important}
+#pagina-painel-empresa.empresa-dashboard-v7 #empresaResumoRecursos .empresa-plano-inline-ident strong{font-size:15px!important;line-height:1.2!important;margin-top:3px!important}
+#pagina-painel-empresa.empresa-dashboard-v7 #empresaResumoRecursos .empresa-plano-inline-link{background:var(--petroleo)!important}
+#pagina-painel-empresa.empresa-dashboard-v7 .empresa-box-icon{background:var(--petroleo-claro)!important;color:var(--petroleo)!important}
