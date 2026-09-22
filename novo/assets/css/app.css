@@ -1533,3 +1533,32 @@ body.cv-success-open{overflow:hidden}.cv-success-modal{position:fixed;inset:0;z-
 
 /* CANDIDATURA - INCENTIVO AO CURRICULO EMPREGAMAIS */
 .cand-cv-options{grid-template-columns:1.18fr 1fr 1fr}.cand-online-feature{position:relative;border-color:#b9d9ee!important;background:linear-gradient(145deg,#f8fcff,#eef8ff)!important}.cand-online-feature mark{display:inline-flex;margin-left:5px;padding:3px 6px;border-radius:10px;background:#dff1ff;color:#126da8;font-size:7px;letter-spacing:.05em;font-weight:900;vertical-align:2px}.cand-online-feature>small{line-height:1.45!important}.cand-online-feature>em{color:#167f5b!important}.cand-create-cv{position:relative!important;opacity:1!important;pointer-events:auto!important;width:100%;margin-top:9px;border:0;border-radius:7px;padding:8px;background:#1477b9;color:#fff;font-size:9px;font-weight:900;cursor:pointer}.cand-create-cv.oculto{display:none!important}.cand-cv-options label:has(.cand-create-cv:not(.oculto))>span{opacity:1!important}.cand-cv-options label:has(.cand-create-cv:not(.oculto)){cursor:default}@media(max-width:650px){.cand-cv-options{grid-template-columns:1fr}}
+
+
+/* CANDIDATURA - MODAL AMPLO V2 (2026-09-22) */
+@media(min-width:651px){
+.candidatura-modal-backdrop{padding:12px!important}
+.candidatura-modal-card{width:min(1080px,calc(100vw - 28px))!important;max-height:calc(100vh - 24px)!important;overflow:hidden!important;border-radius:22px!important}
+.candidatura-modal-x{right:20px!important;top:17px!important;width:42px!important;height:42px!important;font-size:25px!important}
+.candidatura-modal-card>header{padding:20px 32px 15px!important}
+.candidatura-modal-card>header>span{font-size:12px!important}
+.candidatura-modal-card>header h2{font-size:27px!important;line-height:1.15!important;margin:5px 54px 4px 0!important}
+.candidatura-modal-card>header p{font-size:13px!important}
+.candidatura-modal-card form{padding:15px 32px 18px!important}
+.cand-apply-person{gap:13px!important;padding:10px 14px!important;margin-bottom:9px!important;border-radius:13px!important}
+.cand-apply-avatar{width:44px!important;height:44px!important;border-radius:11px!important;font-size:18px!important}
+.cand-apply-person strong{font-size:15px!important}.cand-apply-person span{font-size:11px!important}
+.candidatura-modal-card .candidatura-resumo{padding:9px 14px!important;margin-bottom:13px!important;border-radius:10px!important}
+.candidatura-modal-card .candidatura-resumo strong{font-size:13px!important}.candidatura-modal-card .candidatura-resumo span{font-size:10.5px!important}
+.cand-apply-label b{font-size:15px!important}.cand-apply-label small{font-size:11.5px!important}
+.cand-cv-options{grid-template-columns:1.22fr 1fr 1fr!important;gap:12px!important;margin-top:8px!important}
+.cand-cv-options label>span{padding:13px 15px!important;border-radius:13px!important;min-height:126px!important}
+.cand-cv-options i{font-size:20px!important}.cand-cv-options b{font-size:13px!important;margin:6px 0 3px!important}.cand-cv-options small{font-size:10.5px!important;line-height:1.35!important}.cand-cv-options em{font-size:9.5px!important;margin-top:5px!important}
+.cand-online-feature mark{font-size:8px!important;padding:3px 7px!important}.cand-create-cv{margin-top:6px!important;padding:7px!important;font-size:10px!important}
+.cand-apply-message{margin-top:12px!important}.cand-apply-message>b{font-size:13px!important;margin-bottom:5px!important}.cand-apply-message>b small{font-size:10px!important}
+.cand-apply-message textarea{min-height:58px!important;height:58px!important;padding:10px 12px!important;font-size:13px!important;resize:none!important}
+.candidatura-modal-card footer{margin-top:11px!important;gap:10px!important}.cand-apply-cancel,.cand-apply-send{padding:11px 19px!important;font-size:13px!important}
+}
+@media(min-width:651px) and (max-height:650px){
+.candidatura-modal-card>header{padding-top:15px!important;padding-bottom:11px!important}.candidatura-modal-card>header h2{font-size:24px!important}.candidatura-modal-card form{padding-top:11px!important;padding-bottom:12px!important}.cand-apply-person{padding-top:7px!important;padding-bottom:7px!important}.cand-apply-avatar{width:40px!important;height:40px!important}.candidatura-modal-card .candidatura-resumo{margin-bottom:9px!important;padding-top:7px!important;padding-bottom:7px!important}.cand-cv-options label>span{min-height:112px!important;padding-top:10px!important;padding-bottom:10px!important}.cand-apply-message{margin-top:9px!important}.cand-apply-message textarea{min-height:48px!important;height:48px!important}.candidatura-modal-card footer{margin-top:8px!important}
+}
