@@ -4944,3 +4944,57 @@ overflow:visible!important
 #pagina-candidatos-empresa .cand-acoes-secundarias{display:flex!important;gap:7px!important;flex-wrap:wrap!important}
 #pagina-candidatos-empresa .status-selecionado{border-color:#8771d5!important}#pagina-candidatos-empresa .status-em-contato{border-color:#5b98ca!important}#pagina-candidatos-empresa .status-entrevista-agendada{border-color:#d8a14d!important}#pagina-candidatos-empresa .status-aprovado,#pagina-candidatos-empresa .status-contratado{border-color:#51a87f!important}#pagina-candidatos-empresa .status-reprovado{border-color:#e48585!important}
 @media(max-width:760px){#pagina-candidatos-empresa .recruta-cand-head,#pagina-candidatos-empresa .recruta-processo-head{align-items:flex-start!important;flex-direction:column!important}#pagina-candidatos-empresa .recruta-cand-status{text-align:left!important}#pagina-candidatos-empresa .recruta-processo-controles{width:100%!important;flex-direction:column!important;align-items:stretch!important}#pagina-candidatos-empresa .cand-status-select,#pagina-candidatos-empresa .recruta-toggle-andamento{width:100%!important}.recruta-timeline{overflow-x:auto!important}#pagina-candidatos-empresa .cand-fluxo-progressivo{min-width:760px!important}#pagina-candidatos-empresa .recruta-cand-info{grid-template-columns:1fr!important}#pagina-candidatos-empresa .recruta-cand-actions{grid-template-columns:1fr!important}}
+
+/* RECRUTADOR — TIMELINE ISOLADA V6
+   Não usa .cand-fluxo-progressivo para impedir conflito com estilos legados. */
+#pagina-candidatos-empresa .recruta-timeline{padding:24px 18px 16px!important;overflow-x:auto!important;overflow-y:hidden!important}
+#pagina-candidatos-empresa .recruta-etapas-v6{
+  position:relative!important;display:grid!important;
+  grid-template-columns:repeat(7,minmax(0,1fr))!important;
+  width:100%!important;min-width:700px!important;
+  margin:0!important;padding:8px 0 6px!important;gap:0!important;
+  border:0!important;background:transparent!important;overflow:visible!important;
+}
+#pagina-candidatos-empresa .recruta-etapas-v6::before{
+  content:""!important;position:absolute!important;z-index:0!important;
+  left:7.142%!important;right:7.142%!important;top:23px!important;
+  height:2px!important;background:#c9dce8!important;
+}
+#pagina-candidatos-empresa .recruta-etapas-v6>button{
+  all:unset!important;box-sizing:border-box!important;
+  position:relative!important;z-index:1!important;
+  display:flex!important;flex-direction:column!important;align-items:center!important;
+  width:100%!important;min-width:0!important;padding:0 6px!important;
+  color:#073d63!important;text-align:center!important;cursor:default!important;
+  font-family:inherit!important;
+}
+#pagina-candidatos-empresa .recruta-etapas-v6>button:not(:disabled){cursor:pointer!important}
+#pagina-candidatos-empresa .recruta-etapas-v6>button>i{
+  box-sizing:border-box!important;width:31px!important;height:31px!important;flex:0 0 31px!important;
+  margin:0 auto 9px!important;border:3px solid #c5d9e5!important;border-radius:50%!important;
+  background:#fff!important;display:flex!important;align-items:center!important;justify-content:center!important;
+  font-style:normal!important;font-size:10px!important;font-weight:850!important;color:#648296!important;
+  position:static!important;transform:none!important;
+}
+#pagina-candidatos-empresa .recruta-etapas-v6>button>span{
+  display:block!important;position:static!important;width:100%!important;min-height:28px!important;
+  margin:0!important;font-size:11px!important;line-height:1.2!important;font-weight:850!important;
+  color:#073d63!important;white-space:normal!important;transform:none!important;
+}
+#pagina-candidatos-empresa .recruta-etapas-v6>button>small{
+  display:block!important;position:static!important;width:100%!important;margin:5px 0 0!important;
+  font-size:9px!important;line-height:1.2!important;font-weight:500!important;color:#7c91a0!important;
+  white-space:nowrap!important;transform:none!important;
+}
+#pagina-candidatos-empresa .recruta-etapas-v6>button.feito>i{border-color:#1685d2!important;background:#1685d2!important;color:#fff!important}
+#pagina-candidatos-empresa .recruta-etapas-v6>button.atual>i{border-color:#1685d2!important;background:#fff!important;color:#1685d2!important;box-shadow:0 0 0 5px #e5f3fc!important}
+#pagina-candidatos-empresa .recruta-etapas-v6>button.etapa-2.feito>i,#pagina-candidatos-empresa .recruta-etapas-v6>button.etapa-2.atual>i{border-color:#149da1!important;background:#149da1!important;color:#fff!important;box-shadow:none!important}
+#pagina-candidatos-empresa .recruta-etapas-v6>button.etapa-3.feito>i{border-color:#2b86c5!important;background:#2b86c5!important;color:#fff!important}
+#pagina-candidatos-empresa .recruta-etapas-v6>button.etapa-3.atual>i{border-color:#2b86c5!important;background:#2b86c5!important;color:#fff!important;box-shadow:0 0 0 5px #e5f3fc!important}
+#pagina-candidatos-empresa .recruta-etapas-v6>button.etapa-4.feito>i,#pagina-candidatos-empresa .recruta-etapas-v6>button.etapa-4.atual>i{border-color:#8b6bc5!important;background:#8b6bc5!important;color:#fff!important}
+#pagina-candidatos-empresa .recruta-etapas-v6>button.etapa-5.feito>i,#pagina-candidatos-empresa .recruta-etapas-v6>button.etapa-5.atual>i{border-color:#32a56f!important;background:#32a56f!important;color:#fff!important}
+#pagina-candidatos-empresa .recruta-etapas-v6>button.etapa-6.feito>i,#pagina-candidatos-empresa .recruta-etapas-v6>button.etapa-6.atual>i{border-color:#16835c!important;background:#16835c!important;color:#fff!important}
+@media(max-width:760px){
+ #pagina-candidatos-empresa .recruta-etapas-v6{min-width:700px!important}
+ #pagina-candidatos-empresa .recruta-timeline{padding-left:14px!important;padding-right:14px!important}
+}
