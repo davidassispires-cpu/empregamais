@@ -2320,3 +2320,16 @@ padding:14px 14px!important;align-items:center!important
 #pagina-painel-admin .admin2-main [class*="historico"]::-webkit-scrollbar-thumb{background:#c8d7df!important;border-radius:10px!important}
 #pagina-painel-admin .admin2-main .admin-linha:last-child{border-bottom:0!important}
 @media(max-width:760px){#pagina-painel-admin>.admin2-shell{min-height:0!important}#pagina-painel-admin .admin2-side{position:relative!important;height:auto!important;min-height:0!important;max-height:none!important}#pagina-painel-admin .admin2-side-bottom{position:relative!important;bottom:auto!important}}
+
+/* EMPREGAMAIS — confirmação de verificação sem rolagem em desktop */
+@media(min-width:651px){
+ .em-verificacao-dialog{width:min(780px,calc(100vw - 48px))!important;max-height:none!important;overflow:visible!important;padding:27px 32px!important}
+ .em-verificacao-ok{width:46px!important;height:46px!important;margin-bottom:12px!important}
+ .em-verificacao-ok svg{width:27px!important;height:27px!important}
+ .em-verificacao-dialog h2{margin:6px 0 7px!important;font-size:24px!important}
+ .em-verificacao-dialog>p{font-size:13px!important;line-height:1.5!important}
+ .em-verificacao-beneficios{margin:17px 0 19px!important;padding:16px 20px!important}
+ .em-verificacao-beneficios h3{margin-bottom:8px!important}
+ .em-verificacao-beneficios>div{padding:7px 0!important}
+ .em-verificacao-dialog>button{min-height:46px!important}
+}
