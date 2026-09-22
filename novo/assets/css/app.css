@@ -1290,3 +1290,41 @@ header nav a,header nav button,.menu-drop button{font-size:15px}
 #pagina-perfil-empresa.modo-verificacao #perfilProgress,
 #pagina-perfil-empresa.modo-verificacao .perfil-wizard-layout-split{display:none!important}
 #pagina-perfil-empresa.modo-verificacao .perfil-verificacao-em{display:block!important}
+
+
+/* PAINEL RECRUTADOR — LAYOUT DE REFERENCIA 21/09 */
+#pagina-painel-empresa.painel-empresa-v2{background:#f5f9fb}
+#pagina-painel-empresa .empresa-app-shell{display:grid!important;grid-template-columns:245px minmax(0,1fr)!important;max-width:none!important;min-height:calc(100vh - 72px);background:#f5f9fb}
+#pagina-painel-empresa .empresa-side-ref{position:sticky;top:0;align-self:start;height:100vh;background:linear-gradient(180deg,#07394c,#03445a 60%,#05384a);padding:25px 15px 20px;color:#fff;border-radius:0;box-shadow:none}
+#pagina-painel-empresa .empresa-side-brand{display:none!important}
+#pagina-painel-empresa .empresa-side-company{display:grid;grid-template-columns:60px 1fr;gap:13px;align-items:center;padding:0 5px 24px;border-bottom:1px solid rgba(255,255,255,.12);margin-bottom:17px}
+#pagina-painel-empresa .empresa-side-company-icon{width:58px;height:58px;border-radius:9px;background:#fff;color:#087586;display:grid;place-items:center;font-size:28px}
+#pagina-painel-empresa .empresa-side-company b{display:block;font-size:17px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.empresa-side-company small{display:block;color:#8fe0e6;font-size:12px;margin:3px 0}.empresa-side-company button{border:0;background:none;color:#b9e8eb;padding:0;font-size:12px;cursor:pointer}
+#pagina-painel-empresa .empresa-side-ref nav{display:grid;gap:5px}
+#pagina-painel-empresa .empresa-side-ref nav button{width:100%;min-height:48px;border:0;border-radius:9px;background:transparent;color:#f5fbfc;text-align:left;padding:0 15px;font-size:15px;font-weight:700;display:flex;align-items:center;gap:12px;cursor:pointer}
+#pagina-painel-empresa .empresa-side-ref nav button.ativo{background:#08738d}
+#pagina-painel-empresa .empresa-side-ref nav button:hover{background:rgba(18,137,160,.55)}
+#pagina-painel-empresa .empresa-menu-secundario{margin-top:8px;border-top:1px solid rgba(255,255,255,.1)!important;border-radius:0!important;padding-top:12px!important}
+#pagina-painel-empresa .empresa-side-upgrade{margin-top:15px}
+#pagina-painel-empresa .empresa-sair{margin-top:20px;border:0;border-top:1px solid rgba(255,255,255,.13);background:none;color:#fff;width:100%;padding:20px 15px 5px;text-align:left;font-size:15px;font-weight:700}
+#pagina-painel-empresa .empresa-main{padding:12px 16px 45px!important;min-width:0}
+#pagina-painel-empresa .em-ref-wrap{max-width:none!important;width:100%!important}
+#pagina-painel-empresa .em-ref-hero{min-height:330px!important;border-radius:17px!important;padding:34px 40px!important;grid-template-columns:minmax(410px,1.15fr) minmax(340px,.8fr) minmax(280px,.62fr)!important;background:linear-gradient(120deg,#06445c,#007482 60%,#087c85)!important;box-shadow:0 7px 24px rgba(8,66,82,.12)}
+#pagina-painel-empresa .hero-v17-left h1{font-size:clamp(34px,3.3vw,52px)!important;line-height:1.05!important;margin:10px 0 14px!important}
+#pagina-painel-empresa .hero-v17-left>p{font-size:18px!important}
+#pagina-painel-empresa .hero-v17-left>button{margin-top:24px!important;min-width:310px!important;min-height:66px!important;border-radius:13px!important;font-size:17px!important}
+#pagina-painel-empresa .hero-v17-left>small{font-size:14px!important;margin-top:22px!important}
+#pagina-painel-empresa .hero-v17-right h2{font-size:27px!important;line-height:1.12!important}
+#pagina-painel-empresa .hero-v17-right p{font-size:15px!important}
+#pagina-painel-empresa .hero-v17-icons b{font-size:13px!important}
+#pagina-painel-empresa .em-ref-kpis{display:grid!important;grid-template-columns:repeat(4,minmax(0,1fr))!important;gap:12px!important;margin-top:14px!important}
+#pagina-painel-empresa .empresa-metrica-v2{min-height:145px!important;border:1px solid #dce8ed!important;border-radius:13px!important;padding:19px 21px!important;background:#fff!important;box-shadow:0 3px 13px rgba(11,66,82,.04)!important}
+#pagina-painel-empresa .empresa-metrica-v2:nth-child(5){display:none!important}
+#pagina-painel-empresa .empresa-metrica-v2 .kpi-num{font-size:31px!important;color:#073f55!important}
+#pagina-painel-empresa .empresa-metrica-v2 h3{font-size:16px!important;color:#103e51!important}
+#pagina-painel-empresa .empresa-metrica-v2 p{font-size:13px!important}
+#pagina-painel-empresa .empresa-dashboard-grid{grid-template-columns:1.2fr 1fr!important;gap:14px!important;margin-top:14px!important}
+#pagina-painel-empresa .empresa-box{border-radius:13px!important;border:1px solid #dce8ed!important;box-shadow:0 3px 13px rgba(11,66,82,.04)!important}
+#pagina-painel-empresa .empresa-box-head h2{font-size:21px!important}
+@media(max-width:1200px){#pagina-painel-empresa .em-ref-hero{grid-template-columns:1.15fr .85fr!important}.hero-v17-right{display:none!important}#pagina-painel-empresa .em-ref-kpis{grid-template-columns:repeat(2,1fr)!important}}
+@media(max-width:850px){#pagina-painel-empresa .empresa-app-shell{grid-template-columns:1fr!important}#pagina-painel-empresa .empresa-side-ref{position:relative;height:auto;display:none}#pagina-painel-empresa .empresa-main{padding:10px!important}#pagina-painel-empresa .em-ref-hero{grid-template-columns:1fr!important;padding:25px 20px!important}.hero-v17-center{display:none!important}#pagina-painel-empresa .em-ref-kpis,#pagina-painel-empresa .empresa-dashboard-grid{grid-template-columns:1fr!important}}
