@@ -3122,3 +3122,41 @@ h1,h2,h3,h4,h5,h6,strong,b,.vaga-card h3,.empresa-vaga-linha strong,.jornada-ite
 input::placeholder,textarea::placeholder{font-family:"Montserrat",Arial,sans-serif!important;color:#687e90!important;opacity:1}
 /* Mantém Arial somente nos pontos previamente definidos pelo usuário */
 .vaga-hero-texto h1,.vaga-card h3,.preview-vaga-cab h3,.review-grid [data-vaga-titulo],.empresa-vaga-linha strong,.jornada-item strong,.page-title,.page-heading h1,.page-heading h2,.pagina-titulo,.section-hero h1,.hero h1,.hero h2,main>section>h1,main>section>h2{font-family:Arial,Helvetica,sans-serif!important}
+
+
+/* EMPREGAMAIS-SELO-VERIFICADA-50PLUS-V35 */
+/* Empresa verificada: sem caixa/borda, texto azul e alinhamento limpo */
+.vaga-hero-empresa .em-verificado-wrap,
+.em-verificado-wrap,
+.empresa-verificada-card{
+display:inline-flex!important;align-items:center!important;gap:6px!important;
+margin-left:8px!important;padding:0!important;border:0!important;
+background:transparent!important;box-shadow:none!important;border-radius:0!important;
+vertical-align:middle!important;color:#126aa8!important;font-weight:700!important;
+white-space:nowrap!important
+}
+.em-verificado-wrap b,.em-verificado-wrap span,.empresa-verificada-card{
+color:#126aa8!important
+}
+.em-verificado-wrap:before{
+display:inline-flex!important;align-items:center!important;justify-content:center!important;
+width:19px!important;height:19px!important;border-radius:50%!important;
+background:#19a879!important;color:#fff!important;font-size:11px!important;line-height:19px!important
+}
+/* Linha de etiquetas: não cortar 50+ e permitir acomodação proporcional */
+.vaga-hero-tags,.vaga-tags,.vaga-selos,.vaga-badges{
+display:flex!important;align-items:center!important;flex-wrap:wrap!important;
+gap:8px!important;overflow:visible!important;max-width:100%!important
+}
+.vaga-hero-tags>*,.vaga-tags>*,.vaga-selos>*,.vaga-badges>*{
+flex:0 0 auto!important;max-width:100%!important
+}
+.vaga-50mais,.vaga-50-plus,.tag-50mais,.tag-50-plus,[class*="50mais"],[class*="50-plus"]{
+width:auto!important;min-width:max-content!important;max-width:none!important;
+overflow:visible!important;text-overflow:clip!important;white-space:nowrap!important;
+padding-left:13px!important;padding-right:13px!important
+}
+@media(max-width:700px){
+.vaga-50mais,.vaga-50-plus,.tag-50mais,.tag-50-plus,[class*="50mais"],[class*="50-plus"]{
+min-width:0!important;white-space:normal!important;line-height:1.25!important
+}}
