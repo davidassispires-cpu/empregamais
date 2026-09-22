@@ -555,7 +555,7 @@ function iniciarSolicitacaoVerificacaoEM(lista,i,motivo='envio'){
  const modal=document.getElementById('emVerificacaoModal');if(modal){const titulo=modal.querySelector('#emVerificacaoTitulo'),intro=modal.querySelector('.em-verificacao-dialog>p');if(titulo)titulo.textContent=motivo==='reanálise'?'Alterações enviadas para nova análise':'Verificação iniciada com sucesso';if(intro)intro.innerHTML=motivo==='reanálise'?'Os dados verificados da empresa foram alterados. O selo ficará temporariamente suspenso enquanto o administrador realiza uma <strong>nova análise</strong>.':'Recebemos as informações da sua empresa. A solicitação agora ficará <strong>aguardando análise do administrador</strong>.';modal.classList.add('aberto');modal.setAttribute('aria-hidden','false');document.body.classList.add('em-modal-aberto')}
 }
 function concluirSolicitacaoVerificacaoEM(){
- const modal=document.getElementById('emVerificacaoModal');if(modal){modal.classList.remove('aberto');modal.setAttribute('aria-hidden','true')}document.body.classList.remove('em-modal-aberto');irPara('painel-empresa')
+ const modal=document.getElementById('emVerificacaoModal');if(modal){modal.classList.remove('aberto');modal.setAttribute('aria-hidden','true')}document.body.classList.remove('em-modal-aberto');irPara('perfil-empresa')
 }
 function renderStatusVerificacaoEmpresaEM(){
  const box=document.getElementById('empresaVerificacaoStatus');if(!box)return;const emp=empresaLogada();if(!emp){box.innerHTML='';return}
@@ -574,6 +574,7 @@ function renderPerfilVerificacaoEmpresaEM(){
  let box=document.getElementById('perfilVerificacaoEmpresaEM');
  if(!box){box=document.createElement('section');box.id='perfilVerificacaoEmpresaEM';box.className='perfil-verificacao-em';const shell=pagina.querySelector('.perfil-wizard-shell');if(shell)shell.insertBefore(box,shell.firstChild)}
  const s=emp.verificada||emp.verificacaoStatus==='aprovada'?'aprovada':(emp.verificacaoStatus||'nao_verificada');
+ pagina.classList.toggle('modo-verificacao',s==='pendente'||s==='em_analise'||s==='aprovada');
  const formulario=pagina.querySelector('.perfil-wizard-head'),progresso=document.getElementById('perfilProgress'),layout=pagina.querySelector('.perfil-wizard-layout-split');
  const ocultar=s==='pendente'||s==='em_analise'||s==='aprovada';
  [formulario,progresso,layout].forEach(x=>{if(x)x.style.display=ocultar?'none':''});
@@ -593,7 +594,7 @@ function renderPerfilVerificacaoEmpresaEM(){
  '<article class="pv-benefits"><span>BENEFÍCIOS DA VERIFICAÇÃO</span><div><i>✓</i><p><b>Selo de Empresa Verificada</b><small>Identificação visual no perfil e nas áreas compatíveis do portal.</small></p></div><div><i>✓</i><p><b>Mais credibilidade</b><small>Ajuda candidatos a reconhecerem um perfil empresarial analisado.</small></p></div><div><i>✓</i><p><b>Perfil mais confiável</b><small>Reforça a identidade institucional apresentada aos profissionais.</small></p></div><div><i>✓</i><p><b>Destaque de confiança</b><small>O selo acompanha a presença da empresa onde a verificação for exibida.</small></p></div></article></aside></div>';
 }
 function editarPerfilEmAnaliseEM(){
- const pagina=document.getElementById('pagina-perfil-empresa'),box=document.getElementById('perfilVerificacaoEmpresaEM');if(box)box.style.display='none';
+ const pagina=document.getElementById('pagina-perfil-empresa'),box=document.getElementById('perfilVerificacaoEmpresaEM');pagina?.classList.remove('modo-verificacao');if(box)box.style.display='none';
  ['.perfil-wizard-head','#perfilProgress','.perfil-wizard-layout-split'].forEach(s=>{const x=pagina?.querySelector(s);if(x)x.style.display=''});
  perfilEmpresaEtapa(1);carregarPerfilEmpresa();window.scrollTo(0,0);
 }
