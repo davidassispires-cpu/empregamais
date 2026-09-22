@@ -4376,3 +4376,36 @@ overflow:visible!important
   grid-template-columns:repeat(7,120px)!important;overflow-x:auto!important;padding:20px 4px 14px!important
  }
 }
+
+
+/* EMPREGAMAIS-PLANOS-CARD-COMPACTO-V1 */
+.plano-b-preco{background:#087b84!important;color:#fff!important;padding:30px 30px 27px!important;justify-content:flex-start!important}
+.plano-b-preco>span,.plano-b-preco h2,.plano-b-preco>p,.plano-b-preco>strong,.plano-b-preco>small{color:#fff!important}
+.plano-b-preco>span{opacity:.82!important}
+.plano-b-preco h2{font-size:27px!important;line-height:1.15!important;margin:8px 0 7px!important}
+.plano-b-preco>p{font-size:13px!important;line-height:1.45!important;opacity:.9!important;min-height:0!important;margin:0 0 13px!important}
+.plano-b-preco>strong{font-size:35px!important;line-height:1!important;margin:8px 0 3px!important}
+.plano-b-preco>small{font-size:12px!important;margin:0 0 15px!important;opacity:.86!important}
+.plano-b-preco .em-pagamento-plano.em-pay-clean{margin:0 0 15px!important;padding:0!important;background:#fff!important;border:1px solid rgba(255,255,255,.75)!important;border-radius:12px!important;overflow:hidden!important;display:block!important;color:#123d50!important}
+.em-pay-clean-title{padding:11px 14px 9px!important;border-bottom:1px solid #e4edef!important;background:#f7fbfc!important}
+.em-pay-clean-title strong{display:block!important;font-size:12px!important;line-height:1.2!important;color:#123d50!important}
+.em-pay-clean-title span{display:block!important;margin-top:2px!important;font-size:9px!important;color:#72868e!important}
+.em-pay-clean-row{display:grid!important;grid-template-columns:minmax(0,1fr) auto!important;column-gap:9px!important;align-items:center!important;padding:10px 14px!important;border-bottom:1px solid #edf2f3!important}
+.em-pay-clean-row:last-child{border-bottom:0!important}
+.em-pay-clean-row>span{font-size:11px!important;font-weight:800!important;color:#345562!important}
+.em-pay-clean-row>span b{font-size:8px!important;margin-left:4px!important;padding:3px 5px!important;border-radius:999px!important;background:#e5f7f2!important;color:#087b70!important}
+.em-pay-clean-row>strong{font-size:12px!important;color:#073f67!important;text-align:right!important}
+.em-pay-clean-row>small{grid-column:2!important;margin-top:1px!important;font-size:9px!important;color:#84959b!important;text-align:right!important}
+.plano-b-preco .em-bandeiras,.plano-b-preco .em-pix-brand,.plano-b-preco .em-credit-brand{display:none!important}
+.plano-b-escolher{margin-top:0!important}
+.plano-b-seguranca{margin-top:14px!important;padding-top:13px!important;color:#fff!important}
+.plano-b-seguranca span,.plano-b-seguranca small{color:#fff!important}
+#pagina-plano-detalhe .plano-detalhe-top{background:#fff!important;border:1px solid #d8e5e8!important;box-shadow:0 8px 24px rgba(13,64,74,.06)!important}
+#pagina-plano-detalhe .plano-detalhe-top>div>span,#pagina-plano-detalhe .plano-detalhe-top>div>h2,#pagina-plano-detalhe .plano-detalhe-top>div>p{color:#123d50!important}
+#pagina-plano-detalhe .plano-detalhe-top .em-pay-clean{max-width:430px!important;margin:14px 0 0!important}
+@media(max-width:800px){
+ .plano-b-preco{padding:25px 22px!important}
+ .plano-b-preco h2{font-size:25px!important}
+ .plano-b-preco>strong{font-size:32px!important}
+ .em-pay-clean-row{padding:9px 12px!important}
+}
