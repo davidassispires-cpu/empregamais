@@ -2548,19 +2548,9 @@ padding:14px 14px!important;align-items:center!important
 #pagina-candidatar .cand-aderencia-top.aderencia-alta{background:#eef9f4!important;border-color:#9fd7bf!important}#pagina-candidatar .cand-aderencia-top.aderencia-alta strong{color:#27805e!important}#pagina-candidatar .cand-aderencia-top.aderencia-alta span,#pagina-candidatar .cand-aderencia-top.aderencia-alta small{color:#356d58!important}
 #pagina-candidatar .cand-aderencia-top.aderencia-excelente{background:#e8f8f0!important;border-color:#78c6a4!important}#pagina-candidatar .cand-aderencia-top.aderencia-excelente strong{color:#08784e!important}#pagina-candidatar .cand-aderencia-top.aderencia-excelente span,#pagina-candidatar .cand-aderencia-top.aderencia-excelente small{color:#176747!important}
 
-/* EMPREGAMAIS-SELOS-VAGA-PADRAO-V10 */
-.portal-vaga-nova .vaga-selos{display:flex!important;align-items:flex-end!important;gap:8px!important;flex-wrap:wrap!important}
-.portal-vaga-nova .vaga-selo{box-sizing:border-box!important;height:30px!important;min-height:30px!important;padding:0 12px!important;border-radius:10px!important;display:inline-flex!important;align-items:center!important;justify-content:center!important;gap:5px!important;font-size:11px!important;line-height:1!important;font-weight:800!important;white-space:nowrap!important}
-.portal-vaga-nova .vaga-selo i{width:17px!important;height:17px!important;display:grid!important;place-items:center!important;border-radius:50%!important;font-style:normal!important;font-size:10px!important;line-height:1!important;background:rgba(255,255,255,.22)!important}
-.portal-vaga-nova .destaque-selo{background:#efa900!important;color:#fff!important;border:1px solid #dc9900!important}
-.portal-vaga-nova .urgente-selo{background:#f21f48!important;color:#fff!important;border:1px solid #db173b!important}
-.portal-vaga-nova .senior-selo{background:#f4efff!important;color:#6b46cf!important;border:1px solid #d7c7ff!important}
-.portal-vaga-nova .senior-selo i{background:#7655d7!important;color:#fff!important;font-size:7px!important}
-.portal-vaga-nova .selo-50-wrap{display:inline-flex!important;flex-direction:column!important;align-items:flex-start!important;gap:3px!important}
-.portal-vaga-nova .selo-50-wrap>small{font-size:8.5px!important;line-height:1.1!important;font-weight:800!important;color:#7157b2!important;white-space:nowrap!important;padding-left:2px!important}
-#pagina-vaga .vaga-hero-selos{align-items:flex-end!important}
-#pagina-vaga .hero-50-wrap{display:inline-flex!important;flex-direction:column!important;align-items:flex-start!important;gap:4px!important}
-#pagina-vaga .hero-50-wrap>small{font-size:9px!important;line-height:1.1!important;font-weight:800!important;color:#7055b4!important;padding-left:3px!important}
-#pagina-vaga .vaga-hero-selos>span.hero-destaque,#pagina-vaga .vaga-hero-selos>span.hero-urgente,#pagina-vaga .hero-50mais{box-sizing:border-box!important;height:30px!important;min-height:30px!important;padding:0 12px!important;border-radius:10px!important;display:inline-flex!important;align-items:center!important;justify-content:center!important;gap:5px!important;font-size:11px!important;line-height:1!important;font-weight:800!important;white-space:nowrap!important}
-#pagina-vaga .hero-50mais{background:#f4efff!important;color:#6b46cf!important;border:1px solid #d7c7ff!important}
-@media(max-width:600px){.portal-vaga-nova .selo-50-wrap>small,#pagina-vaga .hero-50-wrap>small{white-space:normal!important;max-width:150px!important}}
+/* EMPREGAMAIS-AVISO-50MAIS-ISOLADO-V12 */
+.portal-vaga-nova .selo-50-bloco{display:inline-flex;flex-direction:column;align-items:flex-start;gap:3px;vertical-align:top}
+.portal-vaga-nova .selo-50-bloco>small{display:block;font-size:8.5px;line-height:1.1;font-weight:700;color:#7057ae;white-space:nowrap;margin:0 0 1px 2px}
+#pagina-vaga .hero-50-bloco{display:inline-flex;flex-direction:column;align-items:flex-start;gap:3px;vertical-align:top}
+#pagina-vaga .hero-50-bloco>small{display:block;font-size:9px;line-height:1.1;font-weight:700;color:#7057ae;white-space:nowrap;margin:0 0 1px 2px}
+@media(max-width:600px){.portal-vaga-nova .selo-50-bloco>small,#pagina-vaga .hero-50-bloco>small{white-space:normal;max-width:160px}}
