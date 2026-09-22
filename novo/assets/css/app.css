@@ -3373,3 +3373,29 @@ text-align:center!important;font-size:10.5px!important;line-height:1.4!important
 display:inline-flex!important;justify-content:center!important;align-items:center!important;
 margin:18px auto 0!important;text-align:center!important;font-size:10.5px!important
 }
+
+
+/* EMPREGAMAIS-HEADER-ESTADOS-SEM-SOBREPOSICAO-V42 */
+/* O cabeçalho possui 3 menus de estado; somente o menu ativo participa do layout */
+.topo-inner{width:min(100% - 32px,1240px)!important;max-width:1240px!important;margin:0 auto!important;display:flex!important;align-items:center!important;gap:20px!important;overflow:visible!important}
+.topo .menu{min-width:0!important;align-items:center!important}
+.topo .menu-publico,.topo .menu-empresa-logada,.topo .menu-candidato-logado{display:none!important}
+body:not(.empresa-logada):not(.candidato-logado) .topo .menu-publico{display:flex!important}
+body.empresa-logada .topo .menu-empresa-logada{display:flex!important}
+body.candidato-logado .topo .menu-candidato-logado{display:flex!important}
+.topo .menu button{white-space:nowrap!important;line-height:1.2!important}
+.topo .acoes{margin-left:auto!important;flex:0 0 auto!important;align-items:center!important}
+.topo .sessao-empresa-topo,.topo .sessao-candidato-topo{flex:0 0 auto!important}
+@media(min-width:851px) and (max-width:1180px){
+.topo-inner{width:calc(100% - 20px)!important;gap:10px!important}
+.topo .menu{gap:2px!important}
+.topo .menu button{padding:9px 8px!important;font-size:12px!important}
+.topo .marca{gap:7px!important;font-size:19px!important}
+.topo .marca-icone{width:35px!important;height:35px!important}
+.topo .acoes{gap:6px!important}
+.topo .btn{padding-left:11px!important;padding-right:11px!important;font-size:12px!important}
+.topo .btn-anunciar-vaga{font-size:12px!important;padding-left:11px!important;padding-right:11px!important}
+}
+@media(max-width:850px){
+.topo .menu-publico,.topo .menu-empresa-logada,.topo .menu-candidato-logado{display:none!important}
+}
