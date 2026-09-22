@@ -4528,3 +4528,41 @@ overflow:visible!important
  #pagina-painel-candidato .cand-dashboard-hero-pro{padding:24px 20px!important}
  #pagina-painel-candidato .cand-hero-beneficios-linha{grid-template-columns:1fr!important}
 }
+
+/* EMPREGAMAIS-BANNER-CANDIDATO-BENEFICIOS-V2 */
+#pagina-painel-candidato .cand-hero-beneficios{
+ display:flex!important;flex-direction:column!important;justify-content:center!important;
+ gap:0!important;padding:18px 22px!important;border:1px solid rgba(255,255,255,.22)!important;
+ border-radius:14px!important;background:rgba(255,255,255,.055)!important;min-width:0!important
+}
+#pagina-painel-candidato .cand-hero-beneficios>span{
+ display:block!important;width:100%!important;margin:0 0 12px!important;padding:0!important;
+ font-size:10px!important;line-height:1.2!important;letter-spacing:.1em!important;font-weight:900!important;
+ color:#eef9ff!important
+}
+#pagina-painel-candidato .cand-hero-beneficios-linha{
+ display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;
+ gap:10px 22px!important;width:100%!important;min-width:0!important
+}
+#pagina-painel-candidato .cand-hero-beneficio{
+ display:grid!important;grid-template-columns:22px minmax(0,1fr)!important;
+ align-items:center!important;gap:8px!important;min-width:0!important;width:100%!important
+}
+#pagina-painel-candidato .cand-hero-beneficio i{
+ display:grid!important;place-items:center!important;width:20px!important;height:20px!important;
+ min-width:20px!important;margin:0!important;border:1px solid rgba(255,255,255,.28)!important;
+ border-radius:50%!important;background:rgba(255,255,255,.13)!important;color:#fff!important;
+ font-size:10px!important;line-height:1!important;font-style:normal!important
+}
+#pagina-painel-candidato .cand-hero-beneficio b{
+ display:block!important;position:static!important;width:auto!important;min-width:0!important;margin:0!important;padding:0!important;
+ font-size:10.5px!important;line-height:1.35!important;font-weight:800!important;color:#fff!important;
+ white-space:normal!important;overflow:visible!important;text-overflow:clip!important;transform:none!important
+}
+@media(max-width:1100px){
+ #pagina-painel-candidato .cand-hero-beneficios-linha{grid-template-columns:repeat(2,minmax(0,1fr))!important}
+}
+@media(max-width:650px){
+ #pagina-painel-candidato .cand-hero-beneficios{padding:16px!important}
+ #pagina-painel-candidato .cand-hero-beneficios-linha{grid-template-columns:1fr!important;gap:9px!important}
+}
