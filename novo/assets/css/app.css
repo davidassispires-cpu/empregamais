@@ -4622,3 +4622,21 @@ overflow:visible!important
 @media(max-width:650px){
  #pagina-painel-candidato .cand-hero-beneficios-linha{grid-template-columns:1fr!important}
 }
+
+/* EMPREGAMAIS-CANDIDATO-GRATUITO-PREMIUM-V1 */
+#pagina-premium-candidato .premium-comparativo-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px;max-width:1050px;margin:28px auto 0}
+#pagina-premium-candidato .premium-comparativo-card{padding:27px;border:1px solid #d7e4ec;border-radius:18px;background:#fff;box-shadow:0 8px 25px rgba(18,63,91,.05)}
+#pagina-premium-candidato .premium-comparativo-card>span{font-size:10px;font-weight:900;letter-spacing:.1em;color:#557789}
+#pagina-premium-candidato .premium-comparativo-card h3{margin:7px 0 7px;font-size:23px;color:#0a456e}
+#pagina-premium-candidato .premium-comparativo-card>p{margin:0;color:#647d8e;font-size:13px;line-height:1.55}
+#pagina-premium-candidato .premium-comparativo-card ul{list-style:none;padding:0;margin:20px 0;display:grid;gap:10px}
+#pagina-premium-candidato .premium-comparativo-card li{padding:9px 11px;border-radius:9px;background:#f6f9fb;color:#31566d;font-size:12px;line-height:1.35}
+#pagina-premium-candidato .premium-comparativo-card.gratuito>b{display:inline-flex;padding:8px 11px;border-radius:999px;background:#edf7fb;color:#176788;font-size:11px}
+#pagina-premium-candidato .premium-comparativo-card.premium{border-color:#b7d9e8;background:linear-gradient(180deg,#f7fcff,#fff)}
+#pagina-premium-candidato .premium-comparativo-card.premium>span{color:#087f99}
+#pagina-premium-candidato .premium-comparativo-card.premium li{background:#eef8fb;color:#174f6c}
+#pagina-premium-candidato .premium-comparativo-card.premium button{width:100%;min-height:43px;border:0;border-radius:10px;background:#087f99;color:#fff;font-weight:900;cursor:pointer}
+#pagina-premium-candidato .premium-comparativo-card.premium.plano-ativo{border-color:#75c8ae;box-shadow:0 0 0 3px #e8f7f2}
+#pagina-premium-candidato .premium-comparativo-card.premium.plano-ativo button{background:#e7f6f1;color:#13745a;cursor:default}
+#pagina-premium-candidato .premium-recursos-nota{max-width:900px;margin:18px auto 0;text-align:center;font-size:11px;color:#718694}
+@media(max-width:760px){#pagina-premium-candidato .premium-comparativo-grid{grid-template-columns:1fr}#pagina-premium-candidato .premium-comparativo-card{padding:21px}}
