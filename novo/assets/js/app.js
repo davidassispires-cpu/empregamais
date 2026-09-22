@@ -1115,3 +1115,19 @@ const _adminAbaCabecalhoEM=adminAba;
 adminAba=async function(aba,btn){admin2AtualizarCabecalhoEM(aba);if(aba==='pendencias'){if(sessionStorage.getItem('empregaMaisAdmin')!=='1'){irPara('login-admin');return}document.querySelectorAll('[data-admin-tab]').forEach(b=>b.classList.toggle('ativo',b.dataset.adminTab===aba));const out=document.getElementById('adminConteudo');if(!out)return;out.innerHTML='<div class="admin-bloco"><h2>Atualizando pendências…</h2><p class="admin-sub">Buscando as solicitações mais recentes.</p></div>';try{await adminCarregarEmpresasSupabaseEM();await adminCarregarVagasSupabase()}catch(err){console.error('ADM pendências Supabase:',err)}out.innerHTML=adminRenderPendenciasEM();try{adminAtualizarBadgePendenciasEM()}catch(e){}return}const r=await _adminAbaCabecalhoEM(aba,btn);try{adminAtualizarBadgePendenciasEM()}catch(e){}return r};
 
 function vigenciaTextoEmpresaEM(e){const v=e?.planoFim||e?.planoAte||e?.vigenciaAte;if(!v)return 'Plano ativo';const d=new Date(v);return isNaN(d)?'Plano ativo':'Ativo até '+d.toLocaleDateString('pt-BR')}
+
+/* EMPREGAMAIS — EXPORTAÇÃO DE VAGAS ADMIN */
+function adminExportarVagasCSV(){
+ if(sessionStorage.getItem('empregaMaisAdmin')!=='1'){irPara('login-admin');return}
+ const vagas=ler('empregaMaisVagas')||[];
+ if(!vagas.length){alert('Não há vagas para exportar.');return}
+ const cols=[
+  ['ID',v=>v.id],['Cargo',v=>v.cargo],['Empresa',v=>v.empresa||v.empresaNome],['CNPJ',v=>v.empresaCnpj||v.cnpjEmpresa],
+  ['Área',v=>v.area],['Cidade',v=>v.cidade],['UF',v=>v.uf],['Salário',v=>v.salario],['Contrato',v=>v.contrato],
+  ['Modalidade',v=>v.modalidade],['Status',v=>v.status],['Destaque',v=>v.destaque?'Sim':'Não'],['Urgente',v=>v.urgente?'Sim':'Não'],
+  ['Data de publicação',v=>v.dataPublicacao||v.criadoEm||v.data],['Descrição',v=>v.descricao],['Requisitos',v=>v.requisitos]
+ ];
+ const csv=[cols.map(c=>c[0]),...vagas.map(v=>cols.map(c=>c[1](v)??''))].map(row=>row.map(x=>'"'+String(x).replace(/"/g,'""').replace(/\r?\n/g,' ')+'"').join(';')).join('\r\n');
+ const blob=new Blob(['\ufeff'+csv],{type:'text/csv;charset=utf-8;'});
+ const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='empregamais-vagas-'+new Date().toISOString().slice(0,10)+'.csv';document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(a.href),1000)
+}
