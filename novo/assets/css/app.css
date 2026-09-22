@@ -3399,3 +3399,28 @@ body.candidato-logado .topo .menu-candidato-logado{display:flex!important}
 @media(max-width:850px){
 .topo .menu-publico,.topo .menu-empresa-logada,.topo .menu-candidato-logado{display:none!important}
 }
+
+
+/* EMPREGAMAIS-HEADER-COMPACTO-FINAL-V43 */
+/* Cabeçalho compacto: impede logo/menu/ações de invadirem uns aos outros */
+@media(min-width:851px){
+.topo-inner{width:calc(100% - 24px)!important;max-width:1320px!important;min-height:70px!important;padding:0!important;gap:12px!important}
+.topo .marca{flex:0 0 218px!important;min-width:218px!important;max-width:218px!important;gap:8px!important;justify-content:flex-start!important;white-space:nowrap!important;overflow:visible!important}
+.topo .marca-icone{flex:0 0 38px!important}
+.topo .marca-nome{display:inline-block!important;white-space:nowrap!important;font-size:21px!important;line-height:1!important}
+.topo .menu{flex:1 1 auto!important;min-width:0!important;justify-content:space-evenly!important;gap:2px!important}
+.topo .menu button{flex:0 1 auto!important;padding:10px 9px!important;font-size:13px!important;white-space:nowrap!important}
+.topo .acoes{flex:0 0 auto!important;min-width:0!important;gap:8px!important}
+.topo .acoes>.menu-drop-candidato>.btn{padding-left:13px!important;padding-right:13px!important;white-space:nowrap!important}
+.topo .btn-anunciar-vaga{padding-left:14px!important;padding-right:14px!important;max-width:220px!important;white-space:nowrap!important}
+}
+@media(min-width:851px) and (max-width:1120px){
+.topo-inner{width:calc(100% - 16px)!important;gap:7px!important}
+.topo .marca{flex-basis:190px!important;min-width:190px!important;max-width:190px!important}
+.topo .marca-nome{font-size:18px!important}
+.topo .marca-icone{width:34px!important;height:34px!important;flex-basis:34px!important}
+.topo .menu button{padding:9px 6px!important;font-size:11.5px!important}
+.topo .acoes>.menu-drop-candidato>.btn{padding-left:9px!important;padding-right:9px!important;font-size:11.5px!important}
+.topo .btn-anunciar-vaga{padding-left:10px!important;padding-right:10px!important;font-size:11.5px!important;max-width:190px!important}
+.topo .btn-anunciar-icone{font-size:15px!important}
+}
