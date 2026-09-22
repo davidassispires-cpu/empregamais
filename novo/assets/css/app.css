@@ -1185,3 +1185,21 @@ body.sessao-empresa .menu-publico,body.sessao-empresa .menu-drop-candidato{displ
 #pagina-vaga .vaga-curriculo-side>button{border-color:#d6e1e8!important;color:#356986!important;border-radius:7px!important}
 #pagina-vaga .vaga-topbar{border-color:#e5eaee!important;background:#fff!important}
 #pagina-vaga .vaga-topbar .voltar-link,#pagina-vaga .vaga-topbar-acoes button{font-family:'Manrope',Arial,sans-serif!important;font-size:11.5px!important;font-weight:600!important;color:#526f84!important}
+
+/* EMPREGAMAIS-VERIFICACAO-EMPRESA-V1 */
+.em-modal-aberto{overflow:hidden!important}
+.em-verificacao-modal{position:fixed;inset:0;z-index:99999;display:none;align-items:center;justify-content:center;padding:24px;font-family:Manrope,Questrial,sans-serif}
+.em-verificacao-modal.aberto{display:flex}.em-verificacao-backdrop{position:absolute;inset:0;background:rgba(10,31,45,.58);backdrop-filter:blur(3px)}
+.em-verificacao-dialog{position:relative;width:min(620px,100%);max-height:calc(100vh - 48px);overflow:auto;background:#fff;border:1px solid #dce7eb;border-radius:20px;padding:32px;box-shadow:0 28px 80px rgba(8,38,53,.25)}
+.em-verificacao-ok{width:54px;height:54px;border-radius:15px;display:grid;place-items:center;background:#eaf7f4;color:#087b70;margin-bottom:18px}.em-verificacao-ok svg{width:31px;height:31px;fill:none;stroke:currentColor;stroke-width:1.8}
+.em-verificacao-kicker{font-size:10px;font-weight:800;letter-spacing:.12em;color:#0c7a83}.em-verificacao-dialog h2{margin:7px 0 8px;color:#15384f;font-size:25px}.em-verificacao-dialog>p{margin:0;color:#617583;font-size:13.5px;line-height:1.65}
+.em-verificacao-beneficios{margin:23px 0 25px;padding:20px;border:1px solid #e1e9ed;border-radius:14px;background:#f8fbfc}.em-verificacao-beneficios h3{margin:0 0 14px;color:#173c52;font-size:14px}
+.em-verificacao-beneficios>div{display:grid;grid-template-columns:27px 1fr;gap:10px;padding:10px 0;border-top:1px solid #e8eef1}.em-verificacao-beneficios>div:first-of-type{border-top:0}
+.em-verificacao-beneficios>div>span{width:24px;height:24px;border-radius:50%;display:grid;place-items:center;background:#e5f5f1;color:#08796e;font-weight:800;font-size:12px}.em-verificacao-beneficios p{margin:0}.em-verificacao-beneficios b{display:block;color:#24475b;font-size:13px}.em-verificacao-beneficios small{display:block;color:#71828d;font-size:11.5px;line-height:1.45;margin-top:2px}
+.em-verificacao-dialog>button{width:100%;min-height:48px;border:0;border-radius:10px;background:#087e88;color:#fff;font:700 13px Manrope,sans-serif;cursor:pointer}.em-verificacao-dialog>button:hover{background:#076e77}
+#pagina-painel-empresa .empresa-verificacao-status{margin:0 0 18px}.em-ver-status{display:grid;grid-template-columns:46px minmax(0,1fr) auto;align-items:center;gap:15px;padding:17px 19px;border-radius:14px;border:1px solid #e1e7ea;background:#fff}
+.em-ver-status .em-ver-icon{width:43px;height:43px;border-radius:12px;display:grid;place-items:center}.em-ver-status .em-ver-icon svg{width:24px;height:24px;fill:none;stroke:currentColor;stroke-width:1.8}
+.em-ver-status small{display:block;font-size:9px;font-weight:800;letter-spacing:.11em;margin-bottom:3px}.em-ver-status strong{display:block;font-size:16px;color:#17394e}.em-ver-status p{margin:3px 0 0;color:#667b87;font-size:11.5px;line-height:1.45}.em-ver-status>b{font-size:10px;letter-spacing:.08em;border-radius:999px;padding:7px 10px}
+.em-ver-pendente{border-color:#eadcb7;background:#fffdf8}.em-ver-pendente .em-ver-icon{background:#fff4d8;color:#a66b00}.em-ver-pendente small{color:#936914}.em-ver-pendente>b{background:#fff0c7;color:#8a5d00}
+.em-ver-aprovada{border-color:#cde8df;background:#fbfefd}.em-ver-aprovada .em-ver-icon{background:#e3f5ef;color:#087a6c}.em-ver-aprovada small{color:#087a6c}.em-ver-aprovada>b{background:#e3f5ef;color:#087a6c}
+@media(max-width:650px){.em-verificacao-dialog{padding:24px 19px}.em-ver-status{grid-template-columns:42px 1fr}.em-ver-status>b{grid-column:2;justify-self:start}.em-verificacao-dialog h2{font-size:21px}}
