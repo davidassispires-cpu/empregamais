@@ -1140,19 +1140,31 @@ document.addEventListener("visibilitychange",()=>{if(!document.hidden)sbAtualiza
 window.addEventListener("load",()=>{setTimeout(sbAtualizarPaineisCandidaturasEM,900);if(!sbCandidaturasTimerEM)sbCandidaturasTimerEM=setInterval(()=>{if(!document.hidden)sbAtualizarPaineisCandidaturasEM()},12000)});
 
 
-/* EMPREGAMAIS-CANDIDATO-LEGADO-MIGRACAO-AUTH-V1 */
+/* EMPREGAMAIS-CANDIDATO-LEGADO-MIGRACAO-AUTH-V2 */
 const _loginCandidatoSupabaseV1=loginCandidato;
-loginCandidato=function(e){
+loginCandidato=async function(e){
  e.preventDefault();const email=$("#loginCandEmail").value.trim().toLowerCase(),senha=$("#loginCandSenha").value;
  if(!email.includes("@"))return msg("#msgLoginCandidato","Informe um e-mail válido.");if(!senha)return msg("#msgLoginCandidato","Informe sua senha.");
  msg("#msgLoginCandidato","Entrando...");
- sbLoginAuthCandidatoEM(email,senha).then(async auth=>{const antigo=ler("empregaMaisCandidatos").find(x=>String(x.email||"").toLowerCase()===email)||{email};let d=sbSalvarCandidatoLocalEM(sbCandidatoDoAuthEM(auth,antigo));d=sbSalvarCandidatoLocalEM(await sbUpsertCandidatoSupabaseEM(d,auth.access_token));concluirEntradaCandidatoSupabaseEM(d)}).catch(async err=>{
-  const antigo=ler("empregaMaisCandidatos").find(x=>String(x.email||"").toLowerCase()===email&&x.senha===senha);
-  if(antigo&&/invalid login|invalid credentials/i.test(err.message||"")){
-   try{const auth=await sbCadastrarAuthCandidatoEM(email,senha,antigo.nome||"",antigo.telefone||"",antigo.cidade||"");let d=sbSalvarCandidatoLocalEM(sbCandidatoDoAuthEM(auth,antigo));if(!auth?.access_token){msg("#msgLoginCandidato","Sua conta foi migrada. Confirme seu e-mail para entrar.",true);return}d=sbSalvarCandidatoLocalEM(await sbUpsertCandidatoSupabaseEM(d,auth.access_token));concluirEntradaCandidatoSupabaseEM(d);return}catch(mig){console.error("Migração candidato legado:",mig)}
+ const legado=ler("empregaMaisCandidatos").find(x=>String(x.email||"").toLowerCase()===email&&x.senha===senha);
+ try{
+  let auth;
+  try{auth=await sbLoginAuthCandidatoEM(email,senha)}
+  catch(loginErr){
+   if(!legado||!/invalid login|invalid credentials/i.test(loginErr.message||""))throw loginErr;
+   auth=await sbCadastrarAuthCandidatoEM(email,senha,legado.nome||"",legado.telefone||"",legado.cidade||"");
+   if(!auth?.access_token){msg("#msgLoginCandidato","Sua conta foi migrada. Confirme seu e-mail para entrar.",true);return}
   }
-  console.error("Login candidato / Supabase:",err);const t=/email not confirmed/i.test(err.message)?"Confirme seu e-mail antes de entrar.":/invalid login|invalid credentials/i.test(err.message)?"E-mail ou senha incorretos.":("Não foi possível entrar: "+err.message);msg("#msgLoginCandidato",t)
- })
+  const base=legado||ler("empregaMaisCandidatos").find(x=>String(x.email||"").toLowerCase()===email)||{email};
+  let d=sbSalvarCandidatoLocalEM(sbCandidatoDoAuthEM(auth,base));
+  try{d=sbSalvarCandidatoLocalEM(await sbUpsertCandidatoSupabaseEM(d,auth.access_token))}
+  catch(syncErr){console.error("Sincronização do cadastro do candidato:",syncErr);msg("#msgLoginCandidato","Conta autenticada, mas não foi possível sincronizar seu cadastro. Atualize a página e tente novamente.");return}
+  concluirEntradaCandidatoSupabaseEM(d)
+ }catch(err){
+  console.error("Login candidato / Supabase:",err);
+  const t=/email not confirmed/i.test(err.message)?"Confirme seu e-mail antes de entrar.":/already|registered|exists/i.test(err.message)?"Sua conta já existe no Supabase. Tente entrar novamente.":/invalid login|invalid credentials/i.test(err.message)?"E-mail ou senha incorretos.":("Não foi possível entrar: "+err.message);
+  msg("#msgLoginCandidato",t)
+ }
 };
 
 
