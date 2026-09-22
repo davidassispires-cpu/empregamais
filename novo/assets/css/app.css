@@ -3217,3 +3217,92 @@ margin:0 0 13px!important
 #pagina-vaga .vaga-conteudo-v2 .beneficios-tags p{font-size:14px!important;line-height:1.65!important}
 #pagina-vaga .vaga-conteudo-v2 h2{font-size:19px!important}
 }
+
+
+/* EMPREGAMAIS-CARROSSEL-VAGAS-HORIZONTAL-V39 */
+/* Cards do carrossel de vagas relacionadas: horizontais, 3 por vez */
+#pagina-vaga #vagasRelacionadas{
+display:flex!important;gap:16px!important;overflow-x:auto!important;overflow-y:hidden!important;
+scroll-snap-type:x mandatory!important;padding:10px 3px 18px!important;scrollbar-width:thin!important
+}
+#pagina-vaga #vagasRelacionadas>.portal-vaga-nova{
+position:relative!important;display:grid!important;
+grid-template-columns:76px minmax(0,1fr)!important;
+grid-template-rows:auto auto auto 1fr auto!important;
+column-gap:14px!important;row-gap:6px!important;
+flex:0 0 calc((100% - 32px)/3)!important;width:calc((100% - 32px)/3)!important;
+min-width:330px!important;min-height:250px!important;height:250px!important;
+padding:16px 17px!important;box-sizing:border-box!important;scroll-snap-align:start!important;
+overflow:hidden!important;border-radius:17px!important
+}
+#pagina-vaga #vagasRelacionadas .vaga-card-topo{
+grid-column:1/-1!important;grid-row:1!important;min-height:25px!important;margin:0!important;
+display:flex!important;align-items:center!important;gap:5px!important;flex-wrap:nowrap!important;overflow:hidden!important
+}
+#pagina-vaga #vagasRelacionadas .vaga-card-topo span{flex:0 0 auto!important;font-size:9px!important;white-space:nowrap!important}
+#pagina-vaga #vagasRelacionadas .vaga-identidade{
+grid-column:1/-1!important;grid-row:2!important;display:grid!important;
+grid-template-columns:76px minmax(0,1fr)!important;gap:14px!important;align-items:center!important;
+margin:2px 0 4px!important;min-width:0!important
+}
+#pagina-vaga #vagasRelacionadas .vaga-logo{
+width:76px!important;height:66px!important;min-width:76px!important;flex-basis:76px!important;
+grid-column:1!important;grid-row:1/3!important;border-radius:12px!important;object-fit:contain!important
+}
+#pagina-vaga #vagasRelacionadas .vaga-identidade>div:last-child{min-width:0!important}
+#pagina-vaga #vagasRelacionadas .vaga-identidade h3{
+display:-webkit-box!important;-webkit-box-orient:vertical!important;-webkit-line-clamp:2!important;
+overflow:hidden!important;overflow-wrap:normal!important;word-break:normal!important;
+font-size:16px!important;line-height:1.18!important;margin:0 0 4px!important
+}
+#pagina-vaga #vagasRelacionadas .vaga-identidade p{
+display:block!important;overflow:hidden!important;text-overflow:ellipsis!important;white-space:nowrap!important;
+font-size:12px!important;line-height:1.3!important;margin:0!important
+}
+#pagina-vaga #vagasRelacionadas .vaga-meta{
+grid-column:2!important;grid-row:3!important;display:flex!important;gap:5px!important;flex-wrap:wrap!important;
+margin:0!important;min-width:0!important
+}
+#pagina-vaga #vagasRelacionadas .vaga-meta span{
+font-size:10px!important;padding:5px 7px!important;white-space:nowrap!important
+}
+#pagina-vaga #vagasRelacionadas .vaga-salario-data{
+grid-column:1/-1!important;grid-row:4!important;display:flex!important;align-items:center!important;
+justify-content:space-between!important;gap:12px!important;margin:4px 0 0!important;padding:9px 0 0!important
+}
+#pagina-vaga #vagasRelacionadas .salario-card,#pagina-vaga #vagasRelacionadas .vaga-salario{
+font-size:17px!important;line-height:1.2!important;margin:0!important
+}
+#pagina-vaga #vagasRelacionadas .data-card,#pagina-vaga #vagasRelacionadas .vaga-data{
+font-size:10px!important;white-space:nowrap!important
+}
+#pagina-vaga #vagasRelacionadas .vaga-resumo{
+grid-column:1/2!important;grid-row:5!important;display:-webkit-box!important;-webkit-box-orient:vertical!important;
+-webkit-line-clamp:2!important;overflow:hidden!important;font-size:11.5px!important;line-height:1.35!important;
+margin:0!important;align-self:center!important
+}
+#pagina-vaga #vagasRelacionadas .vaga-card-rodape{
+grid-column:2!important;grid-row:5!important;display:flex!important;justify-content:flex-end!important;
+align-items:end!important;margin:0!important;padding:0!important;border:0!important
+}
+#pagina-vaga #vagasRelacionadas .vaga-card-rodape .btn,
+#pagina-vaga #vagasRelacionadas .vaga-card-rodape button,
+#pagina-vaga #vagasRelacionadas .ver-vaga{
+display:inline-flex!important;align-items:center!important;justify-content:center!important;
+width:auto!important;min-width:108px!important;height:38px!important;min-height:38px!important;
+padding:0 15px!important;font-size:11.5px!important;border-radius:9px!important
+}
+@media(max-width:1100px){
+#pagina-vaga #vagasRelacionadas>.portal-vaga-nova{flex-basis:calc((100% - 16px)/2)!important;width:calc((100% - 16px)/2)!important}
+}
+@media(max-width:650px){
+#pagina-vaga #vagasRelacionadas>.portal-vaga-nova{
+display:flex!important;flex-direction:column!important;flex-basis:86%!important;width:86%!important;
+min-width:280px!important;height:auto!important;min-height:300px!important
+}
+#pagina-vaga #vagasRelacionadas .vaga-identidade{display:grid!important}
+#pagina-vaga #vagasRelacionadas .vaga-meta,#pagina-vaga #vagasRelacionadas .vaga-salario-data,
+#pagina-vaga #vagasRelacionadas .vaga-resumo,#pagina-vaga #vagasRelacionadas .vaga-card-rodape{width:100%!important}
+#pagina-vaga #vagasRelacionadas .vaga-card-rodape{justify-content:stretch!important}
+#pagina-vaga #vagasRelacionadas .vaga-card-rodape button,#pagina-vaga #vagasRelacionadas .ver-vaga{width:100%!important}
+}
