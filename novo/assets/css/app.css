@@ -1951,3 +1951,38 @@ body.cv-success-open{overflow:hidden}.cv-success-modal{position:fixed;inset:0;z-
   width:18px!important;height:18px!important;margin-right:6px!important;
   background:#6849cf!important;color:#fff!important;font-size:11px!important
 }
+
+
+/* PAINEL EMPRESA EXECUTIVO V18 (2026-09-22) */
+#pagina-painel-empresa .hero-dashboard-v18{min-height:0!important;padding:26px 30px!important;display:grid!important;grid-template-columns:minmax(0,1.25fr) minmax(390px,.75fr)!important;gap:30px!important;align-items:center!important;background:linear-gradient(120deg,#07516d 0%,#096b82 100%)!important;border-radius:20px!important;overflow:hidden!important}
+#pagina-painel-empresa .hero-v18-main{min-width:0!important}
+#pagina-painel-empresa .hero-v18-main h1{font-size:27px!important;line-height:1.15!important;margin:4px 0 8px!important;color:#fff!important}
+#pagina-painel-empresa .hero-v18-main>p{font-size:12.5px!important;color:#d9f0f4!important;margin:0!important}
+#pagina-painel-empresa .hero-v18-actions{display:flex!important;gap:10px!important;margin-top:20px!important}
+#pagina-painel-empresa .hero-v18-actions button{height:43px!important;border-radius:10px!important;padding:0 15px!important;font:700 12px Questrial,sans-serif!important;cursor:pointer!important}
+#pagina-painel-empresa .hero-v18-primary{display:flex!important;align-items:center!important;gap:10px!important;background:#fff!important;color:#075b74!important;border:1px solid #fff!important}
+#pagina-painel-empresa .hero-v18-primary>span{width:25px!important;height:25px!important;border-radius:50%!important;display:grid!important;place-items:center!important;background:#07869a!important;color:#fff!important;font-size:17px!important}
+#pagina-painel-empresa .hero-v18-primary>b{margin-left:8px!important;font-size:15px!important}
+#pagina-painel-empresa .hero-v18-secondary{background:rgba(255,255,255,.08)!important;color:#fff!important;border:1px solid rgba(255,255,255,.3)!important}
+#pagina-painel-empresa .hero-v18-summary{background:#fff!important;border:1px solid rgba(255,255,255,.55)!important;border-radius:15px!important;padding:16px!important;box-shadow:0 14px 35px rgba(0,42,58,.17)!important}
+#pagina-painel-empresa .hero-v18-summary-head{display:flex!important;justify-content:space-between!important;align-items:flex-start!important;padding-bottom:12px!important;border-bottom:1px solid #e6eef2!important}
+#pagina-painel-empresa .hero-v18-summary-head small{display:block!important;color:#71909f!important;font-size:8px!important;font-weight:800!important;letter-spacing:.08em!important}
+#pagina-painel-empresa .hero-v18-summary-head strong{display:block!important;color:#123b4e!important;font-size:16px!important;margin-top:2px!important}
+#pagina-painel-empresa .hero-v18-summary-head>span{font-size:8px!important;color:#159087!important;background:#e9f7f3!important;padding:5px 8px!important;border-radius:999px!important}
+#pagina-painel-empresa .hero-v18-summary-grid{display:grid!important;grid-template-columns:repeat(3,1fr)!important;gap:8px!important;margin-top:12px!important}
+#pagina-painel-empresa .hero-v18-summary-grid button{display:flex!important;align-items:center!important;gap:8px!important;min-width:0!important;border:0!important;background:#f7fafb!important;border-radius:10px!important;padding:10px!important;text-align:left!important;cursor:pointer!important}
+#pagina-painel-empresa .hero-v18-summary-grid button:hover{background:#eef6f7!important}
+#pagina-painel-empresa .hero-v18-summary-grid i{width:28px!important;height:28px!important;display:grid!important;place-items:center!important;border-radius:8px!important;background:#e1f2f3!important;color:#087d89!important;font-style:normal!important;font-size:12px!important}
+#pagina-painel-empresa .hero-v18-summary-grid small{display:block!important;color:#718692!important;font-size:8px!important;line-height:1.15!important}
+#pagina-painel-empresa .hero-v18-summary-grid strong{display:block!important;color:#113a4d!important;font-size:19px!important;margin-top:2px!important}
+#pagina-painel-empresa #empresaMetricasNovas.kpi-clean-v16{gap:11px!important;margin:13px 0 18px!important}
+#pagina-painel-empresa .kpi-clean-v16 .empresa-metrica-v2{min-height:137px!important;padding:13px 14px 0!important;border-radius:13px!important;box-shadow:0 5px 16px rgba(22,56,72,.045)!important}
+#pagina-painel-empresa .kpi-clean-v16 .kpi-v16-head{margin-bottom:5px!important}
+#pagina-painel-empresa .kpi-clean-v16 .kpi-v16-icon{width:37px!important;height:37px!important;min-width:37px!important;border-radius:9px!important}
+#pagina-painel-empresa .kpi-clean-v16 .kpi-v16-icon svg{width:21px!important;height:21px!important;min-width:21px!important}
+#pagina-painel-empresa .kpi-clean-v16 .kpi-num{font-size:27px!important}
+#pagina-painel-empresa .kpi-clean-v16 h3{font-size:14px!important;margin:3px 0!important}
+#pagina-painel-empresa .kpi-clean-v16 p{font-size:9.5px!important;line-height:1.3!important;margin:2px 0 7px!important}
+#pagina-painel-empresa .kpi-clean-v16 .kpi-link{font-size:9px!important;margin-top:auto!important;padding:7px 0!important}
+@media(max-width:1050px){#pagina-painel-empresa .hero-dashboard-v18{grid-template-columns:1fr!important}#pagina-painel-empresa .hero-v18-summary{max-width:none!important}}
+@media(max-width:700px){#pagina-painel-empresa .hero-dashboard-v18{padding:21px!important}.hero-v18-actions{flex-wrap:wrap!important}#pagina-painel-empresa .hero-v18-summary-grid{grid-template-columns:1fr!important}#pagina-painel-empresa #empresaMetricasNovas.kpi-clean-v16{grid-template-columns:1fr 1fr!important}}
