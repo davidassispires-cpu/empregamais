@@ -1774,3 +1774,22 @@ body.cv-success-open{overflow:hidden}.cv-success-modal{position:fixed;inset:0;z-
 #listaCandidatosEmpresa .cand-aderencia-pro>div strong{padding:4px 9px;border-radius:999px;background:#e2f5f1!important;color:#087568!important}
 #listaCandidatosEmpresa .cand-aderencia-pro>i{height:9px!important}
 @media(max-width:999px){#listaCandidatosEmpresa .candidato-card{display:flex!important;flex-direction:column!important}#listaCandidatosEmpresa .candidato-acoes{display:flex!important;flex-wrap:wrap!important;flex-direction:row!important;width:100%!important}#listaCandidatosEmpresa .cand-fluxo-progressivo{width:100%!important;overflow-x:auto!important}}
+
+/* CANDIDATO CARD - LINHA UNICA COMPACTA V3 (2026-09-22) */
+@media(min-width:1000px){
+ #listaCandidatosEmpresa .candidato-card{grid-template-columns:minmax(210px,.9fr) minmax(180px,.62fr) minmax(560px,1.75fr)!important;column-gap:14px!important;padding:18px 20px!important}
+ #listaCandidatosEmpresa .candidato-card>div:first-child h3{font-size:18px!important;margin-bottom:4px!important}
+ #listaCandidatosEmpresa .candidato-card>div:first-child p{font-size:12px!important;white-space:nowrap!important}
+ #listaCandidatosEmpresa .cand-vaga-origem{font-size:11px!important}
+ #listaCandidatosEmpresa .cand-aderencia-pro{max-width:230px!important}
+ #listaCandidatosEmpresa .cand-aderencia-pro>div strong{font-size:14px!important}
+ #listaCandidatosEmpresa .cand-aderencia-pro>i{height:7px!important}
+ #listaCandidatosEmpresa .candidato-acoes{display:flex!important;flex-direction:row!important;flex-wrap:nowrap!important;justify-content:flex-end!important;gap:6px!important}
+ #listaCandidatosEmpresa .candidato-acoes .btn,#listaCandidatosEmpresa .candidato-acoes select{height:40px!important;padding:0 12px!important;font-size:11px!important;line-height:40px!important;border-radius:8px!important;white-space:nowrap!important}
+ #listaCandidatosEmpresa .candidato-acoes select{min-width:132px!important;line-height:normal!important}
+ #listaCandidatosEmpresa .cand-fluxo-progressivo{grid-template-columns:repeat(5,1fr)!important;padding:17px 18px 2px!important}
+ #listaCandidatosEmpresa .cand-fluxo-progressivo span{font-size:10px!important;white-space:nowrap!important}
+}
+@media(min-width:1180px){
+ #listaCandidatosEmpresa .candidato-card{grid-template-columns:minmax(230px,.95fr) minmax(190px,.65fr) minmax(620px,1.9fr)!important}
+}
