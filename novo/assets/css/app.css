@@ -1562,3 +1562,7 @@ body.cv-success-open{overflow:hidden}.cv-success-modal{position:fixed;inset:0;z-
 @media(min-width:651px) and (max-height:650px){
 .candidatura-modal-card>header{padding-top:15px!important;padding-bottom:11px!important}.candidatura-modal-card>header h2{font-size:24px!important}.candidatura-modal-card form{padding-top:11px!important;padding-bottom:12px!important}.cand-apply-person{padding-top:7px!important;padding-bottom:7px!important}.cand-apply-avatar{width:40px!important;height:40px!important}.candidatura-modal-card .candidatura-resumo{margin-bottom:9px!important;padding-top:7px!important;padding-bottom:7px!important}.cand-cv-options label>span{min-height:112px!important;padding-top:10px!important;padding-bottom:10px!important}.cand-apply-message{margin-top:9px!important}.cand-apply-message textarea{min-height:48px!important;height:48px!important}.candidatura-modal-card footer{margin-top:8px!important}
 }
+
+
+/* VAGA - PADRONIZACAO DE FONTE V1 (2026-09-22) */
+#pagina-vaga,#pagina-vaga *{font-family:Questrial,Arial,sans-serif!important}
