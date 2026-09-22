@@ -3035,3 +3035,23 @@ html,body,#app,#pagina-premium-candidato,#pagina-premium-candidato *{font-family
 :root{--font-family:"Montserrat",Arial,sans-serif!important;--em-font-global:"Montserrat",Arial,sans-serif!important}
 html,body,body *,#app,#app *,header,header *,main,main *,footer,footer *,nav,nav *,section,section *,article,article *,aside,aside *,div,div *,span,p,a,button,input,select,textarea,option,label,h1,h2,h3,h4,h5,h6,strong,b,small,table,thead,tbody,tr,th,td,ul,ol,li,dialog{font-family:"Montserrat",Arial,sans-serif!important}
 input::placeholder,textarea::placeholder{font-family:"Montserrat",Arial,sans-serif!important}
+
+
+/* EMPREGAMAIS-PREMIUM-CORES-PLANOS-V29 */
+#pagina-premium-candidato .premium-planos-grid{padding-top:18px!important;overflow:visible!important}
+#pagina-premium-candidato .premium-plano-card{overflow:visible!important}
+#pagina-premium-candidato .premium-plano-destaque .premium-plano-badge{top:-17px!important;z-index:20!important}
+#pagina-premium-candidato .premium-plano-mensal{--plan-accent:#526f91;--plan-accent2:#7693b2;--plan-soft:#eef3f8;--plan-border:#d5e0e9;background:linear-gradient(180deg,#fff 0%,#f8fafc 100%)!important;border-color:var(--plan-border)!important}
+#pagina-premium-candidato .premium-plano-trimestral{--plan-accent:#116da9;--plan-accent2:#2798cf;--plan-soft:#eaf6fd;--plan-border:#87c5e7;background:linear-gradient(180deg,#fbfeff 0%,#f1f9fe 100%)!important;border-color:var(--plan-accent)!important}
+#pagina-premium-candidato .premium-plano-semestral{--plan-accent:#157866;--plan-accent2:#35a58e;--plan-soft:#eaf8f4;--plan-border:#b9ddd5;background:linear-gradient(180deg,#fff 0%,#f4fbf9 100%)!important;border-color:var(--plan-border)!important}
+#pagina-premium-candidato .premium-plano-card:before{background:linear-gradient(90deg,var(--plan-accent),var(--plan-accent2))!important;opacity:1!important;border-radius:28px 28px 0 0!important}
+#pagina-premium-candidato .premium-plano-card .premium-plano-periodo{background:var(--plan-soft)!important;color:var(--plan-accent)!important}
+#pagina-premium-candidato .premium-plano-card .premium-plano-equivalente b{color:var(--plan-accent)!important}
+#pagina-premium-candidato .premium-plano-card button{background:linear-gradient(135deg,var(--plan-accent2),var(--plan-accent))!important;box-shadow:0 9px 20px color-mix(in srgb,var(--plan-accent) 18%,transparent)!important}
+#pagina-premium-candidato .premium-plano-card button:hover{box-shadow:0 13px 27px color-mix(in srgb,var(--plan-accent) 26%,transparent)!important}
+#pagina-premium-candidato .premium-plano-semestral .premium-pagamento-cartao span{background:#e5f5f1!important;color:#157866!important}
+#pagina-premium-candidato .premium-plano-semestral .premium-pagamento-box{border-color:#d3eae4!important;background:linear-gradient(135deg,#fff,#eef9f6)!important}
+#pagina-premium-candidato .premium-plano-mensal .premium-pagamento-cartao span{background:#e9eff5!important;color:#526f91!important}
+#pagina-premium-candidato .premium-plano-mensal .premium-pagamento-box{border-color:#dce5ed!important;background:linear-gradient(135deg,#fff,#f2f6fa)!important}
+#pagina-premium-candidato .premium-plano-trimestral .premium-plano-badge{background:linear-gradient(135deg,var(--plan-accent),var(--plan-accent2))!important}
+@media(max-width:900px){#pagina-premium-candidato .premium-planos-grid{padding-top:22px!important}#pagina-premium-candidato .premium-plano-destaque{margin-top:18px!important}}
