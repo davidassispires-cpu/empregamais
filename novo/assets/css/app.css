@@ -1606,3 +1606,10 @@ body.cv-success-open{overflow:hidden}.cv-success-modal{position:fixed;inset:0;z-
 #pagina-vaga .vaga-info-grid>div:nth-child(4) i{background:#e9f7ef!important;color:#17825c!important}
 #pagina-vaga .vaga-info-grid>div:nth-child(4) small,#pagina-vaga .vaga-info-grid>div:nth-child(4) strong{color:#147451!important}
 @media(max-width:700px){#pagina-vaga .vaga-info-grid>div{min-height:82px!important;padding-left:54px!important}#pagina-vaga .vaga-info-grid i{left:16px!important;width:29px!important;height:29px!important}#pagina-vaga .vaga-info-grid strong{font-size:13px!important}}
+
+
+/* VAGA - INFORMACOES DO CABECALHO CENTRALIZADAS V3 (2026-09-22) */
+#pagina-vaga .vaga-info-grid>div{padding-left:14px!important;padding-right:14px!important;text-align:center!important;align-items:center!important;justify-content:center!important}
+#pagina-vaga .vaga-info-grid i{position:static!important;left:auto!important;top:auto!important;transform:none!important;margin:0 auto 7px!important}
+#pagina-vaga .vaga-info-grid small,#pagina-vaga .vaga-info-grid strong{width:100%!important;text-align:center!important}
+@media(max-width:700px){#pagina-vaga .vaga-info-grid>div{padding-left:10px!important;padding-right:10px!important}}
