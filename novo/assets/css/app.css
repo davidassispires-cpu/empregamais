@@ -2991,3 +2991,25 @@ input::placeholder,textarea::placeholder{font-family:var(--em-font-global)!impor
 #pagina-premium-candidato .premium-plano-destaque .premium-plano-periodo{background:#e6f3fc!important;color:#0e66a5!important}
 #pagina-premium-candidato .premium-planos-aviso{max-width:850px!important;margin:24px auto 0!important;padding-top:18px!important;border-top:1px solid #e4ebf1!important;color:#7c8f9f!important;font-size:11.5px!important;line-height:1.55!important}
 @media(max-width:900px){#pagina-premium-candidato .premium-planos-grid{gap:18px!important}#pagina-premium-candidato .premium-plano-card{min-height:0!important;padding:31px 24px 25px!important}#pagina-premium-candidato .premium-plano-destaque{transform:none!important;margin-top:10px!important}}
+
+
+/* EMPREGAMAIS-MONTSERRAT-FORCADA-PAGINA-V26 */
+html,body,#app,#pagina-premium-candidato,#pagina-premium-candidato *{font-family:"Montserrat",Arial,sans-serif!important}
+#pagina-premium-candidato button,
+#pagina-premium-candidato input,
+#pagina-premium-candidato select,
+#pagina-premium-candidato textarea,
+#pagina-premium-candidato option,
+#pagina-premium-candidato label,
+#pagina-premium-candidato small,
+#pagina-premium-candidato span,
+#pagina-premium-candidato p,
+#pagina-premium-candidato h1,
+#pagina-premium-candidato h2,
+#pagina-premium-candidato h3,
+#pagina-premium-candidato strong,
+#pagina-premium-candidato b,
+#pagina-premium-candidato i{font-family:"Montserrat",Arial,sans-serif!important}
+#pagina-premium-candidato .premium-plano-card h3{font-weight:700!important;letter-spacing:-.02em!important}
+#pagina-premium-candidato .premium-plano-preco strong{font-weight:700!important;letter-spacing:-.035em!important}
+#pagina-premium-candidato .premium-plano-card button{font-weight:700!important}
