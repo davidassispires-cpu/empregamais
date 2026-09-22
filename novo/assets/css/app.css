@@ -3941,3 +3941,16 @@ overflow:visible!important
 #pagina-candidaturas .cand-app-mini-flow b{height:2px;flex:1;background:#d9e7ed}
 @media(max-width:900px){#pagina-candidaturas .cand-applications-hero{margin:12px 14px 20px;padding:24px;grid-template-columns:1fr}.cand-app-hero-panel{max-width:none}}
 @media(max-width:560px){#pagina-candidaturas .cand-applications-hero{padding:20px;border-radius:15px}#pagina-candidaturas .cand-applications-hero h1{font-size:29px}#pagina-candidaturas .cand-app-hero-actions{align-items:stretch;flex-direction:column}#pagina-candidaturas .cand-app-hero-actions button{width:100%}}
+
+/* EMPREGAMAIS-CANDIDATURAS-AZUL-V3 */
+#pagina-candidaturas .cand-applications-hero{
+ background:linear-gradient(120deg,#f8fbff 0%,#eef6ff 55%,#e4f0ff 100%);
+ border-color:#cbdff5;box-shadow:0 14px 38px rgba(9,73,135,.08)
+}
+#pagina-candidaturas .cand-applications-hero:before{background:rgba(22,105,196,.08)}
+#pagina-candidaturas .cand-applications-hero .cand-app-kicker{color:#1769aa}
+#pagina-candidaturas .cand-app-hero-actions button{background:#075ea8;box-shadow:0 6px 15px rgba(7,94,168,.18)}
+#pagina-candidaturas .cand-app-hero-icon{background:#e2effd;color:#075ea8}
+#pagina-candidaturas .cand-app-hero-panel{border-color:#c8dcf2}
+#pagina-candidaturas .cand-app-hero-panel strong{color:#0b4f88}
+#pagina-candidaturas .cand-app-mini-flow i.feito{background:#075ea8;border-color:#075ea8}
