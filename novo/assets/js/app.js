@@ -920,3 +920,90 @@ sair=function(){
  }
  return _sairSupabaseCandidatoV1()
 };
+
+
+/* EMPREGAMAIS-CANDIDATURAS-SUPABASE-SYNC-V1 */
+let sbCandidaturasCacheEM=[],sbCandidaturasCarregadasEM=false,sbCandidaturasCarregandoEM=false,sbCandidaturasTimerEM=null;
+function sbMapCandidaturaEM(r){
+ if(!r)return null;
+ return {id:r.id,vagaId:r.vaga_id,candidatoUserId:r.candidato_user_id||"",empresaUserId:r.empresa_user_id||"",candidato:r.candidato_nome||"",nome:r.candidato_nome||"",email:r.candidato_email||"",telefone:r.candidato_telefone||"",status:r.status||"Em avaliação",historico:Array.isArray(r.historico)?r.historico:[],entrevista:r.entrevista||null,curriculo:r.curriculo||null,perfilProfissional:r.perfil_profissional||null,curriculoOrigem:r.curriculo_origem||"",aderencia:r.aderencia,criadoEm:r.criado_em||"",atualizadoEm:r.atualizado_em||"",contratadoEm:r.contratado_em||""}
+}
+function sbEspelharCandidaturasEM(a){sbCandidaturasCacheEM=(a||[]).filter(Boolean);sbCandidaturasCarregadasEM=true;gravar("empregaMaisCandidaturas",sbCandidaturasCacheEM);return sbCandidaturasCacheEM}
+candidaturas=function(){return sbCandidaturasCarregadasEM?sbCandidaturasCacheEM:ler("empregaMaisCandidaturas")}
+async function sbCarregarCandidaturasEM(renderizar){
+ if(sbCandidaturasCarregandoEM)return sbCandidaturasCacheEM;
+ const token=await sbGarantirSessaoEM();if(!token)return candidaturas();
+ sbCandidaturasCarregandoEM=true;
+ try{
+  const rows=await sbJsonEM(EMPREGAMAIS_SUPABASE_URL+"/rest/v1/candidaturas?select=*&order=criado_em.desc",{method:"GET",headers:sbHeadersEM(token)});
+  sbEspelharCandidaturasEM(Array.isArray(rows)?rows.map(sbMapCandidaturaEM):[]);
+  if(renderizar!==false){
+   if(papelAtual()==="empresa"&&document.getElementById("listaCandidatosEmpresa"))renderizarCandidatosEmpresa();
+   if(papelAtual()==="candidato"){if(document.getElementById("listaCandidaturas"))renderizarCandidaturasCandidato();if(document.getElementById("candMetricaCandidaturas"))atualizarPainelCandidato()}
+  }
+  return sbCandidaturasCacheEM
+ }finally{sbCandidaturasCarregandoEM=false}
+}
+function sbHistoricoComEM(c,status,data,extra){
+ const h=Array.isArray(c?.historico)?c.historico.slice():[];
+ h.push(Object.assign({status:status,data:data||new Date().toISOString()},extra||{}));return h
+}
+async function sbAtualizarCandidaturaEM(c,patch){
+ const token=await sbGarantirSessaoEM();if(!token)throw new Error("Sua sessão expirou. Entre novamente.");
+ const body={};
+ if("status" in patch)body.status=patch.status;
+ if("historico" in patch)body.historico=patch.historico;
+ if("entrevista" in patch)body.entrevista=patch.entrevista;
+ if("atualizadoEm" in patch)body.atualizado_em=patch.atualizadoEm;
+ if("contratadoEm" in patch)body.contratado_em=patch.contratadoEm||null;
+ const rows=await sbJsonEM(EMPREGAMAIS_SUPABASE_URL+"/rest/v1/candidaturas?id=eq."+encodeURIComponent(c.id),{method:"PATCH",headers:Object.assign(sbHeadersEM(token),{"Prefer":"return=representation"}),body:JSON.stringify(body)});
+ if(!Array.isArray(rows)||!rows[0])throw new Error("A candidatura não pôde ser atualizada.");
+ const novo=sbMapCandidaturaEM(rows[0]),a=candidaturas().slice(),i=a.findIndex(x=>x.id===novo.id);if(i>=0)a[i]=novo;else a.unshift(novo);sbEspelharCandidaturasEM(a);return novo
+}
+function sbDataEtapaCandidaturaEM(c,statuses){
+ const nomes=Array.isArray(statuses)?statuses:[statuses],h=Array.isArray(c?.historico)?c.historico:[];
+ const x=h.find(e=>nomes.includes(e.status));return x?.data||""
+}
+enviarCandidatura=async function(e){
+ e.preventDefault();
+ if(papelAtual()!=="candidato"||!candidatoLogado()){msg("#msgCandidatura","Sua sessão de candidato expirou. Entre novamente para continuar.");setTimeout(()=>irPara("login-candidato"),700);return}
+ const v=vagaAtual();if(!v||v.status!=="aprovada"||!vagaDentroPrazo(v))return msg("#msgCandidatura","Esta vaga não está mais recebendo candidaturas.");
+ const email=$("#candEmail").value.trim().toLowerCase(),c=candidatoLogado()||{},p=c.perfil||{},curr=ler(chaveCurriculo(),null),online=dadosCurriculoOnlineEM(),origem=$("#candCurriculoOpcao")?.value||"perfil";
+ if(origem==="cadastrado"&&!curr)return msg("#msgCandidatura","Cadastre um currículo antes de selecionar esta opção.");
+ if(origem==="online"&&!itensProgressoCurriculoEM(online).some(x=>x.ok))return msg("#msgCandidatura","Crie seu Currículo EmpregaMais antes de selecionar esta opção.");
+ try{
+  msg("#msgCandidatura","Enviando candidatura...");
+  const token=await sbGarantirSessaoEM();if(!token)throw new Error("Sua sessão expirou. Entre novamente.");
+  const u=await sbUsuarioAtualEM();await sbCarregarCandidaturasEM(false);
+  if(candidaturas().some(x=>x.vagaId===v.id&&(x.candidatoUserId===u.id||String(x.email||"").toLowerCase()===email)))throw new Error("Você já se candidatou a esta vaga.");
+  if(!v.userId)throw new Error("Não foi possível identificar a empresa responsável por esta vaga.");
+  const agora=new Date().toISOString(),id="cand_"+Date.now()+"_"+Math.random().toString(36).slice(2,8),cv=origem==="cadastrado"?{...curr,enviadoEm:agora}:(origem==="online"?{...online,enviadoEm:agora,tipo:"curriculo_online"}:null),perfil=origem==="perfil"?{titulo:p.titulo||"",area:p.area||"",escolaridade:p.escolaridade||"",experiencia:p.experiencia||"",resumo:p.resumo||"",competencias:p.competencias||"",linkedin:p.linkedin||"",portfolio:p.portfolio||""}:null;
+  const payload={id:id,vaga_id:v.id,candidato_user_id:u.id,empresa_user_id:v.userId,candidato_nome:$("#candNome").value.trim(),candidato_email:$("#candEmail").value.trim(),candidato_telefone:$("#candTelefone").value.trim(),status:"Em avaliação",historico:[{status:"Candidatura enviada",data:agora},{status:"Em avaliação",data:agora}],entrevista:null,curriculo:cv,perfil_profissional:perfil,curriculo_origem:origem,aderencia:calcularAderenciaCandidatoEM({curriculoOrigem:origem,curriculo:cv,perfilProfissional:perfil},v),criado_em:agora,atualizado_em:agora};
+  const rows=await sbJsonEM(EMPREGAMAIS_SUPABASE_URL+"/rest/v1/candidaturas",{method:"POST",headers:Object.assign(sbHeadersEM(token),{"Prefer":"return=representation"}),body:JSON.stringify(payload)});
+  const novo=sbMapCandidaturaEM(Array.isArray(rows)?rows[0]:rows);if(!novo)throw new Error("O Supabase não retornou a candidatura criada.");
+  sbEspelharCandidaturasEM([novo,...candidaturas().filter(x=>x.id!==novo.id)]);msg("#msgCandidatura","Candidatura enviada com sucesso.",true);setTimeout(()=>irPara("candidaturas"),800)
+ }catch(err){console.error("Candidatura Supabase:",err);msg("#msgCandidatura",err.message||"Não foi possível enviar sua candidatura.")}
+};
+mudarEtapaCandidato=async function(id,status){
+ const a=candidaturas(),i=a.findIndex(c=>c.id===id);if(i<0)return;const c=a[i],anterior=c.status||"Em avaliação",fluxo=["Selecionado","Em contato","Entrevista agendada","Aprovado","Contratado"];
+ if(anterior===status)return;
+ if(anterior==="Reprovado"||anterior==="Contratado"){alert("Este processo já foi encerrado e não pode voltar para uma etapa anterior.");renderizarCandidatosEmpresa();return}
+ const pa=fluxo.indexOf(anterior),pn=fluxo.indexOf(status);if(pa>=0&&(status==="Em avaliação"||(pn>=0&&pn<pa))){alert("Após selecionar o candidato, não é possível retornar para uma etapa anterior.");renderizarCandidatosEmpresa();return}
+ if(anterior!=="Em avaliação"&&status==="Reprovado"&&!confirm("Deseja encerrar este candidato como Não selecionado? Esta ação não poderá ser desfeita.")){renderizarCandidatosEmpresa();return}
+ const agora=new Date().toISOString(),entrevista=c.entrevista&&["Reprovado","Contratado"].includes(status)?{...c.entrevista,encerrada:true,encerradaEm:agora}:c.entrevista;
+ try{
+  await sbAtualizarCandidaturaEM(c,{status:status,historico:sbHistoricoComEM(c,status,agora),atualizadoEm:agora,contratadoEm:status==="Contratado"?(c.contratadoEm||agora):c.contratadoEm,entrevista:entrevista});
+  const filtroAtual=sessionStorage.getItem("filtroCandidatos")||"Todos";if(filtroAtual!=="Todos"&&grupoEtapa(status)!==filtroAtual)sessionStorage.setItem("filtroCandidatos",grupoEtapa(status));renderizarCandidatosEmpresa()
+ }catch(err){console.error("Etapa candidatura Supabase:",err);alert("Não foi possível atualizar a etapa: "+err.message);await sbCarregarCandidaturasEM(true)}
+};
+salvarEntrevista=async function(e){
+ e.preventDefault();const id=$("#entrevistaCandidaturaId").value,c=candidaturas().find(x=>x.id===id);if(!c)return;
+ if(["Contratado","Reprovado"].includes(c.status)){alert("Este processo já foi encerrado para o candidato.");fecharEntrevista();return}
+ const data=$("#entrevistaData").value,hora=$("#entrevistaHora").value,quando=new Date(data+"T"+hora);if(!data||!hora||Number.isNaN(quando.getTime())||quando<=new Date()){alert("Escolha uma data e horário futuros para a entrevista.");return}
+ const agora=new Date().toISOString(),entrevista={data:data,hora:hora,formato:$("#entrevistaFormato").value,local:$("#entrevistaLocal").value.trim(),observacoes:$("#entrevistaObs").value.trim(),agendadaEm:agora};
+ try{await sbAtualizarCandidaturaEM(c,{status:"Entrevista agendada",historico:sbHistoricoComEM(c,"Entrevista agendada",agora,{entrevista:{data:data,hora:hora}}),entrevista:entrevista,atualizadoEm:agora,contratadoEm:c.contratadoEm});fecharEntrevista();renderizarCandidatosEmpresa()}catch(err){console.error("Entrevista Supabase:",err);alert("Não foi possível agendar a entrevista: "+err.message)}
+};
+function sbAtualizarPaineisCandidaturasEM(){if(!["empresa","candidato"].includes(papelAtual()))return;sbCarregarCandidaturasEM(true).catch(err=>console.warn("Sincronização de candidaturas:",err))}
+window.addEventListener("focus",()=>sbAtualizarPaineisCandidaturasEM());
+document.addEventListener("visibilitychange",()=>{if(!document.hidden)sbAtualizarPaineisCandidaturasEM()});
+window.addEventListener("load",()=>{setTimeout(sbAtualizarPaineisCandidaturasEM,900);if(!sbCandidaturasTimerEM)sbCandidaturasTimerEM=setInterval(()=>{if(!document.hidden)sbAtualizarPaineisCandidaturasEM()},12000)});
