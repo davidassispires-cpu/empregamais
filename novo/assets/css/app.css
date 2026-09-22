@@ -4457,3 +4457,74 @@ overflow:visible!important
  #pagina-perfil-empresa .pv-approved-card .pv-seal{width:50px!important;height:50px!important}
  #pagina-perfil-empresa .pv-approved-card>button{grid-column:1/-1!important;width:100%!important}
 }
+
+/* EMPREGAMAIS-PAINEL-CANDIDATO-LEVE-V51 */
+#pagina-painel-candidato .cand-side{
+ background:#174f78!important;
+ box-shadow:inset -1px 0 rgba(255,255,255,.05)!important
+}
+#pagina-painel-candidato .cand-side nav button{color:#eaf4fa!important}
+#pagina-painel-candidato .cand-side nav button.ativo{background:rgba(255,255,255,.13)!important;color:#fff!important}
+#pagina-painel-candidato .cand-side nav button:hover{background:rgba(255,255,255,.09)!important}
+#pagina-painel-candidato .cand-side-user{border-bottom-color:rgba(255,255,255,.12)!important}
+#pagina-painel-candidato .cand-dashboard-hero,
+#pagina-painel-candidato .cand-dashboard-hero-pro{
+ background:linear-gradient(120deg,#287fb4 0%,#3c95c5 100%)!important;
+ padding:28px 34px!important;
+ grid-template-columns:minmax(330px,.9fr) minmax(430px,1.1fr)!important;
+ gap:30px!important
+}
+#pagina-painel-candidato .cand-hero-copy-pro>span,
+#pagina-painel-candidato .cand-hero-copy-pro h1,
+#pagina-painel-candidato .cand-hero-copy-pro>p{color:#fff!important}
+#pagina-painel-candidato .cand-hero-copy-pro>p{opacity:.94!important}
+#pagina-painel-candidato .cand-hero-beneficios{
+ min-width:0!important;padding:18px 20px!important;border:1px solid rgba(255,255,255,.24)!important;
+ border-radius:13px!important;background:rgba(12,74,116,.17)!important
+}
+#pagina-painel-candidato .cand-hero-beneficios>span{
+ display:block!important;margin-bottom:13px!important;color:#fff!important;font-size:10px!important;
+ font-weight:900!important;letter-spacing:.08em!important
+}
+#pagina-painel-candidato .cand-hero-beneficios-linha{
+ display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;
+ gap:11px 18px!important;align-items:start!important
+}
+#pagina-painel-candidato .cand-hero-beneficio{
+ display:grid!important;grid-template-columns:21px minmax(0,1fr)!important;gap:7px!important;
+ align-items:start!important;min-width:0!important
+}
+#pagina-painel-candidato .cand-hero-beneficio i{
+ width:20px!important;height:20px!important;display:grid!important;place-items:center!important;
+ border-radius:50%!important;background:rgba(255,255,255,.15)!important;border:1px solid rgba(255,255,255,.28)!important;
+ color:#fff!important;font-size:10px!important;font-style:normal!important;line-height:1!important
+}
+#pagina-painel-candidato .cand-hero-beneficio b{
+ display:block!important;min-width:0!important;color:#fff!important;font-size:10.5px!important;
+ line-height:1.35!important;font-weight:800!important;white-space:normal!important;overflow:visible!important
+}
+#pagina-painel-candidato .cand-profile-progress{
+ background:#f7fbfe!important;color:#173f5b!important;border-color:#d7e5ee!important;
+ box-shadow:0 4px 15px rgba(20,60,90,.035)!important
+}
+#pagina-painel-candidato .cand-profile-progress>span{color:#287eae!important}
+#pagina-painel-candidato .cand-profile-progress h2{color:#174a6b!important}
+#pagina-painel-candidato .cand-profile-progress p{color:#6d8493!important}
+#pagina-painel-candidato .cand-progress-line>span{color:#345d74!important}
+#pagina-painel-candidato .cand-progress-line em{color:#6d8797!important}
+#pagina-painel-candidato .cand-progress-line>i{background:#dceaf2!important}
+#pagina-painel-candidato .cand-progress-line>i b{background:#4a9fc8!important}
+#pagina-painel-candidato .cand-profile-progress>button{
+ background:#287fac!important;color:#fff!important;border:1px solid #287fac!important
+}
+#pagina-painel-candidato .cand-profile-progress>small{color:#668495!important}
+@media(max-width:1100px){
+ #pagina-painel-candidato .cand-dashboard-hero,
+ #pagina-painel-candidato .cand-dashboard-hero-pro{grid-template-columns:1fr!important}
+ #pagina-painel-candidato .cand-hero-beneficios-linha{grid-template-columns:repeat(2,minmax(0,1fr))!important}
+}
+@media(max-width:650px){
+ #pagina-painel-candidato .cand-dashboard-hero,
+ #pagina-painel-candidato .cand-dashboard-hero-pro{padding:24px 20px!important}
+ #pagina-painel-candidato .cand-hero-beneficios-linha{grid-template-columns:1fr!important}
+}
