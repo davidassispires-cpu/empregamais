@@ -3954,3 +3954,13 @@ overflow:visible!important
 #pagina-candidaturas .cand-app-hero-panel{border-color:#c8dcf2}
 #pagina-candidaturas .cand-app-hero-panel strong{color:#0b4f88}
 #pagina-candidaturas .cand-app-mini-flow i.feito{background:#075ea8;border-color:#075ea8}
+
+/* EMPREGAMAIS-CANDIDATURA-CARD-BORDA-V1 */
+#pagina-candidaturas .candidatura-card.cand-elegante{
+ border:1.5px solid #8ba9c4;
+ box-shadow:0 8px 22px rgba(10,65,112,.07);
+}
+#pagina-candidaturas .candidatura-card.cand-elegante:hover{
+ border-color:#527fa5;
+ box-shadow:0 10px 26px rgba(10,65,112,.10);
+}
