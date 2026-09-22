@@ -794,7 +794,7 @@ function adminColetarPendenciasEM(){
  const vs=ler('empregaMaisVagas'),es=ler('empregaMaisEmpresas'),den=ler('empregaMaisDenuncias'),pedidos=ler('empregaMaisPedidosPlano'),extras=ler('empregaMaisExtras'),premium=ler('empregaMaisPedidosPremiumCandidato');
  const vagas=vs.filter(v=>v.status==='pendente');
  const statusVerificacao=e=>String(e?.verificacaoStatus||e?.verificacao_status||'').trim().toLowerCase().replace(/[ -]+/g,'_');
- const verificacoes=es.filter(e=>['pendente','em_analise','em_análise','aguardando_analise','aguardando_análise'].includes(statusVerificacao(e))||(e.verificada!==true&&!!e.verificacaoEnviadaEm));
+ const verificacoes=es.filter(e=>['pendente','em_analise','em_análise','aguardando_analise','aguardando_análise'].includes(statusVerificacao(e))||(e.verificada!==true&&!!(e.verificacaoEnviadaEm||e.verificacao_enviada_em)));
  const denuncias=den.filter(d=>d.status==='pendente');
  const planos=pedidos.filter(x=>!['ativo','aprovado','pago','concluido','cancelado','reprovado'].includes(String(x.status||'').toLowerCase()));
  const extrasPend=extras.filter(x=>!['ativo','concluido','cancelado','reprovado'].includes(String(x.status||'').toLowerCase()));
@@ -871,7 +871,7 @@ adminAba=async function(aba,btn){
  document.querySelectorAll('[data-admin-tab]').forEach(b=>b.classList.toggle('ativo',b.dataset.adminTab===aba));
  const out=$('#adminConteudo');if(!out)return;
  try{await adminCarregarEmpresasSupabaseEM()}catch(err){console.error('ADM empresas:',err)}
- const es=ler('empregaMaisEmpresas'),pend=es.filter(e=>e.verificacaoStatus==='pendente'||e.verificacaoStatus==='em_analise');
+ const es=ler('empregaMaisEmpresas'),pend=es.filter(e=>{const st=String(e.verificacaoStatus||e.verificacao_status||'').toLowerCase().replace(/[ -]+/g,'_');return ['pendente','em_analise','em_análise','aguardando_analise','aguardando_análise'].includes(st)||(e.verificada!==true&&!!(e.verificacaoEnviadaEm||e.verificacao_enviada_em))});
  const badge=$('#adminBadgeVerificacoes');if(badge){badge.textContent=pend.length||'';badge.style.display=pend.length?'grid':'none'}
  out.innerHTML='<div class="admin-bloco"><h2>Verificações de empresas</h2><p class="admin-sub">Analise as solicitações enviadas pelas empresas. A aprovação libera o selo Empresa Verificada no perfil e nas vagas.</p><div class="admin-warning">'+pend.length+' solicitação(ões) aguardando análise.</div>'+adminVerificacoesEmpresasEM(es)+'</div>';
 };
