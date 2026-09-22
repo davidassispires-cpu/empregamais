@@ -1921,3 +1921,33 @@ body.cv-success-open{overflow:hidden}.cv-success-modal{position:fixed;inset:0;z-
 #pagina-vaga .aderencia-popover .aderencia-itens{margin:0!important}
 #pagina-vaga .aderencia-popover .aderencia-nota{display:block!important;margin-top:11px!important;line-height:1.45!important}
 @media(max-width:900px){#pagina-vaga .aderencia-popover{right:0!important;left:auto!important;top:calc(100% + 9px)!important;width:min(350px,calc(100vw - 40px))!important}#pagina-vaga .aderencia-popover:after{display:none!important}}
+
+
+/* VAGA - SELOS COMPACTOS V8 (2026-09-22) */
+#pagina-vaga .vaga-hero-selos .hero-destaque,
+#pagina-vaga .vaga-hero-selos .hero-urgente{
+  min-height:30px!important;
+  padding:5px 11px!important;
+  border-radius:8px!important;
+  font-size:11px!important;
+  box-shadow:0 4px 10px rgba(20,55,80,.12)!important
+}
+#pagina-vaga .vaga-hero-selos .hero-destaque .selo-icone,
+#pagina-vaga .vaga-hero-selos .hero-urgente .selo-icone{
+  width:19px!important;height:19px!important;margin-right:6px!important;font-size:12px!important
+}
+#pagina-vaga .vaga-hero-selos .hero-50mais{
+  min-height:29px!important;
+  padding:5px 12px!important;
+  border-radius:999px!important;
+  font-size:10.5px!important;
+  letter-spacing:.01em!important;
+  background:#f3f0ff!important;
+  color:#5b3bc4!important;
+  border:1px solid #cfc5f6!important;
+  box-shadow:none!important
+}
+#pagina-vaga .vaga-hero-selos .hero-50mais .selo-icone{
+  width:18px!important;height:18px!important;margin-right:6px!important;
+  background:#6849cf!important;color:#fff!important;font-size:11px!important
+}
