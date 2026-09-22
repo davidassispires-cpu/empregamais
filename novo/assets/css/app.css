@@ -3424,3 +3424,16 @@ body.candidato-logado .topo .menu-candidato-logado{display:flex!important}
 .topo .btn-anunciar-vaga{padding-left:10px!important;padding-right:10px!important;font-size:11.5px!important;max-width:190px!important}
 .topo .btn-anunciar-icone{font-size:15px!important}
 }
+
+/* EMPREGAMAIS-PERFIL-RECRUTAMENTO-EMPRESA-V1 */
+#pagina-perfil-empresa .perfil-recrutamento-bloco{grid-column:1/-1;margin-top:8px;padding:22px;border:1px solid #cfe1e5;border-radius:16px;background:linear-gradient(145deg,#f9fdfd,#f2f9f9)}
+#pagina-perfil-empresa .perfil-recrutamento-head{margin-bottom:17px}
+#pagina-perfil-empresa .perfil-recrutamento-head>span{display:inline-block;margin-bottom:7px;color:#087b83;font-size:10px;font-weight:800;letter-spacing:.11em}
+#pagina-perfil-empresa .perfil-recrutamento-head h3{margin:0 0 6px;color:#123f57;font-size:20px;line-height:1.25}
+#pagina-perfil-empresa .perfil-recrutamento-head p{margin:0;max-width:720px;color:#536d7e;font-size:13px;line-height:1.55}
+#pagina-perfil-empresa .perfil-recrutamento-grid{margin:0}
+#pagina-perfil-empresa .perfil-recrutamento-grid label>span{color:#7b8e9b;font-size:11px;font-weight:500}
+#pagina-perfil-empresa .perfil-campo-ajuda{display:block;margin-top:-8px;color:#718694;font-size:11px;line-height:1.45}
+#pagina-perfil-empresa .perfil-condicional{display:none}
+#pagina-perfil-empresa .perfil-condicional.visivel{display:block}
+@media(max-width:650px){#pagina-perfil-empresa .perfil-recrutamento-bloco{padding:17px}#pagina-perfil-empresa .perfil-recrutamento-head h3{font-size:18px}}
