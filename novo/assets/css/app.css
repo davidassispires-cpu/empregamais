@@ -2638,3 +2638,11 @@ padding:14px 14px!important;align-items:center!important
 #pagina-empresa-publica .empresa-publica-links{margin-top:25px!important;padding-top:20px!important;border-top:1px solid #e3ebf0!important;gap:9px!important}
 #pagina-empresa-publica .empresa-publica-links .btn{font-size:13px!important;padding:10px 14px!important;border-radius:8px!important}
 @media(max-width:800px){#pagina-empresa-publica .empresa-publica-card{padding:22px!important}#pagina-empresa-publica .empresa-publica-card>h2{font-size:24px!important}#pagina-empresa-publica .empresa-publica-card>#empresaPublicaSobre{font-size:15px!important}#pagina-empresa-publica .empresa-publica-card #empresaPublicaInstitucional{grid-template-columns:1fr!important}#pagina-empresa-publica .empresa-publica-card #empresaPublicaInstitucional section{min-height:0!important}}
+
+/* EMPREGAMAIS-HERO-50MAIS-SEM-CORTE-V20 */
+#pagina-vaga .vaga-hero-selos{display:flex!important;flex-flow:row nowrap!important;align-items:center!important;gap:8px!important;max-width:100%!important;overflow:visible!important}
+#pagina-vaga .vaga-hero-selos>span,#pagina-vaga .hero-50-bloco{flex:0 0 auto!important;min-width:max-content!important}
+#pagina-vaga .hero-50-bloco{display:inline-flex!important;flex-direction:row!important;align-items:center!important;gap:0!important}
+#pagina-vaga .hero-50-bloco>small{display:none!important}
+#pagina-vaga .vaga-hero-selos .hero-50mais{display:inline-flex!important;align-items:center!important;justify-content:center!important;width:auto!important;max-width:none!important;min-width:max-content!important;overflow:visible!important;white-space:nowrap!important;padding-left:13px!important;padding-right:13px!important}
+@media(max-width:700px){#pagina-vaga .vaga-hero-selos{overflow-x:auto!important;overflow-y:hidden!important;scrollbar-width:none!important}#pagina-vaga .vaga-hero-selos::-webkit-scrollbar{display:none!important}}
