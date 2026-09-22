@@ -3558,3 +3558,22 @@ box-shadow:0 22px 54px rgba(4,55,65,.18)!important;color:#fff!important;z-index:
 #pagina-publicar .em-recurso-pago.bloqueado input{cursor:not-allowed!important;opacity:.7}
 #pagina-publicar .em-recurso-pago.bloqueado b{color:#526875!important}
 #pagina-publicar .em-recurso-pago.bloqueado small{color:#7c8d98!important}
+
+/* EMPREGAMAIS-LOCAL-DETALHES-CANDIDATO-V1 */
+#pagina-vaga .vaga-info-grid>div:first-child{position:relative!important;cursor:default!important}
+#pagina-vaga .em-local-detalhes-btn{display:inline-flex!important;align-items:center!important;justify-content:center!important;margin-top:4px!important;padding:0!important;border:0!important;background:transparent!important;color:#0872c9!important;font-size:9.5px!important;font-weight:700!important;cursor:pointer!important}
+#pagina-vaga .em-local-detalhes-btn:hover{text-decoration:underline!important}
+#pagina-vaga .em-local-popover{position:absolute!important;left:50%!important;top:calc(100% - 2px)!important;transform:translateX(-50%)!important;width:300px!important;z-index:80!important;padding:16px!important;border:1px solid #d5e2eb!important;border-radius:14px!important;background:#fff!important;box-shadow:0 16px 38px rgba(22,55,76,.16)!important;text-align:left!important}
+#pagina-vaga .em-local-popover:before{content:"";position:absolute;top:-7px;left:50%;width:12px;height:12px;background:#fff;border-left:1px solid #d5e2eb;border-top:1px solid #d5e2eb;transform:translateX(-50%) rotate(45deg)}
+#pagina-vaga .em-local-pop-head{display:grid!important;grid-template-columns:32px minmax(0,1fr) 22px!important;gap:9px!important;align-items:start!important}
+#pagina-vaga .em-local-pop-head>span{display:grid!important;place-items:center!important;width:32px!important;height:32px!important;border-radius:9px!important;background:#edf7ff!important;color:#0872c9!important;font-size:16px!important}
+#pagina-vaga .em-local-pop-head small{display:block!important;color:#678093!important;font-size:8.5px!important;font-weight:800!important;letter-spacing:.08em!important}
+#pagina-vaga .em-local-pop-head strong{display:block!important;margin-top:3px!important;color:#123f57!important;font-size:13px!important;line-height:1.4!important}
+#pagina-vaga .em-local-pop-head button{border:0!important;background:transparent!important;color:#718694!important;font-size:20px!important;line-height:1!important;cursor:pointer!important}
+#pagina-vaga .em-local-popover p{margin:12px 0 0!important;padding-top:10px!important;border-top:1px solid #edf1f4!important;color:#718694!important;font-size:10px!important;line-height:1.45!important}
+@media(max-width:700px){
+body.em-local-pop-open:after{content:"";position:fixed;inset:0;background:rgba(14,35,48,.32);z-index:998}
+#pagina-vaga .em-local-popover{position:fixed!important;left:50%!important;top:50%!important;transform:translate(-50%,-50%)!important;width:min(88vw,340px)!important;z-index:999!important;padding:19px!important;border-radius:17px!important}
+#pagina-vaga .em-local-popover:before{display:none!important}
+#pagina-vaga .em-local-pop-head strong{font-size:14px!important}
+}
