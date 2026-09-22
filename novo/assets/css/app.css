@@ -3055,3 +3055,10 @@ input::placeholder,textarea::placeholder{font-family:"Montserrat",Arial,sans-ser
 #pagina-premium-candidato .premium-plano-mensal .premium-pagamento-box{border-color:#dce5ed!important;background:linear-gradient(135deg,#fff,#f2f6fa)!important}
 #pagina-premium-candidato .premium-plano-trimestral .premium-plano-badge{background:linear-gradient(135deg,var(--plan-accent),var(--plan-accent2))!important}
 @media(max-width:900px){#pagina-premium-candidato .premium-planos-grid{padding-top:22px!important}#pagina-premium-candidato .premium-plano-destaque{margin-top:18px!important}}
+
+
+/* EMPREGAMAIS-ARIAL-GLOBAL-V30 */
+:root{--font-family:Arial,Helvetica,sans-serif!important;--em-font-global:Arial,Helvetica,sans-serif!important}
+html,body,body *,#app,#app *,header,header *,main,main *,footer,footer *,nav,nav *,section,section *,article,article *,aside,aside *,div,div *,span,p,a,button,input,select,textarea,option,label,h1,h2,h3,h4,h5,h6,strong,b,small,table,thead,tbody,tr,th,td,ul,ol,li,dialog{font-family:Arial,Helvetica,sans-serif!important}
+input::placeholder,textarea::placeholder{font-family:Arial,Helvetica,sans-serif!important}
+#pagina-premium-candidato,#pagina-premium-candidato *{font-family:Arial,Helvetica,sans-serif!important}
