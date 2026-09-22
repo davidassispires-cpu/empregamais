@@ -3642,3 +3642,103 @@ overflow:visible!important
 @media(max-width:900px){
 #pagina-publicar .em-publish-visual-v2{position:relative!important;top:auto!important;width:100%!important;height:auto!important;min-height:0!important;margin:18px 0 0!important;border:1px solid #d7e6e8!important;border-radius:16px!important;background:#f6fbfb!important;box-shadow:none!important}
 }
+
+/* EMPREGAMAIS-BANNER-PUBLICAR-LEVE-V48
+   Ajuste exclusivamente visual/estrutural da lateral de Publicar Vaga.
+   Sticky fica contido pela própria grade e termina antes do rodapé. */
+@media (min-width:901px){
+  #pagina-publicar .em-publish-layout{
+    position:relative!important;
+    grid-template-columns:minmax(0,1fr) 315px!important;
+    gap:24px!important;
+    align-items:start!important;
+    padding-bottom:46px!important;
+  }
+  #pagina-publicar .em-publish-visual-v2{
+    position:sticky!important;
+    top:88px!important;
+    right:auto!important;
+    inset-inline:auto!important;
+    align-self:start!important;
+    width:100%!important;
+    height:auto!important;
+    min-height:0!important;
+    max-height:none!important;
+    margin:0!important;
+    border:1px solid #dce8e9!important;
+    border-radius:17px!important;
+    background:linear-gradient(155deg,#ffffff 0%,#f8fcfc 58%,#f0f8f8 100%)!important;
+    box-shadow:0 8px 24px rgba(18,65,72,.065)!important;
+    overflow:hidden!important;
+    z-index:1!important;
+  }
+  #pagina-publicar .em-publish-visual-v2 .em-visual-content{
+    height:auto!important;
+    min-height:0!important;
+    padding:22px 22px 20px!important;
+    justify-content:flex-start!important;
+    overflow:visible!important;
+  }
+  #pagina-publicar .em-visual-v2-glow{
+    width:180px!important;height:180px!important;
+    right:-78px!important;top:-82px!important;
+    background:rgba(12,126,134,.065)!important;
+  }
+  #pagina-publicar .em-visual-v2-grid{opacity:.18!important}
+  #pagina-publicar .em-visual-v2-brand{
+    margin-bottom:14px!important;color:#256a71!important;
+    font-size:9px!important;letter-spacing:.08em!important;
+  }
+  #pagina-publicar .em-visual-v2-icon{
+    width:30px!important;height:30px!important;border-radius:9px!important;
+    border:1px solid #d5e6e7!important;background:#f7fbfb!important;
+    color:#08767d!important;box-shadow:none!important;
+  }
+  #pagina-publicar .em-publish-visual-v2 .em-visual-kicker{
+    color:#4b858a!important;font-size:8.5px!important;letter-spacing:.11em!important;
+  }
+  #pagina-publicar .em-publish-visual-v2 h2{
+    margin:7px 0 9px!important;font-size:25px!important;line-height:1.1!important;
+    color:#173f47!important;letter-spacing:-.02em!important;
+  }
+  #pagina-publicar .em-publish-visual-v2 h2 strong{color:#087a80!important}
+  #pagina-publicar .em-publish-visual-v2>div.em-visual-content>p{
+    margin:0 0 14px!important;font-size:11px!important;line-height:1.5!important;color:#647d82!important;
+  }
+  #pagina-publicar .em-visual-v2-stats{gap:7px!important;margin-bottom:12px!important}
+  #pagina-publicar .em-visual-v2-stats>div{
+    padding:9px 10px!important;border:1px solid #e0eaeb!important;
+    border-radius:9px!important;background:#fbfdfd!important;
+  }
+  #pagina-publicar .em-visual-v2-stats strong{font-size:11.5px!important;color:#24515a!important}
+  #pagina-publicar .em-visual-v2-stats span{font-size:8px!important;color:#7b9094!important}
+  #pagina-publicar .em-publish-visual-v2 .em-visual-benefits{gap:0!important}
+  #pagina-publicar .em-publish-visual-v2 .em-visual-benefits>div{
+    grid-template-columns:23px 1fr!important;gap:8px!important;padding:5px 0!important;
+  }
+  #pagina-publicar .em-publish-visual-v2 .em-visual-benefits i{
+    width:22px!important;height:22px!important;border-radius:7px!important;
+    border:1px solid #dce9ea!important;background:#f9fcfc!important;color:#168087!important;
+    font-size:8px!important;
+  }
+  #pagina-publicar .em-publish-visual-v2 .em-visual-benefits b{font-size:10px!important;color:#365a60!important}
+  #pagina-publicar .em-publish-visual-v2 .em-visual-benefits small{display:none!important}
+  #pagina-publicar .em-visual-v2-foot{
+    margin-top:11px!important;padding-top:10px!important;border-top:1px solid #e1eaeb!important;
+  }
+  #pagina-publicar .em-visual-v2-foot span{font-size:7.5px!important;color:#6c969a!important}
+  #pagina-publicar .em-visual-v2-foot strong{font-size:9px!important;color:#58767b!important}
+}
+@media (min-width:901px) and (max-width:1180px){
+  #pagina-publicar .em-publish-layout{grid-template-columns:minmax(0,1fr) 280px!important;gap:18px!important}
+  #pagina-publicar .em-publish-visual-v2 .em-visual-content{padding:18px!important}
+  #pagina-publicar .em-publish-visual-v2 h2{font-size:22px!important}
+}
+@media (max-width:900px){
+  #pagina-publicar .em-publish-visual-v2{
+    position:relative!important;top:auto!important;right:auto!important;
+    width:100%!important;height:auto!important;min-height:0!important;max-height:none!important;
+    margin:18px 0 0!important;border:1px solid #dce8e9!important;border-radius:15px!important;
+    background:#f8fcfc!important;box-shadow:none!important;z-index:1!important;
+  }
+}
