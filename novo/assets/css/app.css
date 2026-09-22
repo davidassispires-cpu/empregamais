@@ -3110,3 +3110,15 @@ input::placeholder,textarea::placeholder{font-family:"Montserrat",Arial,sans-ser
 .hero h2,
 main>section>h1,
 main>section>h2{font-family:Arial,Helvetica,sans-serif!important}
+
+
+/* EMPREGAMAIS-TIPOGRAFIA-PADRAO-LEGIVEL-V34 */
+/* Montserrat como padrão visual do portal, com contraste reforçado */
+:root{--font-family:"Montserrat",Arial,sans-serif!important;--em-font-global:"Montserrat",Arial,sans-serif!important;--em-text:#263f54;--em-text-strong:#073e66;--em-text-muted:#4f687d}
+html,body,body *,#app,#app *,header,header *,main,main *,footer,footer *,nav,nav *,section,section *,article,article *,aside,aside *,div,div *,span,p,a,button,input,select,textarea,option,label,h1,h2,h3,h4,h5,h6,strong,b,small,table,thead,tbody,tr,th,td,ul,ol,li,dialog{font-family:"Montserrat",Arial,sans-serif!important}
+body,main,section,article,p,li,label,td,input,select,textarea{color:var(--em-text)}
+p,li,small,.vaga-card p,.vaga-card span,.vaga-card small,.empresa-vaga-linha small,.jornada-item span,.candidato-card p,.candidato-card span{color:var(--em-text-muted)!important}
+h1,h2,h3,h4,h5,h6,strong,b,.vaga-card h3,.empresa-vaga-linha strong,.jornada-item strong{color:var(--em-text-strong)}
+input::placeholder,textarea::placeholder{font-family:"Montserrat",Arial,sans-serif!important;color:#687e90!important;opacity:1}
+/* Mantém Arial somente nos pontos previamente definidos pelo usuário */
+.vaga-hero-texto h1,.vaga-card h3,.preview-vaga-cab h3,.review-grid [data-vaga-titulo],.empresa-vaga-linha strong,.jornada-item strong,.page-title,.page-heading h1,.page-heading h2,.pagina-titulo,.section-hero h1,.hero h1,.hero h2,main>section>h1,main>section>h2{font-family:Arial,Helvetica,sans-serif!important}
