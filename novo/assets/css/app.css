@@ -4687,3 +4687,22 @@ overflow:visible!important
 #pagina-painel-candidato .cand-dashboard-kpis>article.curriculo-parcial>i{background:#edf6fc!important;color:#176ca3!important}
 #pagina-painel-candidato .cand-dashboard-kpis>article.curriculo-pendente{border-color:#d7e2e9!important}
 #pagina-painel-candidato .cand-dashboard-kpis>article.curriculo-pendente strong{color:#435f72!important}
+
+/* EMPREGAMAIS-ADMIN-PREMIUM-CANDIDATOS-V1 */
+.admin-premium-cand{display:grid;gap:18px}
+.admin-premium-hero{display:flex;justify-content:space-between;align-items:center;gap:20px;padding:24px 26px;border:1px solid #d8e5ec;border-radius:16px;background:linear-gradient(120deg,#f8fbff,#eef7fb)}
+.admin-premium-hero span{font-size:9px;font-weight:900;letter-spacing:.12em;color:#087b83}
+.admin-premium-hero h2{margin:5px 0 5px;font-size:24px;color:#123e58}
+.admin-premium-hero p{margin:0;color:#6d8392;font-size:12px}
+.admin-premium-hero>div:last-child{min-width:130px;text-align:center;padding:12px 16px;border-radius:12px;background:#fff;border:1px solid #d8e5ec}
+.admin-premium-hero>div:last-child b{display:block;font-size:25px;color:#087b83}.admin-premium-hero>div:last-child small{font-size:9px;color:#718795}
+.admin-premium-toolbar{display:flex;justify-content:space-between;align-items:end;gap:15px;padding:16px 18px;background:#fff;border:1px solid #dbe6ed;border-radius:13px}
+.admin-premium-toolbar label{display:grid;gap:5px;font-size:10px;font-weight:800;color:#526e80}.admin-premium-toolbar input{width:330px;max-width:100%;height:40px;padding:0 12px;border:1px solid #cbdbe4;border-radius:9px}
+.admin-premium-toolbar>span{font-size:11px;color:#718795}
+.admin-premium-list{display:grid;gap:9px}
+.admin-premium-row{display:grid;grid-template-columns:44px minmax(180px,1fr) 180px auto;align-items:center;gap:14px;padding:14px 16px;border:1px solid #d7e4eb;border-radius:12px;background:#fff}
+.admin-premium-avatar{width:42px;height:42px;display:grid;place-items:center;border-radius:11px;background:#eaf5fb;color:#086ca1;font-weight:900}
+.admin-premium-ident{display:grid;gap:3px}.admin-premium-ident strong{font-size:13px;color:#123e58}.admin-premium-ident span{font-size:10px;color:#718795}
+.admin-premium-status{display:grid;gap:2px}.admin-premium-status small{font-size:8px;font-weight:900;letter-spacing:.08em;color:#80939f}.admin-premium-status b{font-size:12px}.admin-premium-status span{font-size:9px;color:#82949f}.admin-premium-status.ativo b{color:#087b6d}.admin-premium-status.gratis b{color:#526e80}
+.admin-premium-actions{display:flex;gap:6px;justify-content:flex-end;flex-wrap:wrap}.admin-premium-actions button{min-height:34px;padding:6px 10px;border:1px solid #a8cad8;border-radius:8px;background:#f5fbfd;color:#075e78;font-size:10px;font-weight:900;cursor:pointer}.admin-premium-actions button.remover{border-color:#efc5c5;background:#fff8f8;color:#b54343}
+@media(max-width:850px){.admin-premium-row{grid-template-columns:44px 1fr}.admin-premium-status,.admin-premium-actions{grid-column:2}.admin-premium-actions{justify-content:flex-start}.admin-premium-toolbar{align-items:stretch;flex-direction:column}.admin-premium-toolbar input{width:100%}}
