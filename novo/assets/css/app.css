@@ -2599,3 +2599,27 @@ padding:14px 14px!important;align-items:center!important
 .empresa-publica-paginacao{display:flex;align-items:center;justify-content:center;gap:16px;margin:24px 0 4px}.empresa-publica-paginacao button{height:38px;padding:0 15px;border:1px solid #cbdce6;border-radius:9px;background:#fff;color:#0d5f91;font-weight:800;cursor:pointer}.empresa-publica-paginacao button:hover:not(:disabled){background:#0d659d;color:#fff;border-color:#0d659d}.empresa-publica-paginacao button:disabled{opacity:.38;cursor:default}.empresa-publica-paginacao span{font-size:12px;color:#718695}.empresa-publica-paginacao b{color:#174f70}
 @media(max-width:900px){#pagina-empresa-publica .empresa-publica-vagas-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important}}
 @media(max-width:600px){#pagina-empresa-publica .empresa-publica-vagas-grid{grid-template-columns:1fr!important}.empresa-publica-paginacao{gap:8px}.empresa-publica-paginacao button{padding:0 10px}}
+
+/* EMPREGAMAIS-SELOS-SOBRIOS-UMA-LINHA-V18 */
+/* Regra final: nenhum selo de vaga quebra para a linha de baixo */
+.portal-vaga-nova .vaga-card-topo{display:flex!important;align-items:center!important;justify-content:space-between!important;gap:6px!important;min-width:0!important}
+.portal-vaga-nova .vaga-selos{display:flex!important;flex:1 1 auto!important;flex-flow:row nowrap!important;align-items:center!important;gap:5px!important;min-width:0!important;max-width:calc(100% - 30px)!important;overflow:hidden!important}
+.portal-vaga-nova .vaga-selo{display:inline-flex!important;flex:0 1 auto!important;align-items:center!important;justify-content:center!important;min-width:0!important;height:27px!important;min-height:27px!important;padding:0 8px!important;border-radius:7px!important;white-space:nowrap!important;overflow:hidden!important;text-overflow:ellipsis!important;font-size:9.5px!important;font-weight:800!important;box-shadow:none!important;background:#f6f8fa!important;border:1px solid #d9e0e6!important;color:#455d70!important}
+.portal-vaga-nova .destaque-selo{background:#f8f8f7!important;border-color:#d9d7ce!important;color:#685e42!important}
+.portal-vaga-nova .urgente-selo{background:#faf7f7!important;border-color:#e2d5d7!important;color:#80535a!important}
+.portal-vaga-nova .senior-selo{background:#f7f7f9!important;border-color:#dad7e1!important;color:#625a72!important}
+.portal-vaga-nova .vaga-favorito{flex:0 0 24px!important;width:24px!important;min-width:24px!important;margin-left:auto!important}
+#pagina-home .destaques-carrossel .vaga-selos,#pagina-empresa-publica .empresa-publica-vagas-grid .vaga-selos{flex-flow:row nowrap!important;gap:4px!important;overflow:hidden!important}
+#pagina-home .destaques-carrossel .vaga-selo,#pagina-empresa-publica .empresa-publica-vagas-grid .vaga-selo{height:26px!important;min-height:26px!important;padding:0 6px!important;font-size:8.8px!important;background:#f6f8fa!important;border:1px solid #d9e0e6!important;color:#455d70!important}
+#pagina-home .destaques-carrossel .destaque-selo,#pagina-empresa-publica .empresa-publica-vagas-grid .destaque-selo{background:#f8f8f7!important;border-color:#d9d7ce!important;color:#685e42!important}
+#pagina-home .destaques-carrossel .urgente-selo,#pagina-empresa-publica .empresa-publica-vagas-grid .urgente-selo{background:#faf7f7!important;border-color:#e2d5d7!important;color:#80535a!important}
+#pagina-home .destaques-carrossel .senior-selo,#pagina-home .destaques-carrossel>.portal-vaga-nova:not(.vaga-urgente):has(.senior-selo) .senior-selo,#pagina-empresa-publica .empresa-publica-vagas-grid .senior-selo{background:#f7f7f9!important;border-color:#dad7e1!important;color:#625a72!important}
+/* Página interna: também sempre na horizontal e com aparência neutra */
+#pagina-vaga .vaga-hero-selos{display:flex!important;flex-flow:row nowrap!important;align-items:flex-end!important;gap:7px!important;overflow-x:auto!important;overflow-y:hidden!important;max-width:100%!important;scrollbar-width:none}
+#pagina-vaga .vaga-hero-selos::-webkit-scrollbar{display:none}
+#pagina-vaga .vaga-hero-selos>span,#pagina-vaga .vaga-hero-selos .hero-50mais{flex:0 0 auto!important;white-space:nowrap!important;background:#f7f8fa!important;border:1px solid #d9e0e6!important;color:#455d70!important;box-shadow:none!important}
+#pagina-vaga .vaga-hero-selos .hero-destaque{background:#f8f8f7!important;border-color:#d9d7ce!important;color:#685e42!important}
+#pagina-vaga .vaga-hero-selos .hero-urgente{background:#faf7f7!important;border-color:#e2d5d7!important;color:#80535a!important}
+#pagina-vaga .hero-50-bloco{flex:0 0 auto!important}
+#pagina-vaga .hero-50-bloco>small{color:#687783!important}
+@media(max-width:480px){.portal-vaga-nova .vaga-selos{gap:3px!important;max-width:calc(100% - 25px)!important}.portal-vaga-nova .vaga-selo{padding:0 4px!important;font-size:8px!important;height:25px!important;min-height:25px!important}}
