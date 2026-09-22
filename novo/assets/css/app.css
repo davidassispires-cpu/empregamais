@@ -3087,3 +3087,26 @@ small{line-height:1.4}
  .vaga-card h3,.empresa-vaga-linha strong,.jornada-item strong{font-size:15.5px!important}
  button,.btn,[role="button"]{font-size:12.5px}
 }
+
+
+/* EMPREGAMAIS-TIPOGRAFIA-MISTA-V33 */
+/* Retorna a tipografia geral anterior e preserva Arial apenas nas chamadas e títulos principais de vagas */
+:root{--font-family:"Montserrat",Arial,sans-serif!important;--em-font-global:"Montserrat",Arial,sans-serif!important}
+html,body,body *,#app,#app *,header,header *,main,main *,footer,footer *,nav,nav *,section,section *,article,article *,aside,aside *,div,div *,span,p,a,button,input,select,textarea,option,label,h1,h2,h3,h4,h5,h6,strong,b,small,table,thead,tbody,tr,th,td,ul,ol,li,dialog{font-family:"Montserrat",Arial,sans-serif!important}
+input::placeholder,textarea::placeholder{font-family:"Montserrat",Arial,sans-serif!important}
+/* Arial: título principal da vaga, títulos nas prévias/cards e chamadas/títulos de páginas */
+.vaga-hero-texto h1,
+.vaga-card h3,
+.preview-vaga-cab h3,
+.review-grid [data-vaga-titulo],
+.empresa-vaga-linha strong,
+.jornada-item strong,
+.page-title,
+.page-heading h1,
+.page-heading h2,
+.pagina-titulo,
+.section-hero h1,
+.hero h1,
+.hero h2,
+main>section>h1,
+main>section>h2{font-family:Arial,Helvetica,sans-serif!important}
