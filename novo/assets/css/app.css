@@ -4938,3 +4938,40 @@ overflow:visible!important
 #pagina-candidatos-empresa .cand-processo-expandido .cand-fluxo-progressivo>button:before{
  top:13px!important
 }
+
+
+/* EMPREGAMAIS-PAINEL-EMPRESA-RECONSTRUIDO-V1 */
+#pagina-painel-empresa{background:#f5f8fa!important}
+#pagina-painel-empresa .empresa-wrap-v7{max-width:1220px!important;margin:0 auto!important;padding:32px 28px 55px!important}
+#pagina-painel-empresa .empresa-head-clean{display:flex!important;align-items:flex-end!important;justify-content:space-between!important;gap:24px!important;margin:0 0 22px!important;padding:0!important;background:transparent!important;border:0!important}
+#pagina-painel-empresa .empresa-head-clean>div:first-child>span{font-size:11px!important;letter-spacing:.13em!important;font-weight:800!important;color:#72899a!important}
+#pagina-painel-empresa .empresa-head-clean h1{margin:5px 0 5px!important;font-size:31px!important;line-height:1.05!important;color:#083f61!important}
+#pagina-painel-empresa .empresa-head-clean p{margin:0!important;font-size:14px!important;color:#74899a!important}
+#pagina-painel-empresa .empresa-head-clean #empresaPainelOla{margin:10px 0 0!important;font-size:12px!important;color:#08798b!important}
+#pagina-painel-empresa .empresa-head-actions-v3{display:flex!important;gap:9px!important}
+#pagina-painel-empresa .empresa-head-actions-v3 button{height:43px!important;padding:0 18px!important;border-radius:10px!important;font-size:12px!important;font-weight:800!important}
+#pagina-painel-empresa .empresa-kpis-clean{display:grid!important;grid-template-columns:repeat(5,minmax(0,1fr))!important;gap:12px!important;margin:0 0 16px!important}
+#pagina-painel-empresa .empresa-kpis-clean>.empresa-metrica-v2{min-height:112px!important;padding:17px 18px!important;background:#fff!important;border:1px solid #d9e5eb!important;border-radius:14px!important;box-shadow:none!important;display:flex!important;align-items:flex-end!important}
+#pagina-painel-empresa .empresa-kpis-clean>.empresa-metrica-v2:before{left:0!important;top:0!important;right:0!important;bottom:auto!important;width:auto!important;height:3px!important}
+#pagina-painel-empresa .empresa-kpis-clean>.empresa-metrica-v2 i{width:30px!important;height:30px!important;right:15px!important;top:15px!important;background:#eef6f7!important;border:0!important}
+#pagina-painel-empresa .empresa-kpis-clean span{font-size:13px!important;color:#3e596a!important}
+#pagina-painel-empresa .empresa-kpis-clean small{font-size:10px!important;color:#8799a5!important}
+#pagina-painel-empresa .empresa-kpis-clean strong{font-size:28px!important;color:#073e5c!important}
+#pagina-painel-empresa .empresa-verificacao-status{margin:0 0 12px!important}
+#pagina-painel-empresa .em-ver-status{min-height:78px!important;padding:15px 20px!important;border-radius:13px!important;box-shadow:none!important}
+#pagina-painel-empresa #empresaResumoRecursos{margin:0 0 22px!important}
+#pagina-painel-empresa #empresaResumoRecursos .empresa-plano-inline-v4{min-height:70px!important;border:1px solid #d8e4e9!important;border-radius:13px!important;box-shadow:none!important;background:#fff!important}
+#pagina-painel-empresa .empresa-dashboard-clean{display:grid!important;grid-template-columns:minmax(0,1.65fr) minmax(300px,.75fr)!important;gap:18px!important;align-items:start!important}
+#pagina-painel-empresa .empresa-dashboard-clean .painel,#pagina-painel-empresa .empresa-dashboard-clean .empresa-box{background:#fff!important;border:1px solid #d9e4ea!important;border-radius:16px!important;box-shadow:0 5px 18px rgba(20,55,75,.035)!important;overflow:hidden!important}
+#pagina-painel-empresa .empresa-dashboard-clean .vagas-cab,#pagina-painel-empresa .empresa-dashboard-clean .empresa-box-head{padding:20px 22px 17px!important;border-bottom:1px solid #e4ecef!important}
+#pagina-painel-empresa .empresa-section-kicker{display:block;margin-bottom:4px;font-size:9px;font-weight:900;letter-spacing:.12em;color:#148398}
+#pagina-painel-empresa .empresa-dashboard-clean h2{margin:0 0 4px!important;font-size:19px!important;color:#0a405f!important}
+#pagina-painel-empresa .empresa-dashboard-clean p{margin:0!important;font-size:12px!important;color:#7a8f9e!important}
+#pagina-painel-empresa .empresa-dashboard-clean .filtro-vagas{width:175px!important;min-height:40px!important;border-radius:9px!important;font-size:12px!important}
+#pagina-painel-empresa .lista-vagas-empresa{padding:0 20px 12px!important}
+#pagina-painel-empresa .empresa-candidatos-clean #empresaCandidatosRecentes{padding:5px 18px 12px!important}
+#pagina-painel-empresa .empresa-candidato-linha{padding:13px 2px!important;border-bottom:1px solid #edf2f4!important}
+#pagina-painel-empresa .empresa-candidato-linha:last-child{border-bottom:0!important}
+#pagina-painel-empresa .empresa-atalhos{margin-top:18px!important}
+@media(max-width:1050px){#pagina-painel-empresa .empresa-kpis-clean{grid-template-columns:repeat(3,1fr)!important}#pagina-painel-empresa .empresa-dashboard-clean{grid-template-columns:1fr!important}}
+@media(max-width:700px){#pagina-painel-empresa .empresa-wrap-v7{padding:22px 14px 42px!important}#pagina-painel-empresa .empresa-head-clean{align-items:flex-start!important;flex-direction:column!important}#pagina-painel-empresa .empresa-head-actions-v3{width:100%!important}#pagina-painel-empresa .empresa-head-actions-v3 button{flex:1!important}#pagina-painel-empresa .empresa-kpis-clean{grid-template-columns:repeat(2,1fr)!important}#pagina-painel-empresa .empresa-dashboard-clean .vagas-cab{align-items:flex-start!important;flex-direction:column!important;gap:12px!important}#pagina-painel-empresa .empresa-dashboard-clean .filtro-vagas{width:100%!important}}
