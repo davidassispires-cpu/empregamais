@@ -4048,3 +4048,36 @@ overflow:visible!important
 #pagina-candidatos-empresa .cand-gerenciar-btn{
  grid-column:1;grid-row:2;justify-self:start!important
 }
+
+/* EMPREGAMAIS-PROCESSO-CANDIDATO-PRO-V3 */
+#pagina-candidatos-empresa .cand-resumo-compacto{grid-template-columns:minmax(320px,1.45fr) minmax(165px,.62fr) minmax(390px,1.2fr)}
+#pagina-candidatos-empresa .cand-contato-completo{display:flex!important;align-items:center;gap:7px;white-space:normal!important;overflow:visible!important;text-overflow:clip!important;max-width:none!important;flex-wrap:wrap}
+#pagina-candidatos-empresa .cand-contato-completo span{white-space:nowrap}
+#pagina-candidatos-empresa .cand-contato-completo b{font-weight:400;color:#9aacb8}
+#pagina-candidatos-empresa .cand-processo-expandido{padding:18px 20px 16px;background:#fbfdff}
+#pagina-candidatos-empresa .cand-processo-toolbar{display:grid;grid-template-columns:minmax(190px,220px) 1fr;align-items:stretch;gap:18px;padding-bottom:15px;margin-bottom:0;border-bottom:1px solid #dce8ef}
+#pagina-candidatos-empresa .cand-processo-toolbar .cand-status-select{width:100%;min-width:0;max-width:none;height:48px;border-radius:10px;padding:0 13px;font-size:13px;background-color:#fff}
+#pagina-candidatos-empresa .cand-acoes-secundarias{display:grid;grid-template-columns:repeat(4,minmax(115px,1fr));gap:8px;width:100%}
+#pagina-candidatos-empresa .cand-acoes-secundarias .btn{display:flex;align-items:center;justify-content:center;gap:7px;min-height:48px;padding:7px 10px!important;border:1px solid #cbdde7!important;border-radius:10px!important;background:#fff!important;color:#174f70!important;font-size:11px!important;font-weight:800!important;box-shadow:0 3px 9px rgba(14,71,103,.04)}
+#pagina-candidatos-empresa .cand-acoes-secundarias .btn:first-child{background:#eef7fb!important;border-color:#b8d9e7!important;color:#0b637d!important}
+#pagina-candidatos-empresa .cand-acoes-secundarias .btn:nth-child(2){background:#effaf5!important;border-color:#c2e8d5!important;color:#16714c!important}
+#pagina-candidatos-empresa .cand-acoes-secundarias .btn:hover{transform:translateY(-1px);box-shadow:0 5px 13px rgba(14,71,103,.09)}
+#pagina-candidatos-empresa .cand-acoes-secundarias .cand-action-icon{font-size:15px;line-height:1}
+#pagina-candidatos-empresa .cand-acoes-secundarias .btn>span:last-child{display:flex;flex-direction:column;align-items:flex-start;line-height:1.15}
+#pagina-candidatos-empresa .cand-acoes-secundarias small{display:block;font-size:7px;letter-spacing:.08em;color:#8296a3;margin-bottom:3px}
+#pagina-candidatos-empresa .cand-processo-expandido .cand-fluxo-progressivo{display:grid!important;grid-template-columns:repeat(7,minmax(0,1fr))!important;align-items:start;width:100%;padding:22px 8px 7px!important;margin:0 0 12px!important;border-top:0!important;overflow:visible}
+#pagina-candidatos-empresa .cand-fluxo-progressivo>button{position:relative!important;display:flex!important;flex-direction:column!important;align-items:center!important;text-align:center!important;min-width:0!important;padding:0 4px!important;border:0!important;background:transparent!important;color:#718696!important}
+#pagina-candidatos-empresa .cand-fluxo-progressivo>button:before{content:""!important;position:absolute!important;z-index:0!important;top:13px!important;right:50%!important;width:100%!important;height:2px!important;background:#d4e2ea!important}
+#pagina-candidatos-empresa .cand-fluxo-progressivo>button:first-child:before{display:none!important}
+#pagina-candidatos-empresa .cand-fluxo-progressivo>button i{position:relative!important;z-index:2!important;display:grid!important;place-items:center!important;width:27px!important;height:27px!important;margin:0 auto 8px!important;border:3px solid #bfd3df!important;border-radius:50%!important;background:#fff!important;color:#fff!important;font-size:10px!important;font-style:normal!important}
+#pagina-candidatos-empresa .cand-fluxo-progressivo>button span{display:block!important;font-size:10px!important;line-height:1.2!important;font-weight:900!important;color:#073f67!important;white-space:normal!important}
+#pagina-candidatos-empresa .cand-fluxo-progressivo>button small{display:block!important;margin-top:5px!important;font-size:8px!important;color:#8ba0ad!important}
+#pagina-candidatos-empresa .cand-fluxo-progressivo>button.feito:before,#pagina-candidatos-empresa .cand-fluxo-progressivo>button.atual:before{background:#39a3df!important}
+#pagina-candidatos-empresa .cand-fluxo-progressivo>button.feito i,#pagina-candidatos-empresa .cand-fluxo-progressivo>button.atual i{border-color:#39a3df!important;background:#39a3df!important}
+#pagina-candidatos-empresa .cand-fluxo-progressivo>button.atual i{box-shadow:0 0 0 4px #e6f4fc!important}
+#pagina-candidatos-empresa .cand-processo-expandido .cand-fluxo-aviso{display:flex;align-items:center;gap:16px;margin:8px 0 0!important;padding:10px 13px!important;border-radius:10px;background:#f1f6fa;font-size:11px}
+#pagina-candidatos-empresa .cand-processo-expandido .cand-fluxo-aviso b{white-space:nowrap;color:#145a7c}
+#pagina-candidatos-empresa .cand-processo-expandido .cand-fluxo-aviso span{line-height:1.4;color:#5e7788}
+@media(max-width:1050px){#pagina-candidatos-empresa .cand-resumo-compacto{grid-template-columns:minmax(280px,1fr) minmax(160px,.7fr)}#pagina-candidatos-empresa .cand-processo-toolbar{grid-template-columns:1fr}#pagina-candidatos-empresa .cand-acoes-secundarias{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:700px){#pagina-candidatos-empresa .cand-processo-expandido .cand-fluxo-progressivo{overflow-x:auto!important;grid-template-columns:repeat(7,115px)!important;padding-bottom:12px!important}#pagina-candidatos-empresa .cand-processo-expandido .cand-fluxo-aviso{align-items:flex-start;flex-direction:column;gap:4px}}
+@media(max-width:520px){#pagina-candidatos-empresa .cand-contato-completo{align-items:flex-start;flex-direction:column;gap:2px}#pagina-candidatos-empresa .cand-contato-completo b{display:none}#pagina-candidatos-empresa .cand-acoes-secundarias{grid-template-columns:1fr}}
