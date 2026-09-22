@@ -2819,3 +2819,18 @@ padding:14px 14px!important;align-items:center!important
 #pagina-painel-candidato .cand-hero-beneficio b{font-size:11px!important;line-height:1.25!important;color:#fff!important;font-weight:700!important}
 @media(max-width:980px){#pagina-painel-candidato .cand-dashboard-hero-pro{grid-template-columns:1fr!important;gap:18px!important}.cand-hero-beneficios{border-left:0!important;border-top:1px solid rgba(255,255,255,.22)!important;padding:16px 0 0!important}}
 @media(max-width:600px){#pagina-painel-candidato .cand-dashboard-hero-pro{padding:22px!important}.cand-hero-beneficios{grid-template-columns:1fr!important}.cand-hero-beneficios>span{grid-column:auto!important}}
+
+/* EMPREGAMAIS-CANDIDATO-HERO-BENEFICIOS-UMA-LINHA-V20 */
+#pagina-painel-candidato .cand-dashboard-hero-pro{min-height:0!important;height:auto!important;padding:22px 30px!important;grid-template-columns:minmax(310px,.72fr) minmax(0,1.28fr)!important;gap:28px!important;align-items:center!important}
+#pagina-painel-candidato .cand-dashboard-hero-pro h1{font-size:29px!important;margin:4px 0 4px!important}
+#pagina-painel-candidato .cand-dashboard-hero-pro p{font-size:13px!important}
+#pagina-painel-candidato .cand-dashboard-hero-pro .cand-hero-actions{margin-top:13px!important}
+#pagina-painel-candidato .cand-dashboard-hero-pro .cand-hero-actions button{min-height:37px!important;padding:8px 13px!important}
+#pagina-painel-candidato .cand-hero-beneficios{align-self:center!important;padding:0 0 0 25px!important;gap:8px!important;min-width:0!important}
+#pagina-painel-candidato .cand-hero-beneficios>span{display:block!important;margin:0!important;font-size:9.5px!important;white-space:nowrap!important}
+#pagina-painel-candidato .cand-hero-beneficios-linha{display:flex!important;flex-flow:row nowrap!important;align-items:center!important;gap:16px!important;min-width:0!important}
+#pagina-painel-candidato .cand-hero-beneficios-linha .cand-hero-beneficio{display:flex!important;align-items:center!important;gap:6px!important;min-width:0!important;white-space:nowrap!important}
+#pagina-painel-candidato .cand-hero-beneficios-linha .cand-hero-beneficio i{width:21px!important;height:21px!important;min-width:21px!important;border-radius:50%!important;font-size:10px!important}
+#pagina-painel-candidato .cand-hero-beneficios-linha .cand-hero-beneficio b{font-size:10.5px!important;line-height:1.1!important;white-space:nowrap!important}
+@media(max-width:1180px){#pagina-painel-candidato .cand-dashboard-hero-pro{grid-template-columns:1fr!important}.cand-hero-beneficios{border-left:0!important;border-top:1px solid rgba(255,255,255,.2)!important;padding:12px 0 0!important}.cand-hero-beneficios-linha{overflow-x:auto!important;padding-bottom:2px!important;scrollbar-width:none}.cand-hero-beneficios-linha::-webkit-scrollbar{display:none}}
+@media(max-width:600px){#pagina-painel-candidato .cand-dashboard-hero-pro{padding:20px!important}.cand-hero-beneficios-linha{gap:12px!important}}
