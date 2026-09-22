@@ -575,10 +575,15 @@ function renderPerfilVerificacaoEmpresaEM(){
  if(!box){box=document.createElement('section');box.id='perfilVerificacaoEmpresaEM';box.className='perfil-verificacao-em';const shell=pagina.querySelector('.perfil-wizard-shell');if(shell)shell.insertBefore(box,shell.firstChild)}
  const s=emp.verificada||emp.verificacaoStatus==='aprovada'?'aprovada':(emp.verificacaoStatus||'nao_verificada');
  const formulario=pagina.querySelector('.perfil-wizard-head'),progresso=document.getElementById('perfilProgress'),layout=pagina.querySelector('.perfil-wizard-layout-split');
- const ocultar=s==='pendente'||s==='em_analise';
+ const ocultar=s==='pendente'||s==='em_analise'||s==='aprovada';
  [formulario,progresso,layout].forEach(x=>{if(x)x.style.display=ocultar?'none':''});
  if(!ocultar){box.innerHTML='';box.style.display='none';return}
  box.style.display='block';
+ if(s==='aprovada'){
+  const p=emp.perfil||{};
+  box.innerHTML='<div class="pv-top pv-aprovada"><button type="button" class="pv-voltar" onclick="irPara(\'painel-empresa\')">← Meu painel</button><span class="pv-kicker">VERIFICAÇÃO DA EMPRESA</span><div class="pv-title"><div class="pv-clock pv-check"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="m7.5 12.2 3 3 6-6.4"/></svg></div><div><h1>Empresa verificada</h1><p><strong>'+esc(p.nome||emp.nome||'Sua empresa')+'</strong> foi aprovada na verificação do EmpregaMais. O selo de confiança está ativo no perfil empresarial.</p></div><b class="pv-approved-badge">VERIFICADA</b></div></div><div class="pv-approved-card"><div class="pv-seal"><svg viewBox="0 0 24 24"><path d="M12 3l2.2 1.7 2.8-.2.8 2.7 2.3 1.6-1 2.6 1 2.6-2.3 1.6-.8 2.7-2.8-.2L12 21l-2.2-1.7-2.8.2-.8-2.7-2.3-1.6 1-2.6-1-2.6 2.3-1.6.8-2.7 2.8.2z"/><path d="m8.5 12 2.2 2.2 4.8-4.8"/></svg></div><div><span>STATUS ATUAL</span><h2>Selo Empresa Verificada ativo</h2><p>Seu perfil passou pela análise. Caso dados cadastrais importantes sejam alterados, a empresa poderá retornar automaticamente para reanálise.</p></div><button type="button" onclick="editarPerfilEmAnaliseEM()">Atualizar dados da empresa</button></div>';
+  return;
+ }
  const p=emp.perfil||{},data=emp.verificacaoEnviadaEm?new Date(emp.verificacaoEnviadaEm).toLocaleDateString('pt-BR'):'Recentemente';
  const nome=p.nome||emp.nome||'Sua empresa',local=[p.cidade||emp.cidade,p.uf||emp.uf].filter(Boolean).join(' - ')||'Não informado';
  box.innerHTML='<div class="pv-top"><button type="button" class="pv-voltar" onclick="irPara(\'painel-empresa\')">← Meu painel</button><span class="pv-kicker">VERIFICAÇÃO DA EMPRESA</span><div class="pv-title"><div class="pv-clock"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></div><div><h1>Sua empresa está em análise</h1><p>Recebemos os dados de <strong>'+esc(nome)+'</strong>. Nossa equipe está verificando as informações antes de liberar o selo Empresa Verificada.</p></div><b>EM ANÁLISE</b></div></div>'+
@@ -592,3 +597,12 @@ function editarPerfilEmAnaliseEM(){
  ['.perfil-wizard-head','#perfilProgress','.perfil-wizard-layout-split'].forEach(s=>{const x=pagina?.querySelector(s);if(x)x.style.display=''});
  perfilEmpresaEtapa(1);carregarPerfilEmpresa();window.scrollTo(0,0);
 }
+
+/* Atualiza automaticamente a tela de verificacao enquanto ela estiver aberta. */
+(function(){
+ if(window.__emVerificacaoAutoRefresh)return;window.__emVerificacaoAutoRefresh=true;
+ setInterval(function(){
+  const pg=document.getElementById('pagina-perfil-empresa');
+  if(pg&&pg.classList.contains('ativa')&&document.getElementById('perfilVerificacaoEmpresaEM')?.style.display!=='none')renderPerfilVerificacaoEmpresaEM();
+ },5000);
+})();
