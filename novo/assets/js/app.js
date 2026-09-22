@@ -790,7 +790,8 @@ document.addEventListener('click',e=>{const m=document.getElementById('cvSuccess
 function adminColetarPendenciasEM(){
  const vs=ler('empregaMaisVagas'),es=ler('empregaMaisEmpresas'),den=ler('empregaMaisDenuncias'),pedidos=ler('empregaMaisPedidosPlano'),extras=ler('empregaMaisExtras'),premium=ler('empregaMaisPedidosPremiumCandidato');
  const vagas=vs.filter(v=>v.status==='pendente');
- const verificacoes=es.filter(e=>e.verificacaoStatus==='pendente'||e.verificacaoStatus==='em_analise');
+ const statusVerificacao=e=>String(e?.verificacaoStatus||e?.verificacao_status||'').trim().toLowerCase().replace(/[ -]+/g,'_');
+ const verificacoes=es.filter(e=>['pendente','em_analise','em_análise','aguardando_analise','aguardando_análise'].includes(statusVerificacao(e))||(e.verificada!==true&&!!e.verificacaoEnviadaEm));
  const denuncias=den.filter(d=>d.status==='pendente');
  const planos=pedidos.filter(x=>!['ativo','aprovado','pago','concluido','cancelado','reprovado'].includes(String(x.status||'').toLowerCase()));
  const extrasPend=extras.filter(x=>!['ativo','concluido','cancelado','reprovado'].includes(String(x.status||'').toLowerCase()));
@@ -1108,4 +1109,4 @@ const ADMIN2_TITULOS_EM={geral:['Visão geral','Acompanhe o EmpregaMais em um ú
 function admin2AtualizarCabecalhoEM(aba){const d=ADMIN2_TITULOS_EM[aba]||ADMIN2_TITULOS_EM.geral,t=document.getElementById('admin2Titulo'),p=document.getElementById('admin2Subtitulo');if(t)t.textContent=d[0];if(p)p.textContent=d[1];}
 async function adminAtualizarNovoPainelEM(){const ativo=document.querySelector('[data-admin-tab].ativo')?.dataset.adminTab||'geral',sync=document.getElementById('admin2Sync');if(sync)sync.textContent='Atualizando dados…';try{await adminSincronizarPainelSupabase();await adminAba(ativo);if(sync)sync.textContent='Dados atualizados agora'}catch(err){console.error('Atualização do painel:',err);if(sync)sync.textContent='Não foi possível concluir a atualização'}}
 const _adminAbaCabecalhoEM=adminAba;
-adminAba=async function(aba,btn){admin2AtualizarCabecalhoEM(aba);const r=await _adminAbaCabecalhoEM(aba,btn);try{adminAtualizarBadgePendenciasEM()}catch(e){}return r};
+adminAba=async function(aba,btn){admin2AtualizarCabecalhoEM(aba);if(aba==='pendencias'){if(sessionStorage.getItem('empregaMaisAdmin')!=='1'){irPara('login-admin');return}document.querySelectorAll('[data-admin-tab]').forEach(b=>b.classList.toggle('ativo',b.dataset.adminTab===aba));const out=document.getElementById('adminConteudo');if(!out)return;out.innerHTML='<div class="admin-bloco"><h2>Atualizando pendências…</h2><p class="admin-sub">Buscando as solicitações mais recentes.</p></div>';try{await adminCarregarEmpresasSupabaseEM();await adminCarregarVagasSupabase()}catch(err){console.error('ADM pendências Supabase:',err)}out.innerHTML=adminRenderPendenciasEM();try{adminAtualizarBadgePendenciasEM()}catch(e){}return}const r=await _adminAbaCabecalhoEM(aba,btn);try{adminAtualizarBadgePendenciasEM()}catch(e){}return r};
