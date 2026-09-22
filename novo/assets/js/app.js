@@ -577,8 +577,9 @@ function moverDestaques(dir){const el=document.getElementById('listaDestaques');
 /* EMPREGAMAIS-VERIFICACAO-EMPRESA-V1 */
 function iniciarSolicitacaoVerificacaoEM(lista,i,motivo='envio'){
  const emp=lista[i];if(!emp)return;
- emp.verificacaoStatus='pendente';emp.verificada=false;emp.verificacaoEnviadaEm=new Date().toISOString();emp.verificacaoMotivo='';
+ emp.verificacaoStatus='pendente';emp.verificada=false;emp.verificacaoEnviadaEm=new Date().toISOString();emp.verificacaoMotivo=motivo==='reanálise'?'Dados da empresa alterados — aguardando reanálise':'';
  gravar('empregaMaisEmpresas',lista);
+ (async()=>{try{const token=await sbGarantirSessaoEM();if(!token)throw new Error('Sessão da empresa indisponível.');const body={verificacao_status:'pendente',verificada:false,verificacao_enviada_em:emp.verificacaoEnviadaEm,verificacao_motivo:emp.verificacaoMotivo};await sbJsonEM(EMPREGAMAIS_SUPABASE_URL+'/rest/v1/empresas?cnpj=eq.'+encodeURIComponent(nums(emp.cnpj||'')),{method:'PATCH',headers:Object.assign(sbHeadersEM(token),{'Prefer':'return=representation'}),body:JSON.stringify(body)});}catch(err){console.error('Não foi possível sincronizar a reanálise da empresa no Supabase:',err)}})();
  const m=document.getElementById('msgPerfilEmpresa');if(m){m.textContent='';m.className='form-msg'}
  const modal=document.getElementById('emVerificacaoModal');if(modal){const titulo=modal.querySelector('#emVerificacaoTitulo'),intro=modal.querySelector('.em-verificacao-dialog>p');if(titulo)titulo.textContent=motivo==='reanálise'?'Alterações enviadas para nova análise':'Verificação iniciada com sucesso';if(intro)intro.innerHTML=motivo==='reanálise'?'Os dados verificados da empresa foram alterados. O selo ficará temporariamente suspenso enquanto o administrador realiza uma <strong>nova análise</strong>.':'Recebemos as informações da sua empresa. A solicitação agora ficará <strong>aguardando análise do administrador</strong>.';modal.classList.add('aberto');modal.setAttribute('aria-hidden','false');document.body.classList.add('em-modal-aberto')}
 }
