@@ -772,3 +772,56 @@ document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!document.getElemen
 function abrirSucessoCurriculoEM(){document.getElementById('cvSuccessModal')?.classList.remove('oculto');document.body.classList.add('cv-success-open')}
 function fecharSucessoCurriculoEM(){document.getElementById('cvSuccessModal')?.classList.add('oculto');document.body.classList.remove('cv-success-open')}
 document.addEventListener('click',e=>{const m=document.getElementById('cvSuccessModal');if(e.target===m)fecharSucessoCurriculoEM()});
+
+
+/* EMPREGAMAIS-ADMIN-VERIFICACAO-EMPRESAS-V1 */
+async function adminCarregarEmpresasSupabaseEM(){
+ const t=await adminSbToken();
+ const a=await sbJsonEM(EMPREGAMAIS_SUPABASE_URL+'/rest/v1/empresas?select=*&order=criado_em.desc',{method:'GET',headers:sbHeadersEM(t)});
+ const es=(Array.isArray(a)?a:[]).map(e=>sbEmpresaParaLocalEM(e,''));
+ gravar('empregaMaisEmpresas',es);
+ return es;
+}
+async function adminAtualizarVerificacaoEmpresaEM(cnpj,status,motivo){
+ const t=await adminSbToken(),agora=new Date().toISOString();
+ const body={verificacao_status:status,verificada:status==='aprovada',verificacao_motivo:motivo||null};
+ const r=await sbJsonEM(EMPREGAMAIS_SUPABASE_URL+'/rest/v1/empresas?cnpj=eq.'+encodeURIComponent(nums(cnpj)),{method:'PATCH',headers:Object.assign(sbHeadersEM(t),{'Prefer':'return=representation'}),body:JSON.stringify(body)});
+ if(!Array.isArray(r)||!r.length)throw new Error('Empresa não encontrada ou alteração não permitida.');
+ await adminCarregarEmpresasSupabaseEM();
+ const e=ler('empregaMaisEmpresas').find(x=>nums(x.cnpj)===nums(cnpj))||{};
+ adminHistoricoRegistrar(status==='aprovada'?'Empresa verificada':'Verificação de empresa reprovada',(e.nome||cnpj)+(motivo?' · '+motivo:''));
+ await adminAba('verificacoes');
+}
+async function adminAprovarVerificacaoEmpresaEM(cnpj){
+ const e=ler('empregaMaisEmpresas').find(x=>nums(x.cnpj)===nums(cnpj));if(!e)return;
+ if(!confirm('Aprovar a verificação de “'+(e.nome||'esta empresa')+'” e liberar o selo Empresa Verificada?'))return;
+ try{await adminAtualizarVerificacaoEmpresaEM(cnpj,'aprovada','');alert('Empresa aprovada. O selo Empresa Verificada foi liberado.')}catch(err){console.error('ADM verificação empresa:',err);alert('Não foi possível aprovar a verificação: '+err.message)}
+}
+async function adminReprovarVerificacaoEmpresaEM(cnpj){
+ const e=ler('empregaMaisEmpresas').find(x=>nums(x.cnpj)===nums(cnpj));if(!e)return;
+ const motivo=prompt('Informe o motivo da reprovação para a empresa:');if(motivo===null)return;if(!motivo.trim())return alert('Informe o motivo da reprovação.');
+ try{await adminAtualizarVerificacaoEmpresaEM(cnpj,'reprovada',motivo.trim());alert('Verificação reprovada. O motivo ficará registrado para a empresa.')}catch(err){console.error('ADM verificação empresa:',err);alert('Não foi possível reprovar a verificação: '+err.message)}
+}
+function adminVerificacoesEmpresasEM(es){
+ const ordem={pendente:0,em_analise:0,reprovada:1,aprovada:2,nao_verificada:3};
+ const a=es.filter(e=>['pendente','em_analise','reprovada','aprovada'].includes(e.verificacaoStatus)||e.verificada).slice().sort((x,y)=>(ordem[x.verificacaoStatus]??9)-(ordem[y.verificacaoStatus]??9));
+ if(!a.length)return '<div class="admin-empty">Nenhuma solicitação de verificação recebida.</div>';
+ return '<div class="admin-lista">'+a.map(e=>{const s=e.verificada||e.verificacaoStatus==='aprovada'?'aprovada':e.verificacaoStatus,rot=s==='aprovada'?'Verificada':s==='reprovada'?'Reprovada':'Aguardando análise',p=e.perfil||{};return '<div class="admin-linha admin-verificacao-linha"><div><strong>'+esc(p.nome||e.nome||'Empresa')+'</strong><small>CNPJ '+esc(e.cnpj||'Não informado')+(e.email?' · '+esc(e.email):'')+(e.verificacaoEnviadaEm?' · Enviada em '+new Date(e.verificacaoEnviadaEm).toLocaleString('pt-BR'):'')+'</small>'+(e.verificacaoMotivo?'<small><b>Motivo:</b> '+esc(e.verificacaoMotivo)+'</small>':'')+'</div><div class="admin-empresa-resumo"><span class="vaga-status '+(s==='aprovada'?'aprovada':s==='reprovada'?'reprovada':'pendente')+'">'+rot+'</span>'+(s!=='aprovada'?'<button class="btn btn-azul" onclick="adminAprovarVerificacaoEmpresaEM(\''+esc(e.cnpj||'')+'\')">Aprovar verificação</button>':'')+(s!=='reprovada'?'<button class="btn btn-perigo" onclick="adminReprovarVerificacaoEmpresaEM(\''+esc(e.cnpj||'')+'\')">Reprovar</button>':'')+'</div></div>'}).join('')+'</div>';
+}
+const _adminSincronizarPainelSupabaseVerEM=adminSincronizarPainelSupabase;
+adminSincronizarPainelSupabase=async function(){
+ const ok=await _adminSincronizarPainelSupabaseVerEM();
+ try{await adminCarregarEmpresasSupabaseEM()}catch(err){console.error('ADM sincronização empresas:',err)}
+ return ok;
+};
+const _adminAbaVerificacaoEM=adminAba;
+adminAba=async function(aba,btn){
+ if(aba!=='verificacoes')return _adminAbaVerificacaoEM(aba,btn);
+ if(sessionStorage.getItem('empregaMaisAdmin')!=='1'){irPara('login-admin');return}
+ document.querySelectorAll('[data-admin-tab]').forEach(b=>b.classList.toggle('ativo',b.dataset.adminTab===aba));
+ const out=$('#adminConteudo');if(!out)return;
+ try{await adminCarregarEmpresasSupabaseEM()}catch(err){console.error('ADM empresas:',err)}
+ const es=ler('empregaMaisEmpresas'),pend=es.filter(e=>e.verificacaoStatus==='pendente'||e.verificacaoStatus==='em_analise');
+ const badge=$('#adminBadgeVerificacoes');if(badge){badge.textContent=pend.length||'';badge.style.display=pend.length?'grid':'none'}
+ out.innerHTML='<div class="admin-bloco"><h2>Verificações de empresas</h2><p class="admin-sub">Analise as solicitações enviadas pelas empresas. A aprovação libera o selo Empresa Verificada no perfil e nas vagas.</p><div class="admin-warning">'+pend.length+' solicitação(ões) aguardando análise.</div>'+adminVerificacoesEmpresasEM(es)+'</div>';
+};
