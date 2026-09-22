@@ -3788,3 +3788,102 @@ overflow:visible!important
    z-index:1!important;
  }
 }
+
+/* EMPREGAMAIS-PAINEL-PLANO-PRO-V50 */
+#pagina-painel-empresa .empresa-verificacao-status{margin:14px 0 12px!important}
+#pagina-painel-empresa .em-ver-status{
+ min-height:88px!important;padding:16px 20px!important;
+ grid-template-columns:46px minmax(0,1fr) auto!important;gap:16px!important;
+ border:1px solid #cfe5df!important;border-radius:14px!important;
+ background:linear-gradient(90deg,#fbfefd 0%,#f8fcfb 100%)!important;
+ box-shadow:0 4px 14px rgba(18,78,68,.035)!important
+}
+#pagina-painel-empresa .em-ver-status .em-ver-icon{
+ width:42px!important;height:42px!important;border-radius:12px!important;
+ background:#e3f5f0!important;color:#078875!important
+}
+#pagina-painel-empresa .em-ver-status .em-ver-icon svg{width:21px!important;height:21px!important}
+#pagina-painel-empresa .em-ver-status small{font-size:10px!important;letter-spacing:.1em!important;color:#557385!important}
+#pagina-painel-empresa .em-ver-status strong{font-size:16px!important;color:#123e56!important;margin-top:3px!important}
+#pagina-painel-empresa .em-ver-status p{font-size:12px!important;color:#637c8d!important;margin:4px 0 0!important}
+#pagina-painel-empresa .em-ver-status>b{
+ padding:7px 12px!important;border-radius:999px!important;background:#e4f5ef!important;
+ color:#087a68!important;font-size:9px!important;letter-spacing:.08em!important
+}
+
+#pagina-painel-empresa #empresaResumoRecursos{margin:0 0 18px!important;overflow:visible!important}
+#pagina-painel-empresa .empresa-plano-inline-v4{
+ display:grid!important;
+ grid-template-columns:minmax(170px,1.2fr) repeat(4,minmax(120px,1fr)) 118px!important;
+ min-height:86px!important;width:100%!important;
+ border:1px solid #dbe6ea!important;border-radius:14px!important;
+ background:#fff!important;box-shadow:0 7px 22px rgba(17,58,76,.05)!important;
+ overflow:hidden!important
+}
+#pagina-painel-empresa .empresa-plano-inline-v4>*{
+ min-width:0!important;border-right:1px solid #e8eef1!important
+}
+#pagina-painel-empresa .empresa-plano-inline-ident,
+#pagina-painel-empresa .empresa-plano-inline-item{
+ position:relative!important;display:flex!important;flex-direction:column!important;
+ align-items:flex-start!important;justify-content:center!important;
+ padding:14px 16px!important;margin:0!important;border-radius:0!important;
+ border-top:0!important;border-bottom:0!important;border-left:0!important;
+ background:#fff!important;text-align:left!important;box-shadow:none!important
+}
+#pagina-painel-empresa .empresa-plano-inline-ident{
+ padding-left:20px!important;background:linear-gradient(135deg,#f5fbfb,#fff)!important
+}
+#pagina-painel-empresa .empresa-plano-inline-ident:before{
+ content:"";position:absolute;left:0;top:0;bottom:0;width:4px;background:#087985
+}
+#pagina-painel-empresa .empresa-plano-inline-ident span,
+#pagina-painel-empresa .empresa-plano-inline-item span{
+ margin:0 0 6px!important;font-size:9px!important;line-height:1!important;
+ font-weight:800!important;letter-spacing:.09em!important;text-transform:uppercase!important;color:#7b909d!important
+}
+#pagina-painel-empresa .empresa-plano-inline-ident strong{
+ display:flex!important;align-items:center!important;gap:7px!important;
+ font-size:18px!important;line-height:1.1!important;color:#0b6074!important;font-weight:800!important
+}
+#pagina-painel-empresa .empresa-plano-inline-ident strong:after{
+ content:"ATIVO";display:inline-flex;padding:4px 6px;border-radius:999px;
+ background:#e4f5ef;color:#087b68;font-size:7px;letter-spacing:.08em;font-weight:900
+}
+#pagina-painel-empresa .empresa-plano-inline-item strong{
+ font-size:17px!important;line-height:1.05!important;color:#173e54!important;font-weight:800!important
+}
+#pagina-painel-empresa .empresa-plano-inline-item strong small{
+ font-size:10px!important;color:#93a2ab!important;font-weight:600!important
+}
+#pagina-painel-empresa .empresa-plano-inline-item em{
+ margin-top:5px!important;font-size:9px!important;color:#14806d!important;font-style:normal!important;font-weight:800!important
+}
+#pagina-painel-empresa button.empresa-plano-inline-item{cursor:pointer!important}
+#pagina-painel-empresa button.empresa-plano-inline-item:hover{background:#f7fbfc!important}
+#pagina-painel-empresa .empresa-plano-inline-link{
+ display:flex!important;align-items:center!important;justify-content:center!important;
+ padding:0 15px!important;border:0!important;border-right:0!important;
+ background:#086477!important;color:#fff!important;font:800 12px Questrial,sans-serif!important;
+ cursor:pointer!important;white-space:nowrap!important;transition:.18s ease!important
+}
+#pagina-painel-empresa .empresa-plano-inline-link:hover{background:#07576a!important}
+@media(max-width:1180px) and (min-width:901px){
+ #pagina-painel-empresa .empresa-plano-inline-v4{grid-template-columns:1.15fr repeat(4,1fr) 104px!important}
+ #pagina-painel-empresa .empresa-plano-inline-ident,#pagina-painel-empresa .empresa-plano-inline-item{padding:12px!important}
+ #pagina-painel-empresa .empresa-plano-inline-ident{padding-left:16px!important}
+ #pagina-painel-empresa .empresa-plano-inline-ident strong{font-size:16px!important}
+ #pagina-painel-empresa .empresa-plano-inline-item strong{font-size:15px!important}
+}
+@media(max-width:900px){
+ #pagina-painel-empresa .em-ver-status{grid-template-columns:42px minmax(0,1fr)!important;padding:14px!important}
+ #pagina-painel-empresa .em-ver-status>b{grid-column:2!important;justify-self:start!important}
+ #pagina-painel-empresa .empresa-plano-inline-v4{grid-template-columns:repeat(2,minmax(0,1fr))!important}
+ #pagina-painel-empresa .empresa-plano-inline-v4>*{min-height:76px!important;border-bottom:1px solid #e8eef1!important}
+ #pagina-painel-empresa .empresa-plano-inline-ident{grid-column:1/-1!important}
+ #pagina-painel-empresa .empresa-plano-inline-link{grid-column:1/-1!important;min-height:48px!important}
+}
+@media(max-width:520px){
+ #pagina-painel-empresa .empresa-plano-inline-v4{grid-template-columns:1fr!important}
+ #pagina-painel-empresa .empresa-plano-inline-ident,#pagina-painel-empresa .empresa-plano-inline-link{grid-column:auto!important}
+}
