@@ -1276,44 +1276,6 @@ header nav a,header nav button,.menu-drop button{font-size:15px}
 #pagina-perfil-empresa.modo-verificacao .perfil-verificacao-em{display:block!important}
 
 
-/* PAINEL RECRUTADOR — LAYOUT DE REFERENCIA 21/09 */
-#pagina-painel-empresa.painel-empresa-v2{background:#f5f9fb}
-#pagina-painel-empresa .empresa-app-shell{display:grid!important;grid-template-columns:245px minmax(0,1fr)!important;max-width:none!important;min-height:calc(100vh - 72px);background:#f5f9fb}
-#pagina-painel-empresa .empresa-side-ref{position:sticky;top:0;align-self:start;height:100vh;background:linear-gradient(180deg,#07394c,#03445a 60%,#05384a);padding:25px 15px 20px;color:#fff;border-radius:0;box-shadow:none}
-#pagina-painel-empresa .empresa-side-brand{display:none!important}
-#pagina-painel-empresa .empresa-side-company{display:grid;grid-template-columns:60px 1fr;gap:13px;align-items:center;padding:0 5px 24px;border-bottom:1px solid rgba(255,255,255,.12);margin-bottom:17px}
-#pagina-painel-empresa .empresa-side-company-icon{width:58px;height:58px;border-radius:9px;background:#fff;color:#087586;display:grid;place-items:center;font-size:28px}
-#pagina-painel-empresa .empresa-side-company b{display:block;font-size:17px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.empresa-side-company small{display:block;color:#8fe0e6;font-size:12px;margin:3px 0}.empresa-side-company button{border:0;background:none;color:#b9e8eb;padding:0;font-size:12px;cursor:pointer}
-#pagina-painel-empresa .empresa-side-ref nav{display:grid;gap:5px}
-#pagina-painel-empresa .empresa-side-ref nav button{width:100%;min-height:48px;border:0;border-radius:9px;background:transparent;color:#f5fbfc;text-align:left;padding:0 15px;font-size:15px;font-weight:700;display:flex;align-items:center;gap:12px;cursor:pointer}
-#pagina-painel-empresa .empresa-side-ref nav button.ativo{background:#08738d}
-#pagina-painel-empresa .empresa-side-ref nav button:hover{background:rgba(18,137,160,.55)}
-#pagina-painel-empresa .empresa-menu-secundario{margin-top:8px;border-top:1px solid rgba(255,255,255,.1)!important;border-radius:0!important;padding-top:12px!important}
-#pagina-painel-empresa .empresa-side-upgrade{margin-top:15px}
-#pagina-painel-empresa .empresa-sair{margin-top:20px;border:0;border-top:1px solid rgba(255,255,255,.13);background:none;color:#fff;width:100%;padding:20px 15px 5px;text-align:left;font-size:15px;font-weight:700}
-#pagina-painel-empresa .empresa-main{padding:12px 16px 45px!important;min-width:0}
-#pagina-painel-empresa .em-ref-wrap{max-width:none!important;width:100%!important}
-#pagina-painel-empresa .em-ref-hero{min-height:330px!important;border-radius:17px!important;padding:34px 40px!important;grid-template-columns:minmax(410px,1.15fr) minmax(340px,.8fr) minmax(280px,.62fr)!important;background:linear-gradient(120deg,#06445c,#007482 60%,#087c85)!important;box-shadow:0 7px 24px rgba(8,66,82,.12)}
-#pagina-painel-empresa .hero-v17-left h1{font-size:clamp(34px,3.3vw,52px)!important;line-height:1.05!important;margin:10px 0 14px!important}
-#pagina-painel-empresa .hero-v17-left>p{font-size:18px!important}
-#pagina-painel-empresa .hero-v17-left>button{margin-top:24px!important;min-width:310px!important;min-height:66px!important;border-radius:13px!important;font-size:17px!important}
-#pagina-painel-empresa .hero-v17-left>small{font-size:14px!important;margin-top:22px!important}
-#pagina-painel-empresa .hero-v17-right h2{font-size:27px!important;line-height:1.12!important}
-#pagina-painel-empresa .hero-v17-right p{font-size:15px!important}
-#pagina-painel-empresa .hero-v17-icons b{font-size:13px!important}
-#pagina-painel-empresa .em-ref-kpis{display:grid!important;grid-template-columns:repeat(4,minmax(0,1fr))!important;gap:12px!important;margin-top:14px!important}
-#pagina-painel-empresa .empresa-metrica-v2{min-height:145px!important;border:1px solid #dce8ed!important;border-radius:13px!important;padding:19px 21px!important;background:#fff!important;box-shadow:0 3px 13px rgba(11,66,82,.04)!important}
-#pagina-painel-empresa .empresa-metrica-v2:nth-child(5){display:none!important}
-#pagina-painel-empresa .empresa-metrica-v2 .kpi-num{font-size:31px!important;color:#073f55!important}
-#pagina-painel-empresa .empresa-metrica-v2 h3{font-size:16px!important;color:#103e51!important}
-#pagina-painel-empresa .empresa-metrica-v2 p{font-size:13px!important}
-#pagina-painel-empresa .empresa-dashboard-grid{grid-template-columns:1.2fr 1fr!important;gap:14px!important;margin-top:14px!important}
-#pagina-painel-empresa .empresa-box{border-radius:13px!important;border:1px solid #dce8ed!important;box-shadow:0 3px 13px rgba(11,66,82,.04)!important}
-#pagina-painel-empresa .empresa-box-head h2{font-size:21px!important}
-@media(max-width:1200px){#pagina-painel-empresa .em-ref-hero{grid-template-columns:1.15fr .85fr!important}.hero-v17-right{display:none!important}#pagina-painel-empresa .em-ref-kpis{grid-template-columns:repeat(2,1fr)!important}}
-@media(max-width:850px){#pagina-painel-empresa .empresa-app-shell{grid-template-columns:1fr!important}#pagina-painel-empresa .empresa-side-ref{position:relative;height:auto;display:none}#pagina-painel-empresa .empresa-main{padding:10px!important}#pagina-painel-empresa .em-ref-hero{grid-template-columns:1fr!important;padding:25px 20px!important}.hero-v17-center{display:none!important}#pagina-painel-empresa .em-ref-kpis,#pagina-painel-empresa .empresa-dashboard-grid{grid-template-columns:1fr!important}}
-
-
 /* CHAT INTERNO DO PROCESSO SELETIVO */
 .btn-chat-em{background:#eef8f8!important;border-color:#b9dddd!important;color:#08737b!important}.btn-chat-em.bloqueado{opacity:.65}
 .chat-em-box{margin-top:20px;border:1px solid #d8e5e9;border-radius:15px;background:#f8fbfc;overflow:hidden}
@@ -1714,11 +1676,6 @@ body.cv-success-open{overflow:hidden}.cv-success-modal{position:fixed;inset:0;z-
 @media(max-width:700px){#modalFichaCandidato.ficha-ampla{padding:0!important}#modalFichaCandidato.ficha-ampla>.modal-candidato-card{width:100vw!important;height:100vh!important;margin:0!important;border-radius:0!important}#modalFichaCandidato.ficha-ampla #fichaCandidatoConteudo{padding:0 15px 30px}.ficha-candidato-tabs{overflow-x:auto}.ficha-candidato-tabs button{white-space:nowrap;padding:10px 12px}.ficha-cv-toolbar{align-items:flex-start;flex-direction:column;top:57px}.ficha-cv-toolbar-acoes{flex-wrap:wrap}.ficha-cv-grid{grid-template-columns:1fr!important}#modalFichaCandidato.ficha-ampla .ficha-cv-online{padding:20px 16px!important}}
 @media print{body>*{display:none!important}#modalFichaCandidato{display:block!important;position:static!important;background:#fff!important}#modalFichaCandidato>.modal-candidato-card{display:block!important;position:static!important;width:100%!important;height:auto!important;overflow:visible!important;box-shadow:none!important}#modalFichaCandidato .modal-fechar,#modalFichaCandidato .ficha-topo,#modalFichaCandidato .ficha-candidato-tabs,#modalFichaCandidato .ficha-cv-toolbar{display:none!important}#modalFichaCandidato .ficha-tab-pane{display:none!important}#modalFichaCandidato [data-ficha-pane="curriculo"]{display:block!important}#modalFichaCandidato .ficha-cv-online{box-shadow:none!important;border:0!important}}
 
-/* FLUXO PROGRESSIVO RECRUTAMENTO V1 (2026-09-22) */
-.candidato-card .cand-fluxo-progressivo{grid-column:1/-1;display:grid;grid-template-columns:repeat(5,1fr);width:100%;margin-top:18px;padding:17px 12px 5px;border-top:1px solid #e2ebf0}.cand-fluxo-progressivo>div{position:relative;text-align:center;color:#91a1ad}.cand-fluxo-progressivo>div:before{content:"";position:absolute;z-index:0;top:7px;right:50%;width:100%;height:3px;background:#dfe7ec}.cand-fluxo-progressivo>div:first-child:before{display:none}.cand-fluxo-progressivo i{position:relative;z-index:2;display:block;width:16px;height:16px;margin:0 auto 7px;border:3px solid #d5e0e7;border-radius:50%;background:#fff}.cand-fluxo-progressivo span{font-size:10px;font-weight:800}.cand-fluxo-progressivo .feito,.cand-fluxo-progressivo .atual{color:#116d7c}.cand-fluxo-progressivo .feito:before,.cand-fluxo-progressivo .atual:before{background:#1592a0}.cand-fluxo-progressivo .feito i{border-color:#1592a0;background:#1592a0}.cand-fluxo-progressivo .atual i{border-color:#1592a0;box-shadow:0 0 0 4px #e1f4f5}
-.cand-status-select{font-weight:800!important}.cand-status-select.status-em-avalia-o{border-color:#c5d4df!important;color:#486578!important}.cand-status-select.status-selecionado{border-color:#35a9b5!important;background:#e9f8f9!important;color:#08717d!important}.cand-status-select.status-em-contato{border-color:#5297d0!important;background:#edf6fd!important;color:#276caa!important}.cand-status-select.status-entrevista-agendada{border-color:#a77bd5!important;background:#f6f0fc!important;color:#7445a8!important}.cand-status-select.status-aprovado{border-color:#4bb881!important;background:#ecf9f2!important;color:#27835a!important}.cand-status-select.status-contratado{border-color:#28a56e!important;background:#daf5e8!important;color:#126c47!important}.cand-status-select.status-reprovado{border-color:#dc8585!important;background:#fff1f1!important;color:#b94444!important}
-@media(max-width:700px){.candidato-card .cand-fluxo-progressivo{overflow-x:auto;grid-template-columns:repeat(5,105px);padding-bottom:10px}}
-
 /* ADERENCIA PROFISSIONAL AUTOMATICA V1 (2026-09-22) */
 .cand-aderencia-pro{margin-top:14px!important;width:min(330px,100%)!important}.cand-aderencia-pro>div{margin-bottom:7px!important}.cand-aderencia-pro>div strong{font-size:17px!important;color:#087687!important}.cand-aderencia-pro>i{height:8px!important;background:#e4edf1!important}.cand-aderencia-pro>i>b{background:linear-gradient(90deg,#17849a,#25aa83)!important;transition:width .35s ease}.cand-aderencia-pro>small{display:block;margin-top:6px;color:#718798;font-size:10px;font-weight:700}
 
@@ -1777,76 +1734,6 @@ body.cv-success-open{overflow:hidden}.cv-success-modal{position:fixed;inset:0;z-
 @media(min-width:1180px){
  #listaCandidatosEmpresa .candidato-card{grid-template-columns:minmax(230px,.95fr) minmax(190px,.65fr) minmax(620px,1.9fr)!important}
 }
-
-/* PAINEL RECRUTADOR - TIMELINE MODELO APROVADO V4 (2026-09-22) */
-@media(min-width:1000px){
- #listaCandidatosEmpresa .candidato-card{grid-template-rows:auto auto auto!important}
- #listaCandidatosEmpresa .cand-fluxo-progressivo{grid-row:2!important;grid-template-columns:repeat(7,minmax(90px,1fr))!important;padding:30px 12px 14px!important}
- #listaCandidatosEmpresa .cand-fluxo-aviso{grid-column:1/-1!important;grid-row:3!important}
-}
-#listaCandidatosEmpresa .cand-fluxo-progressivo>div:before{top:12px!important;height:2px!important}
-#listaCandidatosEmpresa .cand-fluxo-progressivo i{width:26px!important;height:26px!important;display:flex!important;align-items:center!important;justify-content:center!important;margin:0 auto 10px!important;border-width:3px!important;font-style:normal!important;font-size:12px!important;color:#fff!important}
-#listaCandidatosEmpresa .cand-fluxo-progressivo span{font-size:11px!important;color:#153d5b!important}
-#listaCandidatosEmpresa .cand-fluxo-progressivo small{display:block;margin-top:7px;font-size:10px;color:#8192a0}
-#listaCandidatosEmpresa .cand-fluxo-progressivo .etapa-0.feito i{background:#1679d4!important;border-color:#1679d4!important}
-#listaCandidatosEmpresa .cand-fluxo-progressivo .etapa-0.feito:before{background:#1679d4!important}
-#listaCandidatosEmpresa .cand-fluxo-progressivo .etapa-1.feito i{background:#369de4!important;border-color:#369de4!important}
-#listaCandidatosEmpresa .cand-fluxo-progressivo .etapa-1.feito:before{background:#369de4!important}
-#listaCandidatosEmpresa .cand-fluxo-progressivo .etapa-2.feito i,#listaCandidatosEmpresa .cand-fluxo-progressivo .etapa-2.atual i{background:#149ca0!important;border-color:#149ca0!important}
-#listaCandidatosEmpresa .cand-fluxo-progressivo .etapa-2.feito:before,#listaCandidatosEmpresa .cand-fluxo-progressivo .etapa-2.atual:before{background:#149ca0!important}
-#listaCandidatosEmpresa .cand-fluxo-progressivo .etapa-3.feito i,#listaCandidatosEmpresa .cand-fluxo-progressivo .etapa-3.atual i{background:#287fc0!important;border-color:#287fc0!important}
-#listaCandidatosEmpresa .cand-fluxo-progressivo .etapa-3.feito:before,#listaCandidatosEmpresa .cand-fluxo-progressivo .etapa-3.atual:before{background:#287fc0!important}
-#listaCandidatosEmpresa .cand-fluxo-progressivo .etapa-4.feito i,#listaCandidatosEmpresa .cand-fluxo-progressivo .etapa-4.atual i{background:#7954ad!important;border-color:#7954ad!important}
-#listaCandidatosEmpresa .cand-fluxo-progressivo .etapa-4.feito:before,#listaCandidatosEmpresa .cand-fluxo-progressivo .etapa-4.atual:before{background:#7954ad!important}
-#listaCandidatosEmpresa .cand-fluxo-progressivo .etapa-5.feito i,#listaCandidatosEmpresa .cand-fluxo-progressivo .etapa-5.atual i{background:#2c9666!important;border-color:#2c9666!important}
-#listaCandidatosEmpresa .cand-fluxo-progressivo .etapa-5.feito:before,#listaCandidatosEmpresa .cand-fluxo-progressivo .etapa-5.atual:before{background:#2c9666!important}
-#listaCandidatosEmpresa .cand-fluxo-progressivo .etapa-6.feito i,#listaCandidatosEmpresa .cand-fluxo-progressivo .etapa-6.atual i{background:#176e4b!important;border-color:#176e4b!important}
-#listaCandidatosEmpresa .cand-fluxo-progressivo .etapa-6.feito:before,#listaCandidatosEmpresa .cand-fluxo-progressivo .etapa-6.atual:before{background:#176e4b!important}
-#listaCandidatosEmpresa .cand-fluxo-aviso{display:flex;align-items:center;gap:14px;margin-top:6px;padding:14px 18px;border-radius:11px;background:#f4f8fb;color:#557086}
-#listaCandidatosEmpresa .cand-fluxo-aviso b{color:#1d536f;font-size:11px;white-space:nowrap}#listaCandidatosEmpresa .cand-fluxo-aviso span{font-size:11px}
-@media(max-width:999px){#listaCandidatosEmpresa .cand-fluxo-progressivo{grid-template-columns:repeat(7,115px)!important}#listaCandidatosEmpresa .cand-fluxo-aviso{width:100%;flex-wrap:wrap}}
-
-/* HOTFIX TIMELINE RECRUTADOR - FORCA LAYOUT HORIZONTAL V5 */
-#listaCandidatosEmpresa .candidato-card .cand-fluxo-progressivo{
- display:grid!important;
- grid-template-columns:repeat(7,minmax(0,1fr))!important;
- grid-auto-flow:column!important;
- width:100%!important;
- max-width:none!important;
- gap:0!important;
- padding:28px 12px 14px!important;
- margin:10px 0 0!important;
- border-top:1px solid #dce8ee!important;
- box-sizing:border-box!important;
-}
-#listaCandidatosEmpresa .candidato-card .cand-fluxo-progressivo>div{
- display:block!important;position:relative!important;width:auto!important;min-width:0!important;
- margin:0!important;padding:0 4px!important;text-align:center!important;float:none!important;
-}
-#listaCandidatosEmpresa .candidato-card .cand-fluxo-progressivo>div:before{
- display:block!important;content:""!important;position:absolute!important;left:-50%!important;right:auto!important;
- top:12px!important;width:100%!important;height:2px!important;background:#d6e2ea!important;z-index:0!important;
-}
-#listaCandidatosEmpresa .candidato-card .cand-fluxo-progressivo>div:first-child:before{display:none!important}
-#listaCandidatosEmpresa .candidato-card .cand-fluxo-progressivo i{
- position:relative!important;z-index:2!important;display:flex!important;width:26px!important;height:26px!important;
- align-items:center!important;justify-content:center!important;margin:0 auto 10px!important;padding:0!important;
- border:3px solid #bfd2df!important;border-radius:50%!important;background:#fff!important;line-height:1!important;
-}
-#listaCandidatosEmpresa .candidato-card .cand-fluxo-progressivo span,
-#listaCandidatosEmpresa .candidato-card .cand-fluxo-progressivo small{
- display:block!important;position:relative!important;width:100%!important;margin-left:0!important;margin-right:0!important;
- text-align:center!important;white-space:nowrap!important;
-}
-#listaCandidatosEmpresa .candidato-card .cand-fluxo-progressivo span{font-size:11px!important;font-weight:800!important;line-height:1.25!important}
-#listaCandidatosEmpresa .candidato-card .cand-fluxo-progressivo small{margin-top:7px!important;font-size:9px!important;line-height:1.2!important;color:#8093a1!important}
-#listaCandidatosEmpresa .candidato-card .cand-fluxo-aviso{width:100%!important;box-sizing:border-box!important;margin:10px 0 0!important}
-@media(min-width:1000px){
- #listaCandidatosEmpresa .candidato-card{grid-template-columns:minmax(250px,.9fr) minmax(190px,.6fr) minmax(600px,1.7fr)!important}
- #listaCandidatosEmpresa .candidato-card .cand-fluxo-progressivo{grid-column:1/-1!important;grid-row:2!important}
- #listaCandidatosEmpresa .candidato-card .cand-fluxo-aviso{grid-column:1/-1!important;grid-row:3!important}
-}
-
 
 /* VAGA - VISUAL PREMIUM DA REFERENCIA V6 (2026-09-22) */
 #pagina-vaga .vaga-hero-card{padding:0!important;overflow:hidden!important;border:1px solid #cbdbe8!important;border-top:4px solid #1386b7!important;border-radius:18px!important;box-shadow:0 12px 34px rgba(18,63,98,.10)!important}
@@ -2337,23 +2224,6 @@ padding:14px 14px!important;align-items:center!important
 /* EMPREGAMAIS-CENTRAL-MENSAGENS-CANDIDATO-V1 */
 .cand-msg-nav{position:relative!important}.cand-msg-badge,.cand-msg-sino b{display:grid;place-items:center;position:absolute;min-width:19px;height:19px;padding:0 5px;border-radius:999px;background:#e5484d;color:#fff;font-size:10px;font-weight:900;box-sizing:border-box}.cand-msg-nav .cand-msg-badge{right:14px;top:50%;transform:translateY(-50%)}.cand-msg-sino{position:relative;border:1px solid #dce8f1;background:#fff;width:42px;height:42px;border-radius:12px;cursor:pointer;font-size:18px;margin-right:9px}.cand-msg-sino b{right:-5px;top:-6px}.cand-msg-modal{position:fixed;inset:0;z-index:99999;background:rgba(9,35,54,.48);display:grid;place-items:center;padding:24px}.cand-msg-modal.oculto{display:none!important}body.cand-msg-open{overflow:hidden}.cand-msg-dialog{width:min(980px,96vw);height:min(720px,88vh);background:#fff;border-radius:20px;box-shadow:0 28px 80px rgba(9,35,54,.25);overflow:hidden;display:flex;flex-direction:column}.cand-msg-dialog>header{display:flex;justify-content:space-between;align-items:flex-start;padding:22px 26px;border-bottom:1px solid #dfeaf2}.cand-msg-dialog>header span{font-size:10px;font-weight:900;letter-spacing:.1em;color:#087f91}.cand-msg-dialog>header h2{margin:4px 0 3px;color:#103d5a}.cand-msg-dialog>header p{margin:0;color:#6d8292;font-size:12px}.cand-msg-dialog>header>button{border:0;background:#eef5f8;width:36px;height:36px;border-radius:50%;font-size:22px;cursor:pointer;color:#38596e}.cand-msg-layout{display:grid;grid-template-columns:330px 1fr;min-height:0;flex:1}.cand-msg-layout>aside{border-right:1px solid #dfeaf2;overflow:auto;background:#f8fbfd;padding:10px}.cand-msg-layout>aside>button{width:100%;border:0;background:transparent;border-radius:13px;padding:13px 11px;display:flex;align-items:flex-start;gap:10px;text-align:left;cursor:pointer;position:relative}.cand-msg-layout>aside>button:hover,.cand-msg-layout>aside>button.ativo{background:#eaf5fb}.cand-msg-layout>aside i{font-style:normal;width:34px;height:34px;border-radius:10px;background:#fff;display:grid;place-items:center}.cand-msg-layout>aside span{display:flex;flex-direction:column;min-width:0;gap:2px}.cand-msg-layout>aside strong{font-size:13px;color:#123f5d}.cand-msg-layout>aside span>b{font-size:11px;color:#527086}.cand-msg-layout>aside small{font-size:10px;color:#8294a0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:210px}.cand-msg-layout>aside em{margin-left:auto;background:#087f91;color:#fff;min-width:19px;height:19px;border-radius:999px;display:grid;place-items:center;font-style:normal;font-size:10px;font-weight:900}.cand-msg-layout>main{overflow:auto;background:#fff}.cand-msg-empty{height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:30px;color:#758b9a}.cand-msg-empty b{font-size:34px;margin-bottom:10px}.cand-msg-empty strong{font-size:16px;color:#244c66;margin-bottom:5px}.cand-msg-empty span{font-size:12px;max-width:330px}.cand-msg-list-empty{padding:20px;text-align:center;color:#7a8e9c;font-size:12px}.cand-msg-conv-head{padding:18px 22px 0}.cand-msg-conv-head span{font-size:11px;color:#087f91;font-weight:900}.cand-msg-conv-head h3{margin:3px 0 0;color:#153f5c}.cand-msg-layout main .chat-em-box{margin:12px 18px 18px!important;border-radius:14px!important;box-shadow:none!important}.cand-msg-layout main .chat-em-head{display:none!important}
 @media(max-width:720px){.cand-msg-modal{padding:8px}.cand-msg-dialog{width:100%;height:94vh;border-radius:15px}.cand-msg-layout{grid-template-columns:1fr}.cand-msg-layout>aside{max-height:180px;border-right:0;border-bottom:1px solid #dfeaf2}.cand-msg-dialog>header{padding:17px}.cand-msg-layout main .chat-em-box{margin:8px!important}}
-
-/* EMPREGAMAIS-RECRUTADOR-FLUXO-7-V1 */
-#listaCandidatosEmpresa .cand-fluxo-progressivo{display:grid!important;grid-template-columns:repeat(7,minmax(0,1fr))!important;gap:0!important;width:100%!important;margin-top:18px!important;overflow:visible!important}
-#listaCandidatosEmpresa .cand-fluxo-progressivo>button{appearance:none;border:0;background:transparent;position:relative;min-width:0;padding:0 5px 8px;display:flex;flex-direction:column;align-items:center;text-align:center;color:#8093a1;cursor:default}
-#listaCandidatosEmpresa .cand-fluxo-progressivo>button:before{content:"";position:absolute;top:17px;left:-50%;width:100%;height:2px;background:#d9e5ec;z-index:0}
-#listaCandidatosEmpresa .cand-fluxo-progressivo>button:first-child:before{display:none}
-#listaCandidatosEmpresa .cand-fluxo-progressivo>button i{position:relative;z-index:1;width:34px;height:34px;border-radius:50%;display:grid;place-items:center;background:#eef3f6;border:2px solid #d7e2e8;color:#78909f;font-style:normal;font-weight:900}
-#listaCandidatosEmpresa .cand-fluxo-progressivo>button span{margin-top:7px;font-size:11px;font-weight:800;color:#4b6678;white-space:nowrap}
-#listaCandidatosEmpresa .cand-fluxo-progressivo>button small{margin-top:3px;font-size:9px;color:#8da0ad}
-#listaCandidatosEmpresa .cand-fluxo-progressivo>button.feito i{background:#087f91;border-color:#087f91;color:#fff}
-#listaCandidatosEmpresa .cand-fluxo-progressivo>button.feito:before,#listaCandidatosEmpresa .cand-fluxo-progressivo>button.atual:before{background:#087f91}
-#listaCandidatosEmpresa .cand-fluxo-progressivo>button.atual i{background:#dff5f7;border-color:#087f91;color:#087f91;box-shadow:0 0 0 4px rgba(8,127,145,.09)}
-#listaCandidatosEmpresa .cand-fluxo-progressivo>button:not(:disabled){cursor:pointer}
-#listaCandidatosEmpresa .cand-fluxo-progressivo>button:not(:disabled) i{border-color:#0b76d1;background:#fff;color:#0b76d1;box-shadow:0 3px 12px rgba(11,118,209,.18)}
-#listaCandidatosEmpresa .cand-fluxo-progressivo>button:not(:disabled):hover i{transform:scale(1.08)}
-#listaCandidatosEmpresa .cand-fluxo-encerrado{margin-top:16px;padding:12px 14px;border-radius:10px;background:#fff3f3;color:#b93a3a;font-weight:800;font-size:12px}
-@media(max-width:900px){#listaCandidatosEmpresa .cand-fluxo-progressivo{grid-template-columns:repeat(7,minmax(112px,1fr))!important;overflow-x:auto!important;padding-bottom:8px}}
 
 /* EMPREGAMAIS-CANDIDATURA-MODAL-V3 */
 .candidatura-modal-backdrop{padding:10px!important}
@@ -5021,45 +4891,43 @@ overflow:visible!important
 @media(max-width:760px){.emp-dash{display:block}.emp-dash-side{position:static;min-height:0;padding:13px}.emp-dash-brand{padding-bottom:12px}.emp-dash-side nav{display:grid;grid-template-columns:repeat(2,1fr)}.emp-dash-support{display:none}.emp-dash-main{padding:14px}.emp-dash-top,.emp-dash-company{align-items:flex-start;flex-direction:column}.emp-dash-top-actions{width:100%}.emp-dash-top-actions button{flex:1}.emp-dash-plan-mini{width:100%;min-width:0;border-left:0;border-top:1px solid #e4eaed;padding-top:12px}.emp-dash-kpis{grid-template-columns:repeat(2,1fr)}.emp-plan-usage{grid-template-columns:1fr 1fr}.emp-plan-usage ul{grid-column:1/-1;margin-top:10px}.emp-dash-actions{grid-template-columns:1fr}.emp-dash-tip{align-items:flex-start;gap:10px;flex-direction:column}}
 @media(max-width:480px){.emp-dash-side nav{grid-template-columns:1fr 1fr}.emp-dash-kpis{grid-template-columns:1fr}.emp-dash-company-line{align-items:flex-start;flex-direction:column}.emp-dash-company-line h2{white-space:normal}.emp-dash-plan-mini{grid-template-columns:1fr}.emp-dash-plan-mini>div{padding:7px 0}.emp-dash-plan-mini>div+div{border-left:0;border-top:1px solid #e5ecef}.emp-plan-usage{grid-template-columns:1fr}.emp-plan-usage>div{border-right:0;border-bottom:1px solid #e7edef;padding:8px 0}.emp-plan-usage ul{grid-column:auto}}
 
-/* RECRUTADOR — CANDIDATURAS ESPELHO DEFINITIVO V3 */
+/* RECRUTADOR — CANDIDATURAS ESPELHO ÚNICO V4 */
 #pagina-candidatos-empresa #listaCandidatosEmpresa{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:18px!important;align-items:start!important}
 #pagina-candidatos-empresa #listaCandidatosEmpresa>.processo-head,#pagina-candidatos-empresa #listaCandidatosEmpresa>.candidatos-empresa-filtro-vaga,#pagina-candidatos-empresa #listaCandidatosEmpresa>.etapas-tabs,#pagina-candidatos-empresa #listaCandidatosEmpresa>.vagas-vazio{grid-column:1/-1!important}
-#pagina-candidatos-empresa .recruta-cand-card{width:100%!important;min-width:0!important;margin:0!important;display:block!important;border:2px solid #6fa1c7!important;border-radius:17px!important;background:#fff!important;overflow:hidden!important;box-shadow:none!important;color:#073d63!important}
-#pagina-candidatos-empresa .recruta-cand-head{display:flex!important;justify-content:space-between!important;align-items:center!important;gap:16px!important;padding:16px!important;background:#fff!important;border-bottom:0!important}
-#pagina-candidatos-empresa .recruta-cand-ident{display:flex!important;align-items:center!important;gap:13px!important;min-width:0!important;flex:1!important}
+#pagina-candidatos-empresa .recruta-cand-card{width:auto!important;min-width:0!important;margin:0!important;display:block!important;border:2px solid #1685d2!important;border-radius:18px!important;background:#fff!important;overflow:hidden!important;box-shadow:none!important;color:#073d63!important}
+#pagina-candidatos-empresa .recruta-cand-head{display:flex!important;justify-content:space-between!important;align-items:center!important;gap:18px!important;padding:17px 16px!important;background:#fff!important;border-bottom:1px solid #d9e6ee!important}
+#pagina-candidatos-empresa .recruta-cand-ident{display:flex!important;align-items:center!important;gap:13px!important;min-width:0!important}
 #pagina-candidatos-empresa .recruta-cand-monograma{width:58px!important;height:58px!important;flex:0 0 58px!important;border:1px solid #cadde9!important;border-radius:11px!important;background:#f7fbfd!important;display:grid!important;place-items:center!important;color:#075d83!important;font-size:22px!important;font-weight:900!important}
 #pagina-candidatos-empresa .recruta-cand-ident>div:last-child{min-width:0!important}
-#pagina-candidatos-empresa .recruta-cand-vaga{display:block!important;font-size:15px!important;font-weight:900!important;color:#063d67!important;text-transform:uppercase!important;line-height:1.2!important;white-space:nowrap!important;overflow:hidden!important;text-overflow:ellipsis!important}
+#pagina-candidatos-empresa .recruta-cand-vaga{display:block!important;color:#063d67!important;font-size:15px!important;line-height:1.2!important;font-weight:900!important;text-transform:uppercase!important;white-space:nowrap!important;overflow:hidden!important;text-overflow:ellipsis!important}
 #pagina-candidatos-empresa .recruta-cand-head h3{margin:4px 0 3px!important;font-size:14px!important;color:#0b5278!important}
 #pagina-candidatos-empresa .recruta-cand-head p{margin:0!important;font-size:11px!important;color:#688196!important}
 #pagina-candidatos-empresa .recruta-cand-status{text-align:right!important;flex:0 0 auto!important}
-#pagina-candidatos-empresa .recruta-cand-status>span{display:inline-flex!important;padding:8px 14px!important;border-radius:999px!important;background:#e8f2fa!important;color:#17618d!important;font-size:12px!important;font-weight:900!important}
+#pagina-candidatos-empresa .recruta-cand-status>span{display:inline-flex!important;padding:9px 15px!important;border-radius:999px!important;background:#e8f2fa!important;color:#17618d!important;font-size:12px!important;font-weight:900!important}
 #pagina-candidatos-empresa .recruta-cand-status small{display:block!important;margin-top:7px!important;font-size:9px!important;color:#71889b!important}
-#pagina-candidatos-empresa .recruta-processo-head{display:flex!important;justify-content:space-between!important;align-items:center!important;gap:14px!important;padding:13px 16px!important;background:#f3f8fb!important;border-top:1px solid #d7e4ec!important;border-bottom:1px solid #d7e4ec!important}
+#pagina-candidatos-empresa .recruta-processo-head{display:flex!important;justify-content:space-between!important;align-items:center!important;gap:16px!important;padding:14px 16px!important;background:#f3f8fb!important;border-bottom:1px solid #d7e4ec!important}
 #pagina-candidatos-empresa .recruta-processo-head small{display:block!important;font-size:10px!important;font-weight:900!important;letter-spacing:.08em!important;color:#496b83!important}
 #pagina-candidatos-empresa .recruta-processo-head strong{display:block!important;margin:4px 0!important;font-size:14px!important;color:#075d83!important}
 #pagina-candidatos-empresa .recruta-processo-head p{margin:0!important;font-size:10px!important;color:#72889b!important}
 #pagina-candidatos-empresa .recruta-processo-controles{display:flex!important;align-items:center!important;gap:8px!important;flex:0 0 auto!important}
-#pagina-candidatos-empresa .cand-status-select{min-width:132px!important;height:38px!important;border:1px solid #1c5e88!important;border-radius:9px!important;padding:0 9px!important;background:#2d86c4!important;color:#fff!important;font-size:10px!important;font-weight:850!important}
-#pagina-candidatos-empresa .recruta-toggle-andamento{height:38px!important;border:1px solid #b9d3e5!important;border-radius:9px!important;background:#fff!important;color:#075d83!important;padding:0 11px!important;font-size:9px!important;font-weight:850!important;cursor:pointer!important;white-space:nowrap!important}
+#pagina-candidatos-empresa .cand-status-select{min-width:132px!important;height:38px!important;border:0!important;border-radius:9px!important;padding:0 10px!important;background:#2d86c4!important;color:#fff!important;font-size:11px!important;font-weight:850!important}
+#pagina-candidatos-empresa .recruta-toggle-andamento{height:38px!important;border:1px solid #b9d3e5!important;border-radius:9px!important;background:#fff!important;color:#075d83!important;padding:0 12px!important;font-size:10px!important;font-weight:850!important;cursor:pointer!important;white-space:nowrap!important}
 #pagina-candidatos-empresa .recruta-andamento{display:block!important}
 #pagina-candidatos-empresa .recruta-andamento.recolhido{display:none!important}
-#pagina-candidatos-empresa .recruta-timeline{padding:15px 14px 8px!important;background:#fff!important;overflow:hidden!important}
-#pagina-candidatos-empresa .recruta-timeline .cand-fluxo-progressivo{display:grid!important;grid-template-columns:repeat(7,minmax(0,1fr))!important;align-items:start!important;gap:0!important;width:100%!important;min-width:0!important;margin:0!important;padding:17px 0 9px!important;border:0!important;background:transparent!important;overflow:visible!important;position:relative!important}
-#pagina-candidatos-empresa .recruta-timeline .cand-fluxo-progressivo:before{content:""!important;position:absolute!important;left:7.1%!important;right:7.1%!important;top:30px!important;height:2px!important;background:#cbdde8!important;z-index:0!important}
-#pagina-candidatos-empresa .recruta-timeline .cand-fluxo-progressivo>button{position:relative!important;z-index:1!important;display:flex!important;flex-direction:column!important;align-items:center!important;justify-content:flex-start!important;width:100%!important;min-width:0!important;height:auto!important;padding:0 3px!important;margin:0!important;border:0!important;background:transparent!important;color:#073d63!important;text-align:center!important;overflow:visible!important}
-#pagina-candidatos-empresa .recruta-timeline .cand-fluxo-progressivo>button:before{display:none!important}
-#pagina-candidatos-empresa .recruta-timeline .cand-fluxo-progressivo button i{width:27px!important;height:27px!important;min-width:27px!important;margin:0 auto 8px!important;border:3px solid #c5d9e5!important;border-radius:50%!important;background:#fff!important;display:grid!important;place-items:center!important;font-style:normal!important;font-size:10px!important;color:#5f8095!important}
-#pagina-candidatos-empresa .recruta-timeline .cand-fluxo-progressivo button span{display:block!important;width:100%!important;font-size:9px!important;line-height:1.15!important;font-weight:850!important;white-space:normal!important;overflow:visible!important}
-#pagina-candidatos-empresa .recruta-timeline .cand-fluxo-progressivo button small{display:block!important;width:100%!important;margin-top:8px!important;font-size:8px!important;color:#7c91a0!important;white-space:normal!important}
-#pagina-candidatos-empresa .recruta-timeline .cand-fluxo-progressivo button.feito i{border-color:#1685d2!important;background:#1685d2!important;color:#fff!important}
-#pagina-candidatos-empresa .recruta-timeline .cand-fluxo-progressivo button.atual i{border-color:#1685d2!important;background:#fff!important;box-shadow:0 0 0 5px #e5f3fc!important;color:#1685d2!important}
-#pagina-candidatos-empresa .recruta-timeline .cand-fluxo-progressivo button.etapa-2.feito i,#pagina-candidatos-empresa .recruta-timeline .cand-fluxo-progressivo button.etapa-2.atual i{border-color:#149da1!important;background:#149da1!important;color:#fff!important}
-#pagina-candidatos-empresa .recruta-timeline .cand-fluxo-progressivo button.etapa-3.feito i,#pagina-candidatos-empresa .recruta-timeline .cand-fluxo-progressivo button.etapa-3.atual i{border-color:#2b86c5!important;background:#2b86c5!important;color:#fff!important}
-#pagina-candidatos-empresa .recruta-timeline .cand-fluxo-progressivo button.etapa-4.feito i,#pagina-candidatos-empresa .recruta-timeline .cand-fluxo-progressivo button.etapa-4.atual i{border-color:#8b6bc5!important;background:#8b6bc5!important;color:#fff!important}
-#pagina-candidatos-empresa .recruta-timeline .cand-fluxo-progressivo button.etapa-5.feito i,#pagina-candidatos-empresa .recruta-timeline .cand-fluxo-progressivo button.etapa-5.atual i{border-color:#d89a3f!important;background:#d89a3f!important;color:#fff!important}
-#pagina-candidatos-empresa .recruta-timeline .cand-fluxo-progressivo button.etapa-6.feito i,#pagina-candidatos-empresa .recruta-timeline .cand-fluxo-progressivo button.etapa-6.atual i{border-color:#32a56f!important;background:#32a56f!important;color:#fff!important}
-#pagina-candidatos-empresa .recruta-timeline .cand-fluxo-progressivo button.etapa-7.feito i,#pagina-candidatos-empresa .recruta-timeline .cand-fluxo-progressivo button.etapa-7.atual i{border-color:#16835c!important;background:#16835c!important;color:#fff!important}
+#pagina-candidatos-empresa .recruta-timeline{padding:18px 16px 10px!important;background:#fff!important;overflow:hidden!important}
+#pagina-candidatos-empresa .cand-fluxo-progressivo{display:grid!important;grid-template-columns:repeat(7,minmax(0,1fr))!important;position:relative!important;width:100%!important;min-width:0!important;margin:0!important;padding:14px 0 8px!important;border:0!important;background:transparent!important;overflow:visible!important;column-gap:0!important;row-gap:0!important}
+#pagina-candidatos-empresa .cand-fluxo-progressivo:before{content:""!important;display:block!important;position:absolute!important;left:7.15%!important;right:7.15%!important;top:27px!important;height:2px!important;background:#cbdde8!important;z-index:0!important}
+#pagina-candidatos-empresa .cand-fluxo-progressivo button{position:relative!important;z-index:1!important;width:auto!important;min-width:0!important;max-width:none!important;margin:0!important;padding:0 2px!important;border:0!important;background:transparent!important;color:#073d63!important;text-align:center!important;overflow:visible!important}
+#pagina-candidatos-empresa .cand-fluxo-progressivo button i{width:28px!important;height:28px!important;margin:0 auto 9px!important;border:3px solid #c5d9e5!important;border-radius:50%!important;background:#fff!important;display:grid!important;place-items:center!important;font-style:normal!important;font-size:10px!important;color:#5f8095!important}
+#pagina-candidatos-empresa .cand-fluxo-progressivo button span{display:block!important;min-height:24px!important;font-size:9px!important;line-height:1.18!important;font-weight:850!important;white-space:normal!important;overflow:visible!important;text-overflow:clip!important}
+#pagina-candidatos-empresa .cand-fluxo-progressivo button small{display:block!important;margin-top:6px!important;font-size:8px!important;line-height:1.2!important;color:#7c91a0!important;white-space:nowrap!important}
+#pagina-candidatos-empresa .cand-fluxo-progressivo button.feito i{border-color:#1685d2!important;background:#1685d2!important;color:#fff!important}
+#pagina-candidatos-empresa .cand-fluxo-progressivo button.atual i{border-color:#77b9e7!important;background:#fff!important;box-shadow:0 0 0 5px #e5f3fc!important;color:#1685d2!important}
+#pagina-candidatos-empresa .cand-fluxo-progressivo button.etapa-2.feito i,#pagina-candidatos-empresa .cand-fluxo-progressivo button.etapa-2.atual i{border-color:#149da1!important;background:#149da1!important;color:#fff!important}
+#pagina-candidatos-empresa .cand-fluxo-progressivo button.etapa-3.feito i,#pagina-candidatos-empresa .cand-fluxo-progressivo button.etapa-3.atual i{border-color:#2b86c5!important;background:#2b86c5!important;color:#fff!important}
+#pagina-candidatos-empresa .cand-fluxo-progressivo button.etapa-4.feito i,#pagina-candidatos-empresa .cand-fluxo-progressivo button.etapa-4.atual i{border-color:#8b6bc5!important;background:#8b6bc5!important;color:#fff!important}
+#pagina-candidatos-empresa .cand-fluxo-progressivo button.etapa-5.feito i,#pagina-candidatos-empresa .cand-fluxo-progressivo button.etapa-5.atual i{border-color:#32a56f!important;background:#32a56f!important;color:#fff!important}
+#pagina-candidatos-empresa .cand-fluxo-progressivo button.etapa-6.feito i,#pagina-candidatos-empresa .cand-fluxo-progressivo button.etapa-6.atual i{border-color:#16835c!important;background:#16835c!important;color:#fff!important}
 #pagina-candidatos-empresa .cand-fluxo-aviso{display:none!important}
 #pagina-candidatos-empresa .recruta-cand-info{display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:9px!important;padding:10px 14px!important}
 #pagina-candidatos-empresa .recruta-cand-info>div{min-width:0!important;min-height:66px!important;border:1px solid #d6e3eb!important;border-radius:10px!important;background:#f5f9fb!important;padding:10px!important}
@@ -5068,76 +4936,13 @@ overflow:visible!important
 #pagina-candidatos-empresa .recruta-cand-info strong{margin-top:5px!important;font-size:11px!important;color:#073d63!important}
 #pagina-candidatos-empresa .recruta-cand-info small{margin-top:3px!important;font-size:8px!important;color:#7d91a0!important}
 #pagina-candidatos-empresa .recruta-cand-actions{display:grid!important;grid-template-columns:1.05fr .9fr 1.15fr 42px!important;gap:8px!important;padding:0 14px 14px!important}
-#pagina-candidatos-empresa .recruta-cand-actions .btn{min-width:0!important;min-height:40px!important;border-radius:9px!important;font-size:10px!important;font-weight:850!important;display:flex!important;align-items:center!important;justify-content:center!important;text-decoration:none!important}
+#pagina-candidatos-empresa .recruta-cand-actions .btn{min-height:40px!important;border-radius:9px!important;font-size:10px!important;font-weight:850!important;display:flex!important;align-items:center!important;justify-content:center!important;text-decoration:none!important}
 #pagina-candidatos-empresa .recruta-cand-actions .btn-azul{background:#0b8b96!important;border-color:#0b8b96!important;color:#fff!important}
 #pagina-candidatos-empresa .recruta-more{padding:0!important;font-size:15px!important}
 #pagina-candidatos-empresa .recruta-extra{display:none!important;padding:0 14px 14px!important}
 #pagina-candidatos-empresa .recruta-extra.aberto{display:block!important}
 #pagina-candidatos-empresa .cand-processo-toolbar{border-top:1px solid #e1eaf0!important;padding-top:11px!important}
 #pagina-candidatos-empresa .cand-acoes-secundarias{display:flex!important;gap:7px!important;flex-wrap:wrap!important}
-#pagina-candidatos-empresa .recruta-cand-card.status-selecionado{border-color:#149da1!important}
-#pagina-candidatos-empresa .recruta-cand-card.status-em-contato{border-color:#2b86c5!important}
-#pagina-candidatos-empresa .recruta-cand-card.status-entrevista-agendada{border-color:#d89a3f!important}
-#pagina-candidatos-empresa .recruta-cand-card.status-aprovado{border-color:#32a56f!important}
-#pagina-candidatos-empresa .recruta-cand-card.status-contratado{border-color:#16835c!important}
-#pagina-candidatos-empresa .recruta-cand-card.status-reprovado{border-color:#e38383!important}
-#pagina-candidatos-empresa .cand-fluxo-encerrado{margin:10px 14px!important;border-radius:9px!important;background:#fff1f1!important;color:#a33c3c!important;padding:11px!important;text-align:center!important;font-size:10px!important;font-weight:800!important}
+#pagina-candidatos-empresa .status-selecionado{border-color:#8771d5!important}#pagina-candidatos-empresa .status-em-contato{border-color:#5b98ca!important}#pagina-candidatos-empresa .status-entrevista-agendada{border-color:#d8a14d!important}#pagina-candidatos-empresa .status-aprovado,#pagina-candidatos-empresa .status-contratado{border-color:#51a87f!important}#pagina-candidatos-empresa .status-reprovado{border-color:#e48585!important}
 @media(max-width:1100px){#pagina-candidatos-empresa #listaCandidatosEmpresa{grid-template-columns:1fr!important}}
-@media(max-width:700px){#pagina-candidatos-empresa .recruta-cand-head,#pagina-candidatos-empresa .recruta-processo-head{align-items:flex-start!important;flex-direction:column!important}#pagina-candidatos-empresa .recruta-cand-status{text-align:left!important}#pagina-candidatos-empresa .recruta-processo-controles{width:100%!important;align-items:stretch!important;flex-direction:column!important}#pagina-candidatos-empresa .cand-status-select,#pagina-candidatos-empresa .recruta-toggle-andamento{width:100%!important;max-width:none!important}#pagina-candidatos-empresa .recruta-timeline{overflow-x:auto!important}#pagina-candidatos-empresa .recruta-timeline .cand-fluxo-progressivo{min-width:650px!important}#pagina-candidatos-empresa .recruta-cand-info{grid-template-columns:1fr!important}#pagina-candidatos-empresa .recruta-cand-actions{grid-template-columns:1fr!important}.recruta-more{min-height:38px!important}}
-/* EMPREGAMAIS-RECRUTADOR-CARD-REFERENCIA-FINAL-V1 */
-#pagina-candidatos-empresa #listaCandidatosEmpresa{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px;align-items:start}
-#pagina-candidatos-empresa #listaCandidatosEmpresa>.processo-head,#pagina-candidatos-empresa #listaCandidatosEmpresa>.candidatos-empresa-filtro-vaga,#pagina-candidatos-empresa #listaCandidatosEmpresa>.etapas-tabs,#pagina-candidatos-empresa #listaCandidatosEmpresa>.vagas-vazio{grid-column:1/-1}
-#pagina-candidatos-empresa .recruta-cand-card{min-width:0;border:2px solid #1681cf;border-radius:18px;background:#fff;overflow:hidden;box-shadow:none;color:#073d63}
-#pagina-candidatos-empresa .recruta-cand-head{display:flex;justify-content:space-between;align-items:center;gap:18px;padding:16px;border-bottom:1px solid #d7e5ee;background:#fff}.recruta-cand-ident{display:flex;align-items:center;gap:13px;min-width:0}.recruta-cand-monograma{width:58px;height:58px;flex:0 0 58px;border:1px solid #c9deeb;border-radius:12px;background:#f7fbfd;display:grid;place-items:center;color:#075d83;font-size:22px;font-weight:900}.recruta-cand-ident>div:last-child{min-width:0}.recruta-cand-vaga{display:block;font-size:15px;font-weight:900;color:#063d67;text-transform:uppercase;line-height:1.2;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.recruta-cand-ident h3{margin:4px 0 3px;font-size:14px;color:#0b5278}.recruta-cand-ident p{margin:0;font-size:11px;color:#688196}.recruta-cand-status{text-align:right;flex:0 0 auto}.recruta-cand-status>span{display:inline-flex;padding:9px 15px;border-radius:999px;background:#e8f2fa;color:#17618d;font-size:12px;font-weight:900}.recruta-cand-status small{display:block;margin-top:7px;font-size:9px;color:#71889b}
-#pagina-candidatos-empresa .recruta-processo-head{display:flex;justify-content:space-between;align-items:center;gap:14px;padding:13px 16px;background:#f2f8fb;border-bottom:1px solid #d7e4ec}.recruta-processo-head small{display:block;font-size:10px;font-weight:900;letter-spacing:.08em;color:#496b83}.recruta-processo-head strong{display:block;margin:4px 0;font-size:14px;color:#075d83}.recruta-processo-head p{margin:0;font-size:10px;color:#72889b}.recruta-processo-controles{display:flex;align-items:center;gap:8px;flex:0 0 auto}.cand-status-select{min-width:132px;height:38px;border:0;border-radius:9px;padding:0 10px;background:#2783c2;color:#fff;font-size:10px;font-weight:850}.recruta-toggle-andamento{height:38px;border:1px solid #b7d2e4;border-radius:9px;background:#fff;color:#075d83;padding:0 11px;font-size:9px;font-weight:850;cursor:pointer;white-space:nowrap}.recruta-andamento.recolhido{display:none}
-.recruta-timeline{padding:18px 14px 10px;background:#fff}.recruta-timeline .cand-fluxo-aviso{display:none!important}.recruta-timeline .cand-fluxo-progressivo{display:grid!important;grid-template-columns:repeat(7,minmax(0,1fr))!important;position:relative!important;padding:10px 0 8px!important;overflow:visible!important}.recruta-timeline .cand-fluxo-progressivo:before{content:""!important;position:absolute!important;left:7.15%!important;right:7.15%!important;top:24px!important;height:2px!important;background:#cbdde8!important;z-index:0!important}.recruta-timeline .cand-fluxo-progressivo button{position:relative!important;z-index:1!important;border:0!important;background:transparent!important;min-width:0!important;padding:0 2px!important;text-align:center!important}.recruta-timeline .cand-fluxo-progressivo button i{width:28px!important;height:28px!important;margin:0 auto 9px!important;border:3px solid #c5d9e5!important;border-radius:50%!important;background:#fff!important;display:grid!important;place-items:center!important;font-style:normal!important;font-size:10px!important;color:#5f8095!important}.recruta-timeline .cand-fluxo-progressivo button span{display:block!important;min-height:25px!important;font-size:9px!important;line-height:1.15!important;font-weight:850!important;color:#073d63!important}.recruta-timeline .cand-fluxo-progressivo button small{display:block!important;margin-top:7px!important;font-size:8px!important;color:#7c91a0!important;white-space:nowrap!important}.recruta-timeline .cand-fluxo-progressivo button.feito i{border-color:#1685d2!important;background:#1685d2!important;color:#fff!important}.recruta-timeline .cand-fluxo-progressivo button.atual i{border-color:#1685d2!important;background:#fff!important;box-shadow:0 0 0 5px #e5f3fc!important;color:#1685d2!important}.recruta-timeline .cand-fluxo-progressivo button.etapa-2.feito i,.recruta-timeline .cand-fluxo-progressivo button.etapa-2.atual i{border-color:#149da1!important;background:#149da1!important;color:#fff!important}.recruta-timeline .cand-fluxo-progressivo button.etapa-3.feito i,.recruta-timeline .cand-fluxo-progressivo button.etapa-3.atual i{border-color:#2b86c5!important;background:#2b86c5!important;color:#fff!important}.recruta-timeline .cand-fluxo-progressivo button.etapa-4.feito i,.recruta-timeline .cand-fluxo-progressivo button.etapa-4.atual i{border-color:#8b6bc5!important;background:#8b6bc5!important;color:#fff!important}.recruta-timeline .cand-fluxo-progressivo button.etapa-5.feito i,.recruta-timeline .cand-fluxo-progressivo button.etapa-5.atual i{border-color:#32a56f!important;background:#32a56f!important;color:#fff!important}.recruta-timeline .cand-fluxo-progressivo button.etapa-6.feito i,.recruta-timeline .cand-fluxo-progressivo button.etapa-6.atual i{border-color:#16835c!important;background:#16835c!important;color:#fff!important}
-.recruta-cand-info{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;padding:10px 14px}.recruta-cand-info>div{min-width:0;min-height:68px;border:1px solid #d6e3eb;border-radius:10px;background:#f5f9fb;padding:10px}.recruta-cand-info span,.recruta-cand-info strong,.recruta-cand-info small{display:block}.recruta-cand-info span{font-size:9px;color:#698398}.recruta-cand-info strong{margin-top:5px;font-size:11px;color:#073d63}.recruta-cand-info small{margin-top:3px;font-size:8px;color:#7d91a0}.recruta-cand-actions{display:grid;grid-template-columns:1.05fr .9fr 1.15fr 42px;gap:8px;padding:0 14px 14px}.recruta-cand-actions .btn{min-height:40px;border-radius:9px;font-size:10px;font-weight:850;display:flex;align-items:center;justify-content:center;text-decoration:none}.recruta-cand-actions .btn-azul{background:#0b8b96!important;border-color:#0b8b96!important;color:#fff!important}.recruta-more{padding:0!important;font-size:15px!important}.recruta-extra{display:none;padding:0 14px 14px}.recruta-extra.aberto{display:block}.cand-processo-toolbar{border-top:1px solid #e1eaf0;padding-top:11px}.cand-acoes-secundarias{display:flex;gap:7px;flex-wrap:wrap}
-#pagina-candidatos-empresa .status-selecionado{border-color:#8771d5}.status-selecionado .recruta-cand-status>span{background:#eee9ff;color:#6347bf}#pagina-candidatos-empresa .status-em-contato{border-color:#5b98ca}.status-em-contato .recruta-cand-status>span{background:#e7f2fb;color:#176697}#pagina-candidatos-empresa .status-entrevista-agendada{border-color:#d8a14d}.status-entrevista-agendada .recruta-cand-status>span{background:#fff0dc;color:#9a5e10}#pagina-candidatos-empresa .status-aprovado,#pagina-candidatos-empresa .status-contratado{border-color:#51a87f}.status-aprovado .recruta-cand-status>span,.status-contratado .recruta-cand-status>span{background:#e5f6ee;color:#237754}#pagina-candidatos-empresa .status-reprovado{border-color:#e48585}.status-reprovado .recruta-cand-status>span{background:#fde8e8;color:#bf3333}
-@media(max-width:1100px){#pagina-candidatos-empresa #listaCandidatosEmpresa{grid-template-columns:1fr}}
-@media(max-width:700px){#pagina-candidatos-empresa .recruta-cand-head,#pagina-candidatos-empresa .recruta-processo-head{align-items:flex-start;flex-direction:column}.recruta-cand-status{text-align:left}.recruta-processo-controles{width:100%;flex-direction:column;align-items:stretch}.cand-status-select,.recruta-toggle-andamento{width:100%!important;max-width:none!important}.recruta-timeline{overflow-x:auto}.recruta-timeline .cand-fluxo-progressivo{min-width:620px!important}.recruta-cand-info{grid-template-columns:1fr}.recruta-cand-actions{grid-template-columns:1fr}.recruta-more{min-height:38px!important}}
-
-/* EMPREGAMAIS-RECRUTADOR-TIMELINE-ALINHADA-V2 */
-#pagina-candidatos-empresa .recruta-timeline{padding:22px 16px 14px!important;overflow:hidden!important}
-#pagina-candidatos-empresa .recruta-timeline .cand-fluxo-progressivo{
- display:grid!important;
- grid-template-columns:repeat(7,minmax(0,1fr))!important;
- width:100%!important;min-width:0!important;
- position:relative!important;overflow:visible!important;
- padding:0!important;margin:0!important;gap:0!important;
- align-items:start!important
-}
-#pagina-candidatos-empresa .recruta-timeline .cand-fluxo-progressivo:before{
- content:""!important;display:block!important;position:absolute!important;
- left:7.142%!important;right:7.142%!important;top:15px!important;
- height:2px!important;background:#c9dce8!important;z-index:0!important
-}
-#pagina-candidatos-empresa .recruta-timeline .cand-fluxo-progressivo button{
- width:100%!important;min-width:0!important;max-width:none!important;
- margin:0!important;padding:0 3px!important;border:0!important;
- background:transparent!important;position:relative!important;z-index:1!important;
- display:flex!important;flex-direction:column!important;align-items:center!important;
- text-align:center!important;overflow:visible!important
-}
-#pagina-candidatos-empresa .recruta-timeline .cand-fluxo-progressivo button i{
- flex:0 0 30px!important;width:30px!important;height:30px!important;
- margin:0 auto 10px!important;border-width:3px!important;
- display:grid!important;place-items:center!important
-}
-#pagina-candidatos-empresa .recruta-timeline .cand-fluxo-progressivo button span{
- width:100%!important;min-height:34px!important;margin:0!important;
- display:flex!important;align-items:flex-start!important;justify-content:center!important;
- font-size:10px!important;line-height:1.18!important;font-weight:850!important;
- white-space:normal!important;overflow:visible!important;text-overflow:clip!important
-}
-#pagina-candidatos-empresa .recruta-timeline .cand-fluxo-progressivo button small{
- width:100%!important;margin-top:5px!important;font-size:8.5px!important;
- line-height:1.2!important;white-space:nowrap!important
-}
-@media(max-width:1100px){
- #pagina-candidatos-empresa #listaCandidatosEmpresa{grid-template-columns:1fr!important}
- #pagina-candidatos-empresa .recruta-timeline .cand-fluxo-progressivo{min-width:0!important}
-}
-@media(max-width:700px){
- #pagina-candidatos-empresa .recruta-timeline{overflow-x:auto!important}
- #pagina-candidatos-empresa .recruta-timeline .cand-fluxo-progressivo{min-width:700px!important}
-}
+@media(max-width:700px){#pagina-candidatos-empresa .recruta-cand-head,#pagina-candidatos-empresa .recruta-processo-head{align-items:flex-start!important;flex-direction:column!important}#pagina-candidatos-empresa .recruta-cand-status{text-align:left!important}#pagina-candidatos-empresa .recruta-processo-controles{width:100%!important;flex-direction:column!important;align-items:stretch!important}#pagina-candidatos-empresa .cand-status-select,#pagina-candidatos-empresa .recruta-toggle-andamento{width:100%!important}.recruta-timeline{overflow-x:auto!important}#pagina-candidatos-empresa .cand-fluxo-progressivo{min-width:650px!important;overflow:visible!important}#pagina-candidatos-empresa .recruta-cand-info{grid-template-columns:1fr!important}#pagina-candidatos-empresa .recruta-cand-actions{grid-template-columns:1fr!important}}
