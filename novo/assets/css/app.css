@@ -2269,3 +2269,28 @@ padding:14px 14px!important;align-items:center!important
 #pagina-painel-empresa.empresa-dashboard-v7 #empresaResumoRecursos .empresa-plano-inline-ident strong{font-size:15px!important;line-height:1.2!important;margin-top:3px!important}
 #pagina-painel-empresa.empresa-dashboard-v7 #empresaResumoRecursos .empresa-plano-inline-link{background:var(--petroleo)!important}
 #pagina-painel-empresa.empresa-dashboard-v7 .empresa-box-icon{background:var(--petroleo-claro)!important;color:var(--petroleo)!important}
+
+/* EMPREGAMAIS V7.5 — diferenciação cromática dos indicadores */
+#pagina-painel-empresa.empresa-dashboard-v7 .empresa-kpis-v7 .kpi-vagas{background:#eaf4ff!important;border-color:#c7dff6!important;color:#247bc0!important}
+#pagina-painel-empresa.empresa-dashboard-v7 .empresa-kpis-v7 .kpi-vagas:before{background:#247bc0!important}
+#pagina-painel-empresa.empresa-dashboard-v7 .empresa-kpis-v7 .kpi-vagas i{background:#d7eaff!important;color:#247bc0!important}
+
+#pagina-painel-empresa.empresa-dashboard-v7 .empresa-kpis-v7 .kpi-analise{background:#fff4dc!important;border-color:#efd9a8!important;color:#c98214!important}
+#pagina-painel-empresa.empresa-dashboard-v7 .empresa-kpis-v7 .kpi-analise:before{background:#d99321!important}
+#pagina-painel-empresa.empresa-dashboard-v7 .empresa-kpis-v7 .kpi-analise i{background:#ffe8b8!important;color:#b96d08!important}
+
+#pagina-painel-empresa.empresa-dashboard-v7 .empresa-kpis-v7 .kpi-cands{background:#e7f7f2!important;border-color:#c5e7dc!important;color:#13856d!important}
+#pagina-painel-empresa.empresa-dashboard-v7 .empresa-kpis-v7 .kpi-cands:before{background:#159579!important}
+#pagina-painel-empresa.empresa-dashboard-v7 .empresa-kpis-v7 .kpi-cands i{background:#d2f0e6!important;color:#087b64!important}
+
+#pagina-painel-empresa.empresa-dashboard-v7 .empresa-kpis-v7 .kpi-processo{background:#f0eaff!important;border-color:#d8cdf4!important;color:#7054c8!important}
+#pagina-painel-empresa.empresa-dashboard-v7 .empresa-kpis-v7 .kpi-processo:before{background:#7658ce!important}
+#pagina-painel-empresa.empresa-dashboard-v7 .empresa-kpis-v7 .kpi-processo i{background:#e2d8ff!important;color:#6244bf!important}
+
+#pagina-painel-empresa.empresa-dashboard-v7 .empresa-kpis-v7 .kpi-contrata{background:#e4f7ed!important;border-color:#c0e5d2!important;color:#087d5f!important}
+#pagina-painel-empresa.empresa-dashboard-v7 .empresa-kpis-v7 .kpi-contrata:before{background:#098665!important}
+#pagina-painel-empresa.empresa-dashboard-v7 .empresa-kpis-v7 .kpi-contrata i{background:#cdf0df!important;color:#08765b!important}
+
+#pagina-painel-empresa.empresa-dashboard-v7 .empresa-kpis-v7 .empresa-metrica-v2 span{color:#244b5e!important}
+#pagina-painel-empresa.empresa-dashboard-v7 .empresa-kpis-v7 .empresa-metrica-v2 small{color:#718895!important}
+#pagina-painel-empresa.empresa-dashboard-v7 .empresa-kpis-v7 .empresa-metrica-v2 .kpi-num{color:#063f55!important}
