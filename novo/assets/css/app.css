@@ -5073,3 +5073,37 @@ overflow:visible!important
 .cand-premium-status-card>button{border:0;border-radius:11px;padding:11px 15px;background:#123f59;color:#fff;font-weight:700;cursor:pointer;white-space:nowrap}.cand-premium-status-card>button:hover{filter:brightness(.96);transform:translateY(-1px)}
 @media(max-width:800px){.cand-premium-status-card{grid-template-columns:auto 1fr}.cand-premium-status-badge{border-left:0;padding:4px 0}.cand-premium-status-card>button{grid-column:1/-1;width:100%}}
 @media(max-width:520px){.cand-premium-status-card{padding:15px;gap:12px}.cand-premium-status-icon{width:42px;height:42px}.cand-premium-status-copy>strong{font-size:16px}#pagina-painel-candidato.cand-dashboard-premium .cand-side-user:after{position:static;display:inline-flex;margin-top:6px}}
+
+/* EMPREGAMAIS-CANDIDATO-PREMIUM-PALETTE-V2 */
+#pagina-painel-candidato.cand-dashboard-premium{background:#f8fafc}
+#pagina-painel-candidato.cand-dashboard-premium .cand-dashboard-hero-pro{
+ background:linear-gradient(118deg,#103b56 0%,#14556b 55%,#17647a 100%)!important;
+ border:1px solid rgba(255,255,255,.12)!important;
+ box-shadow:0 18px 44px rgba(16,59,86,.18)!important
+}
+#pagina-painel-candidato.cand-dashboard-premium .cand-dashboard-hero-pro h1,
+#pagina-painel-candidato.cand-dashboard-premium .cand-dashboard-hero-pro p,
+#pagina-painel-candidato.cand-dashboard-premium .cand-dashboard-hero-pro .cand-hero-beneficios,
+#pagina-painel-candidato.cand-dashboard-premium .cand-dashboard-hero-pro .cand-hero-beneficios b{color:#fff!important}
+#pagina-painel-candidato.cand-dashboard-premium .cand-dashboard-hero-pro .cand-hero-copy-pro>span{color:#f4e3ad!important}
+#pagina-painel-candidato.cand-dashboard-premium .cand-dashboard-hero-pro .cand-hero-copy-pro>span:before{background:#f4e3ad!important;color:#6c5300!important}
+#pagina-painel-candidato.cand-dashboard-premium .cand-hero-beneficios{background:rgba(255,255,255,.07)!important;border-color:rgba(255,255,255,.24)!important}
+#pagina-painel-candidato.cand-dashboard-premium .cand-hero-beneficio i{background:rgba(244,227,173,.16)!important;border-color:rgba(244,227,173,.42)!important;color:#f4e3ad!important}
+#pagina-painel-candidato.cand-dashboard-premium .cand-hero-actions button:first-child{background:#f4e3ad!important;color:#103b56!important;border-color:#f4e3ad!important}
+#pagina-painel-candidato.cand-dashboard-premium .cand-hero-actions button:last-child{background:rgba(255,255,255,.09)!important;color:#fff!important;border-color:rgba(255,255,255,.30)!important}
+#pagina-painel-candidato.cand-dashboard-premium .cand-side-user{background:linear-gradient(145deg,#f7fafc,#fff)!important;border-color:#d7e2e8!important}
+#pagina-painel-candidato.cand-dashboard-premium .cand-side-user:after{background:#f4e3ad!important;border-color:#dfc875!important;color:#604900!important}
+#pagina-painel-candidato.cand-dashboard-premium .cand-premium-nav{background:linear-gradient(90deg,#fff7d8,#fffdf6)!important;border-color:#e7cf7d!important;color:#654e00!important;box-shadow:0 6px 18px rgba(145,111,0,.07)}
+#pagina-painel-candidato.cand-dashboard-premium .cand-premium-status-card{background:linear-gradient(105deg,#fffaf0 0%,#fffdf8 52%,#f6fafc 100%)!important;border-color:#dfcf99!important}
+#pagina-painel-candidato.cand-dashboard-premium .cand-premium-status-icon{background:#f4e3ad!important;border-color:#dfc875!important;color:#654e00!important}
+#pagina-painel-candidato.cand-dashboard-premium .cand-premium-status-copy>span{color:#7b6208!important}
+#pagina-painel-candidato.cand-dashboard-premium .cand-premium-status-copy>strong{color:#103b56!important}
+#pagina-painel-candidato.cand-dashboard-premium .cand-premium-status-card>button{background:#103b56!important}
+#pagina-painel-candidato.cand-dashboard-premium .cand-dashboard-kpis article{border-color:#dce6eb;box-shadow:0 8px 24px rgba(16,59,86,.055)}
+#pagina-painel-candidato.cand-dashboard-premium .cand-dashboard-kpis article:nth-child(1){border-color:#b9dfd3;background:#f8fffc}
+#pagina-painel-candidato.cand-dashboard-premium .cand-dashboard-kpis article:nth-child(1) i{background:#e6f7f1;color:#17795d}
+#pagina-painel-candidato.cand-dashboard-premium .cand-dashboard-kpis article:nth-child(2) i{background:#eaf3f8;color:#17647a}
+#pagina-painel-candidato.cand-dashboard-premium .cand-dashboard-kpis article:nth-child(3) i{background:#f1effa;color:#65579a}
+#pagina-painel-candidato.cand-dashboard-premium .cand-dashboard-kpis article:nth-child(4) i{background:#edf5fa;color:#315f78}
+#pagina-painel-candidato.cand-dashboard-premium .cand-profile-progress button,
+#pagina-painel-candidato.cand-dashboard-premium .jornada-head .btn{background:#103b56!important;color:#fff!important;border-color:#103b56!important}
