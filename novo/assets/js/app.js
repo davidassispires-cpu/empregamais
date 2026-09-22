@@ -590,7 +590,7 @@ function iniciarSolicitacaoVerificacaoEM(lista,i,motivo='envio'){
  const modal=document.getElementById('emVerificacaoModal');if(modal){const titulo=modal.querySelector('#emVerificacaoTitulo'),intro=modal.querySelector('.em-verificacao-dialog>p');if(titulo)titulo.textContent=motivo==='reanálise'?'Alterações enviadas para nova análise':'Verificação iniciada com sucesso';if(intro)intro.innerHTML=motivo==='reanálise'?'As alterações foram enviadas com sucesso. Sua empresa voltou para <strong>análise</strong> e o prazo é de <strong>até 48 horas</strong>. O selo ficará temporariamente suspenso até a nova aprovação.':'Recebemos as informações da sua empresa com sucesso. A solicitação foi enviada para <strong>análise</strong>, com prazo de <strong>até 48 horas</strong> para conclusão.';modal.classList.add('aberto');modal.setAttribute('aria-hidden','false');document.body.classList.add('em-modal-aberto')}
 }
 function concluirSolicitacaoVerificacaoEM(){
- const modal=document.getElementById('emVerificacaoModal');if(modal){modal.classList.remove('aberto');modal.setAttribute('aria-hidden','true')}document.body.classList.remove('em-modal-aberto');irPara('perfil-empresa')
+ const modal=document.getElementById('emVerificacaoModal');if(modal){modal.classList.remove('aberto');modal.setAttribute('aria-hidden','true')}document.body.classList.remove('em-modal-aberto');irPara('painel-empresa')
 }
 function renderStatusVerificacaoEmpresaEM(){
  const box=document.getElementById('empresaVerificacaoStatus');if(!box)return;const emp=empresaLogada();if(!emp){box.innerHTML='';return}
