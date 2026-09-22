@@ -3463,3 +3463,37 @@ body.candidato-logado .topo .menu-candidato-logado{display:flex!important}
 #pagina-publicar .job-actions .btn-azul,#pagina-publicar .btn-publicar{min-width:150px;min-height:44px;border-radius:7px;background:#087d84!important;box-shadow:0 7px 18px rgba(8,125,132,.16)}
 #pagina-publicar .em-publish-visual{position:sticky;top:92px}
 @media(max-width:760px){#pagina-publicar .job-card{padding:24px 18px}#pagina-publicar .job-step span{font-size:10px}#pagina-publicar .job-step:not(:last-child):after{display:none}}
+
+/* EMPREGAMAIS-PUBLICAR-BANNER-FIXO-V45 */
+/* Desktop: somente a coluna do formulário cresce; banner permanece inteiro na janela */
+@media(min-width:901px){
+#pagina-publicar .em-publish-layout{
+display:grid!important;grid-template-columns:minmax(0,1fr) 360px!important;
+align-items:start!important;gap:28px!important;overflow:visible!important
+}
+#pagina-publicar .em-publish-main{min-width:0!important;overflow:visible!important}
+#pagina-publicar .em-publish-visual{
+position:sticky!important;top:82px!important;align-self:start!important;
+width:100%!important;height:calc(100vh - 98px)!important;
+min-height:0!important;max-height:none!important;
+overflow:hidden!important;border-radius:18px!important
+}
+#pagina-publicar .em-visual-overlay{position:absolute!important;inset:0!important}
+#pagina-publicar .em-visual-content{
+height:100%!important;box-sizing:border-box!important;padding:clamp(22px,3vh,36px)!important;
+display:flex!important;flex-direction:column!important;justify-content:center!important;
+overflow:hidden!important
+}
+#pagina-publicar .em-visual-content h2{font-size:clamp(29px,4.3vh,45px)!important;line-height:1.02!important;margin:10px 0!important}
+#pagina-publicar .em-visual-content>p{font-size:clamp(12px,1.5vh,14px)!important;line-height:1.5!important;margin:0 0 clamp(12px,2vh,22px)!important}
+#pagina-publicar .em-visual-benefits{gap:clamp(7px,1.2vh,13px)!important}
+#pagina-publicar .em-visual-benefits>div{padding:clamp(7px,1vh,11px) 0!important}
+#pagina-publicar .em-visual-sign{margin-top:clamp(10px,2vh,22px)!important}
+}
+@media(min-width:901px) and (max-height:680px){
+#pagina-publicar .em-visual-kicker{font-size:9px!important}
+#pagina-publicar .em-visual-content h2{font-size:28px!important}
+#pagina-publicar .em-visual-benefits small{display:none!important}
+#pagina-publicar .em-visual-benefits>div{padding:5px 0!important}
+#pagina-publicar .em-visual-sign{margin-top:8px!important;font-size:11px!important}
+}
