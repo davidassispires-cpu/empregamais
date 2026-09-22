@@ -4666,3 +4666,24 @@ overflow:visible!important
  #pagina-candidaturas #candListaElegante{gap:16px}
  #pagina-candidaturas .candidatura-card.cand-elegante{border-width:1.5px!important}
 }
+
+/* EMPREGAMAIS-KPI-CURRICULO-ESTADOS-V1 */
+#pagina-painel-candidato .cand-dashboard-kpis>article{cursor:pointer;transition:transform .18s ease,box-shadow .18s ease,border-color .18s ease}
+#pagina-painel-candidato .cand-dashboard-kpis>article:hover{transform:translateY(-2px);box-shadow:0 9px 22px rgba(22,71,108,.08)}
+#pagina-painel-candidato .cand-dashboard-kpis>article.curriculo-completo{
+ border-color:#a8dfcf!important;background:linear-gradient(135deg,#ffffff 0%,#f3fbf8 100%)!important;
+ box-shadow:0 7px 20px rgba(24,132,101,.07)
+}
+#pagina-painel-candidato .cand-dashboard-kpis>article.curriculo-completo>i{
+ background:#e5f7f1!important;color:#118064!important;border:1px solid #c6ebdf!important
+}
+#pagina-painel-candidato .cand-dashboard-kpis>article.curriculo-completo strong{color:#0b6f58!important}
+#pagina-painel-candidato .cand-dashboard-kpis>article.curriculo-completo small{color:#4e7d70!important}
+#pagina-painel-candidato .cand-dashboard-kpis>article.curriculo-completo div:after{
+ content:"✓ CURRÍCULO ATUALIZADO";display:inline-flex;margin-top:8px;padding:4px 7px;border-radius:999px;
+ background:#e4f6f0;color:#0c755c;font-size:7px;font-weight:900;letter-spacing:.06em
+}
+#pagina-painel-candidato .cand-dashboard-kpis>article.curriculo-parcial{border-color:#c9ddea!important}
+#pagina-painel-candidato .cand-dashboard-kpis>article.curriculo-parcial>i{background:#edf6fc!important;color:#176ca3!important}
+#pagina-painel-candidato .cand-dashboard-kpis>article.curriculo-pendente{border-color:#d7e2e9!important}
+#pagina-painel-candidato .cand-dashboard-kpis>article.curriculo-pendente strong{color:#435f72!important}
