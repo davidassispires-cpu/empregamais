@@ -857,3 +857,66 @@ preencherPerfilEmpresa=function(){const r=_preencherPerfilEmpresaUploadEM.apply(
 /* fim EMPREGAMAIS-UPLOAD-IMAGENS-PERFIL-V1 */
 
 function retirarCandidaturaEM(id){if(!confirm('Deseja realmente retirar esta candidatura?'))return;const a=candidaturas(),x=a.find(c=>String(c.id)===String(id));if(!x)return;if(x.status&&grupoEtapa(x.status)!=='Em avaliação')return alert('Esta candidatura já avançou no processo e não pode mais ser retirada por aqui.');gravar('empregaMaisCandidaturas',a.filter(c=>String(c.id)!==String(id)));renderizarCandidaturasCandidato();}
+
+
+/* EMPREGAMAIS-CANDIDATO-SUPABASE-AUTH-V1 */
+function sbCadastrarAuthCandidatoEM(email,senha,nome,telefone,cidade){
+ return sbJsonEM(EMPREGAMAIS_SUPABASE_URL+"/auth/v1/signup",{method:"POST",headers:sbHeadersEM(),body:JSON.stringify({email:email,password:senha,data:{papel:"candidato",nome:nome,telefone:telefone,cidade:cidade}})}).then(a=>{sbSalvarSessaoEM(a);return a})
+}
+function sbLoginAuthCandidatoEM(email,senha){
+ return sbJsonEM(EMPREGAMAIS_SUPABASE_URL+"/auth/v1/token?grant_type=password",{method:"POST",headers:sbHeadersEM(),body:JSON.stringify({email:email,password:senha})}).then(a=>{sbSalvarSessaoEM(a);return a})
+}
+function sbSalvarCandidatoLocalEM(d){
+ const a=ler("empregaMaisCandidatos"),email=String(d.email||"").toLowerCase(),i=a.findIndex(x=>String(x.email||"").toLowerCase()===email);
+ if(i>=0)a[i]={...a[i],...d,senha:a[i].senha||""};else a.push(d);
+ gravar("empregaMaisCandidatos",a);return i>=0?a[i]:d
+}
+function sbCandidatoDoAuthEM(auth,fallback){
+ const u=auth?.user||auth||{},m=u.user_metadata||{},f=fallback||{};
+ return {id:f.id||("candidato_"+(u.id||Date.now())),userId:u.id||f.userId||"",nome:m.nome||f.nome||"",email:String(u.email||f.email||"").toLowerCase(),telefone:m.telefone||f.telefone||"",cidade:m.cidade||f.cidade||"",perfil:f.perfil||{},criadoEm:f.criadoEm||u.created_at||new Date().toISOString()}
+}
+function concluirEntradaCandidatoSupabaseEM(d){
+ if(d.userId)sessionStorage.setItem("candidatoSupabaseUserId",d.userId);
+ entrar("candidato",d);
+ if(d.userId)sessionStorage.setItem("candidatoSupabaseUserId",d.userId);
+ if(sessionStorage.getItem("retornoCandidatura")==="1"){sessionStorage.removeItem("retornoCandidatura");sessionStorage.removeItem("retornoSalvarVaga");setTimeout(()=>irPara("candidatar"),30);return}
+ if(sessionStorage.getItem("retornoSalvarVaga")==="1"){sessionStorage.removeItem("retornoSalvarVaga");const id=sessionStorage.getItem("vagaSelecionada");if(id)sessionStorage.setItem("vagaAtual",id);setTimeout(()=>{const v=vagaAtual();if(v&&v.status==="aprovada"&&vagaDentroPrazo(v)){let a=salvas();if(!a.includes(v.id))gravar(chaveSalvas(),[v.id,...a]);irPara("vaga")}else irPara("home")},30)}
+}
+cadastrarCandidato=function(e){
+ e.preventDefault();
+ const senha=$("#cadCandSenha").value,nome=$("#cadCandNome").value.trim(),email=$("#cadCandEmail").value.trim().toLowerCase(),telefone=$("#cadCandTelefone").value.trim(),cidade=$("#cadCandCidade").value.trim();
+ if(nome.length<3)return msg("#msgCadastroCandidato","Informe seu nome completo.");
+ if(!email.includes("@"))return msg("#msgCadastroCandidato","Informe um e-mail válido.");
+ if(nums(telefone).length<10)return msg("#msgCadastroCandidato","Informe um celular válido.");
+ if(cidade.length<2)return msg("#msgCadastroCandidato","Informe sua cidade.");
+ if(senha.length<6)return msg("#msgCadastroCandidato","A senha deve ter pelo menos 6 caracteres.");
+ if(senha!==$("#cadCandSenha2").value)return msg("#msgCadastroCandidato","As senhas não conferem.");
+ msg("#msgCadastroCandidato","Criando sua conta...");
+ sbCadastrarAuthCandidatoEM(email,senha,nome,telefone,cidade).then(auth=>{
+   const d=sbSalvarCandidatoLocalEM(sbCandidatoDoAuthEM(auth,{nome,email,telefone,cidade}));
+   if(!auth?.access_token){msg("#msgCadastroCandidato","Cadastro criado. Confirme seu e-mail para ativar a conta.",true);return}
+   concluirEntradaCandidatoSupabaseEM(d)
+ }).catch(err=>{console.error("Cadastro candidato / Supabase:",err);const t=/already|registered|exists/i.test(err.message)?"Já existe uma conta com este e-mail.":("Não foi possível criar a conta: "+err.message);msg("#msgCadastroCandidato",t)})
+};
+loginCandidato=function(e){
+ e.preventDefault();
+ const email=$("#loginCandEmail").value.trim().toLowerCase(),senha=$("#loginCandSenha").value;
+ if(!email.includes("@"))return msg("#msgLoginCandidato","Informe um e-mail válido.");
+ if(!senha)return msg("#msgLoginCandidato","Informe sua senha.");
+ msg("#msgLoginCandidato","Entrando...");
+ sbLoginAuthCandidatoEM(email,senha).then(auth=>{
+   const antigo=ler("empregaMaisCandidatos").find(x=>String(x.email||"").toLowerCase()===email)||{email};
+   const d=sbSalvarCandidatoLocalEM(sbCandidatoDoAuthEM(auth,antigo));
+   concluirEntradaCandidatoSupabaseEM(d)
+ }).catch(err=>{console.error("Login candidato / Supabase:",err);const t=/email not confirmed/i.test(err.message)?"Confirme seu e-mail antes de entrar.":/invalid login|invalid credentials/i.test(err.message)?"E-mail ou senha incorretos.":("Não foi possível entrar: "+err.message);msg("#msgLoginCandidato",t)})
+};
+const _sairSupabaseCandidatoV1=sair;
+sair=function(){
+ const papel=papelAtual();
+ if(papel==="candidato"){
+   const t=sbTokenEM();if(t)fetch(EMPREGAMAIS_SUPABASE_URL+"/auth/v1/logout",{method:"POST",headers:sbHeadersEM(t)}).catch(()=>{});
+   sessionStorage.removeItem(EMPREGAMAIS_SB_TOKEN);localStorage.removeItem(EMPREGAMAIS_SB_TOKEN);
+   sessionStorage.removeItem(EMPREGAMAIS_SB_REFRESH);localStorage.removeItem(EMPREGAMAIS_SB_REFRESH);
+ }
+ return _sairSupabaseCandidatoV1()
+};
