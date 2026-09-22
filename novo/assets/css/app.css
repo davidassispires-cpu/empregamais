@@ -4640,3 +4640,8 @@ overflow:visible!important
 #pagina-premium-candidato .premium-comparativo-card.premium.plano-ativo button{background:#e7f6f1;color:#13745a;cursor:default}
 #pagina-premium-candidato .premium-recursos-nota{max-width:900px;margin:18px auto 0;text-align:center;font-size:11px;color:#718694}
 @media(max-width:760px){#pagina-premium-candidato .premium-comparativo-grid{grid-template-columns:1fr}#pagina-premium-candidato .premium-comparativo-card{padding:21px}}
+
+/* EMPREGAMAIS-KPIS-CANDIDATO-CLICAVEIS-V1 */
+#pagina-painel-candidato .cand-dashboard-kpis article{cursor:pointer;transition:transform .16s ease,box-shadow .16s ease,border-color .16s ease}
+#pagina-painel-candidato .cand-dashboard-kpis article:hover{transform:translateY(-2px);border-color:#a9cce0;box-shadow:0 8px 20px rgba(26,83,120,.08)}
+#pagina-painel-candidato .cand-dashboard-kpis article:focus-visible{outline:3px solid rgba(27,126,190,.22);outline-offset:2px}
