@@ -2095,3 +2095,19 @@ input,select,textarea,button{max-width:100%;box-sizing:border-box}
   #pagina-painel-empresa .hero-v18-summary-grid{grid-template-columns:1fr!important}
   .candidato-card .candidato-acoes{grid-template-columns:1fr!important}
 }
+
+
+/* VAGA - SALVAR VAGA NO HERO V20 (2026-09-22) */
+#pagina-vaga .vaga-hero-identidade{position:relative!important}
+#pagina-vaga .vaga-hero-texto{position:relative!important;padding-right:145px!important}
+#pagina-vaga .vaga-hero-salvar{position:absolute!important;right:0!important;top:1px!important;display:inline-flex!important;align-items:center!important;justify-content:center!important;gap:8px!important;height:38px!important;padding:0 14px!important;border:1px solid #c9dce9!important;border-radius:10px!important;background:#fff!important;color:#176b9c!important;font:700 11px Questrial,sans-serif!important;box-shadow:0 3px 9px rgba(20,65,95,.06)!important;cursor:pointer!important;transition:.18s ease!important;white-space:nowrap!important}
+#pagina-vaga .vaga-hero-salvar:hover{border-color:#78b6d7!important;background:#f6fbfe!important;transform:translateY(-1px)!important}
+#pagina-vaga .vaga-hero-salvar i{font-style:normal!important;font-size:20px!important;line-height:1!important;color:#087db7!important}
+#pagina-vaga .vaga-hero-salvar.salva{background:#edf8fd!important;border-color:#8cc6e1!important;color:#075f8b!important}
+#pagina-vaga .vaga-hero-salvar.salva i{color:#087db7!important}
+@media(max-width:600px){
+ #pagina-vaga .vaga-hero-texto{padding-right:44px!important}
+ #pagina-vaga .vaga-hero-salvar{width:38px!important;height:38px!important;padding:0!important;border-radius:50%!important;right:0!important;top:0!important}
+ #pagina-vaga .vaga-hero-salvar span{display:none!important}
+ #pagina-vaga .vaga-hero-salvar i{font-size:21px!important}
+}
