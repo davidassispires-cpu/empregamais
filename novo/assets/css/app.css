@@ -1360,3 +1360,51 @@ header nav a,header nav button,.menu-drop button{font-size:15px}
 .ce-atividade{margin-top:14px}.ce-atividade>#ceAtividade{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin-top:17px}.ce-atividade>#ceAtividade>div{display:grid;grid-template-columns:37px 1fr auto;gap:10px;align-items:center;padding:12px;background:#f8fbfc;border-radius:10px}.ce-atividade i{font-style:normal;width:35px;height:35px;display:grid;place-items:center;background:#e9f5f5;border-radius:9px;color:#087982}.ce-atividade b,.ce-atividade small{display:block}.ce-atividade b{font-size:12px;color:#31525f}.ce-atividade small,.ce-atividade time{font-size:10px;color:#819197}.ce-empty{grid-column:1/-1!important;display:block!important;text-align:center;color:#7b8e95;padding:25px!important}
 @media(max-width:1050px){.central-empresa-hero{grid-template-columns:1fr}.ce-hero-art{display:none}.ce-main-grid{grid-template-columns:1fr}.ce-toolbar{grid-template-columns:1fr 1fr}.ce-toolbar>div:first-child{grid-column:1/-1}.ce-kpis{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:650px){.central-empresa-shell{padding:12px}.central-empresa-hero{padding:29px 22px;min-height:auto}.ce-hero-copy h1{font-size:32px}.ce-hero-copy p{font-size:15px}.ce-hero-actions{flex-direction:column}.ce-toolbar,.ce-kpis,.ce-atividade>#ceAtividade{grid-template-columns:1fr}.ce-toolbar>div:first-child{grid-column:auto}.ce-unidades article{grid-template-columns:42px 1fr}.ce-unidades article>b{grid-column:2}.ce-card-head{flex-direction:column}}
+
+
+/* CENTRAL DA EMPRESA — TIPOGRAFIA AMPLIADA */
+#pagina-central-empresa .ce-hero-copy>span{font-size:14px!important}
+#pagina-central-empresa .ce-hero-copy p{font-size:20px!important}
+#pagina-central-empresa .ce-hero-actions .btn{font-size:16px!important;padding:13px 18px!important}
+#pagina-central-empresa .ce-toolbar>div>span,
+#pagina-central-empresa .ce-card-head span,
+#pagina-central-empresa .ce-plan-card>span,
+#pagina-central-empresa .ce-recursos>span{font-size:13px!important}
+#pagina-central-empresa .ce-toolbar h2{font-size:27px!important}
+#pagina-central-empresa .ce-toolbar label{font-size:14px!important}
+#pagina-central-empresa .ce-toolbar select{font-size:16px!important;padding:11px!important}
+#pagina-central-empresa .ce-plan-pill small{font-size:12px!important}
+#pagina-central-empresa .ce-plan-pill strong{font-size:20px!important}
+#pagina-central-empresa .ce-plan-pill span{font-size:12px!important}
+#pagina-central-empresa .ce-kpis small{font-size:13px!important}
+#pagina-central-empresa .ce-kpis strong{font-size:35px!important}
+#pagina-central-empresa .ce-kpis span{font-size:14px!important;line-height:1.4!important}
+#pagina-central-empresa .ce-card-head h2,
+#pagina-central-empresa .ce-recursos h2{font-size:27px!important}
+#pagina-central-empresa .ce-card-head p{font-size:16px!important;line-height:1.5!important}
+#pagina-central-empresa .ce-card-head button{font-size:14px!important}
+#pagina-central-empresa .ce-funil b{font-size:16px!important}
+#pagina-central-empresa .ce-funil strong{font-size:17px!important}
+#pagina-central-empresa .ce-funil small{font-size:13px!important}
+#pagina-central-empresa .ce-unidades article span{font-size:12px!important}
+#pagina-central-empresa .ce-unidades h3{font-size:18px!important}
+#pagina-central-empresa .ce-unidades p{font-size:14px!important}
+#pagina-central-empresa .ce-unidades article>b{font-size:14px!important}
+#pagina-central-empresa .ce-add-filial{font-size:15px!important}
+#pagina-central-empresa .ce-plan-card h2{font-size:31px!important}
+#pagina-central-empresa .ce-plan-card>p{font-size:15px!important;line-height:1.5!important}
+#pagina-central-empresa .ce-uso-plano>div>span{font-size:14px!important}
+#pagina-central-empresa .ce-plan-card>button{font-size:15px!important}
+#pagina-central-empresa .ce-recursos b{font-size:16px!important}
+#pagina-central-empresa .ce-recursos small{font-size:14px!important;line-height:1.4!important}
+#pagina-central-empresa .ce-atividade b{font-size:15px!important}
+#pagina-central-empresa .ce-atividade small,
+#pagina-central-empresa .ce-atividade time{font-size:13px!important}
+#pagina-central-empresa .ce-empty{font-size:15px!important}
+#pagina-central-empresa .ce-art-card{font-size:14px!important}
+#pagina-central-empresa .ce-art-card span b{font-size:15px!important}
+@media(max-width:650px){
+ #pagina-central-empresa .ce-hero-copy p{font-size:17px!important}
+ #pagina-central-empresa .ce-kpis strong{font-size:32px!important}
+ #pagina-central-empresa .ce-card-head h2,#pagina-central-empresa .ce-recursos h2{font-size:24px!important}
+}
