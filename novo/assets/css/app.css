@@ -4253,3 +4253,34 @@ overflow:visible!important
  #modalFichaCandidato.ficha-ampla .ficha-curriculo{padding:18px 16px!important}
  #modalFichaCandidato.ficha-ampla .ficha-links{justify-content:flex-start!important;flex-wrap:wrap!important}
 }
+
+/* EMPREGAMAIS-PROCESSO-EXPANDIDO-FULLWIDTH-V6 */
+#pagina-candidatos-empresa .candidato-card-compacto{position:relative!important;display:block!important}
+#pagina-candidatos-empresa .cand-resumo-compacto{position:relative!important;width:100%!important;box-sizing:border-box!important}
+#pagina-candidatos-empresa .cand-processo-expandido{
+ display:none!important;clear:both!important;position:relative!important;left:auto!important;right:auto!important;top:auto!important;
+ width:100%!important;max-width:none!important;box-sizing:border-box!important;margin:0!important;padding:18px 20px 17px!important;
+ border-top:1px solid #dce7ee!important;background:#fbfdff!important
+}
+#pagina-candidatos-empresa .candidato-card-compacto.processo-aberto .cand-processo-expandido{display:block!important}
+#pagina-candidatos-empresa .candidato-card-compacto.processo-aberto .cand-resumo-compacto{padding-bottom:58px!important}
+#pagina-candidatos-empresa .cand-processo-toolbar{
+ position:relative!important;width:100%!important;box-sizing:border-box!important;
+ display:grid!important;grid-template-columns:220px minmax(0,1fr)!important;gap:18px!important;
+ align-items:center!important;margin:0!important;padding:0 0 15px!important;border-bottom:1px solid #dce8ef!important
+}
+#pagina-candidatos-empresa .cand-processo-toolbar .cand-status-select{position:static!important;width:100%!important;max-width:none!important;margin:0!important}
+#pagina-candidatos-empresa .cand-acoes-secundarias{position:static!important;width:100%!important;display:grid!important;grid-template-columns:repeat(4,minmax(120px,1fr))!important;gap:8px!important}
+#pagina-candidatos-empresa .cand-processo-expandido .cand-fluxo-progressivo{
+ clear:both!important;position:relative!important;width:100%!important;max-width:none!important;
+ margin:0!important;padding:24px 18px 10px!important;box-sizing:border-box!important
+}
+#pagina-candidatos-empresa .cand-processo-expandido .cand-fluxo-aviso{width:100%!important;box-sizing:border-box!important}
+@media(max-width:1050px){
+ #pagina-candidatos-empresa .cand-processo-toolbar{grid-template-columns:1fr!important}
+ #pagina-candidatos-empresa .cand-acoes-secundarias{grid-template-columns:repeat(2,minmax(0,1fr))!important}
+}
+@media(max-width:600px){
+ #pagina-candidatos-empresa .cand-processo-expandido{padding:14px!important}
+ #pagina-candidatos-empresa .cand-acoes-secundarias{grid-template-columns:1fr!important}
+}
