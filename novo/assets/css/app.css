@@ -4081,3 +4081,12 @@ overflow:visible!important
 @media(max-width:1050px){#pagina-candidatos-empresa .cand-resumo-compacto{grid-template-columns:minmax(280px,1fr) minmax(160px,.7fr)}#pagina-candidatos-empresa .cand-processo-toolbar{grid-template-columns:1fr}#pagina-candidatos-empresa .cand-acoes-secundarias{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:700px){#pagina-candidatos-empresa .cand-processo-expandido .cand-fluxo-progressivo{overflow-x:auto!important;grid-template-columns:repeat(7,115px)!important;padding-bottom:12px!important}#pagina-candidatos-empresa .cand-processo-expandido .cand-fluxo-aviso{align-items:flex-start;flex-direction:column;gap:4px}}
 @media(max-width:520px){#pagina-candidatos-empresa .cand-contato-completo{align-items:flex-start;flex-direction:column;gap:2px}#pagina-candidatos-empresa .cand-contato-completo b{display:none}#pagina-candidatos-empresa .cand-acoes-secundarias{grid-template-columns:1fr}}
+
+/* EMPREGAMAIS-VOLTAR-GESTAO-VAGA-V1 */
+#pagina-candidatos-empresa .processo-head-copy{display:flex;flex-direction:column;align-items:flex-start}
+#pagina-candidatos-empresa .cand-voltar-vagas{
+ display:inline-flex;align-items:center;gap:6px;margin:0 0 10px;padding:7px 10px;
+ border:1px solid #b9d2de;border-radius:8px;background:#fff;color:#086478;
+ font:800 11px Questrial,sans-serif;cursor:pointer;transition:.18s ease
+}
+#pagina-candidatos-empresa .cand-voltar-vagas:hover{background:#edf7f9;border-color:#7fb5c3;transform:translateX(-1px)}
