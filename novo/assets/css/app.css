@@ -4889,3 +4889,52 @@ overflow:visible!important
  #pagina-candidatos-empresa .candidatos-processo-head .cand-toolbar{justify-content:flex-start!important;flex-wrap:wrap!important}
  #pagina-candidatos-empresa .cand-filtros-etapas{grid-template-columns:repeat(8,minmax(112px,1fr))!important;overflow-x:auto!important}
 }
+
+
+/* EMPREGAMAIS-TIMELINE-PRIMEIRA-ETAPA-ALINHADA-V9 */
+#pagina-candidatos-empresa .cand-processo-expandido .cand-fluxo-progressivo>button{
+ display:grid!important;
+ grid-template-rows:30px 30px 18px!important;
+ justify-items:center!important;
+ align-items:start!important;
+ padding:0 5px!important
+}
+#pagina-candidatos-empresa .cand-processo-expandido .cand-fluxo-progressivo>button i{
+ grid-row:1!important;
+ grid-column:1!important;
+ margin:0!important;
+ align-self:start!important
+}
+#pagina-candidatos-empresa .cand-processo-expandido .cand-fluxo-progressivo>button span{
+ grid-row:2!important;
+ grid-column:1!important;
+ display:flex!important;
+ align-items:flex-start!important;
+ justify-content:center!important;
+ width:100%!important;
+ min-height:30px!important;
+ margin:0!important;
+ padding:0 2px!important;
+ text-align:center!important;
+ line-height:1.15!important
+}
+#pagina-candidatos-empresa .cand-processo-expandido .cand-fluxo-progressivo>button small{
+ grid-row:3!important;
+ grid-column:1!important;
+ width:100%!important;
+ margin:0!important;
+ text-align:center!important;
+ line-height:1!important
+}
+#pagina-candidatos-empresa .cand-processo-expandido .cand-fluxo-progressivo>button:first-child i,
+#pagina-candidatos-empresa .cand-processo-expandido .cand-fluxo-progressivo>button:first-child span,
+#pagina-candidatos-empresa .cand-processo-expandido .cand-fluxo-progressivo>button:first-child small{
+ position:static!important;
+ transform:none!important;
+ left:auto!important;
+ right:auto!important;
+ top:auto!important
+}
+#pagina-candidatos-empresa .cand-processo-expandido .cand-fluxo-progressivo>button:before{
+ top:13px!important
+}
