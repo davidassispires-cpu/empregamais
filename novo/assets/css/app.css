@@ -4645,3 +4645,24 @@ overflow:visible!important
 #pagina-painel-candidato .cand-dashboard-kpis article{cursor:pointer;transition:transform .16s ease,box-shadow .16s ease,border-color .16s ease}
 #pagina-painel-candidato .cand-dashboard-kpis article:hover{transform:translateY(-2px);border-color:#a9cce0;box-shadow:0 8px 20px rgba(26,83,120,.08)}
 #pagina-painel-candidato .cand-dashboard-kpis article:focus-visible{outline:3px solid rgba(27,126,190,.22);outline-offset:2px}
+
+/* EMPREGAMAIS-CANDIDATURAS-SEPARACAO-V2 */
+#pagina-candidaturas #candListaElegante{display:flex;flex-direction:column;gap:22px}
+#pagina-candidaturas .candidatura-card.cand-elegante{
+ margin-bottom:0!important;
+ border:2px solid #6f93b3!important;
+ border-radius:17px!important;
+ box-shadow:0 7px 20px rgba(20,67,105,.08)!important;
+ background:#fff!important;
+}
+#pagina-candidaturas .candidatura-card.cand-elegante:hover{
+ border-color:#3f7199!important;
+ box-shadow:0 10px 25px rgba(20,67,105,.12)!important;
+}
+#pagina-candidaturas .candidatura-card.cand-elegante + .candidatura-card.cand-elegante{
+ margin-top:0!important;
+}
+@media(max-width:650px){
+ #pagina-candidaturas #candListaElegante{gap:16px}
+ #pagina-candidaturas .candidatura-card.cand-elegante{border-width:1.5px!important}
+}
