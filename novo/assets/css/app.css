@@ -1737,3 +1737,13 @@ body.cv-success-open{overflow:hidden}.cv-success-modal{position:fixed;inset:0;z-
 
 /* ADERENCIA PROFISSIONAL AUTOMATICA V1 (2026-09-22) */
 .cand-aderencia-pro{margin-top:14px!important;width:min(330px,100%)!important}.cand-aderencia-pro>div{margin-bottom:7px!important}.cand-aderencia-pro>div strong{font-size:17px!important;color:#087687!important}.cand-aderencia-pro>i{height:8px!important;background:#e4edf1!important}.cand-aderencia-pro>i>b{background:linear-gradient(90deg,#17849a,#25aa83)!important;transition:width .35s ease}.cand-aderencia-pro>small{display:block;margin-top:6px;color:#718798;font-size:10px;font-weight:700}
+
+/* CANDIDATO CARD - CONTEUDO EM UMA LINHA V1 (2026-09-22) */
+@media(min-width:1000px){
+ #listaCandidatosEmpresa .candidato-card{display:grid!important;grid-template-columns:minmax(250px,1fr) minmax(220px,330px) auto!important;align-items:center!important;column-gap:18px!important;padding:18px 20px!important}
+ #listaCandidatosEmpresa .candidato-card>div:first-child{min-width:0!important}
+ #listaCandidatosEmpresa .cand-aderencia-pro{grid-column:2!important;grid-row:1!important;margin:0!important;width:100%!important;align-self:center!important}
+ #listaCandidatosEmpresa .candidato-acoes{grid-column:3!important;grid-row:1!important;display:flex!important;align-items:center!important;justify-content:flex-end!important;flex-wrap:nowrap!important;gap:8px!important;min-width:max-content!important}
+ #listaCandidatosEmpresa .candidato-acoes .btn,#listaCandidatosEmpresa .candidato-acoes select{white-space:nowrap!important;margin:0!important}
+ #listaCandidatosEmpresa .cand-fluxo-progressivo{grid-column:1/-1!important}
+}
