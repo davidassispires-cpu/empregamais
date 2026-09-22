@@ -2294,3 +2294,29 @@ padding:14px 14px!important;align-items:center!important
 #pagina-painel-empresa.empresa-dashboard-v7 .empresa-kpis-v7 .empresa-metrica-v2 span{color:#244b5e!important}
 #pagina-painel-empresa.empresa-dashboard-v7 .empresa-kpis-v7 .empresa-metrica-v2 small{color:#718895!important}
 #pagina-painel-empresa.empresa-dashboard-v7 .empresa-kpis-v7 .empresa-metrica-v2 .kpi-num{color:#063f55!important}
+
+/* EMPREGAMAIS — ADMIN V2.1: fechamento profissional da tela */
+#pagina-painel-admin{background:#f4f7fa!important;min-height:100vh!important}
+#pagina-painel-admin>.admin2-shell{min-height:100vh!important;align-items:stretch!important}
+#pagina-painel-admin .admin2-side{position:sticky!important;top:0!important;height:100vh!important;min-height:100vh!important;max-height:100vh!important;box-sizing:border-box!important;overflow-y:auto!important;overflow-x:hidden!important;padding-bottom:14px!important}
+#pagina-painel-admin .admin2-side-bottom{position:sticky!important;bottom:0!important;margin-top:auto!important;background:#092f4a!important;padding:13px 0 3px!important;z-index:4!important}
+#pagina-painel-admin .admin2-side-bottom button{min-height:38px!important;margin:1px 0!important}
+#pagina-painel-admin .admin2-main{min-height:100vh!important;box-sizing:border-box!important;padding-bottom:34px!important}
+#pagina-painel-admin #adminConteudo{min-height:0!important}
+#pagina-painel-admin .admin2-main .admin-grid,
+#pagina-painel-admin .admin2-main .admin-dashboard-grid{align-items:start!important}
+#pagina-painel-admin .admin2-main .admin-bloco{height:auto!important;min-height:0!important}
+#pagina-painel-admin .admin2-main .admin-bloco:has(.admin-historico),
+#pagina-painel-admin .admin2-main .admin-bloco:has([id*="Historico"]),
+#pagina-painel-admin .admin2-main .admin-bloco:has([class*="historico"]){max-height:520px!important;overflow:hidden!important}
+#pagina-painel-admin .admin2-main .admin-historico,
+#pagina-painel-admin .admin2-main [id*="Historico"],
+#pagina-painel-admin .admin2-main [class*="historico"]{max-height:430px!important;overflow-y:auto!important;overscroll-behavior:contain!important;padding-right:5px!important}
+#pagina-painel-admin .admin2-main .admin-historico::-webkit-scrollbar,
+#pagina-painel-admin .admin2-main [id*="Historico"]::-webkit-scrollbar,
+#pagina-painel-admin .admin2-main [class*="historico"]::-webkit-scrollbar{width:6px!important}
+#pagina-painel-admin .admin2-main .admin-historico::-webkit-scrollbar-thumb,
+#pagina-painel-admin .admin2-main [id*="Historico"]::-webkit-scrollbar-thumb,
+#pagina-painel-admin .admin2-main [class*="historico"]::-webkit-scrollbar-thumb{background:#c8d7df!important;border-radius:10px!important}
+#pagina-painel-admin .admin2-main .admin-linha:last-child{border-bottom:0!important}
+@media(max-width:760px){#pagina-painel-admin>.admin2-shell{min-height:0!important}#pagina-painel-admin .admin2-side{position:relative!important;height:auto!important;min-height:0!important;max-height:none!important}#pagina-painel-admin .admin2-side-bottom{position:relative!important;bottom:auto!important}}
