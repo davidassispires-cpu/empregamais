@@ -2709,3 +2709,14 @@ padding:14px 14px!important;align-items:center!important
 @media(max-width:1100px){#pagina-vaga #vagasRelacionadas>.portal-vaga-nova{flex-basis:calc((100% - 36px)/4)!important;width:calc((100% - 36px)/4)!important}}
 @media(max-width:850px){#pagina-vaga #vagasRelacionadas>.portal-vaga-nova{flex-basis:calc((100% - 24px)/3)!important;width:calc((100% - 24px)/3)!important}}
 @media(max-width:600px){#pagina-vaga #vagasRelacionadas>.portal-vaga-nova{flex-basis:82%!important;width:82%!important;height:275px!important;min-height:275px!important}}
+
+/* EMPREGAMAIS-PAINEL-CANDIDATO-HERO-REFINADO-V19 */
+#pagina-painel-candidato .cand-dashboard-hero{min-height:0!important;height:auto!important;display:block!important;padding:25px 34px 24px!important;border-radius:14px!important;background:linear-gradient(110deg,#0c5f9e 0%,#0875b8 100%)!important;box-shadow:0 8px 22px rgba(13,75,116,.10)!important}
+#pagina-painel-candidato .cand-dashboard-hero>div:first-child{max-width:760px!important}
+#pagina-painel-candidato .cand-dashboard-hero>div>span{font-size:10px!important;letter-spacing:.12em!important;color:#c9e4f4!important}
+#pagina-painel-candidato .cand-dashboard-hero h1{font-size:29px!important;line-height:1.08!important;margin:5px 0 5px!important;font-weight:700!important}
+#pagina-painel-candidato .cand-dashboard-hero>div:first-child>p{font-size:13px!important;line-height:1.45!important;margin:0 0 14px!important;color:#e1f0f8!important}
+#pagina-painel-candidato .cand-hero-actions{margin-top:0!important;gap:8px!important}
+#pagina-painel-candidato .cand-hero-actions button{min-height:36px!important;padding:8px 13px!important;border-radius:7px!important;font-size:11px!important;box-shadow:none!important}
+#pagina-painel-candidato .cand-hero-visual,#pagina-painel-candidato .cand-hero-visual-pro{display:none!important}
+@media(max-width:760px){#pagina-painel-candidato .cand-dashboard-hero{padding:21px 20px!important;border-radius:12px!important}#pagina-painel-candidato .cand-dashboard-hero h1{font-size:25px!important}.cand-hero-actions{flex-wrap:wrap!important}}
