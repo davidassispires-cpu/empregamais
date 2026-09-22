@@ -2672,3 +2672,20 @@ padding:14px 14px!important;align-items:center!important
 #pagina-vaga .em-verificado-check:after{content:"✓";font-size:12px!important;font-weight:900!important}
 #pagina-vaga .em-verificado-label{display:inline-flex!important;align-items:center!important;min-height:32px!important;padding:0 12px!important;border:1px solid #c9e5da!important;border-radius:8px!important;background:#f0f8f5!important;color:#126b52!important;font-size:12px!important;font-weight:800!important;letter-spacing:.01em!important;box-shadow:0 2px 8px rgba(19,105,81,.055)!important}
 #pagina-vaga .em-verificado-wrap:hover .em-verificado-label{background:#e8f5f0!important;border-color:#acd5c5!important;color:#0d6049!important}
+
+/* EMPREGAMAIS-TEXTO-VAGA-MAIOR-V19 */
+#pagina-vaga .vaga-conteudo-v2 .vaga-texto,
+#pagina-vaga .vaga-conteudo-v2 section>p,
+#pagina-vaga .vaga-conteudo-v2 .beneficios-tags p{
+  font-size:20px!important;
+  line-height:1.72!important;
+}
+#pagina-vaga .vaga-conteudo-v2 h2{
+  font-size:25px!important;
+}
+@media(max-width:800px){
+ #pagina-vaga .vaga-conteudo-v2 .vaga-texto,
+ #pagina-vaga .vaga-conteudo-v2 section>p,
+ #pagina-vaga .vaga-conteudo-v2 .beneficios-tags p{font-size:18px!important;line-height:1.68!important}
+ #pagina-vaga .vaga-conteudo-v2 h2{font-size:23px!important}
+}
