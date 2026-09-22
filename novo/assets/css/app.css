@@ -2654,3 +2654,14 @@ padding:14px 14px!important;align-items:center!important
 #pagina-vaga .hero-50-bloco>small{display:block!important;width:100%!important;max-width:none!important;margin:0!important;text-align:center!important;white-space:nowrap!important;font-size:9px!important;line-height:1.05!important;font-weight:700!important;color:#687783!important;overflow:visible!important}
 #pagina-vaga .vaga-hero-selos .hero-50mais{display:inline-flex!important;align-items:center!important;justify-content:center!important;width:100%!important;min-width:142px!important;max-width:none!important;box-sizing:border-box!important;white-space:nowrap!important;overflow:visible!important;padding-left:13px!important;padding-right:13px!important}
 @media(max-width:700px){#pagina-vaga .vaga-hero-selos{overflow-x:auto!important;overflow-y:hidden!important;scrollbar-width:none!important;padding-top:2px!important}#pagina-vaga .vaga-hero-selos::-webkit-scrollbar{display:none!important}}
+
+/* EMPREGAMAIS-VAGA-HERO-FONTE-SELOS-V20 */
+#pagina-vaga .vaga-hero-selos{gap:8px!important;max-width:100%!important}
+#pagina-vaga .vaga-hero-selos>span{font-size:12px!important;font-weight:700!important;line-height:1!important;height:32px!important;min-height:32px!important;padding:0 12px!important;box-sizing:border-box!important}
+#pagina-vaga .vaga-hero-selos .hero-destaque,
+#pagina-vaga .vaga-hero-selos .hero-urgente{font-size:12px!important;min-height:32px!important;height:32px!important;padding:0 12px!important}
+#pagina-vaga .hero-50-bloco{display:flex!important;flex-direction:column!important;justify-content:flex-end!important;align-items:center!important;flex:0 0 auto!important;min-width:150px!important;max-width:170px!important;overflow:visible!important}
+#pagina-vaga .hero-50-bloco>small{display:block!important;width:100%!important;margin:0 0 2px!important;text-align:center!important;font-size:8.5px!important;line-height:1.05!important;white-space:nowrap!important;overflow:visible!important;color:#687783!important}
+#pagina-vaga .vaga-hero-selos .hero-50mais{display:inline-flex!important;align-items:center!important;justify-content:center!important;width:100%!important;height:32px!important;min-height:32px!important;padding:0 12px!important;font-size:11.5px!important;font-weight:700!important;box-sizing:border-box!important;white-space:nowrap!important;overflow:visible!important}
+#pagina-vaga .vaga-hero-selos .hero-50mais .selo-icone{flex:0 0 18px!important}
+@media(max-width:700px){#pagina-vaga .vaga-hero-selos{overflow-x:auto!important}#pagina-vaga .hero-50-bloco{min-width:145px!important}}
