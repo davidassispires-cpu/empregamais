@@ -1649,3 +1649,28 @@ body.cv-success-open{overflow:hidden}.cv-success-modal{position:fixed;inset:0;z-
 #pagina-perfil-empresa .perfil-upload-btn{width:max-content;max-width:100%;border:1px solid #177184;border-radius:9px;background:#126778;color:#fff;padding:10px 14px;font:700 13px Questrial,Arial,sans-serif;cursor:pointer;transition:.18s}
 #pagina-perfil-empresa .perfil-upload-btn:hover{background:#0d5968;transform:translateY(-1px)}
 #pagina-perfil-empresa .perfil-upload-box small{color:#70858c;font-size:10px}
+
+
+/* CANDIDATO - MINHAS CANDIDATURAS ELEGANTE V1 (2026-09-22) */
+#pagina-candidaturas{background:#f5f8fc;min-height:100vh}
+#pagina-candidaturas .page-head,#pagina-candidaturas>.container{max-width:1180px;margin:auto}
+#pagina-candidaturas .page-head{padding:30px 24px 18px}
+#pagina-candidaturas .page-head h1{font-size:30px;color:#103b65;margin:8px 0 5px}
+#pagina-candidaturas>.container{padding:0 24px 55px}
+.cand-page-resumo{display:grid;grid-template-columns:repeat(4,1fr);gap:13px;margin-bottom:18px}
+.cand-page-resumo>div{position:relative;overflow:hidden;background:#fff;border:1px solid #dce6ef;border-radius:14px;padding:17px 19px;box-shadow:0 5px 17px rgba(22,59,91,.04)}
+.cand-page-resumo>div:before{content:"";position:absolute;left:0;top:0;bottom:0;width:4px;background:#247ac1}.cand-page-resumo>div:nth-child(2):before{background:#6b83cc}.cand-page-resumo>div:nth-child(3):before{background:#8a67bd}.cand-page-resumo>div:nth-child(4):before{background:#479979}
+.cand-page-resumo small{display:block;color:#71869a;font-size:9px;font-weight:800;letter-spacing:.07em}.cand-page-resumo strong{display:block;margin-top:6px;color:#123e68;font-size:25px}
+.cand-page-toolbar{display:flex;justify-content:space-between;align-items:center;gap:20px;margin:0 0 13px;padding:14px 17px;background:#fff;border:1px solid #dce6ef;border-radius:12px}
+.cand-page-toolbar strong{display:block;color:#173e62;font-size:15px}.cand-page-toolbar span{display:block;margin-top:3px;color:#74879a;font-size:11px}.cand-page-toolbar select{min-width:190px;border:1px solid #cbdbe8;border-radius:9px;background:#fff;padding:9px 11px;color:#244e70}
+.cand-elegante{background:#fff!important;border:1px solid #d9e5ef!important;border-radius:16px!important;padding:0!important;margin-bottom:14px!important;overflow:hidden;box-shadow:0 6px 20px rgba(17,56,88,.045)!important}
+.cand-card-head{display:flex;justify-content:space-between;align-items:center;gap:20px;padding:20px 22px}
+.cand-identidade{display:flex;align-items:center;gap:14px;min-width:0}.cand-identidade>img,.cand-logo-fallback{width:58px;height:58px;flex:0 0 58px;border:1px solid #dce5ed;border-radius:11px;background:#fff;object-fit:contain;padding:5px}.cand-logo-fallback{display:grid;place-items:center;padding:0;background:#eef5fb;color:#1769a7;font-size:20px;font-weight:800}
+.cand-identidade h3{margin:0 0 5px;color:#123d65;font-size:19px}.cand-identidade p{margin:0;color:#2d628d;font-size:13px;font-weight:700}.cand-identidade small{display:block;margin-top:5px;color:#7a8d9e;font-size:11px}
+.cand-status-col{text-align:right}.cand-status-col>small{display:block;margin-top:7px;color:#8796a4;font-size:10px}.cand-status{display:inline-flex;padding:7px 10px;border-radius:999px;font-size:10px;font-weight:800;background:#edf5fc;color:#1768a5}.cand-status-entrevista{background:#f3eefb;color:#7052a2}.cand-status-aprovado,.cand-status-contratado{background:#eaf7f0;color:#287854}.cand-status-encerrado{background:#f7eeee;color:#a25359}
+.cand-elegante .candidatura-timeline{margin:0!important;padding:18px 22px!important;border-top:1px solid #edf1f5;border-bottom:1px solid #edf1f5;background:#fbfcfe}
+.cand-elegante .candidatura-timeline>div i{display:grid!important;place-items:center!important;font-size:9px!important}
+.cand-processo-encerrado{display:flex;justify-content:space-between;gap:15px;padding:16px 22px;border-top:1px solid #f0dddd;border-bottom:1px solid #f0dddd;background:#fff8f8;color:#8c5156}.cand-processo-encerrado span{font-size:11px;color:#987276}
+.cand-card-actions{display:flex;justify-content:flex-end;padding:12px 22px}.cand-card-actions button{border:1px solid #c9dcea;border-radius:8px;background:#fff;color:#1769a7;padding:8px 13px;font:700 11px Questrial,Arial,sans-serif;cursor:pointer}.cand-card-actions button:hover{background:#f1f7fc}
+.cand-elegante .entrevista-resumo{margin:14px 22px!important}
+@media(max-width:720px){.cand-page-resumo{grid-template-columns:repeat(2,1fr)}.cand-page-toolbar,.cand-card-head{align-items:flex-start;flex-direction:column}.cand-page-toolbar select{width:100%}.cand-status-col{text-align:left}.cand-processo-encerrado{flex-direction:column}.cand-elegante .candidatura-timeline{overflow-x:auto}}
