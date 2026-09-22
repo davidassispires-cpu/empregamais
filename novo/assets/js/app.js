@@ -1007,3 +1007,19 @@ function sbAtualizarPaineisCandidaturasEM(){if(!["empresa","candidato"].includes
 window.addEventListener("focus",()=>sbAtualizarPaineisCandidaturasEM());
 document.addEventListener("visibilitychange",()=>{if(!document.hidden)sbAtualizarPaineisCandidaturasEM()});
 window.addEventListener("load",()=>{setTimeout(sbAtualizarPaineisCandidaturasEM,900);if(!sbCandidaturasTimerEM)sbCandidaturasTimerEM=setInterval(()=>{if(!document.hidden)sbAtualizarPaineisCandidaturasEM()},12000)});
+
+
+/* EMPREGAMAIS-CANDIDATO-LEGADO-MIGRACAO-AUTH-V1 */
+const _loginCandidatoSupabaseV1=loginCandidato;
+loginCandidato=function(e){
+ e.preventDefault();const email=$("#loginCandEmail").value.trim().toLowerCase(),senha=$("#loginCandSenha").value;
+ if(!email.includes("@"))return msg("#msgLoginCandidato","Informe um e-mail válido.");if(!senha)return msg("#msgLoginCandidato","Informe sua senha.");
+ msg("#msgLoginCandidato","Entrando...");
+ sbLoginAuthCandidatoEM(email,senha).then(auth=>{const antigo=ler("empregaMaisCandidatos").find(x=>String(x.email||"").toLowerCase()===email)||{email};const d=sbSalvarCandidatoLocalEM(sbCandidatoDoAuthEM(auth,antigo));concluirEntradaCandidatoSupabaseEM(d)}).catch(async err=>{
+  const antigo=ler("empregaMaisCandidatos").find(x=>String(x.email||"").toLowerCase()===email&&x.senha===senha);
+  if(antigo&&/invalid login|invalid credentials/i.test(err.message||"")){
+   try{const auth=await sbCadastrarAuthCandidatoEM(email,senha,antigo.nome||"",antigo.telefone||"",antigo.cidade||"");const d=sbSalvarCandidatoLocalEM(sbCandidatoDoAuthEM(auth,antigo));if(!auth?.access_token){msg("#msgLoginCandidato","Sua conta foi migrada. Confirme seu e-mail para entrar.",true);return}concluirEntradaCandidatoSupabaseEM(d);return}catch(mig){console.error("Migração candidato legado:",mig)}
+  }
+  console.error("Login candidato / Supabase:",err);const t=/email not confirmed/i.test(err.message)?"Confirme seu e-mail antes de entrar.":/invalid login|invalid credentials/i.test(err.message)?"E-mail ou senha incorretos.":("Não foi possível entrar: "+err.message);msg("#msgLoginCandidato",t)
+ })
+};
