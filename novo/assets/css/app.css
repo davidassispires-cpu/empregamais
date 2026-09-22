@@ -1284,3 +1284,9 @@ header nav a,header nav button,.menu-drop button{font-size:15px}
 #pagina-perfil-empresa .pv-approved-card h2{font-size:25px}
 #pagina-perfil-empresa .pv-approved-card p{font-size:15px}
 @media(max-width:700px){html{font-size:16px}.page-head h1{font-size:28px}.perfil-wizard-head h1{font-size:28px}#pagina-perfil-empresa .pv-title h1{font-size:27px!important}}
+
+/* Garante que o acompanhamento de verificacao seja uma pagina exclusiva, nunca seguido pelo formulario. */
+#pagina-perfil-empresa.modo-verificacao .perfil-wizard-head,
+#pagina-perfil-empresa.modo-verificacao #perfilProgress,
+#pagina-perfil-empresa.modo-verificacao .perfil-wizard-layout-split{display:none!important}
+#pagina-perfil-empresa.modo-verificacao .perfil-verificacao-em{display:block!important}
