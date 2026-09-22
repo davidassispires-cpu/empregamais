@@ -4735,3 +4735,12 @@ overflow:visible!important
  #pagina-candidatos-empresa .candidatos-empresa-filtro-vaga-pro,#pagina-candidatos-empresa .etapas-tabs-pro{padding-left:18px!important;padding-right:18px!important}
  #pagina-candidatos-empresa .candidato-card-compacto{margin:12px!important}
 }
+
+
+/* EMPREGAMAIS-TODAS-VAGAS-NO-DASHBOARD-V1 */
+#pagina-painel-empresa .empresa-dashboard-vagas-completas{align-items:start}
+#pagina-painel-empresa .empresa-dashboard-vagas-completas .empresa-todas-vagas{margin:0!important;min-width:0}
+#pagina-painel-empresa .empresa-dashboard-vagas-completas .vagas-cab{padding-top:2px}
+#pagina-painel-empresa .empresa-dashboard-vagas-completas .lista-vagas-empresa{margin-top:4px}
+#pagina-painel-empresa .empresa-dashboard-vagas-completas .empresa-box{min-width:0}
+@media(max-width:980px){#pagina-painel-empresa .empresa-dashboard-vagas-completas{grid-template-columns:1fr!important}}
