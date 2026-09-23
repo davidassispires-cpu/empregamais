@@ -5118,3 +5118,111 @@ overflow:visible!important
  #pagina-home .destaque-next{right:0!important}
 }
 
+
+
+/* AREA DA EMPRESA — PAINEL DIREITO PREENCHIDO V5 — 2026-09-23
+   Mantem o formulario intacto e usa todo o painel direito para a apresentacao. */
+#pagina-login-empresa .empresa-login-shell{
+ align-items:stretch!important;
+}
+#pagina-login-empresa .empresa-login-card,
+#pagina-login-empresa .empresa-login-banner{
+ min-height:640px!important;
+ height:auto!important;
+}
+#pagina-login-empresa .empresa-login-banner.empresa-login-beneficios-v4{
+ position:relative!important;
+ display:flex!important;
+ min-width:0!important;
+ overflow:hidden!important;
+ background:
+  radial-gradient(circle at 88% 18%,rgba(255,255,255,.96) 0 7%,transparent 27%),
+  linear-gradient(125deg,#f7fcff 0%,#edf8fb 48%,#d9f0f4 100%)!important;
+}
+#pagina-login-empresa .empresa-login-banner.empresa-login-beneficios-v4:before,
+#pagina-login-empresa .empresa-login-banner.empresa-login-beneficios-v4:after{
+ content:""!important;
+ position:absolute!important;
+ pointer-events:none!important;
+ border:1px solid rgba(8,143,158,.10)!important;
+}
+#pagina-login-empresa .empresa-login-banner.empresa-login-beneficios-v4:before{
+ width:360px!important;height:360px!important;right:-115px!important;top:-90px!important;
+ border-radius:80px!important;background:rgba(25,165,178,.055)!important;transform:rotate(-5deg)!important;
+}
+#pagina-login-empresa .empresa-login-banner.empresa-login-beneficios-v4:after{
+ width:250px!important;height:170px!important;right:45px!important;top:120px!important;
+ border-radius:38px!important;background:rgba(255,255,255,.24)!important;
+}
+#pagina-login-empresa .empresa-banner-content{
+ position:relative!important;z-index:2!important;
+ display:flex!important;flex-direction:column!important;
+ width:100%!important;max-width:none!important;
+ min-height:640px!important;padding:42px 38px 34px!important;
+ box-sizing:border-box!important;
+}
+#pagina-login-empresa .empresa-banner-content h2{
+ max-width:590px!important;margin:20px 0 14px!important;
+ color:#082e54!important;font-size:42px!important;line-height:1.03!important;
+ letter-spacing:-.025em!important;
+}
+#pagina-login-empresa .empresa-banner-content h2 em{color:#0794a2!important}
+#pagina-login-empresa .empresa-banner-content>p{
+ max-width:650px!important;margin:0!important;color:#5d7891!important;font-size:16px!important;line-height:1.55!important;
+}
+#pagina-login-empresa .empresa-kicker{
+ align-self:flex-start!important;background:#daf3f5!important;color:#007c89!important;
+ padding:8px 12px!important;border-radius:8px!important;font-size:10px!important;letter-spacing:.05em!important;
+}
+#pagina-login-empresa .empresa-beneficios-cards{
+ display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;
+ gap:12px!important;width:100%!important;margin-top:24px!important;
+}
+#pagina-login-empresa .empresa-beneficios-cards article{
+ display:flex!important;flex-direction:column!important;min-width:0!important;
+ min-height:184px!important;padding:17px 15px!important;
+ border:1px solid #d8e7ed!important;border-radius:14px!important;
+ background:rgba(255,255,255,.86)!important;box-shadow:0 5px 16px rgba(18,66,88,.035)!important;
+}
+#pagina-login-empresa .empresa-beneficios-cards i{
+ display:grid!important;place-items:center!important;width:40px!important;height:40px!important;
+ margin-bottom:11px!important;border-radius:11px!important;background:#def3f4!important;
+ color:#078b98!important;font-style:normal!important;font-size:17px!important;
+}
+#pagina-login-empresa .empresa-beneficios-cards article:nth-child(2) i{background:#e8f1ff!important;color:#2671b8!important}
+#pagina-login-empresa .empresa-beneficios-cards article:nth-child(3) i{background:#fff1e2!important;color:#d9822b!important}
+#pagina-login-empresa .empresa-beneficios-cards b{color:#082e54!important;font-size:13px!important;line-height:1.18!important}
+#pagina-login-empresa .empresa-beneficios-cards small{display:block!important;margin-top:8px!important;color:#7790a3!important;font-size:10.5px!important;line-height:1.38!important}
+#pagina-login-empresa .empresa-beneficios-cards article:nth-child(n+4){display:none!important}
+#pagina-login-empresa .empresa-beneficios-footer{
+ display:flex!important;align-items:center!important;justify-content:space-between!important;gap:16px!important;
+ margin-top:auto!important;padding:18px 0 0!important;border-top:1px solid rgba(37,104,126,.12)!important;
+}
+#pagina-login-empresa .empresa-beneficios-footer strong{color:#0b4660!important;font-size:13px!important}
+#pagina-login-empresa .empresa-beneficios-footer span{color:#688394!important;font-size:10px!important;text-align:right!important}
+@media(max-width:1050px){
+ #pagina-login-empresa .empresa-login-shell{grid-template-columns:minmax(390px,.9fr) minmax(0,1.1fr)!important}
+ #pagina-login-empresa .empresa-banner-content{padding:34px 28px!important}
+ #pagina-login-empresa .empresa-banner-content h2{font-size:35px!important}
+ #pagina-login-empresa .empresa-beneficios-cards{grid-template-columns:1fr!important}
+ #pagina-login-empresa .empresa-beneficios-cards article{min-height:0!important;display:grid!important;grid-template-columns:40px 1fr!important;column-gap:12px!important;padding:12px!important}
+ #pagina-login-empresa .empresa-beneficios-cards article:nth-child(n+4){display:none!important}
+ #pagina-login-empresa .empresa-beneficios-cards i{grid-row:1/3!important;margin:0!important}
+ #pagina-login-empresa .empresa-beneficios-cards small{margin-top:4px!important}
+}
+@media(max-width:900px){
+ #pagina-login-empresa .empresa-login-shell{grid-template-columns:1fr!important}
+ #pagina-login-empresa .empresa-login-banner.empresa-login-beneficios-v4,
+ #pagina-login-empresa .empresa-banner-content{min-height:auto!important}
+ #pagina-login-empresa .empresa-beneficios-cards{grid-template-columns:repeat(3,minmax(0,1fr))!important}
+ #pagina-login-empresa .empresa-beneficios-cards article{display:flex!important;min-height:165px!important}
+ #pagina-login-empresa .empresa-beneficios-cards article:nth-child(n+4){display:none!important}
+}
+@media(max-width:600px){
+ #pagina-login-empresa .empresa-banner-content{padding:28px 20px!important}
+ #pagina-login-empresa .empresa-banner-content h2{font-size:30px!important}
+ #pagina-login-empresa .empresa-beneficios-cards{grid-template-columns:1fr!important}
+ #pagina-login-empresa .empresa-beneficios-cards article{min-height:0!important}
+ #pagina-login-empresa .empresa-beneficios-footer{align-items:flex-start!important;flex-direction:column!important}
+ #pagina-login-empresa .empresa-beneficios-footer span{text-align:left!important}
+}
