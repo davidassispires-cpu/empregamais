@@ -1,4 +1,4 @@
-<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>EmpregaMais</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Questrial&display=swap" rel="stylesheet"><link rel="stylesheet" href="assets/css/app.css?v=meta-containment-v44-20260923">
+<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>EmpregaMais</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Questrial&display=swap" rel="stylesheet"><link rel="stylesheet" href="assets/css/app.css?v=footer-align-v45-20260923">
 <style id="EMPREGAMAIS-PAINEL-PERFIL-PRO-V20">
 /* Painel empresa: visual corporativo, leve e funcional */
 #pagina-painel-empresa .em-ref-wrap{max-width:1240px!important;padding:16px 24px 46px!important}
@@ -3432,6 +3432,50 @@ body.sessao-candidato .menu-candidato-logado{display:flex!important}
 #pagina-home #listaDestaques .meta-svg svg{width:14px!important;height:14px!important}
 @media(max-width:1180px) and (min-width:701px){
  #pagina-home #listaDestaques .vaga-meta span{font-size:9px!important;padding:0 6px!important;gap:5px!important}
+}
+
+/* RODAPE DOS CARDS — ALINHAMENTO FINAL V45 */
+#pagina-home #listaDestaques .vaga-card-rodape{
+ position:relative!important;
+ height:68px!important;min-height:68px!important;flex:0 0 68px!important;
+ margin-top:auto!important;padding:12px 0 0!important;
+ border-top:1px solid #dce6ec!important;
+ display:grid!important;
+ grid-template-columns:minmax(0,1fr) 116px!important;
+ grid-template-rows:16px 40px!important;
+ column-gap:14px!important;row-gap:0!important;
+ align-items:center!important;
+ box-sizing:border-box!important;
+}
+#pagina-home #listaDestaques .vaga-rodape-salario{
+ grid-column:1!important;grid-row:1/3!important;
+ align-self:center!important;min-width:0!important;
+ display:flex!important;flex-direction:column!important;justify-content:center!important;gap:6px!important;
+}
+#pagina-home #listaDestaques .vaga-rodape-salario>small{
+ margin:0!important;font-size:8px!important;line-height:1!important;font-weight:750!important;
+ letter-spacing:.06em!important;color:#72879a!important;
+}
+#pagina-home #listaDestaques .vaga-rodape-salario .salario-card{
+ margin:0!important;font-size:18px!important;line-height:1.08!important;font-weight:800!important;color:#062f63!important;
+}
+#pagina-home #listaDestaques .vaga-salario-data{
+ position:absolute!important;
+ right:0!important;bottom:40px!important;
+ width:116px!important;height:16px!important;min-height:16px!important;
+ margin:0!important;padding:0!important;
+ display:flex!important;align-items:flex-start!important;justify-content:center!important;
+ z-index:3!important;
+}
+#pagina-home #listaDestaques .vaga-salario-data .data-card{
+ width:100%!important;margin:0!important;
+ font-size:8.5px!important;line-height:1!important;font-weight:500!important;
+ color:#71889a!important;text-align:center!important;white-space:nowrap!important;
+}
+#pagina-home #listaDestaques .vaga-ver-btn{
+ grid-column:2!important;grid-row:2!important;
+ width:116px!important;min-width:116px!important;height:38px!important;
+ margin:0!important;align-self:end!important;
 }
 </style></head><body><header class="topo"><div class="topo-inner"><button type="button" class="marca" data-rota="home"><span class="marca-icone">E+</span><span class="marca-nome">Emprega<span>Mais</span></span></button><nav class="menu menu-publico"><button type="button" data-rota="home">Buscar vagas</button><button type="button" data-rota="como-funciona">Como funciona</button>
 <div class="menu-drop menu-drop-empresa"><button type="button" class="menu-drop-gatilho login-card-topo login-card-empresa" onclick="alternarMenuTopo('empresa',event)"><span class="login-card-icone" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 21V5h11v16M15 10h5v11M8 9h3M8 13h3M8 17h3M2 21h20"/></svg></span><span class="login-card-texto"><b>Login Empresa</b><small>Acesse seu painel</small></span><span class="login-card-seta">›</span></button><div class="menu-drop-painel menu-empresa-publico"><div class="menu-drop-titulo">PARA EMPRESAS</div><div class="menu-empresa-intro"><strong>Encontre os talentos certos</strong><span>Publique vagas e gerencie seus processos seletivos em um só lugar.</span></div><button class="menu-empresa-link" onclick="rotaMenuTopo('como-funciona')"><b>Como funciona</b><span>Conheça a plataforma para empresas</span></button><button class="menu-empresa-link" onclick="rotaMenuTopo('planos')"><b>Planos e preços</b><span>Veja os recursos disponíveis</span></button><div class="menu-drop-separador"></div><button class="menu-empresa-login" onclick="rotaMenuTopo('login-empresa')">Entrar como empresa</button><button class="menu-empresa-cadastro" onclick="rotaMenuTopo('cadastro-empresa')">Cadastrar empresa</button></div></div>
