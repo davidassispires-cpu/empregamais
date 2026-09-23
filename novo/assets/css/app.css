@@ -5151,3 +5151,22 @@ overflow:visible!important
 #pagina-vaga .hero-50-bloco .hero-50mais{display:inline-flex!important;align-items:center!important;justify-content:center!important;gap:6px!important;min-width:0!important;width:auto!important;height:35px!important;padding:0 13px!important;border:1px solid #ddd6f1!important;border-radius:9px!important;background:#f6f3fc!important;color:#6d55aa!important;font-size:11px!important;font-weight:800!important}
 @media(max-width:700px){#pagina-vaga .vaga-hero-card{padding:20px!important}#pagina-vaga .vaga-hero-identidade{grid-template-columns:74px minmax(0,1fr)!important;gap:14px!important;align-items:start!important}#pagina-vaga .vaga-hero-logo{width:74px!important;height:74px!important;border-radius:13px!important}#pagina-vaga .vaga-hero-texto h1{font-size:22px!important}#pagina-vaga .vaga-hero-selos{grid-column:1/-1!important}.hero-50-bloco>small{display:none!important}}
 
+
+
+/* VAGA — CARDS/SELOS REFINADOS V22 */
+#pagina-vaga .vaga-hero-card{padding:32px 34px!important;border-top-width:3px!important;box-shadow:0 14px 38px rgba(17,56,79,.075)!important}
+#pagina-vaga .vaga-hero-identidade{grid-template-columns:122px minmax(0,1fr)!important;gap:28px!important}
+#pagina-vaga .vaga-hero-logo{width:118px!important;height:118px!important;padding:13px!important;border-radius:18px!important;box-shadow:0 7px 22px rgba(18,63,88,.065)!important}
+#pagina-vaga .vaga-hero-texto h1{font-size:32px!important;margin-bottom:15px!important}
+#pagina-vaga .vaga-hero-empresa{gap:12px!important;font-size:15px!important}
+#pagina-vaga .em-verificado-wrap{min-height:32px!important;padding:4px 11px!important;border-color:#b9dfd0!important;border-radius:8px!important;background:#f0faf6!important}
+#pagina-vaga .vaga-hero-selos{gap:10px!important;margin-top:20px!important}
+#pagina-vaga .vaga-hero-selos>span:not(.hero-50-bloco){min-height:38px!important;padding:0 14px!important;border-radius:10px!important;font-size:11.5px!important;box-shadow:0 3px 9px rgba(21,59,80,.035)!important}
+#pagina-vaga .vaga-hero-selos>span:first-child:not(.hero-50-bloco){background:#f2f7fb!important;border-color:#d3e0e8!important;color:#365a70!important}
+#pagina-vaga .vaga-hero-selos .hero-destaque{background:#fff9ea!important;border-color:#e8d49b!important;color:#82600b!important}
+#pagina-vaga .vaga-hero-selos .hero-urgente{background:#fff2f3!important;border-color:#edc9cd!important;color:#a93c47!important}
+#pagina-vaga .vaga-hero-selos .selo-icone{width:22px!important;height:22px!important;border-radius:7px!important;font-size:13px!important}
+#pagina-vaga .hero-50-bloco{gap:7px!important;padding:4px 5px 4px 10px!important;border:1px solid #ddd6f1!important;border-radius:10px!important;background:#faf8fe!important}
+#pagina-vaga .hero-50-bloco>small{font-size:9px!important;color:#6f7f8b!important}
+#pagina-vaga .hero-50-bloco .hero-50mais{height:30px!important;padding:0 11px!important;border:0!important;border-radius:7px!important;background:#eee8fa!important;color:#624aa1!important}
+@media(max-width:700px){#pagina-vaga .vaga-hero-card{padding:20px!important}#pagina-vaga .vaga-hero-identidade{grid-template-columns:74px minmax(0,1fr)!important;gap:14px!important}#pagina-vaga .vaga-hero-selos{gap:7px!important}#pagina-vaga .vaga-hero-selos>span:not(.hero-50-bloco){min-height:34px!important;padding:0 10px!important;font-size:10px!important}#pagina-vaga .hero-50-bloco{padding:3px!important}}
