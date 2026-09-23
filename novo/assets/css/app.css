@@ -5121,3 +5121,12 @@ overflow:visible!important
 #pagina-painel-empresa .emp-open-vagas-pagination b{color:#456476!important;font-weight:800!important}
 @media(max-width:900px){#pagina-painel-empresa .emp-open-vagas-grid{grid-template-columns:1fr!important}}
 @media(max-width:600px){#pagina-painel-empresa .emp-open-vagas-head{align-items:flex-start!important;flex-direction:column!important}#pagina-painel-empresa .emp-open-vaga-actions{grid-template-columns:1fr!important}#pagina-painel-empresa .emp-open-vagas-pagination{align-items:flex-start!important;flex-direction:column!important}}
+
+/* CANDIDATO PREMIUM REFINO V3 */
+#pagina-painel-candidato.cand-dashboard-premium .cand-side-user{padding-top:24px!important;padding-right:14px!important;display:grid!important;grid-template-columns:46px minmax(0,1fr)!important;align-items:start!important;gap:11px!important}
+#pagina-painel-candidato.cand-dashboard-premium .cand-side-user>div{min-width:0!important;padding-right:0!important}
+#pagina-painel-candidato.cand-dashboard-premium .cand-side-user b{display:block!important;max-width:100%!important;white-space:nowrap!important;overflow:hidden!important;text-overflow:ellipsis!important}
+#pagina-painel-candidato.cand-dashboard-premium .cand-side-user:after{top:8px!important;right:9px!important;padding:3px 7px!important;font-size:8px!important;line-height:1.1!important;z-index:2!important}
+#pagina-painel-candidato.cand-dashboard-premium .cand-dashboard-hero-pro{background:linear-gradient(118deg,#2f88b4 0%,#4199c0 54%,#55a9cb 100%)!important;border-color:#bcd9e8!important;box-shadow:0 14px 34px rgba(38,125,165,.14)!important}
+#pagina-painel-candidato.cand-dashboard-premium .cand-hero-copy-pro>span,#pagina-painel-candidato.cand-dashboard-premium .cand-hero-copy-pro h1,#pagina-painel-candidato.cand-dashboard-premium .cand-hero-copy-pro p{color:#fff!important}
+#pagina-painel-candidato.cand-dashboard-premium .cand-hero-beneficios{background:rgba(255,255,255,.075)!important;border-color:rgba(255,255,255,.28)!important}
