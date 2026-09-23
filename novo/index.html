@@ -1,4 +1,4 @@
-<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>EmpregaMais</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Questrial&display=swap" rel="stylesheet"><link rel="stylesheet" href="assets/css/app.css?v=contratacao-urgente-v48-20260923">
+<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>EmpregaMais</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Questrial&display=swap" rel="stylesheet"><link rel="stylesheet" href="assets/css/app.css?v=sidebar-panel-fix-v48-20260923">
 <style id="EMPREGAMAIS-PAINEL-PERFIL-PRO-V20">
 /* Painel empresa: visual corporativo, leve e funcional */
 #pagina-painel-empresa .em-ref-wrap{max-width:1240px!important;padding:16px 24px 46px!important}
@@ -3576,6 +3576,45 @@ body.sessao-candidato .menu-candidato-logado{display:flex!important}
 #pagina-home #listaDestaques .portal-vaga-nova.vaga-urgente .vaga-identidade h3,
 #pagina-home #listaDestaques .portal-vaga-nova.vaga-urgente .salario-card{
  color:#062f63!important;
+}
+
+/* PAINEL RECRUTADOR — SIDEBAR CONTIDA ABAIXO DO CABECALHO V48 */
+#pagina-painel-empresa{overflow:visible!important}
+#pagina-painel-empresa .emp-dash{
+ position:relative!important;
+ display:grid!important;
+ grid-template-columns:270px minmax(0,1fr)!important;
+ align-items:start!important;
+ width:100%!important;
+ min-height:calc(100vh - 80px)!important;
+}
+#pagina-painel-empresa .emp-dash-side{
+ position:sticky!important;
+ top:80px!important;
+ left:auto!important;
+ bottom:auto!important;
+ width:270px!important;
+ height:calc(100vh - 80px)!important;
+ max-height:calc(100vh - 80px)!important;
+ overflow-y:auto!important;
+ overflow-x:hidden!important;
+ z-index:20!important;
+ box-sizing:border-box!important;
+ align-self:start!important;
+}
+#pagina-painel-empresa .emp-dash-main{
+ grid-column:2!important;
+ width:100%!important;
+ min-width:0!important;
+ margin:0!important;
+ box-sizing:border-box!important;
+}
+#pagina-painel-empresa .emp-dash-side::-webkit-scrollbar{width:5px!important}
+#pagina-painel-empresa .emp-dash-side::-webkit-scrollbar-thumb{background:#d7e3e9!important;border-radius:8px!important}
+@media(max-width:900px){
+ #pagina-painel-empresa .emp-dash{display:block!important}
+ #pagina-painel-empresa .emp-dash-side{position:relative!important;top:auto!important;width:100%!important;height:auto!important;max-height:none!important}
+ #pagina-painel-empresa .emp-dash-main{width:100%!important}
 }
 </style></head><body><header class="topo"><div class="topo-inner"><button type="button" class="marca" data-rota="home"><span class="marca-icone">E+</span><span class="marca-nome">Emprega<span>Mais</span></span></button><nav class="menu menu-publico"><button type="button" data-rota="home">Buscar vagas</button><button type="button" data-rota="como-funciona">Como funciona</button>
 <div class="menu-drop menu-drop-empresa"><button type="button" class="menu-drop-gatilho login-card-topo login-card-empresa" onclick="alternarMenuTopo('empresa',event)"><span class="login-card-icone" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 21V5h11v16M15 10h5v11M8 9h3M8 13h3M8 17h3M2 21h20"/></svg></span><span class="login-card-texto"><b>Login Empresa</b><small>Acesse seu painel</small></span><span class="login-card-seta">›</span></button><div class="menu-drop-painel menu-empresa-publico"><div class="menu-drop-titulo">PARA EMPRESAS</div><div class="menu-empresa-intro"><strong>Encontre os talentos certos</strong><span>Publique vagas e gerencie seus processos seletivos em um só lugar.</span></div><button class="menu-empresa-link" onclick="rotaMenuTopo('como-funciona')"><b>Como funciona</b><span>Conheça a plataforma para empresas</span></button><button class="menu-empresa-link" onclick="rotaMenuTopo('planos')"><b>Planos e preços</b><span>Veja os recursos disponíveis</span></button><div class="menu-drop-separador"></div><button class="menu-empresa-login" onclick="rotaMenuTopo('login-empresa')">Entrar como empresa</button><button class="menu-empresa-cadastro" onclick="rotaMenuTopo('cadastro-empresa')">Cadastrar empresa</button></div></div>
