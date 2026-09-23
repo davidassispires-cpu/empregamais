@@ -1,4 +1,4 @@
-<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>EmpregaMais</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Questrial&display=swap" rel="stylesheet"><link rel="stylesheet" href="assets/css/app.css?v=candidatos-modal-v14-20260923">
+<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>EmpregaMais</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Questrial&display=swap" rel="stylesheet"><link rel="stylesheet" href="assets/css/app.css?v=andamento-popup-v15-20260923">
 <style id="EMPREGAMAIS-PAINEL-PERFIL-PRO-V20">
 /* Painel empresa: visual corporativo, leve e funcional */
 #pagina-painel-empresa .em-ref-wrap{max-width:1240px!important;padding:16px 24px 46px!important}
@@ -2227,6 +2227,69 @@ body.recruta-modal-aberto{overflow:hidden!important}
  .recruta-andamento-modal-em{padding:10px!important}
  .recruta-andamento-modal-dialog{width:100%!important;max-height:94vh!important;border-radius:14px!important}
  .recruta-andamento-modal-body{max-height:calc(94vh - 100px)!important;padding:16px!important}
+}
+
+/* POPUP ANDAMENTO — CENTRAL PREMIUM V15 — 2026-09-23 */
+.recruta-andamento-modal-em{
+ position:fixed!important;inset:0!important;z-index:100000!important;
+ display:flex!important;align-items:center!important;justify-content:center!important;
+ padding:28px!important;
+}
+.recruta-andamento-modal-backdrop{
+ position:absolute!important;inset:0!important;background:rgba(8,29,47,.55)!important;
+ backdrop-filter:blur(4px)!important;-webkit-backdrop-filter:blur(4px)!important;
+}
+.recruta-andamento-modal-dialog{
+ position:relative!important;z-index:2!important;
+ width:min(880px,calc(100vw - 56px))!important;max-height:88vh!important;
+ margin:auto!important;overflow:hidden!important;
+ border:1px solid #d6e3eb!important;border-radius:18px!important;background:#fff!important;
+ box-shadow:0 30px 90px rgba(4,28,47,.28)!important;
+ transform:none!important;
+}
+.recruta-andamento-modal-dialog>header{
+ display:flex!important;align-items:flex-start!important;justify-content:space-between!important;
+ padding:22px 24px 18px!important;background:#fff!important;border-bottom:1px solid #e5edf2!important;
+}
+.recruta-andamento-modal-dialog>header small{display:block!important;font-size:9px!important;font-weight:600!important;letter-spacing:.12em!important;color:#07869a!important}
+.recruta-andamento-modal-dialog>header h3{margin:5px 0 4px!important;font-size:20px!important;font-weight:650!important;color:#082f50!important}
+.recruta-andamento-modal-dialog>header p{margin:0!important;font-size:11px!important;color:#647f92!important}
+.recruta-andamento-modal-dialog>header button{
+ flex:0 0 36px!important;width:36px!important;height:36px!important;padding:0!important;
+ display:grid!important;place-items:center!important;border:1px solid #d7e3ea!important;border-radius:10px!important;
+ background:#f8fbfd!important;color:#42657b!important;font-size:21px!important;font-weight:300!important;cursor:pointer!important;
+}
+.recruta-andamento-modal-body{
+ max-height:calc(88vh - 96px)!important;overflow-y:auto!important;overflow-x:hidden!important;
+ padding:22px 24px 26px!important;background:#fbfdfe!important;
+}
+.recruta-andamento-modal-body .recruta-modal-processo{width:100%!important}
+.recruta-andamento-modal-body .recruta-processo-head{margin-top:0!important}
+.recruta-andamento-modal-body .recruta-processo-timeline,
+.recruta-andamento-modal-body .recruta-processo-linha{
+ width:100%!important;max-width:none!important;
+}
+.recruta-andamento-modal-body .recruta-cand-info{
+ display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:10px!important;margin-top:18px!important;
+}
+.recruta-andamento-modal-body .recruta-cand-info>div{
+ min-height:92px!important;padding:14px!important;border:1px solid #dce7ed!important;border-radius:12px!important;background:#fff!important;
+}
+.recruta-andamento-modal-body .recruta-cand-actions{
+ display:grid!important;grid-template-columns:repeat(5,minmax(0,1fr))!important;gap:8px!important;margin-top:14px!important;
+}
+.recruta-andamento-modal-body .recruta-cand-actions .btn{
+ width:100%!important;min-width:0!important;height:40px!important;padding:0 8px!important;
+ border-radius:9px!important;font-size:10px!important;font-weight:500!important;
+}
+body.recruta-modal-aberto{overflow:hidden!important}
+@media(max-width:700px){
+ .recruta-andamento-modal-em{padding:10px!important}
+ .recruta-andamento-modal-dialog{width:100%!important;max-height:94vh!important;border-radius:14px!important}
+ .recruta-andamento-modal-dialog>header{padding:18px!important}
+ .recruta-andamento-modal-body{max-height:calc(94vh - 90px)!important;padding:16px!important}
+ .recruta-andamento-modal-body .recruta-cand-info{grid-template-columns:1fr!important}
+ .recruta-andamento-modal-body .recruta-cand-actions{grid-template-columns:repeat(2,minmax(0,1fr))!important}
 }
 </style></head><body><header class="topo"><div class="topo-inner"><button type="button" class="marca" data-rota="home"><span class="marca-icone">E+</span><span class="marca-nome">Emprega<span>Mais</span></span></button><nav class="menu menu-publico"><button type="button" data-rota="home">Buscar vagas</button><button type="button" data-rota="como-funciona">Como funciona</button>
 <div class="menu-drop menu-drop-empresa"><button type="button" class="menu-drop-gatilho login-card-topo login-card-empresa" onclick="alternarMenuTopo('empresa',event)"><span class="login-card-icone" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 21V5h11v16M15 10h5v11M8 9h3M8 13h3M8 17h3M2 21h20"/></svg></span><span class="login-card-texto"><b>Login Empresa</b><small>Acesse seu painel</small></span><span class="login-card-seta">›</span></button><div class="menu-drop-painel menu-empresa-publico"><div class="menu-drop-titulo">PARA EMPRESAS</div><div class="menu-empresa-intro"><strong>Encontre os talentos certos</strong><span>Publique vagas e gerencie seus processos seletivos em um só lugar.</span></div><button class="menu-empresa-link" onclick="rotaMenuTopo('como-funciona')"><b>Como funciona</b><span>Conheça a plataforma para empresas</span></button><button class="menu-empresa-link" onclick="rotaMenuTopo('planos')"><b>Planos e preços</b><span>Veja os recursos disponíveis</span></button><div class="menu-drop-separador"></div><button class="menu-empresa-login" onclick="rotaMenuTopo('login-empresa')">Entrar como empresa</button><button class="menu-empresa-cadastro" onclick="rotaMenuTopo('cadastro-empresa')">Cadastrar empresa</button></div></div>
