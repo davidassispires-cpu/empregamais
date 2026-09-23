@@ -1557,7 +1557,8 @@ function abrirMenuVagaEM(ev,id){
  '<button type="button" onclick="fecharMenuVagaEM();editarVaga(\''+id+'\')"><i class="editar">✎</i><span><b>Editar vaga</b><small>Alterar informações da oportunidade</small></span></button>'+
  '<button type="button" onclick="alternarRecursoVagaEM(\''+id+'\',\'destaque\')"><i class="dest">★</i><span><b>'+(v.destaque?'Retirar destaque':'Adicionar destaque')+'</b><small>'+(v.destaque?'A vaga deixará de receber destaque':'Dar mais visibilidade à oportunidade')+'</small></span></button>'+
  '<button type="button" onclick="alternarRecursoVagaEM(\''+id+'\',\'urgente\')"><i class="urg">⚡</i><span><b>'+(v.urgente?'Retirar urgência':'Marcar como urgente')+'</b><small>'+(v.urgente?'Remover sinalização de urgência':'Sinalizar contratação prioritária')+'</small></span></button>'+
- '<button type="button" onclick="alternarRecursoVagaEM(\''+id+'\',\'confidencial\')"><i class="conf">◉</i><span><b>'+(v.confidencial?'Retirar confidencial':'Tornar confidencial')+'</b><small>'+(v.confidencial?'Voltar a identificar a empresa':'Ocultar a identificação da empresa')+'</small></span></button>';
+ '<button type="button" onclick="alternarRecursoVagaEM(\''+id+'\',\'confidencial\')"><i class="conf">◉</i><span><b>'+(v.confidencial?'Retirar confidencial':'Tornar confidencial')+'</b><small>'+(v.confidencial?'Voltar a identificar a empresa':'Ocultar a identificação da empresa')+'</small></span></button>'+
+ (v.status!=='encerrada'?'<button type="button" class="encerrar" onclick="encerrarProcessoVagaEM(\''+id+'\')"><i>×</i><span><b>Encerrar processo seletivo</b><small>Finalizar esta vaga e interromper novas candidaturas</small></span></button>':'<button type="button" class="encerrada" disabled><i>✓</i><span><b>Processo seletivo encerrado</b><small>Esta vaga não recebe mais candidaturas</small></span></button>');
  document.body.appendChild(box);
  const r=ev.currentTarget.getBoundingClientRect(),w=box.offsetWidth||300,left=Math.min(innerWidth-w-12,Math.max(12,r.right-w)),top=Math.min(innerHeight-(box.offsetHeight||330)-12,Math.max(12,r.bottom+7));
  box.style.left=left+'px';box.style.top=top+'px';
@@ -1565,6 +1566,19 @@ function abrirMenuVagaEM(ev,id){
  window.addEventListener('scroll',window._empMenuVagaScroll,true);
  window.addEventListener('resize',window._empMenuVagaScroll);
  setTimeout(()=>document.addEventListener('click',fecharMenuVagaEM,{once:true}),0)
+}
+async function encerrarProcessoVagaEM(id){
+ fecharMenuVagaEM();
+ const v=vagasDaEmpresa().find(x=>String(x.id)===String(id));if(!v)return;
+ if(v.status==='encerrada'){alert('Este processo seletivo já está encerrado.');return}
+ if(!confirm('Encerrar o processo seletivo de “'+tituloVaga(v)+'”?\n\nA vaga deixará de receber novas candidaturas. Esta ação não republica a vaga automaticamente.'))return;
+ try{
+  const token=await sbGarantirSessaoEM();if(!token)throw new Error('Sua sessão expirou. Entre novamente.');
+  await sbJsonEM(EMPREGAMAIS_SUPABASE_URL+'/rest/v1/vagas?id=eq.'+encodeURIComponent(id),{method:'PATCH',headers:Object.assign(sbHeadersEM(token),{'Prefer':'return=minimal'}),body:JSON.stringify({status:'encerrada',editado_em:new Date().toISOString()})});
+  const locais=ler('empregaMaisVagas'),i=locais.findIndex(x=>String(x.id)===String(id));if(i>=0){locais[i].status='encerrada';locais[i].editadoEm=new Date().toISOString();gravar('empregaMaisVagas',locais)}
+  if(typeof renderizarPainelEmpresa==='function')renderizarPainelEmpresa();
+  alert('Processo seletivo encerrado com sucesso.');
+ }catch(err){console.error('Encerrar processo seletivo:',err);alert('Não foi possível encerrar o processo seletivo: '+err.message)}
 }
 async function alternarRecursoVagaEM(id,recurso){
  const v=vagasDaEmpresa().find(x=>String(x.id)===String(id));if(!v||!['destaque','urgente','confidencial'].includes(recurso))return;
