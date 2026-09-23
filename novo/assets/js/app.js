@@ -1428,7 +1428,7 @@ function alternarProcessoCandidatoEmpresaEM(btn){const card=btn?.closest('.recru
 
 
 /* EMPREGAMAIS-MENU-VAGA-RECURSOS-V1 */
-function fecharMenuVagaEM(){document.querySelectorAll('.emp-vaga-popover').forEach(x=>x.remove())}
+function fecharMenuVagaEM(){document.querySelectorAll('.emp-vaga-popover').forEach(x=>x.remove());if(window._empMenuVagaScroll){window.removeEventListener('scroll',window._empMenuVagaScroll,true);window.removeEventListener('resize',window._empMenuVagaScroll);window._empMenuVagaScroll=null}}
 function abrirMenuVagaEM(ev,id){
  ev?.preventDefault();ev?.stopPropagation();fecharMenuVagaEM();
  const v=vagasDaEmpresa().find(x=>String(x.id)===String(id));if(!v)return;
@@ -1441,6 +1441,9 @@ function abrirMenuVagaEM(ev,id){
  document.body.appendChild(box);
  const r=ev.currentTarget.getBoundingClientRect(),w=box.offsetWidth||300,left=Math.min(innerWidth-w-12,Math.max(12,r.right-w)),top=Math.min(innerHeight-(box.offsetHeight||330)-12,Math.max(12,r.bottom+7));
  box.style.left=left+'px';box.style.top=top+'px';
+ window._empMenuVagaScroll=()=>fecharMenuVagaEM();
+ window.addEventListener('scroll',window._empMenuVagaScroll,true);
+ window.addEventListener('resize',window._empMenuVagaScroll);
  setTimeout(()=>document.addEventListener('click',fecharMenuVagaEM,{once:true}),0)
 }
 async function alternarRecursoVagaEM(id,recurso){
