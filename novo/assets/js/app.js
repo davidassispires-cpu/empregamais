@@ -789,13 +789,41 @@ document.addEventListener('click',function(e){
 /* EMPREGAMAIS — DESTAQUES — RENDERIZAÇÃO E NAVEGAÇÃO V7 */
 let indiceDestaquesEM=0;
 function renderDestaquesEM(lista){
- const el=document.getElementById('listaDestaques');
- if(!el)return;
- const arr=Array.isArray(lista)?lista:[];
- const total=arr.length;
+ const el=document.getElementById('listaDestaques'); if(!el)return;
+ const arr=Array.isArray(lista)?lista:[], total=arr.length;
  if(indiceDestaquesEM>Math.max(0,total-4))indiceDestaquesEM=0;
  const vis=arr.slice(indiceDestaquesEM,indiceDestaquesEM+4);
- el.innerHTML=vis.length?vis.map(cardVagaPortal).join(''):'<div class="vagas-vazio">As vagas em destaque aparecerão aqui.</div>';
+ el.innerHTML='';
+ el.style.setProperty('display','grid','important');
+ el.style.setProperty('grid-template-columns','repeat(4,minmax(0,1fr))','important');
+ el.style.setProperty('grid-template-rows','370px','important');
+ el.style.setProperty('grid-auto-flow','row','important');
+ el.style.setProperty('gap','16px','important');
+ el.style.setProperty('width','100%','important');
+ el.style.setProperty('height','370px','important');
+ el.style.setProperty('overflow','hidden','important');
+ el.style.setProperty('position','relative','important');
+ vis.forEach((v,i)=>{
+   const holder=document.createElement('div');
+   holder.innerHTML=cardVagaPortal(v);
+   const card=holder.firstElementChild;
+   if(!card)return;
+   card.style.setProperty('position','relative','important');
+   card.style.setProperty('display','flex','important');
+   card.style.setProperty('grid-column',String(i+1),'important');
+   card.style.setProperty('grid-row','1','important');
+   card.style.setProperty('width','auto','important');
+   card.style.setProperty('min-width','0','important');
+   card.style.setProperty('max-width','none','important');
+   card.style.setProperty('height','370px','important');
+   card.style.setProperty('min-height','370px','important');
+   card.style.setProperty('max-height','370px','important');
+   card.style.setProperty('margin','0','important');
+   card.style.setProperty('inset','auto','important');
+   card.style.setProperty('float','none','important');
+   card.style.setProperty('transform','none','important');
+   el.appendChild(card);
+ });
 }
 function moverDestaques(dir){
  const el=document.getElementById('listaDestaques');if(!el)return;
