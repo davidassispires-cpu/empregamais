@@ -816,7 +816,7 @@ function renderDestaquesEM(lista){
  const el=document.getElementById('listaDestaques');if(!el)return;
  const arr=Array.isArray(lista)?lista:[],total=arr.length;
  if(indiceDestaquesEM>Math.max(0,total-4))indiceDestaquesEM=0;
- const qtd=window.innerWidth<=700?1:window.innerWidth<=1050?4:6;
+ const qtd=window.innerWidth<=700?1:window.innerWidth<=1050?2:4;
  let vis=[];for(let i=0;i<Math.min(qtd,total);i++)vis.push(arr[(indiceDestaquesEM+i)%total]);
  el.innerHTML=vis.map(cardVagaPortal).join('');
  el.dataset.quantidade=String(vis.length);
