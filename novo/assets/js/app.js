@@ -1461,3 +1461,26 @@ async function alternarRecursoVagaEM(id,recurso){
  }catch(err){console.error('Alteração de recurso da vaga:',err);alert(err.message||'Não foi possível atualizar este recurso agora.')}
 }
 document.addEventListener('keydown',e=>{if(e.key==='Escape')fecharMenuVagaEM()});
+
+
+/* EMPREGAMAIS-EDITAR-VAGA-FIX-V1 */
+function editarVaga(id){
+ if(papelAtual()!=='empresa'){irPara('login-empresa');return}
+ const vaga=vagasDaEmpresa().find(v=>String(v.id)===String(id));
+ if(!vaga){alert('Não foi possível localizar esta vaga para edição.');return}
+ sessionStorage.setItem('vagaEdicao',String(vaga.id));
+ irPara('publicar');
+ setTimeout(()=>{
+  const set=(id,val)=>{const el=document.getElementById(id);if(el&&val!==undefined&&val!==null)el.value=val};
+  set('empresaVaga',vaga.empresa||sessionStorage.getItem('empresaNome')||'');
+  set('cargoVaga',vaga.cargo);set('areaVaga',vaga.area);set('contratoVaga',vaga.contrato||vaga.tipoContrato);
+  set('modalidadeVaga',vaga.modalidade);set('quantidadeVagas',vaga.quantidadeContratacoes||vaga.quantidadeVagas||'1');
+  set('cepVaga',vaga.cep);set('estadoVaga',vaga.estado);set('cidadeVaga',vaga.cidade);
+  set('escolaridadeVaga',vaga.escolaridade);set('experienciaVaga',vaga.experiencia);set('jornadaVaga',vaga.jornada);
+  set('pcdVaga',vaga.pcd);set('salarioVaga',vaga.salario);set('descricaoVaga',vaga.descricao);set('requisitosVaga',vaga.requisitos);
+  const sc=document.getElementById('salarioCombinarVaga');if(sc)sc.checked=!!vaga.salarioCombinar||String(vaga.salario||'').toLowerCase().includes('combinar');
+  if(typeof configurarSalarioVaga==='function')configurarSalarioVaga();
+  if(typeof atualizarOpcoesPlano==='function')atualizarOpcoesPlano();
+  if(typeof mostrarEtapa==='function')mostrarEtapa(1);
+ },80)
+}
