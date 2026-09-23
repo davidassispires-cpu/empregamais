@@ -1,4 +1,4 @@
-<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>EmpregaMais</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Questrial&display=swap" rel="stylesheet"><link rel="stylesheet" href="assets/css/app.css?v=meta-emphasis-v46-20260923">
+<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>EmpregaMais</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Questrial&display=swap" rel="stylesheet"><link rel="stylesheet" href="assets/css/app.css?v=meta-no-cut-v47-20260923">
 <style id="EMPREGAMAIS-PAINEL-PERFIL-PRO-V20">
 /* Painel empresa: visual corporativo, leve e funcional */
 #pagina-painel-empresa .em-ref-wrap{max-width:1240px!important;padding:16px 24px 46px!important}
@@ -3507,6 +3507,37 @@ body.sessao-candidato .menu-candidato-logado{display:flex!important}
 #pagina-home #listaDestaques .meta-svg svg{width:16px!important;height:16px!important}
 @media(max-width:1180px) and (min-width:701px){
  #pagina-home #listaDestaques .vaga-meta span{font-size:10px!important;padding:0 7px!important}
+}
+
+/* METADADOS — SEM CORTE DE TEXTO V47 */
+#pagina-home #listaDestaques .vaga-meta{
+ grid-template-columns:minmax(0,1.55fr) minmax(0,1fr) minmax(0,1.18fr)!important;
+ gap:5px!important;
+ overflow:visible!important;
+}
+#pagina-home #listaDestaques .vaga-meta span{
+ height:38px!important;min-height:38px!important;
+ padding:0 7px!important;
+ gap:5px!important;
+ font-size:9.6px!important;
+ line-height:1!important;
+ white-space:nowrap!important;
+ overflow:visible!important;
+ text-overflow:clip!important;
+ letter-spacing:-.02em!important;
+}
+#pagina-home #listaDestaques .vaga-meta-local{
+ font-size:9.7px!important;
+}
+#pagina-home #listaDestaques .meta-svg{
+ width:14px!important;height:14px!important;flex:0 0 14px!important;
+}
+#pagina-home #listaDestaques .meta-svg svg{width:14px!important;height:14px!important}
+@media(max-width:1180px) and (min-width:701px){
+ #pagina-home #listaDestaques .vaga-meta{
+  grid-template-columns:minmax(0,1.6fr) minmax(0,.95fr) minmax(0,1.15fr)!important;
+ }
+ #pagina-home #listaDestaques .vaga-meta span{font-size:9.1px!important;padding:0 6px!important;gap:4px!important}
 }
 </style></head><body><header class="topo"><div class="topo-inner"><button type="button" class="marca" data-rota="home"><span class="marca-icone">E+</span><span class="marca-nome">Emprega<span>Mais</span></span></button><nav class="menu menu-publico"><button type="button" data-rota="home">Buscar vagas</button><button type="button" data-rota="como-funciona">Como funciona</button>
 <div class="menu-drop menu-drop-empresa"><button type="button" class="menu-drop-gatilho login-card-topo login-card-empresa" onclick="alternarMenuTopo('empresa',event)"><span class="login-card-icone" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 21V5h11v16M15 10h5v11M8 9h3M8 13h3M8 17h3M2 21h20"/></svg></span><span class="login-card-texto"><b>Login Empresa</b><small>Acesse seu painel</small></span><span class="login-card-seta">›</span></button><div class="menu-drop-painel menu-empresa-publico"><div class="menu-drop-titulo">PARA EMPRESAS</div><div class="menu-empresa-intro"><strong>Encontre os talentos certos</strong><span>Publique vagas e gerencie seus processos seletivos em um só lugar.</span></div><button class="menu-empresa-link" onclick="rotaMenuTopo('como-funciona')"><b>Como funciona</b><span>Conheça a plataforma para empresas</span></button><button class="menu-empresa-link" onclick="rotaMenuTopo('planos')"><b>Planos e preços</b><span>Veja os recursos disponíveis</span></button><div class="menu-drop-separador"></div><button class="menu-empresa-login" onclick="rotaMenuTopo('login-empresa')">Entrar como empresa</button><button class="menu-empresa-cadastro" onclick="rotaMenuTopo('cadastro-empresa')">Cadastrar empresa</button></div></div>
