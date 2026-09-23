@@ -1,4 +1,4 @@
-<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>EmpregaMais</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Questrial&display=swap" rel="stylesheet"><link rel="stylesheet" href="assets/css/app.css?v=destaques-editorial-v32-20260923">
+<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>EmpregaMais</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Questrial&display=swap" rel="stylesheet"><link rel="stylesheet" href="assets/css/app.css?v=destaques-3x2-v33-20260923">
 <style id="EMPREGAMAIS-PAINEL-PERFIL-PRO-V20">
 /* Painel empresa: visual corporativo, leve e funcional */
 #pagina-painel-empresa .em-ref-wrap{max-width:1240px!important;padding:16px 24px 46px!important}
@@ -2955,6 +2955,86 @@ body.sessao-candidato .menu-candidato-logado{display:flex!important}
 #pagina-home #listaDestaques .vaga-rodape-salario .salario-card{font-size:15.5px!important;color:#0b3858!important}
 #pagina-home #listaDestaques .vaga-ver-btn{height:35px!important;font-weight:650!important}
 @media(max-width:700px){#pagina-home #listaDestaques .portal-vaga-nova{height:415px!important;min-height:415px!important;max-height:415px!important}}
+
+/* DESTAQUES HORIZONTAIS — 3 COLUNAS X 2 LINHAS V33 */
+#pagina-home .destaques-wrap{padding:0 36px 16px!important}
+#pagina-home #listaDestaques{
+ display:grid!important;
+ grid-template-columns:repeat(3,minmax(0,1fr))!important;
+ grid-auto-rows:265px!important;
+ gap:15px!important;
+ align-items:stretch!important;
+ overflow:visible!important;
+}
+#pagina-home #listaDestaques .portal-vaga-nova{
+ height:265px!important;min-height:265px!important;max-height:265px!important;
+ padding:15px 16px 13px!important;
+ display:grid!important;
+ grid-template-columns:70px minmax(0,1fr)!important;
+ grid-template-rows:28px 74px 34px 58px 48px!important;
+ column-gap:12px!important;row-gap:2px!important;
+ border-radius:14px!important;
+}
+#pagina-home #listaDestaques .vaga-card-topo{
+ grid-column:1/-1!important;grid-row:1!important;
+ min-height:28px!important;height:28px!important;
+}
+#pagina-home #listaDestaques .vaga-identidade{
+ grid-column:1/-1!important;grid-row:2!important;
+ min-height:74px!important;height:74px!important;margin:0!important;
+ display:grid!important;grid-template-columns:70px minmax(0,1fr)!important;gap:12px!important;
+}
+#pagina-home #listaDestaques .vaga-logo{
+ width:70px!important;height:70px!important;border-radius:11px!important;
+}
+#pagina-home #listaDestaques .vaga-identidade h3{
+ font-size:15.5px!important;line-height:1.18!important;font-weight:650!important;
+}
+#pagina-home #listaDestaques .vaga-identidade p{font-size:10.5px!important}
+#pagina-home #listaDestaques .vaga-resumo-card{
+ grid-column:2!important;grid-row:3!important;
+ min-height:32px!important;max-height:32px!important;height:32px!important;
+ margin:0!important;font-size:9.6px!important;line-height:1.5!important;
+}
+#pagina-home #listaDestaques .vaga-meta{
+ grid-column:1/-1!important;grid-row:4!important;
+ min-height:58px!important;height:58px!important;margin:2px 0 0!important;
+ display:flex!important;align-content:flex-start!important;gap:5px!important;
+}
+#pagina-home #listaDestaques .vaga-meta span{
+ min-height:27px!important;height:27px!important;padding:5px 7px!important;
+ font-size:8.8px!important;
+}
+#pagina-home #listaDestaques .vaga-salario-data{
+ position:absolute!important;right:16px!important;bottom:59px!important;
+ min-height:16px!important;height:16px!important;
+}
+#pagina-home #listaDestaques .vaga-salario-data .data-card{font-size:8px!important}
+#pagina-home #listaDestaques .vaga-card-rodape{
+ grid-column:1/-1!important;grid-row:5!important;
+ min-height:48px!important;height:48px!important;margin:0!important;padding-top:9px!important;
+}
+#pagina-home #listaDestaques .vaga-rodape-salario>small{font-size:7.5px!important}
+#pagina-home #listaDestaques .vaga-rodape-salario .salario-card{
+ font-size:15px!important;line-height:1.15!important;
+}
+#pagina-home #listaDestaques .vaga-ver-btn{
+ height:34px!important;min-width:98px!important;padding:0 11px!important;font-size:9px!important;
+}
+#pagina-home .destaque-nav{top:50%!important}
+@media(max-width:1050px){
+ #pagina-home #listaDestaques{grid-template-columns:repeat(2,minmax(0,1fr))!important;grid-auto-rows:270px!important}
+ #pagina-home #listaDestaques .portal-vaga-nova{height:270px!important;min-height:270px!important;max-height:270px!important}
+}
+@media(max-width:700px){
+ #pagina-home .destaques-wrap{padding:0 28px 14px!important}
+ #pagina-home #listaDestaques{grid-template-columns:1fr!important;grid-auto-rows:285px!important}
+ #pagina-home #listaDestaques .portal-vaga-nova{
+  height:285px!important;min-height:285px!important;max-height:285px!important;
+  grid-template-rows:28px 76px 38px 62px 50px!important;
+ }
+ #pagina-home #listaDestaques .vaga-resumo-card{font-size:9.8px!important}
+}
 </style></head><body><header class="topo"><div class="topo-inner"><button type="button" class="marca" data-rota="home"><span class="marca-icone">E+</span><span class="marca-nome">Emprega<span>Mais</span></span></button><nav class="menu menu-publico"><button type="button" data-rota="home">Buscar vagas</button><button type="button" data-rota="como-funciona">Como funciona</button>
 <div class="menu-drop menu-drop-empresa"><button type="button" class="menu-drop-gatilho login-card-topo login-card-empresa" onclick="alternarMenuTopo('empresa',event)"><span class="login-card-icone" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 21V5h11v16M15 10h5v11M8 9h3M8 13h3M8 17h3M2 21h20"/></svg></span><span class="login-card-texto"><b>Login Empresa</b><small>Acesse seu painel</small></span><span class="login-card-seta">›</span></button><div class="menu-drop-painel menu-empresa-publico"><div class="menu-drop-titulo">PARA EMPRESAS</div><div class="menu-empresa-intro"><strong>Encontre os talentos certos</strong><span>Publique vagas e gerencie seus processos seletivos em um só lugar.</span></div><button class="menu-empresa-link" onclick="rotaMenuTopo('como-funciona')"><b>Como funciona</b><span>Conheça a plataforma para empresas</span></button><button class="menu-empresa-link" onclick="rotaMenuTopo('planos')"><b>Planos e preços</b><span>Veja os recursos disponíveis</span></button><div class="menu-drop-separador"></div><button class="menu-empresa-login" onclick="rotaMenuTopo('login-empresa')">Entrar como empresa</button><button class="menu-empresa-cadastro" onclick="rotaMenuTopo('cadastro-empresa')">Cadastrar empresa</button></div></div>
 </nav><nav class="menu menu-empresa-logada"><button type="button" data-rota="painel-empresa">Painel</button><button type="button" data-rota="painel-empresa">Minhas vagas</button><button type="button" data-rota="candidatos-empresa">Candidatos</button><button type="button" data-rota="planos">Planos</button></nav><nav class="menu menu-candidato-logado"><button type="button" data-rota="home">Buscar vagas</button><button type="button" data-rota="salvas">Vagas salvas</button><button type="button" data-rota="candidaturas">Minhas candidaturas</button><button type="button" data-rota="curriculo">Meu currículo</button></nav><div class="acoes"><div class="menu-drop menu-drop-candidato"><button type="button" class="btn secundario menu-drop-gatilho login-card-topo login-card-candidato" onclick="alternarMenuTopo('candidato',event)"><span class="login-card-icone" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4.5 21c.8-5 3.2-7.5 7.5-7.5s6.7 2.5 7.5 7.5"/></svg></span><span class="login-card-texto"><b>Login Candidato</b><small>Acesse sua conta</small></span><span class="login-card-seta">›</span></button><div class="menu-drop-painel menu-candidato-publico"><div class="menu-drop-titulo">PARA CANDIDATOS</div><div class="menu-candidato-intro"><strong>Encontre sua próxima oportunidade</strong><span>Busque vagas, crie seu currículo e acompanhe seus processos em um só lugar.</span></div><button class="menu-candidato-link" onclick="rotaMenuTopo('home')"><b>Buscar vagas</b><span>Encontre oportunidades para o seu perfil</span></button><button class="menu-candidato-link" onclick="rotaMenuTopo('cadastro-candidato')"><b>Criar currículo</b><span>Cadastre seu perfil profissional gratuitamente</span></button><div class="menu-drop-separador"></div><button class="menu-candidato-login" onclick="rotaMenuTopo('login-candidato')">Entrar como candidato</button><button class="menu-candidato-cadastro" onclick="rotaMenuTopo('cadastro-candidato')">Cadastrar currículo</button></div></div><button type="button" class="btn btn-azul btn-anunciar-vaga anunciar-card-topo" onclick="abrirPublicacao()"><span class="btn-anunciar-icone" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 7V5.8C8 4.8 8.8 4 9.8 4h4.4c1 0 1.8.8 1.8 1.8V7M4 9h16v10.5c0 .8-.7 1.5-1.5 1.5h-13C4.7 21 4 20.3 4 19.5V9Z"/><path d="M4 13h16M10 13v2h4v-2"/></svg></span><span class="anunciar-card-texto"><b>Anunciar vaga grátis</b><small>Divulgue sua oportunidade</small></span><span class="anunciar-card-seta">→</span></button><div class="sessao-empresa-topo"><button class="sessao-conta-btn sessao-conta-empresa-pro" onclick="toggleMenuContaEM(this,event)"><span class="sessao-avatar" id="topoEmpresaAvatar">E</span><span class="sessao-conta-ident"><b id="topoEmpresaNome">Empresa</b><small><i class="sessao-status-dot"></i> Conta empresarial · <strong id="topoEmpresaPlano">Plano Grátis</strong></small></span><em>⌄</em></button><div class="sessao-conta-menu"><div class="conta-menu-head"><span class="conta-menu-avatar" id="topoEmpresaAvatarMenu">E</span><div><b id="topoEmpresaNomeMenu">Empresa</b><small id="topoEmpresaPlanoMenu">Conta da empresa</small><i>Plano ativo</i></div></div><div class="conta-menu-nav"><button onclick="irPara('painel-empresa')">Painel da empresa</button><button onclick="irPara('perfil-empresa')">Perfil da empresa</button><button onclick="irPara('planos')">Meu plano</button><button class="conta-sair-pro" onclick="sair()">Sair</button></div></div></div><div class="sessao-candidato-topo"><button class="sessao-conta-btn sessao-conta-candidato-pro" onclick="toggleMenuContaEM(this,event)"><span class="sessao-avatar" id="topoCandidatoAvatar">C</span><span class="sessao-conta-ident"><b id="topoCandidatoNome">Candidato</b><small><i class="sessao-status-dot"></i> Conta de candidato</small></span><em>⌄</em></button><div class="sessao-conta-menu"><button onclick="irPara('painel-candidato')">Meu painel</button><button onclick="irPara('perfil-candidato')">Meu perfil</button><button onclick="sair()">Sair</button></div></div></div></div></header><main><section class="pagina ativa" id="pagina-home">
@@ -3316,7 +3396,7 @@ body.sessao-candidato .menu-candidato-logado{display:flex!important}
 <label class="em-benefit-card"><input type="checkbox" class="beneficio-check" value="Vale Cultura"><span class="em-benefit-check">✓</span><span class="em-benefit-icon">▤</span><b>Vale Cultura</b></label>
 <label class="em-benefit-card"><input type="checkbox" class="beneficio-check" value="Day Off"><span class="em-benefit-check">✓</span><span class="em-benefit-icon">☀</span><b>Day Off</b></label>
 <label class="em-benefit-card"><input type="checkbox" class="beneficio-check" value="Horário Flexível"><span class="em-benefit-check">✓</span><span class="em-benefit-icon">◷</span><b>Horário Flexível</b></label>
-<label class="em-benefit-card"><input type="checkbox" class="beneficio-check" value="Estacionamento"><span class="em-benefit-check">✓</span><span class="em-benefit-icon">P</span><b>Estacionamento</b></label></div><label>Outros benefícios<textarea id="beneficiosVaga" placeholder="Gympass, auxílio home office, bônus..."></textarea></label></div><label class="full">Sobre a empresa<textarea id="sobreEmpresaVaga" placeholder="Conte brevemente sobre a empresa."></textarea></label></div><div class="job-actions"><button type="button" class="btn" onclick="mostrarEtapa(2)">← Voltar</button><button type="button" class="btn btn-azul" onclick="proximaEtapa(3)">Revisar vaga →</button></div></section><section class="job-card" data-panel="4"><h2>Revisar e publicar</h2><p>Confira as informações antes de enviar a vaga.</p><div class="review-grid"><div class="review-box"><h3>Resumo da vaga</h3><div id="reviewVaga"></div></div><div><div class="review-box"><h3>Prévia</h3><div id="previewVaga"></div></div><div class="review-box config"><h3>Configurações</h3><div class="plano-publicacao" id="resumoPlanoPublicacao"></div><label class="check"><input id="vagaConfidencial" type="checkbox"> Vaga confidencial <small id="saldoConfidencial"></small></label><label class="check"><input id="vagaDestaque" type="checkbox"> <span>Destacar vaga</span> <small id="saldoDestaque">R$ 19,90 · 7 dias</small></label><label class="check"><input id="vagaUrgente" type="checkbox"> <span>Selo de urgência</span> <small id="saldoUrgente">R$ 9,90</small></label><p class="limite-aviso" id="avisoLimitePlano"></p></div></div></div><div class="form-msg" id="msgPublicarVaga"></div><div class="job-actions"><button type="button" class="btn" onclick="mostrarEtapa(3)">← Voltar</button><button type="submit" class="btn btn-publicar" id="btnPublicarVaga">Publicar vaga</button></div></section></form></div></div><aside class="em-publish-visual em-publish-visual-v2" aria-label="EmpregaMais para empresas"><div class="em-visual-v2-glow"></div><div class="em-visual-v2-grid"></div><div class="em-visual-content"><div class="em-visual-v2-brand"><span class="em-visual-v2-icon">E+</span><span>EMPREGAMAIS PARA EMPRESAS</span></div><span class="em-visual-kicker">RECRUTAMENTO MAIS INTELIGENTE</span><h2>Encontre quem<br><strong>faz a diferença.</strong></h2><p>Publique sua oportunidade com clareza e encontre profissionais alinhados ao que sua empresa procura.</p><div class="em-visual-v2-stats"><div><strong>4 etapas</strong><span>Publicação simples e organizada</span></div><div><strong>30 dias</strong><span>Vaga ativa no portal</span></div></div><div class="em-visual-benefits"><div><i>01</i><span><b>Alcance qualificado</b><small>Sua vaga apresentada a profissionais compatíveis.</small></span></div><div><i>02</i><span><b>Gestão em um só lugar</b><small>Candidaturas e processo seletivo organizados.</small></span></div><div><i>03</i><span><b>Marca empregadora</b><small>Uma apresentação profissional da sua empresa.</small></span></div></div><div class="em-visual-v2-foot"><span>EMPREGAMAIS</span><strong>Conectando talentos e empresas.</strong></div></div></aside></div></section></main><footer class="rodape"><span>EmpregaMais · Oportunidades que conectam pessoas e empresas.</span><button type="button" class="rodape-admin-link" onclick="irPara('login-admin')">Painel Administrativo</button></footer><script src="assets/js/app.js?v=destaques-editorial-v32-20260923"></script>
+<label class="em-benefit-card"><input type="checkbox" class="beneficio-check" value="Estacionamento"><span class="em-benefit-check">✓</span><span class="em-benefit-icon">P</span><b>Estacionamento</b></label></div><label>Outros benefícios<textarea id="beneficiosVaga" placeholder="Gympass, auxílio home office, bônus..."></textarea></label></div><label class="full">Sobre a empresa<textarea id="sobreEmpresaVaga" placeholder="Conte brevemente sobre a empresa."></textarea></label></div><div class="job-actions"><button type="button" class="btn" onclick="mostrarEtapa(2)">← Voltar</button><button type="button" class="btn btn-azul" onclick="proximaEtapa(3)">Revisar vaga →</button></div></section><section class="job-card" data-panel="4"><h2>Revisar e publicar</h2><p>Confira as informações antes de enviar a vaga.</p><div class="review-grid"><div class="review-box"><h3>Resumo da vaga</h3><div id="reviewVaga"></div></div><div><div class="review-box"><h3>Prévia</h3><div id="previewVaga"></div></div><div class="review-box config"><h3>Configurações</h3><div class="plano-publicacao" id="resumoPlanoPublicacao"></div><label class="check"><input id="vagaConfidencial" type="checkbox"> Vaga confidencial <small id="saldoConfidencial"></small></label><label class="check"><input id="vagaDestaque" type="checkbox"> <span>Destacar vaga</span> <small id="saldoDestaque">R$ 19,90 · 7 dias</small></label><label class="check"><input id="vagaUrgente" type="checkbox"> <span>Selo de urgência</span> <small id="saldoUrgente">R$ 9,90</small></label><p class="limite-aviso" id="avisoLimitePlano"></p></div></div></div><div class="form-msg" id="msgPublicarVaga"></div><div class="job-actions"><button type="button" class="btn" onclick="mostrarEtapa(3)">← Voltar</button><button type="submit" class="btn btn-publicar" id="btnPublicarVaga">Publicar vaga</button></div></section></form></div></div><aside class="em-publish-visual em-publish-visual-v2" aria-label="EmpregaMais para empresas"><div class="em-visual-v2-glow"></div><div class="em-visual-v2-grid"></div><div class="em-visual-content"><div class="em-visual-v2-brand"><span class="em-visual-v2-icon">E+</span><span>EMPREGAMAIS PARA EMPRESAS</span></div><span class="em-visual-kicker">RECRUTAMENTO MAIS INTELIGENTE</span><h2>Encontre quem<br><strong>faz a diferença.</strong></h2><p>Publique sua oportunidade com clareza e encontre profissionais alinhados ao que sua empresa procura.</p><div class="em-visual-v2-stats"><div><strong>4 etapas</strong><span>Publicação simples e organizada</span></div><div><strong>30 dias</strong><span>Vaga ativa no portal</span></div></div><div class="em-visual-benefits"><div><i>01</i><span><b>Alcance qualificado</b><small>Sua vaga apresentada a profissionais compatíveis.</small></span></div><div><i>02</i><span><b>Gestão em um só lugar</b><small>Candidaturas e processo seletivo organizados.</small></span></div><div><i>03</i><span><b>Marca empregadora</b><small>Uma apresentação profissional da sua empresa.</small></span></div></div><div class="em-visual-v2-foot"><span>EMPREGAMAIS</span><strong>Conectando talentos e empresas.</strong></div></div></aside></div></section></main><footer class="rodape"><span>EmpregaMais · Oportunidades que conectam pessoas e empresas.</span><button type="button" class="rodape-admin-link" onclick="irPara('login-admin')">Painel Administrativo</button></footer><script src="assets/js/app.js?v=destaques-3x2-v33-20260923"></script>
 <!-- EMPREGAMAIS-NOVO-WIZARD-FIX-V1 -->
 <script>
 (function(){
