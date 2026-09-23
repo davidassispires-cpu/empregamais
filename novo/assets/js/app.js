@@ -1570,18 +1570,30 @@ function abrirMenuVagaEM(ev,id){
  window.addEventListener('resize',window._empMenuVagaScroll);
  setTimeout(()=>document.addEventListener('click',fecharMenuVagaEM,{once:true}),0)
 }
-async function encerrarProcessoVagaEM(id){
+function fecharModalEncerrarVagaEM(){
+ const m=document.getElementById('modalEncerrarVagaEM');if(m)m.remove();
+ document.body.classList.remove('modal-encerrar-vaga-aberto');
+}
+function abrirModalEncerrarVagaEM(id){
  fecharMenuVagaEM();
  const v=vagasDaEmpresa().find(x=>String(x.id)===String(id));if(!v)return;
  if(v.status==='encerrada'){alert('Este processo seletivo já está encerrado.');return}
- if(!confirm('Encerrar o processo seletivo de “'+tituloVaga(v)+'”?\n\nA vaga deixará de receber novas candidaturas. Esta ação não republica a vaga automaticamente.'))return;
+ fecharModalEncerrarVagaEM();
+ const m=document.createElement('div');m.id='modalEncerrarVagaEM';m.className='modal-encerrar-vaga-em';
+ m.innerHTML='<div class="modal-encerrar-vaga-backdrop" onclick="fecharModalEncerrarVagaEM()"></div><section class="modal-encerrar-vaga-dialog" role="dialog" aria-modal="true" aria-labelledby="tituloEncerrarVagaEM"><button type="button" class="modal-encerrar-fechar" onclick="fecharModalEncerrarVagaEM()" aria-label="Fechar">×</button><div class="modal-encerrar-icone">!</div><span class="modal-encerrar-kicker">ENCERRAR PROCESSO SELETIVO</span><h2 id="tituloEncerrarVagaEM">Tem certeza que deseja encerrar esta vaga?</h2><p class="modal-encerrar-vaga-titulo">'+esc(tituloVaga(v))+'</p><div class="modal-encerrar-alerta"><strong>Esta ação é permanente.</strong><span>Após confirmar, a vaga deixará de receber candidaturas e <b>não poderá ser reaberta</b>.</span></div><div class="modal-encerrar-acoes"><button type="button" class="modal-encerrar-cancelar" onclick="fecharModalEncerrarVagaEM()">Cancelar</button><button type="button" class="modal-encerrar-confirmar" onclick="confirmarEncerramentoVagaEM(\\''+esc(String(id))+'\\',this)">Sim, encerrar processo</button></div></section>';
+ document.body.appendChild(m);document.body.classList.add('modal-encerrar-vaga-aberto');
+}
+async function encerrarProcessoVagaEM(id){abrirModalEncerrarVagaEM(id)}
+async function confirmarEncerramentoVagaEM(id,btn){
+ const v=vagasDaEmpresa().find(x=>String(x.id)===String(id));if(!v)return;
+ if(btn){btn.disabled=true;btn.textContent='Encerrando...'}
  try{
   const token=await sbGarantirSessaoEM();if(!token)throw new Error('Sua sessão expirou. Entre novamente.');
   await sbJsonEM(EMPREGAMAIS_SUPABASE_URL+'/rest/v1/vagas?id=eq.'+encodeURIComponent(id),{method:'PATCH',headers:Object.assign(sbHeadersEM(token),{'Prefer':'return=minimal'}),body:JSON.stringify({status:'encerrada',editado_em:new Date().toISOString()})});
   const locais=ler('empregaMaisVagas'),i=locais.findIndex(x=>String(x.id)===String(id));if(i>=0){locais[i].status='encerrada';locais[i].editadoEm=new Date().toISOString();gravar('empregaMaisVagas',locais)}
-  if(typeof renderizarPainelEmpresa==='function')renderizarPainelEmpresa();
-  alert('Processo seletivo encerrado com sucesso.');
- }catch(err){console.error('Encerrar processo seletivo:',err);alert('Não foi possível encerrar o processo seletivo: '+err.message)}
+  const ci=sbVagasCacheEM.findIndex(x=>String(x.id)===String(id));if(ci>=0){sbVagasCacheEM[ci].status='encerrada';sbVagasCacheEM[ci].editadoEm=new Date().toISOString()}
+  fecharModalEncerrarVagaEM();if(typeof renderizarPainelEmpresa==='function')renderizarPainelEmpresa();
+ }catch(err){console.error('Encerrar processo seletivo:',err);if(btn){btn.disabled=false;btn.textContent='Sim, encerrar processo'}alert('Não foi possível encerrar o processo seletivo: '+err.message)}
 }
 async function alternarRecursoVagaEM(id,recurso){
  const v=vagasDaEmpresa().find(x=>String(x.id)===String(id));if(!v||!['destaque','urgente','confidencial'].includes(recurso))return;
