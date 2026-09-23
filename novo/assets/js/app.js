@@ -451,9 +451,23 @@ function sbMapVagaEM(v){
 function sbUsuarioAtualEM(){const t=sbTokenEM();if(!t)return Promise.reject(new Error('Sessão Supabase ausente.'));return sbJsonEM(EMPREGAMAIS_SUPABASE_URL+'/auth/v1/user',{method:'GET',headers:sbHeadersEM(t)})}
 function sbCarregarVagasEM(){
   const t=sbTokenEM();
-  const publico=sbJsonEM(EMPREGAMAIS_SUPABASE_URL+'/rest/v1/vagas?select=*&status=eq.aprovada&order=criado_em.desc',{method:'GET',headers:sbHeadersEM()});
+  const locaisAntes=ler('empregaMaisVagas');
+  const publico=sbJsonEM(EMPREGAMAIS_SUPABASE_URL+'/rest/v1/vagas?select=*&status=eq.aprovada&order=criado_em.desc',{method:'GET',headers:sbHeadersEM()}).catch(()=>[]);
   const proprio=t?sbUsuarioAtualEM().then(u=>sbJsonEM(EMPREGAMAIS_SUPABASE_URL+'/rest/v1/vagas?select=*&user_id=eq.'+encodeURIComponent(u.id)+'&order=criado_em.desc',{method:'GET',headers:sbHeadersEM(t)})).catch(()=>[]):Promise.resolve([]);
-  return Promise.all([publico,proprio]).then(r=>{const mapa={};r.flat().forEach(v=>{if(v&&v.id)mapa[v.id]=v});sbVagasCacheEM=Object.values(mapa).map(sbMapVagaEM);gravar('empregaMaisVagas',sbVagasCacheEM);return sbVagasCacheEM})
+  return Promise.all([publico,proprio]).then(r=>{
+    const mapa=new Map();
+    r.flat().forEach(v=>{if(v&&v.id)mapa.set(String(v.id),v)});
+    /* Nunca apagar as vagas locais da empresa se a consulta remota vier vazia,
+       falhar por RLS ou estiver temporariamente indisponível. */
+    locaisAntes.forEach(v=>{
+      if(!v?.id)return;
+      const ehPublica=v.status==='aprovada';
+      if(!mapa.has(String(v.id)) && ehPublica)mapa.set(String(v.id),v);
+    });
+    sbVagasCacheEM=[...mapa.values()].map(v=>v?.cargo!==undefined&&v?.empresaCnpj!==undefined?v:sbMapVagaEM(v)).filter(Boolean);
+    gravar('empregaMaisVagas',sbVagasCacheEM);
+    return sbVagasCacheEM
+  })
 }
 function sbEmpresaAtualEM(){
   return sbUsuarioAtualEM().then(u=>sbJsonEM(EMPREGAMAIS_SUPABASE_URL+'/rest/v1/empresas?select=*&user_id=eq.'+encodeURIComponent(u.id)+'&limit=1',{method:'GET',headers:sbHeadersEM(sbTokenEM())}).then(a=>Array.isArray(a)&&a[0]?a[0]:null))
@@ -534,7 +548,16 @@ publicarVagaNova=async function(e){
     sessionStorage.removeItem('vagaEdicao');localStorage.removeItem('empregaMaisRascunhoVaga');$('#formVaga')?.reset();await sbCarregarVagasEM();msg('#msgPublicarVaga',editId?'Alterações salvas. A vaga voltou para análise.':'Vaga enviada para análise.',true);setTimeout(()=>irPara('painel-empresa'),900)
   }catch(err){console.error('EmpregaMais/Supabase vaga:',err);msg('#msgPublicarVaga',err.message||'Não foi possível salvar a vaga.')}finally{if(btn){btn.disabled=false;btn.textContent='Publicar vaga'}}
 };
-vagasDaEmpresa=function(){const c=nums(sessionStorage.getItem('empresaCnpj')||'');return sbVagasCacheEM.length?sbVagasCacheEM.filter(v=>nums(v.empresaCnpj)===c):ler('empregaMaisVagas').filter(v=>nums(v.empresaCnpj)===c)};
+vagasDaEmpresa=function(){
+ const c=nums(sessionStorage.getItem('empresaCnpj')||'');
+ const uid=String(sessionStorage.getItem('empresaSupabaseUserId')||'');
+ const fonte=sbVagasCacheEM.length?sbVagasCacheEM:ler('empregaMaisVagas');
+ return fonte.filter(v=>{
+   const vc=nums(v.empresaCnpj||v.cnpj||'');
+   const vu=String(v.userId||v.user_id||'');
+   return (uid&&vu===uid)||(c&&vc===c)
+ })
+};
 const _renderizarVagasPortalLocalEM=renderizarVagasPortal;
 renderizarVagasPortal=function(){const box=$('#listaVagasPortal');if(box&&sbVagasCacheEM.length)return _renderizarVagasPortalLocalEM();if(box&&!sbVagasCacheEM.length)sbCarregarVagasEM().then(()=>{try{_renderizarVagasPortalLocalEM()}catch(e){console.error(e)}}).catch(e=>{console.error('Supabase vagas:',e);try{_renderizarVagasPortalLocalEM()}catch(x){}})};
 document.addEventListener('DOMContentLoaded',()=>{setTimeout(()=>{if(sbTokenEM())sbCarregarVagasEM().catch(()=>{});else sbCarregarVagasEM().catch(()=>{})},250)});
@@ -1508,28 +1531,51 @@ async function alternarRecursoVagaEM(id,recurso){
 document.addEventListener('keydown',e=>{if(e.key==='Escape')fecharMenuVagaEM()});
 
 
-/* EMPREGAMAIS-EDITAR-VAGA-FIX-V1 */
+/* EMPREGAMAIS-EDITAR-VAGA-FIX-V2 */
 function editarVaga(id){
  if(papelAtual()!=='empresa'){irPara('login-empresa');return}
- const vaga=vagasDaEmpresa().find(v=>String(v.id)===String(id));
+ const fonte=sbVagasCacheEM.length?sbVagasCacheEM:ler('empregaMaisVagas');
+ const vaga=fonte.find(v=>String(v.id)===String(id))||vagasDaEmpresa().find(v=>String(v.id)===String(id));
  if(!vaga){alert('Não foi possível localizar esta vaga para edição.');return}
  sessionStorage.setItem('vagaEdicao',String(vaga.id));
  irPara('publicar');
  setTimeout(()=>{
-  const set=(id,val)=>{const el=document.getElementById(id);if(el&&val!==undefined&&val!==null)el.value=val};
-  set('empresaVaga',vaga.empresa||sessionStorage.getItem('empresaNome')||'');
-  set('cargoVaga',vaga.cargo);set('areaVaga',vaga.area);set('contratoVaga',vaga.contrato||vaga.tipoContrato);
-  set('modalidadeVaga',vaga.modalidade);set('quantidadeVagas',vaga.quantidadeContratacoes||vaga.quantidadeVagas||'1');
-  set('cepVaga',vaga.cep);set('estadoVaga',vaga.estado);set('cidadeVaga',vaga.cidade);
-  set('escolaridadeVaga',vaga.escolaridade);set('experienciaVaga',vaga.experiencia);set('jornadaVaga',vaga.jornada);
-  set('pcdVaga',vaga.pcd);set('salarioVaga',vaga.salario);set('descricaoVaga',vaga.descricao);set('requisitosVaga',vaga.requisitos);
-  const sc=document.getElementById('salarioCombinarVaga');if(sc)sc.checked=!!vaga.salarioCombinar||String(vaga.salario||'').toLowerCase().includes('combinar');
-  if(typeof configurarSalarioVaga==='function')configurarSalarioVaga();
-  if(typeof atualizarOpcoesPlano==='function')atualizarOpcoesPlano();
-  if(typeof mostrarEtapa==='function')mostrarEtapa(1);
- },80)
+   const set=(id,val)=>{const el=document.getElementById(id);if(el&&val!==undefined&&val!==null)el.value=val};
+   set('empresaVaga',vaga.empresa||sessionStorage.getItem('empresaNome')||'');
+   set('cargoVaga',vaga.cargo||'');
+   set('areaVaga',vaga.area||'');
+   set('contratoVaga',vaga.contrato||vaga.tipoContrato||'');
+   set('modalidadeVaga',vaga.modalidade||'');
+   set('quantidadeVagas',vaga.quantidadeContratacoes||vaga.quantidadeVagas||'1');
+   set('cepVaga',vaga.cep||'');
+   set('estadoVaga',vaga.estado||vaga.uf||'');
+   set('cidadeVaga',vaga.cidade||'');
+   set('dataEncerramentoVaga',vaga.dataEncerramento?String(vaga.dataEncerramento).slice(0,10):'');
+   set('escolaridadeVaga',vaga.escolaridade||'');
+   set('experienciaVaga',vaga.experiencia||'');
+   set('jornadaVaga',vaga.jornada||'');
+   set('pcdVaga',vaga.pcd||'');
+   set('salarioVaga',vaga.salario||'');
+   set('descricaoVaga',vaga.descricao||'');
+   set('requisitosVaga',vaga.requisitos||'');
+   set('beneficiosVaga',vaga.beneficiosOutros||'');
+   set('sobreEmpresaVaga',vaga.sobreEmpresa||'');
+   const checks=[
+     ['senior50Vaga',!!vaga.senior50],
+     ['vagaConfidencial',!!vaga.confidencial],
+     ['vagaDestaque',!!vaga.destaque],
+     ['vagaUrgente',!!vaga.urgente]
+   ];
+   checks.forEach(([eid,val])=>{const el=document.getElementById(eid);if(el)el.checked=val});
+   const sc=document.getElementById('salarioCombinarVaga');
+   if(sc)sc.checked=!!vaga.salarioCombinar||String(vaga.salario||'').toLowerCase().includes('combinar');
+   if(typeof configurarSalarioVaga==='function')configurarSalarioVaga();
+   if(typeof aplicarBeneficiosVaga==='function')aplicarBeneficiosVaga(vaga);
+   if(typeof atualizarOpcoesPlano==='function')atualizarOpcoesPlano();
+   if(typeof montarRevisao==='function')montarRevisao();
+   if(typeof mostrarEtapa==='function')mostrarEtapa(1);
+ },120);
 }
-
 
 /* EMPREGAMAIS — ANDAMENTO DO CANDIDATO PRO V3
    Modal ampliado em página única + timeline completa + análise detalhada de aderência.
