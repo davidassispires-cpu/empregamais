@@ -87,8 +87,10 @@ function renderizarCandidatosEmpresa(){const box=$('#listaCandidatosEmpresa');if
 function alternarAndamentoRecrutadorEM(btn){
  const card=btn?.closest('.recruta-cand-card'),box=card?.querySelector('.recruta-andamento');if(!box||!card)return;
  document.querySelector('.recruta-andamento-modal-em')?.remove();
+ const nome=card.querySelector('.recruta-cand-head h3')?.textContent?.trim()||'Candidato';
+ const etapa=card.querySelector('.recruta-etapa-resumo strong')?.textContent?.trim()||'Em avaliação';
  const modal=document.createElement('div');modal.className='recruta-andamento-modal-em';
- modal.innerHTML='<div class="recruta-andamento-modal-backdrop" data-fechar></div><section class="recruta-andamento-modal-dialog" role="dialog" aria-modal="true" aria-label="Andamento do processo seletivo"><header><div><small>PROCESSO SELETIVO</small><h3>Andamento do candidato</h3></div><button type="button" aria-label="Fechar" data-fechar>×</button></header><div class="recruta-andamento-modal-body">'+box.innerHTML+'</div></section>';
+ modal.innerHTML='<div class="recruta-andamento-modal-backdrop" data-fechar></div><section class="recruta-andamento-modal-dialog" role="dialog" aria-modal="true" aria-label="Andamento do processo seletivo"><header><div><small>PROCESSO SELETIVO</small><h3>Andamento do candidato</h3><p>'+esc(nome)+' <span>·</span> Etapa atual: <b>'+esc(etapa)+'</b></p></div><button type="button" aria-label="Fechar" data-fechar>×</button></header><div class="recruta-andamento-modal-body"><div class="recruta-modal-processo">'+box.innerHTML+'</div></div></section>';
  document.body.appendChild(modal);document.body.classList.add('recruta-modal-aberto');btn.setAttribute('aria-expanded','true');
  const fechar=()=>{modal.remove();document.body.classList.remove('recruta-modal-aberto');btn.setAttribute('aria-expanded','false')};
  modal.querySelectorAll('[data-fechar]').forEach(x=>x.addEventListener('click',fechar));
