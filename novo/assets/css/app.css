@@ -5024,14 +5024,19 @@ overflow:visible!important
 
 
 
-/* EMPREGAMAIS — VAGAS EM DESTAQUE — MODELO PROFISSIONAL V3 — 2026-09-23 */
+/* EMPREGAMAIS — VAGAS EM DESTAQUE — ESTRUTURA FINAL V5 — 2026-09-23 */
 #pagina-home .home-destaques{
+  position:relative!important;
+  display:block!important;
+  width:100%!important;
+  box-sizing:border-box!important;
+  margin-top:16px!important;
+  padding:24px 26px 22px!important;
   background:#fff!important;
   border:1px solid #dce6ef!important;
   border-radius:20px!important;
-  padding:24px 26px 22px!important;
-  margin-top:16px!important;
   box-shadow:0 10px 30px rgba(8,47,87,.055)!important;
+  overflow:visible!important;
 }
 #pagina-home .home-destaques .home-title-row{
   display:flex!important;
@@ -5046,255 +5051,7 @@ overflow:visible!important
   font-size:28px!important;
   line-height:1.15!important;
   font-weight:800!important;
-  letter-spacing:-.02em!important;
 }
-#pagina-home .destaques-wrap{
-  position:relative!important;
-  width:100%!important;
-  padding:0 46px!important;
-  box-sizing:border-box!important;
-  overflow:visible!important;
-}
-#pagina-home .destaques-carrossel{
-  display:flex!important;
-  flex-direction:row!important;
-  flex-wrap:nowrap!important;
-  align-items:stretch!important;
-  gap:16px!important;
-  width:100%!important;
-  box-sizing:border-box!important;
-  overflow-x:auto!important;
-  overflow-y:hidden!important;
-  padding:4px 2px 14px!important;
-  scroll-behavior:smooth!important;
-  scroll-snap-type:x mandatory!important;
-  scrollbar-width:none!important;
-}
-#pagina-home .destaques-carrossel::-webkit-scrollbar{display:none!important}
-#pagina-home .destaques-carrossel>.portal-vaga-nova{
-  flex:0 0 calc((100% - 48px)/4)!important;
-  width:calc((100% - 48px)/4)!important;
-  min-width:calc((100% - 48px)/4)!important;
-  max-width:calc((100% - 48px)/4)!important;
-  height:392px!important;
-  min-height:392px!important;
-  max-height:392px!important;
-  box-sizing:border-box!important;
-  padding:16px 16px 15px!important;
-  border:1px solid #d7e3ed!important;
-  border-radius:16px!important;
-  background:#fff!important;
-  box-shadow:0 5px 18px rgba(8,47,87,.055)!important;
-  scroll-snap-align:start!important;
-  overflow:hidden!important;
-  transition:transform .18s ease,box-shadow .18s ease,border-color .18s ease!important;
-}
-#pagina-home .destaques-carrossel>.portal-vaga-nova:hover{
-  transform:translateY(-3px)!important;
-  border-color:#9dbbd8!important;
-  box-shadow:0 12px 28px rgba(8,47,87,.11)!important;
-}
-#pagina-home .destaques-carrossel>.portal-vaga-nova.dest-combo-dourado,
-#pagina-home .destaques-carrossel>.portal-vaga-nova.dest-combo-vermelho,
-#pagina-home .destaques-carrossel>.portal-vaga-nova.dest-combo-azul,
-#pagina-home .destaques-carrossel>.portal-vaga-nova.dest-combo-verde{
-  border-color:#c8d9e8!important;
-  background:#fff!important;
-}
-#pagina-home .destaques-carrossel .vaga-card-topo{
-  display:flex!important;
-  align-items:center!important;
-  justify-content:space-between!important;
-  min-height:30px!important;
-  margin:0 0 13px!important;
-  gap:8px!important;
-}
-#pagina-home .destaques-carrossel .vaga-selos{
-  display:flex!important;
-  align-items:center!important;
-  gap:5px!important;
-  min-width:0!important;
-  overflow:hidden!important;
-}
-#pagina-home .destaques-carrossel .vaga-selo{
-  height:27px!important;
-  min-height:27px!important;
-  padding:0 8px!important;
-  border-radius:7px!important;
-  font-size:9px!important;
-  font-weight:800!important;
-  white-space:nowrap!important;
-}
-#pagina-home .destaques-carrossel .vaga-favorito{
-  flex:0 0 30px!important;
-  width:30px!important;
-  height:30px!important;
-  font-size:22px!important;
-  color:#0759ad!important;
-}
-#pagina-home .destaques-carrossel .vaga-identidade{
-  display:grid!important;
-  grid-template-columns:64px minmax(0,1fr)!important;
-  align-items:center!important;
-  gap:11px!important;
-  min-height:74px!important;
-  margin:0 0 14px!important;
-}
-#pagina-home .destaques-carrossel .vaga-logo{
-  width:64px!important;
-  height:64px!important;
-  min-width:64px!important;
-  padding:6px!important;
-  border:1px solid #e1e8ef!important;
-  border-radius:11px!important;
-  background:#fff!important;
-  object-fit:contain!important;
-}
-#pagina-home .destaques-carrossel .vaga-identidade>div:last-child{min-width:0!important}
-#pagina-home .destaques-carrossel .vaga-identidade h3{
-  margin:0 0 5px!important;
-  color:#082f5d!important;
-  font-size:16px!important;
-  line-height:1.18!important;
-  font-weight:800!important;
-  display:-webkit-box!important;
-  -webkit-box-orient:vertical!important;
-  -webkit-line-clamp:2!important;
-  overflow:hidden!important;
-  word-break:normal!important;
-  overflow-wrap:normal!important;
-}
-#pagina-home .destaques-carrossel .vaga-identidade p{
-  margin:0!important;
-  color:#617b95!important;
-  font-size:12px!important;
-  line-height:1.3!important;
-  display:-webkit-box!important;
-  -webkit-box-orient:vertical!important;
-  -webkit-line-clamp:2!important;
-  overflow:hidden!important;
-}
-#pagina-home .destaques-carrossel .vaga-meta{
-  display:flex!important;
-  flex-wrap:wrap!important;
-  align-content:flex-start!important;
-  gap:6px!important;
-  min-height:62px!important;
-  margin:0 0 8px!important;
-}
-#pagina-home .destaques-carrossel .vaga-meta span{
-  height:27px!important;
-  min-height:27px!important;
-  padding:0 8px!important;
-  border-radius:7px!important;
-  font-size:10px!important;
-  color:#365875!important;
-  background:#f1f5f9!important;
-  white-space:nowrap!important;
-}
-#pagina-home .destaques-carrossel .vaga-meta span:first-child{
-  flex-basis:100%!important;
-  height:22px!important;
-  min-height:22px!important;
-  padding:0!important;
-  background:transparent!important;
-  color:#0759ad!important;
-  font-size:12px!important;
-  font-weight:800!important;
-}
-#pagina-home .destaques-carrossel .vaga-salario-data{
-  display:flex!important;
-  align-items:center!important;
-  justify-content:space-between!important;
-  gap:8px!important;
-  min-height:30px!important;
-  margin:0 0 8px!important;
-}
-#pagina-home .destaques-carrossel .salario-card{
-  color:#082f5d!important;
-  font-size:15px!important;
-  font-weight:800!important;
-  white-space:nowrap!important;
-}
-#pagina-home .destaques-carrossel .data-card{
-  color:#7890a7!important;
-  font-size:9.5px!important;
-  white-space:nowrap!important;
-}
-#pagina-home .destaques-carrossel .vaga-resumo{
-  height:45px!important;
-  min-height:45px!important;
-  max-height:45px!important;
-  margin:0 0 11px!important;
-  color:#607890!important;
-  font-size:11px!important;
-  line-height:1.48!important;
-  display:-webkit-box!important;
-  -webkit-box-orient:vertical!important;
-  -webkit-line-clamp:3!important;
-  overflow:hidden!important;
-}
-#pagina-home .destaques-carrossel .vaga-card-rodape{
-  min-height:43px!important;
-  margin-top:auto!important;
-}
-#pagina-home .destaques-carrossel .vaga-candidaturas{display:none!important}
-#pagina-home .destaques-carrossel .vaga-ver-btn{
-  width:100%!important;
-  min-width:0!important;
-  height:42px!important;
-  min-height:42px!important;
-  border:0!important;
-  border-radius:9px!important;
-  background:#0968c9!important;
-  color:#fff!important;
-  font-size:12px!important;
-  font-weight:800!important;
-  cursor:pointer!important;
-}
-#pagina-home .destaques-carrossel .vaga-ver-btn:hover{background:#0759ad!important}
-#pagina-home .destaque-prev,
-#pagina-home .destaque-next{
-  position:absolute!important;
-  z-index:5!important;
-  top:50%!important;
-  transform:translateY(-50%)!important;
-  width:40px!important;
-  height:40px!important;
-  border:1px solid #d5e2ed!important;
-  border-radius:50%!important;
-  background:#fff!important;
-  color:#0759ad!important;
-  box-shadow:0 6px 18px rgba(8,47,87,.10)!important;
-  cursor:pointer!important;
-}
-#pagina-home .destaque-prev{left:0!important}
-#pagina-home .destaque-next{right:0!important}
-@media(max-width:1100px){
-  #pagina-home .destaques-carrossel>.portal-vaga-nova{
-    flex-basis:calc((100% - 16px)/2)!important;
-    width:calc((100% - 16px)/2)!important;
-    min-width:calc((100% - 16px)/2)!important;
-    max-width:calc((100% - 16px)/2)!important;
-  }
-}
-@media(max-width:650px){
-  #pagina-home .home-destaques{padding:18px 12px 16px!important}
-  #pagina-home .home-destaques .home-title-row h2{font-size:24px!important}
-  #pagina-home .destaques-wrap{padding:0 34px!important}
-  #pagina-home .destaques-carrossel>.portal-vaga-nova{
-    flex-basis:100%!important;
-    width:100%!important;
-    min-width:100%!important;
-    max-width:100%!important;
-    height:378px!important;
-    min-height:378px!important;
-    max-height:378px!important;
-  }
-}
-
-/* EMPREGAMAIS — CORREÇÃO ANTI-SOBREPOSIÇÃO — DESTAQUES V4 — 2026-09-23 */
-#pagina-home .home-destaques{position:relative!important;overflow:visible!important}
 #pagina-home .destaques-wrap{
   position:relative!important;
   display:block!important;
@@ -5305,70 +5062,73 @@ overflow:visible!important
 }
 #pagina-home .destaques-carrossel{
   position:relative!important;
-  display:flex!important;
-  flex-direction:row!important;
-  flex-wrap:nowrap!important;
-  align-items:stretch!important;
-  align-content:stretch!important;
-  justify-content:flex-start!important;
+  display:grid!important;
+  grid-auto-flow:column!important;
+  grid-template-rows:370px!important;
+  grid-auto-columns:calc((100% - 48px)/4)!important;
   gap:16px!important;
   width:100%!important;
   height:392px!important;
   min-height:392px!important;
-  box-sizing:border-box!important;
   margin:0!important;
-  padding:4px 2px 14px!important;
+  padding:4px 2px 18px!important;
+  box-sizing:border-box!important;
   overflow-x:auto!important;
   overflow-y:hidden!important;
+  align-items:stretch!important;
+  justify-content:start!important;
+  scroll-snap-type:x mandatory!important;
+  scroll-behavior:smooth!important;
   scrollbar-width:none!important;
 }
 #pagina-home .destaques-carrossel::-webkit-scrollbar{display:none!important}
 #pagina-home .destaques-carrossel>.portal-vaga-nova{
   position:relative!important;
-  inset:auto!important;
-  top:auto!important;
-  right:auto!important;
-  bottom:auto!important;
-  left:auto!important;
-  float:none!important;
-  transform:none!important;
-  flex:0 0 calc((100% - 48px)/4)!important;
-  width:calc((100% - 48px)/4)!important;
-  min-width:calc((100% - 48px)/4)!important;
-  max-width:calc((100% - 48px)/4)!important;
+  display:flex!important;
+  flex-direction:column!important;
+  grid-row:1!important;
+  width:auto!important;
+  min-width:0!important;
+  max-width:none!important;
   height:370px!important;
   min-height:370px!important;
   max-height:370px!important;
   margin:0!important;
-  align-self:stretch!important;
+  padding:16px!important;
   box-sizing:border-box!important;
+  float:none!important;
+  transform:none!important;
   overflow:hidden!important;
+  align-self:stretch!important;
   scroll-snap-align:start!important;
+  border:1px solid #d7e3ed!important;
+  border-radius:16px!important;
+  background:#fff!important;
+  box-shadow:0 5px 18px rgba(8,47,87,.055)!important;
 }
-#pagina-home .destaques-carrossel>.portal-vaga-nova+ .portal-vaga-nova{margin-left:0!important}
+#pagina-home .destaques-carrossel>.portal-vaga-nova:hover{
+  transform:translateY(-3px)!important;
+  border-color:#9dbbd8!important;
+  box-shadow:0 12px 28px rgba(8,47,87,.11)!important;
+}
+#pagina-home .destaques-carrossel>.portal-vaga-nova .vaga-card-rodape{margin-top:auto!important}
+#pagina-home .destaques-carrossel>.portal-vaga-nova .vaga-resumo{max-height:60px!important}
 @media(max-width:1100px){
   #pagina-home .destaques-carrossel{
-    height:392px!important;
-    min-height:392px!important;
-  }
-  #pagina-home .destaques-carrossel>.portal-vaga-nova{
-    flex:0 0 calc((100% - 16px)/2)!important;
-    width:calc((100% - 16px)/2)!important;
-    min-width:calc((100% - 16px)/2)!important;
-    max-width:calc((100% - 16px)/2)!important;
+    grid-auto-columns:calc((100% - 16px)/2)!important;
   }
 }
 @media(max-width:650px){
+  #pagina-home .home-destaques{padding:18px 12px 16px!important}
+  #pagina-home .home-destaques .home-title-row h2{font-size:24px!important}
   #pagina-home .destaques-wrap{padding:0 34px!important}
   #pagina-home .destaques-carrossel{
+    grid-auto-columns:100%!important;
+    grid-template-rows:378px!important;
     height:378px!important;
     min-height:378px!important;
   }
   #pagina-home .destaques-carrossel>.portal-vaga-nova{
-    flex:0 0 100%!important;
-    width:100%!important;
-    min-width:100%!important;
-    max-width:100%!important;
     height:378px!important;
     min-height:378px!important;
     max-height:378px!important;
