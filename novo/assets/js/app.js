@@ -1565,7 +1565,8 @@ function abrirMenuVagaEM(ev,id){
  '<button type="button" onclick="fecharMenuVagaEM();editarVaga(\''+id+'\')"><i class="editar">✎</i><span><b>Editar vaga</b><small>Alterar informações da oportunidade</small></span></button>'+
  '<button type="button" onclick="alternarRecursoVagaEM(\''+id+'\',\'destaque\')"><i class="dest">★</i><span><b>'+(v.destaque?'Retirar destaque':'Adicionar destaque')+'</b><small>'+(v.destaque?'A vaga deixará de receber destaque':'Dar mais visibilidade à oportunidade')+'</small></span></button>'+
  '<button type="button" onclick="alternarRecursoVagaEM(\''+id+'\',\'urgente\')"><i class="urg">⚡</i><span><b>'+(v.urgente?'Retirar urgência':'Marcar como urgente')+'</b><small>'+(v.urgente?'Remover sinalização de urgência':'Sinalizar contratação prioritária')+'</small></span></button>'+
- '<button type="button" onclick="alternarRecursoVagaEM(\''+id+'\',\'confidencial\')"><i class="conf">◉</i><span><b>'+(v.confidencial?'Retirar confidencial':'Tornar confidencial')+'</b><small>'+(v.confidencial?'Voltar a identificar a empresa':'Ocultar a identificação da empresa')+'</small></span></button>';
+ '<button type="button" onclick="alternarRecursoVagaEM(\''+id+'\',\'confidencial\')"><i class="conf">◉</i><span><b>'+(v.confidencial?'Retirar confidencial':'Tornar confidencial')+'</b><small>'+(v.confidencial?'Voltar a identificar a empresa':'Ocultar a identificação da empresa')+'</small></span></button>'+
+ (v.status==='encerrada'?'<button type="button" class="encerrada" disabled><i>✓</i><span><b>Vaga encerrada</b><small>Esta vaga não pode ser reaberta</small></span></button>':'<button type="button" class="encerrar" onclick="abrirEncerrarVagaEM(\''+id+'\')"><i>×</i><span><b>Encerrar vaga</b><small>Finalizar esta publicação definitivamente</small></span></button>');
  document.body.appendChild(box);
  const r=ev.currentTarget.getBoundingClientRect(),w=box.offsetWidth||300,left=Math.min(innerWidth-w-12,Math.max(12,r.right-w)),top=Math.min(innerHeight-(box.offsetHeight||330)-12,Math.max(12,r.bottom+7));
  box.style.left=left+'px';box.style.top=top+'px';
@@ -1573,6 +1574,28 @@ function abrirMenuVagaEM(ev,id){
  window.addEventListener('scroll',window._empMenuVagaScroll,true);
  window.addEventListener('resize',window._empMenuVagaScroll);
  setTimeout(()=>document.addEventListener('click',fecharMenuVagaEM,{once:true}),0)
+}
+function abrirEncerrarVagaEM(id){
+ fecharMenuVagaEM();
+ const v=vagasDaEmpresa().find(x=>String(x.id)===String(id));if(!v||v.status==='encerrada')return;
+ document.getElementById('modalEncerrarVagaEM')?.remove();
+ const m=document.createElement('div');m.id='modalEncerrarVagaEM';m.className='modal-encerrar-vaga-em';
+ m.innerHTML='<div class="modal-encerrar-vaga-backdrop" onclick="fecharEncerrarVagaEM()"></div><div class="modal-encerrar-vaga-dialog" role="dialog" aria-modal="true" aria-labelledby="tituloEncerrarVagaEM"><button class="modal-encerrar-fechar" type="button" onclick="fecharEncerrarVagaEM()">×</button><div class="modal-encerrar-icone">!</div><small class="modal-encerrar-kicker">ENCERRAR VAGA</small><h2 id="tituloEncerrarVagaEM">Encerrar esta vaga?</h2><p>A vaga <strong>'+esc(tituloVaga(v))+'</strong> será encerrada definitivamente e deixará de receber novas candidaturas.</p><div class="modal-encerrar-alerta"><b>Esta ação não pode ser desfeita.</b><span>Depois de confirmada, a vaga não poderá ser reaberta. Para anunciar novamente, será necessário criar uma nova vaga.</span></div><div class="modal-encerrar-acoes"><button type="button" class="modal-encerrar-cancelar" onclick="fecharEncerrarVagaEM()">Cancelar</button><button type="button" class="modal-encerrar-confirmar" onclick="confirmarEncerrarVagaEM(\''+id+'\',this)">Sim, encerrar vaga</button></div></div>';
+ document.body.appendChild(m);document.body.classList.add('modal-encerrar-vaga-aberto');
+}
+function fecharEncerrarVagaEM(){document.getElementById('modalEncerrarVagaEM')?.remove();document.body.classList.remove('modal-encerrar-vaga-aberto')}
+async function confirmarEncerrarVagaEM(id,btn){
+ const v=vagasDaEmpresa().find(x=>String(x.id)===String(id));if(!v||v.status==='encerrada'){fecharEncerrarVagaEM();return}
+ if(btn){btn.disabled=true;btn.textContent='Encerrando...'}
+ const agora=new Date().toISOString();
+ try{
+  const token=await sbGarantirSessaoEM();if(!token)throw new Error('Sua sessão expirou. Entre novamente.');
+  await sbJsonEM(EMPREGAMAIS_SUPABASE_URL+'/rest/v1/vagas?id=eq.'+encodeURIComponent(id),{method:'PATCH',headers:Object.assign(sbHeadersEM(token),{'Prefer':'return=minimal'}),body:JSON.stringify({status:'encerrada',encerrada_em:agora})});
+  const locais=ler('empregaMaisVagas'),i=locais.findIndex(x=>String(x.id)===String(id));if(i>=0){locais[i].status='encerrada';locais[i].encerradaEm=agora;gravar('empregaMaisVagas',locais)}
+  const ci=sbVagasCacheEM.findIndex(x=>String(x.id)===String(id));if(ci>=0){sbVagasCacheEM[ci].status='encerrada';sbVagasCacheEM[ci].encerradaEm=agora}
+  fecharEncerrarVagaEM();await sbCarregarVagasEM();renderizarPainelEmpresa();
+  const ok=document.createElement('div');ok.className='modal-encerrar-vaga-em';ok.id='modalEncerrarVagaEM';ok.innerHTML='<div class="modal-encerrar-vaga-backdrop"></div><div class="modal-encerrar-vaga-dialog"><div class="modal-encerrar-icone" style="background:#edf8f3;border-color:#c9e8da;color:#168064">✓</div><small class="modal-encerrar-kicker">PROCESSO FINALIZADO</small><h2>Vaga encerrada</h2><p>A vaga foi encerrada com sucesso e não poderá ser reaberta.</p><div class="modal-encerrar-acoes" style="grid-template-columns:1fr"><button type="button" class="modal-encerrar-cancelar" onclick="fecharEncerrarVagaEM()">Entendi</button></div></div>';document.body.appendChild(ok);document.body.classList.add('modal-encerrar-vaga-aberto');
+ }catch(err){console.error('Encerrar vaga:',err);if(btn){btn.disabled=false;btn.textContent='Sim, encerrar vaga'}alert(err.message||'Não foi possível encerrar a vaga.')}
 }
 async function alternarRecursoVagaEM(id,recurso){
  const v=vagasDaEmpresa().find(x=>String(x.id)===String(id));if(!v||!['destaque','urgente','confidencial'].includes(recurso))return;
