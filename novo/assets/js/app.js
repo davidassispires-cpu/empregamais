@@ -2029,3 +2029,29 @@ renderizarVagasPortal=function(){
  prepararCardsRecentesEM();
  if(window.vagaPreviewRecenteEM)renderPreviewVagaRecenteEM(window.vagaPreviewRecenteEM);
 };
+
+/* EMPREGAMAIS — AVALIAÇÕES NO PAINEL DA EMPRESA V1 */
+function avaliacoesEmpresaLogadaEM(){
+ const emp=empresaLogada(),cnpj=nums(emp?.cnpj||sessionStorage.getItem('empresaCnpj')||''),nome=String(emp?.nome||sessionStorage.getItem('empresaNome')||'').trim().toLowerCase();
+ return ler('empregaMaisAvaliacoesProcessos',[]).filter(a=>{
+   const ac=nums(a.empresaCnpj||a.cnpj||''),an=String(a.empresa||a.empresaNome||'').trim().toLowerCase();
+   return (cnpj&&ac===cnpj)||(!ac&&nome&&an===nome);
+ });
+}
+function atualizarBadgeAvaliacoesEmpresaEM(){
+ const el=document.getElementById('empresaSideAvaliacoes');if(!el)return;
+ const n=avaliacoesEmpresaLogadaEM().length;el.textContent=n?String(n):'';
+}
+function abrirAvaliacoesEmpresaEM(){
+ const modal=document.getElementById('modalAvaliacoesEmpresaEM'),box=document.getElementById('conteudoAvaliacoesEmpresaEM');if(!modal||!box)return;
+ const a=avaliacoesEmpresaLogadaEM();
+ if(!a.length){box.innerHTML='<div class="emp-av-head"><span>REPUTAÇÃO DA EMPRESA</span><h2>Avaliações dos processos seletivos</h2><p>Acompanhe a experiência dos candidatos que participaram dos seus processos.</p></div><div class="emp-av-vazio"><strong>Nenhuma avaliação recebida</strong><span>Quando candidatos elegíveis avaliarem seus processos seletivos, as avaliações aparecerão aqui.</span></div>';modal.classList.remove('oculto');return}
+ const campos=['notaGeral','comunicacao','clareza','agilidade','experiencia'];
+ const media=campo=>{const vs=a.map(x=>Number(x[campo]||x.notas?.[campo]||0)).filter(Boolean);return vs.length?vs.reduce((s,n)=>s+n,0)/vs.length:0};
+ const geral=media('notaGeral')||a.reduce((s,x)=>s+Number(x.nota||0),0)/a.length;
+ const stars=n=>'★'.repeat(Math.max(0,Math.min(5,Math.round(n))))+'☆'.repeat(Math.max(0,5-Math.round(n)));
+ box.innerHTML='<div class="emp-av-head"><span>REPUTAÇÃO DA EMPRESA</span><h2>Avaliações dos processos seletivos</h2><p>Feedback dos candidatos sobre a experiência de recrutamento da sua empresa.</p></div><div class="emp-av-resumo"><div class="emp-av-nota"><strong>'+geral.toFixed(1).replace('.',',')+'</strong><b>'+stars(geral)+'</b><small>'+a.length+' avaliação'+(a.length===1?'':'ões')+'</small></div><div class="emp-av-criterios"><div><span>Comunicação</span><b>'+media('comunicacao').toFixed(1).replace('.',',')+'</b></div><div><span>Clareza do processo</span><b>'+media('clareza').toFixed(1).replace('.',',')+'</b></div><div><span>Agilidade</span><b>'+media('agilidade').toFixed(1).replace('.',',')+'</b></div><div><span>Experiência geral</span><b>'+media('experiencia').toFixed(1).replace('.',',')+'</b></div></div></div><div class="emp-av-lista">'+a.slice().reverse().map(x=>{const n=Number(x.notaGeral||x.nota||0);return '<article class="emp-av-item"><div class="emp-av-item-top"><div><h3>'+esc(x.vaga||x.cargo||'Processo seletivo')+'</h3><small>'+esc(x.data||x.criadoEm||'Avaliação de candidato')+'</small></div><span class="estrelas">'+stars(n)+'</span></div>'+(x.comentario?'<p>'+esc(x.comentario)+'</p>':'')+'</article>'}).join('')+'</div>';
+ modal.classList.remove('oculto');
+}
+function fecharAvaliacoesEmpresaEM(){document.getElementById('modalAvaliacoesEmpresaEM')?.classList.add('oculto')}
+document.addEventListener('DOMContentLoaded',()=>setTimeout(atualizarBadgeAvaliacoesEmpresaEM,500));
