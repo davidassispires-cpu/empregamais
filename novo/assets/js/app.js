@@ -848,29 +848,28 @@ document.addEventListener('click',function(e){
  escolherPlanoAtual(btn.dataset.plano);
 },false);
 
-/* EMPREGAMAIS — DESTAQUES — RENDERIZAÇÃO E NAVEGAÇÃO V7 */
+/* EMPREGAMAIS — DESTAQUES — RENDERIZAÇÃO E NAVEGAÇÃO V8: uma única linha */
 let indiceDestaquesEM=0;
+function quantidadeDestaquesVisiveisEM(){return window.innerWidth<=700?1:window.innerWidth<=1050?2:3}
 function renderDestaquesEM(lista){
  const el=document.getElementById('listaDestaques');if(!el)return;
- const arr=Array.isArray(lista)?lista:[],total=arr.length;
- if(indiceDestaquesEM>Math.max(0,total-4))indiceDestaquesEM=0;
- const qtd=window.innerWidth<=700?1:window.innerWidth<=1050?2:4;
+ const arr=Array.isArray(lista)?lista:[],total=arr.length,qtd=quantidadeDestaquesVisiveisEM();
+ if(indiceDestaquesEM>Math.max(0,total-qtd))indiceDestaquesEM=0;
  let vis=[];for(let i=0;i<Math.min(qtd,total);i++)vis.push(arr[(indiceDestaquesEM+i)%total]);
  el.innerHTML=vis.map(cardVagaPortal).join('');
  el.dataset.quantidade=String(vis.length);
 }
 function moverDestaques(dir){
  const el=document.getElementById('listaDestaques');if(!el)return;
- const cards=el.querySelectorAll('.portal-vaga-nova');
- if(cards.length<1)return;
- const todas=vagasPublicas().filter(destaqueAtivo).slice(0,8);
- if(todas.length<=4)return;
+ const cards=el.querySelectorAll('.portal-vaga-nova');if(cards.length<1)return;
+ const todas=vagasPublicas().filter(destaqueAtivo).slice(0,8),qtd=quantidadeDestaquesVisiveisEM();
+ if(todas.length<=qtd)return;
  indiceDestaquesEM+=dir;
- if(indiceDestaquesEM>todas.length-4)indiceDestaquesEM=0;
- if(indiceDestaquesEM<0)indiceDestaquesEM=todas.length-4;
+ if(indiceDestaquesEM>todas.length-qtd)indiceDestaquesEM=0;
+ if(indiceDestaquesEM<0)indiceDestaquesEM=todas.length-qtd;
  renderDestaquesEM(todas);
 }
-(function(){let timer=null,pausado=false;function iniciar(){clearInterval(timer);timer=setInterval(function(){const el=document.getElementById('listaDestaques');if(!el||pausado)return;const total=vagasPublicas().filter(destaqueAtivo).slice(0,8).length;if(total>4)moverDestaques(1)},4500)}document.addEventListener('mouseover',function(e){if(e.target.closest&&e.target.closest('#listaDestaques'))pausado=true});document.addEventListener('mouseout',function(e){if(e.target.closest&&e.target.closest('#listaDestaques'))pausado=false});iniciar()})();
+(function(){let timer=null,pausado=false;function iniciar(){clearInterval(timer);timer=setInterval(function(){const el=document.getElementById('listaDestaques');if(!el||pausado)return;const total=vagasPublicas().filter(destaqueAtivo).slice(0,8).length;if(total>quantidadeDestaquesVisiveisEM())moverDestaques(1)},4500)}document.addEventListener('mouseover',function(e){if(e.target.closest&&e.target.closest('#listaDestaques'))pausado=true});document.addEventListener('mouseout',function(e){if(e.target.closest&&e.target.closest('#listaDestaques'))pausado=false});iniciar()})();
 
 /* EMPREGAMAIS-VERIFICACAO-EMPRESA-V1 */
 function iniciarSolicitacaoVerificacaoEM(lista,i,motivo='envio'){
