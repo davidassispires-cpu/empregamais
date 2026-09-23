@@ -803,17 +803,6 @@ body .topo .menu-drop-candidato .menu-candidato-cadastro:hover{background:#0d5fb
 #pagina-login-empresa .empresa-trust b{display:block!important;color:#173c5a!important;font-size:11px!important}.empresa-trust small{display:block!important;color:#8495a2!important;font-size:9px!important;margin-top:2px!important}
 @media(max-width:1000px){#pagina-login-empresa{padding:18px 14px 30px!important}#pagina-login-empresa .empresa-login-shell{grid-template-columns:1fr!important;max-width:720px!important}#pagina-login-empresa .empresa-login-banner{min-height:520px!important}#pagina-login-empresa .empresa-banner-content{width:62%!important}#pagina-login-empresa .empresa-trust{max-width:720px!important;grid-template-columns:repeat(2,1fr)!important}#pagina-login-empresa .empresa-trust>div{border-right:0!important}}
 @media(max-width:640px){#pagina-login-empresa .empresa-login-card{padding:24px 18px!important;border-radius:17px!important}#pagina-login-empresa .empresa-login-title{grid-template-columns:54px 1fr!important;gap:14px!important}#pagina-login-empresa .empresa-login-icon{width:54px!important;height:54px!important;font-size:23px!important}#pagina-login-empresa .empresa-login-title h1{font-size:25px!important}#pagina-login-empresa .empresa-cadastro-box{align-items:stretch!important;flex-direction:column!important}#pagina-login-empresa .empresa-login-banner{min-height:auto!important;padding-bottom:25px!important}#pagina-login-empresa .empresa-banner-content{width:auto!important;padding:28px 22px!important}#pagina-login-empresa .empresa-banner-content h2{font-size:31px!important}#pagina-login-empresa .empresa-banner-art{display:none!important}#pagina-login-empresa .empresa-trust{grid-template-columns:1fr!important}.empresa-trust small{font-size:10px!important}}
-</style><style id="EMPREGAMAIS-LOGIN-EMPRESA-AJUSTE-V3">
-/* Ajuste de proporção: elimina área vazia e equilibra login/banner */
-#pagina-login-empresa .empresa-login-shell{grid-template-columns:minmax(430px,.92fr) minmax(0,1.08fr)!important}
-#pagina-login-empresa .empresa-login-banner{min-height:590px!important}
-#pagina-login-empresa .empresa-banner-content{width:64%!important;padding-right:20px!important}
-#pagina-login-empresa .empresa-banner-art{right:0!important;bottom:24px!important;width:42%!important;height:285px!important}
-#pagina-login-empresa .empresa-banner-art:before{width:100%!important;right:0!important;border-radius:26px 0 0 26px!important}
-#pagina-login-empresa .empresa-laptop{width:255px!important}
-@media(max-width:1120px){#pagina-login-empresa .empresa-banner-content{width:69%!important;padding-left:32px!important}#pagina-login-empresa .empresa-banner-content h2{font-size:35px!important}#pagina-login-empresa .empresa-banner-art{width:38%!important}}
-@media(max-width:1000px){#pagina-login-empresa .empresa-login-shell{grid-template-columns:1fr!important}#pagina-login-empresa .empresa-banner-content{width:62%!important}}
-@media(max-width:640px){#pagina-login-empresa .empresa-banner-content{width:auto!important}}
 </style><style id="EMPREGAMAIS-LOGIN-BENEFICIOS-V4">
 #pagina-login-empresa .empresa-login-beneficios-v4{min-height:610px!important;background:linear-gradient(135deg,#f8fcfe 0%,#eaf6fb 100%)!important}
 #pagina-login-empresa .empresa-login-beneficios-v4 .empresa-banner-content{width:auto!important;padding:38px 40px 30px!important}
@@ -833,28 +822,34 @@ body .topo .menu-drop-candidato .menu-candidato-cadastro:hover{background:#0d5fb
 #pagina-login-empresa .empresa-beneficios-footer span{color:#55738b!important;font-size:9.5px!important}
 @media(max-width:1120px){#pagina-login-empresa .empresa-beneficios-cards{grid-template-columns:repeat(2,minmax(0,1fr))!important}#pagina-login-empresa .empresa-login-beneficios-v4 h2{font-size:34px!important}}
 @media(max-width:640px){#pagina-login-empresa .empresa-login-beneficios-v4 .empresa-banner-content{padding:26px 20px!important}#pagina-login-empresa .empresa-beneficios-cards{grid-template-columns:1fr!important}#pagina-login-empresa .empresa-beneficios-cards article{min-height:auto!important}#pagina-login-empresa .empresa-beneficios-footer{align-items:flex-start!important;flex-direction:column!important}}
-</style><style id="EMPREGAMAIS-LOGIN-RESPONSIVO-V5">
-/* Corrige compressão dos cards em larguras intermediárias */
-@media (min-width:1001px) and (max-width:1240px){
- #pagina-login-empresa .empresa-login-shell{grid-template-columns:minmax(390px,46%) minmax(0,54%)!important;gap:18px!important}
- #pagina-login-empresa .empresa-login-beneficios-v4 .empresa-banner-content{padding:32px 28px 26px!important}
- #pagina-login-empresa .empresa-login-beneficios-v4 h2{font-size:32px!important;line-height:1.08!important}
+</style><style id="EMPREGAMAIS-LOGIN-LAYOUT-FINAL-V6">
+/* Fonte única de layout para o login empresarial */
+#pagina-login-empresa{padding:26px 24px 40px!important}
+#pagina-login-empresa .empresa-login-shell{max-width:1280px!important;margin:0 auto!important;display:grid!important;grid-template-columns:540px minmax(0,1fr)!important;gap:24px!important;align-items:stretch!important}
+#pagina-login-empresa .empresa-login-card{width:auto!important;min-width:0!important}
+#pagina-login-empresa .empresa-login-beneficios-v4{width:auto!important;min-width:0!important;min-height:610px!important}
+#pagina-login-empresa .empresa-login-beneficios-v4 .empresa-banner-content{width:100%!important;box-sizing:border-box!important;padding:36px!important}
+#pagina-login-empresa .empresa-login-beneficios-v4 h2{max-width:650px!important;font-size:36px!important;line-height:1.08!important}
+#pagina-login-empresa .empresa-beneficios-cards{width:100%!important;display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:12px!important}
+#pagina-login-empresa .empresa-beneficios-cards article{width:auto!important;min-width:0!important;min-height:154px!important;box-sizing:border-box!important}
+#pagina-login-empresa .empresa-beneficios-cards b,#pagina-login-empresa .empresa-beneficios-cards small{overflow-wrap:normal!important;word-break:normal!important;hyphens:none!important}
+@media(max-width:1180px){
+ #pagina-login-empresa .empresa-login-shell{grid-template-columns:460px minmax(0,1fr)!important}
+ #pagina-login-empresa .empresa-login-beneficios-v4 .empresa-banner-content{padding:30px 26px!important}
+ #pagina-login-empresa .empresa-login-beneficios-v4 h2{font-size:32px!important}
  #pagina-login-empresa .empresa-beneficios-cards{grid-template-columns:repeat(2,minmax(0,1fr))!important}
 }
-@media (max-width:1000px){
- #pagina-login-empresa .empresa-login-shell{display:block!important;max-width:760px!important}
- #pagina-login-empresa .empresa-login-card{width:100%!important;margin-bottom:18px!important}
- #pagina-login-empresa .empresa-login-beneficios-v4{width:100%!important;min-height:0!important}
- #pagina-login-empresa .empresa-login-beneficios-v4 .empresa-banner-content{width:100%!important;padding:30px 26px!important}
- #pagina-login-empresa .empresa-login-beneficios-v4 h2{max-width:none!important;font-size:34px!important}
- #pagina-login-empresa .empresa-login-beneficios-v4>.empresa-banner-content>p{max-width:none!important}
+@media(max-width:900px){
+ #pagina-login-empresa .empresa-login-shell{display:flex!important;flex-direction:column!important;max-width:760px!important}
+ #pagina-login-empresa .empresa-login-card,#pagina-login-empresa .empresa-login-beneficios-v4{width:100%!important}
+ #pagina-login-empresa .empresa-login-beneficios-v4{min-height:0!important}
  #pagina-login-empresa .empresa-beneficios-cards{grid-template-columns:repeat(2,minmax(0,1fr))!important}
- #pagina-login-empresa .empresa-beneficios-cards article{min-height:145px!important}
 }
-@media (max-width:600px){
+@media(max-width:560px){
+ #pagina-login-empresa{padding:14px 10px 28px!important}
  #pagina-login-empresa .empresa-beneficios-cards{grid-template-columns:1fr!important}
  #pagina-login-empresa .empresa-beneficios-cards article{min-height:0!important}
- #pagina-login-empresa .empresa-login-beneficios-v4 h2{font-size:29px!important}
+ #pagina-login-empresa .empresa-login-beneficios-v4 h2{font-size:28px!important}
 }
 </style></head><body><header class="topo"><div class="topo-inner"><button type="button" class="marca" data-rota="home"><span class="marca-icone">E+</span><span class="marca-nome">Emprega<span>Mais</span></span></button><nav class="menu menu-publico"><button type="button" data-rota="home">Buscar vagas</button><button type="button" data-rota="senior">EmpregaMais Sênior</button><button type="button" data-rota="como-funciona">Como funciona</button>
 <div class="menu-drop menu-drop-empresa"><button type="button" class="menu-drop-gatilho" onclick="alternarMenuTopo('empresa',event)">Para empresas <span>⌄</span></button><div class="menu-drop-painel menu-empresa-publico"><div class="menu-drop-titulo">PARA EMPRESAS</div><div class="menu-empresa-intro"><strong>Encontre os talentos certos</strong><span>Publique vagas e gerencie seus processos seletivos em um só lugar.</span></div><button class="menu-empresa-link" onclick="rotaMenuTopo('como-funciona')"><b>Como funciona</b><span>Conheça a plataforma para empresas</span></button><button class="menu-empresa-link" onclick="rotaMenuTopo('planos')"><b>Planos e preços</b><span>Veja os recursos disponíveis</span></button><div class="menu-drop-separador"></div><button class="menu-empresa-login" onclick="rotaMenuTopo('login-empresa')">Entrar como empresa</button><button class="menu-empresa-cadastro" onclick="rotaMenuTopo('cadastro-empresa')">Cadastrar empresa</button></div></div>
