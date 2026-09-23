@@ -5172,362 +5172,91 @@ overflow:visible!important
 @media(max-width:700px){#pagina-vaga .vaga-hero-card{padding:20px!important}#pagina-vaga .vaga-hero-identidade{grid-template-columns:74px minmax(0,1fr)!important;gap:14px!important}#pagina-vaga .vaga-hero-selos{gap:7px!important}#pagina-vaga .vaga-hero-selos>span:not(.hero-50-bloco){min-height:34px!important;padding:0 10px!important;font-size:10px!important}#pagina-vaga .hero-50-bloco{padding:3px!important}}
 
 
-/* EMPREGAMAIS-REFORMULACAO-DESTAQUES-V1 */
+
+/* EMPREGAMAIS — VAGAS EM DESTAQUE — MODELO PROFISSIONAL V3 — 2026-09-23 */
 #pagina-home .home-destaques{
   background:#fff!important;
-  border:1px solid #e4ebf2!important;
-  border-radius:18px!important;
-  padding:22px 24px 20px!important;
-  margin-top:12px!important;
-  box-shadow:0 6px 22px rgba(18,55,85,.035)!important;
-}
-#pagina-home .home-destaques .home-title-row{margin-bottom:10px!important}
-#pagina-home .home-destaques .home-title-row h2{
-  margin:0!important;
-  font-size:29px!important;
-  line-height:1.15!important;
-  color:#082f57!important;
-  font-weight:800!important;
-}
-#pagina-home .destaques-wrap{padding:0 38px!important;overflow:hidden!important}
-#pagina-home .destaques-carrossel{
-  grid-auto-columns:calc((100% - 24px)/3)!important;
-  column-gap:12px!important;
-  padding:8px 2px 12px!important;
-  scroll-snap-type:x mandatory!important;
-}
-#pagina-home .destaques-carrossel>.portal-vaga-nova{
-  min-width:0!important;
-  max-width:none!important;
-  height:352px!important;
-  min-height:352px!important;
-  padding:15px 16px 14px!important;
-  border:1px solid #d9e5ee!important;
-  border-radius:16px!important;
-  background:#fff!important;
-  box-shadow:0 5px 16px rgba(17,55,84,.055)!important;
-  scroll-snap-align:start!important;
-}
-#pagina-home .destaques-carrossel>.portal-vaga-nova:hover{
-  transform:translateY(-2px)!important;
-  border-color:#b8ccdc!important;
-  box-shadow:0 10px 24px rgba(17,55,84,.09)!important;
-}
-#pagina-home .destaques-carrossel>.dest-combo-dourado{
-  border-color:#e2b33d!important;
-  background:linear-gradient(180deg,#fffdf7 0%,#fff 100%)!important;
-}
-#pagina-home .destaques-carrossel>.dest-combo-vermelho{
-  border-color:#ef8b99!important;
-  background:linear-gradient(180deg,#fffafa 0%,#fff 100%)!important;
-}
-#pagina-home .destaques-carrossel>.dest-combo-azul{
-  border-color:#7eaff0!important;
-  background:linear-gradient(180deg,#fafdff 0%,#fff 100%)!important;
-}
-#pagina-home .destaques-carrossel>.dest-combo-verde{
-  border-color:#7acba6!important;
-  background:linear-gradient(180deg,#fbfffd 0%,#fff 100%)!important;
-}
-#pagina-home .destaques-carrossel .vaga-card-topo{
-  min-height:28px!important;
-  height:auto!important;
-  margin:0 0 11px!important;
-  gap:7px!important;
-}
-#pagina-home .destaques-carrossel .vaga-selos{
-  gap:5px!important;
-  min-width:0!important;
-  overflow:hidden!important;
-}
-#pagina-home .destaques-carrossel .vaga-selo{
-  height:27px!important;
-  min-height:27px!important;
-  padding:0 7px!important;
-  border-radius:6px!important;
-  font-size:9px!important;
-  letter-spacing:.02em!important;
-}
-#pagina-home .destaques-carrossel .vaga-favorito{
-  flex:0 0 28px!important;
-  width:28px!important;
-  height:28px!important;
-  font-size:23px!important;
-}
-#pagina-home .destaques-carrossel .vaga-identidade{
-  display:grid!important;
-  grid-template-columns:66px minmax(0,1fr)!important;
-  gap:11px!important;
-  align-items:center!important;
-  min-height:72px!important;
-  margin:0 0 11px!important;
-}
-#pagina-home .destaques-carrossel .vaga-logo{
-  width:66px!important;
-  height:66px!important;
-  min-width:66px!important;
-  padding:6px!important;
-  border-radius:11px!important;
-  box-shadow:0 3px 9px rgba(18,52,79,.045)!important;
-}
-#pagina-home .destaques-carrossel .vaga-identidade>div:last-child{min-width:0!important}
-#pagina-home .destaques-carrossel .vaga-identidade h3{
-  font-size:17px!important;
-  line-height:1.12!important;
-  margin:0 0 5px!important;
-  color:#082e5c!important;
-  font-weight:800!important;
-  display:-webkit-box!important;
-  -webkit-line-clamp:3!important;
-  -webkit-box-orient:vertical!important;
-  overflow:hidden!important;
-  overflow-wrap:normal!important;
-  word-break:normal!important;
-}
-#pagina-home .destaques-carrossel .vaga-identidade p{
-  font-size:12.5px!important;
-  line-height:1.25!important;
-  color:#56718a!important;
-  margin:0!important;
-  display:-webkit-box!important;
-  -webkit-line-clamp:2!important;
-  -webkit-box-orient:vertical!important;
-  overflow:hidden!important;
-}
-#pagina-home .destaques-carrossel .vaga-meta{
-  display:flex!important;
-  flex-wrap:wrap!important;
-  gap:5px!important;
-  min-height:62px!important;
-  margin:0 0 8px!important;
-  align-content:flex-start!important;
-}
-#pagina-home .destaques-carrossel .vaga-meta span{
-  height:27px!important;
-  min-height:27px!important;
-  padding:0 7px!important;
-  border-radius:6px!important;
-  font-size:10px!important;
-}
-#pagina-home .destaques-carrossel .vaga-meta span:first-child{
-  flex-basis:100%!important;
-  height:23px!important;
-  min-height:23px!important;
-  padding:0!important;
-  background:transparent!important;
-  font-size:12.5px!important;
-  font-weight:800!important;
-}
-#pagina-home .destaques-carrossel .vaga-salario-data{
-  min-height:27px!important;
-  margin:0 0 7px!important;
-  gap:8px!important;
-}
-#pagina-home .destaques-carrossel .salario-card{
-  font-size:17px!important;
-  font-weight:800!important;
-  color:#092f5d!important;
-}
-#pagina-home .destaques-carrossel .data-card{
-  font-size:10px!important;
-  color:#71869a!important;
-}
-#pagina-home .destaques-carrossel .vaga-resumo{
-  height:38px!important;
-  min-height:38px!important;
-  max-height:38px!important;
-  margin:0 0 10px!important;
-  font-size:11.5px!important;
-  line-height:1.55!important;
-  color:#607589!important;
-  -webkit-line-clamp:2!important;
-}
-#pagina-home .destaques-carrossel .vaga-card-rodape{
-  min-height:43px!important;
-  margin-top:auto!important;
-}
-#pagina-home .destaques-carrossel .vaga-candidaturas{display:none!important}
-#pagina-home .destaques-carrossel .vaga-ver-btn{
-  width:128px!important;
-  min-width:128px!important;
-  height:42px!important;
-  padding:0 14px!important;
-  border-radius:9px!important;
-  font-size:12px!important;
-  gap:12px!important;
-}
-#pagina-home .dest-combo-dourado .vaga-ver-btn{background:#0b5aa8!important}
-#pagina-home .dest-combo-vermelho .vaga-ver-btn{background:#0b5aa8!important}
-#pagina-home .dest-combo-azul .vaga-ver-btn{background:#0b5aa8!important}
-#pagina-home .dest-combo-verde .vaga-ver-btn{background:#0b5aa8!important}
-#pagina-home .destaque-prev,#pagina-home .destaque-next{
-  width:40px!important;height:40px!important;
-  font-size:27px!important;
-  background:#fff!important;
-  color:#0759ad!important;
-  border:1px solid #d8e5ef!important;
-}
-@media(max-width:1050px){
-  #pagina-home .destaques-carrossel{grid-auto-columns:calc((100% - 12px)/2)!important}
-}
-@media(max-width:650px){
-  #pagina-home .home-destaques{padding:18px 12px 16px!important}
-  #pagina-home .home-destaques .home-title-row h2{font-size:24px!important}
-  #pagina-home .destaques-wrap{padding:0 27px!important}
-  #pagina-home .destaques-carrossel{grid-auto-columns:88%!important}
-}
-
-
-/* EMPREGAMAIS-REFORMULACAO-DESTAQUES-4-CARDS */
-#pagina-home .destaques-carrossel{
-  grid-template-columns:repeat(4,minmax(0,1fr))!important;
-  grid-auto-columns:unset!important;
-  gap:14px!important;
-  overflow:visible!important;
-}
-#pagina-home .destaques-carrossel>.portal-vaga-nova{
-  width:auto!important;
-  min-width:0!important;
-  max-width:none!important;
-  height:390px!important;
-  min-height:390px!important;
-  box-sizing:border-box!important;
-}
-#pagina-home .destaques-wrap{
-  padding:0 40px!important;
-  overflow:visible!important;
-}
-#pagina-home .destaques-carrossel .vaga-identidade{
-  grid-template-columns:62px minmax(0,1fr)!important;
-  gap:10px!important;
-}
-#pagina-home .destaques-carrossel .vaga-logo{
-  width:62px!important;
-  height:62px!important;
-  min-width:62px!important;
-}
-#pagina-home .destaques-carrossel .vaga-identidade h3{
-  font-size:16px!important;
-  line-height:1.14!important;
-}
-#pagina-home .destaques-carrossel .vaga-identidade p{
-  font-size:12px!important;
-}
-#pagina-home .destaques-carrossel .vaga-meta{
-  min-height:60px!important;
-}
-#pagina-home .destaques-carrossel .vaga-salario-data{
-  flex-wrap:nowrap!important;
-}
-#pagina-home .destaques-carrossel .salario-card{
-  font-size:16px!important;
-  white-space:nowrap!important;
-}
-#pagina-home .destaques-carrossel .data-card{
-  white-space:nowrap!important;
-}
-#pagina-home .destaques-carrossel .vaga-resumo{
-  font-size:11.5px!important;
-}
-#pagina-home .destaques-carrossel .vaga-ver-btn{
-  width:100%!important;
-  min-width:0!important;
-}
-#pagina-home .destaque-prev,
-#pagina-home .destaque-next{
-  width:38px!important;
-  height:38px!important;
-}
-@media(max-width:1100px){
-  #pagina-home .destaques-carrossel{
-    grid-template-columns:repeat(2,minmax(0,1fr))!important;
-    gap:14px!important;
-  }
-  #pagina-home .destaques-carrossel>.portal-vaga-nova{
-    height:380px!important;
-    min-height:380px!important;
-  }
-}
-@media(max-width:650px){
-  #pagina-home .destaques-carrossel{
-    grid-template-columns:1fr!important;
-    gap:12px!important;
-  }
-  #pagina-home .destaques-carrossel>.portal-vaga-nova{
-    height:370px!important;
-    min-height:370px!important;
-  }
-  #pagina-home .destaques-wrap{padding:0 28px!important}
-}
-
-
-/* EMPREGAMAIS-DESTAQUES-PROFISSIONAL-V2 */
-/* Área de destaque: quatro cards visíveis, com navegação horizontal preservada */
-#pagina-home .home-destaques{
-  background:#fff!important;
-  border:1px solid #e4ebf3!important;
-  border-radius:18px!important;
-  padding:22px 24px 20px!important;
-  box-shadow:0 8px 28px rgba(8,47,87,.045)!important;
+  border:1px solid #dce6ef!important;
+  border-radius:20px!important;
+  padding:24px 26px 22px!important;
+  margin-top:16px!important;
+  box-shadow:0 10px 30px rgba(8,47,87,.055)!important;
 }
 #pagina-home .home-destaques .home-title-row{
-  margin-bottom:14px!important;
+  display:flex!important;
+  align-items:center!important;
+  justify-content:space-between!important;
+  gap:16px!important;
+  margin:0 0 18px!important;
 }
 #pagina-home .home-destaques .home-title-row h2{
-  color:#092f5d!important;
-  font-size:29px!important;
+  margin:0!important;
+  color:#082f57!important;
+  font-size:28px!important;
+  line-height:1.15!important;
   font-weight:800!important;
   letter-spacing:-.02em!important;
 }
 #pagina-home .destaques-wrap{
   position:relative!important;
-  padding:0 42px!important;
+  width:100%!important;
+  padding:0 46px!important;
+  box-sizing:border-box!important;
   overflow:visible!important;
 }
 #pagina-home .destaques-carrossel{
   display:flex!important;
-  gap:14px!important;
+  flex-direction:row!important;
+  flex-wrap:nowrap!important;
+  align-items:stretch!important;
+  gap:16px!important;
+  width:100%!important;
+  box-sizing:border-box!important;
   overflow-x:auto!important;
   overflow-y:hidden!important;
+  padding:4px 2px 14px!important;
   scroll-behavior:smooth!important;
   scroll-snap-type:x mandatory!important;
   scrollbar-width:none!important;
-  padding:4px 2px 12px!important;
 }
 #pagina-home .destaques-carrossel::-webkit-scrollbar{display:none!important}
 #pagina-home .destaques-carrossel>.portal-vaga-nova{
-  flex:0 0 calc((100% - 42px)/4)!important;
-  width:calc((100% - 42px)/4)!important;
-  min-width:calc((100% - 42px)/4)!important;
-  max-width:calc((100% - 42px)/4)!important;
-  height:390px!important;
-  min-height:390px!important;
+  flex:0 0 calc((100% - 48px)/4)!important;
+  width:calc((100% - 48px)/4)!important;
+  min-width:calc((100% - 48px)/4)!important;
+  max-width:calc((100% - 48px)/4)!important;
+  height:392px!important;
+  min-height:392px!important;
+  max-height:392px!important;
   box-sizing:border-box!important;
-  padding:15px 16px 14px!important;
-  border:1px solid #d9e5ef!important;
+  padding:16px 16px 15px!important;
+  border:1px solid #d7e3ed!important;
   border-radius:16px!important;
   background:#fff!important;
-  box-shadow:0 5px 16px rgba(8,47,87,.055)!important;
+  box-shadow:0 5px 18px rgba(8,47,87,.055)!important;
   scroll-snap-align:start!important;
+  overflow:hidden!important;
   transition:transform .18s ease,box-shadow .18s ease,border-color .18s ease!important;
 }
-/* Identidade única do portal: azul neutro, sem uma cor diferente para cada vaga */
+#pagina-home .destaques-carrossel>.portal-vaga-nova:hover{
+  transform:translateY(-3px)!important;
+  border-color:#9dbbd8!important;
+  box-shadow:0 12px 28px rgba(8,47,87,.11)!important;
+}
 #pagina-home .destaques-carrossel>.portal-vaga-nova.dest-combo-dourado,
 #pagina-home .destaques-carrossel>.portal-vaga-nova.dest-combo-vermelho,
 #pagina-home .destaques-carrossel>.portal-vaga-nova.dest-combo-azul,
 #pagina-home .destaques-carrossel>.portal-vaga-nova.dest-combo-verde{
-  border-color:#cbdceb!important;
+  border-color:#c8d9e8!important;
   background:#fff!important;
 }
-#pagina-home .destaques-carrossel>.portal-vaga-nova:hover{
-  transform:translateY(-2px)!important;
-  border-color:#9ebdde!important;
-  box-shadow:0 10px 25px rgba(8,47,87,.10)!important;
-}
 #pagina-home .destaques-carrossel .vaga-card-topo{
-  min-height:28px!important;
+  display:flex!important;
+  align-items:center!important;
+  justify-content:space-between!important;
+  min-height:30px!important;
   margin:0 0 13px!important;
-  gap:7px!important;
+  gap:8px!important;
 }
 #pagina-home .destaques-carrossel .vaga-selos{
   display:flex!important;
@@ -5542,11 +5271,12 @@ overflow:visible!important
   padding:0 8px!important;
   border-radius:7px!important;
   font-size:9px!important;
+  font-weight:800!important;
   white-space:nowrap!important;
 }
 #pagina-home .destaques-carrossel .vaga-favorito{
+  flex:0 0 30px!important;
   width:30px!important;
-  min-width:30px!important;
   height:30px!important;
   font-size:22px!important;
   color:#0759ad!important;
@@ -5564,21 +5294,21 @@ overflow:visible!important
   height:64px!important;
   min-width:64px!important;
   padding:6px!important;
-  border:1px solid #e1e9f0!important;
+  border:1px solid #e1e8ef!important;
   border-radius:11px!important;
   background:#fff!important;
   object-fit:contain!important;
-  box-shadow:0 2px 8px rgba(8,47,87,.04)!important;
 }
+#pagina-home .destaques-carrossel .vaga-identidade>div:last-child{min-width:0!important}
 #pagina-home .destaques-carrossel .vaga-identidade h3{
   margin:0 0 5px!important;
   color:#082f5d!important;
   font-size:16px!important;
-  line-height:1.16!important;
+  line-height:1.18!important;
   font-weight:800!important;
   display:-webkit-box!important;
-  -webkit-line-clamp:2!important;
   -webkit-box-orient:vertical!important;
+  -webkit-line-clamp:2!important;
   overflow:hidden!important;
   word-break:normal!important;
   overflow-wrap:normal!important;
@@ -5587,10 +5317,10 @@ overflow:visible!important
   margin:0!important;
   color:#617b95!important;
   font-size:12px!important;
-  line-height:1.25!important;
+  line-height:1.3!important;
   display:-webkit-box!important;
-  -webkit-line-clamp:2!important;
   -webkit-box-orient:vertical!important;
+  -webkit-line-clamp:2!important;
   overflow:hidden!important;
 }
 #pagina-home .destaques-carrossel .vaga-meta{
@@ -5598,12 +5328,12 @@ overflow:visible!important
   flex-wrap:wrap!important;
   align-content:flex-start!important;
   gap:6px!important;
-  min-height:61px!important;
-  margin:0 0 9px!important;
+  min-height:62px!important;
+  margin:0 0 8px!important;
 }
 #pagina-home .destaques-carrossel .vaga-meta span{
-  height:28px!important;
-  min-height:28px!important;
+  height:27px!important;
+  min-height:27px!important;
   padding:0 8px!important;
   border-radius:7px!important;
   font-size:10px!important;
@@ -5616,8 +5346,8 @@ overflow:visible!important
   height:22px!important;
   min-height:22px!important;
   padding:0!important;
-  color:#0759ad!important;
   background:transparent!important;
+  color:#0759ad!important;
   font-size:12px!important;
   font-weight:800!important;
 }
@@ -5625,9 +5355,9 @@ overflow:visible!important
   display:flex!important;
   align-items:center!important;
   justify-content:space-between!important;
-  gap:7px!important;
+  gap:8px!important;
   min-height:30px!important;
-  margin:0 0 7px!important;
+  margin:0 0 8px!important;
 }
 #pagina-home .destaques-carrossel .salario-card{
   color:#082f5d!important;
@@ -5644,13 +5374,13 @@ overflow:visible!important
   height:45px!important;
   min-height:45px!important;
   max-height:45px!important;
-  margin:0 0 10px!important;
+  margin:0 0 11px!important;
   color:#607890!important;
   font-size:11px!important;
   line-height:1.48!important;
   display:-webkit-box!important;
-  -webkit-line-clamp:3!important;
   -webkit-box-orient:vertical!important;
+  -webkit-line-clamp:3!important;
   overflow:hidden!important;
 }
 #pagina-home .destaques-carrossel .vaga-card-rodape{
@@ -5663,11 +5393,13 @@ overflow:visible!important
   min-width:0!important;
   height:42px!important;
   min-height:42px!important;
+  border:0!important;
   border-radius:9px!important;
   background:#0968c9!important;
   color:#fff!important;
   font-size:12px!important;
   font-weight:800!important;
+  cursor:pointer!important;
 }
 #pagina-home .destaques-carrossel .vaga-ver-btn:hover{background:#0759ad!important}
 #pagina-home .destaque-prev,
@@ -5678,87 +5410,16 @@ overflow:visible!important
   transform:translateY(-50%)!important;
   width:40px!important;
   height:40px!important;
-  border:1px solid #d7e3ed!important;
+  border:1px solid #d5e2ed!important;
+  border-radius:50%!important;
   background:#fff!important;
   color:#0759ad!important;
-  box-shadow:0 5px 16px rgba(8,47,87,.08)!important;
+  box-shadow:0 6px 18px rgba(8,47,87,.10)!important;
+  cursor:pointer!important;
 }
 #pagina-home .destaque-prev{left:0!important}
 #pagina-home .destaque-next{right:0!important}
 @media(max-width:1100px){
-  #pagina-home .destaques-carrossel>.portal-vaga-nova{
-    flex-basis:calc((100% - 14px)/2)!important;
-    width:calc((100% - 14px)/2)!important;
-    min-width:calc((100% - 14px)/2)!important;
-    max-width:calc((100% - 14px)/2)!important;
-  }
-}
-@media(max-width:650px){
-  #pagina-home .home-destaques{padding:18px 12px 16px!important}
-  #pagina-home .home-destaques .home-title-row h2{font-size:24px!important}
-  #pagina-home .destaques-wrap{padding:0 32px!important}
-  #pagina-home .destaques-carrossel>.portal-vaga-nova{
-    flex-basis:100%!important;
-    width:100%!important;
-    min-width:100%!important;
-    max-width:100%!important;
-  }
-}
-
-
-/* EMPREGAMAIS-FIX-4-CARDS-DESTAQUES-20260923 */
-/* Força a área de vagas em destaque a usar 4 colunas reais no desktop. */
-#pagina-home .destaques-wrap{width:100%!important;display:block!important;padding:0 48px!important;overflow:visible!important}
-#pagina-home .destaques-carrossel{display:grid!important;grid-template-columns:repeat(4,minmax(0,1fr))!important;grid-auto-flow:row!important;grid-auto-columns:auto!important;gap:16px!important;width:100%!important;overflow:visible!important;padding:4px 0 12px!important}
-#pagina-home .destaques-carrossel>.portal-vaga-nova{width:100%!important;min-width:0!important;max-width:none!important;flex:none!important;height:390px!important;min-height:390px!important}
-#pagina-home .destaques-carrossel>.vagas-vazio{grid-column:1/-1!important}
-@media(max-width:899px){
- #pagina-home .destaques-carrossel{grid-template-columns:repeat(2,minmax(0,1fr))!important}
- #pagina-home .destaques-carrossel>.portal-vaga-nova{height:390px!important;min-height:390px!important}
-}
-@media(max-width:599px){
- #pagina-home .destaques-wrap{padding:0 30px!important}
- #pagina-home .destaques-carrossel{grid-template-columns:1fr!important}
- #pagina-home .destaques-carrossel>.portal-vaga-nova{height:370px!important;min-height:370px!important}
-}
-
-
-/* EMPREGAMAIS — CORREÇÃO DEFINITIVA DO CARROSSEL DE DESTAQUES V2 — 2026-09-23 */
-/* Usa FLEX horizontal para manter o carrossel funcional e exibir 4 cards reais no desktop. */
-#pagina-home .destaques-wrap{
-  width:100%!important;
-  padding:0 48px!important;
-  box-sizing:border-box!important;
-  overflow:visible!important;
-}
-#pagina-home .destaques-carrossel{
-  display:flex!important;
-  flex-wrap:nowrap!important;
-  flex-direction:row!important;
-  align-items:stretch!important;
-  gap:16px!important;
-  width:100%!important;
-  max-width:100%!important;
-  box-sizing:border-box!important;
-  overflow-x:auto!important;
-  overflow-y:hidden!important;
-  scroll-behavior:smooth!important;
-  scroll-snap-type:x mandatory!important;
-  padding:4px 0 12px!important;
-}
-#pagina-home .destaques-carrossel>.portal-vaga-nova{
-  flex:0 0 calc((100% - 48px)/4)!important;
-  width:calc((100% - 48px)/4)!important;
-  min-width:calc((100% - 48px)/4)!important;
-  max-width:calc((100% - 48px)/4)!important;
-  box-sizing:border-box!important;
-  scroll-snap-align:start!important;
-}
-#pagina-home .destaques-carrossel>.vagas-vazio{
-  flex:0 0 100%!important;
-  min-width:100%!important;
-}
-@media(max-width:899px){
   #pagina-home .destaques-carrossel>.portal-vaga-nova{
     flex-basis:calc((100% - 16px)/2)!important;
     width:calc((100% - 16px)/2)!important;
@@ -5766,12 +5427,17 @@ overflow:visible!important
     max-width:calc((100% - 16px)/2)!important;
   }
 }
-@media(max-width:599px){
-  #pagina-home .destaques-wrap{padding:0 30px!important}
+@media(max-width:650px){
+  #pagina-home .home-destaques{padding:18px 12px 16px!important}
+  #pagina-home .home-destaques .home-title-row h2{font-size:24px!important}
+  #pagina-home .destaques-wrap{padding:0 34px!important}
   #pagina-home .destaques-carrossel>.portal-vaga-nova{
     flex-basis:100%!important;
     width:100%!important;
     min-width:100%!important;
     max-width:100%!important;
+    height:378px!important;
+    min-height:378px!important;
+    max-height:378px!important;
   }
 }
