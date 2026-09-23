@@ -1529,3 +1529,184 @@ function editarVaga(id){
   if(typeof mostrarEtapa==='function')mostrarEtapa(1);
  },80)
 }
+
+
+/* EMPREGAMAIS — ANDAMENTO DO CANDIDATO PRO V3
+   Modal ampliado em página única + timeline completa + análise detalhada de aderência.
+*/
+(function(){
+ const STYLE_ID='em-andamento-pro-v3-style';
+ if(!document.getElementById(STYLE_ID)){
+  const s=document.createElement('style');s.id=STYLE_ID;s.textContent=String.raw\`
+body.recruta-modal-aberto{overflow:hidden!important}
+.recruta-andamento-modal-em{position:fixed!important;inset:0!important;z-index:99999!important;display:flex!important;align-items:center!important;justify-content:center!important;padding:20px!important}
+.recruta-andamento-modal-em .recruta-andamento-modal-backdrop{position:absolute!important;inset:0!important;background:rgba(9,31,48,.58)!important;backdrop-filter:blur(5px)!important}
+.recruta-andamento-modal-em .recruta-andamento-modal-dialog{position:relative!important;width:min(1180px,calc(100vw - 28px))!important;max-height:calc(100vh - 28px)!important;overflow:hidden!important;background:#f7fafc!important;border:1px solid #cbdce7!important;border-radius:22px!important;box-shadow:0 28px 80px rgba(8,35,55,.28)!important;display:flex!important;flex-direction:column!important;color:#163d58!important}
+.recruta-andamento-modal-em .recruta-andamento-modal-dialog>header{display:flex!important;align-items:center!important;justify-content:space-between!important;gap:18px!important;padding:22px 28px!important;background:#fff!important;border-bottom:1px solid #dce7ee!important}
+.recruta-andamento-modal-em header small{display:block!important;color:#087b88!important;font-size:10px!important;font-weight:800!important;letter-spacing:.12em!important;margin-bottom:5px!important}
+.recruta-andamento-modal-em header h3{margin:0!important;color:#123d59!important;font-size:25px!important;line-height:1.15!important;font-weight:700!important}
+.recruta-andamento-modal-em header p{margin:6px 0 0!important;color:#708497!important;font-size:12px!important}
+.recruta-andamento-modal-em header p b{color:#08785f!important;font-weight:700!important}
+.recruta-andamento-modal-em header>button{width:40px!important;height:40px!important;flex:0 0 40px!important;border:1px solid #cbdde8!important;border-radius:11px!important;background:#fff!important;color:#355b72!important;font-size:22px!important;cursor:pointer!important}
+.recruta-andamento-modal-em .recruta-andamento-modal-body{overflow:auto!important;padding:22px 26px 26px!important}
+.recruta-andamento-modal-em .em-modal-pro-shell{display:grid!important;gap:18px!important}
+.recruta-andamento-modal-em .em-modal-section{background:#fff!important;border:1px solid #d3e1e9!important;border-radius:16px!important;overflow:hidden!important}
+.recruta-andamento-modal-em .em-modal-section-head{padding:15px 18px!important;border-bottom:1px solid #e4edf2!important;display:flex!important;align-items:center!important;justify-content:space-between!important;gap:12px!important}
+.recruta-andamento-modal-em .em-modal-section-head small{margin:0!important;color:#718799!important;font-size:9px!important;letter-spacing:.1em!important;font-weight:800!important}
+.recruta-andamento-modal-em .em-modal-section-head strong{color:#173f5b!important;font-size:15px!important;font-weight:700!important}
+.recruta-andamento-modal-em .em-modal-timeline{padding:24px 20px 18px!important;display:grid!important;grid-template-columns:repeat(7,minmax(90px,1fr))!important;gap:0!important;position:relative!important}
+.recruta-andamento-modal-em .em-modal-timeline:before{content:"";position:absolute!important;left:7.2%!important;right:7.2%!important;top:45px!important;height:2px!important;background:#dbe6ec!important}
+.recruta-andamento-modal-em .em-tl-item{position:relative!important;z-index:1!important;text-align:center!important;min-width:0!important}
+.recruta-andamento-modal-em .em-tl-dot{width:38px!important;height:38px!important;margin:0 auto 9px!important;border-radius:50%!important;border:3px solid #d1e0e8!important;background:#fff!important;display:grid!important;place-items:center!important;color:#7390a0!important;font-size:12px!important;font-weight:700!important}
+.recruta-andamento-modal-em .em-tl-item.feito .em-tl-dot{background:#e8f7f1!important;border-color:#20a276!important;color:#147b5d!important}
+.recruta-andamento-modal-em .em-tl-item.atual .em-tl-dot{background:#087f8e!important;border-color:#087f8e!important;color:#fff!important;box-shadow:0 0 0 6px rgba(8,127,142,.10)!important}
+.recruta-andamento-modal-em .em-tl-item.atual .em-tl-label{color:#08765f!important;font-weight:800!important}
+.recruta-andamento-modal-em .em-tl-label{display:block!important;color:#45657a!important;font-size:11px!important;line-height:1.25!important;font-weight:600!important}
+.recruta-andamento-modal-em .em-tl-date{display:block!important;color:#8aa0ae!important;font-size:9px!important;margin-top:5px!important}
+.recruta-andamento-modal-em .em-tl-date.vazio{color:#aebbc4!important}
+.recruta-andamento-modal-em .em-overview-grid{display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:12px!important;padding:16px 18px!important}
+.recruta-andamento-modal-em .em-overview-card{min-height:105px!important;border:1px solid #bcd7ee!important;border-radius:13px!important;background:#f4f9fd!important;padding:16px!important;display:flex!important;flex-direction:column!important;justify-content:center!important;text-align:center!important}
+.recruta-andamento-modal-em .em-overview-card span{color:#5f788b!important;font-size:10px!important;margin-bottom:7px!important}
+.recruta-andamento-modal-em .em-overview-card strong{color:#103f5e!important;font-size:18px!important;font-weight:700!important}
+.recruta-andamento-modal-em .em-overview-card small{color:#7890a0!important;font-size:9px!important;margin-top:5px!important}
+.recruta-andamento-modal-em .em-adherence-wrap{padding:18px!important;display:grid!important;grid-template-columns:210px minmax(0,1fr)!important;gap:20px!important;align-items:stretch!important}
+.recruta-andamento-modal-em .em-adherence-score{border:1px solid #bcd7ee!important;border-radius:15px!important;background:#f5faff!important;display:flex!important;align-items:center!important;justify-content:center!important;gap:13px!important;padding:18px!important}
+.recruta-andamento-modal-em .em-adherence-ring{width:82px!important;height:82px!important;border-radius:50%!important;display:grid!important;place-items:center!important;position:relative!important;background:conic-gradient(#078b8f calc(var(--pct)*1%),#dfe8ed 0)!important}
+.recruta-andamento-modal-em .em-adherence-ring:after{content:"";position:absolute!important;width:62px!important;height:62px!important;border-radius:50%!important;background:#fff!important}
+.recruta-andamento-modal-em .em-adherence-ring b{position:relative!important;z-index:1!important;color:#123f5d!important;font-size:18px!important}
+.recruta-andamento-modal-em .em-adherence-score-text strong{display:block!important;color:#0d5476!important;font-size:14px!important}
+.recruta-andamento-modal-em .em-adherence-score-text small{display:block!important;color:#6e8493!important;font-size:10px!important;margin-top:4px!important}
+.recruta-andamento-modal-em .em-adherence-copy{border:1px solid #d3e1e9!important;border-radius:15px!important;padding:16px 18px!important;background:#fff!important}
+.recruta-andamento-modal-em .em-adherence-copy h4{margin:0 0 6px!important;color:#173f5b!important;font-size:14px!important}
+.recruta-andamento-modal-em .em-adherence-copy p{margin:0 0 13px!important;color:#647b8d!important;font-size:11px!important;line-height:1.55!important}
+.recruta-andamento-modal-em .em-adherence-meter{height:8px!important;border-radius:999px!important;background:#e5edf1!important;overflow:hidden!important}
+.recruta-andamento-modal-em .em-adherence-meter i{display:block!important;height:100%!important;border-radius:999px!important;background:linear-gradient(90deg,#07818b,#21a463)!important}
+.recruta-andamento-modal-em .em-analysis-grid{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:10px!important;padding:16px 18px 18px!important}
+.recruta-andamento-modal-em .em-analysis-item{border:1px solid #d7e4eb!important;border-radius:12px!important;background:#fbfdfe!important;padding:12px 13px!important;display:grid!important;grid-template-columns:27px 1fr auto!important;gap:10px!important;align-items:start!important}
+.recruta-andamento-modal-em .em-analysis-item>i{width:27px!important;height:27px!important;border-radius:8px!important;display:grid!important;place-items:center!important;background:#edf4f8!important;color:#517188!important;font-style:normal!important;font-weight:800!important}
+.recruta-andamento-modal-em .em-analysis-item.sim>i{background:#e6f7ef!important;color:#16835f!important}
+.recruta-andamento-modal-em .em-analysis-item.parcial>i{background:#fff5df!important;color:#b37b15!important}
+.recruta-andamento-modal-em .em-analysis-item.nao>i{background:#fff0f0!important;color:#bd5157!important}
+.recruta-andamento-modal-em .em-analysis-item>div b{display:block!important;color:#244a63!important;font-size:11px!important;font-weight:700!important}
+.recruta-andamento-modal-em .em-analysis-item>div small{display:block!important;color:#748b9a!important;font-size:9.5px!important;line-height:1.4!important;margin-top:3px!important}
+.recruta-andamento-modal-em .em-analysis-status{font-size:9px!important;font-weight:800!important;white-space:nowrap!important;padding:4px 7px!important;border-radius:999px!important;background:#eef4f7!important;color:#627b8b!important}
+.recruta-andamento-modal-em .sim .em-analysis-status{background:#e7f7ef!important;color:#177a5d!important}
+.recruta-andamento-modal-em .parcial .em-analysis-status{background:#fff5e2!important;color:#9c701c!important}
+.recruta-andamento-modal-em .nao .em-analysis-status{background:#fff0f0!important;color:#b34c53!important}
+.recruta-andamento-modal-em .em-modal-actions{display:flex!important;flex-wrap:wrap!important;gap:9px!important;padding:14px 18px 18px!important;border-top:1px solid #e4edf2!important;background:#fbfdfe!important}
+.recruta-andamento-modal-em .em-modal-actions .btn{min-height:43px!important;padding:0 16px!important;border-radius:10px!important;font-size:11px!important;font-weight:600!important;border:1px solid #c8dbe7!important;background:#fff!important;color:#244b64!important;cursor:pointer!important}
+.recruta-andamento-modal-em .em-modal-actions .btn-azul{background:#078f9d!important;border-color:#078f9d!important;color:#fff!important}
+.recruta-andamento-modal-em .em-modal-actions .recruta-whatsapp{background:#16ae68!important;border-color:#16ae68!important;color:#fff!important}
+.recruta-andamento-modal-em .em-modal-actions .btn-chat-em{background:#edf8f8!important;border-color:#c9e4e5!important;color:#08747d!important}
+.recruta-andamento-modal-em .em-modal-status{padding:12px 18px!important;display:flex!important;align-items:center!important;justify-content:space-between!important;gap:15px!important;border-top:1px solid #e4edf2!important}
+.recruta-andamento-modal-em .em-modal-status span{font-size:10px!important;color:#6c8494!important;text-transform:uppercase!important;letter-spacing:.08em!important;font-weight:800!important}
+.recruta-andamento-modal-em .em-modal-status b{padding:7px 12px!important;border-radius:999px!important;background:#e8f7ef!important;color:#14795b!important;font-size:10px!important}
+.recruta-andamento-modal-em .em-modal-note{margin:0 18px 18px!important;padding:11px 13px!important;border-radius:10px!important;background:#f2f7fa!important;color:#708696!important;font-size:10px!important;line-height:1.5!important}
+@media(max-width:850px){
+ .recruta-andamento-modal-em{padding:10px!important}
+ .recruta-andamento-modal-em .recruta-andamento-modal-dialog{width:calc(100vw - 14px)!important;max-height:calc(100vh - 14px)!important;border-radius:16px!important}
+ .recruta-andamento-modal-em .recruta-andamento-modal-dialog>header{padding:17px!important}
+ .recruta-andamento-modal-em .recruta-andamento-modal-body{padding:13px!important}
+ .recruta-andamento-modal-em .em-modal-timeline{grid-template-columns:repeat(4,minmax(70px,1fr))!important;row-gap:18px!important}
+ .recruta-andamento-modal-em .em-modal-timeline:before{display:none!important}
+ .recruta-andamento-modal-em .em-overview-grid,.recruta-andamento-modal-em .em-adherence-wrap,.recruta-andamento-modal-em .em-analysis-grid{grid-template-columns:1fr!important}
+}
+\`;document.head.appendChild(s)
+ }
+ function etapaInfo(c){
+  const steps=[
+   {label:'Candidatura enviada',keys:['Candidatura enviada']},
+   {label:'Em avaliação',keys:['Em avaliação']},
+   {label:'Selecionado',keys:['Selecionado']},
+   {label:'Em contato',keys:['Em contato']},
+   {label:'Entrevista',keys:['Entrevista agendada','Entrevista']},
+   {label:'Aprovado',keys:['Aprovado']},
+   {label:'Contratado',keys:['Contratado']}
+  ];
+  const hist=Array.isArray(c?.historico)?c.historico:[];
+  const status=String(c?.status||'Em avaliação');
+  const cur=status==='Reprovado'?-1:(status==='Entrevista agendada'?4:steps.findIndex((x,i)=>x.keys.includes(status)));
+  return steps.map((x,i)=>{
+   const h=hist.find(z=>x.keys.includes(z?.status));
+   const feito=cur>i||(cur===6&&i===6);
+   const atual=cur===i;
+   return {label:x.label,data:h?.data||'',feito,atual};
+  })
+ }
+ function acharCandidatura(btn){
+  const card=btn?.closest('.recruta-cand-card');if(!card)return null;
+  const nome=card.querySelector('.recruta-cand-head h3')?.textContent?.trim()||'';
+  const meta=card.querySelector('.recruta-cand-meta')?.textContent||'';
+  const data=(meta.match(/(\d{2}\/\d{2}\/\d{4})/)||[])[1]||'';
+  const local=(card.querySelector('.recruta-cand-ident p')?.textContent||'').split('·')[0].trim();
+  const vagas=vagasDaEmpresa();
+  let arr=candidaturas().filter(c=>String(c.candidato||c.nome||'').trim().split(/\s+/).slice(0,2).join(' ')===nome);
+  if(local)arr=arr.filter(c=>{const v=vagas.find(x=>x.id===c.vagaId)||{};return String(c.curriculo?.cidade||c.perfilProfissional?.cidade||'').trim()===local||String(v.modalidade||'').trim()===local});
+  if(data)arr=arr.filter(c=>c.criadoEm&&new Date(c.criadoEm).toLocaleDateString('pt-BR')===data);
+  return arr[0]||null
+ }
+ function statusRotulo(s){return s==='Reprovado'?'Não selecionado':s==='Entrevista agendada'?'Entrevista':s||'Em avaliação'}
+ function dataBr(d){return d?new Date(d).toLocaleDateString('pt-BR'):'—'}
+ function montarAnalise(c,v){
+  let a=null;try{a=analisarAderenciaDetalhadaEM(c,v)}catch(e){}
+  if(!a){
+   const p=Number(c?.aderencia||0);a={percentual:p,itens:[],fonte:c?.curriculoOrigem||'perfil'}
+  }
+  const pct=Math.max(0,Math.min(100,Number(a.percentual)||0));
+  const nivel=pct>=80?'Alta aderência':pct>=60?'Boa aderência':pct>=40?'Aderência moderada':'Baixa aderência';
+  const fonte=a.fonte==='online'?'Currículo online':a.fonte==='cadastrado'?'Currículo anexado':'Perfil profissional';
+  const itens=Array.isArray(a.itens)?a.itens:[];
+  const total=itens.length,ok=itens.filter(x=>x.status==='sim').length,par=itens.filter(x=>x.status==='parcial').length;
+  const intro=total?('Foram comparados '+total+' critérios do currículo com os dados cadastrados nesta vaga. '+ok+' apresentam correspondência direta'+(par?' e '+par+' correspondência parcial.':'.')):'A aderência foi calculada com os dados profissionais disponíveis no momento da candidatura.';
+  const lista=itens.map(x=>{
+   const st=x.status==='sim'?'Correspondente':x.status==='parcial'?'Parcial':'Não identificado';
+   const ic=x.status==='sim'?'✓':x.status==='parcial'?'~':'×';
+   return '<div class="em-analysis-item '+esc(x.status||'nao')+'"><i>'+ic+'</i><div><b>'+esc(x.nome||'Critério analisado')+'</b><small>'+esc(x.det||'Comparação realizada com os dados disponíveis.')+'</small></div><span class="em-analysis-status">'+st+'</span></div>'
+  }).join('');
+  return {pct,nivel,fonte,intro,lista,total}
+ }
+ function montarAcoes(c){
+  return '<div class="em-modal-actions">'+
+   '<button type="button" class="btn btn-azul" onclick="abrirFichaCandidato(\\''+esc(c.id)+'\\')"><i class="em-btn-ico em-ico-doc"></i>Ver currículo</button>'+
+   '<button type="button" class="btn" onclick="abrirFichaCandidato(\\''+esc(c.id)+'\\')"><i class="em-btn-ico em-ico-user"></i>Ver perfil</button>'+
+   (c.telefone?'<button type="button" class="btn recruta-whatsapp" onclick="contatarWhats(\\''+esc(c.id)+'\\')"><i class="em-btn-ico em-ico-whatsapp"></i>WhatsApp</button>':'')+
+   (c.email?'<a class="btn" href="mailto:'+esc(c.email)+'"><i class="em-btn-ico em-ico-mail"></i>E-mail</a>':'')+
+   '<button type="button" class="btn" onclick="abrirEntrevista(\\''+esc(c.id)+'\\')"><i class="em-btn-ico em-ico-calendar"></i>Agendar entrevista</button>'+
+   '<button type="button" class="btn btn-chat-em" onclick="abrirChatCandidatoEM(\\''+esc(c.id)+'\\')">Mensagens</button>'+
+   '</div>'
+ }
+ window.alternarAndamentoRecrutadorEM=function(btn){
+  const c=acharCandidatura(btn);if(!c)return;
+  const v=vagasDaEmpresa().find(x=>String(x.id)===String(c.vagaId))||{};
+  document.querySelector('.recruta-andamento-modal-em')?.remove();
+  const nome=String(c.candidato||c.nome||'Candidato').trim();
+  const etapas=etapaInfo(c),analise=montarAnalise(c,v);
+  const modal=document.createElement('div');modal.className='recruta-andamento-modal-em';
+  const tl=etapas.map((x,i)=>'<div class="em-tl-item '+(x.feito?'feito ':'')+(x.atual?'atual':'')+'"><div class="em-tl-dot">'+(x.feito?'✓':(i+1))+'</div><span class="em-tl-label">'+esc(x.label)+'</span><small class="em-tl-date '+(!x.data?'vazio':'')+'">'+dataBr(x.data)+'</small></div>').join('');
+  const local=[c.curriculo?.cidade||c.perfilProfissional?.cidade,v.estado||v.uf].filter(Boolean).join(' - ');
+  const curr=c.curriculoOrigem==='online'?'Currículo online':c.curriculo?.nome?'Currículo anexado':'Perfil EmpregaMais';
+  const ultimo=dataBr(c.atualizadoEm||c.criadoEm);
+  modal.innerHTML='<div class="recruta-andamento-modal-backdrop" data-fechar></div>'+
+   '<section class="recruta-andamento-modal-dialog" role="dialog" aria-modal="true" aria-label="Andamento do candidato">'+
+    '<header><div><small>PROCESSO SELETIVO</small><h3>Andamento do candidato</h3><p>'+esc(nome)+' <span>·</span> Etapa atual: <b>'+esc(statusRotulo(c.status))+'</b></p></div><button type="button" aria-label="Fechar" data-fechar>×</button></header>'+
+    '<div class="recruta-andamento-modal-body"><div class="em-modal-pro-shell">'+
+     '<section class="em-modal-section"><div class="em-modal-section-head"><div><small>LINHA DO TEMPO</small><strong>Evolução da candidatura</strong></div><span class="em-analysis-status">'+esc(statusRotulo(c.status))+'</span></div><div class="em-modal-timeline">'+tl+'</div>'+(c.status==='Reprovado'?'<p class="em-modal-note">Este processo foi encerrado como <b>não selecionado</b>. A linha do tempo preserva o histórico registrado pela empresa.</p>':'')+'</section>'+
+     '<section class="em-modal-section"><div class="em-modal-section-head"><div><small>RESUMO DA CANDIDATURA</small><strong>Dados principais</strong></div></div><div class="em-overview-grid">'+
+      '<div class="em-overview-card"><span>Currículo enviado</span><strong>'+esc(curr)+'</strong><small>Fonte utilizada na candidatura</small></div>'+
+      '<div class="em-overview-card"><span>Localidade</span><strong>'+esc(local||'Não informada')+'</strong><small>Informação disponível no currículo</small></div>'+
+      '<div class="em-overview-card"><span>Última atualização</span><strong>'+ultimo+'</strong><small>Última movimentação registrada</small></div>'+
+     '</div></section>'+
+     '<section class="em-modal-section"><div class="em-modal-section-head"><div><small>ANÁLISE DE ADERÊNCIA</small><strong>Por que este percentual foi calculado?</strong></div><span class="em-analysis-status">'+esc(analise.nivel)+'</span></div>'+
+      '<div class="em-adherence-wrap"><div class="em-adherence-score"><div class="em-adherence-ring" style="--pct:'+analise.pct+'"><b>'+analise.pct+'%</b></div><div class="em-adherence-score-text"><strong>'+esc(analise.nivel)+'</strong><small>Índice de compatibilidade</small></div></div><div class="em-adherence-copy"><h4>Como chegamos a '+analise.pct+'%</h4><p>'+esc(analise.intro)+' Fonte considerada: <b>'+esc(analise.fonte)+'</b>. A pontuação é uma referência técnica e não substitui a avaliação do recrutador.</p><div class="em-adherence-meter"><i style="width:'+analise.pct+'%"></i></div></div></div>'+
+      (analise.lista?'<div class="em-analysis-grid">'+analise.lista+'</div>':'<p class="em-modal-note">Não há critérios detalhados suficientes para exibir a decomposição desta aderência.</p>')+
+     '</section>'+
+     montarAcoes(c)+
+    '</div></div></section>';
+  document.body.appendChild(modal);document.body.classList.add('recruta-modal-aberto');
+  const fechar=()=>{modal.remove();document.body.classList.remove('recruta-modal-aberto');};
+  modal.querySelectorAll('[data-fechar]').forEach(x=>x.addEventListener('click',fechar));
+  const escFechar=e=>{if(e.key==='Escape'){fechar();document.removeEventListener('keydown',escFechar)}};
+  document.addEventListener('keydown',escFechar);
+  setTimeout(()=>modal.querySelector('.recruta-andamento-modal-body')?.scrollTo({top:0,behavior:'instant'}),0);
+ };
+})();
