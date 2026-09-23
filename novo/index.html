@@ -1,4 +1,4 @@
-<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>EmpregaMais</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Questrial&display=swap" rel="stylesheet"><link rel="stylesheet" href="assets/css/app.css?v=header-sutil-v5-20260923">
+<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>EmpregaMais</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Questrial&display=swap" rel="stylesheet"><link rel="stylesheet" href="assets/css/app.css?v=metricas-vagas-sutil-v3-20260923">
 <style id="EMPREGAMAIS-PAINEL-PERFIL-PRO-V20">
 /* Painel empresa: visual corporativo, leve e funcional */
 #pagina-painel-empresa .em-ref-wrap{max-width:1240px!important;padding:16px 24px 46px!important}
@@ -1996,6 +1996,62 @@ body .topo .anunciar-card-seta{font-size:17px!important}
  body .topo .anunciar-card-topo{min-width:190px!important;grid-template-columns:30px auto 14px!important;padding:4px 8px!important}
  body .topo .anunciar-card-topo .btn-anunciar-icone{width:30px!important;height:30px!important}
  body .topo .anunciar-card-texto small{display:none!important}
+}
+
+/* METRICAS DAS VAGAS — COMPACTAS E SUTIS V3 — 2026-09-23 */
+#empresaVagasAbertasPainel .emp-vaga-selecao-metricas{
+ display:grid!important;
+ grid-template-columns:repeat(3,minmax(0,1fr))!important;
+ gap:8px!important;
+ margin:13px 0!important;
+}
+#empresaVagasAbertasPainel .emp-vaga-selecao-metricas>div{
+ min-height:58px!important;
+ padding:8px 9px!important;
+ border-radius:11px!important;
+ display:grid!important;
+ grid-template-columns:28px minmax(0,1fr)!important;
+ grid-template-rows:auto auto!important;
+ column-gap:8px!important;
+ align-items:center!important;
+ justify-items:start!important;
+ box-sizing:border-box!important;
+}
+#empresaVagasAbertasPainel .emp-vaga-selecao-metricas i{
+ grid-row:1/3!important;
+ width:28px!important;
+ height:28px!important;
+ border-radius:50%!important;
+ font-size:11px!important;
+}
+#empresaVagasAbertasPainel .emp-vaga-selecao-metricas strong{
+ align-self:end!important;
+ margin:0!important;
+ color:#123c5b!important;
+ font-size:18px!important;
+ font-weight:650!important;
+ line-height:1!important;
+ letter-spacing:-.02em!important;
+}
+#empresaVagasAbertasPainel .emp-vaga-selecao-metricas span{
+ align-self:start!important;
+ margin-top:2px!important;
+ color:#49677e!important;
+ font-size:9px!important;
+ font-weight:500!important;
+ line-height:1.15!important;
+ letter-spacing:0!important;
+}
+#empresaVagasAbertasPainel .emp-vaga-selecao-metricas .azul{background:#f6f9fd!important;border:1px solid #e1ebf5!important}
+#empresaVagasAbertasPainel .emp-vaga-selecao-metricas .verde{background:#f5faf7!important;border:1px solid #deeee4!important}
+#empresaVagasAbertasPainel .emp-vaga-selecao-metricas .laranja{background:#fff9f4!important;border:1px solid #f3e5d8!important}
+#empresaVagasAbertasPainel .emp-vaga-selecao-metricas .azul i{background:#e9f2fd!important;color:#3979b8!important}
+#empresaVagasAbertasPainel .emp-vaga-selecao-metricas .verde i{background:#e7f5ec!important;color:#399364!important}
+#empresaVagasAbertasPainel .emp-vaga-selecao-metricas .laranja i{background:#fff0e3!important;color:#d98745!important}
+@media(max-width:620px){
+ #empresaVagasAbertasPainel .emp-vaga-selecao-metricas{grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:5px!important}
+ #empresaVagasAbertasPainel .emp-vaga-selecao-metricas>div{grid-template-columns:1fr!important;grid-template-rows:auto auto auto!important;justify-items:center!important;text-align:center!important;padding:7px 4px!important}
+ #empresaVagasAbertasPainel .emp-vaga-selecao-metricas i{grid-row:auto!important}
 }
 </style></head><body><header class="topo"><div class="topo-inner"><button type="button" class="marca" data-rota="home"><span class="marca-icone">E+</span><span class="marca-nome">Emprega<span>Mais</span></span></button><nav class="menu menu-publico"><button type="button" data-rota="home">Buscar vagas</button><button type="button" data-rota="como-funciona">Como funciona</button>
 <div class="menu-drop menu-drop-empresa"><button type="button" class="menu-drop-gatilho login-card-topo login-card-empresa" onclick="alternarMenuTopo('empresa',event)"><span class="login-card-icone" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 21V5h11v16M15 10h5v11M8 9h3M8 13h3M8 17h3M2 21h20"/></svg></span><span class="login-card-texto"><b>Login Empresa</b><small>Acesse seu painel</small></span><span class="login-card-seta">›</span></button><div class="menu-drop-painel menu-empresa-publico"><div class="menu-drop-titulo">PARA EMPRESAS</div><div class="menu-empresa-intro"><strong>Encontre os talentos certos</strong><span>Publique vagas e gerencie seus processos seletivos em um só lugar.</span></div><button class="menu-empresa-link" onclick="rotaMenuTopo('como-funciona')"><b>Como funciona</b><span>Conheça a plataforma para empresas</span></button><button class="menu-empresa-link" onclick="rotaMenuTopo('planos')"><b>Planos e preços</b><span>Veja os recursos disponíveis</span></button><div class="menu-drop-separador"></div><button class="menu-empresa-login" onclick="rotaMenuTopo('login-empresa')">Entrar como empresa</button><button class="menu-empresa-cadastro" onclick="rotaMenuTopo('cadastro-empresa')">Cadastrar empresa</button></div></div>
