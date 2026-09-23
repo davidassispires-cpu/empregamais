@@ -4892,6 +4892,10 @@ overflow:visible!important
 @media(max-width:480px){.emp-dash-side nav{grid-template-columns:1fr 1fr}.emp-dash-kpis{grid-template-columns:1fr}.emp-dash-company-line{align-items:flex-start;flex-direction:column}.emp-dash-company-line h2{white-space:normal}.emp-dash-plan-mini{grid-template-columns:1fr}.emp-dash-plan-mini>div{padding:7px 0}.emp-dash-plan-mini>div+div{border-left:0;border-top:1px solid #e5ecef}.emp-plan-usage{grid-template-columns:1fr}.emp-plan-usage>div{border-right:0;border-bottom:1px solid #e7edef;padding:8px 0}.emp-plan-usage ul{grid-column:auto}}
 
 /* RECRUTADOR — CANDIDATURAS / TIMELINE CONSOLIDADA V7 */
+/* Filtros de etapa: uma única linha no desktop */
+#pagina-candidatos-empresa .etapas-tabs{display:grid!important;grid-template-columns:repeat(8,minmax(0,1fr))!important;gap:7px!important;width:100%!important;align-items:stretch!important}
+#pagina-candidatos-empresa .etapas-tabs>button{min-width:0!important;width:100%!important;padding:0 8px!important;white-space:nowrap!important;font-size:11px!important}
+@media(max-width:900px){#pagina-candidatos-empresa .etapas-tabs{display:flex!important;flex-wrap:nowrap!important;overflow-x:auto!important;-webkit-overflow-scrolling:touch!important;padding-bottom:4px!important}#pagina-candidatos-empresa .etapas-tabs>button{flex:0 0 auto!important;width:auto!important;min-width:132px!important}}
 #pagina-candidatos-empresa #listaCandidatosEmpresa{display:grid!important;grid-template-columns:1fr!important;gap:18px!important}
 #pagina-candidatos-empresa #listaCandidatosEmpresa>.processo-head,#pagina-candidatos-empresa #listaCandidatosEmpresa>.candidatos-empresa-filtro-vaga,#pagina-candidatos-empresa #listaCandidatosEmpresa>.etapas-tabs,#pagina-candidatos-empresa #listaCandidatosEmpresa>.vagas-vazio{grid-column:1/-1!important}
 #pagina-candidatos-empresa .recruta-cand-card{width:100%!important;max-width:none!important;margin:0!important;display:block!important;border:2px solid #1685d2!important;border-radius:18px!important;background:#fff!important;overflow:hidden!important;box-shadow:none!important;color:#073d63!important}
