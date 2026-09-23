@@ -3686,6 +3686,77 @@ body.modal-encerrar-vaga-aberto{overflow:hidden!important}
  outline-offset:2px!important;
 }
 </style>
+
+<style id="EMPREGAMAIS-SIDEBAR-BUTTONS-V55">
+/* Navegação lateral: botões mais legíveis e rodapé/conta separados da navegação */
+#pagina-painel-empresa .emp-dash-side nav{gap:6px!important}
+#pagina-painel-empresa .emp-side-group{gap:5px!important}
+#pagina-painel-empresa .emp-side-group>button{
+ min-height:44px!important;
+ padding:7px 10px!important;
+ border:1px solid transparent!important;
+ border-radius:10px!important;
+ background:transparent!important;
+ color:#173f59!important;
+ font-size:13px!important;
+ font-weight:750!important;
+ line-height:1.15!important;
+ cursor:pointer!important;
+}
+#pagina-painel-empresa .emp-side-group>button>span{
+ flex:0 0 28px!important;width:28px!important;height:28px!important;
+ border:1px solid #e4edf1!important;border-radius:8px!important;
+ background:#f5f9fb!important;color:#66889b!important;
+}
+#pagina-painel-empresa .emp-side-group>button:hover{
+ background:#f1f8fa!important;border-color:#d8e8ed!important;color:#075d73!important;
+ transform:none!important;
+}
+#pagina-painel-empresa .emp-side-group>button.ativo{
+ background:#eaf6f8!important;border-color:#cce4ea!important;color:#075d73!important;
+ box-shadow:inset 3px 0 0 #0794aa!important;
+}
+#pagina-painel-empresa .emp-side-group>button.ativo>span{
+ background:#fff!important;border-color:#cce3e9!important;color:#078aa0!important;
+}
+#pagina-painel-empresa .emp-side-count{
+ margin-left:auto!important;min-width:22px!important;height:22px!important;padding:0 6px!important;
+ display:inline-flex!important;align-items:center!important;justify-content:center!important;
+ border-radius:11px!important;background:#e8f5f7!important;color:#08788d!important;font-size:10px!important;font-weight:900!important;
+}
+#pagina-painel-empresa .emp-side-group.management{
+ margin-top:15px!important;padding-top:15px!important;border-top:1px solid #e5edf1!important;
+}
+#pagina-painel-empresa .emp-side-group>small{
+ margin:0 9px 7px!important;font-size:9px!important;letter-spacing:.14em!important;color:#879ba8!important;font-weight:900!important;
+}
+/* Rodapé não é tratado como menu: ajuda, conta e sair têm hierarquia própria */
+#pagina-painel-empresa .emp-side-footer{
+ margin-top:14px!important;padding:13px 10px 4px!important;border-top:1px solid #e5edf1!important;
+ display:flex!important;flex-direction:column!important;gap:7px!important;
+}
+#pagina-painel-empresa .emp-help-pro{
+ min-height:48px!important;padding:7px 8px!important;border:1px solid #dce8ed!important;border-radius:10px!important;
+ background:#fff!important;color:#17445e!important;box-shadow:none!important;
+}
+#pagina-painel-empresa .emp-help-pro:hover{background:#f6fafb!important;border-color:#cbdfe6!important}
+#pagina-painel-empresa .emp-side-account-pro{
+ min-height:58px!important;padding:8px!important;border:1px solid #dbe8ed!important;border-radius:11px!important;
+ background:#f7fbfc!important;color:#153e57!important;box-shadow:none!important;
+}
+#pagina-painel-empresa .emp-side-account-pro:hover{background:#edf7f9!important;border-color:#c9e0e7!important}
+#pagina-painel-empresa .emp-side-account-pro>span{
+ width:32px!important;height:32px!important;border-radius:9px!important;background:#e6f5f7!important;color:#08788d!important;font-weight:900!important;
+}
+#pagina-painel-empresa .emp-side-account-pro div{min-width:0!important;text-align:left!important}
+#pagina-painel-empresa .emp-side-account-pro b{font-size:12px!important;line-height:1.2!important;white-space:nowrap!important;overflow:hidden!important;text-overflow:ellipsis!important}
+#pagina-painel-empresa .emp-side-account-pro small{font-size:9px!important;line-height:1.3!important;color:#708997!important}
+#pagina-painel-empresa .emp-dash-exit{
+ align-self:flex-start!important;min-height:30px!important;padding:4px 8px!important;border:0!important;
+ background:transparent!important;color:#718895!important;font-size:10px!important;font-weight:700!important;
+}
+#pagina-painel-empresa .emp-dash-exit:hover{color:#a23d3d!important;background:#fff5f5!important;border-radius:7px!important}
+</style>
 </head><body><header class="topo"><div class="topo-inner"><button type="button" class="marca" data-rota="home"><span class="marca-icone">E+</span><span class="marca-nome">Emprega<span>Mais</span></span></button><nav class="menu menu-publico"><button type="button" data-rota="home">Buscar vagas</button><button type="button" data-rota="como-funciona">Como funciona</button>
 <div class="menu-drop menu-drop-empresa"><button type="button" class="menu-drop-gatilho login-card-topo login-card-empresa" onclick="alternarMenuTopo('empresa',event)"><span class="login-card-icone" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 21V5h11v16M15 10h5v11M8 9h3M8 13h3M8 17h3M2 21h20"/></svg></span><span class="login-card-texto"><b>Login Empresa</b><small>Acesse seu painel</small></span><span class="login-card-seta">›</span></button><div class="menu-drop-painel menu-empresa-publico"><div class="menu-drop-titulo">PARA EMPRESAS</div><div class="menu-empresa-intro"><strong>Encontre os talentos certos</strong><span>Publique vagas e gerencie seus processos seletivos em um só lugar.</span></div><button class="menu-empresa-link" onclick="rotaMenuTopo('como-funciona')"><b>Como funciona</b><span>Conheça a plataforma para empresas</span></button><button class="menu-empresa-link" onclick="rotaMenuTopo('planos')"><b>Planos e preços</b><span>Veja os recursos disponíveis</span></button><div class="menu-drop-separador"></div><button class="menu-empresa-login" onclick="rotaMenuTopo('login-empresa')">Entrar como empresa</button><button class="menu-empresa-cadastro" onclick="rotaMenuTopo('cadastro-empresa')">Cadastrar empresa</button></div></div>
 </nav><nav class="menu menu-empresa-logada"><button type="button" data-rota="painel-empresa">Painel</button><button type="button" data-rota="painel-empresa">Minhas vagas</button><button type="button" data-rota="candidatos-empresa">Candidatos</button><button type="button" data-rota="planos">Planos</button></nav><nav class="menu menu-candidato-logado"><button type="button" data-rota="home">Buscar vagas</button><button type="button" data-rota="salvas">Vagas salvas</button><button type="button" data-rota="candidaturas">Minhas candidaturas</button><button type="button" data-rota="curriculo">Meu currículo</button></nav><div class="acoes"><div class="menu-drop menu-drop-candidato"><button type="button" class="btn secundario menu-drop-gatilho login-card-topo login-card-candidato" onclick="alternarMenuTopo('candidato',event)"><span class="login-card-icone" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4.5 21c.8-5 3.2-7.5 7.5-7.5s6.7 2.5 7.5 7.5"/></svg></span><span class="login-card-texto"><b>Login Candidato</b><small>Acesse sua conta</small></span><span class="login-card-seta">›</span></button><div class="menu-drop-painel menu-candidato-publico"><div class="menu-drop-titulo">PARA CANDIDATOS</div><div class="menu-candidato-intro"><strong>Encontre sua próxima oportunidade</strong><span>Busque vagas, crie seu currículo e acompanhe seus processos em um só lugar.</span></div><button class="menu-candidato-link" onclick="rotaMenuTopo('home')"><b>Buscar vagas</b><span>Encontre oportunidades para o seu perfil</span></button><button class="menu-candidato-link" onclick="rotaMenuTopo('cadastro-candidato')"><b>Criar currículo</b><span>Cadastre seu perfil profissional gratuitamente</span></button><div class="menu-drop-separador"></div><button class="menu-candidato-login" onclick="rotaMenuTopo('login-candidato')">Entrar como candidato</button><button class="menu-candidato-cadastro" onclick="rotaMenuTopo('cadastro-candidato')">Cadastrar currículo</button></div></div><button type="button" class="btn btn-azul btn-anunciar-vaga anunciar-card-topo" onclick="abrirPublicacao()"><span class="btn-anunciar-icone" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 7V5.8C8 4.8 8.8 4 9.8 4h4.4c1 0 1.8.8 1.8 1.8V7M4 9h16v10.5c0 .8-.7 1.5-1.5 1.5h-13C4.7 21 4 20.3 4 19.5V9Z"/><path d="M4 13h16M10 13v2h4v-2"/></svg></span><span class="anunciar-card-texto"><b>Anunciar vaga grátis</b><small>Divulgue sua oportunidade</small></span><span class="anunciar-card-seta">→</span></button><div class="sessao-empresa-topo"><button class="sessao-conta-btn sessao-conta-empresa-pro" onclick="toggleMenuContaEM(this,event)"><span class="sessao-avatar" id="topoEmpresaAvatar">E</span><span class="sessao-conta-ident"><b id="topoEmpresaNome">Empresa</b><small><i class="sessao-status-dot"></i> Conta empresarial · <strong id="topoEmpresaPlano">Plano Grátis</strong></small></span><em>⌄</em></button><div class="sessao-conta-menu"><div class="conta-menu-head"><span class="conta-menu-avatar" id="topoEmpresaAvatarMenu">E</span><div><b id="topoEmpresaNomeMenu">Empresa</b><small id="topoEmpresaPlanoMenu">Conta da empresa</small><i>Plano ativo</i></div></div><div class="conta-menu-nav"><button onclick="irPara('painel-empresa')">Painel da empresa</button><button onclick="irPara('perfil-empresa')">Perfil da empresa</button><button onclick="irPara('planos')">Meu plano</button><button class="conta-sair-pro" onclick="sair()">Sair</button></div></div></div><div class="sessao-candidato-topo"><button class="sessao-conta-btn sessao-conta-candidato-pro" onclick="toggleMenuContaEM(this,event)"><span class="sessao-avatar" id="topoCandidatoAvatar">C</span><span class="sessao-conta-ident"><b id="topoCandidatoNome">Candidato</b><small><i class="sessao-status-dot"></i> Conta de candidato</small></span><em>⌄</em></button><div class="sessao-conta-menu"><button onclick="irPara('painel-candidato')">Meu painel</button><button onclick="irPara('perfil-candidato')">Meu perfil</button><button onclick="sair()">Sair</button></div></div></div></div></header><main><section class="pagina ativa" id="pagina-home">
