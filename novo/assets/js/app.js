@@ -1591,7 +1591,7 @@ function editarVaga(id){
 (function(){
  const STYLE_ID='em-andamento-pro-v3-style';
  if(!document.getElementById(STYLE_ID)){
-  const s=document.createElement('style');s.id=STYLE_ID;s.textContent=String.raw\`
+  const s=document.createElement('style');s.id=STYLE_ID;s.textContent=String.raw`
 body.recruta-modal-aberto{overflow:hidden!important}
 .recruta-andamento-modal-em{position:fixed!important;inset:0!important;z-index:99999!important;display:flex!important;align-items:center!important;justify-content:center!important;padding:20px!important}
 .recruta-andamento-modal-em .recruta-andamento-modal-backdrop{position:absolute!important;inset:0!important;background:rgba(9,31,48,.58)!important;backdrop-filter:blur(5px)!important}
@@ -1665,7 +1665,7 @@ body.recruta-modal-aberto{overflow:hidden!important}
  .recruta-andamento-modal-em .em-modal-timeline:before{display:none!important}
  .recruta-andamento-modal-em .em-overview-grid,.recruta-andamento-modal-em .em-adherence-wrap,.recruta-andamento-modal-em .em-analysis-grid{grid-template-columns:1fr!important}
 }
-\`;document.head.appendChild(s)
+`;document.head.appendChild(s)
  }
  function etapaInfo(c){
   const steps=[
@@ -1721,12 +1721,12 @@ body.recruta-modal-aberto{overflow:hidden!important}
  }
  function montarAcoes(c){
   return '<div class="em-modal-actions">'+
-   '<button type="button" class="btn btn-azul" onclick="abrirFichaCandidato(\\''+esc(c.id)+'\\')"><i class="em-btn-ico em-ico-doc"></i>Ver currículo</button>'+
-   '<button type="button" class="btn" onclick="abrirFichaCandidato(\\''+esc(c.id)+'\\')"><i class="em-btn-ico em-ico-user"></i>Ver perfil</button>'+
-   (c.telefone?'<button type="button" class="btn recruta-whatsapp" onclick="contatarWhats(\\''+esc(c.id)+'\\')"><i class="em-btn-ico em-ico-whatsapp"></i>WhatsApp</button>':'')+
+   '<button type="button" class="btn btn-azul" onclick="abrirFichaCandidato(\''+esc(c.id)+'\')"><i class="em-btn-ico em-ico-doc"></i>Ver currículo</button>'+
+   '<button type="button" class="btn" onclick="abrirFichaCandidato(\''+esc(c.id)+'\')"><i class="em-btn-ico em-ico-user"></i>Ver perfil</button>'+
+   (c.telefone?'<button type="button" class="btn recruta-whatsapp" onclick="contatarWhats(\''+esc(c.id)+'\')"><i class="em-btn-ico em-ico-whatsapp"></i>WhatsApp</button>':'')+
    (c.email?'<a class="btn" href="mailto:'+esc(c.email)+'"><i class="em-btn-ico em-ico-mail"></i>E-mail</a>':'')+
-   '<button type="button" class="btn" onclick="abrirEntrevista(\\''+esc(c.id)+'\\')"><i class="em-btn-ico em-ico-calendar"></i>Agendar entrevista</button>'+
-   '<button type="button" class="btn btn-chat-em" onclick="abrirChatCandidatoEM(\\''+esc(c.id)+'\\')">Mensagens</button>'+
+   '<button type="button" class="btn" onclick="abrirEntrevista(\''+esc(c.id)+'\')"><i class="em-btn-ico em-ico-calendar"></i>Agendar entrevista</button>'+
+   '<button type="button" class="btn btn-chat-em" onclick="abrirChatCandidatoEM(\''+esc(c.id)+'\')">Mensagens</button>'+
    '</div>'
  }
  window.alternarAndamentoRecrutadorEM=function(btn){
