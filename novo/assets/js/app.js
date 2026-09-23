@@ -210,7 +210,9 @@ atualizarPremiumCandidatoEM=async function(){await sincronizarCandidatoLogadoSup
 function avaliacoesProcessosEM(){return ler('empregaMaisAvaliacoesProcessos',[])}
 function processosAvaliaveisEM(){
  const email=(sessionStorage.getItem('candidatoEmail')||'').toLowerCase();
- return candidaturas().filter(c=>(c.email||'').toLowerCase()===email);
+ /* Avaliação só é liberada quando o processo já teve desfecho. */
+ const finais=new Set(['Contratados','Reprovados','Encerrados','Processo encerrado','Finalizado','Finalizados']);
+ return candidaturas().filter(c=>(c.email||'').toLowerCase()===email&&finais.has(grupoEtapa(c.status)));
 }
 function renderizarAvaliacoesProcessosEM(){
  const box=document.getElementById('listaAvaliacoesProcessosEM');if(!box)return;
@@ -225,6 +227,7 @@ let avaliacaoProcessoNotaEM=0;
 function abrirAvaliacaoProcessoEM(id){
  const email=(sessionStorage.getItem('candidatoEmail')||'').toLowerCase(),c=candidaturas().find(x=>String(x.id)===String(id)&&(x.email||'').toLowerCase()===email);if(!c)return;
  if(!candidatoPremiumAtivoEM(candidatoLogado()))return irPara('premium-candidato');
+ const finais=new Set(['Contratados','Reprovados','Encerrados','Processo encerrado','Finalizado','Finalizados']);if(!finais.has(grupoEtapa(c.status))){alert('A avaliação fica disponível após o encerramento do processo seletivo.');return}
  if(avaliacoesProcessosEM().some(a=>String(a.candidaturaId)===String(id)&&a.candidatoEmail===email)){alert('Você já avaliou este processo seletivo.');return}
  const v=ler('empregaMaisVagas').find(x=>String(x.id)===String(c.vagaId))||{};avaliacaoProcessoNotaEM=0;
  document.getElementById('avaliacaoProcessoModalEM')?.remove();const m=document.createElement('div');m.id='avaliacaoProcessoModalEM';m.className='avaliacao-processo-modal';
