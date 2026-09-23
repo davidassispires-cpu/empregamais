@@ -5015,3 +5015,38 @@ overflow:visible!important
  #pagina-candidatos-empresa .recruta-cand-info{grid-template-columns:1fr!important}
  #pagina-candidatos-empresa .recruta-cand-actions{grid-template-columns:1fr!important}
 }
+
+
+/* CANDIDATURAS RECRUTADOR — CABEÇALHO E FILTROS V20 */
+#pagina-candidatos-empresa{background:#f5f8fa!important}
+#pagina-candidatos-empresa>.page-head{padding:26px max(28px,calc((100% - 1220px)/2))!important;background:linear-gradient(115deg,#075c70,#0b8d95)!important;border:0!important}
+#pagina-candidatos-empresa>.page-head h1{margin:10px 0 4px!important;color:#fff!important;font-size:30px!important;letter-spacing:-.025em!important}
+#pagina-candidatos-empresa>.page-head p{margin:0!important;color:rgba(255,255,255,.82)!important;font-size:13px!important}
+#pagina-candidatos-empresa>.page-head .voltar-link{display:inline-flex!important;align-items:center!important;min-height:31px!important;padding:0 12px!important;border:1px solid rgba(255,255,255,.24)!important;border-radius:999px!important;background:rgba(255,255,255,.08)!important;color:#fff!important;font-size:11px!important;font-weight:800!important}
+#pagina-candidatos-empresa>.container{max-width:1220px!important;padding-top:24px!important}
+#pagina-candidatos-empresa>.container>.painel{padding:0!important;border:1px solid #dbe6ec!important;border-radius:16px!important;background:#fff!important;box-shadow:0 12px 32px rgba(22,59,77,.055)!important;overflow:hidden!important}
+#pagina-candidatos-empresa .vagas-cab{display:none!important}
+#pagina-candidatos-empresa .processo-head-pro{display:grid!important;grid-template-columns:minmax(0,1fr) auto!important;gap:24px!important;align-items:center!important;padding:22px 24px 18px!important;border-bottom:1px solid #e6edf1!important;background:#fff!important}
+#pagina-candidatos-empresa .processo-kicker{display:block!important;margin-bottom:5px!important;color:#668092!important;font-size:9px!important;font-weight:900!important;letter-spacing:.13em!important}
+#pagina-candidatos-empresa .processo-head-copy h2{margin:0!important;color:#0a425e!important;font-size:25px!important;line-height:1.1!important;letter-spacing:-.025em!important}
+#pagina-candidatos-empresa .processo-head-copy>span{display:inline-flex!important;align-items:center!important;gap:3px!important;margin-top:8px!important;padding:6px 10px!important;border-radius:999px!important;background:#edf7f5!important;color:#54727e!important;font-size:10.5px!important;font-weight:700!important}
+#pagina-candidatos-empresa .processo-head-copy>span b{color:#087b76!important;font-size:12px!important}
+#pagina-candidatos-empresa .processo-head-tools{display:flex!important;align-items:center!important;gap:9px!important}
+#pagina-candidatos-empresa .processo-head-tools .campo{height:42px!important;margin:0!important;border:1px solid #d5e1e7!important;border-radius:10px!important;background:#fff!important;color:#294f64!important;font-size:12px!important;box-shadow:none!important}
+#pagina-candidatos-empresa .processo-busca{width:210px!important;padding-left:14px!important}
+#pagina-candidatos-empresa .processo-ordem{width:160px!important}
+#pagina-candidatos-empresa .processo-todas{height:42px!important;border-radius:10px!important}
+#pagina-candidatos-empresa .candidatos-empresa-filtro-vaga-pro{padding:17px 24px!important;background:#fbfcfd!important;border-bottom:1px solid #e8eef2!important}
+#pagina-candidatos-empresa .candidatos-empresa-filtro-vaga-pro label{display:grid!important;grid-template-columns:44px minmax(260px,440px)!important;align-items:center!important;gap:12px!important;margin:0!important}
+#pagina-candidatos-empresa .candidatos-empresa-filtro-vaga-pro label>span{color:#587486!important;font-size:10px!important;font-weight:900!important}
+#pagina-candidatos-empresa .candidatos-empresa-filtro-vaga-pro select{height:42px!important;margin:0!important;border:1px solid #d5e1e7!important;border-radius:10px!important;background:#fff!important;color:#183f55!important;font-size:12px!important;font-weight:750!important}
+#pagina-candidatos-empresa .etapas-tabs-pro{display:grid!important;grid-template-columns:repeat(8,minmax(0,1fr))!important;gap:7px!important;margin:16px 22px 18px!important;padding:9px!important;width:auto!important;border:1px solid #e1eaef!important;border-radius:13px!important;background:#f8fafb!important}
+#pagina-candidatos-empresa .etapas-tabs-pro button{min-width:0!important;height:46px!important;padding:0 8px!important;border:1px solid transparent!important;border-radius:9px!important;font-size:11px!important;font-weight:850!important;white-space:nowrap!important;box-shadow:none!important}
+#pagina-candidatos-empresa .etapas-tabs-pro button:not(.ativo){filter:saturate(.72)!important;opacity:.9!important}
+#pagina-candidatos-empresa .etapas-tabs-pro button.ativo{transform:none!important;box-shadow:0 5px 13px rgba(16,66,84,.10)!important}
+#pagina-candidatos-empresa #listaCandidatosEmpresa{padding:0 22px 24px!important}
+#pagina-candidatos-empresa #listaCandidatosEmpresa>.processo-head-pro,
+#pagina-candidatos-empresa #listaCandidatosEmpresa>.candidatos-empresa-filtro-vaga-pro,
+#pagina-candidatos-empresa #listaCandidatosEmpresa>.etapas-tabs-pro{grid-column:1/-1!important}
+@media(max-width:900px){#pagina-candidatos-empresa .processo-head-pro{grid-template-columns:1fr!important}.processo-head-tools{width:100%!important;flex-wrap:wrap!important}#pagina-candidatos-empresa .processo-busca{flex:1 1 220px!important;width:auto!important}#pagina-candidatos-empresa .etapas-tabs-pro{display:flex!important;overflow-x:auto!important;scrollbar-width:thin!important}#pagina-candidatos-empresa .etapas-tabs-pro button{flex:0 0 auto!important;min-width:120px!important}}
+@media(max-width:600px){#pagina-candidatos-empresa>.page-head{padding:22px 16px!important}#pagina-candidatos-empresa>.container{padding:14px 10px!important}#pagina-candidatos-empresa .processo-head-pro{padding:18px 16px!important}#pagina-candidatos-empresa .processo-head-tools{display:grid!important;grid-template-columns:1fr!important}#pagina-candidatos-empresa .processo-busca,#pagina-candidatos-empresa .processo-ordem{width:100%!important}#pagina-candidatos-empresa .candidatos-empresa-filtro-vaga-pro{padding:14px 16px!important}#pagina-candidatos-empresa .candidatos-empresa-filtro-vaga-pro label{grid-template-columns:1fr!important;gap:6px!important}#pagina-candidatos-empresa .etapas-tabs-pro{margin:12px 12px 16px!important}#pagina-candidatos-empresa #listaCandidatosEmpresa{padding:0 12px 18px!important}}
