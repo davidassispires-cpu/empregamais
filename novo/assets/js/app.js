@@ -1985,17 +1985,34 @@ body.recruta-modal-aberto{overflow:hidden!important}
   });
 })();
 
+function prepararCardsRecentesEM(){
+ const box=document.getElementById('listaVagasPortal');if(!box)return;
+ box.querySelectorAll('.portal-vaga-nova').forEach(card=>{
+   const inline=card.getAttribute('onclick')||'',m=inline.match(/abrirVaga\('([^']+)'\)/);
+   if(!m)return;
+   const id=m[1];
+   card.dataset.vagaId=id;
+   card.removeAttribute('onclick');
+   card.setAttribute('role','button');
+   card.setAttribute('tabindex','0');
+ });
+}
 document.addEventListener('click',function(e){
  const card=e.target.closest&&e.target.closest('#listaVagasPortal .portal-vaga-nova');
  if(!card||e.target.closest('button'))return;
  const id=card.dataset.vagaId;
- if(id){e.preventDefault();e.stopPropagation();selecionarVagaRecenteEM(id)}
-},true);
-function marcarIdsCardsRecentesEM(){
- const box=document.getElementById('listaVagasPortal');if(!box)return;
- const cards=box.querySelectorAll('.portal-vaga-nova');
- const lista=vagasPublicas().filter(v=>{const q=(document.getElementById('buscaVagas')?.value||'').toLowerCase(),cidade=(document.getElementById('buscaCidade')?.value||'').toLowerCase();return ((tituloVaga(v))+' '+(v.area||'')+' '+(v.empresa||'')).toLowerCase().includes(q)&&((v.cidade||'')+' '+(v.estado||'')).toLowerCase().includes(cidade)});
- cards.forEach(card=>{const onclick=card.getAttribute('onclick')||'',m=onclick.match(/abrirVaga\('([^']+)'\)/);if(m)card.dataset.vagaId=m[1]});
-}
+ if(!id)return;
+ e.preventDefault();e.stopPropagation();
+ selecionarVagaRecenteEM(id);
+});
+document.addEventListener('keydown',function(e){
+ const card=e.target.closest&&e.target.closest('#listaVagasPortal .portal-vaga-nova');
+ if(!card||!['Enter',' '].includes(e.key))return;
+ e.preventDefault();selecionarVagaRecenteEM(card.dataset.vagaId);
+});
 const _renderizarVagasPortalSplitEM=renderizarVagasPortal;
-renderizarVagasPortal=function(){_renderizarVagasPortalSplitEM();marcarIdsCardsRecentesEM();if(window.vagaPreviewRecenteEM)renderPreviewVagaRecenteEM(window.vagaPreviewRecenteEM)};
+renderizarVagasPortal=function(){
+ _renderizarVagasPortalSplitEM();
+ prepararCardsRecentesEM();
+ if(window.vagaPreviewRecenteEM)renderPreviewVagaRecenteEM(window.vagaPreviewRecenteEM);
+};
