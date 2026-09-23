@@ -1,4 +1,4 @@
-<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>EmpregaMais</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Questrial&display=swap" rel="stylesheet"><link rel="stylesheet" href="assets/css/app.css?v=site-width-v14-20260923">
+<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>EmpregaMais</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Questrial&display=swap" rel="stylesheet"><link rel="stylesheet" href="assets/css/app.css?v=candidatos-modal-v14-20260923">
 <style id="EMPREGAMAIS-PAINEL-PERFIL-PRO-V20">
 /* Painel empresa: visual corporativo, leve e funcional */
 #pagina-painel-empresa .em-ref-wrap{max-width:1240px!important;padding:16px 24px 46px!important}
@@ -2176,6 +2176,57 @@ body .container{width:calc(100% - 48px)!important;max-width:1280px!important;mar
  #pagina-home .home-wrap,
  #pagina-login-empresa .empresa-login-shell,
  #pagina-candidatos-empresa>.container{width:calc(100% - 24px)!important}
+}
+
+/* CANDIDATOS — ACOES SEM CORTE + ANDAMENTO MODAL V14 — 2026-09-23 */
+#pagina-candidatos-empresa #listaCandidatosEmpresa .recruta-cand-card{overflow:visible!important}
+#pagina-candidatos-empresa #listaCandidatosEmpresa .recruta-cand-actions{
+ display:grid!important;
+ grid-template-columns:repeat(5,minmax(0,1fr))!important;
+ gap:6px!important;
+ width:100%!important;
+ overflow:visible!important;
+}
+#pagina-candidatos-empresa #listaCandidatosEmpresa .recruta-cand-actions .btn{
+ width:100%!important;min-width:0!important;height:38px!important;padding:0 5px!important;
+ font-size:9px!important;letter-spacing:-.01em!important;overflow:hidden!important;text-overflow:ellipsis!important;
+}
+#pagina-candidatos-empresa #listaCandidatosEmpresa .recruta-cand-actions .btn i{flex:0 0 auto!important;margin-right:4px!important}
+#pagina-candidatos-empresa #listaCandidatosEmpresa .recruta-preview-andamento{
+ display:grid!important;grid-template-columns:auto 1fr 16px!important;align-items:center!important;gap:10px!important;
+ width:100%!important;min-height:42px!important;margin-top:10px!important;padding:0 13px!important;
+ border:1px solid #b8d8e9!important;border-radius:10px!important;background:#f5faff!important;color:#174e6c!important;
+ cursor:pointer!important;box-sizing:border-box!important;
+}
+#pagina-candidatos-empresa #listaCandidatosEmpresa .recruta-preview-andamento span{
+ font-size:9px!important;font-weight:500!important;letter-spacing:.07em!important;text-transform:uppercase!important;color:#6c8497!important;
+}
+#pagina-candidatos-empresa #listaCandidatosEmpresa .recruta-preview-andamento b{
+ justify-self:center!important;font-size:11px!important;font-weight:600!important;color:#075b80!important;
+}
+#pagina-candidatos-empresa #listaCandidatosEmpresa .recruta-preview-andamento i{font-style:normal!important;font-size:13px!important;color:#07849a!important}
+#pagina-candidatos-empresa #listaCandidatosEmpresa>.recruta-cand-card>.recruta-andamento{display:none!important}
+.recruta-andamento-modal-em{position:fixed!important;inset:0!important;z-index:99999!important;display:grid!important;place-items:center!important;padding:24px!important}
+.recruta-andamento-modal-backdrop{position:absolute!important;inset:0!important;background:rgba(7,29,48,.48)!important;backdrop-filter:blur(3px)!important}
+.recruta-andamento-modal-dialog{
+ position:relative!important;z-index:1!important;width:min(920px,calc(100vw - 40px))!important;max-height:88vh!important;
+ overflow:hidden!important;border:1px solid #d5e3eb!important;border-radius:18px!important;background:#fff!important;
+ box-shadow:0 24px 70px rgba(4,32,54,.22)!important;
+}
+.recruta-andamento-modal-dialog>header{display:flex!important;justify-content:space-between!important;gap:20px!important;padding:22px 24px 18px!important;border-bottom:1px solid #e3ebf0!important}
+.recruta-andamento-modal-dialog>header small{font-size:9px!important;font-weight:600!important;letter-spacing:.1em!important;color:#648297!important}
+.recruta-andamento-modal-dialog>header h3{margin:4px 0!important;font-size:21px!important;font-weight:650!important;color:#082f50!important}
+.recruta-andamento-modal-dialog>header p{margin:0!important;font-size:11.5px!important;color:#607b8e!important}
+.recruta-andamento-modal-dialog>header>button{width:34px!important;height:34px!important;border:1px solid #d8e4eb!important;border-radius:9px!important;background:#fff!important;color:#496b80!important;font-size:20px!important;cursor:pointer!important}
+.recruta-andamento-modal-body{max-height:calc(88vh - 95px)!important;overflow:auto!important;padding:22px 24px 26px!important}
+.recruta-modal-processo .recruta-cand-info,.recruta-modal-processo .recruta-cand-actions{display:none!important}
+body.recruta-modal-aberto{overflow:hidden!important}
+@media(max-width:650px){
+ #pagina-candidatos-empresa #listaCandidatosEmpresa .recruta-cand-actions{grid-template-columns:repeat(2,minmax(0,1fr))!important}
+ #pagina-candidatos-empresa #listaCandidatosEmpresa .recruta-cand-actions .btn{font-size:10px!important}
+ .recruta-andamento-modal-em{padding:10px!important}
+ .recruta-andamento-modal-dialog{width:100%!important;max-height:94vh!important;border-radius:14px!important}
+ .recruta-andamento-modal-body{max-height:calc(94vh - 100px)!important;padding:16px!important}
 }
 </style></head><body><header class="topo"><div class="topo-inner"><button type="button" class="marca" data-rota="home"><span class="marca-icone">E+</span><span class="marca-nome">Emprega<span>Mais</span></span></button><nav class="menu menu-publico"><button type="button" data-rota="home">Buscar vagas</button><button type="button" data-rota="como-funciona">Como funciona</button>
 <div class="menu-drop menu-drop-empresa"><button type="button" class="menu-drop-gatilho login-card-topo login-card-empresa" onclick="alternarMenuTopo('empresa',event)"><span class="login-card-icone" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 21V5h11v16M15 10h5v11M8 9h3M8 13h3M8 17h3M2 21h20"/></svg></span><span class="login-card-texto"><b>Login Empresa</b><small>Acesse seu painel</small></span><span class="login-card-seta">›</span></button><div class="menu-drop-painel menu-empresa-publico"><div class="menu-drop-titulo">PARA EMPRESAS</div><div class="menu-empresa-intro"><strong>Encontre os talentos certos</strong><span>Publique vagas e gerencie seus processos seletivos em um só lugar.</span></div><button class="menu-empresa-link" onclick="rotaMenuTopo('como-funciona')"><b>Como funciona</b><span>Conheça a plataforma para empresas</span></button><button class="menu-empresa-link" onclick="rotaMenuTopo('planos')"><b>Planos e preços</b><span>Veja os recursos disponíveis</span></button><div class="menu-drop-separador"></div><button class="menu-empresa-login" onclick="rotaMenuTopo('login-empresa')">Entrar como empresa</button><button class="menu-empresa-cadastro" onclick="rotaMenuTopo('cadastro-empresa')">Cadastrar empresa</button></div></div>
