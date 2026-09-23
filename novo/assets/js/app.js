@@ -1764,3 +1764,103 @@ body.recruta-modal-aberto{overflow:hidden!important}
   setTimeout(()=>modal.querySelector('.recruta-andamento-modal-body')?.scrollTo({top:0,behavior:'instant'}),0);
  };
 })();
+
+
+/* EMPREGAMAIS — RECUPERAÇÃO DE VAGAS E AÇÕES V8 */
+(function(){
+  const carregarVagasSeguro = async function(){
+    const locais = Array.isArray(ler('empregaMaisVagas')) ? ler('empregaMaisVagas') : [];
+    const mapa = new Map();
+    locais.forEach(v=>{if(v?.id) mapa.set(String(v.id),v)});
+    const req=[sbJsonEM(EMPREGAMAIS_SUPABASE_URL+'/rest/v1/vagas?select=*&status=eq.aprovada&order=criado_em.desc',{method:'GET',headers:sbHeadersEM()}).catch(()=>[])];
+    const token=sbTokenEM();
+    if(token) req.push(sbUsuarioAtualEM().then(u=>{
+      if(u?.id) sessionStorage.setItem('empresaSupabaseUserId',u.id);
+      return sbJsonEM(EMPREGAMAIS_SUPABASE_URL+'/rest/v1/vagas?select=*&user_id=eq.'+encodeURIComponent(u.id)+'&order=criado_em.desc',{method:'GET',headers:sbHeadersEM(token)});
+    }).catch(()=>[]));
+    const respostas=await Promise.all(req);
+    respostas.flat().forEach(v=>{if(v?.id) mapa.set(String(v.id),v?.cargo!==undefined&&v?.empresaCnpj!==undefined?v:sbMapVagaEM(v))});
+    const consolidado=[...mapa.values()].filter(Boolean);
+    sbVagasCacheEM=consolidado;
+    gravar('empregaMaisVagas',consolidado);
+    return consolidado;
+  };
+  window.sbCarregarVagasEM=carregarVagasSeguro;
+  sbCarregarVagasEM=carregarVagasSeguro;
+
+  async function carregarEmpresaSeguro(){
+    const locais=Array.isArray(ler('empregaMaisVagas'))?ler('empregaMaisVagas'):[];
+    const cnpj=nums(sessionStorage.getItem('empresaCnpj')||'');
+    let uid=String(sessionStorage.getItem('empresaSupabaseUserId')||''),remotas=[];
+    try{
+      const token=await sbGarantirSessaoEM();
+      if(token){
+        const u=await sbUsuarioAtualEM();
+        uid=String(u?.id||uid);
+        if(uid)sessionStorage.setItem('empresaSupabaseUserId',uid);
+        const a=await sbJsonEM(EMPREGAMAIS_SUPABASE_URL+'/rest/v1/vagas?select=*&user_id=eq.'+encodeURIComponent(uid)+'&order=criado_em.desc',{method:'GET',headers:sbHeadersEM(token)});
+        remotas=Array.isArray(a)?a.map(sbMapVagaEM).filter(Boolean):[];
+      }
+    }catch(e){console.warn('EmpregaMais: usando vagas locais.',e)}
+    const empresaMap=new Map();
+    locais.forEach(v=>{
+      if(!v?.id)return;
+      const vc=nums(v.empresaCnpj||v.cnpj||''),vu=String(v.userId||v.user_id||'');
+      if((uid&&vu===uid)||(cnpj&&vc===cnpj))empresaMap.set(String(v.id),v);
+    });
+    remotas.forEach(v=>empresaMap.set(String(v.id),v));
+    const geral=new Map((Array.isArray(sbVagasCacheEM)?sbVagasCacheEM:[]).filter(v=>v?.id).map(v=>[String(v.id),v]));
+    locais.forEach(v=>{if(v?.id)geral.set(String(v.id),v)});
+    remotas.forEach(v=>{if(v?.id)geral.set(String(v.id),v)});
+    sbVagasCacheEM=[...geral.values()];
+    gravar('empregaMaisVagas',sbVagasCacheEM);
+    return [...empresaMap.values()];
+  }
+  window.sbCarregarVagasEmpresaAtualEM=carregarEmpresaSeguro;
+  sbCarregarVagasEmpresaAtualEM=carregarEmpresaSeguro;
+
+  window.vagasDaEmpresa=function(){
+    const locais=Array.isArray(ler('empregaMaisVagas'))?ler('empregaMaisVagas'):[];
+    const cache=Array.isArray(sbVagasCacheEM)?sbVagasCacheEM:[];
+    const uid=String(sessionStorage.getItem('empresaSupabaseUserId')||''),cnpj=nums(sessionStorage.getItem('empresaCnpj')||''),mapa=new Map();
+    [...locais,...cache].forEach(v=>{if(v?.id)mapa.set(String(v.id),v)});
+    return [...mapa.values()].filter(v=>{
+      const vc=nums(v.empresaCnpj||v.cnpj||''),vu=String(v.userId||v.user_id||'');
+      return (uid&&vu===uid)||(cnpj&&vc===cnpj);
+    });
+  };
+  vagasDaEmpresa=window.vagasDaEmpresa;
+
+  window.vagasPublicas=function(){
+    const locais=Array.isArray(ler('empregaMaisVagas'))?ler('empregaMaisVagas'):[];
+    const cache=Array.isArray(sbVagasCacheEM)?sbVagasCacheEM:[],mapa=new Map();
+    [...locais,...cache].forEach(v=>{if(v?.id)mapa.set(String(v.id),v)});
+    return [...mapa.values()].filter(v=>v.status==='aprovada'&&vagaDentroPrazo(v));
+  };
+  vagasPublicas=window.vagasPublicas;
+
+  const renderPortalSeguro=function(){
+    const box=$('#listaVagasPortal');if(!box)return;
+    const desenhar=()=>{try{_renderizarVagasPortalLocalEM()}catch(e){console.error('EmpregaMais: erro ao renderizar vagas.',e)}};
+    if(Array.isArray(sbVagasCacheEM)&&sbVagasCacheEM.length){desenhar();return}
+    carregarVagasSeguro().then(desenhar).catch(desenhar);
+  };
+  window.renderizarVagasPortal=renderPortalSeguro;
+  renderizarVagasPortal=renderPortalSeguro;
+
+  window.recarregarVagasEmpresaSeguroEM=async function(){
+    await carregarEmpresaSeguro().catch(e=>console.warn('EmpregaMais: sincronização de vagas falhou.',e));
+    try{renderizarPainelEmpresa()}catch(e){console.error(e)}
+  };
+
+  document.addEventListener('DOMContentLoaded',()=>{
+    setTimeout(()=>{
+      carregarVagasSeguro().then(()=>{
+        try{
+          if(papelAtual()==='empresa')renderizarPainelEmpresa();
+          else renderizarVagasPortal();
+        }catch(e){console.error(e)}
+      }).catch(()=>{});
+    },350);
+  });
+})();
