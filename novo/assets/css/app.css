@@ -4930,6 +4930,31 @@ overflow:visible!important
 #pagina-painel-empresa .emp-dash-main .emp-dash-kpis{display:grid!important}
 #pagina-painel-empresa .emp-dash-main .emp-dash-actions{display:grid!important}
 
+/* PAINEL RECRUTADOR — VAGAS EM ABERTO V1 */
+#pagina-painel-empresa .emp-open-vagas{margin-top:22px!important;padding:20px!important;border:1px solid #dce7ed!important;border-radius:16px!important;background:#fff!important;box-shadow:0 7px 22px rgba(18,66,92,.045)!important}
+#pagina-painel-empresa .emp-open-vagas-head{display:flex!important;align-items:flex-end!important;justify-content:space-between!important;gap:20px!important;margin-bottom:15px!important}
+#pagina-painel-empresa .emp-open-vagas-head span{display:block!important;margin-bottom:4px!important;color:#758b99!important;font-size:9px!important;font-weight:900!important;letter-spacing:.1em!important}
+#pagina-painel-empresa .emp-open-vagas-head h2{margin:0!important;color:#0a3b55!important;font-size:18px!important}
+#pagina-painel-empresa .emp-open-vagas-head p{margin:4px 0 0!important;color:#7a8e9c!important;font-size:11px!important}
+#pagina-painel-empresa .emp-open-vagas-head>button{border:0!important;background:transparent!important;color:#08758a!important;font:800 11px Questrial,Arial,sans-serif!important;cursor:pointer!important}
+#pagina-painel-empresa .emp-open-vagas-list{display:flex!important;flex-direction:column!important;gap:9px!important}
+#pagina-painel-empresa .emp-open-vaga-card{display:grid!important;grid-template-columns:minmax(0,1fr) 230px 285px!important;align-items:center!important;gap:18px!important;min-height:92px!important;padding:15px 16px!important;border:1px solid #e0e9ee!important;border-radius:13px!important;background:linear-gradient(100deg,#fff,#fbfdfe)!important;transition:.18s ease!important}
+#pagina-painel-empresa .emp-open-vaga-card:hover{border-color:#cbdde5!important;box-shadow:0 8px 20px rgba(20,61,80,.06)!important;transform:translateY(-1px)!important}
+#pagina-painel-empresa .emp-open-vaga-main{display:grid!important;grid-template-columns:42px minmax(0,1fr)!important;align-items:center!important;gap:12px!important;min-width:0!important}
+#pagina-painel-empresa .emp-open-vaga-icon{width:42px!important;height:42px!important;display:grid!important;place-items:center!important;border-radius:11px!important;background:#e9f5f7!important;color:#08778c!important;font-size:16px!important}
+#pagina-painel-empresa .emp-open-vaga-status{display:block!important;margin-bottom:3px!important;color:#188260!important;font-size:8px!important;font-weight:900!important;letter-spacing:.08em!important}
+#pagina-painel-empresa .emp-open-vaga-main h3{margin:0!important;color:#103d55!important;font-size:14px!important;white-space:nowrap!important;overflow:hidden!important;text-overflow:ellipsis!important}
+#pagina-painel-empresa .emp-open-vaga-main p{margin:4px 0 0!important;color:#81929e!important;font-size:10px!important;white-space:nowrap!important;overflow:hidden!important;text-overflow:ellipsis!important}
+#pagina-painel-empresa .emp-open-vaga-numeros{display:grid!important;grid-template-columns:1fr 1fr!important;border-left:1px solid #e5ecef!important;border-right:1px solid #e5ecef!important}
+#pagina-painel-empresa .emp-open-vaga-numeros>div{padding:4px 16px!important}.emp-open-vaga-numeros>div+div{border-left:1px solid #edf1f3!important}
+#pagina-painel-empresa .emp-open-vaga-numeros strong{display:block!important;color:#0b3c56!important;font-size:19px!important;line-height:1!important}.emp-open-vaga-numeros span{display:block!important;margin-top:5px!important;color:#82929d!important;font-size:9px!important}
+#pagina-painel-empresa .emp-open-vaga-actions{display:flex!important;justify-content:flex-end!important;gap:8px!important}
+#pagina-painel-empresa .emp-open-vaga-actions button{min-height:38px!important;padding:0 13px!important;border:1px solid #d5e2e8!important;border-radius:9px!important;background:#fff!important;color:#315a70!important;font:800 10px Questrial,Arial,sans-serif!important;white-space:nowrap!important;cursor:pointer!important}
+#pagina-painel-empresa .emp-open-vaga-actions button.primary{background:#075d73!important;border-color:#075d73!important;color:#fff!important}
+#pagina-painel-empresa .emp-open-vagas-empty{display:flex!important;align-items:center!important;gap:12px!important;padding:17px!important;border:1px dashed #d5e2e8!important;border-radius:12px!important;background:#f9fbfc!important}.emp-open-vagas-empty strong{color:#173f56!important}.emp-open-vagas-empty span{flex:1!important;color:#7b8e9b!important;font-size:10px!important}.emp-open-vagas-empty button{border:0!important;border-radius:8px!important;background:#075d73!important;color:#fff!important;padding:10px 13px!important;font-weight:800!important}
+@media(max-width:1100px){#pagina-painel-empresa .emp-open-vaga-card{grid-template-columns:minmax(0,1fr) 190px!important}.emp-open-vaga-actions{grid-column:1/-1!important;justify-content:flex-start!important;padding-left:54px!important}}
+@media(max-width:760px){#pagina-painel-empresa .emp-open-vagas{padding:15px!important}.emp-open-vagas-head{align-items:flex-start!important;flex-direction:column!important}.emp-open-vaga-card{grid-template-columns:1fr!important}.emp-open-vaga-numeros{border:0!important;border-top:1px solid #e5ecef!important;border-bottom:1px solid #e5ecef!important;padding:10px 0!important}.emp-open-vaga-actions{grid-column:auto!important;padding-left:0!important;flex-wrap:wrap!important}.emp-open-vaga-actions button{flex:1 1 150px!important}}
+
 /* RECRUTADOR — CANDIDATURAS / TIMELINE CONSOLIDADA V7 */
 /* Filtros de etapa: uma única linha no desktop */
 #pagina-candidatos-empresa .etapas-tabs{display:grid!important;grid-template-columns:repeat(8,minmax(0,1fr))!important;gap:7px!important;width:100%!important;align-items:stretch!important}
