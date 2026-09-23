@@ -668,9 +668,17 @@ loginEmpresa=function(e){
 async function sbCarregarVagasEmpresaAtualEM(){
  const t=await sbGarantirSessaoEM();if(!t)throw new Error('Sessão da empresa expirada.');
  const u=await sbUsuarioAtualEM();sessionStorage.setItem('empresaSupabaseUserId',u.id);
+ const locais=ler('empregaMaisVagas');
  const a=await sbJsonEM(EMPREGAMAIS_SUPABASE_URL+'/rest/v1/vagas?select=*&user_id=eq.'+encodeURIComponent(u.id)+'&order=criado_em.desc',{method:'GET',headers:sbHeadersEM(t)});
- const proprias=(Array.isArray(a)?a:[]).map(sbMapVagaEM);
- sbVagasCacheEM=proprias;gravar('empregaMaisVagas',proprias);return proprias
+ const proprias=(Array.isArray(a)?a:[]).map(sbMapVagaEM).filter(Boolean);
+ const uid=String(u.id||''),cnpj=nums(sessionStorage.getItem('empresaCnpj')||'');
+ const locaisDaEmpresa=locais.filter(v=>String(v.userId||v.user_id||'')===uid||(cnpj&&nums(v.empresaCnpj||v.cnpj||'')===cnpj));
+ const mapa=new Map();
+ locaisDaEmpresa.forEach(v=>mapa.set(String(v.id),v));
+ proprias.forEach(v=>mapa.set(String(v.id),v));
+ sbVagasCacheEM=[...mapa.values()];
+ gravar('empregaMaisVagas',sbVagasCacheEM);
+ return sbVagasCacheEM
 }
 
 /* EMPREGAMAIS-ADMIN-RLS-DIAGNOSTICO-V6 */
