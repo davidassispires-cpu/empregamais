@@ -5024,83 +5024,40 @@ overflow:visible!important
 
 
 
-/* EMPREGAMAIS — DESTAQUES — MODELO FINAL V6 SEM SOBREPOSIÇÃO — 2026-09-23 */
+/* EMPREGAMAIS — DESTAQUES — ESTRUTURA DEFINITIVA V7 — 4 CARDS LADO A LADO — 2026-09-23 */
 #pagina-home .destaques-wrap{
-  position:relative!important;
-  display:block!important;
-  width:100%!important;
-  height:406px!important;
-  min-height:406px!important;
-  box-sizing:border-box!important;
-  padding:0 46px!important;
-  overflow:visible!important;
+ position:relative!important;display:grid!important;grid-template-columns:46px minmax(0,1fr) 46px!important;
+ align-items:center!important;gap:0!important;width:100%!important;height:auto!important;min-height:0!important;
+ padding:0!important;box-sizing:border-box!important;overflow:visible!important;
 }
 #pagina-home .destaques-carrossel{
-  position:relative!important;
-  display:flex!important;
-  flex-direction:row!important;
-  flex-wrap:nowrap!important;
-  align-items:stretch!important;
-  justify-content:flex-start!important;
-  align-content:stretch!important;
-  gap:16px!important;
-  width:100%!important;
-  height:390px!important;
-  min-height:390px!important;
-  max-height:390px!important;
-  margin:0!important;
-  padding:6px 2px 14px!important;
-  box-sizing:border-box!important;
-  overflow-x:auto!important;
-  overflow-y:hidden!important;
-  scrollbar-width:none!important;
-  scroll-snap-type:x mandatory!important;
+ position:relative!important;display:grid!important;grid-template-columns:repeat(4,minmax(0,1fr))!important;
+ grid-template-rows:370px!important;grid-auto-flow:row!important;gap:16px!important;
+ width:100%!important;height:370px!important;min-height:370px!important;max-height:370px!important;
+ margin:0!important;padding:0!important;box-sizing:border-box!important;overflow:hidden!important;
 }
-#pagina-home .destaques-carrossel::-webkit-scrollbar{display:none!important}
 #pagina-home .destaques-carrossel > .portal-vaga-nova{
-  position:relative!important;
-  top:auto!important;
-  right:auto!important;
-  bottom:auto!important;
-  left:auto!important;
-  float:none!important;
-  clear:none!important;
-  display:flex!important;
-  flex:0 0 calc((100% - 48px)/4)!important;
-  width:calc((100% - 48px)/4)!important;
-  min-width:calc((100% - 48px)/4)!important;
-  max-width:calc((100% - 48px)/4)!important;
-  height:370px!important;
-  min-height:370px!important;
-  max-height:370px!important;
-  margin:0!important;
-  box-sizing:border-box!important;
-  transform:none!important;
-  align-self:stretch!important;
-  order:0!important;
-  visibility:visible!important;
-  opacity:1!important;
-  scroll-snap-align:start!important;
-  overflow:hidden!important;
+ position:relative!important;inset:auto!important;display:flex!important;float:none!important;
+ width:auto!important;min-width:0!important;max-width:none!important;
+ height:370px!important;min-height:370px!important;max-height:370px!important;
+ margin:0!important;padding:18px!important;box-sizing:border-box!important;
+ transform:none!important;visibility:visible!important;opacity:1!important;
+ grid-column:auto!important;grid-row:1!important;align-self:stretch!important;overflow:hidden!important;
 }
-#pagina-home .destaques-carrossel > .portal-vaga-nova + .portal-vaga-nova{margin-left:0!important}
+#pagina-home .destaques-carrossel > .portal-vaga-nova:hover{transform:translateY(-3px)!important}
+#pagina-home .destaque-nav{
+ position:relative!important;z-index:5!important;width:38px!important;height:38px!important;
+ min-width:38px!important;margin:0 4px!important;border:1px solid #d3e0ec!important;
+ border-radius:50%!important;background:#fff!important;color:#0b4b82!important;
+ display:grid!important;place-items:center!important;font-size:25px!important;line-height:1!important;
+ cursor:pointer!important;box-shadow:0 5px 16px rgba(20,55,90,.10)!important;
+}
 @media(max-width:1100px){
-  #pagina-home .destaques-wrap{height:406px!important;min-height:406px!important}
-  #pagina-home .destaques-carrossel{
-    height:390px!important;min-height:390px!important;
-  }
-  #pagina-home .destaques-carrossel > .portal-vaga-nova{
-    flex-basis:calc((100% - 16px)/2)!important;
-    width:calc((100% - 16px)/2)!important;
-    min-width:calc((100% - 16px)/2)!important;
-    max-width:calc((100% - 16px)/2)!important;
-  }
+ #pagina-home .destaques-wrap{grid-template-columns:40px minmax(0,1fr) 40px!important}
+ #pagina-home .destaques-carrossel{grid-template-columns:repeat(2,minmax(0,1fr))!important}
 }
 @media(max-width:650px){
-  #pagina-home .destaques-wrap{height:398px!important;min-height:398px!important;padding:0 34px!important}
-  #pagina-home .destaques-carrossel{height:382px!important;min-height:382px!important}
-  #pagina-home .destaques-carrossel > .portal-vaga-nova{
-    flex-basis:100%!important;width:100%!important;min-width:100%!important;max-width:100%!important;
-    height:362px!important;min-height:362px!important;max-height:362px!important;
-  }
+ #pagina-home .destaques-wrap{grid-template-columns:34px minmax(0,1fr) 34px!important}
+ #pagina-home .destaques-carrossel{grid-template-columns:1fr!important;height:362px!important;min-height:362px!important;max-height:362px!important}
+ #pagina-home .destaques-carrossel > .portal-vaga-nova{height:362px!important;min-height:362px!important;max-height:362px!important}
 }
