@@ -3893,6 +3893,95 @@ body.modal-encerrar-vaga-aberto{overflow:hidden!important}
  #pagina-candidatos-empresa #listaCandidatosEmpresa .recruta-cand-actions{grid-template-columns:1fr 1fr!important}
 }
 </style>
+
+<style id="EMPREGAMAIS-ATS-CANDIDATO-V58">
+/* Novo card ATS: menos caixas, mais hierarquia e leitura de recrutamento */
+#pagina-candidatos-empresa #listaCandidatosEmpresa{display:flex!important;flex-direction:column!important;align-items:stretch!important;gap:16px!important}
+#pagina-candidatos-empresa #listaCandidatosEmpresa .recruta-cand-card{
+ width:100%!important;max-width:none!important;padding:0!important;border:1px solid #d9e5eb!important;
+ border-left:0!important;border-radius:14px!important;background:#fff!important;box-shadow:0 4px 16px rgba(15,55,75,.045)!important;
+ overflow:hidden!important;
+}
+#pagina-candidatos-empresa #listaCandidatosEmpresa .recruta-cand-head{
+ padding:18px 20px 14px!important;border-bottom:0!important;position:relative!important;
+}
+#pagina-candidatos-empresa #listaCandidatosEmpresa .recruta-cand-head:before{
+ content:"";position:absolute;left:0;top:0;bottom:0;width:4px;background:#0a8fa4;
+}
+#pagina-candidatos-empresa #listaCandidatosEmpresa .recruta-cand-ident{gap:12px!important;align-items:center!important}
+#pagina-candidatos-empresa #listaCandidatosEmpresa .recruta-cand-monograma{
+ width:44px!important;height:44px!important;min-width:44px!important;font-size:14px!important;background:#eaf6f8!important;color:#087b8d!important;
+}
+#pagina-candidatos-empresa #listaCandidatosEmpresa .recruta-cand-ident h3{font-size:17px!important;line-height:1.2!important;margin:0 0 3px!important;color:#0b3552!important}
+#pagina-candidatos-empresa #listaCandidatosEmpresa .recruta-cand-ident p{font-size:11.5px!important;margin:0 0 6px!important;color:#668091!important}
+#pagina-candidatos-empresa #listaCandidatosEmpresa .recruta-cand-meta{gap:6px!important}
+#pagina-candidatos-empresa #listaCandidatosEmpresa .recruta-cand-meta span{
+ padding:3px 8px!important;border:0!important;background:#f3f7f9!important;border-radius:6px!important;font-size:9.5px!important;color:#587386!important;
+}
+/* transforma os três blocos em uma faixa de informações, sem cards gigantes */
+#pagina-candidatos-empresa #listaCandidatosEmpresa .recruta-cand-preview-info{
+ padding:0 20px!important;margin:0!important;
+}
+#pagina-candidatos-empresa #listaCandidatosEmpresa .recruta-cand-preview-info .recruta-cand-info{
+ display:grid!important;grid-template-columns:.9fr 1.45fr .9fr!important;gap:0!important;
+ border:1px solid #e1e9ed!important;border-radius:10px!important;background:#f9fbfc!important;overflow:hidden!important;
+}
+#pagina-candidatos-empresa #listaCandidatosEmpresa .recruta-cand-preview-info .recruta-cand-info>div{
+ min-height:72px!important;height:72px!important;padding:11px 16px!important;border:0!important;border-right:1px solid #e2e9ed!important;
+ border-radius:0!important;background:transparent!important;align-items:flex-start!important;justify-content:center!important;text-align:left!important;
+}
+#pagina-candidatos-empresa #listaCandidatosEmpresa .recruta-cand-preview-info .recruta-cand-info>div:last-child{border-right:0!important;background:transparent!important}
+#pagina-candidatos-empresa #listaCandidatosEmpresa .recruta-cand-preview-info .recruta-cand-info span{
+ margin:0 0 4px!important;font-size:9px!important;text-transform:uppercase!important;letter-spacing:.06em!important;color:#718997!important;font-weight:750!important;
+}
+#pagina-candidatos-empresa #listaCandidatosEmpresa .recruta-cand-preview-info .recruta-cand-info strong{
+ font-size:13px!important;line-height:1.2!important;color:#123e5b!important;font-weight:750!important;
+}
+/* aderência: barra horizontal discreta, sem gráfico circular */
+#pagina-candidatos-empresa #listaCandidatosEmpresa .recruta-cand-preview-info .recruta-aderencia-card{
+ display:grid!important;grid-template-columns:1fr auto!important;grid-template-rows:auto auto!important;
+ column-gap:12px!important;align-content:center!important;text-align:left!important;
+}
+#pagina-candidatos-empresa #listaCandidatosEmpresa .recruta-cand-preview-info .recruta-aderencia-card>span{grid-column:1/-1!important;margin:0 0 6px!important}
+#pagina-candidatos-empresa #listaCandidatosEmpresa .recruta-cand-preview-info .recruta-aderencia-linha{
+ grid-column:1!important;grid-row:2!important;width:100%!important;height:7px!important;margin:0!important;border-radius:999px!important;
+ background:#dceae8!important;display:block!important;position:relative!important;overflow:visible!important;
+}
+#pagina-candidatos-empresa #listaCandidatosEmpresa .recruta-cand-preview-info .recruta-aderencia-linha:before{
+ content:"";position:absolute;left:0;top:0;bottom:0;width:calc(var(--aderencia) * 1%);border-radius:999px;background:#079b72;
+}
+#pagina-candidatos-empresa #listaCandidatosEmpresa .recruta-cand-preview-info .recruta-aderencia-linha:after{display:none!important}
+#pagina-candidatos-empresa #listaCandidatosEmpresa .recruta-cand-preview-info .recruta-aderencia-linha strong{
+ position:absolute!important;right:-48px!important;top:-17px!important;width:42px!important;font-size:13px!important;color:#0b4a52!important;text-align:right!important;
+}
+#pagina-candidatos-empresa #listaCandidatosEmpresa .recruta-cand-preview-info .recruta-aderencia-nivel{
+ grid-column:2!important;grid-row:2!important;margin:-1px 0 0!important;font-size:9px!important;white-space:nowrap!important;color:#168064!important;
+}
+/* ações: barra limpa, com uma ação primária */
+#pagina-candidatos-empresa #listaCandidatosEmpresa .recruta-cand-actions{
+ display:flex!important;align-items:center!important;gap:7px!important;padding:14px 20px!important;margin:0!important;border-bottom:0!important;
+}
+#pagina-candidatos-empresa #listaCandidatosEmpresa .recruta-cand-actions .btn{
+ width:auto!important;min-width:104px!important;height:36px!important;min-height:36px!important;padding:0 12px!important;
+ border-radius:8px!important;font-size:10px!important;background:#fff!important;border:1px solid #d5e1e7!important;color:#214b65!important;
+}
+#pagina-candidatos-empresa #listaCandidatosEmpresa .recruta-cand-actions .btn-azul{
+ background:#087f94!important;border-color:#087f94!important;color:#fff!important;min-width:120px!important;
+}
+#pagina-candidatos-empresa #listaCandidatosEmpresa .recruta-cand-actions .recruta-whatsapp{color:#078b59!important;border-color:#b7dfce!important}
+#pagina-candidatos-empresa #listaCandidatosEmpresa .recruta-preview-andamento{
+ width:calc(100% - 40px)!important;height:38px!important;min-height:38px!important;margin:0 20px 16px!important;padding:0 12px!important;
+ border:0!important;border-top:1px solid #e4ebef!important;border-radius:0!important;background:#fff!important;
+ grid-template-columns:1fr auto auto!important;gap:12px!important;
+}
+#pagina-candidatos-empresa #listaCandidatosEmpresa .recruta-preview-andamento span{font-size:8.5px!important}
+#pagina-candidatos-empresa #listaCandidatosEmpresa .recruta-preview-andamento b{font-size:10.5px!important}
+@media(max-width:760px){
+ #pagina-candidatos-empresa #listaCandidatosEmpresa .recruta-cand-preview-info .recruta-cand-info{grid-template-columns:1fr!important}
+ #pagina-candidatos-empresa #listaCandidatosEmpresa .recruta-cand-preview-info .recruta-cand-info>div{border-right:0!important;border-bottom:1px solid #e2e9ed!important}
+ #pagina-candidatos-empresa #listaCandidatosEmpresa .recruta-cand-actions{flex-wrap:wrap!important}
+}
+</style>
 </head><body><header class="topo"><div class="topo-inner"><button type="button" class="marca" data-rota="home"><span class="marca-icone">E+</span><span class="marca-nome">Emprega<span>Mais</span></span></button><nav class="menu menu-publico"><button type="button" data-rota="home">Buscar vagas</button><button type="button" data-rota="como-funciona">Como funciona</button>
 <div class="menu-drop menu-drop-empresa"><button type="button" class="menu-drop-gatilho login-card-topo login-card-empresa" onclick="alternarMenuTopo('empresa',event)"><span class="login-card-icone" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 21V5h11v16M15 10h5v11M8 9h3M8 13h3M8 17h3M2 21h20"/></svg></span><span class="login-card-texto"><b>Login Empresa</b><small>Acesse seu painel</small></span><span class="login-card-seta">›</span></button><div class="menu-drop-painel menu-empresa-publico"><div class="menu-drop-titulo">PARA EMPRESAS</div><div class="menu-empresa-intro"><strong>Encontre os talentos certos</strong><span>Publique vagas e gerencie seus processos seletivos em um só lugar.</span></div><button class="menu-empresa-link" onclick="rotaMenuTopo('como-funciona')"><b>Como funciona</b><span>Conheça a plataforma para empresas</span></button><button class="menu-empresa-link" onclick="rotaMenuTopo('planos')"><b>Planos e preços</b><span>Veja os recursos disponíveis</span></button><div class="menu-drop-separador"></div><button class="menu-empresa-login" onclick="rotaMenuTopo('login-empresa')">Entrar como empresa</button><button class="menu-empresa-cadastro" onclick="rotaMenuTopo('cadastro-empresa')">Cadastrar empresa</button></div></div>
 </nav><nav class="menu menu-empresa-logada"><button type="button" data-rota="painel-empresa">Painel</button><button type="button" data-rota="painel-empresa">Minhas vagas</button><button type="button" data-rota="candidatos-empresa">Candidatos</button><button type="button" data-rota="planos">Planos</button></nav><nav class="menu menu-candidato-logado"><button type="button" data-rota="home">Buscar vagas</button><button type="button" data-rota="salvas">Vagas salvas</button><button type="button" data-rota="candidaturas">Minhas candidaturas</button><button type="button" data-rota="curriculo">Meu currículo</button></nav><div class="acoes"><div class="menu-drop menu-drop-candidato"><button type="button" class="btn secundario menu-drop-gatilho login-card-topo login-card-candidato" onclick="alternarMenuTopo('candidato',event)"><span class="login-card-icone" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4.5 21c.8-5 3.2-7.5 7.5-7.5s6.7 2.5 7.5 7.5"/></svg></span><span class="login-card-texto"><b>Login Candidato</b><small>Acesse sua conta</small></span><span class="login-card-seta">›</span></button><div class="menu-drop-painel menu-candidato-publico"><div class="menu-drop-titulo">PARA CANDIDATOS</div><div class="menu-candidato-intro"><strong>Encontre sua próxima oportunidade</strong><span>Busque vagas, crie seu currículo e acompanhe seus processos em um só lugar.</span></div><button class="menu-candidato-link" onclick="rotaMenuTopo('home')"><b>Buscar vagas</b><span>Encontre oportunidades para o seu perfil</span></button><button class="menu-candidato-link" onclick="rotaMenuTopo('cadastro-candidato')"><b>Criar currículo</b><span>Cadastre seu perfil profissional gratuitamente</span></button><div class="menu-drop-separador"></div><button class="menu-candidato-login" onclick="rotaMenuTopo('login-candidato')">Entrar como candidato</button><button class="menu-candidato-cadastro" onclick="rotaMenuTopo('cadastro-candidato')">Cadastrar currículo</button></div></div><button type="button" class="btn btn-azul btn-anunciar-vaga anunciar-card-topo" onclick="abrirPublicacao()"><span class="btn-anunciar-icone" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 7V5.8C8 4.8 8.8 4 9.8 4h4.4c1 0 1.8.8 1.8 1.8V7M4 9h16v10.5c0 .8-.7 1.5-1.5 1.5h-13C4.7 21 4 20.3 4 19.5V9Z"/><path d="M4 13h16M10 13v2h4v-2"/></svg></span><span class="anunciar-card-texto"><b>Anunciar vaga grátis</b><small>Divulgue sua oportunidade</small></span><span class="anunciar-card-seta">→</span></button><div class="sessao-empresa-topo"><button class="sessao-conta-btn sessao-conta-empresa-pro" onclick="toggleMenuContaEM(this,event)"><span class="sessao-avatar" id="topoEmpresaAvatar">E</span><span class="sessao-conta-ident"><b id="topoEmpresaNome">Empresa</b><small><i class="sessao-status-dot"></i> Conta empresarial · <strong id="topoEmpresaPlano">Plano Grátis</strong></small></span><em>⌄</em></button><div class="sessao-conta-menu"><div class="conta-menu-head"><span class="conta-menu-avatar" id="topoEmpresaAvatarMenu">E</span><div><b id="topoEmpresaNomeMenu">Empresa</b><small id="topoEmpresaPlanoMenu">Conta da empresa</small><i>Plano ativo</i></div></div><div class="conta-menu-nav"><button onclick="irPara('painel-empresa')">Painel da empresa</button><button onclick="irPara('perfil-empresa')">Perfil da empresa</button><button onclick="irPara('planos')">Meu plano</button><button class="conta-sair-pro" onclick="sair()">Sair</button></div></div></div><div class="sessao-candidato-topo"><button class="sessao-conta-btn sessao-conta-candidato-pro" onclick="toggleMenuContaEM(this,event)"><span class="sessao-avatar" id="topoCandidatoAvatar">C</span><span class="sessao-conta-ident"><b id="topoCandidatoNome">Candidato</b><small><i class="sessao-status-dot"></i> Conta de candidato</small></span><em>⌄</em></button><div class="sessao-conta-menu"><button onclick="irPara('painel-candidato')">Meu painel</button><button onclick="irPara('perfil-candidato')">Meu perfil</button><button onclick="sair()">Sair</button></div></div></div></div></header><main><section class="pagina ativa" id="pagina-home">
