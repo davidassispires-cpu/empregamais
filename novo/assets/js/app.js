@@ -580,18 +580,31 @@ function sbCarregarVagasEM(){
 function sbEmpresaAtualEM(){
   return sbUsuarioAtualEM().then(u=>sbJsonEM(EMPREGAMAIS_SUPABASE_URL+'/rest/v1/empresas?select=*&user_id=eq.'+encodeURIComponent(u.id)+'&limit=1',{method:'GET',headers:sbHeadersEM(sbTokenEM())}).then(a=>Array.isArray(a)&&a[0]?a[0]:null))
 }
+async function geocodificarVagaEM(d){
+ if(!d||String(d.modalidade||'').toLowerCase().includes('remot'))return {latitude:null,longitude:null};
+ const cep=nums(d.cep||'');let q='';
+ if(cep.length===8)q=cep+', Brasil';else q=[d.cidade,d.estado,'Brasil'].filter(Boolean).join(', ');
+ if(!q)return {latitude:null,longitude:null};
+ try{
+  const url='https://nominatim.openstreetmap.org/search?format=jsonv2&limit=1&countrycodes=br&q='+encodeURIComponent(q);
+  const r=await fetch(url,{headers:{'Accept':'application/json','Accept-Language':'pt-BR'}});
+  if(!r.ok)return {latitude:null,longitude:null};const a=await r.json(),x=Array.isArray(a)&&a[0];
+  const latitude=Number(x?.lat),longitude=Number(x?.lon);
+  return Number.isFinite(latitude)&&Number.isFinite(longitude)?{latitude,longitude}:{latitude:null,longitude:null};
+ }catch(e){console.warn('EmpregaMais: geocodificação da vaga indisponível.',e);return {latitude:null,longitude:null}}
+}
 function sbDadosVagaAtualEM(){
   const v=id=>$('#'+id)?.value.trim()||'';
   return sbEmpresaAtualEM().then(emp=>{
     if(!emp)throw new Error('Empresa não encontrada no Supabase.');
-    return {empresaId:emp.id,userId:emp.user_id,empresa:v('empresaVaga')||emp.nome_fantasia||emp.nome||'',empresaCnpj:emp.cnpj||sessionStorage.getItem('empresaCnpj')||'',cargo:v('cargoVaga'),area:v('areaVaga'),contrato:v('contratoVaga'),modalidade:v('modalidadeVaga'),cep:v('cepVaga'),estado:v('estadoVaga'),cidade:v('cidadeVaga'),dataEncerramento:''||null,escolaridade:v('escolaridadeVaga'),experiencia:v('experienciaVaga'),jornada:v('jornadaVaga'),pcd:v('pcdVaga'),salario:$('#salarioCombinarVaga')?.checked?'A combinar':v('salarioVaga'),salarioMax:'',salarioCombinar:!!$('#salarioCombinarVaga')?.checked,horarioEntrada:'',horarioSaida:'',descricao:v('descricaoVaga'),requisitos:v('requisitosVaga'),beneficios:beneficiosSelecionados().join(' · '),beneficiosLista:beneficiosSelecionados().filter(x=>x!==v('beneficiosVaga')),beneficiosOutros:v('beneficiosVaga'),sobreEmpresa:v('sobreEmpresaVaga'),senior50:!!$('#senior50Vaga')?.checked,confidencial:!!$('#vagaConfidencial')?.checked,destaque:!!$('#vagaDestaque')?.checked,urgente:!!$('#vagaUrgente')?.checked,logo:window.__empregaMaisLogoVagaUrl||''}
+    return {empresaId:emp.id,userId:emp.user_id,empresa:v('empresaVaga')||emp.nome_fantasia||emp.nome||'',empresaCnpj:emp.cnpj||sessionStorage.getItem('empresaCnpj')||'',cargo:v('cargoVaga'),area:v('areaVaga'),contrato:v('contratoVaga'),modalidade:v('modalidadeVaga'),cep:v('cepVaga'),estado:v('estadoVaga'),cidade:v('cidadeVaga'),dataEncerramento:''||null,escolaridade:v('escolaridadeVaga'),experiencia:v('experienciaVaga'),jornada:v('jornadaVaga'),pcd:v('pcdVaga'),salario:$('#salarioCombinarVaga')?.checked?'A combinar':v('salarioVaga'),salarioMax:'',salarioCombinar:!!$('#salarioCombinarVaga')?.checked,horarioEntrada:'',horarioSaida:'',descricao:v('descricaoVaga'),requisitos:v('requisitosVaga'),beneficios:beneficiosSelecionados().join(' · '),beneficiosLista:beneficiosSelecionados().filter(x=>x!==v('beneficiosVaga')),beneficiosOutros:v('beneficiosVaga'),sobreEmpresa:v('sobreEmpresaVaga'),senior50:!!$('#senior50Vaga')?.checked,confidencial:!!$('#vagaConfidencial')?.checked,destaque:!!$('#vagaDestaque')?.checked,urgente:!!$('#vagaUrgente')?.checked,logo:window.__empregaMaisLogoVagaUrl||'',latitude:null,longitude:null}
   })
 }
 function sbVagaPayloadEM(d,editId){
   const gratuito=planoEmpresaAtual().nome==='Grátis';
   if(gratuito&&d.destaque&&!editId){d.destaque_solicitado=true;d.destaque=false}
   if(gratuito&&d.urgente&&!editId){d.urgencia_solicitada=true;d.urgente=false}
-  return {user_id:d.userId,empresa_id:d.empresaId,empresa:d.empresa,empresa_cnpj:nums(d.empresaCnpj),cargo:d.cargo,area:d.area,contrato:d.contrato,modalidade:d.modalidade,cep:d.cep,estado:d.estado,cidade:d.cidade,data_encerramento:d.dataEncerramento||dataEncerramentoAutomaticaEM(),escolaridade:d.escolaridade,experiencia:d.experiencia,jornada:d.jornada,pcd:d.pcd,salario:d.salario,salario_max:d.salarioMax,salario_combinar:d.salarioCombinar,horario_entrada:d.horarioEntrada,horario_saida:d.horarioSaida,descricao:d.descricao,requisitos:d.requisitos,beneficios:d.beneficios,beneficios_lista:d.beneficiosLista||[],beneficios_outros:d.beneficiosOutros,sobre_empresa:d.sobreEmpresa,senior50:d.senior50,confidencial:d.confidencial,destaque:d.destaque,urgente:d.urgente,destaque_solicitado:d.destaque_solicitado||false,urgencia_solicitada:d.urgencia_solicitada||false,logo:d.logo||null,status:'pendente'}
+  return {user_id:d.userId,empresa_id:d.empresaId,empresa:d.empresa,empresa_cnpj:nums(d.empresaCnpj),cargo:d.cargo,area:d.area,contrato:d.contrato,modalidade:d.modalidade,cep:d.cep,estado:d.estado,cidade:d.cidade,latitude:d.latitude??null,longitude:d.longitude??null,data_encerramento:d.dataEncerramento||dataEncerramentoAutomaticaEM(),escolaridade:d.escolaridade,experiencia:d.experiencia,jornada:d.jornada,pcd:d.pcd,salario:d.salario,salario_max:d.salarioMax,salario_combinar:d.salarioCombinar,horario_entrada:d.horarioEntrada,horario_saida:d.horarioSaida,descricao:d.descricao,requisitos:d.requisitos,beneficios:d.beneficios,beneficios_lista:d.beneficiosLista||[],beneficios_outros:d.beneficiosOutros,sobre_empresa:d.sobreEmpresa,senior50:d.senior50,confidencial:d.confidencial,destaque:d.destaque,urgente:d.urgente,destaque_solicitado:d.destaque_solicitado||false,urgencia_solicitada:d.urgencia_solicitada||false,logo:d.logo||null,status:'pendente'}
 }
 
 /* EMPREGAMAIS-LOGO-STORAGE-V1 */
@@ -636,7 +649,7 @@ publicarVagaNova=async function(e){
   const editId=sessionStorage.getItem('vagaEdicao');
   const btn=$('#btnPublicarVaga');if(btn){btn.disabled=true;btn.textContent='Enviando...'}
   try{
-    const dados=await sbDadosVagaAtualEM(), payload=sbVagaPayloadEM(dados,editId);
+    const dados=await sbDadosVagaAtualEM(), coordenadas=await geocodificarVagaEM(dados);Object.assign(dados,coordenadas);const payload=sbVagaPayloadEM(dados,editId);
     const erroPlano=validarRecursosPlano(Object.assign({},dados,{destaque:payload.destaque,urgente:payload.urgente}),editId);
     if(erroPlano)throw new Error(erroPlano);
     if(editId){
