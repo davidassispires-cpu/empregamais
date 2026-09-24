@@ -5250,9 +5250,9 @@ body.modal-encerrar-vaga-aberto{overflow:hidden!important}
 }
 </style><style id="EMPREGAMAIS-TYPOGRAPHY-SYSTEM-V11">
 /* Sistema tipográfico EmpregaMais — Inter + hierarquia consistente */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
 :root{
- --em-font:'Inter',system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+ --em-font:'Plus Jakarta Sans',system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
  --em-title:#123b5d;--em-text:#526b7d;--em-muted:#718696;--em-action:#087fae;
  --em-bg:#f6f9fb;--em-card:#fff;--em-border:#dce6ec;
 }
@@ -5318,6 +5318,21 @@ input,select,textarea{font-size:14px}
  #pagina-vaga .vaga-conteudo-v2 h2{font-size:17px!important}
  #pagina-vaga .vaga-texto{font-size:13.5px!important;line-height:1.68!important}
  #pagina-vaga .vaga-tabs a{font-size:11px!important}
+}
+</style><style id="EMPREGAMAIS-JAKARTA-TUNING-V12">
+/* Ajuste fino para Plus Jakarta Sans: leitura mais ampla */
+body{font-size:15px!important}
+#pagina-home #listaVagasPortal .vaga-identidade h3{font-size:18px!important;line-height:1.3!important}
+#pagina-home #listaVagasPortal .vaga-identidade p{font-size:13px!important}
+#pagina-home #listaVagasPortal .vaga-meta span{font-size:11.5px!important}
+#pagina-home #listaVagasPortal .vaga-rodape-salario .salario-card{font-size:16.5px!important}
+#pagina-home .rec-prev-section p{font-size:14.5px!important;line-height:1.68!important}
+#pagina-vaga .vaga-texto{font-size:14.5px!important;line-height:1.72!important}
+@media(max-width:700px){
+ body{font-size:14px!important}
+ #pagina-home #listaVagasPortal .vaga-identidade h3{font-size:17px!important}
+ #pagina-home #listaVagasPortal .vaga-identidade p{font-size:12.5px!important}
+ #pagina-vaga .vaga-texto{font-size:14px!important}
 }
 </style></head><body><header class="topo"><div class="topo-inner"><button type="button" class="marca" data-rota="home"><span class="marca-icone">E+</span><span class="marca-nome">Emprega<span>Mais</span></span></button><nav class="menu menu-publico"><button type="button" data-rota="home">Buscar vagas</button><button type="button" data-rota="como-funciona">Como funciona</button>
 <div class="menu-drop menu-drop-empresa"><button type="button" class="menu-drop-gatilho login-card-topo login-card-empresa" onclick="alternarMenuTopo('empresa',event)"><span class="login-card-icone" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 21V5h11v16M15 10h5v11M8 9h3M8 13h3M8 17h3M2 21h20"/></svg></span><span class="login-card-texto"><b>Login Empresa</b><small>Acesse seu painel</small></span><span class="login-card-seta">›</span></button><div class="menu-drop-painel menu-empresa-publico"><div class="menu-drop-titulo">PARA EMPRESAS</div><div class="menu-empresa-intro"><strong>Encontre os talentos certos</strong><span>Publique vagas e gerencie seus processos seletivos em um só lugar.</span></div><button class="menu-empresa-link" onclick="rotaMenuTopo('como-funciona')"><b>Como funciona</b><span>Conheça a plataforma para empresas</span></button><button class="menu-empresa-link" onclick="rotaMenuTopo('planos')"><b>Planos e preços</b><span>Veja os recursos disponíveis</span></button><div class="menu-drop-separador"></div><button class="menu-empresa-login" onclick="rotaMenuTopo('login-empresa')">Entrar como empresa</button><button class="menu-empresa-cadastro" onclick="rotaMenuTopo('cadastro-empresa')">Cadastrar empresa</button></div></div>
