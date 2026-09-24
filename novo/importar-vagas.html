@@ -105,6 +105,7 @@ function parse(t,i){
  if(!cargo){var tituloProv=lines.find(function(x){return x.length<=80&&!/\b(?:atua|segmento|empresa|oferecendo|clientes|fundada|mercado)\b/i.test(x)&&!/^(?:sobre|descri[cç][aã]o|requisitos|benef[ií]cios|atividades)\b/i.test(x)});cargo=tituloProv||''}
  cargo=clean(cargo).replace(/^(?:VAGA|CARGO)\s*[:\-]\s*/i,'');
  var empresa=valorLinha(t,['Empresa','Contratante','Empresa contratante']);
+ if(!empresa){var em=t.match(/^\s*([A-ZÁÉÍÓÚÂÊÔÃÕÇ][A-Za-zÀ-ÿ0-9&.' -]{2,80}?)\s+(?:atua|é uma empresa|está com oportunidade|esta com oportunidade)\b/im);if(em)empresa=clean(em[1])}
  var local=valorLinha(t,['Local de trabalho','Localidade','Local','Cidade']),cidade=local,uf=valorLinha(t,['UF','Estado']),bairro=valorLinha(t,['Bairro'])||'';
  if(local){var lm=local.match(/(.+?)(?:\s*[-–—\/]\s*|\s+)([A-Z]{2})$/);if(lm){cidade=lm[1].trim();uf=lm[2]}var ap=cidade.split(/\s+[–—]\s+/);if(ap.length>1){bairro=bairro||ap[0].trim();cidade=ap[ap.length-1].trim()}}
  if(!cidade){var cm=t.match(/\b(?:em|para)\s+([A-ZÁÉÍÓÚÂÊÔÃÕÇ][A-Za-zÀ-ÿ ]{2,40})\s*[-\/]\s*([A-Z]{2})\b/);if(cm){cidade=cm[1].trim();uf=cm[2]}}
@@ -115,7 +116,10 @@ function parse(t,i){
  if(salarioCombinar&&!salario)salario='A combinar';
  var modalidade=valorLinha(t,['Modalidade','Modelo de trabalho']);if(!modalidade){if(/home\s*office|remot[oa]/i.test(t))modalidade='Remoto';else if(/h[ií]brid[oa]/i.test(t))modalidade='Híbrido';else if(/presencial|local de trabalho|endere[cç]o/i.test(t))modalidade='Presencial';else modalidade=''}
  var area=valorLinha(t,['Área','Area','Setor']);
+ /* remove ruídos comuns de cópia de páginas antes de distribuir conteúdo */
+ t=t.replace(/^\s*svg\w*[^\n]*$/gim,'').replace(/^\s*svgLocalGuides[^\n]*$/gim,'');
  var beneficios=valorLinha(t,['Benefícios','Beneficios','Oferecemos']);if(!beneficios){var bm=t.match(/(?:Oferecemos|Benef[ií]cios?)\s*:\s*([^\n]+)/i);if(bm)beneficios=bm[1].trim()}
+ if(beneficios)beneficios=beneficios.replace(/\s+e\s+/gi,'; ').replace(/\s*,\s*/g,'; ');
  var jornada=valorLinha(t,['Jornada de Trabalho','Jornada','Horário','Horario']);if(!jornada){var hm=t.match(/(?:HOR[ÁA]RIO\s*:\s*)?((?:\d+\s*horas?\s*por\s*dia[^\n]*)(?:\n[^\n]*\d{1,2}H[^\n]*)?)/i);if(hm)jornada=hm[1].trim()}
  var escolaridade=valorLinha(t,['Escolaridade','Formação','Formacao']);
  var experiencia=valorLinha(t,['Experiência','Experiencia','Tempo de experiência','Tempo de experiencia']);
@@ -128,8 +132,8 @@ function parse(t,i){
  if(!experiencia){var ex=t.match(/(?:experi[eê]ncia|experiencia)[^\n:]*[:\-]?\s*([^\n]{2,100})/i);if(ex)experiencia=ex[1].trim();else if(/sem experi[eê]ncia|n[aã]o exige experi[eê]ncia/i.test(t))experiencia='Sem experiência'}
  var quantidade=valorLinha(t,['Quantidade de pessoas','Quantidade de vagas','Vagas disponíveis','Número de vagas'])||'';
  var pcd=valorLinha(t,['PcD','PCD'])||(/vaga\s+(?:exclusiva|afirmativa)\s+para\s+pcd/i.test(t)?'PcD - conferir tipo':'');
- var email=(t.match(/[\w.+-]+@[\w.-]+\.[A-Za-z]{2,}/)||[])[0]||'',wm=t.match(/(?:whatsapp|whats)[^\d+]*(\+?\d[\d\s()-]{8,}\d)/i),whatsapp=wm?wm[1].replace(/\D/g,''):'';
- var urls=(t.match(/(?:https?:\/\/|www\.)[^\s<>\"]+/gi)||[]).map(function(u){return u.replace(/[),.;]+$/,'')}),linkExterno=urls.find(function(u){return !/wa\.me|whatsapp\.com/i.test(u)})||'';if(linkExterno&&/^www\./i.test(linkExterno))linkExterno='https://'+linkExterno;
+ var email=((t.replace(/\\@/g,'@')).match(/[\w.+-]+@[\w.-]+\.[A-Za-z]{2,}/)||[])[0]||'',wm=t.match(/(?:whatsapp|whats)[^\d+]*(\+?\d[\d\s()-]{8,}\d)/i),whatsapp=wm?wm[1].replace(/\D/g,''):'';
+ var urls=(t.match(/(?:https?:\/\/|www\.)[^\s<>\"]+/gi)||[]).map(function(u){return u.replace(/[),.;]+$/,'')}),linkExterno=urls.find(function(u){return !/wa\.me|whatsapp\.com|api\.whatsapp\.com|mailto:/i.test(u)})||'';if(linkExterno&&/^www\./i.test(linkExterno))linkExterno='https://'+linkExterno;
  var canais=[email?'E-mail':'',whatsapp?'WhatsApp':'',linkExterno?'Link externo':''].filter(Boolean),candidatura=canais.length===1?canais[0]:canais.length>1?'':(/candidat(?:e-se|ura).*empregamais|pelo\s+empregamais/i.test(t)?'EmpregaMais':'');
  var assunto='',asm=t.match(/(?:com o assunto|assunto)\s*:\s*([^\n]+)/i);if(asm)assunto=clean(asm[1]);
  var v={id:i,cargo:cargo,empresa:empresa,area:area,contrato:contrato,modalidade:modalidade,quantidade:quantidade,cidade:cidade,uf:uf,bairro:bairro,cep:valorLinha(t,['CEP']),logradouro:valorLinha(t,['Logradouro','Endereço','Endereco','Rua']),numero:valorLinha(t,['Número','Numero']),complemento:valorLinha(t,['Complemento']),salario:salario,salarioCombinar:salarioCombinar,escolaridade:escolaridade,experiencia:experiencia,jornada:jornada,pcd:pcd,beneficios:beneficios,descricao:descricao,atividades:atividades,requisitos:requisitos,adicionais:adicionais,email:email,whatsapp:whatsapp,linkExterno:linkExterno,assunto:assunto,candidatura:candidatura,senior50:/\b50\s*\+|profissionais?\s+50\+|acima de 50/i.test(t),confidencial:/empresa\s+confidencial|vaga\s+confidencial/i.test(t),divergencia:canais.length>1?'Mais de um canal de candidatura foi encontrado. Escolha qual será usado.':'',divergenciaAprovada:false};
