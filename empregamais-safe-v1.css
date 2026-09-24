@@ -516,3 +516,14 @@ body.empresa-premium-v44 .plano-premium-v44{min-height:96px!important;margin:0 0
 #pagina-perfil-empresa-em .perfil-lateral-pro-v130 li:before{content:"✓";display:flex;align-items:center;justify-content:center;width:18px;height:18px;border-radius:50%;background:#e6f6f0;color:#16855f;font-weight:800;flex:0 0 auto}
 @media(max-width:980px){#pagina-perfil-empresa-em [data-painel-dados-v22="publico"]{padding-right:24px!important}.perfil-lateral-pro-v130{position:relative!important;right:auto!important;top:auto!important;width:100%!important;margin:0 0 16px!important}.perfil-lateral-pro-v130 .arte-v130{height:240px!important}}
 @media(max-width:620px){#pagina-perfil-empresa-em{padding:16px 12px 42px!important}#pagina-perfil-empresa-em [data-painel-dados-v22="publico"]{padding:14px!important}.perfil-lateral-pro-v130 .arte-v130{height:205px!important}}
+
+
+/* EmpregaMais: filtro lateral alinhado à grade de 10 vagas */
+@media (min-width:901px){
+  #pagina-home #vagas .vagas-area > #filtrosLateral{
+    align-self:stretch!important;
+    height:auto!important;
+    min-height:100%!important;
+    box-sizing:border-box!important;
+  }
+}
