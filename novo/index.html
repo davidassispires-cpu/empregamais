@@ -7134,4 +7134,18 @@ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',
  #pagina-home #listaVagasPortal .portal-vaga-nova:has(.urgente-selo):hover{border-color:#df8e8e!important;box-shadow:0 8px 20px rgba(184,67,67,.10)!important}
 }
 </style>
+
+<style id="EMPREGAMAIS-PRIORIDADE-URGENTE-V64">
+/* Prioridade visual: contratação urgente sempre prevalece sobre destaque */
+#pagina-home #listaVagasPortal .portal-vaga-nova.destaque:has(.urgente-selo){
+ border-top:1px solid #e7caca!important;
+ border-left:4px solid #c95757!important;
+ border-right:1px solid #e7caca!important;
+ border-bottom:1px solid #e7caca!important;
+ box-shadow:0 5px 16px rgba(156,55,55,.07)!important;
+}
+#pagina-home #listaVagasPortal .portal-vaga-nova:has(.urgente-selo){
+ border-left:4px solid #c95757!important;
+}
+</style>
 </body></html>
