@@ -1768,6 +1768,29 @@ function toggleDetalhesAderenciaEM(){
  const abrir=box.classList.contains('oculto');box.classList.toggle('oculto',!abrir);if(btn)btn.textContent=abrir?'Ocultar análise':'Ver análise';
 }
 
+/* EMPREGAMAIS-ADERENCIA-PREMIUM-CANDIDATO-V2 */
+(function(){
+ const originalAderencia=aderenciaVagaAtualHTML;
+ aderenciaVagaAtualHTML=function(v){
+  if(papelAtual()==='candidato'&&!candidatoPremiumAtivoEM()){
+   return '<div class="aderencia-card aderencia-sem-cv aderencia-premium-bloqueada"><b>Análise de aderência · Recurso Premium</b><p>A porcentagem e os detalhes de compatibilidade com esta vaga são exclusivos para assinantes Premium.</p><button type="button" onclick="irPara(\'premium-candidato\')">Conhecer o Premium</button></div>';
+  }
+  return originalAderencia(v);
+ };
+ const originalPreparar=prepararCandidatura;
+ prepararCandidatura=function(){
+  originalPreparar();
+  if(candidatoPremiumAtivoEM())return;
+  const pct=document.getElementById('candAderenciaPct'),txt=document.getElementById('candAderenciaTexto'),top=document.getElementById('candAderenciaTopo'),det=document.getElementById('candAderenciaOrientacao'),btn=document.getElementById('candAderenciaDetalhesBtn');
+  if(pct)pct.textContent='Premium';
+  if(txt)txt.textContent='Análise disponível para assinantes Premium';
+  if(top){top.classList.remove('baixa','boa','aderencia-muito-baixa','aderencia-baixa','aderencia-media','aderencia-alta','aderencia-excelente');top.classList.add('premium-bloqueado')}
+  if(det){det.innerHTML='<div class="cand-ad-head"><strong>Análise de aderência · Recurso Premium</strong></div><p>A porcentagem e os detalhes de compatibilidade com a vaga são exclusivos para assinantes Premium.</p>';det.classList.add('oculto')}
+  if(btn){btn.textContent='Recurso Premium';btn.onclick=function(){irPara('premium-candidato')}}
+  window._candAderenciaAtualEM=null;
+ };
+})();
+
 /* EMPREGAMAIS-PERFIL-RECRUTAMENTO-EMPRESA-V1 */
 function atualizarCamposRecrutamentoEmpresaEM(){
  const ats=document.getElementById('perfilUsaAts')?.value==='sim';
