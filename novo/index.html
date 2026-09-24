@@ -6291,7 +6291,7 @@ svg text{
 <div class="pb-slide"><div class="pb-window"><div class="pb-top"><i></i><i></i><i></i><b>Processo seletivo</b></div><div class="pb-screen pb-kanban"><main><small>PIPELINE DE RECRUTAMENTO</small><strong>Acompanhe cada etapa</strong><div class="pb-cols"><section><b>Novos</b><p>Ana Martins</p><p>João Silva</p></section><section><b>Em análise</b><p>Rafael Souza</p><p>Carla Lima</p></section><section><b>Entrevista</b><p>Marcos Reis</p></section></div></main></div></div><div class="pb-caption"><b>Gerenciamento do processo</b><span>Mova candidatos entre as etapas com clareza.</span></div></div>
 <div class="pb-slide"><div class="pb-window"><div class="pb-top"><i></i><i></i><i></i><b>Perfil do candidato</b></div><div class="pb-screen pb-profile"><main><div class="pb-profile-head"><i>AM</i><span><strong>Ana Martins</strong><small>Analista Comercial · Belo Horizonte</small></span><em>92% aderência</em></div><div class="pb-profile-actions"><b>WhatsApp</b><b>Ver currículo</b><b>Enviar mensagem</b></div><div class="pb-profile-box"><small>ADERÊNCIA À VAGA</small><strong>Perfil compatível com os principais requisitos</strong><p>Experiência comercial · Atendimento · CRM · Ensino superior</p></div></main></div></div><div class="pb-caption"><b>Currículo e contato direto</b><span>Currículo online, aderência e acesso rápido ao candidato.</span></div></div>
 <div class="pb-slide"><div class="pb-window"><div class="pb-top"><i></i><i></i><i></i><b>Linha do tempo</b></div><div class="pb-screen pb-timeline"><main><small>PROCESSO SELETIVO</small><strong>Histórico organizado da candidatura</strong><div class="pb-time"><p><i>✓</i><span><b>Candidatura recebida</b><small>10:20 · 18 set</small></span></p><p><i>✓</i><span><b>Currículo analisado</b><small>14:45 · 19 set</small></span></p><p><i>✓</i><span><b>Entrevista agendada</b><small>09:00 · 22 set</small></span></p><p><i></i><span><b>Decisão do processo</b><small>Próxima etapa</small></span></p></div></main></div></div><div class="pb-caption"><b>Linha do tempo do processo</b><span>Acompanhe o histórico completo de cada candidatura.</span></div></div>
-</div><div class="pb-dots"><button class="ativo" onclick="pbIrSlide(0)" aria-label="Candidatos"></button><button onclick="pbIrSlide(1)" aria-label="Processo"></button><button onclick="pbIrSlide(2)" aria-label="Currículo"></button><button onclick="pbIrSlide(3)" aria-label="Linha do tempo"></button></div></div><div class="pb-badge">✓ Gestão simples e profissional</div></div></div></div>
+</div><div class="pb-dots"><button class="ativo" onclick="pbIrSlide(0)" aria-label="Candidatos"></button><button onclick="pbIrSlide(1)" aria-label="Processo"></button><button onclick="pbIrSlide(2)" aria-label="Currículo"></button><button onclick="pbIrSlide(3)" aria-label="Linha do tempo"></button></div></div></div></div></div>
 <div class="container planos-clean-wrap">
 <div class="planos-clean-tabs" role="tablist"><button data-plano="basico" onclick="selecionarAbaPlano('basico')">Grátis</button><button data-plano="mensal" onclick="selecionarAbaPlano('mensal')">Mensal</button><button data-plano="trimestral" onclick="selecionarAbaPlano('trimestral')">Trimestral</button><button data-plano="semestral" onclick="selecionarAbaPlano('semestral')">Semestral</button><button data-plano="anual" onclick="selecionarAbaPlano('anual')">Anual</button></div>
 <section class="plano-b-principal planos-clean-card"><div class="plano-b-preco"><span id="planoBTag">PLANO</span><h2 id="planoBNome">Plano Trimestral</h2><p id="planoBResumo"></p><strong id="planoBPreco">R$ 99,00</strong><small id="planoBPeriodo">Pagamento único · 3 meses</small><button class="btn plano-b-escolher" id="planoBEscolher">Escolher este plano →</button><button class="btn plano-b-comparar" onclick="verDetalhesPlano(planoBAtual)">Ver detalhes completos</button></div><div class="plano-b-beneficios"><span>RECURSOS DO PLANO</span><h2 id="planoBTituloBeneficios">O que está incluído?</h2><div id="planoBLista"></div></div></section>
@@ -7624,4 +7624,77 @@ document.addEventListener('DOMContentLoaded',()=>{pbTimer=setInterval(()=>pbIrSl
 #pagina-planos .pb-caption{padding:11px 5px!important}.pb-caption b{font-size:11px!important}.pb-caption span{font-size:9.5px!important}
 #pagina-planos .pb-dots button{height:8px!important}
 #pagina-planos .pb-badge{background:#083c60!important;color:#fff!important;border-color:#083c60!important}
+</style><style id="EMPREGAMAIS-PLANOS-NAVEGACAO-V7">
+#pagina-planos .planos-clean-hero{padding-bottom:38px!important}
+#pagina-planos .planos-banner-visual{padding-bottom:8px!important}
+#pagina-planos .pb-carousel{min-height:338px!important}
+#pagina-planos .planos-clean-wrap{padding-top:20px!important}
+#pagina-planos .planos-clean-tabs{
+ position:relative!important;
+ display:grid!important;
+ grid-template-columns:repeat(5,1fr)!important;
+ width:min(820px,calc(100% - 32px))!important;
+ margin:0 auto 18px!important;
+ padding:6px!important;
+ gap:5px!important;
+ border:1px solid #d7e4ec!important;
+ border-radius:15px!important;
+ background:linear-gradient(180deg,#fff 0%,#f8fbfd 100%)!important;
+ box-shadow:0 8px 24px rgba(21,67,96,.07)!important
+}
+#pagina-planos .planos-clean-tabs button{
+ position:relative!important;
+ min-width:0!important;
+ height:46px!important;
+ padding:0 15px!important;
+ border:1px solid transparent!important;
+ border-radius:10px!important;
+ background:transparent!important;
+ color:#4f6c80!important;
+ font-size:12px!important;
+ font-weight:750!important;
+ letter-spacing:0!important;
+ transition:all .18s ease!important
+}
+#pagina-planos .planos-clean-tabs button:hover{
+ background:#edf7fd!important;
+ color:#0873b2!important
+}
+#pagina-planos .planos-clean-tabs button.ativo{
+ border-color:#0873b2!important;
+ background:linear-gradient(135deg,#0873b2,#075f96)!important;
+ color:#fff!important;
+ box-shadow:0 5px 14px rgba(8,115,178,.22)!important
+}
+#pagina-planos .planos-clean-tabs button.ativo:after{
+ content:""!important;
+ position:absolute!important;
+ left:50%!important;
+ bottom:-10px!important;
+ width:8px!important;height:8px!important;
+ transform:translateX(-50%) rotate(45deg)!important;
+ background:#0769a4!important;
+ border-radius:1px!important
+}
+#pagina-planos .planos-clean-card{
+ border:1px solid #cfdee7!important;
+ border-radius:20px!important;
+ background:#fff!important;
+ box-shadow:0 14px 38px rgba(18,62,90,.075)!important
+}
+#pagina-planos .planos-clean-card .plano-b-preco{
+ border-right:1px solid #dce8ef!important;
+ background:linear-gradient(145deg,#eef7fc 0%,#f9fcfe 62%,#fff 100%)!important
+}
+#pagina-planos .plano-b-beneficios{
+ background:linear-gradient(145deg,#fff 0%,#f9fcfe 100%)!important
+}
+#pagina-planos .plano-recurso-card{
+ border-color:#dce8ef!important;
+ box-shadow:0 5px 15px rgba(22,66,94,.04)!important
+}
+@media(max-width:650px){
+ #pagina-planos .planos-clean-tabs{display:flex!important;width:calc(100% - 20px)!important;overflow-x:auto!important;justify-content:flex-start!important}
+ #pagina-planos .planos-clean-tabs button{min-width:105px!important}
+}
 </style></body></html>
