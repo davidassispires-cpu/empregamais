@@ -1810,7 +1810,9 @@ function toggleDetalhesAderenciaEM(){
 (function(){
  const originalAderencia=aderenciaVagaAtualHTML;
  aderenciaVagaAtualHTML=function(v){
-  if(papelAtual()==='candidato'&&!candidatoPremiumAtivoEM()){
+  /* Visitante deslogado não deve ver nem o bloco nem qualquer cálculo de aderência. */
+  if(papelAtual()!=='candidato'||!candidatoLogado())return '';
+  if(!candidatoPremiumAtivoEM()){
    return '<div class="aderencia-card aderencia-sem-cv aderencia-premium-bloqueada"><b>Análise de aderência · Recurso Premium</b><p>A porcentagem e os detalhes de compatibilidade com esta vaga são exclusivos para assinantes Premium.</p><button type="button" onclick="irPara(\'premium-candidato\')">Conhecer o Premium</button></div>';
   }
   return originalAderencia(v);
