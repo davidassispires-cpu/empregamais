@@ -207,8 +207,21 @@ const _atualizarPremiumCandidatoLocalEM=atualizarPremiumCandidatoEM;
 atualizarPremiumCandidatoEM=async function(){await sincronizarCandidatoLogadoSupabaseEM();_atualizarPremiumCandidatoLocalEM()}
 
 
+async function migrarAvaliacoesLocaisSupabaseEM(){
+ const locais=[...ler('empregaMaisAvaliacoesEmpresa',[]),...ler('empregaMaisAvaliacoesProcessos',[])],map=new Map();
+ locais.forEach(a=>{const k=String(a.candidaturaId||a.id||'');if(k&&Number(a.nota)>0&&nums(a.empresaCnpj||a.cnpj||''))map.set(k,a)});
+ if(!map.size)return;
+ const t=await sbGarantirSessaoEM();if(!t)return;
+ const uid=sessionStorage.getItem('candidatoSupabaseUserId')||candidatoLogado()?.userId||'';
+ for(const a of map.values()){
+  const id=String(a.id||('AV-MIG-'+String(a.candidaturaId||Date.now())));
+  const body={id,candidatura_id:String(a.candidaturaId||''),vaga_id:String(a.vagaId||''),empresa_cnpj:nums(a.empresaCnpj||a.cnpj||''),candidato_user_id:uid||null,candidato_email:a.candidatoEmail||'',nota:Number(a.nota),comunicacao:Number(a.comunicacao||0),clareza:Number(a.clareza||0),organizacao:Number(a.organizacao||0),respeito:Number(a.respeito||0),feedback:Number(a.feedback||0),crescimento:Number(a.crescimento||0),equilibrio:Number(a.equilibrio||0),ambiente:Number(a.ambiente||0),beneficios:Number(a.beneficios||0),recomenda:a.recomenda||'',aprova_lideranca:a.aprovaLideranca||a.aprova_lideranca||'',comentario:a.comentario||'',verificada:a.verificada!==false,criado_em:a.criadoEm||a.data||new Date().toISOString()};
+  try{await sbJsonEM(EMPREGAMAIS_SUPABASE_URL+'/rest/v1/avaliacoes_empresas?on_conflict=candidatura_id',{method:'POST',headers:Object.assign(sbHeadersEM(t),{'Prefer':'resolution=ignore-duplicates,return=minimal'}),body:JSON.stringify(body)})}catch(e){console.warn('Migração de avaliação antiga:',e)}
+ }
+}
 async function sincronizarAvaliacoesEmpresasSupabaseEM(){
  try{
+  await migrarAvaliacoesLocaisSupabaseEM();
   const rows=await sbJsonEM(EMPREGAMAIS_SUPABASE_URL+'/rest/v1/avaliacoes_empresas?select=*&verificada=eq.true&order=criado_em.desc',{method:'GET',headers:sbHeadersEM()});
   const av=(Array.isArray(rows)?rows:[]).map(x=>({id:x.id,candidaturaId:x.candidatura_id,vagaId:x.vaga_id,empresaCnpj:x.empresa_cnpj,candidatoEmail:x.candidato_email,nota:Number(x.nota||0),comunicacao:x.comunicacao,clareza:x.clareza,organizacao:x.organizacao,respeito:x.respeito,feedback:x.feedback,crescimento:x.crescimento,equilibrio:x.equilibrio,ambiente:x.ambiente,beneficios:x.beneficios,recomenda:x.recomenda,aprovaLideranca:x.aprova_lideranca,comentario:x.comentario,verificada:x.verificada===true,criadoEm:x.criado_em,data:x.criado_em}));
   gravar('empregaMaisAvaliacoesEmpresa',av);gravar('empregaMaisAvaliacoesProcessos',av);return av;
