@@ -7216,4 +7216,37 @@ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',
  margin-bottom:3px!important;
 }
 </style>
+
+<style id="EMPREGAMAIS-CARD-DATA-CARGO-V65">
+/* Cargo maior sem aumentar o card */
+#pagina-home #listaVagasPortal .vaga-identidade-copy h3{
+ font-size:15px!important;line-height:1.15!important;margin-bottom:4px!important;
+}
+/* Data passa para a faixa inferior, antes do botão */
+#pagina-home #listaVagasPortal .vaga-salario-data{display:none!important}
+#pagina-home #listaVagasPortal .vaga-card-rodape{
+ display:grid!important;grid-template-columns:minmax(0,1fr) auto auto!important;
+ align-items:end!important;gap:12px!important;
+}
+#pagina-home #listaVagasPortal .vaga-card-rodape .data-card-em{
+ align-self:center!important;white-space:nowrap!important;color:#7a8e9b!important;
+ font-size:9.5px!important;font-weight:500!important;
+}
+</style>
+<script id="EMPREGAMAIS-CARD-DATA-CARGO-V65">
+(function(){
+function ajustarDatas(){
+ document.querySelectorAll('#pagina-home #listaVagasPortal .portal-vaga-nova').forEach(function(card){
+   var origem=card.querySelector('.vaga-salario-data .data-card');
+   var rodape=card.querySelector('.vaga-card-rodape');
+   if(!origem||!rodape)return;
+   var data=rodape.querySelector('.data-card-em');
+   if(!data){data=document.createElement('small');data.className='data-card-em';var botao=rodape.querySelector('.vaga-ver-btn');rodape.insertBefore(data,botao||null);}
+   data.textContent=origem.textContent||'';
+ });
+}
+document.addEventListener('click',function(){setTimeout(ajustarDatas,80)});
+if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',function(){setTimeout(ajustarDatas,120)});else setTimeout(ajustarDatas,120);
+})();
+</script>
 </body></html>
