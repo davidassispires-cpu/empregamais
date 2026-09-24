@@ -997,7 +997,7 @@ function quantidadeFaixaDestaquesEM(){return window.innerWidth<=560?1:window.inn
 function cardDestaqueMiniEM(v){
  const logo=logoEmpresaVaga(v),nome=v.confidencial?'Empresa confidencial':(v.empresa||'Empresa');
  const logoHtml=logo?'<img class="destaque-mini-logo" src="'+esc(logo)+'" alt="">':'<span class="destaque-mini-logo fallback">'+esc(nome.charAt(0).toUpperCase())+'</span>';
- return '<article class="destaque-mini-em" onclick="abrirVaga(\''+v.id+'\')"><div class="destaque-mini-top">'+logoHtml+'<div><h3>'+esc(tituloVaga(v))+'</h3><p>'+esc(nome)+'</p></div></div><span class="destaque-mini-local">⌖ '+esc(v.cidade||'')+(v.estado?' - '+esc(v.estado):'')+'</span><div class="destaque-mini-tags"><span>'+esc(v.modalidade||'Não informado')+'</span><span>'+esc(v.contrato||'Não informado')+'</span></div></article>';
+ return '<article class="destaque-mini-em" onclick="abrirVaga(\''+v.id+'\')"><div class="destaque-mini-top">'+logoHtml+'<div class="destaque-mini-copy"><h3>'+esc(tituloVaga(v))+'</h3><p>'+esc(nome)+'</p><span class="destaque-mini-local">⌖ '+esc(v.cidade||'')+(v.estado?' - '+esc(v.estado):'')+'</span></div></div><div class="destaque-mini-tags"><span>'+esc(v.modalidade||'Não informado')+'</span><span>'+esc(v.contrato||'Não informado')+'</span></div></article>';
 }
 function renderFaixaDestaquesEM(lista){
  const box=document.getElementById('listaDestaquesFaixaEM'),wrap=document.getElementById('destaquesFaixaEM');if(!box||!wrap)return;
