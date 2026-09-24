@@ -1438,7 +1438,13 @@ async function loginCandidatoSupabaseEM(e){
   }
   const base=legadoEmail||{email};
   let d=sbSalvarCandidatoLocalEM(sbCandidatoDoAuthEM(auth,base));
-  try{d=sbSalvarCandidatoLocalEM(await sbUpsertCandidatoSupabaseEM(d,auth.access_token))}
+  try{
+   /* Primeiro carrega/migra o registro remoto. Só depois faz upsert.
+      Isso impede que um perfil vazio do login sobrescreva os dados legados deste navegador. */
+   const remoto=await sbBuscarCandidatoCloudEM(auth.access_token);
+   if(remoto)d=await sbMigrarESincronizarCandidatoCloudEM(d,auth.access_token);
+   else d=sbSalvarCandidatoLocalEM(await sbUpsertCandidatoSupabaseEM(d,auth.access_token));
+  }
   catch(syncErr){console.error("Sincronização do cadastro do candidato:",syncErr);msg("#msgLoginCandidato","Conta autenticada, mas não foi possível sincronizar seu cadastro. Atualize a página e tente novamente.");return}
   concluirEntradaCandidatoSupabaseEM(d)
  }catch(err){
