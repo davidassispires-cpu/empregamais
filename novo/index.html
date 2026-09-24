@@ -6876,20 +6876,7 @@ new MutationObserver(ajustarLateralVaga).observe(document.body,{childList:true,s
 #pagina-vaga .em-verificado-wrap:hover>.em-verificado-popover,#pagina-vaga .em-verificado-wrap:focus-within>.em-verificado-popover{display:block!important}
 @media(max-width:800px){#pagina-vaga .em-verificado-popover{left:0;top:calc(100% + 10px);transform:none;width:min(255px,75vw)}#pagina-vaga .em-verificado-popover:before{left:18px;top:-6px;transform:rotate(135deg)}}
 </style>
-<script id="EMPREGAMAIS-VERIFICADO-POPOVER-V51">
-(function(){
-function ajustarVerificado(){
- document.querySelectorAll('#pagina-vaga .em-verificado-wrap').forEach(function(w){
-   if(w.querySelector('.em-verificado-popover'))return;
-   var p=document.createElement('span');p.className='em-verificado-popover';
-   p.innerHTML='<strong>Empresa verificada</strong><span>Esta empresa passou pelo processo de verificação do EmpregaMais.</span>';
-   w.appendChild(p);
- });
-}
-if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',ajustarVerificado);else ajustarVerificado();
-new MutationObserver(ajustarVerificado).observe(document.body,{childList:true,subtree:true});
-})();
-</script>
+
 
 <style id="EMPREGAMAIS-VERIFICADO-CLEAN-V52">
 /* Correção definitiva: neutraliza o hover antigo e mantém um único popover */
@@ -6905,22 +6892,6 @@ new MutationObserver(ajustarVerificado).observe(document.body,{childList:true,su
 #pagina-vaga .em-verificado-popover span{display:block!important;margin:0!important;padding:0!important;background:transparent!important;border:0!important;color:#607687!important;font-size:9.5px!important;font-weight:500!important;line-height:1.5!important}
 #pagina-vaga .em-verificado-wrap:hover>.em-verificado-popover{display:block!important}
 </style>
-<script id="EMPREGAMAIS-VERIFICADO-CLEAN-V52">
-(function(){
-function limparVerificado(){
- document.querySelectorAll('#pagina-vaga .em-verificado-wrap').forEach(function(w){
-   Array.from(w.children).forEach(function(el){
-     if(!el.classList.contains('em-verificado-check')&&!el.classList.contains('em-verificado-label')&&!el.classList.contains('em-verificado-popover'))el.remove();
-   });
-   var pops=w.querySelectorAll('.em-verificado-popover');
-   pops.forEach(function(p,i){if(i>0)p.remove();});
-   var p=w.querySelector('.em-verificado-popover');
-   if(p)p.innerHTML='<strong>Empresa verificada</strong><span>Esta empresa passou pelo processo de verificação do EmpregaMais.</span>';
- });
-}
-if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',limparVerificado);else limparVerificado();
-setTimeout(limparVerificado,250);
-})();
-</script>
+
 
 </body></html>
