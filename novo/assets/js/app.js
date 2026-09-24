@@ -283,7 +283,7 @@ function cardVagaDestaqueEM(v){
  const logo=logoEmpresaVaga(v),nome=v.confidencial?'Empresa confidencial':(v.empresa||'Empresa');
  const empVer=ler('empregaMaisEmpresas').find(e=>nums(e.cnpj||'')===nums(v.empresaCnpj||v.cnpj||''))||{};
  const verificada=!v.confidencial&&(empVer.verificada===true||empVer.verificacaoStatus==='aprovada');
- const sal=v.salarioCombinar?'Salário a combinar':(v.salarioMax?(v.salario+' a '+v.salarioMax):(v.salario||'Salário a combinar'));
+ const sal=v.salarioCombinar?'A combinar':(v.salarioMax?(v.salario+' a '+v.salarioMax):(v.salario||'A combinar'));
  const desc=String(v.descricao||'').trim();
  const nova48=(()=>{const d=new Date(v.criadoEm||v.data||v.dataPublicacao||0);return !isNaN(d)&&Date.now()-d.getTime()>=0&&Date.now()-d.getTime()<=48*60*60*1000})();
  const tags=(nova48?'<span class="vaga-selo nova-selo">NOVA</span>':'')+(v.urgente?'<span class="vaga-selo urgente-selo">CONTRATAÇÃO URGENTE</span>':(destaqueAtivo(v)?'<span class="vaga-selo destaque-selo">EM DESTAQUE</span>':''))+(v.senior50?'<span class="vaga-selo senior-selo">50+</span>':'');
