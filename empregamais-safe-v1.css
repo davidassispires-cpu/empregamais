@@ -575,3 +575,13 @@ body.empresa-premium-v44 .plano-premium-v44{min-height:96px!important;margin:0 0
 #pagina-vaga .vaga-rodape-info-com-denuncia{grid-template-columns:repeat(3,minmax(0,1fr)) auto!important;}
 @media(max-width:900px){#pagina-vaga .em-info-bar-v1{grid-template-columns:repeat(2,minmax(0,1fr))!important;}}
 @media(max-width:480px){#pagina-vaga .em-info-bar-v1{grid-template-columns:1fr!important;}}
+
+
+/* EmpregaMais: remoção robusta de Área e Candidaturas da faixa da vaga */
+#pagina-vaga .em-info-bar-v1 > .em-info-cell-v1:nth-last-of-type(2),
+#pagina-vaga .em-info-bar-v1 > .em-info-cell-v1:last-of-type{display:none!important;}
+#pagina-vaga .em-info-bar-v1 > .em-info-local-v1,
+#pagina-vaga .em-info-bar-v1 > .em-info-contrato-v1,
+#pagina-vaga .em-info-bar-v1 > .em-info-modalidade-v1,
+#pagina-vaga .em-info-bar-v1 > .em-info-salario-v1{display:flex!important;}
+#pagina-vaga .em-info-bar-v1{grid-template-columns:repeat(4,minmax(0,1fr))!important;}
