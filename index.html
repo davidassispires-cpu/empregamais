@@ -41148,4 +41148,35 @@ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',
 #pagina-vaga .em-info-bar-v1>.em-info-distance-v1{display:none!important}
 @media(max-width:900px){#pagina-vaga .em-salvar-topo-vaga{margin-top:12px!important}#pagina-vaga .em-vaga-ref-main-v1{padding-right:0!important}}
 </style>
+
+<style id="em-lista-vagas-dinamica-v1">
+/* Lista de vagas: hierarquia visual e cores sem poluição */
+#pagina-home #listaVagas .vaga-card{position:relative!important;background:#fff!important;border:1px solid #d9e5ef!important;border-radius:15px!important;transition:transform .18s ease,border-color .18s ease,box-shadow .18s ease!important}
+#pagina-home #listaVagas .vaga-card:hover{transform:translateY(-3px)!important;border-color:#8fc5eb!important;box-shadow:0 12px 28px rgba(15,67,105,.10)!important}
+#pagina-home #listaVagas .vaga-card .vaga-titulo{color:#0b345c!important;font-weight:850!important}
+#pagina-home #listaVagas .vaga-card .vaga-card-footer{border-top:1px solid #e7eef4!important}
+#pagina-home #listaVagas .vaga-card .btn,#pagina-home #listaVagas .vaga-card button[onclick*="vaga"]{transition:.18s ease!important}
+#pagina-home #listaVagas .vaga-card:hover .btn,#pagina-home #listaVagas .vaga-card:hover button[onclick*="vaga"]{border-color:#1687c3!important;background:#eef9ff!important}
+
+/* Corrige chips: texto e ícone sempre dentro do bloco */
+#pagina-home #listaVagas .vaga-card .vaga-meta,
+#pagina-home #listaVagas .vaga-card .vaga-tags{display:flex!important;flex-wrap:wrap!important;align-items:center!important;gap:7px!important}
+#pagina-home #listaVagas .vaga-card .vaga-meta>span,
+#pagina-home #listaVagas .vaga-card .vaga-tags>span,
+#pagina-home #listaVagas .vaga-card .tag{display:inline-flex!important;align-items:center!important;justify-content:center!important;gap:5px!important;min-height:28px!important;height:auto!important;padding:5px 10px!important;box-sizing:border-box!important;border-radius:999px!important;line-height:1.15!important;white-space:nowrap!important;vertical-align:middle!important}
+
+/* Cores funcionais */
+#pagina-home #listaVagas .vaga-card .tag-nova,#pagina-home #listaVagas .vaga-card [class*="nova"]{background:#ecf9f2!important;border-color:#b9e4cc!important;color:#167246!important}
+#pagina-home #listaVagas .vaga-card .tag-destaque,#pagina-home #listaVagas .vaga-card [class*="destaque"]{background:#fff8e8!important;border-color:#ead9aa!important;color:#87610d!important}
+#pagina-home #listaVagas .vaga-card .tag-urgente,#pagina-home #listaVagas .vaga-card [class*="urgente"]{background:#fff0ef!important;border-color:#efc2bd!important;color:#a0443b!important}
+#pagina-home #listaVagas .vaga-card [data-modalidade="Remoto"],#pagina-home #listaVagas .vaga-card .remoto{background:#f3efff!important;color:#6549a8!important}
+#pagina-home #listaVagas .vaga-card [data-modalidade="Híbrido"],#pagina-home #listaVagas .vaga-card .hibrido{background:#eaf9f7!important;color:#177a70!important}
+#pagina-home #listaVagas .vaga-card [data-modalidade="Presencial"],#pagina-home #listaVagas .vaga-card .presencial{background:#eef7ff!important;color:#246a9d!important}
+
+/* Filtro como âncora visual */
+#pagina-home #filtrosLateral{background:#fff!important;border-color:#cfe0ed!important;box-shadow:0 8px 24px rgba(25,70,105,.055)!important}
+#pagina-home #filtrosLateral .filtros-cab{background:linear-gradient(180deg,#f4faff,#eef7fd)!important;margin:-20px -20px 18px!important;padding:20px!important;border-bottom:1px solid #dbe8f1!important;border-radius:15px 15px 0 0!important}
+#pagina-home #filtrosLateral input:checked+label,#pagina-home #filtrosLateral .ativo{background:#e8f5fd!important;color:#086da9!important}
+@media(max-width:700px){#pagina-home #listaVagas .vaga-card .vaga-meta>span,#pagina-home #listaVagas .vaga-card .vaga-tags>span,#pagina-home #listaVagas .vaga-card .tag{white-space:normal!important;text-align:center!important}}
+</style>
 </body></html>
