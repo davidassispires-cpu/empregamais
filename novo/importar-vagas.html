@@ -37,7 +37,7 @@ body{font-family:Montserrat,Arial,sans-serif;background:#f3f7f8}
 </style>
 </head>
 <body>
-<header class="top"><b>EmpregaMais · Importador <small style="opacity:.7">v3.9</small></b><a href="index.html">← Voltar ao painel</a></header>
+<header class="top"><b>EmpregaMais · Importador <small style="opacity:.7">v4.0</small></b><a href="index.html">← Voltar ao painel</a></header>
 <main class="wrap">
 <section class="hero"><h1>Importador inteligente de vagas</h1><p>Cole o anúncio original. O EmpregaMais identifica as informações e organiza cada dado nos mesmos grupos usados no formulário oficial de publicação.</p></section>
 <section class="card">
@@ -129,7 +129,7 @@ async function completarTodas(vs){try{await Promise.all(vs.map(completarCidade))
 function completeness(v){var ks=['cargo','empresa','area','contrato','modalidade','cidade','uf','salario','escolaridade','experiencia','jornada','beneficios','descricao','atividades','requisitos','adicionais'],n=ks.filter(function(k){return String(v[k]||'').trim()}).length;return {pct:Math.round(n/ks.length*100),n:n,total:ks.length}}
 function limparDescricaoExtraida(desc,v){
  var s=String(desc||'').trim();if(!s)return'';
- var valores=[v.cargo,v.empresa,v.area,v.contrato,v.modalidade,v.cidade,v.uf,v.bairro,v.cep,v.salario,v.escolaridade,v.experiencia,v.jornada,v.beneficios,v.atividades,v.requisitos,v.adicionais,v.email,v.whatsapp,v.assunto].filter(Boolean).map(function(x){return String(x).trim()});
+ var valores=[v.cargo,v.empresa,v.area,v.contrato,v.modalidade,v.cidade,v.uf,v.bairro,v.cep,v.salario,v.escolaridade,v.experiencia,v.jornada,v.beneficios,v.atividades,v.requisitos,v.adicionais,v.email,v.whatsapp,v.linkExterno,v.assunto].filter(Boolean).map(function(x){return String(x).trim()});
  var rot=/^(?:vaga|cargo|fun[cç][aã]o|oportunidade|empresa|contratante|[aá]rea|setor|contrata[cç][aã]o|contrato|regime|modalidade|modelo de trabalho|cidade|local|localidade|local de trabalho|uf|estado|bairro|cep|sal[aá]rio|remunera[cç][aã]o|escolaridade|forma[cç][aã]o|experi[eê]ncia|jornada|hor[aá]rio|benef[ií]cios?|oferecemos|atividades|responsabilidades|requisitos|qualifica[cç][oõ]es|informa[cç][oõ]es adicionais|como se candidatar|candidatura|contato|whatsapp|e-?mail|assunto)\s*[:\-]/i;
  var linhas=s.split('\n').map(function(x){return x.trim()}).filter(function(x){
    if(!x||rot.test(x))return false;
