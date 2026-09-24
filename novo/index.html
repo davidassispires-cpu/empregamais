@@ -7948,4 +7948,16 @@ document.addEventListener('DOMContentLoaded',()=>{pbTimer=setInterval(()=>pbIrSl
  #pagina-vaga .em-denunciar-topo{right:24px!important;top:70px!important;width:148px!important;height:32px!important;display:flex!important;align-items:center!important;justify-content:center!important}
  #pagina-vaga .vaga-acao-v2 .denunciar-vaga,#pagina-vaga .vaga-acao-v2 .vaga-denunciar{display:none!important}
 }
+</style><style id="EMPREGAMAIS-INFO-CARDS-FIX-V60">
+/* Correção definitiva dos quatro cards: elimina sobreposição e aumenta legibilidade */
+@media(min-width:801px){
+ #pagina-vaga .vaga-info-grid{grid-template-columns:repeat(4,minmax(0,1fr))!important}
+ #pagina-vaga .vaga-info-grid>div{display:grid!important;grid-template-columns:42px minmax(0,1fr)!important;grid-template-rows:auto auto auto!important;column-gap:12px!important;align-content:center!important;align-items:center!important;justify-content:stretch!important;min-width:0!important;height:auto!important;min-height:82px!important;padding:11px 14px!important;box-sizing:border-box!important;overflow:visible!important}
+ #pagina-vaga .vaga-info-grid>div:nth-child(n+5){display:none!important}
+ #pagina-vaga .vaga-info-grid .info-svg{position:static!important;grid-column:1!important;grid-row:1 / span 3!important;transform:none!important;width:38px!important;height:38px!important;margin:0!important;border-radius:11px!important}
+ #pagina-vaga .vaga-info-grid .info-svg svg{width:19px!important;height:19px!important}
+ #pagina-vaga .vaga-info-grid strong{position:static!important;grid-column:2!important;grid-row:1!important;display:block!important;width:auto!important;max-width:100%!important;margin:0!important;padding:0!important;font-size:13px!important;line-height:1.25!important;font-weight:750!important;white-space:normal!important;overflow:visible!important;text-overflow:clip!important;overflow-wrap:normal!important;color:#123f5e!important}
+ #pagina-vaga .vaga-info-grid small{position:static!important;grid-column:2!important;grid-row:2!important;display:block!important;margin:3px 0 0!important;padding:0!important;font-size:10px!important;line-height:1.2!important;color:#607b8d!important}
+ #pagina-vaga .vaga-info-grid .em-local-detalhes-btn{position:static!important;grid-column:2!important;grid-row:3!important;width:max-content!important;margin:4px 0 0!important;padding:0!important;font-size:9px!important;line-height:1.15!important}
+}
 </style></body></html>
