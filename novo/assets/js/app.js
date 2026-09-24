@@ -268,6 +268,17 @@ function solicitarLocalizacaoCandidatoEM(){
  localizacaoCandidatoSolicitadaEM=true;
  navigator.geolocation.getCurrentPosition(p=>{localizacaoCandidatoEM={latitude:p.coords.latitude,longitude:p.coords.longitude};try{renderizarVagasPortal()}catch(e){}},()=>{}, {enableHighAccuracy:false,timeout:8000,maximumAge:600000});
 }
+function notaPublicaEmpresaEM(cnpj){
+ const alvo=nums(cnpj||'');if(!alvo)return null;
+ const diretas=ler('empregaMaisAvaliacoesEmpresa',[]),processos=ler('empregaMaisAvaliacoesProcessos',[]),vagas=[...ler('empregaMaisVagas',[]),...(Array.isArray(window.sbVagasCacheEM)?window.sbVagasCacheEM:[])],map=new Map();
+ diretas.forEach(a=>{if(nums(a.empresaCnpj||a.cnpj||'')===alvo&&Number(a.nota)>0)map.set(String(a.candidaturaId||a.id),a)});
+ processos.forEach(a=>{const v=vagas.find(x=>String(x.id)===String(a.vagaId)),vc=nums(a.empresaCnpj||a.cnpj||v?.empresaCnpj||v?.cnpj||'');if(vc===alvo&&Number(a.nota)>0&&!map.has(String(a.candidaturaId||a.id)))map.set(String(a.candidaturaId||a.id),a)});
+ const av=[...map.values()];if(!av.length)return null;
+ return {media:av.reduce((n,a)=>n+Number(a.nota||0),0)/av.length,total:av.length};
+}
+function seloNotaEmpresaEM(cnpj,verificada){
+ if(!verificada)return'';const n=notaPublicaEmpresaEM(cnpj);return n?'<span class="empresa-nota-card" title="'+n.total+' avaliação'+(n.total===1?'':'ões')+'">★ '+n.media.toFixed(1).replace('.',',')+'</span>':'';
+}
 function cardVagaPortal(v){
  const logo=logoEmpresaVaga(v),nome=v.confidencial?'Empresa confidencial':(v.empresa||'Empresa');
  const empVer=ler('empregaMaisEmpresas').find(e=>nums(e.cnpj||'')===nums(v.empresaCnpj||v.cnpj||''))||{};
@@ -276,7 +287,7 @@ function cardVagaPortal(v){
  const desc=String(v.descricao||'').trim();
  const nova48=(()=>{const d=new Date(v.criadoEm||v.data||v.dataPublicacao||0);return !isNaN(d)&&Date.now()-d.getTime()>=0&&Date.now()-d.getTime()<=48*60*60*1000})();
  const tags=(nova48?'<span class="vaga-selo nova-selo">NOVA</span>':'')+(v.urgente?'<span class="vaga-selo urgente-selo">CONTRATAÇÃO URGENTE</span>':(destaqueAtivo(v)?'<span class="vaga-selo destaque-selo">EM DESTAQUE</span>':''))+(v.senior50?'<span class="vaga-selo senior-selo">50+</span>':'');
- const seloEmpresa=verificada?'<span class="empresa-verificada-card" title="Empresa verificada" aria-label="Empresa verificada">✓</span>':'';
+ const seloEmpresa=verificada?'<span class="empresa-verificada-card" title="Empresa verificada" aria-label="Empresa verificada">✓</span>'+seloNotaEmpresaEM(v.empresaCnpj||v.cnpj,verificada):'';
  return '<article class="vaga-card portal-vaga portal-vaga-nova '+(destaqueAtivo(v)?'destaque ':'')+(v.urgente?'urgente':'')+'" onclick="abrirVaga(\''+v.id+'\')"><div class="vaga-identidade"><div class="vaga-identidade-copy"><div class="vaga-titulo-linha"><h3>'+esc(tituloVaga(v))+'</h3><div class="vaga-selos">'+tags+'</div></div><p>'+esc(nome)+seloEmpresa+'</p></div></div><div class="vaga-meta"><span><i class="meta-ico">⌖</i>'+esc(v.cidade||'')+(v.estado?' - '+esc(v.estado):'')+(distanciaVagaTextoEM(v)?'<small class="vaga-distancia-em"> · '+esc(distanciaVagaTextoEM(v))+'</small>':'')+'</span><span><i class="meta-ico">▣</i>'+esc(v.modalidade||'')+'</span><span><i class="meta-ico">▤</i>'+esc(v.contrato||'')+'</span></div>'+(desc?'<div class="vaga-resumo-area"><small>SOBRE A VAGA</small><p class="vaga-resumo">'+esc(desc.slice(0,120))+(desc.length>120?'…':'')+'</p></div>':'<div class="vaga-resumo-area"><small>SOBRE A VAGA</small><p class="vaga-resumo">Confira os detalhes completos desta oportunidade.</p></div>')+'<div class="vaga-card-rodape"><div class="vaga-rodape-salario"><small>Salário</small><strong class="salario-card">'+esc(sal)+'</strong></div><small class="data-card-em">Publicada '+esc(textoDataVaga(v).replace(/^Publicada\s*/i,''))+'</small><button type="button" class="vaga-ver-btn" onclick="event.stopPropagation();abrirVaga(\''+v.id+'\')">Ver vaga <b>→</b></button></div></article>';
 }
 function cardVagaDestaqueEM(v){
