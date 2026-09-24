@@ -585,3 +585,17 @@ body.empresa-premium-v44 .plano-premium-v44{min-height:96px!important;margin:0 0
 #pagina-vaga .em-info-bar-v1 > .em-info-modalidade-v1,
 #pagina-vaga .em-info-bar-v1 > .em-info-salario-v1{display:flex!important;}
 #pagina-vaga .em-info-bar-v1{grid-template-columns:repeat(4,minmax(0,1fr))!important;}
+
+
+/* EmpregaMais: mover Salvar vaga para o topo direito do cabeçalho */
+@media (min-width:901px){
+  #pagina-vaga .vaga-cabecalho{position:relative!important;}
+  #pagina-vaga #btnSalvarDetalhe{
+    position:absolute!important;top:24px!important;right:24px!important;z-index:20!important;
+    width:auto!important;min-width:132px!important;min-height:40px!important;margin:0!important;padding:0 16px!important;
+    border:1px solid #b9d8ef!important;border-radius:10px!important;background:#fff!important;color:#176da6!important;
+    box-shadow:0 4px 14px rgba(20,63,99,.06)!important;
+  }
+  #pagina-vaga .aplicar-lateral #btnSalvarDetalhe{position:fixed!important;}
+  #pagina-vaga .vaga-cabecalho-top{padding-right:165px!important;}
+}
