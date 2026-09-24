@@ -6861,4 +6861,33 @@ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',
 new MutationObserver(ajustarLateralVaga).observe(document.body,{childList:true,subtree:true});
 })();
 </script>
+
+<style id="EMPREGAMAIS-VERIFICADO-POPOVER-V51">
+/* Selo verificado: tooltip compacto lateral, sem invadir o cabeçalho */
+#pagina-vaga .vaga-hero-op2 .em-verificado-wrap{position:relative!important;z-index:12!important;cursor:help!important}
+#pagina-vaga .em-verificado-popover{
+ display:none;position:absolute;left:calc(100% + 12px);top:50%;transform:translateY(-50%);
+ width:255px;box-sizing:border-box;padding:13px 14px;border:1px solid #d7e4ec;border-radius:11px;
+ background:#fff;box-shadow:0 12px 30px rgba(18,58,84,.14);color:#425c6d;text-align:left;z-index:9999;
+}
+#pagina-vaga .em-verificado-popover:before{content:"";position:absolute;left:-6px;top:50%;width:10px;height:10px;transform:translateY(-50%) rotate(45deg);background:#fff;border-left:1px solid #d7e4ec;border-bottom:1px solid #d7e4ec}
+#pagina-vaga .em-verificado-popover strong{display:block;margin:0 0 5px;color:#123b5d;font-size:11px;font-weight:750}
+#pagina-vaga .em-verificado-popover span{display:block;color:#617787;font-size:9.5px;line-height:1.5;font-weight:500}
+#pagina-vaga .em-verificado-wrap:hover>.em-verificado-popover,#pagina-vaga .em-verificado-wrap:focus-within>.em-verificado-popover{display:block!important}
+@media(max-width:800px){#pagina-vaga .em-verificado-popover{left:0;top:calc(100% + 10px);transform:none;width:min(255px,75vw)}#pagina-vaga .em-verificado-popover:before{left:18px;top:-6px;transform:rotate(135deg)}}
+</style>
+<script id="EMPREGAMAIS-VERIFICADO-POPOVER-V51">
+(function(){
+function ajustarVerificado(){
+ document.querySelectorAll('#pagina-vaga .em-verificado-wrap').forEach(function(w){
+   if(w.querySelector('.em-verificado-popover'))return;
+   var p=document.createElement('span');p.className='em-verificado-popover';
+   p.innerHTML='<strong>Empresa verificada</strong><span>Esta empresa passou pelo processo de verificação do EmpregaMais.</span>';
+   w.appendChild(p);
+ });
+}
+if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',ajustarVerificado);else ajustarVerificado();
+new MutationObserver(ajustarVerificado).observe(document.body,{childList:true,subtree:true});
+})();
+</script>
 </body></html>
