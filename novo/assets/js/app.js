@@ -1812,9 +1812,8 @@ function toggleDetalhesAderenciaEM(){
  aderenciaVagaAtualHTML=function(v){
   /* Visitante deslogado não deve ver nem o bloco nem qualquer cálculo de aderência. */
   if(papelAtual()!=='candidato'||!candidatoLogado())return '';
-  if(!candidatoPremiumAtivoEM()){
-   return '<div class="aderencia-card aderencia-sem-cv aderencia-premium-bloqueada"><b>Análise de aderência · Recurso Premium</b><p>A porcentagem e os detalhes de compatibilidade com esta vaga são exclusivos para assinantes Premium.</p><button type="button" onclick="irPara(\'premium-candidato\')">Conhecer o Premium</button></div>';
-  }
+  /* Aderência é benefício pago: plano grátis não renderiza nem o card bloqueado. */
+  if(!candidatoPremiumAtivoEM())return '';
   return originalAderencia(v);
  };
  const originalRenderVaga=renderizarVagaDetalhe;
@@ -1827,12 +1826,10 @@ function toggleDetalhesAderenciaEM(){
   if(papelAtual()==='candidato')await sincronizarCandidatoLogadoSupabaseEM();
   originalPreparar();
   if(candidatoPremiumAtivoEM())return;
-  const pct=document.getElementById('candAderenciaPct'),txt=document.getElementById('candAderenciaTexto'),top=document.getElementById('candAderenciaTopo'),det=document.getElementById('candAderenciaOrientacao'),btn=document.getElementById('candAderenciaDetalhesBtn');
-  if(pct)pct.textContent='Premium';
-  if(txt)txt.textContent='Análise disponível para assinantes Premium';
-  if(top){top.classList.remove('baixa','boa','aderencia-muito-baixa','aderencia-baixa','aderencia-media','aderencia-alta','aderencia-excelente');top.classList.add('premium-bloqueado')}
-  if(det){det.innerHTML='<div class="cand-ad-head"><strong>Análise de aderência · Recurso Premium</strong></div><p>A porcentagem e os detalhes de compatibilidade com a vaga são exclusivos para assinantes Premium.</p>';det.classList.add('oculto')}
-  if(btn){btn.textContent='Recurso Premium';btn.onclick=function(){irPara('premium-candidato')}}
+  const top=document.getElementById('candAderenciaTopo'),det=document.getElementById('candAderenciaOrientacao'),btn=document.getElementById('candAderenciaDetalhesBtn');
+  if(top)top.style.display='none';
+  if(det){det.innerHTML='';det.classList.add('oculto')}
+  if(btn)btn.style.display='none';
   window._candAderenciaAtualEM=null;
  };
 })();
