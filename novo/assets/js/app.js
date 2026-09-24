@@ -1448,6 +1448,96 @@ async function loginCandidatoSupabaseEM(e){
  }
 }
 
+/* EMPREGAMAIS-CANDIDATO-CLOUD-V1
+   Supabase e a fonte oficial; localStorage funciona apenas como cache/migracao do navegador atual. */
+function sbMapPerfilCandidatoCloudEM(x,d={}){
+ return Object.assign({},d,{
+  id:x.id||d.id,userId:x.user_id||d.userId,nome:x.nome||d.nome||"",
+  email:String(x.email||d.email||"").toLowerCase(),telefone:x.telefone||d.telefone||"",
+  cidade:x.cidade||d.cidade||"",perfil:(x.perfil&&typeof x.perfil==="object")?x.perfil:{},
+  curriculoOnline:(x.curriculo_online&&typeof x.curriculo_online==="object")?x.curriculo_online:{},
+  curriculoArquivo:(x.curriculo_arquivo&&typeof x.curriculo_arquivo==="object")?x.curriculo_arquivo:null,
+  vagasSalvas:Array.isArray(x.vagas_salvas)?x.vagas_salvas:[],
+  perfilAtualizadoEm:x.perfil_atualizado_em||"",premium:x.premium===true,premiumAtivo:x.premium===true,
+  premiumCortesiaAdmin:x.premium_cortesia_admin===true,planoCandidato:x.premium===true?"premium":"",
+  premiumAtivadoEm:x.premium_ativado_em||"",premiumValidoAte:x.premium_valido_ate||"",
+  criadoEm:x.criado_em||d.criadoEm,atualizadoEm:x.atualizado_em||""
+ })
+}
+async function sbBuscarCandidatoCloudEM(token){
+ const u=await sbUsuarioAtualEM(),rows=await sbJsonEM(EMPREGAMAIS_SUPABASE_URL+"/rest/v1/candidatos?user_id=eq."+encodeURIComponent(u.id)+"&select=*&limit=1",{method:"GET",headers:sbHeadersEM(token)});
+ return Array.isArray(rows)&&rows[0]?rows[0]:null
+}
+async function sbMigrarESincronizarCandidatoCloudEM(d,token){
+ const remoto=await sbBuscarCandidatoCloudEM(token);if(!remoto)return d;
+ const email=String(remoto.email||d.email||"").toLowerCase();
+ const localPerfil=d?.perfil&&Object.keys(d.perfil).length?d.perfil:null;
+ const localCv=ler("empregaMaisCurriculoOnline_"+email,{});
+ const localArq=ler("empregaMaisCurriculo_"+email,null);
+ const localSalvas=ler("empregaMaisSalvas_"+email,[]);
+ const remotoCv=remoto.curriculo_online&&Object.keys(remoto.curriculo_online).length;
+ const remotoPerfil=remoto.perfil&&Object.keys(remoto.perfil).length;
+ const patch={};
+ if(!remotoPerfil&&localPerfil)patch.perfil=localPerfil;
+ if(!remotoCv&&localCv&&Object.keys(localCv).length)patch.curriculo_online=localCv;
+ if(!remoto.curriculo_arquivo&&localArq)patch.curriculo_arquivo=localArq;
+ if((!Array.isArray(remoto.vagas_salvas)||!remoto.vagas_salvas.length)&&localSalvas.length)patch.vagas_salvas=localSalvas;
+ if(Object.keys(patch).length){
+  patch.atualizado_em=new Date().toISOString();
+  const rows=await sbJsonEM(EMPREGAMAIS_SUPABASE_URL+"/rest/v1/candidatos?user_id=eq."+encodeURIComponent(remoto.user_id),{method:"PATCH",headers:Object.assign(sbHeadersEM(token),{"Prefer":"return=representation"}),body:JSON.stringify(patch)});
+  if(Array.isArray(rows)&&rows[0])Object.assign(remoto,rows[0])
+ }
+ const cloud=sbMapPerfilCandidatoCloudEM(remoto,d);sbSalvarCandidatoLocalEM(cloud);
+ gravar("empregaMaisCurriculoOnline_"+email,cloud.curriculoOnline||{});
+ if(cloud.curriculoArquivo)gravar("empregaMaisCurriculo_"+email,cloud.curriculoArquivo);
+ gravar("empregaMaisSalvas_"+email,cloud.vagasSalvas||[]);
+ return cloud
+}
+async function sbPatchCandidatoCloudEM(patch){
+ const token=await sbGarantirSessaoEM();if(!token)throw new Error("Sua sessão expirou. Entre novamente.");
+ const u=await sbUsuarioAtualEM(),body=Object.assign({},patch,{atualizado_em:new Date().toISOString()});
+ const rows=await sbJsonEM(EMPREGAMAIS_SUPABASE_URL+"/rest/v1/candidatos?user_id=eq."+encodeURIComponent(u.id),{method:"PATCH",headers:Object.assign(sbHeadersEM(token),{"Prefer":"return=representation"}),body:JSON.stringify(body)});
+ if(!Array.isArray(rows)||!rows[0])throw new Error("Não foi possível sincronizar os dados do candidato.");
+ const atual=sbSalvarCandidatoLocalEM(sbMapPerfilCandidatoCloudEM(rows[0],candidatoLogado()||{}));return atual
+}
+const _concluirEntradaCandidatoCloudBaseEM=concluirEntradaCandidatoSupabaseEM;
+concluirEntradaCandidatoSupabaseEM=function(d){
+ const token=sbTokenEM();
+ if(!token)return _concluirEntradaCandidatoCloudBaseEM(d);
+ sbMigrarESincronizarCandidatoCloudEM(d,token).then(cloud=>{
+  _concluirEntradaCandidatoCloudBaseEM(cloud);
+  setTimeout(()=>sbCarregarCandidaturasEM(true).catch(console.error),80)
+ }).catch(err=>{console.error("Sincronização cloud candidato:",err);_concluirEntradaCandidatoCloudBaseEM(d)})
+};
+const _salvarPerfilCandidatoLocalBaseEM=salvarPerfilCandidato;
+salvarPerfilCandidato=async function(e){
+ e.preventDefault();const val=id=>$("#"+id)?.value.trim()||"",nome=val("candPerfilNome"),telefone=val("candPerfilTelefone"),cidade=val("candPerfilCidade"),linkedin=val("candPerfilLinkedin"),portfolio=val("candPerfilPortfolio");
+ if(nome.length<3)return msg("#msgPerfilCandidato","Informe seu nome completo.");if(nums(telefone).length<10)return msg("#msgPerfilCandidato","Informe um telefone válido.");if(cidade.length<2)return msg("#msgPerfilCandidato","Informe sua cidade.");if(linkedin&&!/^https?:\/\//i.test(linkedin))return msg("#msgPerfilCandidato","O LinkedIn deve começar com http:// ou https://.");if(portfolio&&!/^https?:\/\//i.test(portfolio))return msg("#msgPerfilCandidato","O portfólio deve começar com http:// ou https://.");
+ const perfil={uf:val("candPerfilUf").toUpperCase(),nascimento:val("candPerfilNascimento"),titulo:val("candPerfilTitulo"),area:val("candPerfilArea"),escolaridade:val("candPerfilEscolaridade"),experiencia:val("candPerfilExperiencia"),pretensao:val("candPerfilPretensao"),modalidade:val("candPerfilModalidade"),disponibilidade:val("candPerfilDisponibilidade"),resumo:val("candPerfilResumo"),competencias:val("candPerfilCompetencias"),linkedin,portfolio};
+ try{const d=await sbPatchCandidatoCloudEM({nome,telefone,cidade,perfil,perfil_atualizado_em:new Date().toISOString()});sessionStorage.setItem("candidatoNome",d.nome);msg("#msgPerfilCandidato","Perfil profissional salvo com sucesso.",true);atualizarPainelCandidato()}catch(err){console.error(err);msg("#msgPerfilCandidato","Não foi possível salvar seu perfil. Tente novamente.")}
+};
+const _salvarCurriculoOnlineCloudBaseEM=salvarCurriculoOnlineEM;
+salvarCurriculoOnlineEM=function(e){
+ const d=_salvarCurriculoOnlineCloudBaseEM(e);
+ if(d&&papelAtual()==="candidato")sbPatchCandidatoCloudEM({curriculo_online:d}).catch(err=>console.error("Currículo online cloud:",err));
+ return d
+};
+const _salvarCurriculoLocalCloudBaseEM=salvarCurriculoLocal;
+salvarCurriculoLocal=function(e){
+ _salvarCurriculoLocalCloudBaseEM(e);
+ const d=ler(chaveCurriculo(),null);if(d&&papelAtual()==="candidato")sbPatchCandidatoCloudEM({curriculo_arquivo:d}).catch(err=>console.error("Currículo anexado cloud:",err))
+};
+const _excluirCurriculoCloudBaseEM=excluirCurriculo;
+excluirCurriculo=function(){
+ _excluirCurriculoCloudBaseEM();
+ if(papelAtual()==="candidato")sbPatchCandidatoCloudEM({curriculo_arquivo:null}).catch(err=>console.error("Exclusão currículo cloud:",err))
+};
+const _alternarSalvarVagaCloudBaseEM=alternarSalvarVaga;
+alternarSalvarVaga=function(){
+ _alternarSalvarVagaCloudBaseEM();
+ if(papelAtual()==="candidato")sbPatchCandidatoCloudEM({vagas_salvas:salvas()}).catch(err=>console.error("Vagas salvas cloud:",err))
+};
+
 /* EMPREGAMAIS-CANDIDATO-LOGIN-GUARD-V1 */
 document.addEventListener("submit",async function(e){
  const f=e.target;if(!f||f.id!=="formLoginCandidato")return;
