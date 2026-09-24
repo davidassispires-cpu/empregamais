@@ -1477,10 +1477,15 @@ async function sbBuscarCandidatoCloudEM(token){
 async function sbMigrarESincronizarCandidatoCloudEM(d,token){
  const remoto=await sbBuscarCandidatoCloudEM(token);if(!remoto)return d;
  const email=String(remoto.email||d.email||"").toLowerCase();
- const localPerfil=d?.perfil&&Object.keys(d.perfil).length?d.perfil:null;
- const localCv=ler("empregaMaisCurriculoOnline_"+email,{});
- const localArq=ler("empregaMaisCurriculo_"+email,null);
- const localSalvas=ler("empregaMaisSalvas_"+email,[]);
+ /* Captura o legado ANTES de qualquer espelhamento do Supabase.
+    Aceita também chaves antigas com variações de maiúsculas/espaços no e-mail. */
+ const todosCandidatos=ler("empregaMaisCandidatos",[]);
+ const legado=Array.isArray(todosCandidatos)?todosCandidatos.find(x=>String(x.email||"").trim().toLowerCase()===email):null;
+ const localPerfil=(legado?.perfil&&Object.keys(legado.perfil).length?legado.perfil:(d?.perfil&&Object.keys(d.perfil).length?d.perfil:null));
+ const acharChave=(prefixo)=>{for(let i=0;i<localStorage.length;i++){const k=localStorage.key(i)||"";if(k.toLowerCase()===(prefixo+email).toLowerCase())return k}return prefixo+email};
+ const localCv=ler(acharChave("empregaMaisCurriculoOnline_"),{});
+ const localArq=ler(acharChave("empregaMaisCurriculo_"),null);
+ const localSalvas=ler(acharChave("empregaMaisSalvas_"),[]);
  const remotoCv=remoto.curriculo_online&&Object.keys(remoto.curriculo_online).length;
  const remotoPerfil=remoto.perfil&&Object.keys(remoto.perfil).length;
  const patch={};
