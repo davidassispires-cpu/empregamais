@@ -730,7 +730,58 @@ function verDetalhesPlano(plano){sessionStorage.setItem('planoDetalhe',plano);ir
 function renderizarDetalhesPlano(){const chave=sessionStorage.getItem('planoDetalhe')||'basico',d=DETALHES_PLANOS[chave]||DETALHES_PLANOS.basico,p=PLANOS_EMPRESA[chave]||PLANOS_EMPRESA.basico;const set=(id,t)=>{const e=document.getElementById(id);if(e)e.textContent=t};set('planoDetalheNome','Plano '+d.nome);set('planoDetalheResumo',d.resumo);set('planoDetalheEtiqueta',d.etiqueta);set('planoDetalhePreco',d.preco);set('planoDetalhePeriodo',d.periodo);const topo=document.querySelector('.plano-detalhe-top>div');if(topo){let pg=topo.querySelector('.em-pagamento-plano');if(pg)pg.remove();if(chave!=='basico')topo.insertAdjacentHTML('beforeend',emPagamentoPlano(chave));}const b=document.getElementById('planoDetalheBeneficios');if(b)b.innerHTML=d.beneficios.map((x,i)=>'<article class="beneficio-detalhado"><i>'+(i===0?'✓':'•')+'</i><div><strong>'+esc(x[0])+'</strong><p>'+esc(x[1])+'</p></div></article>').join('');const r=document.getElementById('planoDetalheResumoLateral');if(r)r.innerHTML='<div class="plano-resumo-item"><span>Vagas/mês</span><b>'+p.vagas+'</b></div><div class="plano-resumo-item"><span>Destaques/mês</span><b>'+p.destaques+'</b></div><div class="plano-resumo-item"><span>Urgências/mês</span><b>'+p.urgentes+'</b></div><div class="plano-resumo-item"><span>Confidenciais/mês</span><b>'+p.confidenciais+'</b></div><div class="plano-resumo-item"><span>Valor</span><b>'+esc(d.preco)+'</b></div>';['planoDetalheEscolher','planoDetalheEscolher2'].forEach(id=>{const x=document.getElementById(id);if(x)x.onclick=()=>selecionarPlano(chave)})}
 
 let planoBAtual='trimestral';
-function selecionarAbaPlano(chave){if(!DETALHES_PLANOS[chave])chave='basico';planoBAtual=chave;const d=DETALHES_PLANOS[chave];document.querySelectorAll('.planos-b-tabs button').forEach(b=>b.classList.toggle('ativo',b.dataset.plano===chave));const set=(id,t)=>{const e=document.getElementById(id);if(e)e.textContent=t};set('planoBTag',d.etiqueta);set('planoBNome','Plano '+d.nome);set('planoBResumo',d.resumo);set('planoBPreco',d.preco);set('planoBPeriodo',d.periodo);const precoBox=document.querySelector('.plano-b-preco');if(precoBox){precoBox.querySelector('.em-pagamento-plano')?.remove();precoBox.querySelector('.plano-valor-pratico')?.remove();if(chave!=='basico'){const periodo=document.getElementById('planoBPeriodo');periodo.insertAdjacentHTML('afterend',emPagamentoPlano(chave));}const praticos=chave==='basico'?[['Organize seus primeiros processos','Publique vagas, receba candidaturas e acompanhe candidatos pelo painel.'],['Candidaturas sem limite','Receba candidatos nas vagas publicadas sem limite de quantidade.']]:[['Vaga em destaque','Dê mais visibilidade à oportunidade e aumente sua exposição para candidatos no EmpregaMais.'],['Contratação urgente','Sinalize quando uma posição precisa ser preenchida rapidamente e dê mais destaque à urgência do processo.']].concat((PLANOS_EMPRESA[chave]?.confidenciais||0)>0?[['Vaga confidencial','Ideal para substituições e contratações estratégicas em que a identidade da empresa não deve ser exibida publicamente.']]:[]).concat([['Gestão do processo seletivo','Acompanhe candidatos da análise até entrevistas e contratação, mantendo cada etapa organizada.'],['Contato mais ágil','Consulte o currículo e utilize os canais disponíveis para avançar o contato com o profissional.']]);precoBox.insertAdjacentHTML('beforeend','<div class="plano-valor-pratico"><span>RECURSOS QUE FAZEM DIFERENÇA</span>'+praticos.map((x,i)=>'<article><i>'+(['★','⚡','◈','✓','↗'][i%5])+'</i><div><strong>'+esc(x[0])+'</strong><p>'+esc(x[1])+'</p></div></article>').join('')+'</div>');}set('planoBTituloBeneficios','O que está incluído no plano '+d.nome+'?');const l=document.getElementById('planoBLista');if(l){const icons=['▣','★','⚡','◈','♟','◉','▥','◌'];const duplicadosLaterais=['destaque','urgente','confidencia','gestão do processo seletivo'];const beneficiosPrincipais=d.beneficios.filter(x=>{const t=String(x[0]).toLowerCase().trim();return !duplicadosLaterais.some(k=>t.includes(k))});l.innerHTML='<div class="plano-recursos-grid">'+beneficiosPrincipais.map((x,i)=>'<article class="plano-recurso-card"><i>'+icons[i%icons.length]+'</i><div><strong>'+esc(x[0])+'</strong><p>'+esc(x[1])+'</p></div></article>').join('')+'</div>'+(chave!=='basico'?'<div class="plano-resultados"><i>◆</i><div><strong>Mais resultados para sua empresa</strong><p>Publique mais vagas, destaque suas oportunidades e encontre talentos com mais agilidade.</p></div></div>':'');}const bt=document.getElementById('planoBEscolher');if(bt){bt.textContent=chave==='basico'?'Começar grátis →':'Escolher este plano →';bt.type='button';bt.dataset.plano=chave;bt.onclick=null;}}
+const PLANO_PERSONALIZADO_EM={
+ nome:'Personalizado',
+ etiqueta:'SOB MEDIDA',
+ preco:'Sob consulta',
+ periodo:'Configuração conforme a operação',
+ resumo:'Uma solução flexível para empresas que precisam de mais volume, usuários ou condições diferentes dos planos padrão.',
+ beneficios:[
+  ['Volume de vagas sob medida','Defina uma capacidade de publicação adequada ao ritmo de contratação da sua empresa.'],
+  ['Quantidade de usuários ajustável','Inclua os recrutadores e profissionais que precisam participar da operação.'],
+  ['Recursos de visibilidade','Configure vagas em destaque e contratação urgente de acordo com a demanda.'],
+  ['Vagas confidenciais','Estruture processos estratégicos sem exibir publicamente a identidade da empresa quando necessário.'],
+  ['Currículos e contato com candidatos','Centralize a análise dos perfis e utilize os canais disponíveis para avançar o contato.'],
+  ['Gestão do processo seletivo','Organize candidatos, entrevistas, etapas e histórico dos processos em um único ambiente.'],
+  ['Banco de talentos','Avalie a inclusão de recursos para manter e consultar profissionais relevantes para futuras oportunidades.'],
+  ['Condições comerciais personalizadas','Valores, vigência e limites são definidos conforme a configuração solicitada.']
+ ]
+};
+function selecionarAbaPlano(chave){
+ const personalizado=chave==='personalizado';
+ if(!personalizado&&!DETALHES_PLANOS[chave])chave='basico';
+ planoBAtual=chave;
+ const d=personalizado?PLANO_PERSONALIZADO_EM:DETALHES_PLANOS[chave];
+ document.querySelectorAll('.planos-clean-tabs button').forEach(b=>b.classList.toggle('ativo',b.dataset.plano===chave));
+ const set=(id,t)=>{const e=document.getElementById(id);if(e)e.textContent=t};
+ set('planoBTag',d.etiqueta);set('planoBNome',personalizado?'Plano Personalizado':'Plano '+d.nome);set('planoBResumo',d.resumo);set('planoBPreco',d.preco);set('planoBPeriodo',d.periodo);
+ const precoBox=document.querySelector('.plano-b-preco');
+ if(precoBox){
+  precoBox.querySelector('.em-pagamento-plano')?.remove();
+  precoBox.querySelector('.plano-valor-pratico')?.remove();
+  if(!personalizado&&chave!=='basico'){const periodo=document.getElementById('planoBPeriodo');periodo?.insertAdjacentHTML('afterend',emPagamentoPlano(chave));}
+  const praticos=personalizado?
+   [['Estrutura para sua realidade','A solução é dimensionada a partir do volume de vagas, tamanho da equipe e rotina de recrutamento.'],['Mais usuários e escala','Ajuste acessos e capacidade para operações com mais recrutadores ou processos simultâneos.'],['Condições alinhadas à operação','Vigência, recursos e limites podem ser combinados em uma proposta específica para a empresa.']]:
+   chave==='basico'?
+   [['Primeiros processos organizados','Use o painel para publicar suas primeiras vagas, receber candidaturas e acompanhar os candidatos.'],['Recebimento sem limite de candidatos','As vagas publicadas podem receber candidaturas sem limite de quantidade.']]:
+   [['Mais visibilidade para oportunidades','Use os recursos incluídos no plano para ampliar a exposição das vagas que precisam de maior alcance.'],['Sinalização de prioridade','Identifique posições que precisam ser preenchidas com mais rapidez.']]
+    .concat((PLANOS_EMPRESA[chave]?.confidenciais||0)>0?[['Recrutamento estratégico','Conduza substituições ou contratações sensíveis sem exibir publicamente a identidade da empresa.']]:[])
+    .concat([['Processos centralizados','Acompanhe análise, entrevistas e contratação mantendo as etapas organizadas.'],['Comunicação com profissionais','Consulte currículos e utilize os canais disponíveis para avançar o contato com candidatos.']]);
+  precoBox.insertAdjacentHTML('beforeend','<div class="plano-valor-pratico"><span>'+(personalizado?'COMO FUNCIONA':'BENEFÍCIOS NA PRÁTICA')+'</span>'+praticos.map((x,i)=>'<article><i>'+(['★','⚡','◈','✓','↗'][i%5])+'</i><div><strong>'+esc(x[0])+'</strong><p>'+esc(x[1])+'</p></div></article>').join('')+'</div>');
+ }
+ set('planoBTituloBeneficios',personalizado?'O que pode ser configurado?':'O que está incluído no plano '+d.nome+'?');
+ const l=document.getElementById('planoBLista');
+ if(l){
+  const icons=['▣','★','⚡','◈','♟','◉','▥','◌'];
+  l.innerHTML='<div class="plano-recursos-grid">'+d.beneficios.map((x,i)=>'<article class="plano-recurso-card"><i>'+icons[i%icons.length]+'</i><div><strong>'+esc(x[0])+'</strong><p>'+esc(x[1])+'</p></div></article>').join('')+'</div>'+(!personalizado&&chave!=='basico'?'<div class="plano-resultados"><i>◆</i><div><strong>Mais estrutura para recrutar</strong><p>Use os recursos do plano para divulgar oportunidades e conduzir seus processos com mais organização.</p></div></div>':'');
+ }
+ const bt=document.getElementById('planoBEscolher');
+ if(bt){
+  bt.type='button';bt.dataset.plano=chave;bt.disabled=false;
+  bt.textContent=personalizado?'Solicitar proposta →':chave==='basico'?'Começar grátis →':'Escolher este plano →';
+  bt.onclick=personalizado?()=>irPara('contato'):()=>selecionarPlano(chave);
+ }
+}
 function renderizarPlanosModeloB(){renderizarPlanosAtuais();selecionarAbaPlano(planoBAtual||'trimestral')}
 
 const ORDEM_PLANOS=['basico','mensal','trimestral','semestral','anual'];
