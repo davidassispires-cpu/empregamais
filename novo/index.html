@@ -6923,31 +6923,4 @@ setTimeout(limparVerificado,250);
 })();
 </script>
 
-<style id="EMPREGAMAIS-INFO-COMPACT-V53">
-/* Faixa de informações da vaga: mais compacta e elegante */
-#pagina-vaga .vaga-info-grid{grid-template-columns:repeat(4,minmax(0,1fr))!important;background:#fff!important}
-#pagina-vaga .vaga-info-grid>div{min-height:66px!important;height:66px!important;padding:9px 12px 9px 48px!important;justify-content:center!important;align-items:flex-start!important}
-#pagina-vaga .vaga-info-grid .info-svg{left:14px!important;top:50%!important;transform:translateY(-50%)!important;width:28px!important;height:28px!important;border-radius:9px!important;display:grid!important;place-items:center!important}
-#pagina-vaga .vaga-info-grid .info-svg svg{width:16px!important;height:16px!important;stroke-width:1.8!important}
-#pagina-vaga .vaga-info-grid strong{font-size:11.5px!important;line-height:1.2!important;margin:0!important}
-#pagina-vaga .vaga-info-grid small{font-size:9.5px!important;line-height:1.2!important;margin-top:3px!important}
-#pagina-vaga .vaga-info-grid .em-local-detalhes-btn{font-size:7.5px!important;line-height:1!important;margin-top:4px!important;padding:0!important}
-#pagina-vaga .vaga-info-grid>div:nth-child(1) .info-svg{background:#eaf6ff!important;color:#1679b5!important}
-#pagina-vaga .vaga-info-grid>div:nth-child(2) .info-svg{background:#eaf8f8!important;color:#187b8a!important}
-#pagina-vaga .vaga-info-grid>div:nth-child(3) .info-svg{background:#f1efff!important;color:#5c55b7!important}
-#pagina-vaga .vaga-info-grid>div:nth-child(4) .info-svg{background:#edf9f3!important;color:#198458!important}
-@media(max-width:800px){#pagina-vaga .vaga-info-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important}#pagina-vaga .vaga-info-grid>div{height:64px!important;min-height:64px!important}}
-</style>
-<script id="EMPREGAMAIS-INFO-SVG-V53">
-(function(){
-var svgs=[
-'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M20 10c0 5-8 11-8 11S4 15 4 10a8 8 0 1 1 16 0Z"/><circle cx="12" cy="10" r="2.5"/></svg>',
-'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><rect x="3" y="6" width="18" height="14" rx="2"/><path d="M8 6V4h8v2M3 11h18M9 11v2h6v-2"/></svg>',
-'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><rect x="3" y="4" width="18" height="14" rx="2"/><path d="M8 21h8M12 18v3"/></svg>',
-'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><rect x="3" y="6" width="18" height="13" rx="3"/><path d="M16 10h5v5h-5a2.5 2.5 0 0 1 0-5Z"/></svg>'
-];
-function aplicar(){document.querySelectorAll('#pagina-vaga .vaga-info-grid').forEach(function(g){Array.from(g.children).slice(0,4).forEach(function(cell,i){var icon=cell.querySelector('.info-svg');if(icon)icon.innerHTML=svgs[i];});});}
-if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',aplicar);else aplicar();new MutationObserver(aplicar).observe(document.body,{childList:true,subtree:true});
-})();
-</script>
 </body></html>
