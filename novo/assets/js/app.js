@@ -2016,19 +2016,41 @@ document.addEventListener('click',function(e){
  const id=card.dataset.vagaId;
  if(!id)return;
  e.preventDefault();e.stopPropagation();
- selecionarVagaRecenteEM(id);
+ abrirVaga(id);
 });
 document.addEventListener('keydown',function(e){
  const card=e.target.closest&&e.target.closest('#listaVagasPortal .portal-vaga-nova');
  if(!card||!['Enter',' '].includes(e.key))return;
- e.preventDefault();selecionarVagaRecenteEM(card.dataset.vagaId);
+ e.preventDefault();abrirVaga(card.dataset.vagaId);
 });
 const _renderizarVagasPortalSplitEM=renderizarVagasPortal;
 renderizarVagasPortal=function(){
  _renderizarVagasPortalSplitEM();
  prepararCardsRecentesEM();
- if(window.vagaPreviewRecenteEM)renderPreviewVagaRecenteEM(window.vagaPreviewRecenteEM);
 };
+
+function filtrarRecentesLateralEM(id,valor){
+ const campo=document.getElementById(id);
+ if(campo){campo.value=valor;renderizarVagasPortal()}
+}
+function sincronizarFiltrosRecentesEM(){
+ [['filtroPalavraLateral','buscaVagas'],['filtroCidadeLateral','buscaCidade'],['filtroModalidadeLateral','buscaModalidade']].forEach(([lateral,original])=>{
+  const a=document.getElementById(lateral),b=document.getElementById(original);
+  if(a&&b)a.value=b.value;
+ });
+}
+function alternarFiltrosRecentesEM(botao){
+ const painel=document.getElementById('filtrosVagasLateral');if(!painel)return;
+ const aberto=painel.classList.toggle('aberto');
+ botao.setAttribute('aria-expanded',String(aberto));
+}
+document.addEventListener('DOMContentLoaded',()=>{
+ ['buscaVagas','buscaCidade','buscaModalidade'].forEach(id=>{
+  document.getElementById(id)?.addEventListener('input',sincronizarFiltrosRecentesEM);
+  document.getElementById(id)?.addEventListener('change',sincronizarFiltrosRecentesEM);
+ });
+ sincronizarFiltrosRecentesEM();
+});
 
 /* EMPREGAMAIS — AVALIAÇÕES NO PAINEL DA EMPRESA V1 */
 function avaliacoesEmpresaLogadaEM(){
