@@ -1001,7 +1001,11 @@ function cardDestaqueMiniEM(v){
 }
 function renderFaixaDestaquesEM(lista){
  const box=document.getElementById('listaDestaquesFaixaEM'),wrap=document.getElementById('destaquesFaixaEM');if(!box||!wrap)return;
- const arr=Array.isArray(lista)?lista:[],principais=Math.min(quantidadeDestaquesVisiveisEM(),arr.length),restantes=arr.slice(principais);
+ const arr=Array.isArray(lista)?lista:[];
+ const idsPrincipais=new Set(Array.from(document.querySelectorAll('#listaDestaques .portal-vaga-nova')).map(card=>String(card.getAttribute('data-vaga-id')||'')).filter(Boolean));
+ const principaisAtuais=[];for(let i=0;i<Math.min(quantidadeDestaquesVisiveisEM(),arr.length);i++)principaisAtuais.push(arr[(indiceDestaquesEM+i)%arr.length]);
+ const idsExcluir=new Set([...idsPrincipais,...principaisAtuais.map(v=>String(v.id))]);
+ const restantes=arr.filter(v=>!idsExcluir.has(String(v.id)));
  if(!restantes.length){wrap.classList.add('oculto');box.innerHTML='';return}
  wrap.classList.remove('oculto');const qtd=quantidadeFaixaDestaquesEM();if(indiceFaixaDestaquesEM>=restantes.length)indiceFaixaDestaquesEM=0;
  const vis=[];for(let i=0;i<Math.min(qtd,restantes.length);i++)vis.push(restantes[(indiceFaixaDestaquesEM+i)%restantes.length]);
