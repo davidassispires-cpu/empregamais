@@ -1442,8 +1442,16 @@ async function loginCandidatoSupabaseEM(e){
    /* Primeiro carrega/migra o registro remoto. Só depois faz upsert.
       Isso impede que um perfil vazio do login sobrescreva os dados legados deste navegador. */
    const remoto=await sbBuscarCandidatoCloudEM(auth.access_token);
-   if(remoto)d=await sbMigrarESincronizarCandidatoCloudEM(d,auth.access_token);
-   else d=sbSalvarCandidatoLocalEM(await sbUpsertCandidatoSupabaseEM(d,auth.access_token));
+   if(remoto){
+    /* Em outro navegador o Supabase e a fonte oficial: primeiro espelha o registro remoto
+       no cache local e somente depois executa a migracao de qualquer legado existente. */
+    d=sbSalvarCandidatoLocalEM(sbMapPerfilCandidatoCloudEM(remoto,d));
+    const cloudEmail=String(d.email||email).toLowerCase();
+    gravar("empregaMaisCurriculoOnline_"+cloudEmail,d.curriculoOnline||{});
+    if(d.curriculoArquivo)gravar("empregaMaisCurriculo_"+cloudEmail,d.curriculoArquivo);
+    gravar("empregaMaisSalvas_"+cloudEmail,d.vagasSalvas||[]);
+    d=await sbMigrarESincronizarCandidatoCloudEM(d,auth.access_token);
+   }else d=sbSalvarCandidatoLocalEM(await sbUpsertCandidatoSupabaseEM(d,auth.access_token));
   }
   catch(syncErr){console.error("Sincronização do cadastro do candidato:",syncErr);msg("#msgLoginCandidato","Conta autenticada, mas não foi possível sincronizar seu cadastro. Atualize a página e tente novamente.");return}
   concluirEntradaCandidatoSupabaseEM(d)
