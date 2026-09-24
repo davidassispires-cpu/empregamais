@@ -6951,4 +6951,42 @@ document.addEventListener('click',function(e){if(e.target&&e.target.closest&&e.t
 document.addEventListener('DOMContentLoaded',function(){setTimeout(moverData,120);});
 })();
 </script>
+
+<style id="EMPREGAMAIS-POSICOES-EXATAS-V56">
+/* posição exata pedida no print */
+#pagina-vaga .vaga-acao-v2 .vaga-salvar-principal{display:none!important}
+#pagina-vaga .vaga-acao-v2 .vaga-acao-meta{position:absolute!important;left:-9999px!important;width:1px!important;height:1px!important;overflow:hidden!important}
+#pagina-vaga .vaga-acao-v2 .vaga-denunciar{display:none!important}
+#pagina-vaga .vaga-hero-card{position:relative!important}
+#pagina-vaga .em-denunciar-topo{position:absolute!important;right:24px!important;top:70px!important;z-index:9!important;width:148px!important;height:32px!important;display:flex!important;align-items:center!important;justify-content:center!important;border:1px solid #eadada!important;border-radius:9px!important;background:#fffafa!important;color:#9b6262!important;font-size:9.5px!important;font-weight:600!important;cursor:pointer!important}
+#pagina-vaga .vaga-conteudo-v2{position:relative!important}
+#pagina-vaga .em-data-publicacao-conteudo{position:absolute!important;right:12px!important;top:9px!important;z-index:8!important;padding:5px 9px!important;border:0!important;border-radius:6px!important;background:#eef9f1!important;color:#43825a!important;font-size:9px!important;font-weight:650!important;line-height:1.2!important}
+@media(max-width:800px){#pagina-vaga .em-denunciar-topo{position:static!important;width:100%!important;margin:8px 0 0!important}#pagina-vaga .em-data-publicacao-conteudo{position:static!important;display:block!important;width:max-content!important;margin:8px 10px 0 auto!important}}
+</style>
+<script id="EMPREGAMAIS-POSICOES-EXATAS-V56">
+(function(){
+function aplicar(){
+ var hero=document.getElementById('vagaHeroDetalhe'), box=document.getElementById('vagaAcaoDetalhe'), cont=document.getElementById('vagaConteudoDetalhe');
+ if(!hero||!box||!cont)return;
+ var den=box.querySelector('.vaga-denunciar');
+ if(den){
+   var top=hero.querySelector('.em-denunciar-topo');
+   if(!top){top=document.createElement('button');top.type='button';top.className='em-denunciar-topo';top.textContent='Denunciar vaga';hero.appendChild(top);}
+   top.onclick=function(){den.click();};
+ }
+ var meta=box.querySelector('.vaga-acao-meta');
+ if(meta){
+   var tx=(meta.textContent||'').trim();
+   if(tx){
+     tx=tx.replace(/^Publicad[ao]\s*/i,'').replace(/^Vaga anunciada\s*/i,'').replace(/^há\s*/i,'');
+     var el=cont.querySelector('.em-data-publicacao-conteudo');
+     if(!el){el=document.createElement('span');el.className='em-data-publicacao-conteudo';cont.insertBefore(el,cont.firstChild);}
+     el.textContent='Vaga anunciada há '+tx;
+   }
+ }
+}
+document.addEventListener('click',function(e){if(e.target&&e.target.closest&&e.target.closest('.portal-vaga-nova,[onclick*="vaga"],[onclick*="Vaga"]'))setTimeout(aplicar,120);});
+if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',function(){setTimeout(aplicar,120)});else setTimeout(aplicar,120);
+})();
+</script>
 </body></html>
