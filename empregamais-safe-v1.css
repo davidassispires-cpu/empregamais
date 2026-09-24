@@ -560,3 +560,18 @@ body.empresa-premium-v44 .plano-premium-v44{min-height:96px!important;margin:0 0
     min-height:100%!important;
   }
 }
+
+
+/* EmpregaMais: simplificar faixa de informações da página interna da vaga */
+/* A faixa principal deve mostrar somente localização, contrato, modalidade e salário. */
+#pagina-vaga .em-info-bar-v1 .em-info-area-v1,
+#pagina-vaga .em-info-bar-v1 [class*="area"],
+#pagina-vaga .em-info-bar-v1 .em-info-candidaturas-v1,
+#pagina-vaga .em-info-bar-v1 [class*="candidat"]{display:none!important;}
+#pagina-vaga .em-info-bar-v1{
+  grid-template-columns:repeat(4,minmax(0,1fr))!important;
+}
+/* Candidaturas permanecem somente no rodapé da vaga. */
+#pagina-vaga .vaga-rodape-info-com-denuncia{grid-template-columns:repeat(3,minmax(0,1fr)) auto!important;}
+@media(max-width:900px){#pagina-vaga .em-info-bar-v1{grid-template-columns:repeat(2,minmax(0,1fr))!important;}}
+@media(max-width:480px){#pagina-vaga .em-info-bar-v1{grid-template-columns:1fr!important;}}
