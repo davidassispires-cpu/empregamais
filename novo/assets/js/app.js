@@ -373,11 +373,12 @@ function alternarSenhaAdmin(btn){const campo=$('#adminSenha');if(!campo)return;c
 async function loginAdmin(e){
  e.preventDefault();
  const email=$('#adminEmail').value.trim().toLowerCase(),senha=$('#adminSenha').value;
- if(email!=='admin@empregamais.com.br'){msg('#msgLoginAdmin','Esta conta não possui acesso administrativo.');return}
  msg('#msgLoginAdmin','Validando acesso...');
  try{
   const a=await sbJsonEM(EMPREGAMAIS_SUPABASE_URL+"/auth/v1/token?grant_type=password",{method:"POST",headers:sbHeadersEM(),body:JSON.stringify({email:email,password:senha})});
   if(!a||!a.access_token||!a.user){throw new Error('Sessão administrativa inválida.')}
+  const permissao=await sbJsonEM(EMPREGAMAIS_SUPABASE_URL+"/rest/v1/rpc/is_admin",{method:"POST",headers:sbHeadersEM(a.access_token),body:"{}"});
+  if(permissao!==true){throw new Error('Acesso administrativo não autorizado.')}
   sessionStorage.setItem(EMPREGAMAIS_SB_ADMIN_TOKEN,a.access_token);
   if(a.refresh_token)sessionStorage.setItem(EMPREGAMAIS_SB_ADMIN_REFRESH,a.refresh_token);
   sessionStorage.setItem('empregaMaisAdmin','1');
@@ -389,6 +390,7 @@ async function loginAdmin(e){
   const detalhe=String(err&&err.message||'').toLowerCase();
   if(detalhe.includes('email not confirmed'))msg('#msgLoginAdmin','O e-mail administrativo ainda não foi confirmado no Supabase.');
   else if(detalhe.includes('invalid login credentials'))msg('#msgLoginAdmin','E-mail ou senha administrativa incorretos.');
+  else if(detalhe.includes('não autorizado')||detalhe.includes('nao autorizado'))msg('#msgLoginAdmin','Esta conta não possui acesso administrativo.');
   else msg('#msgLoginAdmin','Não foi possível autenticar o administrador agora. Tente novamente.');
  }
 }
