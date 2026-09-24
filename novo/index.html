@@ -7925,4 +7925,21 @@ document.addEventListener('DOMContentLoaded',()=>{pbTimer=setInterval(()=>pbIrSl
  #pagina-vaga .vaga-hero-card{padding-right:24px!important}
  #pagina-vaga .vaga-hero-card .em-salvar-vaga-topo{top:22px!important}
 }
+</style><style id="EMPREGAMAIS-STATUS-EMPRESA-V58">
+#pagina-vaga .vaga-hero-empresa-linha{display:flex;align-items:center;gap:10px;position:relative;z-index:30;width:max-content;max-width:100%;overflow:visible}
+#pagina-vaga .em-status-info{position:relative;display:inline-flex;align-items:center;gap:6px;height:25px;overflow:visible;cursor:help;outline:none}
+#pagina-vaga .em-verificado-check,#pagina-vaga .em-confidencial-check{display:grid;place-items:center;flex:0 0 19px;width:19px;height:19px;border-radius:50%;font-size:11px;font-weight:900;color:#fff}
+#pagina-vaga .em-verificado-check{background:#1682cf}.em-confidencial-check{background:#526b7b}
+#pagina-vaga .em-verificado-label,#pagina-vaga .em-confidencial-label{font-size:10.5px;font-weight:750;white-space:nowrap}
+#pagina-vaga .em-verificado-label{color:#1675ba}#pagina-vaga .em-confidencial-label{color:#486474}
+#pagina-vaga .em-status-pop{visibility:hidden;opacity:0;pointer-events:none;position:absolute;left:0;top:calc(100% + 10px);z-index:9999;width:350px;box-sizing:border-box;padding:16px;display:grid;grid-template-columns:38px 1fr;gap:12px;border:1px solid #d7e4eb;border-radius:13px;background:#fff;box-shadow:0 18px 45px rgba(10,48,72,.18);transform:translateY(-5px);transition:.16s}
+#pagina-vaga .em-status-info:hover .em-status-pop,#pagina-vaga .em-status-info:focus-within .em-status-pop{visibility:visible;opacity:1;transform:translateY(0)}
+#pagina-vaga .em-status-pop:before{content:"";position:absolute;top:-6px;left:20px;width:11px;height:11px;background:#fff;border-left:1px solid #d7e4eb;border-top:1px solid #d7e4eb;transform:rotate(45deg)}
+#pagina-vaga .em-status-pop-icon{display:grid;place-items:center;width:38px;height:38px;border-radius:10px;background:#eaf5fb;color:#0874b4;font-size:18px;font-weight:900}
+#pagina-vaga .em-status-confidencial .em-status-pop-icon{background:#eef2f4;color:#4e6878}
+#pagina-vaga .em-status-pop strong{display:block;margin:1px 0 5px;color:#07365c;font-size:13px;font-weight:850}
+#pagina-vaga .em-status-pop p{margin:0;color:#425f70;font-size:10.5px;line-height:1.55;font-weight:500}
+#pagina-vaga .em-status-pop small{display:block;margin-top:9px;padding-top:8px;border-top:1px solid #e7eef2;color:#718592;font-size:9px;line-height:1.45}
+#pagina-vaga .vaga-hero-card,#pagina-vaga .vaga-hero-identidade,#pagina-vaga .vaga-hero-texto{overflow:visible!important}
+@media(max-width:700px){#pagina-vaga .vaga-hero-empresa-linha{width:100%;flex-wrap:wrap}#pagina-vaga .em-status-pop{width:min(330px,calc(100vw - 48px))}}
 </style></body></html>
