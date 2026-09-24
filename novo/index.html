@@ -6787,4 +6787,50 @@ input::placeholder,textarea::placeholder,
  #pagina-home .recentes-filtros.aberto{display:flex}
  #pagina-home .recentes-filtros-corpo{max-height:60vh}
 }
-</style></body></html>
+</style>
+<style id="EMPREGAMAIS-AJUSTES-FINAIS-V49">
+/* Filtro lateral aberto e sem rolagem interna */
+@media(min-width:821px){
+#pagina-home .home-recentes-layout{align-items:stretch!important}
+#pagina-home .recentes-filtros{position:relative!important;top:auto!important;align-self:stretch!important;height:auto!important;max-height:none!important;overflow:visible!important}
+#pagina-home .recentes-filtros-corpo{height:auto!important;max-height:none!important;overflow:visible!important;padding-bottom:18px!important}
+#pagina-home .recentes-filtros-rodape{position:static!important}
+}
+/* Cards mais vivos e profissionais */
+#pagina-home #listaVagasPortal .portal-vaga-nova{background:#fff!important;border-color:#d8e5ed!important;transition:transform .18s ease,border-color .18s ease,box-shadow .18s ease!important}
+#pagina-home #listaVagasPortal .portal-vaga-nova:hover{transform:translateY(-3px)!important;border-color:#79b9dd!important;box-shadow:0 12px 28px rgba(15,67,105,.10)!important}
+#pagina-home #listaVagasPortal .vaga-selo{border-radius:6px!important}
+#pagina-home #listaVagasPortal .vaga-selo:not(.destaque){background:#edf9f2!important;border-color:#b9e4ca!important;color:#167147!important}
+#pagina-home #listaVagasPortal .vaga-selo.destaque,#pagina-home #listaVagasPortal [class*="destaque"].vaga-selo{background:#fff8e8!important;border-color:#ead9aa!important;color:#86610e!important}
+/* Chips: texto e ícone corretamente centralizados dentro do bloco */
+#pagina-home #listaVagasPortal .vaga-meta{display:flex!important;flex-wrap:wrap!important;align-items:center!important;gap:7px!important;overflow:visible!important}
+#pagina-home #listaVagasPortal .vaga-meta span{box-sizing:border-box!important;width:auto!important;min-width:0!important;height:28px!important;min-height:28px!important;padding:0 10px!important;display:inline-flex!important;align-items:center!important;justify-content:center!important;gap:5px!important;line-height:1!important;white-space:nowrap!important;vertical-align:middle!important;border-radius:999px!important;background:#f1f6fa!important;color:#315c77!important}
+#pagina-home #listaVagasPortal .vaga-meta span:first-child{background:#eef8fd!important;color:#17658f!important}
+#pagina-home #listaVagasPortal .vaga-meta i{display:inline-flex!important;align-items:center!important;justify-content:center!important;line-height:1!important;margin:0!important}
+/* Página interna: quatro informações principais */
+#pagina-vaga .vaga-info-grid{grid-template-columns:repeat(4,minmax(0,1fr))!important}
+#pagina-vaga .vaga-info-grid>.vaga-info-candidaturas{display:none!important}
+#pagina-vaga .vaga-info-grid>div:nth-child(n+5){display:none!important}
+#pagina-vaga .vaga-info-grid>div{box-sizing:border-box!important;min-height:84px!important;justify-content:center!important}
+/* Salvar vaga no cabeçalho do card */
+@media(min-width:801px){
+#pagina-vaga .vaga-topbar-acoes{display:none!important}
+#pagina-vaga .vaga-hero-card{position:relative!important}
+#pagina-vaga .vaga-hero-card .em-salvar-vaga-topo{position:absolute!important;right:24px!important;top:22px!important;z-index:8!important;height:38px!important;padding:0 14px!important;border:1px solid #b9d8e9!important;border-radius:9px!important;background:#fff!important;color:#176b9c!important;font:650 10px Montserrat,Arial,sans-serif!important;cursor:pointer!important}
+#pagina-vaga .vaga-hero-identidade{padding-right:175px!important}
+}
+@media(max-width:800px){#pagina-vaga .vaga-info-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important}}
+</style>
+<script id="EMPREGAMAIS-SALVAR-TOPO-V49">
+(function(){
+function aplicarSalvarTopo(){
+ var hero=document.getElementById('vagaHeroDetalhe'); if(!hero)return;
+ var btn=hero.querySelector('.em-salvar-vaga-topo');
+ if(!btn){btn=document.createElement('button');btn.type='button';btn.className='em-salvar-vaga-topo';btn.innerHTML='♡ Salvar vaga';btn.onclick=function(){if(typeof alternarSalvarVaga==='function')alternarSalvarVaga();};hero.appendChild(btn);}
+}
+document.addEventListener('click',function(e){if(e.target&&e.target.closest&&e.target.closest('[onclick*="abrirVaga"],[onclick*="verVaga"],.portal-vaga-nova'))setTimeout(aplicarSalvarTopo,80);});
+if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',aplicarSalvarTopo);else aplicarSalvarTopo();
+new MutationObserver(function(){if(document.getElementById('pagina-vaga')?.classList.contains('ativa'))aplicarSalvarTopo();}).observe(document.body,{subtree:true,childList:true,attributes:true,attributeFilter:['class']});
+})();
+</script>
+</body></html>
