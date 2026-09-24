@@ -543,3 +543,20 @@ body.empresa-premium-v44 .plano-premium-v44{min-height:96px!important;margin:0 0
 #pagina-perfil-publico-empresa-em .card-verificado-item-v36{font-size:10px!important;margin:5px 0!important;}
 #pagina-perfil-publico-empresa-em .card-verificado-rodape-v36{font-size:9px!important;}
 @media(max-width:700px){#pagina-perfil-publico-empresa-em .card-verificado-v36{top:52px!important;right:10px!important;width:280px!important;max-width:calc(100% - 20px)!important;}}
+
+
+/* EmpregaMais: filtros totalmente abertos sem rolagem interna */
+@media (min-width:901px){
+  #pagina-home #vagas .vagas-area > #filtrosLateral,
+  #pagina-home #vagas .vagas-area > #filtrosLateral > *,
+  #pagina-home #vagas #filtrosLateral [class*="filtro"]{
+    max-height:none!important;
+    height:auto!important;
+    overflow:visible!important;
+    overflow-y:visible!important;
+  }
+  #pagina-home #vagas .vagas-area > #filtrosLateral{
+    align-self:stretch!important;
+    min-height:100%!important;
+  }
+}
