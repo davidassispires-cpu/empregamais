@@ -8043,4 +8043,32 @@ document.addEventListener('DOMContentLoaded',()=>{pbTimer=setInterval(()=>pbIrSl
  #pagina-vaga .vaga-info-grid{grid-template-columns:1fr!important}
  #pagina-vaga .vaga-info-grid>div{min-height:104px!important}
 }
+</style><style id="EMPREGAMAIS-CONFIDENCIAL-SELO-PRO-V65">
+/* Selo profissional para processo seletivo confidencial */
+#pagina-vaga .em-status-confidencial{
+ display:inline-flex!important;align-items:center!important;justify-content:center!important;
+ height:32px!important;padding:0 13px 0 8px!important;gap:8px!important;
+ border:1px solid #b9cbd6!important;border-radius:8px!important;
+ background:linear-gradient(180deg,#fff 0%,#f5f8fa 100%)!important;
+ box-shadow:0 2px 7px rgba(7,54,92,.06)!important;cursor:help!important;
+}
+#pagina-vaga .em-status-confidencial .em-confidencial-check{
+ display:grid!important;place-items:center!important;width:21px!important;height:21px!important;
+ flex:0 0 21px!important;border-radius:6px!important;background:#385f75!important;color:#fff!important;
+ font-size:0!important;box-shadow:none!important;
+}
+#pagina-vaga .em-status-confidencial .em-confidencial-check:before{
+ content:""!important;width:11px!important;height:11px!important;display:block!important;
+ background:center/contain no-repeat url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect x='3' y='11' width='18' height='10' rx='2'/%3E%3Cpath d='M7 11V7a5 5 0 0 1 10 0v4'/%3E%3C/svg%3E")!important;
+}
+#pagina-vaga .em-status-confidencial .em-confidencial-label{
+ color:#274d63!important;font-size:10.5px!important;font-weight:800!important;letter-spacing:.015em!important;
+}
+#pagina-vaga .em-status-confidencial:hover,#pagina-vaga .em-status-confidencial:focus-within{
+ border-color:#729caf!important;background:#fff!important;
+ box-shadow:0 7px 18px rgba(7,54,92,.12)!important;transform:translateY(-1px)!important;
+}
+@media(max-width:700px){
+ #pagina-vaga .em-status-confidencial{margin:3px auto 0!important}
+}
 </style></body></html>
