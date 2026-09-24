@@ -7597,4 +7597,31 @@ let pbSlideAtual=0,pbTimer=null;
 function pbIrSlide(n){const s=[...document.querySelectorAll('#pagina-planos .pb-slide')],d=[...document.querySelectorAll('#pagina-planos .pb-dots button')];if(!s.length)return;pbSlideAtual=(n+s.length)%s.length;s.forEach((x,i)=>x.classList.toggle('ativo',i===pbSlideAtual));d.forEach((x,i)=>x.classList.toggle('ativo',i===pbSlideAtual));clearInterval(pbTimer);pbTimer=setInterval(()=>pbIrSlideSemReset(pbSlideAtual+1),5000)}
 function pbIrSlideSemReset(n){const s=[...document.querySelectorAll('#pagina-planos .pb-slide')],d=[...document.querySelectorAll('#pagina-planos .pb-dots button')];if(!s.length)return;pbSlideAtual=(n+s.length)%s.length;s.forEach((x,i)=>x.classList.toggle('ativo',i===pbSlideAtual));d.forEach((x,i)=>x.classList.toggle('ativo',i===pbSlideAtual))}
 document.addEventListener('DOMContentLoaded',()=>{pbTimer=setInterval(()=>pbIrSlideSemReset(pbSlideAtual+1),5000)});
-</script></body></html>
+</script><style id="EMPREGAMAIS-PLANOS-HERO-ENRIQUECIDO-V6">
+/* Evolução do banner existente: mais cor e aparência de produto real */
+#pagina-planos .planos-clean-hero{
+ background:
+ radial-gradient(circle at 87% 12%,rgba(24,151,225,.16),transparent 27%),
+ radial-gradient(circle at 64% 88%,rgba(0,91,166,.10),transparent 31%),
+ linear-gradient(115deg,#f7fbff 0%,#edf7ff 52%,#e7f4fc 100%)!important;
+ position:relative!important;overflow:hidden!important
+}
+#pagina-planos .planos-clean-hero:after{content:""!important;position:absolute!important;width:280px!important;height:280px!important;right:-110px!important;bottom:-150px!important;border-radius:50%!important;border:48px solid rgba(8,115,178,.06)!important}
+#pagina-planos .planos-banner-copy>span{display:inline-flex!important;padding:6px 10px!important;border:1px solid #cce5f5!important;border-radius:999px!important;background:rgba(255,255,255,.72)!important;color:#0873b2!important}
+#pagina-planos .planos-clean-hero h1{color:#082f53!important}.planos-clean-hero h1 br+*{color:#0873e8!important}
+#pagina-planos .planos-clean-trust span{padding:8px 11px!important;border:1px solid rgba(186,216,234,.9)!important;border-radius:9px!important;background:rgba(255,255,255,.68)!important;box-shadow:0 3px 10px rgba(20,73,106,.035)!important}
+#pagina-planos .planos-banner-visual{padding:8px 8px 28px!important}
+#pagina-planos .pb-window{border-color:#bcd9e9!important;box-shadow:0 22px 55px rgba(15,69,104,.16)!important}
+#pagina-planos .pb-top{background:linear-gradient(90deg,#f3f8fb,#eaf5fb)!important}
+#pagina-planos .pb-screen{background:linear-gradient(145deg,#fff 0%,#f5faff 100%)!important}
+#pagina-planos .pb-screen main{position:relative!important}
+#pagina-planos .pb-screen main:after{content:""!important;position:absolute!important;right:18px!important;top:18px!important;width:54px!important;height:5px!important;border-radius:999px!important;background:#e4f1f8!important;box-shadow:0 11px 0 #edf5f9!important}
+#pagina-planos .pb-person{background:#fff!important;box-shadow:0 3px 9px rgba(25,70,99,.035)!important}
+#pagina-planos .pb-cols section{border:1px solid #dfebf2!important;box-shadow:0 3px 10px rgba(26,70,98,.035)!important}
+#pagina-planos .pb-cols section:nth-child(1){background:#f4f9ff!important}.pb-cols section:nth-child(2){background:#fff9ed!important}.pb-cols section:nth-child(3){background:#effaf5!important}
+#pagina-planos .pb-profile-box{border:1px solid #d8eaf4!important;background:linear-gradient(100deg,#eef8ff,#f8fcff)!important}
+#pagina-planos .pb-profile-actions b:first-child{background:#1aa463!important}.pb-profile-actions b:nth-child(2){background:#0873b2!important}.pb-profile-actions b:nth-child(3){background:#fff!important;color:#42667e!important;border:1px solid #d5e3eb!important}
+#pagina-planos .pb-caption{padding:11px 5px!important}.pb-caption b{font-size:11px!important}.pb-caption span{font-size:9.5px!important}
+#pagina-planos .pb-dots button{height:8px!important}
+#pagina-planos .pb-badge{background:#083c60!important;color:#fff!important;border-color:#083c60!important}
+</style></body></html>
