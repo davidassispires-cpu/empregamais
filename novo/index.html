@@ -7272,55 +7272,23 @@ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',
 #pagina-home #listaVagasPortal .portal-vaga-nova.destaque:has(.urgente-selo),
 #pagina-home #listaVagasPortal .portal-vaga-nova:has(.urgente-selo){border:1px solid #e7caca!important;border-left:4px solid #c95757!important;border-top-color:#e7caca!important;background:linear-gradient(90deg,#fffafa 0,#fff 18%)!important}
 
-/* Vagas em destaque: identidade ocupa toda a largura (o renderer atual não possui mais a coluna da logo) */
+/* Vagas em destaque: restaura a identidade anterior com coluna própria para a logo */
 #pagina-home #listaDestaques .vaga-identidade{
- display:block!important;
- grid-template-columns:none!important;
- width:100%!important;
- height:auto!important;
- min-height:0!important;
- margin:0 0 9px!important;
+ display:grid!important;
+ grid-template-columns:66px minmax(0,1fr)!important;
+ gap:12px!important;
+ align-items:center!important;
+ min-height:76px!important;
+ margin:12px 0 10px!important;
  padding:0!important;
 }
-#pagina-home #listaDestaques .vaga-identidade-copy{
- display:block!important;
- width:100%!important;
- min-width:0!important;
- max-width:none!important;
+#pagina-home #listaDestaques .vaga-logo{width:66px!important;height:66px!important}
+#pagina-home #listaDestaques .vaga-identidade-copy{min-width:0!important;width:auto!important}
+#pagina-home #listaDestaques .vaga-identidade-copy h3{
+ font-size:16px!important;line-height:1.24!important;font-weight:800!important;
+ color:#062e52!important;margin:0 0 5px!important;
+ display:-webkit-box!important;-webkit-line-clamp:2!important;-webkit-box-orient:vertical!important;overflow:hidden!important;
 }
-#pagina-home #listaDestaques .vaga-titulo-linha{
- display:grid!important;
- grid-template-columns:minmax(0,1fr) auto!important;
- align-items:start!important;
- gap:10px!important;
- width:100%!important;
-}
-#pagina-home #listaDestaques .vaga-titulo-linha h3{
- min-width:0!important;
- width:auto!important;
- max-width:none!important;
- font-size:18px!important;
- line-height:1.16!important;
- font-weight:800!important;
- letter-spacing:-.015em!important;
- margin:0 0 5px!important;
- white-space:normal!important;
- overflow:visible!important;
- text-overflow:clip!important;
- word-break:normal!important;
- overflow-wrap:break-word!important;
- display:block!important;
- -webkit-line-clamp:unset!important;
-}
-#pagina-home #listaDestaques .vaga-titulo-linha .vaga-selos{
- display:flex!important;
- justify-content:flex-end!important;
- align-items:center!important;
- flex-wrap:wrap!important;
- gap:5px!important;
- max-width:150px!important;
- margin:0!important;
-}
-#pagina-home #listaDestaques .vaga-titulo-linha .vaga-selo{white-space:nowrap!important}
+#pagina-home #listaDestaques .vaga-identidade-copy p{margin:0!important}
 </style>
 </body></html>
