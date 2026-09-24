@@ -7867,26 +7867,31 @@ document.addEventListener('DOMContentLoaded',()=>{pbTimer=setInterval(()=>pbIrSl
 #pagina-plano-personalizado .personalizado-cta button{width:100%!important;height:46px!important;border:0!important;border-radius:10px!important;background:#075b7b!important;color:#fff!important;font-size:12px!important;font-weight:800!important;cursor:pointer!important}
 #pagina-plano-personalizado .personalizado-cta small{display:block!important;margin-top:12px!important;font-size:9.5px!important;line-height:1.5!important;color:#718895!important}
 @media(max-width:760px){#pagina-planos .planos-clean-tabs{display:flex!important;width:calc(100% - 20px)!important}#pagina-plano-personalizado .personalizado-grid,#pagina-plano-personalizado .personalizado-recursos{grid-template-columns:1fr!important}#pagina-plano-personalizado .personalizado-hero h1{font-size:30px!important}}
-</style><script id="EMPREGAMAIS-PLANO-PERSONALIZADO-NAV-V1">function abrirPlanoPersonalizadoEM(){irPara('plano-personalizado')}</script><style id="EMPREGAMAIS-DESTAQUES-FAIXA-V1">
-#pagina-home .destaques-faixa-em{margin:14px 8px 0;padding:14px 16px 16px;border:1px solid #cfe1ec;border-radius:15px;background:linear-gradient(110deg,#f1f9fd,#eaf6fc);box-shadow:0 5px 16px rgba(19,79,113,.045)}
+</style><script id="EMPREGAMAIS-PLANO-PERSONALIZADO-NAV-V1">function abrirPlanoPersonalizadoEM(){irPara('plano-personalizado')}</script><style id="EMPREGAMAIS-DESTAQUES-FAIXA-V2">
+/* Faixa secundária dos mesmos destaques — compacta e integrada à home */
+#pagina-home .home-destaques{padding-bottom:14px!important}
+#pagina-home .destaques-wrap{padding-bottom:2px!important}
+#pagina-home .destaques-faixa-em{margin:5px 8px 0;padding:8px 10px 9px;border:0;border-top:1px solid #d7e7ef;border-bottom:1px solid #d7e7ef;border-radius:0;background:transparent;box-shadow:none}
 #pagina-home .destaques-faixa-em.oculto{display:none!important}
-#pagina-home .destaques-faixa-head{display:flex;align-items:center;justify-content:space-between;gap:18px;margin-bottom:11px}
-#pagina-home .destaques-faixa-head>div:first-child{display:flex;align-items:baseline;gap:13px;min-width:0}
-#pagina-home .destaques-faixa-head strong{font-size:15px;color:#07365c;font-weight:850;white-space:nowrap}
-#pagina-home .destaques-faixa-head span{font-size:9.5px;color:#617d8e}
-#pagina-home .destaques-faixa-head>div:last-child{display:flex;gap:7px}
-#pagina-home .destaques-faixa-head button{width:31px;height:31px;border:1px solid #acd2e6;border-radius:50%;background:#fff;color:#0873b2;font-size:18px;cursor:pointer}
-#pagina-home .destaques-faixa-track{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;overflow:hidden}
-#pagina-home .destaque-mini-em{min-width:0;padding:12px;border:1px solid #d6e5ed;border-radius:12px;background:#fff;cursor:pointer;box-shadow:0 3px 10px rgba(13,70,102,.04);transition:.18s}
-#pagina-home .destaque-mini-em:hover{transform:translateY(-2px);border-color:#8fc8e2;box-shadow:0 7px 16px rgba(13,70,102,.09)}
-#pagina-home .destaque-mini-top{display:grid;grid-template-columns:38px minmax(0,1fr);gap:10px;align-items:center}
-#pagina-home .destaque-mini-logo{width:38px;height:38px;object-fit:contain;padding:4px;border:1px solid #e1e9ee;border-radius:9px;background:#fff;box-sizing:border-box}
-#pagina-home .destaque-mini-logo.fallback{display:grid;place-items:center;background:#eef6fa;color:#07547d;font-size:14px;font-weight:850}
-#pagina-home .destaque-mini-em h3{margin:0 0 3px;font-size:11px;line-height:1.25;color:#07365c;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-#pagina-home .destaque-mini-em p{margin:0;font-size:9px;color:#587486;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-#pagina-home .destaque-mini-local{display:block;margin:9px 0 8px;font-size:9px;color:#42697f;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-#pagina-home .destaque-mini-tags{display:flex;gap:5px;flex-wrap:wrap}
-#pagina-home .destaque-mini-tags span{padding:4px 7px;border-radius:999px;background:#eef5f9;color:#315d76;font-size:8px;font-weight:750}
-@media(max-width:900px){#pagina-home .destaques-faixa-track{grid-template-columns:repeat(2,minmax(0,1fr))}}
-@media(max-width:560px){#pagina-home .destaques-faixa-em{margin-left:0;margin-right:0;padding:13px}#pagina-home .destaques-faixa-head>div:first-child{display:block}#pagina-home .destaques-faixa-head span{display:block;margin-top:3px}#pagina-home .destaques-faixa-track{grid-template-columns:1fr}}
+#pagina-home .destaques-faixa-head{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:7px;padding:0 2px}
+#pagina-home .destaques-faixa-head>div:first-child{display:flex;align-items:baseline;gap:12px;min-width:0}
+#pagina-home .destaques-faixa-head strong{font-size:16px;line-height:1.15;color:#052f52;font-weight:850;white-space:nowrap}
+#pagina-home .destaques-faixa-head span{font-size:10.5px;color:#4e6d80;font-weight:550}
+#pagina-home .destaques-faixa-head>div:last-child{display:flex;gap:6px}
+#pagina-home .destaques-faixa-head button{width:29px;height:29px;border:1px solid #9dc8de;border-radius:50%;background:#fff;color:#075f91;font-size:18px;line-height:1;cursor:pointer}
+#pagina-home .destaques-faixa-track{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:9px;overflow:hidden}
+#pagina-home .destaque-mini-em{min-width:0;padding:9px 10px 8px;border:0;border-right:1px solid #dce8ee;border-radius:0;background:transparent;cursor:pointer;box-shadow:none;transition:.16s}
+#pagina-home .destaque-mini-em:last-child{border-right:0}
+#pagina-home .destaque-mini-em:hover{transform:none;background:#f4f9fc}
+#pagina-home .destaque-mini-top{display:grid;grid-template-columns:48px minmax(0,1fr);gap:10px;align-items:center}
+#pagina-home .destaque-mini-logo{width:48px;height:48px;object-fit:contain;padding:5px;border:1px solid #d7e4eb;border-radius:10px;background:#fff;box-sizing:border-box}
+#pagina-home .destaque-mini-logo.fallback{display:grid;place-items:center;background:#edf6fa;color:#064f78;font-size:17px;font-weight:850}
+#pagina-home .destaque-mini-em h3{margin:0 0 4px;font-size:12px;line-height:1.2;color:#052f52;font-weight:850;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+#pagina-home .destaque-mini-em p{margin:0;font-size:10px;line-height:1.2;color:#496a7d;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+#pagina-home .destaque-mini-local{display:block;margin:6px 0 6px;font-size:9.5px;line-height:1.15;color:#365f77;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+#pagina-home .destaque-mini-tags{display:flex;gap:5px;flex-wrap:nowrap;overflow:hidden}
+#pagina-home .destaque-mini-tags span{padding:4px 7px;border-radius:999px;background:#e8f3f8;color:#174f6d;font-size:8.5px;line-height:1;font-weight:800;white-space:nowrap}
+#pagina-home .home-recentes{margin-top:10px!important;padding-top:0!important}
+@media(max-width:900px){#pagina-home .destaques-faixa-track{grid-template-columns:repeat(2,minmax(0,1fr))}#pagina-home .destaque-mini-em:nth-child(2){border-right:0}}
+@media(max-width:560px){#pagina-home .destaques-faixa-em{margin:3px 0 0;padding:8px 4px}#pagina-home .destaques-faixa-head>div:first-child{display:block}#pagina-home .destaques-faixa-head span{display:block;margin-top:3px}#pagina-home .destaques-faixa-track{grid-template-columns:1fr}#pagina-home .destaque-mini-em{border-right:0;border-bottom:1px solid #dce8ee}#pagina-home .destaque-mini-logo{width:44px;height:44px}#pagina-home .destaque-mini-top{grid-template-columns:44px minmax(0,1fr)}}
 </style></body></html>
