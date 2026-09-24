@@ -1777,8 +1777,14 @@ function toggleDetalhesAderenciaEM(){
   }
   return originalAderencia(v);
  };
+ const originalRenderVaga=renderizarVagaDetalhe;
+ renderizarVagaDetalhe=async function(){
+  if(papelAtual()==='candidato')await sincronizarCandidatoLogadoSupabaseEM();
+  return originalRenderVaga();
+ };
  const originalPreparar=prepararCandidatura;
- prepararCandidatura=function(){
+ prepararCandidatura=async function(){
+  if(papelAtual()==='candidato')await sincronizarCandidatoLogadoSupabaseEM();
   originalPreparar();
   if(candidatoPremiumAtivoEM())return;
   const pct=document.getElementById('candAderenciaPct'),txt=document.getElementById('candAderenciaTexto'),top=document.getElementById('candAderenciaTopo'),det=document.getElementById('candAderenciaOrientacao'),btn=document.getElementById('candAderenciaDetalhesBtn');
