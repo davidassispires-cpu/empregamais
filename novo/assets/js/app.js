@@ -2027,6 +2027,7 @@ const _renderizarVagasPortalSplitEM=renderizarVagasPortal;
 renderizarVagasPortal=function(){
  _renderizarVagasPortalSplitEM();
  prepararCardsRecentesEM();
+ sincronizarFiltrosRecentesEM();
 };
 
 function filtrarRecentesLateralEM(id,valor){
@@ -2038,6 +2039,19 @@ function sincronizarFiltrosRecentesEM(){
   const a=document.getElementById(lateral),b=document.getElementById(original);
   if(a&&b)a.value=b.value;
  });
+ [['modalidadeRecenteEM','buscaModalidade'],['contratoRecenteEM','filtroContrato']].forEach(([name,id])=>{
+  const atual=document.getElementById(id)?.value||'';
+  document.querySelectorAll('input[name="'+name+'"]').forEach(radio=>{radio.checked=radio.value===atual});
+ });
+ const contrato=document.querySelector('input[name="contratoRecenteEM"]:checked');
+ const outros=contrato?.closest('.recentes-mais-tipos');if(outros)outros.open=true;
+ atualizarContadorFiltrosRecentesEM();
+}
+function atualizarContadorFiltrosRecentesEM(){
+ const ids=['buscaVagas','buscaCidade','buscaModalidade','filtroContrato','filtroArea','filtroSalario'];
+ const quantidade=ids.filter(id=>!!document.getElementById(id)?.value).length;
+ const contador=document.getElementById('filtrosContadorEM');
+ if(contador){contador.textContent=String(quantidade);contador.setAttribute('aria-label',quantidade+' filtros selecionados')}
 }
 function alternarFiltrosRecentesEM(botao){
  const painel=document.getElementById('filtrosVagasLateral');if(!painel)return;
