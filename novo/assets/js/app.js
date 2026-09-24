@@ -980,6 +980,7 @@ function renderDestaquesEM(lista){
  let vis=[];for(let i=0;i<Math.min(qtd,total);i++)vis.push(arr[(indiceDestaquesEM+i)%total]);
  el.innerHTML=vis.map(cardVagaDestaqueEM).join('');
  el.dataset.quantidade=String(vis.length);
+ renderFaixaDestaquesEM(arr);
 }
 function moverDestaques(dir){
  const el=document.getElementById('listaDestaques');if(!el)return;
@@ -991,6 +992,27 @@ function moverDestaques(dir){
  if(indiceDestaquesEM<0)indiceDestaquesEM=todas.length-qtd;
  renderDestaquesEM(todas);
 }
+let indiceFaixaDestaquesEM=0;
+function quantidadeFaixaDestaquesEM(){return window.innerWidth<=560?1:window.innerWidth<=900?2:4}
+function cardDestaqueMiniEM(v){
+ const logo=logoEmpresaVaga(v),nome=v.confidencial?'Empresa confidencial':(v.empresa||'Empresa');
+ const logoHtml=logo?'<img class="destaque-mini-logo" src="'+esc(logo)+'" alt="">':'<span class="destaque-mini-logo fallback">'+esc(nome.charAt(0).toUpperCase())+'</span>';
+ return '<article class="destaque-mini-em" onclick="abrirVaga(\''+v.id+'\')"><div class="destaque-mini-top">'+logoHtml+'<div><h3>'+esc(tituloVaga(v))+'</h3><p>'+esc(nome)+'</p></div></div><span class="destaque-mini-local">⌖ '+esc(v.cidade||'')+(v.estado?' - '+esc(v.estado):'')+'</span><div class="destaque-mini-tags"><span>'+esc(v.modalidade||'Não informado')+'</span><span>'+esc(v.contrato||'Não informado')+'</span></div></article>';
+}
+function renderFaixaDestaquesEM(lista){
+ const box=document.getElementById('listaDestaquesFaixaEM'),wrap=document.getElementById('destaquesFaixaEM');if(!box||!wrap)return;
+ const arr=Array.isArray(lista)?lista:[],principais=Math.min(quantidadeDestaquesVisiveisEM(),arr.length),restantes=arr.slice(principais);
+ if(!restantes.length){wrap.classList.add('oculto');box.innerHTML='';return}
+ wrap.classList.remove('oculto');const qtd=quantidadeFaixaDestaquesEM();if(indiceFaixaDestaquesEM>=restantes.length)indiceFaixaDestaquesEM=0;
+ const vis=[];for(let i=0;i<Math.min(qtd,restantes.length);i++)vis.push(restantes[(indiceFaixaDestaquesEM+i)%restantes.length]);
+ box.innerHTML=vis.map(cardDestaqueMiniEM).join('');
+}
+function moverFaixaDestaquesEM(dir){
+ const todas=vagasPublicas().filter(destaqueAtivo);
+ const restantes=todas.slice(Math.min(quantidadeDestaquesVisiveisEM(),todas.length));if(restantes.length<2)return;
+ indiceFaixaDestaquesEM=(indiceFaixaDestaquesEM+dir+restantes.length)%restantes.length;renderFaixaDestaquesEM(todas);
+}
+
 (function(){let timer=null,pausado=false;function iniciar(){clearInterval(timer);timer=setInterval(function(){const el=document.getElementById('listaDestaques');if(!el||pausado)return;const total=vagasPublicas().filter(destaqueAtivo).slice(0,8).length;if(total>quantidadeDestaquesVisiveisEM())moverDestaques(1)},4500)}document.addEventListener('mouseover',function(e){if(e.target.closest&&e.target.closest('#listaDestaques'))pausado=true});document.addEventListener('mouseout',function(e){if(e.target.closest&&e.target.closest('#listaDestaques'))pausado=false});iniciar()})();
 
 /* EMPREGAMAIS-VERIFICACAO-EMPRESA-V1 */
