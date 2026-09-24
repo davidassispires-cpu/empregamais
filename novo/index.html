@@ -7108,4 +7108,30 @@ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',
 #pagina-home #listaVagasPortal .vaga-logo{width:34px!important;height:34px!important;min-width:34px!important;object-fit:contain!important;border:1px solid #dce7ee!important;border-radius:8px!important;padding:3px!important;background:#fff!important}
 #pagina-home #previewVagaPortal .rec-prev-logo{width:34px!important;height:34px!important;object-fit:contain!important;border-radius:8px!important}
 </style>
+
+<style id="EMPREGAMAIS-LISTA-COMPACTA-V64">
+/* Grade de vagas compacta: 2 colunas x 5 linhas dentro da altura do filtro */
+@media (min-width:901px){
+ #pagina-home #listaVagasPortal{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:10px 14px!important;align-content:start!important}
+ #pagina-home #listaVagasPortal .portal-vaga-nova{min-height:0!important;height:auto!important;padding:12px 14px!important;border-radius:13px!important}
+ #pagina-home #listaVagasPortal .vaga-card-topo{min-height:20px!important;margin-bottom:4px!important}
+ #pagina-home #listaVagasPortal .vaga-selo{padding:4px 8px!important;font-size:7.5px!important}
+ #pagina-home #listaVagasPortal .vaga-identidade{margin-bottom:6px!important}
+ #pagina-home #listaVagasPortal .vaga-identidade-copy h3{font-size:14px!important;line-height:1.18!important;margin-bottom:3px!important}
+ #pagina-home #listaVagasPortal .vaga-identidade-copy p{font-size:10.5px!important;line-height:1.2!important}
+ #pagina-home #listaVagasPortal .vaga-meta{gap:5px!important;margin:6px 0!important}
+ #pagina-home #listaVagasPortal .vaga-meta span{padding:4px 7px!important;font-size:8.5px!important;min-height:23px!important}
+ #pagina-home #listaVagasPortal .vaga-resumo-area{margin:6px 0!important;padding:6px 9px!important}
+ #pagina-home #listaVagasPortal .vaga-resumo{font-size:9px!important;line-height:1.35!important;min-height:24px!important}
+ #pagina-home #listaVagasPortal .vaga-salario-data{margin:3px 0!important}
+ #pagina-home #listaVagasPortal .data-card{font-size:8px!important}
+ #pagina-home #listaVagasPortal .vaga-card-rodape{padding-top:6px!important}
+ #pagina-home #listaVagasPortal .vaga-rodape-salario small{font-size:8px!important}
+ #pagina-home #listaVagasPortal .salario-card{font-size:13px!important}
+ #pagina-home #listaVagasPortal .vaga-ver-btn{min-height:34px!important;padding:0 12px!important;font-size:9px!important}
+ /* Urgente: borda própria em vermelho suave */
+ #pagina-home #listaVagasPortal .portal-vaga-nova:has(.urgente-selo){border:1px solid #efb7b7!important;border-left:4px solid #d85b5b!important;background:linear-gradient(90deg,#fffafa 0,#fff 18%)!important}
+ #pagina-home #listaVagasPortal .portal-vaga-nova:has(.urgente-selo):hover{border-color:#df8e8e!important;box-shadow:0 8px 20px rgba(184,67,67,.10)!important}
+}
+</style>
 </body></html>
