@@ -6989,4 +6989,31 @@ document.addEventListener('click',function(e){if(e.target&&e.target.closest&&e.t
 if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',function(){setTimeout(aplicar,120)});else setTimeout(aplicar,120);
 })();
 </script>
+
+<style id="EMPREGAMAIS-LOCAL-MAPA-V57">
+#pagina-vaga .vaga-info-grid>div:first-child{text-align:center!important;align-items:center!important}
+#pagina-vaga .vaga-info-grid>div:first-child .em-local-detalhes-btn{display:block!important;width:max-content!important;margin:4px auto 0!important;position:relative!important;text-align:center!important;cursor:help!important}
+#pagina-vaga .em-local-hover-card{display:none;position:absolute;left:50%;bottom:calc(100% + 8px);transform:translateX(-50%);width:245px;padding:10px 12px;box-sizing:border-box;border:1px solid #d6e4ed;border-radius:9px;background:#fff;box-shadow:0 10px 25px rgba(18,58,84,.14);color:#425f72;font-size:9.5px;font-weight:550;line-height:1.45;text-align:left;white-space:normal;z-index:100}
+#pagina-vaga .em-local-hover-card:after{content:"";position:absolute;left:50%;bottom:-5px;width:9px;height:9px;background:#fff;border-right:1px solid #d6e4ed;border-bottom:1px solid #d6e4ed;transform:translateX(-50%) rotate(45deg)}
+#pagina-vaga .em-local-detalhes-btn:hover .em-local-hover-card,#pagina-vaga .em-local-detalhes-btn:focus .em-local-hover-card{display:block}
+</style>
+<script id="EMPREGAMAIS-LOCAL-MAPA-V57">
+(function(){
+function preparar(){
+ var grid=document.querySelector('#pagina-vaga .vaga-info-grid'); if(!grid)return;
+ var cell=grid.children[0]; if(!cell)return;
+ var btn=cell.querySelector('.em-local-detalhes-btn'); if(!btn)return;
+ if(btn.querySelector('.em-local-hover-card'))return;
+ var endereco=(cell.getAttribute('data-endereco')||btn.getAttribute('data-endereco')||'').trim();
+ if(!endereco){
+   var forte=(cell.querySelector('strong')?.textContent||'').trim();
+   endereco=forte;
+ }
+ var card=document.createElement('span');card.className='em-local-hover-card';card.textContent=endereco||'Local de trabalho informado pela empresa.';
+ btn.appendChild(card);
+}
+document.addEventListener('click',function(e){if(e.target&&e.target.closest&&e.target.closest('.portal-vaga-nova,[onclick*="vaga"],[onclick*="Vaga"]'))setTimeout(preparar,120)});
+if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',function(){setTimeout(preparar,120)});else setTimeout(preparar,120);
+})();
+</script>
 </body></html>
