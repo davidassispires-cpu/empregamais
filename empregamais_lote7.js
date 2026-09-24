@@ -24,9 +24,16 @@ el.style.display="none";
 }
 }
 window.limparUrgenciaDaPontaV59=limparUrgenciaDaPontaV59;
+function painelEmpresaAtivoV59(){
+var p=document.getElementById("pagina-painel-empresa");
+return !!(p&amp;&amp;(p.classList.contains("ativa")||p.classList.contains("pagina-ativa")));
+}
 window.addEventListener("load",function(){
-setTimeout(limparUrgenciaDaPontaV59,150);
-setTimeout(limparUrgenciaDaPontaV59,700);
+if(painelEmpresaAtivoV59())setTimeout(limparUrgenciaDaPontaV59,180);
+});
+document.addEventListener("empregamais:navegacao",function(ev){
+var p=String((ev&amp;&amp;ev.detail&amp;&amp;ev.detail.pagina)||"");
+if(p==="painel-empresa")setTimeout(limparUrgenciaDaPontaV59,120);
 });
 var corpo=document.getElementById("corpoTabelaPainelRefEM");
 if(corpo&&window.MutationObserver){
@@ -72,7 +79,16 @@ var lista=listaV60();if(!lista)return;
 lista.classList.add("carrossel-destaques-v60");
 if(timerV60)clearInterval(timerV60);
 timerV60=setInterval(function(){
-if(pausadoV60||!lista.isConnected||lista.children.length<2)return;
+if(!lista.isConnected){
+ clearInterval(timerV60);
+ timerV60=null;
+ return;
+}
+var paginaDestaques=document.getElementById("pagina-destaques-v60");
+var home=document.getElementById("pagina-home");
+var visivel=(paginaDestaques&amp;&amp;paginaDestaques.classList.contains("ativa")) ||
+            (home&amp;&amp;home.classList.contains("ativa")&amp;&amp;home.contains(lista));
+if(!visivel||document.hidden||pausadoV60||lista.children.length&lt;2)return;
 var primeiro=lista.querySelector(".vaga-card")||lista.firstElementChild;
 if(!primeiro)return;
 var passo=primeiro.getBoundingClientRect().width+16;
@@ -124,15 +140,14 @@ try{grade.appendChild(criarCardVaga(a[i]));}catch(e){}
 }
 }
 function esconderPaginasV60(){
-var ids=["pagina-inicial","pagina-vagas","pagina-vaga","pagina-cadastro","pagina-candidato","pagina-empresa","pagina-painel-empresa","pagina-planos","pagina-contato","pagina-ajuda"];
-for(var i=0;i<ids.length;i++){
-var el=document.getElementById(ids[i]);if(el)el.style.display="none";
-}
+if(typeof window.esconderPaginas==="function"){window.esconderPaginas();return;}
+document.querySelectorAll(".pagina").forEach(function(el){el.classList.remove("ativa");});
 }
 window.abrirPaginaDestaquesV60=function(semHistorico){
 var p=garantirPaginaV60();
 esconderPaginasV60();
-p.style.display="block";
+p.classList.add("ativa");
+p.style.removeProperty("display");
 renderPaginaV60();
 if(!semHistorico){
 try{history.pushState({pagina:"destaques-v60"},"","?pagina=vagas-em-destaque");}catch(e){}
@@ -148,16 +163,27 @@ window.addEventListener("popstate",function(){
 var q="";
 try{q=new URLSearchParams(location.search).get("pagina")||"";}catch(e){}
 if(q==="vagas-em-destaque"){abrirPaginaDestaquesV60(true);return;}
-var p=document.getElementById("pagina-destaques-v60");if(p)p.style.display="none";
+var p=document.getElementById("pagina-destaques-v60");
+if(p){p.classList.remove("ativa");p.style.removeProperty("display");}
 try{if(typeof irPara==="function")irPara(q||"inicio");}catch(e){location.reload();}
 });
 function aplicarV60(){
 prepararCabecalhoV60();
 iniciarCarrosselV60();
 }
+function destaquesAtivosV60(){
+var q="";
+try{q=new URLSearchParams(location.search).get("pagina")||"";}catch(e){}
+var p=document.getElementById("pagina-destaques-v60");
+return q==="vagas-em-destaque" || !!(p&amp;&amp;(p.classList.contains("ativa")||p.classList.contains("pagina-ativa")));
+}
 window.addEventListener("load",function(){
 garantirPaginaV60();rotaInicialV60();
-setTimeout(aplicarV60,250);setTimeout(aplicarV60,1100);
+if(destaquesAtivosV60())setTimeout(aplicarV60,220);
+});
+document.addEventListener("empregamais:navegacao",function(ev){
+var p=String((ev&amp;&amp;ev.detail&amp;&amp;ev.detail.pagina)||"");
+if(p==="vagas-em-destaque")setTimeout(aplicarV60,140);
 });
 var lista=listaV60();
 if(lista&&window.MutationObserver){
@@ -296,11 +322,18 @@ setTimeout(prepararSeloVerificadoV74,250);
 }else{
 setTimeout(prepararSeloVerificadoV74,250);
 }
-var obsV74=new MutationObserver(function(){
-prepararSeloVerificadoV74();
-});
 var paginaV74=document.getElementById('pagina-vaga');
-if(paginaV74){
+if(paginaV74 && window.MutationObserver){
+var timerV74=null;
+var obsV74=new MutationObserver(function(muts){
+var precisa=false;
+for(var i=0;i<muts.length;i++){
+if(muts[i].addedNodes&&muts[i].addedNodes.length){precisa=true;break;}
+}
+if(!precisa)return;
+clearTimeout(timerV74);
+timerV74=setTimeout(prepararSeloVerificadoV74,80);
+});
 obsV74.observe(paginaV74,{childList:true,subtree:true});
 }
 })();
@@ -339,17 +372,26 @@ try{ aplicarDistanciaCanonicaCardsEM(); }catch(e){}
 limparDistanciasDuplicadasV76(document);
 }
 window.EmpregaMaisAtualizarDistanciaUnica=atualizarUnicaDistanciaV76;
+function homeAtivaV76(){
+var p=document.getElementById("pagina-home");
+return !!(p&amp;&amp;(p.classList.contains("ativa")||p.classList.contains("pagina-ativa")));
+}
 window.addEventListener("load",function(){
-[150,700,1400,2400].forEach(function(ms){
-setTimeout(atualizarUnicaDistanciaV76,ms);
+if(homeAtivaV76())setTimeout(atualizarUnicaDistanciaV76,220);
 });
+document.addEventListener("empregamais:navegacao",function(ev){
+var p=String((ev&amp;&amp;ev.detail&amp;&amp;ev.detail.pagina)||"");
+if(p==="inicio"||p==="home")setTimeout(atualizarUnicaDistanciaV76,140);
 });
-var alvo=document.getElementById("pagina-home")||document.body;
-if(alvo){
+var alvo=document.getElementById("pagina-home");
+if(alvo&&window.MutationObserver){
 var timerV76=null;
-new MutationObserver(function(){
+new MutationObserver(function(muts){
+var precisa=false;
+for(var i=0;i<muts.length;i++)if(muts[i].addedNodes&&muts[i].addedNodes.length){precisa=true;break;}
+if(!precisa)return;
 clearTimeout(timerV76);
-timerV76=setTimeout(atualizarUnicaDistanciaV76,60);
+timerV76=setTimeout(atualizarUnicaDistanciaV76,80);
 }).observe(alvo,{childList:true,subtree:true});
 }
 })();
@@ -486,11 +528,19 @@ var r=abrirAntesV77.apply(this,arguments);
 return r;
 };
 }
+function vagaDetalheAtivaV77(){
+var p=document.getElementById("pagina-vaga");
+return !!(p&amp;&amp;(p.classList.contains("ativa")||p.classList.contains("pagina-ativa")));
+}
 window.addEventListener("load",function(){
-[100,350,800,1500,2500].forEach(function(ms){setTimeout(renderV77,ms);});
+if(vagaDetalheAtivaV77())setTimeout(renderV77,220);
 });
 window.addEventListener("popstate",function(){
-[50,250,700].forEach(function(ms){setTimeout(renderV77,ms);});
+if(vagaDetalheAtivaV77())setTimeout(renderV77,120);
+});
+document.addEventListener("empregamais:navegacao",function(ev){
+var p=String((ev&amp;&amp;ev.detail&amp;&amp;ev.detail.pagina)||"");
+if(p==="vaga"||p==="detalhe-vaga")setTimeout(renderV77,140);
 });
 })();
 //
@@ -538,9 +588,16 @@ if(bloquearAderenciaV78())return false;
 return typeof aderenciaAnteriorV78==="function"?aderenciaAnteriorV78.apply(this,arguments):false;
 };
 window.renderizarAderenciaFinalEM=window.renderizarAderenciaVagaEM;
+function vagaAtivaV78(){
+var p=document.getElementById("pagina-vaga");
+return !!(p&amp;&amp;(p.classList.contains("ativa")||p.classList.contains("pagina-ativa")));
+}
 window.addEventListener("load",function(){
-setTimeout(bloquearAderenciaV78,350);
-setTimeout(bloquearAderenciaV78,1000);
+if(vagaAtivaV78())setTimeout(bloquearAderenciaV78,220);
+});
+document.addEventListener("empregamais:navegacao",function(ev){
+var p=String((ev&amp;&amp;ev.detail&amp;&amp;ev.detail.pagina)||"");
+if(p==="vaga"||p==="detalhe-vaga")setTimeout(bloquearAderenciaV78,140);
 });
 })();
 //
@@ -567,13 +624,26 @@ btn.setAttribute("aria-label","Gerenciar plano da empresa");
 });
 }
 window.abrirGerenciarPlanoEmpresaV81=abrirPlanoV81;
+function painelEmpresaAtivoV81(){
+var p=document.getElementById("pagina-painel-empresa");
+return !!(p&amp;&amp;(p.classList.contains("ativa")||p.classList.contains("pagina-ativa")));
+}
 window.addEventListener("load",function(){
-setTimeout(prepararV81,950);
-setTimeout(prepararV81,1800);
+if(painelEmpresaAtivoV81())setTimeout(prepararV81,220);
+});
+document.addEventListener("empregamais:navegacao",function(ev){
+var p=String((ev&amp;&amp;ev.detail&amp;&amp;ev.detail.pagina)||"");
+if(p==="painel-empresa")setTimeout(prepararV81,140);
 });
 var alvo=document.getElementById("pagina-painel-empresa");
-if(alvo){
-new MutationObserver(function(){prepararV81();}).observe(alvo,{childList:true,subtree:true});
+if(alvo&&window.MutationObserver){
+var tmV81=0;
+new MutationObserver(function(muts){
+var mudou=false;
+for(var i=0;i<muts.length;i++)if(muts[i].addedNodes&&muts[i].addedNodes.length){mudou=true;break;}
+if(!mudou)return;
+clearTimeout(tmV81);tmV81=setTimeout(prepararV81,80);
+}).observe(alvo,{childList:true,subtree:true});
 }
 })();
 //
@@ -727,17 +797,26 @@ canonicas[0].removeAttribute("hidden");
 executandoV83=false;
 }
 window.EmpregaMaisAtualizarDistanciaPreviaV83=garantirDistanciaPreviaV83;
+function homeAtivaV83(){
+var p=document.getElementById("pagina-home");
+return !!(p&amp;&amp;(p.classList.contains("ativa")||p.classList.contains("pagina-ativa")));
+}
 window.addEventListener("load",function(){
-[150,500,1000,1800,3000].forEach(function(ms){
-setTimeout(garantirDistanciaPreviaV83,ms);
+if(homeAtivaV83())setTimeout(garantirDistanciaPreviaV83,220);
 });
+document.addEventListener("empregamais:navegacao",function(ev){
+var p=String((ev&amp;&amp;ev.detail&amp;&amp;ev.detail.pagina)||"");
+if(p==="inicio"||p==="home")setTimeout(garantirDistanciaPreviaV83,160);
 });
 var home=document.getElementById("pagina-home");
 if(home){
 var timerV83=null;
-new MutationObserver(function(){
+new MutationObserver(function(muts){
+var precisa=false;
+for(var i=0;i<muts.length;i++)if(muts[i].addedNodes&&muts[i].addedNodes.length){precisa=true;break;}
+if(!precisa)return;
 clearTimeout(timerV83);
-timerV83=setTimeout(garantirDistanciaPreviaV83,100);
+timerV83=setTimeout(garantirDistanciaPreviaV83,120);
 }).observe(home,{childList:true,subtree:true});
 }
 })();

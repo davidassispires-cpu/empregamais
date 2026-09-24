@@ -156,26 +156,12 @@ box.innerHTML="&lt;div class='vazio'&gt;N\u00E3o foi poss\u00EDvel carregar as v
 });
 };
 window.carregarVerificacoesAdminSupabaseEM=window.renderizarVerificacoesAdmin;
-var irAnterior=window.irPara;
-if(typeof irAnterior==="function"){
-window.irPara=function(p){
-var r=irAnterior.apply(this,arguments);
-if(String(p)==="painel-admin" || String(p)==="admin"){
+document.addEventListener("empregamais:navegacao",function(ev){
+var p=String((ev&amp;&amp;ev.detail&amp;&amp;ev.detail.pagina)||"");
+if(p==="painel-admin" || p==="admin"){
 setTimeout(window.renderizarVerificacoesAdmin,180);
 }
-return r;
-};
-}
-var mostrarAnterior=window.mostrarPagina;
-if(typeof mostrarAnterior==="function"){
-window.mostrarPagina=function(p){
-var r=mostrarAnterior.apply(this,arguments);
-if(String(p)==="painel-admin" || String(p)==="admin"){
-setTimeout(window.renderizarVerificacoesAdmin,180);
-}
-return r;
-};
-}
+});
 document.addEventListener("DOMContentLoaded",function(){
 if(localStorage.getItem(TOKEN_KEY)){
 setTimeout(window.renderizarVerificacoesAdmin,700);
@@ -342,19 +328,10 @@ try{
 localStorage.setItem("empregaMaisPapel","admin");
 sessionStorage.setItem("empregaMaisPapel","admin");
 }catch(e){}
-if(typeof mostrarPagina==="function"){
-try{mostrarPagina("painel-admin");}catch(e){}
-}
 if(typeof irPara==="function"){
 try{irPara("painel-admin");}catch(e){}
-}
-var painel=document.getElementById("pagina-painel-admin");
-if(painel){
-document.querySelectorAll(".pagina").forEach(function(p){
-if(p!==painel) p.classList.remove("ativa");
-});
-painel.classList.add("ativa");
-painel.style.display="";
+}else if(typeof mostrarPagina==="function"){
+try{mostrarPagina("painel-admin");}catch(e){}
 }
 if(typeof renderizarPainelAdmin==="function"){
 try{renderizarPainelAdmin();}catch(e){}
@@ -368,21 +345,30 @@ window.scrollTo(0,0);
 }
 window.abrirPainelAdminEM=abrirPainelAdminEM;
 var ultimoToken="";
-setInterval(function(){
-var t="";
-try{t=localStorage.getItem("empregaMaisAdminSupabaseToken")||"";}catch(e){}
-if(t &amp;&amp; t!==ultimoToken){
-ultimoToken=t;
-setTimeout(abrirPainelAdminEM,180);
+function tokenAdminAtualEM(){
+try{return localStorage.getItem("empregaMaisAdminSupabaseToken")||"";}catch(e){return "";}
 }
-if(!t) ultimoToken="";
-},250);
+function sincronizarTokenAdminEM(){
+var t=tokenAdminAtualEM();
+if(t &amp;&amp; t!==ultimoToken){
+ ultimoToken=t;
+ setTimeout(abrirPainelAdminEM,180);
+}
+if(!t)ultimoToken="";
+}
+/* Evita polling a cada 250 ms, que podia reabrir o painel durante outras
+   navegações. Reage apenas à inicialização e a mudanças reais no storage. */
+window.addEventListener("storage",function(ev){
+if(ev.key==="empregaMaisAdminSupabaseToken")sincronizarTokenAdminEM();
+});
 document.addEventListener("DOMContentLoaded",function(){
-var t="";
-try{t=localStorage.getItem("empregaMaisAdminSupabaseToken")||"";}catch(e){}
+var t=tokenAdminAtualEM();
 if(t){
-ultimoToken=t;
-setTimeout(abrirPainelAdminEM,300);
+ ultimoToken=t;
+ var q=new URLSearchParams(location.search);
+ if(q.get("pagina")==="painel-admin" || q.get("pagina")==="admin"){
+  setTimeout(abrirPainelAdminEM,300);
+ }
 }
 });
 })();
@@ -490,7 +476,16 @@ setTimeout(adicionarBotoesVer,350);
 }catch(e){}
 return r;
 };
-var obs=new MutationObserver(function(){adicionarBotoesVer();});
+var obsTimerVerEM=0;
+var obs=new MutationObserver(function(muts){
+var precisa=false;
+for(var i=0;i<muts.length;i++){
+ if(muts[i].addedNodes&amp;&amp;muts[i].addedNodes.length){precisa=true;break;}
+}
+if(!precisa)return;
+clearTimeout(obsTimerVerEM);
+obsTimerVerEM=setTimeout(adicionarBotoesVer,80);
+});
 document.addEventListener("DOMContentLoaded",function(){
 var box=document.getElementById("listaVerificacoesAdmin");
 if(box) obs.observe(box,{childList:true,subtree:true});
@@ -602,22 +597,12 @@ console.error("Status verifica\u00E7\u00E3o recrutador:",e);
 return null;
 }
 };
-var ir0=window.irPara;
-if(typeof ir0==="function"){
-window.irPara=function(p){
-var r=ir0.apply(this,arguments);
-if(String(p).indexOf("recrut")&gt;=0) setTimeout(window.atualizarStatusVerificacaoRecrutadorEM,180);
-return r;
-};
+document.addEventListener("empregamais:navegacao",function(ev){
+var p=String((ev&amp;&amp;ev.detail&amp;&amp;ev.detail.pagina)||"");
+if(p.indexOf("recrut")&gt;=0 || p==="painel-empresa"){
+setTimeout(window.atualizarStatusVerificacaoRecrutadorEM,180);
 }
-var mostrar0=window.mostrarPagina;
-if(typeof mostrar0==="function"){
-window.mostrarPagina=function(p){
-var r=mostrar0.apply(this,arguments);
-if(String(p).indexOf("recrut")&gt;=0) setTimeout(window.atualizarStatusVerificacaoRecrutadorEM,180);
-return r;
-};
-}
+});
 document.addEventListener("DOMContentLoaded",function(){
 setTimeout(window.atualizarStatusVerificacaoRecrutadorEM,500);
 setTimeout(window.atualizarStatusVerificacaoRecrutadorEM,1400);
@@ -727,18 +712,15 @@ console.error("EmpregaMais / status Supabase:",e);
 return null;
 }
 };
-var ir=window.irPara;
-if(typeof ir==="function"){
-window.irPara=function(p){
-var r=ir.apply(this,arguments);
-var pg=String(p||"");
+/* A sincronização de verificação reage ao evento central de navegação.
+   Evita adicionar mais uma sobrescrita de window.irPara. */
+document.addEventListener("empregamais:navegacao",function(ev){
+var pg=String((ev&&ev.detail&&ev.detail.pagina)||"");
 if(pg==="painel-empresa" || pg==="verificacao-empresa" || pg==="perfil-empresa"){
 setTimeout(window.sincronizarVerificacaoEmpresaSupabaseEM,100);
 setTimeout(window.sincronizarVerificacaoEmpresaSupabaseEM,500);
 }
-return r;
-};
-}
+});
 document.addEventListener("DOMContentLoaded",function(){
 if(token()){
 setTimeout(window.sincronizarVerificacaoEmpresaSupabaseEM,250);
@@ -783,15 +765,27 @@ var cards=box.querySelectorAll(".admin-verificacao-card").length;
 bver.textContent=String(cards);
 }
 }
+var obsBadgesAdminEM=null,timerBadgesAdminEM=0;
 function iniciar(){
 var pagina=document.getElementById("pagina-painel-admin");
 if(!pagina) return;
 window.abrirAbaAdminEM(abaAtual);
 badges();
-var obs=new MutationObserver(badges);
+if(obsBadgesAdminEM)obsBadgesAdminEM.disconnect();
+obsBadgesAdminEM=new MutationObserver(function(muts){
+var precisa=false;
+for(var i=0;i<muts.length;i++){
+ if((muts[i].addedNodes&amp;&amp;muts[i].addedNodes.length) ||
+    (muts[i].removedNodes&amp;&amp;muts[i].removedNodes.length) ||
+    muts[i].type==="characterData"){precisa=true;break;}
+}
+if(!precisa)return;
+clearTimeout(timerBadgesAdminEM);
+timerBadgesAdminEM=setTimeout(badges,60);
+});
 ["adminPendentes","listaVerificacoesAdmin"].forEach(function(id){
 var el=document.getElementById(id);
-if(el) obs.observe(el,{childList:true,subtree:true,characterData:true});
+if(el) obsBadgesAdminEM.observe(el,{childList:true,subtree:true,characterData:true});
 });
 }
 document.addEventListener("DOMContentLoaded",function(){setTimeout(iniciar,250);});

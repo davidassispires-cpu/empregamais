@@ -28,9 +28,29 @@ b.setAttribute("data-candidatar-v94","1");
 }
 });
 }
-window.addEventListener("load",function(){setTimeout(corrigirBotoesV95,600)});
-document.addEventListener("click",function(){setTimeout(corrigirBotoesV95,80)},false);
-new MutationObserver(corrigirBotoesV95).observe(document.documentElement,{childList:true,subtree:true});
+function vagaAtivaV95(){
+var p=document.getElementById("pagina-vaga");
+return !!(p&amp;&amp;(p.classList.contains("ativa")||p.classList.contains("pagina-ativa")));
+}
+window.addEventListener("load",function(){if(vagaAtivaV95())setTimeout(corrigirBotoesV95,220)});
+document.addEventListener("click",function(e){
+var p=document.getElementById("pagina-vaga");
+if(p&amp;&amp;p.contains(e.target))setTimeout(corrigirBotoesV95,80);
+},false);
+document.addEventListener("empregamais:navegacao",function(ev){
+var p=String((ev&amp;&amp;ev.detail&amp;&amp;ev.detail.pagina)||"");
+if(p==="vaga"||p==="detalhe-vaga")setTimeout(corrigirBotoesV95,140);
+});
+/* Observa somente a página da vaga. Evita varrer o documento inteiro a cada
+   alteração de DOM, o que podia gerar lentidão e interferir nos cliques. */
+var paginaV95=document.getElementById("pagina-vaga");
+if(paginaV95 && window.MutationObserver){
+var timerV95=null;
+new MutationObserver(function(){
+clearTimeout(timerV95);
+timerV95=setTimeout(corrigirBotoesV95,80);
+}).observe(paginaV95,{childList:true,subtree:true});
+}
 window.corrigirBotoesV95=corrigirBotoesV95;
 })();
 //
@@ -180,7 +200,19 @@ document.addEventListener("DOMContentLoaded",limparV99);
 limparV99();
 }
 window.addEventListener("load",function(){setTimeout(limparV99,250)});
-new MutationObserver(limparV99).observe(document.documentElement,{childList:true,subtree:true});
+var headerV99=document.querySelector("header");
+if(headerV99 && window.MutationObserver){
+var timerV99=null;
+new MutationObserver(function(muts){
+var precisa=false;
+for(var i=0;i<muts.length;i++){
+if(muts[i].addedNodes&&muts[i].addedNodes.length){precisa=true;break;}
+}
+if(!precisa)return;
+clearTimeout(timerV99);
+timerV99=setTimeout(limparV99,60);
+}).observe(headerV99,{childList:true,subtree:true});
+}
 })();
 //
 ;
@@ -215,7 +247,19 @@ area.classList.remove("open");
 if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",neutralizarV100);
 else neutralizarV100();
 window.addEventListener("load",function(){setTimeout(neutralizarV100,200)});
-new MutationObserver(neutralizarV100).observe(document.documentElement,{childList:true,subtree:true});
+var headerV100=document.querySelector("header");
+if(headerV100 && window.MutationObserver){
+var timerV100=null;
+new MutationObserver(function(muts){
+var precisa=false;
+for(var i=0;i<muts.length;i++){
+if(muts[i].addedNodes&&muts[i].addedNodes.length){precisa=true;break;}
+}
+if(!precisa)return;
+clearTimeout(timerV100);
+timerV100=setTimeout(neutralizarV100,60);
+}).observe(headerV100,{childList:true,subtree:true});
+}
 })();
 //
 ;
@@ -228,6 +272,10 @@ return !!String(sessionStorage.getItem("candidatoEmail")||localStorage.getItem("
 function abrir(){
 if(logado()){
 if(typeof window.irPara==="function")window.irPara("curriculo");
+return;
+}
+if(typeof window.abrirPaginaCadastroCandidatoV103==="function"){
+window.abrirPaginaCadastroCandidatoV103();
 return;
 }
 if(typeof window.mostrarPagina==="function"){
@@ -263,6 +311,7 @@ e.preventDefault();e.stopImmediatePropagation();abrir();
 }
 },true);
 var f=document.getElementById("formCadastroCandidatoV101");
+if(!f)return;
 f.addEventListener("submit",function(e){
 e.preventDefault();
 var senha=document.getElementById("cv101Senha").value,senha2=document.getElementById("cv101Senha2").value;
@@ -283,9 +332,17 @@ setTimeout(function(){if(typeof window.irPara==="function")window.irPara("curric
 });
 function rota(){
 var q=new URLSearchParams(location.search);
-if(q.get("pagina")===PAGE&&!logado())setTimeout(abrir,80);
+if(q.get("pagina")!==PAGE)return;
+if(logado()){
+ if(typeof window.irPara==="function")window.irPara("curriculo");
+ return;
 }
-window.addEventListener("load",rota);
+if(typeof window.abrirPaginaCadastroCandidatoV103==="function")window.abrirPaginaCadastroCandidatoV103();
+else abrir();
+}
+/* Uma única restauração de rota evita duas implementações diferentes
+   disputarem a página após o F5. */
+window.addEventListener("load",function(){setTimeout(rota,80);});
 })();
 //
 ;
@@ -361,9 +418,17 @@ document.addEventListener("DOMContentLoaded",preparar);
 preparar();
 }
 window.addEventListener("load",function(){setTimeout(corrigirRodape,150)});
-new MutationObserver(function(){
-if(pagina.classList.contains("ativa"))corrigirRodape();
+if(window.MutationObserver){
+var timerRodapeV101=0;
+new MutationObserver(function(muts){
+if(!pagina.classList.contains("ativa"))return;
+var relevante=false;
+for(var i=0;i<muts.length;i++)if(muts[i].addedNodes&&muts[i].addedNodes.length){relevante=true;break;}
+if(!relevante)return;
+clearTimeout(timerRodapeV101);
+timerRodapeV101=setTimeout(corrigirRodape,80);
 }).observe(document.body,{childList:true,subtree:false});
+}
 })();
 //
 ;
@@ -389,12 +454,16 @@ return;
 if(typeof window.esconderPaginas==="function"){
 window.esconderPaginas();
 }else{
-document.querySelectorAll(".pagina").forEach(function(x){x.classList.remove("ativa")});
+/* Fallback restrito: não altera páginas fora do contêiner principal. */
+var main=document.querySelector("main");
+if(main)main.querySelectorAll(".pagina").forEach(function(x){x.classList.remove("ativa")});
 }
 var home=document.getElementById("pagina-home");
-if(home){home.classList.remove("ativa");home.style.display="none"}
+if(home)home.classList.remove("ativa");
 p.classList.add("ativa");
-p.style.display="flex";
+/* A visibilidade fica a cargo das classes/CSS da página; display inline
+   fazia o layout sobreviver à navegação seguinte e causava troca visual. */
+p.style.removeProperty("display");
 if(typeof window.fecharMenusConta==="function")window.fecharMenusConta();
 if(typeof window.atualizarTopo==="function")window.atualizarTopo();
 try{
@@ -421,25 +490,23 @@ abrirPaginaCadastroV103();
 }
 }catch(e){}
 }
-var irOriginal=window.irPara;
-if(typeof irOriginal==="function"){
-window.irPara=function(pagina,id){
-if(pagina!=="cadastro-curriculo"){
-p.classList.remove("ativa");
-p.style.display="none";
-var home=document.getElementById("pagina-home");
-if(home)home.style.display="";
+/* Não substitui mais window.irPara. A navegação global já possui uma cadeia
+   de proteções de autenticação/sincronização; sobrescrevê-la aqui criava mais
+   uma camada que alterava display da Home antes da rota terminar. */
+document.addEventListener("empregamais:navegacao",function(ev){
+var pagina=ev&&ev.detail&&ev.detail.pagina;
+if(pagina&&pagina!=="cadastro-curriculo"){
+ p.classList.remove("ativa");
+ p.style.removeProperty("display");
 }
-return irOriginal.apply(this,arguments);
-};
-}
-window.addEventListener("load",function(){setTimeout(pelaURL,80)});
+});
+window.addEventListener("load",function(){setTimeout(pelaURL,100)});
 window.addEventListener("popstate",function(){
 var q=new URLSearchParams(location.search);
 if(q.get("pagina")==="cadastro-curriculo")abrirPaginaCadastroV103();
 else{
-p.classList.remove("ativa");p.style.display="none";
-var home=document.getElementById("pagina-home");if(home)home.style.display="";
+p.classList.remove("ativa");p.style.removeProperty("display");
+var home=document.getElementById("pagina-home");if(home)home.style.removeProperty("display");
 }
 });
 window.abrirPaginaCadastroCandidatoV103=abrirPaginaCadastroV103;
@@ -525,6 +592,10 @@ var pagina=q.get("pagina");
 if(pagina)return;
 var home=document.getElementById("pagina-home");
 if(!home)return;
+/* Só restaura a Home quando nenhuma outra página já está ativa.
+   Evita o timer de inicialização trocar uma tela válida após o F5. */
+var ativa=document.querySelector(".pagina.ativa");
+if(ativa && ativa!==home)return;
 home.style.removeProperty("display");
 if(typeof window.mostrarPagina==="function"){
 window.mostrarPagina("home");

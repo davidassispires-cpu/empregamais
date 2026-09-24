@@ -190,14 +190,21 @@ return false;
 var oldIrPara=window.irPara;
 window.irPara=function(page){
 var p=String(page||"");
-var protectedPage=["painel-empresa","perfil-empresa","verificacao-empresa","publicar-vaga"].indexOf(p)&gt;=0;
-if(!protectedPage) return oldIrPara.apply(this,arguments);
+var protectedPage=["painel-empresa","perfil-empresa","verificacao-empresa","publicar","publicar-vaga"].indexOf(p)&gt;=0;
+if(!protectedPage){
+var r=oldIrPara.apply(this,arguments);
+if(typeof window.EmpregaMaisNavegacaoCentralEM==="function")window.EmpregaMaisNavegacaoCentralEM(p);
+return r;
+}
 var args=arguments, self=this;
 companySessionValid().then(function(ok){
-if(ok) oldIrPara.apply(self,args);
-else{
-clearToken(); clearLegacySession();
-oldIrPara.call(self,"login-empresa");
+if(ok){
+ oldIrPara.apply(self,args);
+ if(typeof window.EmpregaMaisNavegacaoCentralEM==="function")window.EmpregaMaisNavegacaoCentralEM(p);
+}else{
+ clearToken(); clearLegacySession();
+ oldIrPara.call(self,"login-empresa");
+ if(typeof window.EmpregaMaisNavegacaoCentralEM==="function")window.EmpregaMaisNavegacaoCentralEM("login-empresa");
 }
 });
 return false;
@@ -470,14 +477,12 @@ alert("Verifica\u00E7\u00E3o rejeitada.");
 return window.carregarVerificacoesAdminSupabaseEM();
 }).catch(function(e){alert("Erro ao rejeitar: "+e.message);});
 };
-var oldIr=window.irPara;
-window.irPara=function(page){
-var r=oldIr.apply(this,arguments);
-if(String(page)==="admin" &amp;&amp; tok()){
+document.addEventListener("empregamais:navegacao",function(ev){
+var page=String((ev&amp;&amp;ev.detail&amp;&amp;ev.detail.pagina)||"");
+if(page==="admin" &amp;&amp; tok()){
 setTimeout(window.carregarVerificacoesAdminSupabaseEM,120);
 }
-return r;
-};
+});
 })();
 //
 ;

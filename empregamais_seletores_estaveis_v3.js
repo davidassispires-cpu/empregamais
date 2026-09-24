@@ -68,6 +68,21 @@ document.addEventListener("pointerdown",function(e){
 },false);
 document.addEventListener("DOMContentLoaded",function(){aplicar();setTimeout(aplicar,400);setTimeout(aplicar,1000);});
 window.addEventListener("load",function(){setTimeout(aplicar,250);});
-new MutationObserver(function(){setTimeout(aplicar,0);}).observe(document.documentElement,{childList:true,subtree:true});
+/* O formulário é o único escopo que precisa ser observado. Observar o
+   documentElement inteiro fazia esta rotina acordar em alterações de qualquer
+   página e podia multiplicar trabalho durante a navegação. */
+var formObservadoV3=document.getElementById("formVaga");
+if(formObservadoV3 && window.MutationObserver){
+ var timerAplicarV3=null;
+ new MutationObserver(function(muts){
+   var precisa=false;
+   for(var i=0;i<muts.length;i++){
+     if(muts[i].addedNodes&&muts[i].addedNodes.length){precisa=true;break;}
+   }
+   if(!precisa)return;
+   clearTimeout(timerAplicarV3);
+   timerAplicarV3=setTimeout(aplicar,40);
+ }).observe(formObservadoV3,{childList:true,subtree:true});
+}
 window.aplicarSeletoresEstaveisEM=aplicar;
 })();
