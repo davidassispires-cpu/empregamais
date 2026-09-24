@@ -7271,5 +7271,19 @@ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',
 /* Urgente vence qualquer aparência de destaque */
 #pagina-home #listaVagasPortal .portal-vaga-nova.destaque:has(.urgente-selo),
 #pagina-home #listaVagasPortal .portal-vaga-nova:has(.urgente-selo){border:1px solid #e7caca!important;border-left:4px solid #c95757!important;border-top-color:#e7caca!important;background:linear-gradient(90deg,#fffafa 0,#fff 18%)!important}
+
+/* Vagas em destaque mantêm título próprio e não herdam o cabeçalho da lista recente */
+#pagina-home #listaDestaques .vaga-titulo-linha{display:block!important}
+#pagina-home #listaDestaques .vaga-titulo-linha h3{
+ font-size:17px!important;line-height:1.18!important;font-weight:800!important;
+ letter-spacing:-.015em!important;margin:0 0 5px!important;
+ white-space:normal!important;overflow:visible!important;text-overflow:clip!important;
+ display:block!important;-webkit-line-clamp:unset!important;
+}
+#pagina-home #listaDestaques .vaga-titulo-linha .vaga-selos{
+ display:flex!important;justify-content:flex-start!important;align-items:center!important;
+ flex-wrap:wrap!important;gap:5px!important;max-width:100%!important;margin:0 0 5px!important;
+}
+#pagina-home #listaDestaques .vaga-titulo-linha .vaga-selo{white-space:nowrap!important}
 </style>
 </body></html>
