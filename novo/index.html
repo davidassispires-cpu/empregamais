@@ -6833,4 +6833,32 @@ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',
 new MutationObserver(function(){if(document.getElementById('pagina-vaga')?.classList.contains('ativa'))aplicarSalvarTopo();}).observe(document.body,{subtree:true,childList:true,attributes:true,attributeFilter:['class']});
 })();
 </script>
+
+<style id="EMPREGAMAIS-VAGA-LATERAL-V50">
+/* pedido 24/09: salvar apenas no topo; data + denúncia na lateral */
+#pagina-vaga .vaga-acao-v2 .vaga-salvar-principal{display:none!important}
+#pagina-vaga .vaga-acao-v2 .vaga-acao-meta{display:block!important;margin:14px 0 0!important;padding:0!important;text-align:center!important;color:#667d8c!important;font-size:10px!important;line-height:1.4!important}
+#pagina-vaga .vaga-acao-v2 .vaga-denunciar{display:block!important;width:max-content!important;margin:12px auto 0!important;padding:0!important;border:0!important;background:transparent!important;color:#9a6464!important;font-size:10px!important;text-decoration:none!important}
+#pagina-vaga .vaga-hero-card .em-salvar-vaga-topo{min-width:142px!important;height:42px!important;padding:0 18px!important;font-size:10.5px!important;font-weight:700!important}
+</style>
+<script id="EMPREGAMAIS-VAGA-LATERAL-TEXTO-V50">
+(function(){
+function ajustarLateralVaga(){
+ var box=document.querySelector('#pagina-vaga .vaga-acao-v2'); if(!box)return;
+ var meta=box.querySelector('.vaga-acao-meta');
+ if(meta){
+   var tx=(meta.textContent||'').trim();
+   if(tx && !/^Vaga anunciada/i.test(tx)){
+     tx=tx.replace(/^Publicad[ao]\s*/i,'').replace(/^há\s*/i,'');
+     meta.textContent='Vaga anunciada há '+tx;
+   }
+ }
+ var den=box.querySelector('.vaga-denunciar');
+ if(den && meta && den.previousElementSibling!==meta) meta.insertAdjacentElement('afterend',den);
+}
+document.addEventListener('click',function(e){if(e.target&&e.target.closest&&e.target.closest('.portal-vaga-nova,[onclick*="Vaga"],[onclick*="vaga"]'))setTimeout(ajustarLateralVaga,100);});
+if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',ajustarLateralVaga);else ajustarLateralVaga();
+new MutationObserver(ajustarLateralVaga).observe(document.body,{childList:true,subtree:true});
+})();
+</script>
 </body></html>
