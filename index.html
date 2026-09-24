@@ -41039,4 +41039,42 @@ function ligar(){[[1,'emNextStep1V203'],[2,'emNextStep2V203'],[3,'emNextStep3V20
 if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',ligar);else ligar();setTimeout(ligar,500);setTimeout(ligar,1500);
 })();
 </script>
+<style id="em-layout-vagas-duas-colunas-v1">
+/* Listagem de oportunidades: filtros à esquerda e dois cards por linha. */
+@media (min-width: 901px) {
+  #pagina-home #vagas .vagas-area {
+    display: grid !important;
+    grid-template-columns: minmax(220px, 250px) minmax(0, 1fr) !important;
+    gap: 24px !important;
+    align-items: start !important;
+  }
+  #pagina-home #vagas .vagas-area > #filtrosLateral {
+    grid-column: 1;
+    grid-row: 1;
+    width: 100%;
+    min-width: 0;
+  }
+  #pagina-home #vagas .vagas-area > div:first-child {
+    grid-column: 2;
+    grid-row: 1;
+    min-width: 0;
+  }
+  #pagina-home #listaVagas {
+    display: grid !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 16px !important;
+    align-items: stretch !important;
+  }
+  #pagina-home #listaVagas > .vaga-card { width: 100% !important; min-width: 0 !important; height: 100% !important; }
+}
+@media (max-width: 900px) {
+  #pagina-home #vagas .vagas-area { display: flex !important; flex-direction: column; }
+  #pagina-home #vagas .vagas-area > #filtrosLateral { order: -1; width: 100%; }
+  #pagina-home #vagas .vagas-area > div:first-child { width: 100%; min-width: 0; }
+  #pagina-home #listaVagas { display: grid !important; grid-template-columns: 1fr !important; }
+  #pagina-home #filtrosLateral { display: none !important; position: static !important; margin: 0 0 18px; }
+  #pagina-home #filtrosLateral.aberto { display: block !important; }
+  #pagina-home #vagas .btn-mobile-filtros { display: block !important; }
+}
+</style>
 </body></html>
