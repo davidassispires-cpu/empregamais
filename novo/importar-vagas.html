@@ -69,7 +69,9 @@ function field(t,names){for(var i=0;i<names.length;i++){var m=t.match(new RegExp
 function section(t,names,next){var m=t.match(new RegExp('(?:^|\\n)\\s*(?:'+names+')\\s*:\\s*([\\s\\S]*?)(?=\\n\\s*(?:'+next+')\\s*:|$)','i'));return m?m[1].replace(/^\\s*[-•]\\s*/gm,'').trim():''}
 function parse(t,i){
  t=clean(t);var lines=t.split('\n').map(function(x){return x.trim()}).filter(Boolean);
- var cargo=valorLinha(t,['Cargo','Vaga','Função','Oportunidade'])||((t.match(/(?:^|\n)\s*(?:VAGA|OPORTUNIDADE)\s*[:\-]\s*([^\n]+)/i)||[])[1])||lines[0]||'';
+ var cargo=valorLinha(t,['Cargo','Vaga','Função','Oportunidade'])||((t.match(/(?:^|\n)\s*(?:VAGA|OPORTUNIDADE)\s*[:\-]\s*([^\n]+)/i)||[])[1])||'';
+ if(!cargo){var cmCargo=t.match(/(?:vaga|oportunidade)\s+(?:para|de)\s+(?:o\s+cargo\s+de\s+)?([A-Za-zÀ-ÿ][^\n,.;:]{2,70})/i);if(cmCargo)cargo=cmCargo[1].trim()}
+ if(!cargo){var tituloProv=lines.find(function(x){return x.length<=80&&!/\b(?:atua|segmento|empresa|oferecendo|clientes|fundada|mercado)\b/i.test(x)&&!/^(?:sobre|descri[cç][aã]o|requisitos|benef[ií]cios|atividades)\b/i.test(x)});cargo=tituloProv||''}
  cargo=clean(cargo).replace(/^(?:VAGA|CARGO)\s*[:\-]\s*/i,'');
  var empresa=valorLinha(t,['Empresa','Contratante','Empresa contratante']);
  var local=valorLinha(t,['Local de trabalho','Localidade','Local','Cidade']),cidade=local,uf=valorLinha(t,['UF','Estado']),bairro='';
@@ -93,7 +95,7 @@ function parse(t,i){
  if(!experiencia){var ex=t.match(/(?:experi[eê]ncia|experiencia)[^\n:]*[:\-]?\s*([^\n]{2,100})/i);if(ex)experiencia=ex[1].trim();else if(/sem experi[eê]ncia|n[aã]o exige experi[eê]ncia/i.test(t))experiencia='Não exige experiência'}
  var email=(t.match(/[\w.+-]+@[\w.-]+\.[A-Za-z]{2,}/)||[])[0]||'',wm=t.match(/(?:whatsapp|whats)[^\d+]*(\+?\d[\d\s()-]{8,}\d)/i),whatsapp=wm?wm[1].replace(/\D/g,''):'';\n var urls=(t.match(/https?:\/\/[^\s<>\"]+/gi)||[]),linkExterno=urls.find(function(u){return !/wa\.me|whatsapp\.com/i.test(u)})||'';
  var assunto='',asm=t.match(/(?:com o assunto|assunto)\s*:\s*([^\n]+)/i);if(asm)assunto=clean(asm[1]);
- var candidatura=email&&whatsapp?'E-mail + WhatsApp':email?'E-mail':whatsapp?'WhatsApp':'EmpregaMais';
+ var candidatura=linkExterno?'Link externo':email&&whatsapp?'E-mail + WhatsApp':email?'E-mail':whatsapp?'WhatsApp':'EmpregaMais';
  var v={id:i,cargo:cargo,empresa:empresa,area:area,contrato:contrato,modalidade:modalidade,cidade:cidade,uf:uf,bairro:bairro,cep:valorLinha(t,['CEP']),salario:salario,escolaridade:escolaridade,experiencia:experiencia,jornada:jornada,beneficios:beneficios,descricao:descricao,atividades:atividades,requisitos:requisitos,adicionais:adicionais,email:email,whatsapp:whatsapp,linkExterno:linkExterno,assunto:assunto,candidatura:candidatura,divergencia:'',divergenciaAprovada:false};
  v=infer(v,t);v.descricao=limparDescricaoExtraida(v.descricao,v);return v
 }
@@ -137,7 +139,14 @@ function limparDescricaoExtraida(desc,v){
  return s
 }
 function infer(v,t){var all=(String(v.cargo||'')+' '+t).toLowerCase();
-if(!v.empresa){var em=t.match(/(?:empresa|rede|grupo)\s+([A-ZÁÉÍÓÚÂÊÔÃÕÇ][^\n,.;]{2,60})/i)||t.match(/\b(O Botic[aá]rio)\b/i);if(em)v.empresa=em[1]}
+if(!v.empresa){
+ var em=t.match(/(?:empresa|rede|grupo)\s+([A-ZÁÉÍÓÚÂÊÔÃÕÇ][^\n,.;]{2,60})/i)||t.match(/\b(O Botic[aá]rio)\b/i);
+ if(em)v.empresa=clean(em[1]).replace(/\s+(?:atua|atuamos|é|oferece|busca|contrata|está|procura)\b[\s\S]*$/i,'').trim();
+ if(!v.empresa){
+  var ini=String(t||'').split(/\n|[.!?]/)[0].trim(),m=ini.match(/^((?:A|O)\s+)?([A-ZÁÉÍÓÚÂÊÔÃÕÇ0-9][A-Za-zÀ-ÿ0-9&.'’+\- ]{1,70}?)\s+(?:atua|atuamos|é\s+(?:uma|um)|oferece|especializa-se|trabalha)\b/i);
+  if(m)v.empresa=clean(m[2]).replace(/^(?:empresa|grupo|rede)\s+/i,'').trim();
+ }
+}
 if(!v.area){if(/venda|comercial|consultor de loja|vendedor/.test(all))v.area='Vendas';else if(/atendimento|auxiliar de loja|caixa|recepcion/.test(all))v.area='Atendimento';else if(/estoque|logística|logistica|expedi|almoxarif/.test(all))v.area='Logística';else if(/administrativ|assistente administrativo/.test(all))v.area='Administrativo';else if(/financeir|contab|fiscal/.test(all))v.area='Financeiro';else if(/rh|recursos humanos|recrut/.test(all))v.area='Recursos Humanos';else if(/desenvolvedor|programador|tecnologia|suporte ti|\bti\b/.test(all))v.area='TI e Tecnologia'}
 if(!v.escolaridade){if(/ensino fundamental completo/i.test(t))v.escolaridade='Fundamental completo';else if(/ensino m[eé]dio completo/i.test(t))v.escolaridade='Médio completo';else if(/ensino m[eé]dio (?:cursando|incompleto)/i.test(t))v.escolaridade='Médio cursando';else if(/superior completo|gradua[cç][aã]o completa/i.test(t))v.escolaridade='Superior completo';else if(/superior (?:em curso|cursando)|gradua[cç][aã]o em andamento/i.test(t))v.escolaridade='Superior cursando'}
 if(!v.experiencia){var ex=t.match(/(?:experi[eê]ncia|experiencia)[^\n:]*[:\-]?\s*([^\n]{2,100})/i);if(ex)v.experiencia=ex[1].trim();else if(/sem experi[eê]ncia|n[aã]o exige experi[eê]ncia/i.test(t))v.experiencia='Não exige experiência';else if(/experi[eê]ncia[^.\n]*(?:diferencial|desej[aá]vel)/i.test(t))v.experiencia='Desejável / diferencial'}
