@@ -5246,3 +5246,40 @@ overflow:visible!important
 #pagina-home .home-hero-modelo3 .busca-home button:hover{background:#104f65!important}
 @media(max-width:1000px){#pagina-home .home-hero-modelo3 .home-search-wrap{width:calc(100% - 40px)!important}#pagina-home .home-hero-modelo3 .busca-home{grid-template-columns:1fr 1fr!important;gap:5px!important}#pagina-home .home-hero-modelo3 .home-search-field{border:1px solid #e2e8ec!important;border-radius:8px!important}}
 @media(max-width:680px){#pagina-home .home-hero-modelo3 .home-hero-content{min-height:auto!important;padding:25px 0 202px!important}#pagina-home .home-hero-modelo3 h1{font-size:33px!important}#pagina-home .home-hero-job-art{display:none!important}#pagina-home .home-hero-modelo3 .home-search-wrap{bottom:18px!important;width:calc(100% - 28px)!important;padding:7px!important}#pagina-home .home-hero-modelo3 .busca-home{grid-template-columns:1fr!important;gap:6px!important}#pagina-home .home-hero-modelo3 .home-search-field{height:44px!important;border:1px solid #e2e8ec!important;border-radius:8px!important}#pagina-home .home-hero-modelo3 .busca-home button{height:44px!important}}
+
+/* EMPREGAMAIS-HOME-REFERENCIA-PORTAL-V32 */
+#pagina-home{background:#f7f9fc!important}
+#pagina-home .home-hero-modelo3{position:relative!important;overflow:hidden!important;min-height:292px!important;background:linear-gradient(118deg,#123f72 0%,#07528b 55%,#064a7e 100%)!important;border:0!important;color:#fff!important}
+#pagina-home .home-hero-modelo3:before{content:"";position:absolute!important;left:-5%!important;right:-5%!important;bottom:-58px!important;height:92px!important;background:#f7f9fc!important;border-radius:50% 50% 0 0/34% 34% 0 0!important;z-index:1!important}
+#pagina-home .home-hero-modelo3:after{content:"";position:absolute!important;inset:0!important;background:radial-gradient(circle at 82% 12%,rgba(19,160,214,.16),transparent 31%),linear-gradient(160deg,transparent 64%,rgba(0,31,75,.12) 64%)!important;pointer-events:none!important}
+#pagina-home .home-hero-modelo3 .home-hero-content{position:relative!important;z-index:2!important;display:block!important;width:calc(100% - 48px)!important;max-width:1240px!important;min-height:0!important;margin:auto!important;padding:49px 0 112px!important;text-align:center!important}
+#pagina-home .home-hero-modelo3 .home-hero-copy{max-width:900px!important;margin:auto!important}
+#pagina-home .home-hero-modelo3 .home-hero-kicker{display:none!important}
+#pagina-home .home-hero-modelo3 h1{margin:0 0 10px!important;color:#fff!important;font-size:34px!important;line-height:1.16!important;letter-spacing:-.035em!important;font-weight:800!important}
+#pagina-home .home-hero-modelo3 h1 em{font-style:normal!important;color:#24b8e8!important}
+#pagina-home .home-hero-modelo3 .home-hero-copy>p{max-width:none!important;margin:0!important;color:#e3eef7!important;font-size:13px!important;line-height:1.5!important}
+#pagina-home .home-hero-modelo3 .home-search-wrap{position:absolute!important;z-index:4!important;left:50%!important;bottom:58px!important;transform:translateX(-50%)!important;width:calc(100% - 48px)!important;max-width:1120px!important;margin:0!important;padding:6px!important;border:0!important;border-radius:15px!important;background:#fff!important;box-shadow:0 12px 28px rgba(0,33,69,.17)!important}
+#pagina-home .home-hero-modelo3 .busca-home{display:grid!important;grid-template-columns:1.35fr 1fr 190px!important;gap:0!important;padding:0!important;background:#fff!important;border-radius:11px!important;box-shadow:none!important;overflow:hidden!important}
+#pagina-home .home-hero-modelo3 .home-search-field{height:52px!important;display:flex!important;align-items:center!important;padding:0 17px!important;border:0!important;border-right:1px solid #dce4eb!important;background:#fff!important}
+#pagina-home .home-hero-modelo3 .home-search-field>span{width:auto!important;height:auto!important;display:block!important;flex:0 0 auto!important;margin:0 12px 0 0!important;background:none!important;color:#135b92!important;font-size:19px!important}
+#pagina-home .home-hero-modelo3 .busca-home input{height:50px!important;width:100%!important;min-width:0!important;padding:0!important;border:0!important;background:#fff!important;color:#29475d!important;font-size:13px!important;outline:0!important}
+#pagina-home .home-hero-modelo3 .busca-home input::placeholder{color:#7b8e9d!important;opacity:1!important}
+#pagina-home .home-hero-modelo3 .busca-home>select[hidden]{display:none!important}
+#pagina-home .home-hero-modelo3 .busca-home button{height:52px!important;margin:0!important;border:0!important;border-radius:10px!important;background:#0d477e!important;color:#fff!important;font-size:12px!important;font-weight:800!important;box-shadow:none!important}
+#pagina-home .home-hero-modelo3 .busca-home button:hover{background:#093c6d!important}
+#pagina-home .home-premium{position:relative!important;z-index:3!important;padding-top:15px!important}
+#pagina-home .home-recentes-cab h2{color:#0b3158!important}
+#pagina-home .recentes-filtros{background:#fff!important;border-color:#dfe6ed!important;box-shadow:0 5px 18px rgba(19,51,78,.045)!important}
+#pagina-home .home-recentes .portal-vaga-nova{background:#fff!important;border-color:#dfe6ed!important;box-shadow:0 4px 14px rgba(19,51,78,.04)!important}
+@media(max-width:760px){
+ #pagina-home .home-hero-modelo3{min-height:370px!important}
+ #pagina-home .home-hero-modelo3:before{bottom:-44px!important;height:68px!important}
+ #pagina-home .home-hero-modelo3 .home-hero-content{padding:38px 18px 190px!important;width:100%!important}
+ #pagina-home .home-hero-modelo3 h1{font-size:30px!important}
+ #pagina-home .home-hero-modelo3 .home-hero-copy>p{font-size:12px!important}
+ #pagina-home .home-hero-modelo3 .home-search-wrap{bottom:48px!important;width:calc(100% - 28px)!important;padding:7px!important}
+ #pagina-home .home-hero-modelo3 .busca-home{grid-template-columns:1fr!important;gap:6px!important;overflow:visible!important}
+ #pagina-home .home-hero-modelo3 .home-search-field{height:45px!important;border:1px solid #e0e7ed!important;border-radius:8px!important}
+ #pagina-home .home-hero-modelo3 .busca-home input{height:43px!important}
+ #pagina-home .home-hero-modelo3 .busca-home button{height:45px!important}
+}
