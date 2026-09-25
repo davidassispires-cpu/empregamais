@@ -6231,39 +6231,7 @@ input::placeholder,textarea::placeholder,
  #pagina-home .recentes-filtros-corpo{max-height:60vh}
 }
 </style>
-<style id="EMPREGAMAIS-AJUSTES-FINAIS-V49">
-/* Filtro lateral aberto e sem rolagem interna */
-@media(min-width:821px){
-#pagina-home .home-recentes-layout{align-items:stretch!important}
-#pagina-home .recentes-filtros{position:relative!important;top:auto!important;align-self:stretch!important;height:auto!important;max-height:none!important;overflow:visible!important}
-#pagina-home .recentes-filtros-corpo{height:auto!important;max-height:none!important;overflow:visible!important;padding-bottom:18px!important}
-#pagina-home .recentes-filtros-rodape{position:static!important}
-}
-/* Cards mais vivos e profissionais */
-#pagina-home #listaVagasPortal .portal-vaga-nova{background:#fff!important;border-color:#d8e5ed!important;transition:transform .18s ease,border-color .18s ease,box-shadow .18s ease!important}
-#pagina-home #listaVagasPortal .portal-vaga-nova:hover{transform:translateY(-3px)!important;border-color:#79b9dd!important;box-shadow:0 12px 28px rgba(15,67,105,.10)!important}
-#pagina-home #listaVagasPortal .vaga-selo{border-radius:6px!important}
-#pagina-home #listaVagasPortal .vaga-selo:not(.destaque){background:#edf9f2!important;border-color:#b9e4ca!important;color:#167147!important}
-#pagina-home #listaVagasPortal .vaga-selo.destaque,#pagina-home #listaVagasPortal [class*="destaque"].vaga-selo{background:#fff8e8!important;border-color:#ead9aa!important;color:#86610e!important}
-/* Chips: texto e ícone corretamente centralizados dentro do bloco */
-#pagina-home #listaVagasPortal .vaga-meta{display:flex!important;flex-wrap:wrap!important;align-items:center!important;gap:7px!important;overflow:visible!important}
-#pagina-home #listaVagasPortal .vaga-meta span{box-sizing:border-box!important;width:auto!important;min-width:0!important;height:28px!important;min-height:28px!important;padding:0 10px!important;display:inline-flex!important;align-items:center!important;justify-content:center!important;gap:5px!important;line-height:1!important;white-space:nowrap!important;vertical-align:middle!important;border-radius:999px!important;background:#f1f6fa!important;color:#315c77!important}
-#pagina-home #listaVagasPortal .vaga-meta span:first-child{background:#eef8fd!important;color:#17658f!important}
-#pagina-home #listaVagasPortal .vaga-meta i{display:inline-flex!important;align-items:center!important;justify-content:center!important;line-height:1!important;margin:0!important}
-/* Página interna: quatro informações principais */
-#pagina-vaga .vaga-info-grid{grid-template-columns:repeat(4,minmax(0,1fr))!important}
-#pagina-vaga .vaga-info-grid>.vaga-info-candidaturas{display:none!important}
-#pagina-vaga .vaga-info-grid>div:nth-child(n+5){display:none!important}
-#pagina-vaga .vaga-info-grid>div{box-sizing:border-box!important;min-height:84px!important;justify-content:center!important}
-/* Salvar vaga no cabeçalho do card */
-@media(min-width:801px){
-#pagina-vaga .vaga-topbar-acoes{display:none!important}
-#pagina-vaga .vaga-hero-card{position:relative!important}
-#pagina-vaga .vaga-hero-card .em-salvar-vaga-topo{position:absolute!important;right:24px!important;top:22px!important;z-index:8!important;height:38px!important;padding:0 14px!important;border:1px solid #b9d8e9!important;border-radius:9px!important;background:#fff!important;color:#176b9c!important;font:650 10px Montserrat,Arial,sans-serif!important;cursor:pointer!important}
-#pagina-vaga .vaga-hero-identidade{padding-right:175px!important}
-}
-@media(max-width:800px){#pagina-vaga .vaga-info-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important}}
-</style>
+
 <script id="EMPREGAMAIS-SALVAR-TOPO-V49">
 (function(){
 function aplicarSalvarTopo(){
@@ -6518,124 +6486,17 @@ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',
 #pagina-vaga .empresa-premium-perfil{height:42px!important;margin-top:10px!important;font-size:10.5px!important;font-weight:750!important}
 </style>
 
-<style id="EMPREGAMAIS-LISTA-VAGAS-DINAMICA-V63">
-/* Lista de vagas: mais informação e hierarquia visual */
-#pagina-home #listaVagasPortal .portal-vaga-nova{background:#fff!important;border:1px solid #d9e5ed!important;box-shadow:0 4px 14px rgba(17,57,84,.035)!important;transition:border-color .18s ease,box-shadow .18s ease,transform .18s ease!important}
-#pagina-home #listaVagasPortal .portal-vaga-nova:hover{border-color:#9bcce7!important;box-shadow:0 9px 22px rgba(17,80,118,.09)!important;transform:translateY(-1px)!important}
-#pagina-home #listaVagasPortal .portal-vaga-nova.destaque{border-top:3px solid #d8a928!important}
-#pagina-home #listaVagasPortal .vaga-identidade-copy h3{color:#0c3c63!important}
-#pagina-home #listaVagasPortal .vaga-meta{gap:7px!important}
-#pagina-home #listaVagasPortal .vaga-meta span{border:1px solid transparent!important;border-radius:9px!important;padding:6px 9px!important;font-size:10px!important;font-weight:600!important}
-#pagina-home #listaVagasPortal .vaga-meta span:nth-child(1){background:#eaf7fd!important;color:#0873a7!important}
-#pagina-home #listaVagasPortal .vaga-meta span:nth-child(2){background:#f1f0ff!important;color:#5651a8!important}
-#pagina-home #listaVagasPortal .vaga-meta span:nth-child(3){background:#eef8f4!important;color:#26735c!important}
-#pagina-home #listaVagasPortal .vaga-resumo-area{display:block!important;margin:10px 0 8px!important;padding:9px 11px!important;border-left:3px solid #dcebf3!important;border-radius:0 8px 8px 0!important;background:#f8fbfd!important}
-#pagina-home #listaVagasPortal .vaga-resumo-area small{display:none!important}
-#pagina-home #listaVagasPortal .vaga-resumo{display:-webkit-box!important;-webkit-box-orient:vertical!important;-webkit-line-clamp:2!important;overflow:hidden!important;margin:0!important;color:#607786!important;font-size:10px!important;line-height:1.45!important;min-height:29px!important}
-#pagina-home #listaVagasPortal .vaga-salario-data{margin-top:2px!important}
-#pagina-home #listaVagasPortal .data-card{color:#7a8e9b!important}
-#pagina-home #listaVagasPortal .vaga-card-rodape{border-top:1px solid #e7eef2!important;padding-top:9px!important}
-#pagina-home #listaVagasPortal .vaga-ver-btn{background:#f2f9fd!important;border-color:#b7d9eb!important;color:#075e91!important}
-#pagina-home #listaVagasPortal .vaga-ver-btn:hover{background:#e6f4fb!important}
-#pagina-home #filtrosLateral{background:#fff!important;border-right:1px solid #dce8ef!important}
-#pagina-home #filtrosLateral input,#pagina-home #filtrosLateral select{background:#fbfdfe!important}
-</style>
 
-<style id="EMPREGAMAIS-URGENTE-LOGO-V64">
-/* Vaga urgente: identidade própria em vermelho, preservando destaque dourado */
-#pagina-home #listaVagasPortal .portal-vaga-nova.urgente{border:1px solid #efb8b8!important;border-left:4px solid #d95656!important;background:linear-gradient(90deg,#fffafa 0,#fff 18%)!important;box-shadow:0 5px 16px rgba(176,54,54,.07)!important}
-#pagina-home #listaVagasPortal .portal-vaga-nova.urgente:hover{border-color:#e59696!important;border-left-color:#c94343!important;box-shadow:0 9px 22px rgba(176,54,54,.12)!important}
-#pagina-home #listaVagasPortal .portal-vaga-nova.urgente .urgente-selo{background:#fff0f0!important;border:1px solid #f1c2c2!important;color:#bd3838!important}
-#pagina-home #listaVagasPortal .portal-vaga-nova.urgente.destaque{border-top:3px solid #d8a928!important;border-left:4px solid #d95656!important}
-/* Logo pequena nas listagens/recentes — a função JS só fornece logo para assinantes */
-#pagina-home #listaVagasPortal .vaga-logo{width:34px!important;height:34px!important;min-width:34px!important;object-fit:contain!important;border:1px solid #dce7ee!important;border-radius:8px!important;padding:3px!important;background:#fff!important}
-#pagina-home #previewVagaPortal .rec-prev-logo{width:34px!important;height:34px!important;object-fit:contain!important;border-radius:8px!important}
-</style>
 
-<style id="EMPREGAMAIS-LISTA-COMPACTA-V64">
-/* Grade de vagas compacta: 2 colunas x 5 linhas dentro da altura do filtro */
-@media (min-width:901px){
- #pagina-home #listaVagasPortal{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:10px 14px!important;align-content:start!important}
- #pagina-home #listaVagasPortal .portal-vaga-nova{min-height:0!important;height:auto!important;padding:12px 14px!important;border-radius:13px!important}
- #pagina-home #listaVagasPortal .vaga-card-topo{min-height:20px!important;margin-bottom:4px!important}
- #pagina-home #listaVagasPortal .vaga-selo{padding:4px 8px!important;font-size:7.5px!important}
- #pagina-home #listaVagasPortal .vaga-identidade{margin-bottom:6px!important}
- #pagina-home #listaVagasPortal .vaga-identidade-copy h3{font-size:14px!important;line-height:1.18!important;margin-bottom:3px!important}
- #pagina-home #listaVagasPortal .vaga-identidade-copy p{font-size:10.5px!important;line-height:1.2!important}
- #pagina-home #listaVagasPortal .vaga-meta{gap:5px!important;margin:6px 0!important}
- #pagina-home #listaVagasPortal .vaga-meta span{padding:4px 7px!important;font-size:8.5px!important;min-height:23px!important}
- #pagina-home #listaVagasPortal .vaga-resumo-area{margin:6px 0!important;padding:6px 9px!important}
- #pagina-home #listaVagasPortal .vaga-resumo{font-size:9px!important;line-height:1.35!important;min-height:24px!important}
- #pagina-home #listaVagasPortal .vaga-salario-data{margin:3px 0!important}
- #pagina-home #listaVagasPortal .data-card{font-size:8px!important}
- #pagina-home #listaVagasPortal .vaga-card-rodape{padding-top:6px!important}
- #pagina-home #listaVagasPortal .vaga-rodape-salario small{font-size:8px!important}
- #pagina-home #listaVagasPortal .salario-card{font-size:13px!important}
- #pagina-home #listaVagasPortal .vaga-ver-btn{min-height:34px!important;padding:0 12px!important;font-size:9px!important}
- /* Urgente: borda própria em vermelho suave */
- #pagina-home #listaVagasPortal .portal-vaga-nova:has(.urgente-selo){border:1px solid #efb7b7!important;border-left:4px solid #d85b5b!important;background:linear-gradient(90deg,#fffafa 0,#fff 18%)!important}
- #pagina-home #listaVagasPortal .portal-vaga-nova:has(.urgente-selo):hover{border-color:#df8e8e!important;box-shadow:0 8px 20px rgba(184,67,67,.10)!important}
-}
-</style>
 
-<style id="EMPREGAMAIS-PRIORIDADE-URGENTE-V64">
-/* Prioridade visual: contratação urgente sempre prevalece sobre destaque */
-#pagina-home #listaVagasPortal .portal-vaga-nova.destaque:has(.urgente-selo){
- border-top:1px solid #e7caca!important;
- border-left:4px solid #c95757!important;
- border-right:1px solid #e7caca!important;
- border-bottom:1px solid #e7caca!important;
- box-shadow:0 5px 16px rgba(156,55,55,.07)!important;
-}
-#pagina-home #listaVagasPortal .portal-vaga-nova:has(.urgente-selo){
- border-left:4px solid #c95757!important;
-}
-</style>
 
-<style id="EMPREGAMAIS-CARDS-COMPACTOS-V65">
-/* Compacta o CARD, sem encolher a tipografia */
-#pagina-home #listaVagasPortal .portal-vaga-nova{
- padding:12px 14px!important;
- min-height:0!important;
- height:auto!important;
- gap:0!important;
-}
-#pagina-home #listaVagasPortal .vaga-card-topo{min-height:22px!important;margin-bottom:6px!important}
-#pagina-home #listaVagasPortal .vaga-identidade{margin:0 0 7px!important;gap:9px!important}
-#pagina-home #listaVagasPortal .vaga-logo{width:38px!important;height:38px!important}
-#pagina-home #listaVagasPortal .vaga-identidade-copy h3{font-size:14px!important;line-height:1.25!important;margin:0 0 3px!important}
-#pagina-home #listaVagasPortal .vaga-identidade-copy p{font-size:11px!important;line-height:1.25!important}
-#pagina-home #listaVagasPortal .vaga-meta{margin:5px 0!important;gap:6px!important}
-#pagina-home #listaVagasPortal .vaga-meta span{font-size:10.5px!important;padding:5px 8px!important;min-height:28px!important}
-#pagina-home #listaVagasPortal .vaga-resumo-area{margin:7px 0 6px!important;padding:7px 9px!important}
-#pagina-home #listaVagasPortal .vaga-resumo{font-size:10.5px!important;line-height:1.4!important;min-height:29px!important}
-#pagina-home #listaVagasPortal .vaga-salario-data{margin:4px 0 5px!important;min-height:0!important}
-#pagina-home #listaVagasPortal .data-card{font-size:9.5px!important}
-#pagina-home #listaVagasPortal .vaga-card-rodape{margin-top:0!important;padding-top:7px!important;min-height:0!important}
-#pagina-home #listaVagasPortal .vaga-rodape-salario small{font-size:9px!important}
-#pagina-home #listaVagasPortal .salario-card{font-size:12px!important}
-#pagina-home #listaVagasPortal .vaga-ver-btn{min-height:34px!important;padding:0 12px!important;font-size:10.5px!important}
-#pagina-home #listaVagasPortal .vaga-selo{font-size:8.5px!important}
-</style>
 
-<style id="EMPREGAMAIS-CARDS-COMPACTOS-V65">
-/* Cards: compactar o bloco, preservar tipografia e mover publicação para o rodapé */
-#pagina-home #listaVagasPortal .portal-vaga-nova{padding-top:13px!important;padding-bottom:12px!important;min-height:0!important;height:auto!important}
-#pagina-home #listaVagasPortal .vaga-card-topo{margin-bottom:5px!important;min-height:20px!important}
-#pagina-home #listaVagasPortal .vaga-identidade{margin-bottom:6px!important}
-#pagina-home #listaVagasPortal .vaga-identidade-copy h3{font-size:14px!important;line-height:1.25!important}
-#pagina-home #listaVagasPortal .vaga-identidade-copy p{font-size:11px!important;line-height:1.3!important}
-#pagina-home #listaVagasPortal .vaga-meta{margin:5px 0 7px!important}
-#pagina-home #listaVagasPortal .vaga-meta span{font-size:10.5px!important}
-#pagina-home #listaVagasPortal .vaga-resumo-area{margin:6px 0 8px!important;padding:7px 10px!important}
-#pagina-home #listaVagasPortal .vaga-resumo{font-size:10.5px!important;line-height:1.35!important;min-height:28px!important}
-#pagina-home #listaVagasPortal .vaga-salario-data{display:none!important}
-#pagina-home #listaVagasPortal .vaga-card-rodape{position:relative!important;margin-top:0!important;padding-top:8px!important;min-height:46px!important}
-#pagina-home #listaVagasPortal .vaga-card-rodape:after{content:attr(data-publicacao);position:absolute;right:145px;bottom:10px;color:#778b98;font-size:10px;font-weight:500;white-space:nowrap}
-#pagina-home #listaVagasPortal .vaga-rodape-salario small{font-size:9px!important}
-#pagina-home #listaVagasPortal .salario-card{font-size:16px!important}
-#pagina-home #listaVagasPortal .vaga-ver-btn{min-width:136px!important;height:40px!important;font-size:10.5px!important}
-</style>
+
+
+
+
+
+
 <script id="EMPREGAMAIS-PUBLICACAO-RODAPE-V65">
 (function(){
 function ajustar(){
@@ -6649,33 +6510,9 @@ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',
 })();
 </script>
 
-<style id="EMPREGAMAIS-CARGO-FONTE-V65">
-/* Aumenta somente o título do cargo sem alterar a altura dos cards */
-#pagina-home #listaVagasPortal .portal-vaga-nova .vaga-identidade-copy h3{
- font-size:16px!important;
- line-height:1.12!important;
- font-weight:800!important;
- margin-top:0!important;
- margin-bottom:3px!important;
-}
-</style>
 
-<style id="EMPREGAMAIS-CARD-DATA-CARGO-V65">
-/* Cargo maior sem aumentar o card */
-#pagina-home #listaVagasPortal .vaga-identidade-copy h3{
- font-size:15px!important;line-height:1.15!important;margin-bottom:4px!important;
-}
-/* Data passa para a faixa inferior, antes do botão */
-#pagina-home #listaVagasPortal .vaga-salario-data{display:none!important}
-#pagina-home #listaVagasPortal .vaga-card-rodape{
- display:grid!important;grid-template-columns:minmax(0,1fr) auto auto!important;
- align-items:end!important;gap:12px!important;
-}
-#pagina-home #listaVagasPortal .vaga-card-rodape .data-card-em{
- align-self:center!important;white-space:nowrap!important;color:#7a8e9b!important;
- font-size:9.5px!important;font-weight:500!important;
-}
-</style>
+
+
 <script id="EMPREGAMAIS-CARD-DATA-CARGO-V65">
 (function(){
 function ajustarDatas(){
@@ -6693,47 +6530,7 @@ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',
 })();
 </script>
 
-<style id="EMPREGAMAIS-CARDS-FINAL-V66">
-/* Ajuste consolidado dos cards da lista */
-#pagina-home #listaVagasPortal .portal-vaga-nova{padding:12px 14px 13px!important;min-height:0!important;height:auto!important}
-#pagina-home #listaVagasPortal .vaga-card-topo{display:none!important}
-#pagina-home #listaVagasPortal .vaga-identidade{margin:0 0 9px!important;padding-right:0!important}
-#pagina-home #listaVagasPortal .vaga-identidade-copy{width:100%!important;min-width:0!important}
-#pagina-home #listaVagasPortal .vaga-titulo-linha{display:grid!important;grid-template-columns:minmax(0,1fr) auto!important;align-items:start!important;gap:12px!important}
-#pagina-home .home-recentes #listaVagasPortal .vaga-identidade-copy h3{font-size:20px!important;line-height:1.12!important;font-weight:800!important;margin:0 0 6px!important;letter-spacing:-.015em!important}
-#pagina-home #listaVagasPortal .vaga-titulo-linha .vaga-selos{display:flex!important;justify-content:flex-end!important;align-items:center!important;gap:5px!important;max-width:190px!important}
-#pagina-home #listaVagasPortal .vaga-titulo-linha .vaga-selo{min-height:23px!important;height:23px!important;padding:0 8px!important;font-size:8.5px!important;white-space:nowrap!important}
-#pagina-home #listaVagasPortal .vaga-identidade-copy p{font-size:11.5px!important;line-height:1.35!important}
-#pagina-home #listaVagasPortal .vaga-meta{margin:6px 0 0!important}
-#pagina-home #listaVagasPortal .vaga-meta span{font-size:10.5px!important}
-#pagina-home #listaVagasPortal .vaga-resumo-area{margin:11px 0 7px!important;padding:7px 9px!important}
-#pagina-home #listaVagasPortal .vaga-resumo{font-size:10.5px!important;line-height:1.35!important;min-height:28px!important}
-#pagina-home #listaVagasPortal .vaga-salario-data{display:none!important}
-#pagina-home #listaVagasPortal .vaga-card-rodape{display:grid!important;grid-template-columns:minmax(0,1fr) auto auto!important;align-items:end!important;gap:12px!important;padding-top:7px!important}
-#pagina-home #listaVagasPortal .data-card-em{align-self:center!important;white-space:nowrap!important;color:#748a98!important;font-size:10px!important;font-weight:500!important}
-/* Urgente vence qualquer aparência de destaque */
-#pagina-home #listaVagasPortal .portal-vaga-nova.destaque:has(.urgente-selo),
-#pagina-home #listaVagasPortal .portal-vaga-nova:has(.urgente-selo){border:1px solid #e7caca!important;border-left:4px solid #c95757!important;border-top-color:#e7caca!important;background:linear-gradient(90deg,#fffafa 0,#fff 18%)!important}
 
-/* Vagas em destaque: restaura a identidade anterior com coluna própria para a logo */
-#pagina-home #listaDestaques .vaga-identidade{
- display:grid!important;
- grid-template-columns:66px minmax(0,1fr)!important;
- gap:12px!important;
- align-items:center!important;
- min-height:76px!important;
- margin:12px 0 10px!important;
- padding:0!important;
-}
-#pagina-home #listaDestaques .vaga-logo{width:66px!important;height:66px!important}
-#pagina-home #listaDestaques .vaga-identidade-copy{min-width:0!important;width:auto!important}
-#pagina-home #listaDestaques .vaga-identidade-copy h3{
- font-size:16px!important;line-height:1.24!important;font-weight:800!important;
- color:#062e52!important;margin:0 0 5px!important;
- display:-webkit-box!important;-webkit-line-clamp:2!important;-webkit-box-orient:vertical!important;overflow:hidden!important;
-}
-#pagina-home #listaDestaques .vaga-identidade-copy p{margin:0!important}
-</style>
 <style id="EMPREGAMAIS-AREAS-PRO-V1">
 #pagina-home .home-areas-pro{margin:42px 0 46px!important;padding:34px 4px 38px!important;text-align:center!important;background:linear-gradient(180deg,#f8fbff 0%,#f3f8fe 100%)!important;border-radius:24px!important}
 #pagina-home .home-areas-cab>span{display:inline-flex!important;align-items:center!important;min-height:29px!important;padding:0 16px!important;border-radius:999px!important;background:#e8f3ff!important;color:#0870d8!important;font-size:11px!important;font-weight:800!important;letter-spacing:.02em!important}
@@ -6842,27 +6639,6 @@ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',
 #pagina-home #listaDestaques .vaga-selos-identidade .urgente-selo::before{content:"⚡"!important;position:absolute!important;left:7px!important;top:50%!important;transform:translateY(-50%)!important;width:12px!important;height:12px!important;display:grid!important;place-items:center!important;font-size:9px!important;line-height:1!important;color:#b42332!important}
 #pagina-home #listaDestaques .vaga-resumo{color:#4f6470!important;font-weight:450!important}
 #pagina-home #listaDestaques .vaga-resumo-area>small{color:#71838d!important}
-</style><style id="EMPREGAMAIS-BOTAO-VER-VAGA-CONTORNO-V1">
-/* Botão Ver vaga — opção 2: contorno moderno */
-#pagina-home #listaDestaques .vaga-ver-btn,
-#pagina-home #listaVagasPortal .vaga-ver-btn{
- display:inline-flex!important;align-items:center!important;justify-content:center!important;gap:14px!important;
- min-width:124px!important;height:40px!important;min-height:40px!important;padding:0 15px!important;
- border:1.5px solid #0873e8!important;border-radius:11px!important;
- background:#fff!important;color:#0873e8!important;
- font-family:Montserrat,sans-serif!important;font-size:10.5px!important;font-weight:800!important;
- box-shadow:none!important;cursor:pointer!important;
- transition:background .18s ease,color .18s ease,box-shadow .18s ease,transform .18s ease!important;
-}
-#pagina-home #listaDestaques .vaga-ver-btn b,
-#pagina-home #listaVagasPortal .vaga-ver-btn b{font-size:17px!important;line-height:1!important;font-weight:600!important}
-#pagina-home #listaDestaques .vaga-ver-btn:hover,
-#pagina-home #listaVagasPortal .vaga-ver-btn:hover{
- background:#f3f8ff!important;color:#0566ce!important;border-color:#0566ce!important;
- box-shadow:0 5px 14px rgba(8,115,232,.10)!important;transform:translateY(-1px)!important;
-}
-#pagina-home #listaDestaques .vaga-ver-btn:active,
-#pagina-home #listaVagasPortal .vaga-ver-btn:active{transform:translateY(0)!important;box-shadow:none!important}
 </style><style id="EMPREGAMAIS-INSTITUCIONAL-RODAPE-V1">
 .pagina-institucional-em{background:#f6f9fc!important;min-height:70vh!important;padding-bottom:70px!important}.inst-hero{padding:58px 24px 48px!important;text-align:center!important;background:linear-gradient(180deg,#eef7ff,#f6f9fc)!important;border-bottom:1px solid #dce8f1!important}.inst-hero>span{font-size:9px!important;font-weight:850!important;letter-spacing:.13em!important;color:#0873e8!important}.inst-hero h1{margin:8px 0 10px!important;font-size:38px!important;color:#082f53!important}.inst-hero p{max-width:720px!important;margin:auto!important;color:#5d7588!important;line-height:1.65!important}.inst-grid,.inst-contact{display:grid!important;grid-template-columns:minmax(0,1fr) 300px!important;gap:28px!important;padding-top:38px!important}.inst-grid article,.inst-grid aside,.inst-contact article,.inst-contact aside,.inst-legal,.inst-faq details{background:#fff!important;border:1px solid #dce7ee!important;border-radius:16px!important;box-shadow:0 7px 22px rgba(24,70,102,.045)!important}.inst-grid article,.inst-contact article,.inst-contact aside{padding:28px!important}.inst-grid aside{padding:24px!important;display:flex!important;flex-direction:column!important;gap:12px!important}.inst-grid aside strong{font-size:20px!important;color:#08365a!important}.inst-grid aside span{padding:10px 0!important;border-bottom:1px solid #edf2f5!important}.inst-grid h2,.inst-contact h2,.inst-legal h2{color:#0a385d!important}.inst-grid h3,.inst-contact h3{margin-top:26px!important;color:#0a385d!important}.inst-grid p,.inst-contact p,.inst-legal p{color:#587184!important;line-height:1.75!important}.inst-faq{max-width:900px!important;padding-top:36px!important}.inst-faq details{margin-bottom:12px!important;padding:0 20px!important}.inst-faq summary{padding:19px 0!important;font-weight:750!important;color:#123d5e!important;cursor:pointer!important}.inst-faq details p{padding:0 0 20px!important;margin:0!important;color:#60798b!important;line-height:1.65!important}.inst-contact-card{margin-top:22px!important;padding:18px!important;border-radius:12px!important;background:#f2f8fd!important;display:flex!important;flex-direction:column!important;gap:5px!important}.inst-contact aside button{margin-top:12px!important;height:42px!important;border:1px solid #0873e8!important;border-radius:10px!important;background:#fff!important;color:#0873e8!important;font-weight:750!important;cursor:pointer!important}.inst-legal{max-width:900px!important;margin:38px auto 0!important;padding:32px!important}.inst-legal h2{margin:28px 0 8px!important;font-size:19px!important}.rodape-pro{background:#06243d!important;color:#d4e2ec!important;padding:48px max(24px,calc((100% - 1220px)/2)) 20px!important}.rodape-inner{display:grid!important;grid-template-columns:1.4fr repeat(4,1fr)!important;gap:36px!important}.rodape-brand strong{font-size:24px!important;color:#fff!important}.rodape-brand strong span{color:#42a9ef!important}.rodape-brand p{max-width:240px!important;font-size:12px!important;line-height:1.6!important;color:#9db4c5!important}.rodape-pro h3{margin:0 0 14px!important;color:#fff!important;font-size:12px!important}.rodape-pro .rodape-inner button{display:block!important;border:0!important;background:none!important;padding:5px 0!important;color:#a9bdcb!important;font-size:11px!important;text-align:left!important;cursor:pointer!important}.rodape-pro .rodape-inner button:hover{color:#fff!important}.rodape-bottom{display:flex!important;justify-content:space-between!important;align-items:center!important;margin-top:36px!important;padding-top:18px!important;border-top:1px solid rgba(255,255,255,.1)!important;font-size:10px!important;color:#8fa8b9!important}.rodape-bottom .rodape-admin-link{border:0!important;background:none!important;color:#8fa8b9!important;font-size:10px!important;cursor:pointer!important}@media(max-width:850px){.rodape-inner{grid-template-columns:repeat(2,1fr)!important}.rodape-brand{grid-column:1/-1!important}.inst-grid,.inst-contact{grid-template-columns:1fr!important}}@media(max-width:520px){.rodape-inner{grid-template-columns:1fr!important}.rodape-brand{grid-column:auto!important}.inst-hero h1{font-size:30px!important}.inst-legal{margin:25px 14px 0!important;padding:22px!important}}
 </style><style id="EMPREGAMAIS-RODAPE-COMPACTO-V2">
