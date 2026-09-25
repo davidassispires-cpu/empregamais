@@ -5421,6 +5421,37 @@ overflow:visible!important
 @media(max-width:1000px){#pagina-vaga .vaga-hero-identidade.vaga-hero-op2{grid-template-columns:76px minmax(0,1fr)!important;padding:58px 22px 24px!important;gap:18px!important;min-height:190px!important}#pagina-vaga .vaga-hero-acoes{position:absolute!important;top:16px!important;right:16px!important}#pagina-vaga .vaga-hero-op2 .vaga-hero-logo{width:76px!important;height:76px!important;min-width:76px!important}#pagina-vaga .vaga-hero-op2 .vaga-hero-texto h1{font-size:25px!important}#pagina-vaga .vaga-info-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important;padding:0 18px 18px!important}}
 @media(max-width:560px){#pagina-vaga .vaga-hero-identidade.vaga-hero-op2{grid-template-columns:58px minmax(0,1fr)!important;gap:13px!important;padding:64px 16px 20px!important;min-height:0!important}#pagina-vaga .vaga-hero-op2 .vaga-hero-logo{width:58px!important;height:58px!important;min-width:58px!important;padding:6px!important}#pagina-vaga .vaga-hero-op2 .vaga-hero-texto h1{font-size:20px!important}#pagina-vaga .vaga-hero-acoes{top:16px!important;right:16px!important}#pagina-vaga .vaga-salvar-hero{height:38px!important;min-width:118px!important}#pagina-vaga .vaga-info-grid{grid-template-columns:1fr!important;padding:0 14px 14px!important}}
 
+/* EMPREGAMAIS-VAGA-TABS-CARDS-V1 */
+#pagina-vaga .vaga-conteudo-v2 .vaga-tabs{
+ position:sticky!important;top:0!important;z-index:4!important;
+ display:flex!important;align-items:center!important;gap:8px!important;
+ margin:0!important;padding:10px 14px!important;
+ border-bottom:1px solid #dce7ee!important;background:#fff!important;
+}
+#pagina-vaga .vaga-conteudo-v2 .vaga-tabs a{
+ flex:0 0 auto!important;display:inline-flex!important;align-items:center!important;justify-content:center!important;
+ min-height:34px!important;padding:0 12px!important;margin:0!important;
+ border:1px solid #d8e5ed!important;border-radius:9px!important;background:#f8fbfd!important;
+ color:#345b76!important;font-size:11px!important;font-weight:700!important;line-height:1!important;
+ text-decoration:none!important;box-shadow:0 2px 6px rgba(21,61,88,.035)!important;
+}
+#pagina-vaga .vaga-conteudo-v2 .vaga-tabs a:first-child{
+ border-color:#b9ddef!important;background:#eef8fd!important;color:#08759c!important;
+}
+#pagina-vaga .vaga-conteudo-v2 .vaga-tabs a:first-child:after{display:none!important}
+#pagina-vaga .vaga-conteudo-v2 .vaga-tabs a:hover{
+ border-color:#9fcddd!important;background:#f1f9fc!important;color:#076b8d!important;
+}
+#pagina-vaga .vaga-conteudo-v2 .vaga-tabs-publicacao{
+ margin-left:auto!important;display:inline-flex!important;align-items:center!important;white-space:nowrap!important;
+ color:#698196!important;font-size:9px!important;font-weight:650!important;
+}
+@media(max-width:700px){
+ #pagina-vaga .vaga-conteudo-v2 .vaga-tabs{position:relative!important;overflow-x:auto!important;gap:7px!important;padding:9px 10px!important;white-space:nowrap!important}
+ #pagina-vaga .vaga-conteudo-v2 .vaga-tabs a{min-height:32px!important;padding:0 10px!important;font-size:10px!important}
+ #pagina-vaga .vaga-conteudo-v2 .vaga-tabs-publicacao{display:none!important}
+}
+
 /* EMPREGAMAIS-EMPRESA-SOBRE-RESUMO-V1 */
 #pagina-empresa-publica .empresa-publica-visao-grid{display:grid!important;grid-template-columns:minmax(0,1fr) 285px!important;gap:22px!important;align-items:start!important}
 #pagina-empresa-publica .empresa-sobre-resumo{background:#fff!important;border:1px solid #dce6ed!important;border-radius:12px!important;padding:18px!important;box-shadow:0 5px 18px rgba(24,58,82,.055)!important;color:#183e59!important}
