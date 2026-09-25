@@ -6242,25 +6242,12 @@ input::placeholder,textarea::placeholder,
 }
 </style>
 
-<script id="EMPREGAMAIS-SALVAR-TOPO-V49">
-(function(){
-function aplicarSalvarTopo(){
- var hero=document.getElementById('vagaHeroDetalhe'); if(!hero)return;
- var btn=hero.querySelector('.em-salvar-vaga-topo');
- if(!btn){btn=document.createElement('button');btn.type='button';btn.className='em-salvar-vaga-topo';btn.innerHTML='♡ Salvar vaga';btn.onclick=function(){if(typeof alternarSalvarVaga==='function')alternarSalvarVaga();};hero.appendChild(btn);}
-}
-document.addEventListener('click',function(e){if(e.target&&e.target.closest&&e.target.closest('[onclick*="abrirVaga"],[onclick*="verVaga"],.portal-vaga-nova'))setTimeout(aplicarSalvarTopo,80);});
-if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',aplicarSalvarTopo);else aplicarSalvarTopo();
-new MutationObserver(function(){if(document.getElementById('pagina-vaga')?.classList.contains('ativa'))aplicarSalvarTopo();}).observe(document.body,{subtree:true,childList:true,attributes:true,attributeFilter:['class']});
-})();
-</script>
 
 <style id="EMPREGAMAIS-VAGA-LATERAL-V50">
 /* pedido 24/09: salvar apenas no topo; data + denúncia na lateral */
 #pagina-vaga .vaga-acao-v2 .vaga-salvar-principal{display:none!important}
 #pagina-vaga .vaga-acao-v2 .vaga-acao-meta{display:block!important;margin:14px 0 0!important;padding:0!important;text-align:center!important;color:#667d8c!important;font-size:10px!important;line-height:1.4!important}
 #pagina-vaga .vaga-acao-v2 .vaga-denunciar{display:block!important;width:max-content!important;margin:12px auto 0!important;padding:0!important;border:0!important;background:transparent!important;color:#9a6464!important;font-size:10px!important;text-decoration:none!important}
-#pagina-vaga .vaga-hero-card .em-salvar-vaga-topo{min-width:142px!important;height:42px!important;padding:0 18px!important;font-size:10.5px!important;font-weight:700!important}
 </style>
 <script id="EMPREGAMAIS-VAGA-LATERAL-TEXTO-V50">
 (function(){
@@ -6351,8 +6338,6 @@ new MutationObserver(ajustarLateralVaga).observe(document.body,{childList:true,s
 #pagina-vaga .vaga-acao-v2 .vaga-acao-meta{position:absolute!important;left:-99999px!important;width:1px!important;height:1px!important;overflow:hidden!important}
 #pagina-vaga .em-data-publicacao-conteudo{position:absolute;right:20px;top:13px;z-index:4;padding:6px 10px;border:1px solid #dce8ef;border-radius:8px;background:#f7fbfd;color:#647b8b;font-size:9px;font-weight:600;line-height:1}
 
-/* Salvar topo um pouco maior */
-#pagina-vaga .vaga-hero-card .em-salvar-vaga-topo{min-width:148px!important;height:42px!important;padding:0 18px!important;border-radius:10px!important;font-size:10.5px!important;font-weight:700!important}
 @media(max-width:800px){#pagina-vaga .vaga-info-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important}#pagina-vaga .em-data-publicacao-conteudo{position:static!important;display:block!important;width:max-content!important;margin:10px 12px 0 auto!important}}
 </style>
 <script id="EMPREGAMAIS-DATA-PUBLICACAO-V55">
@@ -7131,7 +7116,6 @@ document.addEventListener('DOMContentLoaded',()=>{pbTimer=setInterval(()=>pbIrSl
  #pagina-vaga .vaga-hero-identidade h1{width:100%!important;max-width:none!important;white-space:normal!important}
  #pagina-vaga .vaga-hero-identidade{padding-right:0!important}
  #pagina-vaga .vaga-hero-card{padding-right:24px!important}
- #pagina-vaga .vaga-hero-card .em-salvar-vaga-topo{top:22px!important}
 }
 </style><style id="EMPREGAMAIS-STATUS-EMPRESA-V58">
 #pagina-vaga .vaga-hero-empresa-linha{display:flex;align-items:center;gap:10px;position:relative;z-index:30;width:max-content;max-width:100%;overflow:visible}
