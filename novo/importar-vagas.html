@@ -56,31 +56,71 @@ function smartSection(t,heads,stops){
  return clean(out.join('\n'))
 }
 
+function candidates(){
+ let xs=[...arguments].flat().filter(x=>x&&clean(x.value||x.v||''));
+ xs.sort((a,b)=>(b.score||0)-(a.score||0));
+ return xs[0]||{value:'',score:0,confidence:'falta'}
+}
+function confidence(score){return score>=80?'alta':score>=45?'media':'falta'}
+function pickCargo(t){
+ let labeledCargo=labeled(t,'Cargo|Vaga|Posi[cç][aã]o|Fun[cç][aã]o');
+ let first=firstLine(t).replace(/^#+\s*/,'').replace(/\s+-\s*([A-ZÀ-Ü .\'-]+)\/[A-Z]{2}\s*$/i,'').trim();
+ return candidates({value:labeledCargo,score:100},{value:first,score:72})
+}
+function pickEmpresa(t){
+ let explicit=labeled(t,'Empresa|Empresa contratante|Contratante|Organiza[cç][aã]o');
+ let known=/mercado\s+(?:livre|envios)/i.test(t)?'Mercado Livre':'';
+ return candidates({value:explicit,score:100},{value:known,score:85})
+}
+function pickModalidade(t){
+ let explicit=labeled(t,'Modalidade|Modelo de trabalho|Regime de trabalho');
+ let val=/remot[oa]/i.test(explicit)?'Remoto':/h[ií]brid[oa]/i.test(explicit)?'Híbrido':/presencial/i.test(explicit)?'Presencial':'';
+ let body=/\bremot[oa]\b/i.test(t)?'Remoto':/h[ií]brid[oa]/i.test(t)?'Híbrido':/presencial/i.test(t)?'Presencial':'';
+ return candidates({value:val,score:100},{value:body,score:60})
+}
+function pickContrato(t){
+ let explicit=labeled(t,'Tipo de contrato|Contrato|Regime de contrata[cç][aã]o|Tipo de vaga'),src=explicit||t;
+ let val=/jovem aprendiz/i.test(src)?'Jovem Aprendiz':/est[aá]gio/i.test(src)?'Estágio':/tempor[aá]ri/i.test(src)?'Temporário':/trainee/i.test(src)?'Trainee':/\bCLT\b|efetiv[oa]/i.test(src)?'Efetivo – CLT':'';
+ return {value:val,score:explicit?100:(val?65:0)}
+}
+function pickQuantidade(t){
+ let explicit=labeled(t,'Quantidade de vagas|N[uú]mero de vagas|Vagas');
+ let em=explicit&&explicit.match(/\d+/),body=t.match(/\b(\d+)\s+(?:posi[cç][oõ]es|vagas?|oportunidades?)\b/i);
+ return candidates({value:em?em[0]:'',score:100},{value:body?body[1]:'',score:75})
+}
+function pickSalario(t){
+ let exact=t.match(/(?:SAL[AÁ]RIO|S[AÁ]LARIO|REMUNERA[CÇ][AÃ]O|FAIXA SALARIAL)\s*:\s*(R\$\s*[\d.]+(?:,\d{2})?)/i);
+ let bruto=t.match(/R\$\s*[\d.]+(?:,\d{2})?\s*\((?:Bruto Mensal|mensal)\)/i);
+ let aPartir=t.match(/(?:a partir de|sal[aá]rio de)\s*(R\$\s*[\d.]+(?:,\d{2})?)/i);
+ return candidates({value:exact?exact[1]:'',score:100},{value:bruto?money(bruto[0]):'',score:85},{value:aPartir?aPartir[1]:'',score:75},{value:money(t),score:35})
+}
+function pickJornada(t){
+ let escala=labeled(t,'Escala'),hor=labeled(t,'Hor[aá]rio'),dias=labeled(t,'Jornada(?: de trabalho)?|Dias de trabalho');
+ let explicit=[escala,hor,dias].filter(Boolean).join(' · ');
+ let body=(t.match(/\b\d{1,2}\s*[xX]\s*\d{1,2}\b[^.\n]*/i)||[])[0]||'';
+ return candidates({value:explicit,score:100},{value:body,score:55})
+}
 function parse(t,i){
  t=clean(t);let n=norm(t),locs=cities(t),meta={};
  const put=(k,v,conf='alta')=>{v=clean(v||'');if(v){meta[k]=conf;return v}return''};
- let cargo=put('cargo',firstLine(t).replace(/^#+\s*/,'').replace(/\s+-\s*([A-ZÀ-Ü .'-]+)\/[A-Z]{2}\s*$/i,'').trim());
- let empresa=put('empresa',/mercado\s+(?:livre|envios)/i.test(t)?'Mercado Livre':labeled(t,'Empresa|Empresa contratante'));
- let modalidade=put('modalidade',/\bremot[oa]\b/i.test(t)?'Remoto':/h[ií]brid[oa]/i.test(t)?'Híbrido':/presencial/i.test(t)?'Presencial':'');
+ let pc=pickCargo(t),pe=pickEmpresa(t),pm=pickModalidade(t);let cargo=put('cargo',pc.value,confidence(pc.score)),empresa=put('empresa',pe.value,confidence(pe.score)),modalidade=put('modalidade',pm.value,confidence(pm.score));
  let area=put('area',/log[ií]stica|supply chain|mercado envios/i.test(t)?'Logística':/cart[oõ]es?|cr[eé]dito|perfil comercial|vendas|promotor/i.test(t)?'Comercial / Vendas':/atendimento ao cliente/i.test(t)?'Atendimento':'','media');
- let contrato=put('contrato',/\bCLT\b|efetiv[oa]/i.test(t)?'Efetivo – CLT':/est[aá]gio/i.test(t)?'Estágio':/tempor[aá]ri/i.test(t)?'Temporário':/jovem aprendiz/i.test(t)?'Jovem Aprendiz':/trainee/i.test(t)?'Trainee':'');
+ let pct=pickContrato(t),contrato=put('contrato',pct.value,confidence(pct.score));
  let escolaridade=put('escolaridade',/superior\s+(?:completo|conclu[ií]do)|gradua[cç][aã]o completa/i.test(t)?'Superior completo':/superior\s+(?:cursando|incompleto)/i.test(t)?'Superior cursando':/ensino m[eé]dio completo|m[eé]dio completo/i.test(t)?'Médio completo':/ensino fundamental completo/i.test(t)?'Fundamental completo':'');
- let quantidade=put('quantidade',((t.match(/\b(\d+)\s+(?:posi[cç][oõ]es|vagas?|oportunidades?)\b/i)||[])[1]||''));
- let salRot=t.match(/(?:SAL[AÁ]RIO|S[AÁ]LARIO|REMUNERA[CÇ][AÃ]O)\s*:\s*(R\$\s*[\d.]+(?:,\d{2})?)/i),salBruto=t.match(/R\$\s*[\d.]+(?:,\d{2})?\s*\((?:Bruto Mensal|mensal)\)/i);
- let salario=put('salario',salRot?salRot[1]:(salBruto?money(salBruto[0]):money(t)),salRot?'alta':'media');
+ let pq=pickQuantidade(t),ps=pickSalario(t),quantidade=put('quantidade',pq.value,confidence(pq.score)),salario=put('salario',ps.value,confidence(ps.score));
  let descricao=put('descricao',section(t,'Descri[cç][aã]o(?: da vaga)?|Sobre a vaga|Resumo da vaga','Fun[cç][aã]o|Endere[cç]o|Responsabilidades|Atividades|Principais atividades|O que voc[eê] vai fazer|Hor[aá]rio de trabalho|Requisitos|Benef[ií]cios'));
  if(!descricao){let m=t.match(/(?:^|\n)(Estamos em busca[^\n]*(?:\n(?!\s*(?:VAGA|Local de trabalho|Principais atividades|Requisitos|Benefícios|Salário|Horário)\b)[^\n]*)*)/i);if(m)descricao=put('descricao',m[1],'media')}
  let atividades=put('atividades',smartSection(t,'Responsabilidades(?: e atribui[cç][oõ]es)?|Atividades|Principais atividades|O que voc[eê] vai fazer|Fun[cç][oõ]es','Hor[aá]rio de trabalho|Jornada|Requisitos|Qualifica[cç][oõ]es|Benef[ií]cios|Oferecemos|Sal[aá]rio|Remunera[cç][aã]o'));
  if(!atividades){let end=labeled(t,'Endere[cç]o');if(end){let ix=t.toLowerCase().indexOf(end.toLowerCase())+end.length,tail=t.slice(ix);let m=tail.match(/([\s\S]*?)(?=\n\s*(?:HOR[AÁ]RIO DE TRABALHO|REQUISITOS|BENEF[IÍ]CIOS|SAL[AÁ]RIO|S[AÁ]LARIO)\s*:)/i);if(m)atividades=put('atividades',m[1],'media')}}
  let requisitos=put('requisitos',smartSection(t,'Requisitos|Qualifica[cç][oõ]es|O que esperamos|Perfil desejado|O que buscamos','Benef[ií]cios|O que oferecemos|Oferecemos|Informa[cç][oõ]es adicionais|Como se candidatar|Candidatura|Contato|Sal[aá]rio|Remunera[cç][aã]o'));
  let beneficios=put('beneficios',smartSection(t,'Benef[ií]cios|O que oferecemos|Oferecemos|Pacote de benef[ií]cios|N[oó]s lhe propomos','Requisitos|Qualifica[cç][oõ]es|Informa[cç][oõ]es adicionais|Como se candidatar|Candidatura|Contato|Sal[aá]rio|Remunera[cç][aã]o'));
- let escala=labeled(t,'Escala'),hor=labeled(t,'Hor[aá]rio'),dias=labeled(t,'Jornada(?: de trabalho)?'),jornada=put('jornada',[escala,hor,dias].filter(Boolean).join(' · ')||((t.match(/\b\d{1,2}\s*[xX]\s*\d{1,2}\b[^.\n]*/i)||[])[0]||''));
+ let pj=pickJornada(t),jornada=put('jornada',pj.value,confidence(pj.score));
  let exp=(t.match(/Experi[eê]ncia\s+(?:com|em)\s+([^;\n.]+)/i)||[])[0]||'',experiencia=put('experiencia',/sem experi[eê]ncia|experi[eê]ncia n[aã]o exigida/i.test(t)?'Sem experiência':exp,'media');
  let L=parseLocation(t,locs);Object.keys(L).forEach(k=>{if(L[k])meta[k]='alta'});
  let urls=(t.match(/https?:\/\/[^\s<>"\]]+/gi)||[]).map(x=>x.replace(/[),.;]+$/,'')),link=put('linkExterno',urls.find(x=>/careers|career|jobs|apply|vagas|gupy|eightfold/i.test(x))||urls[0]||'');
  let email=put('candidaturaEmail',((t.match(/[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}/i)||[])[0]||''));
  let wm=t.match(/(?:whats(?:app)?|telefone|contato|curr[ií]culo|envie[^\n]{0,40})[^\d+]{0,35}(?:\+?55\s*)?(?:\(?\d{2}\)?\s*)?9?\d{4}[\s.-]?\d{4}/i),whatsapp=put('candidaturaWhatsapp',wm?((wm[0].match(/(?:\+?55\s*)?(?:\(?\d{2}\)?\s*)?9?\d{4}[\s.-]?\d{4}/)||[])[0]||''):'');
- let funcao=labeled(t,'Fun[cç][aã]o');if(!cargo&&funcao)cargo=put('cargo',funcao);
+ 
  let known=[cargo,empresa,modalidade,area,contrato,escolaridade,quantidade,salario,descricao,atividades,requisitos,beneficios,jornada,experiencia,L.cidade,L.uf,L.bairro,L.cep,link,email,whatsapp].filter(Boolean);
  let naoClassificado=t.split('\n').map(x=>x.trim()).filter(x=>x.length>2&&!known.some(v=>norm(v).includes(norm(x))||norm(x).includes(norm(v)))).join('\n');
  return {id:i,cargo,empresa,area,contrato,modalidade,cidade:L.cidade,uf:L.uf,bairro:L.bairro,cep:L.cep,salario,escolaridade,experiencia,jornada,descricao,atividades,requisitos,beneficios,linkExterno:link,candidaturaEmail:email,candidaturaWhatsapp:whatsapp,logo:'',quantidade,pcd:'',confidencial:false,senior50:false,locais:locs,raw:t,_confidence:meta,naoClassificado}
