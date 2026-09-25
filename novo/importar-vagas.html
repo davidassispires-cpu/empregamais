@@ -25,30 +25,29 @@ function parse(t,i){t=clean(t);let n=norm(t),ls=t.split('\n').map(x=>x.trim()).f
  let modalidade=/\bremot[oa]\b/i.test(t)?'Remoto':/h[ií]brid[oa]/i.test(t)?'Híbrido':/presencial/i.test(t)?'Presencial':'';
  let area=/log[ií]stica|supply chain|mercado envios/i.test(t)?'Logística':/cart[oõ]es?|cr[eé]dito|perfil comercial|vendas/i.test(t)?'Comercial / Vendas':/atendimento ao cliente/i.test(t)?'Atendimento':'';
  let contrato=/\bCLT\b/i.test(t)?'Efetivo – CLT':/est[aá]gio/i.test(t)?'Estágio':/tempor[aá]ri/i.test(t)?'Temporário':/jovem aprendiz/i.test(t)?'Jovem Aprendiz':/trainee/i.test(t)?'Trainee':'';
- let descricao=section(t,'Descrição(?: da vaga)?|Sobre a vaga|No Mercado Livre estamos','Temos um desafio|Imagine você|Imagine voce|Responsabilidades|Requisitos|Principais atividades');
+ let descricao=section(t,'Descrição(?: da vaga)?|Sobre a vaga|No Mercado Livre estamos','Temos um desafio|Imagine você|Imagine voce|Responsabilidades|Requisitos|Principais atividades|FUNÇÃO|ENDEREÇO|HORÁRIO DE TRABALHO|BENEF[IÍ]CIOS');
  if(!descricao){let m=t.match(/(?:^|\n)(Estamos em busca[^\n]*(?:\n(?!\s*(?:VAGA|Local de trabalho|Principais atividades|Requisitos|Benefícios|Salário|Horário)\b)[^\n]*)*)/i);if(m)descricao=clean(m[1])}
  if(!descricao&&/No Mercado Livre estamos/i.test(t)){let m=t.match(/No Mercado Livre estamos[\s\S]*?(?=\n\s*Temos um desafio|\n\s*Imagine você|\n\s*Requisitos)/i);if(m)descricao=clean(m[0])}
- let atividades=section(t,'Imagine você empreendendo projetos[^\n]*|Responsabilidades|Atividades|Principais atividades|O que você vai fazer','Requisitos|Qualificações|Nós lhe propomos|Nos lhe propomos|Benefícios');
- let requisitos=section(t,'Requisitos|Qualificações','Nós lhe propomos|Nos lhe propomos|Benefícios|Informações adicionais|Como se candidatar|Salário|Horário');
- let beneficios=section(t,'Nós lhe propomos|Nos lhe propomos|Benefícios|Oferecemos','Informações adicionais|Como se candidatar|Candidatura|Contato|Salário|Horário');
+ let atividades=section(t,'Imagine você empreendendo projetos[^\n]*|Responsabilidades|Atividades|Principais atividades|O que você vai fazer|ENDEREÇO\\s*:[^\\n]*','HORÁRIO DE TRABALHO|Requisitos|Qualificações|Nós lhe propomos|Nos lhe propomos|Benefícios|BENEFICIOS');
+ let requisitos=section(t,'Requisitos|Qualificações','Nós lhe propomos|Nos lhe propomos|Benefícios|BENEFICIOS|Informações adicionais|Como se candidatar|Salário|SÁLARIO|Horário');
+ let beneficios=section(t,'Nós lhe propomos|Nos lhe propomos|Benefícios|BENEFICIOS|Oferecemos','Requisitos|REQUISITOS|Informações adicionais|Como se candidatar|Candidatura|Contato');
  let escolaridade=/forma[cç][aã]o superior completa|superior completo|gradua[cç][aã]o completa/i.test(t)?'Superior completo':/ensino m[eé]dio completo/i.test(t)?'Médio completo':'';
- let jornada=(t.match(/(?:escala\s*)?\b\d{1,2}\s*[xX]\s*\d{1,2}\b[^.\n]*/i)||[])[0]||((t.match(/segunda[^.\n]*sexta[^.\n]*/i)||[])[0]||'');
+ let escala=((t.match(/Escala\s*:\s*([^\n]+)/i)||[])[1]||'').trim(),horarioLinha=((t.match(/Hor[aá]rio\s*:\s*([^\n]+)/i)||[])[1]||'').trim(),dias=((t.match(/Jornada de trabalho\s*([^\n]+)/i)||[])[1]||'').trim();let jornada=[escala,horarioLinha,dias].filter(Boolean).join(' · ')||((t.match(/(?:escala\s*)?\b\d{1,2}\s*[xX]\s*\d{1,2}\b[^.\n]*/i)||[])[0]||'');
  let urls=(t.match(/https?:\/\/[^\s<>"\]]+/gi)||[]).map(x=>x.replace(/[),.;]+$/,''));
  let link=urls.find(x=>/careers|career|jobs|apply|vagas|gupy|eightfold/i.test(x))||urls[0]||'';
- let salario=(t.match(/(?:Sal[aá]rio\s*:?\s*)?(R\$\s*[\d.]+(?:,\d{2})?)/i)||[])[1]||((t.match(/R\$\s*[\d.]+(?:,\d{2})?/i)||[])[0]||'');
+ let salRot=t.match(/(?:SAL[AÁ]RIO|S[AÁ]LARIO)\s*:\s*(R\$\s*[\d.]+(?:,\d{2})?)/i),salTopo=t.match(/R\$\s*[\d.]+(?:,\d{2})?\s*\(Bruto Mensal\)/i);let salario=salRot?salRot[1]:(salTopo?salTopo[0].replace(/\s*\(Bruto Mensal\)/i,''):((t.match(/R\$\s*[\d.]+(?:,\d{2})?/i)||[])[0]||''));
  let email=((t.match(/[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}/i)||[])[0]||'').trim();
  let whatsMatch=t.match(/(?:whats(?:app)?|telefone|contato|curr[ií]culo|envie[^\n]{0,30})[^\d+]{0,35}(\+?55\s*)?(\(?\d{2}\)?\s*)?9?\d{4}[\s.-]?\d{4}/i);
  let whatsapp=whatsMatch?((whatsMatch[0].match(/(?:\+?55\s*)?(?:\(?\d{2}\)?\s*)?9?\d{4}[\s.-]?\d{4}/)||[])[0]||'').trim():'';
  let cidade='',uf='',bairro='',cep='';
  let locTitulo=t.match(/(?:^|\n)\s*#*\s*[^\n]*?[-–—]\s*([A-Za-zÀ-ÿ .'-]{2,45})\s*\/\s*([A-Z]{2})\s*$/mi);
- let locLinha=t.match(/(?:Local de trabalho|Localização|Local)\s*:\s*([^\n]+)/i);
+ let locLinha=t.match(/(?:Local de trabalho|Localização|Local|ENDEREÇO)\s*:\s*([^\n]+)/i);
  if(locTitulo){cidade=locTitulo[1].trim();uf=locTitulo[2].toUpperCase()}
- if(locLinha){let x=locLinha[1],cm=x.match(/([A-Za-zÀ-ÿ .'-]{2,45})\s*-\s*([A-Z]{2})\s*,?\s*(\d{5}-?\d{3})?/i),bm=x.match(/-\s*([^,]+),\s*([A-Za-zÀ-ÿ .'-]{2,45})\s*-\s*[A-Z]{2}/i),zp=x.match(/\b\d{5}-?\d{3}\b/);if(cm){cidade=cm[1].trim();uf=cm[2].toUpperCase()}if(bm)bairro=bm[1].trim();if(zp)cep=zp[0]}
+ if(locLinha){let x=locLinha[1],cm=x.match(/([A-Za-zÀ-ÿ .'-]{2,45})\s*-\s*([A-Z]{2})\s*,?\s*(\d{5}-?\d{3})?/i),bm=x.match(/-\s*([^,]+),\s*([A-Za-zÀ-ÿ .'-]{2,45})\s*-\s*[A-Z]{2}/i),zp=x.match(/\b\d{5}-?\d{3}\b/),parts=x.split(',').map(v=>v.trim()).filter(Boolean);if(cm){cidade=cm[1].trim();uf=cm[2].toUpperCase()}if(bm)bairro=bm[1].trim();if(!cidade&&parts.length){cidade=parts[0].replace(/^(?:Rua|Av\.?|Avenida)\s+/i,'').trim()}if(!bairro&&parts.length>=3)bairro=parts[parts.length-2];if(!uf&&/s[aã]o paulo/i.test(x))uf='SP';if(zp)cep=zp[0]}
  if(!cidade){cidade=locs[0]?.cidade||'';uf=locs[0]?.uf||''}
  let quantidade=((t.match(/\b(\d+)\s+(?:posi[cç][oõ]es|vagas?)\b/i)||[])[1]||'');
- let experiencia=/sem experi[eê]ncia|experi[eê]ncia n[aã]o exigida/i.test(t)?'Sem experiência':(/experi[eê]ncia/i.test(t)?'A revisar':'');
- let horario=((t.match(/Hor[aá]rio\s*:\s*([^\n]+)/i)||[])[1]||'').trim();
- if(horario&&!jornada)jornada=horario;
+ let expLinha=(t.match(/Experi[eê]ncia\s+(?:com|em)\s+([^;\n.]+)/i)||[])[0]||'';let experiencia=/sem experi[eê]ncia|experi[eê]ncia n[aã]o exigida/i.test(t)?'Sem experiência':(expLinha?clean(expLinha):'');
+ let funcao=((t.match(/FUNÇÃO\s*:\s*([^\n]+)/i)||[])[1]||'').trim();if(funcao&&/^(promotor|operador)/i.test(funcao)&&cargo.length<3)cargo=funcao;
  return {id:i,cargo,empresa,area,contrato,modalidade,cidade,uf,bairro,cep,salario,escolaridade,experiencia,jornada,descricao,atividades,requisitos,beneficios,linkExterno:link,candidaturaEmail:email,candidaturaWhatsapp:whatsapp,logo:'',quantidade,pcd:'',confidencial:false,senior50:false,locais:locs,raw:t}
 }
 const fields=['cargo','empresa','area','contrato','modalidade','cidade','uf','salario','escolaridade','experiencia','jornada','descricao','atividades','requisitos','beneficios','quantidade','pcd','candidaturaEmail','candidaturaWhatsapp','linkExterno'];
