@@ -5548,3 +5548,12 @@ overflow:visible!important
 .empresa-usuario-form{margin-top:18px;padding-top:18px;border-top:1px solid #e4ecee}.empresa-usuario-form h3{margin:0 0 12px;color:#173f4b;font-size:15px}.empresa-usuario-grid{display:grid;grid-template-columns:1fr 1.25fr 1fr;gap:10px;margin-bottom:12px}.empresa-usuario-grid label{font-size:11px;font-weight:700;color:#405b64}.empresa-usuario-grid .campo{margin-top:5px}
 .empresa-usuarios-aviso{font-size:11px!important;color:#71858c!important;margin:12px 0 0!important}
 @media(max-width:700px){.empresa-usuarios-modal-em{padding:22px 16px}.empresa-usuario-grid{grid-template-columns:1fr}.emp-user-row{grid-template-columns:1fr auto}.emp-user-row button{grid-column:1/-1}}
+
+/* EMPREGAMAI-CANDIDATURA-EXTERNA-V1 */
+#pagina-candidatar .cand-fluxo-externo{min-height:420px}
+.cand-fluxo-externo-box{margin:8px 0 4px;padding:30px;border:1px solid #dbe7ed;border-radius:16px;background:#fbfdfe;text-align:center}
+.cand-ext-icon{width:54px;height:54px;margin:0 auto 13px;border-radius:15px;display:grid;place-items:center;background:#e9f4fa;color:#0878ae;font-size:22px;font-weight:850}.cand-ext-icon.whatsapp{background:#e9f8ef;color:#16864c;font-size:13px}
+.cand-fluxo-externo-box>span{display:block;font-size:10px;font-weight:850;letter-spacing:.12em;color:#0878ae}.cand-fluxo-externo-box h3{margin:7px 0 8px;color:#173f5f;font-size:20px}.cand-fluxo-externo-box>p{max-width:650px;margin:0 auto;color:#6e8494;font-size:12px;line-height:1.55}
+.cand-ext-message,.cand-ext-note{max-width:650px;margin:20px auto;padding:14px 16px;border:1px solid #dce7ec;border-radius:12px;background:#fff;text-align:left}.cand-ext-message small{font-size:9px;font-weight:850;letter-spacing:.1em;color:#16864c}.cand-ext-message p{margin:6px 0 0;color:#405e70;font-size:11px;line-height:1.55}.cand-ext-note b,.cand-ext-note small{display:block}.cand-ext-note b{font-size:12px;color:#244f69}.cand-ext-note small{margin-top:4px;color:#758b99;font-size:10px;line-height:1.5}
+.cand-ext-primary{min-height:46px;padding:0 20px;border:0;border-radius:10px;background:#0878ae;color:#fff;font-size:12px;font-weight:800;cursor:pointer}.cand-ext-primary.whatsapp{background:#16864c}.cand-ext-primary:disabled{opacity:.45;cursor:not-allowed}.cand-fluxo-externo-box>em{display:block;margin-top:9px;color:#a15b5b;font-size:10px;font-style:normal}
+@media(max-width:700px){.cand-fluxo-externo-box{padding:22px 15px}.cand-ext-primary{width:100%}}
