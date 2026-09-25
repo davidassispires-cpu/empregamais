@@ -2,7 +2,7 @@
 <html lang="pt-BR">
 <head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate"><meta http-equiv="Pragma" content="no-cache"><meta http-equiv="Expires" content="0"><title>Empregai | Importador de vagas V2</title>
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate"><meta http-equiv="Pragma" content="no-cache"><meta http-equiv="Expires" content="0"><title>Empregai | Importador de vagas</title>
 <style>
 *{box-sizing:border-box}body{margin:0;background:#f4f7f8;color:#18333a;font:15px Arial,sans-serif}.top{background:#0d4650;color:#fff;padding:18px 28px;display:flex;justify-content:space-between;align-items:center}.top b{font-size:21px}.top a{color:#fff;text-decoration:none;border:1px solid #ffffff55;padding:10px 14px;border-radius:8px}.wrap{max-width:1180px;margin:28px auto;padding:0 18px}.hero,.card{background:#fff;border:1px solid #dce6e8;border-radius:16px;box-shadow:0 8px 24px #173a4310}.hero{padding:25px;margin-bottom:18px}.hero h1{margin:0 0 8px;font-size:27px}.hero p{margin:0;color:#64777c;line-height:1.55}.card{padding:22px}textarea,input{width:100%;border:1px solid #cbdadd;border-radius:9px;padding:12px;font:inherit}textarea{min-height:260px;resize:vertical}.btn{border:0;border-radius:9px;background:#0d4650;color:#fff;padding:13px 18px;font-weight:800;cursor:pointer;margin-top:12px}.btn:disabled{opacity:.55}.preview{margin-top:20px}.vaga{background:#fff;border:1px solid #dce6e8;border-radius:14px;padding:20px;margin:14px 0}.score{display:flex;justify-content:space-between;gap:12px;align-items:center;margin-bottom:16px}.score b{font-size:20px;color:#0d4650}.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.grid label,.vaga>label{font-weight:700;font-size:13px}.grid input,.vaga>label textarea{margin-top:6px}.vaga>label{display:block;margin-top:12px}.meta{margin-top:14px;padding:12px;background:#f1f7f7;border-radius:9px;color:#49666d}.actions{display:flex;justify-content:flex-end;margin-top:16px}.notice{padding:12px 14px;background:#fff7dd;border:1px solid #ead78d;border-radius:10px;margin-bottom:16px;color:#6e5b18}@media(max-width:800px){.grid{grid-template-columns:1fr}.top{padding:15px}.score{align-items:flex-start;flex-direction:column}}
 
@@ -68,7 +68,7 @@ body{font-family:Montserrat,Arial,sans-serif;background:var(--bg)}
 .imp-field.missing input,.imp-field.missing select,.imp-field.missing textarea{border-color:#d58a37!important;background:#fffaf2!important;box-shadow:0 0 0 2px rgba(213,138,55,.08)}.missing-note{display:block;margin-top:6px;color:#9b5b13;font-size:11px;font-weight:700}.status-chip{display:inline-flex;padding:5px 8px;border-radius:999px;font-size:11px;font-weight:800}.status-chip.pronta{background:#e9f6ef;color:#17633f}.status-chip.incompleta{background:#fff1e6;color:#9b5510}.status-chip.revisao{background:#eef3ff;color:#345a9c}</style>
 </head>
 <body>
-<header class="top"><b>EmpregaMais · Importador <small style="opacity:.7">v4.0</small></b><a href="index.html">← Voltar ao painel</a></header>
+<header class="top"><b>EmpregaMais · Importador <small style="opacity:.7">v5.0</small></b><a href="index.html">← Voltar ao painel</a></header>
 <main class="wrap">
 <section class="hero"><h1>Importador inteligente de vagas</h1><p>Cole o anúncio original. O EmpregaMais identifica as informações e organiza cada dado nos mesmos grupos usados no formulário oficial de publicação.</p></section>
 <section class="card">
@@ -88,8 +88,200 @@ function esc(s){return String(s==null?'':s).replace(/[&<>"']/g,function(c){retur
 function clean(s){return String(s||'').replace(/\*\*/g,'').replace(/\\:/g,':').replace(/\r/g,'').replace(/[ \t]+/g,' ').replace(/\n{3,}/g,'\n\n').trim()}
 function valorLinha(t,rotulos){
  var ls=clean(t).split('\n').map(function(x){return x.trim()}).filter(Boolean);
+ function n(x){return String(x||'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase().replace(/[^a-z0-9]+/g,' ').trim()}
+ for(var r=0;r<rotulos.length;r++){
+  var alvo=n(rotulos[r]);
+  for(var i=0;i<ls.length;i++){
+   var original=ls[i],z=n(original);
+   if(z===alvo&&ls[i+1])return ls[i+1].trim();
+   var rx=new RegExp('^\\s*'+rotulos[r].replace(/[.*+?^$\{\}()|[\]\\]/g,'\\function valorLinha(t,rotulos){
+ var ls=clean(t).split('\n').map(function(x){return x.trim()}).filter(Boolean);
  function n(x){return String(x||'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase()}
  for(var r=0;r<rotulos.length;r++){var alvo=n(rotulos[r]);for(var i=0;i<ls.length;i++){var z=n(ls[i]);if(z===alvo&&ls[i+1])return ls[i+1].trim();if(z.indexOf(alvo)===0){var resto=ls[i].slice(rotulos[r].length).replace(/^\s*[:\-–—|]\s*/,'').trim();if(resto)return resto}}}
+ return''
+}')+'\\s*[:\\-–—|]\\s*(.+)
+function blocoAteRotulo(t,inicios,fins){var re=new RegExp('(?:^|\\n)\\s*(?:'+inicios+')\\s*[:\\-]?\\s*([\\s\\S]*?)(?=\\n\\s*(?:'+fins+')\\s*[:\\-]?|$)','i'),m=t.match(re);return m?m[1].replace(/^\\s*[-•▪✓✔]\\s*/gm,'').trim():''}
+function field(t,names){for(var i=0;i<names.length;i++){var m=t.match(new RegExp('(?:^|\\n)\\s*'+names[i]+'\\s*[:\\-]\\s*([^\\n]+)','i'));if(m)return m[1].trim()}return''}
+function section(t,names,next){var m=t.match(new RegExp('(?:^|\\n)\\s*(?:'+names+')\\s*:\\s*([\\s\\S]*?)(?=\\n\\s*(?:'+next+')\\s*:|$)','i'));return m?m[1].replace(/^\\s*[-•]\\s*/gm,'').trim():''}
+function parse(t,i){
+ t=clean(t);var lines=t.split('\n').map(function(x){return x.trim()}).filter(Boolean);
+ var cargo=valorLinha(t,['Cargo','Título da vaga','Titulo da vaga','Vaga','Função','Oportunidade'])||((t.match(/(?:^|\n)\s*(?:VAGA|OPORTUNIDADE)\s*[:\-–—|]\s*([^\n]+)/i)||[])[1])||'';
+ if(!cargo){var cmCargo=t.match(/(?:vaga|oportunidade)\s+(?:para|de)\s+(?:o\s+cargo\s+de\s+)?([A-Za-zÀ-ÿ][^\n,.;:]{2,70})/i);if(cmCargo)cargo=cmCargo[1].trim()}
+ if(!cargo){var tituloProv=lines.find(function(x){return x.length<=80&&!/\b(?:atua|segmento|empresa|oferecendo|clientes|fundada|mercado)\b/i.test(x)&&!/^(?:sobre|descri[cç][aã]o|requisitos|benef[ií]cios|atividades)\b/i.test(x)});cargo=tituloProv||''}
+ cargo=clean(cargo).replace(/^(?:VAGA|CARGO)\s*[:\-]\s*/i,'');
+ var empresa=valorLinha(t,['Empresa','Nome da empresa','Contratante','Empresa contratante']);
+ if(!empresa){var em=t.match(/^\s*([A-ZÁÉÍÓÚÂÊÔÃÕÇ][A-Za-zÀ-ÿ0-9&.' -]{2,80}?)\s+(?:atua|é uma empresa|está com oportunidade|esta com oportunidade)\b/im);if(em)empresa=clean(em[1])}
+ var local=valorLinha(t,['Local de trabalho','Localização','Localizacao','Localidade','Local','Cidade']),cidade=local,uf=valorLinha(t,['UF','Estado']),bairro=valorLinha(t,['Bairro'])||'';
+ if(local){var lm=local.match(/(.+?)(?:\s*[-–—\/]\s*|\s+)([A-Z]{2})$/);if(lm){cidade=lm[1].trim();uf=lm[2]}var ap=cidade.split(/\s+[–—]\s+/);if(ap.length>1){bairro=bairro||ap[0].trim();cidade=ap[ap.length-1].trim()}}
+ if(!cidade){var cm=t.match(/\b(?:em|para)\s+([A-ZÁÉÍÓÚÂÊÔÃÕÇ][A-Za-zÀ-ÿ ]{2,40})\s*[-\/]\s*([A-Z]{2})\b/);if(cm){cidade=cm[1].trim();uf=cm[2]}}
+ var contrato=valorLinha(t,['Contratação','Contratacao','Contrato','Tipo de contrato','Tipo de vaga','Regime','Vínculo','Vinculo']);
+ if(/\bCLT\b/i.test(contrato||t))contrato='Efetivo – CLT';else if(/est[aá]gio/i.test(contrato||t))contrato='Estágio';else if(/tempor[aá]ri/i.test(contrato||t))contrato='Temporário';else if(/jovem aprendiz/i.test(contrato||t))contrato='Jovem Aprendiz';else if(/trainee/i.test(contrato||t))contrato='Trainee';
+ var sm=valorLinha(t,['Salário','Salario','Remuneração','Remuneracao']),salario=sm||((t.match(/R\$\s*[\d.]+(?:,\d{2})?(?:\s*\+[^\n]*)?/i)||[])[0]||'');
+ var salarioCombinar=/sal[aá]rio\s+(?:a\s+)?combinar|remunera[cç][aã]o\s+(?:a\s+)?combinar/i.test(t);
+ if(salarioCombinar&&!salario)salario='A combinar';
+ var modalidade=valorLinha(t,['Modalidade','Modelo de trabalho','Regime de trabalho']);if(!modalidade){if(/home\s*office|remot[oa]/i.test(t))modalidade='Remoto';else if(/h[ií]brid[oa]/i.test(t))modalidade='Híbrido';else if(/presencial|local de trabalho|endere[cç]o/i.test(t))modalidade='Presencial';else modalidade=''}
+ var area=valorLinha(t,['Área','Area','Área de atuação','Area de atuacao','Setor','Departamento']);
+ /* remove ruídos comuns de cópia de páginas antes de distribuir conteúdo */
+ t=t.replace(/^\s*svg\w*[^\n]*$/gim,'').replace(/^\s*svgLocalGuides[^\n]*$/gim,'');
+ var beneficios=valorLinha(t,['Benefícios','Beneficios','Oferecemos']);if(!beneficios){var bm=t.match(/(?:Oferecemos|Benef[ií]cios?)\s*:\s*([^\n]+)/i);if(bm)beneficios=bm[1].trim()}
+ if(beneficios)beneficios=beneficios.replace(/\s+e\s+/gi,'; ').replace(/\s*,\s*/g,'; ');
+ var jornada=valorLinha(t,['Jornada de Trabalho','Jornada','Horário','Horario']);if(!jornada){var hm=t.match(/(?:HOR[ÁA]RIO\s*:\s*)?((?:\d+\s*horas?\s*por\s*dia[^\n]*)(?:\n[^\n]*\d{1,2}H[^\n]*)?)/i);if(hm)jornada=hm[1].trim()}
+ var escolaridade=valorLinha(t,['Escolaridade','Escolaridade mínima','Escolaridade minima','Formação','Formacao']);
+ var experiencia=valorLinha(t,['Experiência','Experiencia','Experiência necessária','Experiencia necessaria','Tempo de experiência','Tempo de experiencia']);
+ var requisitos=blocoAteRotulo(t,'Requisitos|Qualificações|Qualificacoes','Benefícios|Beneficios|Oferecemos|Jornada|Horário|Horario|Local|Informações adicionais|Informacoes adicionais|Como se candidatar');
+ var atividades=blocoAteRotulo(t,'Atividades|Responsabilidades|Principais atividades|O que você vai fazer','Requisitos|Qualificações|Benefícios|Beneficios|Oferecemos|Jornada|Horário|Horario|Local|Informações adicionais|Informacoes adicionais|Como se candidatar');
+ var descricao=blocoAteRotulo(t,'Descrição da Vaga|Descrição|Descricao','Atividades|Responsabilidades|Requisitos|Qualificações|Benefícios|Beneficios|Oferecemos|Jornada|Horário|Horario|Local|Informações adicionais|Informacoes adicionais|Como se candidatar');
+ var adicionais=blocoAteRotulo(t,'Informações adicionais|Informacoes adicionais','Como se candidatar|Candidatura|Contato');
+ if(!descricao){var excluir=/^(?:VAGA|CARGO|SAL[ÁA]RIO|BENEF[IÍ]CIOS?|OFERECEMOS|HOR[ÁA]RIO|JORNADA|EMPRESA|LOCAL|CIDADE|UF|CONTRATO|MODALIDADE|REQUISITOS?|ATIVIDADES?)\s*[:\-]/i;descricao=lines.filter(function(x){return !excluir.test(x)}).slice(0,4).join(' ')}
+ if(!escolaridade){if(/ensino fundamental completo/i.test(t))escolaridade='Fundamental completo';else if(/ensino m[eé]dio completo/i.test(t))escolaridade='Médio completo';else if(/ensino m[eé]dio (?:cursando|incompleto)/i.test(t))escolaridade='Médio incompleto';else if(/superior completo|gradua[cç][aã]o completa/i.test(t))escolaridade='Superior completo';else if(/superior (?:em curso|cursando)|gradua[cç][aã]o em andamento/i.test(t))escolaridade='Superior incompleto'}
+ if(!experiencia){var ex=t.match(/(?:experi[eê]ncia|experiencia)[^\n:]*[:\-]?\s*([^\n]{2,100})/i);if(ex)experiencia=ex[1].trim();else if(/sem experi[eê]ncia|n[aã]o exige experi[eê]ncia/i.test(t))experiencia='Sem experiência'}
+ var quantidade=valorLinha(t,['Quantidade de pessoas','Quantidade de pessoas a contratar','Quantidade de vagas','Vagas disponíveis','Número de vagas','Numero de vagas'])||'';
+ var pcd=valorLinha(t,['PcD','PCD','Vaga para PcD','Pessoa com deficiência'])||(/vaga\s+(?:exclusiva|afirmativa)\s+para\s+pcd/i.test(t)?'PcD - conferir tipo':'');
+ var email=((t.replace(/\\@/g,'@')).match(/[\w.+-]+@[\w.-]+\.[A-Za-z]{2,}/)||[])[0]||'',wm=t.match(/(?:whatsapp|whats)[^\d+]*(\+?\d[\d\s()-]{8,}\d)/i),whatsapp=wm?wm[1].replace(/\D/g,''):'';
+ var urls=(t.match(/(?:https?:\/\/|www\.)[^\s<>\"]+/gi)||[]).map(function(u){return u.replace(/[),.;]+$/,'')}),linkExterno=urls.find(function(u){return !/wa\.me|whatsapp\.com|api\.whatsapp\.com|mailto:/i.test(u)})||'';if(linkExterno&&/^www\./i.test(linkExterno))linkExterno='https://'+linkExterno;
+ var canais=[email?'E-mail':'',whatsapp?'WhatsApp':'',linkExterno?'Link externo':''].filter(Boolean),candidatura=canais.length===1?canais[0]:canais.length>1?'':(/candidat(?:e-se|ura).*empregamais|pelo\s+empregamais/i.test(t)?'EmpregaMais':'');
+ var assunto='',asm=t.match(/(?:com o assunto|assunto)\s*:\s*([^\n]+)/i);if(asm)assunto=clean(asm[1]);
+ var v={id:i,cargo:cargo,empresa:empresa,area:area,contrato:contrato,modalidade:modalidade,quantidade:quantidade,cidade:cidade,uf:uf,bairro:bairro,cep:valorLinha(t,['CEP']),logradouro:valorLinha(t,['Logradouro','Endereço','Endereco','Rua']),numero:valorLinha(t,['Número','Numero']),complemento:valorLinha(t,['Complemento']),salario:salario,salarioCombinar:salarioCombinar,escolaridade:escolaridade,experiencia:experiencia,jornada:jornada,pcd:pcd,beneficios:beneficios,descricao:descricao,atividades:atividades,requisitos:requisitos,adicionais:adicionais,email:email,whatsapp:whatsapp,linkExterno:linkExterno,assunto:assunto,candidatura:candidatura,senior50:/\b50\s*\+|profissionais?\s+50\+|acima de 50/i.test(t),confidencial:/empresa\s+confidencial|vaga\s+confidencial/i.test(t),divergencia:canais.length>1?'Mais de um canal de candidatura foi encontrado. Escolha qual será usado.':'',divergenciaAprovada:false};
+ v=infer(v,t);v.descricao=limparDescricaoExtraida(v.descricao,v);return v
+}
+function split(t){
+ t=clean(t);if(!t)return[];
+ /* Só separa múltiplas vagas quando há marcadores inequívocos.
+    Palavras como "vaga:", "cargo:" e "oportunidade:" dentro do próprio anúncio
+    são campos da mesma vaga e nunca devem criar registros extras. */
+ var blocos=t.split(/(?:^|\n)\s*(?:={3,}|-{5,}|\*{3,})\s*(?=\n|$)/g).map(function(x){return x.trim()}).filter(Boolean);
+ if(blocos.length>1)return blocos;
+ var numerados=t.split(/(?=^\s*(?:VAGA|OPORTUNIDADE)\s*(?:#|N[º°]?\s*)?\d+\s*[:\-–—]?\s*$)/gim).map(function(x){return x.trim()}).filter(Boolean);
+ if(numerados.length>1)return numerados;
+ return[t]
+}
+async function completarCidade(v){
+ if(!v||!v.cidade)return v;
+ try{
+  if(!v.uf){
+   var r=await fetch('https://servicodados.ibge.gov.br/api/v1/localidades/municipios');
+   if(r.ok){var lista=await r.json(),alvo=String(v.cidade).normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase(),achou=lista.find(function(m){return String(m.nome).normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase()===alvo});if(achou&&achou.microrregiao&&achou.microrregiao.mesorregiao&&achou.microrregiao.mesorregiao.UF)v.uf=achou.microrregiao.mesorregiao.UF.sigla||''}
+  }
+  if(v.uf&&!v.cep){
+   var vr=await fetch('https://viacep.com.br/ws/'+encodeURIComponent(v.uf)+'/'+encodeURIComponent(v.cidade)+'/Praça/json/');
+   if(vr.ok){var ceps=await vr.json();if(Array.isArray(ceps)&&ceps.length){var unicos=Array.from(new Set(ceps.map(function(x){return x.cep}).filter(Boolean)));if(unicos.length===1)v.cep=unicos[0]}}
+  }
+ }catch(e){console.warn('Localização não completada',e)}
+ return v
+}
+async function completarTodas(vs){try{await Promise.all(vs.map(completarCidade))}catch(e){console.warn('Enriquecimento de localização ignorado',e)}return vs}
+function completeness(v){
+ var obrig=['cargo','empresa','area','contrato','modalidade','cidade','uf','escolaridade','experiencia','descricao','requisitos','candidatura'];
+ var encontrados=obrig.filter(function(k){return String(v[k]||'').trim()}).length,missing=obrig.filter(function(k){return !String(v[k]||'').trim()});
+ var review=!!v.divergencia||missing.length>0;
+ return {pct:Math.round(encontrados/obrig.length*100),n:encontrados,total:obrig.length,missing:missing,status:missing.length?'incompleta':review?'revisao':'pronta'}
+}
+function limparDescricaoExtraida(desc,v){
+ var s=String(desc||'').trim();if(!s)return'';
+ var valores=[v.cargo,v.empresa,v.area,v.contrato,v.modalidade,v.cidade,v.uf,v.bairro,v.cep,v.salario,v.escolaridade,v.experiencia,v.jornada,v.beneficios,v.atividades,v.requisitos,v.adicionais,v.email,v.whatsapp,v.linkExterno,v.assunto].filter(Boolean).map(function(x){return String(x).trim()});
+ var rot=/^(?:vaga|cargo|fun[cç][aã]o|oportunidade|empresa|contratante|[aá]rea|setor|contrata[cç][aã]o|contrato|regime|modalidade|modelo de trabalho|cidade|local|localidade|local de trabalho|uf|estado|bairro|cep|sal[aá]rio|remunera[cç][aã]o|escolaridade|forma[cç][aã]o|experi[eê]ncia|jornada|hor[aá]rio|benef[ií]cios?|oferecemos|atividades|responsabilidades|requisitos|qualifica[cç][oõ]es|informa[cç][oõ]es adicionais|como se candidatar|candidatura|contato|whatsapp|e-?mail|assunto)\s*[:\-]/i;
+ var linhas=s.split('\n').map(function(x){return x.trim()}).filter(function(x){
+   if(!x||rot.test(x))return false;
+   var nx=x.toLowerCase().replace(/\s+/g,' ');
+   return !valores.some(function(vl){var nv=vl.toLowerCase().replace(/\s+/g,' ');return nv&&nx===nv})
+ });
+ s=linhas.join('\n').replace(/\n{3,}/g,'\n\n').trim();
+ return s
+}
+function infer(v,t){var all=(String(v.cargo||'')+' '+t).toLowerCase();
+if(!v.empresa){
+ var em=t.match(/(?:empresa|rede|grupo)\s+([A-ZÁÉÍÓÚÂÊÔÃÕÇ][^\n,.;]{2,60})/i)||t.match(/\b(O Botic[aá]rio)\b/i);
+ if(em)v.empresa=clean(em[1]).replace(/\s+(?:atua|atuamos|é|oferece|busca|contrata|está|procura)\b[\s\S]*$/i,'').trim();
+ if(!v.empresa){
+  var ini=String(t||'').split(/\n|[.!?]/)[0].trim(),m=ini.match(/^((?:A|O)\s+)?([A-ZÁÉÍÓÚÂÊÔÃÕÇ0-9][A-Za-zÀ-ÿ0-9&.'’+\- ]{1,70}?)\s+(?:atua|atuamos|é\s+(?:uma|um)|oferece|especializa-se|trabalha)\b/i);
+  if(m)v.empresa=clean(m[2]).replace(/^(?:empresa|grupo|rede)\s+/i,'').trim();
+ }
+}
+if(!v.area){if(/venda|comercial|consultor de loja|vendedor/.test(all))v.area='Comercial, Vendas';else if(/atendimento|auxiliar de loja|caixa|recepcion|sac/.test(all))v.area='Atendimento / SAC';else if(/estoque|logística|logistica|expedi|almoxarif/.test(all))v.area='Logística';else if(/administrativ|assistente administrativo/.test(all))v.area='Administração';else if(/financeir|contab|fiscal|contábil/.test(all))v.area='Contábil, Finanças, Economia';else if(/rh|recursos humanos|recrut/.test(all))v.area='Recursos Humanos';else if(/desenvolvedor|programador|tecnologia|suporte ti|\bti\b/.test(all))v.area='Informática, TI, Telecomunicações';else if(/marketing|social media|tráfego|trafego/.test(all))v.area='Marketing';else if(/engenheir/.test(all))v.area='Engenharia';else if(/saúde|saude|enferm|médic|medic/.test(all))v.area='Saúde'}
+if(!v.escolaridade){if(/ensino fundamental completo/i.test(t))v.escolaridade='Fundamental completo';else if(/ensino m[eé]dio completo/i.test(t))v.escolaridade='Médio completo';else if(/ensino m[eé]dio (?:cursando|incompleto)/i.test(t))v.escolaridade='Médio cursando';else if(/superior completo|gradua[cç][aã]o completa/i.test(t))v.escolaridade='Superior completo';else if(/superior (?:em curso|cursando)|gradua[cç][aã]o em andamento/i.test(t))v.escolaridade='Superior cursando'}
+if(!v.experiencia){var ex=t.match(/(?:experi[eê]ncia|experiencia)[^\n:]*[:\-]?\s*([^\n]{2,100})/i);if(ex)v.experiencia=ex[1].trim();else if(/sem experi[eê]ncia|n[aã]o exige experi[eê]ncia/i.test(t))v.experiencia='Não exige experiência';else if(/experi[eê]ncia[^.\n]*(?:diferencial|desej[aá]vel)/i.test(t))v.experiencia='Desejável / diferencial'}
+if(!v.beneficios){var be=t.match(/(?:benef[ií]cios?)\s*[:\-]\s*([^\n]+)/i);if(be)v.beneficios=be[1].trim()}
+if(!v.jornada){var jo=t.match(/(?:jornada(?: de trabalho)?|hor[aá]rio)\s*[:\-]\s*([^\n]+)/i);if(jo)v.jornada=jo[1].trim()}
+return v}
+function inp(v,k,l){return '<label>'+l+'<input data-i="'+v.id+'" data-k="'+k+'" value="'+esc(v[k])+'"></label>'}
+const SB_URL='https://mkezlcewyengejdmtppl.supabase.co',SB_KEY='sb_publishable_8YnXpzGX8zj-tvzvcMYdyw_FVBhQutR',SB_TOKEN='empregaMaisSupabaseAccessToken',SB_REFRESH='empregaMaisSupabaseRefreshToken';
+function sbH(token){var h={'apikey':SB_KEY,'Content-Type':'application/json'};if(token)h.Authorization='Bearer '+token;return h}
+async function sbReq(url,opt){var r=await fetch(url,opt),txt=await r.text(),j={};try{j=txt?JSON.parse(txt):{}}catch(e){}if(!r.ok)throw new Error(j.message||j.msg||j.error_description||j.error||('Erro '+r.status));return j}
+async function tokenAdmin(){
+ if(sessionStorage.getItem('empregaMaisAdmin')!=='1')throw new Error('Entre novamente no painel administrativo antes de cadastrar vagas.');
+ var t=sessionStorage.getItem(SB_TOKEN)||localStorage.getItem(SB_TOKEN)||'';
+ if(t){try{await sbReq(SB_URL+'/auth/v1/user',{headers:sbH(t)});return t}catch(e){}}
+ var rf=sessionStorage.getItem(SB_REFRESH)||localStorage.getItem(SB_REFRESH)||'';if(!rf)throw new Error('Sessão administrativa expirada. Entre novamente no painel.');
+ var a=await sbReq(SB_URL+'/auth/v1/token?grant_type=refresh_token',{method:'POST',headers:sbH(),body:JSON.stringify({refresh_token:rf})});
+ if(!a.access_token)throw new Error('Não foi possível renovar a sessão administrativa.');
+ sessionStorage.setItem(SB_TOKEN,a.access_token);localStorage.setItem(SB_TOKEN,a.access_token);if(a.refresh_token){sessionStorage.setItem(SB_REFRESH,a.refresh_token);localStorage.setItem(SB_REFRESH,a.refresh_token)}return a.access_token
+}
+function dataFim(){var d=new Date();d.setDate(d.getDate()+30);return d.toISOString().slice(0,10)}
+function listaBeneficios(s){return String(s||'').split(/[,;·]/).map(function(x){return x.trim()}).filter(Boolean)}
+function payloadImportado(v,userId){
+ var desc=[v.descricao,v.atividades?('Atividades / responsabilidades:\n'+v.atividades):''].filter(Boolean).join('\n\n');
+ return {user_id:userId,empresa_id:null,empresa:v.empresa||'',empresa_cnpj:'',cargo:v.cargo||'',area:v.area||'',contrato:v.contrato||'',modalidade:v.modalidade||'',cep:v.cep||'',estado:v.uf||'',cidade:v.cidade||'',data_encerramento:dataFim(),escolaridade:v.escolaridade||'',experiencia:v.experiencia||'',jornada:v.jornada||'',pcd:v.pcd||'',salario:v.salarioCombinar?'':(v.salario||''),salario_max:'',salario_combinar:!!v.salarioCombinar||v.salario==='A combinar',horario_entrada:'',horario_saida:'',descricao:desc,requisitos:v.requisitos||'',beneficios:v.beneficios||'',beneficios_lista:listaBeneficios(v.beneficios),beneficios_outros:v.beneficios||'',sobre_empresa:v.adicionais||'',senior50:!!v.senior50,confidencial:!!v.confidencial,destaque:!!v.destaque,urgente:!!v.urgente,destaque_solicitado:false,urgencia_solicitada:false,logo:v.logo||null,status:'pendente',candidatura_tipo:v.candidatura||'',candidatura_email:v.candidatura==='E-mail'?(v.email||''):'',candidatura_whatsapp:v.candidatura==='WhatsApp'?(v.whatsapp||''):'',candidatura_link:v.candidatura==='Link externo'?(v.linkExterno||''):''}
+}
+async function empresaImportadora(t,u,v){
+ /* O importador não cria empresas. As vagas administrativas usam a empresa
+    técnica já existente no banco e preservam o nome real em vagas.empresa.
+    Isso elimina definitivamente colisões na chave única empresas_cnpj_key. */
+ var empresaTecnicaId='e21dc8ca-fec8-4c1f-9629-c192c8e7e9b9';
+ return {id:empresaTecnicaId,nome:'Empresa importada'}
+}
+async function cadastrarSupabase(v){
+ var t=await tokenAdmin(),u=await sbReq(SB_URL+'/auth/v1/user',{headers:sbH(t)}),emp=await empresaImportadora(t,u,v);
+ if(!emp||!emp.id)throw new Error('Empresa sem ID válido. Cadastro cancelado antes de enviar a vaga.');
+ var p=payloadImportado(v,u.id);p.empresa_id=emp.id;
+ if(p.empresa_id===null||p.empresa_id===undefined||p.empresa_id==='')throw new Error('empresa_id não foi preenchido. Cadastro cancelado antes do Supabase.');
+ var r=await sbReq(SB_URL+'/rest/v1/vagas',{method:'POST',headers:Object.assign(sbH(t),{'Prefer':'return=representation'}),body:JSON.stringify(p)});
+ if(!Array.isArray(r)||!r[0])throw new Error('O Supabase não confirmou o cadastro da vaga.');v.cadastrada=true;v.supabaseId=r[0].id;return r[0]
+}
+function atualizarResumo(){var cps=vagas.map(completeness),prontas=cps.filter(function(x){return x.status==='pronta'}).length,incompletas=cps.filter(function(x){return x.status==='incompleta'}).length,revisao=cps.filter(function(x){return x.status==='revisao'}).length,media=cps.length?Math.round(cps.reduce(function(a,x){return a+x.pct},0)/cps.length):0;document.getElementById('stTotal').textContent=vagas.length;document.getElementById('stProntas').textContent=prontas;document.getElementById('stRevisar').textContent=incompletas+revisao;document.getElementById('stMedia').textContent=media+'%';document.getElementById('loteResumo').textContent=vagas.length+' vaga(s) · '+prontas+' prontas · '+incompletas+' incompletas · '+revisao+' em revisão';document.getElementById('footerLote').style.display=vagas.length?'flex':'none'}
+function fecharModal(){var m=document.getElementById('reviewModal');m.classList.remove('open');m.setAttribute('aria-hidden','true');vagaModal=null}
+function abrirModal(v){
+ vagaModal=v;
+ var cp=completeness(v),b=document.getElementById('reviewBody');
+ function f(k,l,type,opts,full,required){
+  var raw=v[k],val=esc(raw||''),missing=required&&!String(raw||'').trim(),cls='imp-field'+(full?' full':'')+(missing?' missing':'');
+  var hint=missing?'<small class="missing-note">Não identificado no anúncio — complete antes de publicar.</small>':'';
+  if(type==='select')return '<label class="'+cls+'">'+l+'<select data-i="'+v.id+'" data-k="'+k+'"><option value="">Selecione</option>'+opts.map(function(o){return '<option '+(String(v[k]||'')===o?'selected':'')+'>'+esc(o)+'</option>'}).join('')+'</select>'+hint+'</label>';
+  if(type==='textarea')return '<label class="'+cls+'">'+l+'<textarea data-i="'+v.id+'" data-k="'+k+'">'+val+'</textarea>'+hint+'</label>';
+  var tp=k==='email'?'email':k==='linkExterno'?'url':k==='whatsapp'?'tel':k==='quantidade'?'number':'text';return '<label class="'+cls+'">'+l+'<input type="'+tp+'" data-i="'+v.id+'" data-k="'+k+'" value="'+val+'">'+hint+'</label>'
+ }
+ var areas=['Administração','Alimentação / Gastronomia','Comercial, Vendas','Construção, Manutenção','Contábil, Finanças, Economia','Educação, Ensino, Idiomas','Engenharia','Industrial, Produção, Fábrica','Informática, TI, Telecomunicações','Logística','Marketing','Recursos Humanos','Saúde','Serviços Gerais','Atendimento / SAC','Jurídico','Compras','Qualidade','Segurança do Trabalho','Turismo / Hotelaria','Transportes','Meio Ambiente','Comunicação','Design','Outros'];
+ var contratos=['Efetivo – CLT','Autônomo','Prestador de Serviços','Cooperado','Jovem Aprendiz','Estágio','Temporário','Trainee','Outros'];
+ var modalidades=['Presencial','Remoto','Híbrido'],escolaridades=['Fundamental incompleto','Fundamental completo','Médio incompleto','Médio completo','Técnico','Superior incompleto','Superior completo','Pós-graduação','Não exigida'],experiencias=['Não exigida','Sem experiência','6 meses','1 ano','2 anos','3 anos','5 anos ou mais'],jornadas=['44 horas semanais','40 horas semanais','36 horas semanais','30 horas semanais','20 horas semanais','12x36','6x1','5x2','Horário flexível','A combinar'];
+ b.innerHTML='<div class="imp-review-summary"><div><h3>'+esc(v.cargo||'Cargo não identificado')+'</h3><p>'+esc(v.empresa||'Empresa não identificada')+' · '+esc(v.cidade||'Localização a conferir')+'</p></div><div class="imp-review-score"><strong>'+cp.pct+'% dos campos essenciais</strong><small>'+(cp.missing.length?cp.missing.length+' campo(s) obrigatório(s) para revisar':'Dados essenciais identificados')+'</small></div></div>'+
+ '<div class="imp-sections">'+
+ '<section class="imp-section"><div class="imp-section-head"><i>1</i><div><h3>Informações básicas</h3><p>Estrutura equivalente à etapa 1 do formulário oficial.</p></div></div><div class="imp-form-grid">'+f('empresa','Empresa','text',null,false,true)+f('cargo','Título da vaga','text',null,false,true)+f('area','Área de atuação','select',areas,false,true)+f('contrato','Tipo de contrato','select',contratos,false,true)+f('modalidade','Modalidade','select',modalidades,false,true)+f('quantidade','Quantidade de pessoas a contratar')+'</div></section>'+
+ '<section class="imp-section"><div class="imp-section-head"><i>2</i><div><h3>Detalhes da vaga</h3><p>Localização, jornada, experiência e remuneração.</p></div></div><div class="imp-form-grid">'+f('cep','CEP')+f('logradouro','Logradouro')+f('bairro','Bairro')+f('numero','Número')+f('complemento','Complemento')+f('uf','Estado (UF)','text',null,false,true)+f('cidade','Cidade','text',null,false,true)+f('escolaridade','Escolaridade mínima','select',escolaridades,false,true)+f('experiencia','Experiência necessária','select',experiencias,false,true)+f('jornada','Jornada','select',jornadas)+f('pcd','PcD')+f('salario','Salário')+'</div><div class="imp-checks"><label class="imp-check"><input type="checkbox" id="modalSalarioCombinar" '+(v.salarioCombinar?'checked':'')+'><span><b>Salário a combinar</b><small>Marque somente quando isso constar no anúncio ou for definido na revisão.</small></span></label><label class="imp-check"><input type="checkbox" id="modalSenior50" '+(v.senior50?'checked':'')+'><span><b>Oportunidade 50+</b><small>Use quando o anúncio informar essa abertura.</small></span></label></div></section>'+
+ '<section class="imp-section"><div class="imp-section-head"><i>3</i><div><h3>Descrição e benefícios</h3><p>Mesmos blocos de conteúdo do formulário oficial.</p></div></div><div class="imp-form-grid two">'+f('descricao','Descrição da vaga','textarea',null,true,true)+f('atividades','Atividades / responsabilidades','textarea',null,true,false)+f('requisitos','Requisitos','textarea',null,true,true)+f('beneficios','Benefícios','textarea',null,true,false)+f('adicionais','Sobre a empresa / informações adicionais','textarea',null,true,false)+'</div></section>'+
+ '<section class="imp-section"><div class="imp-section-head"><i>4</i><div><h3>Forma de candidatura</h3><p>Escolha um único canal principal para esta vaga.</p></div></div><div class="imp-form-grid">'+f('candidatura','Como o candidato enviará o currículo','select',['EmpregaMais','E-mail','WhatsApp','Link externo'],false,true)+f('email','E-mail identificado')+f('whatsapp','WhatsApp identificado')+f('linkExterno','Link externo identificado')+'</div>'+(v.divergencia?'<div class="warning">'+esc(v.divergencia)+'</div>':'')+'<div class="imp-hint">E-mail, WhatsApp e link são detectados no texto. O importador não inventa um canal quando ele não aparece no anúncio.</div></section>'+
+ '<section class="imp-section"><div class="imp-section-head"><i>5</i><div><h3>Configurações administrativas</h3><p>Revise opções especiais antes do cadastro.</p></div></div><div class="imp-checks"><label class="imp-check"><input type="checkbox" id="modalConfidencial" '+(v.confidencial?'checked':'')+'><span><b>Vaga confidencial</b><small>Oculta o nome da empresa na exibição pública.</small></span></label><label class="imp-check"><input type="checkbox" id="modalDestaque" '+(v.destaque?'checked':'')+'><span><b>Colocar em destaque</b><small>Destaca a vaga no portal.</small></span></label><label class="imp-check"><input type="checkbox" id="modalUrgente" '+(v.urgente?'checked':'')+'><span><b>Contratação urgente</b><small>Aplica o selo de urgência.</small></span></label></div><div class="logo-box" style="margin-top:13px"><b>Logo da empresa</b><p style="color:#718287;margin:6px 0 10px">Opcional para vagas importadas.</p><input type="file" id="modalLogo" accept="image/png,image/jpeg,image/webp"><div id="logoPreview">'+(v.logo?'<img class="logo-preview" src="'+esc(v.logo)+'" alt="Logo">':'')+'</div></div></section>'+
+ '</div><div class="review-actions"><button type="button" class="btn sec" id="modalCancelar">Cancelar</button><button type="button" class="btn sec" id="modalReanalisar">Atualizar conferência</button><button type="button" class="btn" id="modalCadastrar">Cadastrar vaga</button></div>';
+ b.querySelectorAll('[data-i]').forEach(function(el){el.addEventListener('input',function(){v[el.dataset.k]=el.value;el.closest('.imp-field')?.classList.remove('missing')})});
+ document.getElementById('modalSalarioCombinar').onchange=function(){v.salarioCombinar=this.checked};
+ document.getElementById('modalSenior50').onchange=function(){v.senior50=this.checked};
+ document.getElementById('modalConfidencial').onchange=function(){v.confidencial=this.checked};
+ document.getElementById('modalDestaque').onchange=function(){v.destaque=this.checked};
+ document.getElementById('modalUrgente').onchange=function(){v.urgente=this.checked};
+ document.getElementById('modalLogo').addEventListener('change',function(){var file=this.files&&this.files[0];if(!file)return;if(file.size>700000){alert('A logo deve ter no máximo 700 KB.');this.value='';return}var r=new FileReader();r.onload=function(){v.logo=r.result;document.getElementById('logoPreview').innerHTML='<img class="logo-preview" src="'+v.logo+'" alt="Logo">'};r.readAsDataURL(file)});
+ document.getElementById('modalCancelar').onclick=fecharModal;
+ document.getElementById('modalReanalisar').onclick=function(){fecharModal();render();setTimeout(function(){abrirModal(v)},0)};
+ document.getElementById('modalCadastrar').onclick=async function(){var c=completeness(v);if(c.missing.length){alert('Complete os campos destacados antes de cadastrar a vaga.');return}if(v.candidatura==='E-mail'&&!v.email){alert('Informe o e-mail de candidatura.');return}if(v.candidatura==='WhatsApp'&&!v.whatsapp){alert('Informe o WhatsApp de candidatura.');return}if(v.candidatura==='Link externo'&&!v.linkExterno){alert('Informe o link externo de candidatura.');return}var btn=this;btn.disabled=true;btn.textContent='Cadastrando...';try{await cadastrarSupabase(v);fecharModal();render()}catch(e){console.error(e);btn.disabled=false;btn.textContent='Cadastrar vaga';alert('Não foi possível cadastrar esta vaga: '+e.message)}};
+ var m=document.getElementById('reviewModal');m.classList.add('open');m.setAttribute('aria-hidden','false')
+}
+document.getElementById('reviewClose').addEventListener('click',fecharModal);document.getElementById('reviewModal').addEventListener('click',function(e){if(e.target===this)fecharModal()});
+function render(){var box=document.getElementById('preview');if(!vagas.length){box.innerHTML='<div class="empty"><b>Nenhuma vaga analisada ainda</b>Cole os anúncios acima e clique em “Analisar vagas”.</div>';atualizarResumo();return}box.innerHTML=vagas.map(function(v){var cp=completeness(v),rot=cp.status==='pronta'?'Pronta':cp.status==='incompleta'?'Incompleta':'Precisa de revisão';return '<article class="vaga"><div class="vaga-title"><div><h3>'+esc(v.cargo||'Cargo não identificado')+'</h3><small>'+esc(v.empresa||'Empresa não identificada')+' · '+esc(v.cidade||'Local não identificado')+'</small></div><span class="pct-pill">'+cp.pct+'%</span></div><div class="actions"><span class="status-chip '+cp.status+'">'+(v.cadastrada?'Cadastrada':rot)+'</span><button class="btn" type="button" data-revisar="'+v.id+'" '+(v.cadastrada?'disabled':'')+'>'+(v.cadastrada?'✓ Cadastrada':'Revisar e cadastrar')+'</button></div></article>'}).join('');box.querySelectorAll('[data-revisar]').forEach(function(btn){btn.addEventListener('click',function(){var v=vagas[Number(btn.dataset.revisar)];if(v&&!v.cadastrada)abrirModal(v)})});atualizarResumo();if(vagas.length===1&&!vagas[0].cadastrada)abrirModal(vagas[0])}
+document.getElementById('limpar').addEventListener('click',function(){document.getElementById('texto').value='';vagas=[];document.getElementById('preview').innerHTML='<div class="empty"><b>Nenhuma vaga analisada ainda</b>Cole os anúncios acima e clique em “Analisar vagas”.</div>';atualizarResumo()});document.getElementById('expandir').addEventListener('click',function(){document.getElementById('preview').scrollIntoView({behavior:'smooth'})});document.getElementById('cadastrarTodas').addEventListener('click',async function(){var btn=this,pendentes=vagas.filter(function(v){return !v.cadastrada});if(!pendentes.length){alert('Não há vagas pendentes para cadastrar.');return}if(!confirm('Cadastrar '+pendentes.length+' vaga(s) no Supabase? Elas entrarão como pendentes de análise.'))return;btn.disabled=true;var ok=0,erros=[];for(var i=0;i<pendentes.length;i++){btn.textContent='Cadastrando '+(i+1)+' de '+pendentes.length+'...';try{await cadastrarSupabase(pendentes[i]);ok++}catch(e){erros.push((pendentes[i].cargo||'Vaga')+': '+e.message)}}btn.disabled=false;btn.textContent='Cadastrar todas as vagas revisadas';render();alert(ok+' vaga(s) cadastrada(s) com sucesso.'+(erros.length?'\n\nFalharam '+erros.length+':\n'+erros.join('\n'):''))});
+document.getElementById('analisar').addEventListener('click',async function(){try{vagas=split(document.getElementById('texto').value).map(parse);if(!vagas.length){document.getElementById('preview').innerHTML='<p>Cole um anúncio antes de analisar.</p>';return}await completarTodas(vagas);render()}catch(e){console.error(e);document.getElementById('preview').innerHTML='<p>Não foi possível analisar este anúncio. O restante do EmpregaMais não foi afetado.</p>'}});
+})();
+</script>
+</body></html>,'i'),m=original.match(rx);
+   if(m&&m[1])return m[1].trim();
+  }
+ }
  return''
 }
 function blocoAteRotulo(t,inicios,fins){var re=new RegExp('(?:^|\\n)\\s*(?:'+inicios+')\\s*[:\\-]?\\s*([\\s\\S]*?)(?=\\n\\s*(?:'+fins+')\\s*[:\\-]?|$)','i'),m=t.match(re);return m?m[1].replace(/^\\s*[-•▪✓✔]\\s*/gm,'').trim():''}
