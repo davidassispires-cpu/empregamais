@@ -111,30 +111,30 @@ function parse(t,i){
  if(!cargo){var tituloProv=lines.find(function(x){return x.length<=80&&!/\b(?:atua|segmento|empresa|oferecendo|clientes|fundada|mercado)\b/i.test(x)&&!/^(?:sobre|descri[cç][aã]o|requisitos|benef[ií]cios|atividades)\b/i.test(x)});cargo=tituloProv||''}
  cargo=clean(cargo).replace(/^(?:VAGA|CARGO)\s*[:\-]\s*/i,'');
  var empresa=valorLinha(t,['Empresa','Nome da empresa','Contratante','Empresa contratante']);
- if(!empresa){var em=t.match(/^\s*([A-ZÁÉÍÓÚÂÊÔÃÕÇ][A-Za-zÀ-ÿ0-9&.' -]{2,80}?)\s+(?:atua|é uma empresa|está com oportunidade|esta com oportunidade)\b/im);if(em)empresa=clean(em[1])}
+ if(!empresa){var em=t.match(/^\s*([A-ZÁÉÍÓÚÂÊÔÃÕÇ][A-Za-zÀ-ÿ0-9&.' -]{2,80}?)\s+(?:atua|é uma empresa|está com oportunidade|esta com oportunidade)\b/im);if(em)empresa=clean(em[1])} if(!empresa&&/Mercado\s+(?:Livre|Envios)/i.test(t))empresa='Mercado Livre';
  var local=valorLinha(t,['Local de trabalho','Localização','Localizacao','Localidade','Local','Cidade']),cidade=local,uf=valorLinha(t,['UF','Estado']),bairro=valorLinha(t,['Bairro'])||'';
  if(local){var lm=local.match(/(.+?)(?:\s*[-–—\/]\s*|\s+)([A-Z]{2})$/);if(lm){cidade=lm[1].trim();uf=lm[2]}var ap=cidade.split(/\s+[–—]\s+/);if(ap.length>1){bairro=bairro||ap[0].trim();cidade=ap[ap.length-1].trim()}}
- if(!cidade){var cm=t.match(/\b(?:em|para)\s+([A-ZÁÉÍÓÚÂÊÔÃÕÇ][A-Za-zÀ-ÿ ]{2,40})\s*[-\/]\s*([A-Z]{2})\b/);if(cm){cidade=cm[1].trim();uf=cm[2]}}
+ if(!cidade){var cm=t.match(/\b(?:em|para)\s+([A-ZÁÉÍÓÚÂÊÔÃÕÇ][A-Za-zÀ-ÿ ]{2,40})\s*[-\/]\s*([A-Z]{2})\b/);if(cm){cidade=cm[1].trim();uf=cm[2]}} var locais=[...t.matchAll(/([A-ZÁÉÍÓÚÂÊÔÃÕÇ][A-Za-zÀ-ÿ .'-]{2,45}),\s*([A-Z]{2}),?\s*Brasil/gi)].map(function(m){return {cidade:m[1].trim(),uf:m[2].toUpperCase()}});if(!cidade&&locais.length){cidade=locais[0].cidade;uf=uf||locais[0].uf}
  var contrato=valorLinha(t,['Contratação','Contratacao','Contrato','Tipo de contrato','Tipo de vaga','Regime','Vínculo','Vinculo']);
  if(/\bCLT\b/i.test(contrato||t))contrato='Efetivo – CLT';else if(/est[aá]gio/i.test(contrato||t))contrato='Estágio';else if(/tempor[aá]ri/i.test(contrato||t))contrato='Temporário';else if(/jovem aprendiz/i.test(contrato||t))contrato='Jovem Aprendiz';else if(/trainee/i.test(contrato||t))contrato='Trainee';
  var sm=valorLinha(t,['Salário','Salario','Remuneração','Remuneracao']),salario=sm||((t.match(/R\$\s*[\d.]+(?:,\d{2})?(?:\s*\+[^\n]*)?/i)||[])[0]||'');
  var salarioCombinar=/sal[aá]rio\s+(?:a\s+)?combinar|remunera[cç][aã]o\s+(?:a\s+)?combinar/i.test(t);
  if(salarioCombinar&&!salario)salario='A combinar';
  var modalidade=valorLinha(t,['Modalidade','Modelo de trabalho','Regime de trabalho']);if(!modalidade){if(/home\s*office|remot[oa]/i.test(t))modalidade='Remoto';else if(/h[ií]brid[oa]/i.test(t))modalidade='Híbrido';else if(/presencial|local de trabalho|endere[cç]o/i.test(t))modalidade='Presencial';else modalidade=''}
- var area=valorLinha(t,['Área','Area','Área de atuação','Area de atuacao','Setor','Departamento']);
+ var area=valorLinha(t,['Área','Area','Área de atuação','Area de atuacao','Setor','Departamento']);if(!area&&/\bLogística\b|\bLogistica\b|supply chain/i.test(t))area='Logística';
  /* remove ruídos comuns de cópia de páginas antes de distribuir conteúdo */
  t=t.replace(/^\s*svg\w*[^\n]*$/gim,'').replace(/^\s*svgLocalGuides[^\n]*$/gim,'');
- var beneficios=valorLinha(t,['Benefícios','Beneficios','Oferecemos']);if(!beneficios){var bm=t.match(/(?:Oferecemos|Benef[ií]cios?)\s*:\s*([^\n]+)/i);if(bm)beneficios=bm[1].trim()}
+ var beneficios=valorLinha(t,['Benefícios','Beneficios','Oferecemos']);if(!beneficios){var bm=t.match(/(?:Oferecemos|Benef[ií]cios?)\s*:\s*([^\n]+)/i);if(bm)beneficios=bm[1].trim()} if(!beneficios){beneficios=blocoAteRotulo(t,'Nós lhe propomos|Nos lhe propomos','Como se candidatar|Candidatura|Contato')}
  if(beneficios)beneficios=beneficios.replace(/\s+e\s+/gi,'; ').replace(/\s*,\s*/g,'; ');
  var jornada=valorLinha(t,['Jornada de Trabalho','Jornada','Horário','Horario']);if(!jornada){var hm=t.match(/(?:HOR[ÁA]RIO\s*:\s*)?((?:\d+\s*horas?\s*por\s*dia[^\n]*)(?:\n[^\n]*\d{1,2}H[^\n]*)?)/i);if(hm)jornada=hm[1].trim()}
  var escolaridade=valorLinha(t,['Escolaridade','Escolaridade mínima','Escolaridade minima','Formação','Formacao']);
  var experiencia=valorLinha(t,['Experiência','Experiencia','Experiência necessária','Experiencia necessaria','Tempo de experiência','Tempo de experiencia']);
  var requisitos=blocoAteRotulo(t,'Requisitos|Qualificações|Qualificacoes','Benefícios|Beneficios|Oferecemos|Jornada|Horário|Horario|Local|Informações adicionais|Informacoes adicionais|Como se candidatar');
- var atividades=blocoAteRotulo(t,'Atividades|Responsabilidades|Principais atividades|O que você vai fazer','Requisitos|Qualificações|Benefícios|Beneficios|Oferecemos|Jornada|Horário|Horario|Local|Informações adicionais|Informacoes adicionais|Como se candidatar');
- var descricao=blocoAteRotulo(t,'Descrição da Vaga|Descrição|Descricao','Atividades|Responsabilidades|Requisitos|Qualificações|Benefícios|Beneficios|Oferecemos|Jornada|Horário|Horario|Local|Informações adicionais|Informacoes adicionais|Como se candidatar');
+ var atividades=blocoAteRotulo(t,'Atividades|Responsabilidades|Principais atividades|O que você vai fazer|Imagine você empreendendo projetos desafiadores, dinâmicos e inovadores, e sendo responsável por','Requisitos|Qualificações|Benefícios|Beneficios|Oferecemos|Nós lhe propomos|Nos lhe propomos|Jornada|Horário|Horario|Local|Informações adicionais|Informacoes adicionais|Como se candidatar');
+ var descricao=blocoAteRotulo(t,'Descrição da Vaga|Descrição|Descricao','Atividades|Responsabilidades|Requisitos|Qualificações|Benefícios|Beneficios|Oferecemos|Jornada|Horário|Horario|Local|Informações adicionais|Informacoes adicionais|Como se candidatar');if(!descricao){var dm=t.match(/No Mercado Livre estamos[\s\S]*?(?=\n\s*Temos um desafio|\n\s*Imagine você|\n\s*Imagine voce|\n\s*Requisitos\s*:)/i);if(dm)descricao=dm[0].trim()}
  var adicionais=blocoAteRotulo(t,'Informações adicionais|Informacoes adicionais','Como se candidatar|Candidatura|Contato');
  if(!descricao){var excluir=/^(?:VAGA|CARGO|SAL[ÁA]RIO|BENEF[IÍ]CIOS?|OFERECEMOS|HOR[ÁA]RIO|JORNADA|EMPRESA|LOCAL|CIDADE|UF|CONTRATO|MODALIDADE|REQUISITOS?|ATIVIDADES?)\s*[:\-]/i;descricao=lines.filter(function(x){return !excluir.test(x)}).slice(0,4).join(' ')}
- if(!escolaridade){if(/ensino fundamental completo/i.test(t))escolaridade='Fundamental completo';else if(/ensino m[eé]dio completo/i.test(t))escolaridade='Médio completo';else if(/ensino m[eé]dio (?:cursando|incompleto)/i.test(t))escolaridade='Médio incompleto';else if(/superior completo|gradua[cç][aã]o completa/i.test(t))escolaridade='Superior completo';else if(/superior (?:em curso|cursando)|gradua[cç][aã]o em andamento/i.test(t))escolaridade='Superior incompleto'}
+ if(!escolaridade){if(/forma[cç][aã]o superior completa|superior completo|gradua[cç][aã]o completa/i.test(t))escolaridade='Superior completo';else if(/ensino fundamental completo/i.test(t))escolaridade='Fundamental completo';else if(/ensino m[eé]dio completo/i.test(t))escolaridade='Médio completo';else if(/ensino m[eé]dio (?:cursando|incompleto)/i.test(t))escolaridade='Médio incompleto';else if(/superior completo|gradua[cç][aã]o completa/i.test(t))escolaridade='Superior completo';else if(/superior (?:em curso|cursando)|gradua[cç][aã]o em andamento/i.test(t))escolaridade='Superior incompleto'}
  if(!experiencia){var ex=t.match(/(?:experi[eê]ncia|experiencia)[^\n:]*[:\-]?\s*([^\n]{2,100})/i);if(ex)experiencia=ex[1].trim();else if(/sem experi[eê]ncia|n[aã]o exige experi[eê]ncia/i.test(t))experiencia='Sem experiência'}
  var quantidade=valorLinha(t,['Quantidade de pessoas','Quantidade de pessoas a contratar','Quantidade de vagas','Vagas disponíveis','Número de vagas','Numero de vagas'])||'';
  var pcd=valorLinha(t,['PcD','PCD','Vaga para PcD','Pessoa com deficiência'])||(/vaga\s+(?:exclusiva|afirmativa)\s+para\s+pcd/i.test(t)?'PcD - conferir tipo':'');
@@ -288,7 +288,7 @@ function field(t,names){for(var i=0;i<names.length;i++){var m=t.match(new RegExp
 function section(t,names,next){var m=t.match(new RegExp('(?:^|\\n)\\s*(?:'+names+')\\s*:\\s*([\\s\\S]*?)(?=\\n\\s*(?:'+next+')\\s*:|$)','i'));return m?m[1].replace(/^\\s*[-•]\\s*/gm,'').trim():''}
 function parse(t,i){
  t=clean(t);var lines=t.split('\n').map(function(x){return x.trim()}).filter(Boolean);
- var cargo=valorLinha(t,['Cargo','Vaga','Função','Oportunidade'])||((t.match(/(?:^|\n)\s*(?:VAGA|OPORTUNIDADE)\s*[:\-]\s*([^\n]+)/i)||[])[1])||'';
+ var cargo=valorLinha(t,['Cargo','Título da vaga','Titulo da vaga','Vaga','Função','Oportunidade'])||((t.match(/(?:^|\n)\s*(?:VAGA|OPORTUNIDADE)\s*[:\-–—|]\s*([^\n]+)/i)||[])[1])||'';
  if(!cargo){var cmCargo=t.match(/(?:vaga|oportunidade)\s+(?:para|de)\s+(?:o\s+cargo\s+de\s+)?([A-Za-zÀ-ÿ][^\n,.;:]{2,70})/i);if(cmCargo)cargo=cmCargo[1].trim()}
  if(!cargo){var tituloProv=lines.find(function(x){return x.length<=80&&!/\b(?:atua|segmento|empresa|oferecendo|clientes|fundada|mercado)\b/i.test(x)&&!/^(?:sobre|descri[cç][aã]o|requisitos|benef[ií]cios|atividades)\b/i.test(x)});cargo=tituloProv||''}
  cargo=clean(cargo).replace(/^(?:VAGA|CARGO)\s*[:\-]\s*/i,'');
