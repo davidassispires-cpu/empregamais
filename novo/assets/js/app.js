@@ -309,8 +309,9 @@ function seloNotaEmpresaEM(cnpj,verificada){
 }
 function cardVagaPortal(v){
  const nome=v.confidencial?'Empresa confidencial':(v.empresa||'Empresa');
- const empLogoRecente=ler('empregaMaisEmpresas').find(e=>nums(e.cnpj||'')===nums(v.empresaCnpj||v.cnpj||''))||{};
- const logo=destaqueAtivo(v)&&!v.confidencial?(v.logo||v.logoUrl||v.empresaLogo||empLogoRecente.logo||empLogoRecente.perfil?.logo||''):'';
+ const empresasLogoRecente=ler('empregaMaisEmpresas');
+ const empLogoRecente=empresasLogoRecente.find(e=>(v.empresaId&&String(e.id||'')===String(v.empresaId))||(nums(v.empresaCnpj||v.cnpj||'')&&nums(e.cnpj||'')===nums(v.empresaCnpj||v.cnpj||'')))||{};
+ const logo=destaqueAtivo(v)&&!v.confidencial?(v.logo||v.logoUrl||v.empresaLogo||empLogoRecente.logo||empLogoRecente.logoUrl||empLogoRecente.perfil?.logo||''):'';
  const empVer=ler('empregaMaisEmpresas').find(e=>nums(e.cnpj||'')===nums(v.empresaCnpj||v.cnpj||''))||{};
  const verificada=!v.confidencial&&(empVer.verificada===true||empVer.verificacaoStatus==='aprovada');
  const sal=v.salarioCombinar?'Salário a combinar':(v.salarioMax?(v.salario+' a '+v.salarioMax):(v.salario||'Salário a combinar'));
