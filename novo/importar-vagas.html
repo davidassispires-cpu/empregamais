@@ -162,10 +162,8 @@ async function completarCidade(v){
    var r=await fetch('https://servicodados.ibge.gov.br/api/v1/localidades/municipios');
    if(r.ok){var lista=await r.json(),alvo=String(v.cidade).normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase(),achou=lista.find(function(m){return String(m.nome).normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase()===alvo});if(achou&&achou.microrregiao&&achou.microrregiao.mesorregiao&&achou.microrregiao.mesorregiao.UF)v.uf=achou.microrregiao.mesorregiao.UF.sigla||''}
   }
-  if(v.uf&&!v.cep){
-   var vr=await fetch('https://viacep.com.br/ws/'+encodeURIComponent(v.uf)+'/'+encodeURIComponent(v.cidade)+'/Praça/json/');
-   if(vr.ok){var ceps=await vr.json();if(Array.isArray(ceps)&&ceps.length){var unicos=Array.from(new Set(ceps.map(function(x){return x.cep}).filter(Boolean)));if(unicos.length===1)v.cep=unicos[0]}}
-  }
+  /* CEP é opcional no importador. Se o anúncio trouxer apenas cidade e UF,
+     preservamos exatamente essa localização e não inferimos um CEP artificial. */
  }catch(e){console.warn('Localização não completada',e)}
  return v
 }
