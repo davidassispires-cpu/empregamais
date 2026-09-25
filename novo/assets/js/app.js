@@ -287,7 +287,7 @@ function tituloVaga(v){return String(v.cargo||v.titulo||'Vaga').toLocaleUpperCas
  if(destaqueAtivo(v))return logo;
  return empresaAssinanteVaga(v)?logo:'';
 }
-let localizacaoCandidatoEM=null,localizacaoCandidatoSolicitadaEM=false;
+let localizacaoCandidatoEM=null,localizacaoCandidatoSolicitadaEM=false,geocodeDistanciaEmAndamento=false;
 function distanciaKmEM(aLat,aLng,bLat,bLng){
  const vals=[aLat,aLng,bLat,bLng].map(Number);if(vals.some(n=>!Number.isFinite(n)))return null;
  const [la1,lo1,la2,lo2]=vals.map(n=>n*Math.PI/180),dLat=la2-la1,dLng=lo2-lo1;
@@ -301,6 +301,43 @@ function coordsCandidatoCadastroEM(){
  const lat=Number(d.latitude??d.lat),lng=Number(d.longitude??d.lng??d.lon);
  return Number.isFinite(lat)&&Number.isFinite(lng)?{latitude:lat,longitude:lng}:null
 }
+async function geocodificarEnderecoDistanciaEM(partes){
+ const q=partes.filter(Boolean).map(x=>String(x).trim()).filter(Boolean).join(', ');
+ if(!q)return null;
+ const chave='empregaMaisGeo_'+q.toLowerCase(),cache=ler(chave,null);
+ if(cache&&Number.isFinite(Number(cache.latitude))&&Number.isFinite(Number(cache.longitude)))return cache;
+ try{
+  const u='https://nominatim.openstreetmap.org/search?format=jsonv2&limit=1&countrycodes=br&q='+encodeURIComponent(q+', Brasil');
+  const r=await fetch(u,{headers:{'Accept':'application/json','Accept-Language':'pt-BR'}});
+  if(!r.ok)return null;const a=await r.json(),x=Array.isArray(a)&&a[0],latitude=Number(x?.lat),longitude=Number(x?.lon);
+  if(!Number.isFinite(latitude)||!Number.isFinite(longitude))return null;
+  const c={latitude,longitude};gravar(chave,c);return c
+ }catch(e){return null}
+}
+async function prepararCoordenadasDistanciaEM(){
+ if(geocodeDistanciaEmAndamento||!candidatoLogadoDistanciaEM())return;
+ geocodeDistanciaEmAndamento=true;
+ try{
+  if(!localizacaoCandidatoEM){
+   const pronta=coordsCandidatoCadastroEM();
+   if(pronta)localizacaoCandidatoEM=pronta;
+   else{
+    const d=dadosCurriculoOnlineEM?.()||{},u=candidatoLogado?.()||{},p=u.perfil||{};
+    localizacaoCandidatoEM=await geocodificarEnderecoDistanciaEM([d.bairro,d.cidade||u.cidade,d.uf||p.uf])
+      ||await geocodificarEnderecoDistanciaEM([d.cidade||u.cidade,d.uf||p.uf]);
+   }
+  }
+  const todas=vagasPublicas?.()||[];
+  for(const v of todas){
+   if(String(v?.modalidade||'').toLowerCase().includes('remot'))continue;
+   if(Number.isFinite(Number(v.latitude))&&Number.isFinite(Number(v.longitude)))continue;
+   const c=await geocodificarEnderecoDistanciaEM([v.bairro,v.cidade,v.estado||v.uf])
+      ||await geocodificarEnderecoDistanciaEM([v.cidade,v.estado||v.uf]);
+   if(c){v.latitude=c.latitude;v.longitude=c.longitude}
+  }
+ }finally{geocodeDistanciaEmAndamento=false}
+ atualizarDistanciaCandidatoEM();
+}
 function distanciaVagaTextoEM(v){
  if(!candidatoLogadoDistanciaEM()||String(v?.modalidade||'').toLowerCase().includes('remot'))return'';
  const origem=localizacaoCandidatoEM||coordsCandidatoCadastroEM();if(!origem)return'';
@@ -313,10 +350,11 @@ function atualizarDistanciaCandidatoEM(){
 }
 function solicitarLocalizacaoCandidatoEM(){
  if(!candidatoLogadoDistanciaEM())return;
- const salva=coordsCandidatoCadastroEM();if(salva){localizacaoCandidatoEM=salva;atualizarDistanciaCandidatoEM();return}
+ const salva=coordsCandidatoCadastroEM();if(salva){localizacaoCandidatoEM=salva;prepararCoordenadasDistanciaEM();return}
+ prepararCoordenadasDistanciaEM();
  if(localizacaoCandidatoSolicitadaEM||!navigator.geolocation)return;
  localizacaoCandidatoSolicitadaEM=true;
- navigator.geolocation.getCurrentPosition(p=>{localizacaoCandidatoEM={latitude:p.coords.latitude,longitude:p.coords.longitude};atualizarDistanciaCandidatoEM()},()=>{}, {enableHighAccuracy:false,timeout:8000,maximumAge:600000});
+ navigator.geolocation.getCurrentPosition(p=>{localizacaoCandidatoEM={latitude:p.coords.latitude,longitude:p.coords.longitude};prepararCoordenadasDistanciaEM()},()=>{}, {enableHighAccuracy:false,timeout:8000,maximumAge:600000});
 }
 function notaPublicaEmpresaEM(cnpj){
  const alvo=nums(cnpj||'');if(!alvo)return null;
