@@ -8324,4 +8324,43 @@ body .topo .acoes .btn-azul,body .topo .btn-publicar-vaga{background:linear-grad
 #pagina-painel-candidato .cand-side-tip{margin-left:16px!important;margin-right:16px!important}
 #pagina-painel-candidato .cand-side-exit{margin-left:16px!important;margin-right:16px!important;width:calc(100% - 32px)!important}
 @media(max-width:900px){#pagina-painel-candidato .cand-side{width:100%!important;min-width:0!important}}
-</style></body></html>
+
+<style id="EMPREGAMAI-RECENTES-LOGO-ALINHAMENTO-V67">
+/* Vagas recentes em destaque: reserva a coluna da logo para o texto nunca sobrepor a imagem */
+#pagina-home #listaVagasPortal .portal-vaga-nova.destaque .vaga-identidade{
+ display:grid!important;
+ grid-template-columns:58px minmax(0,1fr)!important;
+ column-gap:13px!important;
+ align-items:center!important;
+}
+#pagina-home #listaVagasPortal .portal-vaga-nova.destaque .vaga-logo-recente{
+ grid-column:1!important;
+ grid-row:1!important;
+ width:58px!important;
+ height:58px!important;
+ min-width:58px!important;
+ object-fit:contain!important;
+ padding:6px!important;
+ box-sizing:border-box!important;
+ border:1px solid #dce6ec!important;
+ border-radius:11px!important;
+ background:#fff!important;
+}
+#pagina-home #listaVagasPortal .portal-vaga-nova.destaque .vaga-identidade-copy{
+ grid-column:2!important;
+ grid-row:1!important;
+ width:auto!important;
+ min-width:0!important;
+}
+#pagina-home #listaVagasPortal .portal-vaga-nova.destaque .vaga-titulo-linha{
+ min-width:0!important;
+}
+#pagina-home #listaVagasPortal .portal-vaga-nova.destaque .vaga-titulo-linha h3{
+ min-width:0!important;
+ overflow-wrap:break-word!important;
+}
+@media(max-width:560px){
+ #pagina-home #listaVagasPortal .portal-vaga-nova.destaque .vaga-identidade{grid-template-columns:50px minmax(0,1fr)!important;column-gap:10px!important}
+ #pagina-home #listaVagasPortal .portal-vaga-nova.destaque .vaga-logo-recente{width:50px!important;height:50px!important;min-width:50px!important}
+}
+</style></style></body></html>
