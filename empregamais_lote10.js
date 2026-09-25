@@ -69,6 +69,18 @@ var s=String(c.status||"").toLowerCase();
 return s.indexOf("entrevista")>=0||s==="selecionado"||s==="aprovado"||s.indexOf("pr\u00e9-selecionado")>=0;
 }).length;
 var contratados=cs.filter(function(c){return String(c.status||"").toLowerCase()==="contratado";}).length;
+var agoraRefEM=Date.now(),dias30RefEM=30*24*60*60*1000,dias7RefEM=7*24*60*60*1000;
+function dataItemRefEM(o){var x=o&&((o.criadoEm||o.dataCriacao||o.created_at||o.data||o.candidatadoEm||o.atualizadoEm));var d=x?new Date(x):null;return d&&!isNaN(d.getTime())?d.getTime():0;}
+var novas7RefEM=cs.filter(function(x){var d=dataItemRefEM(x);return d&&agoraRefEM-d<=dias7RefEM;}).length;
+var visualizacoesRefEM=vagas.reduce(function(s,v){return s+Number(v.visualizacoes||v.views||v.visualizacoesTotal||0);},0);
+var avancaramRefEM=cs.filter(function(x){var s=String(x.status||"").toLowerCase();return s&&s!=="candidatura enviada"&&s!=="enviada"&&s!=="recebida";}).length;
+var taxaAvancoRefEM=cs.length?Math.round((avancaramRefEM/cs.length)*100):0;
+var temposRefEM=cs.filter(function(x){return String(x.status||"").toLowerCase()==="contratado";}).map(function(x){var a=dataItemRefEM(x),b=x.contratadoEm||x.dataContratacao||x.updated_at||x.atualizadoEm;var f=b?new Date(b).getTime():0;return a&&f&&f>=a?Math.max(0,Math.round((f-a)/86400000)):null;}).filter(function(x){return x!==null;});
+var tempoMedioRefEM=temposRefEM.length?Math.round(temposRefEM.reduce(function(a,b){return a+b;},0)/temposRefEM.length):0;
+var contagemVagaRefEM={};cs.forEach(function(x){var id=String(x.vagaId||x.vaga_id||x.idVaga||"");if(id)contagemVagaRefEM[id]=(contagemVagaRefEM[id]||0)+1;});
+var vagaTopRefEM=vagas.slice().sort(function(a,b){return (contagemVagaRefEM[String(b.id)]||0)-(contagemVagaRefEM[String(a.id)]||0);})[0]||null;
+var vagaTopQtdRefEM=vagaTopRefEM?(contagemVagaRefEM[String(vagaTopRefEM.id)]||0):0;
+var vagaTopNomeRefEM=vagaTopRefEM?valorRefEM(vagaTopRefEM,["cargo","titulo","vaga"],"Sem dados"):"Sem dados";
 var shell=document.createElement("div");
 shell.id="painelReferenciaRecrutadorEM";
 shell.className="recrutador-shell-ref-em";
@@ -99,6 +111,15 @@ shell.innerHTML=
 "<div class='recrutador-card-ref-em'><div class='recrutador-card-icone-ref-em'><svg viewBox='0 0 24 24' aria-hidden='true'><rect x='5' y='3' width='14' height='18' rx='2'/><path d='M9 7h6M9 11h6M9 15h4'/></svg></div><div><strong>"+processo+"</strong><span>Em processo</span></div></div>"+
 "<div class='recrutador-card-ref-em'><div class='recrutador-card-icone-ref-em'>&#10003;</div><div><strong>"+contratados+"</strong><span>Contratados</span></div></div>"+
 "</div>"+
+"<div class='recrutador-desempenho-v227'>"+
+"<div class='recrutador-desempenho-head-v227'><div><strong>Indicadores de desempenho</strong><span>Visão consolidada da operação de recrutamento</span></div><span class='periodo-v227'>Últimos 30 dias</span></div>"+
+"<div class='recrutador-mini-grid-v227'>"+
+"<div class='recrutador-mini-v227'><span>Visualizações das vagas</span><strong>"+visualizacoesRefEM+"</strong><small>Total registrado</small></div>"+
+"<div class='recrutador-mini-v227'><span>Novas candidaturas</span><strong>"+novas7RefEM+"</strong><small>Últimos 7 dias</small></div>"+
+"<div class='recrutador-mini-v227'><span>Taxa de avanço</span><strong>"+taxaAvancoRefEM+"%</strong><small>Candidatos que avançaram</small></div>"+
+"<div class='recrutador-mini-v227'><span>Tempo médio</span><strong>"+(tempoMedioRefEM?tempoMedioRefEM+" dias":"—")+"</strong><small>Até a contratação</small></div>"+
+"<div class='recrutador-mini-v227 destaque'><span>Vaga com mais candidatos</span><strong class='nome-vaga-v227'>"+txtRefEM(vagaTopNomeRefEM)+"</strong><small>"+vagaTopQtdRefEM+" candidatura"+(vagaTopQtdRefEM===1?"":"s")+"</small></div>"+
+"</div></div>"+
 "</section>"+
 "<section class='recrutador-processos-head-v225'>"+
 "<div><span class='recrutador-processos-kicker-v225'>VAGAS DA EMPRESA</span><h2>Gerenciar processos seletivos</h2><p>Acompanhe suas vagas, candidaturas e gerencie cada etapa dos processos seletivos.</p></div>"+
@@ -236,3 +257,6 @@ window.addEventListener("load",function(){setTimeout(window.montarPainelReferenc
 #pagina-painel-empresa .plano-resumo-v122 strong,#pagina-painel-empresa .recursos-plano-v122 strong,#pagina-painel-empresa .plano-premium-v44 strong{color:#073f56!important}
 #pagina-painel-empresa .recrutador-boasvindas-ref-em .recrutador-cards-ref-em{margin-top:22px!important}
 @media(max-width:760px){#pagina-painel-empresa .recrutador-boasvindas-ref-em{padding:22px 20px!important;border-top-width:4px!important}#pagina-painel-empresa .recrutador-boasvindas-topo-ref-em{flex-direction:column!important}#pagina-painel-empresa .recrutador-boasvindas-topo-ref-em h2{font-size:24px!important}#pagina-painel-empresa .recrutador-publicar-ref-em{width:100%!important}}
+
+/* EmpregaMais v227 - indicadores de desempenho do recrutamento */
+.recrutador-desempenho-v227{margin-top:20px;padding-top:18px;border-top:1px solid #e1ebef}.recrutador-desempenho-head-v227{display:flex;align-items:flex-end;justify-content:space-between;gap:16px;margin-bottom:12px}.recrutador-desempenho-head-v227 strong{display:block;color:#123f52;font-size:14px}.recrutador-desempenho-head-v227 span{display:block;color:#7b919c;font-size:11px;margin-top:3px}.periodo-v227{border:1px solid #d5e4e9;background:#f7fafb;border-radius:8px;padding:7px 10px!important;color:#456675!important;font-weight:650;white-space:nowrap}.recrutador-mini-grid-v227{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:10px}.recrutador-mini-v227{min-width:0;background:#f8fbfc;border:1px solid #dce8ec;border-radius:11px;padding:12px 14px}.recrutador-mini-v227>span{display:block;color:#627e8b;font-size:11px;font-weight:650;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.recrutador-mini-v227>strong{display:block;margin:4px 0 1px;color:#073f56;font-size:20px;line-height:1.15}.recrutador-mini-v227>small{display:block;color:#8a9da6;font-size:10px}.recrutador-mini-v227.destaque{border-color:#b9d7dc;background:#f4fafa}.recrutador-mini-v227 .nome-vaga-v227{font-size:13px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin-top:7px}@media(max-width:1050px){.recrutador-mini-grid-v227{grid-template-columns:repeat(2,minmax(0,1fr))}}@media(max-width:620px){.recrutador-desempenho-head-v227{align-items:flex-start;flex-direction:column}.recrutador-mini-grid-v227{grid-template-columns:1fr}.periodo-v227{align-self:flex-start}}
