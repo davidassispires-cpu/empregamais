@@ -11,7 +11,7 @@
 <div id="modal" class="modal"><div class="dialog"><div class="mh"><h2>Revisar vaga importada</h2><button class="close" id="fechar">×</button></div><div class="mb" id="mb"></div></div></div>
 <script>
 (function(){'use strict';
-const SB_URL='https://xvntuvtcwseoyhjzqvjl.supabase.co',SB_KEY='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inh2bnR1dnRjd3Nlb3loanp6cXZqbCIsInJvbGUiOiJhbm9uIiwiaWF0IjoxNzU5NDE2MTYxLCJleHAiOjIwNzQ5OTIxNjF9.-BPW_gD3R5c61D_8oTpB-MmZxY4tX00CrgW3J8M-nEY';
+const SB_URL='https://mkezlcewyengejdmtppl.supabase.co',SB_KEY='sb_publishable_8YnXpzGX8zj-tvzvcMYdyw_FVBhQutR';
 let vagas=[],atual=null;
 const $=s=>document.querySelector(s),esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 function clean(s){return String(s||'').replace(/\*\*/g,'').replace(/\r/g,'').replace(/[ \t]+/g,' ').replace(/\n{3,}/g,'\n\n').trim()}
@@ -52,11 +52,11 @@ function close(){$('#modal').classList.remove('open');atual=null;render()}
 function H(token){let h={'apikey':SB_KEY,'Content-Type':'application/json'};if(token)h.Authorization='Bearer '+token;return h}
 async function req(url,opt){let r=await fetch(url,opt),x=await r.text(),j={};try{j=x?JSON.parse(x):{}}catch(e){}if(!r.ok)throw new Error(j.message||j.error||'Erro '+r.status);return j}
 async function token(){
- if(sessionStorage.getItem('empregaMaisAdmin')!=='1')throw new Error('Entre novamente no painel administrativo.');
+ if(sessionStorage.getItem('empregaMaisAdmin')!=='1'&&localStorage.getItem('empregaMaisAdmin')!=='1')throw new Error('Entre novamente no painel administrativo.');
  const accessKey='empregaMaisAdminSupabaseAccessToken',refreshKey='empregaMaisAdminSupabaseRefreshToken';
- let t=sessionStorage.getItem(accessKey)||'',r=sessionStorage.getItem(refreshKey)||'';
+ let t=sessionStorage.getItem(accessKey)||localStorage.getItem(accessKey)||'',r=sessionStorage.getItem(refreshKey)||localStorage.getItem(refreshKey)||'';
  if(t){try{let u=await req(SB_URL+'/auth/v1/user',{method:'GET',headers:H(t)});if(u&&u.id)return t}catch(e){}}
- if(r){try{let a=await req(SB_URL+'/auth/v1/token?grant_type=refresh_token',{method:'POST',headers:H(),body:JSON.stringify({refresh_token:r})});if(a&&a.access_token){sessionStorage.setItem(accessKey,a.access_token);if(a.refresh_token)sessionStorage.setItem(refreshKey,a.refresh_token);return a.access_token}}catch(e){}}
+ if(r){try{let a=await req(SB_URL+'/auth/v1/token?grant_type=refresh_token',{method:'POST',headers:H(),body:JSON.stringify({refresh_token:r})});if(a&&a.access_token){sessionStorage.setItem(accessKey,a.access_token);localStorage.setItem(accessKey,a.access_token);if(a.refresh_token){sessionStorage.setItem(refreshKey,a.refresh_token);localStorage.setItem(refreshKey,a.refresh_token)}return a.access_token}}catch(e){}}
  throw new Error('Sessão administrativa expirada. Volte ao painel, entre novamente e abra o importador.');
 }
 async function publish(v){let b=$('#pub');b.disabled=true;b.textContent='Cadastrando...';try{let t=await token(),u=await req(SB_URL+'/auth/v1/user',{headers:H(t)});let desc=[v.descricao,v.atividades?'Atividades / responsabilidades:\n'+v.atividades:''].filter(Boolean).join('\n\n');let tipo=v.linkExterno?'Link externo':(v.candidaturaEmail?'E-mail':(v.candidaturaWhatsapp?'WhatsApp':''));let p={user_id:u.id,empresa_id:'e21dc8ca-fec8-4c1f-9629-c192c8e7e9b9',empresa:v.empresa||'',empresa_cnpj:'',cargo:v.cargo||'',area:v.area||'',contrato:v.contrato||'',modalidade:v.modalidade||'',cep:v.cep||'',estado:v.uf||'',cidade:v.cidade||'',data_encerramento:new Date(Date.now()+30*864e5).toISOString().slice(0,10),escolaridade:v.escolaridade||'',experiencia:v.experiencia||'',jornada:v.jornada||'',pcd:v.pcd||'',salario:v.salario||'',salario_max:'',salario_combinar:!v.salario,horario_entrada:'',horario_saida:'',descricao:desc,requisitos:v.requisitos||'',beneficios:v.beneficios||'',beneficios_lista:String(v.beneficios||'').split(/[;·]/).map(x=>x.trim()).filter(Boolean),beneficios_outros:v.beneficios||'',sobre_empresa:'',senior50:false,confidencial:false,destaque:false,urgente:false,destaque_solicitado:false,urgencia_solicitada:false,status:'pendente',logo:v.logo||'',candidatura_tipo:tipo,candidatura_email:v.candidaturaEmail||'',candidatura_whatsapp:v.candidaturaWhatsapp||'',candidatura_link:v.linkExterno||''};await req(SB_URL+'/rest/v1/vagas',{method:'POST',headers:Object.assign(H(t),{'Prefer':'return=representation'}),body:JSON.stringify(p)});v.cadastrada=true;close();alert('Vaga cadastrada com sucesso para revisão/publicação.')}catch(e){b.disabled=false;b.textContent='Cadastrar vaga';alert(e.message)}}
