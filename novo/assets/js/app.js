@@ -1591,10 +1591,11 @@ async function cadastrarCandidatoSupabaseEM(e){
 const _sairSupabaseCandidatoV1=sair;
 sair=function(){
  const papel=papelAtual();
- if(papel==="candidato"){
+ if(papel==="candidato"||papel==="empresa"){
    const t=sbTokenEM();if(t)fetch(EMPREGAMAIS_SUPABASE_URL+"/auth/v1/logout",{method:"POST",headers:sbHeadersEM(t)}).catch(()=>{});
    sessionStorage.removeItem(EMPREGAMAIS_SB_TOKEN);localStorage.removeItem(EMPREGAMAIS_SB_TOKEN);
    sessionStorage.removeItem(EMPREGAMAIS_SB_REFRESH);localStorage.removeItem(EMPREGAMAIS_SB_REFRESH);
+   sessionStorage.removeItem('empresaSupabaseAuthUserId');sessionStorage.removeItem('empresaSupabaseUserId');sessionStorage.removeItem('empresaSupabaseEmpresaId');sessionStorage.removeItem('empresaUsuarioAdministrador');
  }
  return _sairSupabaseCandidatoV1()
 };
