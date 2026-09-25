@@ -5394,20 +5394,30 @@ overflow:visible!important
 
 
 /* EMPREGAMAIS-VAGA-INFO-CENTRAL-V1 */
-#pagina-vaga .vaga-info-grid{grid-template-columns:repeat(4,minmax(0,1fr))!important}
-#pagina-vaga .vaga-info-grid>div{min-height:128px!important;padding:16px 12px!important;display:flex!important;flex-direction:column!important;align-items:center!important;justify-content:center!important;text-align:center!important;position:relative!important}
-#pagina-vaga .vaga-info-grid .info-svg{position:static!important;left:auto!important;top:auto!important;width:40px!important;height:40px!important;margin:0 0 8px!important;border-radius:11px!important;display:grid!important;place-items:center!important}
+#pagina-vaga .vaga-hero-card{overflow:hidden!important}
+#pagina-vaga .vaga-hero-identidade.vaga-hero-op2{position:relative!important;grid-template-columns:118px minmax(0,1fr)!important;gap:28px!important;align-items:center!important;min-height:250px!important;padding:34px 210px 30px 48px!important}
+#pagina-vaga .vaga-hero-op2 .vaga-hero-logo{width:118px!important;height:118px!important;min-width:118px!important;border-radius:15px!important;padding:10px!important;object-fit:contain!important}
+#pagina-vaga .vaga-hero-op2 .vaga-hero-texto{min-width:0!important;align-self:center!important}
+#pagina-vaga .vaga-hero-op2 .vaga-hero-texto h1{max-width:850px!important;margin:0 0 10px!important;font-size:31px!important;line-height:1.08!important;font-weight:800!important;letter-spacing:-.45px!important;white-space:normal!important;overflow:visible!important;text-overflow:clip!important}
+#pagina-vaga .vaga-hero-op2 .vaga-hero-empresa-linha{margin-bottom:12px!important}
+#pagina-vaga .vaga-hero-acoes{position:absolute!important;top:28px!important;right:28px!important;z-index:3!important}
+#pagina-vaga .vaga-salvar-hero{height:42px!important;min-width:138px!important;padding:0 17px!important;border:1px solid #9fb9cc!important;border-radius:9px!important;background:#fff!important;color:#123f61!important;font-size:11px!important;font-weight:700!important;display:inline-flex!important;align-items:center!important;justify-content:center!important;cursor:pointer!important;box-shadow:0 2px 6px rgba(19,62,94,.04)!important}
+#pagina-vaga .vaga-salvar-hero:hover{border-color:#1680d5!important;color:#0873c8!important;background:#f8fcff!important}
+#pagina-vaga .vaga-info-grid{grid-template-columns:repeat(4,minmax(0,1fr))!important;padding:0 26px 22px!important;border-top:1px solid #dce7ee!important;gap:0!important}
+#pagina-vaga .vaga-info-grid>div{min-height:145px!important;padding:20px 16px!important;display:flex!important;flex-direction:column!important;align-items:center!important;justify-content:center!important;text-align:center!important;position:relative!important;border:0!important;border-right:1px solid #d9e4eb!important;background:#fff!important}
+#pagina-vaga .vaga-info-grid>div:last-child{border-right:0!important}
+#pagina-vaga .vaga-info-grid .info-svg{position:static!important;width:42px!important;height:42px!important;margin:0 0 9px!important;border-radius:11px!important;display:grid!important;place-items:center!important}
 #pagina-vaga .vaga-info-grid>div:nth-child(1) .info-svg{background:#eaf5ff!important;color:#1683d4!important}
 #pagina-vaga .vaga-info-grid>div:nth-child(2) .info-svg{background:#eaf8f7!important;color:#087f80!important}
 #pagina-vaga .vaga-info-grid>div:nth-child(3) .info-svg{background:#f1edff!important;color:#6948b8!important}
 #pagina-vaga .vaga-info-grid>div:nth-child(4) .info-svg{background:#eaf8f1!important;color:#087d50!important}
-#pagina-vaga .vaga-info-grid .info-svg svg{width:19px!important;height:19px!important;stroke:currentColor!important}
-#pagina-vaga .vaga-info-grid strong{font-size:12px!important;line-height:1.2!important;text-align:center!important}
-#pagina-vaga .vaga-info-grid small{margin-top:4px!important;font-size:8.5px!important;line-height:1.2!important;text-align:center!important;text-transform:uppercase!important;letter-spacing:.03em!important}
-#pagina-vaga .vaga-info-grid .em-local-detalhes-btn{margin-top:2px!important;font-size:8.5px!important}
+#pagina-vaga .vaga-info-grid .info-svg svg{width:20px!important;height:20px!important;stroke:currentColor!important}
+#pagina-vaga .vaga-info-grid strong{margin:0!important;font-size:13px!important;line-height:1.2!important;text-align:center!important;font-weight:800!important}
+#pagina-vaga .vaga-info-grid small{margin-top:4px!important;font-size:8.7px!important;line-height:1.2!important;text-align:center!important;text-transform:uppercase!important;letter-spacing:.04em!important}
+#pagina-vaga .vaga-info-grid .em-local-detalhes-btn{margin-top:3px!important;font-size:8.7px!important}
 #pagina-vaga .vaga-info-grid .vaga-distancia-detalhe{text-align:center!important}
-@media(max-width:1000px){#pagina-vaga .vaga-info-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important}}
-@media(max-width:560px){#pagina-vaga .vaga-info-grid{grid-template-columns:1fr!important}}
+@media(max-width:1000px){#pagina-vaga .vaga-hero-identidade.vaga-hero-op2{grid-template-columns:92px minmax(0,1fr)!important;padding:64px 24px 26px!important;gap:20px!important}#pagina-vaga .vaga-hero-op2 .vaga-hero-logo{width:92px!important;height:92px!important;min-width:92px!important}#pagina-vaga .vaga-info-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important;padding:0 18px 18px!important}}
+@media(max-width:560px){#pagina-vaga .vaga-hero-identidade.vaga-hero-op2{grid-template-columns:64px minmax(0,1fr)!important;gap:14px!important;padding:68px 18px 22px!important;min-height:0!important}#pagina-vaga .vaga-hero-op2 .vaga-hero-logo{width:64px!important;height:64px!important;min-width:64px!important;padding:7px!important}#pagina-vaga .vaga-hero-op2 .vaga-hero-texto h1{font-size:21px!important}#pagina-vaga .vaga-hero-acoes{top:16px!important;right:16px!important}#pagina-vaga .vaga-salvar-hero{height:38px!important;min-width:118px!important}#pagina-vaga .vaga-info-grid{grid-template-columns:1fr!important;padding:0 14px 14px!important}}
 
 /* EMPREGAMAIS-EMPRESA-SOBRE-RESUMO-V1 */
 #pagina-empresa-publica .empresa-publica-visao-grid{display:grid!important;grid-template-columns:minmax(0,1fr) 285px!important;gap:22px!important;align-items:start!important}
