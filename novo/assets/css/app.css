@@ -5365,3 +5365,20 @@ overflow:visible!important
 #pagina-vaga .vaga-salvar-hero:hover{border-color:#1680d5!important;color:#0873c8!important;background:#f8fcff!important}
 @media(max-width:1000px){#pagina-vaga .vaga-hero-identidade.vaga-hero-op2{grid-template-columns:92px minmax(0,1fr)!important;padding:58px 24px 26px!important}#pagina-vaga .vaga-hero-op2 .vaga-hero-logo{width:92px!important;height:92px!important;min-width:92px!important}}
 @media(max-width:600px){#pagina-vaga .vaga-hero-identidade.vaga-hero-op2{grid-template-columns:64px minmax(0,1fr)!important;gap:14px!important;padding:68px 18px 22px!important;min-height:0!important}#pagina-vaga .vaga-hero-op2 .vaga-hero-logo{width:64px!important;height:64px!important;min-width:64px!important;padding:7px!important}#pagina-vaga .vaga-hero-op2 .vaga-hero-texto h1{font-size:21px!important}#pagina-vaga .vaga-hero-acoes{top:16px!important;right:16px!important}.vaga-salvar-hero{height:38px!important;min-width:118px!important}}
+
+
+/* EMPREGAMAIS-VAGA-INFO-CENTRAL-V1 */
+#pagina-vaga .vaga-info-grid{grid-template-columns:repeat(4,minmax(0,1fr))!important}
+#pagina-vaga .vaga-info-grid>div{min-height:128px!important;padding:16px 12px!important;display:flex!important;flex-direction:column!important;align-items:center!important;justify-content:center!important;text-align:center!important;position:relative!important}
+#pagina-vaga .vaga-info-grid .info-svg{position:static!important;left:auto!important;top:auto!important;width:40px!important;height:40px!important;margin:0 0 8px!important;border-radius:11px!important;display:grid!important;place-items:center!important}
+#pagina-vaga .vaga-info-grid>div:nth-child(1) .info-svg{background:#eaf5ff!important;color:#1683d4!important}
+#pagina-vaga .vaga-info-grid>div:nth-child(2) .info-svg{background:#eaf8f7!important;color:#087f80!important}
+#pagina-vaga .vaga-info-grid>div:nth-child(3) .info-svg{background:#f1edff!important;color:#6948b8!important}
+#pagina-vaga .vaga-info-grid>div:nth-child(4) .info-svg{background:#eaf8f1!important;color:#087d50!important}
+#pagina-vaga .vaga-info-grid .info-svg svg{width:19px!important;height:19px!important;stroke:currentColor!important}
+#pagina-vaga .vaga-info-grid strong{font-size:12px!important;line-height:1.2!important;text-align:center!important}
+#pagina-vaga .vaga-info-grid small{margin-top:4px!important;font-size:8.5px!important;line-height:1.2!important;text-align:center!important;text-transform:uppercase!important;letter-spacing:.03em!important}
+#pagina-vaga .vaga-info-grid .em-local-detalhes-btn{margin-top:2px!important;font-size:8.5px!important}
+#pagina-vaga .vaga-info-grid .vaga-distancia-detalhe{text-align:center!important}
+@media(max-width:1000px){#pagina-vaga .vaga-info-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important}}
+@media(max-width:560px){#pagina-vaga .vaga-info-grid{grid-template-columns:1fr!important}}
