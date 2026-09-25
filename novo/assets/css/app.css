@@ -5302,6 +5302,7 @@ overflow:visible!important
 #pagina-home #listaVagasPortal .portal-vaga-nova.com-logo .vaga-empresa-nome{padding-top:0!important}
 #pagina-home #listaVagasPortal .vaga-selos{display:flex!important;align-items:center!important;gap:7px!important;flex:0 0 auto!important;margin-left:auto!important;transform:translateY(-1px)!important}
 #pagina-home #listaVagasPortal .vaga-selo{font-size:7px!important;line-height:1!important;padding:5px 7px!important;border-radius:5px!important;white-space:nowrap!important}
+#pagina-home #listaVagasPortal .vaga-selos-empresa .vaga-selo.destaque-selo{background:#eaf4ff!important;border:1px solid #8fc5f4!important;color:#0b69b7!important;font-size:7px!important;line-height:1!important;font-weight:800!important;padding:5px 7px!important;border-radius:5px!important;letter-spacing:0!important;box-shadow:none!important}
 #pagina-home #listaVagasPortal .vaga-selos-empresa{align-self:flex-start!important;margin-left:7px!important;margin-right:auto!important;transform:none!important;height:18px!important;display:flex!important;align-items:center!important}
 #pagina-home #listaVagasPortal .vaga-selos-empresa .vaga-selo{margin:0!important}
 #pagina-home #listaVagasPortal h3{margin:0 0 4px!important;color:#21394c!important;font-size:11.7px!important;line-height:1.22!important;font-weight:800!important;text-transform:none!important;padding-right:4px!important}
