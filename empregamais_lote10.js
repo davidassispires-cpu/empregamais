@@ -76,7 +76,7 @@ shell.innerHTML=
 "<aside class='recrutador-sidebar-ref-em sidebar-v124'>"+
 "<div class='sidebar-marca-v124'><span class='sidebar-logo-v124'>E+</span><span><b>Emprega<span>Mais</span></b><small>PARA EMPRESAS</small></span></div>"+
 "<button class='ativo' type='button' data-ref-nav='painel'><span class='icone-ref-em'><svg viewBox='0 0 24 24' aria-hidden='true'><path d='M3 11.5 12 4l9 7.5M5.5 10v10h13V10M9 20v-6h6v6'/></svg></span>Visão geral</button>"+
-"<button type='button' data-ref-nav='aprovadas'><span class='icone-ref-em'><svg viewBox='0 0 24 24' aria-hidden='true'><rect x='3' y='7' width='18' height='13' rx='2'/><path d='M8 7V5h8v2M3 12h18M10 12v2h4v-2'/></svg></span>Minhas vagas</button>"+
+"<button type='button' data-ref-nav='aprovadas'><span class='icone-ref-em'><svg viewBox='0 0 24 24' aria-hidden='true'><rect x='3' y='7' width='18' height='13' rx='2'/><path d='M8 7V5h8v2M3 12h18M10 12v2h4v-2'/></svg></span >Gerenciar processos seletivos</button>"+
 "<button type='button' data-ref-nav='candidaturas'><span class='icone-ref-em'><svg viewBox='0 0 24 24' aria-hidden='true'><circle cx='9' cy='8' r='3'/><path d='M3.5 20v-2a5.5 5.5 0 0 1 11 0v2M16 6.5a3 3 0 0 1 0 5.8M17 14a5 5 0 0 1 3.5 4.8V20'/></svg></span>Candidaturas</button>"+
 "<button type='button' data-ref-nav='publicar-lateral'><span class='icone-ref-em'><svg viewBox='0 0 24 24' aria-hidden='true'><circle cx='12' cy='12' r='9'/><path d='M12 7v10M7 12h10'/></svg></span>Publicar vaga</button>"+
 "<button type='button' data-ref-nav='empresa'><span class='icone-ref-em'><svg viewBox='0 0 24 24' aria-hidden='true'><path d='M4 21V4h11v17M15 9h5v12M8 8h3M8 12h3M8 16h3M18 13h.01M18 17h.01'/></svg></span>Perfil da empresa</button>"+
@@ -99,6 +99,10 @@ shell.innerHTML=
 "<div class='recrutador-card-ref-em'><div class='recrutador-card-icone-ref-em'><svg viewBox='0 0 24 24' aria-hidden='true'><rect x='5' y='3' width='14' height='18' rx='2'/><path d='M9 7h6M9 11h6M9 15h4'/></svg></div><div><strong>"+processo+"</strong><span>Em processo</span></div></div>"+
 "<div class='recrutador-card-ref-em'><div class='recrutador-card-icone-ref-em'>&#10003;</div><div><strong>"+contratados+"</strong><span>Contratados</span></div></div>"+
 "</div>"+
+"</section>"+
+"<section class='recrutador-processos-head-v225'>"+
+"<div><span class='recrutador-processos-kicker-v225'>VAGAS DA EMPRESA</span><h2>Gerenciar processos seletivos</h2><p>Acompanhe suas vagas, candidaturas e gerencie cada etapa dos processos seletivos.</p></div>"+
+"<button class='recrutador-todas-vagas-v225' type='button'>Ver todas as vagas &rarr;</button>"+
 "</section>"+
 "<section class='recrutador-vagas-box-ref-em'>"+
 "<div class='recrutador-tabs-ref-em'>"+
@@ -161,6 +165,11 @@ if(!lista.length)corpo.innerHTML="<tr><td class='vazio-ref-em' colspan='8'>Nenhu
 var rod=document.getElementById("textoRodapePainelRefEM");
 if(rod)rod.textContent="Mostrando "+lista.length+" de "+listaAtual().length+" vagas";
 }
+var btTodasVagasV225=shell.querySelector(".recrutador-todas-vagas-v225");
+if(btTodasVagasV225)btTodasVagasV225.onclick=function(){
+var box=shell.querySelector(".recrutador-vagas-box-ref-em");
+if(box){box.classList.add("modo-todas-v225");ativarTab("aprovadas");box.scrollIntoView({behavior:"smooth",block:"start"});}
+};
 shell.querySelector("[data-ref-publicar]").onclick=function(){irPara("publicar");};
 shell.querySelector("[data-ref-nav='publicar-lateral']").onclick=function(){irPara("publicar");};
 shell.querySelector("[data-ref-nav='verificacao-v124']").onclick=function(){
@@ -211,3 +220,5 @@ document.addEventListener("DOMContentLoaded",function(){setTimeout(window.montar
 window.addEventListener("load",function(){setTimeout(window.montarPainelReferenciaRecrutadorEM,700);});
 })();
 //
+/* EmpregaMais v225 - gestão de processos seletivos */
+.recrutador-processos-head-v225{display:flex;align-items:center;justify-content:space-between;gap:28px;padding:28px 30px 22px;margin:0 0 0;background:#fff;border:1px solid #dbe7ed;border-bottom:0;border-radius:18px 18px 0 0}.recrutador-processos-head-v225>div{min-width:0}.recrutador-processos-kicker-v225{display:block;margin-bottom:7px;font-size:11px;font-weight:800;letter-spacing:1.4px;color:#007f89}.recrutador-processos-head-v225 h2{margin:0 0 5px;font-size:25px;line-height:1.15;color:#003b55}.recrutador-processos-head-v225 p{margin:0;color:#698494;font-size:14px}.recrutador-todas-vagas-v225{flex:0 0 auto;border:1px solid #c9dce5;background:#fff;color:#004a64;border-radius:10px;padding:12px 17px;font-weight:800;cursor:pointer}.recrutador-todas-vagas-v225:hover{background:#f5fafc;border-color:#9fc1cf}.recrutador-processos-head-v225+.recrutador-vagas-box-ref-em{border-top-left-radius:0;border-top-right-radius:0;margin-top:0}.recrutador-vagas-box-ref-em.modo-todas-v225{box-shadow:0 10px 28px rgba(0,57,77,.08)}@media(max-width:760px){.recrutador-processos-head-v225{align-items:flex-start;flex-direction:column;padding:22px 20px}.recrutador-todas-vagas-v225{width:100%}.recrutador-processos-head-v225 h2{font-size:22px}}
