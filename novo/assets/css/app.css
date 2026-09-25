@@ -5400,13 +5400,15 @@ overflow:visible!important
 #pagina-vaga .vaga-hero-op2 .vaga-hero-texto{min-width:0!important;align-self:center!important}
 #pagina-vaga .vaga-hero-op2 .vaga-hero-texto h1{max-width:none!important;margin:0 0 9px!important;font-size:27px!important;line-height:1.12!important;font-weight:800!important;letter-spacing:-.35px!important;white-space:normal!important;overflow:visible!important;text-overflow:clip!important}
 #pagina-vaga .vaga-hero-op2 .vaga-hero-empresa-linha{margin-bottom:12px!important}
+#pagina-vaga .vaga-hero-op2 .vaga-hero-selos{display:flex!important;align-items:center!important;gap:8px!important;flex-wrap:nowrap!important;white-space:nowrap!important}
+#pagina-vaga .vaga-hero-op2 .vaga-hero-selos>span{flex:0 0 auto!important}
 #pagina-vaga .vaga-hero-acoes{position:absolute!important;top:28px!important;right:28px!important;z-index:3!important}
 #pagina-vaga .vaga-salvar-hero{height:42px!important;min-width:138px!important;padding:0 17px!important;border:1px solid #9fb9cc!important;border-radius:9px!important;background:#fff!important;color:#123f61!important;font-size:11px!important;font-weight:700!important;display:inline-flex!important;align-items:center!important;justify-content:center!important;cursor:pointer!important;box-shadow:0 2px 6px rgba(19,62,94,.04)!important}
 #pagina-vaga .vaga-salvar-hero:hover{border-color:#1680d5!important;color:#0873c8!important;background:#f8fcff!important}
-#pagina-vaga .vaga-info-grid{grid-template-columns:repeat(4,minmax(0,1fr))!important;padding:0 26px 22px!important;border-top:1px solid #dce7ee!important;gap:0!important}
-#pagina-vaga .vaga-info-grid>div{min-height:145px!important;padding:20px 16px!important;display:flex!important;flex-direction:column!important;align-items:center!important;justify-content:center!important;text-align:center!important;position:relative!important;border:0!important;border-right:1px solid #d9e4eb!important;background:#fff!important}
+#pagina-vaga .vaga-info-grid{grid-template-columns:repeat(4,minmax(0,1fr))!important;padding:0 26px 14px!important;border-top:1px solid #dce7ee!important;gap:0!important}
+#pagina-vaga .vaga-info-grid>div{min-height:112px!important;padding:14px 16px!important;display:flex!important;flex-direction:column!important;align-items:center!important;justify-content:center!important;text-align:center!important;position:relative!important;border:0!important;border-right:1px solid #d9e4eb!important;background:#fff!important}
 #pagina-vaga .vaga-info-grid>div:last-child{border-right:0!important}
-#pagina-vaga .vaga-info-grid .info-svg{position:static!important;width:42px!important;height:42px!important;margin:0 0 9px!important;border-radius:11px!important;display:grid!important;place-items:center!important}
+#pagina-vaga .vaga-info-grid .info-svg{position:static!important;width:38px!important;height:38px!important;margin:0 0 7px!important;border-radius:11px!important;display:grid!important;place-items:center!important}
 #pagina-vaga .vaga-info-grid>div:nth-child(1) .info-svg{background:#eaf5ff!important;color:#1683d4!important}
 #pagina-vaga .vaga-info-grid>div:nth-child(2) .info-svg{background:#eaf8f7!important;color:#087f80!important}
 #pagina-vaga .vaga-info-grid>div:nth-child(3) .info-svg{background:#f1edff!important;color:#6948b8!important}
@@ -5414,7 +5416,7 @@ overflow:visible!important
 #pagina-vaga .vaga-info-grid .info-svg svg{width:20px!important;height:20px!important;stroke:currentColor!important}
 #pagina-vaga .vaga-info-grid strong{margin:0!important;font-size:13px!important;line-height:1.2!important;text-align:center!important;font-weight:800!important}
 #pagina-vaga .vaga-info-grid small{margin-top:4px!important;font-size:8.7px!important;line-height:1.2!important;text-align:center!important;text-transform:uppercase!important;letter-spacing:.04em!important}
-#pagina-vaga .vaga-info-grid .em-local-detalhes-btn{margin-top:3px!important;font-size:8.7px!important}
+#pagina-vaga .vaga-info-grid .em-local-detalhes-btn{align-self:center!important;margin:3px auto 0!important;padding:0!important;font-size:8.7px!important;text-align:center!important}
 #pagina-vaga .vaga-info-grid .vaga-distancia-detalhe{text-align:center!important}
 @media(max-width:1000px){#pagina-vaga .vaga-hero-identidade.vaga-hero-op2{grid-template-columns:76px minmax(0,1fr)!important;padding:58px 22px 24px!important;gap:18px!important;min-height:190px!important}#pagina-vaga .vaga-hero-op2 .vaga-hero-logo{width:76px!important;height:76px!important;min-width:76px!important}#pagina-vaga .vaga-hero-op2 .vaga-hero-texto h1{font-size:25px!important}#pagina-vaga .vaga-info-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important;padding:0 18px 18px!important}}
 @media(max-width:560px){#pagina-vaga .vaga-hero-identidade.vaga-hero-op2{grid-template-columns:58px minmax(0,1fr)!important;gap:13px!important;padding:64px 16px 20px!important;min-height:0!important}#pagina-vaga .vaga-hero-op2 .vaga-hero-logo{width:58px!important;height:58px!important;min-width:58px!important;padding:6px!important}#pagina-vaga .vaga-hero-op2 .vaga-hero-texto h1{font-size:20px!important}#pagina-vaga .vaga-hero-acoes{top:16px!important;right:16px!important}#pagina-vaga .vaga-salvar-hero{height:38px!important;min-width:118px!important}#pagina-vaga .vaga-info-grid{grid-template-columns:1fr!important;padding:0 14px 14px!important}}
