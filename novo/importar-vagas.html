@@ -22,22 +22,40 @@ function cities(t){return [...t.matchAll(/([A-ZÁÉÍÓÚÂÊÔÃÕÇ][A-Za-zÀ-
 function labeled(t,names){let m=t.match(new RegExp('(?:^|\\n)\\s*(?:'+names+')\\s*:\\s*([^\\n]+)','i'));return m?clean(m[1]):''}
 function money(v){let m=String(v||'').match(/R\$\s*[\d.]+(?:,\d{2})?/i);return m?m[0].replace(/\s+/g,' '):''}
 function parseLocation(t,locs){
- let cidade='',uf='',bairro='',cep='',src=labeled(t,'Local de trabalho|Localiza[cç][aã]o|Local|Endere[cç]o');
- let title=t.match(/(?:^|\n)\s*[^\n]{2,80}?[-–—]\s*([A-Za-zÀ-ÿ .'-]{2,45})\s*\/\s*([A-Z]{2})\s*$/mi);
- let standalone=t.match(/(?:^|\n)\s*([A-Za-zÀ-ÿ .'-]{2,45})\s*-\s*([A-Z]{2})\s*(?:\n|$)/m);
+ let cidade='',uf='',bairro='',cep='',src=labeled(t,'Local de trabalho|Localiza[cç][aã]o|Local|Endere[cç]o|Endere[cç]o da vaga');
+ const UFS='AC|AL|AP|AM|BA|CE|DF|ES|GO|MA|MT|MS|MG|PA|PB|PR|PE|PI|RJ|RN|RS|RO|RR|SC|SP|SE|TO';
+ let title=t.match(new RegExp('(?:^|\\n)\\s*[^\\n]{2,100}?[-–—]\\s*([A-Za-zÀ-ÿ .\'-]{2,45})\\s*(?:\\/|-)\\s*('+UFS+')\\s*$','mi'));
+ let standalone=t.match(new RegExp('(?:^|\\n)\\s*([A-Za-zÀ-ÿ .\'-]{2,45})\\s*(?:-|\\/)\\s*('+UFS+')\\s*(?:\\n|$)','m'));
  if(title){cidade=title[1].trim();uf=title[2].toUpperCase()}else if(standalone){cidade=standalone[1].trim();uf=standalone[2].toUpperCase()}
  if(src){
   let z=src.match(/\b\d{5}-?\d{3}\b/);if(z)cep=z[0];
-  let cu=src.match(/([A-Za-zÀ-ÿ .'-]{2,45})\s*[-\/]\s*([A-Z]{2})\b/i);if(cu&&!cidade){cidade=cu[1].trim();uf=cu[2].toUpperCase()}
-  let parts=src.split(',').map(x=>x.trim()).filter(Boolean);
-  if(!cidade&&parts.length)cidade=parts[0].replace(/^(?:Rua|R\.|Avenida|Av\.|Rodovia|Estrada)\s+/i,'').trim();
-  if(parts.length>=3){let cand=parts[parts.length-2];if(!/^(?:SP|MG|RJ|PR|SC|RS|BA|PE|CE|GO|DF|ES|MS|MT|PA|PB|RN|AL|SE|PI|MA|TO|RO|AC|AM|RR|AP)$/i.test(cand)&&!/s[aã]o paulo|minas gerais|rio de janeiro/i.test(cand))bairro=cand}
-  const estados={ 'sao paulo':'SP','minas gerais':'MG','rio de janeiro':'RJ','mato grosso do sul':'MS','mato grosso':'MT','parana':'PR','santa catarina':'SC','rio grande do sul':'RS','bahia':'BA','pernambuco':'PE','ceara':'CE','goias':'GO','espirito santo':'ES' };
-  let ns=norm(src);Object.keys(estados).some(k=>{if(ns.includes(k)){uf=uf||estados[k];return true}return false});
+  let cu=src.match(new RegExp('([A-Za-zÀ-ÿ .\'-]{2,45})\\s*(?:-|\\/)\\s*('+UFS+')\\b','i'));if(cu&&!cidade){cidade=cu[1].trim();uf=cu[2].toUpperCase()}
+  let parts=src.split(',').map(x=>x.trim()).filter(Boolean), street=/^(?:Rua|R\.|Avenida|Av\.|Rodovia|Estrada|Alameda|Travessa|Pra[cç]a)\b/i;
+  const estados={'acre':'AC','alagoas':'AL','amapa':'AP','amazonas':'AM','bahia':'BA','ceara':'CE','distrito federal':'DF','espirito santo':'ES','goias':'GO','maranhao':'MA','mato grosso':'MT','mato grosso do sul':'MS','minas gerais':'MG','para':'PA','paraiba':'PB','parana':'PR','pernambuco':'PE','piaui':'PI','rio de janeiro':'RJ','rio grande do norte':'RN','rio grande do sul':'RS','rondonia':'RO','roraima':'RR','santa catarina':'SC','sao paulo':'SP','sergipe':'SE','tocantins':'TO'};
+  let ns=norm(src);Object.keys(estados).sort((x,y)=>y.length-x.length).some(k=>{if(ns.includes(k)){uf=uf||estados[k];return true}return false});
+  if(!cidade&&parts.length){
+   let first=parts[0];
+   if(!street.test(first)&&!/\d/.test(first))cidade=first;
+   else if(parts.length>1&&!street.test(parts[1])&&!/\d/.test(parts[1]))cidade=parts[1];
+  }
+  if(parts.length>=3){
+   let stateIndex=parts.findIndex(x=>new RegExp('^(?:'+UFS+')$','i').test(x)||Object.keys(estados).includes(norm(x)));
+   let cand=stateIndex>1?parts[stateIndex-1]:parts[parts.length-2];
+   if(cand&&!street.test(cand)&&!/^\d{5}-?\d{3}$/.test(cand)&&norm(cand)!==norm(cidade))bairro=cand;
+  }
  }
  if(!cidade&&locs[0]){cidade=locs[0].cidade;uf=locs[0].uf}
- return {cidade,uf,bairro,cep}
+ return {cidade:clean(cidade),uf:clean(uf),bairro:clean(bairro),cep:clean(cep)}
 }
+function smartSection(t,heads,stops){
+ let v=section(t,heads,stops);if(v)return v;
+ let lines=t.split('\n'),start=-1,out=[];
+ for(let i=0;i<lines.length;i++){if(new RegExp('^\\s*(?:'+heads+')\\s*:?\\s*$','i').test(lines[i])){start=i+1;break}}
+ if(start<0)return'';
+ for(let i=start;i<lines.length;i++){let x=lines[i].trim();if(new RegExp('^\\s*(?:'+stops+')\\s*:?','i').test(x))break;if(x)out.push(x.replace(/^[-•▪✓✔*]+\s*/,''))}
+ return clean(out.join('\n'))
+}
+
 function parse(t,i){
  t=clean(t);let n=norm(t),locs=cities(t),meta={};
  const put=(k,v,conf='alta')=>{v=clean(v||'');if(v){meta[k]=conf;return v}return''};
@@ -52,10 +70,10 @@ function parse(t,i){
  let salario=put('salario',salRot?salRot[1]:(salBruto?money(salBruto[0]):money(t)),salRot?'alta':'media');
  let descricao=put('descricao',section(t,'Descri[cç][aã]o(?: da vaga)?|Sobre a vaga|Resumo da vaga','Fun[cç][aã]o|Endere[cç]o|Responsabilidades|Atividades|Principais atividades|O que voc[eê] vai fazer|Hor[aá]rio de trabalho|Requisitos|Benef[ií]cios'));
  if(!descricao){let m=t.match(/(?:^|\n)(Estamos em busca[^\n]*(?:\n(?!\s*(?:VAGA|Local de trabalho|Principais atividades|Requisitos|Benefícios|Salário|Horário)\b)[^\n]*)*)/i);if(m)descricao=put('descricao',m[1],'media')}
- let atividades=put('atividades',section(t,'Responsabilidades(?: e atribui[cç][oõ]es)?|Atividades|Principais atividades|O que voc[eê] vai fazer|Fun[cç][oõ]es','Hor[aá]rio de trabalho|Jornada|Requisitos|Qualifica[cç][oõ]es|Benef[ií]cios|Oferecemos'));
+ let atividades=put('atividades',smartSection(t,'Responsabilidades(?: e atribui[cç][oõ]es)?|Atividades|Principais atividades|O que voc[eê] vai fazer|Fun[cç][oõ]es','Hor[aá]rio de trabalho|Jornada|Requisitos|Qualifica[cç][oõ]es|Benef[ií]cios|Oferecemos|Sal[aá]rio|Remunera[cç][aã]o'));
  if(!atividades){let end=labeled(t,'Endere[cç]o');if(end){let ix=t.toLowerCase().indexOf(end.toLowerCase())+end.length,tail=t.slice(ix);let m=tail.match(/([\s\S]*?)(?=\n\s*(?:HOR[AÁ]RIO DE TRABALHO|REQUISITOS|BENEF[IÍ]CIOS|SAL[AÁ]RIO|S[AÁ]LARIO)\s*:)/i);if(m)atividades=put('atividades',m[1],'media')}}
- let requisitos=put('requisitos',section(t,'Requisitos|Qualifica[cç][oõ]es|O que esperamos|Perfil desejado','Benef[ií]cios|Oferecemos|Informa[cç][oõ]es adicionais|Como se candidatar|Candidatura|Contato'));
- let beneficios=put('beneficios',section(t,'Benef[ií]cios|O que oferecemos|Oferecemos|Pacote de benef[ií]cios|N[oó]s lhe propomos','Requisitos|Qualifica[cç][oõ]es|Informa[cç][oõ]es adicionais|Como se candidatar|Candidatura|Contato'));
+ let requisitos=put('requisitos',smartSection(t,'Requisitos|Qualifica[cç][oõ]es|O que esperamos|Perfil desejado|O que buscamos','Benef[ií]cios|O que oferecemos|Oferecemos|Informa[cç][oõ]es adicionais|Como se candidatar|Candidatura|Contato|Sal[aá]rio|Remunera[cç][aã]o'));
+ let beneficios=put('beneficios',smartSection(t,'Benef[ií]cios|O que oferecemos|Oferecemos|Pacote de benef[ií]cios|N[oó]s lhe propomos','Requisitos|Qualifica[cç][oõ]es|Informa[cç][oõ]es adicionais|Como se candidatar|Candidatura|Contato|Sal[aá]rio|Remunera[cç][aã]o'));
  let escala=labeled(t,'Escala'),hor=labeled(t,'Hor[aá]rio'),dias=labeled(t,'Jornada(?: de trabalho)?'),jornada=put('jornada',[escala,hor,dias].filter(Boolean).join(' · ')||((t.match(/\b\d{1,2}\s*[xX]\s*\d{1,2}\b[^.\n]*/i)||[])[0]||''));
  let exp=(t.match(/Experi[eê]ncia\s+(?:com|em)\s+([^;\n.]+)/i)||[])[0]||'',experiencia=put('experiencia',/sem experi[eê]ncia|experi[eê]ncia n[aã]o exigida/i.test(t)?'Sem experiência':exp,'media');
  let L=parseLocation(t,locs);Object.keys(L).forEach(k=>{if(L[k])meta[k]='alta'});
