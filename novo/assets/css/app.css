@@ -5523,3 +5523,16 @@ overflow:visible!important
 #pagina-painel-candidato .cand-vistas-vazio span{font-size:10px!important}
 @media(max-width:1050px){#pagina-painel-candidato .cand-vistas-lista{grid-template-columns:repeat(3,minmax(0,1fr))!important}}
 @media(max-width:650px){#pagina-painel-candidato .cand-vistas-lista{grid-template-columns:1fr!important}}
+
+/* EMPREGAMAIS-PERGUNTAS-ELIMINATORIAS-V1 */
+.em-perguntas-eliminatorias{margin-top:6px;padding:18px;border:1px solid #dce7ed;border-radius:13px;background:#f9fbfc}
+.em-perguntas-eliminatorias .em-secao-titulo{margin-bottom:13px}.em-perguntas-eliminatorias>small{display:block;margin-top:10px;color:#708590;font-size:10px}
+.em-pergunta-eliminatoria{display:grid;grid-template-columns:minmax(0,1fr) 210px 34px;gap:8px;margin:8px 0}
+.em-pergunta-eliminatoria input,.em-pergunta-eliminatoria select{height:42px;border:1px solid #cedde5;border-radius:9px;background:#fff;padding:0 11px;color:#294e64}
+.em-pergunta-eliminatoria button{border:1px solid #eadada;border-radius:9px;background:#fff;color:#b34c4c;font-size:20px;cursor:pointer}
+.em-add-pergunta{margin-top:7px!important}
+.cand-perguntas-eliminatorias{margin:18px 0;padding:18px;border:1px solid #d9e6ec;border-radius:13px;background:#f8fbfc}
+.cand-perguntas-eliminatorias>span{font-size:9px;font-weight:900;letter-spacing:.08em;color:#087d99}.cand-perguntas-eliminatorias h3{margin:5px 0 13px;color:#153f59;font-size:17px}
+.cand-perguntas-eliminatorias label{display:grid;grid-template-columns:minmax(0,1fr) 145px;gap:12px;align-items:center;padding:11px 0;border-top:1px solid #e3ebef}
+.cand-perguntas-eliminatorias label b{font-size:12px;color:#35586d}.cand-perguntas-eliminatorias select{height:39px;border:1px solid #ccdde5;border-radius:8px;background:#fff;padding:0 9px}
+@media(max-width:650px){.em-pergunta-eliminatoria{grid-template-columns:1fr 44px}.em-pergunta-eliminatoria select{grid-column:1/-1;grid-row:2}.cand-perguntas-eliminatorias label{grid-template-columns:1fr}.cand-perguntas-eliminatorias select{width:100%}}
