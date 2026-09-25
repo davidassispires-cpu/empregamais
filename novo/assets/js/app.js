@@ -614,8 +614,16 @@ function sbMapVagaEM(v){
   };
 }
 function sbUsuarioAtualEM(){const t=sbTokenEM();if(!t)return Promise.reject(new Error('Sessão Supabase ausente.'));return sbJsonEM(EMPREGAMAIS_SUPABASE_URL+'/auth/v1/user',{method:'GET',headers:sbHeadersEM(t)})}
+async function sbSincronizarEmpresasPublicasEM(){
+ try{
+  const rows=await sbJsonEM(EMPREGAMAIS_SUPABASE_URL+'/rest/v1/empresas?select=id,nome,nome_fantasia,cnpj,logo_url,plano,plano_id,plano_liberado_admin,verificada,verificacao_status',{method:'GET',headers:sbHeadersEM()});
+  if(!Array.isArray(rows))return;
+  rows.forEach(e=>{const local=sbEmpresaParaLocalEM(e,'');if(local)sbSalvarEmpresaLocalEM(local)});
+ }catch(e){console.warn('Empresas públicas não sincronizadas para logos:',e)}
+}
 function sbCarregarVagasEM(){
   const t=sbTokenEM();
+  sbSincronizarEmpresasPublicasEM().then(()=>{try{renderizarVagasPortal()}catch(e){}});
   const locaisAntes=ler('empregaMaisVagas');
   const publico=sbJsonEM(EMPREGAMAIS_SUPABASE_URL+'/rest/v1/vagas?select=*&status=eq.aprovada&order=criado_em.desc',{method:'GET',headers:sbHeadersEM()}).catch(()=>[]);
   const proprio=t?sbUsuarioAtualEM().then(u=>sbJsonEM(EMPREGAMAIS_SUPABASE_URL+'/rest/v1/vagas?select=*&user_id=eq.'+encodeURIComponent(u.id)+'&order=criado_em.desc',{method:'GET',headers:sbHeadersEM(t)})).catch(()=>[]):Promise.resolve([]);
