@@ -5408,3 +5408,23 @@ overflow:visible!important
 #pagina-vaga .vaga-info-grid .vaga-distancia-detalhe{text-align:center!important}
 @media(max-width:1000px){#pagina-vaga .vaga-info-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important}}
 @media(max-width:560px){#pagina-vaga .vaga-info-grid{grid-template-columns:1fr!important}}
+
+/* EMPREGAMAIS-EMPRESA-SOBRE-RESUMO-V1 */
+#pagina-empresa-publica .empresa-publica-visao-grid{display:grid!important;grid-template-columns:minmax(0,1fr) 285px!important;gap:22px!important;align-items:start!important}
+#pagina-empresa-publica .empresa-sobre-resumo{background:#fff!important;border:1px solid #dce6ed!important;border-radius:12px!important;padding:18px!important;box-shadow:0 5px 18px rgba(24,58,82,.055)!important;color:#183e59!important}
+#pagina-empresa-publica .empresa-sobre-resumo-head{display:flex!important;align-items:center!important;gap:11px!important;padding-bottom:14px!important;border-bottom:1px solid #e6edf2!important}
+#pagina-empresa-publica .empresa-sobre-resumo-ico{width:38px!important;height:38px!important;border-radius:9px!important;display:grid!important;place-items:center!important;background:#eaf5ff!important;color:#1479c9!important;font-size:15px!important;font-weight:800!important}
+#pagina-empresa-publica .empresa-sobre-resumo-head small{display:block!important;font-size:8px!important;font-weight:800!important;letter-spacing:.08em!important;color:#39739d!important;margin-bottom:3px!important}
+#pagina-empresa-publica .empresa-sobre-resumo-head h3{margin:0!important;font-size:15px!important;line-height:1.2!important;color:#123d5b!important}
+#pagina-empresa-publica .empresa-atividade-bar{display:grid!important;grid-template-columns:repeat(5,1fr)!important;gap:3px!important;height:8px!important;margin:17px 0 10px!important}
+#pagina-empresa-publica .empresa-atividade-bar i{display:block!important;border-radius:2px!important;background:#1989dd!important}
+#pagina-empresa-publica .empresa-atividade-bar i:nth-child(1){opacity:.45!important}#pagina-empresa-publica .empresa-atividade-bar i:nth-child(2){opacity:.58!important}#pagina-empresa-publica .empresa-atividade-bar i:nth-child(3){opacity:.72!important}#pagina-empresa-publica .empresa-atividade-bar i:nth-child(4){opacity:.86!important}
+#pagina-empresa-publica .empresa-atividade-status{display:block!important;font-size:12px!important;color:#124d76!important;margin-bottom:4px!important}
+#pagina-empresa-publica .empresa-sobre-resumo>p{margin:0 0 14px!important;font-size:10px!important;line-height:1.45!important;color:#6c8292!important}
+#pagina-empresa-publica .empresa-sobre-dados{border-top:1px solid #e6edf2!important}
+#pagina-empresa-publica .empresa-sobre-dados>span{display:grid!important;grid-template-columns:22px minmax(0,1fr) auto!important;align-items:center!important;gap:7px!important;min-height:45px!important;border-bottom:1px solid #edf2f5!important}
+#pagina-empresa-publica .empresa-sobre-dados i{font-style:normal!important;color:#4e748e!important;text-align:center!important}
+#pagina-empresa-publica .empresa-sobre-dados small{font-size:9.5px!important;color:#657d8e!important}
+#pagina-empresa-publica .empresa-sobre-dados b{font-size:10px!important;color:#173f5c!important;text-align:right!important}
+#pagina-empresa-publica .empresa-sobre-verificada{margin-top:13px!important;min-height:32px!important;border-radius:7px!important;background:#edf8f3!important;color:#16704b!important;align-items:center!important;justify-content:center!important;font-size:9.5px!important;font-weight:800!important}
+@media(max-width:900px){#pagina-empresa-publica .empresa-publica-visao-grid{grid-template-columns:1fr!important}#pagina-empresa-publica .empresa-sobre-resumo{order:-1!important}}
