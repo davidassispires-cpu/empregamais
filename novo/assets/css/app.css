@@ -5213,7 +5213,7 @@ overflow:visible!important
 #pagina-home .home-hero-copy h1{margin:0 0 12px!important;max-width:690px!important;color:#082f59!important;font-size:52px!important;line-height:.98!important;letter-spacing:-.04em!important;font-weight:800!important}
 #pagina-home .home-hero-copy h1 em{display:block!important;color:#258cf0!important;font-style:normal!important}
 #pagina-home .home-hero-copy>p{margin:0 0 25px!important;color:#56718b!important;font-size:16px!important;line-height:1.45!important}
-#pagina-home .home-hero-benefits{display:flex!important;align-items:center!important;gap:28px!important}
+#pagina-home .home-hero-benefits{display:none!important}
 #pagina-home .home-hero-benefits>span{display:grid!important;grid-template-columns:40px auto!important;align-items:center!important;gap:10px!important;padding-right:26px!important;border-right:1px solid #dce7f0!important}
 #pagina-home .home-hero-benefits>span:last-child{border-right:0!important;padding-right:0!important}
 #pagina-home .home-hero-benefits b{width:40px!important;height:40px!important;border-radius:10px!important;background:#e8f3ff!important;color:#0875d1!important;display:flex!important;align-items:center!important;justify-content:center!important;font-size:15px!important;letter-spacing:-3px!important}
