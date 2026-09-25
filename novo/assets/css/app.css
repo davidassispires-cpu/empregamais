@@ -5267,16 +5267,16 @@ overflow:visible!important
 /* EMPREGAMAIS-HOME-RECENTES-ESTRUTURA-V89 */
 /* Ajuste da regra ativa dos cards recentes: hierarquia, duas linhas reais de descrição e coluna de ação. */
 #pagina-home #listaVagasPortal .portal-vaga-nova{grid-template-columns:minmax(0,1fr) 142px!important;min-height:166px!important}
-#pagina-home #listaVagasPortal .vaga-card-corpo{padding:14px 15px!important;align-items:center!important}
-#pagina-home #listaVagasPortal .vaga-identidade{grid-template-columns:88px minmax(0,1fr)!important;gap:14px!important;align-items:center!important}
-#pagina-home #listaVagasPortal .vaga-logo-recente,#pagina-home #listaVagasPortal .vaga-logo-espaco{width:88px!important;height:88px!important;min-width:88px!important;align-self:center!important}
-#pagina-home #listaVagasPortal .vaga-conteudo{display:flex!important;flex-direction:column!important;justify-content:center!important;min-width:0!important}
-#pagina-home #listaVagasPortal .vaga-empresa-linha{min-height:22px!important;margin:0 0 3px!important;align-items:flex-start!important}
+#pagina-home #listaVagasPortal .vaga-card-corpo{padding:9px 15px 11px!important;align-items:flex-start!important}
+#pagina-home #listaVagasPortal .vaga-identidade{grid-template-columns:88px minmax(0,1fr)!important;gap:14px!important;align-items:start!important;width:100%!important}
+#pagina-home #listaVagasPortal .vaga-logo-recente,#pagina-home #listaVagasPortal .vaga-logo-espaco{width:88px!important;height:88px!important;min-width:88px!important;align-self:center!important;margin-top:13px!important}
+#pagina-home #listaVagasPortal .vaga-conteudo{display:flex!important;flex-direction:column!important;justify-content:flex-start!important;min-width:0!important;padding-top:0!important}
+#pagina-home #listaVagasPortal .vaga-empresa-linha{min-height:18px!important;margin:0 0 2px!important;align-items:flex-start!important}
 #pagina-home #listaVagasPortal .vaga-empresa-nome{font-size:9.4px!important;line-height:1.25!important;padding-top:2px!important}
 #pagina-home #listaVagasPortal .vaga-selos{margin-left:auto!important;align-self:flex-start!important}
 #pagina-home #listaVagasPortal .vaga-selo{font-size:7px!important;line-height:1!important;padding:5px 7px!important;white-space:nowrap!important}
-#pagina-home #listaVagasPortal h3{font-size:11.7px!important;line-height:1.22!important;margin:0 0 6px!important;padding-right:4px!important}
-#pagina-home #listaVagasPortal .vaga-meta{font-size:8.6px!important;line-height:1.25!important;gap:12px!important;margin:0 0 7px!important}
+#pagina-home #listaVagasPortal h3{font-size:11.7px!important;line-height:1.22!important;margin:0 0 4px!important;padding-right:4px!important}
+#pagina-home #listaVagasPortal .vaga-meta{font-size:8.6px!important;line-height:1.25!important;gap:12px!important;margin:0 0 5px!important}
 #pagina-home #listaVagasPortal .vaga-resumo{font-size:8.35px!important;line-height:1.45!important;height:auto!important;min-height:24.2px!important;max-height:24.2px!important;-webkit-line-clamp:2!important;display:-webkit-box!important;-webkit-box-orient:vertical!important;overflow:hidden!important;text-overflow:ellipsis!important;white-space:normal!important;color:#536d7f!important}
 #pagina-home #listaVagasPortal .vaga-card-acao{padding:14px 12px!important;justify-content:center!important;gap:9px!important}
 #pagina-home #listaVagasPortal .salario-card{width:100%!important;text-align:left!important;font-size:11.5px!important;line-height:1.25!important}
