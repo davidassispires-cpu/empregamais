@@ -339,12 +339,7 @@ async function prepararCoordenadasDistanciaEM(){
  }finally{geocodeDistanciaEmAndamento=false}
  atualizarDistanciaCandidatoEM();
 }
-function distanciaVagaTextoEM(v){
- if(!candidatoLogadoDistanciaEM()||String(v?.modalidade||'').toLowerCase().includes('remot'))return'';
- const origem=localizacaoCandidatoEM||coordsCandidatoCadastroEM();if(!origem)return'';
- const km=distanciaKmEM(origem.latitude,origem.longitude,v?.latitude,v?.longitude);
- if(km===null)return'';return km<1?Math.max(100,Math.round(km*1000/100)*100)+' m de você':km.toLocaleString('pt-BR',{minimumFractionDigits:km<10?1:0,maximumFractionDigits:km<10?1:0})+' km de você';
-}
+function distanciaVagaTextoEM(v){return'';}
 function atualizarDistanciaCandidatoEM(){
  try{renderizarVagasPortal()}catch(e){}
  try{if(sessionStorage.getItem('vagaAtual'))renderizarVagaDetalhe()}catch(e){}
