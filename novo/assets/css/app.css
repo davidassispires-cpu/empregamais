@@ -5315,7 +5315,9 @@ overflow:visible!important
 #pagina-home .home-curriculo-banner>button:hover{background:#0d70ce!important}
 #pagina-home .home-recentes-lateral{min-width:0!important;display:flex!important;flex-direction:column!important;gap:16px!important;align-self:start!important}
 #pagina-home .home-recentes-lateral .recentes-filtros{width:100%!important}
-#pagina-home .home-recentes-lateral .home-curriculo-banner{width:100%!important;box-sizing:border-box!important}
+#pagina-home .home-recentes-lateral .home-curriculo-banner{width:100%!important;min-height:470px!important;height:auto!important;box-sizing:border-box!important;padding:24px 18px 18px!important;display:flex!important;flex-direction:column!important;justify-content:space-between!important;overflow:hidden!important}
+#pagina-home .home-recentes-lateral .home-curriculo-banner .curriculo-banner-conteudo{flex:0 0 auto!important}
+#pagina-home .home-recentes-lateral .home-curriculo-banner>button{display:flex!important;visibility:visible!important;opacity:1!important;margin-top:28px!important;flex:0 0 44px!important}
 @media(max-width:900px){#pagina-home .home-recentes-layout{grid-template-columns:1fr!important}#pagina-home .home-curriculo-banner{min-height:320px!important}#pagina-home .home-recentes-coluna .recentes-filtros{display:block!important}}
 
 /* HOME SEARCH — MODELO ABAS PROFISSIONAL */
