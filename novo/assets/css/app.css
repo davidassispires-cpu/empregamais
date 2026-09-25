@@ -5263,6 +5263,30 @@ overflow:visible!important
 @media(max-width:900px){#pagina-home .home-hero-art{display:none!important}#pagina-home .home-recentes-layout{grid-template-columns:1fr!important}#pagina-home .recentes-filtros{position:static!important}#pagina-home .destaques-carrossel{grid-auto-columns:46%!important}#pagina-home .destaques-faixa-track{grid-auto-columns:46%!important;overflow-x:auto!important}}
 @media(max-width:650px){#pagina-home .home-hero-visual{min-height:350px!important}#pagina-home .home-hero-content{width:calc(100% - 28px)!important;padding:28px 0 190px!important}#pagina-home .home-hero-copy h1{font-size:29px!important}#pagina-home .home-search-wrap{width:calc(100% - 28px)!important;bottom:18px!important}#pagina-home .busca-home{grid-template-columns:1fr!important}#pagina-home .home-buscas-populares{display:none!important}#pagina-home .home-recentes-layout{display:block!important}#pagina-home .recentes-filtros-toggle{display:block!important;width:100%!important;margin-bottom:8px!important}#pagina-home .recentes-filtros:not(.aberto){display:none!important}#pagina-home #listaVagasPortal .portal-vaga-nova{grid-template-columns:1fr!important}#pagina-home #listaVagasPortal .vaga-card-acao{border-left:0!important;border-top:1px solid #edf0f2!important;align-items:flex-start!important}#pagina-home #listaVagasPortal .vaga-identidade{grid-template-columns:42px minmax(0,1fr)!important}#pagina-home #listaVagasPortal .vaga-logo-recente,#pagina-home #listaVagasPortal .vaga-logo-espaco{width:42px!important;height:42px!important}}
 
+/* Filtro lateral: largura, legibilidade e acabamento profissional */
+#pagina-home .home-recentes-layout{grid-template-columns:238px minmax(0,1fr)!important;gap:18px!important}
+#pagina-home .recentes-filtros{width:100%!important;min-width:0!important;padding:0!important;border:1px solid #d9e4eb!important;border-radius:11px!important;background:#fff!important;box-shadow:0 6px 18px rgba(27,61,84,.055)!important;overflow:hidden!important}
+#pagina-home .recentes-filtros-cab{height:auto!important;min-height:58px!important;padding:12px 14px!important;box-sizing:border-box!important;background:#fbfdfe!important;border-bottom:1px solid #e5edf2!important}
+#pagina-home .recentes-filtros-cab h3{font-size:16px!important;line-height:1.2!important;font-weight:700!important;color:#173f5a!important}
+#pagina-home .recentes-filtros-corpo{padding:0 14px!important;box-sizing:border-box!important}
+#pagina-home .recentes-filtro-grupo{padding:12px 0!important}
+#pagina-home .recentes-filtro-grupo>label,#pagina-home .recentes-filtro-grupo legend{font-size:10px!important;line-height:1.25!important;font-weight:700!important;color:#284d67!important;margin-bottom:0!important}
+#pagina-home .recentes-campo-icone{height:38px!important;margin-top:7px!important;padding:0 10px!important;border:1px solid #cfdde6!important;border-radius:8px!important;background:#fbfdff!important;box-sizing:border-box!important;overflow:hidden!important}
+#pagina-home .recentes-campo-icone>span{flex:0 0 20px!important;color:#1678b8!important;font-size:14px!important}
+#pagina-home .recentes-campo-icone input{min-width:0!important;height:100%!important;padding:0 4px!important;background:transparent!important;color:#28485f!important;font-size:10px!important;box-sizing:border-box!important}
+#pagina-home .recentes-opcoes{min-width:0!important}
+#pagina-home .recentes-opcoes label{display:flex!important;align-items:center!important;gap:9px!important;width:100%!important;min-height:32px!important;padding:4px 7px!important;border-radius:7px!important;box-sizing:border-box!important;color:#4c6679!important;font-size:10.5px!important;font-weight:500!important;overflow:visible!important}
+#pagina-home .recentes-opcoes label:has(input:checked){background:#eaf5fb!important;color:#175d86!important;font-weight:700!important}
+#pagina-home .recentes-opcoes input{width:16px!important;height:16px!important;min-width:16px!important;margin:0!important}
+#pagina-home .recentes-opcoes label span{min-width:0!important;white-space:normal!important;overflow:visible!important;text-overflow:clip!important}
+#pagina-home .recentes-mais-tipos{margin-top:4px!important;width:100%!important}
+#pagina-home .recentes-mais-tipos summary{padding:7px 7px!important;border-radius:7px!important;color:#176b99!important;font-size:10px!important;font-weight:700!important;cursor:pointer!important;white-space:normal!important}
+#pagina-home .recentes-filtro-grupo select:not(.recentes-select-interno){width:100%!important;height:38px!important;margin-top:7px!important;padding:0 30px 0 10px!important;border:1px solid #cfdde6!important;border-radius:8px!important;background:#fbfdff!important;color:#3d5a6e!important;font-size:10px!important;box-sizing:border-box!important}
+#pagina-home .recentes-select-interno{display:none!important}
+#pagina-home .recentes-filtros-rodape{grid-template-columns:1fr!important;gap:7px!important;padding:12px 14px 14px!important;border-top:1px solid #e8eef2!important;background:#fbfdfe!important;box-sizing:border-box!important}
+#pagina-home .recentes-filtros-rodape button{height:37px!important;font-size:9.5px!important;font-weight:700!important;white-space:nowrap!important;overflow:visible!important}
+@media(max-width:900px){#pagina-home .home-recentes-layout{grid-template-columns:1fr!important}#pagina-home .recentes-filtros{position:static!important}}
+
 /* EMPREGAMAIS-HOME-RECENTES-ESTRUTURA-V89 */
 #pagina-home #listaVagasPortal .portal-vaga-nova{display:grid!important;grid-template-columns:minmax(0,1fr) 142px!important;min-height:168px!important;height:auto!important;padding:0!important;overflow:hidden!important}
 #pagina-home #listaVagasPortal .vaga-card-corpo{padding:8px 15px 7px!important;min-width:0!important;display:flex!important;align-items:flex-start!important;overflow:visible!important}
