@@ -2796,7 +2796,7 @@ prepararPublicacao=function(){
 
 
 
-/* EMPREGAMAIS-PROCESSOS-CANONICO-JS-V112 */
+/* EMPREGAMAIS-PROCESSOS-CANONICO-JS-V113 */
 function statusProcessoCanonicoEM(v){
  if(v.status==='aprovada'&&vagaDentroPrazo(v))return ['Ativa',''];
  if(['pendente','em_analise','analise'].includes(v.status))return ['Em análise','analise'];
@@ -2809,7 +2809,10 @@ function alternarVistaProcessosEM(detalhe){
 function renderCentralProcessosEmpresaEM(){
  alternarVistaProcessosEM(false);
  const box=document.getElementById('psCentralConteudo');if(!box)return;
- const vagas=vagasDaEmpresa().slice(),cs=candidaturas().filter(c=>vagas.some(v=>v.id===c.vagaId));
+ const vagasRaw=typeof vagasDaEmpresa==='function'?vagasDaEmpresa():[];
+ const vagas=Array.isArray(vagasRaw)?vagasRaw.filter(Boolean):[];
+ const candRaw=typeof candidaturas==='function'?candidaturas():[];
+ const cs=(Array.isArray(candRaw)?candRaw:[]).filter(c=>c&&vagas.some(v=>String(v.id)===String(c.vagaId)));
  const busca=String(document.getElementById('psv2Busca')?.value||'').toLowerCase(),filtro=document.getElementById('psv2Status')?.value||'todos',ordem=document.getElementById('psv2Ordem')?.value||'recentes';
  const ativas=vagas.filter(v=>statusProcessoCanonicoEM(v)[0]==='Ativa').length,analise=vagas.filter(v=>statusProcessoCanonicoEM(v)[0]==='Em análise').length;
  let lista=vagas.filter(v=>{const st=statusProcessoCanonicoEM(v)[0].toLowerCase(),txt=(tituloVaga(v)+' '+(v.cidade||'')+' '+(v.estado||v.uf||'')).toLowerCase();return(filtro==='todos'||st===filtro)&&(!busca||txt.includes(busca))});
@@ -2820,6 +2823,21 @@ function renderCentralProcessosEmpresaEM(){
  box.innerHTML=summary+'<section class="psv2-workspace">'+toolbar+'<div class="psv2-list-head"><span>PROCESSO / VAGA</span><span>ANDAMENTO DOS CANDIDATOS</span><span>AÇÕES</span></div><div class="psv2-list">'+(rows||'<div class="psv2-empty"><strong>Nenhum processo encontrado</strong><span>Publique uma vaga para iniciar um processo seletivo.</span></div>')+'</div></section>';
 }
 window.renderCentralProcessosEmpresaEM=renderCentralProcessosEmpresaEM;
+function iniciarCentralProcessosEmpresaEM(){
+ const pagina=document.getElementById('pagina-candidatos-empresa');
+ const central=document.getElementById('psCentralConteudo');
+ if(!pagina||!central)return;
+ const rota=new URLSearchParams(location.search).get('pagina');
+ if(rota!=='candidatos-empresa')return;
+ if(sessionStorage.getItem('vagaCandidatosSelecionada'))return;
+ try{renderCentralProcessosEmpresaEM()}catch(err){
+  console.error('[EmpregaMais] Falha ao renderizar Central de Processos:',err);
+  central.innerHTML='<div class="psv2-empty"><strong>Não foi possível carregar os processos.</strong><span>Atualize a página. Se o problema continuar, abra o console para diagnóstico.</span></div>';
+ }
+}
+if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',()=>setTimeout(iniciarCentralProcessosEmpresaEM,0));
+else setTimeout(iniciarCentralProcessosEmpresaEM,0);
+window.addEventListener('pageshow',()=>setTimeout(iniciarCentralProcessosEmpresaEM,0));
 function abrirCentralProcessosEmpresaEM(){sessionStorage.removeItem('vagaCandidatosSelecionada');sessionStorage.removeItem('filtroNaoVisualizadosEM');sessionStorage.setItem('filtroCandidatos','Todos');irPara('candidatos-empresa');setTimeout(renderCentralProcessosEmpresaEM,30)}
 const renderizarCandidatosEmpresaDetalheEM=renderizarCandidatosEmpresa;
 renderizarCandidatosEmpresa=function(){
