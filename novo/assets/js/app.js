@@ -1073,12 +1073,22 @@ async function adminCarregarVagasSupabase(){
  const t=await adminSbToken();
  const u=await sbJsonEM(EMPREGAMAIS_SUPABASE_URL+'/auth/v1/user',{method:'GET',headers:sbHeadersEM(t)});
  const a=await sbJsonEM(EMPREGAMAIS_SUPABASE_URL+'/rest/v1/vagas?select=*&order=criado_em.desc',{method:'GET',headers:sbHeadersEM(t)});
- const vs=(Array.isArray(a)?a:[]).map(sbMapVagaEM);
- if(!vs.length){
+ const remotas=(Array.isArray(a)?a:[]).map(sbMapVagaEM).filter(Boolean);
+ if(!remotas.length){
    const err=new Error('A sessão ADM está autenticada, mas o Supabase não liberou nenhuma vaga para este usuário. A política RLS atual só permite à empresa ver as próprias vagas e ao público ver vagas aprovadas.');
    err.code='ADMIN_RLS_SEM_ACESSO';err.userId=u?.id||'';throw err
  }
- sbVagasCacheEM=vs;gravar('empregaMaisVagas',vs);return vs
+ /* Uma leitura administrativa pode ser parcial por contexto/RLS. Nunca substituir
+    todo o cache por essa resposta: consolidar por ID evita a vaga aparecer no
+    primeiro desenho e sumir quando outra sincronização termina. */
+ const locais=Array.isArray(ler('empregaMaisVagas'))?ler('empregaMaisVagas'):[];
+ const mapa=new Map();
+ locais.forEach(v=>{if(v?.id)mapa.set(String(v.id),v)});
+ if(Array.isArray(sbVagasCacheEM))sbVagasCacheEM.forEach(v=>{if(v?.id)mapa.set(String(v.id),v)});
+ remotas.forEach(v=>{if(v?.id)mapa.set(String(v.id),v)});
+ sbVagasCacheEM=[...mapa.values()];
+ gravar('empregaMaisVagas',sbVagasCacheEM);
+ return remotas
 }
 
 /* EMPREGAMAIS-PAINEL-AUTOREFRESH-V1
