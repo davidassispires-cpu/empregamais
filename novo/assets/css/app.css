@@ -5788,3 +5788,70 @@ overflow:visible!important
 #pagina-publicar .job-actions .btn{min-height:40px!important;border-radius:9px!important;padding:9px 16px!important;font-size:12px!important;font-weight:700!important}
 #pagina-publicar .btn-azul{background:#075b63!important;border-color:#075b63!important}
 @media(max-width:680px){#pagina-publicar .job-card{padding:15px!important}#pagina-publicar .job-progress{margin-bottom:12px!important}#pagina-publicar .job-step{padding:6px!important}#pagina-publicar .job-step span{font-size:11px!important}#pagina-publicar .em-tipo-local{grid-template-columns:1fr!important}}
+
+
+/* EMPREGAMAI-FORM-VAGA-PRO-V11 */
+/* Sistema visual unificado das 3 etapas — somente apresentação */
+#pagina-publicar{--em-petroleo:#075b63;--em-petroleo-2:#08717a;--em-ink:#173d46;--em-muted:#71868c;--em-line:#dbe7e9;--em-soft:#f6fafa}
+#pagina-publicar .page-head{text-align:center!important;max-width:780px!important;padding-bottom:14px!important}
+#pagina-publicar .page-head h1{font-size:27px!important;margin:4px 0 5px!important;color:#123e48!important}
+#pagina-publicar .page-head p{max-width:620px;margin:0 auto!important;line-height:1.5!important}
+#pagina-publicar .job-shell{max-width:1080px!important}
+#pagina-publicar .job-progress{max-width:570px!important;border:0!important;background:#edf5f5!important;box-shadow:none!important;padding:4px!important}
+#pagina-publicar .job-step{background:transparent!important;color:#6d858b!important}
+#pagina-publicar .job-step.ativo{background:#fff!important;color:var(--em-petroleo)!important;box-shadow:0 2px 9px rgba(7,91,99,.10)!important}
+#pagina-publicar .job-step.ativo b{background:var(--em-petroleo)!important;color:#fff!important}
+#pagina-publicar .job-step.feito,#pagina-publicar .job-step.concluido{color:var(--em-petroleo)!important}
+#pagina-publicar .job-card{max-width:920px!important;margin:0 auto!important;padding:24px 26px!important;border:1px solid #e0eaec!important;border-radius:18px!important;box-shadow:0 10px 32px rgba(27,64,70,.055)!important}
+#pagina-publicar .job-card>h2,#pagina-publicar .job-card>p{text-align:center!important}
+#pagina-publicar .job-card>h2{font-size:21px!important;color:var(--em-ink)!important}
+#pagina-publicar .job-card>p{max-width:650px!important;margin:4px auto 20px!important;color:var(--em-muted)!important;line-height:1.45!important}
+#pagina-publicar .job-grid{gap:12px 14px!important}
+#pagina-publicar .job-grid>label:not(.check){font-size:11.5px!important;color:#31535b!important}
+#pagina-publicar .job-grid>label:not(.check)>small{font-size:9.5px!important;line-height:1.35!important;color:#819298!important;font-weight:500!important}
+#pagina-publicar .job-grid input:not([type=checkbox]):not([type=radio]),#pagina-publicar .job-grid select,#pagina-publicar .job-grid textarea{border:1px solid #d7e3e5!important;box-shadow:none!important;transition:border .15s,box-shadow .15s,background .15s!important}
+#pagina-publicar .job-grid input:focus,#pagina-publicar .job-grid select:focus,#pagina-publicar .job-grid textarea:focus{border-color:#6ca6aa!important;box-shadow:0 0 0 3px rgba(7,91,99,.07)!important;outline:0!important}
+#pagina-publicar .em-secao-titulo{display:flex!important;flex-direction:column!important;align-items:center!important;justify-content:center!important;text-align:center!important;gap:5px!important}
+#pagina-publicar .em-secao-titulo>span{width:30px!important;height:30px!important;border-radius:9px!important;display:grid!important;place-items:center!important}
+#pagina-publicar .em-secao-titulo h3{font-size:15px!important;margin:0!important}
+#pagina-publicar .em-secao-titulo p{max-width:650px!important;font-size:10.5px!important;line-height:1.4!important;margin:0 auto!important;color:#7a8e93!important}
+#pagina-publicar .em-localizacao-bloco{border:0!important;background:#f7fbfb!important;padding:16px!important;border-radius:14px!important}
+#pagina-publicar .em-tipo-local{grid-template-columns:repeat(4,minmax(0,1fr))!important;gap:7px!important}
+#pagina-publicar .em-tipo-local>label{min-height:76px!important;padding:9px 8px!important;display:flex!important;flex-direction:column!important;align-items:center!important;justify-content:center!important;text-align:center!important;gap:4px!important;border:1px solid #d9e6e8!important;background:#fff!important}
+#pagina-publicar .em-tipo-local>label:has(input:checked){border:1.5px solid var(--em-petroleo)!important;background:#eef7f7!important;box-shadow:0 2px 8px rgba(7,91,99,.06)!important}
+#pagina-publicar .em-tipo-local input{position:absolute!important;right:8px!important;top:8px!important;width:14px!important;height:14px!important}
+#pagina-publicar .em-local-icone{width:27px!important;height:27px!important;border-radius:7px!important;font-size:13px!important}
+#pagina-publicar .em-local-copy b{display:block!important;font-size:10.5px!important;line-height:1.15!important}
+#pagina-publicar .em-local-copy small{display:block!important;font-size:8.5px!important;line-height:1.2!important;margin-top:2px!important}
+#pagina-publicar .em-rh-cliente{border:1px solid #dbe7e9!important;background:#fff!important;box-shadow:none!important}
+#pagina-publicar .em-rh-cliente>label{justify-content:center!important}
+#pagina-publicar .em-rh-cliente>label span{text-align:center!important}
+#pagina-publicar .em-local-ajuda{text-align:center!important;font-size:9.5px!important;padding:7px 10px!important;border:0!important;background:#f2f8f8!important;border-radius:8px!important;color:#6f858a!important}
+#pagina-publicar .em-privacidade-local{border:1px solid #dbe7e9!important;background:#fbfdfd!important;margin-top:3px!important}
+#pagina-publicar .em-privacidade-local h3,#pagina-publicar .em-privacidade-local>p{text-align:center!important}
+#pagina-publicar .em-privacidade-local h3{font-size:14px!important;margin-bottom:3px!important}
+#pagina-publicar .em-privacidade-local>p{font-size:9.5px!important;color:#788d92!important;margin-bottom:10px!important}
+#pagina-publicar .em-local-opcoes{display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important}
+#pagina-publicar .em-local-opcoes label{min-height:66px!important;border:1px solid #dbe6e8!important;background:#fff!important;text-align:center!important;display:flex!important;flex-direction:column!important;align-items:center!important;justify-content:center!important;gap:3px!important}
+#pagina-publicar .em-local-opcoes label:has(input:checked){border-color:var(--em-petroleo)!important;background:#eff7f7!important}
+#pagina-publicar .em-local-opcoes label b{font-size:10px!important}.em-local-opcoes label small{font-size:8.5px!important;line-height:1.2!important}
+#pagina-publicar .em-form-section-divider{justify-content:center!important;text-align:center!important}
+#pagina-publicar .em-form-section-divider>span{flex:0 0 30px!important}
+#pagina-publicar .em-form-section-divider b{font-size:14px!important}.em-form-section-divider small{font-size:10px!important}
+#pagina-publicar .em-beneficios-premium,#pagina-publicar .em-perguntas-eliminatorias{border:1px solid #e0e9eb!important;background:#fbfdfd!important;box-shadow:none!important}
+#pagina-publicar .em-beneficios-premium .em-secao-titulo,#pagina-publicar .em-perguntas-eliminatorias .em-secao-titulo{text-align:center!important}
+#pagina-publicar .em-benefit-card{text-align:left!important}
+#pagina-publicar .em-perguntas-head,#pagina-publicar .em-perguntas-head>div{text-align:center!important;justify-content:center!important}
+#pagina-publicar .em-pergunta-item{border:1px solid #dfe8ea!important;border-radius:10px!important;background:#fff!important;box-shadow:none!important}
+#pagina-publicar .review-grid{gap:8px!important}
+#pagina-publicar .review-grid>div{border:1px solid #dfe8ea!important;background:#fbfdfd!important;border-radius:10px!important;padding:10px!important;text-align:center!important}
+#pagina-publicar .review-grid span{font-size:9px!important;color:#7d9095!important}.review-grid strong{font-size:11px!important;color:#173e47!important}
+#pagina-publicar .review-texto h4{text-align:center!important;color:#17434c!important;margin-top:16px!important}
+#pagina-publicar .review-texto p{text-align:center!important;color:#617a80!important;line-height:1.5!important}
+#pagina-publicar .review-flags,#pagina-publicar .beneficios-tags{justify-content:center!important}
+#pagina-publicar .job-actions{display:flex!important;align-items:center!important;justify-content:space-between!important}
+#pagina-publicar .job-actions .btn{min-width:112px!important}
+#pagina-publicar .job-actions .btn-azul{background:var(--em-petroleo)!important;box-shadow:0 4px 11px rgba(7,91,99,.13)!important}
+#pagina-publicar .job-actions .btn-azul:hover{background:var(--em-petroleo-2)!important;transform:translateY(-1px)!important}
+@media(max-width:900px){#pagina-publicar .em-tipo-local{grid-template-columns:repeat(2,minmax(0,1fr))!important}}
+@media(max-width:680px){#pagina-publicar .job-shell{padding:0 10px!important}#pagina-publicar .job-card{padding:17px 13px!important;border-radius:14px!important}#pagina-publicar .em-local-opcoes{grid-template-columns:1fr!important}#pagina-publicar .em-tipo-local{grid-template-columns:1fr 1fr!important}#pagina-publicar .job-actions .btn{min-width:96px!important}}
