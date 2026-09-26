@@ -6017,3 +6017,25 @@ overflow:visible!important
  #pagina-publicar #formVaga .em-privacidade-local .em-local-opcoes{grid-template-columns:1fr!important}
  #pagina-publicar #formVaga .em-privacidade-local .em-local-opcoes>label{min-height:64px!important}
 }
+
+
+/* EMPREGAMAI-LOCAL-PUBLICO-NATIVO-V16 */
+#pagina-publicar .em-local-publico-v16{box-sizing:border-box;width:100%;padding:14px;border:1px solid #dfe9eb;border-radius:13px;background:#fff}
+#pagina-publicar .em-local-publico-head{text-align:center;margin-bottom:11px}
+#pagina-publicar .em-local-publico-head h3{margin:0;color:#075b63;font-size:14px;font-weight:750}
+#pagina-publicar .em-local-publico-head p{margin:3px 0 0;color:#7b8e93;font-size:9.5px}
+#pagina-publicar .em-local-publico-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+#pagina-publicar .em-local-publico-card{box-sizing:border-box;position:relative;min-width:0;min-height:66px;padding:10px 32px 10px 10px;border:1px solid #dce7e9;border-radius:10px;background:#fff;display:grid;grid-template-columns:32px minmax(0,1fr);gap:9px;align-items:center;cursor:pointer;text-align:left;transition:.15s ease}
+#pagina-publicar .em-local-publico-card:hover{border-color:#a8c3c6;background:#fbfdfd}
+#pagina-publicar .em-local-publico-card:has(input:checked){border-color:#075b63;background:#f1f8f8;box-shadow:0 2px 8px rgba(7,91,99,.06)}
+#pagina-publicar .em-local-publico-card input{position:absolute;opacity:0;pointer-events:none;width:1px;height:1px}
+#pagina-publicar .em-lpv16-icon{width:32px;height:32px;border-radius:8px;background:#eaf5f5;color:#075b63;display:grid;place-items:center}
+#pagina-publicar .em-lpv16-icon svg{display:block;width:17px;height:17px}
+#pagina-publicar .em-lpv16-copy{display:block;min-width:0;text-align:left}
+#pagina-publicar .em-lpv16-copy b{display:block;color:#244950;font-size:10.5px;line-height:1.2;white-space:normal;word-break:normal}
+#pagina-publicar .em-lpv16-copy small{display:block;margin-top:3px;color:#778b90;font-size:8.5px;line-height:1.25;white-space:normal;word-break:normal}
+#pagina-publicar .em-lpv16-check{position:absolute;right:9px;top:9px;width:17px;height:17px;border:1px solid #d3e0e2;border-radius:50%;background:#fff;color:transparent;display:grid;place-items:center;font-size:10px;font-weight:800}
+#pagina-publicar .em-local-publico-card:has(input:checked) .em-lpv16-check{background:#075b63;border-color:#075b63;color:#fff}
+#pagina-publicar .em-local-publico-preview{margin-top:8px;min-height:29px;padding:6px 10px;border-radius:8px;background:#f0f7f7;display:flex;align-items:center;justify-content:center;gap:8px;font-size:9.5px;color:#71868b}
+#pagina-publicar .em-local-publico-preview strong{color:#075b63;font-size:10px}
+@media(max-width:680px){#pagina-publicar .em-local-publico-grid{grid-template-columns:1fr}#pagina-publicar .em-local-publico-card{min-height:58px}}
