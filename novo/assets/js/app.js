@@ -782,7 +782,13 @@ function sbCarregarVagasEM(){
       const ehPublica=v.status==='aprovada';
       if(!mapa.has(String(v.id)) && ehPublica)mapa.set(String(v.id),v);
     });
-    sbVagasCacheEM=[...mapa.values()].map(v=>v?.cargo!==undefined&&v?.empresaCnpj!==undefined?v:sbMapVagaEM(v)).filter(Boolean);
+    /* A fonte remota usa snake_case; sempre normalizar os registros do Supabase
+       antes de gravar/renderizar. Isso evita que vagas públicas aprovadas sumam
+       por ficarem sem dataEncerramento/criadoEm no cache local. */
+    sbVagasCacheEM=[...mapa.values()].map(v=>{
+      const remoto=v&&('data_encerramento' in v||'criado_em' in v||'empresa_id' in v||'candidatura_tipo' in v);
+      return remoto?sbMapVagaEM(v):v;
+    }).filter(Boolean);
     gravar('empregaMaisVagas',sbVagasCacheEM);
     return sbVagasCacheEM
   })
