@@ -6070,11 +6070,34 @@ svg text{
   var cs=arr('empregaMaisCandidaturas').filter(function(x){return vagas.some(function(v){return String(v.id)===String(x.vagaId)})});
   function st(v){if(v.status==='aprovada'&&(!v.dataEncerramento||new Date(v.dataEncerramento+'T23:59:59')>=new Date()))return 'Ativa';if(['pendente','em_analise','analise'].indexOf(v.status)>=0)return 'Em análise';return 'Encerrada'}
   var at=vagas.filter(function(v){return st(v)==='Ativa'}).length,an=vagas.filter(function(v){return st(v)==='Em análise'}).length;
-  var rows=vagas.map(function(v){var vc=cs.filter(function(x){return String(x.vagaId)===String(v.id)}),titulo=String(v.cargo||v.titulo||'Vaga').toLocaleUpperCase('pt-BR'),local=[v.cidade,v.estado||v.uf].filter(Boolean).join(' - ')||'Localização não informada';return '<article class="psv2-row"><div class="psv2-job"><div class="psv2-job-top"><h3>'+e(titulo)+'</h3><span class="psv2-status">'+e(st(v))+'</span></div><p>'+e(local)+' · '+e(v.modalidade||'Modalidade não informada')+'</p></div><div class="psv2-funnel"><div><strong>'+vc.length+'</strong><span>Candidaturas</span></div></div><div class="psv2-actions"><button class="main" onclick="abrirGestaoVaga(\''+e(v.id)+'\')">Gerenciar processo →</button><button class="edit" onclick="editarVaga(\''+e(v.id)+'\')">Editar vaga</button></div></article>'}).join('');
+  var rows=vagas.map(function(v){var vc=cs.filter(function(x){return String(x.vagaId)===String(v.id)}),titulo=String(v.cargo||v.titulo||'Vaga').toLocaleUpperCase('pt-BR'),local=[v.cidade,v.estado||v.uf].filter(Boolean).join(' - ')||'Localização não informada';return '<article class="psv2-row"><div class="psv2-job"><div class="psv2-job-top"><h3>'+e(titulo)+'</h3><span class="psv2-status">'+e(st(v))+'</span></div><p>'+e(local)+' · '+e(v.modalidade||'Modalidade não informada')+'</p></div><div class="psv2-funnel"><div><strong>'+vc.length+'</strong><span>Candidaturas</span></div></div><div class="psv2-actions"><button type="button" class="main" data-ps-gerenciar="'+e(v.id)+'">Gerenciar processo →</button><button type="button" class="edit" data-ps-editar="'+e(v.id)+'">Editar vaga</button></div></article>'}).join('');
   box.innerHTML='<div class="psv2-summary"><article><i>▣</i><div><span>PROCESSOS</span><strong>'+vagas.length+'</strong><small>Total cadastrado</small></div></article><article><i>●</i><div><span>ATIVOS</span><strong>'+at+'</strong><small>Recrutamentos em andamento</small></div></article><article><i>◷</i><div><span>EM ANÁLISE</span><strong>'+an+'</strong><small>Aguardando publicação</small></div></article><article><i>♟</i><div><span>CANDIDATURAS</span><strong>'+cs.length+'</strong><small>Recebidas em todos os processos</small></div></article></div><section class="psv2-workspace"><div class="psv2-list-head"><span>PROCESSO / VAGA</span><span>ANDAMENTO DOS CANDIDATOS</span><span>AÇÕES</span></div><div class="psv2-list">'+(rows||'<div class="psv2-empty"><strong>Nenhum processo encontrado</strong><span>Publique uma vaga para iniciar um processo seletivo.</span></div>')+'</div></section>';
  }
  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',function(){setTimeout(boot,80);setTimeout(boot,700)});else{setTimeout(boot,80);setTimeout(boot,700)}
  window.addEventListener('pageshow',function(){setTimeout(boot,120)});
+ document.addEventListener('click',function(ev){
+  var g=ev.target.closest('[data-ps-gerenciar]');
+  if(g){
+   ev.preventDefault();ev.stopPropagation();
+   var id=g.getAttribute('data-ps-gerenciar');
+   sessionStorage.setItem('vagaCandidatosSelecionada',String(id));
+   sessionStorage.removeItem('filtroNaoVisualizadosEM');
+   sessionStorage.setItem('filtroCandidatos','Todos');
+   if(typeof window.irPara==='function')window.irPara('candidatos-empresa');
+   else location.href=location.pathname+'?pagina=candidatos-empresa';
+   setTimeout(function(){if(typeof window.renderizarCandidatosEmpresa==='function')window.renderizarCandidatosEmpresa()},80);
+   return;
+  }
+  var ed=ev.target.closest('[data-ps-editar]');
+  if(ed){
+   ev.preventDefault();ev.stopPropagation();
+   var eid=ed.getAttribute('data-ps-editar');
+   if(typeof window.editarVaga==='function'){window.editarVaga(eid);return}
+   sessionStorage.setItem('vagaEdicao',String(eid));
+   if(typeof window.irPara==='function')window.irPara('publicar');
+   else location.href=location.pathname+'?pagina=publicar';
+  }
+ });
 })();
 </script>
 <!-- EMPREGAMAIS-NOVO-WIZARD-FIX-V1 -->
