@@ -7638,66 +7638,128 @@ body .topo .acoes .btn-azul,body .topo .btn-publicar-vaga{background:linear-grad
 }
 </style>
 
-<style id="EMPREGAMAIS-PAINEL-EXECUTIVO-V90">
-/* Painel da empresa — hierarquia executiva e visual unificado */
-#pagina-painel-empresa .emp-rec-planbar{
- min-height:82px!important;padding:14px 18px!important;margin-bottom:24px!important;
- background:#fff!important;border:1px solid #dce7ec!important;border-radius:14px!important;
- box-shadow:0 5px 18px rgba(13,67,77,.045)!important;
+<style id="EMPREGAMAIS-PAINEL-RECRUTADOR-PREMIUM-V91">
+/* Camada canônica do painel do recrutador Premium — 2026-09-26.
+   Mantém DOM, IDs, handlers e integrações; substitui apenas apresentação. */
+#pagina-painel-empresa{
+ --emp-petroleo:#075c6b;--emp-petroleo-2:#087785;--emp-petroleo-3:#0b8992;
+ --emp-ink:#173746;--emp-muted:#536b76;--emp-line:#dbe6ea;--emp-soft:#f4f8f9;--emp-white:#fff;
+ font-family:"Montserrat",Arial,sans-serif!important;background:#f3f7f8!important;color:var(--emp-ink)!important
 }
-#pagina-painel-empresa .emp-rec-plan-ident i{width:38px!important;height:38px!important;border-radius:10px!important;background:#e8f5f5!important;color:#087b83!important}
-#pagina-painel-empresa .emp-rec-plan-ident span,#pagina-painel-empresa .emp-rec-plan-status span,#pagina-painel-empresa .emp-rec-plan-date span{font-size:9px!important;letter-spacing:.08em!important;color:#78909b!important}
-#pagina-painel-empresa .emp-rec-plan-ident strong{font-size:16px!important;color:#123f50!important}
-#pagina-painel-empresa .emp-rec-plan-ident small{font-size:9px!important;color:#91a1a8!important}
+#pagina-painel-empresa,#pagina-painel-empresa *{box-sizing:border-box}
+#pagina-painel-empresa button,#pagina-painel-empresa input,#pagina-painel-empresa select,#pagina-painel-empresa textarea{font-family:"Montserrat",Arial,sans-serif!important}
+#pagina-painel-empresa .emp-dash{background:#f3f7f8!important}
+#pagina-painel-empresa .emp-dash-main.emp-premium-v2{padding:24px 26px 42px!important;min-width:0!important}
+
+/* Sidebar */
+#pagina-painel-empresa .emp-dash-side.emp-side-premium{background:#064f5d!important;border-right:0!important;box-shadow:8px 0 30px rgba(5,57,69,.08)!important}
+#pagina-painel-empresa .emp-dash-brand strong{font-size:21px!important;letter-spacing:-.45px!important}
+#pagina-painel-empresa .emp-dash-brand small,#pagina-painel-empresa .emp-side-plan>span,#pagina-painel-empresa .emp-side-group>small{font-size:11px!important;line-height:1.35!important;letter-spacing:.07em!important}
+#pagina-painel-empresa .emp-side-plan{background:rgba(255,255,255,.08)!important;border:1px solid rgba(255,255,255,.14)!important;border-radius:14px!important}
+#pagina-painel-empresa .emp-side-plan strong{font-size:14px!important}
+#pagina-painel-empresa .emp-side-plan small{font-size:11px!important}
+#pagina-painel-empresa .emp-side-plan button{font-size:11.5px!important}
+#pagina-painel-empresa .emp-side-publish{min-height:44px!important;border-radius:11px!important;background:#fff!important;color:#075c6b!important;font-size:12.5px!important;font-weight:800!important}
+#pagina-painel-empresa .emp-side-group button{min-height:41px!important;border-radius:9px!important;font-size:12.5px!important;font-weight:600!important}
+#pagina-painel-empresa .emp-side-group button.ativo{background:rgba(255,255,255,.13)!important;color:#fff!important}
+#pagina-painel-empresa .emp-side-footer b{font-size:12px!important}
+#pagina-painel-empresa .emp-side-footer small,#pagina-painel-empresa .emp-dash-exit{font-size:11px!important}
+
+/* Hero */
+#pagina-painel-empresa .emp-rec-hero.emp-premium-hero-v2{min-height:225px!important;margin:0 0 16px!important;padding:32px 34px!important;display:grid!important;grid-template-columns:minmax(0,1.5fr) minmax(270px,.72fr)!important;gap:28px!important;align-items:center!important;border:0!important;border-radius:20px!important;background:linear-gradient(120deg,#064f5d 0%,#08717e 58%,#0a8990 100%)!important;box-shadow:0 13px 34px rgba(6,79,93,.14)!important;overflow:hidden!important;position:relative!important}
+#pagina-painel-empresa .emp-rec-hero:after{content:""!important;position:absolute!important;width:320px!important;height:320px!important;border-radius:50%!important;right:-125px!important;top:-155px!important;background:rgba(255,255,255,.07)!important}
+#pagina-painel-empresa .emp-rec-hero-copy{position:relative!important;z-index:1!important}
+#pagina-painel-empresa .emp-rec-hero-copy>span{font-size:11.5px!important;letter-spacing:.12em!important;font-weight:800!important;color:#a8e2e5!important}
+#pagina-painel-empresa .emp-rec-hero-copy h1{margin:9px 0 9px!important;font-size:31px!important;line-height:1.12!important;letter-spacing:-.7px!important;color:#fff!important}
+#pagina-painel-empresa .emp-rec-hero-copy>p{max-width:670px!important;margin:0!important;font-size:13.5px!important;line-height:1.6!important;color:#d8edef!important}
+#pagina-painel-empresa .emp-rec-hero-actions{margin-top:20px!important;gap:9px!important}
+#pagina-painel-empresa .emp-rec-hero-actions button{min-height:42px!important;padding:0 16px!important;border-radius:9px!important;font-size:12px!important;font-weight:750!important}
+#pagina-painel-empresa .emp-rec-hero-actions .primary{background:#fff!important;color:#075c6b!important;border-color:#fff!important}
+#pagina-painel-empresa .emp-rec-benefits{position:relative!important;z-index:1!important;padding:19px!important;border:1px solid rgba(255,255,255,.16)!important;border-radius:15px!important;background:rgba(3,58,67,.24)!important;backdrop-filter:blur(2px)!important}
+#pagina-painel-empresa .emp-rec-benefits>strong{font-size:11px!important;letter-spacing:.08em!important;color:#bfe7e9!important}
+#pagina-painel-empresa .emp-rec-benefits div{gap:9px!important;margin-top:10px!important}
+#pagina-painel-empresa .emp-rec-benefits p{font-size:11.5px!important;line-height:1.4!important;color:#edf8f8!important}
+
+/* Barra do plano */
+#pagina-painel-empresa .emp-rec-planbar.emp-premium-plan-v2{min-height:76px!important;margin:0 0 22px!important;padding:12px 16px!important;gap:18px!important;background:#fff!important;border:1px solid var(--emp-line)!important;border-radius:14px!important;box-shadow:0 4px 15px rgba(12,64,75,.04)!important}
+#pagina-painel-empresa .emp-rec-plan-ident i{width:38px!important;height:38px!important;border-radius:10px!important;background:#e7f4f5!important;color:#087785!important}
+#pagina-painel-empresa .emp-rec-plan-ident span,#pagina-painel-empresa .emp-rec-plan-status span,#pagina-painel-empresa .emp-rec-plan-date span{font-size:11px!important;letter-spacing:.06em!important;color:#637b86!important}
+#pagina-painel-empresa .emp-rec-plan-ident strong{font-size:15px!important;color:#173f50!important}
+#pagina-painel-empresa .emp-rec-plan-ident small{font-size:11px!important;color:#71868f!important}
 #pagina-painel-empresa .emp-rec-plan-status,#pagina-painel-empresa .emp-rec-plan-date{padding-left:18px!important;border-left:1px solid #e4ecef!important}
-#pagina-painel-empresa .emp-rec-plan-status strong{color:#087b68!important;font-size:13px!important}
-#pagina-painel-empresa .emp-rec-plan-date strong{color:#244e60!important;font-size:13px!important}
-#pagina-painel-empresa .emp-rec-planbar>button{height:40px!important;padding:0 16px!important;border:1px solid #c9dbe2!important;border-radius:9px!important;background:#fff!important;color:#0b6170!important;font-size:10.5px!important;font-weight:750!important;box-shadow:none!important}
+#pagina-painel-empresa .emp-rec-plan-status strong,#pagina-painel-empresa .emp-rec-plan-date strong{font-size:12.5px!important}
+#pagina-painel-empresa .emp-rec-planbar>button{height:39px!important;padding:0 15px!important;border:1px solid #bfd3da!important;border-radius:9px!important;background:#fff!important;color:#075c6b!important;font-size:11.5px!important;font-weight:750!important;box-shadow:none!important}
+
+/* Títulos */
 #pagina-painel-empresa .emp-dash-section-head{margin:0 0 12px!important}
-#pagina-painel-empresa .emp-dash-section-head h2{margin:0 0 4px!important;font-size:20px!important;color:#123f50!important;letter-spacing:-.25px!important}
-#pagina-painel-empresa .emp-dash-section-head p{font-size:11px!important;color:#80939c!important}
-#pagina-painel-empresa #empresaMetricasNovas.emp-dash-kpis{gap:10px!important;margin-bottom:18px!important}
-#pagina-painel-empresa #empresaMetricasNovas.emp-dash-kpis>button{
- height:108px!important;min-height:108px!important;padding:16px!important;
- grid-template-columns:40px minmax(0,1fr)!important;column-gap:12px!important;
- border:1px solid #dce7ec!important;border-radius:13px!important;background:#fff!important;
- box-shadow:0 4px 14px rgba(13,67,77,.035)!important;transition:.16s ease!important;
-}
-#pagina-painel-empresa #empresaMetricasNovas.emp-dash-kpis>button:hover{transform:translateY(-2px)!important;border-color:#b8d2d8!important;box-shadow:0 9px 22px rgba(13,67,77,.08)!important}
-#pagina-painel-empresa #empresaMetricasNovas.emp-dash-kpis>button::after{display:none!important}
-#pagina-painel-empresa #empresaMetricasNovas.emp-dash-kpis>button>i{width:40px!important;height:40px!important;border-radius:10px!important;background:#eaf5f5!important;color:#087b83!important}
-#pagina-painel-empresa #empresaMetricasNovas.emp-dash-kpis>button:nth-child(n)>i{background:#eaf5f5!important;color:#087b83!important}
-#pagina-painel-empresa #empresaMetricasNovas.emp-dash-kpis span{font-size:11.5px!important;color:#31586a!important}
-#pagina-painel-empresa #empresaMetricasNovas.emp-dash-kpis strong{margin-top:5px!important;font-size:29px!important;line-height:29px!important;color:#0b4358!important}
-#pagina-painel-empresa #empresaMetricasNovas.emp-dash-kpis small{margin-top:5px!important;font-size:9.5px!important;color:#8598a1!important}
-#pagina-painel-empresa #empresaMetricasNovas.emp-dash-kpis>button>b{color:#7e9ba6!important;font-size:14px!important}
-#pagina-painel-empresa .emp-performance{
- margin:0 0 24px!important;padding:18px!important;background:#fff!important;
- border:1px solid #dce7ec!important;border-radius:14px!important;
- box-shadow:0 5px 18px rgba(13,67,77,.04)!important;
-}
-#pagina-painel-empresa .emp-performance-head{margin-bottom:14px!important;padding-bottom:13px!important;border-bottom:1px solid #e7eef1!important}
-#pagina-painel-empresa .emp-performance-head span{font-size:8.5px!important;letter-spacing:.11em!important;color:#087b83!important}
-#pagina-painel-empresa .emp-performance-head h2{font-size:18px!important;color:#123f50!important}
-#pagina-painel-empresa .emp-performance-head p,#pagina-painel-empresa .emp-performance-head small{font-size:10px!important;color:#83969f!important}
-#pagina-painel-empresa .emp-performance-grid{gap:0!important;border:1px solid #e3ebee!important;border-radius:12px!important;overflow:visible!important}
-#pagina-painel-empresa .emp-performance-grid article{
- min-height:92px!important;padding:15px 18px!important;background:#fff!important;
- border:0!important;border-radius:0!important;box-shadow:none!important;
-}
-#pagina-painel-empresa .emp-performance-grid article+article{border-left:1px solid #e3ebee!important}
-#pagina-painel-empresa .emp-performance-grid article span{font-size:10.5px!important;color:#607b86!important}
-#pagina-painel-empresa .emp-performance-grid article>strong{margin:7px 0 4px!important;font-size:24px!important;line-height:1!important;color:#087b83!important}
-#pagina-painel-empresa .emp-performance-grid article>small{font-size:9px!important;color:#8b9ca4!important}
-@media(max-width:1050px){
+#pagina-painel-empresa .emp-premium-eyebrow,#pagina-painel-empresa .emp-open-vagas-head span,#pagina-painel-empresa .emp-performance-head span{font-size:11px!important;line-height:1.3!important;letter-spacing:.1em!important;font-weight:800!important;color:#087785!important}
+#pagina-painel-empresa .emp-dash-section-head h2,#pagina-painel-empresa .emp-open-vagas-head h2,#pagina-painel-empresa .emp-performance-head h2{margin:3px 0 4px!important;font-size:19px!important;line-height:1.25!important;color:#173f50!important;letter-spacing:-.25px!important}
+#pagina-painel-empresa .emp-dash-section-head p,#pagina-painel-empresa .emp-open-vagas-head p,#pagina-painel-empresa .emp-performance-head p,#pagina-painel-empresa .emp-performance-head small{font-size:12px!important;line-height:1.5!important;color:#607781!important}
+
+/* KPIs */
+#pagina-painel-empresa #empresaMetricasNovas.emp-dash-kpis{gap:11px!important;margin:0 0 20px!important}
+#pagina-painel-empresa #empresaMetricasNovas.emp-dash-kpis>button{height:112px!important;min-height:112px!important;padding:15px!important;grid-template-columns:40px minmax(0,1fr) 14px!important;column-gap:11px!important;align-items:center!important;text-align:left!important;border:1px solid var(--emp-line)!important;border-top:3px solid var(--emp-petroleo-2)!important;border-radius:14px!important;background:#fff!important;box-shadow:0 4px 14px rgba(12,64,75,.035)!important;transition:transform .16s ease,box-shadow .16s ease,border-color .16s ease!important}
+#pagina-painel-empresa #empresaMetricasNovas.emp-dash-kpis>button:hover{transform:translateY(-2px)!important;border-color:#b6cfd6!important;box-shadow:0 9px 22px rgba(12,64,75,.08)!important}
+#pagina-painel-empresa #empresaMetricasNovas.emp-dash-kpis>button>i{width:40px!important;height:40px!important;border-radius:10px!important;background:#eaf5f5!important;color:#087785!important}
+#pagina-painel-empresa #empresaMetricasNovas.emp-dash-kpis span{font-size:12px!important;line-height:1.25!important;color:#365a69!important}
+#pagina-painel-empresa #empresaMetricasNovas.emp-dash-kpis strong{margin-top:4px!important;font-size:27px!important;line-height:1!important;color:#103f51!important}
+#pagina-painel-empresa #empresaMetricasNovas.emp-dash-kpis small{margin-top:5px!important;font-size:11px!important;line-height:1.3!important;color:#6c818a!important}
+#pagina-painel-empresa #empresaMetricasNovas.emp-dash-kpis>button>b{font-size:14px!important;color:#78959e!important}
+
+/* Desempenho */
+#pagina-painel-empresa .emp-performance.emp-premium-performance-v2{margin:0 0 22px!important;padding:18px!important;background:#fff!important;border:1px solid var(--emp-line)!important;border-radius:15px!important;box-shadow:0 4px 16px rgba(12,64,75,.035)!important;overflow:visible!important}
+#pagina-painel-empresa .emp-performance-head{margin-bottom:13px!important;padding-bottom:12px!important;border-bottom:1px solid #e7eef1!important}
+#pagina-painel-empresa .emp-performance-grid{gap:0!important;border:1px solid #e1eaed!important;border-radius:12px!important;overflow:visible!important}
+#pagina-painel-empresa .emp-performance-grid article{min-height:94px!important;padding:15px 17px!important;background:#fff!important;border:0!important;border-radius:0!important;box-shadow:none!important}
+#pagina-painel-empresa .emp-performance-grid article+article{border-left:1px solid #e1eaed!important}
+#pagina-painel-empresa .emp-performance-grid article>span{font-size:11.5px!important;color:#4e6a75!important}
+#pagina-painel-empresa .emp-performance-grid article>strong{margin:7px 0 4px!important;font-size:24px!important;line-height:1!important;color:#087785!important}
+#pagina-painel-empresa .emp-performance-grid article>small{font-size:11px!important;line-height:1.35!important;color:#6f838c!important}
+#pagina-painel-empresa .emp-performance-tooltip>strong{font-size:12px!important}
+#pagina-painel-empresa .emp-performance-tooltip>p{font-size:11px!important;line-height:1.5!important}
+
+/* Processos seletivos */
+#pagina-painel-empresa .emp-open-vagas.emp-premium-processos-v2{margin:0 0 22px!important;padding:19px!important;background:#fff!important;border:1px solid var(--emp-line)!important;border-radius:15px!important;box-shadow:0 4px 16px rgba(12,64,75,.035)!important}
+#pagina-painel-empresa .emp-open-vagas-head{margin-bottom:15px!important;padding-bottom:13px!important;border-bottom:1px solid #e7eef1!important}
+#pagina-painel-empresa .emp-open-vagas-head>button{min-height:38px!important;padding:0 14px!important;border:1px solid #c6d8de!important;border-radius:9px!important;background:#fff!important;color:#075c6b!important;font-size:11.5px!important;font-weight:750!important}
+#pagina-painel-empresa #empresaVagasAbertasPainel .emp-vagas-selecao-grid{gap:12px!important}
+#pagina-painel-empresa #empresaVagasAbertasPainel .emp-vaga-selecao-card{border:1px solid #dce7ea!important;border-radius:14px!important;box-shadow:none!important;background:#fff!important}
+#pagina-painel-empresa #empresaVagasAbertasPainel .emp-vaga-selecao-titulo h3{font-size:15px!important;color:#173f50!important}
+#pagina-painel-empresa #empresaVagasAbertasPainel .emp-vaga-selecao-titulo p,#pagina-painel-empresa #empresaVagasAbertasPainel .emp-vaga-selecao-status,#pagina-painel-empresa #empresaVagasAbertasPainel .emp-vaga-selecao-metricas span{font-size:11px!important}
+#pagina-painel-empresa #empresaVagasAbertasPainel .emp-vaga-selecao-metricas strong{font-size:19px!important}
+#pagina-painel-empresa #empresaVagasAbertasPainel .emp-vaga-selecao-actions button{font-size:11.5px!important}
+
+/* Ações rápidas e fechamento */
+#pagina-painel-empresa .emp-dash-actions{gap:11px!important;margin-bottom:20px!important}
+#pagina-painel-empresa .emp-dash-actions button,#pagina-painel-empresa .emp-dash-actions article{border:1px solid var(--emp-line)!important;border-radius:13px!important;background:#fff!important;box-shadow:0 3px 12px rgba(12,64,75,.03)!important}
+#pagina-painel-empresa .emp-dash-actions strong{font-size:13px!important;color:#173f50!important}
+#pagina-painel-empresa .emp-dash-actions small,#pagina-painel-empresa .emp-dash-actions span{font-size:11px!important;color:#5e747e!important}
+#pagina-painel-empresa .emp-rec-closing{padding:20px 22px!important;border-radius:15px!important;background:#eaf4f5!important;border:1px solid #d4e5e8!important}
+#pagina-painel-empresa .emp-rec-closing strong{font-size:16px!important;color:#123f50!important}
+#pagina-painel-empresa .emp-rec-closing p{font-size:12px!important;color:#536f79!important}
+#pagina-painel-empresa .emp-rec-closing button{min-height:40px!important;border-radius:9px!important;background:#075c6b!important;color:#fff!important;font-size:11.5px!important}
+
+/* Dados auxiliares permanecem disponíveis ao JS, sem interferir no layout */
+#pagina-painel-empresa .emp-dash-hidden-data{display:none!important}
+
+/* Responsivo */
+@media(max-width:1120px){
+ #pagina-painel-empresa .emp-rec-hero.emp-premium-hero-v2{grid-template-columns:1fr!important}
+ #pagina-painel-empresa .emp-rec-benefits{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important}
  #pagina-painel-empresa #empresaMetricasNovas.emp-dash-kpis{grid-template-columns:repeat(2,minmax(0,1fr))!important}
  #pagina-painel-empresa .emp-performance-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important}
  #pagina-painel-empresa .emp-performance-grid article+article{border-left:0!important}
 }
+@media(max-width:900px){
+ #pagina-painel-empresa .emp-dash-main.emp-premium-v2{padding:16px!important}
+}
 @media(max-width:640px){
- #pagina-painel-empresa .emp-rec-planbar{gap:12px!important}
+ #pagina-painel-empresa .emp-rec-hero.emp-premium-hero-v2{padding:24px 20px!important;border-radius:16px!important}
+ #pagina-painel-empresa .emp-rec-hero-copy h1{font-size:26px!important}
+ #pagina-painel-empresa .emp-rec-benefits{grid-template-columns:1fr!important}
+ #pagina-painel-empresa .emp-rec-planbar.emp-premium-plan-v2{gap:12px!important}
  #pagina-painel-empresa #empresaMetricasNovas.emp-dash-kpis,#pagina-painel-empresa .emp-performance-grid{grid-template-columns:1fr!important}
- #pagina-painel-empresa .emp-performance-grid article+article{border-top:1px solid #e3ebee!important}
+ #pagina-painel-empresa .emp-performance-grid article+article{border-top:1px solid #e1eaed!important}
 }
 </style>
 
