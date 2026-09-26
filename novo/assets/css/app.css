@@ -5747,3 +5747,44 @@ overflow:visible!important
 @media(max-width:1100px){#pagina-publicar .em-benefit-cards{grid-template-columns:repeat(3,minmax(0,1fr))!important}}
 @media(max-width:680px){#pagina-publicar .em-benefit-cards{grid-template-columns:repeat(2,minmax(0,1fr))!important}#pagina-publicar .em-benefit-card{min-height:56px!important;padding:8px!important}}
 @media(max-width:430px){#pagina-publicar .em-benefit-cards{grid-template-columns:1fr!important}}
+
+
+/* EMPREGAMAI-FORM-VAGA-MODERNO-V10 */
+#pagina-publicar .page-head{margin-bottom:16px!important}
+#pagina-publicar .page-head h1{font-size:26px!important;letter-spacing:-.35px!important}
+#pagina-publicar .page-head p{font-size:13px!important;color:#6d8288!important}
+#pagina-publicar .job-shell{border:0!important;background:transparent!important;box-shadow:none!important}
+#pagina-publicar .job-progress{max-width:620px!important;margin:0 auto 18px!important;padding:5px!important;border:1px solid #dce8e9!important;border-radius:12px!important;background:#f8fbfb!important;gap:4px!important}
+#pagina-publicar .job-step{min-height:44px!important;border-radius:9px!important;padding:7px 12px!important;display:flex!important;align-items:center!important;justify-content:center!important;gap:7px!important}
+#pagina-publicar .job-step b{width:23px!important;height:23px!important;display:grid!important;place-items:center!important;border-radius:50%!important;font-size:11px!important}
+#pagina-publicar .job-step span{font-size:12px!important;font-weight:700!important}
+#pagina-publicar .job-step.ativo{background:#075b63!important;color:#fff!important}
+#pagina-publicar .job-step.ativo b{background:#fff!important;color:#075b63!important}
+#pagina-publicar .job-card{border:1px solid #dce6e8!important;border-radius:16px!important;padding:22px!important;box-shadow:0 8px 26px rgba(26,63,69,.045)!important;background:#fff!important}
+#pagina-publicar .job-card>h2{font-size:20px!important;margin-bottom:3px!important}
+#pagina-publicar .job-card>p{font-size:13px!important;margin-bottom:18px!important;color:#72858a!important}
+#pagina-publicar .job-grid{gap:13px!important}
+#pagina-publicar .job-grid>label:not(.check){font-size:12px!important;font-weight:700!important;color:#294a52!important}
+#pagina-publicar .job-grid input:not([type=checkbox]):not([type=radio]),#pagina-publicar .job-grid select{min-height:42px!important;height:42px!important;border-radius:9px!important;border-color:#d4e0e3!important;background:#fff!important;font-size:13px!important;padding:8px 11px!important}
+#pagina-publicar .job-grid textarea{border-radius:10px!important;border-color:#d4e0e3!important;font-size:13px!important;padding:11px 12px!important}
+#pagina-publicar .em-textarea-grande textarea{min-height:118px!important;height:118px!important}
+#pagina-publicar .em-localizacao-bloco{padding:16px!important;border-radius:12px!important;background:#fbfdfd!important}
+#pagina-publicar .em-tipo-local{gap:8px!important;margin-top:12px!important}
+#pagina-publicar .em-tipo-local>label{min-height:76px!important;padding:10px 12px!important;border-radius:10px!important;display:grid!important;grid-template-columns:30px minmax(0,1fr) 18px!important;grid-template-rows:auto!important;text-align:left!important;align-items:center!important;justify-content:stretch!important;gap:9px!important}
+#pagina-publicar .em-tipo-local input{position:static!important;grid-column:3!important;grid-row:1!important;width:16px!important;height:16px!important}
+#pagina-publicar .em-local-icone{grid-column:1!important;grid-row:1!important;width:30px!important;height:30px!important;border-radius:8px!important;font-size:15px!important}
+#pagina-publicar .em-local-copy{grid-column:2!important;grid-row:1!important}
+#pagina-publicar .em-local-copy b{font-size:12px!important}.em-local-copy small{font-size:10px!important;line-height:1.25!important}
+#pagina-publicar .em-rh-cliente{margin-top:10px!important;padding:11px 12px!important;border-radius:10px!important}
+#pagina-publicar .em-privacidade-local{padding:14px!important;border-radius:11px!important}
+#pagina-publicar .em-local-opcoes{gap:7px!important}
+#pagina-publicar .em-local-opcoes label{min-height:58px!important;padding:9px!important;border-radius:9px!important}
+#pagina-publicar .em-form-section-divider{display:flex;align-items:center;gap:10px;margin:22px 0 14px;padding-top:20px;border-top:1px solid #e4ecee}
+#pagina-publicar .em-form-section-divider>span{width:30px;height:30px;border-radius:8px;background:#eaf5f5;color:#075b63;display:grid;place-items:center;font-size:10px;font-weight:800}
+#pagina-publicar .em-form-section-divider b{display:block;font-size:14px;color:#173f47}.em-form-section-divider small{display:block;margin-top:2px;font-size:11px;color:#74888d}
+#pagina-publicar .em-beneficios-premium{margin-top:2px!important;padding:14px!important;background:#fbfdfd!important}
+#pagina-publicar .em-perguntas-eliminatorias{margin-top:12px!important;padding:14px!important;border-radius:12px!important}
+#pagina-publicar .job-actions{margin-top:20px!important;padding-top:15px!important;border-top:1px solid #e8eeee!important}
+#pagina-publicar .job-actions .btn{min-height:40px!important;border-radius:9px!important;padding:9px 16px!important;font-size:12px!important;font-weight:700!important}
+#pagina-publicar .btn-azul{background:#075b63!important;border-color:#075b63!important}
+@media(max-width:680px){#pagina-publicar .job-card{padding:15px!important}#pagina-publicar .job-progress{margin-bottom:12px!important}#pagina-publicar .job-step{padding:6px!important}#pagina-publicar .job-step span{font-size:11px!important}#pagina-publicar .em-tipo-local{grid-template-columns:1fr!important}}
