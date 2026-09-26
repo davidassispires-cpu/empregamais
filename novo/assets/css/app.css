@@ -4609,7 +4609,7 @@ overflow:visible!important
 #pagina-candidatos-empresa #listaCandidatosEmpresa .recruta-preview-andamento b{margin-left:auto;color:#087b92;font-size:7.5px}
 #pagina-candidatos-empresa #listaCandidatosEmpresa .recruta-preview-andamento i{margin-left:7px;color:#087b92;font-style:normal}
 #pagina-candidatos-empresa #listaCandidatosEmpresa .recruta-andamento{display:none}
-@media(max-width:1050px){#pagina-candidatos-empresa #listaCandidatosEmpresa .recruta-cand-grid{grid-template-columns:1fr}}
+@media(max-width:760px){#pagina-candidatos-empresa #listaCandidatosEmpresa .recruta-cand-grid{grid-template-columns:1fr}}
 @media(max-width:680px){#pagina-candidatos-empresa #listaCandidatosEmpresa .recruta-cand-head{padding:11px 12px}#pagina-candidatos-empresa #listaCandidatosEmpresa .recruta-cand-preview-info{padding:8px 12px 0}#pagina-candidatos-empresa #listaCandidatosEmpresa .recruta-cand-info{grid-template-columns:1fr 1fr}#pagina-candidatos-empresa #listaCandidatosEmpresa .recruta-cand-info>div{min-height:58px}#pagina-candidatos-empresa #listaCandidatosEmpresa .recruta-cand-info>div:last-child{grid-column:1/-1;border-top:1px solid #dfe8ed}#pagina-candidatos-empresa #listaCandidatosEmpresa .recruta-cand-actions{grid-template-columns:repeat(2,1fr);padding:8px 12px}#pagina-candidatos-empresa #listaCandidatosEmpresa .recruta-cand-actions .btn:last-child{grid-column:1/-1}#pagina-candidatos-empresa #listaCandidatosEmpresa .recruta-preview-andamento{width:calc(100% - 24px);margin-left:12px;margin-right:12px}}
 
 /* EMPREGAI-DESTAQUES-UNICO-V1 — única configuração da seção Vagas em destaque */
