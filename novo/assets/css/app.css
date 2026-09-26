@@ -4573,8 +4573,8 @@ overflow:visible!important
 
 /* EMPREGAI-RECRUTADOR-CANDIDATO-UNICO-V2 — grade 2 colunas e cards compactos */
 #pagina-candidatos-empresa #listaCandidatosEmpresa{display:block;width:100%}
-#pagina-candidatos-empresa #listaCandidatosEmpresa .recruta-cand-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;width:100%;align-items:start}
-#pagina-candidatos-empresa #listaCandidatosEmpresa .recruta-cand-card{width:100%;min-width:0;margin:0;overflow:hidden;background:#fff;border:1px solid #d7e4eb;border-top:3px solid #168db5;border-radius:13px;box-shadow:0 4px 14px rgba(20,62,82,.045);font-family:'Montserrat',Arial,sans-serif}
+#pagina-candidatos-empresa #listaCandidatosEmpresa .recruta-cand-grid{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:12px!important;width:100%!important;max-width:none!important;align-items:start!important}
+#pagina-candidatos-empresa #listaCandidatosEmpresa .recruta-cand-grid>.recruta-cand-card{width:100%!important;min-width:0!important;max-width:none!important;margin:0!important;overflow:hidden;background:#fff;border:1px solid #d7e4eb;border-top:3px solid #168db5;border-radius:13px;box-shadow:0 4px 14px rgba(20,62,82,.045);font-family:'Montserrat',Arial,sans-serif}
 #pagina-candidatos-empresa #listaCandidatosEmpresa .recruta-cand-head{display:flex;align-items:flex-start;justify-content:space-between;gap:10px;padding:12px 14px 10px;border-bottom:1px solid #e5edf1}
 #pagina-candidatos-empresa #listaCandidatosEmpresa .recruta-cand-ident{display:flex;align-items:flex-start;gap:9px;min-width:0}
 #pagina-candidatos-empresa #listaCandidatosEmpresa .recruta-cand-monograma{width:34px;height:34px;flex:0 0 34px;display:grid;place-items:center;border-radius:50%;background:#eaf7f8;color:#087b83;font-size:12px;font-weight:800}
