@@ -853,6 +853,21 @@ function restaurarRascunhoVagaEM(){
  if(typeof mostrarEtapa==='function')mostrarEtapa(d._etapa||1);
 }
 addEventListener('DOMContentLoaded',()=>{const f=document.getElementById('formVaga');if(f&&!f.dataset.rascunhoSessao){f.dataset.rascunhoSessao='1';f.addEventListener('input',()=>{clearTimeout(window.__emDraftT);window.__emDraftT=setTimeout(salvarRascunhoVagaEM,250)});f.addEventListener('change',salvarRascunhoVagaEM);restaurarRascunhoVagaEM()}});
+function abrirConfirmacaoVagaAnaliseEM(edicao){
+ let modal=document.getElementById('emVagaAnaliseModal');
+ if(!modal){
+  modal=document.createElement('div');modal.id='emVagaAnaliseModal';modal.className='em-vaga-analise-modal';
+  modal.innerHTML='<div class="em-vaga-analise-backdrop"></div><div class="em-vaga-analise-dialog" role="dialog" aria-modal="true" aria-labelledby="emVagaAnaliseTitulo"><div class="em-vaga-analise-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 7 9.5 17.5 4 12" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span class="em-vaga-analise-kicker">ENVIO CONCLUÍDO</span><h2 id="emVagaAnaliseTitulo">Vaga enviada para análise</h2><p id="emVagaAnaliseTexto"></p><div class="em-vaga-analise-info"><strong>O que acontece agora?</strong><span>Nossa equipe revisará as informações do anúncio antes da publicação.</span></div><button type="button" onclick="fecharConfirmacaoVagaAnaliseEM()">Entendi, voltar ao painel</button></div>';
+  document.body.appendChild(modal);
+ }
+ const p=modal.querySelector('#emVagaAnaliseTexto');
+ if(p)p.textContent=edicao?'Suas alterações foram salvas com sucesso. A vaga voltou para análise e passará por uma nova revisão antes de ser publicada novamente.':'Recebemos sua vaga com sucesso. Antes de ser publicada no Empregaí, ela passará por uma revisão para garantir a qualidade e a segurança das informações apresentadas aos candidatos.';
+ modal.classList.add('aberto');document.body.classList.add('em-modal-aberto');
+}
+function fecharConfirmacaoVagaAnaliseEM(){
+ document.getElementById('emVagaAnaliseModal')?.classList.remove('aberto');document.body.classList.remove('em-modal-aberto');irPara('painel-empresa');
+}
+
 publicarVagaNova=async function(e){
   e.preventDefault();
   const tokenAtivo=await sbGarantirSessaoEM();
@@ -879,7 +894,7 @@ publicarVagaNova=async function(e){
       const r=await sbJsonEM(EMPREGAMAIS_SUPABASE_URL+'/rest/v1/vagas',{method:'POST',headers:Object.assign(sbHeadersEM(sbTokenEM()),{'Prefer':'return=representation'}),body:JSON.stringify(payload)});
       if(!Array.isArray(r)||!r[0])throw new Error('O Supabase não confirmou a publicação da vaga.');
     }
-    sessionStorage.removeItem('vagaEdicao');localStorage.removeItem('empregaMaisRascunhoVaga');$('#formVaga')?.reset();await sbCarregarVagasEM();msg('#msgPublicarVaga',editId?'Alterações salvas. A vaga voltou para análise.':'Vaga enviada para análise.',true);setTimeout(()=>irPara('painel-empresa'),900)
+    sessionStorage.removeItem('vagaEdicao');localStorage.removeItem('empregaMaisRascunhoVaga');$('#formVaga')?.reset();await sbCarregarVagasEM();msg('#msgPublicarVaga','',true);abrirConfirmacaoVagaAnaliseEM(Boolean(editId))
   }catch(err){console.error('EmpregaMais/Supabase vaga:',err);msg('#msgPublicarVaga',err.message||'Não foi possível salvar a vaga.')}finally{if(btn){btn.disabled=false;btn.textContent='Publicar vaga'}}
 };
 vagasDaEmpresa=function(){
