@@ -6107,3 +6107,30 @@ overflow:visible!important
 #pagina-publicar #formVaga textarea{
  padding-left:16px!important;padding-right:16px!important
 }
+
+
+/* EMPREGAMAI-TEXTOS-SECUNDARIOS-V20 */
+/* Textos auxiliares: cinza escuro, leves e sem negrito */
+#pagina-publicar #formVaga .job-card>p,
+#pagina-publicar #formVaga .job-grid>label:not(.check)>small,
+#pagina-publicar #formVaga .em-secao-titulo p,
+#pagina-publicar #formVaga .em-form-section-divider small,
+#pagina-publicar #formVaga .em-local-copy small,
+#pagina-publicar #formVaga .em-local-publico-head p,
+#pagina-publicar #formVaga .em-lpv16-copy small,
+#pagina-publicar #formVaga .em-local-publico-preview,
+#pagina-publicar #formVaga .em-benefit-value small,
+#pagina-publicar #formVaga .em-local-ajuda,
+#pagina-publicar #formVaga .em-rh-cliente small,
+#pagina-publicar #formVaga .em-perguntas-eliminatorias small{
+ color:#56656b!important;font-weight:400!important
+}
+#pagina-publicar #formVaga input:not([type=checkbox]):not([type=radio])::placeholder,
+#pagina-publicar #formVaga textarea::placeholder{
+ color:#5d6b71!important;font-weight:400!important;opacity:1!important
+}
+#pagina-publicar #formVaga input:not([type=checkbox]):not([type=radio]),
+#pagina-publicar #formVaga textarea,
+#pagina-publicar #formVaga select{
+ font-weight:400!important;color:#46575d!important
+}
