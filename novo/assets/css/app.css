@@ -5697,33 +5697,31 @@ overflow:visible!important
  #vagaHeroDetalhe .vaga-info-grid.vaga-info-ref>div:nth-child(2)::after{display:none!important}
  #vagaHeroDetalhe .vaga-info-grid.vaga-info-ref>div:nth-child(-n+2){border-bottom:1px solid #e8eef2!important}
 }
-/* EMPREGAMAIS-HOME-HERO-BUSCA-LIMPA-V30 */
-#pagina-home .home-hero-visual{min-height:400px!important;background:#f3f9fd!important;overflow:hidden!important;border-bottom:1px solid #dbe8f0!important}
-#pagina-home .home-hero-content{min-height:270px!important;padding:38px 3.7% 104px!important;display:block!important;position:relative!important}
-#pagina-home .home-hero-copy{position:relative!important;z-index:3!important;width:48%!important;max-width:610px!important}
-#pagina-home .home-hero-kicker,#pagina-home .home-hero-benefits{display:none!important}
-#pagina-home .home-hero-copy h1{max-width:520px!important;margin:0!important;font-size:49px!important;line-height:.96!important;letter-spacing:-1.9px!important;color:#082f59!important;font-weight:850!important}
-#pagina-home .home-hero-copy h1 em{display:block!important;color:#2688ef!important;font-style:normal!important}
-#pagina-home .home-hero-copy>p{margin:17px 0 0!important;max-width:500px!important;font-size:15px!important;line-height:1.5!important;color:#5c7692!important}
-#pagina-home .home-hero-art{position:absolute!important;right:5.5%!important;top:5px!important;width:42%!important;height:245px!important;border-radius:0 0 18px 18px!important;overflow:hidden!important;background-position:center!important;background-size:cover!important;transform:rotate(-2deg)!important;transform-origin:center!important;box-shadow:none!important}
-#pagina-home .home-hero-art:after{content:""!important;position:absolute!important;inset:0!important;background:linear-gradient(90deg,rgba(243,249,253,.35),rgba(243,249,253,0) 28%)!important}
-#pagina-home .home-hero-art>span{z-index:2!important;left:17%!important;top:51%!important;transform:translateY(-50%) rotate(2deg)!important;padding:15px 21px!important;border-radius:24px!important;font-size:16px!important;line-height:1.05!important}
-#pagina-home .home-search-wrap{position:absolute!important;z-index:8!important;left:50%!important;bottom:24px!important;transform:translateX(-50%)!important;width:min(1120px,calc(100% - 120px))!important;margin:0!important;border:1px solid #dce8ef!important;border-radius:16px!important;background:rgba(255,255,255,.98)!important;box-shadow:0 12px 34px rgba(21,64,94,.08)!important;overflow:hidden!important}
-#pagina-home .home-search-tabs{height:43px!important;padding:0 18px!important;display:flex!important;align-items:end!important;gap:5px!important;border-bottom:1px solid #e5edf2!important;background:#fff!important}
-#pagina-home .home-search-tabs button{height:43px!important;padding:0 16px!important;border:0!important;border-bottom:3px solid transparent!important;background:transparent!important;color:#38546c!important;font-size:10.5px!important;font-weight:650!important}
-#pagina-home .home-search-tabs button.ativo{color:#087fc8!important;border-bottom-color:#168fe5!important}
-#pagina-home .busca-home{padding:10px 108px 7px!important;display:grid!important;grid-template-columns:minmax(290px,1.55fr) minmax(210px,1.05fr) minmax(150px,.72fr) 210px!important;gap:8px!important;align-items:stretch!important;background:#fff!important}
-#pagina-home .home-search-field{height:58px!important;min-width:0!important;padding:6px 9px!important;border:1px solid #dbe6ed!important;border-radius:10px!important;background:#fff!important;box-shadow:none!important;display:flex!important;align-items:center!important;gap:8px!important}
-#pagina-home .home-search-field>span{width:34px!important;height:34px!important;flex:0 0 34px!important;border-radius:9px!important;background:#f0f7fc!important;color:#087fc8!important;display:grid!important;place-items:center!important}
-#pagina-home .home-search-field label{min-width:0!important;width:100%!important}
-#pagina-home .home-search-field small{display:block!important;margin-bottom:1px!important;color:#244d69!important;font-size:8.5px!important;font-weight:750!important}
-#pagina-home .home-search-field input,#pagina-home .home-search-field select{width:100%!important;height:27px!important;padding:0!important;border:0!important;outline:0!important;background:transparent!important;color:#294e69!important;font-size:12px!important;box-shadow:none!important}
-#pagina-home .home-search-submit{height:58px!important;border:0!important;border-radius:10px!important;background:#218dde!important;color:#fff!important;font-size:12px!important;font-weight:800!important;cursor:pointer!important;box-shadow:0 7px 16px rgba(22,136,223,.18)!important}
-#pagina-home .home-search-submit b{margin-left:8px!important;font-size:15px!important}
-#pagina-home .home-buscas-populares{min-height:32px!important;padding:0 30px 10px!important;display:flex!important;align-items:center!important;gap:6px!important;background:#fff!important;overflow:hidden!important}
-#pagina-home .home-buscas-populares>b{font-size:8.5px!important;color:#37556b!important;white-space:nowrap!important}
-#pagina-home .home-buscas-populares button{height:23px!important;padding:0 11px!important;border:1px solid #dbe8ef!important;border-radius:999px!important;background:#f3f8fc!important;color:#2c6286!important;font-size:8px!important;font-weight:700!important;white-space:nowrap!important}
-#pagina-home .home-buscas-populares button:nth-of-type(n+6){display:none!important}
-@media(max-width:1100px){#pagina-home .busca-home{padding-left:35px!important;padding-right:35px!important;grid-template-columns:1.45fr 1fr .75fr 170px!important}#pagina-home .home-search-wrap{width:calc(100% - 60px)!important}}
-@media(max-width:900px){#pagina-home .home-hero-content{padding:32px 5% 190px!important}.home-hero-copy{width:62%!important}.home-hero-art{width:48%!important;opacity:.55!important}.home-search-wrap{bottom:18px!important}.busca-home{grid-template-columns:1fr 1fr!important;padding:10px 18px!important}.home-search-submit{grid-column:2!important}}
-@media(max-width:680px){#pagina-home .home-hero-visual{min-height:575px!important}.home-hero-content{padding:26px 18px 330px!important}.home-hero-copy{width:100%!important}.home-hero-copy h1{font-size:36px!important}.home-hero-art{display:none!important}.home-search-wrap{width:calc(100% - 24px)!important;bottom:14px!important}.home-search-tabs{overflow-x:auto!important;padding:0 8px!important}.home-search-tabs button{padding:0 10px!important;white-space:nowrap!important}.busca-home{grid-template-columns:1fr!important;padding:10px!important}.home-search-submit{grid-column:1!important}.home-buscas-populares{overflow-x:auto!important;padding:0 10px 10px!important}}
+
+/* EMPREGAI-HOME-HEAD-NOVO-V1 — única configuração do novo cabeçalho */
+#pagina-home .em-home-head{position:relative;min-height:385px;background:#f3f9fd;border-bottom:1px solid #dce8ef;overflow:hidden;padding:0 0 24px}
+#pagina-home .em-home-head-main{position:relative;max-width:1260px;height:260px;margin:0 auto;padding:38px 34px;box-sizing:border-box}
+#pagina-home .em-home-head-copy{position:relative;z-index:2;width:48%;max-width:570px}
+#pagina-home .em-home-head-copy h1{margin:0;color:#082f59;font-size:49px;line-height:.96;letter-spacing:-1.8px;font-weight:850}
+#pagina-home .em-home-head-copy h1 em{display:block;color:#2789ef;font-style:normal}
+#pagina-home .em-home-head-copy p{margin:17px 0 0;color:#5d7892;font-size:15px;line-height:1.45}
+#pagina-home .em-home-head-art{position:absolute;right:34px;top:7px;width:47%;height:245px;border-radius:0 0 18px 18px;overflow:hidden;background-image:url('../img/home-hero-profissionais.jpg');background-size:cover;background-position:center}
+#pagina-home .em-home-head-art:after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(243,249,253,.22),transparent 28%)}
+#pagina-home .em-home-head-art span{position:absolute;z-index:2;left:17%;top:50%;transform:translateY(-50%) rotate(-2deg);padding:17px 23px;border-radius:25px;background:rgba(232,246,255,.92);color:#073b70;font-size:17px;line-height:1.05;font-weight:850;text-align:center;font-style:italic}
+#pagina-home .em-home-search{position:relative;z-index:5;width:min(1120px,calc(100% - 80px));margin:-67px auto 0;background:#fff;border:1px solid #dbe7ee;border-radius:16px;box-shadow:0 12px 32px rgba(21,64,94,.08);overflow:hidden}
+#pagina-home .em-home-search-tabs{height:43px;padding:0 17px;display:flex;align-items:flex-end;gap:5px;border-bottom:1px solid #e2ebf0}
+#pagina-home .em-home-search-tabs button{height:43px;padding:0 17px;border:0;border-bottom:3px solid transparent;background:transparent;color:#3c5870;font-size:11px;font-weight:700;cursor:pointer}
+#pagina-home .em-home-search-tabs button.ativo{color:#087fc8;border-bottom-color:#168fe5}
+#pagina-home .em-home-search-row{display:grid;grid-template-columns:minmax(280px,1.55fr) minmax(210px,1.05fr) minmax(160px,.75fr) 200px;gap:9px;padding:10px 108px 7px}
+#pagina-home .em-home-search-field{height:58px;min-width:0;padding:6px 10px;display:flex;align-items:center;gap:8px;border:1px solid #d7e4ec;border-radius:10px;background:#fff;box-sizing:border-box}
+#pagina-home .em-home-search-field>span{width:34px;height:34px;flex:0 0 34px;display:grid;place-items:center;border-radius:9px;background:#eef7fc;color:#087fc8}
+#pagina-home .em-home-search-field label{width:100%;min-width:0}
+#pagina-home .em-home-search-field small{display:block;margin-bottom:2px;color:#244d69;font-size:8.5px;font-weight:750;white-space:nowrap}
+#pagina-home .em-home-search-field input,#pagina-home .em-home-search-field select{width:100%;height:28px;padding:0;border:0;outline:0;background:transparent;color:#35576f;font:inherit;font-size:12px}
+#pagina-home .em-home-search-submit{height:58px;border:0;border-radius:10px;background:#218dde;color:#fff;font-size:12px;font-weight:800;cursor:pointer;box-shadow:0 7px 16px rgba(22,136,223,.18)}
+#pagina-home .em-home-search-submit b{margin-left:8px;font-size:15px}
+#pagina-home .em-home-popular{min-height:32px;padding:0 30px 10px;display:flex;align-items:center;gap:6px;overflow:hidden}
+#pagina-home .em-home-popular>b{font-size:8.5px;color:#37556b;white-space:nowrap}
+#pagina-home .em-home-popular button{height:23px;padding:0 11px;border:1px solid #d8e6ee;border-radius:999px;background:#f2f8fc;color:#2c6286;font-size:8px;font-weight:700;white-space:nowrap;cursor:pointer}
+@media(max-width:1000px){#pagina-home .em-home-head-main{padding-left:24px;padding-right:24px}#pagina-home .em-home-head-art{right:24px;width:49%}#pagina-home .em-home-search{width:calc(100% - 50px)}#pagina-home .em-home-search-row{padding-left:24px;padding-right:24px;grid-template-columns:1.35fr 1fr .8fr 170px}}
+@media(max-width:760px){#pagina-home .em-home-head{min-height:570px}#pagina-home .em-home-head-main{height:245px;padding:27px 18px}#pagina-home .em-home-head-copy{width:100%}#pagina-home .em-home-head-copy h1{font-size:36px}#pagina-home .em-home-head-art{display:none}#pagina-home .em-home-search{width:calc(100% - 24px);margin:-45px auto 0;overflow:visible}#pagina-home .em-home-search-tabs{padding:0 8px;overflow-x:auto}#pagina-home .em-home-search-tabs button{padding:0 10px;white-space:nowrap}#pagina-home .em-home-search-row{grid-template-columns:1fr;padding:10px}#pagina-home .em-home-popular{display:none}}
