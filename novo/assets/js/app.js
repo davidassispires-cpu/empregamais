@@ -2844,3 +2844,39 @@ function abrirCentralProcessosEmpresaEM(){
  irPara('candidatos-empresa');
  setTimeout(()=>{if(typeof renderCentralProcessosEmpresaEM==='function')renderCentralProcessosEmpresaEM()},40);
 }
+
+
+/* EMPREGAMAIS-CENTRAL-PROCESSOS-ESTRUTURA-V111 */
+(function(){
+ const renderDetalheV111=renderizarCandidatosEmpresa;
+ function statusV111(v){
+  if(v.status==='aprovada'&&vagaDentroPrazo(v))return ['Ativa',''];
+  if(['pendente','em_analise','analise'].includes(v.status))return ['Em análise','analise'];
+  return ['Encerrada','encerrada'];
+ }
+ function toggleV111(detail){
+  const central=document.getElementById('psCentralView'),cand=document.getElementById('psCandidateView');
+  if(central)central.hidden=!!detail;if(cand)cand.hidden=!detail;
+ }
+ function centralV111(){
+  toggleV111(false);
+  const box=document.getElementById('psCentralConteudo');if(!box)return;
+  const vagas=vagasDaEmpresa().slice(),cs=candidaturas().filter(c=>vagas.some(v=>v.id===c.vagaId));
+  const busca=String(document.getElementById('psv2Busca')?.value||'').toLowerCase(),filtro=document.getElementById('psv2Status')?.value||'todos',ordem=document.getElementById('psv2Ordem')?.value||'recentes';
+  const ativas=vagas.filter(v=>statusV111(v)[0]==='Ativa').length,analise=vagas.filter(v=>statusV111(v)[0]==='Em análise').length,enc=vagas.length-ativas-analise;
+  let lista=vagas.filter(v=>{const st=statusV111(v)[0].toLowerCase();return(filtro==='todos'||st===filtro)&&(!busca||(tituloVaga(v)+' '+(v.cidade||'')+' '+(v.estado||v.uf||'')).toLowerCase().includes(busca))});
+  lista.sort((x,y)=>ordem==='az'?tituloVaga(x).localeCompare(tituloVaga(y),'pt-BR'):ordem==='antigos'?new Date(x.criadoEm||0)-new Date(y.criadoEm||0):new Date(y.criadoEm||0)-new Date(x.criadoEm||0));
+  const summary='<div class="psv2-summary"><article><i>▣</i><div><span>PROCESSOS</span><strong>'+vagas.length+'</strong><small>Total cadastrado</small></div></article><article><i>●</i><div><span>ATIVOS</span><strong>'+ativas+'</strong><small>Recrutamentos em andamento</small></div></article><article><i>◷</i><div><span>EM ANÁLISE</span><strong>'+analise+'</strong><small>Aguardando publicação</small></div></article><article><i>♟</i><div><span>CANDIDATURAS</span><strong>'+cs.length+'</strong><small>Recebidas em todos os processos</small></div></article></div>';
+  const toolbar='<div class="psv2-toolbar"><input id="psv2Busca" type="search" placeholder="Buscar processo por cargo ou localização" value="'+esc(document.getElementById('psv2Busca')?.value||'')+'" oninput="renderCentralProcessosEmpresaEM()"><select id="psv2Status" onchange="renderCentralProcessosEmpresaEM()"><option value="todos">Todos os status</option><option value="ativa" '+(filtro==='ativa'?'selected':'')+'>Ativas</option><option value="em análise" '+(filtro==='em análise'?'selected':'')+'>Em análise</option><option value="encerrada" '+(filtro==='encerrada'?'selected':'')+'>Encerradas</option></select><select id="psv2Ordem" onchange="renderCentralProcessosEmpresaEM()"><option value="recentes" '+(ordem==='recentes'?'selected':'')+'>Mais recentes</option><option value="antigos" '+(ordem==='antigos'?'selected':'')+'>Mais antigos</option><option value="az" '+(ordem==='az'?'selected':'')+'>Cargo A–Z</option></select></div>';
+  const rows=lista.map(v=>{const vc=cs.filter(c=>c.vagaId===v.id),av=vc.filter(c=>grupoEtapa(c.status)==='Em avaliação').length,se=vc.filter(c=>grupoEtapa(c.status)==='Selecionados').length,en=vc.filter(c=>grupoEtapa(c.status)==='Entrevista').length,co=vc.filter(c=>grupoEtapa(c.status)==='Contratados').length,st=statusV111(v),local=[v.cidade,v.estado||v.uf].filter(Boolean).join(' - ')||'Localização não informada',dt=v.criadoEm?new Date(v.criadoEm).toLocaleDateString('pt-BR'):'—';return '<article class="psv2-row"><div class="psv2-job"><div class="psv2-job-top"><h3>'+esc(tituloVaga(v))+'</h3><span class="psv2-status '+st[1]+'">'+st[0]+'</span></div><p>'+esc(local)+' · '+esc(v.modalidade||'Modalidade não informada')+' · '+dt+'</p><div class="psv2-tags">'+(v.destaque?'<em>★ Destaque</em>':'')+(v.urgente?'<em>⚡ Urgente</em>':'')+(v.confidencial?'<em>Confidencial</em>':'')+'</div></div><div class="psv2-funnel"><div><strong>'+vc.length+'</strong><span>Candidaturas</span></div><div><strong>'+av+'</strong><span>Em análise</span></div><div><strong>'+se+'</strong><span>Selecionados</span></div><div><strong>'+en+'</strong><span>Entrevistas</span></div><div><strong>'+co+'</strong><span>Contratados</span></div></div><div class="psv2-actions"><button class="main" onclick="abrirGestaoVaga(\''+v.id+'\')">Gerenciar processo →</button><button class="edit" onclick="editarVaga(\''+v.id+'\')">Editar vaga</button></div></article>'}).join('');
+  box.innerHTML=summary+'<section class="psv2-workspace">'+toolbar+'<div class="psv2-list-head"><span>PROCESSO / VAGA</span><span>ANDAMENTO DOS CANDIDATOS</span><span>AÇÕES</span></div><div class="psv2-list">'+(rows||'<div class="psv2-empty"><strong>Nenhum processo encontrado</strong><span>Publique uma nova vaga para iniciar um processo seletivo.</span></div>')+'</div></section>';
+ }
+ window.renderCentralProcessosEmpresaEM=centralV111;
+ renderizarCandidatosEmpresa=function(){
+  const id=sessionStorage.getItem('vagaCandidatosSelecionada');
+  if(!id)return centralV111();
+  toggleV111(true);
+  const v=vagasDaEmpresa().find(x=>x.id===id),t=document.getElementById('psCandidateTitle');if(t&&v)t.textContent=tituloVaga(v);
+  return renderDetalheV111();
+ };
+})();
