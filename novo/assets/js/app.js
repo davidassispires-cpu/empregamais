@@ -2663,3 +2663,36 @@ function avaliacoesEmpresaConsolidadasEM(cnpj){
  });
  return [...map.values()].sort((a,b)=>new Date(b.data||b.criadoEm||0)-new Date(a.data||a.criadoEm||0));
 }
+
+
+/* EMPREGAMAI-PUBLICACAO-AJUSTES-V91 */
+(function(){
+ const svgs={
+  'Vale Alimentação':'<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 3v8m3-8v8M5 7h7M8.5 11v10M16 3c-2 3-2 7 1 9v9m0-18v9" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>',
+  'Vale Refeição':'<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="6.5" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M3 12h2m14 0h2M12 3v2m0 14v2" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>',
+  'Vale Transporte':'<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 17h12l1-3V7c0-2-2-3-7-3S5 5 5 7v7l1 3Zm1 0v3m10-3v3M8 8h8M8 13h.01M16 13h.01" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>',
+  'Auxílio Combustível':'<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 21V5h9v16M7 8h5v4H7m7-4h2l3 3v7a2 2 0 0 1-4 0v-5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>',
+  'Plano de Saúde':'<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20S4 15 4 9a4 4 0 0 1 7-2.6A4 4 0 0 1 18 9c0 6-6 11-6 11Z" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M9 12h6m-3-3v6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>',
+  'Plano Odontológico':'<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 4c2 0 2.5 1 4 1s2-1 4-1c3 0 4 3 3 6-.8 2.5-2 4-2.5 7-.4 2-1 3-2 3-1.5 0-1.2-4-2.5-4s-1 4-2.5 4c-1 0-1.6-1-2-3C7 14 5.8 12.5 5 10 4 7 5 4 8 4Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>',
+  'Seguro de Vida':'<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 5 6v5c0 5 3 8 7 10 4-2 7-5 7-10V6l-7-3Z" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M9 12h6m-3-3v6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>',
+  'Auxílio Home Office':'<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h16v11H4zM8 20h8m-4-4v4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><path d="m8 11 4-3 4 3" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>',
+  'Gympass / Wellhub':'<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 10v4m3-6v8m10-8v8m3-6v4M7 12h10" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>',
+  'Participação nos Lucros':'<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 19V9m7 10V5m7 14v-7M3 19h18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><path d="m5 7 6-4 5 3 4-3" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>',
+  'Bônus por desempenho':'<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M12 7v10m3-8.5c-.8-1-5-1.2-5 1 0 2.5 5 1.2 5 4 0 2.2-4.2 2-5 1" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>',
+  'Auxílio Creche':'<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="3" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M6 20c.5-4 2.5-6 6-6s5.5 2 6 6M8 5 6 3m10 2 2-2" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>',
+  'Vale Cultura':'<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4h14v16H5zM8 8h8M8 12h8M8 16h5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>',
+  'Day Off':'<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M12 2v3m0 14v3M2 12h3m14 0h3M5 5l2 2m10 10 2 2m0-14-2 2M7 17l-2 2" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>',
+  'Horário Flexível':'<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M12 7v5l3 2" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>',
+  'Estacionamento':'<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 21V3h7a5 5 0 0 1 0 10H9v8M9 6v4h4a2 2 0 0 0 0-4H9Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>'
+ };
+ function ajustarPublicacao(){
+   const bloco=document.querySelector('#pagina-publicar .em-confidencial-cliente');
+   if(bloco)bloco.remove();
+   document.querySelectorAll('#pagina-publicar .em-benefit-card').forEach(card=>{
+     const check=card.querySelector('.beneficio-check'),icone=card.querySelector('.em-benefit-icon');
+     if(check&&icone&&svgs[check.value])icone.innerHTML=svgs[check.value];
+   });
+ }
+ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',ajustarPublicacao);
+ else ajustarPublicacao();
+})();
