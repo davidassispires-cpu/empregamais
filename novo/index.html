@@ -5836,7 +5836,8 @@ svg text{
       step.classList.toggle('ativo',k===Number(n));
       step.classList.toggle('concluido',k<Number(n));
     });
-    if(Number(n)===4){try{if(typeof window.montarRevisao==='function')window.montarRevisao();else if(typeof window.montarRevisaoVaga==='function')window.montarRevisaoVaga();}catch(e){console.error('EmpregaMais revisão:',e);}}
+    var formV10=form.dataset.formV10==='1';
+    if(Number(n)===(formV10?3:4)){try{if(typeof window.montarRevisao==='function')window.montarRevisao();else if(typeof window.montarRevisaoVaga==='function')window.montarRevisaoVaga();}catch(e){console.error('EmpregaMais revisão:',e);}}
     var shell=document.querySelector('#pagina-publicar .job-shell'); if(shell)shell.scrollIntoView({behavior:'smooth',block:'start'});
   }
   function proximaEtapa(n){
