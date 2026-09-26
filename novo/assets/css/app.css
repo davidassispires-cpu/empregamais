@@ -6093,3 +6093,17 @@ overflow:visible!important
  background:#075b63!important;color:#fff!important
 }
 #pagina-publicar #formVaga .em-benefit-card:has(.beneficio-check:checked) b{color:#075b63!important}
+
+
+/* EMPREGAMAI-CAMPOS-TEXTO-CENTRAL-V19 */
+#pagina-publicar #formVaga input:not([type=checkbox]):not([type=radio]),
+#pagina-publicar #formVaga textarea{
+ text-align:center!important
+}
+#pagina-publicar #formVaga input:not([type=checkbox]):not([type=radio])::placeholder,
+#pagina-publicar #formVaga textarea::placeholder{
+ text-align:center!important;color:#71858f!important;opacity:1!important
+}
+#pagina-publicar #formVaga textarea{
+ padding-left:16px!important;padding-right:16px!important
+}
