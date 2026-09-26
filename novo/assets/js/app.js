@@ -2796,6 +2796,20 @@ prepararPublicacao=function(){
 
 
 
+/* EMPREGAMAIS-VAGAS-EMPRESA-JS-V1 */
+function renderVagasEmpresaPaginaEM(){
+ const box=document.getElementById('empresaVagasPagina');if(!box)return;
+ const vagas=(typeof vagasDaEmpresa==='function'?vagasDaEmpresa():[]).filter(Boolean);
+ const cs=(typeof candidaturas==='function'?candidaturas():[]).filter(Boolean);
+ const status=v=>v.status==='aprovada'&&(!v.dataEncerramento||new Date(v.dataEncerramento+'T23:59:59')>=new Date())?'Ativa':['pendente','em_analise','analise'].includes(v.status)?'Em análise':'Encerrada';
+ const ativa=vagas.filter(v=>status(v)==='Ativa').length,analise=vagas.filter(v=>status(v)==='Em análise').length,enc=vagas.filter(v=>status(v)==='Encerrada').length;
+ const esc2=s=>String(s==null?'':s).replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[m]));
+ const rows=vagas.map(v=>{const cand=cs.filter(x=>String(x.vagaId)===String(v.id));const st=status(v),cl=st==='Em análise'?'analise':st==='Encerrada'?'encerrada':'';return '<article class="evp-vaga" data-titulo="'+esc2((v.cargo||v.titulo||'')+' '+(v.cidade||''))+'" data-status="'+esc2(st)+'"><div class="evp-title"><strong>'+esc2(v.cargo||v.titulo||'Vaga')+'</strong><small>'+esc2([v.cidade,v.estado||v.uf].filter(Boolean).join(' - ')||'Localização não informada')+' · '+esc2(v.modalidade||'Modalidade não informada')+' · '+esc2(v.dataPublicacao||v.data||'')+'</small></div><span class="evp-status '+cl+'">'+st+'</span><div class="evp-metric"><strong>'+cand.length+'</strong><span>Candidaturas</span></div><div class="evp-metric"><strong>'+esc2(v.visualizacoes||0)+'</strong><span>Visualizações</span></div><div class="evp-actions"><button class="manage" onclick="abrirGestaoVaga(\''+esc2(v.id)+'\')">Gerenciar processo</button><button class="edit" onclick="editarVaga(\''+esc2(v.id)+'\')">Editar</button><button class="view" onclick="sessionStorage.setItem(\'vagaSelecionada\',\''+esc2(v.id)+'\');irPara(\'vaga\')">Ver vaga</button></div></article>'}).join('');
+ box.innerHTML='<div class="evp-summary"><article><span>TOTAL DE VAGAS</span><strong>'+vagas.length+'</strong><small>Todas as oportunidades</small></article><article><span>ATIVAS</span><strong>'+ativa+'</strong><small>Publicadas no portal</small></article><article><span>EM ANÁLISE</span><strong>'+analise+'</strong><small>Aguardando publicação</small></article><article><span>ENCERRADAS</span><strong>'+enc+'</strong><small>Processos finalizados</small></article></div><section class="evp-board"><div class="evp-tools"><input id="evpBusca" placeholder="Buscar vaga por cargo ou localização"><select id="evpStatus"><option value="">Todos os status</option><option>Ativa</option><option>Em análise</option><option>Encerrada</option></select><select><option>Mais recentes</option></select></div><div class="evp-table-head"><span>VAGA</span><span>STATUS</span><span>CANDIDATURAS</span><span>VISUALIZAÇÕES</span><span>AÇÕES</span></div><div id="evpLista">'+(rows||'<div class="evp-empty"><strong>Nenhuma vaga cadastrada</strong><span>Publique uma nova vaga para começar.</span></div>')+'</div></section>';
+ const filtrar=()=>{const q=(document.getElementById('evpBusca').value||'').toLowerCase(),s=document.getElementById('evpStatus').value;box.querySelectorAll('.evp-vaga').forEach(el=>el.style.display=(!q||el.dataset.titulo.toLowerCase().includes(q))&&(!s||el.dataset.status===s)?'grid':'none')};document.getElementById('evpBusca').oninput=filtrar;document.getElementById('evpStatus').onchange=filtrar;
+}
+window.renderVagasEmpresaPaginaEM=renderVagasEmpresaPaginaEM;
+
 /* EMPREGAMAIS-PROCESSOS-CANONICO-JS-V113 */
 function statusProcessoCanonicoEM(v){
  if(v.status==='aprovada'&&vagaDentroPrazo(v))return ['Ativa',''];
