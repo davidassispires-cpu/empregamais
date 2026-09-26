@@ -2496,11 +2496,20 @@ body.recruta-modal-aberto{overflow:hidden!important}
   };
   vagasPublicas=window.vagasPublicas;
 
+  let homeVagasCargaEM=null;
   const renderPortalSeguro=function(){
-    const box=$('#listaVagasPortal');if(!box)return;
+    const box=$('#listaVagasPortal');if(!box)return Promise.resolve([]);
     const desenhar=()=>{try{_renderizarVagasPortalLocalEM()}catch(e){console.error('EmpregaMais: erro ao renderizar vagas.',e)}};
+    /* HOME: desenha o cache imediatamente e mantém uma única sincronização em voo.
+       Chamadas concorrentes reutilizam a mesma Promise e não provocam uma sequência
+       de redesenhos com conjuntos diferentes de vagas. */
     if(Array.isArray(sbVagasCacheEM)&&sbVagasCacheEM.length)desenhar();
-    carregarVagasSeguro().then(desenhar).catch(e=>{console.warn('EmpregaMais: não foi possível atualizar as vagas do banco.',e);desenhar()});
+    if(homeVagasCargaEM)return homeVagasCargaEM;
+    homeVagasCargaEM=carregarVagasSeguro()
+      .then(vs=>{desenhar();return vs})
+      .catch(e=>{console.warn('EmpregaMais: não foi possível atualizar as vagas do banco.',e);desenhar();return []})
+      .finally(()=>{homeVagasCargaEM=null});
+    return homeVagasCargaEM;
   };
   window.renderizarVagasPortal=renderPortalSeguro;
   renderizarVagasPortal=renderPortalSeguro;
@@ -2556,7 +2565,7 @@ renderizarVagasPortal=function(){
 
 function renderPaginacaoVagasPortalEM(total,totalPaginas){
  const box=document.getElementById('paginacaoVagasPortal');if(!box)return;
- if(total<=8){box.innerHTML='';return}
+ if(total<=10){box.innerHTML='';return}
  const atual=Number(window.paginaVagasPortalEM||1),numsPag=[];for(let p=1;p<=totalPaginas;p++){if(p===1||p===totalPaginas||Math.abs(p-atual)<=1)numsPag.push(p)}
  let html='<button type="button" '+(atual<=1?'disabled':'')+' onclick="irPaginaVagasPortalEM('+(atual-1)+')">← Anterior</button>',ultimo=0;
  numsPag.forEach(p=>{if(ultimo&&p-ultimo>1)html+='<span class="pag-reticencias">…</span>';html+='<button type="button" class="'+(p===atual?'ativo':'')+'" onclick="irPaginaVagasPortalEM('+p+')">'+p+'</button>';ultimo=p});
