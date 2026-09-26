@@ -6190,3 +6190,37 @@ overflow:visible!important
 #pagina-planos :where(p,small){
  font-family:'Montserrat',Arial,sans-serif!important;font-size:13px!important;line-height:1.5!important;font-weight:500!important;color:#52646d!important;
 }
+
+
+/* EMPREGAMAI-VAGA-INFO-COMPACTA-V22 */
+#vagaHeroDetalhe .vaga-info-ref{
+ align-items:stretch!important;
+ padding-top:5px!important;
+ padding-bottom:5px!important;
+}
+#vagaHeroDetalhe .vaga-info-ref>div{
+ min-height:86px!important;
+ height:86px!important;
+ padding-top:8px!important;
+ padding-bottom:8px!important;
+ display:flex!important;
+ flex-direction:column!important;
+ align-items:center!important;
+ justify-content:center!important;
+ box-sizing:border-box!important;
+}
+#vagaHeroDetalhe .vaga-info-ref i{margin-bottom:3px!important}
+#vagaHeroDetalhe .vaga-info-ref strong{margin:0!important}
+#vagaHeroDetalhe .vaga-info-ref small{margin-top:3px!important}
+#vagaHeroDetalhe .em-local-detalhes-btn{
+ display:block!important;
+ width:max-content!important;
+ margin:6px auto 0!important;
+ padding:0!important;
+ text-align:center!important;
+ line-height:1.2!important;
+}
+@media(max-width:760px){
+ #vagaHeroDetalhe .vaga-info-ref{padding-top:0!important;padding-bottom:0!important}
+ #vagaHeroDetalhe .vaga-info-ref>div{height:auto!important;min-height:86px!important}
+}
