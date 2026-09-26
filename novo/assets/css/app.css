@@ -3007,39 +3007,13 @@ margin:18px auto 0!important;text-align:center!important;font-size:10.5px!import
 }
 
 
-/* EMPREGAMAIS-HEADER-ESTADOS-SEM-SOBREPOSICAO-V42 */
-/* O cabeçalho possui 3 menus de estado; somente o menu ativo participa do layout */
-.topo-inner{width:min(100% - 32px,1240px)!important;max-width:1240px!important;margin:0 auto!important;display:flex!important;align-items:center!important;gap:20px!important;overflow:visible!important}
-.topo .menu{min-width:0!important;align-items:center!important}
-.topo .menu-publico,.topo .menu-empresa-logada,.topo .menu-candidato-logado{display:none!important}
-body:not(.empresa-logada):not(.candidato-logado) .topo .menu-publico{display:flex!important}
-body.empresa-logada .topo .menu-empresa-logada{display:flex!important}
-body.candidato-logado .topo .menu-candidato-logado{display:flex!important}
-.topo .menu button{white-space:nowrap!important;line-height:1.2!important}
-.topo .acoes{margin-left:auto!important;flex:0 0 auto!important;align-items:center!important}
-.topo .sessao-empresa-topo,.topo .sessao-candidato-topo{flex:0 0 auto!important}
-@media(min-width:851px) and (max-width:1180px){
-.topo-inner{width:calc(100% - 20px)!important;gap:10px!important}
-.topo .menu{gap:2px!important}
-.topo .menu button{padding:9px 8px!important;font-size:12px!important}
-.topo .marca{gap:7px!important;font-size:19px!important}
-.topo .marca-icone{width:35px!important;height:35px!important}
-.topo .acoes{gap:6px!important}
-.topo .btn{padding-left:11px!important;padding-right:11px!important;font-size:12px!important}
-.topo .btn-anunciar-vaga{font-size:12px!important;padding-left:11px!important;padding-right:11px!important}
-}
-@media(max-width:850px){
-.topo .menu-publico,.topo .menu-empresa-logada,.topo .menu-candidato-logado{display:none!important}
-}
-
-
 /* EMPREGAMAIS-HEADER-COMPACTO-FINAL-V43 */
 /* Cabeçalho compacto: impede logo/menu/ações de invadirem uns aos outros */
 @media(min-width:851px){
 .topo-inner{width:calc(100% - 24px)!important;max-width:1320px!important;min-height:70px!important;padding:0!important;gap:12px!important}
-.topo .marca{flex:0 0 218px!important;min-width:218px!important;max-width:218px!important;gap:8px!important;justify-content:flex-start!important;white-space:nowrap!important;overflow:visible!important}
+.topo .marca{flex:0 0 270px!important;min-width:270px!important;max-width:270px!important;gap:9px!important;justify-content:flex-start!important;white-space:nowrap!important;overflow:hidden!important}
 .topo .marca-icone{flex:0 0 38px!important}
-.topo .marca-nome{display:inline-block!important;white-space:nowrap!important;font-size:21px!important;line-height:1!important}
+.topo .marca-nome{display:inline-block!important;flex:0 0 auto!important;white-space:nowrap!important;font-size:21px!important;line-height:1!important}.topo .marca-tagline{display:block!important;min-width:0!important;overflow:hidden!important;text-overflow:ellipsis!important;white-space:nowrap!important;font-size:10px!important;letter-spacing:.04em!important;color:#58718a!important}
 .topo .menu{flex:1 1 auto!important;min-width:0!important;justify-content:space-evenly!important;gap:2px!important}
 .topo .menu button{flex:0 1 auto!important;padding:10px 9px!important;font-size:13px!important;white-space:nowrap!important}
 .topo .acoes{flex:0 0 auto!important;min-width:0!important;gap:8px!important}
@@ -3048,7 +3022,7 @@ body.candidato-logado .topo .menu-candidato-logado{display:flex!important}
 }
 @media(min-width:851px) and (max-width:1120px){
 .topo-inner{width:calc(100% - 16px)!important;gap:7px!important}
-.topo .marca{flex-basis:190px!important;min-width:190px!important;max-width:190px!important}
+.topo .marca{flex-basis:220px!important;min-width:220px!important;max-width:220px!important}
 .topo .marca-nome{font-size:18px!important}
 .topo .marca-icone{width:34px!important;height:34px!important;flex-basis:34px!important}
 .topo .menu button{padding:9px 6px!important;font-size:11.5px!important}
@@ -5705,9 +5679,9 @@ overflow:visible!important
 #pagina-home .em-home-head-copy h1{margin:0;color:#082f59;font-size:49px;line-height:.96;letter-spacing:-1.8px;font-weight:850}
 #pagina-home .em-home-head-copy h1 em{display:block;color:#2789ef;font-style:normal}
 #pagina-home .em-home-head-copy p{margin:17px 0 0;color:#5d7892;font-size:15px;line-height:1.45}
-#pagina-home .em-home-head-art{position:absolute;right:34px;top:7px;width:47%;height:245px;border-radius:0 0 18px 18px;overflow:hidden;background-image:url('../img/home-hero-profissionais.jpg');background-size:cover;background-position:center}
-#pagina-home .em-home-head-art:after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(243,249,253,.22),transparent 28%)}
-#pagina-home .em-home-head-art span{position:absolute;z-index:2;left:17%;top:50%;transform:translateY(-50%) rotate(-2deg);padding:17px 23px;border-radius:25px;background:rgba(232,246,255,.92);color:#073b70;font-size:17px;line-height:1.05;font-weight:850;text-align:center;font-style:italic}
+#pagina-home .em-home-head-art{position:absolute;right:34px;top:18px;width:43%;height:205px;border-radius:28px;overflow:hidden;background:linear-gradient(135deg,#e5f3fc,#d6ebf8);border:1px solid #d7e8f2}
+#pagina-home .em-home-head-art:before{content:"";position:absolute;width:210px;height:210px;right:-35px;top:-65px;border-radius:50%;background:rgba(39,137,239,.12)}#pagina-home .em-home-head-art:after{content:"";position:absolute;width:150px;height:150px;left:-28px;bottom:-70px;border-radius:50%;background:rgba(7,127,200,.10)}
+#pagina-home .em-home-head-art span{position:absolute;z-index:2;left:50%;top:50%;transform:translate(-50%,-50%);width:76%;padding:0;color:#073b70;font-size:21px;line-height:1.08;font-weight:850;text-align:center;font-style:italic}
 #pagina-home .em-home-search{position:relative;z-index:5;width:min(1120px,calc(100% - 80px));margin:-67px auto 0;background:#fff;border:1px solid #dbe7ee;border-radius:16px;box-shadow:0 12px 32px rgba(21,64,94,.08);overflow:hidden}
 #pagina-home .em-home-search-tabs{height:43px;padding:0 17px;display:flex;align-items:flex-end;gap:5px;border-bottom:1px solid #e2ebf0}
 #pagina-home .em-home-search-tabs button{height:43px;padding:0 17px;border:0;border-bottom:3px solid transparent;background:transparent;color:#3c5870;font-size:11px;font-weight:700;cursor:pointer}
