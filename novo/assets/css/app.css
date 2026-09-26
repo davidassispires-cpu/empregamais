@@ -6160,3 +6160,33 @@ overflow:visible!important
 #pagina-publicar .em-config-final-card:has(input:checked) .em-config-final-state{background:#075b63!important;border-color:#075b63!important;color:#fff!important}
 #pagina-publicar .em-config-final-v21 .limite-aviso{margin:10px 0 0!important;font-size:10px!important;line-height:1.4!important;text-align:center!important;color:#6b7d82!important}
 @media(max-width:680px){#pagina-publicar .em-config-final-card{grid-template-columns:1fr!important;padding-right:34px!important}#pagina-publicar .em-config-final-card>small{grid-column:1!important;grid-row:auto!important;max-width:none!important;margin-top:5px!important;text-align:left!important}}
+
+
+/* EMPREGAMAI-TIPOGRAFIA-SECUNDARIA-GLOBAL-V21 */
+/* Padrão global aprovado: textos de leitura/apoio nunca microscópicos */
+:where(.pagina,.page) :where(p,small,em,.muted,.sub,.subtitle,.descricao,.description,.helper,.hint,.meta){
+ font-family:'Montserrat',Arial,sans-serif;
+}
+#pagina-vaga{font-family:'Montserrat',Arial,sans-serif!important}
+#pagina-vaga .vaga-texto,
+#pagina-vaga .vaga-conteudo-v2 section>p,
+#pagina-vaga .beneficios-tags p{
+ color:#52646d!important;font-family:'Montserrat',Arial,sans-serif!important;font-size:15px!important;line-height:1.7!important;font-weight:500!important;
+}
+#pagina-vaga .vaga-info-grid small,
+#pagina-vaga .vaga-validade-topo small,
+#pagina-vaga .vaga-publicacao,
+#pagina-vaga .vaga-complementares span,
+#pagina-vaga .vaga-acao-v2>p,
+#pagina-vaga .empresa-side-identidade small{
+ color:#52646d!important;font-family:'Montserrat',Arial,sans-serif!important;font-size:13px!important;line-height:1.5!important;font-weight:500!important;
+}
+/* Áreas de conteúdo e apoio do portal */
+#pagina-home :where(p,small,.vaga-card small,.vaga-card p),
+#pagina-vagas :where(p,small,.vaga-card small,.vaga-card p),
+#pagina-candidatar :where(p,small,.cand-apply-label small,.cand-cv-options small,.cand-cv-options em,.cand-apply-message>span,.candidatura-resumo span),
+#pagina-painel-empresa :where(p,small,.muted),
+#pagina-premium-candidato :where(p,small),
+#pagina-planos :where(p,small){
+ font-family:'Montserrat',Arial,sans-serif!important;font-size:13px!important;line-height:1.5!important;font-weight:500!important;color:#52646d!important;
+}
