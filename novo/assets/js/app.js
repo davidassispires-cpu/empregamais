@@ -2422,7 +2422,11 @@ body.recruta-modal-aberto{overflow:hidden!important}
       return sbJsonEM(EMPREGAMAIS_SUPABASE_URL+'/rest/v1/vagas?select=*&user_id=eq.'+encodeURIComponent(u.id)+'&order=criado_em.desc',{method:'GET',headers:sbHeadersEM(token)});
     }).catch(()=>[]));
     const respostas=await Promise.all(req);
-    respostas.flat().forEach(v=>{if(v?.id) mapa.set(String(v.id),v?.cargo!==undefined&&v?.empresaCnpj!==undefined?v:sbMapVagaEM(v))});
+    respostas.flat().forEach(v=>{
+      if(!v?.id)return;
+      const remoto=('data_encerramento' in v)||('criado_em' in v)||('empresa_id' in v)||('candidatura_tipo' in v);
+      mapa.set(String(v.id),remoto?sbMapVagaEM(v):v);
+    });
     const consolidado=[...mapa.values()].filter(Boolean);
     sbVagasCacheEM=consolidado;
     gravar('empregaMaisVagas',consolidado);
