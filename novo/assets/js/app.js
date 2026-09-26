@@ -2535,26 +2535,11 @@ function prepararCardsRecentesEM(){
  box.querySelectorAll('.portal-vaga-nova').forEach(card=>{
    const inline=card.getAttribute('onclick')||'',m=inline.match(/abrirVaga\('([^']+)'\)/);
    if(!m)return;
-   const id=m[1];
-   card.dataset.vagaId=id;
-   card.removeAttribute('onclick');
+   card.dataset.vagaId=m[1];
    card.setAttribute('role','button');
    card.setAttribute('tabindex','0');
  });
 }
-document.addEventListener('click',function(e){
- const card=e.target.closest&&e.target.closest('#listaVagasPortal .portal-vaga-nova');
- if(!card||e.target.closest('button'))return;
- const id=card.dataset.vagaId;
- if(!id)return;
- e.preventDefault();e.stopPropagation();
- abrirVaga(id);
-});
-document.addEventListener('keydown',function(e){
- const card=e.target.closest&&e.target.closest('#listaVagasPortal .portal-vaga-nova');
- if(!card||!['Enter',' '].includes(e.key))return;
- e.preventDefault();abrirVaga(card.dataset.vagaId);
-});
 const _renderizarVagasPortalSplitEM=renderizarVagasPortal;
 renderizarVagasPortal=function(){
  const resultado=_renderizarVagasPortalSplitEM();
