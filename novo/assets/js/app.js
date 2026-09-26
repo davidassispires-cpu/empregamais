@@ -2696,3 +2696,48 @@ function avaliacoesEmpresaConsolidadasEM(cnpj){
  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',ajustarPublicacao);
  else ajustarPublicacao();
 })();
+
+
+/* EMPREGAMAI-FORM-VAGA-3-ETAPAS-V10 */
+(function(){
+ function reconstruirFormularioVagaEM(){
+  const form=document.getElementById('formVaga'),progress=document.getElementById('jobProgress');
+  if(!form||form.dataset.formV10==='1')return;
+  const p2=form.querySelector('.job-card[data-panel="2"]'),p3=form.querySelector('.job-card[data-panel="3"]'),p4=form.querySelector('.job-card[data-panel="4"]');
+  if(!p2||!p3||!p4)return;
+  form.dataset.formV10='1';
+  if(progress){
+   progress.innerHTML='<div class="job-step ativo" data-step="1"><b>1</b><span>Vaga</span></div><div class="job-step" data-step="2"><b>2</b><span>Detalhes</span></div><div class="job-step" data-step="3"><b>3</b><span>Revisar</span></div>';
+  }
+  const actions2=p2.querySelector('.job-actions');
+  const tituloDesc=document.createElement('div');
+  tituloDesc.className='em-form-section-divider';
+  tituloDesc.innerHTML='<span>02</span><div><b>Descrição, requisitos e benefícios</b><small>Complete as informações que ajudam o candidato a entender a oportunidade.</small></div>';
+  if(actions2)actions2.before(tituloDesc);
+  [...p3.children].forEach(el=>{if(!el.classList.contains('job-actions'))actions2?actions2.before(el):p2.appendChild(el)});
+  p3.remove();
+  p4.dataset.panel='3';
+  if(actions2){
+   const back=actions2.querySelector('button:first-child'),next=actions2.querySelector('button:last-child');
+   if(back)back.setAttribute('onclick','mostrarEtapa(1)');
+   if(next){next.setAttribute('onclick','proximaEtapa(2)');next.innerHTML='Revisar vaga →'}
+  }
+  const actions3=p4.querySelector('.job-actions');
+  if(actions3){const back=actions3.querySelector('button:first-child');if(back)back.setAttribute('onclick','mostrarEtapa(2)')}
+  const p1=form.querySelector('.job-card[data-panel="1"]'),a1=p1?.querySelector('.job-actions button:last-child');
+  if(a1)a1.innerHTML='Continuar →';
+ }
+ const mostrarOriginal=window.mostrarEtapa;
+ window.mostrarEtapa=function(n){
+  const form=document.getElementById('formVaga');
+  if(form?.dataset.formV10==='1'){
+   document.querySelectorAll('#formVaga .job-card').forEach(x=>x.classList.toggle('ativo',+x.dataset.panel===n));
+   document.querySelectorAll('#jobProgress .job-step').forEach(x=>{const k=+x.dataset.step;x.classList.toggle('ativo',k===n);x.classList.toggle('feito',k<n)});
+   if(n===3&&typeof montarRevisao==='function')montarRevisao();
+   window.scrollTo(0,0);return;
+  }
+  return mostrarOriginal?.(n);
+ };
+ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',reconstruirFormularioVagaEM);
+ else reconstruirFormularioVagaEM();
+})();
