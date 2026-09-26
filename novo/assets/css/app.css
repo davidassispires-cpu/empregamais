@@ -5674,3 +5674,46 @@ overflow:visible!important
 @media(max-width:1100px){#pagina-home .busca-home{padding-left:35px!important;padding-right:35px!important;grid-template-columns:1.45fr 1fr .75fr 170px!important}#pagina-home .home-search-wrap{width:calc(100% - 60px)!important}}
 @media(max-width:900px){#pagina-home .home-hero-content{padding:32px 5% 190px!important}.home-hero-copy{width:62%!important}.home-hero-art{width:48%!important;opacity:.55!important}.home-search-wrap{bottom:18px!important}.busca-home{grid-template-columns:1fr 1fr!important;padding:10px 18px!important}.home-search-submit{grid-column:2!important}}
 @media(max-width:680px){#pagina-home .home-hero-visual{min-height:575px!important}.home-hero-content{padding:26px 18px 330px!important}.home-hero-copy{width:100%!important}.home-hero-copy h1{font-size:36px!important}.home-hero-art{display:none!important}.home-search-wrap{width:calc(100% - 24px)!important;bottom:14px!important}.home-search-tabs{overflow-x:auto!important;padding:0 8px!important}.home-search-tabs button{padding:0 10px!important;white-space:nowrap!important}.busca-home{grid-template-columns:1fr!important;padding:10px!important}.home-search-submit{grid-column:1!important}.home-buscas-populares{overflow-x:auto!important;padding:0 10px 10px!important}}
+
+
+/* EMPREGAMAIS-VAGA-HERO-COMPACTO-V2 */
+#vagaHeroDetalhe{min-height:0!important}
+#vagaHeroDetalhe .vaga-hero-ref{
+ grid-template-columns:118px minmax(0,1fr)!important;
+ gap:14px!important;
+ padding:16px 34px 12px!important;
+ align-items:center!important;
+ min-height:0!important;
+}
+#vagaHeroDetalhe .vaga-hero-logo{
+ width:108px!important;height:108px!important;min-width:108px!important;
+ padding:8px!important;border-radius:14px!important;
+}
+#vagaHeroDetalhe .vaga-hero-texto{align-self:center!important}
+#vagaHeroDetalhe .vaga-hero-publicada{margin:0 0 5px!important}
+#vagaHeroDetalhe .vaga-hero-texto h1{margin:0 0 6px!important}
+#vagaHeroDetalhe .vaga-hero-selos{margin-top:10px!important;gap:8px!important}
+#vagaHeroDetalhe .vaga-hero-selos>span{min-height:32px!important;padding:0 13px!important}
+#vagaHeroDetalhe .vaga-hero-acoes{top:22px!important;right:34px!important}
+#vagaHeroDetalhe .vaga-info-ref{
+ margin:0 34px!important;
+ padding:6px 0 8px!important;
+}
+#vagaHeroDetalhe .vaga-info-ref>div{
+ min-height:72px!important;
+ padding:2px 16px!important;
+}
+#vagaHeroDetalhe .vaga-info-ref>div:not(:last-child):after{top:10%!important;height:80%!important}
+#vagaHeroDetalhe .vaga-info-ref .info-svg{
+ width:36px!important;height:36px!important;
+ margin:0 0 4px!important;border-radius:10px!important;
+}
+#vagaHeroDetalhe .vaga-info-ref .info-svg svg{width:19px!important;height:19px!important}
+#vagaHeroDetalhe .vaga-info-ref strong{font-size:13px!important}
+#vagaHeroDetalhe .vaga-info-ref small{margin-top:2px!important}
+@media(max-width:760px){
+ #vagaHeroDetalhe .vaga-hero-ref{grid-template-columns:76px 1fr!important;padding:14px 16px 12px!important;gap:10px!important}
+ #vagaHeroDetalhe .vaga-hero-logo{width:72px!important;height:72px!important;min-width:72px!important}
+ #vagaHeroDetalhe .vaga-info-ref{margin:0 16px!important;padding:4px 0 6px!important}
+ #vagaHeroDetalhe .vaga-info-ref>div{min-height:68px!important}
+}
