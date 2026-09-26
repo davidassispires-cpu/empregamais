@@ -17,7 +17,7 @@ async function pushRegister(){
  let sub=await reg.pushManager.getSubscription();if(!sub)sub=await reg.pushManager.subscribe({userVisibleOnly:true,applicationServerKey:b64ToUint8(VAPID_PUBLIC_KEY)});
  const j=sub.toJSON(),uid=sessionStorage.getItem('candidatoSupabaseUserId')||sessionStorage.getItem('empresaSupabaseAuthUserId')||'';if(!uid)throw Error('Não foi possível identificar sua conta.');
  const body={user_id:uid,endpoint:j.endpoint,p256dh:j.keys?.p256dh,auth:j.keys?.auth,user_agent:navigator.userAgent,enabled:true};
- let r=await pushFetch('/rest/v1/push_subscriptions?on_conflict=endpoint',{method:'POST',headers:{'Content-Type':'application/json','Prefer':'resolution=merge-duplicates,return=minimal'},body:JSON.stringify(body)});if(!r.ok)throw Error('Não foi possível registrar este celular.');
+ let r=await pushFetch('/rest/v1/push_subscriptions?on_conflict=user_id%2Cendpoint',{method:'POST',headers:{'Content-Type':'application/json','Prefer':'resolution=merge-duplicates,return=minimal'},body:JSON.stringify(body)});if(!r.ok)throw Error('Não foi possível registrar este celular.');
  r=await pushFetch('/rest/v1/push_preferences?on_conflict=user_id',{method:'POST',headers:{'Content-Type':'application/json','Prefer':'resolution=merge-duplicates,return=minimal'},body:JSON.stringify({user_id:uid,enabled:true,vagas_compativeis:true,processo_seletivo:true,mensagens:true})});if(!r.ok)throw Error('Não foi possível salvar suas preferências.');
  pushReady=true;return true;
 }
