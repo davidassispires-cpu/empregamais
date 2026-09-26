@@ -5646,8 +5646,8 @@ svg text{
 </style><section class="pagina" id="pagina-painel-empresa"><div class="emp-dash">
 <aside class="emp-dash-side emp-side-premium"><div class="emp-dash-brand"><strong>Empregai</strong><small>Painel do recrutador</small></div><div class="emp-side-plan"><span>PLANO ATUAL</span><div><strong id="empresaSidePlano">Plano</strong><b>ATIVO</b></div><small id="empresaSideVigencia">Assinatura ativa</small><button onclick="irPara('planos')">Gerenciar →</button></div><button class="emp-side-publish" onclick="abrirPublicacao()"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg><span>Publicar nova vaga</span></button><nav><div class="emp-side-group"><small>RECRUTAMENTO</small><button class="ativo" onclick="irPara('painel-empresa')"><span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 11 12 4l8 7v9H5V11"/><path d="M9 20v-6h6v6"/></svg></span>Visão geral</button><button onclick="focarVagasEmpresa()"><span><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="7" width="18" height="12" rx="2"/><path d="M8 7V5.5A1.5 1.5 0 0 1 9.5 4h5A1.5 1.5 0 0 1 16 5.5V7"/></svg></span>Vagas</button><button onclick="irPara('candidatos-empresa')"><span><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="9" r="3"/><circle cx="17" cy="10" r="2"/><path d="M3.5 19c.5-3.3 2.3-5 5.5-5s5 1.7 5.5 5M15 15c3-.3 4.8 1 5.3 4"/></svg></span>Candidatos<em id="empresaSideCandidatos" class="emp-side-count"></em></button><button onclick="irPara('candidatos-empresa')"><span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 6h13M7 12h13M7 18h13"/><circle cx="4" cy="6" r="1"/><circle cx="4" cy="12" r="1"/><circle cx="4" cy="18" r="1"/></svg></span>Processos seletivos</button><button onclick="abrirMetricaEmpresa('contratacoes')"><span><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="m8 12 2.7 2.7L16.5 9"/></svg></span>Contratações</button><button onclick="irPara('central-empresa')"><span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h16v12H8l-4 3V5Z"/><path d="M8 9h8M8 13h5"/></svg></span>Mensagens<em id="empresaSideMensagens" class="emp-side-count"></em></button></div><div class="emp-side-group management"><small>GESTÃO</small><button onclick="irPara('perfil-empresa')"><span><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M8 8h8M8 12h8M8 16h5"/></svg></span>Minha empresa</button><button id="menuRelatorios" onclick="abrirRecursoEmpresa('relatorios')"><span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 19V9M12 19V5M19 19v-7"/></svg></span>Relatórios<small id="lockRelatorios"></small></button><button onclick="abrirAvaliacoesEmpresaEM()"><span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 3 2.7 5.5 6.1.9-4.4 4.3 1 6.1-5.4-2.9-5.4 2.9 1-6.1-4.4-4.3 6.1-.9L12 3Z"/></svg></span>Avaliações<em id="empresaSideAvaliacoes" class="emp-side-count"></em></button><button onclick="irPara('planos')"><span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 3 3 6 6 .9-4.5 4.4 1.1 6.2L12 17.6l-5.6 2.9 1.1-6.2L3 9.9 9 9l3-6Z"/></svg></span>Plano e assinatura</button><button onclick="abrirUsuariosEmpresaEM()"><span><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="8" cy="8" r="3"/><circle cx="17" cy="9" r="2.5"/><path d="M2.5 20c.5-4.3 2.4-6.5 5.5-6.5s5 2.2 5.5 6.5M14 14.5c4.1-.8 6.4 1 7 5.5"/></svg></span>Usuários da empresa</button><button onclick="irPara('perfil-empresa')"><span><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M19 12a7 7 0 0 0-.1-1l2-1.5-2-3.4-2.4 1a7 7 0 0 0-1.7-1L14.5 3h-5l-.4 3.1a7 7 0 0 0-1.7 1L5 6.1 3 9.5 5.1 11a7 7 0 0 0 0 2L3 14.5l2 3.4 2.4-1a7 7 0 0 0 1.7 1l.4 3.1h5l.4-3.1a7 7 0 0 0 1.7-1l2.4 1 2-3.4-2.1-1.5a7 7 0 0 0 .1-1Z"/></svg></span>Configurações</button></div></nav><div class="emp-side-footer"><button class="emp-help-pro" onclick="irPara('central-empresa')"><span>?</span><div><b>Central de ajuda</b><small>Dúvidas e suporte</small></div><em>↗</em></button><button class="emp-side-account-pro" onclick="irPara('perfil-empresa')"><span id="empSideAccountAvatar">E</span><div><b id="empSideAccountName">Empresa</b><small><i></i> Conta empresarial <u id="empSideAccountPlan">· Plano ativo</u></small></div><em>›</em></button><button class="emp-dash-exit" onclick="sair()">Sair</button></div></aside>
 <div class="modal-candidato oculto" id="modalUsuariosEmpresaEM" onclick="if(event.target===this)fecharUsuariosEmpresaEM()"><div class="modal-candidato-card empresa-usuarios-modal-em"><button class="modal-fechar" type="button" onclick="fecharUsuariosEmpresaEM()">×</button><span class="empresa-usuarios-kicker">EQUIPE DE RECRUTAMENTO</span><h2>Usuários da empresa</h2><p>Gerencie quem pode acessar as vagas e os processos seletivos desta empresa.</p><div class="empresa-usuarios-resumo" id="empresaUsuariosResumoEM">Carregando usuários...</div><div id="empresaUsuariosListaEM" class="empresa-usuarios-lista"></div><form id="empresaUsuarioFormEM" class="empresa-usuario-form" onsubmit="adicionarUsuarioEmpresaEM(event)"><h3>Adicionar recrutador</h3><div class="empresa-usuario-grid"><label>Nome<input class="campo" id="empUserNomeEM" required></label><label>E-mail<input class="campo" id="empUserEmailEM" type="email" required></label><label>Senha inicial<input class="campo" id="empUserSenhaEM" type="password" minlength="6" required></label></div><button class="btn btn-azul" type="submit">Criar acesso</button></form><p id="empresaUsuariosLimiteEM" class="empresa-usuarios-aviso"></p><div id="empresaUsuariosMsgEM" class="form-msg"></div></div></div><div class="modal-candidato oculto" id="modalAvaliacoesEmpresaEM"><div class="modal-candidato-card empresa-avaliacoes-modal-em"><button class="modal-fechar" type="button" onclick="fecharAvaliacoesEmpresaEM()">×</button><div id="conteudoAvaliacoesEmpresaEM"></div></div></div><main class="emp-dash-main emp-premium-v2">
-<section class="emp-rec-hero emp-premium-hero-v2"><div class="emp-rec-hero-copy"><span>★ &nbsp; PAINEL DA EMPRESA</span><h1 id="empresaPainelOla">Olá!</h1><p id="empresaSaudacao">Gerencie suas vagas, acompanhe as candidaturas e encontre os melhores talentos para o seu time.</p><div class="emp-rec-hero-actions"><button class="primary" onclick="abrirPublicacao()">＋ Publicar nova vaga</button><button onclick="focarVagasEmpresa()">Gerenciar vagas</button></div></div><aside class="emp-rec-benefits"><strong>SEU PLANO TRABALHA POR VOCÊ</strong><div><span>✓</span><p>Publique suas vagas com mais destaque</p></div><div><span>✓</span><p>Receba candidatos qualificados</p></div><div><span>✓</span><p>Acompanhe todo o processo seletivo</p></div><div><span>✓</span><p>Conte com os recursos do seu plano</p></div></aside></section>
-<section class="emp-rec-planbar emp-premium-plan-v2"><div class="emp-rec-plan-ident"><i>♛</i><div><span>SEU PLANO ATUAL</span><strong id="empProPlanoHero">Plano</strong><small id="empProDias">Plano ativo</small></div></div><div class="emp-rec-plan-status"><span>● STATUS</span><strong>Ativo</strong></div><div class="emp-rec-plan-date"><span>VIGÊNCIA</span><strong id="empProVigencia">—</strong></div><button onclick="irPara('planos')">Gerenciar plano →</button></section>
+<section class="emp-rec-hero emp-premium-hero-v2 emp-top-clean-v94"><div class="emp-rec-hero-copy"><span>PAINEL DO RECRUTADOR</span><h1 id="empresaPainelOla">Olá!</h1><p id="empresaSaudacao">Gerencie suas vagas, acompanhe as candidaturas e encontre os melhores talentos para o seu time.</p></div><div class="emp-rec-hero-actions"><button class="primary" onclick="abrirPublicacao()">＋ Publicar nova vaga</button><button onclick="focarVagasEmpresa()">Gerenciar vagas</button></div></section>
+<section class="emp-rec-planbar emp-premium-plan-v2 emp-plan-clean-v94"><div class="emp-rec-plan-ident"><i>♛</i><div><span>PLANO ATUAL</span><strong id="empProPlanoHero">Plano</strong><small id="empProDias">Plano ativo</small></div></div><div class="emp-rec-plan-status"><span>STATUS</span><strong>Ativo</strong></div><div class="emp-rec-plan-date"><span>VIGÊNCIA</span><strong id="empProVigencia">—</strong></div><button onclick="irPara('planos')">Gerenciar plano</button></section>
 <section class="emp-dash-section-head emp-premium-section-title"><div><span class="emp-premium-eyebrow">VISÃO GERAL</span><h2>Resumo do recrutamento</h2><p>Indicadores atualizados da sua operação.</p></div></section>
 <div class="emp-dash-kpis emp-premium-kpis-v2" id="empresaMetricasNovas"><button onclick="abrirMetricaEmpresa('vagas')"><i><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2.75" y="7" width="18.5" height="13.25" rx="2.5"/><path d="M8 7V5.5A2.5 2.5 0 0 1 10.5 3h3A2.5 2.5 0 0 1 16 5.5V7M2.75 12.25c5.8 2.5 12.7 2.5 18.5 0M10 13.25h4v2h-4z"/></svg></i><div><span>Vagas ativas</span><strong class="kpi-num">0</strong><small>Publicadas</small></div><b>→</b></button><button onclick="abrirMetricaEmpresa('aprovacao')"><i><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="3" width="16" height="18" rx="3"/><path d="M8 3.5V2.75h8v.75M8 8h8M8 12h4m-4 4 2.25 2.25L16.5 12"/></svg></i><div><span>Em análise</span><strong class="kpi-num">0</strong><small>Aguardando aprovação</small></div><b>→</b></button><button onclick="abrirMetricaEmpresa('candidatos')"><i><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="8" r="3"/><path d="M2.75 20v-1.25A5.75 5.75 0 0 1 8.5 13h1A5.75 5.75 0 0 1 15.25 18.75V20H2.75ZM16.25 5.5a2.75 2.75 0 0 1 0 5.5M17.25 13.5a4.75 4.75 0 0 1 4 4.7V20h-3"/></svg></i><div><span>Candidaturas</span><strong class="kpi-num">0</strong><small>Currículos recebidos</small></div><b>→</b></button><button onclick="abrirMetricaEmpresa('processo')"><i><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2.75" y="3.5" width="18.5" height="17" rx="3"/><path d="M8 8h8M8 12h5M8 16h8M17 11l1.75 1.75L21 10.5"/><circle cx="5.5" cy="8" r=".5"/><circle cx="5.5" cy="12" r=".5"/><circle cx="5.5" cy="16" r=".5"/></svg></i><div><span>Em processo</span><strong class="kpi-num">0</strong><small>No funil de seleção</small></div><b>→</b></button><button onclick="abrirMetricaEmpresa('contratacoes')"><i><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.75 19.5 5.5v6.25c0 4.15-2.85 7.7-7.5 9.5-4.65-1.8-7.5-5.35-7.5-9.5V5.5L12 2.75Z"/><path d="m8.25 12 2.5 2.5 5-5"/></svg></i><div><span>Contratações</span><strong class="kpi-num">0</strong><small>Concluídas</small></div><b>→</b></button></div>
 <section class="emp-performance emp-premium-performance-v2">
@@ -7813,6 +7813,108 @@ body .topo .acoes .btn-azul,body .topo .btn-publicar-vaga{background:linear-grad
 @media(max-width:620px){
  #pagina-painel-empresa .emp-performance-head{align-items:flex-start!important;flex-direction:column!important}
  #pagina-painel-empresa .emp-performance-grid{grid-template-columns:1fr!important}
+}
+</style>
+
+<style id="EMPREGAMAIS-TOPO-RECRUTADOR-CLEAN-V94">
+/* Topo e navegação canônicos: interface operacional, sem bloco promocional pesado. */
+#pagina-painel-empresa .emp-dash-side.emp-side-premium{
+ background:#075a67!important;border-right:1px solid rgba(255,255,255,.08)!important;box-shadow:none!important
+}
+#pagina-painel-empresa .emp-dash-brand{margin:0!important;padding:2px 8px 14px!important;border-bottom:1px solid rgba(255,255,255,.16)!important}
+#pagina-painel-empresa .emp-dash-brand strong{font-size:18px!important;font-weight:800!important;color:#fff!important}
+#pagina-painel-empresa .emp-dash-brand small{display:block!important;margin-top:3px!important;font-size:11px!important;letter-spacing:.03em!important;color:#b8d5da!important}
+#pagina-painel-empresa .emp-side-plan{display:none!important}
+#pagina-painel-empresa .emp-side-publish{
+ margin:10px 0 13px!important;min-height:40px!important;background:#fff!important;border:0!important;border-radius:9px!important;
+ color:#075a67!important;box-shadow:none!important;font-size:12px!important;font-weight:800!important
+}
+#pagina-painel-empresa .emp-side-group{border-top:1px solid rgba(255,255,255,.13)!important;padding:12px 0!important}
+#pagina-painel-empresa .emp-side-group:first-child{border-top:0!important}
+#pagina-painel-empresa .emp-side-group>small{font-size:10.5px!important;color:#9bc2c9!important;letter-spacing:.08em!important}
+#pagina-painel-empresa .emp-side-group button{
+ min-height:38px!important;margin:2px 0!important;border:0!important;border-radius:8px!important;background:transparent!important;
+ color:#c3dce0!important;font-size:12px!important;font-weight:650!important
+}
+#pagina-painel-empresa .emp-side-group button:hover{background:rgba(255,255,255,.07)!important;color:#fff!important;transform:none!important}
+#pagina-painel-empresa .emp-side-group button.ativo{background:#fff!important;color:#075a67!important;box-shadow:none!important}
+#pagina-painel-empresa .emp-side-group button.ativo:before{display:none!important;content:none!important}
+#pagina-painel-empresa .emp-side-group button>span{background:rgba(255,255,255,.09)!important;color:#d5e8eb!important;box-shadow:none!important}
+#pagina-painel-empresa .emp-side-group button.ativo>span{background:#edf6f7!important;color:#087785!important}
+
+/* Cabeçalho principal enxuto */
+#pagina-painel-empresa .emp-rec-hero.emp-premium-hero-v2.emp-top-clean-v94{
+ display:grid!important;grid-template-columns:minmax(0,1fr) auto!important;align-items:center!important;gap:24px!important;
+ min-height:0!important;margin:0 0 12px!important;padding:22px 24px!important;
+ background:#fff!important;border:1px solid #dbe6e9!important;border-left:4px solid #087785!important;border-radius:12px!important;
+ box-shadow:none!important;color:#173f50!important;overflow:hidden!important
+}
+#pagina-painel-empresa .emp-rec-hero.emp-top-clean-v94::after{display:none!important;content:none!important}
+#pagina-painel-empresa .emp-top-clean-v94 .emp-rec-hero-copy>span{
+ display:block!important;margin:0 0 5px!important;font-size:10.5px!important;line-height:1.2!important;font-weight:800!important;
+ letter-spacing:.1em!important;color:#087785!important
+}
+#pagina-painel-empresa .emp-top-clean-v94 .emp-rec-hero-copy h1{
+ margin:0!important;font-size:25px!important;line-height:1.2!important;font-weight:800!important;letter-spacing:-.4px!important;color:#173f50!important
+}
+#pagina-painel-empresa .emp-top-clean-v94 .emp-rec-hero-copy>p{
+ max-width:680px!important;margin:6px 0 0!important;font-size:12.5px!important;line-height:1.5!important;color:#5b727c!important
+}
+#pagina-painel-empresa .emp-top-clean-v94 .emp-rec-hero-actions{
+ display:flex!important;align-items:center!important;justify-content:flex-end!important;gap:8px!important;margin:0!important
+}
+#pagina-painel-empresa .emp-top-clean-v94 .emp-rec-hero-actions button{
+ min-height:39px!important;height:39px!important;padding:0 14px!important;border-radius:8px!important;
+ font-size:11.5px!important;font-weight:750!important;white-space:nowrap!important;box-shadow:none!important
+}
+#pagina-painel-empresa .emp-top-clean-v94 .emp-rec-hero-actions .primary{background:#087785!important;border:1px solid #087785!important;color:#fff!important}
+#pagina-painel-empresa .emp-top-clean-v94 .emp-rec-hero-actions button:not(.primary){background:#fff!important;border:1px solid #bfd1d6!important;color:#315966!important}
+
+/* Plano vira uma barra informativa, não um segundo hero */
+#pagina-painel-empresa .emp-rec-planbar.emp-premium-plan-v2.emp-plan-clean-v94{
+ display:grid!important;grid-template-columns:minmax(220px,1fr) 105px 125px 130px!important;align-items:center!important;gap:0!important;
+ min-height:58px!important;margin:0 0 20px!important;padding:0 14px!important;
+ background:transparent!important;border:0!important;border-bottom:1px solid #dce7ea!important;border-radius:0!important;box-shadow:none!important;overflow:visible!important
+}
+#pagina-painel-empresa .emp-plan-clean-v94 .emp-rec-plan-ident{display:flex!important;align-items:center!important;gap:10px!important;padding:8px 0!important}
+#pagina-painel-empresa .emp-plan-clean-v94 .emp-rec-plan-ident>i{
+ display:grid!important;place-items:center!important;width:32px!important;height:32px!important;min-width:32px!important;
+ border-radius:8px!important;background:#e7f3f4!important;color:#087785!important;font-size:13px!important
+}
+#pagina-painel-empresa .emp-plan-clean-v94 .emp-rec-plan-ident span,
+#pagina-painel-empresa .emp-plan-clean-v94 .emp-rec-plan-status span,
+#pagina-painel-empresa .emp-plan-clean-v94 .emp-rec-plan-date span{
+ display:block!important;font-size:10px!important;line-height:1.2!important;font-weight:750!important;letter-spacing:.06em!important;color:#6c818a!important
+}
+#pagina-painel-empresa .emp-plan-clean-v94 .emp-rec-plan-ident strong{display:block!important;margin:2px 0!important;font-size:13.5px!important;color:#173f50!important}
+#pagina-painel-empresa .emp-plan-clean-v94 .emp-rec-plan-ident small{display:block!important;font-size:10.5px!important;color:#758991!important}
+#pagina-painel-empresa .emp-plan-clean-v94 .emp-rec-plan-status,
+#pagina-painel-empresa .emp-plan-clean-v94 .emp-rec-plan-date{padding:0 12px!important;border-left:1px solid #dfe8eb!important}
+#pagina-painel-empresa .emp-plan-clean-v94 .emp-rec-plan-status strong,
+#pagina-painel-empresa .emp-plan-clean-v94 .emp-rec-plan-date strong{display:block!important;margin-top:3px!important;font-size:11.5px!important}
+#pagina-painel-empresa .emp-plan-clean-v94 .emp-rec-plan-status strong{color:#18805f!important}
+#pagina-painel-empresa .emp-plan-clean-v94>button{
+ width:auto!important;max-width:none!important;height:34px!important;min-height:34px!important;margin:0!important;padding:0 11px!important;
+ border:1px solid #c7d7dc!important;border-radius:7px!important;background:#fff!important;color:#315966!important;
+ font-size:10.5px!important;font-weight:750!important;box-shadow:none!important
+}
+
+@media(max-width:1150px){
+ #pagina-painel-empresa .emp-rec-hero.emp-top-clean-v94{grid-template-columns:1fr!important}
+ #pagina-painel-empresa .emp-top-clean-v94 .emp-rec-hero-actions{justify-content:flex-start!important}
+}
+@media(max-width:900px){
+ #pagina-painel-empresa .emp-rec-planbar.emp-plan-clean-v94{grid-template-columns:1fr 1fr!important;padding:8px 0!important;row-gap:10px!important}
+ #pagina-painel-empresa .emp-plan-clean-v94 .emp-rec-plan-ident{grid-column:1/-1!important}
+ #pagina-painel-empresa .emp-plan-clean-v94>button{grid-column:1/-1!important;justify-self:start!important}
+}
+@media(max-width:560px){
+ #pagina-painel-empresa .emp-rec-hero.emp-top-clean-v94{padding:18px!important}
+ #pagina-painel-empresa .emp-top-clean-v94 .emp-rec-hero-copy h1{font-size:22px!important}
+ #pagina-painel-empresa .emp-top-clean-v94 .emp-rec-hero-actions{flex-direction:column!important;align-items:stretch!important}
+ #pagina-painel-empresa .emp-rec-planbar.emp-plan-clean-v94{grid-template-columns:1fr!important}
+ #pagina-painel-empresa .emp-plan-clean-v94 .emp-rec-plan-ident,#pagina-painel-empresa .emp-plan-clean-v94>button{grid-column:auto!important}
+ #pagina-painel-empresa .emp-plan-clean-v94 .emp-rec-plan-status,#pagina-painel-empresa .emp-plan-clean-v94 .emp-rec-plan-date{padding:7px 0!important;border-left:0!important}
 }
 </style>
 
