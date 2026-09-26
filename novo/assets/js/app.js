@@ -2741,3 +2741,28 @@ function avaliacoesEmpresaConsolidadasEM(cnpj){
  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',reconstruirFormularioVagaEM);
  else reconstruirFormularioVagaEM();
 })();
+
+
+/* EMPREGAMAI-LOCAL-PUBLICO-PRO-V14 */
+(function(){
+ function modernizarLocalPublico(){
+  const box=document.querySelector('#pagina-publicar .em-privacidade-local');
+  if(!box||box.dataset.proV14==='1')return;
+  box.dataset.proV14='1';
+  const icons={
+   completo:'<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 10.5 12 4l8 6.5V20H4V10.5Z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><path d="M9 20v-6h6v6" fill="none" stroke="currentColor" stroke-width="1.7"/></svg>',
+   bairro:'<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20V9l5-3v14m0-8 6-4v12m0-7 5-2v9M2 20h20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>',
+   cidade:'<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s7-6.1 7-12a7 7 0 1 0-14 0c0 5.9 7 12 7 12Z" fill="none" stroke="currentColor" stroke-width="1.7"/><circle cx="12" cy="9" r="2.5" fill="none" stroke="currentColor" stroke-width="1.7"/></svg>'
+  };
+  box.querySelectorAll('.em-local-opcoes label').forEach(label=>{
+   const input=label.querySelector('input[type=radio]'); if(!input)return;
+   const key=input.value, b=label.querySelector('b'), small=label.querySelector('small');
+   const wrap=document.createElement('span');wrap.className='em-local-pro-copy';
+   if(b)wrap.appendChild(b);if(small)wrap.appendChild(small);
+   const icon=document.createElement('span');icon.className='em-local-pro-icon';icon.innerHTML=icons[key]||icons.cidade;
+   const check=document.createElement('span');check.className='em-local-pro-check';check.innerHTML='<svg viewBox="0 0 20 20"><path d="m5 10 3 3 7-7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+   label.insertBefore(icon,input.nextSibling);label.appendChild(wrap);label.appendChild(check);
+  });
+ }
+ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',modernizarLocalPublico);else modernizarLocalPublico();
+})();
