@@ -2479,8 +2479,8 @@ body.recruta-modal-aberto{overflow:hidden!important}
   const renderPortalSeguro=function(){
     const box=$('#listaVagasPortal');if(!box)return;
     const desenhar=()=>{try{_renderizarVagasPortalLocalEM()}catch(e){console.error('EmpregaMais: erro ao renderizar vagas.',e)}};
-    if(Array.isArray(sbVagasCacheEM)&&sbVagasCacheEM.length){desenhar();return}
-    carregarVagasSeguro().then(desenhar).catch(desenhar);
+    if(Array.isArray(sbVagasCacheEM)&&sbVagasCacheEM.length)desenhar();
+    carregarVagasSeguro().then(desenhar).catch(e=>{console.warn('EmpregaMais: não foi possível atualizar as vagas do banco.',e);desenhar()});
   };
   window.renderizarVagasPortal=renderPortalSeguro;
   renderizarVagasPortal=renderPortalSeguro;
