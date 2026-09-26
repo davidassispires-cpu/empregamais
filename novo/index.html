@@ -7763,6 +7763,84 @@ body .topo .acoes .btn-azul,body .topo .btn-publicar-vaga{background:linear-grad
 }
 </style>
 
+<style id="EMPREGAMAIS-PAINEL-RECRUTADOR-PREMIUM-FIX-V92">
+/* Correção estrutural sobre o layout real: sidebar compacta + área útil estável */
+@media(min-width:901px){
+ #pagina-painel-empresa .emp-dash{display:grid!important;grid-template-columns:220px minmax(0,1fr)!important;width:100%!important;max-width:none!important;overflow:visible!important}
+ #pagina-painel-empresa .emp-dash-side.emp-side-premium{width:220px!important;min-width:220px!important;max-width:220px!important;padding:16px 12px 14px!important}
+ #pagina-painel-empresa .emp-dash-main.emp-premium-v2{width:100%!important;max-width:none!important;padding:20px 22px 38px!important;overflow:visible!important}
+}
+#pagina-painel-empresa .emp-dash-brand{padding:0 8px 14px!important}
+#pagina-painel-empresa .emp-dash-brand strong{font-size:19px!important}
+#pagina-painel-empresa .emp-side-plan{padding:12px!important;margin-bottom:11px!important}
+#pagina-painel-empresa .emp-side-publish{width:100%!important;min-height:42px!important;padding:0 12px!important}
+#pagina-painel-empresa .emp-side-group{padding:10px 0!important}
+#pagina-painel-empresa .emp-side-group>small{padding:0 9px 7px!important}
+#pagina-painel-empresa .emp-side-group button{width:100%!important;min-height:39px!important;padding:0 9px!important;gap:8px!important}
+#pagina-painel-empresa .emp-side-group button>span{width:27px!important;height:27px!important;min-width:27px!important}
+#pagina-painel-empresa .emp-side-group button svg{width:16px!important;height:16px!important}
+#pagina-painel-empresa .emp-side-count{margin-left:auto!important}
+
+/* Hero: mais baixo e com melhor aproveitamento da área útil */
+#pagina-painel-empresa .emp-rec-hero.emp-premium-hero-v2{min-height:190px!important;padding:26px 30px!important;grid-template-columns:minmax(0,1.55fr) minmax(250px,.65fr)!important;gap:24px!important;border-radius:17px!important}
+#pagina-painel-empresa .emp-rec-hero-copy h1{font-size:29px!important}
+#pagina-painel-empresa .emp-rec-hero-copy>p{font-size:13px!important;max-width:650px!important}
+#pagina-painel-empresa .emp-rec-benefits{padding:15px 16px!important}
+#pagina-painel-empresa .emp-rec-benefits div{margin-top:7px!important}
+#pagina-painel-empresa .emp-rec-benefits p{font-size:11px!important}
+
+/* Plano compacto */
+#pagina-painel-empresa .emp-rec-planbar.emp-premium-plan-v2{display:grid!important;grid-template-columns:minmax(260px,1fr) 105px 125px 150px!important;align-items:center!important;min-height:72px!important;padding:11px 16px!important;margin-bottom:20px!important}
+#pagina-painel-empresa .emp-rec-planbar>button{width:100%!important}
+
+/* KPIs: 5 colunas só quando realmente cabem; sem cards esmagados */
+#pagina-painel-empresa #empresaMetricasNovas.emp-dash-kpis{display:grid!important;grid-template-columns:repeat(5,minmax(145px,1fr))!important;gap:10px!important}
+#pagina-painel-empresa #empresaMetricasNovas.emp-dash-kpis>button{height:104px!important;min-height:104px!important;padding:13px!important;grid-template-columns:38px minmax(0,1fr)!important;grid-template-rows:auto!important;gap:10px!important;align-items:center!important;overflow:hidden!important}
+#pagina-painel-empresa #empresaMetricasNovas.emp-dash-kpis>button>b{position:absolute!important;right:11px!important;top:11px!important}
+#pagina-painel-empresa #empresaMetricasNovas.emp-dash-kpis>button>i{width:38px!important;height:38px!important}
+#pagina-painel-empresa #empresaMetricasNovas.emp-dash-kpis>button>div{padding-right:7px!important;min-width:0!important}
+#pagina-painel-empresa #empresaMetricasNovas.emp-dash-kpis span{font-size:11.5px!important;white-space:normal!important;height:auto!important;line-height:1.25!important}
+#pagina-painel-empresa #empresaMetricasNovas.emp-dash-kpis strong{font-size:25px!important}
+#pagina-painel-empresa #empresaMetricasNovas.emp-dash-kpis small{font-size:11px!important;line-height:1.25!important;white-space:normal!important}
+
+/* Elimina os fundos decorativos antigos que continuavam aparecendo nos KPIs */
+#pagina-painel-empresa #empresaMetricasNovas.emp-dash-kpis>button::after{display:none!important;content:none!important}
+#pagina-painel-empresa #empresaMetricasNovas.emp-dash-kpis>button:nth-child(n){background:#fff!important;border-color:#dbe6ea!important;border-top-color:#087785!important}
+
+/* Conteúdo inferior mantém largura e leitura */
+#pagina-painel-empresa .emp-performance.emp-premium-performance-v2,
+#pagina-painel-empresa .emp-open-vagas.emp-premium-processos-v2{width:100%!important;max-width:none!important}
+#pagina-painel-empresa .emp-performance-grid{grid-template-columns:repeat(4,minmax(0,1fr))!important}
+#pagina-painel-empresa .emp-open-vagas-list{width:100%!important}
+#pagina-painel-empresa .emp-dash-section-head p,
+#pagina-painel-empresa .emp-performance-head p,
+#pagina-painel-empresa .emp-open-vagas-head p{color:#526a75!important}
+
+/* Breakpoints baseados na largura real disponível com sidebar */
+@media(max-width:1250px) and (min-width:901px){
+ #pagina-painel-empresa .emp-rec-hero.emp-premium-hero-v2{grid-template-columns:1fr!important}
+ #pagina-painel-empresa .emp-rec-benefits{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important}
+ #pagina-painel-empresa .emp-rec-planbar.emp-premium-plan-v2{grid-template-columns:minmax(220px,1fr) 100px 115px 145px!important}
+ #pagina-painel-empresa #empresaMetricasNovas.emp-dash-kpis{grid-template-columns:repeat(3,minmax(0,1fr))!important}
+ #pagina-painel-empresa .emp-performance-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important}
+}
+@media(max-width:900px){
+ #pagina-painel-empresa .emp-dash{display:block!important}
+ #pagina-painel-empresa .emp-dash-side.emp-side-premium{display:none!important}
+ #pagina-painel-empresa .emp-dash-main.emp-premium-v2{width:100%!important;padding:14px!important}
+ #pagina-painel-empresa .emp-rec-planbar.emp-premium-plan-v2{grid-template-columns:1fr 1fr!important}
+ #pagina-painel-empresa #empresaMetricasNovas.emp-dash-kpis{grid-template-columns:repeat(2,minmax(0,1fr))!important}
+ #pagina-painel-empresa .emp-performance-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important}
+}
+@media(max-width:560px){
+ #pagina-painel-empresa .emp-rec-hero.emp-premium-hero-v2{padding:21px 17px!important}
+ #pagina-painel-empresa .emp-rec-benefits{grid-template-columns:1fr!important}
+ #pagina-painel-empresa .emp-rec-planbar.emp-premium-plan-v2,
+ #pagina-painel-empresa #empresaMetricasNovas.emp-dash-kpis,
+ #pagina-painel-empresa .emp-performance-grid{grid-template-columns:1fr!important}
+}
+</style>
+
 <style id="EMPREGAMAIS-LOCAL-TRABALHO-COMPACTO-V90">
 #pagina-publicar .em-localizacao-bloco{padding:16px 18px!important;border-radius:15px!important}
 #pagina-publicar .em-localizacao-bloco>.em-secao-titulo{padding:0 0 12px!important;margin:0 0 12px!important;gap:12px!important}
