@@ -6330,3 +6330,40 @@ overflow:visible!important
  #pagina-painel-empresa .emp-performance-tip:nth-child(3){border-left:0!important;border-top:1px solid #e2eaee!important}
  #pagina-painel-empresa .emp-performance-tip:nth-child(4){border-top:1px solid #e2eaee!important}
 }
+
+
+/* EMPREGAMAI-TIPOGRAFIA-APROVADA-DEFINITIVA-V25 */
+/* Fonte aprovada: consolidada no fim da cascata para impedir retorno às regras antigas */
+#pagina-publicar #formVaga :where(p,small,em),
+#pagina-publicar #formVaga .em-benefit-card b,
+#pagina-publicar #formVaga .em-benefit-value small,
+#pagina-publicar #formVaga .em-config-final-head p,
+#pagina-publicar #formVaga .em-config-final-v21 .plano-publicacao,
+#pagina-publicar #formVaga .em-config-final-copy em,
+#pagina-publicar #formVaga .em-config-final-card>small,
+#pagina-publicar #formVaga .em-config-final-v21 .limite-aviso,
+#pagina-publicar #formVaga .em-local-publico-preview,
+#pagina-publicar #formVaga .em-local-publico-preview strong,
+#pagina-publicar #formVaga input:not([type=checkbox]):not([type=radio]),
+#pagina-publicar #formVaga textarea,
+#pagina-publicar #formVaga select,
+#pagina-publicar #formVaga select option,
+#pagina-publicar #formVaga input::placeholder,
+#pagina-publicar #formVaga textarea::placeholder{
+ font-family:'Montserrat',Arial,sans-serif!important;
+ font-size:13px!important;
+ line-height:1.5!important;
+ font-weight:500!important;
+ color:#4f5f66!important;
+ letter-spacing:0!important;
+}
+#pagina-vaga :where(.vaga-texto,.vaga-conteudo-v2 section>p,.beneficios-tags p){
+ font-family:'Montserrat',Arial,sans-serif!important;font-size:15px!important;line-height:1.7!important;font-weight:500!important;color:#4f5f66!important
+}
+#pagina-vaga :where(.vaga-info-grid small,.vaga-validade-topo small,.vaga-publicacao,.vaga-complementares span,.vaga-acao-v2>p,.empresa-side-identidade p,.empresa-side-identidade small){
+ font-family:'Montserrat',Arial,sans-serif!important;font-size:13px!important;line-height:1.5!important;font-weight:500!important;color:#4f5f66!important
+}
+#pagina-painel-empresa :where(.emp-dash-welcome p,.emp-dash-kpis small,.emp-performance-head p,.emp-performance-head>small,.emp-performance-tip>small,.emp-open-vagas-head p,.emp-dash-section-head p){
+ font-family:'Montserrat',Arial,sans-serif!important;font-size:13px!important;line-height:1.45!important;font-weight:500!important;color:#4f5f66!important
+}
+/* preserva somente microelementos funcionais: checks, badges e ícones */
