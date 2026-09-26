@@ -9298,4 +9298,62 @@ border:1px solid #d8e3e7!important;border-radius:12px!important;box-shadow:0 3px
 @media(max-width:1100px){#pagina-candidatos-empresa #psCentralConteudo .psv2-row{grid-template-columns:1fr!important}#pagina-candidatos-empresa #psCentralConteudo .psv2-list-head{display:none!important}}
 </style>
 <script src="./assets/js/push-notifications.js"></script>
+<style id="empregamais-filtros-mobile-v1">
+@media(max-width:767px){
+ body.filtros-mobile-abertos{overflow:hidden!important}
+ .home-recentes{padding-top:20px!important}
+ .home-recentes-cab{display:grid!important;grid-template-columns:minmax(0,1fr) 155px!important;gap:12px!important;align-items:end!important;margin-bottom:12px!important}
+ .home-recentes-cab h2{font-size:26px!important;line-height:1.08!important;margin:0!important}
+ .home-recentes-cab .home-recentes-meta{display:block!important}
+ .home-recentes-cab .home-recentes-meta>strong{display:none!important}
+ .home-recentes-cab .home-recentes-meta label{font-size:0!important;display:block!important}
+ .home-recentes-cab .home-recentes-meta select{width:100%!important;height:44px!important;font-size:13px!important}
+ .recentes-filtros-toggle{display:flex!important;width:100%!important;height:46px!important;align-items:center!important;justify-content:center!important;gap:8px!important;border:1px solid #cbd9df!important;border-radius:9px!important;background:#fff!important;color:#17485e!important;font:600 14px/1 "Montserrat",sans-serif!important;margin:0 0 12px!important}
+ .recentes-filtros-toggle:before{content:"☷";font-size:17px;color:#176b87}
+ .home-recentes-lateral{display:block!important;width:auto!important}
+ #filtrosVagasLateral.recentes-filtros{position:fixed!important;z-index:99999!important;left:0!important;right:0!important;bottom:0!important;top:auto!important;width:100%!important;max-width:none!important;max-height:84dvh!important;margin:0!important;border:0!important;border-radius:20px 20px 0 0!important;background:#fff!important;box-shadow:0 -16px 45px rgba(8,40,54,.20)!important;overflow:auto!important;transform:translateY(105%)!important;visibility:hidden!important;opacity:0!important;transition:transform .24s ease,opacity .2s ease,visibility .24s!important}
+ #filtrosVagasLateral.recentes-filtros.aberto{transform:translateY(0)!important;visibility:visible!important;opacity:1!important}
+ #filtrosVagasLateral .recentes-filtros-cab{position:sticky!important;top:0!important;z-index:3!important;background:#fff!important;padding:18px 20px 14px!important;border-bottom:1px solid #e2e9ec!important}
+ #filtrosVagasLateral .recentes-filtros-cab:before{content:"";position:absolute;top:7px;left:50%;width:42px;height:4px;border-radius:4px;background:#d5dfe3;transform:translateX(-50%)}
+ #filtrosVagasLateral .recentes-filtros-cab span{display:none!important}
+ #filtrosVagasLateral .recentes-filtros-cab h3{font-size:20px!important;margin:5px 0 0!important}
+ #filtrosVagasLateral .recentes-filtros-corpo{padding:14px 18px 100px!important}
+ #filtrosVagasLateral .recentes-filtro-grupo{padding:12px 0!important;margin:0!important}
+ #filtrosVagasLateral .recentes-campo-icone input{height:48px!important}
+ #filtrosVagasLateral .recentes-opcoes label{min-height:42px!important;padding:7px 10px!important}
+ .filtros-mobile-backdrop{display:none;position:fixed;inset:0;z-index:99998;background:rgba(9,32,42,.38);backdrop-filter:blur(1px)}
+ body.filtros-mobile-abertos .filtros-mobile-backdrop{display:block}
+ .filtros-mobile-acoes{display:none}
+ #filtrosVagasLateral.aberto .filtros-mobile-acoes{display:grid!important;grid-template-columns:1fr 1.35fr;gap:9px;position:sticky;bottom:0;z-index:4;padding:12px 18px calc(12px + env(safe-area-inset-bottom));background:#fff;border-top:1px solid #dfe7ea}
+ .filtros-mobile-acoes button{height:46px;border-radius:8px;font:600 13px "Montserrat",sans-serif}
+ .filtros-mobile-limpar{background:#fff;border:1px solid #cbd9df;color:#315361}.filtros-mobile-ver{border:0;background:#176b87;color:#fff}
+}
+@media(min-width:768px){.filtros-mobile-backdrop,.filtros-mobile-acoes{display:none!important}}
+</style>
+<div class="filtros-mobile-backdrop" id="filtrosMobileBackdropEM" onclick="fecharFiltrosMobileEM()"></div>
+<script>
+(function(){
+ function preparar(){
+  var painel=document.getElementById('filtrosVagasLateral');if(!painel||painel.querySelector('.filtros-mobile-acoes'))return;
+  var a=document.createElement('div');a.className='filtros-mobile-acoes';
+  a.innerHTML='<button type="button" class="filtros-mobile-limpar">Limpar filtros</button><button type="button" class="filtros-mobile-ver">Ver vagas</button>';
+  painel.appendChild(a);
+  a.querySelector('.filtros-mobile-ver').onclick=window.fecharFiltrosMobileEM;
+  a.querySelector('.filtros-mobile-limpar').onclick=function(){
+   ['filtroPalavraLateral','filtroCidadeLateral'].forEach(function(id){var el=document.getElementById(id);if(el){el.value='';el.dispatchEvent(new Event('input',{bubbles:true}))}});
+   ['modalidadeRecenteEM','contratoRecenteEM'].forEach(function(n){var el=document.querySelector('input[name="'+n+'"][value=""]');if(el){el.checked=true;el.dispatchEvent(new Event('change',{bubbles:true}))}});
+  };
+ }
+ window.fecharFiltrosMobileEM=function(){
+  var p=document.getElementById('filtrosVagasLateral'),b=document.querySelector('.recentes-filtros-toggle');if(p)p.classList.remove('aberto');if(b)b.setAttribute('aria-expanded','false');document.body.classList.remove('filtros-mobile-abertos');
+ }
+ var antiga=window.alternarFiltrosRecentesEM;
+ window.alternarFiltrosRecentesEM=function(botao){
+  if(innerWidth>767){if(antiga)return antiga(botao);return}
+  preparar();var p=document.getElementById('filtrosVagasLateral');if(!p)return;
+  var abrir=!p.classList.contains('aberto');p.classList.toggle('aberto',abrir);botao.setAttribute('aria-expanded',String(abrir));document.body.classList.toggle('filtros-mobile-abertos',abrir);
+ }
+ document.addEventListener('DOMContentLoaded',preparar);if(document.readyState!=='loading')preparar();
+})();
+</script>
 </body></html>
