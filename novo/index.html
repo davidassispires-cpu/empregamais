@@ -8539,6 +8539,72 @@ body .topo .acoes .btn-azul,body .topo .btn-publicar-vaga{background:linear-grad
 }
 </style>
 
+<style id="EMPREGAMAIS-PLANO-CARDS-PRO-V105">
+/* Cards profissionais do resumo do plano */
+#pagina-painel-empresa .emp-plan-overview-v100{
+ grid-template-columns:minmax(170px,1.08fr) repeat(4,minmax(140px,.88fr)) minmax(155px,.95fr) 132px!important;
+ gap:10px!important;padding:12px!important;align-items:stretch!important
+}
+#pagina-painel-empresa .emp-plan-overview-ident,
+#pagina-painel-empresa .emp-plan-overview-metric,
+#pagina-painel-empresa .emp-plan-overview-vigencia{
+ position:relative!important;display:flex!important;flex-direction:column!important;align-items:flex-start!important;justify-content:flex-start!important;
+ gap:0!important;min-height:118px!important;height:118px!important;padding:13px 13px 11px!important;
+ background:#fff!important;border:1px solid #DFE7EB!important;border-radius:11px!important;box-shadow:none!important;overflow:hidden!important
+}
+#pagina-painel-empresa .emp-plan-overview-ident{background:#F8FBFC!important}
+#pagina-painel-empresa .emp-plan-overview-metric>i,
+#pagina-painel-empresa .emp-plan-overview-ident>i,
+#pagina-painel-empresa .emp-plan-overview-vigencia>i{
+ position:absolute!important;top:12px!important;right:12px!important;display:grid!important;place-items:center!important;
+ width:31px!important;height:31px!important;min-width:31px!important;flex:0 0 31px!important;border-radius:8px!important;font-size:13px!important
+}
+#pagina-painel-empresa .emp-plan-overview-ident>div,
+#pagina-painel-empresa .emp-plan-overview-vigencia>div,
+#pagina-painel-empresa .emp-plan-overview-metric>div{
+ display:flex!important;flex-direction:column!important;align-items:flex-start!important;width:100%!important;height:100%!important;
+ margin:0!important;padding:0 35px 0 0!important;min-width:0!important
+}
+#pagina-painel-empresa .emp-plan-overview-ident span,
+#pagina-painel-empresa .emp-plan-overview-vigencia span{
+ order:1!important;max-width:95px!important;margin:0 0 5px!important;font-size:10px!important;line-height:1.25!important
+}
+#pagina-painel-empresa .emp-plan-overview-ident strong,
+#pagina-painel-empresa .emp-plan-overview-vigencia strong{
+ order:2!important;margin:0!important;font-size:14px!important;line-height:1.25!important
+}
+#pagina-painel-empresa .emp-plan-overview-ident small,
+#pagina-painel-empresa .emp-plan-overview-vigencia small{
+ order:3!important;margin-top:auto!important;padding-top:8px!important;width:100%!important;border-top:1px solid #E9EEF0!important
+}
+#pagina-painel-empresa .emp-plan-overview-metric>div>strong{
+ order:1!important;display:block!important;margin:0 0 4px!important;font-size:24px!important;line-height:1!important
+}
+#pagina-painel-empresa .emp-plan-overview-metric>div>span{
+ order:2!important;display:block!important;min-height:29px!important;width:100%!important;margin:0!important;
+ font-size:10.5px!important;line-height:1.35!important;white-space:normal!important
+}
+#pagina-painel-empresa .emp-plan-overview-metric>div>small{
+ order:3!important;position:static!important;width:100%!important;margin:auto 0 0!important;padding:7px 0 0!important;
+ border-top:1px solid #E9EEF0!important;font-size:10px!important;line-height:1.3!important;white-space:normal!important
+}
+#pagina-painel-empresa .emp-plan-overview-manage{
+ align-self:stretch!important;display:flex!important;align-items:center!important;justify-content:center!important;gap:7px!important;
+ width:100%!important;height:118px!important;min-height:118px!important;margin:0!important;padding:12px!important;
+ border:1px solid #CFE0E5!important;border-radius:11px!important;background:#F4F9FA!important;color:#176B87!important;
+ font-size:10.5px!important;line-height:1.35!important;text-align:center!important;white-space:normal!important;box-shadow:none!important
+}
+#pagina-painel-empresa .emp-plan-overview-manage:hover{background:#E8F3F6!important;border-color:#B8D2DA!important}
+#pagina-painel-empresa .emp-plan-overview-manage b{font-size:14px!important;font-weight:400!important}
+@media(max-width:1320px){
+ #pagina-painel-empresa .emp-plan-overview-v100{grid-template-columns:repeat(3,minmax(0,1fr))!important}
+ #pagina-painel-empresa .emp-plan-overview-v100>div,
+ #pagina-painel-empresa .emp-plan-overview-manage{height:112px!important;min-height:112px!important}
+}
+@media(max-width:760px){#pagina-painel-empresa .emp-plan-overview-v100{grid-template-columns:repeat(2,minmax(0,1fr))!important}}
+@media(max-width:520px){#pagina-painel-empresa .emp-plan-overview-v100{grid-template-columns:1fr!important}}
+</style>
+
 <style id="EMPREGAMAIS-PUBLICAR-COMPACTO-V90">
 /* Local de trabalho compacto */
 #pagina-publicar .em-localizacao-bloco{padding:14px 16px!important;border-radius:14px!important}
