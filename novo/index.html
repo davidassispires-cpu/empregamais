@@ -5646,7 +5646,7 @@ svg text{
 </style><section class="pagina" id="pagina-painel-empresa"><div class="emp-dash">
 <aside class="emp-dash-side emp-side-premium"><div class="emp-dash-brand"><strong>Empregai</strong><small>Painel do recrutador</small></div><div class="emp-side-plan"><span>PLANO ATUAL</span><div><strong id="empresaSidePlano">Plano</strong><b>ATIVO</b></div><small id="empresaSideVigencia">Assinatura ativa</small><button onclick="irPara('planos')">Gerenciar →</button></div><button class="emp-side-publish" onclick="abrirPublicacao()"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg><span>Publicar nova vaga</span></button><nav><div class="emp-side-group"><small>RECRUTAMENTO</small><button class="ativo" onclick="irPara('painel-empresa')"><span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 11 12 4l8 7v9H5V11"/><path d="M9 20v-6h6v6"/></svg></span>Visão geral</button><button onclick="focarVagasEmpresa()"><span><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="7" width="18" height="12" rx="2"/><path d="M8 7V5.5A1.5 1.5 0 0 1 9.5 4h5A1.5 1.5 0 0 1 16 5.5V7"/></svg></span>Vagas</button><button onclick="irPara('candidatos-empresa')"><span><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="9" r="3"/><circle cx="17" cy="10" r="2"/><path d="M3.5 19c.5-3.3 2.3-5 5.5-5s5 1.7 5.5 5M15 15c3-.3 4.8 1 5.3 4"/></svg></span>Candidatos<em id="empresaSideCandidatos" class="emp-side-count"></em></button><button onclick="irPara('candidatos-empresa')"><span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 6h13M7 12h13M7 18h13"/><circle cx="4" cy="6" r="1"/><circle cx="4" cy="12" r="1"/><circle cx="4" cy="18" r="1"/></svg></span>Processos seletivos</button><button onclick="abrirMetricaEmpresa('contratacoes')"><span><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="m8 12 2.7 2.7L16.5 9"/></svg></span>Contratações</button><button onclick="irPara('central-empresa')"><span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h16v12H8l-4 3V5Z"/><path d="M8 9h8M8 13h5"/></svg></span>Mensagens<em id="empresaSideMensagens" class="emp-side-count"></em></button></div><div class="emp-side-group management"><small>GESTÃO</small><button onclick="irPara('perfil-empresa')"><span><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M8 8h8M8 12h8M8 16h5"/></svg></span>Minha empresa</button><button id="menuRelatorios" onclick="abrirRecursoEmpresa('relatorios')"><span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 19V9M12 19V5M19 19v-7"/></svg></span>Relatórios<small id="lockRelatorios"></small></button><button onclick="abrirAvaliacoesEmpresaEM()"><span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 3 2.7 5.5 6.1.9-4.4 4.3 1 6.1-5.4-2.9-5.4 2.9 1-6.1-4.4-4.3 6.1-.9L12 3Z"/></svg></span>Avaliações<em id="empresaSideAvaliacoes" class="emp-side-count"></em></button><button onclick="irPara('planos')"><span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 3 3 6 6 .9-4.5 4.4 1.1 6.2L12 17.6l-5.6 2.9 1.1-6.2L3 9.9 9 9l3-6Z"/></svg></span>Plano e assinatura</button><button onclick="abrirUsuariosEmpresaEM()"><span><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="8" cy="8" r="3"/><circle cx="17" cy="9" r="2.5"/><path d="M2.5 20c.5-4.3 2.4-6.5 5.5-6.5s5 2.2 5.5 6.5M14 14.5c4.1-.8 6.4 1 7 5.5"/></svg></span>Usuários da empresa</button><button onclick="irPara('perfil-empresa')"><span><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M19 12a7 7 0 0 0-.1-1l2-1.5-2-3.4-2.4 1a7 7 0 0 0-1.7-1L14.5 3h-5l-.4 3.1a7 7 0 0 0-1.7 1L5 6.1 3 9.5 5.1 11a7 7 0 0 0 0 2L3 14.5l2 3.4 2.4-1a7 7 0 0 0 1.7 1l.4 3.1h5l.4-3.1a7 7 0 0 0 1.7-1l2.4 1 2-3.4-2.1-1.5a7 7 0 0 0 .1-1Z"/></svg></span>Configurações</button></div></nav><div class="emp-side-footer"><button class="emp-help-pro" onclick="irPara('central-empresa')"><span>?</span><div><b>Central de ajuda</b><small>Dúvidas e suporte</small></div><em>↗</em></button><button class="emp-side-account-pro" onclick="irPara('perfil-empresa')"><span id="empSideAccountAvatar">E</span><div><b id="empSideAccountName">Empresa</b><small><i></i> Conta empresarial <u id="empSideAccountPlan">· Plano ativo</u></small></div><em>›</em></button><button class="emp-dash-exit" onclick="sair()">Sair</button></div></aside>
 <div class="modal-candidato oculto" id="modalUsuariosEmpresaEM" onclick="if(event.target===this)fecharUsuariosEmpresaEM()"><div class="modal-candidato-card empresa-usuarios-modal-em"><button class="modal-fechar" type="button" onclick="fecharUsuariosEmpresaEM()">×</button><span class="empresa-usuarios-kicker">EQUIPE DE RECRUTAMENTO</span><h2>Usuários da empresa</h2><p>Gerencie quem pode acessar as vagas e os processos seletivos desta empresa.</p><div class="empresa-usuarios-resumo" id="empresaUsuariosResumoEM">Carregando usuários...</div><div id="empresaUsuariosListaEM" class="empresa-usuarios-lista"></div><form id="empresaUsuarioFormEM" class="empresa-usuario-form" onsubmit="adicionarUsuarioEmpresaEM(event)"><h3>Adicionar recrutador</h3><div class="empresa-usuario-grid"><label>Nome<input class="campo" id="empUserNomeEM" required></label><label>E-mail<input class="campo" id="empUserEmailEM" type="email" required></label><label>Senha inicial<input class="campo" id="empUserSenhaEM" type="password" minlength="6" required></label></div><button class="btn btn-azul" type="submit">Criar acesso</button></form><p id="empresaUsuariosLimiteEM" class="empresa-usuarios-aviso"></p><div id="empresaUsuariosMsgEM" class="form-msg"></div></div></div><div class="modal-candidato oculto" id="modalAvaliacoesEmpresaEM"><div class="modal-candidato-card empresa-avaliacoes-modal-em"><button class="modal-fechar" type="button" onclick="fecharAvaliacoesEmpresaEM()">×</button><div id="conteudoAvaliacoesEmpresaEM"></div></div></div><main class="emp-dash-main emp-premium-v2">
-<section class="emp-rec-hero emp-premium-hero-v2 emp-top-clean-v94"><div class="emp-rec-hero-copy"><span>PAINEL DO RECRUTADOR</span><h1 id="empresaPainelOla">Olá!</h1><p id="empresaSaudacao">Gerencie suas vagas, acompanhe as candidaturas e encontre os melhores talentos para o seu time.</p></div><div class="emp-rec-hero-actions"><button class="primary" onclick="abrirPublicacao()">＋ Publicar nova vaga</button><button onclick="focarVagasEmpresa()">Gerenciar vagas</button></div></section>
+<section class="emp-rec-hero emp-premium-hero-v2 emp-top-clean-v94"><div class="emp-hero-company-v97"><div class="emp-hero-logo-v97" id="empresaPainelLogo" aria-label="Logo da empresa"><span id="empresaPainelLogoFallback">E</span></div><div class="emp-rec-hero-copy"><span>PAINEL DO RECRUTADOR</span><h1 id="empresaPainelOla">Olá!</h1><p id="empresaSaudacao">Gerencie suas vagas, acompanhe as candidaturas e encontre os melhores talentos para o seu time.</p></div></div><div class="emp-rec-hero-actions"><button class="primary" onclick="abrirPublicacao()">＋ Publicar nova vaga</button><button onclick="focarVagasEmpresa()">Gerenciar vagas</button></div></section>
 <section class="emp-rec-planbar emp-premium-plan-v2 emp-plan-clean-v94"><div class="emp-rec-plan-ident"><i>♛</i><div><span>PLANO ATUAL</span><strong id="empProPlanoHero">Plano</strong><small id="empProDias">Plano ativo</small></div></div><div class="emp-rec-plan-status"><span>STATUS</span><strong>Ativo</strong></div><div class="emp-rec-plan-date"><span>VIGÊNCIA</span><strong id="empProVigencia">—</strong></div><button onclick="irPara('planos')">Gerenciar plano</button></section>
 <section class="emp-dash-section-head emp-premium-section-title"><div><span class="emp-premium-eyebrow">VISÃO GERAL</span><h2>Resumo do recrutamento</h2><p>Indicadores atualizados da sua operação.</p></div></section>
 <div class="emp-dash-kpis emp-premium-kpis-v2" id="empresaMetricasNovas"><button onclick="abrirMetricaEmpresa('vagas')"><i><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2.75" y="7" width="18.5" height="13.25" rx="2.5"/><path d="M8 7V5.5A2.5 2.5 0 0 1 10.5 3h3A2.5 2.5 0 0 1 16 5.5V7M2.75 12.25c5.8 2.5 12.7 2.5 18.5 0M10 13.25h4v2h-4z"/></svg></i><div><span>Vagas ativas</span><strong class="kpi-num">0</strong><small>Publicadas</small></div><b>→</b></button><button onclick="abrirMetricaEmpresa('aprovacao')"><i><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="3" width="16" height="18" rx="3"/><path d="M8 3.5V2.75h8v.75M8 8h8M8 12h4m-4 4 2.25 2.25L16.5 12"/></svg></i><div><span>Em análise</span><strong class="kpi-num">0</strong><small>Aguardando aprovação</small></div><b>→</b></button><button onclick="abrirMetricaEmpresa('candidatos')"><i><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="8" r="3"/><path d="M2.75 20v-1.25A5.75 5.75 0 0 1 8.5 13h1A5.75 5.75 0 0 1 15.25 18.75V20H2.75ZM16.25 5.5a2.75 2.75 0 0 1 0 5.5M17.25 13.5a4.75 4.75 0 0 1 4 4.7V20h-3"/></svg></i><div><span>Candidaturas</span><strong class="kpi-num">0</strong><small>Currículos recebidos</small></div><b>→</b></button><button onclick="abrirMetricaEmpresa('processo')"><i><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2.75" y="3.5" width="18.5" height="17" rx="3"/><path d="M8 8h8M8 12h5M8 16h8M17 11l1.75 1.75L21 10.5"/><circle cx="5.5" cy="8" r=".5"/><circle cx="5.5" cy="12" r=".5"/><circle cx="5.5" cy="16" r=".5"/></svg></i><div><span>Em processo</span><strong class="kpi-num">0</strong><small>No funil de seleção</small></div><b>→</b></button><button onclick="abrirMetricaEmpresa('contratacoes')"><i><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.75 19.5 5.5v6.25c0 4.15-2.85 7.7-7.5 9.5-4.65-1.8-7.5-5.35-7.5-9.5V5.5L12 2.75Z"/><path d="m8.25 12 2.5 2.5 5-5"/></svg></i><div><span>Contratações</span><strong class="kpi-num">0</strong><small>Concluídas</small></div><b>→</b></button></div>
@@ -8116,6 +8116,58 @@ body .topo .acoes .btn-azul,body .topo .btn-publicar-vaga{background:linear-grad
 /* Verde fica restrito a estados positivos */
 #pagina-painel-empresa .emp-plan-clean-v94 .emp-rec-plan-status strong{color:#18805F!important}
 </style>
+
+<style id="EMPREGAMAIS-LOGO-PAINEL-EMPRESA-V97">
+#pagina-painel-empresa .emp-hero-company-v97{display:flex!important;align-items:center!important;gap:14px!important;min-width:0!important}
+#pagina-painel-empresa .emp-hero-logo-v97{
+ display:grid!important;place-items:center!important;flex:0 0 62px!important;width:62px!important;height:62px!important;padding:5px!important;
+ overflow:hidden!important;border:1px solid #DCE6EA!important;border-radius:11px!important;background:#fff!important;color:#176B87!important;
+ font-size:22px!important;font-weight:800!important;line-height:1!important
+}
+#pagina-painel-empresa .emp-hero-logo-v97 img{display:block!important;width:100%!important;height:100%!important;object-fit:contain!important;border:0!important;border-radius:7px!important}
+#pagina-painel-empresa .emp-hero-company-v97 .emp-rec-hero-copy{min-width:0!important}
+@media(max-width:560px){
+ #pagina-painel-empresa .emp-hero-company-v97{align-items:flex-start!important}
+ #pagina-painel-empresa .emp-hero-logo-v97{flex-basis:52px!important;width:52px!important;height:52px!important}
+}
+</style>
+
+<script id="EMPREGAMAIS-LOGO-PAINEL-EMPRESA-JS-V97">
+(function(){
+ function texto(v){return String(v||'').trim()}
+ function inicialEmpresa(){
+   var ola=document.getElementById('empresaPainelOla'), nome=document.getElementById('empProNome');
+   var t=texto(nome&&nome.textContent);
+   if(!t||t==='Empresa') t=texto(ola&&ola.textContent).replace(/^Olá,?\s*/i,'').replace(/!+$/,'');
+   return (t&&t.charAt(0).toUpperCase())||'E';
+ }
+ function renderLogoPainelEmpresa(){
+   var box=document.getElementById('empresaPainelLogo');
+   if(!box)return;
+   var hidden=document.getElementById('empProLogo'), perfil=document.getElementById('perfilLogo');
+   var raw=texto(hidden&&(hidden.dataset.logo||hidden.getAttribute('data-logo')||hidden.textContent));
+   if(!/^data:image\//i.test(raw)&&!/^https?:\/\//i.test(raw)&&!/^blob:/i.test(raw)) raw=texto(perfil&&perfil.value);
+   var fallback=inicialEmpresa();
+   if(raw&&(/^(data:image\/|https?:\/\/|blob:)/i.test(raw))){
+     box.innerHTML='';
+     var img=document.createElement('img');img.alt='Logo da empresa';img.src=raw;
+     img.onerror=function(){box.innerHTML='<span id="empresaPainelLogoFallback"></span>';box.firstChild.textContent=fallback};
+     box.appendChild(img);
+   }else{
+     box.innerHTML='<span id="empresaPainelLogoFallback"></span>';box.firstChild.textContent=fallback;
+   }
+ }
+ window.renderLogoPainelEmpresa=renderLogoPainelEmpresa;
+ document.addEventListener('DOMContentLoaded',function(){
+   renderLogoPainelEmpresa();
+   var alvo=document.getElementById('empProLogo');
+   if(alvo&&window.MutationObserver)new MutationObserver(renderLogoPainelEmpresa).observe(alvo,{childList:true,subtree:true,characterData:true,attributes:true});
+   var perfil=document.getElementById('perfilLogo');
+   if(perfil){perfil.addEventListener('change',renderLogoPainelEmpresa);perfil.addEventListener('input',renderLogoPainelEmpresa)}
+   setTimeout(renderLogoPainelEmpresa,600);setTimeout(renderLogoPainelEmpresa,1800);
+ });
+})();
+</script>
 
 <style id="EMPREGAMAIS-LOCAL-TRABALHO-COMPACTO-V90">
 #pagina-publicar .em-localizacao-bloco{padding:16px 18px!important;border-radius:15px!important}
