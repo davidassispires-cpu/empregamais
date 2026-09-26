@@ -5248,23 +5248,30 @@ svg text{
 </style><link rel="stylesheet" href="assets/css/app.css?v=portal-classificados-v88-20260925"></head><body><header class="topo"><div class="topo-inner"><button type="button" class="marca" data-rota="home"><span class="marca-nome marca-empregai">Emprega<span>i</span></span><small class="marca-tagline">VAGAS PARA O SEU FUTURO</small></button><nav class="menu menu-publico"><button type="button" data-rota="home">Buscar vagas</button><button type="button" data-rota="como-funciona">Como funciona</button>
 <div class="menu-drop menu-drop-empresa"><button type="button" class="menu-drop-gatilho login-card-topo login-card-empresa" onclick="alternarMenuTopo('empresa',event)"><span class="login-card-icone" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 21V5h11v16M15 10h5v11M8 9h3M8 13h3M8 17h3M2 21h20"/></svg></span><span class="login-card-texto"><b>Login Empresa</b><small>Acesse seu painel</small></span><span class="login-card-seta">›</span></button><div class="menu-drop-painel menu-empresa-publico"><div class="menu-drop-titulo">PARA EMPRESAS</div><div class="menu-empresa-intro"><strong>Encontre os talentos certos</strong><span>Publique vagas e gerencie seus processos seletivos em um só lugar.</span></div><button class="menu-empresa-link" onclick="rotaMenuTopo('como-funciona')"><b>Como funciona</b><span>Conheça a plataforma para empresas</span></button><button class="menu-empresa-link" onclick="rotaMenuTopo('planos')"><b>Planos e preços</b><span>Veja os recursos disponíveis</span></button><div class="menu-drop-separador"></div><button class="menu-empresa-login" onclick="rotaMenuTopo('login-empresa')">Entrar como empresa</button><button class="menu-empresa-cadastro" onclick="rotaMenuTopo('cadastro-empresa')">Cadastrar empresa</button></div></div>
 </nav><nav class="menu menu-empresa-logada"><button type="button" data-rota="painel-empresa">Painel</button><button type="button" data-rota="painel-empresa">Minhas vagas</button><button type="button" data-rota="candidatos-empresa">Candidatos</button><button type="button" data-rota="planos">Planos</button></nav><nav class="menu menu-candidato-logado"><button type="button" data-rota="home">Buscar vagas</button><button type="button" data-rota="salvas">Vagas salvas</button><button type="button" data-rota="candidaturas">Minhas candidaturas</button><button type="button" data-rota="curriculo">Meu currículo</button></nav><div class="acoes"><div class="menu-drop menu-drop-candidato"><button type="button" class="btn secundario menu-drop-gatilho login-card-topo login-card-candidato" onclick="alternarMenuTopo('candidato',event)"><span class="login-card-icone" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4.5 21c.8-5 3.2-7.5 7.5-7.5s6.7 2.5 7.5 7.5"/></svg></span><span class="login-card-texto"><b>Login Candidato</b><small>Acesse sua conta</small></span><span class="login-card-seta">›</span></button><div class="menu-drop-painel menu-candidato-publico"><div class="menu-drop-titulo">PARA CANDIDATOS</div><div class="menu-candidato-intro"><strong>Encontre sua próxima oportunidade</strong><span>Busque vagas, crie seu currículo e acompanhe seus processos em um só lugar.</span></div><button class="menu-candidato-link" onclick="rotaMenuTopo('home')"><b>Buscar vagas</b><span>Encontre oportunidades para o seu perfil</span></button><button class="menu-candidato-link" onclick="rotaMenuTopo('cadastro-candidato')"><b>Criar currículo</b><span>Cadastre seu perfil profissional gratuitamente</span></button><div class="menu-drop-separador"></div><button class="menu-candidato-login" onclick="rotaMenuTopo('login-candidato')">Entrar como candidato</button><button class="menu-candidato-cadastro" onclick="rotaMenuTopo('cadastro-candidato')">Cadastrar currículo</button></div></div><button type="button" class="btn btn-azul btn-anunciar-vaga anunciar-card-topo" onclick="abrirPublicacao()"><span class="btn-anunciar-icone" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 7V5.8C8 4.8 8.8 4 9.8 4h4.4c1 0 1.8.8 1.8 1.8V7M4 9h16v10.5c0 .8-.7 1.5-1.5 1.5h-13C4.7 21 4 20.3 4 19.5V9Z"/><path d="M4 13h16M10 13v2h4v-2"/></svg></span><span class="anunciar-card-texto"><b>Anunciar vaga grátis</b><small>Divulgue sua oportunidade</small></span><span class="anunciar-card-seta">→</span></button><div class="sessao-empresa-topo"><button class="sessao-conta-btn sessao-conta-empresa-pro" onclick="toggleMenuContaEM(this,event)"><span class="sessao-avatar" id="topoEmpresaAvatar">E</span><span class="sessao-conta-ident"><b id="topoEmpresaNome">Empresa</b><small><i class="sessao-status-dot"></i> Conta empresarial · <strong id="topoEmpresaPlano">Plano Grátis</strong></small></span><em>⌄</em></button><div class="sessao-conta-menu"><div class="conta-menu-head"><span class="conta-menu-avatar" id="topoEmpresaAvatarMenu">E</span><div><b id="topoEmpresaNomeMenu">Empresa</b><small id="topoEmpresaPlanoMenu">Conta da empresa</small><i>Plano ativo</i></div></div><div class="conta-menu-nav"><button onclick="irPara('painel-empresa')">Painel da empresa</button><button onclick="irPara('perfil-empresa')">Perfil da empresa</button><button onclick="irPara('planos')">Meu plano</button><button class="conta-sair-pro" onclick="sair()">Sair</button></div></div></div><div class="sessao-candidato-topo"><button class="sessao-conta-btn sessao-conta-candidato-pro" onclick="toggleMenuContaEM(this,event)"><span class="sessao-avatar" id="topoCandidatoAvatar">C</span><span class="sessao-conta-ident"><b id="topoCandidatoNome">Candidato</b><small><i class="sessao-status-dot"></i> Conta de candidato</small></span><em>⌄</em></button><div class="sessao-conta-menu"><button onclick="irPara('painel-candidato')">Meu painel</button><button onclick="irPara('perfil-candidato')">Meu perfil</button><button onclick="sair()">Sair</button></div></div></div></div></header><main><section class="pagina ativa" id="pagina-home">
-<div class="home-hero-visual">
-<div class="home-hero-content">
- <div class="home-hero-copy">
-  <span class="home-hero-kicker">OPORTUNIDADES EM TODO O BRASIL</span>
-  <h1>Encontre sua próxima <em>oportunidade</em></h1>
-  <p>Milhares de vagas em um só lugar. Trabalhe no que você gosta.</p>
-  <div class="home-hero-benefits">
-   <span><b aria-hidden="true">▣</b><small>Vagas<br>em todo o Brasil</small></span>
-   <span><b aria-hidden="true">✓</b><small>Empresas<br>verificadas</small></span>
-   <span><b aria-hidden="true">●●●</b><small>Novas vagas<br>todos os dias</small></span>
+<section class="em-home-head" aria-label="Busca de vagas">
+ <div class="em-home-head-main">
+  <div class="em-home-head-copy">
+   <h1>Encontre sua próxima <em>oportunidade</em></h1>
+   <p>Milhares de vagas em um só lugar. Trabalhe no que você gosta.</p>
   </div>
+  <div class="em-home-head-art" aria-hidden="true"><span>Oportunidades<br>para o seu<br>próximo passo</span></div>
  </div>
- <div class="home-hero-art" aria-hidden="true"><span>Oportunidades<br>para o seu<br>próximo passo</span></div>
-</div>
-<div class="home-search-wrap"><div class="home-search-tabs"><button type="button" class="ativo" onclick="document.getElementById('buscaVagas').focus()">⌕&nbsp; Buscar vagas</button><button type="button" onclick="document.getElementById('buscaVagas').placeholder='Nome da empresa';document.getElementById('buscaVagas').focus()">▣&nbsp; Buscar por empresa</button><button type="button" onclick="document.getElementById('buscaVagas').placeholder='Área profissional';document.getElementById('buscaVagas').focus()">↕&nbsp; Buscar por área</button></div><div class="busca busca-home"><div class="home-search-field home-search-job"><span>⌕</span><label><small>Cargo, palavra-chave ou empresa</small><input id="buscaVagas" placeholder="Ex.: Assistente administrativo, Vendedor, Carrefour" oninput="renderizarVagasPortal()"></label></div><div class="home-search-field"><span>⌖</span><label><small>Localização</small><input id="buscaCidade" placeholder="Cidade ou região" oninput="renderizarVagasPortal()"></label></div><div class="home-search-field home-search-type"><span>▣</span><label><small>Tipo de vaga</small><select id="buscaModalidade" aria-label="Tipo de vaga" onchange="renderizarVagasPortal()"><option value="">Todos os tipos</option><option>Presencial</option><option>Híbrido</option><option>Remoto</option></select></label></div><button type="button" class="home-search-submit" onclick="renderizarVagasPortal();document.getElementById('listaVagasPortal')?.scrollIntoView({behavior:'smooth',block:'start'})">Buscar vagas <b>→</b></button></div><div class="home-buscas-populares"><b>Buscas populares:</b><button onclick="document.getElementById('buscaVagas').value='Administrativo';renderizarVagasPortal()">Administrativo</button><button onclick="document.getElementById('buscaVagas').value='Vendas';renderizarVagasPortal()">Vendas</button><button onclick="document.getElementById('buscaVagas').value='Atendente';renderizarVagasPortal()">Atendente</button><button onclick="document.getElementById('buscaVagas').value='Logística';renderizarVagasPortal()">Logística</button><button onclick="document.getElementById('buscaVagas').value='Analista';renderizarVagasPortal()">Analista</button><button onclick="document.getElementById('buscaVagas').value='Auxiliar';renderizarVagasPortal()">Auxiliar</button><button onclick="document.getElementById('buscaVagas').value='Estágio';renderizarVagasPortal()">Estágio</button></div></div>
+ <div class="em-home-search">
+  <div class="em-home-search-tabs">
+   <button type="button" class="ativo" onclick="document.getElementById('buscaVagas').focus()">⌕&nbsp; Buscar vagas</button>
+   <button type="button" onclick="document.getElementById('buscaVagas').placeholder='Nome da empresa';document.getElementById('buscaVagas').focus()">▣&nbsp; Buscar por empresa</button>
+   <button type="button" onclick="document.getElementById('buscaVagas').placeholder='Área profissional';document.getElementById('buscaVagas').focus()">↕&nbsp; Buscar por área</button>
+  </div>
+  <div class="em-home-search-row">
+   <div class="em-home-search-field em-home-search-job"><span>⌕</span><label><small>Cargo, palavra-chave ou empresa</small><input id="buscaVagas" placeholder="Ex.: Assistente administrativo" oninput="renderizarVagasPortal()"></label></div>
+   <div class="em-home-search-field"><span>⌖</span><label><small>Localização</small><input id="buscaCidade" placeholder="Cidade ou região" oninput="renderizarVagasPortal()"></label></div>
+   <div class="em-home-search-field em-home-search-type"><span>▣</span><label><small>Tipo de vaga</small><select id="buscaModalidade" aria-label="Tipo de vaga" onchange="renderizarVagasPortal()"><option value="">Todos os tipos</option><option>Presencial</option><option>Híbrido</option><option>Remoto</option></select></label></div>
+   <button type="button" class="em-home-search-submit" onclick="renderizarVagasPortal();document.getElementById('listaVagasPortal')?.scrollIntoView({behavior:'smooth',block:'start'})">Buscar vagas <b>→</b></button>
+  </div>
+  <div class="em-home-popular"><b>Buscas populares:</b><button onclick="document.getElementById('buscaVagas').value='Administrativo';renderizarVagasPortal()">Administrativo</button><button onclick="document.getElementById('buscaVagas').value='Vendas';renderizarVagasPortal()">Vendas</button><button onclick="document.getElementById('buscaVagas').value='Atendente';renderizarVagasPortal()">Atendente</button><button onclick="document.getElementById('buscaVagas').value='Logística';renderizarVagasPortal()">Logística</button><button onclick="document.getElementById('buscaVagas').value='Analista';renderizarVagasPortal()">Analista</button></div>
+ </div>
+</section>
 
-</div>
 <div class="container home-premium">
 <section class="home-destaques"><div class="secao-cab home-title-row home-destaques-cab"><div class="home-destaques-heading"><span class="home-destaques-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3.5" y="7" width="17" height="12.5" rx="2.5"/><path d="M8.5 7V5.5A1.5 1.5 0 0 1 10 4h4a1.5 1.5 0 0 1 1.5 1.5V7M3.5 12h17M10 12v2h4v-2"/></svg></span><div><span class="home-destaques-kicker">OPORTUNIDADES SELECIONADAS</span><h2>Vagas em destaque</h2><p>Confira oportunidades que estão em destaque no Empregaí.</p></div></div><button type="button" class="home-link" onclick="document.getElementById('listaVagasPortal').scrollIntoView({behavior:'smooth'})">Ver todas as vagas <span>→</span></button></div><div class="destaques-wrap"><button type="button" class="destaque-nav destaque-prev" aria-label="Vagas anteriores" onclick="moverDestaques(-1)">‹</button><div class="destaques-carrossel" id="listaDestaques"></div><button type="button" class="destaque-nav destaque-next" aria-label="Próximas vagas" onclick="moverDestaques(1)">›</button></div>
 <div class="destaques-faixa-em" id="destaquesFaixaEM" aria-label="Mais oportunidades em destaque">
@@ -7443,152 +7450,6 @@ document.addEventListener('DOMContentLoaded',()=>{pbTimer=setInterval(()=>pbIrSl
 #pagina-candidatos-empresa #listaCandidatosEmpresa .recruta-preview-andamento:hover{background:#f7fbfc!important}
 @media(max-width:900px){#pagina-candidatos-empresa #listaCandidatosEmpresa .recruta-cand-preview-info .recruta-cand-info{grid-template-columns:1fr!important}#pagina-candidatos-empresa #listaCandidatosEmpresa .recruta-cand-preview-info .recruta-aderencia-card{grid-template-columns:64px minmax(0,1fr)!important}}
 
-/* HOME PORTAL V32 - override final para evitar regras inline antigas */
-#pagina-home .home-hero-visual.home-hero-modelo3{position:relative!important;overflow:hidden!important;min-height:292px!important;height:auto!important;background:linear-gradient(118deg,#123f72 0%,#07528b 55%,#064a7e 100%)!important;border:0!important}
-#pagina-home .home-hero-visual.home-hero-modelo3:before{content:""!important;display:block!important;position:absolute!important;left:-5%!important;right:-5%!important;bottom:-58px!important;height:92px!important;background:#f7f9fc!important;border-radius:50% 50% 0 0/34% 34% 0 0!important;z-index:1!important}
-#pagina-home .home-hero-modelo3 .home-hero-content{position:relative!important;z-index:2!important;display:block!important;min-height:0!important;width:calc(100% - 48px)!important;max-width:1240px!important;margin:0 auto!important;padding:49px 0 112px!important;text-align:center!important}
-#pagina-home .home-hero-modelo3 .home-hero-copy{max-width:900px!important;margin:0 auto!important}
-#pagina-home .home-hero-modelo3 .home-hero-kicker,#pagina-home .home-hero-modelo3 .home-hero-job-art{display:none!important}
-#pagina-home .home-hero-modelo3 h1{margin:0 0 10px!important;color:#fff!important;font-size:34px!important;line-height:1.16!important;letter-spacing:-.035em!important;font-weight:800!important}
-#pagina-home .home-hero-modelo3 h1 em{font-style:normal!important;color:#24b8e8!important}
-#pagina-home .home-hero-modelo3 .home-hero-copy>p{max-width:none!important;margin:0!important;color:#e3eef7!important;font-size:13px!important}
-#pagina-home .home-hero-modelo3 .home-search-wrap{position:absolute!important;z-index:4!important;left:50%!important;bottom:58px!important;transform:translateX(-50%)!important;width:calc(100% - 48px)!important;max-width:1120px!important;margin:0!important;padding:6px!important;background:#fff!important;border:0!important;border-radius:15px!important;box-shadow:0 12px 28px rgba(0,33,69,.17)!important}
-#pagina-home .home-hero-modelo3 .busca-home{display:grid!important;grid-template-columns:1.35fr 1fr 190px!important;gap:0!important;padding:0!important;background:#fff!important;border-radius:11px!important;box-shadow:none!important;overflow:hidden!important}
-#pagina-home .home-hero-modelo3 .home-search-field{height:52px!important;display:flex!important;align-items:center!important;padding:0 17px!important;border:0!important;border-right:1px solid #dce4eb!important;background:#fff!important}
-#pagina-home .home-hero-modelo3 .home-search-field>span{width:auto!important;height:auto!important;margin:0 12px 0 0!important;background:none!important;color:#135b92!important;font-size:19px!important}
-#pagina-home .home-hero-modelo3 .busca-home input{height:50px!important;width:100%!important;padding:0!important;border:0!important;background:#fff!important;color:#29475d!important;font-size:13px!important;outline:0!important}
-#pagina-home .home-hero-modelo3 .busca-home>select[hidden]{display:none!important}
-#pagina-home .home-hero-modelo3 .busca-home button{height:52px!important;margin:0!important;border:0!important;border-radius:10px!important;background:#0d477e!important;color:#fff!important;font-size:12px!important;font-weight:800!important}
-@media(max-width:760px){#pagina-home .home-hero-visual.home-hero-modelo3{min-height:370px!important}#pagina-home .home-hero-modelo3 .home-hero-content{padding:38px 18px 190px!important;width:100%!important}#pagina-home .home-hero-modelo3 h1{font-size:30px!important}#pagina-home .home-hero-modelo3 .home-search-wrap{bottom:48px!important;width:calc(100% - 28px)!important}#pagina-home .home-hero-modelo3 .busca-home{grid-template-columns:1fr!important;gap:6px!important;overflow:visible!important}#pagina-home .home-hero-modelo3 .home-search-field{height:45px!important;border:1px solid #e0e7ed!important;border-radius:8px!important}#pagina-home .home-hero-modelo3 .busca-home button{height:45px!important}}
-
-/* HOME HERO V33 - correspondencia fiel ao mockup aprovado */
-#pagina-home .home-hero-visual.home-hero-modelo3{min-height:250px!important;height:250px!important;background:linear-gradient(118deg,#073f72 0%,#07558d 62%,#06477a 100%)!important;overflow:hidden!important}
-#pagina-home .home-hero-visual.home-hero-modelo3:before{left:-3%!important;right:-3%!important;bottom:-69px!important;height:86px!important;background:#f7f9fc!important;border-radius:50% 50% 0 0/28% 28% 0 0!important}
-#pagina-home .home-hero-visual.home-hero-modelo3:after{background:radial-gradient(circle at 83% 8%,rgba(20,169,222,.13),transparent 28%)!important}
-#pagina-home .home-hero-modelo3 .home-hero-content{width:calc(100% - 48px)!important;max-width:1240px!important;padding:34px 0 0!important}
-#pagina-home .home-hero-modelo3 .home-hero-copy{max-width:940px!important}
-#pagina-home .home-hero-modelo3 h1{font-size:29px!important;line-height:1.1!important;white-space:nowrap!important;margin:0 0 8px!important;letter-spacing:-.035em!important}
-#pagina-home .home-hero-modelo3 h1 em{color:#20b8ea!important}
-#pagina-home .home-hero-modelo3 .home-hero-copy>p{font-size:12px!important;color:#eaf3f9!important}
-#pagina-home .home-hero-modelo3 .home-search-wrap{bottom:54px!important;width:calc(100% - 48px)!important;max-width:1120px!important;padding:5px!important;border-radius:13px!important;box-shadow:0 10px 24px rgba(0,31,66,.14)!important}
-#pagina-home .home-hero-modelo3 .busca-home{grid-template-columns:1.35fr 1fr 184px!important;border-radius:9px!important}
-#pagina-home .home-hero-modelo3 .home-search-field{height:48px!important;padding:0 18px!important}
-#pagina-home .home-hero-modelo3 .home-search-field>span{font-size:17px!important}
-#pagina-home .home-hero-modelo3 .busca-home input{height:46px!important;font-size:12px!important}
-#pagina-home .home-hero-modelo3 .busca-home button{height:48px!important;border-radius:9px!important;background:#0b477e!important;font-size:11px!important}
-#pagina-home .home-premium{padding-top:4px!important}
-@media(min-width:761px){#pagina-home .home-hero-modelo3 h1 br{display:none!important}}
-@media(max-width:760px){#pagina-home .home-hero-visual.home-hero-modelo3{height:auto!important;min-height:350px!important}#pagina-home .home-hero-modelo3 h1{font-size:28px!important;white-space:normal!important}#pagina-home .home-hero-modelo3 .home-hero-content{padding:32px 15px 180px!important}#pagina-home .home-hero-modelo3 .home-search-wrap{bottom:43px!important}}
-
-/* SELO NOTA EMPRESA V33 */
-.empresa-nota-card{display:inline-flex!important;align-items:center!important;vertical-align:middle!important;margin-left:7px!important;padding:3px 7px!important;border:1px solid #f0cf76!important;border-radius:6px!important;background:#fff8e5!important;color:#9a6800!important;font-size:9.5px!important;line-height:1!important;font-weight:800!important;letter-spacing:0!important;white-space:nowrap!important}
-.vaga-hero-empresa-linha>.empresa-nota-card{margin-left:0!important;margin-right:7px!important;padding:5px 8px!important;font-size:10.5px!important}
-
-/* EMPREGAI IDENTIDADE PUBLICA V34 */
-:root{--empregai-navy:#063f72;--empregai-blue:#07558d;--empregai-cyan:#18aee8;--empregai-action:#0b87a5}
-body .topo{background:#fff!important;border-bottom:1px solid #e7edf2!important;box-shadow:0 2px 12px rgba(17,55,83,.035)!important}
-body .topo .topo-inner{min-height:76px!important}
-body .topo .marca{position:relative!important;display:flex!important;flex-direction:column!important;align-items:flex-start!important;justify-content:center!important;min-width:220px!important;padding:0!important;background:transparent!important;border:0!important;box-shadow:none!important}
-body .topo .marca .marca-empregai{display:block!important;color:#073f72!important;font-size:31px!important;line-height:.95!important;font-weight:800!important;letter-spacing:-1.8px!important}
-body .topo .marca .marca-empregai>span{color:#18aee8!important}
-body .topo .marca .marca-tagline{display:block!important;margin:8px 0 0 2px!important;color:#173f6c!important;font-size:7px!important;line-height:1!important;font-weight:800!important;letter-spacing:.25em!important;white-space:nowrap!important}
-body .topo .menu-publico>button{color:#123b5d!important;font-weight:750!important}
-body .topo .acoes .btn-azul,body .topo .btn-publicar-vaga{background:linear-gradient(100deg,#087da1,#079bc2)!important;border-color:transparent!important}
-#pagina-home .home-hero-visual.home-hero-modelo3{background:linear-gradient(118deg,#063f72 0%,#07558d 62%,#06477a 100%)!important}
-#pagina-home .home-hero-modelo3 h1 em{color:#18aee8!important}
-#pagina-home .home-hero-modelo3 .busca-home button{background:#074a82!important}
-#pagina-home .home-hero-modelo3 .busca-home button:hover{background:#063f72!important}
-@media(max-width:900px){body .topo .marca{min-width:auto!important}body .topo .marca .marca-empregai{font-size:26px!important}body .topo .marca .marca-tagline{display:none!important}}
-
-/* EMPREGAI CANDIDATO SIDEBAR REFINADA V65 */
-#pagina-painel-candidato .cand-side{width:250px!important;min-width:250px!important;background:#fff!important;border-right:1px solid #dce6ec!important}
-#pagina-painel-candidato .cand-side nav{gap:3px!important;padding:10px 16px 14px!important}
-#pagina-painel-candidato .cand-side nav>button{
- min-height:43px!important;padding:0 12px!important;justify-content:flex-start!important;gap:12px!important;
- border-radius:9px!important;font-family:'Montserrat',Arial,sans-serif!important;font-size:11px!important;
- line-height:1.15!important;letter-spacing:0!important;text-align:left!important;text-transform:none!important;font-weight:700!important;
-}
-#pagina-painel-candidato .cand-side nav>button>span{
- flex:1!important;text-align:left!important;text-transform:none!important;white-space:nowrap!important;font:inherit!important;
-}
-#pagina-painel-candidato .cand-side nav>button.ativo{
- background:#eaf5f9!important;border-color:#cfe5ed!important;color:#076e8b!important;
- box-shadow:inset 3px 0 0 #08a2c5!important;
-}
-#pagina-painel-candidato .cand-side nav>button.cand-premium-nav{
- margin:5px 0!important;background:#fffaf0!important;border-color:#e7c76a!important;color:#735407!important;
-}
-#pagina-painel-candidato .cand-side nav>button.cand-premium-nav span:after{
- content:"PREMIUM"!important;margin-left:7px!important;padding:2px 5px!important;font-size:6px!important;
-}
-#pagina-painel-candidato .cand-side nav>button.cand-avaliar-nav{background:transparent!important;border-color:transparent!important}
-#pagina-painel-candidato .cand-side nav>button.cand-avaliar-nav:hover{background:#f3f8fa!important;border-color:#dce9ee!important}
-#pagina-painel-candidato .cand-side nav .cand-msg-badge{right:9px!important}
-#pagina-painel-candidato .cand-side-user{padding-left:18px!important;padding-right:18px!important}
-#pagina-painel-candidato .cand-side-tip{margin-left:16px!important;margin-right:16px!important}
-#pagina-painel-candidato .cand-side-exit{margin-left:16px!important;margin-right:16px!important;width:calc(100% - 32px)!important}
-@media(max-width:900px){#pagina-painel-candidato .cand-side{width:100%!important;min-width:0!important}}
-
-
-/* EMPREGAI BUSCADOR HOME ORGANIZADO V35 */
-#pagina-home .home-hero-modelo3 .home-search-wrap{
- width:calc(100% - 76px)!important;max-width:1060px!important;
- padding:0 14px 10px!important;border:1px solid #d8e5ec!important;border-radius:15px!important;
- background:rgba(255,255,255,.97)!important;box-shadow:0 10px 26px rgba(20,58,82,.08)!important;
- overflow:hidden!important;
-}
-#pagina-home .home-hero-modelo3 .home-search-tabs{
- height:43px!important;margin:0 -14px 9px!important;padding:0 14px!important;
- display:flex!important;align-items:stretch!important;gap:6px!important;
- border-bottom:1px solid #dce7ed!important;background:#fff!important;
-}
-#pagina-home .home-hero-modelo3 .home-search-tabs button{
- height:43px!important;padding:0 16px!important;border:0!important;border-bottom:3px solid transparent!important;
- border-radius:0!important;background:transparent!important;color:#35556e!important;
- font-size:11px!important;font-weight:700!important;white-space:nowrap!important;
-}
-#pagina-home .home-hero-modelo3 .home-search-tabs button.ativo{
- color:#0874b7!important;border-bottom-color:#0c8ed0!important;
-}
-#pagina-home .home-hero-modelo3 .busca-home{
- width:100%!important;display:grid!important;grid-template-columns:minmax(0,1.45fr) minmax(0,1fr) 190px!important;
- gap:8px!important;padding:0!important;border-radius:0!important;background:transparent!important;overflow:visible!important;
-}
-#pagina-home .home-hero-modelo3 .home-search-field{
- height:58px!important;padding:0 12px!important;border:1px solid #d4e2ea!important;border-radius:11px!important;background:#fff!important;
-}
-#pagina-home .home-hero-modelo3 .home-search-field>span{
- width:34px!important;height:34px!important;min-width:34px!important;margin:0 10px 0 0!important;
- display:grid!important;place-items:center!important;border-radius:9px!important;background:#edf7fc!important;
- color:#0878c3!important;font-size:13px!important;
-}
-#pagina-home .home-hero-modelo3 .home-search-field label{min-width:0!important;width:100%!important}
-#pagina-home .home-hero-modelo3 .home-search-field label small{
- display:block!important;margin:0 0 3px!important;color:#21445d!important;font-size:8.5px!important;
- line-height:1!important;font-weight:750!important;white-space:nowrap!important;
-}
-#pagina-home .home-hero-modelo3 .busca-home input,
-#pagina-home .home-hero-modelo3 .busca-home select{
- width:100%!important;height:32px!important;padding:0 8px!important;border:1px solid #cddde7!important;
- border-radius:8px!important;background:#fff!important;color:#4e6c82!important;font-size:11.5px!important;outline:0!important;
-}
-#pagina-home .home-hero-modelo3 .home-buscas-populares{
- min-height:31px!important;margin:7px 0 0!important;display:flex!important;align-items:center!important;gap:6px!important;flex-wrap:wrap!important;
- color:#153f5d!important;font-size:8.5px!important;
-}
-#pagina-home .home-hero-modelo3 .home-buscas-populares>b{margin-right:2px!important}
-#pagina-home .home-hero-modelo3 .home-buscas-populares button{
- height:24px!important;padding:0 12px!important;border:1px solid #cbdfea!important;border-radius:999px!important;
- background:#eaf4fa!important;color:#245574!important;font-size:8px!important;font-weight:700!important;
-}
-@media(max-width:760px){
- #pagina-home .home-hero-modelo3 .home-search-wrap{width:calc(100% - 28px)!important;padding:0 10px 10px!important;overflow:visible!important}
- #pagina-home .home-hero-modelo3 .home-search-tabs{margin:0 -10px 9px!important;padding:0 8px!important;overflow-x:auto!important}
- #pagina-home .home-hero-modelo3 .home-search-tabs button{padding:0 10px!important;font-size:9.5px!important}
- #pagina-home .home-hero-modelo3 .busca-home{grid-template-columns:1fr!important;gap:7px!important}
- #pagina-home .home-hero-modelo3 .home-search-field{height:54px!important}
- #pagina-home .home-hero-modelo3 .home-buscas-populares{display:none!important}
-}
 </style>
 
 </body></html>
