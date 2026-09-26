@@ -2557,9 +2557,11 @@ document.addEventListener('keydown',function(e){
 });
 const _renderizarVagasPortalSplitEM=renderizarVagasPortal;
 renderizarVagasPortal=function(){
- _renderizarVagasPortalSplitEM();
- prepararCardsRecentesEM();
- sincronizarFiltrosRecentesEM();
+ const resultado=_renderizarVagasPortalSplitEM();
+ const finalizar=()=>{prepararCardsRecentesEM();sincronizarFiltrosRecentesEM()};
+ if(resultado&&typeof resultado.then==='function')resultado.then(finalizar).catch(()=>finalizar());
+ else finalizar();
+ return resultado;
 };
 
 function renderPaginacaoVagasPortalEM(total,totalPaginas){
