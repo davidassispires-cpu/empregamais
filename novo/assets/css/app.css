@@ -6039,3 +6039,42 @@ overflow:visible!important
 #pagina-publicar .em-local-publico-preview{margin-top:8px;min-height:29px;padding:6px 10px;border-radius:8px;background:#f0f7f7;display:flex;align-items:center;justify-content:center;gap:8px;font-size:9.5px;color:#71868b}
 #pagina-publicar .em-local-publico-preview strong{color:#075b63;font-size:10px}
 @media(max-width:680px){#pagina-publicar .em-local-publico-grid{grid-template-columns:1fr}#pagina-publicar .em-local-publico-card{min-height:58px}}
+
+
+/* EMPREGAMAI-BENEFICIOS-COMPACTOS-V17 */
+#pagina-publicar #formVaga .em-benefit-cards{grid-template-columns:repeat(4,minmax(0,1fr))!important;gap:7px!important}
+#pagina-publicar #formVaga .em-benefit-card{
+ position:relative!important;min-height:54px!important;height:auto!important;padding:8px 32px 8px 42px!important;
+ display:flex!important;align-items:center!important;justify-content:flex-start!important;border-radius:9px!important;
+ border:1px solid #dce7e9!important;background:#fff!important;text-align:left!important;cursor:pointer!important
+}
+#pagina-publicar #formVaga .em-benefit-card:hover{border-color:#a9c5c8!important;background:#fbfdfd!important}
+#pagina-publicar #formVaga .em-benefit-card:has(.beneficio-check:checked){border-color:#075b63!important;background:#f1f8f8!important}
+#pagina-publicar #formVaga .em-benefit-card>.beneficio-check{position:absolute!important;opacity:0!important;width:1px!important;height:1px!important}
+#pagina-publicar #formVaga .em-benefit-icon{
+ position:absolute!important;left:8px!important;top:50%!important;transform:translateY(-50%)!important;
+ width:27px!important;height:27px!important;min-width:27px!important;border-radius:7px!important;margin:0!important
+}
+#pagina-publicar #formVaga .em-benefit-icon svg{width:15px!important;height:15px!important}
+#pagina-publicar #formVaga .em-benefit-card b{
+ display:block!important;width:100%!important;margin:0!important;font-size:10.5px!important;line-height:1.2!important;
+ text-align:left!important;color:#244950!important
+}
+#pagina-publicar #formVaga .em-benefit-check{
+ position:absolute!important;right:8px!important;top:50%!important;transform:translateY(-50%)!important;
+ width:16px!important;height:16px!important;border-radius:5px!important;font-size:9px!important
+}
+#pagina-publicar #formVaga .em-benefit-card>small{display:none!important}
+#pagina-publicar #formVaga .em-benefit-value{
+ display:none!important;position:static!important;width:100%!important;margin:7px 0 0!important;
+ grid-template-columns:auto minmax(70px,1fr)!important;align-items:center!important;gap:6px!important
+}
+#pagina-publicar #formVaga .em-benefit-card:has(.beneficio-check:checked) .em-benefit-value{display:grid!important}
+#pagina-publicar #formVaga .em-benefit-card:has(.beneficio-check:checked):has(.em-benefit-value){
+ min-height:84px!important;display:grid!important;grid-template-columns:1fr!important;align-content:center!important
+}
+#pagina-publicar #formVaga .em-benefit-card:has(.beneficio-check:checked):has(.em-benefit-value) b{padding-right:0!important}
+#pagina-publicar #formVaga .em-benefit-value small{display:block!important;font-size:8px!important;white-space:nowrap!important;color:#75898e!important}
+#pagina-publicar #formVaga .em-benefit-value .beneficio-valor{height:27px!important;min-height:27px!important;font-size:10px!important;padding:3px 6px!important}
+@media(max-width:900px){#pagina-publicar #formVaga .em-benefit-cards{grid-template-columns:repeat(3,minmax(0,1fr))!important}}
+@media(max-width:680px){#pagina-publicar #formVaga .em-benefit-cards{grid-template-columns:repeat(2,minmax(0,1fr))!important}}
