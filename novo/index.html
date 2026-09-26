@@ -9502,4 +9502,70 @@ border:1px solid #d8e3e7!important;border-radius:12px!important;box-shadow:0 3px
  }
 }
 </style>
+
+<style id="empregai-candidato-convite-v1">
+.em-cv-pop{position:fixed;inset:0;z-index:120000;display:none;align-items:center;justify-content:center;padding:20px;background:rgba(7,35,50,.48)}
+.em-cv-pop.ativo{display:flex}
+.em-cv-pop-card{width:min(560px,100%);max-height:min(760px,calc(100vh - 32px));overflow:auto;background:#fff;border:1px solid #dce8ee;border-radius:24px;box-shadow:0 28px 80px rgba(8,42,60,.24);font-family:Montserrat,sans-serif;color:#294f61}
+.em-cv-pop-top{position:relative;padding:30px 30px 18px;text-align:center;background:linear-gradient(180deg,#f2fbfd 0,#fff 100%);border-radius:24px 24px 0 0}
+.em-cv-pop-badge{display:inline-flex;align-items:center;gap:7px;padding:7px 11px;border-radius:999px;background:#e7f6fa;color:#087493;font-size:11px;font-weight:750;letter-spacing:.06em}
+.em-cv-pop-x{position:absolute;right:16px;top:15px;width:36px;height:36px;border:1px solid #dbe7ed;border-radius:50%;background:#fff;color:#547080;font-size:22px;cursor:pointer}
+.em-cv-pop-icon{width:64px;height:64px;margin:17px auto 12px;display:grid;place-items:center;border-radius:18px;background:#176b87;color:#fff;font-size:27px;font-weight:800;box-shadow:0 10px 25px rgba(23,107,135,.22)}
+.em-cv-pop h2{margin:0;color:#073f5a;font-size:25px;line-height:1.18;font-weight:750;letter-spacing:-.025em}
+.em-cv-pop-lead{margin:10px auto 0;max-width:440px;font-size:14px;line-height:1.55;color:#587181}
+.em-cv-pop-beneficios{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:4px 26px 18px}
+.em-cv-pop-beneficio{padding:14px;border:1px solid #e2ebf0;border-radius:14px;background:#fff}
+.em-cv-pop-beneficio b{display:block;margin-bottom:4px;color:#174d63;font-size:13px}
+.em-cv-pop-beneficio span{display:block;font-size:11.5px;line-height:1.45;color:#6a7f8c}
+.em-cv-pop-notif{margin:0 26px 17px;padding:14px 15px;display:flex;gap:11px;align-items:flex-start;border:1px solid #cfe6ed;border-radius:14px;background:#f3fbfd}
+.em-cv-pop-notif input{margin-top:3px;accent-color:#176b87}
+.em-cv-pop-notif strong{display:block;color:#174d63;font-size:13px}.em-cv-pop-notif small{display:block;margin-top:3px;color:#6a7f8c;font-size:11px;line-height:1.4}
+.em-cv-pop-actions{padding:0 26px 26px}
+.em-cv-pop-primary{width:100%;height:48px;border:0;border-radius:12px;background:#176b87;color:#fff;font:700 14px Montserrat,sans-serif;cursor:pointer}
+.em-cv-pop-later{display:block;margin:12px auto 0;border:0;background:transparent;color:#738793;font:500 12px Montserrat,sans-serif;cursor:pointer}
+@media(max-width:600px){.em-cv-pop{padding:14px}.em-cv-pop-card{border-radius:20px;max-height:calc(100vh - 28px)}.em-cv-pop-top{padding:25px 20px 15px}.em-cv-pop h2{font-size:22px}.em-cv-pop-beneficios{grid-template-columns:1fr;padding:3px 18px 14px;gap:8px}.em-cv-pop-beneficio{padding:11px 13px}.em-cv-pop-notif{margin:0 18px 14px}.em-cv-pop-actions{padding:0 18px 20px}}
+</style>
+<div class="em-cv-pop" id="emConviteCandidato" role="dialog" aria-modal="true" aria-labelledby="emConviteTitulo">
+ <div class="em-cv-pop-card">
+  <div class="em-cv-pop-top">
+   <button class="em-cv-pop-x" type="button" aria-label="Fechar" onclick="fecharConviteCandidatoEM()">×</button>
+   <span class="em-cv-pop-badge">PARA CANDIDATOS · GRATUITO</span>
+   <div class="em-cv-pop-icon">CV</div>
+   <h2 id="emConviteTitulo">Encontre oportunidades que combinam com você</h2>
+   <p class="em-cv-pop-lead">Cadastre seu currículo gratuitamente no Empregaí e facilite sua participação nos processos seletivos.</p>
+  </div>
+  <div class="em-cv-pop-beneficios">
+   <div class="em-cv-pop-beneficio"><b>Currículo 100% gratuito</b><span>Crie seu perfil profissional e mantenha suas informações atualizadas.</span></div>
+   <div class="em-cv-pop-beneficio"><b>Candidate-se com facilidade</b><span>Use seu currículo nas vagas sem preencher tudo novamente.</span></div>
+   <div class="em-cv-pop-beneficio"><b>Acompanhe seus processos</b><span>Veja suas candidaturas e acompanhe cada etapa pelo Empregaí.</span></div>
+   <div class="em-cv-pop-beneficio"><b>Novidades no celular</b><span>Receba avisos sobre vagas e atualizações importantes.</span></div>
+  </div>
+  <label class="em-cv-pop-notif"><input id="emConviteNotif" type="checkbox"><span><strong>Quero receber notificações</strong><small>Ative para receber novidades de vagas e processos seletivos no seu dispositivo.</small></span></label>
+  <div class="em-cv-pop-actions"><button class="em-cv-pop-primary" type="button" onclick="criarCurriculoConviteEM()">Criar meu currículo grátis →</button><button class="em-cv-pop-later" type="button" onclick="fecharConviteCandidatoEM()">Agora não</button></div>
+ </div>
+</div>
+<script id="empregai-candidato-convite-js-v1">
+(function(){
+ const KEY='empregai_convite_curriculo_v1', DIAS=5;
+ function el(){return document.getElementById('emConviteCandidato')}
+ window.fecharConviteCandidatoEM=function(){const x=el();if(x)x.classList.remove('ativo');try{localStorage.setItem(KEY,String(Date.now()))}catch(e){}}
+ async function pedirNotif(){
+  const chk=document.getElementById('emConviteNotif');
+  if(!chk||!chk.checked||!('Notification' in window)||Notification.permission!=='default')return;
+  try{await Notification.requestPermission()}catch(e){}
+ }
+ window.criarCurriculoConviteEM=async function(){
+  await pedirNotif(); try{localStorage.setItem(KEY,String(Date.now()))}catch(e){}
+  const x=el();if(x)x.classList.remove('ativo');
+  if(typeof window.irPara==='function') window.irPara('curriculo'); else location.href='?pagina=curriculo';
+ }
+ function podeMostrar(){
+  try{const t=Number(localStorage.getItem(KEY)||0);if(t&&Date.now()-t<DIAS*86400000)return false}catch(e){}
+  const p=new URLSearchParams(location.search).get('pagina');
+  return !p||p==='home';
+ }
+ window.addEventListener('load',function(){if(podeMostrar())setTimeout(function(){const x=el();if(x)x.classList.add('ativo')},1100)});
+ document.addEventListener('keydown',e=>{if(e.key==='Escape'&&el()?.classList.contains('ativo'))fecharConviteCandidatoEM()});
+})();
+</script>
 </body></html>
