@@ -5701,46 +5701,45 @@ overflow:visible!important
 @media(max-width:760px){#pagina-home .em-home-head{min-height:570px}#pagina-home .em-home-head-main{height:245px;padding:27px 18px}#pagina-home .em-home-head-copy{width:100%}#pagina-home .em-home-head-copy h1{font-size:36px}#pagina-home .em-home-head-art{display:none}#pagina-home .em-home-search{width:calc(100% - 24px);margin:-45px auto 0;overflow:visible}#pagina-home .em-home-search-tabs{padding:0 8px;overflow-x:auto}#pagina-home .em-home-search-tabs button{padding:0 10px;white-space:nowrap}#pagina-home .em-home-search-row{grid-template-columns:1fr;padding:10px}#pagina-home .em-home-popular{display:none}}
 
 
-/* EMPREGAI-RECRUTADOR-CANDIDATO-UNICO-V1
-   Único modelo visual do card de candidatura no painel do recrutador. */
-#pagina-candidatos-empresa #listaCandidatosEmpresa{display:flex;flex-direction:column;gap:14px;width:100%}
-#pagina-candidatos-empresa #listaCandidatosEmpresa .recruta-cand-card{width:100%;margin:0;overflow:hidden;background:#fff;border:1px solid #d7e4eb;border-left:4px solid #168db5;border-radius:15px;box-shadow:0 5px 18px rgba(20,62,82,.05);font-family:'Montserrat',Arial,sans-serif}
-#pagina-candidatos-empresa #listaCandidatosEmpresa .recruta-cand-head{display:flex;align-items:center;justify-content:space-between;gap:20px;padding:16px 20px;border-bottom:1px solid #e4edf2}
-#pagina-candidatos-empresa #listaCandidatosEmpresa .recruta-cand-ident{display:flex;align-items:center;gap:13px;min-width:0}
-#pagina-candidatos-empresa #listaCandidatosEmpresa .recruta-cand-monograma{width:46px;height:46px;flex:0 0 46px;display:grid;place-items:center;border-radius:50%;background:#eaf7f8;color:#087b83;font-size:16px;font-weight:800}
-#pagina-candidatos-empresa #listaCandidatosEmpresa .recruta-cand-ident h3{margin:0 0 3px;color:#063c58;font-size:16px;line-height:1.2;font-weight:800}
-#pagina-candidatos-empresa #listaCandidatosEmpresa .recruta-cand-ident p{margin:0;color:#7890a0;font-size:10px}
-#pagina-candidatos-empresa #listaCandidatosEmpresa .recruta-cand-meta{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px}
-#pagina-candidatos-empresa #listaCandidatosEmpresa .recruta-cand-meta span{padding:5px 8px;border-radius:6px;background:#f1f6f9;color:#496a7d;font-size:8.5px;font-weight:600}
+/* EMPREGAI-RECRUTADOR-CANDIDATO-UNICO-V2 — grade 2 colunas e cards compactos */
+#pagina-candidatos-empresa #listaCandidatosEmpresa{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;width:100%;align-items:start}
+#pagina-candidatos-empresa #listaCandidatosEmpresa .recruta-cand-card{width:100%;min-width:0;margin:0;overflow:hidden;background:#fff;border:1px solid #d7e4eb;border-top:3px solid #168db5;border-radius:13px;box-shadow:0 4px 14px rgba(20,62,82,.045);font-family:'Montserrat',Arial,sans-serif}
+#pagina-candidatos-empresa #listaCandidatosEmpresa .recruta-cand-head{display:flex;align-items:flex-start;justify-content:space-between;gap:10px;padding:12px 14px 10px;border-bottom:1px solid #e5edf1}
+#pagina-candidatos-empresa #listaCandidatosEmpresa .recruta-cand-ident{display:flex;align-items:flex-start;gap:9px;min-width:0}
+#pagina-candidatos-empresa #listaCandidatosEmpresa .recruta-cand-monograma{width:34px;height:34px;flex:0 0 34px;display:grid;place-items:center;border-radius:50%;background:#eaf7f8;color:#087b83;font-size:12px;font-weight:800}
+#pagina-candidatos-empresa #listaCandidatosEmpresa .recruta-cand-ident h3{margin:0 0 3px;color:#063c58;font-size:14px;line-height:1.15;font-weight:800}
+#pagina-candidatos-empresa #listaCandidatosEmpresa .recruta-cand-ident p{margin:0;color:#7890a0;font-size:8.5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+#pagina-candidatos-empresa #listaCandidatosEmpresa .recruta-cand-meta{display:flex;gap:5px;flex-wrap:wrap;margin-top:6px}
+#pagina-candidatos-empresa #listaCandidatosEmpresa .recruta-cand-meta span{padding:4px 7px;border-radius:6px;background:#f1f6f9;color:#496a7d;font-size:7px;font-weight:650}
 #pagina-candidatos-empresa #listaCandidatosEmpresa .recruta-cand-status{flex:0 0 auto;text-align:center}
-#pagina-candidatos-empresa #listaCandidatosEmpresa .recruta-cand-status small{display:block;margin-bottom:5px;color:#6e8595;font-size:7px;font-weight:800;letter-spacing:.08em}
-#pagina-candidatos-empresa #listaCandidatosEmpresa .recruta-cand-status strong{display:inline-flex;align-items:center;justify-content:center;min-width:94px;min-height:30px;padding:5px 12px;border:1px solid #a9d9e1;border-radius:999px;background:#effafb;color:#08788a;font-size:9px;font-weight:750}
-#pagina-candidatos-empresa #listaCandidatosEmpresa .recruta-cand-preview-info{padding:12px 20px 0}
-#pagina-candidatos-empresa #listaCandidatosEmpresa .recruta-cand-preview-info .recruta-cand-info{display:grid;grid-template-columns:1fr 1.35fr 1fr;border:1px solid #d9e5eb;border-radius:11px;background:#f9fbfc;overflow:hidden}
-#pagina-candidatos-empresa #listaCandidatosEmpresa .recruta-cand-preview-info .recruta-cand-info>div{position:relative;min-width:0;min-height:74px;padding:12px 16px;display:flex;flex-direction:column;justify-content:center;border-right:1px solid #dfe8ed}
-#pagina-candidatos-empresa #listaCandidatosEmpresa .recruta-cand-preview-info .recruta-cand-info>div:last-child{border-right:0}
-#pagina-candidatos-empresa #listaCandidatosEmpresa .recruta-cand-info span{display:block;margin:0 0 7px;color:#617b8b;font-size:7.5px;font-weight:800;letter-spacing:.03em;text-transform:uppercase}
-#pagina-candidatos-empresa #listaCandidatosEmpresa .recruta-cand-info strong{display:block;margin:0;color:#073b5b;font-size:12px;line-height:1.2;font-weight:750}
-#pagina-candidatos-empresa #listaCandidatosEmpresa .recruta-cand-info small{display:block;margin-top:4px;color:#7690a0;font-size:8.5px}
-#pagina-candidatos-empresa #listaCandidatosEmpresa .recruta-aderencia-card{display:grid!important;grid-template-columns:70px minmax(0,1fr)!important;align-items:center!important;gap:14px!important}
+#pagina-candidatos-empresa #listaCandidatosEmpresa .recruta-cand-status small{display:block;margin-bottom:3px;color:#6e8595;font-size:6px;font-weight:800;letter-spacing:.08em}
+#pagina-candidatos-empresa #listaCandidatosEmpresa .recruta-cand-status strong{display:inline-flex;align-items:center;justify-content:center;min-width:76px;min-height:25px;padding:3px 9px;border:1px solid #a9d9e1;border-radius:999px;background:#effafb;color:#08788a;font-size:7.5px;font-weight:750}
+#pagina-candidatos-empresa #listaCandidatosEmpresa .recruta-cand-preview-info{padding:9px 14px 0}
+#pagina-candidatos-empresa #listaCandidatosEmpresa .recruta-cand-info{display:grid;grid-template-columns:1fr 1.15fr 1fr;border:1px solid #d9e5eb;border-radius:9px;background:#f9fbfc;overflow:hidden}
+#pagina-candidatos-empresa #listaCandidatosEmpresa .recruta-cand-info>div{position:relative;min-width:0;min-height:62px;padding:9px 10px;display:flex;flex-direction:column;justify-content:center;border-right:1px solid #dfe8ed}
+#pagina-candidatos-empresa #listaCandidatosEmpresa .recruta-cand-info>div:last-child{border-right:0}
+#pagina-candidatos-empresa #listaCandidatosEmpresa .recruta-cand-info span{display:block;margin:0 0 5px;color:#617b8b;font-size:6.5px;font-weight:800;letter-spacing:.025em;text-transform:uppercase}
+#pagina-candidatos-empresa #listaCandidatosEmpresa .recruta-cand-info strong{display:block;margin:0;color:#073b5b;font-size:10px;line-height:1.15;font-weight:750}
+#pagina-candidatos-empresa #listaCandidatosEmpresa .recruta-cand-info small{display:block;margin-top:3px;color:#7690a0;font-size:7px}
+#pagina-candidatos-empresa #listaCandidatosEmpresa .recruta-aderencia-card{display:grid!important;grid-template-columns:45px minmax(0,1fr)!important;align-items:center!important;gap:7px!important}
 #pagina-candidatos-empresa #listaCandidatosEmpresa .recruta-aderencia-card>span{grid-column:1/-1;margin:0!important}
-#pagina-candidatos-empresa #listaCandidatosEmpresa .recruta-aderencia-card>strong{font-size:22px!important;line-height:1!important;color:#087d92!important;text-align:center}
+#pagina-candidatos-empresa #listaCandidatosEmpresa .recruta-aderencia-card>strong{font-size:17px!important;line-height:1!important;color:#087d92!important;text-align:center}
 #pagina-candidatos-empresa #listaCandidatosEmpresa .recruta-aderencia-linha{min-width:0}
-#pagina-candidatos-empresa #listaCandidatosEmpresa .recruta-aderencia-linha small{margin:0 0 5px;text-align:left}
-#pagina-candidatos-empresa #listaCandidatosEmpresa .recruta-aderencia-barra{height:5px!important;border-radius:999px!important;background:#dfeaec!important;overflow:hidden!important}
+#pagina-candidatos-empresa #listaCandidatosEmpresa .recruta-aderencia-linha small{margin:0 0 3px;text-align:left;font-size:6.5px}
+#pagina-candidatos-empresa #listaCandidatosEmpresa .recruta-aderencia-barra{height:4px!important;border-radius:999px!important;background:#dfeaec!important;overflow:hidden!important}
 #pagina-candidatos-empresa #listaCandidatosEmpresa .recruta-aderencia-barra i{display:block;height:100%;border-radius:inherit;background:#0794a2}
-#pagina-candidatos-empresa #listaCandidatosEmpresa .recruta-cand-actions{display:grid;grid-template-columns:1.15fr 1fr 1fr 1fr 1.1fr;gap:7px;padding:11px 20px}
-#pagina-candidatos-empresa #listaCandidatosEmpresa .recruta-cand-actions .btn{width:100%;min-width:0;height:38px;padding:0 8px;display:flex;align-items:center;justify-content:center;gap:7px;border:1px solid #ccdce5;border-radius:8px;background:#fff;color:#123f5c;font-size:9px;font-weight:700;text-decoration:none;cursor:pointer}
+#pagina-candidatos-empresa #listaCandidatosEmpresa .recruta-cand-actions{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px;padding:8px 14px}
+#pagina-candidatos-empresa #listaCandidatosEmpresa .recruta-cand-actions .btn{width:100%;min-width:0;height:31px;padding:0 5px;display:flex;align-items:center;justify-content:center;gap:4px;border:1px solid #ccdce5;border-radius:7px;background:#fff;color:#123f5c;font-size:7.5px;font-weight:700;text-decoration:none;cursor:pointer;white-space:nowrap}
 #pagina-candidatos-empresa #listaCandidatosEmpresa .recruta-cand-actions .btn:first-child{background:#0789a4;border-color:#0789a4;color:#fff}
 #pagina-candidatos-empresa #listaCandidatosEmpresa .recruta-cand-actions .recruta-whatsapp{border-color:#9dddbb;color:#078443;background:#fbfffc}
-#pagina-candidatos-empresa #listaCandidatosEmpresa .recruta-preview-andamento{width:calc(100% - 40px);min-height:38px;margin:0 20px 12px;padding:0 12px;display:flex;align-items:center;border:0;border-top:1px solid #e5edf1;background:transparent;color:#607a8a;cursor:pointer}
-#pagina-candidatos-empresa #listaCandidatosEmpresa .recruta-preview-andamento span{font-size:7.5px;font-weight:800;text-transform:uppercase;letter-spacing:.04em}
-#pagina-candidatos-empresa #listaCandidatosEmpresa .recruta-preview-andamento b{margin-left:auto;color:#087b92;font-size:9px}
-#pagina-candidatos-empresa #listaCandidatosEmpresa .recruta-preview-andamento i{margin-left:10px;color:#087b92;font-style:normal}
+#pagina-candidatos-empresa #listaCandidatosEmpresa .recruta-cand-actions .btn:nth-child(4),#pagina-candidatos-empresa #listaCandidatosEmpresa .recruta-cand-actions .btn:nth-child(5){grid-column:span 1}
+#pagina-candidatos-empresa #listaCandidatosEmpresa .recruta-preview-andamento{width:calc(100% - 28px);min-height:31px;margin:0 14px 8px;padding:0 7px;display:flex;align-items:center;border:0;border-top:1px solid #e5edf1;background:transparent;color:#607a8a;cursor:pointer}
+#pagina-candidatos-empresa #listaCandidatosEmpresa .recruta-preview-andamento span{font-size:6px;font-weight:800;text-transform:uppercase;letter-spacing:.04em}
+#pagina-candidatos-empresa #listaCandidatosEmpresa .recruta-preview-andamento b{margin-left:auto;color:#087b92;font-size:7.5px}
+#pagina-candidatos-empresa #listaCandidatosEmpresa .recruta-preview-andamento i{margin-left:7px;color:#087b92;font-style:normal}
 #pagina-candidatos-empresa #listaCandidatosEmpresa .recruta-andamento{display:none}
-@media(max-width:900px){#pagina-candidatos-empresa #listaCandidatosEmpresa .recruta-cand-actions{grid-template-columns:repeat(2,1fr)}#pagina-candidatos-empresa #listaCandidatosEmpresa .recruta-cand-actions .btn:last-child{grid-column:1/-1}}
-@media(max-width:680px){#pagina-candidatos-empresa #listaCandidatosEmpresa .recruta-cand-head{align-items:flex-start;padding:14px}#pagina-candidatos-empresa #listaCandidatosEmpresa .recruta-cand-preview-info{padding:10px 14px 0}#pagina-candidatos-empresa #listaCandidatosEmpresa .recruta-cand-preview-info .recruta-cand-info{grid-template-columns:1fr}#pagina-candidatos-empresa #listaCandidatosEmpresa .recruta-cand-preview-info .recruta-cand-info>div{min-height:66px;border-right:0;border-bottom:1px solid #dfe8ed}#pagina-candidatos-empresa #listaCandidatosEmpresa .recruta-cand-preview-info .recruta-cand-info>div:last-child{border-bottom:0}#pagina-candidatos-empresa #listaCandidatosEmpresa .recruta-cand-actions{padding:10px 14px}#pagina-candidatos-empresa #listaCandidatosEmpresa .recruta-preview-andamento{width:calc(100% - 28px);margin-left:14px;margin-right:14px}}
-
+@media(max-width:1050px){#pagina-candidatos-empresa #listaCandidatosEmpresa{grid-template-columns:1fr}}
+@media(max-width:680px){#pagina-candidatos-empresa #listaCandidatosEmpresa .recruta-cand-head{padding:11px 12px}#pagina-candidatos-empresa #listaCandidatosEmpresa .recruta-cand-preview-info{padding:8px 12px 0}#pagina-candidatos-empresa #listaCandidatosEmpresa .recruta-cand-info{grid-template-columns:1fr 1fr}#pagina-candidatos-empresa #listaCandidatosEmpresa .recruta-cand-info>div{min-height:58px}#pagina-candidatos-empresa #listaCandidatosEmpresa .recruta-cand-info>div:last-child{grid-column:1/-1;border-top:1px solid #dfe8ed}#pagina-candidatos-empresa #listaCandidatosEmpresa .recruta-cand-actions{grid-template-columns:repeat(2,1fr);padding:8px 12px}#pagina-candidatos-empresa #listaCandidatosEmpresa .recruta-cand-actions .btn:last-child{grid-column:1/-1}#pagina-candidatos-empresa #listaCandidatosEmpresa .recruta-preview-andamento{width:calc(100% - 24px);margin-left:12px;margin-right:12px}}
 
 /* EMPREGAI-DESTAQUES-UNICO-V1 — única configuração da seção Vagas em destaque */
 #pagina-home .home-premium{max-width:1240px!important;width:calc(100% - 48px)!important;margin:0 auto!important;padding:22px 0 48px!important;box-sizing:border-box!important}
