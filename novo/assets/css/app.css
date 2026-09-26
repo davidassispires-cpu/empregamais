@@ -6224,3 +6224,30 @@ overflow:visible!important
  #vagaHeroDetalhe .vaga-info-ref{padding-top:0!important;padding-bottom:0!important}
  #vagaHeroDetalhe .vaga-info-ref>div{height:auto!important;min-height:86px!important}
 }
+
+
+/* EMPREGAMAI-TEXTO-CINZA-ESCURO-GLOBAL-V23 */
+/* Textos de leitura e apoio: cinza escuro. Cores de marca ficam reservadas a destaques/ações. */
+:root{--em-texto-secundario:#4f5f66}
+#pagina-vaga .vaga-texto,
+#pagina-vaga .vaga-conteudo-v2 section>p,
+#pagina-vaga .beneficios-tags p,
+#pagina-vaga .vaga-info-ref small,
+#pagina-vaga .vaga-complementares span,
+#pagina-vaga .vaga-acao-v2>p,
+#pagina-vaga .vaga-publicacao,
+#pagina-vaga .empresa-side-identidade p,
+#pagina-vaga .empresa-side-identidade small,
+#pagina-publicar #formVaga small,
+#pagina-publicar #formVaga p:not(.alert):not(.msg),
+#pagina-publicar #formVaga input:not([type=checkbox]):not([type=radio]),
+#pagina-publicar #formVaga textarea,
+#pagina-publicar #formVaga select,
+#pagina-publicar #formVaga input::placeholder,
+#pagina-publicar #formVaga textarea::placeholder,
+#pagina-home .vaga-card p,
+#pagina-home .vaga-card small,
+#pagina-vagas .vaga-card p,
+#pagina-vagas .vaga-card small{
+ color:var(--em-texto-secundario)!important;
+}
