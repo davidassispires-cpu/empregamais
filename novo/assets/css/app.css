@@ -6620,3 +6620,56 @@ overflow:visible!important
     margin-top:14px!important;
   }
 }
+
+
+/* HOME — RECENTES MOBILE SEM ESPAÇO RESERVADO V90 (2026-09-26)
+   No mobile o filtro fechado sai totalmente do fluxo e a coluna lateral
+   não herda altura do banner desktop. */
+@media (max-width:650px){
+ #pagina-home .home-recentes-layout{
+   display:flex!important;
+   flex-direction:column!important;
+   gap:10px!important;
+   align-items:stretch!important;
+ }
+ #pagina-home .home-recentes-lateral,
+ #pagina-home .home-recentes-coluna{
+   display:block!important;
+   width:100%!important;
+   min-width:0!important;
+   height:auto!important;
+   min-height:0!important;
+   margin:0!important;
+   padding:0!important;
+ }
+ #pagina-home .home-recentes-coluna{gap:0!important}
+ #pagina-home .recentes-filtros-toggle{margin:0 0 8px!important}
+ #pagina-home .home-recentes-coluna .recentes-filtros:not(.aberto){
+   display:none!important;
+   height:0!important;
+   min-height:0!important;
+   margin:0!important;
+   padding:0!important;
+ }
+ #pagina-home .home-recentes-lateral .home-curriculo-banner{
+   display:none!important;
+   min-height:0!important;
+   height:0!important;
+   margin:0!important;
+   padding:0!important;
+ }
+ #pagina-home .home-recentes-main{
+   display:block!important;
+   width:100%!important;
+   min-width:0!important;
+   min-height:0!important;
+   height:auto!important;
+   margin:0!important;
+   padding:0!important;
+ }
+ #pagina-home .home-recentes-main #listaVagasPortal{
+   min-height:0!important;
+   height:auto!important;
+   margin:0!important;
+ }
+}
