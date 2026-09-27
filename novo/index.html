@@ -16723,4 +16723,326 @@ window.trocarComoFuncionaEM=function(tipo,btn){
   #pagina-candidatos-empresa #listaCandidatosEmpresa .recruta-cand-actions>.btn{font-size:9.5px!important}
 }
 </style>
+<style id="EMPREGAMAI-ANDAMENTO-MODAL-PRO-V142">
+/* Modal de andamento profissional — apenas visual, sem alterar lógica */
+.recruta-modal-exemplo1 .recruta-andamento-modal-dialog{
+  width:min(780px,calc(100vw - 40px))!important;
+  max-height:90vh!important;
+  border:1px solid #cadce8!important;
+  border-radius:18px!important;
+  background:#fff!important;
+  box-shadow:0 28px 80px rgba(6,36,58,.24)!important;
+  overflow:hidden!important;
+  font-family:'Montserrat',Arial,sans-serif!important;
+  color:#153a59!important;
+}
+
+/* cabeçalho */
+.recruta-modal-exemplo1 .recruta-modal-candidato-head{
+  display:grid!important;
+  grid-template-columns:56px minmax(0,1fr) 38px!important;
+  gap:14px!important;
+  align-items:center!important;
+  padding:18px 20px!important;
+  border-bottom:1px solid #e3ecf2!important;
+  background:#fff!important;
+}
+.recruta-modal-exemplo1 .recruta-modal-avatar{
+  width:52px!important;height:52px!important;
+  display:grid!important;place-items:center!important;
+  border-radius:50%!important;
+  background:#eaf4fc!important;
+  color:#0b5f9c!important;
+  font-size:19px!important;
+  font-weight:800!important;
+}
+.recruta-modal-exemplo1 .recruta-modal-ident h3{
+  margin:0!important;
+  color:#092f54!important;
+  font-size:20px!important;
+  line-height:1.1!important;
+  font-weight:800!important;
+  letter-spacing:-.02em!important;
+}
+.recruta-modal-exemplo1 .recruta-modal-ident p{
+  margin:5px 0 0!important;
+  color:#627a91!important;
+  font-size:12.5px!important;
+  line-height:1.3!important;
+  font-weight:500!important;
+}
+.recruta-modal-exemplo1 .recruta-modal-ident span{
+  display:block!important;
+  margin-top:6px!important;
+  color:#70859b!important;
+  font-size:10.5px!important;
+  line-height:1.2!important;
+  font-weight:500!important;
+}
+.recruta-modal-exemplo1 .recruta-modal-candidato-head>button{
+  width:36px!important;height:36px!important;
+  display:grid!important;place-items:center!important;
+  padding:0!important;
+  border:1px solid #ccdce7!important;
+  border-radius:10px!important;
+  background:#f8fbfd!important;
+  color:#46677e!important;
+  font-size:20px!important;
+  cursor:pointer!important;
+}
+
+/* abas */
+.recruta-modal-exemplo1 .recruta-modal-tabs{
+  display:flex!important;
+  gap:20px!important;
+  padding:0 20px!important;
+  border-bottom:1px solid #e1eaf0!important;
+  background:#fbfdff!important;
+}
+.recruta-modal-exemplo1 .recruta-modal-tabs button{
+  height:44px!important;
+  padding:0 2px!important;
+  border:0!important;
+  border-bottom:2px solid transparent!important;
+  background:transparent!important;
+  color:#74899c!important;
+  font-size:11px!important;
+  font-weight:550!important;
+}
+.recruta-modal-exemplo1 .recruta-modal-tabs button.ativo{
+  border-bottom-color:#0a79c7!important;
+  color:#075c9e!important;
+  font-weight:700!important;
+}
+.recruta-modal-exemplo1 .recruta-modal-tabs button:disabled{
+  opacity:.55!important;
+}
+
+/* corpo */
+.recruta-modal-exemplo1 .recruta-andamento-modal-body{
+  max-height:calc(90vh - 205px)!important;
+  padding:20px!important;
+  overflow-y:auto!important;
+  background:#fff!important;
+}
+.recruta-modal-exemplo1 .recruta-modal-processo-clean>h4,
+.recruta-modal-exemplo1 .recruta-modal-observacao>h4{
+  margin:0 0 14px!important;
+  color:#0b3156!important;
+  font-size:15px!important;
+  line-height:1.2!important;
+  font-weight:800!important;
+}
+
+/* bloco da etapa atual */
+.recruta-modal-exemplo1 .recruta-processo-head{
+  margin:0!important;
+  padding:16px!important;
+  display:grid!important;
+  grid-template-columns:minmax(0,1fr) auto!important;
+  gap:16px!important;
+  align-items:end!important;
+  border:1px solid #d8e5ed!important;
+  border-radius:12px!important;
+  background:#f8fbfd!important;
+}
+.recruta-modal-exemplo1 .recruta-processo-head:before{display:none!important}
+.recruta-modal-exemplo1 .recruta-etapa-resumo{
+  margin:0!important;
+}
+.recruta-modal-exemplo1 .recruta-etapa-resumo>small{
+  display:block!important;
+  margin:0 0 7px!important;
+  color:#73879c!important;
+  font-size:9px!important;
+  font-weight:800!important;
+  letter-spacing:.12em!important;
+}
+.recruta-modal-exemplo1 .recruta-etapa-resumo>div{
+  display:flex!important;
+  align-items:baseline!important;
+  flex-wrap:wrap!important;
+  gap:5px!important;
+}
+.recruta-modal-exemplo1 .recruta-etapa-resumo strong{
+  color:#0b3156!important;
+  font-size:16px!important;
+  line-height:1.15!important;
+  font-weight:800!important;
+}
+.recruta-modal-exemplo1 .recruta-etapa-resumo span{
+  color:#657c91!important;
+  font-size:12px!important;
+  font-weight:500!important;
+}
+
+/* controles, remove aparência HTML padrão */
+.recruta-modal-exemplo1 .recruta-processo-controles{
+  display:flex!important;
+  align-items:flex-end!important;
+  gap:8px!important;
+  flex-wrap:wrap!important;
+}
+.recruta-modal-exemplo1 .recruta-alterar-etapa{
+  display:flex!important;
+  flex-direction:column!important;
+  gap:6px!important;
+}
+.recruta-modal-exemplo1 .recruta-alterar-etapa>span{
+  color:#6f8498!important;
+  font-size:9px!important;
+  font-weight:700!important;
+}
+.recruta-modal-exemplo1 .cand-status-select{
+  height:38px!important;
+  min-width:150px!important;
+  padding:0 34px 0 11px!important;
+  border:1px solid #bfd3e2!important;
+  border-radius:9px!important;
+  background:#fff!important;
+  color:#173f60!important;
+  font-family:'Montserrat',Arial,sans-serif!important;
+  font-size:11px!important;
+  font-weight:650!important;
+  outline:none!important;
+}
+.recruta-modal-exemplo1 .cand-status-select:focus{
+  border-color:#6eb5df!important;
+  box-shadow:0 0 0 3px rgba(11,126,199,.08)!important;
+}
+.recruta-modal-exemplo1 .recruta-toggle-andamento{
+  height:38px!important;
+  min-width:128px!important;
+  padding:0 12px!important;
+  border:1px solid #bfd3e2!important;
+  border-radius:9px!important;
+  background:#fff!important;
+  color:#0b609c!important;
+  font-family:'Montserrat',Arial,sans-serif!important;
+  font-size:10.5px!important;
+  font-weight:700!important;
+  cursor:pointer!important;
+}
+
+/* observação */
+.recruta-modal-exemplo1 .recruta-modal-observacao{
+  margin-top:18px!important;
+  padding-top:18px!important;
+  border-top:1px solid #e3ebf0!important;
+}
+.recruta-modal-exemplo1 .recruta-modal-observacao>div{
+  display:grid!important;
+  grid-template-columns:36px 1fr!important;
+  gap:11px!important;
+  align-items:start!important;
+  padding:13px 14px!important;
+  border:1px solid #efd8ac!important;
+  border-radius:11px!important;
+  background:#fffaf1!important;
+}
+.recruta-modal-exemplo1 .recruta-modal-observacao i{
+  width:32px!important;height:32px!important;
+  display:grid!important;place-items:center!important;
+  border-radius:50%!important;
+  background:#fff0cf!important;
+  color:#d58b16!important;
+  font-size:13px!important;
+  font-style:normal!important;
+}
+.recruta-modal-exemplo1 .recruta-modal-observacao p{
+  margin:0!important;
+  display:flex!important;
+  flex-direction:column!important;
+  gap:5px!important;
+}
+.recruta-modal-exemplo1 .recruta-modal-observacao strong{
+  color:#173e5b!important;
+  font-size:11.5px!important;
+  font-weight:750!important;
+}
+.recruta-modal-exemplo1 .recruta-modal-observacao span{
+  color:#667d90!important;
+  font-size:10.5px!important;
+  line-height:1.35!important;
+}
+
+/* rodapé */
+.recruta-modal-exemplo1 .recruta-modal-footer{
+  display:flex!important;
+  align-items:center!important;
+  gap:9px!important;
+  padding:13px 20px!important;
+  border-top:1px solid #e2ebf1!important;
+  background:#fbfdff!important;
+}
+.recruta-modal-exemplo1 .recruta-modal-footer .btn{
+  height:40px!important;
+  padding:0 15px!important;
+  border-radius:9px!important;
+  font-family:'Montserrat',Arial,sans-serif!important;
+  font-size:10.5px!important;
+  font-weight:700!important;
+}
+.recruta-modal-exemplo1 .recruta-modal-whatsapp{
+  border-color:#a8dac2!important;
+  background:#f3fbf7!important;
+  color:#0f7952!important;
+}
+.recruta-modal-exemplo1 .recruta-modal-agendar{
+  border-color:#cfdce5!important;
+  background:#fff!important;
+  color:#173e5d!important;
+}
+.recruta-modal-exemplo1 .recruta-modal-footer .btn:last-child{
+  margin-left:auto!important;
+  min-width:88px!important;
+  border-color:#0a74c9!important;
+  background:#0a74c9!important;
+  color:#fff!important;
+}
+
+@media(max-width:650px){
+  .recruta-modal-exemplo1 .recruta-andamento-modal-dialog{
+    width:100%!important;
+    max-height:95vh!important;
+    border-radius:14px!important;
+  }
+  .recruta-modal-exemplo1 .recruta-modal-candidato-head{
+    grid-template-columns:48px 1fr 34px!important;
+    padding:16px!important;
+  }
+  .recruta-modal-exemplo1 .recruta-modal-avatar{
+    width:46px!important;height:46px!important;font-size:17px!important;
+  }
+  .recruta-modal-exemplo1 .recruta-modal-tabs{
+    overflow-x:auto!important;
+    gap:14px!important;
+    padding:0 14px!important;
+  }
+  .recruta-modal-exemplo1 .recruta-andamento-modal-body{
+    padding:15px!important;
+    max-height:calc(95vh - 190px)!important;
+  }
+  .recruta-modal-exemplo1 .recruta-processo-head{
+    grid-template-columns:1fr!important;
+    align-items:start!important;
+  }
+  .recruta-modal-exemplo1 .recruta-processo-controles{
+    width:100%!important;
+  }
+  .recruta-modal-exemplo1 .recruta-alterar-etapa{
+    flex:1 1 160px!important;
+  }
+  .recruta-modal-exemplo1 .cand-status-select{
+    width:100%!important;
+  }
+  .recruta-modal-exemplo1 .recruta-modal-footer{
+    flex-wrap:wrap!important;
+    padding:11px 14px!important;
+  }
+  .recruta-modal-exemplo1 .recruta-modal-footer .btn:last-child{
+    margin-left:0!important;
+  }
+}
+</style>
 </body></html>
