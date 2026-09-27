@@ -7967,3 +7967,28 @@ body{
     grid-template-columns:1fr 1fr!important;
   }
 }
+/* EMPREGAMAIS-PAINEL-REAL-DOM-V2 */
+/* EMPREGAMAI-PAINEL-ENXUTO-INLINE-V2 */
+#pagina-painel-empresa .emp-rec-planbar{min-height:62px!important;margin-top:8px!important}
+#pagina-painel-empresa #empresaMetricasNovas.emp-dash-kpis{gap:9px!important;margin-bottom:10px!important}
+#pagina-painel-empresa #empresaMetricasNovas.emp-dash-kpis>button{height:88px!important;min-height:88px!important;padding:11px 12px!important;grid-template-columns:36px minmax(0,1fr)!important;column-gap:9px!important;border-radius:12px!important;box-shadow:0 2px 8px rgba(17,61,80,.025)!important}
+#pagina-painel-empresa #empresaMetricasNovas.emp-dash-kpis>button>i{width:34px!important;height:34px!important;border-radius:9px!important;background:#eef5f7!important;color:#17687d!important}
+#pagina-painel-empresa #empresaMetricasNovas.emp-dash-kpis>button::after{display:none!important}
+#pagina-painel-empresa #empresaMetricasNovas.emp-dash-kpis span{font-size:10.8px!important;line-height:14px!important;color:#315364!important}
+#pagina-painel-empresa #empresaMetricasNovas.emp-dash-kpis strong{font-size:23px!important;line-height:23px!important;color:#103f56!important}
+#pagina-painel-empresa #empresaMetricasNovas.emp-dash-kpis small{font-size:9.5px!important;line-height:11px!important;color:#71848e!important}
+#pagina-painel-empresa #empresaMetricasNovas.emp-dash-kpis>button>b{display:none!important}
+#pagina-painel-empresa .emp-performance{margin:12px 0 18px!important;padding:0!important;border-radius:13px!important;overflow:hidden!important}
+#pagina-painel-empresa .emp-performance-head{padding:15px 18px!important;margin:0!important;border-bottom:1px solid #e5ecef!important;align-items:center!important}
+#pagina-painel-empresa .emp-performance-head h2{font-size:17px!important}
+#pagina-painel-empresa .emp-performance-head p{font-size:10.5px!important}
+#pagina-painel-empresa .emp-performance-grid{gap:0!important}
+#pagina-painel-empresa .emp-performance-grid article{min-height:102px!important;padding:13px!important;border:0!important;border-right:1px solid #e5ecef!important;border-radius:0!important;background:#fff!important}
+#pagina-painel-empresa .emp-performance-grid article:last-child{border-right:0!important}
+#pagina-painel-empresa .emp-performance-card-top span{font-size:10.5px!important}
+#pagina-painel-empresa .emp-performance-grid article>strong{font-size:22px!important}
+#pagina-painel-empresa .emp-performance-grid article>small{font-size:9.5px!important}
+#pagina-painel-empresa .emp-performance-foot{display:none!important}
+#pagina-painel-empresa .emp-dash-section-head{margin:18px 0 8px!important}
+@media(max-width:900px){#pagina-painel-empresa #empresaMetricasNovas.emp-dash-kpis{grid-template-columns:repeat(2,minmax(0,1fr))!important}#pagina-painel-empresa .emp-performance-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important}}
+
