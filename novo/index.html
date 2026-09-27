@@ -15794,4 +15794,215 @@ window.trocarComoFuncionaEM=function(tipo,btn){
   #pagina-candidatos-empresa #listaCandidatosEmpresa .recruta-cand-actions>.btn-azul{grid-column:1/-1!important}
 }
 </style>
+<style id="EMPREGAMAI-CANDIDATO-2COL-CENTRO-V140">
+/* ===== LISTA: 2 CARDS POR LINHA ===== */
+#pagina-candidatos-empresa #listaCandidatosEmpresa{
+  display:grid !important;
+  grid-template-columns:repeat(2, minmax(0, 920px)) !important;
+  justify-content:start !important;
+  gap:18px !important;
+  align-items:start !important;
+}
+
+#pagina-candidatos-empresa #listaCandidatosEmpresa > .processo-head,
+#pagina-candidatos-empresa #listaCandidatosEmpresa > .candidatos-empresa-filtro-vaga,
+#pagina-candidatos-empresa #listaCandidatosEmpresa > .etapas-tabs,
+#pagina-candidatos-empresa #listaCandidatosEmpresa > .vagas-vazio{
+  grid-column:1 / -1 !important;
+}
+
+#pagina-candidatos-empresa #listaCandidatosEmpresa .recruta-cand-card{
+  width:100% !important;
+  max-width:920px !important;
+}
+
+
+/* ===== CABEÇALHO MAIS BAIXO ===== */
+#pagina-candidatos-empresa #listaCandidatosEmpresa .recruta-cand-head{
+  min-height:118px !important;
+  padding:18px 22px !important;
+  display:grid !important;
+  grid-template-columns:minmax(0,1fr) 185px !important;
+  align-items:center !important;
+  gap:20px !important;
+}
+
+#pagina-candidatos-empresa #listaCandidatosEmpresa .recruta-cand-ident{
+  gap:18px !important;
+}
+
+#pagina-candidatos-empresa #listaCandidatosEmpresa .recruta-cand-monograma{
+  width:74px !important;
+  height:74px !important;
+  min-width:74px !important;
+  font-size:28px !important;
+  border-radius:18px !important;
+}
+
+#pagina-candidatos-empresa #listaCandidatosEmpresa .recruta-cand-ident h3{
+  margin:0 0 6px !important;
+  font-size:30px !important;
+  line-height:1 !important;
+  letter-spacing:-.04em !important;
+}
+
+#pagina-candidatos-empresa #listaCandidatosEmpresa .recruta-cand-ident p{
+  font-size:14px !important;
+  line-height:1.25 !important;
+}
+
+#pagina-candidatos-empresa #listaCandidatosEmpresa .recruta-cand-status > small{
+  font-size:10px !important;
+}
+
+#pagina-candidatos-empresa #listaCandidatosEmpresa .recruta-cand-status > strong{
+  min-height:36px !important;
+  font-size:14px !important;
+}
+
+#pagina-candidatos-empresa #listaCandidatosEmpresa .meta-inline span{
+  min-height:24px !important;
+  font-size:11px !important;
+}
+
+
+/* ===== BLOCOS INTERNOS CENTRALIZADOS ===== */
+#pagina-candidatos-empresa #listaCandidatosEmpresa .recruta-cand-preview-info{
+  padding:16px 16px 0 !important;
+}
+
+#pagina-candidatos-empresa #listaCandidatosEmpresa .recruta-cand-info{
+  display:grid !important;
+  grid-template-columns:1fr 1fr 1fr !important;
+  gap:12px !important;
+}
+
+#pagina-candidatos-empresa #listaCandidatosEmpresa .recruta-cand-info > div{
+  height:118px !important;
+  min-height:118px !important;
+  padding:14px 16px !important;
+  display:flex !important;
+  flex-direction:column !important;
+  justify-content:center !important;
+  align-items:center !important;
+  text-align:center !important;
+}
+
+#pagina-candidatos-empresa #listaCandidatosEmpresa .recruta-cand-info > div > span{
+  width:100% !important;
+  justify-content:center !important;
+  text-align:center !important;
+  gap:9px !important;
+  font-size:13px !important;
+}
+
+#pagina-candidatos-empresa #listaCandidatosEmpresa .recruta-cand-info > div > strong{
+  width:100% !important;
+  text-align:center !important;
+  margin-top:8px !important;
+  font-size:22px !important;
+}
+
+#pagina-candidatos-empresa #listaCandidatosEmpresa .recruta-cand-info > div > small{
+  width:100% !important;
+  text-align:center !important;
+  margin-top:4px !important;
+  font-size:12px !important;
+  line-height:1.25 !important;
+}
+
+
+/* ===== CARD DE ADERÊNCIA CENTRALIZADO ===== */
+#pagina-candidatos-empresa #listaCandidatosEmpresa .recruta-aderencia-card{
+  align-items:center !important;
+}
+
+#pagina-candidatos-empresa #listaCandidatosEmpresa .recruta-aderencia-score{
+  justify-content:center !important;
+  gap:10px !important;
+  margin-top:8px !important;
+}
+
+#pagina-candidatos-empresa #listaCandidatosEmpresa .recruta-aderencia-score > strong{
+  font-size:31px !important;
+}
+
+#pagina-candidatos-empresa #listaCandidatosEmpresa .recruta-aderencia-score > small{
+  font-size:11px !important;
+  min-height:26px !important;
+}
+
+#pagina-candidatos-empresa #listaCandidatosEmpresa .recruta-aderencia-barra{
+  margin-top:10px !important;
+  height:8px !important;
+}
+
+
+/* ===== BOTÕES ===== */
+#pagina-candidatos-empresa #listaCandidatosEmpresa .recruta-cand-actions,
+#pagina-candidatos-empresa #listaCandidatosEmpresa .recruta-cand-actions.recruta-acoes-unificadas{
+  grid-template-columns:1.15fr .95fr 1fr .95fr 1fr !important;
+  gap:9px !important;
+  padding:14px 16px 16px !important;
+}
+
+#pagina-candidatos-empresa #listaCandidatosEmpresa .recruta-cand-actions > .btn,
+#pagina-candidatos-empresa #listaCandidatosEmpresa .recruta-cand-actions.recruta-acoes-unificadas > .btn{
+  height:58px !important;
+  min-height:58px !important;
+  font-size:15px !important;
+}
+
+
+/* ===== RODAPÉ ===== */
+#pagina-candidatos-empresa #listaCandidatosEmpresa .recruta-preview-andamento{
+  height:44px !important;
+  min-height:44px !important;
+}
+
+#pagina-candidatos-empresa #listaCandidatosEmpresa .recruta-preview-andamento > span{
+  font-size:12px !important;
+}
+
+#pagina-candidatos-empresa #listaCandidatosEmpresa .recruta-preview-andamento > b{
+  font-size:13px !important;
+}
+
+
+/* ===== RESPONSIVO ===== */
+@media (max-width: 1280px){
+  #pagina-candidatos-empresa #listaCandidatosEmpresa{
+    grid-template-columns:1fr !important;
+  }
+
+  #pagina-candidatos-empresa #listaCandidatosEmpresa .recruta-cand-card{
+    max-width:920px !important;
+  }
+}
+
+@media (max-width: 760px){
+  #pagina-candidatos-empresa #listaCandidatosEmpresa .recruta-cand-head{
+    grid-template-columns:1fr !important;
+    min-height:0 !important;
+  }
+
+  #pagina-candidatos-empresa #listaCandidatosEmpresa .recruta-cand-status,
+  #pagina-candidatos-empresa #listaCandidatosEmpresa .meta-inline{
+    align-items:flex-start !important;
+    text-align:left !important;
+  }
+
+  #pagina-candidatos-empresa #listaCandidatosEmpresa .recruta-cand-info{
+    grid-template-columns:1fr !important;
+  }
+
+  #pagina-candidatos-empresa #listaCandidatosEmpresa .recruta-cand-actions{
+    grid-template-columns:1fr 1fr !important;
+  }
+
+  #pagina-candidatos-empresa #listaCandidatosEmpresa .recruta-cand-actions > .btn-azul{
+    grid-column:1 / -1 !important;
+  }
+}
+</style>
 </body></html>
