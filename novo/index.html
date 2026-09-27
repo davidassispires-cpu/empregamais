@@ -11519,88 +11519,99 @@ option{
   #pagina-perfil-empresa .perfil-grid .campo{font-size:13.5px!important}
 }
 </style>
-<style id="EMPREGAMAIS-PAINEL-FONTE-REGULAR-V1">
-/* Painel da empresa: textos pequenos em Montserrat Regular para leitura limpa. */
-#pagina-painel-empresa,
-#pagina-painel-empresa *{
+
+<style id="EMPREGAMAIS-PAINEL-FONTE-REGULAR-FORCE-V2">
+/* Override final e específico: painel da empresa com Montserrat Regular e textos maiores. */
+#pagina-painel-empresa#pagina-painel-empresa,
+#pagina-painel-empresa#pagina-painel-empresa *{
   font-family:"Montserrat"!important;
 }
 
-/* Textos auxiliares, labels, descrições e metadados */
-#pagina-painel-empresa p,
-#pagina-painel-empresa small,
-#pagina-painel-empresa label,
-#pagina-painel-empresa .emp-rec-hero-copy>p,
-#pagina-painel-empresa .emp-dash-section-head p,
-#pagina-painel-empresa .emp-open-vagas-head p,
-#pagina-painel-empresa .emp-performance-head p,
-#pagina-painel-empresa .emp-performance-head small,
-#pagina-painel-empresa .emp-plan-overview-v100 span,
-#pagina-painel-empresa .emp-plan-overview-v100 small,
-#pagina-painel-empresa .emp-plan-clean-v94 span,
-#pagina-painel-empresa .emp-plan-clean-v94 small,
-#pagina-painel-empresa #empresaMetricasNovas.emp-dash-kpis span,
-#pagina-painel-empresa #empresaMetricasNovas.emp-dash-kpis small,
-#pagina-painel-empresa .emp-performance-grid article>span,
-#pagina-painel-empresa .emp-performance-grid article>small,
-#pagina-painel-empresa .emp-dash-actions span,
-#pagina-painel-empresa .emp-dash-actions small,
-#pagina-painel-empresa #empresaVagasAbertasPainel p,
-#pagina-painel-empresa #empresaVagasAbertasPainel span{
-  font-weight:400!important;
-  letter-spacing:0!important;
+/* HERO */
+#pagina-painel-empresa#pagina-painel-empresa .emp-top-clean-v94 .emp-rec-hero-copy>span{
+  font-family:"Montserrat"!important;font-size:12.5px!important;font-weight:400!important;letter-spacing:.06em!important;
+}
+#pagina-painel-empresa#pagina-painel-empresa .emp-top-clean-v94 .emp-rec-hero-copy h1{
+  font-family:"Montserrat"!important;font-size:27px!important;font-weight:500!important;letter-spacing:-.02em!important;
+}
+#pagina-painel-empresa#pagina-painel-empresa .emp-top-clean-v94 .emp-rec-hero-copy>p{
+  font-family:"Montserrat"!important;font-size:14px!important;line-height:1.55!important;font-weight:400!important;letter-spacing:0!important;
+}
+#pagina-painel-empresa#pagina-painel-empresa .emp-top-clean-v94 .emp-rec-hero-actions button{
+  font-family:"Montserrat"!important;font-size:12.5px!important;font-weight:500!important;
 }
 
-/* Tamanho mínimo mais confortável para textos pequenos */
-#pagina-painel-empresa .emp-rec-hero-copy>p,
-#pagina-painel-empresa .emp-dash-section-head p,
-#pagina-painel-empresa .emp-open-vagas-head p,
-#pagina-painel-empresa .emp-performance-head p{
-  font-size:13px!important;
-  line-height:1.55!important;
+/* CARDS DO PLANO */
+#pagina-painel-empresa#pagina-painel-empresa .emp-plan-overview-v100 span{
+  font-family:"Montserrat"!important;font-size:13px!important;line-height:1.35!important;font-weight:400!important;letter-spacing:0!important;
 }
-#pagina-painel-empresa .emp-plan-overview-v100 span,
-#pagina-painel-empresa .emp-plan-clean-v94 span,
-#pagina-painel-empresa #empresaMetricasNovas.emp-dash-kpis span,
-#pagina-painel-empresa .emp-performance-grid article>span,
-#pagina-painel-empresa .emp-dash-actions span{
-  font-size:12px!important;
-  line-height:1.4!important;
+#pagina-painel-empresa#pagina-painel-empresa .emp-plan-overview-v100 small{
+  font-family:"Montserrat"!important;font-size:12px!important;line-height:1.4!important;font-weight:400!important;letter-spacing:0!important;
 }
-#pagina-painel-empresa .emp-plan-overview-v100 small,
-#pagina-painel-empresa .emp-plan-clean-v94 small,
-#pagina-painel-empresa #empresaMetricasNovas.emp-dash-kpis small,
-#pagina-painel-empresa .emp-performance-grid article>small,
-#pagina-painel-empresa .emp-dash-actions small{
-  font-size:11px!important;
-  line-height:1.45!important;
+#pagina-painel-empresa#pagina-painel-empresa .emp-plan-overview-ident span,
+#pagina-painel-empresa#pagina-painel-empresa .emp-plan-overview-vigencia span{
+  font-size:12px!important;font-weight:400!important;letter-spacing:.02em!important;
+}
+#pagina-painel-empresa#pagina-painel-empresa .emp-plan-overview-v100 strong{
+  font-family:"Montserrat"!important;font-weight:500!important;
+}
+#pagina-painel-empresa#pagina-painel-empresa .emp-plan-overview-ident strong{font-size:16px!important}
+#pagina-painel-empresa#pagina-painel-empresa .emp-plan-overview-metric>div>strong{font-size:24px!important}
+#pagina-painel-empresa#pagina-painel-empresa .emp-plan-overview-vigencia strong{font-size:15px!important}
+#pagina-painel-empresa#pagina-painel-empresa .emp-plan-overview-manage{
+  font-family:"Montserrat"!important;font-size:12px!important;font-weight:500!important;
 }
 
-/* Títulos e números mantêm hierarquia, sem excesso de peso */
-#pagina-painel-empresa h1,
-#pagina-painel-empresa h2,
-#pagina-painel-empresa h3,
-#pagina-painel-empresa strong,
-#pagina-painel-empresa .kpi-num{
-  font-family:"Montserrat"!important;
+/* CABEÇALHO VISÃO GERAL */
+#pagina-painel-empresa#pagina-painel-empresa .emp-premium-eyebrow{
+  font-family:"Montserrat"!important;font-size:12px!important;font-weight:400!important;letter-spacing:.05em!important;
 }
-#pagina-painel-empresa h1,
-#pagina-painel-empresa h2,
-#pagina-painel-empresa h3{
-  font-weight:600!important;
+#pagina-painel-empresa#pagina-painel-empresa .emp-dash-section-head h2{
+  font-family:"Montserrat"!important;font-size:21px!important;font-weight:500!important;letter-spacing:-.01em!important;
 }
-#pagina-painel-empresa strong,
-#pagina-painel-empresa .kpi-num,
-#pagina-painel-empresa #empresaMetricasNovas.emp-dash-kpis strong{
-  font-weight:600!important;
+#pagina-painel-empresa#pagina-painel-empresa .emp-dash-section-head p{
+  font-family:"Montserrat"!important;font-size:14px!important;line-height:1.5!important;font-weight:400!important;
 }
 
-/* Eyebrows continuam destacados, mas menos pesados */
-#pagina-painel-empresa .emp-premium-eyebrow,
-#pagina-painel-empresa .emp-open-vagas-head span,
-#pagina-painel-empresa .emp-performance-head span,
-#pagina-painel-empresa .emp-rec-hero-copy>span{
-  font-weight:600!important;
+/* KPIs VISÃO GERAL */
+#pagina-painel-empresa#pagina-painel-empresa #empresaMetricasNovas.emp-dash-kpis span{
+  height:auto!important;
+  font-family:"Montserrat"!important;font-size:13.5px!important;line-height:1.35!important;font-weight:400!important;letter-spacing:0!important;white-space:normal!important;
+}
+#pagina-painel-empresa#pagina-painel-empresa #empresaMetricasNovas.emp-dash-kpis strong{
+  font-family:"Montserrat"!important;font-size:26px!important;line-height:1.05!important;font-weight:500!important;letter-spacing:-.02em!important;
+}
+#pagina-painel-empresa#pagina-painel-empresa #empresaMetricasNovas.emp-dash-kpis small{
+  font-family:"Montserrat"!important;font-size:12px!important;line-height:1.4!important;font-weight:400!important;letter-spacing:0!important;
+}
+
+/* DESEMPENHO E DEMAIS TEXTOS PEQUENOS */
+#pagina-painel-empresa#pagina-painel-empresa .emp-performance-head>span,
+#pagina-painel-empresa#pagina-painel-empresa .emp-open-vagas-head>span{
+  font-family:"Montserrat"!important;font-size:12px!important;font-weight:400!important;letter-spacing:.05em!important;
+}
+#pagina-painel-empresa#pagina-painel-empresa .emp-performance-head h2,
+#pagina-painel-empresa#pagina-painel-empresa .emp-open-vagas-head h2{
+  font-family:"Montserrat"!important;font-size:20px!important;font-weight:500!important;
+}
+#pagina-painel-empresa#pagina-painel-empresa .emp-performance-head p,
+#pagina-painel-empresa#pagina-painel-empresa .emp-open-vagas-head p,
+#pagina-painel-empresa#pagina-painel-empresa .emp-performance-head small{
+  font-family:"Montserrat"!important;font-size:13px!important;line-height:1.5!important;font-weight:400!important;
+}
+#pagina-painel-empresa#pagina-painel-empresa .emp-performance-grid article>span{
+  font-family:"Montserrat"!important;font-size:13px!important;font-weight:400!important;
+}
+#pagina-painel-empresa#pagina-painel-empresa .emp-performance-grid article>small{
+  font-family:"Montserrat"!important;font-size:12px!important;line-height:1.4!important;font-weight:400!important;
+}
+
+/* evita regras antigas reduzirem novamente */
+#pagina-painel-empresa#pagina-painel-empresa .emp-plan-overview-v100 span,
+#pagina-painel-empresa#pagina-painel-empresa .emp-plan-overview-v100 small,
+#pagina-painel-empresa#pagina-painel-empresa #empresaMetricasNovas.emp-dash-kpis span,
+#pagina-painel-empresa#pagina-painel-empresa #empresaMetricasNovas.emp-dash-kpis small{
+  transform:none!important;
 }
 </style>
 </body></html>
