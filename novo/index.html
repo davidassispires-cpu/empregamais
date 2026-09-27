@@ -11179,4 +11179,344 @@ option{
   #pagina-perfil-empresa .perfil-review{grid-template-columns:1fr!important}
 }
 </style>
+<style id="EMPREGAMAIS-MINHA-EMPRESA-PRO-V2">
+/* Minha Empresa V2 — visual profissional, tipografia Montserrat semelhante à referência. */
+#pagina-perfil-empresa,
+#pagina-perfil-empresa *{
+  font-family:"Montserrat"!important;
+}
+#pagina-perfil-empresa{
+  --me2-navy:#103f55;
+  --me2-teal:#0b6d7b;
+  --me2-blue:#0b7db7;
+  --me2-text:#314f5d;
+  --me2-muted:#6f838c;
+  --me2-line:#dde7ea;
+  --me2-bg:#f6f8f9;
+  background:var(--me2-bg)!important;
+  padding:18px 0 52px!important;
+}
+#pagina-perfil-empresa .perfil-wizard-shell{
+  width:min(1380px,calc(100% - 40px))!important;
+  max-width:1380px!important;
+  grid-template-columns:240px minmax(0,1fr)!important;
+  gap:0 22px!important;
+}
+
+/* Topo mais corporativo, sem banner pesado */
+#pagina-perfil-empresa .perfil-wizard-head{
+  min-height:0!important;
+  padding:0 0 18px!important;
+  margin:0 0 18px!important;
+  border:0!important;
+  border-bottom:1px solid #dfe8eb!important;
+  border-radius:0!important;
+  background:transparent!important;
+  box-shadow:none!important;
+}
+#pagina-perfil-empresa .perfil-wizard-head:after{display:none!important}
+#pagina-perfil-empresa .perfil-wizard-head>span{
+  color:#0a7581!important;
+  font-size:10px!important;
+  font-weight:700!important;
+  letter-spacing:.11em!important;
+}
+#pagina-perfil-empresa .perfil-wizard-head h1{
+  margin:5px 0 7px!important;
+  color:#123f53!important;
+  font-size:30px!important;
+  line-height:1.15!important;
+  font-weight:700!important;
+  letter-spacing:-.025em!important;
+}
+#pagina-perfil-empresa .perfil-wizard-head>p{
+  max-width:900px!important;
+  color:#536d79!important;
+  font-size:14px!important;
+  line-height:1.6!important;
+  font-weight:400!important;
+}
+#pagina-perfil-empresa .perfil-head-badges{
+  margin-top:12px!important;
+  gap:7px!important;
+}
+#pagina-perfil-empresa .perfil-head-badges b{
+  padding:6px 10px!important;
+  border:1px solid #d9e5e8!important;
+  border-radius:7px!important;
+  background:#fff!important;
+  color:#4f6873!important;
+  font-size:10px!important;
+  font-weight:500!important;
+}
+
+/* Abas superiores */
+#pagina-perfil-empresa .perfil-empresa-tabs{
+  width:100%!important;
+  margin-bottom:18px!important;
+  padding:0!important;
+  gap:6px!important;
+  border:0!important;
+  border-bottom:1px solid #dfe8eb!important;
+  border-radius:0!important;
+  background:transparent!important;
+  box-shadow:none!important;
+}
+#pagina-perfil-empresa .perfil-empresa-tabs button{
+  min-width:190px!important;
+  height:52px!important;
+  padding:0 12px!important;
+  border:0!important;
+  border-bottom:3px solid transparent!important;
+  border-radius:0!important;
+  background:transparent!important;
+}
+#pagina-perfil-empresa .perfil-empresa-tabs button>span{
+  width:30px!important;height:30px!important;
+  border-radius:8px!important;
+  background:#eef4f6!important;
+  color:#5a7580!important;
+}
+#pagina-perfil-empresa .perfil-empresa-tabs button b{
+  font-size:12px!important;
+  font-weight:600!important;
+}
+#pagina-perfil-empresa .perfil-empresa-tabs button small{
+  font-size:9px!important;
+  font-weight:400!important;
+}
+#pagina-perfil-empresa .perfil-empresa-tabs button.ativo{
+  border-bottom-color:#0b7785!important;
+  background:transparent!important;
+}
+#pagina-perfil-empresa .perfil-empresa-tabs button.ativo>span{
+  background:#e6f4f6!important;
+  color:#08717e!important;
+}
+#pagina-perfil-empresa .perfil-empresa-tabs button.ativo b{color:#086675!important}
+
+/* Navegação lateral sofisticada */
+#pagina-perfil-empresa .perfil-progress{
+  top:88px!important;
+  padding:10px!important;
+  gap:4px!important;
+  border:1px solid #dce7ea!important;
+  border-radius:14px!important;
+  background:#fff!important;
+  box-shadow:0 8px 24px rgba(21,55,70,.05)!important;
+}
+#pagina-perfil-empresa .perfil-nav-title{
+  padding:8px 9px 13px!important;
+  margin-bottom:5px!important;
+}
+#pagina-perfil-empresa .perfil-nav-title span{
+  font-size:9px!important;
+  font-weight:600!important;
+  letter-spacing:.09em!important;
+}
+#pagina-perfil-empresa .perfil-nav-title strong{
+  margin-top:4px!important;
+  font-size:14px!important;
+  font-weight:600!important;
+  color:#1b4658!important;
+}
+#pagina-perfil-empresa .perfil-progress>button{
+  position:relative!important;
+  min-height:50px!important;
+  padding:8px 10px!important;
+  grid-template-columns:30px minmax(0,1fr)!important;
+  gap:9px!important;
+  border:1px solid transparent!important;
+  border-radius:9px!important;
+  color:#435f6b!important;
+  transition:.16s ease!important;
+}
+#pagina-perfil-empresa .perfil-progress>button:hover{
+  background:#f4f8f9!important;
+  border-color:#e1eaed!important;
+}
+#pagina-perfil-empresa .perfil-progress>button b{
+  width:28px!important;height:28px!important;
+  border:1px solid #d6e2e6!important;
+  border-radius:8px!important;
+  background:#f9fbfb!important;
+  color:#63808b!important;
+  font-size:10px!important;
+  font-weight:600!important;
+}
+#pagina-perfil-empresa .perfil-progress>button span{
+  color:inherit!important;
+  font-size:12px!important;
+  line-height:1.3!important;
+  font-weight:500!important;
+}
+#pagina-perfil-empresa .perfil-progress>button.ativo{
+  border-color:#c8e0e5!important;
+  background:#edf7f8!important;
+  color:#075e6d!important;
+  box-shadow:inset 3px 0 0 #0b7c88!important;
+}
+#pagina-perfil-empresa .perfil-progress>button.ativo b{
+  border-color:#0b7885!important;
+  background:#0b7885!important;
+  color:#fff!important;
+}
+
+/* Conteúdo */
+#pagina-perfil-empresa .perfil-step{
+  padding:28px 30px!important;
+  border:1px solid #dce6e9!important;
+  border-radius:15px!important;
+  background:#fff!important;
+  box-shadow:0 8px 24px rgba(22,55,70,.045)!important;
+}
+#pagina-perfil-empresa .perfil-step-title{
+  margin-bottom:22px!important;
+  padding-bottom:17px!important;
+}
+#pagina-perfil-empresa .perfil-step-title>span{
+  font-size:9px!important;
+  font-weight:700!important;
+  letter-spacing:.1em!important;
+}
+#pagina-perfil-empresa .perfil-step-title h2{
+  margin:5px 0 5px!important;
+  color:#153f51!important;
+  font-size:24px!important;
+  font-weight:650!important;
+  line-height:1.2!important;
+  letter-spacing:-.02em!important;
+}
+#pagina-perfil-empresa .perfil-step-title p{
+  color:#607682!important;
+  font-size:14px!important;
+  line-height:1.55!important;
+  font-weight:400!important;
+}
+
+/* Texto secundário igual ao padrão da referência: Montserrat regular */
+#pagina-perfil-empresa .perfil-grid label,
+#pagina-perfil-empresa .perfil-publico-aviso p,
+#pagina-perfil-empresa .perfil-publico-aviso small,
+#pagina-perfil-empresa .perfil-recrutamento-head p,
+#pagina-perfil-empresa .perfil-private-note,
+#pagina-perfil-empresa .perfil-upload-box small{
+  font-family:"Montserrat"!important;
+  font-weight:400!important;
+}
+#pagina-perfil-empresa .perfil-grid label{
+  color:#294d5b!important;
+  font-size:13px!important;
+  line-height:1.45!important;
+}
+#pagina-perfil-empresa .perfil-grid .campo{
+  min-height:46px!important;
+  margin-top:7px!important;
+  padding:0 13px!important;
+  border:1px solid #cfdee3!important;
+  border-radius:9px!important;
+  color:#314f5d!important;
+  font-size:14px!important;
+  font-weight:400!important;
+}
+#pagina-perfil-empresa .perfil-grid textarea.campo{
+  min-height:116px!important;
+  padding:12px 13px!important;
+  line-height:1.65!important;
+}
+#pagina-perfil-empresa .perfil-grid .campo::placeholder{
+  color:#94a3aa!important;
+  font-weight:400!important;
+}
+#pagina-perfil-empresa .perfil-publico-aviso{
+  margin-bottom:22px!important;
+  padding:16px!important;
+  border-color:#d6e7e1!important;
+  border-radius:11px!important;
+  background:#f7fbf9!important;
+}
+#pagina-perfil-empresa .perfil-publico-aviso strong{
+  color:#2b6650!important;
+  font-size:13px!important;
+  font-weight:600!important;
+}
+#pagina-perfil-empresa .perfil-publico-aviso p,
+#pagina-perfil-empresa .perfil-publico-aviso small{
+  color:#607970!important;
+  font-size:12px!important;
+  line-height:1.55!important;
+}
+#pagina-perfil-empresa .perfil-publico-tags span{
+  padding:5px 8px!important;
+  font-size:10px!important;
+  font-weight:500!important;
+}
+#pagina-perfil-empresa .perfil-choice-row button{
+  min-height:38px!important;
+  padding:0 13px!important;
+  font-size:11px!important;
+  font-weight:500!important;
+  cursor:pointer!important;
+}
+#pagina-perfil-empresa .perfil-recrutamento-bloco{
+  padding:20px!important;
+}
+#pagina-perfil-empresa .perfil-recrutamento-head h3{
+  font-size:16px!important;
+  font-weight:600!important;
+}
+#pagina-perfil-empresa .perfil-recrutamento-head p{
+  font-size:12px!important;
+}
+#pagina-perfil-empresa .perfil-step-actions{
+  margin:26px -30px -28px!important;
+  padding:14px 30px!important;
+}
+#pagina-perfil-empresa .perfil-step-actions .btn{
+  min-height:42px!important;
+  padding:0 17px!important;
+  font-size:12px!important;
+  font-weight:600!important;
+}
+
+/* Revisão */
+#pagina-perfil-empresa .perfil-review>*{
+  padding:13px!important;
+}
+#pagina-perfil-empresa .perfil-review span{
+  font-size:10px!important;
+  color:#7a8d95!important;
+  font-weight:400!important;
+}
+#pagina-perfil-empresa .perfil-review strong{
+  display:block!important;
+  margin-top:4px!important;
+  font-size:13px!important;
+  color:#304f5b!important;
+  font-weight:500!important;
+}
+
+@media(max-width:980px){
+  #pagina-perfil-empresa .perfil-wizard-shell{
+    grid-template-columns:1fr!important;
+  }
+  #pagina-perfil-empresa .perfil-progress{
+    display:flex!important;
+    flex-direction:row!important;
+    overflow-x:auto!important;
+  }
+  #pagina-perfil-empresa .perfil-progress>button{
+    min-width:180px!important;
+  }
+}
+@media(max-width:680px){
+  #pagina-perfil-empresa .perfil-wizard-head h1{font-size:26px!important}
+  #pagina-perfil-empresa .perfil-wizard-head>p{font-size:13px!important}
+  #pagina-perfil-empresa .perfil-step{padding:20px 15px!important}
+  #pagina-perfil-empresa .perfil-step-title h2{font-size:21px!important}
+  #pagina-perfil-empresa .perfil-step-title p{font-size:13px!important}
+  #pagina-perfil-empresa .perfil-grid label{font-size:12.5px!important}
+  #pagina-perfil-empresa .perfil-grid .campo{font-size:13.5px!important}
+}
+</style>
 </body></html>
