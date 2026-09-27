@@ -9136,3 +9136,161 @@ textarea{
   #emConviteCandidato .em-cv-pop-later{font-size:12.5px!important}
 }
 
+/* EMPREGAMAIS-DESEMPENHO-MESMO-MODELO-KPI-V8 */
+/* O bloco de desempenho passa a usar exatamente a mesma linguagem dos KPIs acima. */
+#pagina-painel-empresa .emp-performance-modelo-unico{
+  display:block!important;
+  margin:0 0 20px!important;
+  padding:0!important;
+  border:1px solid #d7e3e8!important;
+  border-radius:12px!important;
+  background:#fff!important;
+  box-shadow:none!important;
+  overflow:hidden!important;
+}
+#pagina-painel-empresa .emp-performance-modelo-unico .emp-performance-head{
+  min-height:76px!important;
+  margin:0!important;
+  padding:14px 16px!important;
+  display:flex!important;
+  align-items:center!important;
+  justify-content:space-between!important;
+  gap:18px!important;
+  border:0!important;
+  border-bottom:1px solid #e5ecef!important;
+  background:#fff!important;
+}
+#pagina-painel-empresa .emp-performance-modelo-unico .emp-performance-title>span{
+  display:block!important;
+  margin:0 0 4px!important;
+  font-family:'Inter','Segoe UI',Arial,sans-serif!important;
+  font-size:11px!important;
+  line-height:1.2!important;
+  font-weight:700!important;
+  letter-spacing:.06em!important;
+  color:#0d7182!important;
+}
+#pagina-painel-empresa .emp-performance-modelo-unico .emp-performance-title h2{
+  margin:0!important;
+  font-family:'Inter','Segoe UI',Arial,sans-serif!important;
+  font-size:20px!important;
+  line-height:1.25!important;
+  font-weight:700!important;
+  letter-spacing:-.02em!important;
+  color:#173f50!important;
+}
+#pagina-painel-empresa .emp-performance-modelo-unico .emp-performance-title p{
+  margin:4px 0 0!important;
+  font-family:'Inter','Segoe UI',Arial,sans-serif!important;
+  font-size:13px!important;
+  line-height:1.4!important;
+  font-weight:500!important;
+  color:#5f7480!important;
+}
+#pagina-painel-empresa .emp-performance-modelo-unico .emp-performance-period{
+  flex:0 0 auto!important;
+  min-height:36px!important;
+  padding:0 12px!important;
+  display:inline-flex!important;
+  align-items:center!important;
+  gap:7px!important;
+  border:1px solid #d7e3e8!important;
+  border-radius:9px!important;
+  background:#f8fbfc!important;
+  color:#294f5d!important;
+  font-family:'Inter','Segoe UI',Arial,sans-serif!important;
+  font-size:12px!important;
+  line-height:1!important;
+  font-weight:600!important;
+}
+#pagina-painel-empresa .emp-performance-grid-modelo-unico{
+  display:grid!important;
+  grid-template-columns:repeat(4,minmax(0,1fr))!important;
+  gap:10px!important;
+  padding:10px!important;
+  background:#f7fafb!important;
+}
+#pagina-painel-empresa .emp-performance-grid-modelo-unico .emp-performance-model-card{
+  min-width:0!important;
+  height:112px!important;
+  min-height:112px!important;
+  margin:0!important;
+  padding:14px 14px 13px!important;
+  border:1px solid #d7e3e8!important;
+  border-radius:11px!important;
+  background:#fff!important;
+  box-shadow:none!important;
+  display:flex!important;
+  flex-direction:column!important;
+  align-items:stretch!important;
+  justify-content:flex-start!important;
+}
+#pagina-painel-empresa .emp-performance-grid-modelo-unico .emp-model-head{
+  min-height:36px!important;
+  display:grid!important;
+  grid-template-columns:minmax(0,1fr) 34px!important;
+  align-items:center!important;
+  gap:8px!important;
+}
+#pagina-painel-empresa .emp-performance-grid-modelo-unico .emp-model-head>span{
+  font-family:'Inter','Segoe UI',Arial,sans-serif!important;
+  font-size:13px!important;
+  line-height:1.25!important;
+  font-weight:600!important;
+  letter-spacing:0!important;
+  color:#294f5d!important;
+}
+#pagina-painel-empresa .emp-performance-grid-modelo-unico .emp-model-head>i{
+  width:34px!important;
+  height:34px!important;
+  display:grid!important;
+  place-items:center!important;
+  border-radius:9px!important;
+  background:#eef5f7!important;
+  color:#176b7d!important;
+  font-family:'Inter','Segoe UI',Arial,sans-serif!important;
+  font-size:15px!important;
+  font-style:normal!important;
+}
+#pagina-painel-empresa .emp-performance-grid-modelo-unico .emp-performance-model-card>strong{
+  display:block!important;
+  margin:7px 0 0!important;
+  font-family:'Inter','Segoe UI',Arial,sans-serif!important;
+  font-size:26px!important;
+  line-height:1!important;
+  font-weight:700!important;
+  letter-spacing:-.04em!important;
+  color:#103f55!important;
+}
+#pagina-painel-empresa .emp-performance-grid-modelo-unico .emp-performance-model-card>small{
+  display:block!important;
+  width:100%!important;
+  margin-top:auto!important;
+  padding-top:8px!important;
+  border-top:1px solid #e5ecef!important;
+  font-family:'Inter','Segoe UI',Arial,sans-serif!important;
+  font-size:12.5px!important;
+  line-height:1.35!important;
+  font-weight:500!important;
+  letter-spacing:0!important;
+  color:#5f7480!important;
+}
+/* Neutraliza restos do modelo antigo */
+#pagina-painel-empresa .emp-performance-modelo-unico :where(.emp-performance-foot,.emp-performance-tooltip,.emp-performance-card-top){
+  display:none!important;
+}
+@media(max-width:1000px){
+  #pagina-painel-empresa .emp-performance-grid-modelo-unico{grid-template-columns:repeat(2,minmax(0,1fr))!important}
+}
+@media(max-width:560px){
+  #pagina-painel-empresa .emp-performance-modelo-unico .emp-performance-head{
+    align-items:flex-start!important;
+    flex-direction:column!important;
+  }
+  #pagina-painel-empresa .emp-performance-grid-modelo-unico{grid-template-columns:1fr!important}
+  #pagina-painel-empresa .emp-performance-grid-modelo-unico .emp-performance-model-card{
+    height:auto!important;
+    min-height:104px!important;
+  }
+}
+
