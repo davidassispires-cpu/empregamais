@@ -7093,3 +7093,92 @@ body{
     padding:12px 14px 16px!important;
   }
 }
+
+
+/* EMPREGAMAIS-VAGA-HERO-AREJADO-V3 */
+#vagaHeroDetalhe{
+  padding-top:0!important;
+}
+#vagaHeroDetalhe .vaga-hero-ref{
+  grid-template-columns:96px minmax(0,1fr)!important;
+  gap:20px!important;
+  padding:18px 28px 14px!important;
+  align-items:center!important;
+}
+#vagaHeroDetalhe .vaga-hero-logo{
+  width:92px!important;
+  height:92px!important;
+  min-width:92px!important;
+  padding:8px!important;
+}
+#vagaHeroDetalhe .vaga-hero-texto{
+  min-width:0!important;
+  padding-right:0!important;
+}
+#vagaHeroDetalhe .vaga-hero-publicada{
+  margin:0 0 5px!important;
+  font-size:11.5px!important;
+}
+#vagaHeroDetalhe .vaga-hero-texto h1{
+  max-width:100%!important;
+  margin:0 0 6px!important;
+  padding-right:0!important;
+  font-size:29px!important;
+  line-height:1.08!important;
+}
+#vagaHeroDetalhe .vaga-hero-empresa-linha{
+  min-height:22px!important;
+  gap:7px!important;
+}
+#vagaHeroDetalhe .vaga-hero-selos{
+  margin-top:10px!important;
+  gap:7px!important;
+}
+#vagaHeroDetalhe .vaga-hero-selos>span{
+  min-height:30px!important;
+  padding:0 11px!important;
+  font-size:10.5px!important;
+  border-radius:8px!important;
+}
+#vagaHeroDetalhe .vaga-hero-acoes{
+  display:none!important;
+}
+#vagaHeroDetalhe .vaga-info-ref{
+  margin:0 28px!important;
+  padding:8px 0 10px!important;
+  grid-template-columns:repeat(4,minmax(0,1fr))!important;
+}
+#vagaHeroDetalhe .vaga-info-ref>div{
+  min-height:68px!important;
+  padding:3px 14px!important;
+}
+#vagaHeroDetalhe .vaga-info-ref .info-svg{
+  width:34px!important;
+  height:34px!important;
+  margin:0 0 3px!important;
+}
+#vagaHeroDetalhe .vaga-info-ref strong{
+  font-size:13.5px!important;
+}
+#vagaHeroDetalhe .vaga-info-ref small{
+  font-size:8.8px!important;
+}
+@media(max-width:760px){
+  #vagaHeroDetalhe .vaga-hero-ref{
+    grid-template-columns:68px minmax(0,1fr)!important;
+    gap:12px!important;
+    padding:16px!important;
+  }
+  #vagaHeroDetalhe .vaga-hero-logo{
+    width:64px!important;
+    height:64px!important;
+    min-width:64px!important;
+  }
+  #vagaHeroDetalhe .vaga-hero-texto h1{
+    font-size:21px!important;
+  }
+  #vagaHeroDetalhe .vaga-info-ref{
+    margin:0 16px!important;
+    grid-template-columns:1fr 1fr!important;
+  }
+}
