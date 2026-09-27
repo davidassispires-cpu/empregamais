@@ -12302,4 +12302,84 @@ option{
  #pagina-painel-empresa .emp-performance-v108 .emp-performance-grid{grid-template-columns:1fr!important}
  #pagina-painel-empresa .emp-performance-v108 .emp-performance-card{min-height:150px!important}
 }
+</style>
+<style id="EMPREGAMAIS-DESEMPENHO-LAYOUT-FIX-V109">
+/* Corrige conflito de layout legado: cabeçalho acima dos cards, sem cortes ou sobreposição. */
+#pagina-painel-empresa .emp-performance.emp-performance-v108{
+ display:block!important;
+ grid-template-columns:none!important;
+ grid-template-rows:none!important;
+ align-items:initial!important;
+ width:100%!important;
+ min-width:0!important;
+ height:auto!important;
+ overflow:visible!important;
+ box-sizing:border-box!important;
+}
+#pagina-painel-empresa .emp-performance-v108 .emp-performance-head{
+ position:relative!important;
+ display:flex!important;
+ width:100%!important;
+ min-width:0!important;
+ height:auto!important;
+ align-items:flex-end!important;
+ justify-content:space-between!important;
+ gap:20px!important;
+ margin:0 0 18px!important;
+ padding:0!important;
+ transform:none!important;
+ overflow:visible!important;
+ box-sizing:border-box!important;
+}
+#pagina-painel-empresa .emp-performance-v108 .emp-performance-title{
+ flex:1 1 auto!important;
+ min-width:0!important;
+ max-width:none!important;
+ width:auto!important;
+}
+#pagina-painel-empresa .emp-performance-v108 .emp-performance-period{
+ position:static!important;
+ top:auto!important;
+ right:auto!important;
+ bottom:auto!important;
+ left:auto!important;
+ transform:none!important;
+ flex:0 0 auto!important;
+ margin:0!important;
+ z-index:1!important;
+}
+#pagina-painel-empresa .emp-performance-v108 .emp-performance-grid{
+ position:relative!important;
+ display:grid!important;
+ width:100%!important;
+ min-width:0!important;
+ grid-template-columns:repeat(4,minmax(0,1fr))!important;
+ gap:12px!important;
+ margin:0!important;
+ padding:0!important;
+ transform:none!important;
+ box-sizing:border-box!important;
+ clear:both!important;
+}
+#pagina-painel-empresa .emp-performance-v108 .emp-performance-card{
+ width:auto!important;
+ max-width:none!important;
+ min-width:0!important;
+ box-sizing:border-box!important;
+}
+@media(max-width:1180px){
+ #pagina-painel-empresa .emp-performance-v108 .emp-performance-grid{
+  grid-template-columns:repeat(2,minmax(0,1fr))!important;
+ }
+}
+@media(max-width:680px){
+ #pagina-painel-empresa .emp-performance-v108 .emp-performance-head{
+  align-items:flex-start!important;
+  flex-direction:column!important;
+  gap:10px!important;
+ }
+ #pagina-painel-empresa .emp-performance-v108 .emp-performance-grid{
+  grid-template-columns:1fr!important;
+ }
+}
 </style></body></html>
