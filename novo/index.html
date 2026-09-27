@@ -11238,9 +11238,7 @@ option{
   border-color:var(--me-brand)!important;
   color:#fff!important;
 }
-#pagina-perfil-empresa .perfil-wizard-aside-v3{
-  display:none!important;
-}
+/* aside legado reativado: o layout premium usa este painel lateral */
 #pagina-perfil-empresa .perfil-review{
   display:grid!important;
   grid-template-columns:repeat(2,minmax(0,1fr))!important;
@@ -12903,4 +12901,85 @@ option{
 @media(max-width:1180px){#pagina-perfil-empresa.perfil-empresa-premium-v4 .perfil-wizard-shell{grid-template-columns:220px minmax(0,1fr)!important}#pagina-perfil-empresa.perfil-empresa-premium-v4 .perfil-wizard-layout-split{grid-template-columns:1fr!important}#pagina-perfil-empresa.perfil-empresa-premium-v4 .perfil-wizard-aside-v3{display:none!important}}
 @media(max-width:860px){#pagina-perfil-empresa.perfil-empresa-premium-v4 .perfil-wizard-shell{width:calc(100% - 24px)!important;grid-template-columns:1fr!important;grid-template-areas:"back" "tabs" "hero" "nav" "content"!important}#pagina-perfil-empresa.perfil-empresa-premium-v4 .perfil-progress{position:relative!important;top:auto!important;display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important}#pagina-perfil-empresa.perfil-empresa-premium-v4 .perfil-nav-title{grid-column:1/-1!important}}
 @media(max-width:620px){#pagina-perfil-empresa.perfil-empresa-premium-v4{padding-top:12px!important}#pagina-perfil-empresa.perfil-empresa-premium-v4 .perfil-empresa-tabs{width:100%!important;display:grid!important;grid-template-columns:1fr 1fr!important}#pagina-perfil-empresa.perfil-empresa-premium-v4 .perfil-empresa-tabs button{min-width:0!important;width:100%!important}#pagina-perfil-empresa.perfil-empresa-premium-v4 .perfil-wizard-head{padding:22px 18px!important;min-height:0!important}#pagina-perfil-empresa.perfil-empresa-premium-v4 .perfil-wizard-head h1{font-size:28px!important}#pagina-perfil-empresa.perfil-empresa-premium-v4 .perfil-progress{grid-template-columns:1fr!important}#pagina-perfil-empresa.perfil-empresa-premium-v4 .perfil-nav-title{grid-column:auto!important}#pagina-perfil-empresa.perfil-empresa-premium-v4 .perfil-step{padding:0 16px 20px!important}#pagina-perfil-empresa.perfil-empresa-premium-v4 .perfil-step-title{margin:0 -16px 18px!important;padding:20px 16px 16px!important}#pagina-perfil-empresa.perfil-empresa-premium-v4 .perfil-grid{grid-template-columns:1fr!important}#pagina-perfil-empresa.perfil-empresa-premium-v4 .perfil-grid .full{grid-column:1!important}}
+</style>
+<style id="EMPREGAMAIS-PERFIL-EMPRESA-WIDTH-FIX-V5">
+/* Minha empresa — aproveitamento integral do desktop e painel lateral útil */
+#pagina-perfil-empresa.perfil-empresa-premium-v4 .perfil-wizard-shell{
+ width:calc(100% - 28px)!important;
+ max-width:1500px!important;
+}
+#pagina-perfil-empresa.perfil-empresa-premium-v4 .perfil-wizard-layout-split{
+ display:grid!important;
+ grid-template-columns:minmax(0,1fr) 320px!important;
+ gap:18px!important;
+ width:100%!important;
+ max-width:none!important;
+ margin:0!important;
+ align-items:start!important;
+}
+#pagina-perfil-empresa.perfil-empresa-premium-v4 .perfil-wizard-card{
+ width:100%!important;
+ max-width:none!important;
+ min-width:0!important;
+}
+#pagina-perfil-empresa.perfil-empresa-premium-v4 .perfil-wizard-aside-v3{
+ display:block!important;
+ width:100%!important;
+ max-width:none!important;
+ position:sticky!important;
+ top:88px!important;
+ align-self:start!important;
+}
+#pagina-perfil-empresa.perfil-empresa-premium-v4 .perfil-aside-body{
+ display:block!important;
+}
+#pagina-perfil-empresa.perfil-empresa-premium-v4 .perfil-aside-publico{
+ margin:0 0 18px!important;
+ padding:14px!important;
+ border:1px solid #dce9ec!important;
+ border-radius:12px!important;
+ background:#f7fafb!important;
+}
+#pagina-perfil-empresa.perfil-empresa-premium-v4 .perfil-aside-publico>span{
+ color:#6e858e!important;
+ font-size:9px!important;
+ font-weight:800!important;
+ letter-spacing:.1em!important;
+}
+#pagina-perfil-empresa.perfil-empresa-premium-v4 .perfil-aside-publico h3{
+ margin:5px 0!important;
+ color:#254b57!important;
+ font-size:13px!important;
+ line-height:1.35!important;
+}
+#pagina-perfil-empresa.perfil-empresa-premium-v4 .perfil-aside-publico p{
+ margin:0!important;
+ color:#73878f!important;
+ font-size:10.5px!important;
+ line-height:1.5!important;
+}
+#pagina-perfil-empresa.perfil-empresa-premium-v4 .perfil-aside-chips{
+ display:flex!important;
+ flex-wrap:wrap!important;
+ gap:5px!important;
+ margin-top:10px!important;
+}
+#pagina-perfil-empresa.perfil-empresa-premium-v4 .perfil-aside-chips b{
+ width:auto!important;height:auto!important;min-width:0!important;
+ padding:5px 7px!important;
+ border:1px solid #d9e7ea!important;
+ border-radius:999px!important;
+ background:#fff!important;
+ color:#58727c!important;
+ font-size:8.5px!important;
+ font-weight:650!important;
+}
+@media(max-width:1180px){
+ #pagina-perfil-empresa.perfil-empresa-premium-v4 .perfil-wizard-layout-split{
+  grid-template-columns:1fr!important;
+ }
+ #pagina-perfil-empresa.perfil-empresa-premium-v4 .perfil-wizard-aside-v3{
+  display:none!important;
+ }
+}
 </style></body></html>
