@@ -10366,4 +10366,36 @@ border:1px solid #d8e3e7!important;border-radius:12px!important;box-shadow:0 3px
   }
 }
 </style>
+<style id="EMPREGAMAIS-PUBLICAR-BANNER-STICKY-RODAPE-V1">
+/* Banner lateral da publicação: permanece visível e para antes do rodapé. */
+@media(min-width:1101px){
+  #pagina-publicar .em-publish-layout{
+    align-items:start!important;
+  }
+
+  #pagina-publicar .em-publish-visual{
+    position:-webkit-sticky!important;
+    position:sticky!important;
+    top:84px!important;
+    align-self:start!important;
+    height:auto!important;
+    max-height:calc(100vh - 108px)!important;
+    overflow:hidden!important;
+  }
+
+  #pagina-publicar .em-publish-visual .em-visual-content{
+    height:auto!important;
+    max-height:none!important;
+    overflow:visible!important;
+  }
+
+  /* Garante que o sticky use o limite da própria área de publicação.
+     Assim ele acompanha a rolagem e para antes de invadir o rodapé. */
+  #pagina-publicar,
+  #pagina-publicar .em-publish-layout,
+  #pagina-publicar .em-publish-main{
+    overflow:visible!important;
+  }
+}
+</style>
 </body></html>
