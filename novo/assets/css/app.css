@@ -10565,3 +10565,150 @@ textarea{
   }
 }
 
+/* EMPREGAMAIS-COMO-FUNCIONA-CORES-PERFIL-V4 */
+#pagina-como-funciona{
+  --cf-cand:#126fd1;
+  --cf-cand-dark:#0f4f8f;
+  --cf-cand-soft:#eaf3ff;
+  --cf-cand-border:#c9def6;
+  --cf-emp:#087b73;
+  --cf-emp-dark:#0b5b55;
+  --cf-emp-soft:#e9f7f4;
+  --cf-emp-border:#c9e6df;
+}
+
+/* Abas: candidato sempre azul, empresa sempre verde */
+#pagina-como-funciona .cfv3-tab[data-cfv3-tab="candidato"]{
+  color:var(--cf-cand-dark)!important;
+}
+#pagina-como-funciona .cfv3-tab[data-cfv3-tab="candidato"] .cfv3-tab-icon{
+  background:var(--cf-cand-soft)!important;
+  color:var(--cf-cand)!important;
+}
+#pagina-como-funciona .cfv3-tab[data-cfv3-tab="candidato"] .cfv3-tab-icon svg{
+  stroke:var(--cf-cand)!important;
+}
+#pagina-como-funciona .cfv3-tab[data-cfv3-tab="candidato"].ativo{
+  background:#f5f9ff!important;
+  border-color:var(--cf-cand)!important;
+  box-shadow:inset 0 0 0 1px rgba(18,111,209,.12)!important;
+}
+#pagina-como-funciona .cfv3-tab[data-cfv3-tab="candidato"].ativo b{
+  color:var(--cf-cand-dark)!important;
+}
+
+#pagina-como-funciona .cfv3-tab[data-cfv3-tab="empresa"]{
+  color:var(--cf-emp-dark)!important;
+}
+#pagina-como-funciona .cfv3-tab[data-cfv3-tab="empresa"] .cfv3-tab-icon{
+  background:var(--cf-emp-soft)!important;
+  color:var(--cf-emp)!important;
+}
+#pagina-como-funciona .cfv3-tab[data-cfv3-tab="empresa"] .cfv3-tab-icon svg{
+  stroke:var(--cf-emp)!important;
+}
+#pagina-como-funciona .cfv3-tab[data-cfv3-tab="empresa"].ativo{
+  background:#f4fbf9!important;
+  border-color:var(--cf-emp)!important;
+  box-shadow:inset 0 0 0 1px rgba(8,123,115,.12)!important;
+}
+#pagina-como-funciona .cfv3-tab[data-cfv3-tab="empresa"].ativo b{
+  color:var(--cf-emp-dark)!important;
+}
+
+/* Candidato */
+#pagina-como-funciona [data-cfv3-panel="candidato"] .cfv3-intro{
+  border-color:var(--cf-cand-border)!important;
+  background:linear-gradient(180deg,#fff 0%,#f7fbff 100%)!important;
+}
+#pagina-como-funciona [data-cfv3-panel="candidato"] .cfv3-intro>div>span,
+#pagina-como-funciona [data-cfv3-panel="candidato"] .cfv3-step-head i,
+#pagina-como-funciona [data-cfv3-panel="candidato"] .cfv3-benefits article>span,
+#pagina-como-funciona [data-cfv3-panel="candidato"] .cfv3-callout span{
+  color:var(--cf-cand)!important;
+}
+#pagina-como-funciona [data-cfv3-panel="candidato"] .cfv3-intro h2,
+#pagina-como-funciona [data-cfv3-panel="candidato"] .cfv3-steps h3,
+#pagina-como-funciona [data-cfv3-panel="candidato"] .cfv3-benefits h3,
+#pagina-como-funciona [data-cfv3-panel="candidato"] .cfv3-callout h3{
+  color:var(--cf-cand-dark)!important;
+}
+#pagina-como-funciona [data-cfv3-panel="candidato"] .cfv3-intro button,
+#pagina-como-funciona [data-cfv3-panel="candidato"] .cfv3-benefits button,
+#pagina-como-funciona [data-cfv3-panel="candidato"] .cfv3-callout button{
+  background:var(--cf-cand)!important;
+  border-color:var(--cf-cand)!important;
+  color:#fff!important;
+}
+#pagina-como-funciona [data-cfv3-panel="candidato"] .cfv3-steps article{
+  border-top:3px solid var(--cf-cand-border)!important;
+}
+#pagina-como-funciona [data-cfv3-panel="candidato"] .cfv3-step-head svg{
+  stroke:var(--cf-cand)!important;
+}
+#pagina-como-funciona [data-cfv3-panel="candidato"] .cfv3-step-head{
+  color:var(--cf-cand)!important;
+}
+#pagina-como-funciona [data-cfv3-panel="candidato"] .cfv3-step-head svg,
+#pagina-como-funciona [data-cfv3-panel="candidato"] .cfv3-step-head i{
+  background:var(--cf-cand-soft)!important;
+}
+#pagina-como-funciona [data-cfv3-panel="candidato"] .cfv3-benefits article,
+#pagina-como-funciona [data-cfv3-panel="candidato"] .cfv3-callout{
+  border-color:var(--cf-cand-border)!important;
+}
+
+/* Empresa */
+#pagina-como-funciona [data-cfv3-panel="empresa"] .cfv3-intro{
+  border-color:var(--cf-emp-border)!important;
+  background:linear-gradient(180deg,#fff 0%,#f6fbf9 100%)!important;
+}
+#pagina-como-funciona [data-cfv3-panel="empresa"] .cfv3-intro>div>span,
+#pagina-como-funciona [data-cfv3-panel="empresa"] .cfv3-step-head i,
+#pagina-como-funciona [data-cfv3-panel="empresa"] .cfv3-benefits article>span,
+#pagina-como-funciona [data-cfv3-panel="empresa"] .cfv3-callout span{
+  color:var(--cf-emp)!important;
+}
+#pagina-como-funciona [data-cfv3-panel="empresa"] .cfv3-intro h2,
+#pagina-como-funciona [data-cfv3-panel="empresa"] .cfv3-steps h3,
+#pagina-como-funciona [data-cfv3-panel="empresa"] .cfv3-benefits h3,
+#pagina-como-funciona [data-cfv3-panel="empresa"] .cfv3-callout h3{
+  color:var(--cf-emp-dark)!important;
+}
+#pagina-como-funciona [data-cfv3-panel="empresa"] .cfv3-intro button,
+#pagina-como-funciona [data-cfv3-panel="empresa"] .cfv3-benefits button,
+#pagina-como-funciona [data-cfv3-panel="empresa"] .cfv3-callout button{
+  background:var(--cf-emp)!important;
+  border-color:var(--cf-emp)!important;
+  color:#fff!important;
+}
+#pagina-como-funciona [data-cfv3-panel="empresa"] .cfv3-steps article{
+  border-top:3px solid var(--cf-emp-border)!important;
+}
+#pagina-como-funciona [data-cfv3-panel="empresa"] .cfv3-step-head svg{
+  stroke:var(--cf-emp)!important;
+}
+#pagina-como-funciona [data-cfv3-panel="empresa"] .cfv3-step-head{
+  color:var(--cf-emp)!important;
+}
+#pagina-como-funciona [data-cfv3-panel="empresa"] .cfv3-step-head svg,
+#pagina-como-funciona [data-cfv3-panel="empresa"] .cfv3-step-head i{
+  background:var(--cf-emp-soft)!important;
+}
+#pagina-como-funciona [data-cfv3-panel="empresa"] .cfv3-benefits article,
+#pagina-como-funciona [data-cfv3-panel="empresa"] .cfv3-callout{
+  border-color:var(--cf-emp-border)!important;
+}
+
+/* FAQ neutro; CTA final segue os dois perfis */
+#pagina-como-funciona .cfv3-final button:not(.empresa){
+  background:var(--cf-cand)!important;
+  color:#fff!important;
+  border-color:var(--cf-cand)!important;
+}
+#pagina-como-funciona .cfv3-final button.empresa{
+  background:var(--cf-emp)!important;
+  color:#fff!important;
+  border-color:var(--cf-emp)!important;
+}
+
