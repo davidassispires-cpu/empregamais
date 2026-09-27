@@ -4,7 +4,7 @@
 
 const VAPID_PUBLIC_KEY='BP4lvH5GXlDe532LtjkgqHN0R9U7Vgfsduuq-on8Qk2vjLR2bVIdvTVXUuxlUsi70XbO6fGfD2y--8jiKh6QOtg';
 const SUPABASE_URL='https://mkezlcewyengejdmtppl.supabase.co';
-const ANON_KEY='sb_publishable_8YnXpzGX8zj-tvzvcMYdyw_FVBhQutR4';
+const ANON_KEY='sb_publishable_8YnXpzGX8zj-tvzvcMYdyw_FVBhQutR';
 const PUSH_FN='/functions/v1/empregamais-push';
 let pushReady=false;
 
