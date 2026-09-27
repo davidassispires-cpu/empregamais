@@ -16169,4 +16169,56 @@ window.trocarComoFuncionaEM=function(tipo,btn){
   }
 }
 </style>
+<style id="EMPREGAMAI-CANDIDATO-ACOES-V142">
+/* Remove e-mail do card e amplia as quatro ações restantes */
+#pagina-candidatos-empresa #listaCandidatosEmpresa .recruta-cand-actions > a[href^="mailto:"],
+#pagina-candidatos-empresa #listaCandidatosEmpresa .recruta-cand-actions.recruta-acoes-unificadas > a[href^="mailto:"]{
+  display:none!important;
+}
+
+#pagina-candidatos-empresa #listaCandidatosEmpresa .recruta-cand-actions,
+#pagina-candidatos-empresa #listaCandidatosEmpresa .recruta-cand-actions.recruta-acoes-unificadas{
+  grid-template-columns:1.18fr 1fr 1.08fr 1.08fr!important;
+  gap:8px!important;
+  padding:11px 12px 13px!important;
+}
+
+#pagina-candidatos-empresa #listaCandidatosEmpresa .recruta-cand-actions > .btn,
+#pagina-candidatos-empresa #listaCandidatosEmpresa .recruta-cand-actions.recruta-acoes-unificadas > .btn{
+  height:48px!important;
+  min-height:48px!important;
+  padding:0 24px 0 36px!important;
+  font-size:10.5px!important;
+  font-weight:750!important;
+  border-radius:9px!important;
+}
+
+#pagina-candidatos-empresa #listaCandidatosEmpresa .recruta-cand-actions .em-btn-ico{
+  left:11px!important;
+  width:18px!important;
+  height:18px!important;
+  min-width:18px!important;
+}
+
+#pagina-candidatos-empresa #listaCandidatosEmpresa .recruta-cand-actions .em-btn-ico:before{
+  width:18px!important;
+  height:18px!important;
+}
+
+#pagina-candidatos-empresa #listaCandidatosEmpresa .recruta-cand-actions > .btn:after{
+  right:9px!important;
+  font-size:17px!important;
+}
+
+@media(max-width:760px){
+  #pagina-candidatos-empresa #listaCandidatosEmpresa .recruta-cand-actions,
+  #pagina-candidatos-empresa #listaCandidatosEmpresa .recruta-cand-actions.recruta-acoes-unificadas{
+    grid-template-columns:1fr 1fr!important;
+  }
+
+  #pagina-candidatos-empresa #listaCandidatosEmpresa .recruta-cand-actions > .btn-azul{
+    grid-column:auto!important;
+  }
+}
+</style>
 </body></html>
