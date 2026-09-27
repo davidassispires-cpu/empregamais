@@ -10366,36 +10366,80 @@ border:1px solid #d8e3e7!important;border-radius:12px!important;box-shadow:0 3px
   }
 }
 </style>
-<style id="EMPREGAMAIS-PUBLICAR-BANNER-STICKY-RODAPE-V1">
-/* Banner lateral da publicação: permanece visível e para antes do rodapé. */
+
+<style id="EMPREGAMAIS-PUBLICAR-SCROLL-ISOLADO-V2">
+/* Desktop: banner lateral permanece parado na tela; somente o formulário rola. */
 @media(min-width:1101px){
-  #pagina-publicar .em-publish-layout{
-    align-items:start!important;
+  #pagina-publicar.ativa{
+    height:calc(100vh - var(--header-height,72px))!important;
+    min-height:0!important;
+    overflow:hidden!important;
+    padding:16px 0!important;
+    display:block!important;
   }
 
-  #pagina-publicar .em-publish-visual{
-    position:-webkit-sticky!important;
-    position:sticky!important;
-    top:84px!important;
-    align-self:start!important;
-    height:auto!important;
-    max-height:calc(100vh - 108px)!important;
+  #pagina-publicar.ativa>.em-publish-layout{
+    width:min(1480px,calc(100% - 44px))!important;
+    max-width:1480px!important;
+    height:100%!important;
+    min-height:0!important;
+    margin:0 auto!important;
+    display:grid!important;
+    grid-template-columns:minmax(0,1fr) 332px!important;
+    gap:22px!important;
+    align-items:stretch!important;
     overflow:hidden!important;
   }
 
-  #pagina-publicar .em-publish-visual .em-visual-content{
+  /* Somente esta coluna tem rolagem. */
+  #pagina-publicar.ativa .em-publish-main{
+    height:100%!important;
+    min-height:0!important;
+    max-height:100%!important;
+    overflow-y:auto!important;
+    overflow-x:hidden!important;
+    overscroll-behavior:contain!important;
+    scrollbar-gutter:stable!important;
+    padding-right:3px!important;
+  }
+
+  /* Banner realmente parado na viewport da página. */
+  #pagina-publicar.ativa .em-publish-visual{
+    position:relative!important;
+    top:auto!important;
+    align-self:stretch!important;
+    height:100%!important;
+    min-height:0!important;
+    max-height:100%!important;
+    overflow:hidden!important;
+    margin:0!important;
+  }
+
+  #pagina-publicar.ativa .em-publish-visual .em-visual-content{
+    height:100%!important;
+    max-height:100%!important;
+    overflow:hidden!important;
+  }
+
+  /* Evita qualquer rolagem paralela causada pelo shell interno. */
+  #pagina-publicar.ativa .job-shell{
+    min-height:100%!important;
+  }
+}
+
+/* Tablet/celular continuam com rolagem normal da página e sem banner lateral. */
+@media(max-width:1100px){
+  #pagina-publicar.ativa{
+    height:auto!important;
+    min-height:calc(100vh - var(--header-height,72px))!important;
+    overflow:visible!important;
+  }
+  #pagina-publicar .em-publish-main{
     height:auto!important;
     max-height:none!important;
     overflow:visible!important;
   }
-
-  /* Garante que o sticky use o limite da própria área de publicação.
-     Assim ele acompanha a rolagem e para antes de invadir o rodapé. */
-  #pagina-publicar,
-  #pagina-publicar .em-publish-layout,
-  #pagina-publicar .em-publish-main{
-    overflow:visible!important;
-  }
+  #pagina-publicar .em-publish-visual{display:none!important}
 }
 </style>
 </body></html>
