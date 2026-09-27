@@ -10651,44 +10651,20 @@ border:1px solid #d8e3e7!important;border-radius:12px!important;box-shadow:0 3px
  const pag=document.getElementById('pagina-contratacoes-empresa');
  if(pag&&'MutationObserver' in window)new MutationObserver(()=>{if(pag.classList.contains('ativa'))renderContratacoesEmpresaEM()}).observe(pag,{attributes:true,attributeFilter:['class']});
 })();
-</script><style id="EMPREGAMAIS-FONTE-SECUNDARIA-MONTSERRAT-V1">
-/* Padronização tipográfica: fonte secundária igual à referência enviada. */
-html,body,
-button,input,select,textarea,
-p,span,small,label,a,
-li,td,th,
-article,section,aside,nav,
-[class*="card"],
-[class*="meta"],
-[class*="info"],
-[class*="texto"],
-[class*="descricao"],
-[class*="subtitle"],
-[class*="subtitulo"],
-[class*="helper"],
-[class*="ajuda"],
-[class*="tag"],
-[class*="status"],
-[class*="filtro"],
-[class*="campo"]{
-  font-family:"Montserrat",Arial,sans-serif!important;
-}
-
-/* Mantém títulos também coerentes quando regras antigas tentarem trocar a família. */
-h1,h2,h3,h4,h5,h6,strong,b{
-  font-family:"Montserrat",Arial,sans-serif!important;
-}
-
-/* Preserva apenas elementos de marca/logo que tenham tipografia própria. */
-.marca,
-.marca *,
-.marca-nome,
-.marca-nome *,
-.logo,
-.logo *,
-[class*="brand"],
-[class*="brand"] *{
-  font-family:inherit;
+</script>
+<style id="EMPREGAMAIS-FONTE-UNICA-MONTSERRAT-V2">
+/* Tipografia canônica: uma única fonte em todo o portal. */
+html,
+body,
+body *,
+body *::before,
+body *::after,
+input,
+button,
+select,
+textarea,
+option{
+  font-family:"Montserrat"!important;
 }
 </style>
 </body></html>
