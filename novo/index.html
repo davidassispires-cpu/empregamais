@@ -6393,7 +6393,10 @@ svg text{
  function e(s){return String(s==null?'':s).replace(/[&<>"']/g,function(m){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[m]})}
  function arr(k){try{var x=JSON.parse(localStorage.getItem(k)||'[]');return Array.isArray(x)?x:[]}catch(_){return []}}
  function boot(){
-  if(new URLSearchParams(location.search).get('pagina')!=='candidatos-empresa')return;
+  var pagina=document.getElementById('pagina-candidatos-empresa');
+  var rota=new URLSearchParams(location.search).get('pagina');
+  var visivel=!!(pagina&&pagina.classList.contains('ativa'));
+  if(rota!=='candidatos-empresa'&&!visivel)return;
   var box=document.getElementById('psCentralConteudo');if(!box)return;
   try{if(typeof window.renderCentralProcessosEmpresaEM==='function')window.renderCentralProcessosEmpresaEM()}catch(err){console.error('[EmpregaMais V114]',err)}
   if(box.querySelector('.psv2-summary')&&box.querySelector('.psv2-workspace'))return;
@@ -6407,6 +6410,19 @@ svg text{
  }
  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',function(){setTimeout(boot,80);setTimeout(boot,700)});else{setTimeout(boot,80);setTimeout(boot,700)}
  window.addEventListener('pageshow',function(){setTimeout(boot,120)});
+ var paginaProcessos=document.getElementById('pagina-candidatos-empresa');
+ if(paginaProcessos&&'MutationObserver' in window){
+  new MutationObserver(function(){
+   if(paginaProcessos.classList.contains('ativa')){
+    setTimeout(boot,20);
+    setTimeout(boot,250);
+   }
+  }).observe(paginaProcessos,{attributes:true,attributeFilter:['class']});
+ }
+ document.addEventListener('click',function(ev){
+  var rotaBtn=ev.target.closest('[data-rota="candidatos-empresa"],[onclick*="candidatos-empresa"]');
+  if(rotaBtn){setTimeout(boot,60);setTimeout(boot,350)}
+ },true);
  document.addEventListener('click',function(ev){
   var g=ev.target.closest('[data-ps-gerenciar]');
   if(g){
