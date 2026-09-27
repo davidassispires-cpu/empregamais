@@ -9824,25 +9824,51 @@ border:1px solid #d8e3e7!important;border-radius:12px!important;box-shadow:0 3px
 </div>
 <script id="empregai-candidato-convite-js-v1">
 (function(){
- const KEY='empregai_convite_curriculo_v1', DIAS=5;
+ const KEY='empregai_convite_curriculo_v1', INTERVALO=60000;
+ let timer=null;
  function el(){return document.getElementById('emConviteCandidato')}
- window.fecharConviteCandidatoEM=function(){const x=el();if(x)x.classList.remove('ativo');try{localStorage.setItem(KEY,String(Date.now()))}catch(e){}}
+ function marcarAgora(){try{localStorage.setItem(KEY,String(Date.now()))}catch(e){}}
+ function naHome(){const p=new URLSearchParams(location.search).get('pagina');return !p||p==='home'}
+ function podeMostrar(){
+  if(!naHome())return false;
+  try{
+   const t=Number(localStorage.getItem(KEY)||0);
+   return !t||Date.now()-t>=INTERVALO;
+  }catch(e){return true}
+ }
+ function exibirSePode(){
+  const x=el();
+  if(x&&!x.classList.contains('ativo')&&podeMostrar())x.classList.add('ativo');
+ }
+ function agendar(){
+  clearTimeout(timer);
+  let espera=INTERVALO;
+  try{
+   const t=Number(localStorage.getItem(KEY)||0);
+   if(t)espera=Math.max(1000,INTERVALO-(Date.now()-t));
+  }catch(e){}
+  timer=setTimeout(function(){exibirSePode();agendar()},espera);
+ }
+ window.fecharConviteCandidatoEM=function(){
+  const x=el();if(x)x.classList.remove('ativo');
+  marcarAgora();agendar();
+ }
  async function pedirNotif(){
   const chk=document.getElementById('emConviteNotif');
   if(!chk||!chk.checked||!('Notification' in window)||Notification.permission!=='default')return;
   try{await Notification.requestPermission()}catch(e){}
  }
  window.criarCurriculoConviteEM=async function(){
-  await pedirNotif(); try{localStorage.setItem(KEY,String(Date.now()))}catch(e){}
+  await pedirNotif(); marcarAgora();
   const x=el();if(x)x.classList.remove('ativo');
+  agendar();
   if(typeof window.irPara==='function') window.irPara('curriculo'); else location.href='?pagina=curriculo';
  }
- function podeMostrar(){
-  try{const t=Number(localStorage.getItem(KEY)||0);if(t&&Date.now()-t<DIAS*86400000)return false}catch(e){}
-  const p=new URLSearchParams(location.search).get('pagina');
-  return !p||p==='home';
- }
- window.addEventListener('load',function(){if(podeMostrar())setTimeout(function(){const x=el();if(x)x.classList.add('ativo')},1100)});
+ window.addEventListener('load',function(){
+  setTimeout(exibirSePode,1100);
+  agendar();
+ });
+ window.addEventListener('pageshow',function(){setTimeout(exibirSePode,500);agendar()});
  document.addEventListener('keydown',e=>{if(e.key==='Escape'&&el()?.classList.contains('ativo'))fecharConviteCandidatoEM()});
 })();
 </script>
