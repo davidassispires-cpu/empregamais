@@ -54,6 +54,20 @@ async function assinaturaAtual(){
   return await reg.pushManager.getSubscription();
  }catch(_){return null}
 }
+async function assinaturaRegistrada(sub){
+ if(!sub?.endpoint)return false;
+ try{
+  const token=await pushAuth();
+  if(!token)return false;
+  const user=await pushUser(token);
+  const r=await fetch(SUPABASE_URL+'/rest/v1/push_subscriptions?select=endpoint,enabled&user_id=eq.'+encodeURIComponent(user.id),{
+   headers:{Authorization:'Bearer '+token,apikey:ANON_KEY}
+  });
+  if(!r.ok)return false;
+  const rows=await r.json();
+  return Array.isArray(rows)&&rows.some(x=>x.endpoint===sub.endpoint&&x.enabled!==false);
+ }catch(_){return false}
+}
 async function pushRegister(){
  if(!window.isSecureContext)throw Error('As notificações exigem uma conexão segura (HTTPS).');
  if(!('serviceWorker'in navigator)||!('PushManager'in window)||!('Notification'in window))throw Error('Este navegador não oferece suporte a notificações push.');
@@ -186,13 +200,16 @@ function pushCard(){
   if(!('Notification'in window)){on.disabled=true;setStatus('Seu navegador não oferece suporte a notificações.');return}
   if(Notification.permission==='denied'){on.disabled=true;setStatus('As notificações estão bloqueadas nas permissões deste site.');return}
   const sub=await assinaturaAtual();
-  if(Notification.permission==='granted'&&sub){
+  const registrada=sub?await assinaturaRegistrada(sub):false;
+  if(Notification.permission==='granted'&&sub&&registrada){
    pushReady=true;
    on.hidden=true;
    off.hidden=false;
    setStatus('Notificações ativas neste celular.');
   }else if(Notification.permission==='granted'){
-   setStatus('Permissão concedida. Toque em “Ativar notificações” para concluir.');
+   on.hidden=false;
+   on.disabled=false;
+   setStatus('Permissão concedida. Toque em “Ativar notificações” para concluir o registro deste celular.');
   }
  })();
 }
