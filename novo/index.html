@@ -9785,26 +9785,55 @@ border:1px solid #d8e3e7!important;border-radius:12px!important;box-shadow:0 3px
 </style>
 
 <style id="empregai-candidato-convite-v1">
-.em-cv-pop{position:fixed;inset:0;z-index:120000;display:none;align-items:center;justify-content:center;padding:20px;background:rgba(7,35,50,.48)}
+.em-cv-pop{position:fixed;inset:0;z-index:120000;display:none;align-items:center;justify-content:center;padding:12px;background:rgba(7,35,50,.48)}
 .em-cv-pop.ativo{display:flex}
-.em-cv-pop-card{width:min(560px,100%);max-height:min(760px,calc(100vh - 32px));overflow:auto;background:#fff;border:1px solid #dce8ee;border-radius:24px;box-shadow:0 28px 80px rgba(8,42,60,.24);font-family:Montserrat,sans-serif;color:#294f61}
-.em-cv-pop-top{position:relative;padding:30px 30px 18px;text-align:center;background:linear-gradient(180deg,#f2fbfd 0,#fff 100%);border-radius:24px 24px 0 0}
-.em-cv-pop-badge{display:inline-flex;align-items:center;gap:7px;padding:7px 11px;border-radius:999px;background:#e7f6fa;color:#087493;font-size:11px;font-weight:750;letter-spacing:.06em}
-.em-cv-pop-x{position:absolute;right:16px;top:15px;width:36px;height:36px;border:1px solid #dbe7ed;border-radius:50%;background:#fff;color:#547080;font-size:22px;cursor:pointer}
-.em-cv-pop-icon{width:64px;height:64px;margin:17px auto 12px;display:grid;place-items:center;border-radius:18px;background:#176b87;color:#fff;font-size:27px;font-weight:800;box-shadow:0 10px 25px rgba(23,107,135,.22)}
-.em-cv-pop h2{margin:0;color:#073f5a;font-size:25px;line-height:1.18;font-weight:750;letter-spacing:-.025em}
-.em-cv-pop-lead{margin:10px auto 0;max-width:440px;font-size:14px;line-height:1.55;color:#587181}
-.em-cv-pop-beneficios{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:4px 26px 18px}
-.em-cv-pop-beneficio{padding:14px;border:1px solid #e2ebf0;border-radius:14px;background:#fff}
-.em-cv-pop-beneficio b{display:block;margin-bottom:4px;color:#174d63;font-size:13px}
-.em-cv-pop-beneficio span{display:block;font-size:11.5px;line-height:1.45;color:#6a7f8c}
-.em-cv-pop-notif{margin:0 26px 17px;padding:14px 15px;display:flex;gap:11px;align-items:flex-start;border:1px solid #cfe6ed;border-radius:14px;background:#f3fbfd}
-.em-cv-pop-notif input{margin-top:3px;accent-color:#176b87}
-.em-cv-pop-notif strong{display:block;color:#174d63;font-size:13px}.em-cv-pop-notif small{display:block;margin-top:3px;color:#6a7f8c;font-size:11px;line-height:1.4}
-.em-cv-pop-actions{padding:0 26px 26px}
-.em-cv-pop-primary{width:100%;height:48px;border:0;border-radius:12px;background:#176b87;color:#fff;font:700 14px Montserrat,sans-serif;cursor:pointer}
-.em-cv-pop-later{display:block;margin:12px auto 0;border:0;background:transparent;color:#738793;font:500 12px Montserrat,sans-serif;cursor:pointer}
-@media(max-width:600px){.em-cv-pop{padding:14px}.em-cv-pop-card{border-radius:20px;max-height:calc(100vh - 28px)}.em-cv-pop-top{padding:25px 20px 15px}.em-cv-pop h2{font-size:22px}.em-cv-pop-beneficios{grid-template-columns:1fr;padding:3px 18px 14px;gap:8px}.em-cv-pop-beneficio{padding:11px 13px}.em-cv-pop-notif{margin:0 18px 14px}.em-cv-pop-actions{padding:0 18px 20px}}
+.em-cv-pop-card{width:min(560px,100%);max-height:calc(100dvh - 24px);overflow:hidden;background:#fff;border:1px solid #dce8ee;border-radius:22px;box-shadow:0 28px 80px rgba(8,42,60,.24);font-family:Montserrat,sans-serif;color:#3f515b}
+.em-cv-pop-top{position:relative;padding:20px 24px 14px;text-align:center;background:linear-gradient(180deg,#f2fbfd 0,#fff 100%);border-radius:22px 22px 0 0}
+.em-cv-pop-badge{display:inline-flex;align-items:center;gap:7px;padding:6px 10px;border-radius:999px;background:#e7f6fa;color:#11687f;font-size:12px;font-weight:750;letter-spacing:.045em}
+.em-cv-pop-x{position:absolute;right:14px;top:13px;width:34px;height:34px;border:1px solid #dbe7ed;border-radius:50%;background:#fff;color:#4f626d;font-size:21px;line-height:1;cursor:pointer}
+.em-cv-pop-icon{width:56px;height:56px;margin:12px auto 10px;display:grid;place-items:center;border-radius:16px;background:#176b87;color:#fff;font-size:25px;font-weight:800;box-shadow:0 8px 20px rgba(23,107,135,.2)}
+.em-cv-pop h2{margin:0;color:#243b47;font-size:25px;line-height:1.16;font-weight:750;letter-spacing:-.025em}
+.em-cv-pop-lead{margin:8px auto 0;max-width:455px;font-size:15px;line-height:1.45;color:#4f626d}
+.em-cv-pop-beneficios{display:grid;grid-template-columns:1fr 1fr;gap:9px;padding:3px 20px 14px}
+.em-cv-pop-beneficio{padding:12px 13px;border:1px solid #dfe8ed;border-radius:13px;background:#fff}
+.em-cv-pop-beneficio b{display:block;margin-bottom:4px;color:#2d4653;font-size:14px;line-height:1.3}
+.em-cv-pop-beneficio span{display:block;font-size:12.5px;line-height:1.42;color:#52656f}
+.em-cv-pop-notif{margin:0 20px 13px;padding:12px 13px;display:flex;gap:10px;align-items:flex-start;border:1px solid #cfe6ed;border-radius:13px;background:#f3fbfd}
+.em-cv-pop-notif input{width:16px;height:16px;margin-top:2px;accent-color:#176b87;flex:0 0 auto}
+.em-cv-pop-notif strong{display:block;color:#2d4653;font-size:14px;line-height:1.3}
+.em-cv-pop-notif small{display:block;margin-top:3px;color:#52656f;font-size:12px;line-height:1.38}
+.em-cv-pop-actions{padding:0 20px 18px}
+.em-cv-pop-primary{width:100%;height:46px;border:0;border-radius:11px;background:#176b87;color:#fff;font:700 14px Montserrat,sans-serif;cursor:pointer}
+.em-cv-pop-later{display:block;margin:9px auto 0;border:0;background:transparent;color:#596b75;font:600 12px Montserrat,sans-serif;cursor:pointer}
+@media(max-width:600px){
+ .em-cv-pop{padding:8px}
+ .em-cv-pop-card{width:100%;max-height:calc(100dvh - 16px);border-radius:18px;overflow:hidden}
+ .em-cv-pop-top{padding:15px 14px 10px}
+ .em-cv-pop-badge{font-size:10.5px;padding:5px 8px}
+ .em-cv-pop-x{right:10px;top:9px;width:31px;height:31px;font-size:19px}
+ .em-cv-pop-icon{width:50px;height:50px;margin:8px auto 8px;border-radius:14px;font-size:22px}
+ .em-cv-pop h2{font-size:22px;line-height:1.12;padding:0 8px}
+ .em-cv-pop-lead{margin-top:6px;font-size:13.5px;line-height:1.35;padding:0 4px}
+ .em-cv-pop-beneficios{grid-template-columns:1fr 1fr;gap:7px;padding:2px 10px 10px}
+ .em-cv-pop-beneficio{padding:10px 9px;border-radius:11px}
+ .em-cv-pop-beneficio b{font-size:12.5px;line-height:1.25}
+ .em-cv-pop-beneficio span{font-size:11.5px;line-height:1.32}
+ .em-cv-pop-notif{margin:0 10px 10px;padding:10px 11px;gap:8px}
+ .em-cv-pop-notif strong{font-size:12.5px}
+ .em-cv-pop-notif small{font-size:11.5px;line-height:1.3}
+ .em-cv-pop-actions{padding:0 10px 12px}
+ .em-cv-pop-primary{height:44px;font-size:13px}
+ .em-cv-pop-later{margin-top:7px;font-size:11.5px}
+}
+@media(max-width:370px){
+ .em-cv-pop h2{font-size:20px}
+ .em-cv-pop-lead{font-size:12.5px}
+ .em-cv-pop-beneficio{padding:8px}
+ .em-cv-pop-beneficio b{font-size:12px}
+ .em-cv-pop-beneficio span{font-size:10.8px}
+ .em-cv-pop-notif{padding:9px}
+ .em-cv-pop-actions{padding-bottom:10px}
+}
 </style>
 <div class="em-cv-pop" id="emConviteCandidato" role="dialog" aria-modal="true" aria-labelledby="emConviteTitulo">
  <div class="em-cv-pop-card">
