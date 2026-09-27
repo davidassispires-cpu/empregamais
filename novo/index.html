@@ -14798,4 +14798,146 @@ textarea{
     grid-template-columns:1fr!important;
   }
 }
+</style><style>/* EMPREGAMAI-POPUP-CV-SEM-ROLAGEM-V2 */
+#emConviteCandidato.em-cv-pop{
+  padding:10px!important;
+  overflow:hidden!important;
+  align-items:center!important;
+  justify-content:center!important;
+}
+#emConviteCandidato .em-cv-pop-card{
+  width:min(680px,calc(100vw - 20px))!important;
+  max-height:none!important;
+  height:auto!important;
+  overflow:visible!important;
+  border-radius:20px!important;
+  display:block!important;
+}
+#emConviteCandidato .em-cv-pop-top{
+  padding:14px 22px 10px!important;
+}
+#emConviteCandidato .em-cv-pop-badge{
+  padding:5px 10px!important;
+  font-size:11.5px!important;
+}
+#emConviteCandidato .em-cv-pop-icon{
+  width:50px!important;
+  height:50px!important;
+  margin:8px auto 8px!important;
+  border-radius:14px!important;
+  font-size:23px!important;
+}
+#emConviteCandidato h2{
+  max-width:610px!important;
+  margin:0 auto!important;
+  font-size:27px!important;
+  line-height:1.12!important;
+  font-weight:750!important;
+  text-align:center!important;
+}
+#emConviteCandidato .em-cv-pop-lead{
+  max-width:570px!important;
+  margin:7px auto 0!important;
+  font-size:14px!important;
+  line-height:1.35!important;
+  text-align:center!important;
+}
+#emConviteCandidato .em-cv-pop-beneficios{
+  grid-template-columns:1fr 1fr!important;
+  gap:8px!important;
+  padding:4px 14px 10px!important;
+}
+#emConviteCandidato .em-cv-pop-beneficio{
+  min-height:72px!important;
+  padding:10px 12px!important;
+  border-radius:12px!important;
+}
+#emConviteCandidato .em-cv-pop-beneficio b{
+  margin-bottom:3px!important;
+  font-size:13.5px!important;
+  line-height:1.25!important;
+}
+#emConviteCandidato .em-cv-pop-beneficio span{
+  font-size:12px!important;
+  line-height:1.32!important;
+}
+#emConviteCandidato .em-cv-pop-notif{
+  margin:0 14px 10px!important;
+  padding:10px 12px!important;
+  min-height:54px!important;
+  align-items:center!important;
+  border-radius:12px!important;
+}
+#emConviteCandidato .em-cv-pop-notif input{
+  width:17px!important;
+  height:17px!important;
+  margin:0!important;
+}
+#emConviteCandidato .em-cv-pop-notif strong{
+  font-size:13.5px!important;
+  line-height:1.25!important;
+}
+#emConviteCandidato .em-cv-pop-notif small{
+  margin-top:2px!important;
+  font-size:11.5px!important;
+  line-height:1.3!important;
+}
+#emConviteCandidato .em-cv-pop-actions{
+  padding:0 14px 12px!important;
+}
+#emConviteCandidato .em-cv-pop-primary{
+  height:46px!important;
+  border-radius:11px!important;
+  font-family:'Inter','Segoe UI',Arial,sans-serif!important;
+  font-size:14px!important;
+  font-weight:700!important;
+}
+#emConviteCandidato .em-cv-pop-later{
+  margin-top:7px!important;
+  font-family:'Inter','Segoe UI',Arial,sans-serif!important;
+  font-size:12.5px!important;
+  line-height:1.2!important;
+}
+#emConviteCandidato .em-cv-pop-x{
+  right:12px!important;
+  top:11px!important;
+  width:32px!important;
+  height:32px!important;
+}
+
+/* em telas baixas, compacta o conteúdo em vez de criar rolagem */
+@media(max-height:680px){
+ #emConviteCandidato .em-cv-pop-card{width:min(660px,calc(100vw - 16px))!important}
+ #emConviteCandidato .em-cv-pop-top{padding:10px 18px 7px!important}
+ #emConviteCandidato .em-cv-pop-badge{font-size:10.5px!important;padding:4px 8px!important}
+ #emConviteCandidato .em-cv-pop-icon{width:44px!important;height:44px!important;margin:5px auto 6px!important;font-size:21px!important}
+ #emConviteCandidato h2{font-size:24px!important;line-height:1.08!important}
+ #emConviteCandidato .em-cv-pop-lead{margin-top:5px!important;font-size:13px!important;line-height:1.28!important}
+ #emConviteCandidato .em-cv-pop-beneficios{gap:6px!important;padding:3px 10px 8px!important}
+ #emConviteCandidato .em-cv-pop-beneficio{min-height:64px!important;padding:8px 10px!important}
+ #emConviteCandidato .em-cv-pop-beneficio b{font-size:12.5px!important}
+ #emConviteCandidato .em-cv-pop-beneficio span{font-size:11.2px!important;line-height:1.25!important}
+ #emConviteCandidato .em-cv-pop-notif{margin:0 10px 8px!important;padding:8px 10px!important;min-height:48px!important}
+ #emConviteCandidato .em-cv-pop-notif strong{font-size:12.5px!important}
+ #emConviteCandidato .em-cv-pop-notif small{font-size:10.8px!important}
+ #emConviteCandidato .em-cv-pop-actions{padding:0 10px 9px!important}
+ #emConviteCandidato .em-cv-pop-primary{height:42px!important;font-size:13px!important}
+ #emConviteCandidato .em-cv-pop-later{margin-top:5px!important;font-size:11.5px!important}
+}
+
+/* mobile: uma única caixa, sem barra interna */
+@media(max-width:600px){
+ #emConviteCandidato.em-cv-pop{padding:8px!important;overflow:hidden!important}
+ #emConviteCandidato .em-cv-pop-card{
+   width:100%!important;
+   max-height:none!important;
+   overflow:visible!important;
+   border-radius:18px!important;
+ }
+ #emConviteCandidato .em-cv-pop-beneficios{grid-template-columns:1fr 1fr!important}
+}
+@media(max-width:430px){
+ #emConviteCandidato .em-cv-pop-beneficios{grid-template-columns:1fr!important}
+ #emConviteCandidato .em-cv-pop-beneficio{min-height:0!important}
+}
 </style></body></html>
