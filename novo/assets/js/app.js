@@ -1321,8 +1321,48 @@ function renderStatusVerificacaoEmpresaEM(){
  if(s==='aprovada'){box.innerHTML='<div class="em-ver-status em-ver-aprovada"><span class="em-ver-icon"><svg viewBox="0 0 24 24"><path d="M7 12.5l3.2 3.2L17.5 8.5"/><circle cx="12" cy="12" r="9"/></svg></span><div><small>VERIFICAÇÃO DA EMPRESA</small><strong>Empresa verificada</strong><p>Sua empresa passou pela análise e o selo de verificação está ativo.</p></div><b>VERIFICADA</b></div>';return}
  box.innerHTML=''
 }
+function atualizarVerificacaoSidebarPainelEM(){
+ const pagina=document.getElementById('pagina-painel-empresa'),emp=empresaLogada();if(!pagina||!emp)return;
+ const verificada=emp.verificada===true||emp.verificacaoStatus==='aprovada';
+ const status=emp.verificacaoStatus||'nao_verificada';
+ const nav=pagina.querySelector('.emp-dash-side nav');
+ let btn=document.getElementById('empresaSideVerificarEM');
+ if(!verificada&&nav){
+  if(!btn){
+   btn=document.createElement('button');
+   btn.type='button';
+   btn.id='empresaSideVerificarEM';
+   btn.className='emp-side-verificar-em';
+   btn.onclick=abrirVerificacaoEmpresaEM;
+   btn.innerHTML='<i aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 3l2.2 1.7 2.8-.2.8 2.7 2.3 1.6-1 2.6 1 2.6-2.3 1.6-.8 2.7-2.8-.2L12 21l-2.2-1.7-2.8.2-.8-2.7-2.3-1.6 1-2.6-1-2.6 2.3-1.6.8-2.7 2.8.2z"/><path d="M8.5 12h7"/></svg></i><span><b>Verificar empresa</b><small></small></span><em>›</em>';
+   nav.appendChild(btn);
+  }
+  const small=btn.querySelector('small');
+  if(small)small.textContent=(status==='pendente'||status==='em_analise')?'Em análise':'Concluir verificação';
+  btn.classList.toggle('em-analise',status==='pendente'||status==='em_analise');
+  btn.style.display='';
+ }else if(btn){
+  btn.remove();
+ }
+
+ const nome=document.getElementById('empProNome');
+ let selo=document.getElementById('empresaPainelSeloVerificadaEM');
+ if(verificada&&nome){
+  if(!selo){
+   selo=document.createElement('span');
+   selo.id='empresaPainelSeloVerificadaEM';
+   selo.className='empresa-painel-selo-verificada';
+   selo.innerHTML='<i>✓</i><span>Empresa verificada</span>';
+   nome.insertAdjacentElement('afterend',selo);
+  }
+  selo.style.display='inline-flex';
+ }else if(selo){
+  selo.remove();
+ }
+}
+
 const _renderizarPainelEmpresaVerEM=renderizarPainelEmpresa;
-renderizarPainelEmpresa=function(){const r=_renderizarPainelEmpresaVerEM.apply(this,arguments);renderStatusVerificacaoEmpresaEM();return r};
+renderizarPainelEmpresa=function(){const r=_renderizarPainelEmpresaVerEM.apply(this,arguments);renderStatusVerificacaoEmpresaEM();setTimeout(atualizarVerificacaoSidebarPainelEM,0);return r};
 
 
 /* EMPREGAMAIS — acesso inteligente à verificação empresarial */
