@@ -5931,7 +5931,7 @@ svg text{
     <small>Concluídas</small>
   </button>
 </div>
-<section class="emp-performance emp-performance-v108">
+<section class="emp-performance emp-performance-v108 emp-performance-modelo-unico">
   <div class="emp-performance-head">
     <div class="emp-performance-title">
       <span>DESEMPENHO</span>
@@ -5940,34 +5940,38 @@ svg text{
     </div>
     <div class="emp-performance-period"><i>◷</i><span>Últimos 30 dias</span></div>
   </div>
-  <div class="emp-performance-grid">
-    <article class="emp-performance-card avancos emp-performance-tip" tabindex="0" aria-label="Taxa de avanço: Percentual de candidatos que avançaram da etapa inicial para alguma etapa seguinte do processo seletivo.">
-      <div class="emp-performance-tooltip"><strong>Taxa de avanço</strong><p>Percentual de candidatos que avançaram da etapa inicial para alguma etapa seguinte do processo seletivo.</p><small>Passe o mouse para consultar este indicador.</small></div>
-      <div class="emp-performance-card-top"><i>↗</i><span>Taxa de avanço</span></div>
+  <div class="emp-performance-grid emp-performance-grid-modelo-unico">
+    <article class="emp-model-card emp-performance-model-card">
+      <div class="emp-model-head">
+        <span>Taxa de avanço</span>
+        <i>↗</i>
+      </div>
       <strong id="empPerfAvanco">0%</strong>
       <small>Candidatos que avançaram no funil</small>
-      <div class="emp-performance-foot"><span>Conversão do processo</span><b>→</b></div>
     </article>
-    <article class="emp-performance-card entrevistas emp-performance-tip" tabindex="0" aria-label="Entrevistas: Quantidade de candidatos que chegaram à etapa de entrevista nos seus processos seletivos.">
-      <div class="emp-performance-tooltip"><strong>Entrevistas</strong><p>Quantidade de candidatos que chegaram à etapa de entrevista nos seus processos seletivos.</p><small>Passe o mouse para consultar este indicador.</small></div>
-      <div class="emp-performance-card-top"><i>◷</i><span>Taxa de contratação</span></div>
+    <article class="emp-model-card emp-performance-model-card">
+      <div class="emp-model-head">
+        <span>Taxa de contratação</span>
+        <i>◷</i>
+      </div>
       <strong id="empPerfEntrevistas">0%</strong>
       <small>Contratações sobre candidaturas</small>
-      <div class="emp-performance-foot"><span>Movimentação do funil</span><b>→</b></div>
     </article>
-    <article class="emp-performance-card contratacoes emp-performance-tip" tabindex="0" aria-label="Contratações: Total de candidatos marcados como contratados após a conclusão do processo seletivo.">
-      <div class="emp-performance-tooltip"><strong>Contratações</strong><p>Total de candidatos marcados como contratados após a conclusão do processo seletivo.</p><small>Passe o mouse para consultar este indicador.</small></div>
-      <div class="emp-performance-card-top"><i>✓</i><span>Vagas com candidatos</span></div>
+    <article class="emp-model-card emp-performance-model-card">
+      <div class="emp-model-head">
+        <span>Vagas com candidatos</span>
+        <i>✓</i>
+      </div>
       <strong id="empPerfContratacoes">0</strong>
       <small>Vagas ativas que já receberam currículos</small>
-      <div class="emp-performance-foot"><span>Resultado final</span><b>→</b></div>
     </article>
-    <article class="emp-performance-card media emp-performance-tip" tabindex="0" aria-label="Candidatos por vaga: Média de candidaturas recebidas por vaga ativa. Ajuda a visualizar o volume de interesse nas oportunidades.">
-      <div class="emp-performance-tooltip"><strong>Candidatos por vaga</strong><p>Média de candidaturas recebidas por vaga ativa. Ajuda a visualizar o volume de interesse nas oportunidades.</p><small>Passe o mouse para consultar este indicador.</small></div>
-      <div class="emp-performance-card-top"><i>♟</i><span>Candidatos por vaga</span></div>
+    <article class="emp-model-card emp-performance-model-card">
+      <div class="emp-model-head">
+        <span>Candidatos por vaga</span>
+        <i>♟</i>
+      </div>
       <strong id="empPerfMedia">0</strong>
       <small>Média de candidaturas por vaga ativa</small>
-      <div class="emp-performance-foot"><span>Volume médio</span><b>→</b></div>
     </article>
   </div>
 </section>
@@ -14462,5 +14466,162 @@ textarea{
   #emConviteCandidato .em-cv-pop-actions{padding:0 12px 14px!important}
   #emConviteCandidato .em-cv-pop-primary{height:48px!important;font-size:14px!important}
   #emConviteCandidato .em-cv-pop-later{font-size:12.5px!important}
+}
+</style><style>/* EMPREGAMAIS-DESEMPENHO-MESMO-MODELO-KPI-V8 */
+/* O bloco de desempenho passa a usar exatamente a mesma linguagem dos KPIs acima. */
+#pagina-painel-empresa .emp-performance-modelo-unico{
+  display:block!important;
+  margin:0 0 20px!important;
+  padding:0!important;
+  border:1px solid #d7e3e8!important;
+  border-radius:12px!important;
+  background:#fff!important;
+  box-shadow:none!important;
+  overflow:hidden!important;
+}
+#pagina-painel-empresa .emp-performance-modelo-unico .emp-performance-head{
+  min-height:76px!important;
+  margin:0!important;
+  padding:14px 16px!important;
+  display:flex!important;
+  align-items:center!important;
+  justify-content:space-between!important;
+  gap:18px!important;
+  border:0!important;
+  border-bottom:1px solid #e5ecef!important;
+  background:#fff!important;
+}
+#pagina-painel-empresa .emp-performance-modelo-unico .emp-performance-title>span{
+  display:block!important;
+  margin:0 0 4px!important;
+  font-family:'Inter','Segoe UI',Arial,sans-serif!important;
+  font-size:11px!important;
+  line-height:1.2!important;
+  font-weight:700!important;
+  letter-spacing:.06em!important;
+  color:#0d7182!important;
+}
+#pagina-painel-empresa .emp-performance-modelo-unico .emp-performance-title h2{
+  margin:0!important;
+  font-family:'Inter','Segoe UI',Arial,sans-serif!important;
+  font-size:20px!important;
+  line-height:1.25!important;
+  font-weight:700!important;
+  letter-spacing:-.02em!important;
+  color:#173f50!important;
+}
+#pagina-painel-empresa .emp-performance-modelo-unico .emp-performance-title p{
+  margin:4px 0 0!important;
+  font-family:'Inter','Segoe UI',Arial,sans-serif!important;
+  font-size:13px!important;
+  line-height:1.4!important;
+  font-weight:500!important;
+  color:#5f7480!important;
+}
+#pagina-painel-empresa .emp-performance-modelo-unico .emp-performance-period{
+  flex:0 0 auto!important;
+  min-height:36px!important;
+  padding:0 12px!important;
+  display:inline-flex!important;
+  align-items:center!important;
+  gap:7px!important;
+  border:1px solid #d7e3e8!important;
+  border-radius:9px!important;
+  background:#f8fbfc!important;
+  color:#294f5d!important;
+  font-family:'Inter','Segoe UI',Arial,sans-serif!important;
+  font-size:12px!important;
+  line-height:1!important;
+  font-weight:600!important;
+}
+#pagina-painel-empresa .emp-performance-grid-modelo-unico{
+  display:grid!important;
+  grid-template-columns:repeat(4,minmax(0,1fr))!important;
+  gap:10px!important;
+  padding:10px!important;
+  background:#f7fafb!important;
+}
+#pagina-painel-empresa .emp-performance-grid-modelo-unico .emp-performance-model-card{
+  min-width:0!important;
+  height:112px!important;
+  min-height:112px!important;
+  margin:0!important;
+  padding:14px 14px 13px!important;
+  border:1px solid #d7e3e8!important;
+  border-radius:11px!important;
+  background:#fff!important;
+  box-shadow:none!important;
+  display:flex!important;
+  flex-direction:column!important;
+  align-items:stretch!important;
+  justify-content:flex-start!important;
+}
+#pagina-painel-empresa .emp-performance-grid-modelo-unico .emp-model-head{
+  min-height:36px!important;
+  display:grid!important;
+  grid-template-columns:minmax(0,1fr) 34px!important;
+  align-items:center!important;
+  gap:8px!important;
+}
+#pagina-painel-empresa .emp-performance-grid-modelo-unico .emp-model-head>span{
+  font-family:'Inter','Segoe UI',Arial,sans-serif!important;
+  font-size:13px!important;
+  line-height:1.25!important;
+  font-weight:600!important;
+  letter-spacing:0!important;
+  color:#294f5d!important;
+}
+#pagina-painel-empresa .emp-performance-grid-modelo-unico .emp-model-head>i{
+  width:34px!important;
+  height:34px!important;
+  display:grid!important;
+  place-items:center!important;
+  border-radius:9px!important;
+  background:#eef5f7!important;
+  color:#176b7d!important;
+  font-family:'Inter','Segoe UI',Arial,sans-serif!important;
+  font-size:15px!important;
+  font-style:normal!important;
+}
+#pagina-painel-empresa .emp-performance-grid-modelo-unico .emp-performance-model-card>strong{
+  display:block!important;
+  margin:7px 0 0!important;
+  font-family:'Inter','Segoe UI',Arial,sans-serif!important;
+  font-size:26px!important;
+  line-height:1!important;
+  font-weight:700!important;
+  letter-spacing:-.04em!important;
+  color:#103f55!important;
+}
+#pagina-painel-empresa .emp-performance-grid-modelo-unico .emp-performance-model-card>small{
+  display:block!important;
+  width:100%!important;
+  margin-top:auto!important;
+  padding-top:8px!important;
+  border-top:1px solid #e5ecef!important;
+  font-family:'Inter','Segoe UI',Arial,sans-serif!important;
+  font-size:12.5px!important;
+  line-height:1.35!important;
+  font-weight:500!important;
+  letter-spacing:0!important;
+  color:#5f7480!important;
+}
+/* Neutraliza restos do modelo antigo */
+#pagina-painel-empresa .emp-performance-modelo-unico :where(.emp-performance-foot,.emp-performance-tooltip,.emp-performance-card-top){
+  display:none!important;
+}
+@media(max-width:1000px){
+  #pagina-painel-empresa .emp-performance-grid-modelo-unico{grid-template-columns:repeat(2,minmax(0,1fr))!important}
+}
+@media(max-width:560px){
+  #pagina-painel-empresa .emp-performance-modelo-unico .emp-performance-head{
+    align-items:flex-start!important;
+    flex-direction:column!important;
+  }
+  #pagina-painel-empresa .emp-performance-grid-modelo-unico{grid-template-columns:1fr!important}
+  #pagina-painel-empresa .emp-performance-grid-modelo-unico .emp-performance-model-card{
+    height:auto!important;
+    min-height:104px!important;
+  }
 }
 </style></body></html>
