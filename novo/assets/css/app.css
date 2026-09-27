@@ -9136,3 +9136,339 @@ textarea{
   #emConviteCandidato .em-cv-pop-later{font-size:12.5px!important}
 }
 
+/* EMPREGAMAIS-PROCESSOS-CARD-PREMIUM-V127 */
+#pagina-candidatos-empresa{
+  background:#f4f7f8!important;
+  font-family:'Inter','Segoe UI',Arial,sans-serif!important;
+}
+#pagina-candidatos-empresa .psv2-head-inner,
+#pagina-candidatos-empresa .psv2-shell{
+  max-width:1320px!important;
+}
+#pagina-candidatos-empresa .psv2-head-inner{
+  padding:24px 26px 22px!important;
+}
+#pagina-candidatos-empresa .psv2-head h1{
+  font-family:'Inter','Segoe UI',Arial,sans-serif!important;
+  font-size:28px!important;
+  line-height:1.15!important;
+  font-weight:700!important;
+  letter-spacing:-.03em!important;
+  color:#123f50!important;
+}
+#pagina-candidatos-empresa .psv2-head p{
+  font-size:14px!important;
+  line-height:1.5!important;
+  font-weight:500!important;
+  color:#60757f!important;
+}
+#pagina-candidatos-empresa .psv2-new{
+  height:44px!important;
+  padding:0 18px!important;
+  border-radius:10px!important;
+  font-family:'Inter','Segoe UI',Arial,sans-serif!important;
+  font-size:13px!important;
+  font-weight:650!important;
+  box-shadow:none!important;
+}
+
+/* resumo superior neutro e corporativo */
+#pagina-candidatos-empresa .psv2-summary{
+  gap:12px!important;
+  margin:0 0 16px!important;
+}
+#pagina-candidatos-empresa .psv2-summary article{
+  min-height:104px!important;
+  padding:16px 17px!important;
+  gap:13px!important;
+  border:1px solid #d9e5e9!important;
+  border-radius:14px!important;
+  background:#fff!important;
+  box-shadow:0 3px 10px rgba(19,58,72,.035)!important;
+}
+#pagina-candidatos-empresa .psv2-summary i{
+  width:42px!important;height:42px!important;flex:0 0 42px!important;
+  border-radius:11px!important;
+  background:#eef5f7!important;
+  color:#156a7b!important;
+}
+#pagina-candidatos-empresa .psv2-summary span{
+  font-size:12.5px!important;
+  line-height:1.3!important;
+  font-weight:600!important;
+  color:#496570!important;
+  letter-spacing:0!important;
+}
+#pagina-candidatos-empresa .psv2-summary strong{
+  margin-top:3px!important;
+  font-size:28px!important;
+  line-height:1!important;
+  font-weight:750!important;
+  letter-spacing:-.04em!important;
+  color:#123f50!important;
+}
+#pagina-candidatos-empresa .psv2-summary small{
+  margin-top:5px!important;
+  font-size:12.5px!important;
+  line-height:1.35!important;
+  font-weight:500!important;
+  color:#6b7f88!important;
+}
+
+/* busca/filtros */
+#pagina-candidatos-empresa .psv2-workspace{
+  background:transparent!important;
+  border:0!important;
+  overflow:visible!important;
+}
+#pagina-candidatos-empresa .psv2-toolbar{
+  grid-template-columns:minmax(320px,1fr) 180px 180px!important;
+  gap:10px!important;
+  padding:11px!important;
+  margin-bottom:12px!important;
+  border:1px solid #d9e5e9!important;
+  border-radius:13px!important;
+  background:#fff!important;
+  box-shadow:0 3px 10px rgba(19,58,72,.025)!important;
+}
+#pagina-candidatos-empresa .psv2-toolbar input,
+#pagina-candidatos-empresa .psv2-toolbar select{
+  height:44px!important;
+  padding:0 13px!important;
+  border:1px solid #d5e1e5!important;
+  border-radius:10px!important;
+  font-family:'Inter','Segoe UI',Arial,sans-serif!important;
+  font-size:13.5px!important;
+  font-weight:500!important;
+  color:#355461!important;
+}
+#pagina-candidatos-empresa .psv2-list-head{
+  grid-template-columns:minmax(320px,1.15fr) minmax(520px,1.5fr) 180px!important;
+  gap:20px!important;
+  padding:8px 18px 9px!important;
+  margin:0!important;
+  border:0!important;
+  background:transparent!important;
+  font-family:'Inter','Segoe UI',Arial,sans-serif!important;
+  font-size:11px!important;
+  font-weight:700!important;
+  letter-spacing:.045em!important;
+  color:#71838b!important;
+}
+#pagina-candidatos-empresa .psv2-list{
+  display:grid!important;
+  gap:12px!important;
+}
+
+/* card principal do processo */
+#pagina-candidatos-empresa .psv2-row-pro{
+  grid-template-columns:minmax(320px,1.15fr) minmax(520px,1.5fr) 180px!important;
+  gap:20px!important;
+  align-items:center!important;
+  min-height:132px!important;
+  padding:18px!important;
+  border:1px solid #d9e5e9!important;
+  border-radius:14px!important;
+  background:#fff!important;
+  box-shadow:0 4px 14px rgba(19,58,72,.035)!important;
+  transition:border-color .18s ease,box-shadow .18s ease,transform .18s ease!important;
+}
+#pagina-candidatos-empresa .psv2-row-pro:hover{
+  transform:translateY(-1px)!important;
+  border-color:#bfd4db!important;
+  box-shadow:0 8px 20px rgba(19,58,72,.065)!important;
+}
+#pagina-candidatos-empresa .psv2-job{
+  min-width:0!important;
+  padding-right:6px!important;
+}
+#pagina-candidatos-empresa .psv2-title-wrap{
+  display:flex!important;
+  align-items:center!important;
+  gap:9px!important;
+  min-width:0!important;
+  flex-wrap:wrap!important;
+}
+#pagina-candidatos-empresa .psv2-job h3{
+  margin:0!important;
+  max-width:100%!important;
+  font-family:'Inter','Segoe UI',Arial,sans-serif!important;
+  font-size:18px!important;
+  line-height:1.25!important;
+  font-weight:700!important;
+  letter-spacing:-.02em!important;
+  color:#0f4055!important;
+  text-transform:none!important;
+}
+#pagina-candidatos-empresa .psv2-status{
+  display:inline-flex!important;
+  align-items:center!important;
+  min-height:28px!important;
+  padding:0 10px!important;
+  border-radius:999px!important;
+  font-family:'Inter','Segoe UI',Arial,sans-serif!important;
+  font-size:11.5px!important;
+  font-weight:600!important;
+}
+#pagina-candidatos-empresa .psv2-job-meta{
+  display:flex!important;
+  flex-wrap:wrap!important;
+  gap:8px 14px!important;
+  margin-top:10px!important;
+}
+#pagina-candidatos-empresa .psv2-job-meta span{
+  display:inline-flex!important;
+  align-items:center!important;
+  gap:5px!important;
+  font-family:'Inter','Segoe UI',Arial,sans-serif!important;
+  font-size:12.5px!important;
+  line-height:1.35!important;
+  font-weight:500!important;
+  color:#607680!important;
+}
+#pagina-candidatos-empresa .psv2-job-meta i{
+  font-style:normal!important;
+  color:#7e929b!important;
+  font-size:11px!important;
+}
+#pagina-candidatos-empresa .psv2-tags{
+  display:flex!important;
+  flex-wrap:wrap!important;
+  gap:6px!important;
+  margin-top:9px!important;
+}
+#pagina-candidatos-empresa .psv2-tags em{
+  padding:4px 8px!important;
+  border:1px solid #e0e8eb!important;
+  border-radius:7px!important;
+  background:#f8fafb!important;
+  font-family:'Inter','Segoe UI',Arial,sans-serif!important;
+  font-size:11.5px!important;
+  font-weight:550!important;
+  color:#566f79!important;
+}
+
+/* funil: células discretas e uniformes */
+#pagina-candidatos-empresa .psv2-funnel{
+  display:grid!important;
+  grid-template-columns:repeat(5,minmax(0,1fr))!important;
+  gap:8px!important;
+  border:0!important;
+  border-radius:0!important;
+  overflow:visible!important;
+  background:transparent!important;
+}
+#pagina-candidatos-empresa .psv2-funnel>div{
+  position:relative!important;
+  min-width:0!important;
+  min-height:76px!important;
+  padding:11px 10px 9px!important;
+  border:1px solid #dce6ea!important;
+  border-radius:10px!important;
+  background:#fbfcfd!important;
+  text-align:left!important;
+}
+#pagina-candidatos-empresa .psv2-funnel>div:before{
+  content:""!important;
+  position:absolute!important;
+  left:0!important;right:0!important;top:0!important;
+  height:3px!important;
+  border-radius:10px 10px 0 0!important;
+  background:#d5e2e7!important;
+}
+#pagina-candidatos-empresa .psv2-funnel>div.total:before{background:#19728c!important}
+#pagina-candidatos-empresa .psv2-funnel>div:nth-child(2):before{background:#c99735!important}
+#pagina-candidatos-empresa .psv2-funnel>div:nth-child(3):before{background:#7967a8!important}
+#pagina-candidatos-empresa .psv2-funnel>div:nth-child(4):before{background:#4b8eab!important}
+#pagina-candidatos-empresa .psv2-funnel>div:nth-child(5):before{background:#568a6a!important}
+#pagina-candidatos-empresa .psv2-funnel strong{
+  display:block!important;
+  margin:0!important;
+  font-family:'Inter','Segoe UI',Arial,sans-serif!important;
+  font-size:20px!important;
+  line-height:1!important;
+  font-weight:750!important;
+  color:#174657!important;
+}
+#pagina-candidatos-empresa .psv2-funnel span{
+  display:block!important;
+  margin-top:7px!important;
+  font-family:'Inter','Segoe UI',Arial,sans-serif!important;
+  font-size:11.5px!important;
+  line-height:1.25!important;
+  font-weight:500!important;
+  color:#667b84!important;
+}
+
+/* ações mais profissionais */
+#pagina-candidatos-empresa .psv2-actions{
+  display:grid!important;
+  gap:8px!important;
+}
+#pagina-candidatos-empresa .psv2-actions button{
+  width:100%!important;
+  height:42px!important;
+  border-radius:9px!important;
+  font-family:'Inter','Segoe UI',Arial,sans-serif!important;
+  font-size:12.5px!important;
+  font-weight:650!important;
+  letter-spacing:0!important;
+}
+#pagina-candidatos-empresa .psv2-actions .main{
+  display:flex!important;
+  align-items:center!important;
+  justify-content:space-between!important;
+  gap:8px!important;
+  padding:0 13px!important;
+  border:1px solid #176b87!important;
+  background:#176b87!important;
+  color:#fff!important;
+  box-shadow:none!important;
+}
+#pagina-candidatos-empresa .psv2-actions .main b{
+  font-size:16px!important;
+  font-weight:500!important;
+}
+#pagina-candidatos-empresa .psv2-actions .edit{
+  border:1px solid #d4e0e5!important;
+  background:#fff!important;
+  color:#315360!important;
+}
+
+/* responsivo */
+@media(max-width:1100px){
+  #pagina-candidatos-empresa .psv2-list-head{display:none!important}
+  #pagina-candidatos-empresa .psv2-row-pro{
+    grid-template-columns:1fr!important;
+    gap:14px!important;
+  }
+  #pagina-candidatos-empresa .psv2-actions{
+    grid-template-columns:1fr 1fr!important;
+  }
+}
+@media(max-width:760px){
+  #pagina-candidatos-empresa .psv2-head-inner{
+    padding:20px 14px!important;
+  }
+  #pagina-candidatos-empresa .psv2-shell{
+    padding:14px!important;
+  }
+  #pagina-candidatos-empresa .psv2-summary{
+    grid-template-columns:1fr 1fr!important;
+  }
+  #pagina-candidatos-empresa .psv2-toolbar{
+    grid-template-columns:1fr!important;
+  }
+  #pagina-candidatos-empresa .psv2-funnel{
+    grid-template-columns:repeat(2,minmax(0,1fr))!important;
+  }
+}
+@media(max-width:520px){
+  #pagina-candidatos-empresa .psv2-summary{
+    grid-template-columns:1fr!important;
+  }
+  #pagina-candidatos-empresa .psv2-actions{
+    grid-template-columns:1fr!important;
+  }
+}
+
