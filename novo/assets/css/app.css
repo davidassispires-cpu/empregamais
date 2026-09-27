@@ -6886,3 +6886,210 @@ body{
     font-weight:600!important;
   }
 }
+
+
+/* EMPREGAMAIS-VAGA-HERO-LEVE-V3 — mais respiro, menos informação comprimida */
+#pagina-vaga #vagaHeroDetalhe{
+  border-top-width:2px!important;
+  border-radius:18px!important;
+  background:#fff!important;
+  box-shadow:0 8px 24px rgba(18,55,78,.045)!important;
+}
+#pagina-vaga #vagaHeroDetalhe .vaga-hero-ref{
+  grid-template-columns:96px minmax(0,1fr) 132px!important;
+  gap:22px!important;
+  align-items:start!important;
+  padding:24px 30px 22px!important;
+}
+#pagina-vaga #vagaHeroDetalhe .vaga-hero-logo{
+  width:86px!important;
+  height:86px!important;
+  min-width:86px!important;
+  padding:9px!important;
+  border-radius:14px!important;
+}
+#pagina-vaga #vagaHeroDetalhe .vaga-hero-texto{
+  padding-top:1px!important;
+}
+#pagina-vaga #vagaHeroDetalhe .vaga-hero-publicada{
+  margin:0 0 8px!important;
+  font-size:11px!important;
+  line-height:1.3!important;
+  color:#758a97!important;
+}
+#pagina-vaga #vagaHeroDetalhe .vaga-hero-texto h1{
+  width:auto!important;
+  max-width:100%!important;
+  margin:0 0 10px!important;
+  font-size:25px!important;
+  line-height:1.14!important;
+  font-weight:800!important;
+  letter-spacing:-.35px!important;
+  color:#0a355f!important;
+}
+#pagina-vaga #vagaHeroDetalhe .vaga-hero-empresa-linha{
+  min-height:0!important;
+  margin:0!important;
+  gap:8px!important;
+}
+#pagina-vaga #vagaHeroDetalhe .vaga-hero-empresa{
+  font-size:13px!important;
+  line-height:1.3!important;
+  font-weight:650!important;
+}
+#pagina-vaga #vagaHeroDetalhe .em-confidencial-label,
+#pagina-vaga #vagaHeroDetalhe .em-verificado-label{
+  font-size:11px!important;
+}
+#pagina-vaga #vagaHeroDetalhe .vaga-hero-selos{
+  margin-top:14px!important;
+  gap:7px!important;
+  flex-wrap:wrap!important;
+  white-space:normal!important;
+}
+#pagina-vaga #vagaHeroDetalhe .vaga-hero-selos>span{
+  min-height:28px!important;
+  padding:0 10px!important;
+  border:1px solid #dde8ee!important;
+  border-radius:8px!important;
+  background:#f8fbfc!important;
+  box-shadow:none!important;
+  font-size:10px!important;
+  font-weight:700!important;
+}
+#pagina-vaga #vagaHeroDetalhe .vaga-hero-selos .hero-area{background:#f5f9fc!important;color:#315e79!important}
+#pagina-vaga #vagaHeroDetalhe .vaga-hero-selos .hero-destaque{background:#fffaf0!important;color:#8f6514!important}
+#pagina-vaga #vagaHeroDetalhe .vaga-hero-selos .hero-urgente{background:#fff7f7!important;color:#b94a56!important}
+#pagina-vaga #vagaHeroDetalhe .vaga-hero-selos .hero-50mais{background:#f8f5ff!important;color:#6b57a8!important}
+#pagina-vaga #vagaHeroDetalhe .vaga-hero-selos i{
+  font-size:11px!important;
+}
+#pagina-vaga #vagaHeroDetalhe .vaga-hero-acoes{
+  position:static!important;
+  grid-column:3!important;
+  grid-row:1!important;
+  align-self:start!important;
+  justify-self:end!important;
+  margin:2px 0 0!important;
+}
+#pagina-vaga #vagaHeroDetalhe .vaga-salvar-hero{
+  min-width:124px!important;
+  height:40px!important;
+  padding:0 14px!important;
+  border-radius:9px!important;
+  font-size:11px!important;
+  font-weight:700!important;
+}
+
+#pagina-vaga #vagaHeroDetalhe .vaga-info-ref{
+  display:grid!important;
+  grid-template-columns:repeat(4,minmax(0,1fr))!important;
+  gap:10px!important;
+  margin:0!important;
+  padding:16px 30px 22px!important;
+  border-top:1px solid #e7eef2!important;
+  background:#fbfcfd!important;
+}
+#pagina-vaga #vagaHeroDetalhe .vaga-info-ref>div{
+  min-height:82px!important;
+  padding:12px 14px!important;
+  display:grid!important;
+  grid-template-columns:34px minmax(0,1fr)!important;
+  grid-template-rows:auto auto!important;
+  column-gap:10px!important;
+  align-items:center!important;
+  justify-content:initial!important;
+  text-align:left!important;
+  border:1px solid #e1e9ee!important;
+  border-radius:12px!important;
+  background:#fff!important;
+}
+#pagina-vaga #vagaHeroDetalhe .vaga-info-ref>div:after{
+  display:none!important;
+}
+#pagina-vaga #vagaHeroDetalhe .vaga-info-ref .info-svg{
+  grid-column:1!important;
+  grid-row:1 / span 2!important;
+  width:34px!important;
+  height:34px!important;
+  margin:0!important;
+  border-radius:9px!important;
+}
+#pagina-vaga #vagaHeroDetalhe .vaga-info-ref .info-svg svg{
+  width:18px!important;
+  height:18px!important;
+}
+#pagina-vaga #vagaHeroDetalhe .vaga-info-ref strong{
+  grid-column:2!important;
+  grid-row:1!important;
+  margin:0!important;
+  font-size:12.5px!important;
+  line-height:1.25!important;
+  font-weight:750!important;
+  text-align:left!important;
+  color:#24475d!important;
+}
+#pagina-vaga #vagaHeroDetalhe .vaga-info-ref small{
+  grid-column:2!important;
+  grid-row:2!important;
+  margin:2px 0 0!important;
+  font-size:9px!important;
+  line-height:1.2!important;
+  font-weight:700!important;
+  text-align:left!important;
+  letter-spacing:.05em!important;
+  color:#81939c!important;
+}
+#pagina-vaga #vagaHeroDetalhe .vaga-info-ref>div:nth-child(4) strong{
+  color:#15734a!important;
+}
+#pagina-vaga #vagaHeroDetalhe .vaga-info-ref .em-local-detalhes-btn,
+#pagina-vaga #vagaHeroDetalhe .vaga-info-ref .vaga-distancia-detalhe{
+  grid-column:2!important;
+  text-align:left!important;
+  align-self:start!important;
+  margin:4px 0 0!important;
+  font-size:9px!important;
+}
+
+@media(max-width:1000px){
+  #pagina-vaga #vagaHeroDetalhe .vaga-hero-ref{
+    grid-template-columns:76px minmax(0,1fr)!important;
+    padding:20px!important;
+  }
+  #pagina-vaga #vagaHeroDetalhe .vaga-hero-logo{
+    width:70px!important;height:70px!important;min-width:70px!important;
+  }
+  #pagina-vaga #vagaHeroDetalhe .vaga-hero-acoes{
+    position:absolute!important;
+    top:18px!important;
+    right:18px!important;
+  }
+  #pagina-vaga #vagaHeroDetalhe .vaga-hero-texto h1{
+    padding-right:135px!important;
+    font-size:23px!important;
+  }
+  #pagina-vaga #vagaHeroDetalhe .vaga-info-ref{
+    grid-template-columns:repeat(2,minmax(0,1fr))!important;
+    padding:14px 20px 20px!important;
+  }
+}
+@media(max-width:600px){
+  #pagina-vaga #vagaHeroDetalhe .vaga-hero-ref{
+    grid-template-columns:56px minmax(0,1fr)!important;
+    gap:12px!important;
+    padding:60px 14px 18px!important;
+  }
+  #pagina-vaga #vagaHeroDetalhe .vaga-hero-logo{
+    width:54px!important;height:54px!important;min-width:54px!important;
+  }
+  #pagina-vaga #vagaHeroDetalhe .vaga-hero-texto h1{
+    padding-right:0!important;
+    font-size:20px!important;
+  }
+  #pagina-vaga #vagaHeroDetalhe .vaga-info-ref{
+    grid-template-columns:1fr!important;
+    gap:8px!important;
+    padding:12px 14px 16px!important;
+  }
+}
