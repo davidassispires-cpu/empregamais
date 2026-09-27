@@ -1345,7 +1345,17 @@ function atualizarAbasMinhaEmpresaEM(aba){
  pagina.querySelectorAll('.perfil-empresa-tabs button').forEach(b=>b.classList.toggle('ativo',b.dataset.tab===aba));
 }
 function mostrarPerfilEmpresaNormalEM(){
- const pagina=document.getElementById('pagina-perfil-empresa');if(!pagina)return;
+ const pagina=document.getElementById('pagina-perfil-empresa'),emp=empresaLogada();if(!pagina||!emp)return;
+ const verificada=emp.verificada===true||emp.verificacaoStatus==='aprovada';
+ /* "Minha empresa" só é liberada depois da aprovação da verificação.
+    Antes disso, o mesmo cadastro é apresentado como fluxo de verificação. */
+ if(!verificada){
+  atualizarAbasMinhaEmpresaEM('verificacao');
+  pagina.classList.add('perfil-bloqueado-ate-verificacao');
+  renderPerfilVerificacaoEmpresaEM();
+  return;
+ }
+ pagina.classList.remove('perfil-bloqueado-ate-verificacao');
  atualizarAbasMinhaEmpresaEM('cadastro');
  pagina.classList.remove('modo-verificacao');
  const box=document.getElementById('perfilVerificacaoEmpresaEM');
