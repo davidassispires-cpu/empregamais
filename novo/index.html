@@ -6345,6 +6345,10 @@ svg text{
 <section class="premium-v2-bottom"><div><span>EMPREGAMAIS PREMIUM</span><h2>Escolha entre Mensal, Trimestral ou Semestral.</h2><p>Os mesmos recursos Premium com opções de período e economia diferentes.</p></div><div><strong>A partir de R$ 24,98 <small>/ mês</small></strong><button onclick="document.querySelector(\'.premium-planos-section\')?.scrollIntoView({behavior:\'smooth\'})">Ver planos</button><small>Sem fidelidade. O Premium não garante contratação ou aprovação em processos seletivos.</small></div></section>
 </div></section><section class="pagina" id="pagina-perfil-candidato"><div class="page-head"><div><button class="voltar-link" onclick="irPara('painel-candidato')">← Meu painel</button><h1>Meu perfil profissional</h1><p>Mantenha seus dados atualizados para facilitar suas candidaturas.</p></div></div><div class="container perfil-candidato-wrap"><form class="painel perfil-form" id="formPerfilCandidato"><div class="perfil-grid"><label>Nome completo<input class="campo" id="candPerfilNome" required></label><label>Celular<input class="campo" id="candPerfilTelefone"></label><label>E-mail<input class="campo" id="candPerfilEmail" type="email" readonly></label><label>Cidade<input class="campo" id="candPerfilCidade"></label><label>Estado (UF)<input class="campo" id="candPerfilUf" maxlength="2"></label><label>Data de nascimento<input class="campo" id="candPerfilNascimento" type="date"></label><label class="full">Título profissional<input class="campo" id="candPerfilTitulo" placeholder="Ex.: Analista de Marketplace"></label><label>Área de atuação<input class="campo" id="candPerfilArea"></label><label>Escolaridade<input class="campo" id="candPerfilEscolaridade"></label><label>Experiência profissional<input class="campo" id="candPerfilExperiencia" placeholder="Ex.: 3 anos"></label><label>Pretensão salarial<input class="campo" id="candPerfilPretensao"></label><label>Modalidade preferida<select class="campo" id="candPerfilModalidade"><option value="">Selecione</option><option>Presencial</option><option>Híbrido</option><option>Remoto</option></select></label><label>Disponibilidade<input class="campo" id="candPerfilDisponibilidade"></label><label class="full">Resumo profissional<textarea class="campo" id="candPerfilResumo" placeholder="Conte brevemente sua experiência, competências e objetivos."></textarea></label><label class="full">Competências<input class="campo" id="candPerfilCompetencias" placeholder="Ex.: Atendimento, Excel, Marketplace"></label><label>LinkedIn<input class="campo" id="candPerfilLinkedin" type="url"></label><label>Portfólio / site<input class="campo" id="candPerfilPortfolio" type="url"></label></div><div class="form-msg" id="msgPerfilCandidato"></div><button class="btn btn-azul" type="submit">Salvar perfil</button></form></div></section><section class="pagina perfil-empresa-wizard" id="pagina-perfil-empresa"><div class="container perfil-wizard-shell">
 <button class="voltar-link" onclick="irPara('painel-empresa')">← Meu painel</button>
+<div class="perfil-empresa-tabs" role="tablist" aria-label="Minha empresa">
+ <button type="button" class="ativo" data-tab="cadastro" onclick="mostrarPerfilEmpresaNormalEM()"><span>▤</span><div><b>Minha empresa</b><small>Dados cadastrais e perfil</small></div></button>
+ <button type="button" data-tab="verificacao" onclick="mostrarVerificacaoEmpresaAbaEM()"><span>✓</span><div><b>Verificar empresa</b><small>Status e selo de verificação</small></div></button>
+</div>
 <div class="perfil-wizard-head"><span>CADASTRO EMPRESARIAL</span><h1>Minha empresa</h1><p>Centralize e mantenha atualizadas todas as informações cadastrais, públicas e administrativas da sua empresa.</p><div class="perfil-head-badges"><b>Dados cadastrais</b><b>Perfil público</b><b>Contatos</b><b>Verificação</b></div></div>
 <div class="perfil-progress" id="perfilProgress"><div class="perfil-nav-title"><span>CONFIGURAÇÕES</span><strong>Dados da empresa</strong></div><button type="button" class="ativo" data-perfil-step="1"><b>1</b><span>Dados cadastrais</span></button><i></i><button type="button" data-perfil-step="2"><b>2</b><span>Atuação e recrutamento</span></button><i></i><button type="button" data-perfil-step="3"><b>3</b><span>Endereço</span></button><i></i><button type="button" data-perfil-step="4"><b>4</b><span>Perfil público</span></button><i></i><button type="button" data-perfil-step="5"><b>5</b><span>Marca e canais</span></button><i></i><button type="button" data-perfil-step="6"><b>6</b><span>Conta e responsável</span></button><i></i><button type="button" data-perfil-step="7"><b>7</b><span>Revisar e salvar</span></button></div>
 <div class="perfil-wizard-layout-split"><form class="perfil-wizard-card" id="formPerfilEmpresa">
@@ -10743,9 +10747,55 @@ option{
   grid-template-columns:250px minmax(0,1fr)!important;
   grid-template-areas:
     "back back"
+    "tabs tabs"
     "head head"
     "nav content"!important;
   gap:0 20px!important;
+}
+#pagina-perfil-empresa .perfil-empresa-tabs{
+  grid-area:tabs!important;
+  display:flex!important;
+  align-items:center!important;
+  gap:8px!important;
+  margin:0 0 14px!important;
+  padding:6px!important;
+  width:max-content!important;
+  max-width:100%!important;
+  border:1px solid #dbe6e9!important;
+  border-radius:12px!important;
+  background:#fff!important;
+  box-shadow:0 4px 14px rgba(18,57,71,.035)!important;
+}
+#pagina-perfil-empresa .perfil-empresa-tabs button{
+  min-width:210px!important;
+  height:48px!important;
+  padding:0 12px!important;
+  display:flex!important;
+  align-items:center!important;
+  gap:10px!important;
+  border:1px solid transparent!important;
+  border-radius:9px!important;
+  background:transparent!important;
+  color:#5b717a!important;
+  text-align:left!important;
+  cursor:pointer!important;
+}
+#pagina-perfil-empresa .perfil-empresa-tabs button>span{
+  width:30px!important;height:30px!important;display:grid!important;place-items:center!important;
+  flex:0 0 30px!important;border-radius:8px!important;background:#f1f6f7!important;color:#52717b!important;font-size:12px!important;font-weight:800!important;
+}
+#pagina-perfil-empresa .perfil-empresa-tabs button b{display:block!important;font-size:11px!important;color:#35535f!important}
+#pagina-perfil-empresa .perfil-empresa-tabs button small{display:block!important;margin-top:2px!important;font-size:8.5px!important;color:#819098!important}
+#pagina-perfil-empresa .perfil-empresa-tabs button.ativo{
+  border-color:#c9e0e4!important;background:#edf7f8!important;color:#075e6d!important;
+}
+#pagina-perfil-empresa .perfil-empresa-tabs button.ativo>span{background:#075e6d!important;color:#fff!important}
+#pagina-perfil-empresa .perfil-empresa-tabs button.ativo b{color:#075e6d!important}
+#pagina-perfil-empresa #perfilVerificacaoEmpresaEM{
+  grid-column:1/-1!important;
+  grid-row:3 / span 2!important;
+  width:100%!important;
+  min-width:0!important;
 }
 #pagina-perfil-empresa .voltar-link{
   grid-area:back!important;
@@ -11100,7 +11150,7 @@ option{
   #pagina-perfil-empresa .perfil-wizard-shell{
     width:min(900px,calc(100% - 24px))!important;
     grid-template-columns:1fr!important;
-    grid-template-areas:"back" "head" "nav" "content"!important;
+    grid-template-areas:"back" "tabs" "head" "nav" "content"!important;
   }
   #pagina-perfil-empresa .perfil-progress{
     position:static!important;
@@ -11113,6 +11163,9 @@ option{
 }
 @media(max-width:680px){
   #pagina-perfil-empresa{padding:12px 0 30px!important}
+  #pagina-perfil-empresa .perfil-empresa-tabs{width:100%!important;display:grid!important;grid-template-columns:1fr 1fr!important}
+  #pagina-perfil-empresa .perfil-empresa-tabs button{min-width:0!important;width:100%!important;padding:0 8px!important}
+  #pagina-perfil-empresa .perfil-empresa-tabs button small{display:none!important}
   #pagina-perfil-empresa .perfil-wizard-shell{width:calc(100% - 14px)!important}
   #pagina-perfil-empresa .perfil-wizard-head{padding:20px 17px!important;border-radius:14px!important}
   #pagina-perfil-empresa .perfil-wizard-head h1{font-size:25px!important}
