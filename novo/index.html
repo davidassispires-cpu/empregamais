@@ -15547,14 +15547,17 @@ window.trocarComoFuncionaEM=function(tipo,btn){
   #pagina-candidatos-empresa #listaCandidatosEmpresa .recruta-cand-actions>.btn-azul{grid-column:1/-1!important}
 }
 </style>
-<style id="EMPREGAMAI-CANDIDATO-COMPACTO-V136">
-/* Ajuste visual fiel à referência — sem alterar renderer, dados, vagas ou eventos */
+
+<style id="EMPREGAMAI-CANDIDATO-REFERENCIA-REAL-V137">
+/* Implementação fiel usando EXATAMENTE o markup que o renderer atual suporta.
+   Nenhuma lógica, onclick, dados, vaga ou renderer é alterado. */
+
+/* envelope */
 #pagina-candidatos-empresa #listaCandidatosEmpresa{
   display:grid!important;
-  grid-template-columns:minmax(0,980px)!important;
+  grid-template-columns:minmax(0,920px)!important;
   justify-content:start!important;
-  gap:20px!important;
-  align-items:start!important;
+  gap:18px!important;
 }
 #pagina-candidatos-empresa #listaCandidatosEmpresa>.processo-head,
 #pagina-candidatos-empresa #listaCandidatosEmpresa>.candidatos-empresa-filtro-vaga,
@@ -15563,67 +15566,77 @@ window.trocarComoFuncionaEM=function(tipo,btn){
 
 #pagina-candidatos-empresa #listaCandidatosEmpresa .recruta-cand-card{
   width:100%!important;
-  max-width:980px!important;
+  max-width:920px!important;
   margin:0!important;
   padding:0!important;
   overflow:hidden!important;
-  border:1px solid #c7ddec!important;
-  border-left:5px solid #0b86dd!important;
+  border:1px solid #cbddea!important;
+  border-left:5px solid #0b88e6!important;
   border-radius:18px!important;
   background:#fff!important;
-  box-shadow:0 10px 28px rgba(21,66,99,.07)!important;
+  box-shadow:0 12px 28px rgba(12,62,98,.07)!important;
+  font-family:'Montserrat',Arial,sans-serif!important;
+  color:#082f58!important;
 }
 #pagina-candidatos-empresa #listaCandidatosEmpresa .recruta-cand-card.status-aprovado,
 #pagina-candidatos-empresa #listaCandidatosEmpresa .recruta-cand-card.status-contratado,
-#pagina-candidatos-empresa #listaCandidatosEmpresa .recruta-cand-card.status-selecionado,
-#pagina-candidatos-empresa #listaCandidatosEmpresa .recruta-cand-card.status-em-contato,
-#pagina-candidatos-empresa #listaCandidatosEmpresa .recruta-cand-card.status-entrevista-agendada{
-  border-left-color:#0b86dd!important;
+#pagina-candidatos-empresa #listaCandidatosEmpresa .recruta-cand-card.status-selecionado{
+  border-left-color:#0b88e6!important;
 }
 
-/* topo: proporção próxima à referência */
+/* cabeçalho */
 #pagina-candidatos-empresa #listaCandidatosEmpresa .recruta-cand-head{
   min-height:126px!important;
   padding:20px 22px!important;
   display:grid!important;
-  grid-template-columns:minmax(0,1fr) 155px!important;
+  grid-template-columns:minmax(0,1fr) 150px!important;
   align-items:center!important;
   gap:22px!important;
-  border-bottom:1px solid #e3edf4!important;
   background:#fff!important;
+  border-bottom:1px solid #e6edf3!important;
 }
 #pagina-candidatos-empresa #listaCandidatosEmpresa .recruta-cand-ident{
+  min-width:0!important;
   display:flex!important;
   align-items:center!important;
   gap:17px!important;
-  min-width:0!important;
 }
 #pagina-candidatos-empresa #listaCandidatosEmpresa .recruta-cand-monograma{
-  width:62px!important;height:62px!important;min-width:62px!important;
+  width:64px!important;height:64px!important;min-width:64px!important;
   display:grid!important;place-items:center!important;
-  border-radius:16px!important;
-  border:1px solid #dce9f1!important;
-  background:linear-gradient(145deg,#eef8fd,#e4f1f8)!important;
-  color:#076d91!important;
-  font-size:21px!important;
+  border:1px solid #dce9f2!important;
+  border-radius:17px!important;
+  background:linear-gradient(145deg,#eff8fd,#e5f2f8)!important;
+  color:#086f94!important;
+  font-size:23px!important;
   font-weight:800!important;
+  line-height:1!important;
 }
 #pagina-candidatos-empresa #listaCandidatosEmpresa .recruta-cand-ident h3{
-  margin:0 0 6px!important;
-  color:#052d58!important;
-  font-size:25px!important;
-  line-height:1.05!important;
+  margin:0 0 7px!important;
+  color:#052b55!important;
+  font-size:27px!important;
+  line-height:1.02!important;
   font-weight:800!important;
-  letter-spacing:-.035em!important;
+  letter-spacing:-.04em!important;
   white-space:normal!important;
   overflow:visible!important;
 }
 #pagina-candidatos-empresa #listaCandidatosEmpresa .recruta-cand-ident p{
   margin:0!important;
-  color:#667c96!important;
-  font-size:12.5px!important;
-  line-height:1.3!important;
+  color:#657993!important;
+  font-size:13px!important;
+  line-height:1.35!important;
   font-weight:500!important;
+}
+#pagina-candidatos-empresa #listaCandidatosEmpresa .recruta-cand-ident p:before{
+  content:""!important;
+  width:16px!important;height:16px!important;
+  display:inline-block!important;
+  margin:0 7px -3px 0!important;
+  background:#7b8da6!important;
+  -webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 2a7 7 0 0 0-7 7c0 5.3 7 13 7 13s7-7.7 7-13a7 7 0 0 0-7-7Zm0 9.4A2.4 2.4 0 1 1 12 6.6a2.4 2.4 0 0 1 0 4.8Z'/%3E%3C/svg%3E") center/contain no-repeat!important;
+  mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 2a7 7 0 0 0-7 7c0 5.3 7 13 7 13s7-7.7 7-13a7 7 0 0 0-7-7Zm0 9.4A2.4 2.4 0 1 1 12 6.6a2.4 2.4 0 0 1 0 4.8Z'/%3E%3C/svg%3E") center/contain no-repeat!important;
 }
 #pagina-candidatos-empresa #listaCandidatosEmpresa .recruta-cand-status{
   min-width:0!important;
@@ -15634,21 +15647,30 @@ window.trocarComoFuncionaEM=function(tipo,btn){
 }
 #pagina-candidatos-empresa #listaCandidatosEmpresa .recruta-cand-status>small{
   margin:0 7px 1px 0!important;
-  color:#71849d!important;
+  color:#73859d!important;
   font-size:7.5px!important;
   font-weight:800!important;
-  letter-spacing:.18em!important;
+  letter-spacing:.19em!important;
 }
 #pagina-candidatos-empresa #listaCandidatosEmpresa .recruta-cand-status>strong{
-  min-height:35px!important;
+  min-height:36px!important;
   padding:0 15px!important;
+  display:inline-flex!important;
+  align-items:center!important;
+  gap:8px!important;
   border:1px solid #b9e4d1!important;
   border-radius:999px!important;
-  background:linear-gradient(180deg,#f2fcf7,#ebf8f1)!important;
-  color:#116846!important;
+  background:linear-gradient(180deg,#f3fcf7,#ebf8f1)!important;
+  color:#126948!important;
   font-size:10.5px!important;
   font-weight:800!important;
-  box-shadow:0 3px 9px rgba(28,118,78,.07)!important;
+  box-shadow:0 3px 8px rgba(27,118,77,.07)!important;
+}
+#pagina-candidatos-empresa #listaCandidatosEmpresa .recruta-cand-status>strong:before{
+  content:""!important;
+  width:9px!important;height:9px!important;
+  display:block!important;border-radius:50%!important;
+  background:#36ae69!important;
 }
 #pagina-candidatos-empresa #listaCandidatosEmpresa .meta-inline{
   display:flex!important;
@@ -15661,88 +15683,104 @@ window.trocarComoFuncionaEM=function(tipo,btn){
   padding:4px 9px!important;
   border:0!important;
   border-radius:999px!important;
-  background:#f2f6f9!important;
-  color:#61758d!important;
+  background:#f3f6f9!important;
+  color:#62758d!important;
   font-size:8px!important;
+  line-height:1.1!important;
   font-weight:600!important;
 }
 
-/* cards centrais */
+/* resumo */
 #pagina-candidatos-empresa #listaCandidatosEmpresa .recruta-cand-preview-info{
   padding:16px 16px 0!important;
   margin:0!important;
+  background:#fff!important;
 }
 #pagina-candidatos-empresa #listaCandidatosEmpresa .recruta-cand-info{
   display:grid!important;
-  grid-template-columns:1fr 1.05fr 1fr!important;
+  grid-template-columns:1fr 1fr 1fr!important;
   gap:12px!important;
   padding:0!important;
   margin:0!important;
+  background:#fff!important;
 }
 #pagina-candidatos-empresa #listaCandidatosEmpresa .recruta-cand-info>div{
   min-width:0!important;
-  min-height:124px!important;
-  height:124px!important;
+  height:126px!important;
+  min-height:126px!important;
   padding:15px 16px!important;
   display:flex!important;
   flex-direction:column!important;
   align-items:flex-start!important;
   justify-content:center!important;
   overflow:visible!important;
-  border:1.5px solid #b6d9f1!important;
+  border:1.5px solid #b7daf2!important;
   border-radius:14px!important;
-  background:linear-gradient(180deg,#fdfeff,#f6fbff)!important;
-  box-shadow:0 3px 10px rgba(31,100,149,.035)!important;
+  background:linear-gradient(180deg,#fdfefe 0%,#f6fbff 100%)!important;
+  box-shadow:0 3px 10px rgba(31,100,149,.03)!important;
 }
-#pagina-candidatos-empresa #listaCandidatosEmpresa .recruta-cand-info span{
+#pagina-candidatos-empresa #listaCandidatosEmpresa .recruta-cand-info>div>span{
+  width:100%!important;
   display:flex!important;
   align-items:center!important;
-  gap:9px!important;
+  gap:10px!important;
   margin:0!important;
-  color:#536d89!important;
+  color:#536c89!important;
   font-size:9px!important;
   line-height:1.15!important;
   font-weight:700!important;
-  letter-spacing:.09em!important;
+  letter-spacing:.095em!important;
   text-transform:uppercase!important;
   white-space:normal!important;
 }
-#pagina-candidatos-empresa #listaCandidatosEmpresa .recruta-cand-info strong{
+#pagina-candidatos-empresa #listaCandidatosEmpresa .recruta-cand-info>div>strong{
   margin:10px 0 0!important;
-  color:#052f59!important;
-  font-size:17px!important;
-  line-height:1.1!important;
+  color:#052e58!important;
+  font-size:18px!important;
+  line-height:1.08!important;
   font-weight:800!important;
-  letter-spacing:-.02em!important;
+  letter-spacing:-.025em!important;
   white-space:normal!important;
 }
-#pagina-candidatos-empresa #listaCandidatosEmpresa .recruta-cand-info small{
+#pagina-candidatos-empresa #listaCandidatosEmpresa .recruta-cand-info>div>small{
   margin:6px 0 0!important;
-  color:#74889f!important;
-  font-size:8.4px!important;
+  color:#7588a0!important;
+  font-size:8.5px!important;
   line-height:1.3!important;
   font-weight:500!important;
   white-space:normal!important;
 }
 
-/* ícones dos cards internos */
+/* ícones dos 3 cards */
 #pagina-candidatos-empresa #listaCandidatosEmpresa .em-info-ico{
-  width:34px!important;height:34px!important;min-width:34px!important;
+  width:36px!important;height:36px!important;min-width:36px!important;
   display:grid!important;place-items:center!important;
   border-radius:10px!important;
-  background:linear-gradient(145deg,#edf8ff,#e4f2fb)!important;
+  background:linear-gradient(145deg,#eef8ff,#e4f2fb)!important;
   color:transparent!important;font-size:0!important;position:relative!important;
 }
 #pagina-candidatos-empresa #listaCandidatosEmpresa .em-info-ico:before{
   content:""!important;
-  width:18px!important;height:18px!important;display:block!important;
-  background:#087bc5!important;
+  width:19px!important;height:19px!important;display:block!important;
+  background:#087ac4!important;
   -webkit-mask-repeat:no-repeat!important;mask-repeat:no-repeat!important;
   -webkit-mask-position:center!important;mask-position:center!important;
   -webkit-mask-size:contain!important;mask-size:contain!important;
 }
+#pagina-candidatos-empresa #listaCandidatosEmpresa .recruta-info-curriculo .em-info-ico:before{
+  -webkit-mask-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M6 2h8l4 4v16H6V2zm7 1.5V7h3.5L13 3.5zM8.5 11h7v1.7h-7V11zm0 3.7h7v1.7h-7v-1.7z'/%3E%3C/svg%3E")!important;
+  mask-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M6 2h8l4 4v16H6V2zm7 1.5V7h3.5L13 3.5zM8.5 11h7v1.7h-7V11zm0 3.7h7v1.7h-7v-1.7z'/%3E%3C/svg%3E")!important;
+}
+#pagina-candidatos-empresa #listaCandidatosEmpresa .recruta-info-aderencia .em-info-ico:before{
+  -webkit-mask-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M11 3a9 9 0 1 0 9 9h-2.6A6.4 6.4 0 1 1 11 5.6V3Zm0 4.2a4.8 4.8 0 1 0 4.8 4.8h-2.6A2.2 2.2 0 1 1 11 9.8V7.2Zm7.7-5.2v3.2h-3.2v2.2h3.2v3.2h2.2V7.4H24V5.2h-3.1V2h-2.2Z'/%3E%3C/svg%3E")!important;
+  mask-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M11 3a9 9 0 1 0 9 9h-2.6A6.4 6.4 0 1 1 11 5.6V3Zm0 4.2a4.8 4.8 0 1 0 4.8 4.8h-2.6A2.2 2.2 0 1 1 11 9.8V7.2Zm7.7-5.2v3.2h-3.2v2.2h3.2v3.2h2.2V7.4H24V5.2h-3.1V2h-2.2Z'/%3E%3C/svg%3E")!important;
+}
+#pagina-candidatos-empresa #listaCandidatosEmpresa .recruta-info-atualizacao .em-info-ico:before{
+  -webkit-mask-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M6 2h2v2h8V2h2v2h3v17H3V4h3V2Zm13 8H5v9h14v-9ZM8 13h3v3H8v-3Z'/%3E%3C/svg%3E")!important;
+  mask-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M6 2h2v2h8V2h2v2h3v17H3V4h3V2Zm13 8H5v9h14v-9ZM8 13h3v3H8v-3Z'/%3E%3C/svg%3E")!important;
+}
 
-/* aderência */
+/* aderência real do markup atual */
 #pagina-candidatos-empresa #listaCandidatosEmpresa .recruta-aderencia-card{
   display:grid!important;
   grid-template-columns:auto 1fr!important;
@@ -15754,56 +15792,61 @@ window.trocarComoFuncionaEM=function(tipo,btn){
 #pagina-candidatos-empresa #listaCandidatosEmpresa .recruta-aderencia-card>span{
   grid-column:1/-1!important;
 }
-#pagina-candidatos-empresa #listaCandidatosEmpresa .recruta-aderencia-linha{
-  grid-column:1!important;grid-row:2!important;
-  width:auto!important;height:auto!important;
+#pagina-candidatos-empresa #listaCandidatosEmpresa .recruta-aderencia-score{
+  grid-column:1/-1!important;
+  display:flex!important;
+  align-items:center!important;
+  gap:10px!important;
   margin:9px 0 0!important;
-  display:flex!important;align-items:flex-end!important;
-  position:static!important;background:none!important;overflow:visible!important;
+  min-width:0!important;
 }
-#pagina-candidatos-empresa #listaCandidatosEmpresa .recruta-aderencia-linha:before,
-#pagina-candidatos-empresa #listaCandidatosEmpresa .recruta-aderencia-linha:after{display:none!important}
-#pagina-candidatos-empresa #listaCandidatosEmpresa .recruta-aderencia-linha strong{
-  position:static!important;
-  width:auto!important;
+#pagina-candidatos-empresa #listaCandidatosEmpresa .recruta-aderencia-score>strong{
   margin:0!important;
-  color:#052f59!important;
-  font-size:26px!important;
+  color:#052e58!important;
+  font-size:27px!important;
   line-height:1!important;
   font-weight:800!important;
   letter-spacing:-.04em!important;
 }
-#pagina-candidatos-empresa #listaCandidatosEmpresa .recruta-aderencia-nivel{
-  grid-column:2!important;grid-row:2!important;
-  align-self:end!important;justify-self:start!important;
-  margin:0 0 1px!important;
-  padding:5px 8px!important;
+#pagina-candidatos-empresa #listaCandidatosEmpresa .recruta-aderencia-score>small{
+  margin:0!important;
+  min-height:25px!important;
+  padding:5px 9px!important;
+  display:inline-flex!important;
+  align-items:center!important;
   border-radius:999px!important;
   background:#eaf7ef!important;
-  color:#246a49!important;
+  color:#246b49!important;
   font-size:7.5px!important;
   line-height:1!important;
   font-weight:700!important;
   white-space:nowrap!important;
 }
 #pagina-candidatos-empresa #listaCandidatosEmpresa .recruta-aderencia-barra{
-  grid-column:1/-1!important;grid-row:3!important;
-  width:100%!important;height:7px!important;margin:11px 0 0!important;
-  border-radius:999px!important;background:#dce8ee!important;overflow:hidden!important;
+  grid-column:1/-1!important;
+  width:100%!important;
+  height:8px!important;
+  margin:11px 0 0!important;
+  border-radius:999px!important;
+  background:#dce8ee!important;
+  overflow:hidden!important;
 }
 #pagina-candidatos-empresa #listaCandidatosEmpresa .recruta-aderencia-barra i{
-  height:100%!important;border-radius:999px!important;background:linear-gradient(90deg,#0aa3b2,#087fc8)!important;
+  display:block!important;
+  height:100%!important;
+  border-radius:999px!important;
+  background:linear-gradient(90deg,#0aa3b2,#087fc8)!important;
 }
 
-/* botões como na referência */
+/* ações */
 #pagina-candidatos-empresa #listaCandidatosEmpresa .recruta-cand-actions,
 #pagina-candidatos-empresa #listaCandidatosEmpresa .recruta-cand-actions.recruta-acoes-unificadas{
   display:grid!important;
-  grid-template-columns:1.18fr .92fr 1.04fr .92fr 1.04fr!important;
+  grid-template-columns:1.2fr .95fr 1.08fr .95fr 1.08fr!important;
   gap:9px!important;
   padding:13px 16px 16px!important;
   margin:0!important;
-  border-bottom:1px solid #e4edf3!important;
+  border-bottom:1px solid #e5edf3!important;
   background:#fff!important;
 }
 #pagina-candidatos-empresa #listaCandidatosEmpresa .recruta-cand-actions>.btn,
@@ -15811,9 +15854,9 @@ window.trocarComoFuncionaEM=function(tipo,btn){
   position:relative!important;
   width:100%!important;
   min-width:0!important;
-  height:48px!important;
-  min-height:48px!important;
-  padding:0 30px 0 38px!important;
+  height:50px!important;
+  min-height:50px!important;
+  padding:0 28px 0 42px!important;
   display:flex!important;
   align-items:center!important;
   justify-content:flex-start!important;
@@ -15822,7 +15865,8 @@ window.trocarComoFuncionaEM=function(tipo,btn){
   background:#fff!important;
   color:#10395f!important;
   box-shadow:0 2px 7px rgba(22,64,95,.025)!important;
-  font-size:10px!important;
+  font-size:10.5px!important;
+  line-height:1!important;
   font-weight:750!important;
   white-space:nowrap!important;
   overflow:hidden!important;
@@ -15832,11 +15876,11 @@ window.trocarComoFuncionaEM=function(tipo,btn){
 #pagina-candidatos-empresa #listaCandidatosEmpresa .recruta-cand-actions>.btn:after{
   content:"›"!important;
   position:absolute!important;
-  right:12px!important;top:50%!important;transform:translateY(-52%)!important;
+  right:12px!important;top:50%!important;
+  transform:translateY(-53%)!important;
   color:#3e6e92!important;
   font-size:19px!important;
   font-weight:500!important;
-  line-height:1!important;
 }
 #pagina-candidatos-empresa #listaCandidatosEmpresa .recruta-cand-actions>.btn-azul{
   border-color:#087dc4!important;
@@ -15852,13 +15896,17 @@ window.trocarComoFuncionaEM=function(tipo,btn){
 }
 #pagina-candidatos-empresa #listaCandidatosEmpresa .recruta-cand-actions .em-btn-ico{
   position:absolute!important;
-  left:13px!important;top:50%!important;transform:translateY(-50%)!important;
-  width:20px!important;height:20px!important;min-width:20px!important;
-  margin:0!important;font-size:0!important;color:transparent!important;
+  left:14px!important;top:50%!important;
+  transform:translateY(-50%)!important;
+  width:21px!important;height:21px!important;min-width:21px!important;
+  margin:0!important;
+  font-size:0!important;
+  color:transparent!important;
 }
 #pagina-candidatos-empresa #listaCandidatosEmpresa .recruta-cand-actions .em-btn-ico:before{
   content:""!important;
-  width:20px!important;height:20px!important;display:block!important;
+  width:21px!important;height:21px!important;
+  display:block!important;
   background:#0d5d91!important;
   -webkit-mask-repeat:no-repeat!important;mask-repeat:no-repeat!important;
   -webkit-mask-position:center!important;mask-position:center!important;
@@ -15867,75 +15915,90 @@ window.trocarComoFuncionaEM=function(tipo,btn){
 #pagina-candidatos-empresa #listaCandidatosEmpresa .recruta-cand-actions>.btn-azul .em-btn-ico:before{background:#fff!important}
 #pagina-candidatos-empresa #listaCandidatosEmpresa .recruta-cand-actions>.recruta-whatsapp .em-btn-ico:before{background:#21875a!important}
 
-/* SVG masks por ação */
-#pagina-candidatos-empresa #listaCandidatosEmpresa .recruta-cand-actions>.btn:nth-child(1) .em-btn-ico:before{
- -webkit-mask-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M6 2h8l4 4v16H6V2zm7 1.5V7h3.5L13 3.5zM8.5 11h7v1.7h-7V11zm0 3.7h7v1.7h-7v-1.7z'/%3E%3C/svg%3E")!important;
- mask-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M6 2h8l4 4v16H6V2zm7 1.5V7h3.5L13 3.5zM8.5 11h7v1.7h-7V11zm0 3.7h7v1.7h-7v-1.7z'/%3E%3C/svg%3E")!important;
+#pagina-candidatos-empresa #listaCandidatosEmpresa .em-ico-doc:before{
+  -webkit-mask-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M6 2h8l4 4v16H6V2zm7 1.5V7h3.5L13 3.5zM8.5 11h7v1.7h-7V11zm0 3.7h7v1.7h-7v-1.7z'/%3E%3C/svg%3E")!important;
+  mask-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M6 2h8l4 4v16H6V2zm7 1.5V7h3.5L13 3.5zM8.5 11h7v1.7h-7V11zm0 3.7h7v1.7h-7v-1.7z'/%3E%3C/svg%3E")!important;
 }
-#pagina-candidatos-empresa #listaCandidatosEmpresa .recruta-cand-actions>.btn:nth-child(2) .em-btn-ico:before{
- -webkit-mask-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 2.8a4.5 4.5 0 1 1 0 9 4.5 4.5 0 0 1 0-9ZM3.6 21c.7-5 3.4-7.4 8.4-7.4S19.7 16 20.4 21H3.6Z'/%3E%3C/svg%3E")!important;
- mask-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 2.8a4.5 4.5 0 1 1 0 9 4.5 4.5 0 0 1 0-9ZM3.6 21c.7-5 3.4-7.4 8.4-7.4S19.7 16 20.4 21H3.6Z'/%3E%3C/svg%3E")!important;
+#pagina-candidatos-empresa #listaCandidatosEmpresa .em-ico-user:before{
+  -webkit-mask-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 2.8a4.5 4.5 0 1 1 0 9 4.5 4.5 0 0 1 0-9ZM3.6 21c.7-5 3.4-7.4 8.4-7.4S19.7 16 20.4 21H3.6Z'/%3E%3C/svg%3E")!important;
+  mask-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 2.8a4.5 4.5 0 1 1 0 9 4.5 4.5 0 0 1 0-9ZM3.6 21c.7-5 3.4-7.4 8.4-7.4S19.7 16 20.4 21H3.6Z'/%3E%3C/svg%3E")!important;
 }
-#pagina-candidatos-empresa #listaCandidatosEmpresa .recruta-cand-actions>.btn:nth-child(3) .em-btn-ico:before{
- -webkit-mask-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 2.4a9.3 9.3 0 0 0-8 14L2.7 21.5l4.9-1.3A9.4 9.4 0 1 0 12 2.4Zm4.9 13.4c-.2.7-1.4 1.3-2 1.4-.5.1-1.2.1-2-.2-.5-.2-1.2-.4-2.1-.8-3.6-1.6-6-5.3-6.2-5.5-.2-.2-1.5-2-.1-4 .7-1 1.5-1 2-1 .2 0 .5 0 .7.1.2 0 .5-.1.8.6l1 2.4c.1.3.1.6 0 .8l-.7 1c-.2.2-.4.4-.2.7.2.4.9 1.5 2 2.4 1.4 1.2 2.5 1.6 2.9 1.8.3.2.6.1.8-.1l1.1-1.3c.3-.3.6-.3.9-.2l2 .9c.4.2.6.3.7.5.1.1.1.7-.1 1.5Z'/%3E%3C/svg%3E")!important;
- mask-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 2.4a9.3 9.3 0 0 0-8 14L2.7 21.5l4.9-1.3A9.4 9.4 0 1 0 12 2.4Zm4.9 13.4c-.2.7-1.4 1.3-2 1.4-.5.1-1.2.1-2-.2-.5-.2-1.2-.4-2.1-.8-3.6-1.6-6-5.3-6.2-5.5-.2-.2-1.5-2-.1-4 .7-1 1.5-1 2-1 .2 0 .5 0 .7.1.2 0 .5-.1.8.6l1 2.4c.1.3.1.6 0 .8l-.7 1c-.2.2-.4.4-.2.7.2.4.9 1.5 2 2.4 1.4 1.2 2.5 1.6 2.9 1.8.3.2.6.1.8-.1l1.1-1.3c.3-.3.6-.3.9-.2l2 .9c.4.2.6.3.7.5.1.1.1.7-.1 1.5Z'/%3E%3C/svg%3E")!important;
+#pagina-candidatos-empresa #listaCandidatosEmpresa .em-ico-whatsapp:before{
+  -webkit-mask-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 2.4a9.3 9.3 0 0 0-8 14L2.7 21.5l4.9-1.3A9.4 9.4 0 1 0 12 2.4Zm4.9 13.4c-.2.7-1.4 1.3-2 1.4-.5.1-1.2.1-2-.2-.5-.2-1.2-.4-2.1-.8-3.6-1.6-6-5.3-6.2-5.5-.2-.2-1.5-2-.1-4 .7-1 1.5-1 2-1 .2 0 .5 0 .7.1.2 0 .5-.1.8.6l1 2.4c.1.3.1.6 0 .8l-.7 1c-.2.2-.4.4-.2.7.2.4.9 1.5 2 2.4 1.4 1.2 2.5 1.6 2.9 1.8.3.2.6.1.8-.1l1.1-1.3c.3-.3.6-.3.9-.2l2 .9c.4.2.6.3.7.5.1.1.1.7-.1 1.5Z'/%3E%3C/svg%3E")!important;
+  mask-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 2.4a9.3 9.3 0 0 0-8 14L2.7 21.5l4.9-1.3A9.4 9.4 0 1 0 12 2.4Zm4.9 13.4c-.2.7-1.4 1.3-2 1.4-.5.1-1.2.1-2-.2-.5-.2-1.2-.4-2.1-.8-3.6-1.6-6-5.3-6.2-5.5-.2-.2-1.5-2-.1-4 .7-1 1.5-1 2-1 .2 0 .5 0 .7.1.2 0 .5-.1.8.6l1 2.4c.1.3.1.6 0 .8l-.7 1c-.2.2-.4.4-.2.7.2.4.9 1.5 2 2.4 1.4 1.2 2.5 1.6 2.9 1.8.3.2.6.1.8-.1l1.1-1.3c.3-.3.6-.3.9-.2l2 .9c.4.2.6.3.7.5.1.1.1.7-.1 1.5Z'/%3E%3C/svg%3E")!important;
 }
-#pagina-candidatos-empresa #listaCandidatosEmpresa .recruta-cand-actions>.btn:nth-child(4) .em-btn-ico:before{
- -webkit-mask-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M3 5h18v14H3V5Zm2 2v.4l7 5 7-5V7l-7 5-7-5Z'/%3E%3C/svg%3E")!important;
- mask-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M3 5h18v14H3V5Zm2 2v.4l7 5 7-5V7l-7 5-7-5Z'/%3E%3C/svg%3E")!important;
+#pagina-candidatos-empresa #listaCandidatosEmpresa .em-ico-mail:before{
+  -webkit-mask-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M3 5h18v14H3V5Zm2 2v.4l7 5 7-5V7l-7 5-7-5Z'/%3E%3C/svg%3E")!important;
+  mask-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M3 5h18v14H3V5Zm2 2v.4l7 5 7-5V7l-7 5-7-5Z'/%3E%3C/svg%3E")!important;
 }
-#pagina-candidatos-empresa #listaCandidatosEmpresa .recruta-cand-actions>.btn:nth-child(5) .em-btn-ico:before{
- -webkit-mask-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M6 2h2v2h8V2h2v2h3v17H3V4h3V2Zm13 8H5v9h14v-9ZM8 13h3v3H8v-3Z'/%3E%3C/svg%3E")!important;
- mask-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M6 2h2v2h8V2h2v2h3v17H3V4h3V2Zm13 8H5v9h14v-9ZM8 13h3v3H8v-3Z'/%3E%3C/svg%3E")!important;
+#pagina-candidatos-empresa #listaCandidatosEmpresa .em-ico-calendar:before{
+  -webkit-mask-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M6 2h2v2h8V2h2v2h3v17H3V4h3V2Zm13 8H5v9h14v-9ZM8 13h3v3H8v-3Z'/%3E%3C/svg%3E")!important;
+  mask-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M6 2h2v2h8V2h2v2h3v17H3V4h3V2Zm13 8H5v9h14v-9ZM8 13h3v3H8v-3Z'/%3E%3C/svg%3E")!important;
 }
 
 /* rodapé */
 #pagina-candidatos-empresa #listaCandidatosEmpresa .recruta-preview-andamento{
-  width:100%!important;height:44px!important;min-height:44px!important;
-  padding:0 16px!important;margin:0!important;
-  display:flex!important;align-items:center!important;justify-content:space-between!important;
-  border:0!important;background:#fbfdff!important;
+  width:100%!important;
+  height:44px!important;
+  min-height:44px!important;
+  margin:0!important;
+  padding:0 16px!important;
+  display:flex!important;
+  align-items:center!important;
+  justify-content:space-between!important;
+  gap:8px!important;
+  border:0!important;
+  background:#fbfdff!important;
 }
 #pagina-candidatos-empresa #listaCandidatosEmpresa .recruta-preview-andamento>span{
-  color:#71849b!important;font-size:7.8px!important;font-weight:800!important;letter-spacing:.13em!important;
+  color:#71849b!important;
+  font-size:8px!important;
+  font-weight:800!important;
+  letter-spacing:.14em!important;
 }
 #pagina-candidatos-empresa #listaCandidatosEmpresa .recruta-preview-andamento>b{
-  margin-left:auto!important;color:#075e98!important;font-size:9px!important;font-weight:750!important;
+  margin-left:auto!important;
+  color:#075e98!important;
+  font-size:9.3px!important;
+  font-weight:750!important;
 }
 #pagina-candidatos-empresa #listaCandidatosEmpresa .recruta-preview-andamento>i{
-  margin-left:8px!important;color:#0871b6!important;font-size:13px!important;font-style:normal!important;
+  margin-left:7px!important;
+  color:#0871b6!important;
+  font-size:12px!important;
+  font-style:normal!important;
 }
 
-@media(max-width:1050px){
-  #pagina-candidatos-empresa #listaCandidatosEmpresa{grid-template-columns:minmax(0,860px)!important}
-}
+/* responsivo só quando realmente necessário */
 @media(max-width:760px){
   #pagina-candidatos-empresa #listaCandidatosEmpresa{grid-template-columns:1fr!important}
   #pagina-candidatos-empresa #listaCandidatosEmpresa .recruta-cand-card{max-width:none!important}
   #pagina-candidatos-empresa #listaCandidatosEmpresa .recruta-cand-head{
-    grid-template-columns:minmax(0,1fr) 125px!important;
-    padding:16px!important;
+    grid-template-columns:minmax(0,1fr) 124px!important;
     min-height:112px!important;
+    padding:16px!important;
+    gap:14px!important;
   }
-  #pagina-candidatos-empresa #listaCandidatosEmpresa .recruta-cand-monograma{
-    width:52px!important;height:52px!important;min-width:52px!important;
-  }
+  #pagina-candidatos-empresa #listaCandidatosEmpresa .recruta-cand-monograma{width:52px!important;height:52px!important;min-width:52px!important}
   #pagina-candidatos-empresa #listaCandidatosEmpresa .recruta-cand-ident h3{font-size:21px!important}
   #pagina-candidatos-empresa #listaCandidatosEmpresa .recruta-cand-preview-info{padding:12px 12px 0!important}
   #pagina-candidatos-empresa #listaCandidatosEmpresa .recruta-cand-info{gap:8px!important}
   #pagina-candidatos-empresa #listaCandidatosEmpresa .recruta-cand-info>div{height:108px!important;min-height:108px!important;padding:11px!important}
-  #pagina-candidatos-empresa #listaCandidatosEmpresa .recruta-cand-info span{font-size:7.5px!important}
-  #pagina-candidatos-empresa #listaCandidatosEmpresa .recruta-cand-info strong{font-size:14px!important}
-  #pagina-candidatos-empresa #listaCandidatosEmpresa .recruta-aderencia-linha strong{font-size:22px!important}
+  #pagina-candidatos-empresa #listaCandidatosEmpresa .recruta-cand-info>div>span{font-size:7.5px!important;gap:7px!important}
+  #pagina-candidatos-empresa #listaCandidatosEmpresa .recruta-cand-info>div>strong{font-size:14px!important}
+  #pagina-candidatos-empresa #listaCandidatosEmpresa .em-info-ico{width:29px!important;height:29px!important;min-width:29px!important}
+  #pagina-candidatos-empresa #listaCandidatosEmpresa .em-info-ico:before{width:15px!important;height:15px!important}
+  #pagina-candidatos-empresa #listaCandidatosEmpresa .recruta-aderencia-score>strong{font-size:22px!important}
+  #pagina-candidatos-empresa #listaCandidatosEmpresa .recruta-aderencia-score>small{font-size:6.7px!important;padding:4px 6px!important}
   #pagina-candidatos-empresa #listaCandidatosEmpresa .recruta-cand-actions,
   #pagina-candidatos-empresa #listaCandidatosEmpresa .recruta-cand-actions.recruta-acoes-unificadas{padding:10px 12px 12px!important;gap:6px!important}
-  #pagina-candidatos-empresa #listaCandidatosEmpresa .recruta-cand-actions>.btn{height:42px!important;min-height:42px!important;padding-left:32px!important;padding-right:22px!important;font-size:8px!important}
+  #pagina-candidatos-empresa #listaCandidatosEmpresa .recruta-cand-actions>.btn{height:42px!important;min-height:42px!important;padding-left:32px!important;padding-right:20px!important;font-size:8px!important}
   #pagina-candidatos-empresa #listaCandidatosEmpresa .recruta-cand-actions .em-btn-ico{left:9px!important;width:17px!important;height:17px!important}
   #pagina-candidatos-empresa #listaCandidatosEmpresa .recruta-cand-actions .em-btn-ico:before{width:17px!important;height:17px!important}
   #pagina-candidatos-empresa #listaCandidatosEmpresa .recruta-cand-actions>.btn:after{right:7px!important;font-size:15px!important}
 }
 @media(max-width:610px){
-  #pagina-candidatos-empresa #listaCandidatosEmpresa .recruta-cand-head{grid-template-columns:1fr!important;gap:12px!important}
+  #pagina-candidatos-empresa #listaCandidatosEmpresa .recruta-cand-head{grid-template-columns:1fr!important}
   #pagina-candidatos-empresa #listaCandidatosEmpresa .recruta-cand-status{align-items:flex-start!important}
   #pagina-candidatos-empresa #listaCandidatosEmpresa .meta-inline{align-items:flex-start!important}
   #pagina-candidatos-empresa #listaCandidatosEmpresa .recruta-cand-info{grid-template-columns:1fr!important}
