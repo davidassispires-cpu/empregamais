@@ -13926,4 +13926,164 @@ body.sessao-candidato header.topo .sessao-conta-btn{
     font-size:12.5px!important;
   }
 }
+</style><style>/* EMPREGAMAI-TIPOGRAFIA-GLOBAL-PADRAO-V6 */
+/* Padrão visual aprovado: Inter, legível, azul petróleo/cinza escuro.
+   Aplica-se a textos pequenos e secundários sem alterar títulos grandes. */
+:root{
+  --em-font-ui:'Inter','Segoe UI',Arial,sans-serif;
+  --em-text-small:#294f5d;
+  --em-text-strong:#173f50;
+  --em-text-muted:#5f7480;
+  --em-border-soft:#d7e3e8;
+  --em-bg-soft:#f8fbfc;
+}
+
+/* base tipográfica do portal */
+body,
+button,
+input,
+select,
+textarea{
+  font-family:var(--em-font-ui)!important;
+  -webkit-font-smoothing:antialiased!important;
+  text-rendering:optimizeLegibility!important;
+}
+
+/* textos pequenos / auxiliares */
+:where(
+  .pagina p,
+  .pagina small,
+  .pagina label,
+  .pagina .subtitulo,
+  .pagina .subtitle,
+  .pagina .descricao,
+  .pagina .description,
+  .pagina .meta,
+  .pagina [class*="meta"],
+  .pagina [class*="sub"],
+  .pagina [class*="hint"],
+  .pagina [class*="help"],
+  .pagina [class*="helper"],
+  .pagina [class*="caption"],
+  .pagina [class*="legenda"],
+  .pagina [class*="descricao"]
+){
+  font-family:var(--em-font-ui)!important;
+  font-size:13px!important;
+  line-height:1.4!important;
+  font-weight:500!important;
+  letter-spacing:0!important;
+  color:var(--em-text-small)!important;
+}
+
+/* chips, filtros, badges e categorias */
+:where(
+  .pagina .tag,
+  .pagina .badge,
+  .pagina [class*="tag"],
+  .pagina [class*="badge"],
+  .pagina [class*="chip"],
+  .pagina [class*="pill"],
+  .pagina [class*="filtro"] button,
+  .pagina [class*="filter"] button
+){
+  font-family:var(--em-font-ui)!important;
+  font-size:13px!important;
+  line-height:1.25!important;
+  font-weight:500!important;
+  letter-spacing:0!important;
+  color:var(--em-text-small)!important;
+}
+
+/* textos intermediários */
+:where(
+  .pagina nav button,
+  .pagina .tabs button,
+  .pagina .tabs a,
+  .pagina [class*="tab"] button,
+  .pagina [class*="tab"] a,
+  .pagina [class*="card"] > span,
+  .pagina [class*="card"] > label
+){
+  font-family:var(--em-font-ui)!important;
+  font-size:14px!important;
+  line-height:1.35!important;
+  font-weight:600!important;
+  letter-spacing:0!important;
+  color:var(--em-text-strong)!important;
+}
+
+/* campos de formulário */
+:where(
+  .pagina input:not([type="checkbox"]):not([type="radio"]),
+  .pagina select,
+  .pagina textarea
+){
+  font-family:var(--em-font-ui)!important;
+  font-size:13px!important;
+  line-height:1.4!important;
+  font-weight:500!important;
+  color:var(--em-text-small)!important;
+}
+:where(
+  .pagina input::placeholder,
+  .pagina textarea::placeholder
+){
+  font-family:var(--em-font-ui)!important;
+  font-size:13px!important;
+  font-weight:500!important;
+  color:#70848e!important;
+  opacity:1!important;
+}
+
+/* preserva hierarquia dos títulos */
+:where(.pagina h1,.pagina h2,.pagina h3,.pagina h4){
+  font-family:var(--em-font-ui)!important;
+  color:var(--em-text-strong)!important;
+}
+.pagina h1{font-weight:700!important}
+.pagina h2{font-weight:700!important}
+.pagina h3,.pagina h4{font-weight:650!important}
+
+/* evita retorno de microfontes em áreas recorrentes */
+:where(
+  #pagina-painel-empresa small,
+  #pagina-candidatos-empresa small,
+  #pagina-vaga small,
+  #pagina-publicar small,
+  #pagina-perfil-empresa small,
+  #pagina-vagas small,
+  #pagina-candidaturas small,
+  #pagina-contratacoes-empresa small
+){
+  font-size:12.5px!important;
+  line-height:1.4!important;
+  font-weight:500!important;
+  letter-spacing:0!important;
+}
+
+/* categorias/filtros no estilo visual aprovado */
+:where(
+  .categoria-chip,
+  .filtro-chip,
+  .tag-filtro,
+  .area-chip,
+  .beneficio-chip,
+  .chips button,
+  .chips span
+){
+  min-height:36px!important;
+  padding:0 13px!important;
+  display:inline-flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  border:1px solid var(--em-border-soft)!important;
+  border-radius:9px!important;
+  background:var(--em-bg-soft)!important;
+  color:var(--em-text-small)!important;
+  font-family:var(--em-font-ui)!important;
+  font-size:13px!important;
+  font-weight:500!important;
+  letter-spacing:0!important;
+}
 </style></body></html>
