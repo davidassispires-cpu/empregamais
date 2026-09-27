@@ -7420,3 +7420,110 @@ body{
     margin:0 12px 12px!important;
   }
 }
+/* EMPREGAI-PROCESSOS-SELETIVOS-SOBRIO-V1 */
+#pagina-candidatos-empresa{
+  --emp-primary:#155f78;
+  --emp-primary-dark:#104c61;
+  --emp-primary-soft:#eef5f7;
+  --emp-text:#183b4d;
+  --emp-muted:#6c7f89;
+  --emp-border:#dce5e9;
+  --emp-bg:#f6f8f9;
+}
+
+/* cards superiores mais neutros */
+#pagina-candidatos-empresa .stats-grid > *,
+#pagina-candidatos-empresa .resumo-grid > *,
+#pagina-candidatos-empresa .kpi-grid > *,
+#pagina-candidatos-empresa .metricas-topo > *,
+#pagina-candidatos-empresa .cards-resumo > *{
+  background:#fff!important;
+  border:1px solid var(--emp-border)!important;
+  box-shadow:0 5px 16px rgba(20,55,70,.035)!important;
+}
+
+/* ícones superiores */
+#pagina-candidatos-empresa .stats-grid > * [class*="icon"],
+#pagina-candidatos-empresa .resumo-grid > * [class*="icon"],
+#pagina-candidatos-empresa .kpi-grid > * [class*="icon"],
+#pagina-candidatos-empresa .metricas-topo > * [class*="icon"],
+#pagina-candidatos-empresa .cards-resumo > * [class*="icon"]{
+  background:var(--emp-primary-soft)!important;
+  color:var(--emp-primary)!important;
+  border:0!important;
+}
+
+/* números superiores */
+#pagina-candidatos-empresa .stats-grid strong,
+#pagina-candidatos-empresa .resumo-grid strong,
+#pagina-candidatos-empresa .kpi-grid strong,
+#pagina-candidatos-empresa .metricas-topo strong,
+#pagina-candidatos-empresa .cards-resumo strong{
+  color:var(--emp-primary-dark)!important;
+}
+
+/* mini cards de andamento */
+#pagina-candidatos-empresa .mini-metricas > *,
+#pagina-candidatos-empresa .andamento-candidatos > *,
+#pagina-candidatos-empresa .metricas-candidatos > *,
+#pagina-candidatos-empresa .processo-metricas > *,
+#pagina-candidatos-empresa .emp-vaga-selecao-metricas > *{
+  background:#fff!important;
+  border:1px solid var(--emp-border)!important;
+  border-top:3px solid #dbe5e9!important;
+  box-shadow:none!important;
+  border-radius:10px!important;
+}
+
+#pagina-candidatos-empresa .mini-metricas > *:first-child,
+#pagina-candidatos-empresa .andamento-candidatos > *:first-child,
+#pagina-candidatos-empresa .metricas-candidatos > *:first-child,
+#pagina-candidatos-empresa .processo-metricas > *:first-child,
+#pagina-candidatos-empresa .emp-vaga-selecao-metricas > *:first-child{
+  border-top-color:var(--emp-primary)!important;
+}
+
+#pagina-candidatos-empresa .mini-metricas b,
+#pagina-candidatos-empresa .andamento-candidatos b,
+#pagina-candidatos-empresa .metricas-candidatos b,
+#pagina-candidatos-empresa .processo-metricas b,
+#pagina-candidatos-empresa .emp-vaga-selecao-metricas b,
+#pagina-candidatos-empresa .mini-metricas strong,
+#pagina-candidatos-empresa .andamento-candidatos strong,
+#pagina-candidatos-empresa .metricas-candidatos strong,
+#pagina-candidatos-empresa .processo-metricas strong,
+#pagina-candidatos-empresa .emp-vaga-selecao-metricas strong{
+  color:var(--emp-primary-dark)!important;
+}
+
+#pagina-candidatos-empresa .mini-metricas span,
+#pagina-candidatos-empresa .andamento-candidatos span,
+#pagina-candidatos-empresa .metricas-candidatos span,
+#pagina-candidatos-empresa .processo-metricas span,
+#pagina-candidatos-empresa .emp-vaga-selecao-metricas span{
+  color:var(--emp-muted)!important;
+}
+
+/* sela/status discreto */
+#pagina-candidatos-empresa .status-badge,
+#pagina-candidatos-empresa .badge-status,
+#pagina-candidatos-empresa .status-pill,
+#pagina-candidatos-empresa .em-analise{
+  background:#faf7ef!important;
+  color:#8b733f!important;
+  border:1px solid #e8dfca!important;
+}
+
+/* ações */
+#pagina-candidatos-empresa .primary,
+#pagina-candidatos-empresa .btn-primary{
+  background:var(--emp-primary)!important;
+  border-color:var(--emp-primary)!important;
+  box-shadow:none!important;
+}
+
+#pagina-candidatos-empresa .secondary{
+  background:#fff!important;
+  border:1px solid var(--emp-border)!important;
+  color:var(--emp-text)!important;
+}
