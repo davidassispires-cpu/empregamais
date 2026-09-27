@@ -5876,7 +5876,13 @@ svg text{
 <button class="emp-plan-overview-manage" onclick="irPara('planos')">Gerenciar plano <b>→</b></button>
 </section>
 <section class="emp-dash-section-head emp-premium-section-title"><div><span class="emp-premium-eyebrow">VISÃO GERAL</span><h2>Resumo do recrutamento</h2><p>Indicadores atualizados da sua operação.</p></div></section>
-<div class="emp-plan-summary-kpis-v112" id="empresaMetricasNovas"><button onclick="abrirMetricaEmpresa('vagas')"><i><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2.75" y="7" width="18.5" height="13.25" rx="2.5"/><path d="M8 7V5.5A2.5 2.5 0 0 1 10.5 3h3A2.5 2.5 0 0 1 16 5.5V7M2.75 12.25c5.8 2.5 12.7 2.5 18.5 0M10 13.25h4v2h-4z"/></svg></i><div><span>Vagas ativas</span><strong class="kpi-num">0</strong><small>Publicadas</small></div><b>→</b></button><button onclick="abrirMetricaEmpresa('aprovacao')"><i><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="3" width="16" height="18" rx="3"/><path d="M8 3.5V2.75h8v.75M8 8h8M8 12h4m-4 4 2.25 2.25L16.5 12"/></svg></i><div><span>Em análise</span><strong class="kpi-num">0</strong><small>Aguardando aprovação</small></div><b>→</b></button><button onclick="abrirMetricaEmpresa('candidatos')"><i><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="8" r="3"/><path d="M2.75 20v-1.25A5.75 5.75 0 0 1 8.5 13h1A5.75 5.75 0 0 1 15.25 18.75V20H2.75ZM16.25 5.5a2.75 2.75 0 0 1 0 5.5M17.25 13.5a4.75 4.75 0 0 1 4 4.7V20h-3"/></svg></i><div><span>Candidaturas</span><strong class="kpi-num">0</strong><small>Currículos recebidos</small></div><b>→</b></button><button onclick="abrirMetricaEmpresa('processo')"><i><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2.75" y="3.5" width="18.5" height="17" rx="3"/><path d="M8 8h8M8 12h5M8 16h8M17 11l1.75 1.75L21 10.5"/><circle cx="5.5" cy="8" r=".5"/><circle cx="5.5" cy="12" r=".5"/><circle cx="5.5" cy="16" r=".5"/></svg></i><div><span>Em processo</span><strong class="kpi-num">0</strong><small>No funil de seleção</small></div><b>→</b></button><button onclick="irPara('contratacoes-empresa')"><i><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.75 19.5 5.5v6.25c0 4.15-2.85 7.7-7.5 9.5-4.65-1.8-7.5-5.35-7.5-9.5V5.5L12 2.75Z"/><path d="m8.25 12 2.5 2.5 5-5"/></svg></i><div><span>Contratações</span><strong class="kpi-num">0</strong><small>Concluídas</small></div><b>→</b></button></div>
+<div class="emp-plan-summary-kpis-v112 emp-dash-kpis" id="empresaMetricasNovas">
+<button onclick="abrirMetricaEmpresa('vagas')"><i><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2.75" y="7" width="18.5" height="13.25" rx="2.5"/><path d="M8 7V5.5A2.5 2.5 0 0 1 10.5 3h3A2.5 2.5 0 0 1 16 5.5V7M2.75 12.25c5.8 2.5 12.7 2.5 18.5 0M10 13.25h4v2h-4z"/></svg></i><div><span>Vagas ativas</span><strong class="kpi-num">0</strong><small>Publicadas</small></div><b>→</b></button>
+<button onclick="abrirMetricaEmpresa('candidatos')"><i><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="8" r="3"/><path d="M2.75 20v-1.25A5.75 5.75 0 0 1 8.5 13h1A5.75 5.75 0 0 1 15.25 18.75V20H2.75ZM16.25 5.5a2.75 2.75 0 0 1 0 5.5M17.25 13.5a4.75 4.75 0 0 1 4 4.7V20h-3"/></svg></i><div><span>Candidaturas</span><strong class="kpi-num">0</strong><small>Currículos recebidos</small></div><b>→</b></button>
+<button onclick="abrirMetricaEmpresa('processo')"><i><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2.75" y="3.5" width="18.5" height="17" rx="3"/><path d="M8 8h8M8 12h5M8 16h8M17 11l1.75 1.75L21 10.5"/></svg></i><div><span>Em processo</span><strong class="kpi-num">0</strong><small>No funil de seleção</small></div><b>→</b></button>
+<button onclick="abrirMetricaEmpresa('entrevistas')"><i><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/></svg></i><div><span>Entrevistas</span><strong class="kpi-num">0</strong><small>Etapas agendadas</small></div><b>→</b></button>
+<button onclick="abrirMetricaEmpresa('contratacoes')"><i><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.75 19.5 5.5v6.25c0 4.15-2.85 7.7-7.5 9.5-4.65-1.8-7.5-5.35-7.5-9.5V5.5L12 2.75Z"/><path d="m8.25 12 2.5 2.5 5-5"/></svg></i><div><span>Contratações</span><strong class="kpi-num">0</strong><small>Concluídas</small></div><b>→</b></button>
+</div>
 <section class="emp-performance emp-performance-v108">
   <div class="emp-performance-head">
     <div class="emp-performance-title">
@@ -5896,16 +5902,16 @@ svg text{
     </article>
     <article class="emp-performance-card entrevistas emp-performance-tip" tabindex="0" aria-label="Entrevistas: Quantidade de candidatos que chegaram à etapa de entrevista nos seus processos seletivos.">
       <div class="emp-performance-tooltip"><strong>Entrevistas</strong><p>Quantidade de candidatos que chegaram à etapa de entrevista nos seus processos seletivos.</p><small>Passe o mouse para consultar este indicador.</small></div>
-      <div class="emp-performance-card-top"><i>◷</i><span>Entrevistas</span></div>
-      <strong id="empPerfEntrevistas">0</strong>
-      <small>Etapas de entrevista realizadas</small>
+      <div class="emp-performance-card-top"><i>◷</i><span>Taxa de contratação</span></div>
+      <strong id="empPerfEntrevistas">0%</strong>
+      <small>Contratações sobre candidaturas</small>
       <div class="emp-performance-foot"><span>Movimentação do funil</span><b>→</b></div>
     </article>
     <article class="emp-performance-card contratacoes emp-performance-tip" tabindex="0" aria-label="Contratações: Total de candidatos marcados como contratados após a conclusão do processo seletivo.">
       <div class="emp-performance-tooltip"><strong>Contratações</strong><p>Total de candidatos marcados como contratados após a conclusão do processo seletivo.</p><small>Passe o mouse para consultar este indicador.</small></div>
-      <div class="emp-performance-card-top"><i>✓</i><span>Contratações</span></div>
+      <div class="emp-performance-card-top"><i>✓</i><span>Vagas com candidatos</span></div>
       <strong id="empPerfContratacoes">0</strong>
-      <small>Processos concluídos com contratação</small>
+      <small>Vagas ativas que já receberam currículos</small>
       <div class="emp-performance-foot"><span>Resultado final</span><b>→</b></div>
     </article>
     <article class="emp-performance-card media emp-performance-tip" tabindex="0" aria-label="Candidatos por vaga: Média de candidaturas recebidas por vaga ativa. Ajuda a visualizar o volume de interesse nas oportunidades.">
@@ -13248,4 +13254,27 @@ body.sessao-candidato header.topo .sessao-conta-btn{
 }
 </style>
 
-</body></html>
+<style>/* EMPREGAMAI-PAINEL-ENXUTO-INLINE-V2 */
+#pagina-painel-empresa .emp-rec-planbar{min-height:62px!important;margin-top:8px!important}
+#pagina-painel-empresa #empresaMetricasNovas.emp-dash-kpis{gap:9px!important;margin-bottom:10px!important}
+#pagina-painel-empresa #empresaMetricasNovas.emp-dash-kpis>button{height:88px!important;min-height:88px!important;padding:11px 12px!important;grid-template-columns:36px minmax(0,1fr)!important;column-gap:9px!important;border-radius:12px!important;box-shadow:0 2px 8px rgba(17,61,80,.025)!important}
+#pagina-painel-empresa #empresaMetricasNovas.emp-dash-kpis>button>i{width:34px!important;height:34px!important;border-radius:9px!important;background:#eef5f7!important;color:#17687d!important}
+#pagina-painel-empresa #empresaMetricasNovas.emp-dash-kpis>button::after{display:none!important}
+#pagina-painel-empresa #empresaMetricasNovas.emp-dash-kpis span{font-size:10.8px!important;line-height:14px!important;color:#315364!important}
+#pagina-painel-empresa #empresaMetricasNovas.emp-dash-kpis strong{font-size:23px!important;line-height:23px!important;color:#103f56!important}
+#pagina-painel-empresa #empresaMetricasNovas.emp-dash-kpis small{font-size:9.5px!important;line-height:11px!important;color:#71848e!important}
+#pagina-painel-empresa #empresaMetricasNovas.emp-dash-kpis>button>b{display:none!important}
+#pagina-painel-empresa .emp-performance{margin:12px 0 18px!important;padding:0!important;border-radius:13px!important;overflow:hidden!important}
+#pagina-painel-empresa .emp-performance-head{padding:15px 18px!important;margin:0!important;border-bottom:1px solid #e5ecef!important;align-items:center!important}
+#pagina-painel-empresa .emp-performance-head h2{font-size:17px!important}
+#pagina-painel-empresa .emp-performance-head p{font-size:10.5px!important}
+#pagina-painel-empresa .emp-performance-grid{gap:0!important}
+#pagina-painel-empresa .emp-performance-grid article{min-height:102px!important;padding:13px!important;border:0!important;border-right:1px solid #e5ecef!important;border-radius:0!important;background:#fff!important}
+#pagina-painel-empresa .emp-performance-grid article:last-child{border-right:0!important}
+#pagina-painel-empresa .emp-performance-card-top span{font-size:10.5px!important}
+#pagina-painel-empresa .emp-performance-grid article>strong{font-size:22px!important}
+#pagina-painel-empresa .emp-performance-grid article>small{font-size:9.5px!important}
+#pagina-painel-empresa .emp-performance-foot{display:none!important}
+#pagina-painel-empresa .emp-dash-section-head{margin:18px 0 8px!important}
+@media(max-width:900px){#pagina-painel-empresa #empresaMetricasNovas.emp-dash-kpis{grid-template-columns:repeat(2,minmax(0,1fr))!important}#pagina-painel-empresa .emp-performance-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important}}
+</style></body></html>
