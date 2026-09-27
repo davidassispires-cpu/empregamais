@@ -9994,3 +9994,122 @@ textarea{
   }
 }
 
+/* EMPREGAMAI-PREMIUM-CANDIDATO-REFORMULADO-V3 */
+#pagina-premium-candidato{
+  background:#f5f9fc!important;
+  color:#173f50!important;
+  font-family:'Inter','Segoe UI',Arial,sans-serif!important;
+}
+#pagina-premium-candidato *{box-sizing:border-box!important}
+#pagina-premium-candidato .premium3-wrap{max-width:1240px!important;margin:0 auto!important;padding:24px 26px 70px!important}
+#pagina-premium-candidato .premium3-top{display:flex!important;align-items:center!important;justify-content:space-between!important;margin-bottom:14px!important}
+#pagina-premium-candidato .premium3-top button{border:0!important;background:transparent!important;color:#245a73!important;font-size:13px!important;font-weight:600!important;padding:5px 0!important;cursor:pointer!important}
+#pagina-premium-candidato .premium3-top>span{font-size:11px!important;font-weight:700!important;letter-spacing:.08em!important;color:#617986!important}
+
+#pagina-premium-candidato .premium3-hero{display:grid!important;grid-template-columns:minmax(0,1.55fr) 360px!important;border:1px solid #d8e5eb!important;border-radius:20px!important;overflow:hidden!important;background:#fff!important;box-shadow:0 10px 28px rgba(20,65,88,.06)!important}
+#pagina-premium-candidato .premium3-hero-copy{padding:44px 46px!important}
+#pagina-premium-candidato .premium3-kicker,#pagina-premium-candidato .premium3-heading>span{font-size:11px!important;line-height:1.3!important;font-weight:700!important;letter-spacing:.08em!important;color:#1674a8!important}
+#pagina-premium-candidato .premium3-hero h1{max-width:760px!important;margin:8px 0 14px!important;font-size:38px!important;line-height:1.12!important;font-weight:750!important;letter-spacing:-.035em!important;color:#123f5d!important}
+#pagina-premium-candidato .premium3-hero-copy>p{max-width:720px!important;margin:0!important;font-size:16px!important;line-height:1.65!important;font-weight:500!important;color:#587180!important}
+#pagina-premium-candidato .premium3-hero-actions{display:flex!important;align-items:center!important;gap:14px!important;margin-top:23px!important}
+#pagina-premium-candidato .premium3-hero-actions button,#pagina-premium-candidato .premium3-plan>button,#pagina-premium-candidato .premium3-compare .premium button,#pagina-premium-candidato .premium3-bottom>button{min-height:46px!important;border:0!important;border-radius:10px!important;background:#1877b9!important;color:#fff!important;padding:0 19px!important;font-size:14px!important;font-weight:700!important;cursor:pointer!important;box-shadow:none!important}
+#pagina-premium-candidato .premium3-hero-actions small{font-size:12.5px!important;line-height:1.4!important;font-weight:500!important;color:#6d818d!important}
+#pagina-premium-candidato .premium3-trust{display:flex!important;flex-wrap:wrap!important;gap:8px!important;margin-top:25px!important}
+#pagina-premium-candidato .premium3-trust span{padding:7px 10px!important;border:1px solid #d9e7ed!important;border-radius:999px!important;background:#f8fbfc!important;color:#315b6d!important;font-size:12px!important;font-weight:600!important}
+
+#pagina-premium-candidato .premium3-price-card{padding:34px!important;display:flex!important;flex-direction:column!important;justify-content:center!important;background:#123f66!important;color:#fff!important}
+#pagina-premium-candidato .premium3-price-card>span{font-size:11px!important;font-weight:700!important;letter-spacing:.08em!important;color:#a8cee5!important}
+#pagina-premium-candidato .premium3-price{display:flex!important;align-items:flex-end!important;gap:6px!important;margin:10px 0 8px!important}
+#pagina-premium-candidato .premium3-price strong{font-size:38px!important;line-height:1!important;font-weight:750!important;color:#fff!important;letter-spacing:-.04em!important}
+#pagina-premium-candidato .premium3-price small{font-size:13px!important;font-weight:500!important;color:#c5d8e5!important;padding-bottom:5px!important}
+#pagina-premium-candidato .premium3-price-card>p{font-size:13.5px!important;line-height:1.55!important;color:#d5e3ec!important;margin:0 0 18px!important}
+#pagina-premium-candidato .premium3-mini-saving{padding:13px 14px!important;border:1px solid rgba(255,255,255,.16)!important;border-radius:12px!important;background:rgba(255,255,255,.07)!important}
+#pagina-premium-candidato .premium3-mini-saving b{display:block!important;font-size:10px!important;letter-spacing:.07em!important;color:#86e0c0!important}
+#pagina-premium-candidato .premium3-mini-saving strong{display:block!important;margin-top:3px!important;font-size:18px!important;color:#fff!important}
+#pagina-premium-candidato .premium3-mini-saving small{display:block!important;margin-top:2px!important;font-size:11px!important;color:#c9dce8!important}
+
+#pagina-premium-candidato .premium3-benefits{display:grid!important;grid-template-columns:repeat(4,minmax(0,1fr))!important;gap:12px!important;margin-top:14px!important}
+#pagina-premium-candidato .premium3-benefits article{min-height:118px!important;display:grid!important;grid-template-columns:42px minmax(0,1fr)!important;gap:12px!important;padding:17px!important;border:1px solid #dbe6eb!important;border-radius:14px!important;background:#fff!important}
+#pagina-premium-candidato .premium3-benefits i{width:42px!important;height:42px!important;display:grid!important;place-items:center!important;border-radius:11px!important;background:#edf6fb!important;color:#176f9a!important;font-size:16px!important;font-style:normal!important}
+#pagina-premium-candidato .premium3-benefits strong{display:block!important;font-size:14px!important;line-height:1.3!important;font-weight:700!important;color:#234a5d!important}
+#pagina-premium-candidato .premium3-benefits p{margin:5px 0 0!important;font-size:12.5px!important;line-height:1.45!important;font-weight:500!important;color:#667c87!important}
+
+#pagina-premium-candidato .premium3-plans{padding:52px 0 20px!important}
+#pagina-premium-candidato .premium3-heading{max-width:790px!important;margin-bottom:25px!important}
+#pagina-premium-candidato .premium3-heading h2{margin:6px 0 8px!important;font-size:29px!important;line-height:1.2!important;font-weight:700!important;letter-spacing:-.025em!important;color:#123f5d!important}
+#pagina-premium-candidato .premium3-heading p{margin:0!important;font-size:14px!important;line-height:1.6!important;font-weight:500!important;color:#647985!important}
+
+#pagina-premium-candidato .premium3-plan-grid{display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:16px!important;align-items:stretch!important}
+#pagina-premium-candidato .premium3-plan{position:relative!important;min-width:0!important;padding:24px!important;display:flex!important;flex-direction:column!important;border:1px solid #d7e4ea!important;border-radius:18px!important;background:#fff!important;box-shadow:0 7px 20px rgba(18,62,85,.045)!important}
+#pagina-premium-candidato .premium3-plan-featured{border:2px solid #1884b6!important;box-shadow:0 12px 28px rgba(24,132,182,.11)!important}
+#pagina-premium-candidato .premium3-featured-badge,#pagina-premium-candidato .premium3-saving-badge{position:absolute!important;top:16px!important;right:16px!important;padding:6px 8px!important;border-radius:999px!important;font-size:9.5px!important;line-height:1!important;font-weight:800!important;letter-spacing:.05em!important}
+#pagina-premium-candidato .premium3-featured-badge{background:#e9f6fb!important;color:#0c7196!important}
+#pagina-premium-candidato .premium3-saving-badge{background:#eef8f4!important;color:#26795e!important}
+#pagina-premium-candidato .premium3-plan-head>span{display:block!important;margin-bottom:7px!important;font-size:10.5px!important;font-weight:800!important;letter-spacing:.08em!important;color:#6b808b!important}
+#pagina-premium-candidato .premium3-plan-head h3{margin:0 0 7px!important;font-size:21px!important;line-height:1.2!important;font-weight:700!important;color:#163f55!important}
+#pagina-premium-candidato .premium3-plan-head p{margin:0!important;min-height:42px!important;font-size:13px!important;line-height:1.5!important;font-weight:500!important;color:#657b86!important}
+#pagina-premium-candidato .premium3-plan-price{display:flex!important;align-items:flex-end!important;gap:6px!important;margin:21px 0 8px!important}
+#pagina-premium-candidato .premium3-plan-price strong{font-size:32px!important;line-height:1!important;font-weight:750!important;letter-spacing:-.04em!important;color:#123f58!important}
+#pagina-premium-candidato .premium3-plan-price small{font-size:12.5px!important;font-weight:500!important;color:#758791!important;padding-bottom:4px!important}
+#pagina-premium-candidato .premium3-plan-equivalent{min-height:32px!important;font-size:12.5px!important;line-height:1.4!important;color:#667b86!important}
+#pagina-premium-candidato .premium3-plan-equivalent b{color:#155f78!important}
+#pagina-premium-candidato .premium3-plan-equivalent span{display:block!important;margin-top:2px!important;color:#39795f!important;font-size:11.5px!important;font-weight:600!important}
+#pagina-premium-candidato .premium3-plan ul{list-style:none!important;margin:18px 0!important;padding:15px 0!important;border-top:1px solid #e7edef!important;border-bottom:1px solid #e7edef!important;display:grid!important;gap:9px!important}
+#pagina-premium-candidato .premium3-plan li{font-size:12.5px!important;line-height:1.4!important;font-weight:500!important;color:#3f606e!important}
+#pagina-premium-candidato .premium3-plan li:before{content:"✓"!important;margin-right:8px!important;color:#288b69!important;font-weight:800!important}
+#pagina-premium-candidato .premium3-payment{display:grid!important;grid-template-columns:1fr 1fr!important;gap:9px!important;margin-bottom:16px!important}
+#pagina-premium-candidato .premium3-payment>div{padding:11px!important;border:1px solid #dfe8ec!important;border-radius:11px!important;background:#f9fbfc!important}
+#pagina-premium-candidato .premium3-payment span{display:block!important;font-size:9px!important;font-weight:800!important;letter-spacing:.06em!important;color:#70838d!important}
+#pagina-premium-candidato .premium3-payment strong{display:block!important;margin-top:4px!important;font-size:13px!important;line-height:1.25!important;color:#244e60!important}
+#pagina-premium-candidato .premium3-payment small{display:block!important;margin-top:2px!important;font-size:10.5px!important;color:#71848e!important}
+#pagina-premium-candidato .premium3-plan>button{width:100%!important;margin-top:auto!important}
+#pagina-premium-candidato .premium3-plan-featured>button{background:#0d789f!important}
+
+#pagina-premium-candidato .premium3-plan-note{margin-top:15px!important;padding:13px 15px!important;display:grid!important;grid-template-columns:24px minmax(0,1fr)!important;gap:9px!important;border:1px solid #dce7ec!important;border-radius:12px!important;background:#f8fbfc!important}
+#pagina-premium-candidato .premium3-plan-note>span{font-size:14px!important;color:#457080!important}
+#pagina-premium-candidato .premium3-plan-note p{margin:0!important;font-size:12.5px!important;line-height:1.5!important;color:#627985!important}
+
+#pagina-premium-candidato .premium3-included{padding:42px 0 15px!important}
+#pagina-premium-candidato .premium3-included-grid{display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:12px!important}
+#pagina-premium-candidato .premium3-included-grid article{min-height:126px!important;padding:18px!important;display:grid!important;grid-template-columns:34px minmax(0,1fr)!important;gap:12px!important;border:1px solid #dce6eb!important;border-radius:14px!important;background:#fff!important}
+#pagina-premium-candidato .premium3-included-grid i{width:34px!important;height:34px!important;display:grid!important;place-items:center!important;border-radius:9px!important;background:#eef5f8!important;color:#1a6f90!important;font-size:10px!important;font-style:normal!important;font-weight:800!important}
+#pagina-premium-candidato .premium3-included-grid strong{display:block!important;font-size:14px!important;line-height:1.35!important;color:#234a5c!important}
+#pagina-premium-candidato .premium3-included-grid p{margin:5px 0 0!important;font-size:12px!important;line-height:1.5!important;color:#697e89!important}
+
+#pagina-premium-candidato .premium3-compare{padding:40px 0 20px!important}
+#pagina-premium-candidato .premium3-compare-grid{display:grid!important;grid-template-columns:1fr 1fr!important;gap:15px!important}
+#pagina-premium-candidato .premium3-compare-grid article{padding:25px!important;border:1px solid #dbe6eb!important;border-radius:16px!important;background:#fff!important}
+#pagina-premium-candidato .premium3-compare-grid article.premium{border-color:#b7d9e7!important;background:linear-gradient(180deg,#f6fbfd,#fff)!important}
+#pagina-premium-candidato .premium3-compare-grid article>span{font-size:10px!important;font-weight:800!important;letter-spacing:.08em!important;color:#647c88!important}
+#pagina-premium-candidato .premium3-compare-grid h3{margin:7px 0 12px!important;font-size:19px!important;line-height:1.3!important;color:#163f55!important}
+#pagina-premium-candidato .premium3-compare-grid ul{list-style:none!important;padding:0!important;margin:0 0 18px!important;display:grid!important;gap:8px!important}
+#pagina-premium-candidato .premium3-compare-grid li{font-size:12.5px!important;line-height:1.4!important;color:#476572!important}
+#pagina-premium-candidato .premium3-compare-grid article>strong{font-size:23px!important;color:#154e68!important}
+#pagina-premium-candidato .premium3-compare .premium button{width:100%!important}
+
+#pagina-premium-candidato .premium3-bottom{margin-top:24px!important;padding:24px 26px!important;display:flex!important;align-items:center!important;justify-content:space-between!important;gap:20px!important;border:1px solid #d5e3e9!important;border-radius:16px!important;background:#edf5f8!important}
+#pagina-premium-candidato .premium3-bottom>div>span{font-size:10px!important;font-weight:800!important;letter-spacing:.08em!important;color:#176b8c!important}
+#pagina-premium-candidato .premium3-bottom h2{margin:5px 0!important;font-size:21px!important;color:#163f55!important}
+#pagina-premium-candidato .premium3-bottom p{margin:0!important;font-size:12.5px!important;color:#637985!important}
+
+@media(max-width:980px){
+ #pagina-premium-candidato .premium3-hero{grid-template-columns:1fr!important}
+ #pagina-premium-candidato .premium3-benefits{grid-template-columns:repeat(2,minmax(0,1fr))!important}
+ #pagina-premium-candidato .premium3-plan-grid{grid-template-columns:1fr!important}
+ #pagina-premium-candidato .premium3-included-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important}
+}
+@media(max-width:680px){
+ #pagina-premium-candidato .premium3-wrap{padding:14px 12px 48px!important}
+ #pagina-premium-candidato .premium3-hero-copy{padding:26px 20px!important}
+ #pagina-premium-candidato .premium3-hero h1{font-size:29px!important}
+ #pagina-premium-candidato .premium3-hero-copy>p{font-size:14px!important}
+ #pagina-premium-candidato .premium3-price-card{padding:24px 20px!important}
+ #pagina-premium-candidato .premium3-benefits,
+ #pagina-premium-candidato .premium3-included-grid,
+ #pagina-premium-candidato .premium3-compare-grid{grid-template-columns:1fr!important}
+ #pagina-premium-candidato .premium3-hero-actions{align-items:flex-start!important;flex-direction:column!important}
+ #pagina-premium-candidato .premium3-payment{grid-template-columns:1fr!important}
+ #pagina-premium-candidato .premium3-bottom{align-items:flex-start!important;flex-direction:column!important}
+ #pagina-premium-candidato .premium3-bottom>button{width:100%!important}
+}
+
