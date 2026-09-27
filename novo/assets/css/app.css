@@ -6779,3 +6779,37 @@ overflow:visible!important
   .em-cv-pop h2{font-size:18px!important}
   .em-cv-pop-beneficios{grid-template-columns:1fr 1fr!important}
 }
+
+
+/* EMPREGAI — POPUP CANDIDATO CORES PADRAO V2 (2026-09-27) */
+.em-cv-pop-badge{
+  background:#edf6ff!important;
+  color:var(--azul2)!important;
+}
+.em-cv-pop-icon{
+  background:var(--azul2)!important;
+  color:#fff!important;
+  box-shadow:0 10px 25px rgba(8,102,198,.20)!important;
+}
+.em-cv-pop-primary{
+  background:var(--azul2)!important;
+  border-color:var(--azul2)!important;
+  color:#fff!important;
+}
+.em-cv-pop-primary:hover,
+.em-cv-pop-primary:focus{
+  background:var(--azul)!important;
+  border-color:var(--azul)!important;
+}
+.em-cv-pop-notif{
+  background:#f7fbff!important;
+  border-color:#d7e8f7!important;
+}
+.em-cv-pop-notif input[type="checkbox"]{
+  accent-color:var(--azul2)!important;
+}
+.em-cv-pop h2,
+.em-cv-pop-beneficio b,
+.em-cv-pop-notif strong{
+  color:#0b3767!important;
+}
