@@ -6332,7 +6332,7 @@ svg text{
 
     <section class="hc-board">
       <div class="hc-toolbar">
-        <div class="hc-search"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m16.5 16.5 4 4"/></svg><input id="hcBusca" placeholder="Buscar colaborador, cargo ou vaga" oninput="renderContratacoesEmpresaEM()"></div>
+        <div class="hc-search"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m16.5 16.5 4 4"/></svg><input id="hcBusca" placeholder="Buscar por nome, CPF, cargo ou vaga" oninput="renderContratacoesEmpresaEM()"></div>
         <select id="hcFiltroStatus" onchange="renderContratacoesEmpresaEM()"><option value="todos">Todos os status</option><option value="ativo">Ativos</option><option value="experiencia">Em experiência</option><option value="desligado">Desligados</option></select>
         <select id="hcOrdenacao" onchange="renderContratacoesEmpresaEM()"><option value="recentes">Contratações recentes</option><option value="antigos">Mais antigos</option><option value="nome">Nome A–Z</option></select>
       </div>
@@ -6363,6 +6363,37 @@ svg text{
       <label class="full">Descrição<textarea id="hcEventoDescricao" rows="4" maxlength="900" placeholder="Registre os detalhes deste evento."></textarea></label>
     </div>
     <div class="hc-event-actions"><button type="button" onclick="fecharEventoColaboradorEM()">Cancelar</button><button type="submit">Salvar no histórico</button></div>
+  </form>
+</div>
+
+<div class="hc-modal" id="hcFichaModal" aria-hidden="true" onclick="if(event.target===this)fecharFichaColaboradorEM()">
+  <form class="hc-ficha-card" id="hcFichaForm" onsubmit="salvarFichaColaboradorEM(event)">
+    <button class="hc-close" type="button" onclick="fecharFichaColaboradorEM()">×</button>
+    <span>FICHA DO COLABORADOR</span>
+    <h2>Dados pessoais e profissionais</h2>
+    <p>Cadastre informações para facilitar consultas internas e localizar rapidamente colaboradores por CPF, nome ou cargo.</p>
+    <input type="hidden" id="hcFichaCandidaturaId">
+    <div class="hc-ficha-grid">
+      <label class="full">Nome completo<input id="hcFichaNome" maxlength="140" required></label>
+      <label>CPF<input id="hcFichaCpf" inputmode="numeric" maxlength="14" placeholder="000.000.000-00"></label>
+      <label>RG<input id="hcFichaRg" maxlength="25"></label>
+      <label>Data de nascimento<input id="hcFichaNascimento" type="date"></label>
+      <label>Telefone<input id="hcFichaTelefone" inputmode="tel" maxlength="20"></label>
+      <label class="full">E-mail pessoal<input id="hcFichaEmail" type="email" maxlength="160"></label>
+      <label>Cargo atual<input id="hcFichaCargo" maxlength="100"></label>
+      <label>Setor<input id="hcFichaSetor" maxlength="100"></label>
+      <label>Data de admissão<input id="hcFichaAdmissao" type="date"></label>
+      <label>Tipo de contrato<input id="hcFichaContrato" maxlength="80" placeholder="Ex.: CLT"></label>
+      <label>CEP<input id="hcFichaCep" inputmode="numeric" maxlength="9"></label>
+      <label>UF<input id="hcFichaUf" maxlength="2"></label>
+      <label class="full">Endereço<input id="hcFichaEndereco" maxlength="180"></label>
+      <label>Número<input id="hcFichaNumero" maxlength="20"></label>
+      <label>Complemento<input id="hcFichaComplemento" maxlength="80"></label>
+      <label class="full">Cidade<input id="hcFichaCidade" maxlength="100"></label>
+      <label class="full">Observações internas<textarea id="hcFichaObs" rows="3" maxlength="800"></textarea></label>
+    </div>
+    <div class="hc-ficha-privacy">Dados pessoais são de uso interno da empresa. Mantenha o acesso restrito e utilize somente para finalidades legítimas de gestão do vínculo.</div>
+    <div class="hc-event-actions"><button type="button" onclick="fecharFichaColaboradorEM()">Cancelar</button><button type="submit">Salvar ficha</button></div>
   </form>
 </div>
 </section>
@@ -10615,6 +10646,7 @@ border:1px solid #d8e3e7!important;border-radius:12px!important;box-shadow:0 3px
 </style><script id="EMPREGAMAIS-CONTRATACOES-EMPRESA-JS-V1">
 (function(){
  const HIST='empregaMaisHistoricoColaboradores';
+ const FICHAS='empregaMaisFichasColaboradores';
  const escHC=s=>String(s==null?'':s).replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[m]));
  const digHC=v=>String(v||'').replace(/\D/g,'');
  const lerHC=(k,d=[])=>{try{const x=JSON.parse(localStorage.getItem(k)||'null');return x==null?d:x}catch(e){return d}};
@@ -10627,6 +10659,7 @@ border:1px solid #d8e3e7!important;border-radius:12px!important;box-shadow:0 3px
    return lerHC('empregaMaisCandidaturas',[]).filter(c=>ids.has(String(c.vagaId))&&String(c.status||'').toLowerCase()==='contratado').map(c=>({c,v:map.get(String(c.vagaId))||{}}));
  }
  function historicoHC(id){return lerHC(HIST,[]).filter(x=>String(x.candidaturaId)===String(id)).sort((a,b)=>new Date(b.data||b.criadoEm||0)-new Date(a.data||a.criadoEm||0))}
+ function fichaHC(id){const ec=empresaAtualHC().cnpj;return lerHC(FICHAS,[]).find(x=>String(x.candidaturaId)===String(id)&&(!x.empresaCnpj||x.empresaCnpj===ec))||{}}
  function statusHC(item){
    const hs=historicoHC(item.c.id);
    const deslig=hs.find(x=>String(x.tipo||'').toLowerCase()==='desligamento');
@@ -10643,7 +10676,7 @@ border:1px solid #d8e3e7!important;border-radius:12px!important;box-shadow:0 3px
    const busca=String(document.getElementById('hcBusca')?.value||'').trim().toLowerCase();
    const filtro=document.getElementById('hcFiltroStatus')?.value||'todos';
    const ordem=document.getElementById('hcOrdenacao')?.value||'recentes';
-   if(busca)items=items.filter(i=>[tituloHC(i),cargoHC(i),i.v.cidade,i.v.empresa].some(x=>String(x||'').toLowerCase().includes(busca)));
+   if(busca){const bd=digHC(busca);items=items.filter(i=>{const f=fichaHC(i.c.id),txt=[tituloHC(i),cargoHC(i),i.v.cidade,i.v.empresa,f.nomeCompleto,f.cpf,f.rg,f.telefone,f.email,f.setor,f.cidade,f.uf];return txt.some(x=>String(x||'').toLowerCase().includes(busca))||(bd&&[f.cpf,f.rg,f.telefone].some(x=>digHC(x).includes(bd)));});}
    if(filtro!=='todos')items=items.filter(i=>statusHC(i)===filtro);
    items.sort((a,b)=>ordem==='nome'?tituloHC(a).localeCompare(tituloHC(b),'pt-BR'):ordem==='antigos'?new Date(a.c.contratadoEm||0)-new Date(b.c.contratadoEm||0):new Date(b.c.contratadoEm||0)-new Date(a.c.contratadoEm||0));
    const todos=contratadosHC(),des=todos.filter(i=>statusHC(i)==='desligado').length,exp=todos.filter(i=>statusHC(i)==='experiencia').length,ativos=todos.length-des;
@@ -10652,7 +10685,7 @@ border:1px solid #d8e3e7!important;border-radius:12px!important;box-shadow:0 3px
    if(!items.length){box.innerHTML='<div class="hc-empty"><i>⌕</i><h3>Nenhum colaborador encontrado</h3><p>Altere os filtros ou a busca para visualizar outros registros.</p></div>';return}
    box.innerHTML=items.map(i=>{
      const s=statusHC(i),nome=tituloHC(i),hist=historicoHC(i.c.id),ultimo=hist[0];
-     return '<article class="hc-person"><div class="hc-ident"><div class="hc-avatar">'+escHC(nome.charAt(0).toUpperCase())+'</div><div><h3>'+escHC(nome)+'</h3><p>'+escHC(cargoHC(i))+'</p><div class="hc-tags"><span class="hc-status '+s+'">'+(s==='desligado'?'Desligado':s==='experiencia'?'Em experiência':'Ativo')+'</span><span>Contratado via Empregaí</span></div></div></div><div class="hc-data"><div><small>Admissão</small><b>'+dataBR(i.c.contratadoEm||i.c.atualizadoEm)+'</b></div><div><small>Último registro</small><b>'+escHC(ultimo?.tipo||'Contratação')+'</b></div><div><small>Vaga de origem</small><b>'+escHC(cargoHC(i))+'</b></div><div><small>Histórico</small><b>'+hist.length+' evento(s)</b></div></div><div class="hc-actions"><button class="primary" type="button" onclick="abrirColaboradorEM(\''+escHC(i.c.id)+'\')">Ver histórico</button><button class="secondary" type="button" onclick="abrirEventoColaboradorEM(\''+escHC(i.c.id)+'\')">＋ Registrar evento</button></div></article>'
+     return '<article class="hc-person"><div class="hc-ident"><div class="hc-avatar">'+escHC(nome.charAt(0).toUpperCase())+'</div><div><h3>'+escHC(nome)+'</h3><p>'+escHC(cargoHC(i))+'</p><div class="hc-tags"><span class="hc-status '+s+'">'+(s==='desligado'?'Desligado':s==='experiencia'?'Em experiência':'Ativo')+'</span><span>Contratado via Empregaí</span></div></div></div><div class="hc-data"><div><small>Admissão</small><b>'+dataBR(i.c.contratadoEm||i.c.atualizadoEm)+'</b></div><div><small>Último registro</small><b>'+escHC(ultimo?.tipo||'Contratação')+'</b></div><div><small>Vaga de origem</small><b>'+escHC(cargoHC(i))+'</b></div><div><small>Histórico</small><b>'+hist.length+' evento(s)</b></div></div><div class="hc-actions"><button class="primary" type="button" onclick="abrirColaboradorEM(\''+escHC(i.c.id)+'\')">Ver histórico</button><button class="secondary" type="button" onclick="abrirFichaColaboradorEM(\''+escHC(i.c.id)+'\')">▤ Ficha do colaborador</button><button class="secondary" type="button" onclick="abrirEventoColaboradorEM(\''+escHC(i.c.id)+'\')">＋ Registrar evento</button></div></article>'
    }).join('');
  }
  window.renderContratacoesEmpresaEM=renderContratacoesEmpresaEM;
@@ -10661,7 +10694,7 @@ border:1px solid #d8e3e7!important;border-radius:12px!important;box-shadow:0 3px
    const hs=historicoHC(id),nome=tituloHC(item),s=statusHC(item),base={tipo:'Contratação',titulo:'Contratado pelo processo seletivo',descricao:'Candidato marcado como Contratado no processo seletivo do Empregaí.',data:item.c.contratadoEm||item.c.atualizadoEm};
    const eventos=[...hs,base].sort((a,b)=>new Date(b.data||0)-new Date(a.data||0));
    const box=document.getElementById('hcDetalhe');if(!box)return;
-   box.innerHTML='<div class="hc-detail-head"><span>HISTÓRICO DO COLABORADOR</span><h2>'+escHC(nome)+'</h2><p>'+escHC(cargoHC(item))+' · <span class="hc-status '+s+'">'+(s==='desligado'?'Desligado':s==='experiencia'?'Em experiência':'Ativo')+'</span></p><button type="button" onclick="abrirEventoColaboradorEM(\''+escHC(id)+'\')">＋ Registrar novo evento</button></div><div class="hc-detail-info"><div><small>Data de admissão</small><b>'+dataBR(item.c.contratadoEm||item.c.atualizadoEm)+'</b></div><div><small>Vaga de origem</small><b>'+escHC(cargoHC(item))+'</b></div><div><small>Local</small><b>'+escHC([item.v.cidade,item.v.estado||item.v.uf].filter(Boolean).join(' - ')||'—')+'</b></div><div><small>E-mail</small><b>'+escHC(item.c.email||item.c.candidatoEmail||'—')+'</b></div></div><div class="hc-history"><h3>Linha do tempo</h3><div class="hc-timeline">'+eventos.map(ev=>'<article class="hc-event"><header><b>'+escHC(ev.titulo||ev.tipo||'Registro')+'</b><time>'+dataBR(ev.data||ev.criadoEm)+'</time></header>'+(ev.descricao?'<p>'+escHC(ev.descricao)+'</p>':'')+'</article>').join('')+'</div></div>';
+   box.innerHTML='<div class="hc-detail-head"><span>HISTÓRICO DO COLABORADOR</span><h2>'+escHC(nome)+'</h2><p>'+escHC(cargoHC(item))+' · <span class="hc-status '+s+'">'+(s==='desligado'?'Desligado':s==='experiencia'?'Em experiência':'Ativo')+'</span></p><div class="hc-detail-head-actions"><button type="button" onclick="abrirFichaColaboradorEM(\''+escHC(id)+'\')">▤ Editar ficha</button><button type="button" onclick="abrirEventoColaboradorEM(\''+escHC(id)+'\')">＋ Registrar novo evento</button></div></div><div class="hc-detail-info"><div><small>Data de admissão</small><b>'+dataBR(item.c.contratadoEm||item.c.atualizadoEm)+'</b></div><div><small>Vaga de origem</small><b>'+escHC(cargoHC(item))+'</b></div><div><small>Local</small><b>'+escHC([item.v.cidade,item.v.estado||item.v.uf].filter(Boolean).join(' - ')||'—')+'</b></div><div><small>E-mail</small><b>'+escHC(item.c.email||item.c.candidatoEmail||'—')+'</b></div></div><div class="hc-history"><h3>Linha do tempo</h3><div class="hc-timeline">'+eventos.map(ev=>'<article class="hc-event"><header><b>'+escHC(ev.titulo||ev.tipo||'Registro')+'</b><time>'+dataBR(ev.data||ev.criadoEm)+'</time></header>'+(ev.descricao?'<p>'+escHC(ev.descricao)+'</p>':'')+'</article>').join('')+'</div></div>';
    const m=document.getElementById('hcModal');m.classList.add('aberto');m.setAttribute('aria-hidden','false');
  };
  window.fecharColaboradorEM=function(){const m=document.getElementById('hcModal');if(m){m.classList.remove('aberto');m.setAttribute('aria-hidden','true')}};
@@ -10682,7 +10715,49 @@ border:1px solid #d8e3e7!important;border-radius:12px!important;box-shadow:0 3px
    const arr=lerHC(HIST,[]);arr.push({id:'HC-'+Date.now(),candidaturaId:id,empresaCnpj:empresaAtualHC().cnpj,tipo,data,titulo:titulo||tipo,descricao,criadoEm:new Date().toISOString()});gravarHC(HIST,arr);
    fecharEventoColaboradorEM();renderContratacoesEmpresaEM();abrirColaboradorEM(id);
  };
- document.addEventListener('keydown',e=>{if(e.key==='Escape'){fecharEventoColaboradorEM();fecharColaboradorEM()}});
+ window.abrirFichaColaboradorEM=function(id){
+   const item=contratadosHC().find(i=>String(i.c.id)===String(id));if(!item)return;
+   const f=fichaHC(id),set=(x,v)=>{const e=document.getElementById(x);if(e)e.value=v||''};
+   set('hcFichaCandidaturaId',id);
+   set('hcFichaNome',f.nomeCompleto||tituloHC(item));
+   set('hcFichaCpf',f.cpf);set('hcFichaRg',f.rg);set('hcFichaNascimento',f.nascimento);
+   set('hcFichaTelefone',f.telefone||item.c.telefone||item.c.whatsapp);
+   set('hcFichaEmail',f.email||item.c.email||item.c.candidatoEmail);
+   set('hcFichaCargo',f.cargo||cargoHC(item));set('hcFichaSetor',f.setor);
+   set('hcFichaAdmissao',f.admissao||String(item.c.contratadoEm||item.c.atualizadoEm||'').slice(0,10));
+   set('hcFichaContrato',f.contrato||item.v.contrato);
+   set('hcFichaCep',f.cep);set('hcFichaUf',f.uf);set('hcFichaEndereco',f.endereco);
+   set('hcFichaNumero',f.numero);set('hcFichaComplemento',f.complemento);set('hcFichaCidade',f.cidade);
+   set('hcFichaObs',f.observacoes);
+   const m=document.getElementById('hcFichaModal');m.classList.add('aberto');m.setAttribute('aria-hidden','false');
+ };
+ window.fecharFichaColaboradorEM=function(){const m=document.getElementById('hcFichaModal');if(m){m.classList.remove('aberto');m.setAttribute('aria-hidden','true')}};
+ function cpfValidoHC(v){
+   const n=digHC(v);if(!n)return true;if(n.length!==11||/^(\d)\1{10}$/.test(n))return false;
+   const dv=t=>{let s=0;for(let i=0;i<t;i++)s+=Number(n[i])*(t+1-i);const r=(s*10)%11;return r===10?0:r};
+   return dv(9)===Number(n[9])&&dv(10)===Number(n[10]);
+ }
+ window.salvarFichaColaboradorEM=function(ev){
+   ev.preventDefault();
+   const id=document.getElementById('hcFichaCandidaturaId').value;
+   if(!contratadosHC().some(i=>String(i.c.id)===String(id)))return alert('Este registro não pertence a um colaborador desta empresa.');
+   const val=x=>String(document.getElementById(x)?.value||'').trim(),cpf=val('hcFichaCpf');
+   if(cpf&&!cpfValidoHC(cpf))return alert('Informe um CPF válido.');
+   const arr=lerHC(FICHAS,[]),ec=empresaAtualHC().cnpj,idx=arr.findIndex(x=>String(x.candidaturaId)===String(id)&&(!x.empresaCnpj||x.empresaCnpj===ec));
+   const ficha={id:idx>=0?arr[idx].id:'HCF-'+Date.now(),candidaturaId:id,empresaCnpj:ec,
+     nomeCompleto:val('hcFichaNome'),cpf,rg:val('hcFichaRg'),nascimento:val('hcFichaNascimento'),
+     telefone:val('hcFichaTelefone'),email:val('hcFichaEmail'),cargo:val('hcFichaCargo'),setor:val('hcFichaSetor'),
+     admissao:val('hcFichaAdmissao'),contrato:val('hcFichaContrato'),cep:val('hcFichaCep'),uf:val('hcFichaUf').toUpperCase(),
+     endereco:val('hcFichaEndereco'),numero:val('hcFichaNumero'),complemento:val('hcFichaComplemento'),
+     cidade:val('hcFichaCidade'),observacoes:val('hcFichaObs'),atualizadoEm:new Date().toISOString()};
+   if(idx>=0)arr[idx]=Object.assign({},arr[idx],ficha);else arr.push(ficha);
+   gravarHC(FICHAS,arr);fecharFichaColaboradorEM();renderContratacoesEmpresaEM();abrirColaboradorEM(id);
+ };
+ document.addEventListener('input',e=>{
+   if(e.target?.id==='hcFichaCpf'){let n=digHC(e.target.value).slice(0,11);e.target.value=n.replace(/(\d{3})(\d)/,'$1.$2').replace(/(\d{3})(\d)/,'$1.$2').replace(/(\d{3})(\d{1,2})$/,'$1-$2')}
+   if(e.target?.id==='hcFichaCep'){let n=digHC(e.target.value).slice(0,8);e.target.value=n.replace(/(\d{5})(\d)/,'$1-$2')}
+ });
+ document.addEventListener('keydown',e=>{if(e.key==='Escape'){fecharEventoColaboradorEM();fecharColaboradorEM();fecharFichaColaboradorEM()}});
  const pag=document.getElementById('pagina-contratacoes-empresa');
  if(pag&&'MutationObserver' in window)new MutationObserver(()=>{if(pag.classList.contains('ativa'))renderContratacoesEmpresaEM()}).observe(pag,{attributes:true,attributeFilter:['class']});
 })();
@@ -12716,5 +12791,38 @@ option{
 @media(max-width:520px){
  #pagina-painel-empresa #empresaMetricasNovas.emp-plan-summary-kpis-v112{grid-template-columns:1fr!important}
  #pagina-painel-empresa #empresaMetricasNovas.emp-plan-summary-kpis-v112>button{height:auto!important;min-height:112px!important}
+}
+</style>
+<style id="EMPREGAMAIS-CONTRATACOES-FICHA-V3">
+#pagina-contratacoes-empresa .hc-actions{display:grid!important;grid-template-columns:1fr!important;gap:6px!important}
+#pagina-contratacoes-empresa .hc-ficha-card{
+ position:relative;width:min(780px,100%)!important;max-height:92vh!important;overflow:auto!important;
+ padding:27px 28px!important;background:#fff!important;border-radius:18px!important;box-shadow:0 25px 70px rgba(8,37,50,.23)!important
+}
+#pagina-contratacoes-empresa .hc-ficha-card>span{color:#176b87!important;font-size:10px!important;font-weight:800!important;letter-spacing:.12em!important}
+#pagina-contratacoes-empresa .hc-ficha-card h2{margin:5px 0 5px!important;color:#174655!important;font-size:23px!important;font-weight:800!important}
+#pagina-contratacoes-empresa .hc-ficha-card>p{margin:0 0 20px!important;color:#647a84!important;font-size:12px!important;line-height:1.5!important}
+#pagina-contratacoes-empresa .hc-ficha-grid{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:13px!important}
+#pagina-contratacoes-empresa .hc-ficha-grid .full{grid-column:1/-1!important}
+#pagina-contratacoes-empresa .hc-ficha-grid label{display:block!important;color:#385662!important;font-size:11px!important;font-weight:700!important}
+#pagina-contratacoes-empresa .hc-ficha-grid input,
+#pagina-contratacoes-empresa .hc-ficha-grid textarea{
+ width:100%!important;box-sizing:border-box!important;margin-top:6px!important;border:1px solid #d3e0e4!important;border-radius:8px!important;
+ padding:0 11px!important;background:#fff!important;color:#39545f!important;font:500 12px Montserrat!important;outline:0!important
+}
+#pagina-contratacoes-empresa .hc-ficha-grid input{height:42px!important}
+#pagina-contratacoes-empresa .hc-ficha-grid textarea{padding:10px 11px!important;resize:vertical!important}
+#pagina-contratacoes-empresa .hc-ficha-grid input:focus,
+#pagina-contratacoes-empresa .hc-ficha-grid textarea:focus{border-color:#5a9eb2!important;box-shadow:0 0 0 3px rgba(23,107,135,.08)!important}
+#pagina-contratacoes-empresa .hc-ficha-privacy{
+ margin-top:15px!important;padding:11px 13px!important;border:1px solid #dbe9ed!important;border-radius:9px!important;
+ background:#f6fafb!important;color:#607780!important;font-size:10.5px!important;line-height:1.45!important
+}
+#pagina-contratacoes-empresa .hc-detail-head-actions{display:flex!important;gap:8px!important;flex-wrap:wrap!important;margin-top:14px!important}
+#pagina-contratacoes-empresa .hc-detail-head-actions button{margin-top:0!important}
+@media(max-width:650px){
+ #pagina-contratacoes-empresa .hc-ficha-card{padding:22px 16px!important}
+ #pagina-contratacoes-empresa .hc-ficha-grid{grid-template-columns:1fr!important}
+ #pagina-contratacoes-empresa .hc-ficha-grid .full{grid-column:1!important}
 }
 </style></body></html>
