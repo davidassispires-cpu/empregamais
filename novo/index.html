@@ -5216,55 +5216,7 @@ svg text{
  color:#1877c9!important;font-family:'Montserrat',Arial,sans-serif!important;
  font-size:11px!important;font-weight:600!important;line-height:18px!important;
 }
-</style><link rel="stylesheet" href="assets/css/app.css?v=altura-paginas-v90-20260926"><style id="EMPREGAMAIS-PUBLICAR-SCROLL-ISOLADO-V108">
-/* Publicação: no desktop, o institucional permanece visível e só o formulário rola. */
-@media (min-width: 1101px){
-  #pagina-publicar.ativa{
-    height:calc(100vh - var(--header-height, 72px));
-    min-height:0!important;
-    overflow:hidden!important;
-    display:flex!important;
-    flex-direction:column!important;
-  }
-  #pagina-publicar.ativa>.page-head{
-    flex:0 0 auto!important;
-  }
-  #pagina-publicar.ativa>.em-publish-layout{
-    flex:1 1 auto!important;
-    min-height:0!important;
-    width:100%!important;
-    align-items:stretch!important;
-    margin-top:16px!important;
-    margin-bottom:16px!important;
-  }
-  #pagina-publicar.ativa .em-publish-main{
-    height:100%!important;
-    min-height:0!important;
-    overflow-y:auto!important;
-    overflow-x:hidden!important;
-    overscroll-behavior:contain;
-    scrollbar-gutter:stable;
-  }
-  #pagina-publicar.ativa .em-publish-visual{
-    height:100%!important;
-    min-height:0!important;
-    max-height:100%!important;
-    position:sticky!important;
-    top:0!important;
-    align-self:stretch!important;
-    overflow:hidden!important;
-  }
-  #pagina-publicar.ativa .em-publish-visual .em-visual-content{
-    height:100%!important;
-    overflow:hidden!important;
-  }
-}
-/* Em tablet/celular mantém somente o formulário, evitando o card ocupar a viewport. */
-@media (max-width:1100px){
-  #pagina-publicar .em-publish-visual{display:none!important}
-  #pagina-publicar .em-publish-layout{grid-template-columns:1fr!important;max-width:900px!important}
-}
-</style>
+</style><link rel="stylesheet" href="assets/css/app.css?v=altura-paginas-v90-20260926">
 
 <style id="EMPREGAMAIS-PROCESSOS-CANONICO-V112">
 #pagina-candidatos-empresa{background:#f5f7f9!important;min-height:100vh!important;font-family:"Montserrat",Arial,sans-serif!important}
@@ -10375,6 +10327,43 @@ border:1px solid #d8e3e7!important;border-radius:12px!important;box-shadow:0 3px
   #pagina-publicar .em-tipo-local{grid-template-columns:1fr!important}
   #pagina-publicar .job-actions{margin:20px -14px -18px!important;padding:12px 14px!important;min-height:60px!important}
   #pagina-publicar .job-actions .btn{min-width:100px!important;height:40px!important;padding:0 14px!important}
+}
+
+/* Neutraliza regras antigas de viewport/rolagem do formulário. */
+@media(min-width:1101px){
+  #pagina-publicar.ativa{
+    height:auto!important;
+    min-height:calc(100vh - 68px)!important;
+    overflow:visible!important;
+    display:block!important;
+  }
+  #pagina-publicar.ativa>.em-publish-layout{
+    width:min(1480px,calc(100% - 44px))!important;
+    max-width:1480px!important;
+    margin:0 auto!important;
+    min-height:0!important;
+    align-items:start!important;
+  }
+  #pagina-publicar.ativa .em-publish-main{
+    height:auto!important;
+    max-height:none!important;
+    min-height:0!important;
+    overflow:visible!important;
+    scrollbar-gutter:auto!important;
+  }
+  #pagina-publicar.ativa .em-publish-visual{
+    height:auto!important;
+    min-height:0!important;
+    max-height:none!important;
+    position:sticky!important;
+    top:88px!important;
+    align-self:start!important;
+    overflow:hidden!important;
+  }
+  #pagina-publicar.ativa .em-publish-visual .em-visual-content{
+    height:auto!important;
+    overflow:visible!important;
+  }
 }
 </style>
 </body></html>
