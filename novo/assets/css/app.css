@@ -8805,3 +8805,130 @@ textarea{
   letter-spacing:0!important;
 }
 
+/* EMPREGAMAIS-CARDS-MODELO-UNICO-V7 */
+#pagina-painel-empresa .emp-overview-modelo-unico,
+#pagina-painel-empresa .emp-kpis-modelo-unico{
+  display:grid!important;
+  gap:10px!important;
+}
+#pagina-painel-empresa .emp-overview-modelo-unico{
+  grid-template-columns:repeat(7,minmax(0,1fr))!important;
+  padding:0!important;
+  border:0!important;
+  background:transparent!important;
+  box-shadow:none!important;
+}
+#pagina-painel-empresa .emp-kpis-modelo-unico{
+  grid-template-columns:repeat(5,minmax(0,1fr))!important;
+  margin:0 0 14px!important;
+}
+#pagina-painel-empresa .emp-model-card{
+  min-width:0!important;
+  min-height:112px!important;
+  height:112px!important;
+  padding:14px 14px 13px!important;
+  display:flex!important;
+  flex-direction:column!important;
+  align-items:stretch!important;
+  justify-content:flex-start!important;
+  text-align:left!important;
+  border:1px solid #d7e3e8!important;
+  border-radius:11px!important;
+  background:#fff!important;
+  box-shadow:none!important;
+  color:#173f50!important;
+  overflow:hidden!important;
+}
+#pagina-painel-empresa button.emp-model-card{
+  cursor:pointer!important;
+}
+#pagina-painel-empresa button.emp-model-card:hover{
+  border-color:#b9d3dd!important;
+  background:#fbfdfe!important;
+}
+#pagina-painel-empresa .emp-model-head{
+  min-height:36px!important;
+  display:grid!important;
+  grid-template-columns:minmax(0,1fr) 34px!important;
+  align-items:center!important;
+  gap:8px!important;
+}
+#pagina-painel-empresa .emp-model-head>span{
+  min-width:0!important;
+  font-family:'Inter','Segoe UI',Arial,sans-serif!important;
+  font-size:13px!important;
+  line-height:1.25!important;
+  font-weight:600!important;
+  letter-spacing:0!important;
+  text-transform:none!important;
+  color:#294f5d!important;
+}
+#pagina-painel-empresa .emp-model-head>i{
+  width:34px!important;
+  height:34px!important;
+  display:grid!important;
+  place-items:center!important;
+  border-radius:9px!important;
+  background:#eef5f7!important;
+  color:#176b7d!important;
+  font-style:normal!important;
+}
+#pagina-painel-empresa .emp-model-head>i svg{
+  width:17px!important;height:17px!important;
+  fill:none!important;stroke:currentColor!important;stroke-width:1.7!important;
+  stroke-linecap:round!important;stroke-linejoin:round!important;
+}
+#pagina-painel-empresa .emp-model-card>strong{
+  display:block!important;
+  margin:7px 0 0!important;
+  font-family:'Inter','Segoe UI',Arial,sans-serif!important;
+  font-size:26px!important;
+  line-height:1!important;
+  font-weight:700!important;
+  letter-spacing:-.04em!important;
+  color:#103f55!important;
+}
+#pagina-painel-empresa .emp-model-card>small{
+  display:block!important;
+  width:100%!important;
+  margin-top:auto!important;
+  padding-top:8px!important;
+  border-top:1px solid #e5ecef!important;
+  font-family:'Inter','Segoe UI',Arial,sans-serif!important;
+  font-size:12.5px!important;
+  line-height:1.35!important;
+  font-weight:500!important;
+  letter-spacing:0!important;
+  color:#5f7480!important;
+}
+#pagina-painel-empresa .emp-model-card>small b{
+  font-size:inherit!important;
+  font-weight:700!important;
+  color:#294f5d!important;
+}
+#pagina-painel-empresa .emp-model-plan>strong{
+  font-size:18px!important;
+  letter-spacing:-.02em!important;
+}
+#pagina-painel-empresa .emp-model-manage{
+  justify-content:flex-start!important;
+  background:#f8fbfc!important;
+}
+#pagina-painel-empresa .emp-model-manage>strong{
+  font-size:17px!important;
+  letter-spacing:-.02em!important;
+}
+@media(max-width:1180px){
+  #pagina-painel-empresa .emp-overview-modelo-unico{grid-template-columns:repeat(4,minmax(0,1fr))!important}
+  #pagina-painel-empresa .emp-kpis-modelo-unico{grid-template-columns:repeat(3,minmax(0,1fr))!important}
+}
+@media(max-width:760px){
+  #pagina-painel-empresa .emp-overview-modelo-unico,
+  #pagina-painel-empresa .emp-kpis-modelo-unico{grid-template-columns:repeat(2,minmax(0,1fr))!important}
+}
+@media(max-width:520px){
+  #pagina-painel-empresa .emp-overview-modelo-unico,
+  #pagina-painel-empresa .emp-kpis-modelo-unico{grid-template-columns:1fr!important}
+  #pagina-painel-empresa .emp-model-card{height:auto!important;min-height:104px!important}
+}
+
