@@ -1165,6 +1165,21 @@ function perfilEmpresaEtapa(n){document.querySelectorAll('#formPerfilEmpresa .pe
 function prepararChoicesPerfilEmpresa(){document.querySelectorAll('#formPerfilEmpresa .perfil-choice-row').forEach(g=>{if(g.dataset.ready)return;g.dataset.ready='1';const inp=document.getElementById(g.dataset.target);g.querySelectorAll('button').forEach(b=>b.addEventListener('click',()=>{b.classList.toggle('ativo');if(inp)inp.value=[...g.querySelectorAll('button.ativo')].map(x=>x.textContent.trim()).join(', ')}));if(inp?.value){const vals=inp.value.split(',').map(x=>x.trim());g.querySelectorAll('button').forEach(b=>b.classList.toggle('ativo',vals.includes(b.textContent.trim())))}})}
 const _carregarPerfilEmpresaWizard=carregarPerfilEmpresa;carregarPerfilEmpresa=function(){const r=_carregarPerfilEmpresaWizard();setTimeout(()=>{perfilEmpresaEtapa(1);prepararChoicesPerfilEmpresa()},0);return r};
 addEventListener('DOMContentLoaded',prepararChoicesPerfilEmpresa);
+(function(){
+ if(window.__empPerfilNavReady)return;window.__empPerfilNavReady=true;
+ document.addEventListener('click',function(ev){
+   const btn=ev.target.closest('#pagina-perfil-empresa #perfilProgress [data-perfil-step]');
+   if(!btn)return;
+   ev.preventDefault();
+   const n=Number(btn.dataset.perfilStep||0);
+   if(n>=1&&n<=7){
+     if(n===7&&typeof montarRevisaoPerfilEmpresa==='function')montarRevisaoPerfilEmpresa();
+     perfilEmpresaEtapa(n);
+     const card=document.querySelector('#pagina-perfil-empresa .perfil-wizard-layout-split');
+     if(card)card.scrollIntoView({behavior:'smooth',block:'start'});
+   }
+ },true);
+})();
 
 /* EMPREGAMAIS-PERFIL-EMPRESA-WIZARD-V2 */
 function montarRevisaoPerfilEmpresa(){const box=document.getElementById('perfilEmpresaRevisao');if(!box)return;const emp=empresaLogada()||{},p=emp.perfil||{},campo=(id,fallback='')=>document.getElementById(id)?.value?.trim()||fallback||'Não informado';const aviso=document.getElementById('msgPerfilEmpresa');if(aviso){aviso.textContent='';aviso.className='form-msg'}const dados=[['Empresa',campo('perfilNome',p.nome||emp.nome)],['CNPJ',campo('contaCnpj',emp.cnpj)],['Porte',campo('perfilPorte',p.porte)],['Segmento',campo('perfilSegmento',p.segmento)],['Áreas de atuação',campo('perfilAreas',p.areas)],['Modalidades',campo('perfilModalidades',p.modalidades)],['Localização',[campo('perfilCidade',p.cidade||emp.cidade),campo('perfilUf',p.uf||emp.uf)].filter(x=>x!=='Não informado').join(' - ')||'Não informado'],['Site',campo('perfilSite',p.site)],['Responsável',campo('contaResponsavel',emp.responsavel)],['Função / cargo',campo('contaFuncaoResponsavel',emp.funcaoResponsavel||emp.funcao_responsavel)],['E-mail da conta',campo('contaEmail',emp.email)]];box.innerHTML=dados.map(x=>'<div><span>'+esc(x[0])+'</span><strong>'+esc(x[1])+'</strong></div>').join('')}
