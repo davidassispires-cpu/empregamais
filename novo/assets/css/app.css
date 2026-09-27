@@ -9615,3 +9615,60 @@ textarea{
  #emConviteCandidato .em-cv-pop-beneficio{min-height:0!important}
 }
 
+/* EMPREGAMAIS-SELO-STATUS-VAGA-PRO-V1 */
+#pagina-candidatos-empresa .psv2-status{
+  display:inline-flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  gap:6px!important;
+  min-height:30px!important;
+  padding:0 11px!important;
+  border:1px solid #cfe3db!important;
+  border-radius:999px!important;
+  background:#f2f9f6!important;
+  color:#2f765c!important;
+  font-family:'Inter','Segoe UI',Arial,sans-serif!important;
+  font-size:12px!important;
+  line-height:1!important;
+  font-weight:600!important;
+  letter-spacing:0!important;
+  white-space:nowrap!important;
+  box-shadow:none!important;
+}
+#pagina-candidatos-empresa .psv2-status svg{
+  width:14px!important;
+  height:14px!important;
+  flex:0 0 14px!important;
+  fill:none!important;
+  stroke:currentColor!important;
+  stroke-width:1.8!important;
+  stroke-linecap:round!important;
+  stroke-linejoin:round!important;
+}
+#pagina-candidatos-empresa .psv2-status>span{
+  font:inherit!important;
+  color:inherit!important;
+}
+#pagina-candidatos-empresa .psv2-status.analise{
+  border-color:#e7dbb9!important;
+  background:#fbf7ec!important;
+  color:#8e6e26!important;
+}
+#pagina-candidatos-empresa .psv2-status.encerrada{
+  border-color:#d8e1e5!important;
+  background:#f7f9fa!important;
+  color:#617680!important;
+}
+#pagina-candidatos-empresa .psv2-title-wrap .psv2-status{
+  transform:translateY(1px)!important;
+}
+@media(max-width:760px){
+  #pagina-candidatos-empresa .psv2-status{
+    min-height:28px!important;
+    padding:0 10px!important;
+    font-size:11.5px!important;
+  }
+  #pagina-candidatos-empresa .psv2-status svg{
+    width:13px!important;height:13px!important;flex-basis:13px!important;
+  }
+}
