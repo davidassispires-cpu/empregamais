@@ -16249,72 +16249,7 @@ window.trocarComoFuncionaEM=function(tipo,btn){
   font-size:16px!important;
 }
 </style>
-<style id="EMPREGAMAI-CANDIDATO-TIPOGRAFIA-V142">
-/* Tipografia do card baseada no texto de referência enviado.
-   Mantém o nome do candidato com o destaque atual. */
-#pagina-candidatos-empresa #listaCandidatosEmpresa .recruta-cand-card{
-  font-family:'Montserrat',Arial,sans-serif!important;
-}
 
-/* texto neutro do card */
-#pagina-candidatos-empresa #listaCandidatosEmpresa .recruta-cand-ident p,
-#pagina-candidatos-empresa #listaCandidatosEmpresa .recruta-cand-status>small,
-#pagina-candidatos-empresa #listaCandidatosEmpresa .meta-inline span,
-#pagina-candidatos-empresa #listaCandidatosEmpresa .recruta-cand-info>div>span,
-#pagina-candidatos-empresa #listaCandidatosEmpresa .recruta-cand-info>div>strong,
-#pagina-candidatos-empresa #listaCandidatosEmpresa .recruta-cand-info>div>small,
-#pagina-candidatos-empresa #listaCandidatosEmpresa .recruta-aderencia-score>strong,
-#pagina-candidatos-empresa #listaCandidatosEmpresa .recruta-preview-andamento>span,
-#pagina-candidatos-empresa #listaCandidatosEmpresa .recruta-preview-andamento>b,
-#pagina-candidatos-empresa #listaCandidatosEmpresa .recruta-cand-actions>.btn{
-  font-family:'Montserrat',Arial,sans-serif!important;
-  color:#244966!important;
-}
-
-/* pesos próximos ao texto corrido de referência */
-#pagina-candidatos-empresa #listaCandidatosEmpresa .recruta-cand-ident p,
-#pagina-candidatos-empresa #listaCandidatosEmpresa .meta-inline span,
-#pagina-candidatos-empresa #listaCandidatosEmpresa .recruta-cand-info>div>small{
-  font-weight:400!important;
-}
-
-#pagina-candidatos-empresa #listaCandidatosEmpresa .recruta-cand-info>div>span,
-#pagina-candidatos-empresa #listaCandidatosEmpresa .recruta-preview-andamento>span{
-  font-weight:600!important;
-}
-
-#pagina-candidatos-empresa #listaCandidatosEmpresa .recruta-cand-info>div>strong,
-#pagina-candidatos-empresa #listaCandidatosEmpresa .recruta-aderencia-score>strong,
-#pagina-candidatos-empresa #listaCandidatosEmpresa .recruta-preview-andamento>b,
-#pagina-candidatos-empresa #listaCandidatosEmpresa .recruta-cand-actions>.btn{
-  font-weight:600!important;
-}
-
-/* preserva o nome como ponto de maior destaque */
-#pagina-candidatos-empresa #listaCandidatosEmpresa .recruta-cand-ident h3{
-  font-family:'Montserrat',Arial,sans-serif!important;
-  color:#052b55!important;
-  font-weight:800!important;
-}
-
-/* cores semânticas permanecem próprias */
-#pagina-candidatos-empresa #listaCandidatosEmpresa .recruta-cand-status>strong{
-  font-family:'Montserrat',Arial,sans-serif!important;
-  color:#116947!important;
-  font-weight:700!important;
-}
-#pagina-candidatos-empresa #listaCandidatosEmpresa .recruta-aderencia-score>small{
-  font-family:'Montserrat',Arial,sans-serif!important;
-  color:#246b49!important;
-  font-weight:600!important;
-}
-#pagina-candidatos-empresa #listaCandidatosEmpresa .recruta-cand-actions>.btn-azul{
-  color:#fff!important;
-}
-#pagina-candidatos-empresa #listaCandidatosEmpresa .recruta-cand-actions>.recruta-whatsapp{
-  color:#126b47!important;
-}
-</style>
 <style id="EMPREGAMAI-CANDIDATO-TIPO-BOTOES-V142">
 /* V142 — tipografia uniforme no card + 4 ações legíveis */
 #pagina-candidatos-empresa #listaCandidatosEmpresa .recruta-cand-card,
@@ -17175,6 +17110,159 @@ window.trocarComoFuncionaEM=function(tipo,btn){
 .recruta-andamento-modal-em select{
   font-family:'Montserrat',Arial,sans-serif!important;
   font-weight:600!important;
+  letter-spacing:0!important;
+}
+</style>
+<style id="EMPREGAMAI-CANDIDATO-TIPOGRAFIA-V142">
+/* Tipografia final do card: mesma linguagem dos textos corridos do site.
+   Mantém apenas o nome do candidato com destaque forte. */
+#pagina-candidatos-empresa #listaCandidatosEmpresa .recruta-cand-card,
+#pagina-candidatos-empresa #listaCandidatosEmpresa .recruta-cand-card button,
+#pagina-candidatos-empresa #listaCandidatosEmpresa .recruta-cand-card a,
+#pagina-candidatos-empresa #listaCandidatosEmpresa .recruta-cand-card span,
+#pagina-candidatos-empresa #listaCandidatosEmpresa .recruta-cand-card small,
+#pagina-candidatos-empresa #listaCandidatosEmpresa .recruta-cand-card strong,
+#pagina-candidatos-empresa #listaCandidatosEmpresa .recruta-cand-card p,
+#pagina-candidatos-empresa #listaCandidatosEmpresa .recruta-cand-card b{
+  font-family:'Montserrat',Arial,sans-serif!important;
+  -webkit-font-smoothing:antialiased!important;
+  -moz-osx-font-smoothing:grayscale!important;
+}
+
+/* nome permanece forte */
+#pagina-candidatos-empresa #listaCandidatosEmpresa .recruta-cand-ident h3{
+  font-family:'Montserrat',Arial,sans-serif!important;
+  font-weight:800!important;
+  color:#062f59!important;
+  letter-spacing:-.035em!important;
+}
+
+/* localização e candidatura */
+#pagina-candidatos-empresa #listaCandidatosEmpresa .recruta-cand-ident p{
+  font-weight:400!important;
+  color:#536b82!important;
+  letter-spacing:0!important;
+  font-size:12.5px!important;
+}
+#pagina-candidatos-empresa #listaCandidatosEmpresa .meta-inline span{
+  font-weight:400!important;
+  color:#536b82!important;
+  letter-spacing:0!important;
+  font-size:9.5px!important;
+}
+
+/* status */
+#pagina-candidatos-empresa #listaCandidatosEmpresa .recruta-cand-status>small{
+  font-weight:500!important;
+  color:#536b82!important;
+  letter-spacing:.055em!important;
+  font-size:9px!important;
+}
+#pagina-candidatos-empresa #listaCandidatosEmpresa .recruta-cand-status>strong{
+  font-weight:600!important;
+  font-size:11.5px!important;
+}
+
+/* títulos dos 3 cards: menos espaçados, mais legíveis */
+#pagina-candidatos-empresa #listaCandidatosEmpresa .recruta-cand-info>div>span{
+  font-family:'Montserrat',Arial,sans-serif!important;
+  font-weight:500!important;
+  color:#536b82!important;
+  letter-spacing:.025em!important;
+  line-height:1.18!important;
+  font-size:10px!important;
+}
+
+/* valores principais */
+#pagina-candidatos-empresa #listaCandidatosEmpresa .recruta-cand-info>div>strong,
+#pagina-candidatos-empresa #listaCandidatosEmpresa .recruta-aderencia-score>strong{
+  font-family:'Montserrat',Arial,sans-serif!important;
+  font-weight:700!important;
+  color:#0b365d!important;
+  letter-spacing:-.02em!important;
+}
+#pagina-candidatos-empresa #listaCandidatosEmpresa .recruta-cand-info>div>strong{
+  font-size:17px!important;
+}
+#pagina-candidatos-empresa #listaCandidatosEmpresa .recruta-aderencia-score>strong{
+  font-size:24px!important;
+}
+
+/* descrições pequenas agora realmente legíveis */
+#pagina-candidatos-empresa #listaCandidatosEmpresa .recruta-cand-info>div>small{
+  font-family:'Montserrat',Arial,sans-serif!important;
+  font-weight:400!important;
+  color:#60768e!important;
+  letter-spacing:0!important;
+  line-height:1.35!important;
+  font-size:9.5px!important;
+}
+#pagina-candidatos-empresa #listaCandidatosEmpresa .recruta-aderencia-score>small{
+  font-family:'Montserrat',Arial,sans-serif!important;
+  font-weight:500!important;
+  color:#47705b!important;
+  letter-spacing:0!important;
+  font-size:8.5px!important;
+}
+
+/* botões */
+#pagina-candidatos-empresa #listaCandidatosEmpresa .recruta-cand-actions>.btn,
+#pagina-candidatos-empresa #listaCandidatosEmpresa .recruta-cand-actions.recruta-acoes-unificadas>.btn{
+  font-family:'Montserrat',Arial,sans-serif!important;
+  font-weight:500!important;
+  letter-spacing:0!important;
+  font-size:11px!important;
+  color:#173b5d!important;
+}
+#pagina-candidatos-empresa #listaCandidatosEmpresa .recruta-cand-actions>.btn-azul,
+#pagina-candidatos-empresa #listaCandidatosEmpresa .recruta-cand-actions.recruta-acoes-unificadas>.btn-azul{
+  color:#fff!important;
+  font-weight:600!important;
+}
+#pagina-candidatos-empresa #listaCandidatosEmpresa .recruta-cand-actions>.recruta-whatsapp{
+  color:#176747!important;
+}
+
+/* rodapé */
+#pagina-candidatos-empresa #listaCandidatosEmpresa .recruta-preview-andamento>span{
+  font-family:'Montserrat',Arial,sans-serif!important;
+  font-weight:500!important;
+  color:#60768e!important;
+  letter-spacing:.035em!important;
+  font-size:9px!important;
+}
+#pagina-candidatos-empresa #listaCandidatosEmpresa .recruta-preview-andamento>b{
+  font-family:'Montserrat',Arial,sans-serif!important;
+  font-weight:500!important;
+  color:#48677f!important;
+  letter-spacing:0!important;
+  font-size:9.5px!important;
+}
+
+/* mesma linguagem no modal */
+.recruta-andamento-modal-em,
+.recruta-andamento-modal-em button,
+.recruta-andamento-modal-em select,
+.recruta-andamento-modal-em span,
+.recruta-andamento-modal-em small,
+.recruta-andamento-modal-em p,
+.recruta-andamento-modal-em label,
+.recruta-andamento-modal-em b,
+.recruta-andamento-modal-em strong{
+  font-family:'Montserrat',Arial,sans-serif!important;
+  -webkit-font-smoothing:antialiased!important;
+}
+.recruta-andamento-modal-em p,
+.recruta-andamento-modal-em span,
+.recruta-andamento-modal-em small,
+.recruta-andamento-modal-em label{
+  font-weight:400!important;
+  color:#536b82!important;
+  letter-spacing:0!important;
+}
+.recruta-andamento-modal-em button,
+.recruta-andamento-modal-em select{
+  font-weight:500!important;
   letter-spacing:0!important;
 }
 </style>
