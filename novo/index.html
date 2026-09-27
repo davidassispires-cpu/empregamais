@@ -10667,60 +10667,22 @@ option{
   font-family:"Montserrat"!important;
 }
 </style>
-<style id="EMPREGAMAIS-HOME-HERO-BUSCA-DESKTOP-FIX-V1">
-/* Corrige sobreposição do buscador com o hero da Home no desktop. */
+<style id="EMPREGAMAIS-HOME-BUSCA-POSICAO-DESKTOP-V2">
+/* HOME desktop: preserva o hero aprovado e apenas retira a busca da sobreposição. */
 @media(min-width:768px){
   #pagina-home .home-hero-visual{
-    position:relative!important;
     height:auto!important;
     min-height:0!important;
-    padding:0 0 26px!important;
+    padding-bottom:22px!important;
     overflow:visible!important;
   }
 
   #pagina-home .home-hero-content{
-    position:relative!important;
-    z-index:1!important;
-    width:min(1160px,calc(100% - 80px))!important;
-    max-width:1160px!important;
-    min-height:205px!important;
-    margin:0 auto!important;
-    padding:34px 0 18px!important;
-    display:grid!important;
-    grid-template-columns:minmax(0,1fr) minmax(420px,.95fr)!important;
-    align-items:center!important;
-    gap:38px!important;
-  }
-
-  #pagina-home .home-hero-copy{
-    min-width:0!important;
-    max-width:520px!important;
-    text-align:left!important;
-  }
-
-  #pagina-home .home-hero-copy h1{
-    max-width:500px!important;
-    margin:0 0 14px!important;
-    font-size:48px!important;
-    line-height:1.03!important;
-    letter-spacing:-.04em!important;
-  }
-
-  #pagina-home .home-hero-copy p{
-    max-width:520px!important;
-    margin:0!important;
-    font-size:14px!important;
-    line-height:1.55!important;
-  }
-
-  #pagina-home .home-hero-art{
-    position:relative!important;
-    min-height:190px!important;
+    margin-bottom:0!important;
   }
 
   #pagina-home .home-search-wrap{
     position:relative!important;
-    z-index:5!important;
     left:auto!important;
     right:auto!important;
     top:auto!important;
@@ -10729,158 +10691,31 @@ option{
     width:min(1120px,calc(100% - 96px))!important;
     max-width:1120px!important;
     margin:0 auto!important;
-    padding:0 14px 14px!important;
-    border:1px solid #d8e5ec!important;
-    border-radius:16px!important;
-    background:#fff!important;
-    box-shadow:0 10px 28px rgba(20,58,82,.08)!important;
-    overflow:hidden!important;
-  }
-
-  #pagina-home .home-search-tabs{
-    height:44px!important;
-    margin:0 -14px 10px!important;
-    padding:0 18px!important;
-    display:flex!important;
-    align-items:stretch!important;
-    gap:12px!important;
-    border-bottom:1px solid #dce7ed!important;
-    background:#fff!important;
-  }
-
-  #pagina-home .home-search-tabs button{
-    width:auto!important;
-    min-width:0!important;
-    height:44px!important;
-    padding:0 14px!important;
-    border:0!important;
-    border-bottom:3px solid transparent!important;
-    border-radius:0!important;
-    background:transparent!important;
-    color:#35556e!important;
-    font-size:11px!important;
-    font-weight:700!important;
-    white-space:nowrap!important;
-  }
-
-  #pagina-home .home-search-tabs button.ativo{
-    color:#0874b7!important;
-    border-bottom-color:#0c8ed0!important;
+    z-index:5!important;
   }
 
   #pagina-home .busca-home{
-    display:grid!important;
-    grid-template-columns:minmax(270px,1.45fr) minmax(210px,1fr) 170px 210px!important;
-    gap:8px!important;
-    width:100%!important;
-    padding:0!important;
-    background:transparent!important;
-    border-radius:0!important;
-    overflow:visible!important;
+    grid-template-columns:minmax(300px,1.45fr) minmax(220px,1fr) 180px 210px!important;
+    align-items:stretch!important;
   }
 
-  #pagina-home .home-search-field{
-    width:100%!important;
+  #pagina-home .home-search-field,
+  #pagina-home .home-search-submit{
     min-width:0!important;
-    height:66px!important;
-    margin:0!important;
-    padding:0 10px!important;
-    display:flex!important;
-    align-items:center!important;
-    border:1px solid #d4e2ea!important;
-    border-radius:11px!important;
-    background:#fff!important;
-  }
-
-  #pagina-home .home-search-field>span{
-    width:36px!important;
-    min-width:36px!important;
-    height:36px!important;
-    margin-right:9px!important;
-    display:grid!important;
-    place-items:center!important;
-    border-radius:9px!important;
-    background:#edf7fc!important;
-    color:#0878c3!important;
-    font-size:13px!important;
-  }
-
-  #pagina-home .home-search-field label{
-    min-width:0!important;
-    width:100%!important;
-  }
-
-  #pagina-home .home-search-field label small{
-    position:static!important;
-    display:block!important;
-    margin:0 0 5px!important;
-    color:#21445d!important;
-    font-size:9px!important;
-    line-height:1.15!important;
-    font-weight:700!important;
-    white-space:nowrap!important;
   }
 
   #pagina-home .home-search-field input,
   #pagina-home .home-search-field select{
-    width:100%!important;
     min-width:0!important;
-    height:31px!important;
-    padding:0 8px!important;
-    border:1px solid #cddde7!important;
-    border-radius:8px!important;
-    background:#fff!important;
-    color:#4e6c82!important;
-    font-size:12px!important;
     text-overflow:ellipsis!important;
   }
-
-  #pagina-home .home-search-submit{
-    width:100%!important;
-    min-width:0!important;
-    height:66px!important;
-    margin:0!important;
-    border:0!important;
-    border-radius:11px!important;
-    background:#268fda!important;
-    color:#fff!important;
-    font-size:12px!important;
-    font-weight:800!important;
-  }
-
-  #pagina-home .home-buscas-populares{
-    min-height:28px!important;
-    margin:8px 0 0!important;
-    padding:0!important;
-    display:flex!important;
-    align-items:center!important;
-    justify-content:flex-start!important;
-    gap:6px!important;
-    flex-wrap:wrap!important;
-  }
-
-  #pagina-home .home-buscas-populares b{
-    width:auto!important;
-    font-size:9px!important;
-    text-align:left!important;
-  }
-
-  #pagina-home .home-buscas-populares button{
-    height:24px!important;
-    padding:0 11px!important;
-    font-size:9px!important;
-  }
 }
-
 @media(min-width:768px) and (max-width:1050px){
-  #pagina-home .home-hero-content{
-    grid-template-columns:1fr 1fr!important;
+  #pagina-home .home-search-wrap{
     width:calc(100% - 40px)!important;
   }
-  #pagina-home .home-hero-copy h1{font-size:40px!important}
-  #pagina-home .home-search-wrap{width:calc(100% - 40px)!important}
   #pagina-home .busca-home{
-    grid-template-columns:1.3fr 1fr 155px 180px!important;
+    grid-template-columns:minmax(230px,1.25fr) minmax(190px,1fr) 160px 180px!important;
   }
 }
 </style>
