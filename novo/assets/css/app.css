@@ -7398,3 +7398,25 @@ body{
 @media(max-width:520px){
   #pagina-vaga #vagaHeroDetalhe .vaga-info-ref{grid-template-columns:1fr!important}
 }
+/* EMPREGAMAIS-VAGA-HERO-ESPACO-INTERNO-V6 */
+/* remove o padding legado do card externo para aproximar logo/título das bordas */
+#pagina-vaga #vagaHeroDetalhe{
+  padding:0!important;
+}
+#pagina-vaga #vagaHeroDetalhe .vaga-hero-ref{
+  padding:12px 22px 12px 14px!important;
+}
+#pagina-vaga #vagaHeroDetalhe .vaga-info-ref{
+  margin:0 14px 14px!important;
+}
+@media(max-width:760px){
+  #pagina-vaga #vagaHeroDetalhe{
+    padding:0!important;
+  }
+  #pagina-vaga #vagaHeroDetalhe .vaga-hero-ref{
+    padding:10px 12px 10px!important;
+  }
+  #pagina-vaga #vagaHeroDetalhe .vaga-info-ref{
+    margin:0 12px 12px!important;
+  }
+}
