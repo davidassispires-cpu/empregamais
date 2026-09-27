@@ -1215,11 +1215,28 @@ function quantidadeDestaquesVisiveisEM(){return window.innerWidth<=700?1:window.
 function renderDestaquesEM(lista){
  const el=document.getElementById('listaDestaques');if(!el)return;
  const arr=Array.isArray(lista)?lista:[],total=arr.length,qtd=quantidadeDestaquesVisiveisEM();
+ if(window.innerWidth<=700){
+  el.innerHTML=arr.map(cardVagaDestaqueEM).join('');
+  el.dataset.quantidade=String(arr.length);
+  prepararDestaquesMobileEM(el,arr.length);
+  const faixa=document.getElementById('destaquesFaixaEM');if(faixa)faixa.classList.add('oculto');
+  return;
+ }
  if(indiceDestaquesEM>Math.max(0,total-qtd))indiceDestaquesEM=0;
  let vis=[];for(let i=0;i<Math.min(qtd,total);i++)vis.push(arr[(indiceDestaquesEM+i)%total]);
  el.innerHTML=vis.map(cardVagaDestaqueEM).join('');
  el.dataset.quantidade=String(vis.length);
  renderFaixaDestaquesEM(arr);
+}
+function prepararDestaquesMobileEM(el,total){
+ let dots=document.querySelector('#pagina-home .destaques-mobile-dots');
+ if(!dots){dots=document.createElement('div');dots.className='destaques-mobile-dots';el.parentNode.insertBefore(dots,el.nextSibling)}
+ const max=Math.min(total,8);
+ dots.innerHTML=Array.from({length:max},(_,i)=>'<button type="button"'+(i===0?' class="ativo"':'')+' aria-label="Ir para vaga em destaque '+(i+1)+'"></button>').join('');
+ const botoes=[...dots.querySelectorAll('button')];
+ botoes.forEach((b,i)=>b.onclick=()=>{const card=el.children[i];if(card)el.scrollTo({left:card.offsetLeft-el.offsetLeft,behavior:'smooth'})});
+ let raf=0;
+ el.onscroll=()=>{cancelAnimationFrame(raf);raf=requestAnimationFrame(()=>{const cards=[...el.children];if(!cards.length)return;let atual=0,dist=Infinity;cards.forEach((c,i)=>{const d=Math.abs(c.offsetLeft-el.scrollLeft-el.offsetLeft);if(d<dist){dist=d;atual=i}});botoes.forEach((b,i)=>b.classList.toggle('ativo',i===atual))})};
 }
 function moverDestaques(dir){
  const el=document.getElementById('listaDestaques');if(!el)return;
