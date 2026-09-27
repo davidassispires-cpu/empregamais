@@ -7734,3 +7734,102 @@ body{
   #pagina-perfil-empresa .perfil-step{padding:20px 16px!important}
   #pagina-perfil-empresa .perfil-step-title{margin:-20px -16px 18px!important;padding:18px 16px 15px!important}
 }
+/* EMPREGAMAIS-SIDEBAR-VERIFICACAO-E-SELO-PAINEL-V1 */
+#pagina-painel-empresa .emp-side-verificar-em{
+  width:100%!important;
+  min-height:52px!important;
+  margin-top:8px!important;
+  padding:9px 10px!important;
+  display:grid!important;
+  grid-template-columns:34px minmax(0,1fr) 16px!important;
+  align-items:center!important;
+  gap:9px!important;
+  border:1px solid #d9e6e8!important;
+  border-radius:11px!important;
+  background:#f7fbfb!important;
+  color:#244b52!important;
+  text-align:left!important;
+  cursor:pointer!important;
+  box-shadow:none!important;
+}
+#pagina-painel-empresa .emp-side-verificar-em:hover{
+  background:#f1f8f8!important;
+  border-color:#bfd8dc!important;
+}
+#pagina-painel-empresa .emp-side-verificar-em>i{
+  width:32px!important;height:32px!important;
+  display:grid!important;place-items:center!important;
+  border-radius:9px!important;
+  background:#e8f3f3!important;
+  color:#0d6c73!important;
+}
+#pagina-painel-empresa .emp-side-verificar-em>i svg{
+  width:18px!important;height:18px!important;
+  fill:none!important;stroke:currentColor!important;stroke-width:1.8!important;
+}
+#pagina-painel-empresa .emp-side-verificar-em>span{
+  min-width:0!important;
+  display:flex!important;
+  flex-direction:column!important;
+  gap:2px!important;
+}
+#pagina-painel-empresa .emp-side-verificar-em b{
+  font-size:12.5px!important;
+  line-height:1.2!important;
+  font-weight:700!important;
+  color:#214850!important;
+}
+#pagina-painel-empresa .emp-side-verificar-em small{
+  font-size:10px!important;
+  line-height:1.2!important;
+  font-weight:600!important;
+  color:#72868a!important;
+}
+#pagina-painel-empresa .emp-side-verificar-em em{
+  font-style:normal!important;
+  font-size:18px!important;
+  color:#86a0a5!important;
+}
+#pagina-painel-empresa .emp-side-verificar-em.em-analise{
+  background:#fbfaf6!important;
+  border-color:#e8dfc9!important;
+}
+#pagina-painel-empresa .emp-side-verificar-em.em-analise>i{
+  background:#f7f0df!important;
+  color:#9a761e!important;
+}
+#pagina-painel-empresa .emp-side-verificar-em.em-analise small{
+  color:#8b733f!important;
+}
+
+#pagina-painel-empresa .empresa-painel-selo-verificada{
+  display:inline-flex!important;
+  align-items:center!important;
+  gap:6px!important;
+  width:max-content!important;
+  margin:5px 0 0!important;
+  padding:5px 9px!important;
+  border:1px solid #c9e3dc!important;
+  border-radius:999px!important;
+  background:#f1f9f6!important;
+  color:#28725e!important;
+  font-family:'Montserrat',sans-serif!important;
+  font-size:10.5px!important;
+  line-height:1!important;
+  font-weight:700!important;
+}
+#pagina-painel-empresa .empresa-painel-selo-verificada>i{
+  width:16px!important;height:16px!important;
+  display:grid!important;place-items:center!important;
+  border-radius:50%!important;
+  background:#2b8a70!important;
+  color:#fff!important;
+  font-style:normal!important;
+  font-size:9px!important;
+  font-weight:800!important;
+}
+@media(max-width:760px){
+  #pagina-painel-empresa .emp-side-verificar-em{
+    min-height:48px!important;
+  }
+}
