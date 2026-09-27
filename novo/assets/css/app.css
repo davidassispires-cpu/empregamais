@@ -10207,3 +10207,361 @@ textarea{
  #pagina-como-funciona .cfv3-final button{width:100%!important}
 }
 
+/* EMPREGAMAIS-CENTRAL-MENSAGENS-LIMPA-V2 */
+#modalCentralMensagensCandidatoEM{
+  padding:18px!important;
+  background:rgba(12,34,48,.46)!important;
+  backdrop-filter:blur(2px)!important;
+}
+#modalCentralMensagensCandidatoEM .cand-msg-dialog{
+  width:min(1120px,calc(100vw - 36px))!important;
+  height:min(780px,calc(100dvh - 36px))!important;
+  max-height:calc(100dvh - 36px)!important;
+  border:1px solid #dbe6ea!important;
+  border-radius:20px!important;
+  background:#fff!important;
+  box-shadow:0 24px 70px rgba(10,38,52,.20)!important;
+  overflow:hidden!important;
+  display:flex!important;
+  flex-direction:column!important;
+}
+#modalCentralMensagensCandidatoEM .cand-msg-dialog>header{
+  flex:0 0 auto!important;
+  min-height:92px!important;
+  padding:20px 24px!important;
+  display:flex!important;
+  align-items:center!important;
+  justify-content:space-between!important;
+  gap:18px!important;
+  border-bottom:1px solid #e4ecef!important;
+  background:#fff!important;
+}
+#modalCentralMensagensCandidatoEM .cand-msg-dialog>header span{
+  display:block!important;
+  margin-bottom:5px!important;
+  font-family:'Inter','Segoe UI',Arial,sans-serif!important;
+  font-size:11px!important;
+  line-height:1.2!important;
+  font-weight:700!important;
+  letter-spacing:.08em!important;
+  color:#0e7180!important;
+}
+#modalCentralMensagensCandidatoEM .cand-msg-dialog>header h2{
+  margin:0!important;
+  font-family:'Inter','Segoe UI',Arial,sans-serif!important;
+  font-size:25px!important;
+  line-height:1.15!important;
+  font-weight:700!important;
+  letter-spacing:-.025em!important;
+  color:#173f50!important;
+}
+#modalCentralMensagensCandidatoEM .cand-msg-dialog>header p{
+  margin:5px 0 0!important;
+  font-family:'Inter','Segoe UI',Arial,sans-serif!important;
+  font-size:13px!important;
+  line-height:1.4!important;
+  font-weight:500!important;
+  color:#6b7f89!important;
+}
+#modalCentralMensagensCandidatoEM .cand-msg-dialog>header>button{
+  flex:0 0 38px!important;
+  width:38px!important;
+  height:38px!important;
+  border:1px solid #e0eaee!important;
+  border-radius:50%!important;
+  background:#f5f9fa!important;
+  color:#4a6572!important;
+  font-size:19px!important;
+  line-height:1!important;
+  display:grid!important;
+  place-items:center!important;
+  cursor:pointer!important;
+}
+
+/* uma única área estrutural, sem scroll duplo no painel direito */
+#modalCentralMensagensCandidatoEM .cand-msg-layout{
+  flex:1 1 auto!important;
+  min-height:0!important;
+  display:grid!important;
+  grid-template-columns:300px minmax(0,1fr)!important;
+  overflow:hidden!important;
+  background:#f7fafb!important;
+}
+#modalCentralMensagensCandidatoEM .cand-msg-layout>aside{
+  min-height:0!important;
+  padding:12px!important;
+  border-right:1px solid #e1eaee!important;
+  background:#fbfcfd!important;
+  overflow-y:auto!important;
+  overflow-x:hidden!important;
+}
+#modalCentralMensagensCandidatoEM .cand-msg-layout>aside>button{
+  width:100%!important;
+  min-height:76px!important;
+  margin:0 0 8px!important;
+  padding:12px!important;
+  display:grid!important;
+  grid-template-columns:38px minmax(0,1fr) auto!important;
+  gap:10px!important;
+  align-items:start!important;
+  border:1px solid transparent!important;
+  border-radius:12px!important;
+  background:transparent!important;
+  text-align:left!important;
+  cursor:pointer!important;
+}
+#modalCentralMensagensCandidatoEM .cand-msg-layout>aside>button:hover{
+  background:#f2f7f9!important;
+  border-color:#e2ecef!important;
+}
+#modalCentralMensagensCandidatoEM .cand-msg-layout>aside>button.ativo{
+  background:#edf5f8!important;
+  border-color:#d6e7ed!important;
+}
+#modalCentralMensagensCandidatoEM .cand-msg-layout>aside i{
+  width:38px!important;
+  height:38px!important;
+  display:grid!important;
+  place-items:center!important;
+  border:1px solid #dfe9ed!important;
+  border-radius:10px!important;
+  background:#fff!important;
+  font-style:normal!important;
+  font-size:16px!important;
+}
+#modalCentralMensagensCandidatoEM .cand-msg-layout>aside span{
+  min-width:0!important;
+  display:flex!important;
+  flex-direction:column!important;
+  gap:2px!important;
+}
+#modalCentralMensagensCandidatoEM .cand-msg-layout>aside strong{
+  font-family:'Inter','Segoe UI',Arial,sans-serif!important;
+  font-size:13px!important;
+  line-height:1.25!important;
+  font-weight:700!important;
+  color:#173f50!important;
+}
+#modalCentralMensagensCandidatoEM .cand-msg-layout>aside span>b{
+  font-family:'Inter','Segoe UI',Arial,sans-serif!important;
+  font-size:11px!important;
+  line-height:1.25!important;
+  font-weight:600!important;
+  color:#526f7c!important;
+}
+#modalCentralMensagensCandidatoEM .cand-msg-layout>aside small{
+  max-width:190px!important;
+  font-family:'Inter','Segoe UI',Arial,sans-serif!important;
+  font-size:11px!important;
+  line-height:1.3!important;
+  font-weight:500!important;
+  color:#7c8e97!important;
+  white-space:nowrap!important;
+  overflow:hidden!important;
+  text-overflow:ellipsis!important;
+}
+#modalCentralMensagensCandidatoEM .cand-msg-layout>main{
+  min-width:0!important;
+  min-height:0!important;
+  display:flex!important;
+  flex-direction:column!important;
+  overflow:hidden!important;
+  background:#fff!important;
+}
+#modalCentralMensagensCandidatoEM .cand-msg-conv-head{
+  flex:0 0 auto!important;
+  min-height:68px!important;
+  padding:14px 18px!important;
+  border-bottom:1px solid #e3ebee!important;
+  background:#fff!important;
+}
+#modalCentralMensagensCandidatoEM .cand-msg-conv-head span{
+  display:block!important;
+  margin-bottom:3px!important;
+  font-family:'Inter','Segoe UI',Arial,sans-serif!important;
+  font-size:11px!important;
+  line-height:1.25!important;
+  font-weight:700!important;
+  color:#0f7180!important;
+}
+#modalCentralMensagensCandidatoEM .cand-msg-conv-head h3{
+  margin:0!important;
+  font-family:'Inter','Segoe UI',Arial,sans-serif!important;
+  font-size:17px!important;
+  line-height:1.3!important;
+  font-weight:700!important;
+  color:#173f50!important;
+}
+
+/* chat ocupa todo o restante e só o histórico rola */
+#modalCentralMensagensCandidatoEM .chat-em-box{
+  flex:1 1 auto!important;
+  min-height:0!important;
+  height:auto!important;
+  margin:0!important;
+  border:0!important;
+  border-radius:0!important;
+  background:#fff!important;
+  box-shadow:none!important;
+  overflow:hidden!important;
+  display:flex!important;
+  flex-direction:column!important;
+}
+#modalCentralMensagensCandidatoEM .chat-em-head{
+  display:none!important;
+}
+#modalCentralMensagensCandidatoEM .chat-em-historico{
+  flex:1 1 auto!important;
+  min-height:0!important;
+  max-height:none!important;
+  overflow-y:auto!important;
+  overflow-x:hidden!important;
+  padding:18px 20px!important;
+  display:flex!important;
+  flex-direction:column!important;
+  gap:10px!important;
+  background:#f7fafb!important;
+  scrollbar-width:thin!important;
+  scrollbar-color:#cfdde3 transparent!important;
+}
+#modalCentralMensagensCandidatoEM .chat-em-historico::-webkit-scrollbar{
+  width:7px!important;
+}
+#modalCentralMensagensCandidatoEM .chat-em-historico::-webkit-scrollbar-thumb{
+  background:#cfdde3!important;
+  border-radius:999px!important;
+}
+#modalCentralMensagensCandidatoEM .chat-em-msg{
+  width:auto!important;
+  max-width:min(74%,640px)!important;
+  padding:13px 15px!important;
+  border:1px solid #dce6ea!important;
+  border-radius:15px!important;
+  background:#fff!important;
+  box-shadow:none!important;
+  align-self:flex-start!important;
+}
+#modalCentralMensagensCandidatoEM .chat-em-msg.minha{
+  align-self:flex-end!important;
+  background:#eaf5f4!important;
+  border-color:#cde4e1!important;
+}
+#modalCentralMensagensCandidatoEM .chat-em-msg small{
+  display:block!important;
+  margin-bottom:5px!important;
+  font-family:'Inter','Segoe UI',Arial,sans-serif!important;
+  font-size:11.5px!important;
+  line-height:1.25!important;
+  font-weight:700!important;
+  color:#0d7180!important;
+}
+#modalCentralMensagensCandidatoEM .chat-em-msg p{
+  margin:0 0 7px!important;
+  font-family:'Inter','Segoe UI',Arial,sans-serif!important;
+  font-size:14px!important;
+  line-height:1.55!important;
+  font-weight:500!important;
+  color:#365663!important;
+}
+#modalCentralMensagensCandidatoEM .chat-em-msg time{
+  display:block!important;
+  text-align:right!important;
+  font-family:'Inter','Segoe UI',Arial,sans-serif!important;
+  font-size:10.5px!important;
+  line-height:1.2!important;
+  font-weight:500!important;
+  color:#8a9ba3!important;
+}
+#modalCentralMensagensCandidatoEM .chat-em-compose{
+  flex:0 0 auto!important;
+  padding:14px 16px!important;
+  border-top:1px solid #e1eaee!important;
+  background:#fff!important;
+}
+#modalCentralMensagensCandidatoEM .chat-em-compose textarea{
+  width:100%!important;
+  min-height:64px!important;
+  max-height:110px!important;
+  padding:12px 14px!important;
+  border:1px solid #cedde3!important;
+  border-radius:12px!important;
+  background:#fff!important;
+  font-family:'Inter','Segoe UI',Arial,sans-serif!important;
+  font-size:13px!important;
+  line-height:1.45!important;
+  font-weight:500!important;
+  color:#294f5d!important;
+  resize:none!important;
+  outline:none!important;
+}
+#modalCentralMensagensCandidatoEM .chat-em-compose textarea:focus{
+  border-color:#7fb5c2!important;
+  box-shadow:0 0 0 3px rgba(21,95,120,.08)!important;
+}
+#modalCentralMensagensCandidatoEM .chat-em-compose>div{
+  margin-top:9px!important;
+  display:flex!important;
+  justify-content:flex-end!important;
+}
+#modalCentralMensagensCandidatoEM .chat-em-compose .btn{
+  min-height:40px!important;
+  padding:0 16px!important;
+  border-radius:10px!important;
+  font-family:'Inter','Segoe UI',Arial,sans-serif!important;
+  font-size:12.5px!important;
+  font-weight:650!important;
+}
+
+/* remove qualquer scroll externo/duplicado desta central */
+#modalCentralMensagensCandidatoEM .cand-msg-dialog,
+#modalCentralMensagensCandidatoEM .cand-msg-layout,
+#modalCentralMensagensCandidatoEM .cand-msg-layout>main,
+#modalCentralMensagensCandidatoEM .chat-em-box{
+  scrollbar-width:none!important;
+}
+#modalCentralMensagensCandidatoEM .cand-msg-dialog::-webkit-scrollbar,
+#modalCentralMensagensCandidatoEM .cand-msg-layout::-webkit-scrollbar,
+#modalCentralMensagensCandidatoEM .cand-msg-layout>main::-webkit-scrollbar,
+#modalCentralMensagensCandidatoEM .chat-em-box::-webkit-scrollbar{
+  display:none!important;
+}
+
+@media(max-width:760px){
+  #modalCentralMensagensCandidatoEM{
+    padding:8px!important;
+  }
+  #modalCentralMensagensCandidatoEM .cand-msg-dialog{
+    width:100%!important;
+    height:calc(100dvh - 16px)!important;
+    max-height:calc(100dvh - 16px)!important;
+    border-radius:15px!important;
+  }
+  #modalCentralMensagensCandidatoEM .cand-msg-dialog>header{
+    min-height:78px!important;
+    padding:15px 16px!important;
+  }
+  #modalCentralMensagensCandidatoEM .cand-msg-dialog>header h2{
+    font-size:21px!important;
+  }
+  #modalCentralMensagensCandidatoEM .cand-msg-layout{
+    grid-template-columns:1fr!important;
+    grid-template-rows:145px minmax(0,1fr)!important;
+  }
+  #modalCentralMensagensCandidatoEM .cand-msg-layout>aside{
+    display:flex!important;
+    gap:8px!important;
+    padding:9px!important;
+    overflow-x:auto!important;
+    overflow-y:hidden!important;
+    border-right:0!important;
+    border-bottom:1px solid #e1eaee!important;
+  }
+  #modalCentralMensagensCandidatoEM .cand-msg-layout>aside>button{
+    flex:0 0 260px!important;
+    margin:0!important;
+  }
+  #modalCentralMensagensCandidatoEM .chat-em-msg{
+    max-width:88%!important;
+  }
+}
+
