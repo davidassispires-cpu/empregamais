@@ -2593,13 +2593,6 @@ padding:14px 14px!important;align-items:center!important
 @media(max-width:640px){#pagina-premium-candidato .premium-v2-copy h1{font-size:30px!important}#pagina-premium-candidato .premium-v2-heading h2{font-size:27px!important}#pagina-premium-candidato .premium-v2-grid article{padding:23px 19px!important}}
 
 
-/* EMPREGAMAIS-FONTE-GLOBAL-MONTSERRAT-V24 */
-:root{--em-font-global:"Montserrat",Arial,sans-serif}
-html,body,button,input,select,textarea{font-family:var(--em-font-global)!important}
-body *{font-family:var(--em-font-global)!important}
-input::placeholder,textarea::placeholder{font-family:var(--em-font-global)!important}
-
-
 /* EMPREGAMAIS-PREMIUM-PLANOS-SOFISTICADOS-V25 */
 #pagina-premium-candidato .premium-planos-section{padding:54px 0 20px!important}
 #pagina-premium-candidato .premium-planos-grid{gap:22px!important;align-items:stretch!important;margin-top:30px!important}
@@ -2663,12 +2656,6 @@ html,body,#app,#pagina-premium-candidato,#pagina-premium-candidato *{font-family
 @media(max-width:500px){#pagina-premium-candidato .premium-pagamento-box{grid-template-columns:1fr!important}#pagina-premium-candidato .premium-pagamento-divisor{width:70%!important;height:1px!important;margin:auto!important}}
 
 
-/* EMPREGAMAIS-MONTSERRAT-GLOBAL-DEFINITIVA-V28 */
-:root{--font-family:"Montserrat",Arial,sans-serif!important;--em-font-global:"Montserrat",Arial,sans-serif!important}
-html,body,body *,#app,#app *,header,header *,main,main *,footer,footer *,nav,nav *,section,section *,article,article *,aside,aside *,div,div *,span,p,a,button,input,select,textarea,option,label,h1,h2,h3,h4,h5,h6,strong,b,small,table,thead,tbody,tr,th,td,ul,ol,li,dialog{font-family:"Montserrat",Arial,sans-serif!important}
-input::placeholder,textarea::placeholder{font-family:"Montserrat",Arial,sans-serif!important}
-
-
 /* EMPREGAMAIS-PREMIUM-CORES-PLANOS-V29 */
 #pagina-premium-candidato .premium-planos-grid{padding-top:18px!important;overflow:visible!important}
 #pagina-premium-candidato .premium-plano-card{overflow:visible!important}
@@ -2688,12 +2675,6 @@ input::placeholder,textarea::placeholder{font-family:"Montserrat",Arial,sans-ser
 #pagina-premium-candidato .premium-plano-trimestral .premium-plano-badge{background:linear-gradient(135deg,var(--plan-accent),var(--plan-accent2))!important}
 @media(max-width:900px){#pagina-premium-candidato .premium-planos-grid{padding-top:22px!important}#pagina-premium-candidato .premium-plano-destaque{margin-top:18px!important}}
 
-
-/* EMPREGAMAIS-ARIAL-GLOBAL-V30 */
-:root{--font-family:Arial,Helvetica,sans-serif!important;--em-font-global:Arial,Helvetica,sans-serif!important}
-html,body,body *,#app,#app *,header,header *,main,main *,footer,footer *,nav,nav *,section,section *,article,article *,aside,aside *,div,div *,span,p,a,button,input,select,textarea,option,label,h1,h2,h3,h4,h5,h6,strong,b,small,table,thead,tbody,tr,th,td,ul,ol,li,dialog{font-family:Arial,Helvetica,sans-serif!important}
-input::placeholder,textarea::placeholder{font-family:Arial,Helvetica,sans-serif!important}
-#pagina-premium-candidato,#pagina-premium-candidato *{font-family:Arial,Helvetica,sans-serif!important}
 
 /* EMPREGAMAIS-TITULOS-VAGAS-MAIUSCULOS-V31 */
 .vaga-card h3,.vaga-hero-texto h1,.preview-vaga-cab h3,.review-grid [data-vaga-titulo],.empresa-vaga-linha strong,.jornada-item strong{text-transform:uppercase!important}
@@ -2719,41 +2700,6 @@ small{line-height:1.4}
  .vaga-card h3,.empresa-vaga-linha strong,.jornada-item strong{font-size:15.5px!important}
  button,.btn,[role="button"]{font-size:12.5px}
 }
-
-
-/* EMPREGAMAIS-TIPOGRAFIA-MISTA-V33 */
-/* Retorna a tipografia geral anterior e preserva Arial apenas nas chamadas e títulos principais de vagas */
-:root{--font-family:"Montserrat",Arial,sans-serif!important;--em-font-global:"Montserrat",Arial,sans-serif!important}
-html,body,body *,#app,#app *,header,header *,main,main *,footer,footer *,nav,nav *,section,section *,article,article *,aside,aside *,div,div *,span,p,a,button,input,select,textarea,option,label,h1,h2,h3,h4,h5,h6,strong,b,small,table,thead,tbody,tr,th,td,ul,ol,li,dialog{font-family:"Montserrat",Arial,sans-serif!important}
-input::placeholder,textarea::placeholder{font-family:"Montserrat",Arial,sans-serif!important}
-/* Arial: título principal da vaga, títulos nas prévias/cards e chamadas/títulos de páginas */
-.vaga-hero-texto h1,
-.vaga-card h3,
-.preview-vaga-cab h3,
-.review-grid [data-vaga-titulo],
-.empresa-vaga-linha strong,
-.jornada-item strong,
-.page-title,
-.page-heading h1,
-.page-heading h2,
-.pagina-titulo,
-.section-hero h1,
-.hero h1,
-.hero h2,
-main>section>h1,
-main>section>h2{font-family:Arial,Helvetica,sans-serif!important}
-
-
-/* EMPREGAMAIS-TIPOGRAFIA-PADRAO-LEGIVEL-V34 */
-/* Montserrat como padrão visual do portal, com contraste reforçado */
-:root{--font-family:"Montserrat",Arial,sans-serif!important;--em-font-global:"Montserrat",Arial,sans-serif!important;--em-text:#263f54;--em-text-strong:#073e66;--em-text-muted:#4f687d}
-html,body,body *,#app,#app *,header,header *,main,main *,footer,footer *,nav,nav *,section,section *,article,article *,aside,aside *,div,div *,span,p,a,button,input,select,textarea,option,label,h1,h2,h3,h4,h5,h6,strong,b,small,table,thead,tbody,tr,th,td,ul,ol,li,dialog{font-family:"Montserrat",Arial,sans-serif!important}
-body,main,section,article,p,li,label,td,input,select,textarea{color:var(--em-text)}
-p,li,small,.vaga-card p,.vaga-card span,.vaga-card small,.empresa-vaga-linha small,.jornada-item span,.candidato-card p,.candidato-card span{color:var(--em-text-muted)!important}
-h1,h2,h3,h4,h5,h6,strong,b,.vaga-card h3,.empresa-vaga-linha strong,.jornada-item strong{color:var(--em-text-strong)}
-input::placeholder,textarea::placeholder{font-family:"Montserrat",Arial,sans-serif!important;color:#687e90!important;opacity:1}
-/* Mantém Arial somente nos pontos previamente definidos pelo usuário */
-.vaga-hero-texto h1,.vaga-card h3,.preview-vaga-cab h3,.review-grid [data-vaga-titulo],.empresa-vaga-linha strong,.jornada-item strong,.page-title,.page-heading h1,.page-heading h2,.pagina-titulo,.section-hero h1,.hero h1,.hero h2,main>section>h1,main>section>h2{font-family:Arial,Helvetica,sans-serif!important}
 
 
 /* EMPREGAMAIS-SELO-VERIFICADA-50PLUS-V35 */
@@ -6812,4 +6758,27 @@ overflow:visible!important
 .em-cv-pop-beneficio b,
 .em-cv-pop-notif strong{
   color:#0b3767!important;
+}
+
+
+/* EMPREGAMAIS-TIPOGRAFIA-GLOBAL-DEFINITIVA-V35 */
+:root{
+  --em-font-global:"Montserrat",Arial,sans-serif;
+}
+html,body,
+header,main,footer,nav,section,article,aside,dialog,
+div,span,p,a,button,input,select,textarea,option,label,
+h1,h2,h3,h4,h5,h6,strong,b,small,
+table,thead,tbody,tr,th,td,ul,ol,li{
+  font-family:var(--em-font-global)!important;
+}
+button,input,select,textarea,option{
+  font-family:var(--em-font-global)!important;
+}
+input::placeholder,
+textarea::placeholder{
+  font-family:var(--em-font-global)!important;
+}
+body{
+  font-family:var(--em-font-global)!important;
 }
