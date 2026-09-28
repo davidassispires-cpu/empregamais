@@ -10725,3 +10725,314 @@ textarea{
   background:#527f85!important;
   border-color:#527f85!important;
 }
+
+/* EMPREGAI-ADMIN-VISUAL-REFINO-V2 */
+#pagina-painel-admin{
+  --adm-bg:#f5f8fa;
+  --adm-card:#fff;
+  --adm-line:#dbe6eb;
+  --adm-ink:#103b53;
+  --adm-text:#355b6c;
+  --adm-muted:#728894;
+  --adm-side:#0d3b57;
+  --adm-side-2:#0a314a;
+  --adm-accent:#178bb0;
+  --adm-accent-soft:#e8f4f8;
+  background:var(--adm-bg)!important;
+  font-family:'Montserrat',Arial,sans-serif!important;
+}
+#pagina-painel-admin>.admin2-shell{
+  grid-template-columns:238px minmax(0,1fr)!important;
+  background:var(--adm-bg)!important;
+}
+#pagina-painel-admin .admin2-side{
+  width:auto!important;
+  padding:22px 14px 16px!important;
+  background:linear-gradient(180deg,var(--adm-side) 0%,var(--adm-side-2) 100%)!important;
+  color:#fff!important;
+  box-shadow:none!important;
+}
+#pagina-painel-admin .admin2-side::-webkit-scrollbar{width:4px!important}
+#pagina-painel-admin .admin2-side::-webkit-scrollbar-thumb{background:rgba(255,255,255,.14)!important;border-radius:10px!important}
+#pagina-painel-admin .admin2-brand{
+  padding:2px 6px 18px!important;
+  margin:0 0 15px!important;
+  border-bottom:1px solid rgba(255,255,255,.12)!important;
+}
+#pagina-painel-admin .admin2-logo{
+  width:40px!important;height:40px!important;border-radius:10px!important;
+  background:#fff!important;color:#126383!important;
+  font-size:14px!important;font-weight:800!important;
+}
+#pagina-painel-admin .admin2-brand b{
+  color:#fff!important;font-size:17px!important;font-weight:750!important;letter-spacing:-.02em!important;
+}
+#pagina-painel-admin .admin2-brand small{
+  color:#9ec0cf!important;font-size:8.8px!important;font-weight:650!important;letter-spacing:.12em!important;
+}
+#pagina-painel-admin .admin2-menu-label{
+  color:#83afc1!important;
+  font-size:9px!important;font-weight:750!important;letter-spacing:.13em!important;
+  padding:12px 9px 6px!important;
+}
+#pagina-painel-admin .admin2-side nav{gap:3px!important}
+#pagina-painel-admin .admin2-side nav button,
+#pagina-painel-admin .admin2-side-bottom button{
+  min-height:40px!important;
+  padding:0 10px!important;
+  border-radius:9px!important;
+  color:#d2e3eb!important;
+  font-size:12.3px!important;
+  font-weight:550!important;
+  opacity:1!important;
+}
+#pagina-painel-admin .admin2-side nav button>span{
+  width:27px!important;height:27px!important;
+  display:grid!important;place-items:center!important;
+  border-radius:7px!important;
+  background:rgba(255,255,255,.055)!important;
+  color:#a9cbd8!important;
+}
+#pagina-painel-admin .admin2-side nav button:hover{
+  background:rgba(255,255,255,.075)!important;color:#fff!important;
+}
+#pagina-painel-admin .admin2-side nav button.ativo{
+  background:#176984!important;color:#fff!important;
+  box-shadow:inset 3px 0 #76d6ea!important;
+}
+#pagina-painel-admin .admin2-side nav button.ativo>span{
+  background:rgba(255,255,255,.11)!important;color:#fff!important;
+}
+#pagina-painel-admin .admin2-side-bottom{
+  margin-top:14px!important;padding-top:10px!important;
+  border-top:1px solid rgba(255,255,255,.11)!important;
+}
+#pagina-painel-admin .admin2-side-bottom button{color:#d7e6ec!important}
+#pagina-painel-admin .admin2-side-bottom .admin-sair{color:#ffbebe!important}
+
+#pagina-painel-admin .admin2-main{
+  padding:25px 30px 38px!important;
+  background:var(--adm-bg)!important;
+}
+#pagina-painel-admin .admin2-head{
+  margin:0 0 8px!important;
+  padding:0 0 16px!important;
+  border-bottom:1px solid #dfe8ec!important;
+  align-items:flex-end!important;
+}
+#pagina-painel-admin .admin2-head small{
+  color:#66818f!important;font-size:9.5px!important;font-weight:700!important;letter-spacing:.11em!important;
+}
+#pagina-painel-admin .admin2-head h1{
+  margin:5px 0 4px!important;
+  color:#0f3b53!important;
+  font-size:29px!important;line-height:1!important;font-weight:750!important;letter-spacing:-.035em!important;
+}
+#pagina-painel-admin .admin2-head p{
+  margin:0!important;color:#68808d!important;font-size:12px!important;font-weight:450!important;
+}
+#pagina-painel-admin .admin2-head-actions button{
+  min-height:38px!important;padding:0 13px!important;
+  border:1px solid #cbdde4!important;border-radius:9px!important;
+  background:#fff!important;color:#155a79!important;
+  font-size:11px!important;font-weight:700!important;
+  box-shadow:0 2px 7px rgba(15,59,83,.04)!important;
+}
+#pagina-painel-admin .admin2-head-actions span{
+  padding:8px 12px!important;border-radius:999px!important;
+  background:#e6f3f7!important;color:#0b607c!important;
+  font-size:9.5px!important;font-weight:800!important;
+}
+#pagina-painel-admin .admin2-sync{
+  margin:0 0 16px!important;
+  color:#80949f!important;font-size:9.5px!important;
+}
+
+/* KPIs */
+#pagina-painel-admin .admin2-main .admin-metricas{
+  grid-template-columns:repeat(5,minmax(0,1fr))!important;
+  gap:11px!important;
+  margin-bottom:20px!important;
+}
+#pagina-painel-admin .admin2-main .admin-metricas article{
+  min-height:108px!important;
+  padding:16px 17px!important;
+  border:1px solid var(--adm-line)!important;
+  border-radius:13px!important;
+  background:#fff!important;
+  box-shadow:0 3px 10px rgba(20,62,82,.035)!important;
+  position:relative!important;
+  overflow:hidden!important;
+}
+#pagina-painel-admin .admin2-main .admin-metricas article::before{
+  content:""!important;position:absolute!important;left:0!important;top:0!important;
+  width:100%!important;height:3px!important;background:#287c95!important;
+}
+#pagina-painel-admin .admin2-main .admin-metricas span{
+  color:#738895!important;font-size:11px!important;font-weight:500!important;
+}
+#pagina-painel-admin .admin2-main .admin-metricas strong{
+  margin-top:10px!important;
+  color:#123e55!important;font-size:30px!important;font-weight:750!important;letter-spacing:-.04em!important;
+}
+#pagina-painel-admin .admin2-main .admin-metricas article[role=button]:hover{
+  transform:translateY(-2px)!important;
+  border-color:#adcbd5!important;
+  box-shadow:0 8px 19px rgba(20,62,82,.07)!important;
+}
+
+/* Ações rápidas */
+#pagina-painel-admin .admin-dashboard-title{
+  margin:0 0 10px!important;
+  color:#193f53!important;font-size:15px!important;font-weight:700!important;
+}
+#pagina-painel-admin .admin-acoes-rapidas{
+  grid-template-columns:repeat(4,minmax(0,1fr))!important;
+  gap:10px!important;margin-bottom:20px!important;
+}
+#pagina-painel-admin .admin-acao-card{
+  min-height:72px!important;
+  padding:13px 15px!important;
+  border:1px solid #dbe6eb!important;border-radius:12px!important;
+  background:#fff!important;color:#183e52!important;
+  box-shadow:none!important;
+}
+#pagina-painel-admin .admin-acao-card:hover{
+  background:#fbfdfe!important;border-color:#b5d0d9!important;
+  transform:translateY(-1px)!important;
+}
+#pagina-painel-admin .admin-acao-card b{
+  color:#153e54!important;font-size:12.5px!important;font-weight:700!important;
+}
+#pagina-painel-admin .admin-acao-card small{
+  margin-top:5px!important;color:#738894!important;font-size:10.5px!important;font-weight:450!important;
+}
+
+/* Conteúdo inferior */
+#pagina-painel-admin .admin-section-grid{
+  grid-template-columns:minmax(0,1.65fr) minmax(290px,.75fr)!important;
+  gap:14px!important;align-items:start!important;
+}
+#pagina-painel-admin .admin-bloco{
+  padding:18px 20px!important;
+  border:1px solid #dbe6eb!important;border-radius:14px!important;
+  background:#fff!important;box-shadow:0 3px 11px rgba(20,62,82,.03)!important;
+}
+#pagina-painel-admin .admin-bloco h2{
+  margin:0 0 12px!important;
+  color:#193f53!important;font-size:16px!important;font-weight:700!important;
+}
+#pagina-painel-admin .admin-lista{
+  margin-top:2px!important;border-top:1px solid #e7eef1!important;
+}
+#pagina-painel-admin .admin-linha{
+  min-height:67px!important;padding:12px 4px!important;
+  border-bottom:1px solid #e7eef1!important;
+}
+#pagina-painel-admin .admin-linha strong{
+  color:#244c5e!important;font-size:12.5px!important;font-weight:700!important;
+}
+#pagina-painel-admin .admin-linha small{
+  margin-top:4px!important;color:#748a96!important;font-size:10.5px!important;
+}
+#pagina-painel-admin .admin-empresa-resumo{
+  gap:7px!important;align-items:center!important;
+}
+#pagina-painel-admin .admin-empresa-resumo .btn{
+  min-height:36px!important;padding:0 12px!important;
+  border:1px solid #bed1d9!important;border-radius:8px!important;
+  background:#f7fafb!important;color:#264f62!important;
+  font-size:10.5px!important;font-weight:650!important;
+}
+#pagina-painel-admin .admin-empresa-resumo .btn:hover{
+  border-color:#7eabb9!important;background:#edf6f8!important;
+}
+#pagina-painel-admin .admin-mini-item{
+  padding:11px 0!important;border-bottom:1px solid #e8eef0!important;
+}
+#pagina-painel-admin .admin-mini-item strong{
+  color:#315365!important;font-size:11.5px!important;font-weight:700!important;
+}
+#pagina-painel-admin .admin-mini-item small{
+  margin-top:3px!important;color:#7d909a!important;font-size:9.8px!important;
+}
+
+/* Status */
+#pagina-painel-admin .vaga-status{
+  min-height:27px!important;padding:0 9px!important;border-radius:999px!important;
+  font-size:9.5px!important;font-weight:700!important;
+}
+#pagina-painel-admin .vaga-status.pendente{
+  background:#fff7df!important;color:#8b651d!important;border:1px solid #e8d6a2!important;
+}
+#pagina-painel-admin .vaga-status.aprovada{
+  background:#ebf8f2!important;color:#267159!important;border:1px solid #c9e7da!important;
+}
+
+/* Empresas e candidatos */
+#pagina-painel-admin .admin2-empresas-grid{
+  grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:10px!important;
+}
+#pagina-painel-admin .admin2-empresa-card{
+  min-height:82px!important;padding:12px!important;
+  grid-template-columns:50px minmax(0,1fr) auto!important;gap:11px!important;
+  border:1px solid #dfe8eb!important;border-radius:12px!important;
+  box-shadow:none!important;background:#fff!important;
+}
+#pagina-painel-admin .admin2-empresa-logo{
+  width:50px!important;height:50px!important;border-radius:10px!important;
+}
+#pagina-painel-admin .admin2-empresa-info h3{
+  color:#264d5f!important;font-size:12.5px!important;font-weight:700!important;
+}
+#pagina-painel-admin .admin2-empresa-info p{
+  color:#7a8e98!important;font-size:10.5px!important;
+}
+#pagina-painel-admin .admin2-ver-empresa{
+  min-height:35px!important;padding:0 10px!important;border-radius:8px!important;
+  font-size:10.5px!important;font-weight:650!important;
+}
+
+/* Menos altura artificial e melhor leitura */
+#pagina-painel-admin .admin2-main .admin-bloco:has(.admin-historico),
+#pagina-painel-admin .admin2-main .admin-bloco:has([class*="historico"]){
+  max-height:430px!important;
+}
+#pagina-painel-admin .admin2-main .admin-historico,
+#pagina-painel-admin .admin2-main [class*="historico"]{
+  max-height:350px!important;
+}
+
+/* Responsivo sem alterar a lógica do painel */
+@media(max-width:1100px){
+  #pagina-painel-admin>.admin2-shell{grid-template-columns:210px minmax(0,1fr)!important}
+  #pagina-painel-admin .admin2-main{padding:22px 20px 34px!important}
+  #pagina-painel-admin .admin2-main .admin-metricas{grid-template-columns:repeat(3,minmax(0,1fr))!important}
+}
+@media(max-width:760px){
+  #pagina-painel-admin>.admin2-shell{display:block!important}
+  #pagina-painel-admin .admin2-side{
+    position:relative!important;height:auto!important;min-height:0!important;max-height:none!important;
+    padding:12px!important;
+  }
+  #pagina-painel-admin .admin2-menu-label{display:none!important}
+  #pagina-painel-admin .admin2-side nav{
+    flex-direction:row!important;overflow-x:auto!important;gap:6px!important;
+  }
+  #pagina-painel-admin .admin2-side nav button{
+    width:auto!important;flex:0 0 auto!important;white-space:nowrap!important;
+  }
+  #pagina-painel-admin .admin2-side-bottom{display:flex!important;flex-wrap:wrap!important}
+  #pagina-painel-admin .admin2-side-bottom button{width:auto!important;flex:1 1 140px!important}
+  #pagina-painel-admin .admin2-main{padding:16px 12px 28px!important}
+  #pagina-painel-admin .admin2-head{align-items:flex-start!important;flex-direction:column!important}
+  #pagina-painel-admin .admin2-main .admin-metricas{grid-template-columns:repeat(2,minmax(0,1fr))!important}
+  #pagina-painel-admin .admin-acoes-rapidas{grid-template-columns:repeat(2,minmax(0,1fr))!important}
+  #pagina-painel-admin .admin-section-grid{grid-template-columns:1fr!important}
+  #pagina-painel-admin .admin2-empresas-grid{grid-template-columns:1fr!important}
+}
+@media(max-width:480px){
+  #pagina-painel-admin .admin2-main .admin-metricas{grid-template-columns:1fr 1fr!important}
+  #pagina-painel-admin .admin-acoes-rapidas{grid-template-columns:1fr!important}
+  #pagina-painel-admin .admin2-head h1{font-size:24px!important}
+}
