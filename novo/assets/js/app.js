@@ -4103,3 +4103,81 @@ window.addEventListener('load',()=>setTimeout(concluirLoginGoogleEM,40));
     location.replace(destino);
   };
 })();
+
+
+/* EMPREGAMAI-CONFIRMACAO-ACOES-V1 */
+(function(){
+  window.confirmarAcaoEmpregaiEM=function(opcoes){
+    const o=Object.assign({
+      titulo:'Confirmar ação',
+      texto:'Deseja continuar?',
+      confirmarTexto:'Confirmar',
+      cancelarTexto:'Cancelar',
+      perigo:false
+    },opcoes||{});
+
+    return new Promise(resolve=>{
+      document.getElementById('emConfirmacaoAcaoModal')?.remove();
+
+      const modal=document.createElement('div');
+      modal.id='emConfirmacaoAcaoModal';
+      modal.className='em-confirmacao-acao-modal';
+      modal.innerHTML=
+        '<div class="em-confirmacao-acao-backdrop"></div>'+
+        '<div class="em-confirmacao-acao-card" role="dialog" aria-modal="true" aria-labelledby="emConfirmacaoTitulo">'+
+          '<div class="em-confirmacao-acao-icone">'+(o.perigo?'!':'✓')+'</div>'+
+          '<h3 id="emConfirmacaoTitulo">'+esc(o.titulo)+'</h3>'+
+          '<p>'+esc(o.texto)+'</p>'+
+          '<div class="em-confirmacao-acao-botoes">'+
+            '<button type="button" class="em-confirmacao-cancelar">'+esc(o.cancelarTexto)+'</button>'+
+            '<button type="button" class="em-confirmacao-confirmar'+(o.perigo?' perigo':'')+'">'+esc(o.confirmarTexto)+'</button>'+
+          '</div>'+
+        '</div>';
+
+      const fechar=valor=>{
+        modal.remove();
+        document.body.classList.remove('em-confirmacao-aberta');
+        resolve(valor);
+      };
+
+      modal.querySelector('.em-confirmacao-cancelar').onclick=()=>fechar(false);
+      modal.querySelector('.em-confirmacao-confirmar').onclick=()=>fechar(true);
+      modal.querySelector('.em-confirmacao-acao-backdrop').onclick=()=>fechar(false);
+      document.body.appendChild(modal);
+      document.body.classList.add('em-confirmacao-aberta');
+      setTimeout(()=>modal.querySelector('.em-confirmacao-cancelar')?.focus(),0);
+    });
+  };
+
+  if(!document.getElementById('emConfirmacaoAcoesCss')){
+    const st=document.createElement('style');
+    st.id='emConfirmacaoAcoesCss';
+    st.textContent=
+      '.em-confirmacao-acao-modal{position:fixed;inset:0;z-index:999999;display:grid;place-items:center;padding:20px}'+
+      '.em-confirmacao-acao-backdrop{position:absolute;inset:0;background:rgba(8,25,43,.52);backdrop-filter:blur(2px)}'+
+      '.em-confirmacao-acao-card{position:relative;width:min(420px,100%);background:#fff;border:1px solid #dbe7ee;border-radius:20px;padding:26px;box-shadow:0 24px 70px rgba(8,38,61,.24);text-align:center;font-family:Montserrat,Arial,sans-serif}'+
+      '.em-confirmacao-acao-icone{width:52px;height:52px;margin:0 auto 14px;border-radius:50%;display:grid;place-items:center;background:#eaf6fd;color:#117eaf;font-size:22px;font-weight:800}'+
+      '.em-confirmacao-acao-card h3{margin:0;color:#153f59;font-size:20px;line-height:1.2;font-weight:800}'+
+      '.em-confirmacao-acao-card p{margin:10px auto 20px;color:#5d7484;font-size:14px;line-height:1.55;max-width:340px}'+
+      '.em-confirmacao-acao-botoes{display:grid;grid-template-columns:1fr 1fr;gap:10px}'+
+      '.em-confirmacao-acao-botoes button{min-height:44px;border-radius:11px;padding:0 16px;font:700 13px/1 Montserrat,Arial,sans-serif;cursor:pointer}'+
+      '.em-confirmacao-cancelar{background:#fff;color:#476173;border:1px solid #cedde6}'+
+      '.em-confirmacao-confirmar{background:#0d86ba;color:#fff;border:1px solid #0d86ba}'+
+      '.em-confirmacao-confirmar.perigo{background:#c94b4b;border-color:#c94b4b}'+
+      '@media(max-width:520px){.em-confirmacao-acao-card{padding:22px 18px;border-radius:17px}.em-confirmacao-acao-botoes{grid-template-columns:1fr}.em-confirmacao-cancelar{order:2}}';
+    document.head.appendChild(st);
+  }
+
+  const logoutImediatoEM=sair;
+  sair=async function(){
+    const ok=await window.confirmarAcaoEmpregaiEM({
+      titulo:'Sair da sua conta?',
+      texto:'Você será desconectado do Empregaí neste dispositivo.',
+      confirmarTexto:'Sim, sair',
+      cancelarTexto:'Cancelar',
+      perigo:false
+    });
+    if(!ok)return;
+    return logoutImediatoEM();
+  };
+})();
