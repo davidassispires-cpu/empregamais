@@ -561,8 +561,10 @@ function prioridadeLocalVagaEM(v){
 function atualizarBarraLocalHomeEM(){
  const bar=document.getElementById('homeLocalPreferidoEM');if(!bar)return;
  const pref=localPreferidoCandidatoEM();
- if(!pref){bar.innerHTML='<span>📍</span><div><b>Veja vagas perto de você</b><small>Entre como candidato e cadastre sua cidade para receber oportunidades da sua região primeiro.</small></div><button type="button" onclick="irPara(\'login-candidato\')">Entrar</button>';return}
- bar.innerHTML='<span>📍</span><div><b>Priorizando vagas em '+esc(pref.cidade)+(pref.uf?' - '+esc(pref.uf):'')+' e região</b><small>Você continua vendo vagas de todo o Brasil. Sua região aparece primeiro.</small></div><button type="button" onclick="document.getElementById(\'buscaCidade\')?.focus()">Alterar localização</button>'
+ const ico='<span class="home-local-icone-em" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 21s7-6.2 7-12a7 7 0 1 0-14 0c0 5.8 7 12 7 12Z"/><circle cx="12" cy="9" r="2.5"/></svg></span>';
+ if(!pref){bar.innerHTML=ico+'<div class="home-local-copy-em"><div class="home-local-titulo-em"><b>Encontre oportunidades perto de você</b><span class="home-local-status-em">LOCALIZAÇÃO</span></div><small>Entre como candidato e informe sua cidade para priorizarmos vagas da sua região.</small></div><button class="home-local-btn-em" type="button" onclick="irPara(\'login-candidato\')">Entrar como candidato</button>';return}
+ const local=esc(pref.cidade)+(pref.uf?' - '+esc(pref.uf):'');
+ bar.innerHTML=ico+'<div class="home-local-copy-em"><div class="home-local-titulo-em"><b>Vagas em '+local+' e região</b><span class="home-local-status-em ativo"><i></i> LOCALIZAÇÃO ATIVA</span></div><small>Estamos priorizando oportunidades próximas ao seu perfil, sem ocultar vagas de todo o Brasil.</small></div><button class="home-local-btn-em" type="button" onclick="document.getElementById(\'buscaCidade\')?.focus()">Alterar localização</button>'
 }
 function atualizarDistanciaCandidatoEM(){
  try{renderizarVagasPortal()}catch(e){}
