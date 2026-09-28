@@ -1,4 +1,4 @@
-const EMPREGAMAIS_SW_VERSION='2026-09-28-v3';
+const EMPREGAMAIS_SW_VERSION='2026-09-28-v4';
 const EMPREGAMAIS_DESKTOP_VAGAS_FIX=`
 @media (min-width: 901px){
   #pagina-home .home-recentes-layout{
@@ -41,6 +41,40 @@ const EMPREGAMAIS_DESKTOP_VAGAS_FIX=`
   }
 }
 `;
+const EMPREGAMAIS_DESTAQUES_SYNC_FIX=`
+(function(){
+  let emDestaquesSyncEmCurso=false;
+  async function sincronizarDestaquesFixEM(){
+    if(emDestaquesSyncEmCurso)return;
+    emDestaquesSyncEmCurso=true;
+    try{
+      if(typeof sbJsonEM==='function'&&typeof EMPREGAMAIS_SUPABASE_URL!=='undefined'){
+        const rows=await sbJsonEM(EMPREGAMAIS_SUPABASE_URL+'/rest/v1/vagas?select=*&status=eq.aprovada&order=criado_em.desc',{method:'GET',headers:typeof sbHeadersEM==='function'?sbHeadersEM():{}}).catch(()=>[]);
+        if(Array.isArray(rows)&&rows.length){
+          const remotas=typeof sbMapVagaEM==='function'?rows.map(sbMapVagaEM):rows;
+          const locais=typeof ler==='function'?(ler('empregaMaisVagas')||[]):[];
+          const mapa=new Map();
+          (Array.isArray(locais)?locais:[]).forEach(v=>{if(v&&v.id)mapa.set(String(v.id),v)});
+          remotas.forEach(v=>{if(v&&v.id)mapa.set(String(v.id),v)});
+          const consolidadas=[...mapa.values()];
+          if(typeof sbVagasCacheEM!=='undefined')sbVagasCacheEM=consolidadas;
+          if(typeof gravar==='function')gravar('empregaMaisVagas',consolidadas);
+        }
+      }
+      if(typeof indiceDestaquesEM!=='undefined')indiceDestaquesEM=0;
+      if(typeof vagasDestaqueOrdenadasEM==='function'&&typeof renderDestaquesEM==='function'){
+        const destaques=vagasDestaqueOrdenadasEM();
+        renderDestaquesEM(destaques);
+        if(typeof renderFaixaDestaquesEM==='function')renderFaixaDestaquesEM(destaques);
+      }
+    }catch(e){console.warn('EmpregaMais: sincronização dos destaques falhou.',e)}
+    finally{emDestaquesSyncEmCurso=false}
+  }
+  document.addEventListener('DOMContentLoaded',()=>setTimeout(sincronizarDestaquesFixEM,700));
+  window.addEventListener('focus',()=>setTimeout(sincronizarDestaquesFixEM,80));
+  window.sincronizarDestaquesFixEM=sincronizarDestaquesFixEM;
+})();
+`;
 self.addEventListener('install',()=>self.skipWaiting());
 self.addEventListener('activate',e=>e.waitUntil((async()=>{
   await self.clients.claim();
@@ -55,15 +89,22 @@ self.addEventListener('activate',e=>e.waitUntil((async()=>{
 })()));
 self.addEventListener('fetch',e=>{
   const u=new URL(e.request.url);
-  if(e.request.method!=='GET'||!u.pathname.endsWith('/assets/css/app.css'))return;
+  if(e.request.method!=='GET')return;
+  const isCss=u.pathname.endsWith('/assets/css/app.css');
+  const isJs=u.pathname.endsWith('/assets/js/app.js');
+  if(!isCss&&!isJs)return;
   e.respondWith((async()=>{
     try{
       const r=await fetch(e.request,{cache:'no-store'});
-      const css=await r.text();
+      const txt=await r.text();
       const headers=new Headers(r.headers);
-      headers.set('content-type','text/css; charset=utf-8');
       headers.set('cache-control','no-store, max-age=0');
-      return new Response(css+'\n'+EMPREGAMAIS_DESKTOP_VAGAS_FIX,{status:r.status,statusText:r.statusText,headers});
+      if(isCss){
+        headers.set('content-type','text/css; charset=utf-8');
+        return new Response(txt+'\n'+EMPREGAMAIS_DESKTOP_VAGAS_FIX,{status:r.status,statusText:r.statusText,headers});
+      }
+      headers.set('content-type','application/javascript; charset=utf-8');
+      return new Response(txt+'\n'+EMPREGAMAIS_DESTAQUES_SYNC_FIX,{status:r.status,statusText:r.statusText,headers});
     }catch(_){
       return fetch(e.request);
     }
