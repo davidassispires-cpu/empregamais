@@ -4014,8 +4014,8 @@ window.addEventListener('load',()=>setTimeout(concluirLoginGoogleEM,40));
     btn.onclick=async function(ev){
       ev?.preventDefault?.();
       ev?.stopPropagation?.();
-      const ok=typeof window.confirmarAcao+ EmpregosEM==='function'
-        ?await window.confirmarAcao+ EmpregosEM({
+      const ok=typeof window.confirmarAcaoEmpregaiEM==='function'
+        ?await window.confirmarAcaoEmpregaiEM({
           titulo:'Desativar notificações?',
           texto:'Você deixará de receber neste celular alertas de novas vagas, mensagens e atualizações dos seus processos seletivos.',
           confirmarTexto:'Sim, desativar',
@@ -4059,7 +4059,7 @@ window.addEventListener('load',()=>setTimeout(concluirLoginGoogleEM,40));
     document.head.appendChild(st);
   }
 
-  window.confirmarAcao+ EmpregosEM=function(opcoes){
+  window.confirmarAcaoEmpregaiEM=function(opcoes){
     instalarCssConfirmacaoLogoutEM();
     const o=Object.assign({
       titulo:'Confirmar ação',
@@ -4097,7 +4097,7 @@ window.addEventListener('load',()=>setTimeout(concluirLoginGoogleEM,40));
     });
   };
 
-  function limparSessao+ EmpregosEM(){
+  function limparSessaoEmpregaiEM(){
     const tema=sessionStorage.getItem('temaEmpregaMais')||'';
 
     localStorage.setItem('empregaMaisLogoutBloqueio','1');
@@ -4146,11 +4146,11 @@ window.addEventListener('load',()=>setTimeout(concluirLoginGoogleEM,40));
     }catch(_){}
   }
 
-  async function logoutDefinitivo+ EmpregosEM(){
+  async function logoutDefinitivoEmpregaiEM(){
     const token=typeof sbTokenEM==='function'?sbTokenEM():'';
 
     /* A limpeza local acontece primeiro e não depende da rede. */
-    limparSessao+ EmpregosEM();
+    limparSessaoEmpregaiEM();
 
     /* Invalidação remota é complementar; não pode impedir o logout visual/local. */
     if(token){
@@ -4167,21 +4167,21 @@ window.addEventListener('load',()=>setTimeout(concluirLoginGoogleEM,40));
   }
 
   window.sair=async function(){
-    const ok=await window.confirmarAcao+ EmpregosEM({
+    const ok=await window.confirmarAcaoEmpregaiEM({
       titulo:'Sair da sua conta?',
       texto:'Você será desconectado do + Empregos neste dispositivo.',
       confirmarTexto:'Sim, sair',
       cancelarTexto:'Cancelar'
     });
     if(!ok)return;
-    await logoutDefinitivo+ EmpregosEM();
+    await logoutDefinitivoEmpregaiEM();
   };
 
   try{sair=window.sair}catch(_){}
 
   /* Se a página foi aberta pelo próprio logout, bloqueia restauração antes do DOMContentLoaded. */
   if(new URLSearchParams(location.search).get('logout')==='1'){
-    limparSessao+ EmpregosEM();
+    limparSessaoEmpregaiEM();
     history.replaceState({},'',location.pathname);
   }
 })();
