@@ -4004,185 +4004,6 @@ window.addEventListener('load',()=>setTimeout(concluirLoginGoogleEM,40));
 })();
 
 
-/* EMPREGAMAI-LOGOUT-DEFINITIVO-V2 */
-(function(){
-  sair=async function(){
-    const tema=sessionStorage.getItem('temaEmpregaMais')||'';
-    const token=sbTokenEM();
-
-    /* Bloqueia qualquer restauração automática antes de iniciar a limpeza. */
-    localStorage.setItem('empregaMaisLogoutBloqueio','1');
-    sessionStorage.setItem('empregaMaisLogoutBloqueio','1');
-
-    /* Invalida a sessão no Supabase. A limpeza local acontece mesmo se a rede falhar. */
-    if(token){
-      try{
-        await fetch(EMPREGAMAIS_SUPABASE_URL+'/auth/v1/logout?scope=global',{
-          method:'POST',
-          headers:sbHeadersEM(token)
-        });
-      }catch(e){
-        console.warn('Logout remoto Supabase:',e);
-      }
-    }
-
-    /* Remove credenciais e todo estado que identifica usuário autenticado. */
-    [
-      EMPREGAMAIS_SB_TOKEN,EMPREGAMAIS_SB_REFRESH,
-      'empregaMaisSupabaseAccessToken','empregaMaisSupabaseRefreshToken',
-      'empregaMaisPapelPersistido'
-    ].forEach(k=>{
-      sessionStorage.removeItem(k);
-      localStorage.removeItem(k);
-    });
-
-    sessionStorage.clear();
-
-    /* O bloqueio precisa sobreviver ao clear para impedir reidratação no carregamento seguinte. */
-    sessionStorage.setItem('empregaMaisLogoutBloqueio','1');
-    localStorage.setItem('empregaMaisLogoutBloqueio','1');
-    if(tema)sessionStorage.setItem('temaEmpregaMais',tema);
-
-    /* Recarrega o portal sem rota protegida e elimina qualquer estado visual antigo em memória. */
-    const destino=location.origin+location.pathname;
-    location.replace(destino);
-  };
-})();
-
-
-/* EMPREGAMAI-LOGOUT-DEFINITIVO-V3 */
-(function(){
-  sair=function(){
-    const tema=sessionStorage.getItem('temaEmpregaMais')||'';
-    const token=sbTokenEM();
-
-    /* Bloqueia a restauração ANTES de qualquer operação assíncrona. */
-    localStorage.setItem('empregaMaisLogoutBloqueio','1');
-    sessionStorage.setItem('empregaMaisLogoutBloqueio','1');
-
-    /* Limpa imediatamente toda credencial/identidade local para não haver janela de re-login. */
-    [
-      EMPREGAMAIS_SB_TOKEN,EMPREGAMAIS_SB_REFRESH,
-      'empregaMaisSupabaseAccessToken','empregaMaisSupabaseRefreshToken',
-      'empregaMaisPapelPersistido','empregaMaisGooglePapel'
-    ].forEach(k=>{
-      sessionStorage.removeItem(k);
-      localStorage.removeItem(k);
-    });
-
-    [
-      'empregaMaisPapel',
-      'empresaSupabaseAuthUserId','empresaSupabaseUserId','empresaSupabaseEmpresaId',
-      'empresaUsuarioAdministrador','empresaCnpj','empresaNome',
-      'candidatoSupabaseUserId','candidatoEmail','candidatoNome',
-      'googleCandidatoPendente','googleEmpresaPendente','googleEmailPendente','googleNomePendente'
-    ].forEach(k=>sessionStorage.removeItem(k));
-
-    sessionStorage.clear();
-
-    /* O bloqueio sobrevive ao clear e impede os restauradores automáticos no próximo carregamento. */
-    sessionStorage.setItem('empregaMaisLogoutBloqueio','1');
-    localStorage.setItem('empregaMaisLogoutBloqueio','1');
-    if(tema)sessionStorage.setItem('temaEmpregaMais',tema);
-
-    /* Invalida a sessão remota sem atrasar a saída visual do usuário. */
-    if(token){
-      try{
-        fetch(EMPREGAMAIS_SUPABASE_URL+'/auth/v1/logout?scope=global',{
-          method:'POST',
-          headers:sbHeadersEM(token),
-          keepalive:true
-        }).catch(e=>console.warn('Logout remoto Supabase:',e));
-      }catch(e){
-        console.warn('Logout remoto Supabase:',e);
-      }
-    }
-
-    /* Remove também qualquer fragmento OAuth antigo da URL. */
-    const destino=location.origin+location.pathname;
-    location.replace(destino);
-  };
-})();
-
-
-/* EMPREGAMAI-CONFIRMACAO-ACOES-V1 */
-(function(){
-  window.confirmarAcaoEmpregaiEM=function(opcoes){
-    const o=Object.assign({
-      titulo:'Confirmar ação',
-      texto:'Deseja continuar?',
-      confirmarTexto:'Confirmar',
-      cancelarTexto:'Cancelar',
-      perigo:false
-    },opcoes||{});
-
-    return new Promise(resolve=>{
-      document.getElementById('emConfirmacaoAcaoModal')?.remove();
-
-      const modal=document.createElement('div');
-      modal.id='emConfirmacaoAcaoModal';
-      modal.className='em-confirmacao-acao-modal';
-      modal.innerHTML=
-        '<div class="em-confirmacao-acao-backdrop"></div>'+
-        '<div class="em-confirmacao-acao-card" role="dialog" aria-modal="true" aria-labelledby="emConfirmacaoTitulo">'+
-          '<div class="em-confirmacao-acao-icone">'+(o.perigo?'!':'✓')+'</div>'+
-          '<h3 id="emConfirmacaoTitulo">'+esc(o.titulo)+'</h3>'+
-          '<p>'+esc(o.texto)+'</p>'+
-          '<div class="em-confirmacao-acao-botoes">'+
-            '<button type="button" class="em-confirmacao-cancelar">'+esc(o.cancelarTexto)+'</button>'+
-            '<button type="button" class="em-confirmacao-confirmar'+(o.perigo?' perigo':'')+'">'+esc(o.confirmarTexto)+'</button>'+
-          '</div>'+
-        '</div>';
-
-      const fechar=valor=>{
-        modal.remove();
-        document.body.classList.remove('em-confirmacao-aberta');
-        resolve(valor);
-      };
-
-      modal.querySelector('.em-confirmacao-cancelar').onclick=()=>fechar(false);
-      modal.querySelector('.em-confirmacao-confirmar').onclick=()=>fechar(true);
-      modal.querySelector('.em-confirmacao-acao-backdrop').onclick=()=>fechar(false);
-      document.body.appendChild(modal);
-      document.body.classList.add('em-confirmacao-aberta');
-      setTimeout(()=>modal.querySelector('.em-confirmacao-cancelar')?.focus(),0);
-    });
-  };
-
-  if(!document.getElementById('emConfirmacaoAcoesCss')){
-    const st=document.createElement('style');
-    st.id='emConfirmacaoAcoesCss';
-    st.textContent=
-      '.em-confirmacao-acao-modal{position:fixed;inset:0;z-index:999999;display:grid;place-items:center;padding:20px}'+
-      '.em-confirmacao-acao-backdrop{position:absolute;inset:0;background:rgba(8,25,43,.52);backdrop-filter:blur(2px)}'+
-      '.em-confirmacao-acao-card{position:relative;width:min(420px,100%);background:#fff;border:1px solid #dbe7ee;border-radius:20px;padding:26px;box-shadow:0 24px 70px rgba(8,38,61,.24);text-align:center;font-family:Montserrat,Arial,sans-serif}'+
-      '.em-confirmacao-acao-icone{width:52px;height:52px;margin:0 auto 14px;border-radius:50%;display:grid;place-items:center;background:#eaf6fd;color:#117eaf;font-size:22px;font-weight:800}'+
-      '.em-confirmacao-acao-card h3{margin:0;color:#153f59;font-size:20px;line-height:1.2;font-weight:800}'+
-      '.em-confirmacao-acao-card p{margin:10px auto 20px;color:#5d7484;font-size:14px;line-height:1.55;max-width:340px}'+
-      '.em-confirmacao-acao-botoes{display:grid;grid-template-columns:1fr 1fr;gap:10px}'+
-      '.em-confirmacao-acao-botoes button{min-height:44px;border-radius:11px;padding:0 16px;font:700 13px/1 Montserrat,Arial,sans-serif;cursor:pointer}'+
-      '.em-confirmacao-cancelar{background:#fff;color:#476173;border:1px solid #cedde6}'+
-      '.em-confirmacao-confirmar{background:#0d86ba;color:#fff;border:1px solid #0d86ba}'+
-      '.em-confirmacao-confirmar.perigo{background:#c94b4b;border-color:#c94b4b}'+
-      '@media(max-width:520px){.em-confirmacao-acao-card{padding:22px 18px;border-radius:17px}.em-confirmacao-acao-botoes{grid-template-columns:1fr}.em-confirmacao-cancelar{order:2}}';
-    document.head.appendChild(st);
-  }
-
-  const logoutImediatoEM=sair;
-  sair=async function(){
-    const ok=await window.confirmarAcaoEmpregaiEM({
-      titulo:'Sair da sua conta?',
-      texto:'Você será desconectado do Empregaí neste dispositivo.',
-      confirmarTexto:'Sim, sair',
-      cancelarTexto:'Cancelar',
-      perigo:false
-    });
-    if(!ok)return;
-    return logoutImediatoEM();
-  };
-})();
-
-
 /* EMPREGAMAI-CONFIRMACAO-DESATIVAR-NOTIFICACOES-V1 */
 (function(){
   function aplicarConfirmacaoDesativarNotificacoesEM(){
@@ -4217,52 +4038,121 @@ window.addEventListener('load',()=>setTimeout(concluirLoginGoogleEM,40));
 })();
 
 
-/* EMPREGAMAI-LOGOUT-ROBUSTO-V4 */
+/* EMPREGAMAI-LOGOUT-UNICO-V5 */
 (function(){
-  async function executarLogoutEmpregaiEM(){
-    const tema=sessionStorage.getItem('temaEmpregaMais')||'';
-    const token=typeof sbTokenEM==='function'?sbTokenEM():'';
+  function instalarCssConfirmacaoLogoutEM(){
+    if(document.getElementById('emConfirmacaoAcoesCss'))return;
+    const st=document.createElement('style');
+    st.id='emConfirmacaoAcoesCss';
+    st.textContent=
+      '.em-confirmacao-acao-modal{position:fixed;inset:0;z-index:999999;display:grid;place-items:center;padding:20px}'+
+      '.em-confirmacao-acao-backdrop{position:absolute;inset:0;background:rgba(8,25,43,.52);backdrop-filter:blur(2px)}'+
+      '.em-confirmacao-acao-card{position:relative;width:min(420px,100%);background:#fff;border:1px solid #dbe7ee;border-radius:20px;padding:26px;box-shadow:0 24px 70px rgba(8,38,61,.24);text-align:center;font-family:Montserrat,Arial,sans-serif}'+
+      '.em-confirmacao-acao-icone{width:52px;height:52px;margin:0 auto 14px;border-radius:50%;display:grid;place-items:center;background:#eaf6fd;color:#117eaf;font-size:22px;font-weight:800}'+
+      '.em-confirmacao-acao-card h3{margin:0;color:#153f59;font-size:20px;line-height:1.2;font-weight:800}'+
+      '.em-confirmacao-acao-card p{margin:10px auto 20px;color:#5d7484;font-size:14px;line-height:1.55;max-width:340px}'+
+      '.em-confirmacao-acao-botoes{display:grid;grid-template-columns:1fr 1fr;gap:10px}'+
+      '.em-confirmacao-acao-botoes button{min-height:44px;border-radius:11px;padding:0 16px;font:700 13px/1 Montserrat,Arial,sans-serif;cursor:pointer}'+
+      '.em-confirmacao-cancelar{background:#fff;color:#476173;border:1px solid #cedde6}'+
+      '.em-confirmacao-confirmar{background:#0d86ba;color:#fff;border:1px solid #0d86ba}'+
+      '@media(max-width:520px){.em-confirmacao-acao-card{padding:22px 18px;border-radius:17px}.em-confirmacao-acao-botoes{grid-template-columns:1fr}.em-confirmacao-cancelar{order:2}}';
+    document.head.appendChild(st);
+  }
 
-    /* Marca logout antes de qualquer outra rotina do portal. */
+  window.confirmarAcaoEmpregaiEM=function(opcoes){
+    instalarCssConfirmacaoLogoutEM();
+    const o=Object.assign({
+      titulo:'Confirmar ação',
+      texto:'Deseja continuar?',
+      confirmarTexto:'Confirmar',
+      cancelarTexto:'Cancelar'
+    },opcoes||{});
+
+    return new Promise(resolve=>{
+      document.getElementById('emConfirmacaoAcaoModal')?.remove();
+
+      const modal=document.createElement('div');
+      modal.id='emConfirmacaoAcaoModal';
+      modal.className='em-confirmacao-acao-modal';
+      modal.innerHTML=
+        '<div class="em-confirmacao-acao-backdrop"></div>'+
+        '<div class="em-confirmacao-acao-card" role="dialog" aria-modal="true">'+
+          '<div class="em-confirmacao-acao-icone">↪</div>'+
+          '<h3>'+esc(o.titulo)+'</h3>'+
+          '<p>'+esc(o.texto)+'</p>'+
+          '<div class="em-confirmacao-acao-botoes">'+
+            '<button type="button" class="em-confirmacao-cancelar">'+esc(o.cancelarTexto)+'</button>'+
+            '<button type="button" class="em-confirmacao-confirmar">'+esc(o.confirmarTexto)+'</button>'+
+          '</div>'+
+        '</div>';
+
+      const fechar=valor=>{
+        modal.remove();
+        resolve(valor);
+      };
+      modal.querySelector('.em-confirmacao-cancelar').onclick=()=>fechar(false);
+      modal.querySelector('.em-confirmacao-confirmar').onclick=()=>fechar(true);
+      modal.querySelector('.em-confirmacao-acao-backdrop').onclick=()=>fechar(false);
+      document.body.appendChild(modal);
+    });
+  };
+
+  function limparSessaoEmpregaiEM(){
+    const tema=sessionStorage.getItem('temaEmpregaMais')||'';
+
     localStorage.setItem('empregaMaisLogoutBloqueio','1');
     sessionStorage.setItem('empregaMaisLogoutBloqueio','1');
 
-    /* Remove todas as chaves de autenticação conhecidas, inclusive variações antigas. */
-    const chavesFixas=[
-      'empregaMaisSupabaseAccessToken','empregaMaisSupabaseRefreshToken',
-      'empregaMaisPapel','empregaMaisPapelPersistido','empregaMaisGooglePapel',
-      'empresaSupabaseAuthUserId','empresaSupabaseUserId','empresaSupabaseEmpresaId',
-      'empresaUsuarioAdministrador','empresaCnpj','empresaNome',
-      'candidatoSupabaseUserId','candidatoEmail','candidatoNome',
-      'googleCandidatoPendente','googleEmpresaPendente','googleEmailPendente','googleNomePendente'
+    const remover=[
+      'empregaMaisSupabaseAccessToken',
+      'empregaMaisSupabaseRefreshToken',
+      'empregaMaisPapel',
+      'empregaMaisPapelPersistido',
+      'empregaMaisGooglePapel',
+      'empresaSupabaseAuthUserId',
+      'empresaSupabaseUserId',
+      'empresaSupabaseEmpresaId',
+      'empresaUsuarioAdministrador',
+      'empresaCnpj',
+      'empresaNome',
+      'candidatoSupabaseUserId',
+      'candidatoEmail',
+      'candidatoNome',
+      'googleCandidatoPendente',
+      'googleEmpresaPendente',
+      'googleEmailPendente',
+      'googleNomePendente'
     ];
+
     try{
-      if(typeof EMPREGAMAIS_SB_TOKEN!=='undefined')chavesFixas.push(EMPREGAMAIS_SB_TOKEN);
-      if(typeof EMPREGAMAIS_SB_REFRESH!=='undefined')chavesFixas.push(EMPREGAMAIS_SB_REFRESH);
+      if(typeof EMPREGAMAIS_SB_TOKEN!=='undefined')remover.push(EMPREGAMAIS_SB_TOKEN);
+      if(typeof EMPREGAMAIS_SB_REFRESH!=='undefined')remover.push(EMPREGAMAIS_SB_REFRESH);
     }catch(_){}
 
-    chavesFixas.forEach(k=>{
+    remover.forEach(k=>{
       try{sessionStorage.removeItem(k)}catch(_){}
       try{localStorage.removeItem(k)}catch(_){}
     });
 
-    /* Varredura defensiva para tokens/chaves de sessão antigas do Empregaí. */
-    try{
-      for(let i=localStorage.length-1;i>=0;i--){
-        const k=localStorage.key(i)||'';
-        if(/empregaMais.*(token|papel|sessao|session|google)/i.test(k))localStorage.removeItem(k);
-      }
-    }catch(_){}
-    try{
-      sessionStorage.clear();
-    }catch(_){}
+    try{sessionStorage.clear()}catch(_){}
 
-    /* Reaplica o bloqueio depois do clear. */
     try{sessionStorage.setItem('empregaMaisLogoutBloqueio','1')}catch(_){}
     try{localStorage.setItem('empregaMaisLogoutBloqueio','1')}catch(_){}
     if(tema)try{sessionStorage.setItem('temaEmpregaMais',tema)}catch(_){}
 
-    /* Tenta invalidar também no servidor, sem impedir a saída local. */
+    try{
+      document.body.classList.remove('tem-empresa','tem-candidato','sessao-empresa','sessao-candidato');
+      document.body.classList.add('sessao-publica');
+    }catch(_){}
+  }
+
+  async function logoutDefinitivoEmpregaiEM(){
+    const token=typeof sbTokenEM==='function'?sbTokenEM():'';
+
+    /* A limpeza local acontece primeiro e não depende da rede. */
+    limparSessaoEmpregaiEM();
+
+    /* Invalidação remota é complementar; não pode impedir o logout visual/local. */
     if(token){
       try{
         fetch(EMPREGAMAIS_SUPABASE_URL+'/auth/v1/logout?scope=global',{
@@ -4273,52 +4163,25 @@ window.addEventListener('load',()=>setTimeout(concluirLoginGoogleEM,40));
       }catch(_){}
     }
 
-    /* Vai para a Home sem hash OAuth nem rota protegida. */
-    const destino=location.origin+location.pathname+'?logout=1';
-    location.replace(destino);
+    location.replace(location.origin+location.pathname+'?logout=1');
   }
 
-  async function pedirLogoutEmpregaiEM(){
-    const ok=typeof window.confirmarAcaoEmpregaiEM==='function'
-      ?await window.confirmarAcaoEmpregaiEM({
-        titulo:'Sair da sua conta?',
-        texto:'Você será desconectado do Empregaí neste dispositivo.',
-        confirmarTexto:'Sim, sair',
-        cancelarTexto:'Cancelar',
-        perigo:false
-      })
-      :window.confirm('Deseja realmente sair da sua conta?');
+  window.sair=async function(){
+    const ok=await window.confirmarAcaoEmpregaiEM({
+      titulo:'Sair da sua conta?',
+      texto:'Você será desconectado do Empregaí neste dispositivo.',
+      confirmarTexto:'Sim, sair',
+      cancelarTexto:'Cancelar'
+    });
     if(!ok)return;
-    await executarLogoutEmpregaiEM();
-  }
+    await logoutDefinitivoEmpregaiEM();
+  };
 
-  /* Garante que chamadas antigas e inline onclick usem a mesma função. */
-  window.sair=pedirLogoutEmpregaiEM;
-  try{sair=pedirLogoutEmpregaiEM}catch(_){}
+  try{sair=window.sair}catch(_){}
 
-  /* Captura botões antigos de logout que possam não estar ligados à função atual. */
-  document.addEventListener('click',function(ev){
-    const el=ev.target?.closest?.('button,a,[role="button"]');
-    if(!el)return;
-    const onclick=String(el.getAttribute('onclick')||'');
-    const txt=String(el.textContent||'').trim().toLowerCase();
-    const ehLogout=/\bsair\s*\(/i.test(onclick)||/^(sair|deslogar|logout)$/.test(txt);
-    if(!ehLogout)return;
-    ev.preventDefault();
-    ev.stopImmediatePropagation();
-    pedirLogoutEmpregaiEM();
-  },true);
-
-  /* Ao chegar da saída, força estado visitante antes das rotinas de restauração. */
+  /* Se a página foi aberta pelo próprio logout, bloqueia restauração antes do DOMContentLoaded. */
   if(new URLSearchParams(location.search).get('logout')==='1'){
-    try{
-      sessionStorage.removeItem('empregaMaisPapel');
-      sessionStorage.removeItem('candidatoEmail');
-      sessionStorage.removeItem('empresaCnpj');
-      localStorage.removeItem('empregaMaisPapelPersistido');
-      sessionStorage.setItem('empregaMaisLogoutBloqueio','1');
-      localStorage.setItem('empregaMaisLogoutBloqueio','1');
-    }catch(_){}
+    limparSessaoEmpregaiEM();
     history.replaceState({},'',location.pathname);
   }
 })();
