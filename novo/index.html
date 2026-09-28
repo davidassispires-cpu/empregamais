@@ -4660,30 +4660,42 @@ svg text{
   <div class="conecta-hero-em">
     <div class="conecta-hero-inner-em">
       <div class="conecta-hero-copy-em">
-        <span class="conecta-kicker-em">SOLUÇÃO PARA EMPRESAS COM PORTAL PRÓPRIO</span>
-        <h1><span>+</span>Emprego Conecta</h1>
-        <p>Conecte sua página de carreiras ao +Empregos e mantenha suas oportunidades publicadas e atualizadas automaticamente.</p>
+        <span class="conecta-kicker-em">INTEGRAÇÃO AUTOMÁTICA PARA QUEM JÁ TEM PORTAL DE CARREIRAS</span>
+        <h1><span>+</span>Emprego <b>Conecta</b></h1>
+        <p>Seu portal continua sendo a fonte oficial. O +Empregos sincroniza, publica, atualiza e encerra suas vagas automaticamente para ampliar o alcance sem trabalho manual.</p>
         <div class="conecta-hero-actions-em">
-          <button type="button" class="conecta-primary-em" onclick="irPara('contato')">Quero conectar meu portal</button>
-          <button type="button" class="conecta-secondary-em" onclick="document.getElementById('conecta-como-funciona')?.scrollIntoView({behavior:'smooth'})">Como funciona</button>
+          <button type="button" class="conecta-primary-em" onclick="document.getElementById('conecta-planos')?.scrollIntoView({behavior:'smooth'})">Ver planos Conecta</button>
+          <button type="button" class="conecta-secondary-em" onclick="document.getElementById('conecta-como-funciona')?.scrollIntoView({behavior:'smooth'})">Entender a integração</button>
         </div>
         <div class="conecta-trust-em">
-          <span>✓ Sem duplicidades</span>
+          <span>✓ Publicação automática</span>
           <span>✓ Atualização automática</span>
-          <span>✓ Métricas de redirecionamento</span>
+          <span>✓ Encerramento automático</span>
+          <span>✓ Sem duplicidades</span>
         </div>
       </div>
-      <div class="conecta-visual-em" aria-hidden="true">
-        <div class="conecta-flow-card-em origem">
-          <small>PORTAL DA EMPRESA</small>
-          <strong>Vagas de carreira</strong>
-          <span>Novas · Atualizadas · Encerradas</span>
+
+      <div class="conecta-visual-em" aria-label="Fluxo de sincronização entre o portal da empresa e o +Empregos">
+        <div class="conecta-sync-top-em">
+          <span class="conecta-live-dot-em"></span>
+          <b>Sincronização ativa</b>
+          <small>Conexão monitorada</small>
         </div>
-        <div class="conecta-flow-line-em"><i></i><b>↔</b></div>
+        <div class="conecta-flow-card-em origem">
+          <small>01 · PORTAL DA EMPRESA</small>
+          <strong>Fonte oficial das vagas</strong>
+          <span>Novas vagas, alterações e encerramentos</span>
+        </div>
+        <div class="conecta-flow-line-em"><i></i><b>↕</b><em>automático</em></div>
         <div class="conecta-flow-card-em destino">
-          <small>+EMPREGO CONECTA</small>
-          <strong>Sincronização ativa</strong>
-          <span>Publicação + inteligência de tráfego</span>
+          <small>02 · +EMPREGO CONECTA</small>
+          <strong>Distribuição sincronizada</strong>
+          <span>Vagas publicadas e mantidas atualizadas no +Empregos</span>
+        </div>
+        <div class="conecta-mini-metrics-em">
+          <div><strong>24/7</strong><span>integração ativa</span></div>
+          <div><strong>0</strong><span>retrabalho manual</span></div>
+          <div><strong>1</strong><span>fonte oficial</span></div>
         </div>
       </div>
     </div>
@@ -4691,52 +4703,133 @@ svg text{
 
   <div class="conecta-shell-em">
     <section class="conecta-benefits-em">
-      <article><i>↻</i><div><span>SINCRONIZAÇÃO</span><h3>Vagas sempre atualizadas</h3><p>Quando uma oportunidade é criada, alterada ou encerrada no portal da empresa, o +Empregos acompanha essa mudança.</p></div></article>
-      <article><i>↗</i><div><span>REDIRECIONAMENTO</span><h3>Candidatura no portal original</h3><p>O candidato visualiza a oportunidade no +Empregos e continua o processo seletivo diretamente no ambiente da empresa.</p></div></article>
-      <article><i>◎</i><div><span>ANÁLISE</span><h3>Cliques e acessos mensurados</h3><p>A empresa acompanha quantas pessoas abriram suas vagas e quantas seguiram para o seu portal de carreiras.</p></div></article>
-      <article><i>≠</i><div><span>CONTROLE</span><h3>Proteção contra duplicidades</h3><p>Cada oportunidade recebe uma referência externa para evitar publicações repetidas e facilitar atualizações futuras.</p></div></article>
+      <article>
+        <i><svg viewBox="0 0 24 24"><path d="M20 7h-6V1M4 17h6v6M19 12a7 7 0 0 0-12-5l-3 3M5 12a7 7 0 0 0 12 5l3-3"/></svg></i>
+        <div><span>SINCRONIZAÇÃO</span><h3>Vagas sempre atualizadas</h3><p>O que muda no portal da empresa é refletido no +Empregos, sem republicação manual.</p></div>
+      </article>
+      <article>
+        <i><svg viewBox="0 0 24 24"><path d="M8 7V5h8v2M5 9h14v11H5zM9 13h6M9 16h4"/></svg></i>
+        <div><span>AUTOMAÇÃO</span><h3>Publicação e encerramento automáticos</h3><p>Novas oportunidades entram e vagas encerradas deixam de ser exibidas automaticamente.</p></div>
+      </article>
+      <article>
+        <i><svg viewBox="0 0 24 24"><path d="M4 19V9m5 10V5m5 14v-7m5 7V3"/></svg></i>
+        <div><span>RESULTADOS</span><h3>Métricas de acesso</h3><p>Acompanhe visualizações, cliques e interesse gerado pelas vagas sincronizadas.</p></div>
+      </article>
+      <article>
+        <i><svg viewBox="0 0 24 24"><path d="M8 8h11v11H8zM5 16H3V3h13v2"/></svg></i>
+        <div><span>CONTROLE</span><h3>Sem vagas duplicadas</h3><p>Cada oportunidade mantém uma referência de origem para atualização segura e consistente.</p></div>
+      </article>
     </section>
 
     <section class="conecta-how-em" id="conecta-como-funciona">
       <div class="conecta-section-head-em">
         <span>COMO FUNCIONA</span>
-        <h2>Do portal da empresa ao +Empregos, sem retrabalho.</h2>
-        <p>Uma integração pensada para empresas e consultorias que já possuem uma página de carreiras própria.</p>
+        <h2>Seu time publica uma vez. O Conecta cuida do restante.</h2>
+        <p>A empresa continua gerenciando as oportunidades no ambiente que já utiliza. O +Empregos passa a atuar como um novo canal de distribuição sincronizado.</p>
       </div>
       <div class="conecta-steps-em">
-        <article><b>01</b><h3>Conectamos a fonte</h3><p>A empresa informa a página oficial de vagas ou a integração disponível.</p></article>
-        <article><b>02</b><h3>Mapeamos as oportunidades</h3><p>Cargo, localização, descrição, requisitos, benefícios e link original são estruturados no padrão do +Empregos.</p></article>
-        <article><b>03</b><h3>Sincronizamos alterações</h3><p>Novas vagas entram, alterações são refletidas e vagas removidas podem ser encerradas automaticamente.</p></article>
-        <article><b>04</b><h3>Medimos os resultados</h3><p>O painel registra visualizações, cliques e redirecionamentos para o site da empresa.</p></article>
+        <article><b>01</b><h3>Conectamos seu portal</h3><p>Mapeamos a página de carreiras, feed, API ou outra fonte disponível para leitura das oportunidades.</p></article>
+        <article><b>02</b><h3>Estruturamos as vagas</h3><p>Cargo, cidade, modalidade, contrato, descrição, requisitos, benefícios e canal de candidatura entram no padrão do +Empregos.</p></article>
+        <article><b>03</b><h3>Sincronizamos continuamente</h3><p>Novas vagas são publicadas, alterações são atualizadas e oportunidades encerradas são retiradas automaticamente.</p></article>
+        <article><b>04</b><h3>Você acompanha o desempenho</h3><p>O painel concentra os indicadores de alcance e os resultados gerados pelas vagas conectadas.</p></article>
+      </div>
+    </section>
+
+    <section class="conecta-candidatura-em">
+      <div class="conecta-candidatura-copy-em">
+        <span>CANDIDATURA FLEXÍVEL</span>
+        <h2>A empresa escolhe o canal de candidatura de cada vaga.</h2>
+        <p>Nos planos Conecta, o currículo online do +Empregos não é obrigatório. A vaga pode direcionar o candidato para o canal definido pela empresa.</p>
+        <div class="conecta-login-rule-em"><b>Login obrigatório do candidato</b><span>Antes de qualquer envio ou redirecionamento, o candidato entra na conta do +Empregos para que o interesse seja registrado.</span></div>
+      </div>
+      <div class="conecta-channel-grid-em">
+        <article><i>PDF</i><div><h3>Currículo por e-mail</h3><p>Recebimento de currículo em PDF no e-mail específico configurado para a vaga.</p></div></article>
+        <article><i>WA</i><div><h3>WhatsApp</h3><p>Botão direciona para o WhatsApp da empresa com mensagem da vaga já preparada.</p></div></article>
+        <article><i>↗</i><div><h3>Link externo</h3><p>Direcionamento para o portal, ATS ou formulário de candidatura utilizado pela empresa.</p></div></article>
       </div>
     </section>
 
     <section class="conecta-audience-em">
       <div>
-        <span>PARA QUEM É</span>
-        <h2>Ideal para operações com grande volume de vagas.</h2>
-        <p>Empresas com site de carreiras, redes com muitas unidades, consultorias de RH, transportadoras, varejistas e operações nacionais podem manter centenas de oportunidades atualizadas sem publicação manual.</p>
+        <span>FEITO PARA ESCALAR</span>
+        <h2>Ideal para empresas que já possuem operação própria de recrutamento.</h2>
+        <p>Redes, varejistas, transportadoras, consultorias, franquias e grandes empregadores podem ampliar a distribuição das vagas sem duplicar o trabalho da equipe de RH.</p>
       </div>
       <div class="conecta-audience-tags-em">
-        <span>Portais próprios</span><span>Consultorias de RH</span><span>Grandes redes</span><span>Operações nacionais</span><span>Alto volume de vagas</span><span>ATS / páginas de carreiras</span>
+        <span>Portal de carreiras</span><span>ATS próprio</span><span>Consultorias de RH</span><span>Grandes redes</span><span>Operações nacionais</span><span>Alto volume de vagas</span>
       </div>
     </section>
 
-    <section class="conecta-planos-preview-em">
+    <section class="conecta-planos-preview-em" id="conecta-planos">
       <div class="conecta-section-head-em">
-        <span>PLANOS CONECTA</span>
-        <h2>Um produto separado dos planos tradicionais.</h2>
-        <p>Os planos poderão variar pelo volume de vagas sincronizadas, frequência de atualização, quantidade de fontes e nível de métricas.</p>
+        <span>PLANOS +EMPREGO CONECTA</span>
+        <h2>Escolha pelo volume de vagas ativas sincronizadas.</h2>
+        <p>Os valores são mensais. A empresa pode fazer upgrade conforme a operação crescer, sem precisar refazer a integração.</p>
       </div>
+
       <div class="conecta-plans-grid-em">
-        <article><span>START</span><h3>Conecta Start</h3><p>Para empresas com uma única página de carreiras e volume menor de oportunidades.</p><ul><li>1 fonte de vagas</li><li>Sincronização programada</li><li>Cliques e redirecionamentos</li><li>Controle de duplicidades</li></ul></article>
-        <article class="destaque"><span>PRO</span><h3>Conecta Pro</h3><p>Para empresas com operação recorrente e maior volume de vagas.</p><ul><li>Maior limite de vagas</li><li>Atualizações mais frequentes</li><li>Painel de desempenho</li><li>Relatórios por vaga e período</li></ul></article>
-        <article><span>ENTERPRISE</span><h3>Conecta Enterprise</h3><p>Para grandes operações, redes, consultorias e integrações personalizadas.</p><ul><li>Múltiplas fontes</li><li>Grande volume de vagas</li><li>Integração personalizada</li><li>Suporte dedicado</li></ul></article>
+        <article class="conecta-plan-card-em">
+          <span class="conecta-plan-label-em">START</span>
+          <h3>Conecta Start</h3>
+          <div class="conecta-plan-price-em"><strong>R$ 299,90</strong><small>/mês</small></div>
+          <div class="conecta-plan-limit-em"><b>70</b><span>vagas ativas<br>sincronizadas</span></div>
+          <p>Para empresas com operação recorrente e um volume inicial relevante de vagas.</p>
+          <ul>
+            <li>Até 70 vagas ativas simultaneamente</li>
+            <li>Sincronização automática de vagas</li>
+            <li>Atualização e encerramento automáticos</li>
+            <li>Proteção contra duplicidades</li>
+            <li>Métricas de visualizações e cliques</li>
+            <li>Candidatura por PDF/e-mail, WhatsApp ou link externo</li>
+          </ul>
+          <button type="button" onclick="irPara('contato')">Quero o Start</button>
+        </article>
+
+        <article class="conecta-plan-card-em destaque">
+          <div class="conecta-popular-em">MAIS ESCOLHIDO</div>
+          <span class="conecta-plan-label-em">PRO</span>
+          <h3>Conecta Pro</h3>
+          <div class="conecta-plan-price-em"><strong>R$ 579,90</strong><small>/mês</small></div>
+          <div class="conecta-plan-limit-em"><b>150</b><span>vagas ativas<br>sincronizadas</span></div>
+          <p>Para operações com maior giro de vagas e necessidade de mais capacidade de distribuição.</p>
+          <ul>
+            <li>Até 150 vagas ativas simultaneamente</li>
+            <li>Todos os recursos do Start</li>
+            <li>Maior capacidade de sincronização</li>
+            <li>Painel de desempenho ampliado</li>
+            <li>Indicadores por vaga e período</li>
+            <li>Upgrade sem refazer a integração</li>
+          </ul>
+          <button type="button" onclick="irPara('contato')">Quero o Pro</button>
+        </article>
+
+        <article class="conecta-plan-card-em">
+          <span class="conecta-plan-label-em">ENTERPRISE</span>
+          <h3>Conecta Enterprise</h3>
+          <div class="conecta-plan-price-em"><strong>R$ 1.099,90</strong><small>/mês</small></div>
+          <div class="conecta-plan-limit-em"><b>350</b><span>vagas ativas<br>sincronizadas</span></div>
+          <p>Para grandes empregadores, redes e operações de alto volume em diferentes regiões.</p>
+          <ul>
+            <li>Até 350 vagas ativas simultaneamente</li>
+            <li>Todos os recursos do Pro</li>
+            <li>Operação preparada para alto volume</li>
+            <li>Integrações e fontes mais complexas</li>
+            <li>Acompanhamento prioritário da integração</li>
+            <li>Suporte dedicado à operação</li>
+          </ul>
+          <button type="button" onclick="irPara('contato')">Quero o Enterprise</button>
+        </article>
+      </div>
+
+      <div class="conecta-upgrade-note-em">
+        <div><b>Cresceu? Faça upgrade.</b><span>Start → Pro → Enterprise, mantendo a integração já configurada.</span></div>
+        <div><b>Precisa de mais de 350 vagas?</b><span>Entre em contato para um plano personalizado de maior volume.</span></div>
+        <button type="button" onclick="irPara('contato')">Falar com a equipe</button>
       </div>
     </section>
 
     <section class="conecta-cta-em">
-      <div><span>+EMPREGO CONECTA</span><h2>Sua página de carreiras conectada a mais candidatos.</h2><p>Você mantém seu processo seletivo onde já funciona. O +Empregos amplia a distribuição e entrega métricas de acesso.</p></div>
+      <div><span>+EMPREGO CONECTA</span><h2>Seu portal de carreiras conectado a mais candidatos.</h2><p>Menos operação manual para o RH, mais distribuição para as vagas e uma integração que acompanha o crescimento da empresa.</p></div>
       <button type="button" onclick="irPara('contato')">Solicitar integração →</button>
     </section>
   </div>
