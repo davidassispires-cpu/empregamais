@@ -38,7 +38,7 @@ async function respostaErro(r,padrao){
    catch(_){detalhe=t}
   }
  }catch(_){}
- console.warn('[EmpregaMais] Web Push HTTP '+r.status,detalhe);
+ console.warn('[+ Empregos] Web Push HTTP '+r.status,detalhe);
  if(r.status===401||r.status===403)return 'Sua sessão expirou. Entre novamente e tente ativar as notificações.';
  return padrao;
 }
@@ -135,14 +135,14 @@ async function pushDisable(){
 async function pushNotifyProcesso(id,kind='status'){
  try{
   const r=await pushFetch(PUSH_FN,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({action:'processo',candidatura_id:id,kind})});
-  if(!r.ok)console.warn('[EmpregaMais] push processo',await r.text());
- }catch(e){console.warn('[EmpregaMais] push processo',e)}
+  if(!r.ok)console.warn('[+ Empregos] push processo',await r.text());
+ }catch(e){console.warn('[+ Empregos] push processo',e)}
 }
 async function pushNotifyNovaVaga(id){
  try{
   const r=await pushFetch(PUSH_FN,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({action:'nova_vaga',vaga_id:id})});
-  if(!r.ok)console.warn('[EmpregaMais] push vaga',await r.text());
- }catch(e){console.warn('[EmpregaMais] push vaga',e)}
+  if(!r.ok)console.warn('[+ Empregos] push vaga',await r.text());
+ }catch(e){console.warn('[+ Empregos] push vaga',e)}
 }
 window.empregaMaisPush={register:pushRegister,disable:pushDisable,notifyProcesso:pushNotifyProcesso,notifyNovaVaga:pushNotifyNovaVaga};
 
@@ -174,7 +174,7 @@ function pushCard(){
    on.hidden=true;
    off.hidden=false;
   }catch(e){
-   console.error('[EmpregaMais] ativação de notificações',e);
+   console.error('[+ Empregos] ativação de notificações',e);
    setStatus(e.message||'Não foi possível ativar.');
    on.disabled=false;
   }
@@ -190,7 +190,7 @@ function pushCard(){
    on.textContent='Ativar notificações';
    off.hidden=true;
   }catch(e){
-   console.error('[EmpregaMais] desativação de notificações',e);
+   console.error('[+ Empregos] desativação de notificações',e);
    setStatus('Não foi possível desativar.');
   }
   off.disabled=false;
