@@ -11297,87 +11297,141 @@ textarea{
   .topo .marca.marca-maisempregos .marca-tagline{font-size:5.8px!important;letter-spacing:.75px!important}
 }
 
-/* MAISEMPREGOS-EMPREGO-CONECTA-V1 */
-.menu-publico .menu-conecta-em{display:inline-flex!important;align-items:center!important;gap:3px!important;color:#123f66!important}
-.menu-publico .menu-conecta-plus{color:#2f86f6!important;font-size:18px!important;font-weight:800!important;line-height:1!important}
-.conecta-page-em{background:#f5f8fb!important;font-family:'Montserrat',Arial,sans-serif!important}
-.conecta-hero-em{background:linear-gradient(135deg,#f7fbff 0%,#F5EFFA 58%,#edf7f7 100%);border-bottom:1px solid #dbe7ee}
-.conecta-hero-inner-em{max-width:1240px;margin:auto;padding:70px 30px 68px;display:grid;grid-template-columns:minmax(0,1.05fr) minmax(420px,.95fr);gap:62px;align-items:center}
-.conecta-kicker-em,.conecta-section-head-em>span,.conecta-audience-em>div>span,.conecta-cta-em span{display:block;color:#2f86f6;font-size:11px;font-weight:800;letter-spacing:.12em;margin-bottom:12px}
-.conecta-hero-copy-em h1{margin:0;color:#103e67;font-size:48px;line-height:1;font-weight:800;letter-spacing:-1.7px}
-.conecta-hero-copy-em h1 span{color:#2f86f6}
-.conecta-hero-copy-em>p{max-width:650px;margin:20px 0 0;color:#516978;font-size:17px;line-height:1.7}
-.conecta-hero-actions-em{display:flex;gap:12px;margin-top:30px}
-.conecta-primary-em,.conecta-secondary-em,.conecta-cta-em button{min-height:48px;border-radius:10px;padding:0 20px;font:700 13px 'Montserrat',Arial,sans-serif;cursor:pointer}
-.conecta-primary-em,.conecta-cta-em button{border:1px solid #123f66;background:#123f66;color:#fff}
-.conecta-secondary-em{border:1px solid #c9d9e4;background:#fff;color:#173f61}
-.conecta-trust-em{display:flex;flex-wrap:wrap;gap:14px 20px;margin-top:23px;color:#607685;font-size:11.5px;font-weight:600}
-.conecta-visual-em{position:relative;display:grid;gap:16px;padding:28px;border:1px solid #d6e4ec;border-radius:22px;background:rgba(255,255,255,.72);box-shadow:0 22px 52px rgba(27,63,86,.10)}
-.conecta-flow-card-em{padding:22px;border-radius:15px;border:1px solid #d9e6ed;background:#fff;box-shadow:0 8px 22px rgba(30,65,88,.06)}
-.conecta-flow-card-em small{display:block;color:#7c909d;font-size:9px;font-weight:800;letter-spacing:.12em;margin-bottom:7px}
-.conecta-flow-card-em strong{display:block;color:#173f61;font-size:18px;margin-bottom:5px}
-.conecta-flow-card-em span{color:#6d818e;font-size:12px}
-.conecta-flow-card-em.destino{border-color:#bad8e3;background:#f8fcfd}
-.conecta-flow-line-em{height:42px;display:flex;align-items:center;justify-content:center;position:relative}
-.conecta-flow-line-em i{position:absolute;width:1px;height:42px;background:#bed5e0}
-.conecta-flow-line-em b{z-index:1;width:32px;height:32px;border-radius:50%;display:grid;place-items:center;background:#2f86f6;color:#fff;font-size:15px}
-.conecta-shell-em{max-width:1240px;margin:auto;padding:34px 30px 70px}
-.conecta-benefits-em{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;margin-top:-2px}
-.conecta-benefits-em article{min-height:210px;padding:23px;border:1px solid #dfe8ed;border-radius:15px;background:#fff}
-.conecta-benefits-em i{width:40px;height:40px;border-radius:10px;display:grid;place-items:center;background:#F4ECFB;color:#2f86f6;font:700 20px Arial;margin-bottom:20px}
-.conecta-benefits-em span{display:block;color:#78909d;font-size:9px;font-weight:800;letter-spacing:.12em}
-.conecta-benefits-em h3{margin:7px 0 9px;color:#173f61;font-size:16px;line-height:1.3}
-.conecta-benefits-em p{margin:0;color:#667c89;font-size:12px;line-height:1.65}
-.conecta-how-em,.conecta-planos-preview-em{padding:76px 0 0}
-.conecta-section-head-em{text-align:center;max-width:760px;margin:0 auto 28px}
-.conecta-section-head-em h2{margin:0;color:#173f61;font-size:30px;line-height:1.25}
-.conecta-section-head-em p{margin:12px 0 0;color:#657b89;font-size:13px;line-height:1.7}
+/* MAISEMPREGOS-EMPREGO-CONECTA-V2 */
+.menu-publico .menu-conecta-em{display:inline-flex!important;align-items:center!important;gap:3px!important;color:#4b176a!important}
+.menu-publico .menu-conecta-plus{color:#820AD1!important;font-size:18px!important;font-weight:800!important;line-height:1!important}
+.conecta-page-em{--conecta:#820AD1;--conecta-escuro:#5f149e;--conecta-profundo:#3f0d69;--conecta-claro:#f4ecfb;--conecta-borda:#e4d2f1;background:#faf8fc!important;font-family:'Montserrat',Arial,sans-serif!important;color:#2e2337}
+.conecta-hero-em{position:relative;overflow:hidden;background:radial-gradient(circle at 86% 13%,rgba(151,55,230,.17),transparent 28%),linear-gradient(135deg,#fbf8fe 0%,#f3e8fb 54%,#fdfbfe 100%);border-bottom:1px solid #eadcf3}
+.conecta-hero-em:after{content:"";position:absolute;width:420px;height:420px;border-radius:50%;right:-210px;bottom:-250px;background:rgba(130,10,209,.08)}
+.conecta-hero-inner-em{position:relative;z-index:1;max-width:1240px;margin:auto;padding:76px 30px 72px;display:grid;grid-template-columns:minmax(0,1.05fr) minmax(430px,.95fr);gap:62px;align-items:center}
+.conecta-kicker-em,.conecta-section-head-em>span,.conecta-audience-em>div>span,.conecta-candidatura-copy-em>span,.conecta-cta-em span{display:block;color:var(--conecta);font-size:11px;font-weight:800;letter-spacing:.13em;margin-bottom:12px}
+.conecta-hero-copy-em h1{margin:0;color:#3e1458;font-size:51px;line-height:1;font-weight:800;letter-spacing:-1.8px}
+.conecta-hero-copy-em h1 span{color:var(--conecta)}
+.conecta-hero-copy-em h1 b{font-weight:800;color:#6f18c9}
+.conecta-hero-copy-em>p{max-width:680px;margin:21px 0 0;color:#65586d;font-size:17px;line-height:1.72}
+.conecta-hero-actions-em{display:flex;gap:12px;margin-top:31px}
+.conecta-primary-em,.conecta-secondary-em,.conecta-cta-em button,.conecta-plan-card-em button,.conecta-upgrade-note-em button{min-height:48px;border-radius:11px;padding:0 20px;font:700 13px 'Montserrat',Arial,sans-serif;cursor:pointer;transition:.18s}
+.conecta-primary-em,.conecta-plan-card-em button{border:1px solid var(--conecta);background:var(--conecta);color:#fff;box-shadow:0 9px 20px rgba(130,10,209,.16)}
+.conecta-primary-em:hover,.conecta-plan-card-em button:hover{transform:translateY(-1px);background:#7310b7}
+.conecta-secondary-em{border:1px solid #ddcce9;background:#fff;color:#57236f}
+.conecta-trust-em{display:flex;flex-wrap:wrap;gap:13px 19px;margin-top:24px;color:#6f6077;font-size:11.5px;font-weight:650}
+.conecta-trust-em span{display:inline-flex;align-items:center;gap:4px}
+.conecta-visual-em{position:relative;display:grid;gap:14px;padding:24px;border:1px solid #e3d5ec;border-radius:24px;background:rgba(255,255,255,.82);box-shadow:0 26px 58px rgba(81,33,109,.13);backdrop-filter:blur(8px)}
+.conecta-sync-top-em{display:grid;grid-template-columns:auto auto 1fr;gap:8px;align-items:center;padding:2px 3px 4px;color:#5d4b65}
+.conecta-sync-top-em b{font-size:12px;color:#4f1d69}
+.conecta-sync-top-em small{text-align:right;font-size:10px;color:#8b7b93}
+.conecta-live-dot-em{width:9px;height:9px;border-radius:50%;background:#18a96b;box-shadow:0 0 0 4px rgba(24,169,107,.10)}
+.conecta-flow-card-em{padding:21px;border-radius:16px;border:1px solid #eadff0;background:#fff;box-shadow:0 8px 22px rgba(73,37,92,.055)}
+.conecta-flow-card-em small{display:block;color:#8a7693;font-size:9px;font-weight:800;letter-spacing:.12em;margin-bottom:7px}
+.conecta-flow-card-em strong{display:block;color:#4d1b68;font-size:18px;margin-bottom:5px}
+.conecta-flow-card-em span{color:#75677c;font-size:12px;line-height:1.5}
+.conecta-flow-card-em.destino{border-color:#d8bde9;background:#fbf7fe}
+.conecta-flow-line-em{height:46px;display:flex;align-items:center;justify-content:center;position:relative}
+.conecta-flow-line-em i{position:absolute;width:1px;height:46px;background:#d7c1e4}
+.conecta-flow-line-em b{z-index:1;width:34px;height:34px;border-radius:50%;display:grid;place-items:center;background:var(--conecta);color:#fff;font-size:16px}
+.conecta-flow-line-em em{position:absolute;left:calc(50% + 25px);font-style:normal;color:#947ca1;font-size:9px;font-weight:700}
+.conecta-mini-metrics-em{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.conecta-mini-metrics-em div{padding:10px;border-radius:11px;background:#f7f1fb;border:1px solid #eadcf3;text-align:center}
+.conecta-mini-metrics-em strong,.conecta-mini-metrics-em span{display:block}
+.conecta-mini-metrics-em strong{color:#6f18c9;font-size:17px}
+.conecta-mini-metrics-em span{margin-top:2px;color:#82718b;font-size:8.5px}
+.conecta-shell-em{max-width:1240px;margin:auto;padding:36px 30px 76px}
+.conecta-benefits-em{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}
+.conecta-benefits-em article{min-height:218px;padding:23px;border:1px solid #e8ddec;border-radius:17px;background:#fff;transition:.18s;box-shadow:0 5px 16px rgba(72,35,92,.035)}
+.conecta-benefits-em article:hover{transform:translateY(-3px);box-shadow:0 14px 30px rgba(72,35,92,.08);border-color:#d8bee7}
+.conecta-benefits-em i{width:42px;height:42px;border-radius:11px;display:grid;place-items:center;background:#f4ecfb;color:var(--conecta);margin-bottom:20px}
+.conecta-benefits-em i svg{width:21px;height:21px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.conecta-benefits-em span{display:block;color:#8a7a92;font-size:9px;font-weight:800;letter-spacing:.12em}
+.conecta-benefits-em h3{margin:7px 0 9px;color:#4f2069;font-size:16px;line-height:1.35}
+.conecta-benefits-em p{margin:0;color:#716378;font-size:12px;line-height:1.68}
+.conecta-how-em,.conecta-planos-preview-em{padding:82px 0 0}
+.conecta-section-head-em{text-align:center;max-width:790px;margin:0 auto 31px}
+.conecta-section-head-em h2{margin:0;color:#47205c;font-size:31px;line-height:1.27;letter-spacing:-.35px}
+.conecta-section-head-em p{margin:12px 0 0;color:#716378;font-size:13px;line-height:1.72}
 .conecta-steps-em{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
-.conecta-steps-em article{padding:22px;border-top:3px solid #2f86f6;background:#fff;border-radius:0 0 13px 13px;box-shadow:0 5px 18px rgba(25,62,84,.05)}
-.conecta-steps-em b{color:#2f86f6;font-size:12px}
-.conecta-steps-em h3{margin:12px 0 8px;color:#173f61;font-size:15px}
-.conecta-steps-em p{margin:0;color:#6c808c;font-size:11.5px;line-height:1.65}
-.conecta-audience-em{margin-top:70px;padding:30px;border:1px solid #d7e5ec;border-radius:17px;background:#fff;display:grid;grid-template-columns:1.15fr .85fr;gap:35px;align-items:center}
-.conecta-audience-em h2{margin:0;color:#173f61;font-size:25px}
-.conecta-audience-em p{margin:12px 0 0;color:#657b89;font-size:13px;line-height:1.7}
+.conecta-steps-em article{padding:23px;border:1px solid #eadff0;border-top:4px solid var(--conecta);background:#fff;border-radius:0 0 15px 15px;box-shadow:0 5px 18px rgba(72,35,92,.045)}
+.conecta-steps-em b{color:var(--conecta);font-size:12px}
+.conecta-steps-em h3{margin:12px 0 8px;color:#4d1e66;font-size:15px}
+.conecta-steps-em p{margin:0;color:#746579;font-size:11.5px;line-height:1.68}
+.conecta-candidatura-em{margin-top:76px;padding:34px;border-radius:21px;background:linear-gradient(135deg,#4a1765,#7d20bd);display:grid;grid-template-columns:.9fr 1.1fr;gap:34px;align-items:center;color:#fff;box-shadow:0 20px 42px rgba(83,29,115,.15)}
+.conecta-candidatura-copy-em>span{color:#e9cfff}
+.conecta-candidatura-copy-em h2{margin:0;font-size:27px;line-height:1.3}
+.conecta-candidatura-copy-em>p{margin:12px 0 18px;color:#eadff0;font-size:12.5px;line-height:1.7}
+.conecta-login-rule-em{padding:14px;border-radius:12px;background:rgba(255,255,255,.10);border:1px solid rgba(255,255,255,.16)}
+.conecta-login-rule-em b,.conecta-login-rule-em span{display:block}
+.conecta-login-rule-em b{font-size:12px}
+.conecta-login-rule-em span{margin-top:4px;color:#eadff0;font-size:10.5px;line-height:1.55}
+.conecta-channel-grid-em{display:grid;grid-template-columns:1fr;gap:10px}
+.conecta-channel-grid-em article{display:grid;grid-template-columns:46px 1fr;gap:13px;align-items:center;padding:15px;border-radius:14px;background:#fff;color:#33253a}
+.conecta-channel-grid-em i{width:42px;height:42px;border-radius:10px;display:grid;place-items:center;background:#f3e9fa;color:#7b1bb6;font-style:normal;font-size:11px;font-weight:800}
+.conecta-channel-grid-em h3{margin:0 0 4px;color:#4c1c65;font-size:14px}
+.conecta-channel-grid-em p{margin:0;color:#75667b;font-size:10.7px;line-height:1.55}
+.conecta-audience-em{margin-top:72px;padding:31px;border:1px solid #e7dced;border-radius:18px;background:#fff;display:grid;grid-template-columns:1.15fr .85fr;gap:35px;align-items:center}
+.conecta-audience-em h2{margin:0;color:#4c1d64;font-size:26px}
+.conecta-audience-em p{margin:12px 0 0;color:#716378;font-size:13px;line-height:1.72}
 .conecta-audience-tags-em{display:flex;flex-wrap:wrap;gap:9px;justify-content:flex-end}
-.conecta-audience-tags-em span{padding:10px 12px;border:1px solid #d7e5ec;border-radius:999px;background:#f7fafc;color:#416176;font-size:11px;font-weight:650}
-.conecta-plans-grid-em{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
-.conecta-plans-grid-em article{padding:26px;border:1px solid #dce7ed;border-radius:15px;background:#fff}
-.conecta-plans-grid-em article.destaque{border:2px solid #2f86f6;box-shadow:0 14px 36px rgba(47,134,246,.11)}
-.conecta-plans-grid-em article>span{color:#2f86f6;font-size:9px;font-weight:800;letter-spacing:.13em}
-.conecta-plans-grid-em h3{margin:9px 0 8px;color:#173f61;font-size:20px}
-.conecta-plans-grid-em p{margin:0 0 17px;color:#687e8b;font-size:12px;line-height:1.6}
-.conecta-plans-grid-em ul{list-style:none;margin:0;padding:0;display:grid;gap:9px}
-.conecta-plans-grid-em li{position:relative;padding-left:17px;color:#4e6878;font-size:11.5px}
-.conecta-plans-grid-em li:before{content:'✓';position:absolute;left:0;color:#2f86f6;font-weight:800}
-.conecta-cta-em{margin-top:70px;padding:34px 36px;border-radius:18px;background:#103f68;display:flex;align-items:center;justify-content:space-between;gap:35px}
-.conecta-cta-em span{color:#77b5ff}
-.conecta-cta-em h2{margin:0;color:#fff;font-size:27px}
-.conecta-cta-em p{margin:10px 0 0;max-width:760px;color:#c6d8e5;font-size:12.5px;line-height:1.7}
-.conecta-cta-em button{flex:0 0 auto;background:#fff;border-color:#fff;color:#103f68}
+.conecta-audience-tags-em span{padding:10px 12px;border:1px solid #e5d8ec;border-radius:999px;background:#faf6fc;color:#624a6c;font-size:11px;font-weight:650}
+.conecta-plans-grid-em{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;align-items:stretch}
+.conecta-plan-card-em{position:relative;padding:28px 26px!important;border:1px solid #e6d9ec!important;border-radius:19px!important;background:#fff!important;display:flex;flex-direction:column;box-shadow:0 6px 20px rgba(70,33,90,.04)}
+.conecta-plan-card-em.destaque{border:2px solid var(--conecta)!important;box-shadow:0 18px 42px rgba(130,10,209,.13)!important;transform:translateY(-5px)}
+.conecta-popular-em{position:absolute;top:-13px;left:50%;transform:translateX(-50%);background:var(--conecta);color:#fff;border-radius:999px;padding:6px 12px;font-size:8px;font-weight:800;letter-spacing:.09em;white-space:nowrap}
+.conecta-plan-label-em{color:var(--conecta)!important;font-size:9px!important;font-weight:800!important;letter-spacing:.13em!important}
+.conecta-plan-card-em h3{margin:9px 0 4px!important;color:#4c1b65!important;font-size:21px!important}
+.conecta-plan-price-em{display:flex;align-items:baseline;gap:5px;margin-top:10px}
+.conecta-plan-price-em strong{color:#281a2f;font-size:29px;letter-spacing:-1px}
+.conecta-plan-price-em small{color:#88758f;font-size:10px}
+.conecta-plan-limit-em{display:flex;align-items:center;gap:10px;margin:18px 0;padding:13px 14px;border-radius:13px;background:#f7f0fb;border:1px solid #eadcf2}
+.conecta-plan-limit-em b{color:var(--conecta);font-size:30px;line-height:1}
+.conecta-plan-limit-em span{color:#654f70;font-size:10.5px;line-height:1.35;font-weight:650}
+.conecta-plan-card-em>p{margin:0 0 18px!important;color:#75667b!important;font-size:11.5px!important;line-height:1.62!important;min-height:56px}
+.conecta-plan-card-em ul{list-style:none!important;margin:0 0 23px!important;padding:0!important;display:grid!important;gap:10px!important;flex:1}
+.conecta-plan-card-em li{position:relative;padding-left:19px!important;color:#594763!important;font-size:11.2px!important;line-height:1.45}
+.conecta-plan-card-em li:before{content:'✓';position:absolute;left:0;color:var(--conecta);font-weight:800}
+.conecta-plan-card-em li strong{color:#47205c}
+.conecta-plan-card-em button{width:100%;margin-top:auto}
+.conecta-upgrade-note-em{margin-top:18px;padding:19px 20px;border-radius:15px;border:1px solid #e5d7ec;background:#faf6fc;display:grid;grid-template-columns:1fr 1fr auto;gap:20px;align-items:center}
+.conecta-upgrade-note-em b,.conecta-upgrade-note-em span{display:block}
+.conecta-upgrade-note-em b{color:#4e1d67;font-size:12px}
+.conecta-upgrade-note-em span{margin-top:4px;color:#78677f;font-size:10.5px;line-height:1.45}
+.conecta-upgrade-note-em button{border:1px solid #d8c0e6;background:#fff;color:#6f18c9;white-space:nowrap}
+.conecta-cta-em{margin-top:72px;padding:35px 37px;border-radius:20px;background:linear-gradient(135deg,#3f0d69,#6f18c9);display:flex;align-items:center;justify-content:space-between;gap:35px;box-shadow:0 18px 38px rgba(70,20,101,.16)}
+.conecta-cta-em span{color:#e7c9fb}
+.conecta-cta-em h2{margin:0;color:#fff;font-size:28px}
+.conecta-cta-em p{margin:10px 0 0;max-width:760px;color:#e3d4eb;font-size:12.5px;line-height:1.7}
+.conecta-cta-em button{flex:0 0 auto;background:#fff;border:1px solid #fff;color:#5e1690}
 @media(max-width:1080px){
- .conecta-hero-inner-em{grid-template-columns:1fr;gap:32px}
- .conecta-visual-em{max-width:700px}
+ .conecta-hero-inner-em{grid-template-columns:1fr;gap:34px}
+ .conecta-visual-em{max-width:720px}
  .conecta-benefits-em,.conecta-steps-em{grid-template-columns:repeat(2,minmax(0,1fr))}
+ .conecta-candidatura-em{grid-template-columns:1fr}
+}
+@media(max-width:900px){
+ .conecta-plans-grid-em{grid-template-columns:1fr}
+ .conecta-plan-card-em.destaque{transform:none}
+ .conecta-plan-card-em>p{min-height:0}
+ .conecta-upgrade-note-em{grid-template-columns:1fr}
+ .conecta-upgrade-note-em button{width:100%}
 }
 @media(max-width:850px){
  .menu-publico .menu-conecta-em{display:none!important}
- .conecta-hero-inner-em{padding:46px 20px}
- .conecta-shell-em{padding:24px 20px 55px}
- .conecta-hero-copy-em h1{font-size:38px}
+ .conecta-hero-inner-em{padding:49px 20px}
+ .conecta-shell-em{padding:25px 20px 58px}
+ .conecta-hero-copy-em h1{font-size:40px}
  .conecta-audience-em{grid-template-columns:1fr}
  .conecta-audience-tags-em{justify-content:flex-start}
- .conecta-plans-grid-em{grid-template-columns:1fr}
  .conecta-cta-em{align-items:flex-start;flex-direction:column}
+ .conecta-cta-em button{width:100%}
 }
 @media(max-width:560px){
  .conecta-benefits-em,.conecta-steps-em{grid-template-columns:1fr}
- .conecta-hero-copy-em h1{font-size:33px}
+ .conecta-hero-copy-em h1{font-size:34px}
  .conecta-hero-copy-em>p{font-size:14px}
  .conecta-hero-actions-em{flex-direction:column}
  .conecta-primary-em,.conecta-secondary-em{width:100%}
- .conecta-visual-em{padding:17px}
+ .conecta-visual-em{padding:16px}
+ .conecta-mini-metrics-em{grid-template-columns:1fr}
  .conecta-section-head-em h2{font-size:24px}
- .conecta-audience-em,.conecta-cta-em{padding:24px}
+ .conecta-candidatura-em,.conecta-audience-em,.conecta-cta-em{padding:24px}
+ .conecta-plan-card-em{padding:24px 20px!important}
+ .conecta-plan-price-em strong{font-size:27px}
 }
