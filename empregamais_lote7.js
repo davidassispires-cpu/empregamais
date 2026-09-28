@@ -216,52 +216,9 @@ obsV74.observe(paginaV74,{childList:true,subtree:true});
 //
 ;
 //
-(function(){
-var seletorLegadoV76=[
-".distancia-vaga-em",
-".distancia-automatica-em",
-".distancia-cep-final-em",
-".distancia-card-fixa-em",
-".ativar-distancia-em"
-].join(",");
-function limparDistanciasDuplicadasV76(raiz){
-raiz=raiz||document;
-var cards=raiz.querySelectorAll
-? raiz.querySelectorAll("#listaVagas .vaga-card,#listaDestaques .card-destaque")
-: [];
-for(var i=0;i<cards.length;i++){
-var card=cards[i];
-var antigas=card.querySelectorAll(seletorLegadoV76);
-for(var a=0;a<antigas.length;a++){
-antigas[a].remove();
-}
-var canonicas=card.querySelectorAll(".local-distancia-card-em");
-for(var c=1;c<canonicas.length;c++){
-canonicas[c].remove();
-}
-}
-}
-function atualizarUnicaDistanciaV76(){
-if(typeof aplicarDistanciaCanonicaCardsEM==="function"){
-try{ aplicarDistanciaCanonicaCardsEM(); }catch(e){}
-}
-limparDistanciasDuplicadasV76(document);
-}
-window.EmpregaMaisAtualizarDistanciaUnica=atualizarUnicaDistanciaV76;
-window.addEventListener("load",function(){
-[150,700,1400,2400].forEach(function(ms){
-setTimeout(atualizarUnicaDistanciaV76,ms);
-});
-});
-var alvo=document.getElementById("pagina-home")||document.body;
-if(alvo){
-var timerV76=null;
-new MutationObserver(function(){
-clearTimeout(timerV76);
-timerV76=setTimeout(atualizarUnicaDistanciaV76,60);
-}).observe(alvo,{childList:true,subtree:true});
-}
-})();
+
+/* Removido: rotina legada que reprocessava cards da Home e conflitava com Destaques. */
+
 //
 ;
 //
@@ -610,44 +567,7 @@ ev.preventDefault();ev.stopPropagation();ev.stopImmediatePropagation();abrir();
 //
 ;
 //
-(function(){
-var executandoV83=false;
-function garantirDistanciaPreviaV83(){
-if(executandoV83)return;
-executandoV83=true;
-try{
-if(typeof aplicarDistanciaCanonicaCardsEM==="function"){
-aplicarDistanciaCanonicaCardsEM();
-}else if(typeof atualizarDistanciaCanonicaEM==="function"){
-atualizarDistanciaCanonicaEM();
-}
-document.querySelectorAll("#pagina-home .vaga-card, #pagina-home .card-destaque").forEach(function(card){
-var canonicas=card.querySelectorAll(".local-distancia-card-em");
-for(var i=1;i<canonicas.length;i++)canonicas[i].remove();
-card.querySelectorAll(".distancia-vaga-em,.distancia-automatica-em,.distancia-cep-final-em,.distancia-card-fixa-em,.ativar-distancia-em").forEach(function(el){
-el.remove();
-});
-if(canonicas[0]){
-canonicas[0].style.display="flex";
-canonicas[0].removeAttribute("hidden");
-}
-});
-}catch(e){}
-executandoV83=false;
-}
-window.EmpregaMaisAtualizarDistanciaPreviaV83=garantirDistanciaPreviaV83;
-window.addEventListener("load",function(){
-[150,500,1000,1800,3000].forEach(function(ms){
-setTimeout(garantirDistanciaPreviaV83,ms);
-});
-});
-var home=document.getElementById("pagina-home");
-if(home){
-var timerV83=null;
-new MutationObserver(function(){
-clearTimeout(timerV83);
-timerV83=setTimeout(garantirDistanciaPreviaV83,100);
-}).observe(home,{childList:true,subtree:true});
-}
-})();
+
+/* Removido: rotina legada que reprocessava cards da Home e conflitava com Destaques. */
+
 //
