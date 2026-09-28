@@ -1,4 +1,4 @@
-const EMPREGAMAIS_SW_VERSION='2026-09-28-v5';
+const EMPREGAMAIS_SW_VERSION='2026-09-28-v6';
 const EMPREGAMAIS_DESKTOP_VAGAS_FIX=`
 @media (min-width: 901px){
   #pagina-home .home-recentes-layout{
@@ -45,40 +45,34 @@ const EMPREGAMAIS_DESTAQUES_SYNC_FIX=`
 (function(){
   let emDestaquesSyncEmCurso=false;
 
+  function obterDestaquesValidosEM(){
+    try{
+      const base=typeof vagasPublicas==='function'?vagasPublicas():[];
+      return (Array.isArray(base)?base:[])
+        .filter(v=>typeof destaqueAtivo==='function'?destaqueAtivo(v):!!v?.destaque)
+        .sort((a,b)=>new Date(b.criadoEm||b.criado_em||b.dataPublicacao||b.data||0)-new Date(a.criadoEm||a.criado_em||a.dataPublicacao||a.data||0));
+    }catch(_){return[]}
+  }
+
   function corrigirFaixaDestaquesEM(){
     try{
-      if(typeof cardDestaqueMiniEM!=='function'||typeof quantidadeFaixaDestaquesEM!=='function')return;
-      renderFaixaDestaquesEM=function(lista){
+      if(typeof cardDestaqueMiniEM!=='function')return;
+      renderFaixaDestaquesEM=function(){
         const box=document.getElementById('listaDestaquesFaixaEM'),wrap=document.getElementById('destaquesFaixaEM');
         if(!box||!wrap)return;
-        const arr=Array.isArray(lista)?lista:[];
-
-        const idsDom=new Set(
+        const arr=obterDestaquesValidosEM();
+        const idsPrincipais=new Set(
           Array.from(document.querySelectorAll('#listaDestaques .portal-vaga-nova'))
             .map(card=>String(card.getAttribute('data-vaga-id')||''))
             .filter(Boolean)
         );
-
-        let idsExcluir=idsDom;
-        if(!idsExcluir.size){
-          idsExcluir=new Set();
-          const qtdPrincipais=typeof quantidadeDestaquesVisiveisEM==='function'?quantidadeDestaquesVisiveisEM():3;
-          const indice=typeof indiceDestaquesEM!=='undefined'?indiceDestaquesEM:0;
-          for(let i=0;i<Math.min(qtdPrincipais,arr.length);i++){
-            const v=arr[(indice+i)%arr.length];
-            if(v&&v.id)idsExcluir.add(String(v.id));
-          }
-        }
-
-        const restantes=arr.filter(v=>!idsExcluir.has(String(v.id)));
+        const restantes=arr.filter(v=>!idsPrincipais.has(String(v.id)));
         if(!restantes.length){wrap.classList.add('oculto');box.innerHTML='';return}
         wrap.classList.remove('oculto');
-
-        const qtd=quantidadeFaixaDestaquesEM();
-        if(typeof indiceFaixaDestaquesEM!=='undefined'&&indiceFaixaDestaquesEM>=restantes.length)indiceFaixaDestaquesEM=0;
-        const indiceFaixa=typeof indiceFaixaDestaquesEM!=='undefined'?indiceFaixaDestaquesEM:0;
+        const qtd=window.innerWidth<=560?1:window.innerWidth<=900?2:4;
+        const indice=(typeof indiceFaixaDestaquesEM!=='undefined'&&Number.isFinite(indiceFaixaDestaquesEM))?indiceFaixaDestaquesEM:0;
         const vis=[];
-        for(let i=0;i<Math.min(qtd,restantes.length);i++)vis.push(restantes[(indiceFaixa+i)%restantes.length]);
+        for(let i=0;i<Math.min(qtd,restantes.length);i++)vis.push(restantes[(indice+i)%restantes.length]);
         box.innerHTML=vis.map(cardDestaqueMiniEM).join('');
       };
       window.renderFaixaDestaquesEM=renderFaixaDestaquesEM;
@@ -104,16 +98,19 @@ const EMPREGAMAIS_DESTAQUES_SYNC_FIX=`
         }
       }
       if(typeof indiceDestaquesEM!=='undefined')indiceDestaquesEM=0;
-      if(typeof vagasDestaqueOrdenadasEM==='function'&&typeof renderDestaquesEM==='function'){
-        const destaques=vagasDestaqueOrdenadasEM();
-        renderDestaquesEM(destaques);
-        if(typeof renderFaixaDestaquesEM==='function')renderFaixaDestaquesEM(destaques);
-      }
+      if(typeof renderDestaquesEM==='function')renderDestaquesEM(obterDestaquesValidosEM());
+      if(typeof renderFaixaDestaquesEM==='function')renderFaixaDestaquesEM();
     }catch(e){console.warn('EmpregaMais: sincronização dos destaques falhou.',e)}
     finally{emDestaquesSyncEmCurso=false}
   }
-  document.addEventListener('DOMContentLoaded',()=>setTimeout(sincronizarDestaquesFixEM,700));
+
+  document.addEventListener('DOMContentLoaded',()=>{
+    setTimeout(sincronizarDestaquesFixEM,500);
+    setTimeout(()=>{corrigirFaixaDestaquesEM();if(typeof renderFaixaDestaquesEM==='function')renderFaixaDestaquesEM()},1800);
+    setTimeout(()=>{corrigirFaixaDestaquesEM();if(typeof renderFaixaDestaquesEM==='function')renderFaixaDestaquesEM()},5200);
+  });
   window.addEventListener('focus',()=>setTimeout(sincronizarDestaquesFixEM,80));
+  window.addEventListener('resize',()=>setTimeout(()=>{if(typeof renderFaixaDestaquesEM==='function')renderFaixaDestaquesEM()},120));
   window.sincronizarDestaquesFixEM=sincronizarDestaquesFixEM;
 })();
 `;
