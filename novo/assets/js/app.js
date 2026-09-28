@@ -3474,3 +3474,92 @@ setTimeout(()=>{try{if(new URLSearchParams(location.search).get('pagina')==='cad
  st.textContent='.em-cad-shell{width:min(1180px,calc(100vw - 64px))!important;max-width:none!important;margin:34px 0 48px 50%!important;transform:translateX(-50%)!important;grid-template-columns:minmax(0,2fr) minmax(320px,.9fr)!important;gap:22px!important;align-items:start!important}.em-cad-form-pro{width:100%!important;max-width:none!important;min-width:0!important;padding:26px 28px!important;gap:15px 18px!important}.em-cad-form-pro>label,.em-cad-form-pro>.em-cad-field,.em-cad-form-pro .em-cad-field{width:100%!important;max-width:none!important;min-width:0!important}.em-cad-form-pro input:not([type="checkbox"]){width:100%!important;max-width:none!important;min-width:0!important}.em-cad-form-intro{padding-bottom:16px!important}.em-cad-form-intro h2{font-size:22px!important;margin:9px 0 5px!important}.em-cad-form-intro p{font-size:12.5px!important}.em-cad-field-candidaturas{padding:12px 14px!important}.em-cad-aside{width:100%!important;min-height:0!important;padding:27px 28px!important}.em-cad-aside h2{font-size:22px!important;margin:14px 0 8px!important}.em-cad-aside>p{font-size:12.5px!important;margin-bottom:18px!important}.em-cad-benefits{gap:5px!important}.em-cad-benefits>div{padding:9px 0!important}.em-cad-security{padding-top:14px!important;margin-top:14px!important}.em-cad-submit{margin-top:2px!important}@media(max-width:1000px){.em-cad-shell{width:min(920px,calc(100vw - 32px))!important;grid-template-columns:minmax(0,1.7fr) minmax(280px,.8fr)!important}}@media(max-width:820px){.em-cad-shell{width:calc(100vw - 22px)!important;grid-template-columns:1fr!important;margin-top:22px!important}.em-cad-aside{order:2!important}.em-cad-form-pro{padding:22px!important}}@media(max-width:620px){.em-cad-form-pro{grid-template-columns:1fr!important;padding:17px!important}.em-cad-shell{width:calc(100vw - 14px)!important}.em-cad-aside{padding:20px!important}}';
  document.head.appendChild(st);
 })();
+
+
+/* EMPREGAMAI-CADASTRO-EMPRESA-ESTRUTURA-FIX-V2 */
+function corrigirEstruturaCadastroEmpresaEM(){
+ const nome=document.getElementById('cadEmpresaNome');if(!nome)return;
+ const form=nome.closest('form');if(!form)return;
+ const pagina=form.closest('[id^="pagina-"]')||document.getElementById('pagina-cadastro-empresa');if(!pagina)return;
+
+ instalarEstilosCadastroEmpresaProEM();
+
+ let shell=form.closest('.em-cad-shell');
+ if(!shell){
+   reformularCadastroEmpresaProEM();
+   shell=form.closest('.em-cad-shell');
+ }
+ if(!shell)return;
+
+ /* tira o cadastro do container estreito legado */
+ if(shell.parentElement!==pagina){
+   pagina.appendChild(shell);
+ }
+
+ /* esconde apenas wrappers antigos que ficaram vazios após mover o formulário */
+ [...pagina.children].forEach(el=>{
+   if(el===shell)return;
+   if(el.contains(shell))return;
+   const temCampo=el.querySelector?.('#cadEmpresaNome,#cadEmpresaCnpj,#cadEmpresaEmail,#cadEmpresaTelefone,#cadEmpresaSenha,#cadEmpresaSenha2');
+   if(!temCampo && el.classList?.contains('form-card') && !el.textContent.trim())el.style.display='none';
+ });
+
+ /* identifica corretamente cada bloco de campo, mesmo quando não é <label> */
+ const campo=(el)=>{
+   if(!el)return null;
+   return el.closest('.campo,.form-field,.form-group,label')||el.parentElement;
+ };
+ const mapa=[
+   [document.getElementById('cadEmpresaNome'),'Nome da empresa'],
+   [document.getElementById('cadEmpresaCnpj'),'CNPJ'],
+   [document.getElementById('cadEmpresaEmail'),'E-mail corporativo'],
+   [document.getElementById('cadEmpresaTelefone'),'Telefone corporativo'],
+   [document.getElementById('cadEmpresaSenha'),'Crie uma senha'],
+   [document.getElementById('cadEmpresaSenha2'),'Confirme a senha']
+ ];
+ mapa.forEach(([el,titulo])=>{
+   const bloco=campo(el);if(!bloco)return;
+   bloco.classList.add('em-cad-field','em-cad-field-fix');
+   let tx=bloco.querySelector(':scope > label,:scope > span,:scope > strong,:scope > b');
+   if(tx && tx!==el)tx.textContent=titulo;
+ });
+
+ let rec=document.getElementById('cadEmpresaEmailCandidaturas');
+ if(!rec){
+   const box=document.createElement('div');
+   box.className='em-cad-field em-cad-field-candidaturas em-cad-email-rec-fix';
+   box.innerHTML='<label for="cadEmpresaEmailCandidaturas">E-mail para recebimento de candidaturas</label><input id="cadEmpresaEmailCandidaturas" type="email" required autocomplete="email" placeholder="rh@suaempresa.com.br"><small class="em-cad-help">Este será o e-mail padrão para vagas que recebem currículos por e-mail.</small><label class="em-cad-same"><input id="cadEmpresaMesmoEmailEM" type="checkbox"><span>Usar o mesmo e-mail corporativo</span></label>';
+   const senhaBloco=campo(document.getElementById('cadEmpresaSenha'));
+   if(senhaBloco)form.insertBefore(box,senhaBloco);else form.appendChild(box);
+   rec=box.querySelector('#cadEmpresaEmailCandidaturas');
+ }
+ const recBox=rec.closest('.cad-empresa-email-candidaturas-em,.em-cad-field-candidaturas')||rec.parentElement;
+ if(recBox){
+   recBox.classList.add('em-cad-field','em-cad-field-candidaturas','em-cad-email-rec-fix');
+   const senhaBloco=campo(document.getElementById('cadEmpresaSenha'));
+   if(senhaBloco && recBox.nextElementSibling!==senhaBloco)form.insertBefore(recBox,senhaBloco);
+ }
+
+ const email=document.getElementById('cadEmpresaEmail'),mesmo=document.getElementById('cadEmpresaMesmoEmailEM');
+ if(email&&rec&&mesmo){
+   const sync=()=>{rec.readOnly=mesmo.checked;if(mesmo.checked)rec.value=email.value.trim().toLowerCase()};
+   mesmo.onchange=sync;
+   email.addEventListener('input',()=>{if(mesmo.checked)sync()});
+ }
+
+ form.classList.add('em-cad-form-pro','em-cad-form-fix-v2');
+ shell.classList.add('em-cad-shell-fix-v2');
+}
+(function(){
+ const st=document.createElement('style');st.id='estilosCadastroEmpresaEstruturaFixV2';
+ st.textContent='.em-cadastro-empresa-pro .em-cad-shell-fix-v2{width:min(1220px,calc(100vw - 48px))!important;max-width:1220px!important;margin:32px auto 56px!important;transform:none!important;position:relative!important;left:auto!important;right:auto!important;grid-template-columns:minmax(0,1.8fr) minmax(330px,.85fr)!important;gap:24px!important;padding:0!important}.em-cad-form-fix-v2{width:100%!important;max-width:none!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:16px 18px!important}.em-cad-form-fix-v2 .em-cad-field-fix{width:100%!important;min-width:0!important;max-width:none!important;display:grid!important;gap:7px!important}.em-cad-form-fix-v2 .em-cad-field-fix input{width:100%!important;max-width:none!important;min-width:0!important}.em-cad-email-rec-fix{grid-column:1/-1!important}.em-cad-email-rec-fix>input{width:100%!important}.em-cad-aside{min-width:0!important}@media(max-width:900px){.em-cadastro-empresa-pro .em-cad-shell-fix-v2{width:min(760px,calc(100vw - 24px))!important;grid-template-columns:1fr!important}.em-cad-aside{order:2}}@media(max-width:620px){.em-cad-form-fix-v2{grid-template-columns:1fr!important}.em-cad-email-rec-fix{grid-column:1!important}}';
+ document.head.appendChild(st);
+})();
+
+const _reformularCadastroEmpresaProEMV2=reformularCadastroEmpresaProEM;
+reformularCadastroEmpresaProEM=function(){
+ const r=_reformularCadastroEmpresaProEMV2.apply(this,arguments);
+ setTimeout(corrigirEstruturaCadastroEmpresaEM,0);
+ return r;
+};
+setTimeout(corrigirEstruturaCadastroEmpresaEM,120);
