@@ -11139,3 +11139,81 @@ textarea{
     font-size:10.5px!important;
   }
 }
+
+/* EMPREGAI-CARD-COR-POR-STATUS-V1 */
+/* A cor do card acompanha automaticamente a classe de status já gerada pelo sistema. */
+#pagina-candidatos-empresa .recruta-cand-card{
+  border-top:1px solid #dbe6ed!important;
+  border-right:1px solid #dbe6ed!important;
+  border-bottom:1px solid #dbe6ed!important;
+  border-left:5px solid #8aa8b8!important;
+  background:linear-gradient(90deg,#f6fafc 0,#fff 48px,#fff 100%)!important;
+}
+
+/* Em avaliação */
+#pagina-candidatos-empresa .recruta-cand-card.status-em-avalia-o{
+  border-left-color:#6f91a5!important;
+  background:linear-gradient(90deg,#f1f6f8 0,#fff 52px,#fff 100%)!important;
+}
+#pagina-candidatos-empresa .recruta-cand-card.status-em-avalia-o .recruta-cand-status>strong{
+  background:#f1f6f8!important;border-color:#cbdbe3!important;color:#526f80!important;
+}
+
+/* Selecionado */
+#pagina-candidatos-empresa .recruta-cand-card.status-selecionado{
+  border-left-color:#149da1!important;
+  background:linear-gradient(90deg,#effafa 0,#fff 52px,#fff 100%)!important;
+}
+#pagina-candidatos-empresa .recruta-cand-card.status-selecionado .recruta-cand-status>strong{
+  background:#eaf8f8!important;border-color:#bde4e5!important;color:#11777b!important;
+}
+
+/* Em contato */
+#pagina-candidatos-empresa .recruta-cand-card.status-em-contato{
+  border-left-color:#2b86c5!important;
+  background:linear-gradient(90deg,#f0f7fc 0,#fff 52px,#fff 100%)!important;
+}
+#pagina-candidatos-empresa .recruta-cand-card.status-em-contato .recruta-cand-status>strong{
+  background:#edf6fc!important;border-color:#c4def0!important;color:#256f9f!important;
+}
+
+/* Entrevista */
+#pagina-candidatos-empresa .recruta-cand-card.status-entrevista-agendada{
+  border-left-color:#8b6bc5!important;
+  background:linear-gradient(90deg,#f6f2fb 0,#fff 52px,#fff 100%)!important;
+}
+#pagina-candidatos-empresa .recruta-cand-card.status-entrevista-agendada .recruta-cand-status>strong{
+  background:#f3effa!important;border-color:#dacdf0!important;color:#7254a8!important;
+}
+
+/* Aprovado */
+#pagina-candidatos-empresa .recruta-cand-card.status-aprovado{
+  border-left-color:#32a56f!important;
+  background:linear-gradient(90deg,#f1faf5 0,#fff 52px,#fff 100%)!important;
+}
+#pagina-candidatos-empresa .recruta-cand-card.status-aprovado .recruta-cand-status>strong{
+  background:#edf8f2!important;border-color:#c9e7d7!important;color:#27825a!important;
+}
+
+/* Contratado */
+#pagina-candidatos-empresa .recruta-cand-card.status-contratado{
+  border-left-color:#16835c!important;
+  background:linear-gradient(90deg,#eef8f4 0,#fff 52px,#fff 100%)!important;
+}
+#pagina-candidatos-empresa .recruta-cand-card.status-contratado .recruta-cand-status>strong{
+  background:#eaf8f1!important;border-color:#bfe5d2!important;color:#126e4d!important;
+}
+
+/* Reprovado / não selecionado */
+#pagina-candidatos-empresa .recruta-cand-card.status-reprovado{
+  border-left-color:#d96b6b!important;
+  background:linear-gradient(90deg,#fff3f3 0,#fff 52px,#fff 100%)!important;
+}
+#pagina-candidatos-empresa .recruta-cand-card.status-reprovado .recruta-cand-status>strong{
+  background:#fff1f1!important;border-color:#edcccc!important;color:#b85656!important;
+}
+
+/* Mantém a mesma leitura visual quando o card é aberto. */
+#pagina-candidatos-empresa .recruta-cand-card.recruta-expandido{
+  border-top:1px solid #dbe6ed!important;
+}
