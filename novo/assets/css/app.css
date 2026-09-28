@@ -10679,3 +10679,49 @@ textarea{
   font-size:15px!important;
 }
 #pagina-candidatos-empresa .recruta-preview-andamento:hover{background:#527f85!important}
+
+/* EMPREGAI-PROCESSO-SELETIVO-BOTAO-REAL-V2 */
+#pagina-candidatos-empresa .recruta-preview-andamento{
+  width:calc(100% - 28px)!important;
+  min-height:46px!important;
+  margin:0 14px 14px!important;
+  padding:0 16px!important;
+  display:flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  gap:10px!important;
+  border:1px solid #4f7f86!important;
+  border-radius:10px!important;
+  background:#5f8f95!important;
+  color:#fff!important;
+  box-shadow:none!important;
+  cursor:pointer!important;
+  text-align:center!important;
+}
+#pagina-candidatos-empresa .recruta-preview-andamento>span{
+  display:none!important;
+}
+#pagina-candidatos-empresa .recruta-preview-andamento>b{
+  display:block!important;
+  margin:0!important;
+  font-size:13.5px!important;
+  line-height:1.2!important;
+  font-weight:700!important;
+  letter-spacing:0!important;
+  color:#fff!important;
+}
+#pagina-candidatos-empresa .recruta-preview-andamento>b::after{
+  content:none!important;
+  display:none!important;
+}
+#pagina-candidatos-empresa .recruta-preview-andamento>i{
+  display:inline-block!important;
+  margin:0!important;
+  font-style:normal!important;
+  font-size:15px!important;
+  color:#fff!important;
+}
+#pagina-candidatos-empresa .recruta-preview-andamento:hover{
+  background:#527f85!important;
+  border-color:#527f85!important;
+}
