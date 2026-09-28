@@ -3465,3 +3465,12 @@ document.addEventListener('click',e=>{const b=e.target.closest('button,a');if(b&
 
 /* EMPREGAMAI-CADASTRO-EMPRESA-PRO-ROUTE-FIX-V1 */
 setTimeout(()=>{try{if(new URLSearchParams(location.search).get('pagina')==='cadastro-empresa')reformularCadastroEmpresaProEM()}catch(e){console.error(e)}},80);
+
+
+/* EMPREGAMAI-CADASTRO-EMPRESA-LARGURA-FIX-V1 */
+(function(){
+ const st=document.createElement('style');
+ st.id='estilosCadastroEmpresaLarguraFixEM';
+ st.textContent='.em-cad-shell{width:min(1180px,calc(100vw - 64px))!important;max-width:none!important;margin:34px 0 48px 50%!important;transform:translateX(-50%)!important;grid-template-columns:minmax(0,2fr) minmax(320px,.9fr)!important;gap:22px!important;align-items:start!important}.em-cad-form-pro{width:100%!important;max-width:none!important;min-width:0!important;padding:26px 28px!important;gap:15px 18px!important}.em-cad-form-pro>label,.em-cad-form-pro>.em-cad-field,.em-cad-form-pro .em-cad-field{width:100%!important;max-width:none!important;min-width:0!important}.em-cad-form-pro input:not([type="checkbox"]){width:100%!important;max-width:none!important;min-width:0!important}.em-cad-form-intro{padding-bottom:16px!important}.em-cad-form-intro h2{font-size:22px!important;margin:9px 0 5px!important}.em-cad-form-intro p{font-size:12.5px!important}.em-cad-field-candidaturas{padding:12px 14px!important}.em-cad-aside{width:100%!important;min-height:0!important;padding:27px 28px!important}.em-cad-aside h2{font-size:22px!important;margin:14px 0 8px!important}.em-cad-aside>p{font-size:12.5px!important;margin-bottom:18px!important}.em-cad-benefits{gap:5px!important}.em-cad-benefits>div{padding:9px 0!important}.em-cad-security{padding-top:14px!important;margin-top:14px!important}.em-cad-submit{margin-top:2px!important}@media(max-width:1000px){.em-cad-shell{width:min(920px,calc(100vw - 32px))!important;grid-template-columns:minmax(0,1.7fr) minmax(280px,.8fr)!important}}@media(max-width:820px){.em-cad-shell{width:calc(100vw - 22px)!important;grid-template-columns:1fr!important;margin-top:22px!important}.em-cad-aside{order:2!important}.em-cad-form-pro{padding:22px!important}}@media(max-width:620px){.em-cad-form-pro{grid-template-columns:1fr!important;padding:17px!important}.em-cad-shell{width:calc(100vw - 14px)!important}.em-cad-aside{padding:20px!important}}';
+ document.head.appendChild(st);
+})();
