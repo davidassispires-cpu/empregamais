@@ -668,9 +668,12 @@ function selecionarVagaRecenteEM(id){
  if(box)box.querySelectorAll('.portal-vaga-nova').forEach(card=>card.classList.toggle('recente-selecionada',card.dataset.vagaId===String(id)));
 }
 function valorSalario(x){if(!x)return 0;let t=String(x).replace(/[^0-9,.]/g,'');if(t.includes(','))t=t.replace(/\./g,'').replace(',','.');else if((t.match(/\./g)||[]).length>1)t=t.replace(/\./g,'');return Number(t)||0}function removerFiltroAtivoEM(id){const e=$('#'+id);if(e)e.value='';renderizarVagasPortal()}function limparFiltrosVagas(){['buscaVagas','buscaCidade'].forEach(id=>{const e=$('#'+id);if(e)e.value=''});['buscaModalidade','filtroArea','filtroContrato','filtroPcd','filtroEscolaridade','filtroSalario','filtroCandidatura','ordenarVagas'].forEach(id=>{const e=$('#'+id);if(e)e.value=''});renderizarVagasPortal()}function registrarVagaVisualizadaEM(id){
- if(!id)return;let hist=[];try{hist=JSON.parse(localStorage.getItem('empregaMaisVagasVisualizadas')||'[]')}catch(e){}
+ if(!id)return;
+ let hist=[];
+ try{hist=JSON.parse(localStorage.getItem('empregaMaisVagasVisualizadas')||'[]')}catch(_){}
  hist=Array.isArray(hist)?hist.filter(x=>String(x.id)!==String(id)):[];
- hist.unshift({id:String(id),vistoEm:new Date().toISOString()});localStorage.setItem('empregaMaisVagasVisualizadas',JSON.stringify(hist.slice(0,20)));
+ hist.unshift({id:String(id),vistoEm:new Date().toISOString()});
+ try{localStorage.setItem('empregaMaisVagasVisualizadas',JSON.stringify(hist.slice(0,20)))}catch(_){}
 }
 function vagasVisualizadasEM(){
  let hist=[];try{hist=JSON.parse(localStorage.getItem('empregaMaisVagasVisualizadas')||'[]')}catch(e){}
@@ -680,7 +683,44 @@ function renderVagasVisualizadasCandidatoEM(){
  const box=document.getElementById('vagasVisualizadasCandidatoEM');if(!box)return;const itens=vagasVisualizadasEM().slice(0,5);
  box.innerHTML=itens.length?itens.map(({v,h})=>'<article onclick="abrirVaga(\''+v.id+'\')"><div><strong>'+esc(tituloVaga(v))+'</strong><span>'+esc(v.confidencial?'Empresa confidencial':(v.empresa||'Empresa'))+' · '+esc(v.cidade||'Local não informado')+(v.estado?' - '+esc(v.estado):'')+'</span></div><small>Visto recentemente</small><button type="button">Ver vaga →</button></article>').join(''):'<div class="cand-vistas-vazio"><strong>Nenhuma vaga visualizada ainda</strong><span>As vagas que você abrir aparecerão automaticamente aqui.</span></div>';
 }
-function abrirVaga(id){registrarVagaVisualizadaEM(id);sessionStorage.setItem('vagaAtual',id);irPara('vaga');setTimeout(solicitarLocalizacaoCandidatoEM,60);setTimeout(renderVagasVisualizadasCandidatoEM,80)}
+async function abrirVaga(id){
+ id=String(id||'').trim();
+ if(!id)return;
+ registrarVagaVisualizadaEM(id);
+ sessionStorage.setItem('vagaAtual',id);
+
+ let atual=null;
+ try{atual=typeof vagaAtual==='function'?vagaAtual():null}catch(_){}
+ if(!atual){
+   try{
+     const rows=await sbJsonEM(
+       EMPREGAMAIS_SUPABASE_URL+'/rest/v1/vagas?select=*&id=eq.'+encodeURIComponent(id)+'&limit=1',
+       {method:'GET',headers:Object.assign(sbHeadersEM(),{'Cache-Control':'no-cache','Pragma':'no-cache'}),cache:'no-store'}
+     );
+     const remota=Array.isArray(rows)?rows[0]:null;
+     if(remota){
+       const normalizada=sbMapVagaEM(remota);
+       if(normalizada){
+         const mapa=new Map((Array.isArray(sbVagasCacheEM)?sbVagasCacheEM:[]).filter(Boolean).map(v=>[String(v.id),v]));
+         mapa.set(String(normalizada.id),normalizada);
+         sbVagasCacheEM=[...mapa.values()];
+       }
+     }
+   }catch(e){
+     console.warn('+ Empregos: não foi possível carregar a vaga selecionada diretamente.',e);
+   }
+ }
+
+ const encontrada=typeof vagaAtual==='function'?vagaAtual():null;
+ if(!encontrada){
+   console.error('+ Empregos: vaga selecionada não encontrada.',id);
+   return;
+ }
+
+ irPara('vaga');
+ setTimeout(solicitarLocalizacaoCandidatoEM,60);
+ setTimeout(renderVagasVisualizadasCandidatoEM,80);
+}
 function abrirEmpresaPublica(cnpj){if(!cnpj)return;sessionStorage.setItem('empresaPublicaSelecionada',cnpj);irPara('empresa-publica')}
 function vagaAtual(){
  const id=String(sessionStorage.getItem('vagaAtual')||'');
@@ -2855,20 +2895,17 @@ body.recruta-modal-aberto{overflow:hidden!important}
     const consolidado=[...mapa.values()].filter(Boolean);
     sbVagasCacheEM=consolidado;
     try{
-      gravar('empregaMaisVagas',consolidado);
+      const leves=consolidado.map(v=>{
+        if(!v||typeof v!=='object')return v;
+        const x={...v};
+        if(typeof x.logo==='string'&&x.logo.startsWith('data:image/'))x.logo='';
+        if(typeof x.logoUrl==='string'&&x.logoUrl.startsWith('data:image/'))x.logoUrl='';
+        if(typeof x.empresaLogo==='string'&&x.empresaLogo.startsWith('data:image/'))x.empresaLogo='';
+        return x;
+      });
+      localStorage.setItem('empregaMaisVagas',JSON.stringify(leves));
     }catch(e){
-      console.warn('+ Empregos: armazenamento local cheio; mantendo vagas atualizadas em memória.',e);
-      try{
-        const leves=consolidado.map(v=>{
-          if(!v||typeof v!=='object')return v;
-          const x={...v};
-          if(typeof x.logo==='string'&&x.logo.startsWith('data:image/'))x.logo='';
-          if(typeof x.logoUrl==='string'&&x.logoUrl.startsWith('data:image/'))x.logoUrl='';
-          if(typeof x.empresaLogo==='string'&&x.empresaLogo.startsWith('data:image/'))x.empresaLogo='';
-          return x;
-        });
-        localStorage.setItem('empregaMaisVagas',JSON.stringify(leves));
-      }catch(_){}
+      console.warn('+ Empregos: cache local de vagas indisponível; usando memória.',e);
     }
     return consolidado;
   };
