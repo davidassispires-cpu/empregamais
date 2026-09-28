@@ -1774,14 +1774,14 @@ function coletarCurriculoOnlineEM(){
  const ex=[...document.querySelectorAll('#cvExperiencias .cv-repeat-item')].map(x=>({cargo:x.querySelector('.cv-exp-cargo')?.value||'',empresa:x.querySelector('.cv-exp-empresa')?.value||'',inicio:x.querySelector('.cv-exp-inicio')?.value||'',fim:x.querySelector('.cv-exp-fim')?.value||'',atual:!!x.querySelector('.cv-exp-atual')?.checked,atividades:x.querySelector('.cv-exp-ativ')?.value||''}));
  const fo=[...document.querySelectorAll('#cvFormacoes .cv-repeat-item')].map(x=>({curso:x.querySelector('.cv-for-curso')?.value||'',instituicao:x.querySelector('.cv-for-inst')?.value||'',status:x.querySelector('.cv-for-status')?.value||'',fim:x.querySelector('.cv-for-fim')?.value||''}));
  const cu=[...document.querySelectorAll('#cvCursos .cv-repeat-item')].map(x=>({nome:x.querySelector('.cv-cur-nome')?.value||'',instituicao:x.querySelector('.cv-cur-inst')?.value||'',carga:x.querySelector('.cv-cur-carga')?.value||'',conclusao:x.querySelector('.cv-cur-fim')?.value||''}));
- return {nome:cvVal('cvNome'),titulo:cvVal('cvTitulo'),email:cvVal('cvEmail'),telefone:cvVal('cvTelefone'),cep:cvVal('cvCep'),bairro:cvVal('cvBairro'),cidade:cvVal('cvCidade'),uf:cvVal('cvUf'),area:cvVal('cvArea'),objetivo:cvVal('cvObjetivo'),modalidades:[...document.querySelectorAll('.cv-modalidade-check:checked')].map(x=>x.value),pretensao:cvVal('cvPretensao'),resumo:cvVal('cvResumo'),cnh:cvVal('cvCnh'),categoriasCnh:[...document.querySelectorAll('.cv-cnh-check:checked')].map(x=>x.value),veiculo:cvVal('cvVeiculo'),tipoVeiculo:cvVal('cvTipoVeiculo'),regiaoMinhaCidade:document.getElementById('cvRegiaoMinhaCidade')?.checked!==false,cidadesProximas:!!document.getElementById('cvCidadesProximas')?.checked,viagens:!!document.getElementById('cvViagens')?.checked,mudanca:!!document.getElementById('cvMudanca')?.checked,competencias:cvVal('cvCompetencias'),idiomas:cvVal('cvIdiomas'),linkedin:cvVal('cvLinkedin'),portfolio:cvVal('cvPortfolio'),experiencias:ex,formacoes:fo,cursos:cu,atualizadoEm:new Date().toISOString()}
+ return {nome:cvVal('cvNome'),titulo:cvVal('cvTitulo'),email:cvVal('cvEmail'),telefone:cvVal('cvTelefone'),cep:cvVal('cvCep'),logradouro:cvVal('cvLogradouro'),bairro:cvVal('cvBairro'),cidade:cvVal('cvCidade'),uf:cvVal('cvUf'),area:cvVal('cvArea'),objetivo:cvVal('cvObjetivo'),modalidades:[...document.querySelectorAll('.cv-modalidade-check:checked')].map(x=>x.value),pretensao:cvVal('cvPretensao'),resumo:cvVal('cvResumo'),cnh:cvVal('cvCnh'),categoriasCnh:[...document.querySelectorAll('.cv-cnh-check:checked')].map(x=>x.value),veiculo:cvVal('cvVeiculo'),tipoVeiculo:cvVal('cvTipoVeiculo'),regiaoMinhaCidade:document.getElementById('cvRegiaoMinhaCidade')?.checked!==false,cidadesProximas:!!document.getElementById('cvCidadesProximas')?.checked,viagens:!!document.getElementById('cvViagens')?.checked,mudanca:!!document.getElementById('cvMudanca')?.checked,competencias:cvVal('cvCompetencias'),idiomas:cvVal('cvIdiomas'),linkedin:cvVal('cvLinkedin'),portfolio:cvVal('cvPortfolio'),experiencias:ex,formacoes:fo,cursos:cu,atualizadoEm:new Date().toISOString()}
 }
 function salvarCurriculoOnlineEM(e){if(e?.preventDefault)e.preventDefault();if(!document.getElementById('formCurriculoOnline'))return;const d=coletarCurriculoOnlineEM();gravar(chaveCurriculoOnlineEM(),d);const s=document.getElementById('cvSaveStatus');if(s)s.textContent='✓ Alterações salvas';const t=document.getElementById('cvSalvoEm');if(t)t.textContent='Salvo agora';atualizarPreviewCurriculoEM(d);atualizarProgressoCurriculoEM(d);return d}
 function salvarCurriculoOnlineManualEM(){const form=document.getElementById('formCurriculoOnline');if(!form)return;if(!validarObrigatoriosEM(form))return;const d=salvarCurriculoOnlineEM();const s=document.getElementById('cvSaveStatus');if(s)s.textContent='✓ Currículo online salvo';const t=document.getElementById('cvSalvoEm');if(t)t.textContent='Salvo agora';const btn=form.querySelector('.cv-savebar .btn');if(btn){const original=btn.textContent;btn.textContent='✓ Currículo salvo';btn.classList.add('cv-saved');setTimeout(()=>{btn.textContent=original;btn.classList.remove('cv-saved')},2200)}abrirSucessoCurriculoEM();return d}
 
 function carregarCurriculoOnlineEM(){
  const d=dadosCurriculoOnlineEM(),u=candidatoLogado()||{},p=u.perfil||{};const set=(id,v)=>{const e=document.getElementById(id);if(e)e.value=v||''};
- set('cvNome',d.nome||u.nome);set('cvTitulo',d.titulo||p.titulo);set('cvEmail',d.email||u.email||sessionStorage.getItem('candidatoEmail'));set('cvTelefone',d.telefone||u.telefone);set('cvCep',d.cep);set('cvBairro',d.bairro);set('cvCidade',d.cidade||u.cidade);set('cvUf',d.uf||p.uf);set('cvArea',d.area||p.area);set('cvObjetivo',d.objetivo||p.titulo);const mods=Array.isArray(d.modalidades)?d.modalidades:(d.modalidade?[d.modalidade]:(p.modalidade?[p.modalidade]:[]));document.querySelectorAll('.cv-modalidade-check').forEach(x=>x.checked=mods.includes(x.value));atualizarModalidadesCV(false);set('cvPretensao',d.pretensao||p.pretensao);set('cvResumo',d.resumo||p.resumo);set('cvCnh',d.cnh);const cats=Array.isArray(d.categoriasCnh)?d.categoriasCnh:(d.categoriaCnh?String(d.categoriaCnh).split(''):[]);document.querySelectorAll('.cv-cnh-check').forEach(x=>x.checked=cats.includes(x.value));atualizarCategoriasCnhCV(false);set('cvVeiculo',d.veiculo);set('cvTipoVeiculo',d.tipoVeiculo);const chk=(id,v)=>{const e=document.getElementById(id);if(e)e.checked=!!v};chk('cvRegiaoMinhaCidade',d.regiaoMinhaCidade!==false);chk('cvCidadesProximas',d.cidadesProximas);chk('cvViagens',d.viagens===true||d.viagens==='sim');chk('cvMudanca',d.mudanca);set('cvCompetencias',d.competencias||p.competencias);set('cvIdiomas',d.idiomas);alternarMobilidadeCV();set('cvLinkedin',d.linkedin||p.linkedin);set('cvPortfolio',d.portfolio||p.portfolio);
+ set('cvNome',d.nome||u.nome);set('cvTitulo',d.titulo||p.titulo);set('cvEmail',d.email||u.email||sessionStorage.getItem('candidatoEmail'));set('cvTelefone',d.telefone||u.telefone);set('cvCep',d.cep);set('cvLogradouro',d.logradouro);set('cvBairro',d.bairro);set('cvCidade',d.cidade||u.cidade);set('cvUf',d.uf||p.uf);set('cvArea',d.area||p.area);set('cvObjetivo',d.objetivo||p.titulo);const mods=Array.isArray(d.modalidades)?d.modalidades:(d.modalidade?[d.modalidade]:(p.modalidade?[p.modalidade]:[]));document.querySelectorAll('.cv-modalidade-check').forEach(x=>x.checked=mods.includes(x.value));atualizarModalidadesCV(false);set('cvPretensao',d.pretensao||p.pretensao);set('cvResumo',d.resumo||p.resumo);set('cvCnh',d.cnh);const cats=Array.isArray(d.categoriasCnh)?d.categoriasCnh:(d.categoriaCnh?String(d.categoriaCnh).split(''):[]);document.querySelectorAll('.cv-cnh-check').forEach(x=>x.checked=cats.includes(x.value));atualizarCategoriasCnhCV(false);set('cvVeiculo',d.veiculo);set('cvTipoVeiculo',d.tipoVeiculo);const chk=(id,v)=>{const e=document.getElementById(id);if(e)e.checked=!!v};chk('cvRegiaoMinhaCidade',d.regiaoMinhaCidade!==false);chk('cvCidadesProximas',d.cidadesProximas);chk('cvViagens',d.viagens===true||d.viagens==='sim');chk('cvMudanca',d.mudanca);set('cvCompetencias',d.competencias||p.competencias);set('cvIdiomas',d.idiomas);alternarMobilidadeCV();set('cvLinkedin',d.linkedin||p.linkedin);set('cvPortfolio',d.portfolio||p.portfolio);
  const ex=document.getElementById('cvExperiencias'),fo=document.getElementById('cvFormacoes'),cu=document.getElementById('cvCursos');if(ex){ex.innerHTML='';(d.experiencias?.length?d.experiencias:[{}]).forEach(adicionarExperienciaCV)}if(fo){fo.innerHTML='';(d.formacoes?.length?d.formacoes:[{}]).forEach(adicionarFormacaoCV)}if(cu){cu.innerHTML='';(d.cursos?.length?d.cursos:[]).forEach(adicionarCursoCV)}
  atualizarCidadeRegiaoCV();document.querySelectorAll('#formCurriculoOnline input,#formCurriculoOnline textarea,#formCurriculoOnline select').forEach(x=>{if(!x.dataset.cvbind){x.addEventListener('input',()=>{clearTimeout(window.cvAutoSave);window.cvAutoSave=setTimeout(salvarCurriculoOnlineEM,450)});x.dataset.cvbind='1'}});const atual=coletarCurriculoOnlineEM();atualizarPreviewCurriculoEM(atual);atualizarProgressoCurriculoEM(atual)
 }
@@ -1802,8 +1802,8 @@ async function buscarCepCurriculoEM(){
  const cep=nums(cvVal('cvCep')),aj=document.getElementById('cvCepAjuda');if(cep.length!==8){if(aj){aj.textContent='Informe um CEP com 8 dígitos.';aj.classList.add('erro')}return}
  if(aj){aj.textContent='Buscando endereço...';aj.classList.remove('erro')}
  try{const res=await fetch('https://viacep.com.br/ws/'+cep+'/json/');if(!res.ok)throw 0;const d=await res.json();if(d.erro)throw 0;
- const bairro=document.getElementById('cvBairro'),cidade=document.getElementById('cvCidade'),uf=document.getElementById('cvUf');
- if(d.bairro&&bairro)bairro.value=d.bairro;if(d.localidade&&cidade)cidade.value=d.localidade;if(d.uf&&uf)uf.value=d.uf;
+ const logradouro=document.getElementById('cvLogradouro'),bairro=document.getElementById('cvBairro'),cidade=document.getElementById('cvCidade'),uf=document.getElementById('cvUf');
+ if(d.logradouro&&logradouro)logradouro.value=d.logradouro;if(d.bairro&&bairro)bairro.value=d.bairro;if(d.localidade&&cidade)cidade.value=d.localidade;if(d.uf&&uf)uf.value=d.uf;
  const geral=!d.bairro;if(bairro)bairro.readOnly=!geral;if(cidade)cidade.readOnly=false;if(uf)uf.readOnly=false;
  atualizarCidadeRegiaoCV();if(aj){aj.textContent=geral?'CEP geral localizado. Preencha o bairro manualmente e confira cidade/UF.':'Endereço localizado. Bairro, cidade e UF preenchidos automaticamente.';aj.classList.remove('erro')}
  salvarCurriculoOnlineEM();
@@ -4184,4 +4184,158 @@ window.addEventListener('load',()=>setTimeout(concluirLoginGoogleEM,40));
     limparSessaoEmpregaiEM();
     history.replaceState({},'',location.pathname);
   }
+})();
+
+
+/* EMPREGAMAI-CURRICULO-EMPRESA-PRO-V2 */
+(function(){
+  function enderecoCurriculoEmpresaEM(o,p){
+    o=o||{};p=p||{};
+    const logradouro=String(o.logradouro||p.logradouro||'').trim();
+    const bairro=String(o.bairro||p.bairro||'').trim();
+    const cidade=String(o.cidade||p.cidade||'').trim();
+    const uf=String(o.uf||p.uf||'').trim().toUpperCase();
+    const cep=String(o.cep||p.cep||'').trim();
+
+    const local=[cidade,uf].filter(Boolean).join(' - ');
+    const partes=[];
+    if(logradouro)partes.push(logradouro);
+    if(bairro)partes.push(bairro);
+    if(local)partes.push(local);
+    if(cep)partes.push('CEP '+cep);
+
+    return partes.join(' · ');
+  }
+
+  abrirCurriculoFormatadoEM=function(id){
+    const c=candidaturas().find(x=>x.id===id);
+    if(!c)return;
+
+    registrarVisualizacaoCurriculoEM(c);
+
+    const o=c.curriculoOrigem==='online'?(c.curriculo||{}):{};
+    const p=c.perfilProfissional||{};
+    const nome=o.nome||c.candidato||'Candidato';
+    const titulo=o.titulo||p.titulo||o.objetivo||'Perfil profissional';
+    const email=o.email||c.email||'';
+    const telefone=o.telefone||c.telefone||'';
+    const endereco=enderecoCurriculoEmpresaEM(o,p);
+    const exp=Array.isArray(o.experiencias)?o.experiencias:[];
+    const form=Array.isArray(o.formacoes)?o.formacoes:[];
+    const cursos=Array.isArray(o.cursos)?o.cursos:[];
+    const competencias=String(o.competencias||p.competencias||'')
+      .split(/[,;\n]+/).map(x=>x.trim()).filter(Boolean);
+    const idiomas=String(o.idiomas||'').trim();
+
+    const secTexto=(tituloSec,valor)=>{
+      const v=String(valor||'').trim();
+      return v?'<section class="cv-pro-section"><h2>'+esc(tituloSec)+'</h2><p>'+esc(v)+'</p></section>':'';
+    };
+
+    const experiencias=exp.length
+      ?'<section class="cv-pro-section"><h2>Experiência profissional</h2>'+
+       exp.map(x=>'<article class="cv-pro-item">'+
+         '<div class="cv-pro-item-head"><div><h3>'+esc(x.cargo||'Experiência profissional')+'</h3><strong>'+esc(x.empresa||'')+'</strong></div>'+
+         '<span>'+esc(x.inicio||'')+(x.atual?' - Atual':x.fim?' - '+esc(x.fim):'')+'</span></div>'+
+         (x.atividades?'<p>'+esc(x.atividades)+'</p>':'')+
+       '</article>').join('')+
+       '</section>'
+      :'';
+
+    const formacao=form.length
+      ?'<section class="cv-pro-side-section"><h2>Formação</h2>'+
+       form.map(x=>'<article><strong>'+esc(x.curso||x.formacao||'Formação')+'</strong>'+
+         (x.instituicao?'<span>'+esc(x.instituicao)+'</span>':'')+
+         ((x.inicio||x.fim||x.status)?'<small>'+esc([x.inicio,x.fim||x.status].filter(Boolean).join(' - '))+'</small>':'')+
+       '</article>').join('')+
+       '</section>'
+      :'';
+
+    const cursosHtml=cursos.length
+      ?'<section class="cv-pro-side-section"><h2>Cursos e qualificações</h2>'+
+       cursos.map(x=>'<article><strong>'+esc(x.nome||x.curso||'Curso')+'</strong>'+
+         (x.instituicao?'<span>'+esc(x.instituicao)+'</span>':'')+
+         ((x.carga||x.conclusao)?'<small>'+esc([x.carga,x.conclusao].filter(Boolean).join(' · '))+'</small>':'')+
+       '</article>').join('')+
+       '</section>'
+      :'';
+
+    const competenciasHtml=competencias.length
+      ?'<section class="cv-pro-side-section"><h2>Competências</h2><div class="cv-pro-tags">'+
+       competencias.map(x=>'<span>'+esc(x)+'</span>').join('')+
+       '</div></section>'
+      :'';
+
+    const idiomasHtml=idiomas
+      ?'<section class="cv-pro-side-section"><h2>Idiomas</h2><p>'+esc(idiomas)+'</p></section>'
+      :'';
+
+    const contato=[
+      email?'<span><b>E-mail</b>'+esc(email)+'</span>':'',
+      telefone?'<span><b>Telefone</b>'+esc(telefone)+'</span>':'',
+      endereco?'<span class="endereco"><b>Endereço</b>'+esc(endereco)+'</span>':''
+    ].filter(Boolean).join('');
+
+    const folha=
+      '<header class="cv-pro-header">'+
+        '<div class="cv-pro-brand"><span>EMPREGAÍ</span><small>Currículo profissional</small></div>'+
+        '<div class="cv-pro-ident"><h1>'+esc(nome)+'</h1><h3>'+esc(titulo)+'</h3></div>'+
+        '<div class="cv-pro-contato">'+contato+'</div>'+
+      '</header>'+
+      '<div class="cv-pro-layout">'+
+        '<aside class="cv-pro-side">'+
+          formacao+
+          cursosHtml+
+          competenciasHtml+
+          idiomasHtml+
+        '</aside>'+
+        '<main class="cv-pro-main">'+
+          secTexto('Objetivo profissional',o.objetivo)+
+          secTexto('Resumo profissional',o.resumo||p.resumo)+
+          experiencias+
+        '</main>'+
+      '</div>'+
+      '<footer class="cv-pro-footer"><span>Currículo gerado pelo Empregaí</span><span>Dados fornecidos pelo candidato</span></footer>';
+
+    const w=window.open('','_blank');
+    if(!w){alert('Permita pop-ups para visualizar o currículo.');return}
+
+    w.document.write(
+      '<!doctype html><html><head><meta charset="utf-8">'+
+      '<meta name="viewport" content="width=device-width,initial-scale=1">'+
+      '<title>Currículo - '+esc(nome)+'</title>'+
+      '<link rel="preconnect" href="https://fonts.googleapis.com">'+
+      '<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>'+
+      '<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">'+
+      '<style>'+
+      '@page{size:A4;margin:0}'+
+      '*{box-sizing:border-box}'+
+      'html,body{margin:0;padding:0}'+
+      'body{background:#e9eef2;color:#273845;font-family:"Montserrat",Arial,sans-serif;-webkit-print-color-adjust:exact;print-color-adjust:exact}'+
+      '.bar{position:sticky;top:0;z-index:20;display:flex;justify-content:space-between;align-items:center;gap:16px;padding:12px 22px;background:#123e5d;color:#fff;font-family:"Montserrat",Arial,sans-serif}'+
+      '.bar strong{font-size:13px;font-weight:700}.bar button{border:0;border-radius:9px;background:#fff;color:#123e5d;padding:10px 15px;font-family:"Montserrat",Arial,sans-serif;font-size:12px;font-weight:700;cursor:pointer}'+
+      '.page{width:210mm;min-height:297mm;margin:22px auto;background:#fff;box-shadow:0 10px 35px rgba(22,49,67,.15);overflow:hidden}'+
+      '.cv-pro-header{background:#123e5d;color:#fff;padding:18mm 17mm 10mm}'+
+      '.cv-pro-brand{display:flex;align-items:center;justify-content:space-between;margin-bottom:10mm;padding-bottom:5mm;border-bottom:1px solid rgba(255,255,255,.22)}'+
+      '.cv-pro-brand span{font-size:11px;font-weight:800;letter-spacing:.17em}.cv-pro-brand small{font-size:9px;font-weight:500;opacity:.78}'+
+      '.cv-pro-ident h1{margin:0;font-size:27px;line-height:1.12;font-weight:800;letter-spacing:-.03em}.cv-pro-ident h3{margin:5px 0 0;font-size:13px;font-weight:500;color:#cfe9f4}'+
+      '.cv-pro-contato{display:grid;grid-template-columns:1fr 1fr;gap:7px 18px;margin-top:9mm;padding-top:5mm;border-top:1px solid rgba(255,255,255,.16)}'+
+      '.cv-pro-contato span{display:flex;flex-direction:column;gap:2px;font-size:9.5px;line-height:1.4;color:#f4fbff;min-width:0}.cv-pro-contato span.endereco{grid-column:1/-1}.cv-pro-contato b{font-size:7.5px;letter-spacing:.09em;text-transform:uppercase;color:#94cbe1;font-weight:700}'+
+      '.cv-pro-layout{display:grid;grid-template-columns:62mm 1fr;min-height:205mm}'+
+      '.cv-pro-side{background:#f3f7f9;padding:11mm 9mm 12mm 17mm;border-right:1px solid #dfe9ee}.cv-pro-main{padding:11mm 17mm 12mm 12mm}'+
+      '.cv-pro-section{margin:0 0 9mm}.cv-pro-section h2,.cv-pro-side-section h2{margin:0 0 5mm;color:#176f86;font-size:10px;line-height:1.2;font-weight:800;text-transform:uppercase;letter-spacing:.09em}'+
+      '.cv-pro-section h2{padding-bottom:3mm;border-bottom:1px solid #d7e2e8}.cv-pro-section>p{margin:0;color:#405461;font-size:9.4px;line-height:1.72;text-align:justify}'+
+      '.cv-pro-item{margin:0 0 7mm}.cv-pro-item:last-child{margin-bottom:0}.cv-pro-item-head{display:flex;justify-content:space-between;gap:12px;align-items:flex-start}.cv-pro-item h3{margin:0;color:#213d4f;font-size:10.4px;font-weight:700}.cv-pro-item strong{display:block;margin-top:2px;color:#527083;font-size:8.8px;font-weight:600}.cv-pro-item-head>span{white-space:nowrap;color:#78909d;font-size:8px;font-weight:600}.cv-pro-item p{margin:3mm 0 0;color:#4d606c;font-size:8.9px;line-height:1.62;text-align:justify}'+
+      '.cv-pro-side-section{margin:0 0 8mm}.cv-pro-side-section article{margin:0 0 4.5mm}.cv-pro-side-section article strong{display:block;color:#263f50;font-size:9px;line-height:1.4;font-weight:700}.cv-pro-side-section article span,.cv-pro-side-section article small{display:block;margin-top:1.5px;color:#687d89;font-size:7.9px;line-height:1.45}.cv-pro-side-section p{margin:0;color:#536874;font-size:8.6px;line-height:1.55}'+
+      '.cv-pro-tags{display:flex;flex-wrap:wrap;gap:4px}.cv-pro-tags span{display:inline-flex;padding:5px 7px;border:1px solid #c8dce5;border-radius:999px;background:#fff;color:#3e6072;font-size:7.5px;font-weight:600}'+
+      '.cv-pro-footer{display:flex;justify-content:space-between;gap:20px;padding:5mm 17mm;border-top:1px solid #e2eaee;color:#83949e;font-size:7.5px;font-weight:500}'+
+      '@media print{body{background:#fff}.bar{display:none}.page{width:210mm;min-height:297mm;margin:0;box-shadow:none}.cv-pro-section,.cv-pro-item,.cv-pro-side-section{break-inside:avoid}}'+
+      '</style></head><body>'+
+      '<div class="bar"><strong>Currículo profissional · Empregaí</strong><button onclick="window.print()">Baixar / Salvar em PDF</button></div>'+
+      '<main class="page">'+folha+'</main>'+
+      '</body></html>'
+    );
+
+    w.document.close();
+  };
 })();
