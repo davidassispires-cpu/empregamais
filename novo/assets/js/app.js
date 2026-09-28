@@ -1443,7 +1443,7 @@ function vagasDestaqueOrdenadasEM(){
   .sort((a,b)=>new Date(b.criadoEm||b.dataPublicacao||b.data||0)-new Date(a.criadoEm||a.dataPublicacao||a.data||0))
   .slice(0,8);
 }
-function quantidadeDestaquesVisiveisEM(){return window.innerWidth<=700?1:window.innerWidth<=1050?2:3}
+function quantidadeDestaquesVisiveisEM(){return window.innerWidth<=700?1:window.innerWidth<=1050?2:4}
 function renderDestaquesEM(lista){
  const el=document.getElementById('listaDestaques');if(!el)return;
  const arr=Array.isArray(lista)?lista:[],total=arr.length,qtd=quantidadeDestaquesVisiveisEM();
@@ -1507,8 +1507,11 @@ function renderFaixaDestaquesEM(lista){
 }
 function moverFaixaDestaquesEM(dir){
  const todas=vagasDestaqueOrdenadasEM();
- const restantes=todas.slice(Math.min(quantidadeDestaquesVisiveisEM(),todas.length));if(restantes.length<2)return;
- indiceFaixaDestaquesEM=(indiceFaixaDestaquesEM+dir+restantes.length)%restantes.length;renderFaixaDestaquesEM(todas);
+ const principais=[];for(let i=0;i<Math.min(quantidadeDestaquesVisiveisEM(),todas.length);i++)principais.push(String(todas[(indiceDestaquesEM+i)%todas.length]?.id||''));
+ const restantes=todas.filter(v=>!principais.includes(String(v.id)));
+ if(restantes.length<2)return;
+ indiceFaixaDestaquesEM=(indiceFaixaDestaquesEM+dir+restantes.length)%restantes.length;
+ renderFaixaDestaquesEM(todas);
 }
 
 (function(){let timer=null,pausado=false;function iniciar(){clearInterval(timer);timer=setInterval(function(){const el=document.getElementById('listaDestaques');if(!el||pausado)return;const total=vagasDestaqueOrdenadasEM().length;if(total>quantidadeDestaquesVisiveisEM())moverDestaques(1)},4500)}document.addEventListener('mouseover',function(e){if(e.target.closest&&e.target.closest('#listaDestaques'))pausado=true});document.addEventListener('mouseout',function(e){if(e.target.closest&&e.target.closest('#listaDestaques'))pausado=false});iniciar()})();
@@ -3643,3 +3646,33 @@ function bindCadastroEmpresaV4EM(){
 }
 document.addEventListener('DOMContentLoaded',bindCadastroEmpresaV4EM);
 window.addEventListener('load',()=>setTimeout(bindCadastroEmpresaV4EM,50));
+
+
+/* EMPREGAMAI-DESTAQUES-QUADRADOS-V1 */
+(function(){
+ const st=document.createElement('style');
+ st.id='estilosDestaquesQuadradosV1';
+ st.textContent=
+ '#pagina-home #listaDestaques{display:grid!important;grid-template-columns:repeat(4,minmax(0,1fr))!important;gap:14px!important;align-items:stretch!important}'+
+ '#pagina-home #listaDestaques .portal-vaga-nova{aspect-ratio:1/1!important;height:auto!important;min-height:0!important;max-height:none!important;padding:16px!important;display:flex!important;flex-direction:column!important;overflow:hidden!important}'+
+ '#pagina-home #listaDestaques .vaga-identidade{flex:0 0 auto!important;min-height:88px!important;margin:0 0 10px!important;grid-template-columns:72px minmax(0,1fr)!important;gap:11px!important}'+
+ '#pagina-home #listaDestaques .vaga-logo{width:72px!important;height:72px!important;min-width:72px!important;padding:6px!important}'+
+ '#pagina-home #listaDestaques .vaga-identidade h3,#pagina-home #listaDestaques .vaga-copy h3{font-size:18px!important;line-height:1.08!important;-webkit-line-clamp:2!important}'+
+ '#pagina-home #listaDestaques .vaga-identidade p{font-size:10.5px!important;line-height:1.2!important}'+
+ '#pagina-home #listaDestaques .vaga-selos{gap:4px!important}'+
+ '#pagina-home #listaDestaques .vaga-selo{font-size:8.5px!important;min-height:22px!important;height:22px!important;padding:0 7px!important;line-height:20px!important}'+
+ '#pagina-home #listaDestaques .vaga-meta{flex:0 0 auto!important;margin:0 0 8px!important;gap:5px!important}'+
+ '#pagina-home #listaDestaques .vaga-meta span{font-size:8.5px!important;padding:5px 7px!important}'+
+ '#pagina-home #listaDestaques .vaga-resumo-area{flex:1 1 auto!important;min-height:0!important;margin-top:2px!important;overflow:hidden!important}'+
+ '#pagina-home #listaDestaques .vaga-resumo-area .vaga-resumo{display:-webkit-box!important;-webkit-line-clamp:2!important;-webkit-box-orient:vertical!important;overflow:hidden!important;font-size:10.5px!important;line-height:1.38!important;max-height:2.76em!important}'+
+ '#pagina-home #listaDestaques .vaga-salario-data{position:static!important;width:100%!important;height:auto!important;min-height:0!important;margin:8px 0 0!important;display:flex!important;justify-content:flex-end!important}'+
+ '#pagina-home #listaDestaques .vaga-card-rodape{flex:0 0 auto!important;height:auto!important;min-height:58px!important;margin-top:auto!important;padding-top:10px!important;display:grid!important;grid-template-columns:minmax(0,1fr) 108px!important;align-items:end!important;gap:10px!important;border-top:1px solid #e7eef2!important}'+
+ '#pagina-home #listaDestaques .vaga-rodape-salario small{font-size:8.5px!important}'+
+ '#pagina-home #listaDestaques .vaga-rodape-salario .salario-card{font-size:16px!important;line-height:1.1!important}'+
+ '#pagina-home #listaDestaques .vaga-card-rodape .data-card-em{grid-column:1/-1!important;grid-row:1!important;justify-self:end!important;margin:0!important;font-size:8.5px!important;color:#71889a!important}'+
+ '#pagina-home #listaDestaques .vaga-ver-btn{grid-column:2!important;grid-row:2!important;width:108px!important;height:38px!important;min-height:38px!important}'+
+ '#pagina-home .destaques-wrap>.destaque-nav{display:grid!important;place-items:center!important}'+
+ '@media(max-width:1050px){#pagina-home #listaDestaques{grid-template-columns:repeat(2,minmax(0,1fr))!important}#pagina-home #listaDestaques .portal-vaga-nova{aspect-ratio:auto!important;min-height:390px!important}}'+
+ '@media(max-width:700px){#pagina-home #listaDestaques{grid-template-columns:1fr!important}#pagina-home #listaDestaques .portal-vaga-nova{aspect-ratio:auto!important;min-height:0!important;height:auto!important}#pagina-home .destaques-wrap>.destaque-nav{display:none!important}}';
+ document.head.appendChild(st);
+})();
