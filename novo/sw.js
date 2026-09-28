@@ -105,7 +105,7 @@ const EMPREGAMAIS_DESTAQUES_FINAL_FIX=`
       const lista=listaDestaquesEstavelEM();
       if(typeof renderDestaquesEM==='function')renderDestaquesEM(lista);
       if(typeof renderFaixaDestaquesEM==='function')renderFaixaDestaquesEM(lista);
-    }catch(e){console.warn('EmpregaMais: falha ao estabilizar destaques.',e)}
+    }catch(e){console.warn('+ Empregos: falha ao estabilizar destaques.',e)}
   }
 
   if(document.readyState==='loading'){
@@ -160,7 +160,7 @@ self.addEventListener('fetch',e=>{
 self.addEventListener('push',e=>{
   let d={};
   try{d=e.data?e.data.json():{}}catch(_){d={body:e.data?.text?.()||''}}
-  e.waitUntil(self.registration.showNotification(d.title||'EmpregaMais',{
+  e.waitUntil(self.registration.showNotification(d.title||'+ Empregos',{
     body:d.body||'Você tem uma nova atualização.',
     icon:d.icon||'./assets/img/icon-192.png',
     badge:d.badge||'./assets/img/icon-192.png',
