@@ -4664,8 +4664,8 @@ svg text{
         <h1><span>+</span>Emprego <b>Conecta</b></h1>
         <p>Seu portal continua sendo a fonte oficial. O +Empregos sincroniza, publica, atualiza e encerra suas vagas automaticamente para ampliar o alcance sem trabalho manual.</p>
         <div class="conecta-hero-actions-em">
-          <button type="button" class="conecta-primary-em" onclick="document.getElementById('conecta-planos')?.scrollIntoView({behavior:'smooth'})">Ver planos Conecta</button>
-          <button type="button" class="conecta-secondary-em" onclick="document.getElementById('conecta-como-funciona')?.scrollIntoView({behavior:'smooth'})">Entender a integração</button>
+          <button type="button" class="conecta-primary-em" onclick="document.getElementById('conecta-planos')?.scrollIntoView({behavior:'smooth'})">Ver planos e contratar</button>
+          <button type="button" class="conecta-secondary-em" onclick="document.getElementById('conecta-integracao')?.scrollIntoView({behavior:'smooth'})">Como integrar</button>
         </div>
         <div class="conecta-trust-em">
           <span>✓ Publicação automática</span>
@@ -4701,7 +4701,16 @@ svg text{
     </div>
   </div>
 
-  <div class="conecta-shell-em">
+  <div class="conecta-tabs-wrap-em">
+    <div class="conecta-tabs-em">
+      <button type="button" onclick="document.getElementById('conecta-visao')?.scrollIntoView({behavior:'smooth'})">Visão geral</button>
+      <button type="button" onclick="document.getElementById('conecta-planos')?.scrollIntoView({behavior:'smooth'})">Planos</button>
+      <button type="button" onclick="document.getElementById('conecta-integracao')?.scrollIntoView({behavior:'smooth'})">Integração</button>
+      <button type="button" onclick="document.getElementById('conecta-atracao')?.scrollIntoView({behavior:'smooth'})">Atração de candidatos</button>
+    </div>
+  </div>
+
+  <div class="conecta-shell-em" id="conecta-visao">
     <section class="conecta-benefits-em">
       <article>
         <i><svg viewBox="0 0 24 24"><path d="M20 7h-6V1M4 17h6v6M19 12a7 7 0 0 0-12-5l-3 3M5 12a7 7 0 0 0 12 5l3-3"/></svg></i>
@@ -4749,6 +4758,24 @@ svg text{
       </div>
     </section>
 
+    <section class="conecta-integracao-self-em" id="conecta-integracao">
+      <div class="conecta-section-head-em">
+        <span>INTEGRAÇÃO SELF-SERVICE</span>
+        <h2>Contratou, configurou e começou a sincronizar.</h2>
+        <p>A configuração é feita pela própria empresa dentro do painel. Nossa plataforma orienta cada etapa e valida a conexão antes de iniciar a publicação automática.</p>
+      </div>
+      <div class="conecta-self-grid-em">
+        <article><b>01</b><h3>Escolha e contrate o plano</h3><p>Selecione Start, Pro ou Enterprise conforme o volume de vagas e os recursos necessários.</p></article>
+        <article><b>02</b><h3>Informe a fonte oficial</h3><p>Cadastre a origem das vagas e os dados necessários para a sincronização técnica compatível com sua estrutura.</p></article>
+        <article><b>03</b><h3>Valide a conexão</h3><p>O sistema faz a leitura inicial, identifica os campos da vaga e apresenta uma prévia para conferência.</p></article>
+        <article><b>04</b><h3>Ative a divulgação</h3><p>Após a validação, as oportunidades passam a ser publicadas, atualizadas e encerradas automaticamente.</p></article>
+      </div>
+      <div class="conecta-self-cta-em">
+        <div><strong>Sem implantação manual para começar.</strong><span>A empresa acompanha o status da integração, o limite do plano e as vagas sincronizadas diretamente no painel.</span></div>
+        <button type="button" onclick="document.getElementById('conecta-planos')?.scrollIntoView({behavior:'smooth'})">Escolher meu plano</button>
+      </div>
+    </section>
+
     <section class="conecta-audience-em">
       <div>
         <span>FEITO PARA ESCALAR</span>
@@ -4758,6 +4785,21 @@ svg text{
       <div class="conecta-audience-tags-em">
         <span>Portal de carreiras</span><span>ATS próprio</span><span>Consultorias de RH</span><span>Grandes redes</span><span>Operações nacionais</span><span>Alto volume de vagas</span>
       </div>
+    </section>
+
+    <section class="conecta-atracao-em" id="conecta-atracao">
+      <div class="conecta-section-head-em">
+        <span>ATRAÇÃO DE CANDIDATOS</span>
+        <h2>Não basta sincronizar a vaga. Ela precisa chegar às pessoas certas.</h2>
+        <p>O +Empregos amplia a distribuição das oportunidades e cria novos pontos de descoberta para candidatos que já estão buscando emprego.</p>
+      </div>
+      <div class="conecta-atracao-grid-em">
+        <article><i>01</i><h3>Busca e filtros do portal</h3><p>As vagas passam a aparecer nas pesquisas por cargo, cidade, modalidade, área e outros filtros utilizados pelos candidatos.</p></article>
+        <article><i>02</i><h3>Vagas recomendadas</h3><p>Oportunidades podem ganhar exposição em áreas de recomendação conforme localização, interesse e contexto de busca.</p></article>
+        <article><i>03</i><h3>Notificações e recorrência</h3><p>Candidatos cadastrados podem voltar ao portal por alertas e novas oportunidades relacionadas ao perfil de busca.</p></article>
+        <article><i>04</i><h3>Tráfego para o canal da empresa</h3><p>Depois do login, o candidato segue pelo canal definido na vaga: PDF por e-mail, WhatsApp ou link externo.</p></article>
+      </div>
+      <div class="conecta-atracao-note-em"><strong>Resultado mensurável</strong><span>Os planos acompanham visualizações e cliques; planos superiores acrescentam relatórios e indicadores mais detalhados.</span></div>
     </section>
 
     <section class="conecta-planos-preview-em" id="conecta-planos">
@@ -4783,7 +4825,7 @@ svg text{
             <li>Candidatura por PDF/e-mail, WhatsApp ou link externo</li>
             <li>Suporte padrão da integração</li>
           </ul>
-          <button type="button" onclick="irPara('contato')">Quero o Start</button>
+          <button type="button" onclick="sessionStorage.setItem('planoConectaPretendido','start');irPara('cadastro-empresa')">Contratar Start</button>
         </article>
 
         <article class="conecta-plan-card-em destaque">
@@ -4803,7 +4845,7 @@ svg text{
             <li>Indicadores avançados de cliques e redirecionamentos</li>
             <li>Suporte prioritário</li>
           </ul>
-          <button type="button" onclick="irPara('contato')">Quero o Pro</button>
+          <button type="button" onclick="sessionStorage.setItem('planoConectaPretendido','pro');irPara('cadastro-empresa')">Contratar Pro</button>
         </article>
 
         <article class="conecta-plan-card-em">
@@ -4822,20 +4864,20 @@ svg text{
             <li>Acompanhamento prioritário da integração</li>
             <li>Suporte dedicado à operação</li>
           </ul>
-          <button type="button" onclick="irPara('contato')">Quero o Enterprise</button>
+          <button type="button" onclick="sessionStorage.setItem('planoConectaPretendido','enterprise');irPara('cadastro-empresa')">Contratar Enterprise</button>
         </article>
       </div>
 
       <div class="conecta-upgrade-note-em">
         <div><b>Cresceu? Faça upgrade.</b><span>Start → Pro → Enterprise, mantendo a integração já configurada.</span></div>
         <div><b>Precisa de mais de 350 vagas?</b><span>Entre em contato para um plano personalizado de maior volume.</span></div>
-        <button type="button" onclick="irPara('contato')">Falar com a equipe</button>
+        <button type="button" onclick="irPara('contato')">Plano acima de 350 vagas</button>
       </div>
     </section>
 
     <section class="conecta-cta-em">
       <div><span>+EMPREGO CONECTA</span><h2>Seu portal de carreiras conectado a mais candidatos.</h2><p>Menos operação manual para o RH, mais distribuição para as vagas e uma integração que acompanha o crescimento da empresa.</p></div>
-      <button type="button" onclick="irPara('contato')">Solicitar integração →</button>
+      <button type="button" onclick="document.getElementById('conecta-planos')?.scrollIntoView({behavior:'smooth'})">Ver planos e começar →</button>
     </section>
   </div>
 </section><section class="pagina empresa-login-page" id="pagina-login-empresa">
