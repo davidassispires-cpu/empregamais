@@ -4215,3 +4215,110 @@ window.addEventListener('load',()=>setTimeout(concluirLoginGoogleEM,40));
 
   window.addEventListener('load',()=>setTimeout(aplicarConfirmacaoDesativarNotificacoesEM,200));
 })();
+
+
+/* EMPREGAMAI-LOGOUT-ROBUSTO-V4 */
+(function(){
+  async function executarLogoutEmpregaiEM(){
+    const tema=sessionStorage.getItem('temaEmpregaMais')||'';
+    const token=typeof sbTokenEM==='function'?sbTokenEM():'';
+
+    /* Marca logout antes de qualquer outra rotina do portal. */
+    localStorage.setItem('empregaMaisLogoutBloqueio','1');
+    sessionStorage.setItem('empregaMaisLogoutBloqueio','1');
+
+    /* Remove todas as chaves de autenticação conhecidas, inclusive variações antigas. */
+    const chavesFixas=[
+      'empregaMaisSupabaseAccessToken','empregaMaisSupabaseRefreshToken',
+      'empregaMaisPapel','empregaMaisPapelPersistido','empregaMaisGooglePapel',
+      'empresaSupabaseAuthUserId','empresaSupabaseUserId','empresaSupabaseEmpresaId',
+      'empresaUsuarioAdministrador','empresaCnpj','empresaNome',
+      'candidatoSupabaseUserId','candidatoEmail','candidatoNome',
+      'googleCandidatoPendente','googleEmpresaPendente','googleEmailPendente','googleNomePendente'
+    ];
+    try{
+      if(typeof EMPREGAMAIS_SB_TOKEN!=='undefined')chavesFixas.push(EMPREGAMAIS_SB_TOKEN);
+      if(typeof EMPREGAMAIS_SB_REFRESH!=='undefined')chavesFixas.push(EMPREGAMAIS_SB_REFRESH);
+    }catch(_){}
+
+    chavesFixas.forEach(k=>{
+      try{sessionStorage.removeItem(k)}catch(_){}
+      try{localStorage.removeItem(k)}catch(_){}
+    });
+
+    /* Varredura defensiva para tokens/chaves de sessão antigas do Empregaí. */
+    try{
+      for(let i=localStorage.length-1;i>=0;i--){
+        const k=localStorage.key(i)||'';
+        if(/empregaMais.*(token|papel|sessao|session|google)/i.test(k))localStorage.removeItem(k);
+      }
+    }catch(_){}
+    try{
+      sessionStorage.clear();
+    }catch(_){}
+
+    /* Reaplica o bloqueio depois do clear. */
+    try{sessionStorage.setItem('empregaMaisLogoutBloqueio','1')}catch(_){}
+    try{localStorage.setItem('empregaMaisLogoutBloqueio','1')}catch(_){}
+    if(tema)try{sessionStorage.setItem('temaEmpregaMais',tema)}catch(_){}
+
+    /* Tenta invalidar também no servidor, sem impedir a saída local. */
+    if(token){
+      try{
+        fetch(EMPREGAMAIS_SUPABASE_URL+'/auth/v1/logout?scope=global',{
+          method:'POST',
+          headers:sbHeadersEM(token),
+          keepalive:true
+        }).catch(()=>{});
+      }catch(_){}
+    }
+
+    /* Vai para a Home sem hash OAuth nem rota protegida. */
+    const destino=location.origin+location.pathname+'?logout=1';
+    location.replace(destino);
+  }
+
+  async function pedirLogoutEmpregaiEM(){
+    const ok=typeof window.confirmarAcaoEmpregaiEM==='function'
+      ?await window.confirmarAcaoEmpregaiEM({
+        titulo:'Sair da sua conta?',
+        texto:'Você será desconectado do Empregaí neste dispositivo.',
+        confirmarTexto:'Sim, sair',
+        cancelarTexto:'Cancelar',
+        perigo:false
+      })
+      :window.confirm('Deseja realmente sair da sua conta?');
+    if(!ok)return;
+    await executarLogoutEmpregaiEM();
+  }
+
+  /* Garante que chamadas antigas e inline onclick usem a mesma função. */
+  window.sair=pedirLogoutEmpregaiEM;
+  try{sair=pedirLogoutEmpregaiEM}catch(_){}
+
+  /* Captura botões antigos de logout que possam não estar ligados à função atual. */
+  document.addEventListener('click',function(ev){
+    const el=ev.target?.closest?.('button,a,[role="button"]');
+    if(!el)return;
+    const onclick=String(el.getAttribute('onclick')||'');
+    const txt=String(el.textContent||'').trim().toLowerCase();
+    const ehLogout=/\bsair\s*\(/i.test(onclick)||/^(sair|deslogar|logout)$/.test(txt);
+    if(!ehLogout)return;
+    ev.preventDefault();
+    ev.stopImmediatePropagation();
+    pedirLogoutEmpregaiEM();
+  },true);
+
+  /* Ao chegar da saída, força estado visitante antes das rotinas de restauração. */
+  if(new URLSearchParams(location.search).get('logout')==='1'){
+    try{
+      sessionStorage.removeItem('empregaMaisPapel');
+      sessionStorage.removeItem('candidatoEmail');
+      sessionStorage.removeItem('empresaCnpj');
+      localStorage.removeItem('empregaMaisPapelPersistido');
+      sessionStorage.setItem('empregaMaisLogoutBloqueio','1');
+      localStorage.setItem('empregaMaisLogoutBloqueio','1');
+    }catch(_){}
+    history.replaceState({},'',location.pathname);
+  }
+})();
