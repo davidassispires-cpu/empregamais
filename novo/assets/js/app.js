@@ -1370,9 +1370,11 @@ function renderDestaquesEM(lista){
  const el=document.getElementById('listaDestaques');if(!el)return;
  const arr=Array.isArray(lista)?lista:[],total=arr.length,qtd=quantidadeDestaquesVisiveisEM();
  if(window.innerWidth<=700){
-  el.innerHTML=arr.map(cardVagaDestaqueEM).join('');
-  el.dataset.quantidade=String(arr.length);
-  prepararDestaquesMobileEM(el,arr.length);
+  if(total&&indiceDestaquesEM>=total)indiceDestaquesEM=0;
+  if(indiceDestaquesEM<0)indiceDestaquesEM=Math.max(0,total-1);
+  el.innerHTML=total?cardVagaDestaqueEM(arr[indiceDestaquesEM]):'';
+  el.dataset.quantidade=String(total?1:0);
+  prepararDestaquesMobileEM(el,total);
   const faixa=document.getElementById('destaquesFaixaEM');if(faixa)faixa.classList.add('oculto');
   return;
  }
@@ -1383,14 +1385,18 @@ function renderDestaquesEM(lista){
  renderFaixaDestaquesEM(arr);
 }
 function prepararDestaquesMobileEM(el,total){
- let dots=document.querySelector('#pagina-home .destaques-mobile-dots');
- if(!dots){dots=document.createElement('div');dots.className='destaques-mobile-dots';el.parentNode.insertBefore(dots,el.nextSibling)}
+ const wrap=el.parentNode;if(!wrap)return;
+ let prev=wrap.querySelector('.destaques-mobile-seta.anterior');
+ let next=wrap.querySelector('.destaques-mobile-seta.proxima');
+ let dots=wrap.querySelector('.destaques-mobile-dots');
+ if(!prev){prev=document.createElement('button');prev.type='button';prev.className='destaques-mobile-seta anterior';prev.innerHTML='‹';prev.setAttribute('aria-label','Vaga em destaque anterior');wrap.appendChild(prev)}
+ if(!next){next=document.createElement('button');next.type='button';next.className='destaques-mobile-seta proxima';next.innerHTML='›';next.setAttribute('aria-label','Próxima vaga em destaque');wrap.appendChild(next)}
+ if(!dots){dots=document.createElement('div');dots.className='destaques-mobile-dots';wrap.appendChild(dots)}
+ prev.hidden=total<2;next.hidden=total<2;
+ prev.onclick=()=>moverDestaques(-1);next.onclick=()=>moverDestaques(1);
  const max=Math.min(total,8);
- dots.innerHTML=Array.from({length:max},(_,i)=>'<button type="button"'+(i===0?' class="ativo"':'')+' aria-label="Ir para vaga em destaque '+(i+1)+'"></button>').join('');
- const botoes=[...dots.querySelectorAll('button')];
- botoes.forEach((b,i)=>b.onclick=()=>{const card=el.children[i];if(card)el.scrollTo({left:card.offsetLeft-el.offsetLeft,behavior:'smooth'})});
- let raf=0;
- el.onscroll=()=>{cancelAnimationFrame(raf);raf=requestAnimationFrame(()=>{const cards=[...el.children];if(!cards.length)return;let atual=0,dist=Infinity;cards.forEach((c,i)=>{const d=Math.abs(c.offsetLeft-el.scrollLeft-el.offsetLeft);if(d<dist){dist=d;atual=i}});botoes.forEach((b,i)=>b.classList.toggle('ativo',i===atual))})};
+ dots.innerHTML=Array.from({length:max},(_,i)=>'<button type="button" class="destaques-mobile-ponto'+(i===indiceDestaquesEM?' ativo':'')+'" aria-label="Ir para vaga em destaque '+(i+1)+'"></button>').join('');
+ [...dots.querySelectorAll('.destaques-mobile-ponto')].forEach((b,i)=>b.onclick=()=>{indiceDestaquesEM=i;renderDestaquesEM(vagasDestaqueOrdenadasEM())});
 }
 function moverDestaques(dir){
  const el=document.getElementById('listaDestaques');if(!el)return;
@@ -3280,238 +3286,186 @@ renderizarCandidatosEmpresa=function(){
 })();
 
 
-/* EMPREGAI-CANDIDATO-MOBILE-RECOVERY-V1 */
+/* EMPREGAI-CANDIDATO-MOBILE-RECOVERY-V2 */
 (function(){
   function aplicarCorrecaoPainelCandidatoMobileEM(){
-    if(document.getElementById('empregai-candidato-mobile-recovery-v1'))return;
+    if(document.getElementById('empregai-candidato-mobile-recovery-v2'))return;
     const st=document.createElement('style');
-    st.id='empregai-candidato-mobile-recovery-v1';
-    st.textContent=`
-/* Recuperação responsiva do painel do candidato.
-   Mantém a identidade azul clara e elimina larguras herdadas que cortavam o mobile. */
-body.sessao-candidato{overflow-x:hidden!important}
-body.sessao-candidato #pagina-painel-candidato{
-  width:100%!important;max-width:100vw!important;min-width:0!important;
-  overflow-x:hidden!important;background:#f5faff!important;
-}
-body.sessao-candidato #pagina-painel-candidato,
-body.sessao-candidato #pagina-painel-candidato *{box-sizing:border-box!important}
-
+    st.id='empregai-candidato-mobile-recovery-v2';
+    st.textContent=\`
+/* Painel do candidato mobile canônico.
+   Não controla o cabeçalho global; somente o conteúdo do painel. */
 @media(max-width:760px){
-  /* Cabeçalho da conta logada: logo em cima, navegação/conta abaixo sem sobreposição */
-  body.sessao-candidato .topo,
-  body.tem-candidato .topo{height:auto!important;min-height:108px!important;overflow:visible!important}
-  body.sessao-candidato .topo-inner,
-  body.tem-candidato .topo-inner{
-    width:100%!important;max-width:100%!important;min-width:0!important;height:auto!important;min-height:108px!important;
-    margin:0 auto!important;padding:6px 12px 10px!important;
-    display:grid!important;grid-template-columns:minmax(0,1fr) minmax(0,1fr)!important;
-    grid-template-rows:50px 44px!important;gap:0 8px!important;align-items:center!important;
-    box-sizing:border-box!important;
+  #pagina-painel-candidato,
+  #pagina-painel-candidato *{box-sizing:border-box!important}
+
+  #pagina-painel-candidato{
+    width:100%!important;max-width:100%!important;min-width:0!important;
+    overflow-x:hidden!important;background:#f5faff!important
   }
-  body.sessao-candidato .topo .marca,
-  body.tem-candidato .topo .marca{
-    grid-column:1/-1!important;grid-row:1!important;justify-self:center!important;align-self:center!important;
-    width:max-content!important;max-width:100%!important;min-width:0!important;margin:0!important;overflow:visible!important;
-  }
-  body.sessao-candidato .topo .marca-nome,
-  body.tem-candidato .topo .marca-nome{
-    display:block!important;max-width:100%!important;font-size:23px!important;line-height:1!important;
-    white-space:nowrap!important;overflow:visible!important;
-  }
-  body.sessao-candidato .topo .marca-tagline,
-  body.tem-candidato .topo .marca-tagline{display:none!important}
-  body.sessao-candidato .menu-publico,
-  body.tem-candidato .menu-publico{
-    grid-column:1!important;grid-row:2!important;width:100%!important;max-width:100%!important;min-width:0!important;
-    margin:0!important;display:flex!important;align-items:center!important;justify-content:stretch!important;gap:0!important;
-  }
-  body.sessao-candidato .acoes,
-  body.tem-candidato .acoes{
-    grid-column:2!important;grid-row:2!important;width:100%!important;max-width:100%!important;min-width:0!important;
-    margin:0!important;display:flex!important;align-items:center!important;justify-content:flex-end!important;gap:0!important;
-  }
-  body.sessao-candidato .sessao-candidato-topo,
-  body.tem-candidato .sessao-candidato-topo{
-    width:100%!important;max-width:100%!important;min-width:0!important;margin:0!important;
-    display:flex!important;align-items:center!important;justify-content:flex-end!important;gap:6px!important;
-  }
-  body.sessao-candidato .sessao-conta-btn,
-  body.tem-candidato .sessao-conta-btn{
-    width:100%!important;max-width:100%!important;min-width:0!important;height:44px!important;min-height:44px!important;
-    padding:0 9px!important;border-radius:11px!important;overflow:hidden!important;
-  }
-  body.sessao-candidato #topoCandidatoNome,
-  body.tem-candidato #topoCandidatoNome{
-    display:block!important;min-width:0!important;max-width:100%!important;overflow:hidden!important;
-    text-overflow:ellipsis!important;white-space:nowrap!important;font-size:11px!important;
-  }
-  body.sessao-candidato .menu-publico button,
-  body.sessao-candidato .menu-publico a,
-  body.tem-candidato .menu-publico button,
-  body.tem-candidato .menu-publico a{
-    max-width:100%!important;min-width:0!important;white-space:nowrap!important;overflow:hidden!important;text-overflow:ellipsis!important;
+  #pagina-painel-candidato .cand-app-shell{
+    display:block!important;width:100%!important;max-width:100%!important;min-width:0!important;
+    margin:0!important;padding:0!important;overflow:visible!important
   }
 
-  /* Estrutura principal ocupa somente a largura real da tela */
-  body.sessao-candidato #pagina-painel-candidato .cand-app-shell{
-    display:block!important;width:100%!important;max-width:100%!important;min-width:0!important;
-    margin:0!important;padding:0!important;overflow:visible!important;
-  }
-  body.sessao-candidato #pagina-painel-candidato .cand-side{
+  #pagina-painel-candidato .cand-side{
     position:static!important;inset:auto!important;float:none!important;
     width:100%!important;max-width:100%!important;min-width:0!important;min-height:0!important;
     margin:0!important;padding:12px 14px 10px!important;
     border-right:0!important;border-bottom:1px solid #d7e9f5!important;
-    background:#fff!important;overflow:hidden!important;
+    background:#fff!important;overflow:hidden!important
   }
-  body.sessao-candidato #pagina-painel-candidato .cand-side-user{
-    width:100%!important;max-width:100%!important;min-width:0!important;margin:0!important;padding:0 2px 11px!important;
-    display:grid!important;grid-template-columns:48px minmax(0,1fr)!important;gap:10px!important;align-items:center!important;
+  #pagina-painel-candidato .cand-side-user{
+    width:100%!important;min-width:0!important;margin:0!important;padding:0 2px 11px!important;
+    display:grid!important;grid-template-columns:48px minmax(0,1fr)!important;gap:10px!important;align-items:center!important
   }
-  body.sessao-candidato #pagina-painel-candidato .cand-side-user>div{min-width:0!important}
-  body.sessao-candidato #pagina-painel-candidato .cand-side-user b,
-  body.sessao-candidato #pagina-painel-candidato .cand-side-user small,
-  body.sessao-candidato #pagina-painel-candidato .cand-side-user button{
-    max-width:100%!important;overflow:hidden!important;text-overflow:ellipsis!important;
+  #pagina-painel-candidato .cand-side-user>div{min-width:0!important}
+  #pagina-painel-candidato .cand-side-user b{font-size:15px!important}
+  #pagina-painel-candidato .cand-side-user small,
+  #pagina-painel-candidato .cand-side-user button{font-size:11px!important}
+  #pagina-painel-candidato .cand-side-user b,
+  #pagina-painel-candidato .cand-side-user small,
+  #pagina-painel-candidato .cand-side-user button{
+    max-width:100%!important;overflow:hidden!important;text-overflow:ellipsis!important;white-space:nowrap!important
   }
 
-  /* Em vez de faixa horizontal cortada, o menu vira grade 2xN */
-  body.sessao-candidato #pagina-painel-candidato .cand-side nav{
+  /* Todos os atalhos ficam visíveis; nada de faixa horizontal cortada. */
+  #pagina-painel-candidato .cand-side nav{
     width:100%!important;max-width:100%!important;min-width:0!important;
     display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;
     gap:8px!important;margin:0!important;padding:10px 0 4px!important;
-    overflow:visible!important;white-space:normal!important;
+    overflow:visible!important;white-space:normal!important
   }
-  body.sessao-candidato #pagina-painel-candidato .cand-side nav>button{
+  #pagina-painel-candidato .cand-side nav>button{
     width:100%!important;max-width:100%!important;min-width:0!important;
-    height:auto!important;min-height:44px!important;margin:0!important;padding:8px 9px!important;
+    height:auto!important;min-height:42px!important;margin:0!important;padding:7px 8px!important;
     display:flex!important;align-items:center!important;justify-content:center!important;gap:6px!important;
     border-radius:10px!important;font-size:10.5px!important;line-height:1.2!important;
-    text-align:center!important;white-space:normal!important;overflow:visible!important;
+    text-align:center!important;white-space:normal!important;overflow:visible!important
   }
-  body.sessao-candidato #pagina-painel-candidato .cand-side nav>button>span{
-    flex:0 1 auto!important;width:auto!important;min-width:0!important;max-width:100%!important;
-    display:block!important;text-align:center!important;white-space:normal!important;overflow:visible!important;text-overflow:clip!important;
+  #pagina-painel-candidato .cand-side nav>button>span{
+    min-width:0!important;max-width:100%!important;display:block!important;
+    white-space:normal!important;overflow:visible!important;text-overflow:clip!important;text-align:center!important
   }
-  body.sessao-candidato #pagina-painel-candidato .cand-side nav .cand-msg-badge{
-    position:static!important;right:auto!important;flex:0 0 auto!important;margin-left:2px!important;
+  #pagina-painel-candidato .cand-side nav .cand-msg-badge{
+    position:static!important;right:auto!important;flex:0 0 auto!important;margin-left:2px!important
   }
-  body.sessao-candidato #pagina-painel-candidato .cand-side-exit{
-    width:100%!important;max-width:120px!important;min-width:0!important;min-height:36px!important;
-    margin:8px 0 0 auto!important;padding:0 10px!important;display:flex!important;align-items:center!important;justify-content:center!important;
+  #pagina-painel-candidato .cand-side-tip{display:none!important}
+  #pagina-painel-candidato .cand-side-exit{
+    width:100%!important;max-width:120px!important;min-height:36px!important;
+    margin:8px 0 0 auto!important;padding:0 10px!important;
+    display:flex!important;align-items:center!important;justify-content:center!important
   }
 
-  body.sessao-candidato #pagina-painel-candidato .cand-main{
+  #pagina-painel-candidato .cand-main{
     width:100%!important;max-width:100%!important;min-width:0!important;
-    margin:0!important;padding:12px!important;overflow:visible!important;
+    margin:0!important;padding:12px!important;overflow:visible!important
   }
-  body.sessao-candidato #pagina-painel-candidato .cand-dashboard-hero{
+  #pagina-painel-candidato .cand-dashboard-hero{
     width:100%!important;max-width:100%!important;min-width:0!important;min-height:0!important;
-    margin:0!important;padding:20px 18px!important;border-radius:16px!important;display:block!important;overflow:visible!important;
+    margin:0!important;padding:20px 18px!important;border-radius:16px!important;
+    display:block!important;overflow:visible!important;
     background:linear-gradient(135deg,#eaf6ff 0%,#dcefff 100%)!important;
-    border:1px solid #cde5f5!important;color:#123e63!important;
+    border:1px solid #cde5f5!important;color:#123e63!important
   }
-  body.sessao-candidato #pagina-painel-candidato .cand-dashboard-hero h1{
+  #pagina-painel-candidato .cand-dashboard-hero h1{
     color:#123d63!important;opacity:1!important;visibility:visible!important;
-    font-size:27px!important;line-height:1.12!important;margin:6px 0 8px!important;
+    font-size:27px!important;line-height:1.12!important;margin:6px 0 8px!important
   }
-  body.sessao-candidato #pagina-painel-candidato .cand-dashboard-hero p,
-  body.sessao-candidato #pagina-painel-candidato #candidatoSaudacao{
+  #pagina-painel-candidato #candidatoSaudacao,
+  #pagina-painel-candidato .cand-dashboard-hero p{
     display:block!important;color:#4f7189!important;opacity:1!important;visibility:visible!important;
-    font-size:12.5px!important;line-height:1.5!important;margin:0!important;
+    font-size:12.5px!important;line-height:1.5!important;margin:0!important
   }
-  body.sessao-candidato #pagina-painel-candidato .cand-hero-actions{
+  /* Premium não pode voltar os textos para branco sobre o hero claro. */
+  #pagina-painel-candidato.cand-dashboard-premium .cand-dashboard-hero-pro #candidatoSaudacao,
+  #pagina-painel-candidato.cand-dashboard-premium .cand-dashboard-hero-pro p{
+    color:#4f7189!important
+  }
+
+  #pagina-painel-candidato .cand-hero-actions{
     width:100%!important;display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;
-    gap:9px!important;margin-top:15px!important;
+    gap:9px!important;margin-top:15px!important
   }
-  body.sessao-candidato #pagina-painel-candidato .cand-hero-actions button{
+  #pagina-painel-candidato .cand-hero-actions button{
     width:100%!important;max-width:100%!important;min-width:0!important;min-height:46px!important;
     padding:8px 10px!important;border-radius:10px!important;font-size:11.5px!important;line-height:1.2!important;
-    white-space:normal!important;
+    white-space:normal!important
   }
 
-  /* Restaura textos que estavam ficando invisíveis nos benefícios */
-  body.sessao-candidato #pagina-painel-candidato .cand-hero-beneficios{
+  #pagina-painel-candidato .cand-hero-beneficios{
     width:100%!important;max-width:100%!important;min-width:0!important;
     margin-top:15px!important;padding:13px!important;border-radius:13px!important;
-    background:rgba(255,255,255,.68)!important;border:1px solid #cfe5f4!important;color:#315b78!important;
-    overflow:visible!important;
+    background:rgba(255,255,255,.70)!important;border:1px solid #cfe5f4!important;
+    color:#315b78!important;overflow:visible!important
   }
-  body.sessao-candidato #pagina-painel-candidato .cand-hero-beneficios>span{
+  #pagina-painel-candidato .cand-hero-beneficios>span{
     display:block!important;color:#237fbd!important;opacity:1!important;visibility:visible!important;
-    font-size:10.5px!important;line-height:1.3!important;font-weight:800!important;letter-spacing:.05em!important;
+    font-size:10.5px!important;line-height:1.3!important;font-weight:800!important;letter-spacing:.05em!important
   }
-  body.sessao-candidato #pagina-painel-candidato .cand-hero-beneficios-linha{
+  #pagina-painel-candidato .cand-hero-beneficios-linha{
     width:100%!important;display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;
-    gap:8px!important;margin-top:9px!important;
+    gap:8px!important;margin-top:9px!important;overflow:visible!important
   }
-  body.sessao-candidato #pagina-painel-candidato .cand-hero-beneficio{
+  #pagina-painel-candidato .cand-hero-beneficio{
     width:100%!important;max-width:100%!important;min-width:0!important;min-height:72px!important;
     margin:0!important;padding:11px!important;border-radius:10px!important;
     display:flex!important;align-items:flex-start!important;justify-content:flex-start!important;gap:8px!important;
-    background:#fff!important;border:1px solid #d8eaf6!important;
-    color:#365f7a!important;font-size:11px!important;line-height:1.35!important;
-    opacity:1!important;visibility:visible!important;overflow:visible!important;
+    background:#fff!important;border:1px solid #d8eaf6!important;color:#365f7a!important;
+    opacity:1!important;visibility:visible!important;overflow:visible!important
   }
-  body.sessao-candidato #pagina-painel-candidato .cand-hero-beneficio i{
+  #pagina-painel-candidato .cand-hero-beneficio i{
     flex:0 0 22px!important;width:22px!important;height:22px!important;min-width:22px!important;
-    display:grid!important;place-items:center!important;margin:0!important;
-    background:#dff2ff!important;color:#1486cd!important;border-radius:7px!important;
-    font-size:13px!important;line-height:1!important;opacity:1!important;visibility:visible!important;
+    display:grid!important;place-items:center!important;margin:0!important;border-radius:7px!important;
+    background:#dff2ff!important;border:0!important;color:#1486cd!important;
+    font-size:13px!important;line-height:1!important;opacity:1!important;visibility:visible!important
   }
-  body.sessao-candidato #pagina-painel-candidato .cand-hero-beneficio span,
-  body.sessao-candidato #pagina-painel-candidato .cand-hero-beneficio strong,
-  body.sessao-candidato #pagina-painel-candidato .cand-hero-beneficio b,
-  body.sessao-candidato #pagina-painel-candidato .cand-hero-beneficio small{
+  #pagina-painel-candidato .cand-dashboard-hero-pro .cand-hero-beneficios .cand-hero-beneficio b,
+  #pagina-painel-candidato.cand-dashboard-premium .cand-dashboard-hero-pro .cand-hero-beneficios .cand-hero-beneficio b{
     display:block!important;min-width:0!important;max-width:100%!important;
-    color:#365f7a!important;font-size:10.5px!important;line-height:1.35!important;
-    opacity:1!important;visibility:visible!important;white-space:normal!important;
+    color:#365f7a!important;font-size:10.5px!important;line-height:1.35!important;font-weight:650!important;
+    opacity:1!important;visibility:visible!important;white-space:normal!important
   }
 
-  /* Indicadores e cartões abaixo do hero voltam a caber e mostrar conteúdo */
-  body.sessao-candidato #pagina-painel-candidato .cand-dashboard-kpis{
+  #pagina-painel-candidato .cand-dashboard-kpis{
     width:100%!important;max-width:100%!important;min-width:0!important;
     display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;
-    gap:9px!important;margin:11px 0!important;
+    gap:9px!important;margin:11px 0!important
   }
-  body.sessao-candidato #pagina-painel-candidato .cand-dashboard-kpis article{
+  #pagina-painel-candidato .cand-dashboard-kpis article{
     width:100%!important;max-width:100%!important;min-width:0!important;
-    margin:0!important;padding:12px!important;overflow:visible!important;
+    margin:0!important;padding:12px!important;overflow:visible!important
   }
-  body.sessao-candidato #pagina-painel-candidato .cand-dashboard-kpis span,
-  body.sessao-candidato #pagina-painel-candidato .cand-dashboard-kpis strong,
-  body.sessao-candidato #pagina-painel-candidato .cand-dashboard-kpis small,
-  body.sessao-candidato #pagina-painel-candidato .cand-dash-card span,
-  body.sessao-candidato #pagina-painel-candidato .cand-dash-card strong,
-  body.sessao-candidato #pagina-painel-candidato .cand-dash-card small,
-  body.sessao-candidato #pagina-painel-candidato .cand-dash-card p,
-  body.sessao-candidato #pagina-painel-candidato .cand-profile-progress span,
-  body.sessao-candidato #pagina-painel-candidato .cand-profile-progress strong,
-  body.sessao-candidato #pagina-painel-candidato .cand-profile-progress small,
-  body.sessao-candidato #pagina-painel-candidato .cand-profile-progress p{
-    opacity:1!important;visibility:visible!important;
-  }
-  body.sessao-candidato #pagina-painel-candidato .cand-dashboard-grid{
+  #pagina-painel-candidato .cand-dashboard-grid{
     width:100%!important;max-width:100%!important;min-width:0!important;
-    display:grid!important;grid-template-columns:1fr!important;gap:10px!important;
+    display:grid!important;grid-template-columns:1fr!important;gap:10px!important
   }
-  body.sessao-candidato #pagina-painel-candidato .cand-dash-card,
-  body.sessao-candidato #pagina-painel-candidato .cand-profile-progress{
-    width:100%!important;max-width:100%!important;min-width:0!important;margin:0!important;overflow:visible!important;
+  #pagina-painel-candidato .cand-dash-card,
+  #pagina-painel-candidato .cand-profile-progress{
+    width:100%!important;max-width:100%!important;min-width:0!important;margin:0!important;overflow:visible!important
+  }
+  #pagina-painel-candidato .cand-dashboard-kpis span,
+  #pagina-painel-candidato .cand-dashboard-kpis strong,
+  #pagina-painel-candidato .cand-dashboard-kpis small,
+  #pagina-painel-candidato .cand-dash-card span,
+  #pagina-painel-candidato .cand-dash-card strong,
+  #pagina-painel-candidato .cand-dash-card small,
+  #pagina-painel-candidato .cand-dash-card p,
+  #pagina-painel-candidato .cand-profile-progress span,
+  #pagina-painel-candidato .cand-profile-progress strong,
+  #pagina-painel-candidato .cand-profile-progress small,
+  #pagina-painel-candidato .cand-profile-progress p{
+    opacity:1!important;visibility:visible!important
   }
 }
-
 @media(max-width:390px){
-  body.sessao-candidato .topo-inner,
-  body.tem-candidato .topo-inner{padding-left:9px!important;padding-right:9px!important;gap:0 6px!important}
-  body.sessao-candidato #pagina-painel-candidato .cand-side{padding-left:10px!important;padding-right:10px!important}
-  body.sessao-candidato #pagina-painel-candidato .cand-main{padding:10px!important}
-  body.sessao-candidato #pagina-painel-candidato .cand-dashboard-hero{padding:18px 14px!important}
-  body.sessao-candidato #pagina-painel-candidato .cand-hero-actions{grid-template-columns:1fr!important}
-  body.sessao-candidato #pagina-painel-candidato .cand-hero-beneficios-linha{grid-template-columns:1fr!important}
+  #pagina-painel-candidato .cand-side{padding-left:10px!important;padding-right:10px!important}
+  #pagina-painel-candidato .cand-main{padding:10px!important}
+  #pagina-painel-candidato .cand-dashboard-hero{padding:18px 14px!important}
+  #pagina-painel-candidato .cand-hero-actions{grid-template-columns:1fr!important}
+  #pagina-painel-candidato .cand-hero-beneficios-linha{grid-template-columns:1fr!important}
 }
-`;
+\`;
     document.head.appendChild(st);
   }
   if(document.readyState==='loading'){
@@ -3524,15 +3478,12 @@ body.sessao-candidato #pagina-painel-candidato *{box-sizing:border-box!important
 
 
 /* =========================================================
-   EMPREGAMAI-SESSION-HEADER-STABILITY-V143 — 2026-09-27
-   Mantém cabeçalho e rota protegida sincronizados com a sessão
-   restaurada do Supabase. Unifica as classes legadas tem-* e
-   as classes contextuais sessao-* para impedir o pisca/some
-   dos acessos Empresa/Candidato e do menu do usuário logado.
+   EMPREGAMAI-SESSION-HEADER-STABILITY-V144 — 2026-09-27
+   Um único estado visual para sessão + cabeçalho.
 ========================================================= */
 (function(){
-  if(window.__empregaiSessionHeaderStabilityV143)return;
-  window.__empregaiSessionHeaderStabilityV143=true;
+  if(window.__empregaiSessionHeaderStabilityV144)return;
+  window.__empregaiSessionHeaderStabilityV144=true;
 
   const rotasEmpresaEM=new Set([
     'painel-empresa','perfil-empresa','publicar',
@@ -3544,7 +3495,7 @@ body.sessao-candidato #pagina-painel-candidato *{box-sizing:border-box!important
   ]);
 
   let rotaPendenteSessaoEM='';
-  let restauracaoConcluidaEM=false;
+  let restaurandoSessaoEM=!sessionStorage.getItem('empregaMaisPapel')&&haCredencialPersistidaEM();
 
   function haCredencialPersistidaEM(){
     return !!(
@@ -3576,76 +3527,46 @@ body.sessao-candidato #pagina-painel-candidato *{box-sizing:border-box!important
   }
 
   function sincronizarEstadoSessaoTopoEM(){
-    const body=document.body;
-    if(!body)return;
+    const body=document.body;if(!body)return;
     const papel=typeof papelAtual==='function'?papelAtual():(sessionStorage.getItem('empregaMaisPapel')||'');
-    const empresa=papel==='empresa';
-    const candidato=papel==='candidato';
-
-    /* Os dois conjuntos de classes existiam em paralelo no CSS.
-       A partir daqui eles sempre recebem exatamente o mesmo estado. */
+    const empresa=papel==='empresa',candidato=papel==='candidato';
     body.classList.toggle('tem-empresa',empresa);
     body.classList.toggle('tem-candidato',candidato);
     body.classList.toggle('sessao-empresa',empresa);
     body.classList.toggle('sessao-candidato',candidato);
     body.classList.toggle('sessao-publica',!empresa&&!candidato);
-
     preencherContaTopoEstavelEM(papel);
   }
   window.sincronizarEstadoSessaoTopoEM=sincronizarEstadoSessaoTopoEM;
 
-  /* Durante a validação silenciosa do token não exibimos por alguns
-     milissegundos o menu público para depois trocá-lo pelo menu logado. */
-  const precisaRestaurarInicialEM=!sessionStorage.getItem('empregaMaisPapel')&&haCredencialPersistidaEM();
-  if(precisaRestaurarInicialEM){
-    restauracaoConcluidaEM=false;
-    document.body?.classList.add('sessao-restaurando-em');
-    const st=document.createElement('style');
-    st.id='empregai-session-header-stability-v143-style';
-    st.textContent=
-      'body.sessao-restaurando-em .topo .menu-publico,'+
-      'body.sessao-restaurando-em .topo .menu-empresa-logada,'+
-      'body.sessao-restaurando-em .topo .menu-candidato-logado,'+
-      'body.sessao-restaurando-em .topo .acoes{visibility:hidden!important;pointer-events:none!important}';
-    document.head.appendChild(st);
-  }else{
-    restauracaoConcluidaEM=true;
-  }
-
-  function concluirRestauracaoEstavelEM(){
-    restauracaoConcluidaEM=true;
+  function liberarHeaderEM(){
+    restaurandoSessaoEM=false;
     document.body?.classList.remove('sessao-restaurando-em');
     sincronizarEstadoSessaoTopoEM();
-
+    document.body?.classList.add('em-header-ready');
     if(rotaPendenteSessaoEM){
-      const destino=rotaPendenteSessaoEM;
-      rotaPendenteSessaoEM='';
+      const destino=rotaPendenteSessaoEM;rotaPendenteSessaoEM='';
       setTimeout(()=>abrirRota(destino),0);
     }
   }
 
-  /* Protege a rota inicial contra a corrida entre DOMContentLoaded e
-     restauração assíncrona da sessão. Sem isso o painel podia ser
-     trocado pelo login antes de o Supabase confirmar o usuário. */
+  if(restaurandoSessaoEM)document.body?.classList.add('sessao-restaurando-em');
+
   const abrirRotaAntesEstabilidadeEM=abrirRota;
   abrirRota=function(p){
     const papel=typeof papelAtual==='function'?papelAtual():'';
     const exigeEmpresa=rotasEmpresaEM.has(p)&&papel!=='empresa';
     const exigeCandidato=rotasCandidatoEM.has(p)&&papel!=='candidato';
-
-    if((exigeEmpresa||exigeCandidato)&&!papel&&!restauracaoConcluidaEM&&haCredencialPersistidaEM()){
+    if((exigeEmpresa||exigeCandidato)&&!papel&&restaurandoSessaoEM&&haCredencialPersistidaEM()){
       rotaPendenteSessaoEM=p;
       sincronizarEstadoSessaoTopoEM();
       return;
     }
-
     const r=abrirRotaAntesEstabilidadeEM.apply(this,arguments);
     sincronizarEstadoSessaoTopoEM();
     return r;
   };
 
-  /* Toda navegação e toda entrada/saída agora atualizam as duas
-     famílias de classes antes de o CSS mobile decidir o que mostrar. */
   const irParaAntesEstabilidadeEM=irPara;
   irPara=function(){
     const r=irParaAntesEstabilidadeEM.apply(this,arguments);
@@ -3657,6 +3578,7 @@ body.sessao-candidato #pagina-painel-candidato *{box-sizing:border-box!important
   entrar=function(){
     const r=entrarAntesEstabilidadeEM.apply(this,arguments);
     sincronizarEstadoSessaoTopoEM();
+    document.body?.classList.add('em-header-ready');
     return r;
   };
 
@@ -3664,17 +3586,15 @@ body.sessao-candidato #pagina-painel-candidato *{box-sizing:border-box!important
   sair=function(){
     const r=sairAntesEstabilidadeEM.apply(this,arguments);
     sincronizarEstadoSessaoTopoEM();
+    document.body?.classList.add('em-header-ready');
     return r;
   };
 
-  /* As funções originais restauram os dados no sessionStorage, mas não
-     notificavam o cabeçalho após o await. Aqui a UI só é liberada
-     depois de sabermos qual papel realmente pertence ao token. */
   if(typeof sbRestaurarSessaoCandidatoEM==='function'){
     const restaurarCandAntesEstabilidadeEM=sbRestaurarSessaoCandidatoEM;
     sbRestaurarSessaoCandidatoEM=async function(){
       const ok=await restaurarCandAntesEstabilidadeEM.apply(this,arguments);
-      if(ok)concluirRestauracaoEstavelEM();
+      if(ok)liberarHeaderEM();
       return ok;
     };
   }
@@ -3683,12 +3603,19 @@ body.sessao-candidato #pagina-painel-candidato *{box-sizing:border-box!important
     const restaurarEmpAntesEstabilidadeEM=sbRestaurarSessaoEmpresaEM;
     sbRestaurarSessaoEmpresaEM=async function(){
       const ok=await restaurarEmpAntesEstabilidadeEM.apply(this,arguments);
-      concluirRestauracaoEstavelEM();
+      liberarHeaderEM();
       return ok;
     };
   }
 
   sincronizarEstadoSessaoTopoEM();
-  document.addEventListener('DOMContentLoaded',sincronizarEstadoSessaoTopoEM);
-  window.addEventListener('pageshow',sincronizarEstadoSessaoTopoEM);
+  if(!restaurandoSessaoEM)document.body?.classList.add('em-header-ready');
+  document.addEventListener('DOMContentLoaded',()=>{
+    sincronizarEstadoSessaoTopoEM();
+    if(!restaurandoSessaoEM)document.body?.classList.add('em-header-ready');
+  });
+  window.addEventListener('pageshow',()=>{
+    sincronizarEstadoSessaoTopoEM();
+    if(!restaurandoSessaoEM)document.body?.classList.add('em-header-ready');
+  });
 })();
