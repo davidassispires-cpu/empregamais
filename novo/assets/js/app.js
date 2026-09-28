@@ -472,6 +472,7 @@ function tituloVaga(v){return String(v.cargo||v.titulo||'Vaga').toLocaleUpperCas
  const logo=v.logo||v.logoUrl||v.empresaLogo||emp.logo||emp.logoUrl||emp.perfil?.logo||'';
  /* Vaga em destaque sempre pode exibir a logo; nas demais permanece a regra do plano. */
  if(destaqueAtivo(v))return logo;
+ if(!v.empresaId&&!v.empresa_id&&logo)return logo;
  return empresaAssinanteVaga(v)?logo:'';
 }
 let localizacaoCandidatoEM=null,localizacaoCandidatoSolicitadaEM=false,geocodeDistanciaEmAndamento=false;
@@ -619,7 +620,9 @@ function cardVagaPortal(v){
  const empresas=ler('empregaMaisEmpresas');
  const nomeNorm=String(v.empresa||'').trim().toLowerCase();
  const emp=empresas.find(e=>(v.empresaId&&String(e.id||'')===String(v.empresaId))||(nums(v.empresaCnpj||v.cnpj||'')&&nums(e.cnpj||'')===nums(v.empresaCnpj||v.cnpj||''))||(nomeNorm&&[e.nome,e.nomeFantasia,e.razaoSocial].some(n=>String(n||'').trim().toLowerCase()===nomeNorm)))||{};
- const logo=!v.confidencial&&(destaqueAtivo(v)||empresaAssinanteVaga(v))?(v.logo||v.logoUrl||v.empresaLogo||emp.logo||emp.logoUrl||emp.perfil?.logo||''):'';
+ const logoExplicita=v.logo||v.logoUrl||v.empresaLogo||'';
+ const vagaImportadaComLogo=!v.empresaId&&!v.empresa_id&&!!logoExplicita;
+ const logo=!v.confidencial&&(destaqueAtivo(v)||empresaAssinanteVaga(v)||vagaImportadaComLogo)?(logoExplicita||emp.logo||emp.logoUrl||emp.perfil?.logo||''):'';
  const verificada=!v.confidencial&&(emp.verificada===true||emp.verificacaoStatus==='aprovada');
  const temSalario=!v.salarioCombinar&&!!String(v.salario||'').trim();
  const sal=temSalario?(v.salarioMax?(v.salario+' a '+v.salarioMax):v.salario):'';
