@@ -4181,3 +4181,37 @@ window.addEventListener('load',()=>setTimeout(concluirLoginGoogleEM,40));
     return logoutImediatoEM();
   };
 })();
+
+
+/* EMPREGAMAI-CONFIRMACAO-DESATIVAR-NOTIFICACOES-V1 */
+(function(){
+  function aplicarConfirmacaoDesativarNotificacoesEM(){
+    const btn=document.getElementById('emPushDesativar');
+    if(!btn||btn.dataset.emConfirmacaoDesativar==='1'||typeof btn.onclick!=='function')return;
+    const acaoOriginal=btn.onclick;
+    btn.dataset.emConfirmacaoDesativar='1';
+    btn.onclick=async function(ev){
+      ev?.preventDefault?.();
+      ev?.stopPropagation?.();
+      const ok=typeof window.confirmarAcaoEmpregaiEM==='function'
+        ?await window.confirmarAcaoEmpregaiEM({
+          titulo:'Desativar notificações?',
+          texto:'Você deixará de receber neste celular alertas de novas vagas, mensagens e atualizações dos seus processos seletivos.',
+          confirmarTexto:'Sim, desativar',
+          cancelarTexto:'Cancelar',
+          perigo:false
+        })
+        :window.confirm('Deseja realmente desativar as notificações neste celular?');
+      if(!ok)return;
+      return acaoOriginal.call(btn,ev);
+    };
+  }
+
+  document.addEventListener('DOMContentLoaded',()=>{
+    aplicarConfirmacaoDesativarNotificacoesEM();
+    const obs=new MutationObserver(aplicarConfirmacaoDesativarNotificacoesEM);
+    obs.observe(document.body,{childList:true,subtree:true});
+  });
+
+  window.addEventListener('load',()=>setTimeout(aplicarConfirmacaoDesativarNotificacoesEM,200));
+})();
