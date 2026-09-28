@@ -79,12 +79,12 @@ function pickModalidade(t){
  return candidates({value:val,score:100},{value:body,score:60})
 }
 function pickContrato(t){
- let explicit=labeled(t,'Tipo de contrato|Contrato|Regime de contrata[cç][aã]o|Tipo de vaga'),src=explicit||t;
+ let explicit=labeled(t,'Tipo de contrato|Contrato|Regime de contrata[cç][aã]o(?: de tipo)?|Tipo de vaga'),src=explicit||t;
  let val=/jovem aprendiz/i.test(src)?'Jovem Aprendiz':/est[aá]gio/i.test(src)?'Estágio':/tempor[aá]ri/i.test(src)?'Temporário':/trainee/i.test(src)?'Trainee':/\bCLT\b|efetiv[oa]/i.test(src)?'Efetivo – CLT':'';
  return {value:val,score:explicit?100:(val?65:0)}
 }
 function pickQuantidade(t){
- let explicit=labeled(t,'Quantidade de vagas|N[uú]mero de vagas|Vagas');
+ let explicit=labeled(t,'Quantidade de vagas|N[uú]mero de vagas|N[uú]mero de posi[cç][oõ]es|Vagas');
  let em=explicit&&explicit.match(/\d+/),body=t.match(/\b(\d+)\s+(?:posi[cç][oõ]es|vagas?|oportunidades?)\b/i);
  return candidates({value:em?em[0]:'',score:100},{value:body?body[1]:'',score:75})
 }
@@ -104,18 +104,35 @@ function parse(t,i){
  t=clean(t);let n=norm(t),locs=cities(t),meta={};
  const put=(k,v,conf='alta')=>{v=clean(v||'');if(v){meta[k]=conf;return v}return''};
  let pc=pickCargo(t),pe=pickEmpresa(t),pm=pickModalidade(t);let cargo=put('cargo',pc.value,confidence(pc.score)),empresa=put('empresa',pe.value,confidence(pe.score)),modalidade=put('modalidade',pm.value,confidence(pm.score));
- let area=put('area',/log[ií]stica|supply chain|mercado envios/i.test(t)?'Logística':/cart[oõ]es?|cr[eé]dito|perfil comercial|vendas|promotor/i.test(t)?'Comercial / Vendas':/atendimento ao cliente/i.test(t)?'Atendimento':'','media');
+ let areaLabel=labeled(t,'[ÁA]rea e especializa[cç][aã]o profissional|[ÁA]rea profissional|[ÁA]rea');
+ let area=put('area',areaLabel?areaLabel.split('-')[0].trim():
+ /log[ií]stica|supply chain|mercado envios|operador log[ií]stico/i.test(t)?'Logística / Transportes':
+ /administrativ/i.test(t)?'Administrativo':
+ /cart[oõ]es?|cr[eé]dito|perfil comercial|vendas|promotor|operador de loja|repositor/i.test(t)?'Comercial / Vendas':
+ /atendimento ao cliente/i.test(t)?'Atendimento':'','media');
  let pct=pickContrato(t),contrato=put('contrato',pct.value,confidence(pct.score));
- let escolaridade=put('escolaridade',/superior\s+(?:completo|conclu[ií]do)|gradua[cç][aã]o completa/i.test(t)?'Superior completo':/superior\s+(?:cursando|incompleto)/i.test(t)?'Superior cursando':/ensino m[eé]dio completo|m[eé]dio completo/i.test(t)?'Médio completo':/ensino fundamental completo|fundamental completo/i.test(t)?'Fundamental completo':'');
+ let escolaridade=put('escolaridade',
+ /superior\s+(?:completo|conclu[ií]do)|gradua[cç][aã]o completa/i.test(t)?'Superior completo':
+ /superior\s+(?:cursando|incompleto)/i.test(t)?'Superior cursando':
+ /ensino m[eé]dio completo|m[eé]dio completo|Escolaridade M[ií]nima\s*:\s*Ensino M[eé]dio|Ensino M[eé]dio\s*\(2[º°o]?\s*Grau\)/i.test(t)?'Médio completo':
+ /ensino fundamental completo|fundamental completo|Escolaridade M[ií]nima\s*:\s*Ensino Fundamental/i.test(t)?'Fundamental completo':'');
  let pq=pickQuantidade(t),ps=pickSalario(t),quantidade=put('quantidade',pq.value,confidence(pq.score)),salario=put('salario',ps.value,confidence(ps.score));
  let descricao=put('descricao',section(t,'Descri[cç][aã]o(?: da vaga)?|Sobre a vaga|Resumo da vaga','Fun[cç][aã]o|Endere[cç]o|Responsabilidades|Atividades|Principais atividades|O que voc[eê] vai fazer|Hor[aá]rio de trabalho|Requisitos|Benef[ií]cios'));
  if(!descricao){let m=t.match(/(?:^|\n)(Estamos em busca[^\n]*(?:\n(?!\s*(?:VAGA|Local de trabalho|Principais atividades|Requisitos|Benefícios|Salário|Horário)\b)[^\n]*)*)/i);if(m)descricao=put('descricao',m[1],'media')}
  let atividades=put('atividades',smartSection(t,'Responsabilidades(?: e atribui[cç][oõ]es)?|Atividades|Principais atividades|O que voc[eê] vai fazer|Fun[cç][oõ]es','Hor[aá]rio(?: de trabalho)?|Jornada|Requisitos|Qualifica[cç][oõ]es|Benef[ií]cios|Oferecemos|Sal[aá]rio(?: e Benef[ií]cios)?|Remunera[cç][aã]o'));
  if(!atividades){let end=labeled(t,'Endere[cç]o');if(end){let ix=t.toLowerCase().indexOf(end.toLowerCase())+end.length,tail=t.slice(ix);let m=tail.match(/([\s\S]*?)(?=\n\s*(?:HOR[AÁ]RIO DE TRABALHO|REQUISITOS|BENEF[IÍ]CIOS|SAL[AÁ]RIO|S[AÁ]LARIO)\s*:)/i);if(m)atividades=put('atividades',m[1],'media')}}
- let requisitos=put('requisitos',smartSection(t,'Requisitos|Qualifica[cç][oõ]es|O que esperamos|Perfil desejado|O que buscamos','Benef[ií]cios|O que oferecemos|Oferecemos|Hor[aá]rio(?: de trabalho)?|Jornada|Informa[cç][oõ]es adicionais|Como se candidatar|Candidatura|Contato|Sal[aá]rio(?: e Benef[ií]cios)?|Remunera[cç][aã]o'));
- let beneficios=put('beneficios',smartSection(t,'Sal[aá]rio e Benef[ií]cios|Benef[ií]cios|O que oferecemos|Oferecemos|Pacote de benef[ií]cios|N[oó]s lhe propomos','Requisitos|Qualifica[cç][oõ]es|Informa[cç][oõ]es adicionais|Como se candidatar|Candidatura|Contato|Se interessou'));
+ let requisitos=put('requisitos',smartSection(t,'Requisitos|Qualifica[cç][oõ]es|O que esperamos|Perfil desejado|O que buscamos','Benef[ií]cios|O que oferecemos|Oferecemos|Hor[aá]rio(?: de trabalho)?|Jornada|Informa[cç][oõ]es adicionais|Como se candidatar|Candidatura|Contato|Sal[aá]rio(?: e Benef[ií]cios)?|Remunera[cç][aã]o|Habilidades|N[ií]vel de experi[eê]ncia'));
+ if(!requisitos&&/ensino m[eé]dio completo|Ensino M[eé]dio\s*\(2[º°o]?\s*Grau\)/i.test(t))requisitos=put('requisitos','Ensino Médio completo','media');
+ let beneficios=put('beneficios',smartSection(t,'Sal[aá]rio e Benef[ií]cios|Benef[ií]cios|O que oferecemos|Oferecemos|Pacote de benef[ií]cios|N[oó]s lhe propomos','Requisitos|Qualifica[cç][oõ]es|Informa[cç][oõ]es adicionais|Como se candidatar|Candidatura|Contato|Se interessou|Habilidades|N[ií]vel de experi[eê]ncia'));
+ if(!beneficios){
+  const itens=[];
+  [['Vale Transporte','vale transporte'],['Vale Refeição','vale refei[cç][aã]o'],['Vale Alimentação','vale alimenta[cç][aã]o'],['Seguro de Vida','seguro de vida'],['Assistência Odontológica','assist[eê]ncia odontol[oó]gica|conv[eê]nio odontol[oó]gico'],['Refeição no local','refei[cç][aã]o no local'],['Day Off','day off']].forEach(x=>{if(new RegExp(x[1],'i').test(t))itens.push(x[0])});
+  if(itens.length)beneficios=put('beneficios',itens.join(' · '),'media')
+ }
  let pj=pickJornada(t);if(!pj.value){let hm=smartSection(t,'Hor[aá]rio(?: de trabalho)?','Sal[aá]rio(?: e Benef[ií]cios)?|Benef[ií]cios|Requisitos|Candidatura|Se interessou');if(hm)pj={value:hm,score:85}}let jornada=put('jornada',pj.value,confidence(pj.score));
- let exp=(t.match(/Experi[eê]ncia\s+(?:com|em)\s+([^;\n.]+)/i)||[])[0]||'',experiencia=put('experiencia',/sem experi[eê]ncia|experi[eê]ncia n[aã]o exigida/i.test(t)?'Sem experiência':exp,'media');let pcd=/\bPCD\b|pessoa(?:s)? com defici[eê]ncia/i.test(t)?'Sim':'';let senior50=/\b50\+\b|acima de 50|maiores de 50/i.test(t);
+ let exp=(t.match(/Experi[eê]ncia\s+(?:com|em)\s+([^;\n.]+)/i)||[])[0]||'';
+ let tempoExp=(t.match(/Tempo de experi[eê]ncia\s*:\s*([^\n]+)/i)||[])[1]||'';
+ let experiencia=put('experiencia',/sem experi[eê]ncia|experi[eê]ncia n[aã]o exigida/i.test(t)?'Sem experiência':(tempoExp||exp),'media');let pcd=/\bPCD\b|pessoa(?:s)? com defici[eê]ncia/i.test(t)?'Sim':'';let senior50=/\b50\+\b|acima de 50|maiores de 50/i.test(t);
  let L=parseLocation(t,locs);Object.keys(L).forEach(k=>{if(L[k])meta[k]='alta'});
  let urls=(t.match(/https?:\/\/[^\s<>"\]]+/gi)||[]).map(x=>x.replace(/[),.;]+$/,'')),link=put('linkExterno',urls.find(x=>/careers|career|jobs|apply|vagas|gupy|eightfold/i.test(x))||urls[0]||'');
  let email=put('candidaturaEmail',((t.match(/[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}/i)||[])[0]||''));
