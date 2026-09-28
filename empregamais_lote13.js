@@ -147,3 +147,27 @@ else instalar();
 window.addEventListener("load",function(){setTimeout(instalar,150)});
 })();
 //
+
+/* EmpregaMais v230 - remove duplicidade Candidatos x Processos Seletivos */
+(function(){
+"use strict";
+if(window.__EM_PROCESSOS_UNICOS_V230)return;
+window.__EM_PROCESSOS_UNICOS_V230=true;
+function corrigirPainelV230(){
+var shell=document.getElementById("painelReferenciaRecrutadorEM");
+if(!shell)return;
+var candidatos=shell.querySelector("[data-ref-nav='candidaturas']");
+if(candidatos)candidatos.remove();
+var paginaMinhas=shell.querySelector("#emPaginaMinhasVagasV229");
+if(paginaMinhas){
+paginaMinhas.querySelectorAll("[data-em-vaga-gerenciar]").forEach(function(b){b.remove();});
+paginaMinhas.querySelectorAll(".em-vaga-acoes-v229").forEach(function(box){box.style.gridTemplateColumns="repeat(2,minmax(0,1fr))";});
+}
+}
+function reforcarV230(){corrigirPainelV230();setTimeout(corrigirPainelV230,120);setTimeout(corrigirPainelV230,600);}
+if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",reforcarV230);else reforcarV230();
+window.addEventListener("load",function(){setTimeout(corrigirPainelV230,1500);setTimeout(corrigirPainelV230,3200);});
+var obsV230=new MutationObserver(function(){setTimeout(corrigirPainelV230,20);});
+obsV230.observe(document.documentElement,{childList:true,subtree:true});
+})();
+//
