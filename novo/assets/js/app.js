@@ -4002,3 +4002,49 @@ window.addEventListener('load',()=>setTimeout(concluirLoginGoogleEM,40));
   }
  };
 })();
+
+
+/* EMPREGAMAI-LOGOUT-DEFINITIVO-V2 */
+(function(){
+  sair=async function(){
+    const tema=sessionStorage.getItem('temaEmpregaMais')||'';
+    const token=sbTokenEM();
+
+    /* Bloqueia qualquer restauração automática antes de iniciar a limpeza. */
+    localStorage.setItem('empregaMaisLogoutBloqueio','1');
+    sessionStorage.setItem('empregaMaisLogoutBloqueio','1');
+
+    /* Invalida a sessão no Supabase. A limpeza local acontece mesmo se a rede falhar. */
+    if(token){
+      try{
+        await fetch(EMPREGAMAIS_SUPABASE_URL+'/auth/v1/logout?scope=global',{
+          method:'POST',
+          headers:sbHeadersEM(token)
+        });
+      }catch(e){
+        console.warn('Logout remoto Supabase:',e);
+      }
+    }
+
+    /* Remove credenciais e todo estado que identifica usuário autenticado. */
+    [
+      EMPREGAMAIS_SB_TOKEN,EMPREGAMAIS_SB_REFRESH,
+      'empregaMaisSupabaseAccessToken','empregaMaisSupabaseRefreshToken',
+      'empregaMaisPapelPersistido'
+    ].forEach(k=>{
+      sessionStorage.removeItem(k);
+      localStorage.removeItem(k);
+    });
+
+    sessionStorage.clear();
+
+    /* O bloqueio precisa sobreviver ao clear para impedir reidratação no carregamento seguinte. */
+    sessionStorage.setItem('empregaMaisLogoutBloqueio','1');
+    localStorage.setItem('empregaMaisLogoutBloqueio','1');
+    if(tema)sessionStorage.setItem('temaEmpregaMais',tema);
+
+    /* Recarrega o portal sem rota protegida e elimina qualquer estado visual antigo em memória. */
+    const destino=location.origin+location.pathname;
+    location.replace(destino);
+  };
+})();
