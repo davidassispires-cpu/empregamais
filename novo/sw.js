@@ -1,4 +1,4 @@
-const EMPREGAMAIS_SW_VERSION='2026-09-28-v4';
+const EMPREGAMAIS_SW_VERSION='2026-09-28-v5';
 const EMPREGAMAIS_DESKTOP_VAGAS_FIX=`
 @media (min-width: 901px){
   #pagina-home .home-recentes-layout{
@@ -44,10 +44,52 @@ const EMPREGAMAIS_DESKTOP_VAGAS_FIX=`
 const EMPREGAMAIS_DESTAQUES_SYNC_FIX=`
 (function(){
   let emDestaquesSyncEmCurso=false;
+
+  function corrigirFaixaDestaquesEM(){
+    try{
+      if(typeof cardDestaqueMiniEM!=='function'||typeof quantidadeFaixaDestaquesEM!=='function')return;
+      renderFaixaDestaquesEM=function(lista){
+        const box=document.getElementById('listaDestaquesFaixaEM'),wrap=document.getElementById('destaquesFaixaEM');
+        if(!box||!wrap)return;
+        const arr=Array.isArray(lista)?lista:[];
+
+        const idsDom=new Set(
+          Array.from(document.querySelectorAll('#listaDestaques .portal-vaga-nova'))
+            .map(card=>String(card.getAttribute('data-vaga-id')||''))
+            .filter(Boolean)
+        );
+
+        let idsExcluir=idsDom;
+        if(!idsExcluir.size){
+          idsExcluir=new Set();
+          const qtdPrincipais=typeof quantidadeDestaquesVisiveisEM==='function'?quantidadeDestaquesVisiveisEM():3;
+          const indice=typeof indiceDestaquesEM!=='undefined'?indiceDestaquesEM:0;
+          for(let i=0;i<Math.min(qtdPrincipais,arr.length);i++){
+            const v=arr[(indice+i)%arr.length];
+            if(v&&v.id)idsExcluir.add(String(v.id));
+          }
+        }
+
+        const restantes=arr.filter(v=>!idsExcluir.has(String(v.id)));
+        if(!restantes.length){wrap.classList.add('oculto');box.innerHTML='';return}
+        wrap.classList.remove('oculto');
+
+        const qtd=quantidadeFaixaDestaquesEM();
+        if(typeof indiceFaixaDestaquesEM!=='undefined'&&indiceFaixaDestaquesEM>=restantes.length)indiceFaixaDestaquesEM=0;
+        const indiceFaixa=typeof indiceFaixaDestaquesEM!=='undefined'?indiceFaixaDestaquesEM:0;
+        const vis=[];
+        for(let i=0;i<Math.min(qtd,restantes.length);i++)vis.push(restantes[(indiceFaixa+i)%restantes.length]);
+        box.innerHTML=vis.map(cardDestaqueMiniEM).join('');
+      };
+      window.renderFaixaDestaquesEM=renderFaixaDestaquesEM;
+    }catch(e){console.warn('EmpregaMais: correção da faixa de destaques falhou.',e)}
+  }
+
   async function sincronizarDestaquesFixEM(){
     if(emDestaquesSyncEmCurso)return;
     emDestaquesSyncEmCurso=true;
     try{
+      corrigirFaixaDestaquesEM();
       if(typeof sbJsonEM==='function'&&typeof EMPREGAMAIS_SUPABASE_URL!=='undefined'){
         const rows=await sbJsonEM(EMPREGAMAIS_SUPABASE_URL+'/rest/v1/vagas?select=*&status=eq.aprovada&order=criado_em.desc',{method:'GET',headers:typeof sbHeadersEM==='function'?sbHeadersEM():{}}).catch(()=>[]);
         if(Array.isArray(rows)&&rows.length){
