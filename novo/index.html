@@ -4689,7 +4689,74 @@ svg text{
     <div><i>▥</i><span><b>Resultados reais</b><small>Sua empresa mais forte</small></span></div>
     <div><i>✓</i><span><b>Suporte especializado</b><small>Estamos com você em todas as etapas</small></span></div>
   </div>
-</section><section class="pagina" id="pagina-cadastro-empresa"><div class="page-head"><div><h1>Cadastre sua empresa</h1><p>Crie sua conta para publicar e gerenciar oportunidades.</p></div></div><div class="login-wrap largo"><form class="login" id="formCadastroEmpresa"><div class="form-grid"><div><label>Nome da empresa</label><input class="campo" id="cadEmpresaNome" required></div><div><label>CNPJ</label><input class="campo" id="cadEmpresaCnpj" inputmode="numeric" required></div><div><label>E-mail</label><input class="campo" id="cadEmpresaEmail" type="email" required></div><div><label>Telefone</label><input class="campo" id="cadEmpresaTelefone" required></div><div><label>Senha</label><input class="campo" id="cadEmpresaSenha" type="password" minlength="6" required></div><div><label>Confirmar senha</label><input class="campo" id="cadEmpresaSenha2" type="password" minlength="6" required></div></div><div class="form-msg" id="msgCadastroEmpresa"></div><button class="btn btn-azul" type="submit">Criar conta da empresa</button></form></div></section><section class="pagina candidato-login-page" id="pagina-login-candidato"><div class="candidato-login-shell">
+</section><section class="pagina cadastro-empresa-v4" id="pagina-cadastro-empresa" data-cadastro-v4="1">
+<style id="cadastro-empresa-v4-css">
+#pagina-cadastro-empresa{font-family:'Montserrat',Arial,sans-serif;background:#f5f8fa!important;color:#183746;min-height:100vh}
+#pagina-cadastro-empresa *{box-sizing:border-box}
+#pagina-cadastro-empresa .cev4-head{background:#eef4f6;border-bottom:1px solid #dce7eb;padding:34px 24px}
+#pagina-cadastro-empresa .cev4-head-inner{width:min(1180px,100%);margin:auto}
+#pagina-cadastro-empresa .cev4-head span{display:inline-flex;padding:6px 9px;border-radius:7px;background:#dfecef;color:#16586b;font-size:10px;font-weight:800;letter-spacing:.08em}
+#pagina-cadastro-empresa .cev4-head h1{margin:12px 0 6px;color:#173f51;font-size:38px;line-height:1.08;font-weight:800;letter-spacing:-.035em}
+#pagina-cadastro-empresa .cev4-head p{margin:0;color:#607681;font-size:14px;line-height:1.55}
+#pagina-cadastro-empresa .cev4-shell{width:min(1180px,calc(100% - 48px));margin:36px auto 56px;display:grid;grid-template-columns:minmax(0,1.75fr) minmax(340px,.85fr);gap:24px;align-items:start}
+#pagina-cadastro-empresa .cev4-card{background:#fff;border:1px solid #d7e3e8;border-radius:18px;padding:28px 30px;box-shadow:0 12px 30px rgba(22,63,81,.07)}
+#pagina-cadastro-empresa .cev4-card-head{padding-bottom:17px;margin-bottom:18px;border-bottom:1px solid #e3ecef}
+#pagina-cadastro-empresa .cev4-card-head span{display:inline-flex;padding:6px 9px;border-radius:7px;background:#edf4f6;color:#176176;font-size:10px;font-weight:800;letter-spacing:.08em}
+#pagina-cadastro-empresa .cev4-card-head h2{margin:10px 0 5px;color:#173f51;font-size:23px;line-height:1.2;font-weight:800}
+#pagina-cadastro-empresa .cev4-card-head p{margin:0;color:#697d87;font-size:12.5px;line-height:1.5}
+#pagina-cadastro-empresa .cev4-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:17px 20px}
+#pagina-cadastro-empresa .cev4-field{display:grid;gap:7px;min-width:0}
+#pagina-cadastro-empresa .cev4-field.full{grid-column:1/-1}
+#pagina-cadastro-empresa .cev4-field label{font-size:12.5px;font-weight:700;color:#294d5b}
+#pagina-cadastro-empresa .cev4-field input:not([type="checkbox"]){width:100%;height:48px;border:1px solid #c8d8df;border-radius:9px;background:#fff;padding:0 13px;color:#203f4d;font:500 14px 'Montserrat',Arial,sans-serif;outline:none}
+#pagina-cadastro-empresa .cev4-field input:not([type="checkbox"]):focus{border-color:#17677b;box-shadow:0 0 0 3px rgba(23,103,123,.10)}
+#pagina-cadastro-empresa .cev4-field small{color:#788b94;font-size:10.5px;line-height:1.4}
+#pagina-cadastro-empresa .cev4-emailbox{grid-column:1/-1;padding:14px 16px;border:1px solid #d9e5e9;border-radius:11px;background:#f8fbfc}
+#pagina-cadastro-empresa .cev4-same{display:flex;align-items:center;gap:8px;margin-top:2px;color:#536b76;font-size:11.5px;font-weight:600}
+#pagina-cadastro-empresa .cev4-same input{width:16px;height:16px;accent-color:#17677b}
+#pagina-cadastro-empresa .cev4-actions{display:flex;align-items:center;gap:14px;margin-top:20px;flex-wrap:wrap}
+#pagina-cadastro-empresa .cev4-submit{min-height:47px;border:0;border-radius:9px;background:#17657a;color:#fff;padding:0 23px;font:800 13px 'Montserrat',Arial,sans-serif;cursor:pointer}
+#pagina-cadastro-empresa .cev4-submit:hover{background:#124f61}
+#pagina-cadastro-empresa .cev4-login{color:#607681;font-size:11.5px}
+#pagina-cadastro-empresa .cev4-login button{border:0;background:none;color:#17657a;font:800 11.5px 'Montserrat',Arial,sans-serif;cursor:pointer;padding:0}
+#pagina-cadastro-empresa .cev4-side{background:#164f61;border-radius:18px;padding:29px 30px;color:#fff;box-shadow:0 12px 30px rgba(22,63,81,.10)}
+#pagina-cadastro-empresa .cev4-side-tag{display:inline-flex;padding:6px 9px;border:1px solid rgba(255,255,255,.24);border-radius:7px;background:rgba(255,255,255,.10);font-size:10px;font-weight:800;letter-spacing:.08em}
+#pagina-cadastro-empresa .cev4-side h2{margin:16px 0 8px;color:#fff;font-size:23px;line-height:1.25;font-weight:800}
+#pagina-cadastro-empresa .cev4-side>p{margin:0 0 20px;color:rgba(255,255,255,.84);font-size:12.5px;line-height:1.55}
+#pagina-cadastro-empresa .cev4-benefits{display:grid}
+#pagina-cadastro-empresa .cev4-benefits article{display:grid;grid-template-columns:28px 1fr;gap:10px;padding:12px 0;border-top:1px solid rgba(255,255,255,.14)}
+#pagina-cadastro-empresa .cev4-benefits i{width:25px;height:25px;border-radius:50%;display:grid;place-items:center;background:#fff;color:#164f61;font-style:normal;font-weight:900;font-size:12px}
+#pagina-cadastro-empresa .cev4-benefits div{display:grid;gap:3px}
+#pagina-cadastro-empresa .cev4-benefits b{color:#fff;font-size:12.5px}
+#pagina-cadastro-empresa .cev4-benefits small{color:rgba(255,255,255,.78);font-size:10.8px;line-height:1.4}
+#pagina-cadastro-empresa .cev4-note{margin-top:16px;padding-top:16px;border-top:1px solid rgba(255,255,255,.14);display:grid;gap:4px}
+#pagina-cadastro-empresa .cev4-note b{font-size:11.5px}
+#pagina-cadastro-empresa .cev4-note span{color:rgba(255,255,255,.72);font-size:10.7px;line-height:1.45}
+#pagina-cadastro-empresa #msgCadastroEmpresa{margin-top:12px}
+@media(max-width:900px){#pagina-cadastro-empresa .cev4-shell{grid-template-columns:1fr;width:min(760px,calc(100% - 24px))}#pagina-cadastro-empresa .cev4-side{order:2}}
+@media(max-width:620px){#pagina-cadastro-empresa .cev4-head{padding:26px 16px}#pagina-cadastro-empresa .cev4-head h1{font-size:30px}#pagina-cadastro-empresa .cev4-shell{width:calc(100% - 16px);margin:18px auto 38px;gap:14px}#pagina-cadastro-empresa .cev4-card{padding:18px}#pagina-cadastro-empresa .cev4-grid{grid-template-columns:1fr}#pagina-cadastro-empresa .cev4-field.full,#pagina-cadastro-empresa .cev4-emailbox{grid-column:1}#pagina-cadastro-empresa .cev4-side{padding:21px}}
+</style>
+<div class="cev4-head"><div class="cev4-head-inner"><span>EMPRESAS</span><h1>Cadastre sua empresa</h1><p>Crie sua conta empresarial para publicar vagas e gerenciar processos seletivos no Empregaí.</p></div></div>
+<div class="cev4-shell">
+<main class="cev4-card">
+<div class="cev4-card-head"><span>CONTA DA EMPRESA</span><h2>Dados básicos para começar</h2><p>Essas informações criam o acesso da empresa. A verificação empresarial é uma etapa separada.</p></div>
+<form id="formCadastroEmpresa">
+<div class="cev4-grid">
+<div class="cev4-field"><label for="cadEmpresaNome">Nome da empresa</label><input id="cadEmpresaNome" autocomplete="organization" placeholder="Ex.: Empresa Exemplo" required></div>
+<div class="cev4-field"><label for="cadEmpresaCnpj">CNPJ</label><input id="cadEmpresaCnpj" inputmode="numeric" placeholder="00.000.000/0000-00" required></div>
+<div class="cev4-field"><label for="cadEmpresaEmail">E-mail corporativo</label><input id="cadEmpresaEmail" type="email" autocomplete="email" placeholder="contato@suaempresa.com.br" required><small>Usado para comunicações da conta e segurança.</small></div>
+<div class="cev4-field"><label for="cadEmpresaTelefone">Telefone corporativo</label><input id="cadEmpresaTelefone" autocomplete="tel" placeholder="(00) 00000-0000" required></div>
+<div class="cev4-emailbox cev4-field"><label for="cadEmpresaEmailCandidaturas">E-mail para recebimento de candidaturas</label><input id="cadEmpresaEmailCandidaturas" type="email" autocomplete="email" placeholder="rh@suaempresa.com.br" required><small>Será o e-mail padrão para vagas que recebem currículos por e-mail.</small><label class="cev4-same"><input id="cadEmpresaMesmoEmailEM" type="checkbox"><span>Usar o mesmo e-mail corporativo para candidaturas</span></label></div>
+<div class="cev4-field"><label for="cadEmpresaSenha">Crie uma senha</label><input id="cadEmpresaSenha" type="password" minlength="6" autocomplete="new-password" placeholder="Mínimo de 6 caracteres" required></div>
+<div class="cev4-field"><label for="cadEmpresaSenha2">Confirme a senha</label><input id="cadEmpresaSenha2" type="password" minlength="6" autocomplete="new-password" placeholder="Repita a senha" required></div>
+</div>
+<div class="form-msg" id="msgCadastroEmpresa"></div>
+<div class="cev4-actions"><button class="cev4-submit" type="submit">Criar conta da empresa</button><span class="cev4-login">Já possui conta? <button type="button" onclick="irPara('login-empresa')">Entrar como empresa</button></span></div>
+</form>
+</main>
+<aside class="cev4-side"><span class="cev4-side-tag">EMPREGAÍ PARA EMPRESAS</span><h2>Comece a recrutar com uma conta profissional.</h2><p>O cadastro inicial é simples. Depois você poderá completar o perfil, publicar vagas e solicitar a verificação da empresa.</p><div class="cev4-benefits"><article><i>✓</i><div><b>Cadastro rápido</b><small>Somente os dados essenciais para criar sua conta empresarial.</small></div></article><article><i>✓</i><div><b>E-mails separados</b><small>Organize o e-mail da conta e o endereço que receberá currículos.</small></div></article><article><i>✓</i><div><b>Verificação independente</b><small>Valide sua empresa depois, sem repetir todo o cadastro.</small></div></article><article><i>✓</i><div><b>Gestão de processos</b><small>Publique vagas e acompanhe candidatos pelo painel.</small></div></article></div><div class="cev4-note"><b>Ambiente empresarial</b><span>Os dados cadastrados ficam vinculados à conta da empresa e podem ser atualizados em Minha Empresa.</span></div></aside>
+</div>
+</section><section class="pagina candidato-login-page" id="pagina-login-candidato"><div class="candidato-login-shell">
 <div class="candidato-login-card"><span class="candidato-eyebrow">ÁREA DO CANDIDATO</span><h1>Acesse sua conta</h1><p class="candidato-intro">Entre para gerenciar seu currículo e acompanhar suas candidaturas.</p>
 <form id="formLoginCandidato" class="candidato-login-form"><label for="loginCandEmail">E-mail</label><div class="cand-input"><span>✉</span><input id="loginCandEmail" type="email" autocomplete="username" placeholder="Seu e-mail" required></div>
 <div class="cand-label-row"><label for="loginCandSenha">Senha</label><button type="button" onclick="recuperarSenhaCandidato()">Esqueceu a senha?</button></div><div class="cand-input"><span>▣</span><input id="loginCandSenha" type="password" autocomplete="current-password" placeholder="Sua senha" required><button class="cand-eye" type="button" onclick="alternarSenhaCandidato(this)" aria-label="Mostrar ou ocultar senha">◉</button></div>
