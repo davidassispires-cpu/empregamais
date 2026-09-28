@@ -4427,3 +4427,25 @@ window.addEventListener('load',()=>setTimeout(concluirLoginGoogleEM,40));
     w.document.close();
   };
 })();
+
+
+/* MAISEMPREGOS-PLANOS-INTEGRACAO-V1 */
+function solicitarPlanoIntegracaoEM(plano){
+ const nomes={
+  essencial:'Integração Essencial',
+  pro:'Integração Pro',
+  enterprise:'Integração Enterprise'
+ };
+ const nome=nomes[plano]||'Integração de vagas';
+ try{
+  sessionStorage.setItem('interessePlanoIntegracaoEM',plano);
+  sessionStorage.setItem('interessePlanoIntegracaoNomeEM',nome);
+ }catch(_){}
+ irPara('contato');
+ setTimeout(()=>{
+  const assunto=document.querySelector('#pagina-contato input[name="assunto"],#pagina-contato #contatoAssunto');
+  const mensagem=document.querySelector('#pagina-contato textarea[name="mensagem"],#pagina-contato #contatoMensagem');
+  if(assunto&&!assunto.value)assunto.value='Plano '+nome;
+  if(mensagem&&!mensagem.value)mensagem.value='Tenho interesse no plano '+nome+' para sincronizar automaticamente as vagas do portal de carreiras da minha empresa com o +Empregos.';
+ },80);
+}
