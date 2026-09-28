@@ -11114,3 +11114,28 @@ textarea{
     grid-template-columns:1fr!important;
   }
 }
+
+/* EMPREGAI-NOME-VAGA-NO-STATUS-V1 */
+#pagina-candidatos-empresa .recruta-cand-status{
+  display:flex!important;
+  flex-direction:column!important;
+  align-items:flex-end!important;
+}
+#pagina-candidatos-empresa .recruta-cand-vaga-status{
+  display:block!important;
+  margin-top:6px!important;
+  max-width:220px!important;
+  font-family:'Montserrat',Arial,sans-serif!important;
+  font-size:11px!important;
+  line-height:1.3!important;
+  font-weight:500!important;
+  color:#688196!important;
+  text-align:right!important;
+  white-space:normal!important;
+}
+@media(max-width:760px){
+  #pagina-candidatos-empresa .recruta-cand-vaga-status{
+    max-width:170px!important;
+    font-size:10.5px!important;
+  }
+}
