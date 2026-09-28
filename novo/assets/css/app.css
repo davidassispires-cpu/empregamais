@@ -10521,3 +10521,124 @@ textarea{
   border-color:var(--cf-emp)!important;
 }
 
+/* EMPREGAI-CANDIDATURA-TIPOGRAFIA-LEGIVEL-V1 */
+/* Mantém a família tipográfica atual; melhora apenas escala, peso, contraste e espaçamento. */
+#pagina-candidatos-empresa .recruta-cand-head h3{
+  font-size:22px!important;
+  line-height:1.16!important;
+  font-weight:850!important;
+  letter-spacing:-.025em!important;
+  color:#102f46!important;
+}
+#pagina-candidatos-empresa .recruta-cand-head p{
+  margin-top:5px!important;
+  font-size:13.5px!important;
+  line-height:1.35!important;
+  font-weight:500!important;
+  color:#5f778a!important;
+}
+#pagina-candidatos-empresa .recruta-cand-ident .meta-inline span{
+  font-size:12.5px!important;
+  line-height:1.35!important;
+  font-weight:500!important;
+  color:#6b8191!important;
+}
+#pagina-candidatos-empresa .recruta-cand-status small{
+  margin:0 0 7px!important;
+  font-size:11.5px!important;
+  line-height:1.2!important;
+  font-weight:650!important;
+  letter-spacing:.045em!important;
+  color:#617b8c!important;
+}
+#pagina-candidatos-empresa .recruta-cand-status strong{
+  display:inline-flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  min-height:34px!important;
+  padding:0 14px!important;
+  border:1px solid #bfe8d2!important;
+  border-radius:999px!important;
+  background:#effbf4!important;
+  font-size:13px!important;
+  line-height:1!important;
+  font-weight:700!important;
+  letter-spacing:0!important;
+  color:#067a4d!important;
+}
+#pagina-candidatos-empresa .recruta-cand-info>div{
+  padding:12px 13px!important;
+}
+#pagina-candidatos-empresa .recruta-cand-info span{
+  font-size:12.5px!important;
+  line-height:1.25!important;
+  font-weight:650!important;
+  letter-spacing:.01em!important;
+  color:#60798b!important;
+}
+#pagina-candidatos-empresa .recruta-cand-info strong{
+  margin-top:7px!important;
+  font-size:16px!important;
+  line-height:1.2!important;
+  font-weight:750!important;
+  letter-spacing:-.015em!important;
+  color:#0b3555!important;
+}
+#pagina-candidatos-empresa .recruta-cand-info small{
+  margin-top:4px!important;
+  font-size:11.5px!important;
+  line-height:1.35!important;
+  font-weight:500!important;
+  color:#61798a!important;
+}
+#pagina-candidatos-empresa .recruta-aderencia-score{
+  display:flex!important;
+  align-items:center!important;
+  gap:8px!important;
+  margin-top:6px!important;
+}
+#pagina-candidatos-empresa .recruta-aderencia-score strong{
+  margin:0!important;
+  font-size:26px!important;
+  line-height:1!important;
+  font-weight:800!important;
+  letter-spacing:-.035em!important;
+}
+#pagina-candidatos-empresa .recruta-aderencia-score small{
+  margin:0!important;
+  display:inline-flex!important;
+  align-items:center!important;
+  min-height:24px!important;
+  padding:0 8px!important;
+  border-radius:999px!important;
+  background:#edf7ef!important;
+  font-size:10.5px!important;
+  line-height:1!important;
+  font-weight:600!important;
+  color:#557468!important;
+}
+#pagina-candidatos-empresa .recruta-cand-actions .btn{
+  font-size:13.5px!important;
+  line-height:1.15!important;
+  font-weight:700!important;
+  letter-spacing:0!important;
+}
+#pagina-candidatos-empresa .recruta-preview-andamento{
+  font-size:11.5px!important;
+  line-height:1.25!important;
+  font-weight:600!important;
+  letter-spacing:.01em!important;
+  color:#526f83!important;
+}
+#pagina-candidatos-empresa .recruta-preview-andamento b{
+  font-size:11.5px!important;
+  font-weight:600!important;
+}
+@media(max-width:760px){
+  #pagina-candidatos-empresa .recruta-cand-head h3{font-size:20px!important}
+  #pagina-candidatos-empresa .recruta-cand-head p{font-size:13px!important}
+  #pagina-candidatos-empresa .recruta-cand-info span{font-size:12px!important}
+  #pagina-candidatos-empresa .recruta-cand-info strong{font-size:15.5px!important}
+  #pagina-candidatos-empresa .recruta-cand-info small{font-size:11.5px!important}
+  #pagina-candidatos-empresa .recruta-cand-actions .btn{font-size:13px!important}
+}
