@@ -918,7 +918,7 @@ const EMPREGAMAIS_SB_ADMIN_REFRESH="empregaMaisAdminSupabaseRefreshToken";
 function sbEmailEmpresaEM(cnpj){return nums(cnpj)+"@auth.empregamais.com.br"}
 function sbHeadersEM(token){const h={"apikey":EMPREGAMAIS_SUPABASE_KEY,"Content-Type":"application/json"};if(token)h.Authorization="Bearer "+token;return h}
 function sbJsonEM(url,opt){return fetch(url,opt).then(async r=>{const t=await r.text();let j={};try{j=t?JSON.parse(t):{}}catch(e){}if(!r.ok)throw new Error(j.msg||j.message||j.error_description||j.error||("Erro "+r.status));return j})}
-function sbSalvarSessaoEM(a){if(a?.access_token){sessionStorage.setItem(EMPREGAMAIS_SB_TOKEN,a.access_token);localStorage.setItem(EMPREGAMAIS_SB_TOKEN,a.access_token)}if(a?.refresh_token){sessionStorage.setItem(EMPREGAMAIS_SB_REFRESH,a.refresh_token);localStorage.setItem(EMPREGAMAIS_SB_REFRESH,a.refresh_token)}}
+function sbSalvarSessaoEM(a){if(a?.access_token||a?.refresh_token){localStorage.removeItem('empregaMaisLogoutBloqueio');sessionStorage.removeItem('empregaMaisLogoutBloqueio')}if(a?.access_token){sessionStorage.setItem(EMPREGAMAIS_SB_TOKEN,a.access_token);localStorage.setItem(EMPREGAMAIS_SB_TOKEN,a.access_token)}if(a?.refresh_token){sessionStorage.setItem(EMPREGAMAIS_SB_REFRESH,a.refresh_token);localStorage.setItem(EMPREGAMAIS_SB_REFRESH,a.refresh_token)}}
 function sbTokenEM(){return sessionStorage.getItem(EMPREGAMAIS_SB_TOKEN)||localStorage.getItem(EMPREGAMAIS_SB_TOKEN)||""}
 function sbRefreshTokenEM(){return sessionStorage.getItem(EMPREGAMAIS_SB_REFRESH)||localStorage.getItem(EMPREGAMAIS_SB_REFRESH)||""}
 async function sbGarantirSessaoEM(){
@@ -1976,13 +1976,14 @@ async function cadastrarCandidatoSupabaseEM(e){
 }
 const _sairSupabaseCandidatoV1=sair;
 sair=function(){
- const papel=papelAtual();
- if(papel==="candidato"||papel==="empresa"){
-   const t=sbTokenEM();if(t)fetch(EMPREGAMAIS_SUPABASE_URL+"/auth/v1/logout",{method:"POST",headers:sbHeadersEM(t)}).catch(()=>{});
-   sessionStorage.removeItem(EMPREGAMAIS_SB_TOKEN);localStorage.removeItem(EMPREGAMAIS_SB_TOKEN);
-   sessionStorage.removeItem(EMPREGAMAIS_SB_REFRESH);localStorage.removeItem(EMPREGAMAIS_SB_REFRESH);
-   sessionStorage.removeItem('empresaSupabaseAuthUserId');sessionStorage.removeItem('empresaSupabaseUserId');sessionStorage.removeItem('empresaSupabaseEmpresaId');sessionStorage.removeItem('empresaUsuarioAdministrador');
+ const papel=papelAtual(),t=sbTokenEM();
+ localStorage.setItem('empregaMaisLogoutBloqueio','1');
+ sessionStorage.setItem('empregaMaisLogoutBloqueio','1');
+ if((papel==="candidato"||papel==="empresa")&&t){
+   fetch(EMPREGAMAIS_SUPABASE_URL+"/auth/v1/logout?scope=global",{method:"POST",headers:sbHeadersEM(t)}).catch(()=>{});
  }
+ [EMPREGAMAIS_SB_TOKEN,EMPREGAMAIS_SB_REFRESH,'empregaMaisPapelPersistido','empregaMaisSupabaseAccessToken','empregaMaisSupabaseRefreshToken'].forEach(k=>{sessionStorage.removeItem(k);localStorage.removeItem(k)});
+ ['empregaMaisPapel','empresaSupabaseAuthUserId','empresaSupabaseUserId','empresaSupabaseEmpresaId','empresaUsuarioAdministrador','empresaCnpj','empresaNome','candidatoSupabaseUserId','candidatoEmail','candidatoNome'].forEach(k=>sessionStorage.removeItem(k));
  return _sairSupabaseCandidatoV1()
 };
 
@@ -2126,6 +2127,7 @@ async function loginCandidatoSupabaseEM(e){
 /* EMPREGAMAIS-USUARIOS-EMPRESA-V1 */
 function limiteUsuariosEmpresaEM(plano){return ({basico:1,mensal:1,trimestral:1,semestral:2,anual:5})[String(plano||'basico').toLowerCase()]||1}
 async function sbRestaurarSessaoEmpresaEM(){
+ if(localStorage.getItem('empregaMaisLogoutBloqueio')==='1'||sessionStorage.getItem('empregaMaisLogoutBloqueio')==='1')return false;
  const token=await sbGarantirSessaoEM();if(!token)return false;
  try{
   const u=await sbUsuarioAtualEM(),emp=await sbBuscarMinhaEmpresaEM();if(!emp?.id)return false;
@@ -2180,6 +2182,7 @@ async function sbBuscarCandidatoCloudEM(token){
  return Array.isArray(rows)&&rows[0]?rows[0]:null
 }
 async function sbRestaurarSessaoCandidatoEM(){
+ if(localStorage.getItem('empregaMaisLogoutBloqueio')==='1'||sessionStorage.getItem('empregaMaisLogoutBloqueio')==='1')return false;
  const token=await sbGarantirSessaoEM();if(!token)return false;
  let remoto=null;
  try{remoto=await sbBuscarCandidatoCloudEM(token)}catch(e){return false}
@@ -3438,6 +3441,7 @@ function instalarEstilosCadastroEmpresaProEM(){
  document.head.appendChild(st);
 }
 function reformularCadastroEmpresaProEM(){
+ if(document.getElementById('pagina-cadastro-empresa')?.dataset.cadastroV4==='1')return;
  instalarEstilosCadastroEmpresaProEM();
  const nome=document.getElementById('cadEmpresaNome');if(!nome)return;
  const form=nome.closest('form');if(!form||form.dataset.emCadastroPro==='1')return;
@@ -3478,6 +3482,7 @@ setTimeout(()=>{try{if(new URLSearchParams(location.search).get('pagina')==='cad
 
 /* EMPREGAMAI-CADASTRO-EMPRESA-ESTRUTURA-FIX-V2 */
 function corrigirEstruturaCadastroEmpresaEM(){
+ if(document.getElementById('pagina-cadastro-empresa')?.dataset.cadastroV4==='1')return;
  const nome=document.getElementById('cadEmpresaNome');if(!nome)return;
  const form=nome.closest('form');if(!form)return;
  const pagina=form.closest('[id^="pagina-"]')||document.getElementById('pagina-cadastro-empresa');if(!pagina)return;
@@ -3625,3 +3630,16 @@ setTimeout(corrigirEstruturaCadastroEmpresaEM,120);
  '@media(max-width:620px){#pagina-cadastro-empresa .em-cad-form-pro{grid-template-columns:1fr!important;padding:18px!important}#pagina-cadastro-empresa .em-cad-shell{width:calc(100vw - 16px)!important;margin:20px auto 38px!important}}';
  document.head.appendChild(st);
 })();
+
+function bindCadastroEmpresaV4EM(){
+ const pg=document.getElementById('pagina-cadastro-empresa');
+ if(!pg||pg.dataset.cadastroV4!=='1')return;
+ const e=document.getElementById('cadEmpresaEmail'),r=document.getElementById('cadEmpresaEmailCandidaturas'),c=document.getElementById('cadEmpresaMesmoEmailEM');
+ if(!e||!r||!c||c.dataset.bindV4==='1')return;
+ c.dataset.bindV4='1';
+ const sync=()=>{r.readOnly=c.checked;if(c.checked)r.value=e.value.trim().toLowerCase()};
+ c.addEventListener('change',sync);
+ e.addEventListener('input',()=>{if(c.checked)sync()});
+}
+document.addEventListener('DOMContentLoaded',bindCadastroEmpresaV4EM);
+window.addEventListener('load',()=>setTimeout(bindCadastroEmpresaV4EM,50));
