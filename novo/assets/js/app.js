@@ -3819,3 +3819,79 @@ window.addEventListener('resize',()=>{clearTimeout(window.__emResizeDest);window
  '#pagina-home #listaDestaques .vaga-ver-btn{width:112px!important;min-width:112px!important;padding:0 14px!important;font-size:11px!important;font-weight:800!important;gap:0!important}';
  document.head.appendChild(st);
 })();
+
+
+/* EMPREGAMAI-GOOGLE-OAUTH-V1 */
+function entrarComGoogleEM(papel){
+ try{
+  localStorage.removeItem('empregaMaisLogoutBloqueio');
+  sessionStorage.removeItem('empregaMaisLogoutBloqueio');
+  sessionStorage.setItem('empregaMaisGooglePapel',papel==='empresa'?'empresa':'candidato');
+  localStorage.setItem('empregaMaisGooglePapel',papel==='empresa'?'empresa':'candidato');
+  const redirect=location.origin+location.pathname;
+  const url=EMPREGAMAIS_SUPABASE_URL+'/auth/v1/authorize?provider=google&redirect_to='+encodeURIComponent(redirect);
+  location.href=url;
+ }catch(e){
+  const alvo=papel==='empresa'?'#msgLoginEmpresa':'#msgLoginCandidato';
+  msg(alvo,'Não foi possível iniciar o login com Google.');
+ }
+}
+async function concluirLoginGoogleEM(){
+ const h=new URLSearchParams(String(location.hash||'').replace(/^#/,''));
+ const access=h.get('access_token'),refresh=h.get('refresh_token');
+ if(!access)return;
+ try{
+  sbSalvarSessaoEM({access_token:access,refresh_token:refresh||''});
+  history.replaceState(null,'',location.pathname+location.search);
+  const user=await sbJsonEM(EMPREGAMAIS_SUPABASE_URL+'/auth/v1/user',{method:'GET',headers:sbHeadersEM(access)});
+  if(!user?.id)throw new Error('Conta Google não identificada.');
+  const papel=sessionStorage.getItem('empregaMaisGooglePapel')||localStorage.getItem('empregaMaisGooglePapel')||'candidato';
+  sessionStorage.removeItem('empregaMaisGooglePapel');localStorage.removeItem('empregaMaisGooglePapel');
+  if(papel==='empresa'){
+   const rows=await sbJsonEM(EMPREGAMAIS_SUPABASE_URL+'/rest/v1/empresas?select=*&user_id=eq.'+encodeURIComponent(user.id)+'&limit=1',{method:'GET',headers:sbHeadersEM(access)});
+   const emp=Array.isArray(rows)?rows[0]:null;
+   if(emp){
+    const d=sbEmpresaParaLocalEM(emp,'');sbSalvarEmpresaLocalEM(d);entrar('empresa',d);
+    sessionStorage.setItem('empresaSupabaseUserId',emp.user_id||'');sessionStorage.setItem('empresaSupabaseEmpresaId',emp.id||'');
+    return;
+   }
+   sessionStorage.setItem('googleEmpresaPendente','1');
+   sessionStorage.setItem('googleEmailPendente',String(user.email||''));
+   sessionStorage.setItem('googleNomePendente',String(user.user_metadata?.full_name||user.user_metadata?.name||''));
+   irPara('cadastro-empresa');
+   setTimeout(()=>{
+    const n=document.getElementById('cadEmpresaNome'),e=document.getElementById('cadEmpresaEmail');
+    if(n&&!n.value)n.value=sessionStorage.getItem('googleNomePendente')||'';
+    if(e&&!e.value)e.value=sessionStorage.getItem('googleEmailPendente')||'';
+    const s1=document.getElementById('cadEmpresaSenha'),s2=document.getElementById('cadEmpresaSenha2');
+    if(s1)s1.closest('.cev4-field')?.setAttribute('hidden','hidden');
+    if(s2)s2.closest('.cev4-field')?.setAttribute('hidden','hidden');
+   },80);
+   return;
+  }
+  const rows=await sbJsonEM(EMPREGAMAIS_SUPABASE_URL+'/rest/v1/candidatos?select=*&user_id=eq.'+encodeURIComponent(user.id)+'&limit=1',{method:'GET',headers:sbHeadersEM(access)});
+  const cand=Array.isArray(rows)?rows[0]:null;
+  if(cand){
+   const d=sbSalvarCandidatoLocalEM({id:cand.id||'',userId:cand.user_id||'',nome:cand.nome||'',email:String(cand.email||'').toLowerCase(),telefone:cand.telefone||'',cidade:cand.cidade||'',perfil:(cand.perfil&&typeof cand.perfil==='object')?cand.perfil:{},premium:cand.premium===true,premiumAtivo:cand.premium===true,premiumCortesiaAdmin:cand.premium_cortesia_admin===true,premiumValidoAte:cand.premium_valido_ate||''});
+   entrar('candidato',d);return;
+  }
+  sessionStorage.setItem('googleCandidatoPendente','1');
+  sessionStorage.setItem('googleEmailPendente',String(user.email||''));
+  sessionStorage.setItem('googleNomePendente',String(user.user_metadata?.full_name||user.user_metadata?.name||''));
+  irPara('cadastro-candidato');
+  setTimeout(()=>{
+    const n=document.getElementById('cadCandNome'),e=document.getElementById('cadCandEmail');
+    if(n&&!n.value)n.value=sessionStorage.getItem('googleNomePendente')||'';
+    if(e&&!e.value)e.value=sessionStorage.getItem('googleEmailPendente')||'';
+    const s1=document.getElementById('cadCandSenha'),s2=document.getElementById('cadCandSenha2');
+    if(s1)s1.closest('div')?.setAttribute('hidden','hidden');
+    if(s2)s2.closest('div')?.setAttribute('hidden','hidden');
+   },80);
+ }catch(err){
+  console.error('Login Google:',err);
+  history.replaceState(null,'',location.pathname+location.search);
+  mostrarToast('Não foi possível concluir o login com Google.');
+ }
+}
+document.addEventListener('DOMContentLoaded',concluirLoginGoogleEM);
+window.addEventListener('load',()=>setTimeout(concluirLoginGoogleEM,40));
