@@ -650,7 +650,7 @@ function cardVagaDestaqueEM(v){
  return '<article class="vaga-card portal-vaga portal-vaga-nova '+(destaqueAtivo(v)?'destaque ':'')+(v.urgente?'urgente':'')+'" onclick="abrirVaga(\''+v.id+'\')"><div class="vaga-identidade">'+logoHtml+'<div class="vaga-identidade-copy"><div class="vaga-selos vaga-selos-identidade vaga-selos-linha-em">'+tags+selosCandidaturaVagaEM(v)+'</div><h3>'+esc(tituloVaga(v))+'</h3><p>'+esc(nome)+seloEmpresa+'</p></div></div>'+(metaDestaque?'<div class="vaga-meta">'+metaDestaque+'</div>':'')+(desc?'<div class="vaga-resumo-area"><small>SOBRE A VAGA</small><p class="vaga-resumo">'+esc(desc.slice(0,120))+(desc.length>120?'…':'')+'</p></div>':'')+'<div class="vaga-card-rodape"><div class="vaga-rodape-salario"><small>Salário</small><strong class="salario-card">'+esc(sal)+'</strong></div><small class="data-card-em">Publicada '+esc(dataTexto)+'</small><button type="button" class="vaga-ver-btn" onclick="event.stopPropagation();abrirVaga(\''+v.id+'\')">Ver vaga <b>→</b></button></div></article>';
 }
 function alternarSalvarVagaCard(id){if(papelAtual()!=='candidato'){sessionStorage.setItem('retornoSalvarVaga',id);irPara('login-candidato');return}sessionStorage.setItem('vagaAtual',id);alternarSalvarVaga();setTimeout(renderizarVagasPortal,0)}
-function renderizarVagasPortal(){const box=$('#listaVagasPortal');if(!box)return;if(candidatoLogadoDistanciaEM()&&!localizacaoCandidatoEM)setTimeout(solicitarLocalizacaoCandidatoEM,0);preencherAreasPortal();garantirFiltroCandidaturaEM();const q=($('#buscaVagas')?.value||'').toLowerCase(),cidade=($('#buscaCidade')?.value||'').toLowerCase(),mod=$('#buscaModalidade')?.value||'',area=$('#filtroArea')?.value||'',contrato=$('#filtroContrato')?.value||'',pcd=$('#filtroPcd')?.value||'',escolar=$('#filtroEscolaridade')?.value||'',salario=Number($('#filtroSalario')?.value||0),candidaturaFiltro=$('#filtroCandidatura')?.value||'';const todas=vagasPublicas(),lista=todas.filter(v=>((tituloVaga(v))+' '+(v.area||'')+' '+(v.empresa||'')).toLowerCase().includes(q)&&((v.cidade||'')+' '+(v.estado||'')).toLowerCase().includes(cidade)&&(!mod||v.modalidade===mod)&&(!area||v.area===area)&&(!contrato||v.contrato===contrato)&&(!pcd||String(v.pcd||'').includes(pcd))&&(!escolar||v.escolaridade===escolar)&&(!salario||valorSalario(v.salarioMax||v.salario)>=salario)&&filtroCandidaturaAtendeEM(v,candidaturaFiltro)),ordem=$('#ordenarVagas')?.value||'recentes';lista.sort((a,b)=>ordem==='salario-maior'?valorSalario(b.salarioMax||b.salario)-valorSalario(a.salarioMax||a.salario):ordem==='salario-menor'?(valorSalario(a.salario||a.salarioMax)||Infinity)-(valorSalario(b.salario||b.salarioMax)||Infinity):ordem==='encerramento'?(a.dataEncerramento?new Date(a.dataEncerramento):new Date('2999-12-31'))-(b.dataEncerramento?new Date(b.dataEncerramento):new Date('2999-12-31')):new Date(b.criadoEm||0)-new Date(a.criadoEm||0));$('#qtdVagasPortal').textContent=lista.length+' vaga'+(lista.length===1?' encontrada':'s encontradas');const ativos=$('#filtrosAtivosEM');if(ativos){const filtros=[['filtroArea','Área'],['buscaModalidade','Modalidade'],['filtroContrato','Contrato'],['filtroEscolaridade','Escolaridade'],['filtroSalario','Salário'],['filtroPcd','PcD'],['filtroCandidatura','Forma de candidatura']].map(([id,rot])=>{const el=$('#'+id),val=el?.value;if(!val)return'';const texto=el.options?.[el.selectedIndex]?.text||val;return '<button type="button" onclick="removerFiltroAtivoEM(\''+id+'\')"><span>'+esc(texto)+'</span><b>×</b></button>'}).filter(Boolean);ativos.innerHTML=filtros.length?'<span>Filtros ativos:</span>'+filtros.join(''):''}const porPagina=10,totalPaginas=Math.max(1,Math.ceil(lista.length/porPagina));window.paginaVagasPortalEM=Math.min(Math.max(1,Number(window.paginaVagasPortalEM||1)),totalPaginas);const inicio=(window.paginaVagasPortalEM-1)*porPagina,paginaLista=lista.slice(inicio,inicio+porPagina);box.innerHTML=paginaLista.length?paginaLista.map(cardVagaPortal).join(''):'<div class="vagas-vazio"><strong>Nenhuma vaga encontrada</strong><span>Tente alterar os filtros.</span></div>';renderPaginacaoVagasPortalEM(lista.length,totalPaginas);if(paginaLista.length){const atual=paginaLista.find(v=>v.id===window.vagaPreviewRecenteEM)||paginaLista[0];window.vagaPreviewRecenteEM=atual.id;renderPreviewVagaRecenteEM(atual.id)}else{const p=$('#previewVagaPortal');if(p)p.innerHTML='<div class="recentes-preview-vazio"><strong>Nenhuma vaga para visualizar</strong><span>Altere os filtros para encontrar oportunidades.</span></div>'}const dest=$('#listaDestaques'),d=vagasDestaqueOrdenadasEM();if(dest)renderDestaquesEM(d);}function renderPreviewVagaRecenteEM(id){
+function renderizarVagasPortal(){const box=$('#listaVagasPortal');if(!box)return;if(candidatoLogadoDistanciaEM()&&!localizacaoCandidatoEM)setTimeout(solicitarLocalizacaoCandidatoEM,0);preencherAreasPortal();garantirFiltroCandidaturaEM();const q=($('#buscaVagas')?.value||'').toLowerCase(),cidade=($('#buscaCidade')?.value||'').toLowerCase(),mod=$('#buscaModalidade')?.value||'',area=$('#filtroArea')?.value||'',contrato=$('#filtroContrato')?.value||'',pcd=$('#filtroPcd')?.value||'',escolar=$('#filtroEscolaridade')?.value||'',salario=Number($('#filtroSalario')?.value||0),candidaturaFiltro=$('#filtroCandidatura')?.value||'';const todas=vagasPublicas(),lista=todas.filter(v=>((tituloVaga(v))+' '+(v.area||'')+' '+(v.empresa||'')).toLowerCase().includes(q)&&((v.cidade||'')+' '+(v.estado||'')).toLowerCase().includes(cidade)&&(!mod||v.modalidade===mod)&&(!area||v.area===area)&&(!contrato||v.contrato===contrato)&&(!pcd||String(v.pcd||'').includes(pcd))&&(!escolar||v.escolaridade===escolar)&&(!salario||valorSalario(v.salarioMax||v.salario)>=salario)&&filtroCandidaturaAtendeEM(v,candidaturaFiltro)),ordem=$('#ordenarVagas')?.value||'recentes';lista.sort((a,b)=>ordem==='salario-maior'?valorSalario(b.salarioMax||b.salario)-valorSalario(a.salarioMax||a.salario):ordem==='salario-menor'?(valorSalario(a.salario||a.salarioMax)||Infinity)-(valorSalario(b.salario||b.salarioMax)||Infinity):ordem==='encerramento'?(a.dataEncerramento?new Date(a.dataEncerramento):new Date('2999-12-31'))-(b.dataEncerramento?new Date(b.dataEncerramento):new Date('2999-12-31')):new Date(b.criadoEm||0)-new Date(a.criadoEm||0));$('#qtdVagasPortal').textContent=lista.length+' vaga'+(lista.length===1?' encontrada':'s encontradas');const ativos=$('#filtrosAtivosEM');if(ativos){const filtros=[['filtroArea','Área'],['buscaModalidade','Modalidade'],['filtroContrato','Contrato'],['filtroEscolaridade','Escolaridade'],['filtroSalario','Salário'],['filtroPcd','PcD'],['filtroCandidatura','Forma de candidatura']].map(([id,rot])=>{const el=$('#'+id),val=el?.value;if(!val)return'';const texto=el.options?.[el.selectedIndex]?.text||val;return '<button type="button" onclick="removerFiltroAtivoEM(\''+id+'\')"><span>'+esc(texto)+'</span><b>×</b></button>'}).filter(Boolean);ativos.innerHTML=filtros.length?'<span>Filtros ativos:</span>'+filtros.join(''):''}const porPagina=10,totalPaginas=Math.max(1,Math.ceil(lista.length/porPagina));window.paginaVagasPortalEM=Math.min(Math.max(1,Number(window.paginaVagasPortalEM||1)),totalPaginas);const inicio=(window.paginaVagasPortalEM-1)*porPagina,paginaLista=lista.slice(inicio,inicio+porPagina);box.innerHTML=paginaLista.length?paginaLista.map(cardVagaPortal).join(''):'<div class="vagas-vazio"><strong>Nenhuma vaga encontrada</strong><span>Tente alterar os filtros.</span></div>';renderPaginacaoVagasPortalEM(lista.length,totalPaginas);if(paginaLista.length){const atual=paginaLista.find(v=>v.id===window.vagaPreviewRecenteEM)||paginaLista[0];window.vagaPreviewRecenteEM=atual.id;renderPreviewVagaRecenteEM(atual.id)}else{const p=$('#previewVagaPortal');if(p)p.innerHTML='<div class="recentes-preview-vazio"><strong>Nenhuma vaga para visualizar</strong><span>Altere os filtros para encontrar oportunidades.</span></div>'}const dest=$('#listaDestaques'),d=vagasDestaqueOrdenadasEM();if(dest){renderDestaquesEM(d);carregarDestaquesPublicosEM().then(()=>renderDestaquesEM(vagasDestaqueOrdenadasEM())).catch(()=>{});} }function renderPreviewVagaRecenteEM(id){
  const box=document.getElementById('previewVagaPortal');if(!box)return;
  const v=vagasPublicas().find(x=>x.id===id);if(!v)return;
  window.vagaPreviewRecenteEM=id;
@@ -1437,13 +1437,48 @@ document.addEventListener('click',function(e){
 
 /* EMPREGAMAIS — DESTAQUES — RENDERIZAÇÃO E NAVEGAÇÃO V8: uma única linha */
 let indiceDestaquesEM=0;
+let sbDestaquesPublicosEM=[];
 function vagasDestaqueOrdenadasEM(){
- return vagasPublicas()
-  .filter(destaqueAtivo)
-  .sort((a,b)=>new Date(b.criadoEm||b.dataPublicacao||b.data||0)-new Date(a.criadoEm||a.dataPublicacao||a.data||0))
-  .slice(0,8);
+ const base=Array.isArray(sbDestaquesPublicosEM)&&sbDestaquesPublicosEM.length?sbDestaquesPublicosEM:vagasPublicas();
+ const mapa=new Map();
+ [...base,...vagasPublicas()].forEach(v=>{if(v?.id&&destaqueAtivo(v)&&v.status==='aprovada'&&vagaDentroPrazo(v))mapa.set(String(v.id),v)});
+ return [...mapa.values()]
+  .sort((a,b)=>new Date(b.criadoEm||b.dataPublicacao||b.data||0)-new Date(a.criadoEm||a.dataPublicacao||a.data||0));
+}
+async function carregarDestaquesPublicosEM(){
+ try{
+  const rows=await sbJsonEM(EMPREGAMAIS_SUPABASE_URL+'/rest/v1/vagas?select=*&status=eq.aprovada&destaque=eq.true&order=criado_em.desc',{method:'GET',headers:sbHeadersEM()});
+  if(Array.isArray(rows)){
+   sbDestaquesPublicosEM=rows.map(sbMapVagaEM).filter(v=>v&&vagaDentroPrazo(v)&&destaqueAtivo(v));
+   const geral=new Map((Array.isArray(sbVagasCacheEM)?sbVagasCacheEM:[]).filter(v=>v?.id).map(v=>[String(v.id),v]));
+   sbDestaquesPublicosEM.forEach(v=>geral.set(String(v.id),v));
+   sbVagasCacheEM=[...geral.values()];
+   gravar('empregaMaisVagas',sbVagasCacheEM);
+  }
+ }catch(e){console.warn('Empregaí: não foi possível atualizar os destaques públicos.',e)}
+ return sbDestaquesPublicosEM;
 }
 function quantidadeDestaquesVisiveisEM(){return window.innerWidth<=700?1:window.innerWidth<=1050?2:4}
+function aplicarLayoutDestaquesDesktopEM(el){
+ if(!el)return;
+ const mobile=window.innerWidth<=700,tablet=!mobile&&window.innerWidth<=1050;
+ el.style.setProperty('display',mobile?'block':'grid','important');
+ el.style.setProperty('grid-template-columns',mobile?'1fr':tablet?'repeat(2,minmax(0,1fr))':'repeat(4,minmax(0,1fr))','important');
+ el.style.setProperty('gap',mobile?'0':'14px','important');
+ el.style.setProperty('width','100%','important');
+ el.style.setProperty('overflow','visible','important');
+ el.querySelectorAll('.portal-vaga-nova').forEach(card=>{
+  card.style.setProperty('width','100%','important');
+  card.style.setProperty('max-width','none','important');
+  card.style.setProperty('min-width','0','important');
+  card.style.setProperty('height',mobile?'auto':tablet?'390px':'330px','important');
+  card.style.setProperty('min-height',mobile?'0':tablet?'390px':'330px','important');
+  card.style.setProperty('max-height',mobile?'none':tablet?'390px':'330px','important');
+  card.style.setProperty('aspect-ratio',mobile?'auto':'1 / 1','important');
+  card.style.setProperty('margin','0','important');
+  card.style.setProperty('box-sizing','border-box','important');
+ });
+}
 function renderDestaquesEM(lista){
  const el=document.getElementById('listaDestaques');if(!el)return;
  const arr=Array.isArray(lista)?lista:[],total=arr.length,qtd=quantidadeDestaquesVisiveisEM();
@@ -1452,15 +1487,17 @@ function renderDestaquesEM(lista){
   if(indiceDestaquesEM<0)indiceDestaquesEM=Math.max(0,total-1);
   el.innerHTML=total?cardVagaDestaqueEM(arr[indiceDestaquesEM]):'';
   el.dataset.quantidade=String(total?1:0);
+  aplicarLayoutDestaquesDesktopEM(el);
   prepararDestaquesMobileEM(el,total);
   const faixa=document.getElementById('destaquesFaixaEM');if(faixa)faixa.classList.add('oculto');
   return;
  }
  if(indiceDestaquesEM>Math.max(0,total-qtd))indiceDestaquesEM=0;
- let vis=[];for(let i=0;i<Math.min(qtd,total);i++)vis.push(arr[(indiceDestaquesEM+i)%total]);
+ const vis=[];for(let i=0;i<Math.min(qtd,total);i++)vis.push(arr[(indiceDestaquesEM+i)%total]);
  el.innerHTML=vis.map(cardVagaDestaqueEM).join('');
  el.dataset.quantidade=String(vis.length);
- renderFaixaDestaquesEM(arr);
+ aplicarLayoutDestaquesDesktopEM(el);
+ const faixa=document.getElementById('destaquesFaixaEM');if(faixa)faixa.classList.add('oculto');
 }
 function prepararDestaquesMobileEM(el,total){
  const wrap=el.parentNode;if(!wrap)return;
@@ -3676,3 +3713,8 @@ window.addEventListener('load',()=>setTimeout(bindCadastroEmpresaV4EM,50));
  '@media(max-width:700px){#pagina-home #listaDestaques{grid-template-columns:1fr!important}#pagina-home #listaDestaques .portal-vaga-nova{aspect-ratio:auto!important;min-height:0!important;height:auto!important}#pagina-home .destaques-wrap>.destaque-nav{display:none!important}}';
  document.head.appendChild(st);
 })();
+
+
+/* EMPREGAMAI-DESTAQUES-FONTE-DIRETA-V1 */
+document.addEventListener('DOMContentLoaded',()=>setTimeout(()=>carregarDestaquesPublicosEM().then(()=>renderDestaquesEM(vagasDestaqueOrdenadasEM())).catch(()=>{}),250));
+window.addEventListener('resize',()=>{clearTimeout(window.__emResizeDest);window.__emResizeDest=setTimeout(()=>{const el=document.getElementById('listaDestaques');if(el)renderDestaquesEM(vagasDestaqueOrdenadasEM())},120)});
