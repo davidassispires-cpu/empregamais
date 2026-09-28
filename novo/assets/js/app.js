@@ -3828,7 +3828,7 @@ function entrarComGoogleEM(papel){
   sessionStorage.removeItem('empregaMaisLogoutBloqueio');
   sessionStorage.setItem('empregaMaisGooglePapel',papel==='empresa'?'empresa':'candidato');
   localStorage.setItem('empregaMaisGooglePapel',papel==='empresa'?'empresa':'candidato');
-  const redirect=location.origin+location.pathname;
+  const redirect=location.hostname==='davidassispires-cpu.github.io'?'https://davidassispires-cpu.github.io/empregamais/novo/index.html':location.origin+location.pathname;
   const url=EMPREGAMAIS_SUPABASE_URL+'/auth/v1/authorize?provider=google&redirect_to='+encodeURIComponent(redirect);
   location.href=url;
  }catch(e){
