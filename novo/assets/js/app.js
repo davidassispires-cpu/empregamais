@@ -1471,9 +1471,9 @@ function aplicarLayoutDestaquesDesktopEM(el){
   card.style.setProperty('width','100%','important');
   card.style.setProperty('max-width','none','important');
   card.style.setProperty('min-width','0','important');
-  card.style.setProperty('height',mobile?'auto':tablet?'390px':'365px','important');
-  card.style.setProperty('min-height',mobile?'0':tablet?'390px':'365px','important');
-  card.style.setProperty('max-height',mobile?'none':tablet?'390px':'365px','important');
+  card.style.setProperty('height',mobile?'auto':tablet?'405px':'382px','important');
+  card.style.setProperty('min-height',mobile?'0':tablet?'405px':'382px','important');
+  card.style.setProperty('max-height',mobile?'none':tablet?'405px':'382px','important');
   card.style.setProperty('aspect-ratio','auto','important');
   card.style.setProperty('margin','0','important');
   card.style.setProperty('box-sizing','border-box','important');
@@ -3784,5 +3784,25 @@ window.addEventListener('resize',()=>{clearTimeout(window.__emResizeDest);window
  '#pagina-home #listaDestaques .vaga-ver-btn{height:40px!important;min-height:40px!important;max-height:40px!important;align-self:end!important}'+
  '@media(max-width:1050px){#pagina-home #listaDestaques .portal-vaga-nova{height:390px!important;min-height:390px!important;max-height:390px!important}}'+
  '@media(max-width:700px){#pagina-home #listaDestaques .portal-vaga-nova{height:auto!important;min-height:0!important;max-height:none!important}}';
+ document.head.appendChild(st);
+})();
+
+
+/* EMPREGAMAI-DESTAQUES-LOGO-RODAPE-V5 */
+(function(){
+ const st=document.createElement('style');
+ st.id='estilosDestaquesLogoRodapeV5';
+ st.textContent=
+ '#pagina-home #listaDestaques .portal-vaga-nova{height:382px!important;min-height:382px!important;max-height:382px!important;padding-bottom:18px!important}'+
+ '#pagina-home #listaDestaques .vaga-identidade{height:58px!important;min-height:58px!important;flex:0 0 58px!important;grid-template-columns:54px minmax(0,1fr)!important;gap:10px!important;margin-bottom:8px!important}'+
+ '#pagina-home #listaDestaques .vaga-logo{width:54px!important;height:54px!important;min-width:54px!important;padding:4px!important;border-radius:10px!important}'+
+ '#pagina-home #listaDestaques .vaga-logo-fallback{font-size:18px!important}'+
+ '#pagina-home #listaDestaques .vaga-identidade h3,#pagina-home #listaDestaques .vaga-copy h3{font-size:16px!important;line-height:1.08!important;max-height:35px!important}'+
+ '#pagina-home #listaDestaques .vaga-identidade p{font-size:9.5px!important}'+
+ '#pagina-home #listaDestaques .vaga-card-rodape{height:86px!important;min-height:86px!important;max-height:86px!important;flex:0 0 86px!important;padding-top:11px!important;padding-bottom:8px!important;grid-template-rows:15px 44px!important;row-gap:5px!important}'+
+ '#pagina-home #listaDestaques .vaga-ver-btn{height:42px!important;min-height:42px!important;max-height:42px!important}'+
+ '#pagina-home #listaDestaques .vaga-rodape-salario .salario-card{font-size:15.5px!important}'+
+ '@media(max-width:1050px){#pagina-home #listaDestaques .portal-vaga-nova{height:405px!important;min-height:405px!important;max-height:405px!important}}'+
+ '@media(max-width:700px){#pagina-home #listaDestaques .portal-vaga-nova{height:auto!important;min-height:0!important;max-height:none!important}#pagina-home #listaDestaques .vaga-logo{width:64px!important;height:64px!important;min-width:64px!important}}';
  document.head.appendChild(st);
 })();
