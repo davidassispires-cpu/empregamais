@@ -29359,6 +29359,23 @@ escolherRegistroMaisAtualEmpregaMais(
 localAntesEM,
 remota
 ) || {};
+/* Destaque é um estado persistente: a sincronização remota não pode
+   apagar um destaque já ativo em nenhuma das duas cópias da vaga. */
+var destaqueLocalEM =
+localAntesEM.destaque === true ||
+String(localAntesEM.destaque).toLowerCase() === "true" ||
+String(localAntesEM.destaque) === "1" ||
+localAntesEM.emDestaque === true ||
+String(localAntesEM.emDestaque).toLowerCase() === "true";
+var destaqueRemotoEM =
+remota.destaque === true ||
+String(remota.destaque).toLowerCase() === "true" ||
+String(remota.destaque) === "1" ||
+remota.emDestaque === true ||
+String(remota.emDestaque).toLowerCase() === "true";
+if(destaqueLocalEM || destaqueRemotoEM){
+escolhidaEM.destaque = true;
+}
 escolhidaEM.empresaCnpj =
 escolhidaEM.empresaCnpj ||
 escolhidaEM.cnpj ||
