@@ -278,3 +278,13 @@ window.addEventListener('popstate',()=>setTimeout(init,200));
 window.addEventListener('pageshow',()=>setTimeout(init,200));
 setInterval(()=>{try{hook();if(typeof papelAtual==='function'&&papelAtual()==='candidato')pushCard()}catch(_){}},3000);
 })();
+
+/* Carregador isolado: gestão avançada de Minhas Vagas */
+(function(){
+ if(document.querySelector('script[data-em-minhas-vagas-gestao]'))return;
+ const s=document.createElement('script');
+ s.src='./assets/js/minhas-vagas-gestao.js?v=1-20260928';
+ s.async=false;
+ s.dataset.emMinhasVagasGestao='1';
+ document.head.appendChild(s);
+})();
