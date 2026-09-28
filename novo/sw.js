@@ -1,4 +1,4 @@
-const EMPREGAMAIS_SW_VERSION='2026-09-28-v7';
+const EMPREGAMAIS_SW_VERSION='2026-09-28-v8';
 
 const EMPREGAMAIS_DESKTOP_VAGAS_FIX=`
 @media (min-width: 901px){
@@ -43,50 +43,79 @@ const EMPREGAMAIS_DESKTOP_VAGAS_FIX=`
 }
 `;
 
-function corrigirAppJsDestaquesEM(js){
-  let out=String(js||'');
+const EMPREGAMAIS_DESTAQUES_FINAL_FIX=`
+/* EMPREGAMAIS-DESTAQUES-FINAL-V8 */
+(function(){
+  function listaDestaquesEstavelEM(){
+    try{
+      return (typeof vagasPublicas==='function'?vagasPublicas():[])
+        .filter(v=>typeof destaqueAtivo==='function'?destaqueAtivo(v):!!v?.destaque)
+        .sort((a,b)=>new Date(b.criadoEm||b.criado_em||b.dataPublicacao||b.data||0)-new Date(a.criadoEm||a.criado_em||a.dataPublicacao||a.data||0));
+    }catch(_){return[]}
+  }
 
-  /* 1) Não descartar vagas pagas/destacadas antes da renderização. */
-  out=out.replace(
-    /function vagasDestaqueOrdenadasEM\(\)\{[\s\S]*?\n\}/,
-    `function vagasDestaqueOrdenadasEM(){
- return vagasPublicas()
-  .filter(destaqueAtivo)
-  .sort((a,b)=>new Date(b.criadoEm||b.criado_em||b.dataPublicacao||b.data||0)-new Date(a.criadoEm||a.criado_em||a.dataPublicacao||a.data||0));
-}`
-  );
+  vagasDestaqueOrdenadasEM=function(){
+    return listaDestaquesEstavelEM();
+  };
+  window.vagasDestaqueOrdenadasEM=vagasDestaqueOrdenadasEM;
 
-  /* 2) A faixa inferior exclui somente os cards principais calculados para aquele momento.
-        Não mistura uma segunda lista de IDs, que era o conflito que fazia vagas sumirem. */
-  out=out.replace(
-    /function renderFaixaDestaquesEM\(lista\)\{[\s\S]*?\n\}\nfunction moverFaixaDestaquesEM\(dir\)\{/,
-    `function renderFaixaDestaquesEM(lista){
- const box=document.getElementById('listaDestaquesFaixaEM'),wrap=document.getElementById('destaquesFaixaEM');if(!box||!wrap)return;
- const arr=Array.isArray(lista)?lista:[];
- const principaisAtuais=[];
- for(let i=0;i<Math.min(quantidadeDestaquesVisiveisEM(),arr.length);i++)principaisAtuais.push(arr[(indiceDestaquesEM+i)%arr.length]);
- const idsExcluir=new Set(principaisAtuais.map(v=>String(v.id)));
- const restantes=arr.filter(v=>!idsExcluir.has(String(v.id)));
- if(!restantes.length){wrap.classList.add('oculto');box.innerHTML='';return}
- wrap.classList.remove('oculto');
- const qtd=quantidadeFaixaDestaquesEM();
- if(indiceFaixaDestaquesEM>=restantes.length)indiceFaixaDestaquesEM=0;
- const vis=[];
- for(let i=0;i<Math.min(qtd,restantes.length);i++)vis.push(restantes[(indiceFaixaDestaquesEM+i)%restantes.length]);
- box.innerHTML=vis.map(cardDestaqueMiniEM).join('');
-}
-function moverFaixaDestaquesEM(dir){`
-  );
+  renderFaixaDestaquesEM=function(lista){
+    const box=document.getElementById('listaDestaquesFaixaEM');
+    const wrap=document.getElementById('destaquesFaixaEM');
+    if(!box||!wrap)return;
 
-  /* 3) Remove a rotação automática que redesenhava os Destaques sozinha.
-        As setas continuam funcionando; a vaga não desaparece sem ação do usuário. */
-  out=out.replace(
-    /\(function\(\)\{let timer=null,pausado=false;function iniciar\(\)\{clearInterval\(timer\);timer=setInterval\(function\(\)\{const el=document\.getElementById\('listaDestaques'\);if\(!el\|\|pausado\)return;const total=vagasDestaqueOrdenadasEM\(\)\.length;if\(total>quantidadeDestaquesVisiveisEM\(\)\)moverDestaques\(1\)\},4500\)\}document\.addEventListener\('mouseover',[\s\S]*?iniciar\(\)\}\)\(\);/,
-    `/* Destaques estáveis: navegação somente pelas setas; sem rotação automática. */`
-  );
+    const arr=Array.isArray(lista)&&lista.length?lista:listaDestaquesEstavelEM();
+    const qtdPrincipais=typeof quantidadeDestaquesVisiveisEM==='function'?quantidadeDestaquesVisiveisEM():3;
+    const inicio=Math.max(0,Number(typeof indiceDestaquesEM!=='undefined'?indiceDestaquesEM:0)||0);
+    const idsPrincipais=new Set();
 
-  return out;
-}
+    for(let i=0;i<Math.min(qtdPrincipais,arr.length);i++){
+      const v=arr[(inicio+i)%arr.length];
+      if(v?.id!=null)idsPrincipais.add(String(v.id));
+    }
+
+    const restantes=arr.filter(v=>!idsPrincipais.has(String(v.id)));
+    if(!restantes.length){
+      wrap.classList.add('oculto');
+      box.innerHTML='';
+      return;
+    }
+
+    wrap.classList.remove('oculto');
+    const qtd=typeof quantidadeFaixaDestaquesEM==='function'?quantidadeFaixaDestaquesEM():(window.innerWidth<=560?1:window.innerWidth<=900?2:4);
+    if(typeof indiceFaixaDestaquesEM!=='undefined'&&indiceFaixaDestaquesEM>=restantes.length)indiceFaixaDestaquesEM=0;
+    const idx=Math.max(0,Number(typeof indiceFaixaDestaquesEM!=='undefined'?indiceFaixaDestaquesEM:0)||0);
+    const vis=[];
+    for(let i=0;i<Math.min(qtd,restantes.length);i++)vis.push(restantes[(idx+i)%restantes.length]);
+    box.innerHTML=vis.map(cardDestaqueMiniEM).join('');
+  };
+  window.renderFaixaDestaquesEM=renderFaixaDestaquesEM;
+
+  const moverDestaquesOriginalEM=typeof moverDestaques==='function'?moverDestaques:null;
+  moverDestaques=function(dir){
+    const ev=window.event;
+    if(!ev)return;
+    if(moverDestaquesOriginalEM)return moverDestaquesOriginalEM(dir);
+  };
+  window.moverDestaques=moverDestaques;
+
+  function redesenharDestaquesFinalEM(){
+    try{
+      if(typeof indiceDestaquesEM!=='undefined')indiceDestaquesEM=0;
+      const lista=listaDestaquesEstavelEM();
+      if(typeof renderDestaquesEM==='function')renderDestaquesEM(lista);
+      if(typeof renderFaixaDestaquesEM==='function')renderFaixaDestaquesEM(lista);
+    }catch(e){console.warn('EmpregaMais: falha ao estabilizar destaques.',e)}
+  }
+
+  if(document.readyState==='loading'){
+    document.addEventListener('DOMContentLoaded',()=>setTimeout(redesenharDestaquesFinalEM,0),{once:true});
+  }else{
+    setTimeout(redesenharDestaquesFinalEM,0);
+  }
+  window.addEventListener('focus',()=>setTimeout(redesenharDestaquesFinalEM,50));
+})();
+`;
 
 self.addEventListener('install',()=>self.skipWaiting());
 self.addEventListener('activate',e=>e.waitUntil((async()=>{
@@ -121,8 +150,7 @@ self.addEventListener('fetch',e=>{
       }
 
       headers.set('content-type','application/javascript; charset=utf-8');
-      const jsCorrigido=corrigirAppJsDestaquesEM(txt);
-      return new Response(jsCorrigido,{status:r.status,statusText:r.statusText,headers});
+      return new Response(txt+'\n'+EMPREGAMAIS_DESTAQUES_FINAL_FIX,{status:r.status,statusText:r.statusText,headers});
     }catch(_){
       return fetch(e.request);
     }
