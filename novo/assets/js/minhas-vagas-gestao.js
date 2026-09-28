@@ -1,4 +1,4 @@
-/* EMPREGAMAIS - MINHAS VAGAS + NAVEGACAO RECRUTADOR V2 */
+/* EMPREGAMAIS - MINHAS VAGAS + NAVEGACAO RECRUTADOR V3 */
 (function(){
 'use strict';
 
@@ -15,6 +15,15 @@ function carregarCoreMinhasVagasEM(){
  s.src='./assets/js/minhas-vagas-gestao-core.js?v=2-20260928';
  s.async=false;
  s.dataset.emMinhasVagasCore='1';
+ document.head.appendChild(s);
+}
+
+function carregarRefinoVisaoGeralEM(){
+ if(document.querySelector('script[data-em-visao-geral-refino]'))return;
+ const s=document.createElement('script');
+ s.src='./assets/js/visao-geral-refino.js?v=1-20260928';
+ s.async=false;
+ s.dataset.emVisaoGeralRefino='1';
  document.head.appendChild(s);
 }
 
@@ -79,6 +88,7 @@ function ajustarNavegacaoRecrutadorEM(){
 }
 
 carregarCoreMinhasVagasEM();
+carregarRefinoVisaoGeralEM();
 if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',()=>setTimeout(ajustarNavegacaoRecrutadorEM,350));
 else setTimeout(ajustarNavegacaoRecrutadorEM,350);
 window.addEventListener('popstate',()=>setTimeout(ajustarNavegacaoRecrutadorEM,120));
