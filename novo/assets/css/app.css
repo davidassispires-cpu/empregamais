@@ -10642,3 +10642,68 @@ textarea{
   #pagina-candidatos-empresa .recruta-cand-info small{font-size:11.5px!important}
   #pagina-candidatos-empresa .recruta-cand-actions .btn{font-size:13px!important}
 }
+
+/* EMPREGAI-VER-ANDAMENTO-DESTAQUE-V2 */
+#pagina-candidatos-empresa .recruta-preview-andamento{
+  width:calc(100% - 40px)!important;
+  min-height:52px!important;
+  margin:0 20px 16px!important;
+  padding:10px 14px!important;
+  display:grid!important;
+  grid-template-columns:minmax(0,1fr) auto!important;
+  grid-template-areas:"label icon" "cta icon"!important;
+  align-items:center!important;
+  column-gap:12px!important;
+  border:1px solid #c8dce8!important;
+  border-radius:11px!important;
+  background:#f7fbfd!important;
+  box-shadow:0 3px 10px rgba(14,67,96,.04)!important;
+  cursor:pointer!important;
+  text-align:left!important;
+}
+#pagina-candidatos-empresa .recruta-preview-andamento:hover{
+  border-color:#9fc4d8!important;
+  background:#f1f8fc!important;
+}
+#pagina-candidatos-empresa .recruta-preview-andamento>span{
+  grid-area:label!important;
+  display:block!important;
+  margin:0!important;
+  font-size:10.5px!important;
+  line-height:1.15!important;
+  font-weight:700!important;
+  letter-spacing:.055em!important;
+  text-transform:uppercase!important;
+  color:#708797!important;
+}
+#pagina-candidatos-empresa .recruta-preview-andamento>b{
+  grid-area:cta!important;
+  display:block!important;
+  margin:3px 0 0!important;
+  font-size:0!important;
+  line-height:1.2!important;
+  color:#0b5379!important;
+}
+#pagina-candidatos-empresa .recruta-preview-andamento>b::after{
+  content:"Clique para ver todo o processo seletivo"!important;
+  font-size:14px!important;
+  font-weight:800!important;
+  letter-spacing:-.01em!important;
+}
+#pagina-candidatos-empresa .recruta-preview-andamento>i{
+  grid-area:icon!important;
+  align-self:center!important;
+  font-style:normal!important;
+  font-size:18px!important;
+  color:#0b79b7!important;
+}
+@media(max-width:760px){
+  #pagina-candidatos-empresa .recruta-preview-andamento{
+    width:calc(100% - 28px)!important;
+    margin:0 14px 14px!important;
+    min-height:50px!important;
+  }
+  #pagina-candidatos-empresa .recruta-preview-andamento>b::after{
+    font-size:13px!important;
+  }
+}
