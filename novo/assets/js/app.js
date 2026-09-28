@@ -4048,3 +4048,58 @@ window.addEventListener('load',()=>setTimeout(concluirLoginGoogleEM,40));
     location.replace(destino);
   };
 })();
+
+
+/* EMPREGAMAI-LOGOUT-DEFINITIVO-V3 */
+(function(){
+  sair=function(){
+    const tema=sessionStorage.getItem('temaEmpregaMais')||'';
+    const token=sbTokenEM();
+
+    /* Bloqueia a restauração ANTES de qualquer operação assíncrona. */
+    localStorage.setItem('empregaMaisLogoutBloqueio','1');
+    sessionStorage.setItem('empregaMaisLogoutBloqueio','1');
+
+    /* Limpa imediatamente toda credencial/identidade local para não haver janela de re-login. */
+    [
+      EMPREGAMAIS_SB_TOKEN,EMPREGAMAIS_SB_REFRESH,
+      'empregaMaisSupabaseAccessToken','empregaMaisSupabaseRefreshToken',
+      'empregaMaisPapelPersistido','empregaMaisGooglePapel'
+    ].forEach(k=>{
+      sessionStorage.removeItem(k);
+      localStorage.removeItem(k);
+    });
+
+    [
+      'empregaMaisPapel',
+      'empresaSupabaseAuthUserId','empresaSupabaseUserId','empresaSupabaseEmpresaId',
+      'empresaUsuarioAdministrador','empresaCnpj','empresaNome',
+      'candidatoSupabaseUserId','candidatoEmail','candidatoNome',
+      'googleCandidatoPendente','googleEmpresaPendente','googleEmailPendente','googleNomePendente'
+    ].forEach(k=>sessionStorage.removeItem(k));
+
+    sessionStorage.clear();
+
+    /* O bloqueio sobrevive ao clear e impede os restauradores automáticos no próximo carregamento. */
+    sessionStorage.setItem('empregaMaisLogoutBloqueio','1');
+    localStorage.setItem('empregaMaisLogoutBloqueio','1');
+    if(tema)sessionStorage.setItem('temaEmpregaMais',tema);
+
+    /* Invalida a sessão remota sem atrasar a saída visual do usuário. */
+    if(token){
+      try{
+        fetch(EMPREGAMAIS_SUPABASE_URL+'/auth/v1/logout?scope=global',{
+          method:'POST',
+          headers:sbHeadersEM(token),
+          keepalive:true
+        }).catch(e=>console.warn('Logout remoto Supabase:',e));
+      }catch(e){
+        console.warn('Logout remoto Supabase:',e);
+      }
+    }
+
+    /* Remove também qualquer fragmento OAuth antigo da URL. */
+    const destino=location.origin+location.pathname;
+    location.replace(destino);
+  };
+})();
