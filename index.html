@@ -28250,9 +28250,22 @@ vagaRemota.longitude =
 vagaLocalAnterior.longitude ||
 &quot;&quot;;
 }
-if(typeof vagaRemota.destaque===&quot;undefined&quot; || vagaRemota.destaque===&quot;&quot;){
-vagaRemota.destaque=vagaLocalAnterior.destaque===true ||
-String(vagaLocalAnterior.destaque).toLowerCase()===&quot;true&quot;;
+var destaqueLocalPreservadoEM =
+vagaLocalAnterior.destaque===true ||
+String(vagaLocalAnterior.destaque).toLowerCase()===&quot;true&quot; ||
+String(vagaLocalAnterior.destaque)===&quot;1&quot; ||
+vagaLocalAnterior.emDestaque===true ||
+String(vagaLocalAnterior.emDestaque).toLowerCase()===&quot;true&quot; ||
+String(vagaLocalAnterior.emDestaque)===&quot;1&quot;;
+var destaqueRemotoPreservadoEM =
+vagaRemota.destaque===true ||
+String(vagaRemota.destaque).toLowerCase()===&quot;true&quot; ||
+String(vagaRemota.destaque)===&quot;1&quot; ||
+vagaRemota.emDestaque===true ||
+String(vagaRemota.emDestaque).toLowerCase()===&quot;true&quot; ||
+String(vagaRemota.emDestaque)===&quot;1&quot;;
+if(destaqueLocalPreservadoEM || destaqueRemotoPreservadoEM){
+vagaRemota.destaque=true;
 }
 if(typeof vagaRemota.destaqueAtivadoEm===&quot;undefined&quot; || !vagaRemota.destaqueAtivadoEm){
 vagaRemota.destaqueAtivadoEm=vagaLocalAnterior.destaqueAtivadoEm||&quot;&quot;;
