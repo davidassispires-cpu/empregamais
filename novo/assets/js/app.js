@@ -3895,3 +3895,103 @@ async function concluirLoginGoogleEM(){
 }
 document.addEventListener('DOMContentLoaded',concluirLoginGoogleEM);
 window.addEventListener('load',()=>setTimeout(concluirLoginGoogleEM,40));
+
+
+/* EMPREGAMAI-GOOGLE-OAUTH-FIRST-ACCESS-V2 */
+(function(){
+ const limparPendenciaGoogleEM=()=>{
+  ['googleCandidatoPendente','googleEmpresaPendente','googleEmailPendente','googleNomePendente'].forEach(k=>sessionStorage.removeItem(k));
+ };
+
+ const cadastroCandidatoSenhaEM=cadastrarCandidatoSupabaseEM;
+ cadastrarCandidatoSupabaseEM=async function(e){
+  if(sessionStorage.getItem('googleCandidatoPendente')!=='1')return cadastroCandidatoSenhaEM(e);
+  e.preventDefault();
+  const nome=($('#cadCandNome')?.value||'').trim();
+  const emailTela=($('#cadCandEmail')?.value||'').trim().toLowerCase();
+  const telefone=($('#cadCandTelefone')?.value||'').trim();
+  const cidade=($('#cadCandCidade')?.value||'').trim();
+
+  if(nome.length<3)return msg('#msgCadastroCandidato','Informe seu nome completo.');
+  if(nums(telefone).length<10)return msg('#msgCadastroCandidato','Informe um celular válido.');
+  if(cidade.length<2)return msg('#msgCadastroCandidato','Informe sua cidade.');
+
+  msg('#msgCadastroCandidato','Finalizando seu cadastro com Google...');
+  try{
+   const token=await sbGarantirSessaoEM();
+   if(!token)throw new Error('A sessão do Google expirou. Entre novamente com Google.');
+   const user=await sbJsonEM(EMPREGAMAIS_SUPABASE_URL+'/auth/v1/user',{method:'GET',headers:sbHeadersEM(token)});
+   if(!user?.id)throw new Error('Não foi possível identificar sua conta Google.');
+   const email=String(user.email||emailTela||'').trim().toLowerCase();
+   if(!email.includes('@'))throw new Error('O Google não retornou um e-mail válido.');
+
+   let d=sbSalvarCandidatoLocalEM({
+    id:'candidato_'+user.id,userId:user.id,nome,email,telefone,cidade,perfil:{},criadoEm:user.created_at||new Date().toISOString()
+   });
+   d=sbSalvarCandidatoLocalEM(await sbUpsertCandidatoSupabaseEM(d,token));
+   limparPendenciaGoogleEM();
+   msg('#msgCadastroCandidato','Cadastro concluído com Google.',true);
+   concluirEntradaCandidatoSupabaseEM(d);
+  }catch(err){
+   console.error('Cadastro candidato Google:',err);
+   msg('#msgCadastroCandidato','Não foi possível concluir o cadastro com Google: '+(err?.message||'erro inesperado'));
+  }
+ };
+
+ const cadastroEmpresaSenhaEM=cadastrarEmpresa;
+ cadastrarEmpresa=async function(e){
+  if(sessionStorage.getItem('googleEmpresaPendente')!=='1')return cadastroEmpresaSenhaEM(e);
+  e.preventDefault();
+  const nome=($('#cadEmpresaNome')?.value||'').trim();
+  const email=($('#cadEmpresaEmail')?.value||'').trim().toLowerCase();
+  const telefone=($('#cadEmpresaTelefone')?.value||'').trim();
+  const cnpj=nums($('#cadEmpresaCnpj')?.value||'');
+  const emailCandidaturas=(($('#cadEmpresaEmailCandidaturas')?.value||email)+'').trim().toLowerCase();
+
+  if(nome.length<2)return msg('#msgCadastroEmpresa','Informe o nome da empresa.');
+  if(cnpj.length!==14)return msg('#msgCadastroEmpresa','Informe um CNPJ com 14 números.');
+  if(!email.includes('@'))return msg('#msgCadastroEmpresa','Informe um e-mail corporativo válido.');
+  if(!emailCandidaturas.includes('@'))return msg('#msgCadastroEmpresa','Informe um e-mail válido para recebimento de candidaturas.');
+  if(nums(telefone).length<10)return msg('#msgCadastroEmpresa','Informe um telefone válido.');
+
+  msg('#msgCadastroEmpresa','Finalizando o cadastro da empresa com Google...');
+  try{
+   const token=await sbGarantirSessaoEM();
+   if(!token)throw new Error('A sessão do Google expirou. Entre novamente com Google.');
+   const user=await sbJsonEM(EMPREGAMAIS_SUPABASE_URL+'/auth/v1/user',{method:'GET',headers:sbHeadersEM(token)});
+   if(!user?.id)throw new Error('Não foi possível identificar sua conta Google.');
+
+   const existente=await sbJsonEM(
+    EMPREGAMAIS_SUPABASE_URL+'/rest/v1/empresas?select=*&user_id=eq.'+encodeURIComponent(user.id)+'&limit=1',
+    {method:'GET',headers:sbHeadersEM(token)}
+   );
+   let remota=Array.isArray(existente)?existente[0]:null;
+   if(!remota){
+    remota=await sbInserirEmpresaEM(
+     {access_token:token,user:{id:user.id}},
+     {nome,cnpj,email,emailCandidaturas,telefone,senha:''}
+    );
+   }
+   if(!remota?.id)throw new Error('Não foi possível criar o cadastro da empresa.');
+
+   const d=sbEmpresaParaLocalEM(remota,'');
+   sbSalvarEmpresaLocalEM(d);
+   limparPendenciaGoogleEM();
+   sessionStorage.setItem('empresaSupabaseAuthUserId',user.id||'');
+   sessionStorage.setItem('empresaSupabaseUserId',remota.user_id||user.id||'');
+   sessionStorage.setItem('empresaSupabaseEmpresaId',remota.id||'');
+   sessionStorage.setItem('empresaUsuarioAdministrador','true');
+   entrar('empresa',d);
+   sessionStorage.setItem('empresaSupabaseAuthUserId',user.id||'');
+   sessionStorage.setItem('empresaSupabaseUserId',remota.user_id||user.id||'');
+   sessionStorage.setItem('empresaSupabaseEmpresaId',remota.id||'');
+   sessionStorage.setItem('empresaUsuarioAdministrador','true');
+   mostrarToast('Empresa cadastrada com Google com sucesso.');
+   if(sessionStorage.getItem('planoPretendido'))setTimeout(()=>irPara('planos'),30);
+  }catch(err){
+   console.error('Cadastro empresa Google:',err);
+   const texto=/duplicate|already|unique/i.test(String(err?.message||''))?'Este CNPJ ou e-mail já está vinculado a outra empresa.':(err?.message||'Erro inesperado');
+   msg('#msgCadastroEmpresa','Não foi possível concluir o cadastro com Google: '+texto);
+  }
+ };
+})();
