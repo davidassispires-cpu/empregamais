@@ -3521,3 +3521,174 @@ body.sessao-candidato #pagina-painel-candidato *{box-sizing:border-box!important
   }
   window.addEventListener('load',function(){setTimeout(aplicarCorrecaoPainelCandidatoMobileEM,0)},{once:true});
 })();
+
+
+/* =========================================================
+   EMPREGAMAI-SESSION-HEADER-STABILITY-V143 — 2026-09-27
+   Mantém cabeçalho e rota protegida sincronizados com a sessão
+   restaurada do Supabase. Unifica as classes legadas tem-* e
+   as classes contextuais sessao-* para impedir o pisca/some
+   dos acessos Empresa/Candidato e do menu do usuário logado.
+========================================================= */
+(function(){
+  if(window.__empregaiSessionHeaderStabilityV143)return;
+  window.__empregaiSessionHeaderStabilityV143=true;
+
+  const rotasEmpresaEM=new Set([
+    'painel-empresa','perfil-empresa','publicar',
+    'candidatos-empresa','contratacoes-empresa','vagas-empresa'
+  ]);
+  const rotasCandidatoEM=new Set([
+    'painel-candidato','candidaturas','curriculo','salvas',
+    'perfil-candidato','premium-candidato','avaliar-processos','candidatar'
+  ]);
+
+  let rotaPendenteSessaoEM='';
+  let restauracaoConcluidaEM=false;
+
+  function haCredencialPersistidaEM(){
+    return !!(
+      sessionStorage.getItem('empregaMaisSupabaseAccessToken')||
+      localStorage.getItem('empregaMaisSupabaseAccessToken')||
+      sessionStorage.getItem('empregaMaisSupabaseRefreshToken')||
+      localStorage.getItem('empregaMaisSupabaseRefreshToken')
+    );
+  }
+
+  function preencherContaTopoEstavelEM(papel){
+    if(papel==='empresa'){
+      const empresa=typeof empresaLogada==='function'?empresaLogada():null;
+      const nome=(empresa&&empresa.nome)||sessionStorage.getItem('empresaNome')||'Empresa';
+      const plano=(typeof planoEmpresaAtual==='function'&&planoEmpresaAtual()?.nome)||'Conta da empresa';
+      const nomeEl=document.getElementById('topoEmpresaNome');
+      const planoEl=document.getElementById('topoEmpresaPlano');
+      const avatarEl=document.getElementById('topoEmpresaAvatar');
+      if(nomeEl)nomeEl.textContent=nome;
+      if(planoEl)planoEl.textContent='Plano '+plano;
+      if(avatarEl)avatarEl.textContent=(String(nome).trim().charAt(0)||'E').toUpperCase();
+    }else if(papel==='candidato'){
+      const nome=sessionStorage.getItem('candidatoNome')||'Candidato';
+      const nomeEl=document.getElementById('topoCandidatoNome');
+      const avatarEl=document.getElementById('topoCandidatoAvatar');
+      if(nomeEl)nomeEl.textContent=nome;
+      if(avatarEl)avatarEl.textContent=(String(nome).trim().charAt(0)||'C').toUpperCase();
+    }
+  }
+
+  function sincronizarEstadoSessaoTopoEM(){
+    const body=document.body;
+    if(!body)return;
+    const papel=typeof papelAtual==='function'?papelAtual():(sessionStorage.getItem('empregaMaisPapel')||'');
+    const empresa=papel==='empresa';
+    const candidato=papel==='candidato';
+
+    /* Os dois conjuntos de classes existiam em paralelo no CSS.
+       A partir daqui eles sempre recebem exatamente o mesmo estado. */
+    body.classList.toggle('tem-empresa',empresa);
+    body.classList.toggle('tem-candidato',candidato);
+    body.classList.toggle('sessao-empresa',empresa);
+    body.classList.toggle('sessao-candidato',candidato);
+    body.classList.toggle('sessao-publica',!empresa&&!candidato);
+
+    preencherContaTopoEstavelEM(papel);
+  }
+  window.sincronizarEstadoSessaoTopoEM=sincronizarEstadoSessaoTopoEM;
+
+  /* Durante a validação silenciosa do token não exibimos por alguns
+     milissegundos o menu público para depois trocá-lo pelo menu logado. */
+  const precisaRestaurarInicialEM=!sessionStorage.getItem('empregaMaisPapel')&&haCredencialPersistidaEM();
+  if(precisaRestaurarInicialEM){
+    restauracaoConcluidaEM=false;
+    document.body?.classList.add('sessao-restaurando-em');
+    const st=document.createElement('style');
+    st.id='empregai-session-header-stability-v143-style';
+    st.textContent=
+      'body.sessao-restaurando-em .topo .menu-publico,'+
+      'body.sessao-restaurando-em .topo .menu-empresa-logada,'+
+      'body.sessao-restaurando-em .topo .menu-candidato-logado,'+
+      'body.sessao-restaurando-em .topo .acoes{visibility:hidden!important;pointer-events:none!important}';
+    document.head.appendChild(st);
+  }else{
+    restauracaoConcluidaEM=true;
+  }
+
+  function concluirRestauracaoEstavelEM(){
+    restauracaoConcluidaEM=true;
+    document.body?.classList.remove('sessao-restaurando-em');
+    sincronizarEstadoSessaoTopoEM();
+
+    if(rotaPendenteSessaoEM){
+      const destino=rotaPendenteSessaoEM;
+      rotaPendenteSessaoEM='';
+      setTimeout(()=>abrirRota(destino),0);
+    }
+  }
+
+  /* Protege a rota inicial contra a corrida entre DOMContentLoaded e
+     restauração assíncrona da sessão. Sem isso o painel podia ser
+     trocado pelo login antes de o Supabase confirmar o usuário. */
+  const abrirRotaAntesEstabilidadeEM=abrirRota;
+  abrirRota=function(p){
+    const papel=typeof papelAtual==='function'?papelAtual():'';
+    const exigeEmpresa=rotasEmpresaEM.has(p)&&papel!=='empresa';
+    const exigeCandidato=rotasCandidatoEM.has(p)&&papel!=='candidato';
+
+    if((exigeEmpresa||exigeCandidato)&&!papel&&!restauracaoConcluidaEM&&haCredencialPersistidaEM()){
+      rotaPendenteSessaoEM=p;
+      sincronizarEstadoSessaoTopoEM();
+      return;
+    }
+
+    const r=abrirRotaAntesEstabilidadeEM.apply(this,arguments);
+    sincronizarEstadoSessaoTopoEM();
+    return r;
+  };
+
+  /* Toda navegação e toda entrada/saída agora atualizam as duas
+     famílias de classes antes de o CSS mobile decidir o que mostrar. */
+  const irParaAntesEstabilidadeEM=irPara;
+  irPara=function(){
+    const r=irParaAntesEstabilidadeEM.apply(this,arguments);
+    sincronizarEstadoSessaoTopoEM();
+    return r;
+  };
+
+  const entrarAntesEstabilidadeEM=entrar;
+  entrar=function(){
+    const r=entrarAntesEstabilidadeEM.apply(this,arguments);
+    sincronizarEstadoSessaoTopoEM();
+    return r;
+  };
+
+  const sairAntesEstabilidadeEM=sair;
+  sair=function(){
+    const r=sairAntesEstabilidadeEM.apply(this,arguments);
+    sincronizarEstadoSessaoTopoEM();
+    return r;
+  };
+
+  /* As funções originais restauram os dados no sessionStorage, mas não
+     notificavam o cabeçalho após o await. Aqui a UI só é liberada
+     depois de sabermos qual papel realmente pertence ao token. */
+  if(typeof sbRestaurarSessaoCandidatoEM==='function'){
+    const restaurarCandAntesEstabilidadeEM=sbRestaurarSessaoCandidatoEM;
+    sbRestaurarSessaoCandidatoEM=async function(){
+      const ok=await restaurarCandAntesEstabilidadeEM.apply(this,arguments);
+      if(ok)concluirRestauracaoEstavelEM();
+      return ok;
+    };
+  }
+
+  if(typeof sbRestaurarSessaoEmpresaEM==='function'){
+    const restaurarEmpAntesEstabilidadeEM=sbRestaurarSessaoEmpresaEM;
+    sbRestaurarSessaoEmpresaEM=async function(){
+      const ok=await restaurarEmpAntesEstabilidadeEM.apply(this,arguments);
+      concluirRestauracaoEstavelEM();
+      return ok;
+    };
+  }
+
+  sincronizarEstadoSessaoTopoEM();
+  document.addEventListener('DOMContentLoaded',sincronizarEstadoSessaoTopoEM);
+  window.addEventListener('pageshow',sincronizarEstadoSessaoTopoEM);
+})();
