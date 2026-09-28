@@ -3563,3 +3563,41 @@ reformularCadastroEmpresaProEM=function(){
  return r;
 };
 setTimeout(corrigirEstruturaCadastroEmpresaEM,120);
+
+
+/* EMPREGAMAI-CADASTRO-EMPRESA-VISUAL-FINAL-V3 */
+(function(){
+ const st=document.createElement('style');
+ st.id='estilosCadastroEmpresaVisualFinalV3';
+ st.textContent=
+ '#pagina-cadastro-empresa{width:100%!important;max-width:none!important;margin:0!important;padding:0!important;background:#f5f8fa!important;overflow:visible!important}'+
+ '#pagina-cadastro-empresa>.container,#pagina-cadastro-empresa>.wrap,#pagina-cadastro-empresa>.conteudo,#pagina-cadastro-empresa>.page-inner,#pagina-cadastro-empresa .container,#pagina-cadastro-empresa .wrap{max-width:none!important;width:100%!important}'+
+ '#pagina-cadastro-empresa .em-cad-shell{width:min(1120px,calc(100vw - 48px))!important;max-width:1120px!important;margin:36px auto 56px!important;transform:none!important;left:auto!important;right:auto!important;display:grid!important;grid-template-columns:minmax(0,1.75fr) minmax(320px,.85fr)!important;gap:24px!important;align-items:start!important}'+
+ '#pagina-cadastro-empresa .em-cad-form-pro{width:100%!important;max-width:none!important;min-width:0!important;padding:28px 30px!important;border:1px solid #d8e4ea!important;border-radius:18px!important;box-shadow:0 12px 32px rgba(20,60,78,.08)!important;background:#fff!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:16px 20px!important}'+
+ '#pagina-cadastro-empresa .em-cad-form-pro .em-cad-field,#pagina-cadastro-empresa .em-cad-form-pro>label,#pagina-cadastro-empresa .em-cad-form-pro .campo,#pagina-cadastro-empresa .em-cad-form-pro .form-field,#pagina-cadastro-empresa .em-cad-form-pro .form-group{width:100%!important;max-width:none!important;min-width:0!important}'+
+ '#pagina-cadastro-empresa .em-cad-form-pro input:not([type="checkbox"]){width:100%!important;max-width:none!important;min-width:0!important;height:46px!important;border-radius:9px!important;border:1px solid #c9d8df!important;background:#fff!important;color:#263f4c!important;font:500 14px Montserrat,Arial,sans-serif!important}'+
+ '#pagina-cadastro-empresa .em-cad-form-pro input:not([type="checkbox"]):focus{border-color:#19748a!important;box-shadow:0 0 0 3px rgba(25,116,138,.10)!important}'+
+ '#pagina-cadastro-empresa .em-cad-form-intro{padding-bottom:16px!important;margin-bottom:0!important}'+
+ '#pagina-cadastro-empresa .em-cad-form-intro>span{background:#eaf3f6!important;color:#195d72!important}'+
+ '#pagina-cadastro-empresa .em-cad-form-intro h2{color:#173f51!important;font-size:23px!important}'+
+ '#pagina-cadastro-empresa .em-cad-form-intro p{color:#667b86!important}'+
+ '#pagina-cadastro-empresa .em-cad-field-candidaturas{grid-column:1/-1!important;background:#f7fafc!important;border:1px solid #d9e6eb!important;border-radius:11px!important;padding:14px 16px!important}'+
+ '#pagina-cadastro-empresa .em-cad-same,#pagina-cadastro-empresa .cad-email-mesmo-em{color:#4f6874!important}'+
+ '#pagina-cadastro-empresa .em-cad-submit{background:#17657a!important;color:#fff!important;border-radius:9px!important;box-shadow:none!important;padding:0 22px!important;height:46px!important}'+
+ '#pagina-cadastro-empresa .em-cad-submit:hover{background:#124f61!important}'+
+ '#pagina-cadastro-empresa .em-cad-aside{width:100%!important;min-width:0!important;background:#164f61!important;border-radius:18px!important;padding:28px!important;box-shadow:0 12px 32px rgba(20,60,78,.10)!important;color:#fff!important}'+
+ '#pagina-cadastro-empresa .em-cad-aside-badge{background:#fff!important;color:#164f61!important;border-color:#fff!important}'+
+ '#pagina-cadastro-empresa .em-cad-aside h2{font-size:23px!important;color:#fff!important}'+
+ '#pagina-cadastro-empresa .em-cad-aside>p{color:rgba(255,255,255,.82)!important}'+
+ '#pagina-cadastro-empresa .em-cad-benefits>div{border-color:rgba(255,255,255,.14)!important}'+
+ '#pagina-cadastro-empresa .em-cad-benefits i{background:#fff!important;color:#164f61!important}'+
+ '#pagina-cadastro-empresa .em-cad-benefits b{color:#fff!important}'+
+ '#pagina-cadastro-empresa .em-cad-benefits small{color:rgba(255,255,255,.74)!important}'+
+ '#pagina-cadastro-empresa .em-cad-security span{color:rgba(255,255,255,.72)!important}'+
+ '#pagina-cadastro-empresa .page-hero,#pagina-cadastro-empresa .hero,#pagina-cadastro-empresa>section:first-child{background:#eef5f7!important;color:#173f51!important;padding:34px 0!important;min-height:auto!important}'+
+ '#pagina-cadastro-empresa .page-hero h1,#pagina-cadastro-empresa .hero h1,#pagina-cadastro-empresa>section:first-child h1{color:#173f51!important;font-size:38px!important}'+
+ '#pagina-cadastro-empresa .page-hero p,#pagina-cadastro-empresa .hero p,#pagina-cadastro-empresa>section:first-child p{color:#607681!important}'+
+ '@media(max-width:980px){#pagina-cadastro-empresa .em-cad-shell{width:min(760px,calc(100vw - 28px))!important;grid-template-columns:1fr!important}#pagina-cadastro-empresa .em-cad-aside{order:2!important}}'+
+ '@media(max-width:640px){#pagina-cadastro-empresa .em-cad-shell{width:calc(100vw - 16px)!important;margin:18px auto 34px!important}#pagina-cadastro-empresa .em-cad-form-pro{grid-template-columns:1fr!important;padding:18px!important}#pagina-cadastro-empresa .em-cad-field-candidaturas{grid-column:1!important}#pagina-cadastro-empresa .em-cad-aside{padding:20px!important}#pagina-cadastro-empresa .page-hero,#pagina-cadastro-empresa .hero,#pagina-cadastro-empresa>section:first-child{padding:24px 16px!important}#pagina-cadastro-empresa .page-hero h1,#pagina-cadastro-empresa .hero h1,#pagina-cadastro-empresa>section:first-child h1{font-size:30px!important}}';
+ document.head.appendChild(st);
+})();
