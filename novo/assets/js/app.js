@@ -3292,7 +3292,7 @@ renderizarCandidatosEmpresa=function(){
     if(document.getElementById('empregai-candidato-mobile-recovery-v2'))return;
     const st=document.createElement('style');
     st.id='empregai-candidato-mobile-recovery-v2';
-    st.textContent=\`
+    st.textContent=`
 /* Painel do candidato mobile canônico.
    Não controla o cabeçalho global; somente o conteúdo do painel. */
 @media(max-width:760px){
@@ -3465,7 +3465,7 @@ renderizarCandidatosEmpresa=function(){
   #pagina-painel-candidato .cand-hero-actions{grid-template-columns:1fr!important}
   #pagina-painel-candidato .cand-hero-beneficios-linha{grid-template-columns:1fr!important}
 }
-\`;
+`;
     document.head.appendChild(st);
   }
   if(document.readyState==='loading'){
