@@ -997,7 +997,7 @@ function sbCarregarVagasEM(){
   const t=sbTokenEM();
   sbSincronizarEmpresasPublicasEM().then(()=>{try{renderizarVagasPortal()}catch(e){}});
   const locaisAntes=ler('empregaMaisVagas');
-  const publico=sbJsonEM(EMPREGAMAIS_SUPABASE_URL+'/rest/v1/vagas?select=*&status=eq.aprovada&order=criado_em.desc',{method:'GET',headers:sbHeadersEM()}).catch(()=>[]);
+  const publico=sbJsonEM(EMPREGAMAIS_SUPABASE_URL+'/rest/v1/vagas?select=*&status=eq.aprovada&order=criado_em.desc',{method:'GET',headers:Object.assign(sbHeadersEM(),{'Cache-Control':'no-cache','Pragma':'no-cache'}),cache:'no-store'}).catch(()=>[]);
   const proprio=t?sbUsuarioAtualEM().then(u=>sbJsonEM(EMPREGAMAIS_SUPABASE_URL+'/rest/v1/vagas?select=*&user_id=eq.'+encodeURIComponent(u.id)+'&order=criado_em.desc',{method:'GET',headers:sbHeadersEM(t)})).catch(()=>[]):Promise.resolve([]);
   return Promise.all([publico,proprio]).then(r=>{
     const mapa=new Map();
