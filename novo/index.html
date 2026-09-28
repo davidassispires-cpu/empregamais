@@ -4117,7 +4117,7 @@ svg text{
  color:#1877c9!important;font-family:'Montserrat',Arial,sans-serif!important;
  font-size:11px!important;font-weight:600!important;line-height:18px!important;
 }
-</style><link rel="stylesheet" href="assets/css/app.css?v=mobile-canonical-v146-20260927">
+</style><link rel="stylesheet" href="assets/css/app.css?v=mobile-root-fix-v147-20260927">
 
 <style id="EMPREGAMAIS-PROCESSOS-CANONICO-V112">
 #pagina-candidatos-empresa{background:#f5f7f9!important;min-height:100vh!important;font-family:"Montserrat",Arial,sans-serif!important}
@@ -4473,7 +4473,7 @@ svg text{
 }
 </style>
 </head>
-<body><header class="topo"><div class="topo-inner"><button type="button" class="marca" data-rota="home"><span class="marca-nome marca-empregai">Emprega<span>i</span></span><small class="marca-tagline">VAGAS PARA O SEU FUTURO</small></button><nav class="menu menu-publico"><button type="button" data-rota="home">Buscar vagas</button><button type="button" data-rota="como-funciona">Como funciona</button>
+<body><script id="empregai-header-boot-v147">(function(){try{var b=document.body,t=sessionStorage.getItem('empregaMaisSupabaseAccessToken')||localStorage.getItem('empregaMaisSupabaseAccessToken')||sessionStorage.getItem('empregaMaisSupabaseRefreshToken')||localStorage.getItem('empregaMaisSupabaseRefreshToken'),p=sessionStorage.getItem('empregaMaisPapel')||(t?localStorage.getItem('empregaMaisPapelPersistido'):null)||'';var emp=p==='empresa',cand=p==='candidato';b.classList.toggle('tem-empresa',emp);b.classList.toggle('tem-candidato',cand);b.classList.toggle('sessao-empresa',emp);b.classList.toggle('sessao-candidato',cand);b.classList.toggle('sessao-publica',!emp&&!cand)}catch(_){document.body.classList.add('sessao-publica')}})();</script><header class="topo"><div class="topo-inner"><button type="button" class="marca" data-rota="home"><span class="marca-nome marca-empregai">Emprega<span>i</span></span><small class="marca-tagline">VAGAS PARA O SEU FUTURO</small></button><nav class="menu menu-publico"><button type="button" data-rota="home">Buscar vagas</button><button type="button" data-rota="como-funciona">Como funciona</button>
 <div class="menu-drop menu-drop-empresa"><button type="button" class="menu-drop-gatilho login-card-topo login-card-empresa" onclick="alternarMenuTopo('empresa',event)"><span class="login-card-icone" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 21V5h11v16M15 10h5v11M8 9h3M8 13h3M8 17h3M2 21h20"/></svg></span><span class="login-card-texto"><b>Login Empresa</b><small>Acesse seu painel</small></span><span class="login-card-seta">›</span></button><div class="menu-drop-painel menu-empresa-publico"><div class="menu-drop-titulo">PARA EMPRESAS</div><div class="menu-empresa-intro"><strong>Encontre os talentos certos</strong><span>Publique vagas e gerencie seus processos seletivos em um só lugar.</span></div><button class="menu-empresa-link" onclick="rotaMenuTopo('como-funciona')"><b>Como funciona</b><span>Conheça a plataforma para empresas</span></button><button class="menu-empresa-link" onclick="rotaMenuTopo('planos')"><b>Planos e preços</b><span>Veja os recursos disponíveis</span></button><div class="menu-drop-separador"></div><button class="menu-empresa-login" onclick="rotaMenuTopo('login-empresa')">Entrar como empresa</button><button class="menu-empresa-cadastro" onclick="rotaMenuTopo('cadastro-empresa')">Cadastrar empresa</button></div></div>
 </nav><nav class="menu menu-empresa-logada"><button type="button" data-rota="painel-empresa">Painel</button><button type="button" data-rota="painel-empresa">Minhas vagas</button><button type="button" data-rota="candidatos-empresa">Candidatos</button><button type="button" data-rota="planos">Planos</button></nav><nav class="menu menu-candidato-logado"><button type="button" data-rota="home">Buscar vagas</button><button type="button" data-rota="salvas">Vagas salvas</button><button type="button" data-rota="candidaturas">Minhas candidaturas</button><button type="button" data-rota="curriculo">Meu currículo</button></nav><div class="acoes"><div class="menu-drop menu-drop-candidato"><button type="button" class="btn secundario menu-drop-gatilho login-card-topo login-card-candidato" onclick="alternarMenuTopo('candidato',event)"><span class="login-card-icone" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4.5 21c.8-5 3.2-7.5 7.5-7.5s6.7 2.5 7.5 7.5"/></svg></span><span class="login-card-texto"><b>Login Candidato</b><small>Acesse sua conta</small></span><span class="login-card-seta">›</span></button><div class="menu-drop-painel menu-candidato-publico"><div class="menu-drop-titulo">PARA CANDIDATOS</div><div class="menu-candidato-intro"><strong>Encontre sua próxima oportunidade</strong><span>Busque vagas, crie seu currículo e acompanhe seus processos em um só lugar.</span></div><button class="menu-candidato-link" onclick="rotaMenuTopo('home')"><b>Buscar vagas</b><span>Encontre oportunidades para o seu perfil</span></button><button class="menu-candidato-link" onclick="rotaMenuTopo('cadastro-candidato')"><b>Criar currículo</b><span>Cadastre seu perfil profissional gratuitamente</span></button><div class="menu-drop-separador"></div><button class="menu-candidato-login" onclick="rotaMenuTopo('login-candidato')">Entrar como candidato</button><button class="menu-candidato-cadastro" onclick="rotaMenuTopo('cadastro-candidato')">Cadastrar currículo</button></div></div><button type="button" class="btn btn-azul btn-anunciar-vaga anunciar-card-topo" onclick="abrirPublicacao()"><span class="btn-anunciar-icone" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 7V5.8C8 4.8 8.8 4 9.8 4h4.4c1 0 1.8.8 1.8 1.8V7M4 9h16v10.5c0 .8-.7 1.5-1.5 1.5h-13C4.7 21 4 20.3 4 19.5V9Z"/><path d="M4 13h16M10 13v2h4v-2"/></svg></span><span class="anunciar-card-texto"><b>Anunciar vaga grátis</b><small>Divulgue sua oportunidade</small></span><span class="anunciar-card-seta">→</span></button><div class="sessao-empresa-topo"><button class="sessao-conta-btn sessao-conta-empresa-pro" onclick="toggleMenuContaEM(this,event)"><span class="sessao-avatar" id="topoEmpresaAvatar">E</span><span class="sessao-conta-ident"><b id="topoEmpresaNome">Empresa</b><small><i class="sessao-status-dot"></i> Conta empresarial · <strong id="topoEmpresaPlano">Plano Grátis</strong></small></span><em>⌄</em></button><div class="sessao-conta-menu"><div class="conta-menu-head"><span class="conta-menu-avatar" id="topoEmpresaAvatarMenu">E</span><div><b id="topoEmpresaNomeMenu">Empresa</b><small id="topoEmpresaPlanoMenu">Conta da empresa</small><i>Plano ativo</i></div></div><div class="conta-menu-nav"><button onclick="irPara('painel-empresa')">Painel da empresa</button><button onclick="irPara('perfil-empresa')">Perfil da empresa</button><button onclick="irPara('planos')">Meu plano</button><button class="conta-sair-pro" onclick="sair()">Sair</button></div></div></div><div class="sessao-candidato-topo"><button class="sessao-conta-btn sessao-conta-candidato-pro" onclick="toggleMenuContaEM(this,event)"><span class="sessao-avatar" id="topoCandidatoAvatar">C</span><span class="sessao-conta-ident"><b id="topoCandidatoNome">Candidato</b><small><i class="sessao-status-dot"></i> Conta de candidato</small></span><em>⌄</em></button><div class="sessao-conta-menu"><button onclick="irPara('painel-candidato')">Meu painel</button><button onclick="irPara('perfil-candidato')">Meu perfil</button><button onclick="sair()">Sair</button></div></div></div></div></header><main><section class="pagina ativa" id="pagina-home">
 <div class="home-hero-visual">
@@ -5432,7 +5432,7 @@ svg text{
 <section class="pagina pagina-institucional-em" id="pagina-contato"><div class="inst-hero"><span>ATENDIMENTO</span><h1>Fale Conosco</h1><p>Precisa de ajuda com sua conta, vaga ou candidatura? Entre em contato com nossa equipe.</p></div><div class="container inst-contact"><article><h2>Como podemos ajudar?</h2><p>Para agilizar o atendimento, informe seu nome, e-mail cadastrado e descreva com clareza o que aconteceu. Empresas podem incluir também o nome da organização e a vaga relacionada.</p><div class="inst-contact-card"><strong>Suporte EmpregaMais</strong><span>Utilize os canais oficiais informados pela plataforma.</span></div></article><aside><h3>Antes de entrar em contato</h3><p>Consulte também a Central de Ajuda. Muitas dúvidas sobre acesso, currículo, candidaturas e publicação de vagas podem ser resolvidas por lá.</p><button type="button" onclick="irPara('ajuda')">Abrir Central de Ajuda →</button></aside></div></section>
 <section class="pagina pagina-institucional-em" id="pagina-termos"><div class="inst-hero"><span>LEGAL</span><h1>Termos de Uso</h1><p>Condições gerais para utilização da plataforma EmpregaMais.</p></div><div class="container inst-legal"><p><b>Última atualização: 24 de setembro de 2026.</b></p><h2>1. Uso da plataforma</h2><p>O EmpregaMais disponibiliza recursos para divulgação de oportunidades, gestão de candidaturas e interação entre candidatos e empresas. O usuário deve fornecer informações verdadeiras e utilizar a plataforma de forma lícita e responsável.</p><h2>2. Contas e segurança</h2><p>Cada usuário é responsável pela segurança de suas credenciais e pelas atividades realizadas em sua conta. O acesso não deve ser compartilhado de forma que comprometa a segurança da plataforma ou de terceiros.</p><h2>3. Vagas e processos seletivos</h2><p>As empresas são responsáveis pelas informações das vagas publicadas e pela condução de seus processos seletivos. O EmpregaMais não garante contratação, convocação ou resultado específico em processos seletivos.</p><h2>4. Conteúdo e conduta</h2><p>Não é permitido publicar conteúdo ilícito, enganoso, discriminatório ou que viole direitos de terceiros. Conteúdos e contas podem ser analisados ou restringidos quando necessário para segurança e integridade do serviço.</p><h2>5. Alterações</h2><p>Estes termos poderão ser atualizados para refletir mudanças na plataforma, requisitos legais ou melhorias do serviço. Alterações relevantes serão comunicadas pelos meios adequados.</p></div></section>
 <section class="pagina pagina-institucional-em" id="pagina-privacidade"><div class="inst-hero"><span>PRIVACIDADE</span><h1>Política de Privacidade</h1><p>Como o EmpregaMais trata informações de candidatos, recrutadores e empresas.</p></div><div class="container inst-legal"><p><b>Última atualização: 24 de setembro de 2026.</b></p><h2>1. Dados tratados</h2><p>Podemos tratar dados fornecidos no cadastro e uso da plataforma, como identificação, contato, informações profissionais, currículo, dados de empresas, vagas e candidaturas, além de informações técnicas necessárias ao funcionamento e à segurança do serviço.</p><h2>2. Finalidades</h2><p>Os dados podem ser utilizados para autenticação, funcionamento dos perfis, apresentação de vagas, envio e gestão de candidaturas, recursos de recrutamento, suporte, prevenção de abuso e cumprimento de obrigações legais.</p><h2>3. Compartilhamento</h2><p>Dados necessários a uma candidatura podem ser disponibilizados à empresa responsável pela vaga quando o candidato realiza a candidatura. Também podem ser utilizados prestadores de tecnologia necessários à operação da plataforma, observadas as medidas aplicáveis de proteção de dados.</p><h2>4. Direitos do titular</h2><p>Nos termos da legislação aplicável, o titular pode solicitar informações e exercer direitos relacionados aos seus dados pessoais, observadas as hipóteses e limitações legais.</p><h2>5. Segurança e retenção</h2><p>Adotamos medidas destinadas a proteger as informações contra acesso, alteração ou divulgação não autorizados. Os dados são mantidos pelo período necessário às finalidades do serviço e às obrigações aplicáveis.</p><h2>6. Contato</h2><p>Dúvidas ou solicitações relacionadas à privacidade podem ser encaminhadas pelos canais oficiais disponibilizados na página Fale Conosco.</p></div></section>
-<section class="pagina pagina-institucional-em" id="pagina-seguranca"><div class="inst-hero"><span>SEGURANÇA E CONFIANÇA</span><h1>Segurança das Informações</h1><p>Entenda as medidas adotadas pelo EmpregaMais para proteger contas, dados profissionais, vagas e candidaturas.</p></div><div class="container inst-legal inst-seguranca"><p><b>Última atualização: 24 de setembro de 2026.</b></p><h2>Proteção das informações</h2><p>O EmpregaMais trata a segurança das informações como parte essencial da plataforma. Buscamos proteger os dados utilizados por candidatos, recrutadores e empresas por meio de controles de acesso, autenticação e medidas técnicas voltadas à integridade e à confidencialidade das informações.</p><h2>Autenticação e controle de acesso</h2><p>O acesso às áreas privadas depende de autenticação. Informações de candidatos e empresas são vinculadas às respectivas contas, e as permissões do sistema são estruturadas para limitar o acesso aos dados de acordo com o perfil e a finalidade de cada usuário.</p><h2>Dados de candidatos</h2><p>Dados cadastrais, informações profissionais, currículo, vagas salvas e candidaturas são utilizados para oferecer os recursos do portal. Informações relacionadas a uma candidatura podem ser disponibilizadas à empresa responsável pela oportunidade quando o próprio candidato realiza a candidatura.</p><h2>Dados de empresas e recrutadores</h2><p>As áreas empresariais possuem acesso autenticado aos recursos de recrutamento. Informações administrativas e dados relacionados aos processos seletivos devem ser acessados apenas por usuários autorizados da respectiva conta.</p><h2>Infraestrutura e banco de dados</h2><p>O EmpregaMais utiliza serviços de infraestrutura e banco de dados para armazenar e processar informações necessárias ao funcionamento da plataforma. São aplicados mecanismos de autenticação, permissões e regras de acesso para reduzir acessos indevidos e separar informações conforme o tipo de usuário.</p><h2>Senhas e credenciais</h2><p>O EmpregaMais não exibe senhas de usuários em seus painéis. Cada usuário deve manter suas credenciais em sigilo, utilizar senhas seguras e evitar compartilhar acessos. Caso exista suspeita de uso não autorizado, recomendamos a alteração das credenciais e o contato pelos canais oficiais da plataforma.</p><h2>Segurança durante o uso</h2><p>Algumas informações podem permanecer temporariamente no navegador para viabilizar funcionalidades e melhorar a experiência de uso. Recursos essenciais de conta e dados que precisam acompanhar o usuário entre dispositivos são progressivamente mantidos na infraestrutura da plataforma, sujeitos aos controles de acesso aplicáveis.</p><h2>Prevenção de abuso</h2><p>Podemos adotar medidas para identificar atividades incompatíveis com o uso legítimo do serviço, tentativas de acesso indevido, fraude, automações abusivas ou outras ações capazes de comprometer usuários ou a plataforma.</p><h2>Responsabilidade compartilhada</h2><p>A segurança também depende do usuário. Não compartilhe senhas ou códigos de acesso, confira os dados da vaga e da empresa antes de fornecer informações adicionais e utilize sempre os canais oficiais do EmpregaMais para acessar sua conta.</p><h2>Privacidade e LGPD</h2><p>O tratamento de dados pessoais deve observar a legislação aplicável, incluindo a Lei Geral de Proteção de Dados Pessoais (LGPD). Informações adicionais sobre finalidades, compartilhamento, retenção e direitos dos titulares estão disponíveis na Política de Privacidade do EmpregaMais.</p><h2>Atualizações de segurança</h2><p>As medidas de proteção podem ser revisadas e aprimoradas à medida que a plataforma evolui, novos recursos são adicionados ou surgem novas necessidades técnicas e regulatórias.</p><h2>Comunicação de problemas</h2><p>Se você identificar comportamento suspeito, possível acesso não autorizado ou outra questão relacionada à segurança, utilize os canais oficiais disponíveis em Fale Conosco para comunicar a equipe do EmpregaMais.</p></div></section><section class="pagina pagina-institucional-em" id="pagina-cookies"><div class="inst-hero"><span>PRIVACIDADE</span><h1>Política de Cookies</h1><p>Entenda o uso de tecnologias de armazenamento no EmpregaMais.</p></div><div class="container inst-legal"><p><b>Última atualização: 24 de setembro de 2026.</b></p><h2>O que são cookies e tecnologias semelhantes?</h2><p>São recursos utilizados pelo navegador para armazenar ou recuperar informações que ajudam no funcionamento de sites e aplicações.</p><h2>Como podem ser utilizados</h2><p>O EmpregaMais pode utilizar armazenamento necessário para autenticação, manutenção da sessão, preferências, segurança e funcionamento dos recursos da plataforma.</p><h2>Controle pelo usuário</h2><p>O navegador permite gerenciar ou excluir cookies e outros dados armazenados. O bloqueio de recursos estritamente necessários pode afetar o funcionamento de login, preferências e outras funcionalidades.</p><h2>Atualizações</h2><p>Esta política poderá ser atualizada conforme os recursos da plataforma e as tecnologias utilizadas evoluírem.</p></div></section><footer class="rodape rodape-pro"><div class="rodape-inner"><div class="rodape-brand"><strong>Emprega<span>i</span></strong><p>Oportunidades que conectam pessoas e empresas.</p></div><div><h3>Empregai</h3><button onclick="irPara('sobre')">Sobre nós</button><button onclick="irPara('como-funciona')">Como funciona</button><button onclick="irPara('home')">Vagas</button><button onclick="irPara('senior')">Empregai Sênior</button></div><div><h3>Candidatos</h3><button onclick="irPara('cadastro-candidato')">Criar conta</button><button onclick="irPara('login-candidato')">Entrar</button><button onclick="irPara('curriculo')">Currículo Empregai</button><button onclick="irPara('salvas')">Vagas salvas</button></div><div><h3>Empresas</h3><button onclick="irPara('cadastro-empresa')">Cadastrar empresa</button><button onclick="irPara('login-empresa')">Acesso do recrutador</button><button onclick="irPara('planos')">Planos e preços</button></div><div><h3>Suporte e Legal</h3><button onclick="irPara('ajuda')">Central de Ajuda</button><button onclick="irPara('contato')">Fale Conosco</button><button onclick="irPara('termos')">Termos de Uso</button><button onclick="irPara('privacidade')">Política de Privacidade</button><button onclick="irPara('seguranca')">Segurança das Informações</button><button onclick="irPara('cookies')">Política de Cookies</button></div></div><div class="rodape-bottom"><span>© 2026 Empregai. Todos os direitos reservados.</span><button type="button" class="rodape-admin-link" onclick="irPara('login-admin')">Painel Administrativo</button></div></footer><script src="assets/js/app.js?v=mobile-canonical-v146-20260927"></script>
+<section class="pagina pagina-institucional-em" id="pagina-seguranca"><div class="inst-hero"><span>SEGURANÇA E CONFIANÇA</span><h1>Segurança das Informações</h1><p>Entenda as medidas adotadas pelo EmpregaMais para proteger contas, dados profissionais, vagas e candidaturas.</p></div><div class="container inst-legal inst-seguranca"><p><b>Última atualização: 24 de setembro de 2026.</b></p><h2>Proteção das informações</h2><p>O EmpregaMais trata a segurança das informações como parte essencial da plataforma. Buscamos proteger os dados utilizados por candidatos, recrutadores e empresas por meio de controles de acesso, autenticação e medidas técnicas voltadas à integridade e à confidencialidade das informações.</p><h2>Autenticação e controle de acesso</h2><p>O acesso às áreas privadas depende de autenticação. Informações de candidatos e empresas são vinculadas às respectivas contas, e as permissões do sistema são estruturadas para limitar o acesso aos dados de acordo com o perfil e a finalidade de cada usuário.</p><h2>Dados de candidatos</h2><p>Dados cadastrais, informações profissionais, currículo, vagas salvas e candidaturas são utilizados para oferecer os recursos do portal. Informações relacionadas a uma candidatura podem ser disponibilizadas à empresa responsável pela oportunidade quando o próprio candidato realiza a candidatura.</p><h2>Dados de empresas e recrutadores</h2><p>As áreas empresariais possuem acesso autenticado aos recursos de recrutamento. Informações administrativas e dados relacionados aos processos seletivos devem ser acessados apenas por usuários autorizados da respectiva conta.</p><h2>Infraestrutura e banco de dados</h2><p>O EmpregaMais utiliza serviços de infraestrutura e banco de dados para armazenar e processar informações necessárias ao funcionamento da plataforma. São aplicados mecanismos de autenticação, permissões e regras de acesso para reduzir acessos indevidos e separar informações conforme o tipo de usuário.</p><h2>Senhas e credenciais</h2><p>O EmpregaMais não exibe senhas de usuários em seus painéis. Cada usuário deve manter suas credenciais em sigilo, utilizar senhas seguras e evitar compartilhar acessos. Caso exista suspeita de uso não autorizado, recomendamos a alteração das credenciais e o contato pelos canais oficiais da plataforma.</p><h2>Segurança durante o uso</h2><p>Algumas informações podem permanecer temporariamente no navegador para viabilizar funcionalidades e melhorar a experiência de uso. Recursos essenciais de conta e dados que precisam acompanhar o usuário entre dispositivos são progressivamente mantidos na infraestrutura da plataforma, sujeitos aos controles de acesso aplicáveis.</p><h2>Prevenção de abuso</h2><p>Podemos adotar medidas para identificar atividades incompatíveis com o uso legítimo do serviço, tentativas de acesso indevido, fraude, automações abusivas ou outras ações capazes de comprometer usuários ou a plataforma.</p><h2>Responsabilidade compartilhada</h2><p>A segurança também depende do usuário. Não compartilhe senhas ou códigos de acesso, confira os dados da vaga e da empresa antes de fornecer informações adicionais e utilize sempre os canais oficiais do EmpregaMais para acessar sua conta.</p><h2>Privacidade e LGPD</h2><p>O tratamento de dados pessoais deve observar a legislação aplicável, incluindo a Lei Geral de Proteção de Dados Pessoais (LGPD). Informações adicionais sobre finalidades, compartilhamento, retenção e direitos dos titulares estão disponíveis na Política de Privacidade do EmpregaMais.</p><h2>Atualizações de segurança</h2><p>As medidas de proteção podem ser revisadas e aprimoradas à medida que a plataforma evolui, novos recursos são adicionados ou surgem novas necessidades técnicas e regulatórias.</p><h2>Comunicação de problemas</h2><p>Se você identificar comportamento suspeito, possível acesso não autorizado ou outra questão relacionada à segurança, utilize os canais oficiais disponíveis em Fale Conosco para comunicar a equipe do EmpregaMais.</p></div></section><section class="pagina pagina-institucional-em" id="pagina-cookies"><div class="inst-hero"><span>PRIVACIDADE</span><h1>Política de Cookies</h1><p>Entenda o uso de tecnologias de armazenamento no EmpregaMais.</p></div><div class="container inst-legal"><p><b>Última atualização: 24 de setembro de 2026.</b></p><h2>O que são cookies e tecnologias semelhantes?</h2><p>São recursos utilizados pelo navegador para armazenar ou recuperar informações que ajudam no funcionamento de sites e aplicações.</p><h2>Como podem ser utilizados</h2><p>O EmpregaMais pode utilizar armazenamento necessário para autenticação, manutenção da sessão, preferências, segurança e funcionamento dos recursos da plataforma.</p><h2>Controle pelo usuário</h2><p>O navegador permite gerenciar ou excluir cookies e outros dados armazenados. O bloqueio de recursos estritamente necessários pode afetar o funcionamento de login, preferências e outras funcionalidades.</p><h2>Atualizações</h2><p>Esta política poderá ser atualizada conforme os recursos da plataforma e as tecnologias utilizadas evoluírem.</p></div></section><footer class="rodape rodape-pro"><div class="rodape-inner"><div class="rodape-brand"><strong>Emprega<span>i</span></strong><p>Oportunidades que conectam pessoas e empresas.</p></div><div><h3>Empregai</h3><button onclick="irPara('sobre')">Sobre nós</button><button onclick="irPara('como-funciona')">Como funciona</button><button onclick="irPara('home')">Vagas</button><button onclick="irPara('senior')">Empregai Sênior</button></div><div><h3>Candidatos</h3><button onclick="irPara('cadastro-candidato')">Criar conta</button><button onclick="irPara('login-candidato')">Entrar</button><button onclick="irPara('curriculo')">Currículo Empregai</button><button onclick="irPara('salvas')">Vagas salvas</button></div><div><h3>Empresas</h3><button onclick="irPara('cadastro-empresa')">Cadastrar empresa</button><button onclick="irPara('login-empresa')">Acesso do recrutador</button><button onclick="irPara('planos')">Planos e preços</button></div><div><h3>Suporte e Legal</h3><button onclick="irPara('ajuda')">Central de Ajuda</button><button onclick="irPara('contato')">Fale Conosco</button><button onclick="irPara('termos')">Termos de Uso</button><button onclick="irPara('privacidade')">Política de Privacidade</button><button onclick="irPara('seguranca')">Segurança das Informações</button><button onclick="irPara('cookies')">Política de Cookies</button></div></div><div class="rodape-bottom"><span>© 2026 Empregai. Todos os direitos reservados.</span><button type="button" class="rodape-admin-link" onclick="irPara('login-admin')">Painel Administrativo</button></div></footer><script src="assets/js/app.js?v=mobile-root-fix-v147-20260927"></script>
 <script>
 /* EMPREGAMAIS-PROCESSOS-BOOTSTRAP-V124 */
 (function(){
@@ -12144,14 +12144,7 @@ option{
 </style>
 
 
-<style id="EMPREGAMAI-HEADER-MOBILE-CANONICAL-V144">
-/* Primeiro paint: não mostra menu incorreto enquanto a sessão é resolvida. */
-body:not(.em-header-ready) header.topo .menu,
-body:not(.em-header-ready) header.topo .acoes{
-  visibility:hidden!important;
-  pointer-events:none!important;
-}
-
+<style id="EMPREGAMAI-HEADER-MOBILE-CANONICAL-V147">
 @media(max-width:767px){
  html,body{max-width:100%!important;overflow-x:hidden!important}
 
@@ -12179,118 +12172,118 @@ body:not(.em-header-ready) header.topo .acoes{
  header.topo .marca-tagline{display:none!important}
 
  /* Público: logo + Empresa + Candidato, sempre na mesma linha. */
- body.sessao-publica header.topo .menu-empresa-logada,
- body.sessao-publica header.topo .menu-candidato-logado,
- body.sessao-publica header.topo .sessao-empresa-topo,
- body.sessao-publica header.topo .sessao-candidato-topo{display:none!important}
+ body:not(.sessao-empresa):not(.sessao-candidato):not(.tem-empresa):not(.tem-candidato) header.topo .menu-empresa-logada,
+ body:not(.sessao-empresa):not(.sessao-candidato):not(.tem-empresa):not(.tem-candidato) header.topo .menu-candidato-logado,
+ body:not(.sessao-empresa):not(.sessao-candidato):not(.tem-empresa):not(.tem-candidato) header.topo .sessao-empresa-topo,
+ body:not(.sessao-empresa):not(.sessao-candidato):not(.tem-empresa):not(.tem-candidato) header.topo .sessao-candidato-topo{display:none!important}
 
- body.sessao-publica header.topo .menu-publico{
+ body:not(.sessao-empresa):not(.sessao-candidato):not(.tem-empresa):not(.tem-candidato) header.topo .menu-publico{
   display:flex!important;flex:0 0 auto!important;width:auto!important;min-width:0!important;height:66px!important;
   margin:0!important;padding:0!important;align-items:center!important;justify-content:flex-end!important;gap:0!important;
   overflow:visible!important
  }
- body.sessao-publica header.topo .menu-publico>button{display:none!important}
- body.sessao-publica header.topo .menu-publico>.menu-drop-empresa{
+ body:not(.sessao-empresa):not(.sessao-candidato):not(.tem-empresa):not(.tem-candidato) header.topo .menu-publico>button{display:none!important}
+ body:not(.sessao-empresa):not(.sessao-candidato):not(.tem-empresa):not(.tem-candidato) header.topo .menu-publico>.menu-drop-empresa{
   display:flex!important;position:relative!important;flex:0 0 auto!important;width:auto!important;margin:0!important
  }
- body.sessao-publica header.topo .acoes{
+ body:not(.sessao-empresa):not(.sessao-candidato):not(.tem-empresa):not(.tem-candidato) header.topo .acoes{
   display:flex!important;flex:0 0 auto!important;width:auto!important;min-width:0!important;height:66px!important;
   margin:0!important;padding:0!important;align-items:center!important;justify-content:flex-end!important;gap:6px!important;
   overflow:visible!important
  }
- body.sessao-publica header.topo .acoes>.menu-drop-candidato{
+ body:not(.sessao-empresa):not(.sessao-candidato):not(.tem-empresa):not(.tem-candidato) header.topo .acoes>.menu-drop-candidato{
   display:flex!important;position:relative!important;flex:0 0 auto!important;width:auto!important;margin:0!important
  }
- body.sessao-publica header.topo .acoes>.btn-anunciar-vaga{display:none!important}
+ body:not(.sessao-empresa):not(.sessao-candidato):not(.tem-empresa):not(.tem-candidato) header.topo .acoes>.btn-anunciar-vaga{display:none!important}
 
- body.sessao-publica header.topo .login-card-topo{
+ body:not(.sessao-empresa):not(.sessao-candidato):not(.tem-empresa):not(.tem-candidato) header.topo .login-card-topo{
   width:96px!important;min-width:96px!important;max-width:96px!important;height:40px!important;min-height:40px!important;
   margin:0!important;padding:0 8px!important;display:grid!important;grid-template-columns:24px minmax(0,1fr)!important;
   align-items:center!important;gap:6px!important;border:1px solid #d5e2e9!important;border-radius:10px!important;
   background:#fff!important;box-shadow:0 2px 8px rgba(21,63,88,.035)!important;color:#17394f!important;
   text-align:left!important;overflow:hidden!important
  }
- body.sessao-publica header.topo .login-card-icone{
+ body:not(.sessao-empresa):not(.sessao-candidato):not(.tem-empresa):not(.tem-candidato) header.topo .login-card-icone{
   width:24px!important;height:24px!important;min-width:24px!important;display:grid!important;place-items:center!important;
   margin:0!important;border-radius:7px!important;background:#eef5f7!important;color:#0d6f7b!important
  }
- body.sessao-publica header.topo .login-card-icone svg{
+ body:not(.sessao-empresa):not(.sessao-candidato):not(.tem-empresa):not(.tem-candidato) header.topo .login-card-icone svg{
   width:15px!important;height:15px!important;fill:none!important;stroke:currentColor!important;stroke-width:1.8!important
  }
- body.sessao-publica header.topo .login-card-texto{display:block!important;min-width:0!important;overflow:hidden!important}
- body.sessao-publica header.topo .login-card-texto b{
+ body:not(.sessao-empresa):not(.sessao-candidato):not(.tem-empresa):not(.tem-candidato) header.topo .login-card-texto{display:block!important;min-width:0!important;overflow:hidden!important}
+ body:not(.sessao-empresa):not(.sessao-candidato):not(.tem-empresa):not(.tem-candidato) header.topo .login-card-texto b{
   display:block!important;margin:0!important;font-size:0!important;line-height:1!important;font-weight:750!important;
   white-space:nowrap!important;color:#173f50!important
  }
- body.sessao-publica header.topo .login-card-empresa .login-card-texto b::after{
+ body:not(.sessao-empresa):not(.sessao-candidato):not(.tem-empresa):not(.tem-candidato) header.topo .login-card-empresa .login-card-texto b::after{
   content:"Empresa";font-size:11px!important
  }
- body.sessao-publica header.topo .login-card-candidato .login-card-texto b::after{
+ body:not(.sessao-empresa):not(.sessao-candidato):not(.tem-empresa):not(.tem-candidato) header.topo .login-card-candidato .login-card-texto b::after{
   content:"Candidato";font-size:10.5px!important
  }
- body.sessao-publica header.topo .login-card-texto small,
- body.sessao-publica header.topo .login-card-seta{display:none!important}
- body.sessao-publica header.topo .menu-drop-painel{
+ body:not(.sessao-empresa):not(.sessao-candidato):not(.tem-empresa):not(.tem-candidato) header.topo .login-card-texto small,
+ body:not(.sessao-empresa):not(.sessao-candidato):not(.tem-empresa):not(.tem-candidato) header.topo .login-card-seta{display:none!important}
+ body:not(.sessao-empresa):not(.sessao-candidato):not(.tem-empresa):not(.tem-candidato) header.topo .menu-drop-painel{
   position:fixed!important;top:66px!important;left:10px!important;right:10px!important;width:auto!important;
   max-width:none!important;transform:none!important;z-index:9999!important
  }
 
  /* Sessão de candidato: logo + cartão da conta. Navegação duplicada sai do topo mobile. */
- body.sessao-candidato header.topo .menu-publico,
- body.sessao-candidato header.topo .menu-empresa-logada,
- body.sessao-candidato header.topo .menu-candidato-logado,
- body.sessao-candidato header.topo .acoes>.menu-drop-candidato,
- body.sessao-candidato header.topo .acoes>.btn-anunciar-vaga,
- body.sessao-candidato header.topo .sessao-empresa-topo{display:none!important}
- body.sessao-candidato header.topo .acoes{
+ body:is(.sessao-candidato,.tem-candidato) header.topo .menu-publico,
+ body:is(.sessao-candidato,.tem-candidato) header.topo .menu-empresa-logada,
+ body:is(.sessao-candidato,.tem-candidato) header.topo .menu-candidato-logado,
+ body:is(.sessao-candidato,.tem-candidato) header.topo .acoes>.menu-drop-candidato,
+ body:is(.sessao-candidato,.tem-candidato) header.topo .acoes>.btn-anunciar-vaga,
+ body:is(.sessao-candidato,.tem-candidato) header.topo .sessao-empresa-topo{display:none!important}
+ body:is(.sessao-candidato,.tem-candidato) header.topo .acoes{
   display:flex!important;flex:0 0 auto!important;width:auto!important;min-width:0!important;height:66px!important;
   margin-left:auto!important;align-items:center!important;justify-content:flex-end!important;overflow:visible!important
  }
- body.sessao-candidato header.topo .sessao-candidato-topo{
+ body:is(.sessao-candidato,.tem-candidato) header.topo .sessao-candidato-topo{
   display:flex!important;position:relative!important;width:auto!important;min-width:0!important;margin:0!important
  }
 
  /* Sessão de empresa: mesma estrutura, sem mistura com candidato. */
- body.sessao-empresa header.topo .menu-publico,
- body.sessao-empresa header.topo .menu-empresa-logada,
- body.sessao-empresa header.topo .menu-candidato-logado,
- body.sessao-empresa header.topo .acoes>.menu-drop-candidato,
- body.sessao-empresa header.topo .acoes>.btn-anunciar-vaga,
- body.sessao-empresa header.topo .sessao-candidato-topo{display:none!important}
- body.sessao-empresa header.topo .acoes{
+ body:is(.sessao-empresa,.tem-empresa) header.topo .menu-publico,
+ body:is(.sessao-empresa,.tem-empresa) header.topo .menu-empresa-logada,
+ body:is(.sessao-empresa,.tem-empresa) header.topo .menu-candidato-logado,
+ body:is(.sessao-empresa,.tem-empresa) header.topo .acoes>.menu-drop-candidato,
+ body:is(.sessao-empresa,.tem-empresa) header.topo .acoes>.btn-anunciar-vaga,
+ body:is(.sessao-empresa,.tem-empresa) header.topo .sessao-candidato-topo{display:none!important}
+ body:is(.sessao-empresa,.tem-empresa) header.topo .acoes{
   display:flex!important;flex:0 0 auto!important;width:auto!important;min-width:0!important;height:66px!important;
   margin-left:auto!important;align-items:center!important;justify-content:flex-end!important;overflow:visible!important
  }
- body.sessao-empresa header.topo .sessao-empresa-topo{
+ body:is(.sessao-empresa,.tem-empresa) header.topo .sessao-empresa-topo{
   display:flex!important;position:relative!important;width:auto!important;min-width:0!important;margin:0!important
  }
 
- body.sessao-candidato header.topo .sessao-conta-btn,
- body.sessao-empresa header.topo .sessao-conta-btn{
+ body:is(.sessao-candidato,.tem-candidato) header.topo .sessao-conta-btn,
+ body:is(.sessao-empresa,.tem-empresa) header.topo .sessao-conta-btn{
   width:172px!important;min-width:0!important;max-width:172px!important;height:42px!important;min-height:42px!important;
   margin:0!important;padding:0 8px!important;display:grid!important;
   grid-template-columns:30px minmax(0,1fr) 12px!important;gap:7px!important;align-items:center!important;
   border:1px solid #d5e3eb!important;border-radius:10px!important;background:#fff!important;
   box-shadow:0 2px 8px rgba(16,57,82,.04)!important;overflow:hidden!important
  }
- body.sessao-candidato header.topo .sessao-avatar,
- body.sessao-empresa header.topo .sessao-avatar{
+ body:is(.sessao-candidato,.tem-candidato) header.topo .sessao-avatar,
+ body:is(.sessao-empresa,.tem-empresa) header.topo .sessao-avatar{
   width:30px!important;height:30px!important;min-width:30px!important;border-radius:9px!important;font-size:11px!important
  }
- body.sessao-candidato header.topo .sessao-conta-ident,
- body.sessao-empresa header.topo .sessao-conta-ident{display:flex!important;min-width:0!important}
- body.sessao-candidato header.topo .sessao-conta-ident>b,
- body.sessao-empresa header.topo .sessao-conta-ident>b{
+ body:is(.sessao-candidato,.tem-candidato) header.topo .sessao-conta-ident,
+ body:is(.sessao-empresa,.tem-empresa) header.topo .sessao-conta-ident{display:flex!important;min-width:0!important}
+ body:is(.sessao-candidato,.tem-candidato) header.topo .sessao-conta-ident>b,
+ body:is(.sessao-empresa,.tem-empresa) header.topo .sessao-conta-ident>b{
   display:block!important;min-width:0!important;max-width:100%!important;font-size:11px!important;
   white-space:nowrap!important;overflow:hidden!important;text-overflow:ellipsis!important
  }
- body.sessao-candidato header.topo .sessao-conta-ident>small,
- body.sessao-empresa header.topo .sessao-conta-ident>small{display:none!important}
- body.sessao-candidato header.topo .sessao-conta-btn>em,
- body.sessao-empresa header.topo .sessao-conta-btn>em{font-size:12px!important}
+ body:is(.sessao-candidato,.tem-candidato) header.topo .sessao-conta-ident>small,
+ body:is(.sessao-empresa,.tem-empresa) header.topo .sessao-conta-ident>small{display:none!important}
+ body:is(.sessao-candidato,.tem-candidato) header.topo .sessao-conta-btn>em,
+ body:is(.sessao-empresa,.tem-empresa) header.topo .sessao-conta-btn>em{font-size:12px!important}
 
- body.sessao-candidato header.topo .sessao-conta-menu,
- body.sessao-empresa header.topo .sessao-conta-menu{
+ body:is(.sessao-candidato,.tem-candidato) header.topo .sessao-conta-menu,
+ body:is(.sessao-empresa,.tem-empresa) header.topo .sessao-conta-menu{
   position:fixed!important;top:66px!important;left:10px!important;right:10px!important;width:auto!important;
   min-width:0!important;max-width:none!important;margin:0!important;z-index:9999!important
  }
@@ -12300,17 +12293,17 @@ body:not(.em-header-ready) header.topo .acoes{
  header.topo .topo-inner{padding-left:8px!important;padding-right:8px!important;gap:5px!important}
  header.topo .marca{min-width:78px!important}
  header.topo .marca-nome{font-size:22px!important}
- body.sessao-publica header.topo .login-card-topo{
+ body:not(.sessao-empresa):not(.sessao-candidato):not(.tem-empresa):not(.tem-candidato) header.topo .login-card-topo{
   width:88px!important;min-width:88px!important;max-width:88px!important;padding:0 6px!important;
   grid-template-columns:22px minmax(0,1fr)!important;gap:5px!important
  }
- body.sessao-publica header.topo .login-card-icone{
+ body:not(.sessao-empresa):not(.sessao-candidato):not(.tem-empresa):not(.tem-candidato) header.topo .login-card-icone{
   width:22px!important;height:22px!important;min-width:22px!important
  }
- body.sessao-publica header.topo .login-card-empresa .login-card-texto b::after{font-size:10.5px!important}
- body.sessao-publica header.topo .login-card-candidato .login-card-texto b::after{font-size:9.8px!important}
- body.sessao-candidato header.topo .sessao-conta-btn,
- body.sessao-empresa header.topo .sessao-conta-btn{width:154px!important;max-width:154px!important}
+ body:not(.sessao-empresa):not(.sessao-candidato):not(.tem-empresa):not(.tem-candidato) header.topo .login-card-empresa .login-card-texto b::after{font-size:10.5px!important}
+ body:not(.sessao-empresa):not(.sessao-candidato):not(.tem-empresa):not(.tem-candidato) header.topo .login-card-candidato .login-card-texto b::after{font-size:9.8px!important}
+ body:is(.sessao-candidato,.tem-candidato) header.topo .sessao-conta-btn,
+ body:is(.sessao-empresa,.tem-empresa) header.topo .sessao-conta-btn{width:154px!important;max-width:154px!important}
 }
 </style>
 
@@ -12472,108 +12465,124 @@ body.sessao-candidato header.topo .sessao-conta-btn{
  background:#eef8ff!important;border:1px solid #cfe6f5!important;color:#184b70!important
 }
 
-/* Mobile canônico: perfil compacto + navegação horizontal em vez de menu gigante */
+/* Mobile canônico V2: painel inteiro dentro da tela, sem faixa horizontal cortada */
 @media(max-width:760px){
- #pagina-painel-candidato .cand-app-shell{display:block!important;width:100%!important;max-width:100%!important}
+ #pagina-painel-candidato,
+ #pagina-painel-candidato *{box-sizing:border-box!important}
+ #pagina-painel-candidato{width:100%!important;max-width:100%!important;min-width:0!important;overflow-x:hidden!important}
+ #pagina-painel-candidato .cand-app-shell{display:block!important;width:100%!important;max-width:100%!important;min-width:0!important}
+
  #pagina-painel-candidato .cand-side{
-  position:static!important;width:100%!important;min-width:0!important;min-height:0!important;
-  padding:12px 12px 9px!important;border-right:0!important;border-bottom:1px solid #d7e9f5!important;
-  box-shadow:0 4px 14px rgba(36,115,168,.04)!important
+  position:static!important;width:100%!important;max-width:100%!important;min-width:0!important;min-height:0!important;
+  padding:12px 12px 10px!important;border-right:0!important;border-bottom:1px solid #d7e9f5!important;
+  box-shadow:0 4px 14px rgba(36,115,168,.04)!important;overflow:hidden!important
  }
  #pagina-painel-candidato .cand-side-user{
-  grid-template-columns:48px minmax(0,1fr)!important;gap:10px!important;
-  padding:0 2px 11px!important;align-items:center!important
+  display:grid!important;grid-template-columns:48px minmax(0,1fr)!important;gap:10px!important;
+  width:100%!important;min-width:0!important;padding:0 2px 11px!important;align-items:center!important
  }
- #pagina-painel-candidato .cand-side-avatar{
-  width:46px!important;height:46px!important;border-radius:12px!important;font-size:19px!important
- }
+ #pagina-painel-candidato .cand-side-user>div{min-width:0!important}
+ #pagina-painel-candidato .cand-side-avatar{width:46px!important;height:46px!important;border-radius:12px!important;font-size:19px!important}
  #pagina-painel-candidato .cand-side-user b{font-size:15px!important}
  #pagina-painel-candidato .cand-side-user small{font-size:10.5px!important}
  #pagina-painel-candidato .cand-side-user button{font-size:10.5px!important}
 
  #pagina-painel-candidato .cand-side nav{
-  width:100%!important;display:flex!important;flex-direction:row!important;align-items:center!important;
-  gap:7px!important;margin:0!important;padding:9px 0 4px!important;overflow-x:auto!important;overflow-y:hidden!important;
-  -webkit-overflow-scrolling:touch!important;scrollbar-width:none!important
+  width:100%!important;max-width:100%!important;min-width:0!important;
+  display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;
+  gap:8px!important;margin:0!important;padding:9px 0 4px!important;
+  overflow:visible!important;white-space:normal!important
  }
- #pagina-painel-candidato .cand-side nav::-webkit-scrollbar{display:none!important}
  #pagina-painel-candidato .cand-side nav>button{
-  flex:0 0 auto!important;width:auto!important;min-width:max-content!important;min-height:38px!important;height:38px!important;
-  margin:0!important;padding:0 12px!important;border-radius:10px!important;justify-content:center!important;gap:6px!important;
-  font-size:10.5px!important;white-space:nowrap!important
+  width:100%!important;max-width:100%!important;min-width:0!important;height:auto!important;min-height:42px!important;
+  margin:0!important;padding:7px 8px!important;border-radius:10px!important;
+  display:flex!important;align-items:center!important;justify-content:center!important;gap:6px!important;
+  font-size:10.5px!important;line-height:1.2!important;text-align:center!important;white-space:normal!important;
+  overflow:visible!important
  }
  #pagina-painel-candidato .cand-side nav>button>span{
-  flex:0 0 auto!important;width:auto!important;text-align:center!important;white-space:nowrap!important
+  display:block!important;min-width:0!important;max-width:100%!important;
+  white-space:normal!important;overflow:visible!important;text-overflow:clip!important;text-align:center!important
  }
- #pagina-painel-candidato .cand-side nav>button.ativo{
-  box-shadow:none!important;background:#dff2ff!important;border-color:#badff4!important
- }
- #pagina-painel-candidato .cand-side nav .cand-msg-badge{
-  position:static!important;right:auto!important;margin-left:2px!important;min-width:18px!important;height:18px!important
- }
+ #pagina-painel-candidato .cand-side nav .cand-msg-badge{position:static!important;right:auto!important;margin-left:2px!important}
  #pagina-painel-candidato .cand-side-tip{display:none!important}
  #pagina-painel-candidato .cand-side-exit{
-  width:auto!important;min-height:32px!important;margin:5px 0 0 auto!important;padding:0 10px!important;
-  border:1px solid #dcebf4!important;border-radius:9px!important;background:#f8fbfd!important;
-  font-size:10px!important;display:flex!important;justify-content:center!important
+  width:100%!important;max-width:120px!important;min-height:36px!important;margin:8px 0 0 auto!important;
+  display:flex!important;align-items:center!important;justify-content:center!important
  }
 
- #pagina-painel-candidato .cand-main{padding:12px!important}
- #pagina-painel-candidato .cand-dashboard-hero{
-  min-height:0!important;padding:20px 18px!important;border-radius:16px!important;display:block!important
+ #pagina-painel-candidato .cand-main{
+  width:100%!important;max-width:100%!important;min-width:0!important;margin:0!important;padding:12px!important;overflow:visible!important
  }
- #pagina-painel-candidato .cand-dashboard-hero h1{font-size:26px!important;line-height:1.12!important;margin:6px 0 8px!important}
- #pagina-painel-candidato .cand-dashboard-hero p{font-size:12px!important;line-height:1.48!important;margin:0!important}
+ #pagina-painel-candidato .cand-dashboard-hero{
+  width:100%!important;max-width:100%!important;min-width:0!important;min-height:0!important;margin:0!important;
+  padding:20px 18px!important;border-radius:16px!important;display:block!important;overflow:visible!important
+ }
+ #pagina-painel-candidato .cand-dashboard-hero h1{font-size:27px!important;line-height:1.12!important;margin:6px 0 8px!important;color:#123d63!important}
+ #pagina-painel-candidato #candidatoSaudacao,
+ #pagina-painel-candidato .cand-dashboard-hero p{
+  display:block!important;color:#4f7189!important;opacity:1!important;visibility:visible!important;
+  font-size:12.5px!important;line-height:1.5!important
+ }
+ #pagina-painel-candidato.cand-dashboard-premium .cand-dashboard-hero-pro #candidatoSaudacao,
+ #pagina-painel-candidato.cand-dashboard-premium .cand-dashboard-hero-pro p{color:#4f7189!important}
+
  #pagina-painel-candidato .cand-hero-actions{
-  display:grid!important;grid-template-columns:1fr 1fr!important;gap:7px!important;margin-top:14px!important
+  width:100%!important;display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:9px!important;margin-top:15px!important
  }
  #pagina-painel-candidato .cand-hero-actions button{
-  min-width:0!important;min-height:39px!important;padding:0 9px!important;border-radius:9px!important;font-size:10px!important
+  width:100%!important;min-width:0!important;min-height:46px!important;padding:8px 10px!important;
+  border-radius:10px!important;font-size:11.5px!important;white-space:normal!important
  }
+
  #pagina-painel-candidato .cand-hero-beneficios{
-  margin-top:15px!important;padding:11px!important;border-radius:12px!important
+  width:100%!important;max-width:100%!important;min-width:0!important;margin-top:15px!important;padding:13px!important;
+  border-radius:13px!important;background:rgba(255,255,255,.72)!important;border:1px solid #cfe5f4!important;
+  color:#315b78!important;overflow:visible!important
  }
- #pagina-painel-candidato .cand-hero-beneficios>span{font-size:8.5px!important}
+ #pagina-painel-candidato .cand-hero-beneficios>span{
+  display:block!important;color:#237fbd!important;font-size:10.5px!important;line-height:1.3!important;
+  font-weight:800!important;letter-spacing:.05em!important
+ }
  #pagina-painel-candidato .cand-hero-beneficios-linha{
-  display:grid!important;grid-template-columns:1fr 1fr!important;gap:7px!important;margin-top:8px!important
+  width:100%!important;display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;
+  gap:8px!important;margin-top:9px!important;overflow:visible!important
  }
  #pagina-painel-candidato .cand-hero-beneficio{
-  min-height:50px!important;padding:8px!important;border-radius:9px!important;font-size:9px!important
+  width:100%!important;min-width:0!important;min-height:68px!important;padding:10px!important;border-radius:10px!important;
+  display:flex!important;align-items:flex-start!important;justify-content:flex-start!important;gap:8px!important;
+  background:#fff!important;border:1px solid #d8eaf6!important;color:#365f7a!important;overflow:visible!important
+ }
+ #pagina-painel-candidato .cand-hero-beneficio i{
+  flex:0 0 22px!important;width:22px!important;height:22px!important;min-width:22px!important;
+  display:grid!important;place-items:center!important;margin:0!important;border-radius:7px!important;
+  background:#dff2ff!important;border:0!important;color:#1486cd!important;font-size:13px!important
+ }
+ #pagina-painel-candidato .cand-dashboard-hero-pro .cand-hero-beneficios .cand-hero-beneficio b,
+ #pagina-painel-candidato.cand-dashboard-premium .cand-dashboard-hero-pro .cand-hero-beneficios .cand-hero-beneficio b{
+  display:block!important;min-width:0!important;color:#365f7a!important;font-size:10.8px!important;line-height:1.35!important;
+  font-weight:650!important;white-space:normal!important;opacity:1!important;visibility:visible!important
  }
 
  #pagina-painel-candidato .cand-dashboard-kpis{
-  grid-template-columns:1fr 1fr!important;gap:8px!important;margin:10px 0!important
+  width:100%!important;max-width:100%!important;min-width:0!important;
+  display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:9px!important;margin:11px 0!important
  }
- #pagina-painel-candidato .cand-dashboard-kpis article{
-  min-width:0!important;padding:12px!important;grid-template-columns:34px minmax(0,1fr)!important;gap:8px!important;border-radius:12px!important
- }
- #pagina-painel-candidato .cand-dashboard-kpis article>i{width:34px!important;height:34px!important;border-radius:9px!important;font-size:14px!important}
- #pagina-painel-candidato .cand-dashboard-kpis span{font-size:7.5px!important}
- #pagina-painel-candidato .cand-dashboard-kpis strong{font-size:20px!important}
- #pagina-painel-candidato .cand-dashboard-kpis small{font-size:8.5px!important;line-height:1.3!important}
-
+ #pagina-painel-candidato .cand-dashboard-kpis article{width:100%!important;min-width:0!important;margin:0!important;padding:12px!important}
  #pagina-painel-candidato .cand-dashboard-grid{
+  width:100%!important;max-width:100%!important;min-width:0!important;
   display:grid!important;grid-template-columns:1fr!important;gap:10px!important
  }
  #pagina-painel-candidato .cand-dash-card,
- #pagina-painel-candidato .cand-profile-progress{
-  padding:16px!important;border-radius:13px!important
- }
- #pagina-painel-candidato .cand-dash-card .jornada-head{gap:8px!important}
- #pagina-painel-candidato .cand-dash-card h2,
- #pagina-painel-candidato .cand-profile-progress h2{font-size:18px!important;line-height:1.25!important}
- #pagina-painel-candidato .cand-dash-card .jornada-head p,
- #pagina-painel-candidato .cand-profile-progress p{font-size:10.5px!important}
- #pagina-painel-candidato .jornada-item strong{font-size:12px!important}
- #pagina-painel-candidato .jornada-item div>span{font-size:9.5px!important}
+ #pagina-painel-candidato .cand-profile-progress{width:100%!important;max-width:100%!important;min-width:0!important;margin:0!important}
 }
-
 @media(max-width:390px){
+ #pagina-painel-candidato .cand-side{padding-left:10px!important;padding-right:10px!important}
+ #pagina-painel-candidato .cand-main{padding:10px!important}
+ #pagina-painel-candidato .cand-dashboard-hero{padding:18px 14px!important}
  #pagina-painel-candidato .cand-hero-actions{grid-template-columns:1fr!important}
  #pagina-painel-candidato .cand-hero-beneficios-linha{grid-template-columns:1fr!important}
- #pagina-painel-candidato .cand-dashboard-kpis{grid-template-columns:1fr 1fr!important}
-}
-</style>
+}</style>
 
 <style>/* EMPREGAMAI-PAINEL-ENXUTO-INLINE-V2 */
 #pagina-painel-empresa .emp-rec-planbar{min-height:62px!important;margin-top:8px!important}
