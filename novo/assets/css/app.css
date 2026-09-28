@@ -11059,3 +11059,58 @@ textarea{
 #pagina-candidatos-empresa .recruta-preview-andamento{
   display:none!important;
 }
+
+/* EMPREGAI-ANDAMENTO-ENTREVISTA-MENSAGENS-V1 */
+#pagina-candidatos-empresa .recruta-cand-actions{
+  grid-template-columns:repeat(3,minmax(0,1fr))!important;
+}
+.recruta-andamento-modal-em .em-modal-mensagens{
+  margin-top:14px!important;
+}
+.recruta-andamento-modal-em .em-modal-mensagens .chat-em-box{
+  margin:0!important;
+  border:1px solid #dfe9ed!important;
+  border-radius:12px!important;
+  box-shadow:none!important;
+  background:#fbfdfe!important;
+  overflow:hidden!important;
+}
+.recruta-andamento-modal-em .em-modal-mensagens .chat-em-head{
+  padding:13px 14px!important;
+  border-bottom:1px solid #e3ebee!important;
+  background:#f7fafb!important;
+}
+.recruta-andamento-modal-em .em-modal-mensagens .chat-em-head span{
+  font-size:9px!important;
+  letter-spacing:.08em!important;
+}
+.recruta-andamento-modal-em .em-modal-mensagens .chat-em-head h3{
+  margin-top:3px!important;
+  font-size:13px!important;
+}
+.recruta-andamento-modal-em .em-modal-mensagens .chat-em-historico{
+  max-height:220px!important;
+  overflow:auto!important;
+  padding:12px 14px!important;
+}
+.recruta-andamento-modal-em .em-modal-mensagens .chat-em-compose{
+  padding:12px 14px 14px!important;
+  border-top:1px solid #e5ecef!important;
+  background:#fff!important;
+}
+.recruta-andamento-modal-em .em-modal-mensagens textarea{
+  min-height:92px!important;
+  font-size:12px!important;
+  line-height:1.45!important;
+}
+.recruta-andamento-modal-em .em-modal-mensagens .chat-em-compose>div{
+  display:flex!important;
+  justify-content:flex-end!important;
+  gap:8px!important;
+  flex-wrap:wrap!important;
+}
+@media(max-width:760px){
+  #pagina-candidatos-empresa .recruta-cand-actions{
+    grid-template-columns:1fr!important;
+  }
+}
