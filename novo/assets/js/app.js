@@ -682,7 +682,13 @@ function renderVagasVisualizadasCandidatoEM(){
 }
 function abrirVaga(id){registrarVagaVisualizadaEM(id);sessionStorage.setItem('vagaAtual',id);irPara('vaga');setTimeout(solicitarLocalizacaoCandidatoEM,60);setTimeout(renderVagasVisualizadasCandidatoEM,80)}
 function abrirEmpresaPublica(cnpj){if(!cnpj)return;sessionStorage.setItem('empresaPublicaSelecionada',cnpj);irPara('empresa-publica')}
-function vagaAtual(){return ler('empregaMaisVagas').find(v=>v.id===sessionStorage.getItem('vagaAtual'))}
+function vagaAtual(){
+ const id=String(sessionStorage.getItem('vagaAtual')||'');
+ if(!id)return null;
+ const cache=Array.isArray(typeof sbVagasCacheEM!=='undefined'?sbVagasCacheEM:null)?sbVagasCacheEM:[];
+ const locais=Array.isArray(ler('empregaMaisVagas'))?ler('empregaMaisVagas'):[];
+ return cache.find(v=>String(v?.id)===id)||locais.find(v=>String(v?.id)===id)||null;
+}
 function calcularAderenciaCurriculoEM(v,d){if(!v||!d)return null;const norm=x=>cvNormaliza(String(x||'')),texto=norm([d.titulo,d.objetivo,d.resumo,d.competencias,d.idiomas,...(d.experiencias||[]).flatMap(x=>[x.cargo,x.empresa,x.atividades]),...(d.formacoes||[]).flatMap(x=>[x.curso,x.instituicao,x.status]),...(d.cursos||[]).flatMap(x=>[x.nome,x.instituicao])].join(' ')),itens=[];let ganho=0,total=0;const add=(nome,peso,status,det)=>{total+=peso;if(status==='sim')ganho+=peso;else if(status==='parcial')ganho+=peso*.5;itens.push({nome,status,det})};const cargo=norm(tituloVaga(v)),area=norm(v.area);if(cargo||area){const termos=(cargo+' '+area).split(/\s+/).filter(x=>x.length>3),hits=termos.filter(x=>texto.includes(x)).length;add('Cargo e área',24,hits>=Math.max(1,Math.ceil(termos.length*.45))?'sim':hits?'parcial':'nao',hits?'Há relação com seu histórico profissional.':'Não identificamos relação clara no currículo.')}if(v.escolaridade){const escV=norm(v.escolaridade),forms=(d.formacoes||[]).map(x=>norm(x.curso+' '+x.status)).join(' ');add('Formação / escolaridade',18,forms?(escV.includes('superior')&&forms?'sim':texto.includes(escV)?'sim':'parcial'):'info',forms?'Formação cadastrada comparada com a exigência da vaga.':'Formação não informada no currículo.')}if(v.modalidade){const mods=(d.modalidades||[]).map(norm);add('Modalidade',14,mods.length?(mods.includes(norm(v.modalidade))?'sim':'nao'):'info',mods.length?'Preferência: '+d.modalidades.join(', '):'Preferência de modalidade não informada.')}if(v.cidade){const mesma=norm(d.cidade)===norm(v.cidade),prox=!!d.cidadesProximas,mud=!!d.mudanca;add('Localização',14,mesma||prox||mud?'sim':'nao',mesma?'A vaga é na sua cidade.':prox?'Você aceita trabalhar em cidades próximas.':mud?'Você informou disponibilidade para mudança.':'Localização não compatível com as preferências informadas.')}const req=norm(v.requisitos),comp=(d.competencias||'').split(',').map(norm).filter(Boolean);if(req&&comp.length){const hits=comp.filter(x=>x.length>2&&req.includes(x));add('Competências',20,hits.length>=Math.max(1,Math.ceil(comp.length*.3))?'sim':hits.length?'parcial':'nao',hits.length?hits.length+' competência(s) do currículo aparecem nos requisitos.':'Nenhuma competência cadastrada foi identificada literalmente nos requisitos.')}if(/cnh|habilita/.test(req)){const ok=d.cnh==='sim';add('CNH',10,ok?'sim':'nao',ok?'CNH informada no currículo.':'A vaga menciona habilitação e o currículo não informa CNH.')}if(/ve[ií]culo|carro|moto/.test(req)){const ok=d.veiculo==='sim';add('Veículo',10,ok?'sim':'nao',ok?'Veículo próprio informado.':'A vaga menciona veículo e o currículo não informa veículo próprio.')}if(!total)return null;return{percentual:Math.round(ganho/total*100),itens}}
 function alternarDetalhesAderenciaEM(btn){const card=btn?.closest('.aderencia-card'),pop=card?.querySelector('.aderencia-popover');if(!pop)return;const aberto=!pop.classList.contains('oculto');document.querySelectorAll('.aderencia-popover').forEach(x=>x.classList.add('oculto'));pop.classList.toggle('oculto',aberto);btn.setAttribute('aria-expanded',String(!aberto))}
 document.addEventListener('click',function(e){if(!e.target.closest('.aderencia-card'))document.querySelectorAll('.aderencia-popover').forEach(x=>x.classList.add('oculto'))});
@@ -2848,7 +2854,22 @@ body.recruta-modal-aberto{overflow:hidden!important}
     });
     const consolidado=[...mapa.values()].filter(Boolean);
     sbVagasCacheEM=consolidado;
-    gravar('empregaMaisVagas',consolidado);
+    try{
+      gravar('empregaMaisVagas',consolidado);
+    }catch(e){
+      console.warn('+ Empregos: armazenamento local cheio; mantendo vagas atualizadas em memória.',e);
+      try{
+        const leves=consolidado.map(v=>{
+          if(!v||typeof v!=='object')return v;
+          const x={...v};
+          if(typeof x.logo==='string'&&x.logo.startsWith('data:image/'))x.logo='';
+          if(typeof x.logoUrl==='string'&&x.logoUrl.startsWith('data:image/'))x.logoUrl='';
+          if(typeof x.empresaLogo==='string'&&x.empresaLogo.startsWith('data:image/'))x.empresaLogo='';
+          return x;
+        });
+        localStorage.setItem('empregaMaisVagas',JSON.stringify(leves));
+      }catch(_){}
+    }
     return consolidado;
   };
   window.sbCarregarVagasEM=carregarVagasSeguro;
