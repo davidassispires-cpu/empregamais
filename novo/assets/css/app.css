@@ -11435,3 +11435,38 @@ textarea{
  .conecta-plan-card-em{padding:24px 20px!important}
  .conecta-plan-price-em strong{font-size:27px}
 }
+
+/* +Emprego Conecta V3 - navegacao, integracao self-service e atracao */
+.conecta-tabs-wrap-em{position:sticky;top:72px;z-index:20;background:rgba(255,255,255,.94);border-bottom:1px solid #eadff0;backdrop-filter:blur(10px)}
+.conecta-tabs-em{max-width:1240px;margin:auto;padding:10px 30px;display:flex;gap:8px;overflow:auto}
+.conecta-tabs-em button{white-space:nowrap;border:1px solid #e1d2ea;background:#fff;color:#5b2a72;border-radius:999px;padding:10px 15px;font:700 11px 'Montserrat',Arial,sans-serif;cursor:pointer}
+.conecta-tabs-em button:hover{border-color:#820AD1;color:#820AD1;background:#faf5fd}
+.conecta-integracao-self-em,.conecta-atracao-em{padding:82px 0 0}
+.conecta-self-grid-em,.conecta-atracao-grid-em{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:13px}
+.conecta-self-grid-em article,.conecta-atracao-grid-em article{padding:23px;border:1px solid #e7dced;border-radius:16px;background:#fff;box-shadow:0 5px 18px rgba(72,35,92,.04)}
+.conecta-self-grid-em b,.conecta-atracao-grid-em i{display:inline-grid;place-items:center;min-width:36px;height:36px;padding:0 8px;border-radius:10px;background:#f4ecfb;color:#820AD1;font-style:normal;font-size:11px;font-weight:800}
+.conecta-self-grid-em h3,.conecta-atracao-grid-em h3{margin:14px 0 8px;color:#4c1d64;font-size:15px}
+.conecta-self-grid-em p,.conecta-atracao-grid-em p{margin:0;color:#736479;font-size:11.5px;line-height:1.65}
+.conecta-self-cta-em{margin-top:15px;padding:18px 20px;border-radius:15px;background:#4b1768;color:#fff;display:flex;align-items:center;justify-content:space-between;gap:24px}
+.conecta-self-cta-em strong,.conecta-self-cta-em span{display:block}
+.conecta-self-cta-em strong{font-size:13px}
+.conecta-self-cta-em span{margin-top:4px;color:#e6d8ec;font-size:10.5px;line-height:1.5}
+.conecta-self-cta-em button{flex:0 0 auto;min-height:44px;padding:0 18px;border:0;border-radius:10px;background:#fff;color:#651a93;font:700 12px 'Montserrat',Arial,sans-serif;cursor:pointer}
+.conecta-atracao-em{position:relative}
+.conecta-atracao-grid-em article{border-top:4px solid #820AD1}
+.conecta-atracao-note-em{margin-top:15px;padding:16px 18px;border:1px solid #e4d4ec;border-radius:14px;background:#faf6fc;display:flex;gap:12px;align-items:center}
+.conecta-atracao-note-em strong{color:#4c1d64;font-size:12px;white-space:nowrap}
+.conecta-atracao-note-em span{color:#75667b;font-size:10.8px;line-height:1.5}
+@media(max-width:1080px){
+ .conecta-self-grid-em,.conecta-atracao-grid-em{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media(max-width:850px){
+ .conecta-tabs-wrap-em{top:64px}
+ .conecta-tabs-em{padding:9px 20px}
+ .conecta-self-cta-em{align-items:flex-start;flex-direction:column}
+ .conecta-self-cta-em button{width:100%}
+}
+@media(max-width:560px){
+ .conecta-self-grid-em,.conecta-atracao-grid-em{grid-template-columns:1fr}
+ .conecta-atracao-note-em{align-items:flex-start;flex-direction:column}
+}
