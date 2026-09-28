@@ -918,10 +918,15 @@ const EMPREGAMAIS_SB_ADMIN_REFRESH="empregaMaisAdminSupabaseRefreshToken";
 function sbEmailEmpresaEM(cnpj){return nums(cnpj)+"@auth.empregamais.com.br"}
 function sbHeadersEM(token){const h={"apikey":EMPREGAMAIS_SUPABASE_KEY,"Content-Type":"application/json"};if(token)h.Authorization="Bearer "+token;return h}
 function sbJsonEM(url,opt){return fetch(url,opt).then(async r=>{const t=await r.text();let j={};try{j=t?JSON.parse(t):{}}catch(e){}if(!r.ok)throw new Error(j.msg||j.message||j.error_description||j.error||("Erro "+r.status));return j})}
-function sbSalvarSessaoEM(a){if(a?.access_token||a?.refresh_token){localStorage.removeItem('empregaMaisLogoutBloqueio');sessionStorage.removeItem('empregaMaisLogoutBloqueio')}if(a?.access_token){sessionStorage.setItem(EMPREGAMAIS_SB_TOKEN,a.access_token);localStorage.setItem(EMPREGAMAIS_SB_TOKEN,a.access_token)}if(a?.refresh_token){sessionStorage.setItem(EMPREGAMAIS_SB_REFRESH,a.refresh_token);localStorage.setItem(EMPREGAMAIS_SB_REFRESH,a.refresh_token)}}
+function sbSalvarSessaoEM(a){if(localStorage.getItem('empregaMaisLogoutBloqueio')==='1'||sessionStorage.getItem('empregaMaisLogoutBloqueio')==='1')return;if(a?.access_token){sessionStorage.setItem(EMPREGAMAIS_SB_TOKEN,a.access_token);localStorage.setItem(EMPREGAMAIS_SB_TOKEN,a.access_token)}if(a?.refresh_token){sessionStorage.setItem(EMPREGAMAIS_SB_REFRESH,a.refresh_token);localStorage.setItem(EMPREGAMAIS_SB_REFRESH,a.refresh_token)}}
 function sbTokenEM(){return sessionStorage.getItem(EMPREGAMAIS_SB_TOKEN)||localStorage.getItem(EMPREGAMAIS_SB_TOKEN)||""}
 function sbRefreshTokenEM(){return sessionStorage.getItem(EMPREGAMAIS_SB_REFRESH)||localStorage.getItem(EMPREGAMAIS_SB_REFRESH)||""}
 async function sbGarantirSessaoEM(){
+ if(localStorage.getItem('empregaMaisLogoutBloqueio')==='1'||sessionStorage.getItem('empregaMaisLogoutBloqueio')==='1'){
+  [EMPREGAMAIS_SB_TOKEN,EMPREGAMAIS_SB_REFRESH].forEach(k=>{sessionStorage.removeItem(k);localStorage.removeItem(k)});
+  sessionStorage.removeItem('empregaMaisPapel');localStorage.removeItem('empregaMaisPapelPersistido');
+  return "";
+ }
  const token=sbTokenEM(),refresh=sbRefreshTokenEM();
  if(token){try{await sbJsonEM(EMPREGAMAIS_SUPABASE_URL+"/auth/v1/user",{method:"GET",headers:sbHeadersEM(token)});return token}catch(e){}}
  if(!refresh){
@@ -939,8 +944,8 @@ async function sbGarantirSessaoEM(){
   return ""
  }
 }
-function sbCadastrarAuthEmpresaEM(cnpj,senha){return sbJsonEM(EMPREGAMAIS_SUPABASE_URL+"/auth/v1/signup",{method:"POST",headers:sbHeadersEM(),body:JSON.stringify({email:sbEmailEmpresaEM(cnpj),password:senha})}).then(a=>{sbSalvarSessaoEM(a);return a})}
-function sbLoginAuthEmpresaEM(credencial,senha){const bruto=String(credencial||"").trim(),cnpj=nums(bruto),email=cnpj.length===14?sbEmailEmpresaEM(cnpj):bruto.toLowerCase();return sbJsonEM(EMPREGAMAIS_SUPABASE_URL+"/auth/v1/token?grant_type=password",{method:"POST",headers:sbHeadersEM(),body:JSON.stringify({email,password:senha})}).then(a=>{sbSalvarSessaoEM(a);return a})}
+function sbCadastrarAuthEmpresaEM(cnpj,senha){localStorage.removeItem('empregaMaisLogoutBloqueio');sessionStorage.removeItem('empregaMaisLogoutBloqueio');return sbJsonEM(EMPREGAMAIS_SUPABASE_URL+"/auth/v1/signup",{method:"POST",headers:sbHeadersEM(),body:JSON.stringify({email:sbEmailEmpresaEM(cnpj),password:senha})}).then(a=>{sbSalvarSessaoEM(a);return a})}
+function sbLoginAuthEmpresaEM(credencial,senha){localStorage.removeItem('empregaMaisLogoutBloqueio');sessionStorage.removeItem('empregaMaisLogoutBloqueio');const bruto=String(credencial||"").trim(),cnpj=nums(bruto),email=cnpj.length===14?sbEmailEmpresaEM(cnpj):bruto.toLowerCase();return sbJsonEM(EMPREGAMAIS_SUPABASE_URL+"/auth/v1/token?grant_type=password",{method:"POST",headers:sbHeadersEM(),body:JSON.stringify({email,password:senha})}).then(a=>{sbSalvarSessaoEM(a);return a})}
 function sbBuscarMinhaEmpresaEM(){const token=sbTokenEM();if(!token)return Promise.resolve(null);return sbJsonEM(EMPREGAMAIS_SUPABASE_URL+"/rest/v1/empresas?select=*&limit=1",{method:"GET",headers:sbHeadersEM(token)}).then(a=>Array.isArray(a)&&a.length?a[0]:null)}
 function sbEmpresaParaLocalEM(e,senha){if(!e)return null;return{id:e.id||"",userId:e.user_id||"",nome:e.nome||e.nome_fantasia||"",nomeFantasia:e.nome_fantasia||"",razaoSocial:e.razao_social||"",cnpj:nums(e.cnpj||""),email:e.email||e.email_corporativo||"",emailCorporativo:e.email_corporativo||e.email||"",emailCandidaturas:e.email_candidaturas||e.email||e.email_corporativo||"",telefone:e.telefone||"",responsavel:e.responsavel||"",funcaoResponsavel:e.funcao_responsavel||"",cep:e.cep||"",logradouro:e.logradouro||"",bairro:e.bairro||"",numero:e.numero||"",complemento:e.complemento||"",cidade:e.cidade||"",uf:e.uf||"",sobre:e.sobre||"",sobreInstitucional:e.sobre_institucional||"",site:e.site||"",matriz:e.matriz||"",setor:e.setor||"",funcionarios:e.funcionarios||"",faturamento:e.faturamento||"",logo:e.logo_url||"",plano:e.plano_id||e.plano||"basico",planoStatus:e.plano_status||e.assinatura_status||"ativo",planoLiberadoAdmin:e.plano_liberado_admin===true,planoSemCobranca:e.plano_sem_cobranca===true,planoAtivadoEm:e.plano_ativado_em||e.assinatura_inicio||"",planoValidoAte:e.plano_valido_ate||e.assinatura_fim||"",assinaturaAtiva:e.assinatura_ativa===true||((e.plano_id||e.plano||"basico")!=="basico"&&!["cancelado","inativo","expirado"].includes(String(e.plano_status||e.assinatura_status||"ativo").toLowerCase())),verificacaoStatus:e.verificacao_status||"nao_verificada",verificada:e.verificada===true,verificacaoEnviadaEm:e.verificacao_enviada_em||"",verificacaoMotivo:e.verificacao_motivo||"",aprovacaoAutomaticaSuspensa:e.aprovacao_automatica_suspensa===true,senha:senha||""}}
 function sbInserirEmpresaEM(auth,base){const token=auth.access_token,uid=auth.user&&auth.user.id;return sbJsonEM(EMPREGAMAIS_SUPABASE_URL+"/rest/v1/empresas",{method:"POST",headers:Object.assign(sbHeadersEM(token),{"Prefer":"return=representation"}),body:JSON.stringify({user_id:uid,nome:base.nome||"",cnpj:nums(base.cnpj),email:base.email||"",email_corporativo:base.email||"",email_candidaturas:base.emailCandidaturas||base.email||"",telefone:base.telefone||"",sobre:base.sobre||"",plano:"basico",plano_id:"basico",verificacao_status:"nao_verificada",verificada:false,plano_liberado_admin:false,plano_sem_cobranca:false,aprovacao_automatica_suspensa:false})}).then(a=>Array.isArray(a)?a[0]:a)}
@@ -1969,9 +1974,11 @@ function retirarCandidaturaEM(id){if(!confirm('Deseja realmente retirar esta can
 
 /* EMPREGAMAIS-CANDIDATO-SUPABASE-AUTH-V1 */
 function sbCadastrarAuthCandidatoEM(email,senha,nome,telefone,cidade){
+ localStorage.removeItem('empregaMaisLogoutBloqueio');sessionStorage.removeItem('empregaMaisLogoutBloqueio');
  return sbJsonEM(EMPREGAMAIS_SUPABASE_URL+"/auth/v1/signup",{method:"POST",headers:sbHeadersEM(),body:JSON.stringify({email:email,password:senha,data:{papel:"candidato",nome:nome,telefone:telefone,cidade:cidade}})}).then(a=>{sbSalvarSessaoEM(a);return a})
 }
 function sbLoginAuthCandidatoEM(email,senha){
+ localStorage.removeItem('empregaMaisLogoutBloqueio');sessionStorage.removeItem('empregaMaisLogoutBloqueio');
  return sbJsonEM(EMPREGAMAIS_SUPABASE_URL+"/auth/v1/token?grant_type=password",{method:"POST",headers:sbHeadersEM(),body:JSON.stringify({email:email,password:senha})}).then(a=>{sbSalvarSessaoEM(a);return a})
 }
 function sbSalvarCandidatoLocalEM(d){
