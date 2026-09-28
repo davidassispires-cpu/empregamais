@@ -14291,44 +14291,63 @@ textarea{
   .em-cv-pop-actions{padding:0 12px 9px!important}
   .em-cv-pop-primary{height:44px!important;min-height:44px!important;font-size:13px!important}
 }
-</style><style>/* EMPREGAMAIS-HEADER-MOBILE-LOGINS-V1 */
+</style><style>/* EMPREGAI-HEADER-MOBILE-LOGINS-V2 */
 @media(max-width:850px){
-  /* no mobile, mantém visíveis os acessos de Empresa e Candidato */
+  /* Cabeçalho em duas linhas: marca preservada em cima, acessos lado a lado abaixo */
+  body:not(.tem-empresa):not(.tem-candidato) .topo{
+    height:auto!important;
+    min-height:108px!important;
+  }
+
   body:not(.tem-empresa):not(.tem-candidato) .topo-inner{
     width:100%!important;
-    min-height:64px!important;
-    padding:0 10px!important;
+    height:auto!important;
+    min-height:108px!important;
+    padding:4px 12px 10px!important;
+    margin:0 auto!important;
     display:grid!important;
-    grid-template-columns:minmax(92px,1fr) auto auto!important;
-    gap:7px!important;
+    grid-template-columns:minmax(0,1fr) minmax(0,1fr)!important;
+    grid-template-rows:50px 44px!important;
+    gap:0 8px!important;
     align-items:center!important;
+    box-sizing:border-box!important;
   }
 
   body:not(.tem-empresa):not(.tem-candidato) .topo .marca{
+    grid-column:1/-1!important;
+    grid-row:1!important;
+    width:max-content!important;
+    max-width:100%!important;
     min-width:0!important;
-    width:auto!important;
-    max-width:none!important;
     margin:0!important;
-    justify-self:start!important;
+    justify-self:center!important;
+    align-self:center!important;
+    overflow:visible!important;
   }
 
   body:not(.tem-empresa):not(.tem-candidato) .topo .marca-nome{
-    font-size:18px!important;
+    display:block!important;
+    max-width:100%!important;
+    font-size:23px!important;
     line-height:1!important;
     white-space:nowrap!important;
+    overflow:visible!important;
   }
 
   body:not(.tem-empresa):not(.tem-candidato) .topo .marca-tagline{
     display:none!important;
   }
 
-  /* menu público volta a aparecer, mas só com o botão Empresa */
   body:not(.tem-empresa):not(.tem-candidato) .menu-publico{
-    display:flex!important;
-    grid-column:2!important;
-    align-items:center!important;
-    gap:0!important;
+    grid-column:1!important;
+    grid-row:2!important;
+    width:100%!important;
     min-width:0!important;
+    margin:0!important;
+    display:flex!important;
+    align-items:center!important;
+    justify-content:stretch!important;
+    gap:0!important;
   }
 
   body:not(.tem-empresa):not(.tem-candidato) .menu-publico>button:not(.menu-drop-gatilho){
@@ -14338,58 +14357,69 @@ textarea{
   body:not(.tem-empresa):not(.tem-candidato) .menu-publico>.menu-drop-empresa{
     display:flex!important;
     position:relative!important;
+    width:100%!important;
+    min-width:0!important;
+    margin:0!important;
   }
 
   body:not(.tem-empresa):not(.tem-candidato) .acoes{
-    grid-column:3!important;
+    grid-column:2!important;
+    grid-row:2!important;
+    width:100%!important;
+    min-width:0!important;
+    margin:0!important;
     display:flex!important;
     align-items:center!important;
-    gap:7px!important;
-    margin:0!important;
-    min-width:0!important;
+    gap:0!important;
   }
 
   body:not(.tem-empresa):not(.tem-candidato) .acoes>.menu-drop-candidato{
     display:flex!important;
     position:relative!important;
+    width:100%!important;
+    min-width:0!important;
+    margin:0!important;
   }
 
   body:not(.tem-empresa):not(.tem-candidato) .acoes>.btn-anunciar-vaga{
     display:none!important;
   }
 
-  /* cards de login compactos e legíveis */
   body:not(.tem-empresa):not(.tem-candidato) .login-card-topo{
-    width:auto!important;
+    width:100%!important;
     min-width:0!important;
-    height:40px!important;
-    min-height:40px!important;
-    padding:0 10px!important;
-    display:flex!important;
+    max-width:none!important;
+    height:44px!important;
+    min-height:44px!important;
+    padding:0 11px!important;
+    display:grid!important;
+    grid-template-columns:26px minmax(0,1fr)!important;
     align-items:center!important;
-    justify-content:center!important;
-    gap:6px!important;
-    border:1px solid #d5e2e9!important;
-    border-radius:10px!important;
+    justify-content:start!important;
+    column-gap:8px!important;
+    overflow:hidden!important;
+    border:1px solid #d3e0e8!important;
+    border-radius:11px!important;
     background:#fff!important;
-    box-shadow:none!important;
-    color:#17394f!important;
+    box-shadow:0 3px 10px rgba(22,64,90,.045)!important;
+    text-align:left!important;
+    transform:none!important;
   }
 
   body:not(.tem-empresa):not(.tem-candidato) .login-card-topo .login-card-icone{
-    width:24px!important;
-    height:24px!important;
-    min-width:24px!important;
+    width:26px!important;
+    height:26px!important;
+    min-width:26px!important;
     display:grid!important;
     place-items:center!important;
-    border-radius:7px!important;
-    background:#eef5f7!important;
-    color:#0d6f7b!important;
+    border-radius:8px!important;
+    background:#edf5f8!important;
+    color:#126b82!important;
   }
 
   body:not(.tem-empresa):not(.tem-candidato) .login-card-topo .login-card-icone svg{
-    width:15px!important;
-    height:15px!important;
+    width:16px!important;
+    height:16px!important;
     fill:none!important;
     stroke:currentColor!important;
     stroke-width:1.8!important;
@@ -14398,16 +14428,25 @@ textarea{
   body:not(.tem-empresa):not(.tem-candidato) .login-card-topo .login-card-texto{
     display:block!important;
     min-width:0!important;
+    overflow:hidden!important;
   }
 
   body:not(.tem-empresa):not(.tem-candidato) .login-card-topo .login-card-texto b{
     display:block!important;
     margin:0!important;
     font-size:11.5px!important;
-    line-height:1!important;
-    font-weight:700!important;
+    line-height:1.15!important;
+    font-weight:750!important;
     white-space:nowrap!important;
-    color:#173f50!important;
+    overflow:hidden!important;
+    text-overflow:ellipsis!important;
+    color:#173e53!important;
+  }
+
+  /* Remove a duplicação "Empresa Empresa" / "Candidato Candidato" da regra anterior */
+  body:not(.tem-empresa):not(.tem-candidato) .login-card-topo .login-card-texto b::after{
+    content:none!important;
+    display:none!important;
   }
 
   body:not(.tem-empresa):not(.tem-candidato) .login-card-topo .login-card-texto small,
@@ -14415,30 +14454,24 @@ textarea{
     display:none!important;
   }
 
-  body:not(.tem-empresa):not(.tem-candidato) .login-card-empresa .login-card-texto b::after{
-    content:" Empresa";
-  }
-  body:not(.tem-empresa):not(.tem-candidato) .login-card-empresa .login-card-texto b{
-    font-size:0!important;
-  }
-  body:not(.tem-empresa):not(.tem-candidato) .login-card-empresa .login-card-texto b::after{
-    font-size:11.5px!important;
+  body:not(.tem-empresa):not(.tem-candidato) .login-card-candidato{
+    background:#0c8da5!important;
+    border-color:#0c8da5!important;
+    box-shadow:0 4px 12px rgba(12,141,165,.12)!important;
   }
 
-  body:not(.tem-empresa):not(.tem-candidato) .login-card-candidato .login-card-texto b::after{
-    content:" Candidato";
+  body:not(.tem-empresa):not(.tem-candidato) .login-card-candidato .login-card-icone{
+    background:rgba(255,255,255,.17)!important;
+    color:#fff!important;
   }
+
   body:not(.tem-empresa):not(.tem-candidato) .login-card-candidato .login-card-texto b{
-    font-size:0!important;
-  }
-  body:not(.tem-empresa):not(.tem-candidato) .login-card-candidato .login-card-texto b::after{
-    font-size:11.5px!important;
+    color:#fff!important;
   }
 
-  /* dropdowns ocupam a largura útil da tela */
   body:not(.tem-empresa):not(.tem-candidato) .menu-drop-painel{
     position:fixed!important;
-    top:68px!important;
+    top:108px!important;
     left:10px!important;
     right:10px!important;
     width:auto!important;
@@ -14446,39 +14479,37 @@ textarea{
     transform:none!important;
     z-index:9999!important;
   }
+
+  body:not(.tem-empresa):not(.tem-candidato) .acoes .secundario{
+    display:flex!important;
+  }
 }
 
-@media(max-width:520px){
+@media(max-width:420px){
   body:not(.tem-empresa):not(.tem-candidato) .topo-inner{
-    grid-template-columns:minmax(74px,1fr) auto auto!important;
-    padding:0 7px!important;
-    gap:5px!important;
+    padding-left:9px!important;
+    padding-right:9px!important;
+    gap:0 6px!important;
   }
 
   body:not(.tem-empresa):not(.tem-candidato) .topo .marca-nome{
-    font-size:16px!important;
+    font-size:21px!important;
   }
 
   body:not(.tem-empresa):not(.tem-candidato) .login-card-topo{
-    height:38px!important;
-    min-height:38px!important;
     padding:0 8px!important;
-    gap:5px!important;
+    grid-template-columns:24px minmax(0,1fr)!important;
+    column-gap:6px!important;
   }
 
   body:not(.tem-empresa):not(.tem-candidato) .login-card-topo .login-card-icone{
-    width:22px!important;
-    height:22px!important;
-    min-width:22px!important;
+    width:24px!important;
+    height:24px!important;
+    min-width:24px!important;
   }
 
-  body:not(.tem-empresa):not(.tem-candidato) .login-card-topo .login-card-texto b::after{
+  body:not(.tem-empresa):not(.tem-candidato) .login-card-topo .login-card-texto b{
     font-size:10.5px!important;
-  }
-
-  /* sobrescreve a regra antiga que escondia o botão candidato */
-  body:not(.tem-empresa):not(.tem-candidato) .acoes .secundario{
-    display:flex!important;
   }
 }
 </style><style>/* EMPREGAMAI-PREMIUM-CANDIDATO-REFORMULADO-V3 */
