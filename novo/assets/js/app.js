@@ -234,7 +234,7 @@ function renderizarCandidatosEmpresa(){
 
   const informacoesProcesso='<section class="recruta-processo-head"><div class="recruta-etapa-resumo"><small>ETAPA ATUAL</small><div><strong>'+rot(c.status||'Em avaliação')+'</strong><span>· desde '+(c.criadoEm?new Date(c.criadoEm).toLocaleDateString('pt-BR'):'—')+'</span></div></div><div class="recruta-processo-controles"><label class="recruta-alterar-etapa"><span>Alterar etapa</span><select class="cand-status-select status-'+String(c.status||'Em avaliação').toLowerCase().replace(/[^a-z0-9]+/g,'-')+'" onchange="mudarEtapaCandidato(\''+c.id+'\',this.value)">'+opcoes.map(x=>'<option value="'+x+'" '+(c.status===x?'selected':'')+'>'+rot(x)+'</option>').join('')+'</select></label><button type="button" class="recruta-toggle-andamento" onclick="alternarAndamentoRecrutadorEM(this)" aria-expanded="true">Ver andamento ↑</button></div></section>';
   const infoCards='<div class="recruta-cand-info"><div class="recruta-info-curriculo"><span><i class="em-info-ico em-ico-doc" aria-hidden="true"></i>Currículo enviado</span><strong>'+(c.curriculoOrigem==='online'?'Currículo online':c.curriculo?.nome?'Arquivo anexado':'Perfil EmpregaMais')+'</strong><small>Documento recebido na candidatura</small></div><div class="recruta-aderencia-card recruta-info-aderencia"><span><i class="em-info-ico em-ico-target" aria-hidden="true"></i>Aderência à vaga</span><div class="recruta-aderencia-score"><strong>'+adPct+'%</strong><small>'+adNivel+'</small></div><div class="recruta-aderencia-barra" style="--aderencia:'+Math.max(0,Math.min(100,adPct))+'"><i style="width:'+Math.max(0,Math.min(100,adPct))+'%"></i></div></div><div class="recruta-info-atualizacao"><span><i class="em-info-ico em-ico-calendar" aria-hidden="true"></i>Última atualização</span><strong>'+new Date(c.atualizadoEm||c.criadoEm||Date.now()).toLocaleDateString('pt-BR')+'</strong><small>Dados mais recentes do candidato</small></div></div>';
-  const actions='<footer class="recruta-cand-actions recruta-acoes-unificadas"><button class="btn btn-azul" onclick="abrirCurriculoFormatadoEM(\''+c.id+'\')"><i class="em-btn-ico em-ico-doc" aria-hidden="true"></i>Ver currículo</button><button type="button" class="btn recruta-atualizar-processo" onclick="alternarAndamentoRecrutadorEM(this)"><i class="em-btn-ico" aria-hidden="true">↻</i>Atualizar processo seletivo</button>'+(c.telefone?'<button class="btn recruta-whatsapp" onclick="contatarWhats(\''+c.id+'\')"><i class="em-btn-ico em-ico-whatsapp" aria-hidden="true"></i>WhatsApp</button>':'')+'<button class="btn" onclick="abrirEntrevista(\''+c.id+'\')"><i class="em-btn-ico em-ico-calendar" aria-hidden="true"></i>Entrevista</button></footer>';
+  const actions='<footer class="recruta-cand-actions recruta-acoes-unificadas"><button class="btn btn-azul" onclick="abrirCurriculoFormatadoEM(\''+c.id+'\')"><i class="em-btn-ico em-ico-doc" aria-hidden="true"></i>Ver currículo</button><button type="button" class="btn recruta-atualizar-processo" onclick="alternarAndamentoRecrutadorEM(this)"><i class="em-btn-ico" aria-hidden="true">↻</i>Atualizar processo seletivo</button>'+(c.telefone?'<button class="btn recruta-whatsapp" onclick="contatarWhats(\''+c.id+'\')"><i class="em-btn-ico em-ico-whatsapp" aria-hidden="true"></i>WhatsApp</button>':'')+'</footer>';
 
   return '<article class="recruta-cand-card status-'+String(c.status||'Em avaliação').toLowerCase().replace(/[^a-z0-9]+/g,'-')+'"><header class="recruta-cand-head"><div class="recruta-cand-ident"><div class="recruta-cand-ident-copy"><h3>'+esc(nomeCard)+'</h3><p>'+esc([c.curriculo?.cidade||c.perfilProfissional?.cidade||'',vc.modalidade||''].filter(Boolean).join(' · '))+'</p><div class="meta-inline"><span>Candidatura '+(c.criadoEm?new Date(c.criadoEm).toLocaleDateString('pt-BR'):'—')+'</span></div></div></div><div class="recruta-cand-status"><small>STATUS DA CANDIDATURA</small><strong>'+rot(c.status||'Em avaliação')+'</strong></div></header><div class="recruta-cand-preview-info">'+infoCards+'</div>'+actions+'<div class="recruta-andamento">'+informacoesProcesso+linha+infoCards+actions+'</div></article>';
  }).join(''):'<div class="vagas-vazio">Nenhum candidato encontrado com estes filtros.</div>';
@@ -1622,7 +1622,13 @@ function enviarMensagemCandidaturaEM(id,autor){
  const el=document.getElementById('chatTextoEM_'+id),texto=(el?.value||'').trim();if(!texto)return alert('Digite uma mensagem antes de enviar.');
  a[i].mensagens=mensagensCandidaturaEM(a[i]);a[i].mensagens.push({id:'msg_'+Date.now(),autor,texto,data:new Date().toISOString(),lidaEmpresa:autor==='empresa',lidaCandidato:autor==='candidato'});
  a[i].ultimaMensagemEm=new Date().toISOString();gravar('empregaMaisCandidaturas',a);
- if(autor==='empresa'){abrirFichaCandidato(id)}else renderizarCandidaturasCandidato()
+ if(autor==='empresa'){
+  const chatModal=document.querySelector('.recruta-andamento-modal-em .em-modal-mensagens .chat-em-box');
+  if(chatModal){
+   const wrap=document.createElement('div');wrap.innerHTML=renderChatCandidaturaEM(a[i],'empresa');
+   const novo=wrap.firstElementChild;if(novo)chatModal.replaceWith(novo);
+  }else abrirFichaCandidato(id)
+ }else renderizarCandidaturasCandidato()
 }
 
 
@@ -2668,7 +2674,6 @@ body.recruta-modal-aberto{overflow:hidden!important}
    (c.telefone?'<button type="button" class="btn recruta-whatsapp" onclick="contatarWhats(\''+esc(c.id)+'\')"><i class="em-btn-ico em-ico-whatsapp"></i>WhatsApp</button>':'')+
    (c.email?'<a class="btn" href="mailto:'+esc(c.email)+'"><i class="em-btn-ico em-ico-mail"></i>E-mail</a>':'')+
    '<button type="button" class="btn" onclick="abrirEntrevista(\''+esc(c.id)+'\')"><i class="em-btn-ico em-ico-calendar"></i>Agendar entrevista</button>'+
-   '<button type="button" class="btn btn-chat-em" onclick="abrirChatCandidatoEM(\''+esc(c.id)+'\')">Mensagens</button>'+
    '</div>'
  }
  window.alternarAndamentoRecrutadorEM=function(btn){
@@ -2697,6 +2702,7 @@ body.recruta-modal-aberto{overflow:hidden!important}
       (analise.lista?'<div class="em-analysis-grid">'+analise.lista+'</div>':'<p class="em-modal-note">Não há critérios detalhados suficientes para exibir a decomposição desta aderência.</p>')+
      '</section>'+
      montarAcoes(c)+
+     '<section class="em-modal-section em-modal-mensagens"><div class="em-modal-section-head"><div><small>COMUNICAÇÃO</small><strong>Mensagens do processo seletivo</strong></div></div>'+renderChatCandidaturaEM(c,'empresa')+'</section>'+
     '</div></div></section>';
   document.body.appendChild(modal);document.body.classList.add('recruta-modal-aberto');
   const fechar=()=>{modal.remove();document.body.classList.remove('recruta-modal-aberto');};
