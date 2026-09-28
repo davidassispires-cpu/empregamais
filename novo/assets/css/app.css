@@ -11036,3 +11036,26 @@ textarea{
   #pagina-painel-admin .admin-acoes-rapidas{grid-template-columns:1fr!important}
   #pagina-painel-admin .admin2-head h1{font-size:24px!important}
 }
+
+/* EMPREGAI-ACOES-CANDIDATO-PROCESSO-V1 */
+#pagina-candidatos-empresa .recruta-cand-actions .recruta-atualizar-processo{
+  background:#5f8f95!important;
+  border-color:#5f8f95!important;
+  color:#fff!important;
+  font-weight:800!important;
+  min-width:0!important;
+  white-space:nowrap!important;
+}
+#pagina-candidatos-empresa .recruta-cand-actions .recruta-atualizar-processo:hover{
+  background:#527f85!important;
+  border-color:#527f85!important;
+  color:#fff!important;
+}
+#pagina-candidatos-empresa .recruta-cand-actions .recruta-atualizar-processo .em-btn-ico{
+  color:#fff!important;
+  font-size:16px!important;
+  font-style:normal!important;
+}
+#pagina-candidatos-empresa .recruta-preview-andamento{
+  display:none!important;
+}
