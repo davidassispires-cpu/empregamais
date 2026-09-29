@@ -1,4 +1,4 @@
-const EMPREGAMAIS_SW_VERSION='2026-09-29-v29';
+const EMPREGAMAIS_SW_VERSION='2026-09-29-v30';
 
 const EMPREGAMAIS_DESKTOP_VAGAS_FIX=`
 @media (min-width: 901px){
@@ -40,6 +40,54 @@ const EMPREGAMAIS_DESKTOP_VAGAS_FIX=`
     visibility:visible!important;
     opacity:1!important;
   }
+}
+`;
+
+
+const EMPREGAMAIS_RECRUTADOR_FONTE_CONECTA=`
+/* RECRUTADOR - TIPOGRAFIA CONECTA */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+
+#pagina-painel-empresa,
+#pagina-painel-empresa *,
+#pagina-candidatos-empresa,
+#pagina-candidatos-empresa *,
+#pagina-minhas-vagas,
+#pagina-minhas-vagas *,
+#pagina-minha-empresa,
+#pagina-minha-empresa *,
+#pagina-contratacoes,
+#pagina-contratacoes *{
+  font-family:'Poppins','Segoe UI',Arial,sans-serif!important;
+}
+
+#pagina-painel-empresa h1,
+#pagina-painel-empresa h2,
+#pagina-painel-empresa h3,
+#pagina-painel-empresa strong,
+#pagina-candidatos-empresa h1,
+#pagina-candidatos-empresa h2,
+#pagina-candidatos-empresa h3,
+#pagina-minhas-vagas h1,
+#pagina-minhas-vagas h2,
+#pagina-minhas-vagas h3{
+  font-weight:600!important;
+  letter-spacing:-.01em!important;
+}
+
+#pagina-painel-empresa p,
+#pagina-painel-empresa span,
+#pagina-painel-empresa small,
+#pagina-painel-empresa button,
+#pagina-candidatos-empresa p,
+#pagina-candidatos-empresa span,
+#pagina-candidatos-empresa small,
+#pagina-candidatos-empresa button,
+#pagina-minhas-vagas p,
+#pagina-minhas-vagas span,
+#pagina-minhas-vagas small,
+#pagina-minhas-vagas button{
+  letter-spacing:0!important;
 }
 `;
 
@@ -146,7 +194,7 @@ self.addEventListener('fetch',e=>{
 
       if(isCss){
         headers.set('content-type','text/css; charset=utf-8');
-        return new Response(txt+'\n'+EMPREGAMAIS_DESKTOP_VAGAS_FIX,{status:r.status,statusText:r.statusText,headers});
+        return new Response(txt+'\n'+EMPREGAMAIS_DESKTOP_VAGAS_FIX+'\n'+EMPREGAMAIS_RECRUTADOR_FONTE_CONECTA,{status:r.status,statusText:r.statusText,headers});
       }
 
       headers.set('content-type','application/javascript; charset=utf-8');
