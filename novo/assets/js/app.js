@@ -990,10 +990,10 @@ function garantirEstiloTextoVagaEM(){
  '#vagaConteudoDetalhe section:first-of-type{border-top:0}'+
  '#vagaConteudoDetalhe section h2{font:700 18.5px/1.3 Montserrat,Arial,sans-serif;letter-spacing:-.15px;color:#12385f;margin:0 0 10px;padding:0}'+
  '.vaga-texto.vaga-texto-formatada{font:400 15px/1.5 Montserrat,Arial,sans-serif;color:#334155;letter-spacing:0;margin:0;max-width:none}'+
- '.vaga-texto.vaga-texto-formatada p{font:400 15px/1.5 Montserrat,Arial,sans-serif;color:#334155;margin:0 0 6px;padding:0}'+
- '.vaga-texto.vaga-texto-formatada .vaga-texto-subtitulo{font:700 15px/1.35 Montserrat,Arial,sans-serif;color:#163b67;margin:18px 0 7px;padding:0}'+
+ '.vaga-texto.vaga-texto-formatada p{font:400 15px/1.5 Montserrat,Arial,sans-serif;color:#334155;margin:0 0 8px;padding:0}'+
+ '.vaga-texto.vaga-texto-formatada .vaga-texto-subtitulo{font:700 15px/1.35 Montserrat,Arial,sans-serif;color:#163b67;margin:20px 0 10px;padding:0}'+
  '.vaga-texto.vaga-texto-formatada .vaga-texto-subtitulo:first-child{margin-top:0}'+
- '.vaga-texto.vaga-texto-formatada .vaga-texto-lista{display:grid;gap:3px;margin:0 0 13px;padding:0}'+
+ '.vaga-texto.vaga-texto-formatada .vaga-texto-lista{display:grid;gap:4px;margin:0 0 14px;padding:0}'+
  '.vaga-texto.vaga-texto-formatada .vaga-texto-item{font:400 15px/1.48 Montserrat,Arial,sans-serif;color:#334155;margin:0;padding:0}'+
  '.vaga-texto.vaga-texto-formatada .vaga-texto-item:before{content:none}'+
  '#vaga-sobre,#vaga-requisitos,#vaga-beneficios{scroll-margin-top:100px}'+
@@ -1002,7 +1002,7 @@ function garantirEstiloTextoVagaEM(){
  '.vaga-complementares{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;min-width:0}'+
  '.vaga-complementares span{display:block;min-width:0;max-width:100%;overflow:hidden;overflow-wrap:anywhere;word-break:normal;white-space:normal;font:400 14px/1.4 Montserrat,Arial,sans-serif;color:#334155;padding:11px 12px}'+
  '.vaga-complementares span b{display:block;font:700 10px/1.2 Montserrat,Arial,sans-serif;letter-spacing:.4px;text-transform:uppercase;color:#526579;margin:0 0 5px}'+
- '@media(max-width:700px){.vaga-resumo,.rec-prev-section p,.review-texto p,#modalAdminVaga section p,.preview-vaga p,.detalhe-vaga p{font-size:14.5px;line-height:1.5}#vagaConteudoDetalhe section{padding:17px 0}#vagaConteudoDetalhe section h2{font-size:17.5px;margin-bottom:9px}.vaga-texto.vaga-texto-formatada,.vaga-texto.vaga-texto-formatada p,.vaga-texto.vaga-texto-formatada .vaga-texto-item{font-size:14.5px}.vaga-texto.vaga-texto-formatada .vaga-texto-subtitulo{font-size:14.5px;margin-top:16px}.vaga-complementares{grid-template-columns:1fr}.vaga-complementares span{font-size:13.5px}}';
+ '@media(max-width:700px){.vaga-resumo,.rec-prev-section p,.review-texto p,#modalAdminVaga section p,.preview-vaga p,.detalhe-vaga p{font-size:14.5px;line-height:1.5}#vagaConteudoDetalhe section{padding:17px 0}#vagaConteudoDetalhe section h2{font-size:17.5px;margin-bottom:9px}.vaga-texto.vaga-texto-formatada,.vaga-texto.vaga-texto-formatada p,.vaga-texto.vaga-texto-formatada .vaga-texto-item{font-size:14.5px}.vaga-texto.vaga-texto-formatada .vaga-texto-subtitulo{font-size:14.5px;margin-top:18px;margin-bottom:9px}.vaga-complementares{grid-template-columns:1fr}.vaga-complementares span{font-size:13.5px}}';
  document.head.appendChild(style)
 }
 
