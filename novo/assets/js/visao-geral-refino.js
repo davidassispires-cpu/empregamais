@@ -39,9 +39,9 @@ function aplicarRefinoVisaoGeralEM(){
  #empresaMetricasNovas>button:before,
  #empresaMetricasNovas>button:after{display:none!important}
  #empresaMetricasNovas>button>*{border:0!important}
- #empresaMetricasNovas .kpi-num{display:block!important;margin:7px 0 5px!important;font-size:32px!important;line-height:1!important;font-weight:600!important;letter-spacing:-.045em!important;color:#153f55!important}
- #empresaMetricasNovas>button div>span{display:block!important;margin:0 0 8px!important;font-size:12px!important;line-height:1.25!important;font-weight:500!important;color:#4c6776!important}
- #empresaMetricasNovas>button div>small{display:block!important;font-size:10.5px!important;line-height:1.4!important;color:#81939d!important}
+ #empresaMetricasNovas .kpi-num{display:block!important;margin:6px 0 9px!important;font-family:'Poppins','Segoe UI',Arial,sans-serif!important;font-size:38px!important;line-height:1!important;font-weight:700!important;letter-spacing:-.04em!important;color:#4f148c!important}
+ #empresaMetricasNovas>button div>span{display:block!important;margin:0 0 8px!important;font-family:'Poppins','Segoe UI',Arial,sans-serif!important;font-size:11.5px!important;line-height:1.25!important;font-weight:600!important;letter-spacing:.06em!important;text-transform:uppercase!important;color:#7a6f97!important}
+ #empresaMetricasNovas>button div>small{display:block!important;font-family:'Poppins','Segoe UI',Arial,sans-serif!important;font-size:14px!important;line-height:1.45!important;font-weight:500!important;letter-spacing:0!important;color:#4f4866!important}
  #empresaMetricasNovas>button i{opacity:.82!important;border:0!important;box-shadow:none!important}
 
  /* Plano atual: uma superfície principal, sem grade de divisórias pesadas */
