@@ -5679,19 +5679,36 @@ window.addEventListener('load',()=>setTimeout(concluirLoginGoogleEM,40));
   async function logoutDefinitivoEmpregaiEM(){
     const token=typeof sbTokenEM==='function'?sbTokenEM():'';
 
-    /* A limpeza local acontece primeiro e não depende da rede. */
-    limparSessaoEmpregaiEM();
+    /* Bloqueia qualquer restauração automática imediatamente. */
+    try{localStorage.setItem('empregaMaisLogoutBloqueio','1')}catch(_){}
+    try{sessionStorage.setItem('empregaMaisLogoutBloqueio','1')}catch(_){}
 
-    /* Invalidação remota é complementar; não pode impedir o logout visual/local. */
+    /* Invalida a sessão remota antes de trocar de página.
+       O código anterior disparava o fetch e navegava em seguida, o que podia deixar
+       a sessão Supabase ainda válida em alguns navegadores. */
     if(token){
       try{
-        fetch(EMPREGAMAIS_SUPABASE_URL+'/auth/v1/logout?scope=global',{
+        const ctrl=new AbortController();
+        const timer=setTimeout(()=>ctrl.abort(),2500);
+        await fetch(EMPREGAMAIS_SUPABASE_URL+'/auth/v1/logout?scope=global',{
           method:'POST',
           headers:sbHeadersEM(token),
-          keepalive:true
-        }).catch(()=>{});
+          signal:ctrl.signal,
+          cache:'no-store'
+        }).catch(()=>null);
+        clearTimeout(timer);
       }catch(_){}
     }
+
+    /* Limpa novamente depois da chamada remota para remover qualquer dado que
+       tenha sido regravado por callbacks assíncronos durante o logout. */
+    limparSessaoEmpregaiEM();
+
+    try{
+      if(typeof sbCandidaturasCacheEM!=='undefined')sbCandidaturasCacheEM=[];
+      if(typeof sbCandidaturasCarregadasEM!=='undefined')sbCandidaturasCarregadasEM=false;
+      if(typeof sbVagasCacheEM!=='undefined')sbVagasCacheEM=[];
+    }catch(_){}
 
     location.replace(location.origin+location.pathname+'?logout=1');
   }
