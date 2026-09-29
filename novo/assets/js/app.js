@@ -3453,19 +3453,7 @@ async function cadastrarCandidatoSupabaseEM(e){
    concluirEntradaCandidatoSupabaseEM(d)
  }).catch(err=>{console.error("Cadastro candidato / Supabase:",err);const t=/already|registered|exists/i.test(err.message)?"Já existe uma conta com este e-mail.":("Não foi possível criar a conta: "+err.message);msg("#msgCadastroCandidato",t)})
 }
-const _sairSupabaseCandidatoV1=sair;
-sair=function(){
- const papel=papelAtual(),t=sbTokenEM();
- localStorage.setItem('empregaMaisLogoutBloqueio','1');
- sessionStorage.setItem('empregaMaisLogoutBloqueio','1');
- if((papel==="candidato"||papel==="empresa")&&t){
-   fetch(EMPREGAMAIS_SUPABASE_URL+"/auth/v1/logout?scope=global",{method:"POST",headers:sbHeadersEM(t)}).catch(()=>{});
- }
- [EMPREGAMAIS_SB_TOKEN,EMPREGAMAIS_SB_REFRESH,'empregaMaisPapelPersistido','empregaMaisSupabaseAccessToken','empregaMaisSupabaseRefreshToken'].forEach(k=>{sessionStorage.removeItem(k);localStorage.removeItem(k)});
- ['empregaMaisPapel','empresaSupabaseAuthUserId','empresaSupabaseUserId','empresaSupabaseEmpresaId','empresaUsuarioAdministrador','empresaCnpj','empresaNome','candidatoSupabaseUserId','candidatoEmail','candidatoNome'].forEach(k=>sessionStorage.removeItem(k));
- return _sairSupabaseCandidatoV1()
-};
-
+/* Logout de candidato/empresa consolidado no EMPREGAMAI-AUTH-SESSION-GUARD-V6. */
 
 /* EMPREGAMAIS-CANDIDATURAS-SUPABASE-SYNC-V1 */
 let sbCandidaturasCacheEM=[],sbCandidaturasCarregadasEM=false,sbCandidaturasCarregandoEM=false,sbCandidaturasTimerEM=null;
@@ -5574,8 +5562,23 @@ window.addEventListener('load',()=>setTimeout(concluirLoginGoogleEM,40));
 })();
 
 
-/* EMPREGAMAI-LOGOUT-UNICO-V5 */
+/* EMPREGAMAI-AUTH-SESSION-GUARD-V6
+   Autoridade única para logout de candidato/empresa.
+   - bloqueia restauração e refresh durante a saída;
+   - revoga a sessão no Supabase;
+   - limpa credenciais locais duas vezes contra corridas assíncronas;
+   - sincroniza logout entre abas;
+   - mantém a interface pública coerente mesmo em pageshow/visibilitychange. */
 (function(){
+  const AUTH_GUARD_VERSION='6.0.0';
+  const LOGOUT_FLAG='empregaMaisLogoutBloqueio';
+  const LOGOUT_EVENT='empregaMaisLogoutEvento';
+  const PROJECT_REF='mkezlcewyengejdmtppl';
+  let logoutExecutando=false;
+  let canalLogout=null;
+
+  window.EMPREGAMAIS_AUTH_GUARD_VERSION=AUTH_GUARD_VERSION;
+
   function instalarCssConfirmacaoLogoutEM(){
     if(document.getElementById('emConfirmacaoAcoesCss'))return;
     const st=document.createElement('style');
@@ -5606,7 +5609,6 @@ window.addEventListener('load',()=>setTimeout(concluirLoginGoogleEM,40));
 
     return new Promise(resolve=>{
       document.getElementById('emConfirmacaoAcaoModal')?.remove();
-
       const modal=document.createElement('div');
       modal.id='emConfirmacaoAcaoModal';
       modal.className='em-confirmacao-acao-modal';
@@ -5622,10 +5624,7 @@ window.addEventListener('load',()=>setTimeout(concluirLoginGoogleEM,40));
           '</div>'+
         '</div>';
 
-      const fechar=valor=>{
-        modal.remove();
-        resolve(valor);
-      };
+      const fechar=valor=>{modal.remove();resolve(valor)};
       modal.querySelector('.em-confirmacao-cancelar').onclick=()=>fechar(false);
       modal.querySelector('.em-confirmacao-confirmar').onclick=()=>fechar(true);
       modal.querySelector('.em-confirmacao-acao-backdrop').onclick=()=>fechar(false);
@@ -5633,120 +5632,175 @@ window.addEventListener('load',()=>setTimeout(concluirLoginGoogleEM,40));
     });
   };
 
-  function limparSessaoEmpregaiEM(){
-    const tema=sessionStorage.getItem('temaEmpregaMais')||'';
+  function marcarLogoutEM(propagar=true){
+    try{localStorage.setItem(LOGOUT_FLAG,'1')}catch(_){}
+    try{sessionStorage.setItem(LOGOUT_FLAG,'1')}catch(_){}
+    if(propagar){
+      const evento=String(Date.now());
+      try{localStorage.setItem(LOGOUT_EVENT,evento)}catch(_){}
+      try{canalLogout?.postMessage({tipo:'logout',evento})}catch(_){}
+    }
+  }
 
-    localStorage.setItem('empregaMaisLogoutBloqueio','1');
-    sessionStorage.setItem('empregaMaisLogoutBloqueio','1');
+  function chaveAuthSupabaseEM(k){
+    return k==='empregaMaisSupabaseAccessToken'||
+      k==='empregaMaisSupabaseRefreshToken'||
+      k===EMPREGAMAIS_SB_TOKEN||
+      k===EMPREGAMAIS_SB_REFRESH||
+      /^sb-[a-z0-9]+-auth-token$/i.test(String(k||''))||
+      String(k||'')==='supabase.auth.token';
+  }
+
+  function removerChavesAuthDinamicasEM(storage){
+    try{
+      const apagar=[];
+      for(let i=0;i<storage.length;i++){
+        const k=storage.key(i);
+        if(chaveAuthSupabaseEM(k))apagar.push(k);
+      }
+      apagar.forEach(k=>storage.removeItem(k));
+    }catch(_){}
+  }
+
+  function limparSessaoEmpregaiEM(opcoes){
+    const o=Object.assign({propagar:false},opcoes||{});
+    const tema=(()=>{try{return sessionStorage.getItem('temaEmpregaMais')||''}catch(_){return ''}})();
+
+    marcarLogoutEM(o.propagar);
 
     const remover=[
-      'empregaMaisSupabaseAccessToken',
-      'empregaMaisSupabaseRefreshToken',
-      'empregaMaisPapel',
-      'empregaMaisPapelPersistido',
-      'empregaMaisGooglePapel',
-      'empresaSupabaseAuthUserId',
-      'empresaSupabaseUserId',
-      'empresaSupabaseEmpresaId',
-      'empresaUsuarioAdministrador',
-      'empresaCnpj',
-      'empresaNome',
-      'candidatoSupabaseUserId',
-      'candidatoEmail',
-      'candidatoNome',
-      'googleCandidatoPendente',
-      'googleEmpresaPendente',
-      'googleEmailPendente',
-      'googleNomePendente',
-      'candidatoPremiumVerificadoEM',
-      'retornoCandidatura',
-      'retornoSalvarVaga',
-      'vagaSelecionada',
-      'vagaAtual'
+      'empregaMaisSupabaseAccessToken','empregaMaisSupabaseRefreshToken',
+      'empregaMaisPapel','empregaMaisPapelPersistido','empregaMaisGooglePapel',
+      'empresaSupabaseAuthUserId','empresaSupabaseUserId','empresaSupabaseEmpresaId',
+      'empresaUsuarioAdministrador','empresaCnpj','empresaNome',
+      'candidatoSupabaseUserId','candidatoEmail','candidatoNome',
+      'googleCandidatoPendente','googleEmpresaPendente','googleEmailPendente','googleNomePendente',
+      'candidatoPremiumVerificadoEM','retornoCandidatura','retornoSalvarVaga','vagaSelecionada','vagaAtual'
     ];
-
-    try{
-      if(typeof EMPREGAMAIS_SB_TOKEN!=='undefined')remover.push(EMPREGAMAIS_SB_TOKEN);
-      if(typeof EMPREGAMAIS_SB_REFRESH!=='undefined')remover.push(EMPREGAMAIS_SB_REFRESH);
-    }catch(_){}
 
     remover.forEach(k=>{
       try{sessionStorage.removeItem(k)}catch(_){}
       try{localStorage.removeItem(k)}catch(_){}
     });
 
-    try{sessionStorage.clear()}catch(_){}
+    removerChavesAuthDinamicasEM(sessionStorage);
+    removerChavesAuthDinamicasEM(localStorage);
 
-    try{sessionStorage.setItem('empregaMaisLogoutBloqueio','1')}catch(_){}
-    try{localStorage.setItem('empregaMaisLogoutBloqueio','1')}catch(_){}
+    try{sessionStorage.setItem(LOGOUT_FLAG,'1')}catch(_){}
+    try{localStorage.setItem(LOGOUT_FLAG,'1')}catch(_){}
     if(tema)try{sessionStorage.setItem('temaEmpregaMais',tema)}catch(_){}
-
-    try{
-      document.body.classList.remove('tem-empresa','tem-candidato','sessao-empresa','sessao-candidato');
-      document.body.classList.add('sessao-publica');
-    }catch(_){}
-  }
-
-  async function logoutDefinitivoEmpregaiEM(){
-    const token=typeof sbTokenEM==='function'?sbTokenEM():'';
-
-    /* Bloqueia qualquer restauração automática imediatamente. */
-    try{localStorage.setItem('empregaMaisLogoutBloqueio','1')}catch(_){}
-    try{sessionStorage.setItem('empregaMaisLogoutBloqueio','1')}catch(_){}
-
-    /* Invalida a sessão remota antes de trocar de página.
-       O código anterior disparava o fetch e navegava em seguida, o que podia deixar
-       a sessão Supabase ainda válida em alguns navegadores. */
-    if(token){
-      try{
-        const ctrl=new AbortController();
-        const timer=setTimeout(()=>ctrl.abort(),2500);
-        await fetch(EMPREGAMAIS_SUPABASE_URL+'/auth/v1/logout?scope=global',{
-          method:'POST',
-          headers:sbHeadersEM(token),
-          signal:ctrl.signal,
-          cache:'no-store'
-        }).catch(()=>null);
-        clearTimeout(timer);
-      }catch(_){}
-    }
-
-    /* Limpa novamente depois da chamada remota para remover qualquer dado que
-       tenha sido regravado por callbacks assíncronos durante o logout. */
-    limparSessaoEmpregaiEM();
 
     try{
       if(typeof sbCandidaturasCacheEM!=='undefined')sbCandidaturasCacheEM=[];
       if(typeof sbCandidaturasCarregadasEM!=='undefined')sbCandidaturasCarregadasEM=false;
       if(typeof sbVagasCacheEM!=='undefined')sbVagasCacheEM=[];
     }catch(_){}
-
-    try{
-      atualizarHeaderContextualEM?.();
-      document.querySelectorAll('.pagina').forEach(x=>x.classList.remove('ativa'));
-      document.getElementById('pagina-home')?.classList.add('ativa');
-    }catch(_){}
-    location.replace(location.origin+location.pathname+'?logout=1');
   }
 
-  window.sair=async function(){
+  function aplicarEstadoPublicoEM(){
+    try{
+      document.body.classList.remove('tem-empresa','tem-candidato','sessao-empresa','sessao-candidato');
+      document.body.classList.add('sessao-publica');
+      document.querySelectorAll('.menu-drop,.sessao-conta-menu').forEach(x=>x.classList.remove('aberto'));
+      if(typeof atualizarMenusTopo==='function')atualizarMenusTopo();
+      if(typeof atualizarHeaderContextualEM==='function')atualizarHeaderContextualEM();
+    }catch(_){}
+  }
+
+  async function revogarSessaoSupabaseEM(token){
+    if(!token)return true;
+    const ctrl=new AbortController();
+    const timer=setTimeout(()=>ctrl.abort(),3000);
+    try{
+      const r=await fetch(EMPREGAMAIS_SUPABASE_URL+'/auth/v1/logout?scope=global',{
+        method:'POST',
+        headers:sbHeadersEM(token),
+        signal:ctrl.signal,
+        cache:'no-store',
+        credentials:'omit',
+        keepalive:true
+      });
+      return r.ok||r.status===401||r.status===403;
+    }catch(_){
+      return false;
+    }finally{
+      clearTimeout(timer);
+    }
+  }
+
+  async function logoutDefinitivoEmpregaiEM(){
+    if(logoutExecutando)return;
+    logoutExecutando=true;
+
+    const token=typeof sbTokenEM==='function'?sbTokenEM():'';
+
+    /* O bloqueio entra ANTES de qualquer await. Assim nenhum refresh/restauração
+       concorrente pode regravar a sessão enquanto o logout está em andamento. */
+    marcarLogoutEM(true);
+    limparSessaoEmpregaiEM({propagar:false});
+    aplicarEstadoPublicoEM();
+
+    try{await revogarSessaoSupabaseEM(token)}catch(_){}
+
+    /* Segunda limpeza: protege contra callbacks que já estavam em voo antes do bloqueio. */
+    limparSessaoEmpregaiEM({propagar:false});
+    aplicarEstadoPublicoEM();
+
+    const destino=location.origin+location.pathname+'?logout=1&authv='+encodeURIComponent(AUTH_GUARD_VERSION);
+    location.replace(destino);
+  }
+
+  async function pedirLogoutEmpregaiEM(){
     const ok=await window.confirmarAcaoEmpregaiEM({
       titulo:'Sair da sua conta?',
-      texto:'Você será desconectado do + Empregos neste dispositivo.',
+      texto:'Você será desconectado do Empregaí neste dispositivo.',
       confirmarTexto:'Sim, sair',
       cancelarTexto:'Cancelar'
     });
     if(!ok)return;
     await logoutDefinitivoEmpregaiEM();
-  };
+  }
 
-  try{sair=window.sair}catch(_){}
+  function protegerEstadoDeslogadoEM(){
+    let bloqueado=false;
+    try{bloqueado=localStorage.getItem(LOGOUT_FLAG)==='1'||sessionStorage.getItem(LOGOUT_FLAG)==='1'}catch(_){}
+    if(!bloqueado)return;
+    limparSessaoEmpregaiEM({propagar:false});
+    aplicarEstadoPublicoEM();
+  }
 
-  /* Se a página foi aberta pelo próprio logout, bloqueia restauração antes do DOMContentLoaded. */
+  function receberLogoutOutraAbaEM(){
+    marcarLogoutEM(false);
+    limparSessaoEmpregaiEM({propagar:false});
+    aplicarEstadoPublicoEM();
+    const q=new URLSearchParams(location.search);
+    if(q.get('logout')!=='1')location.replace(location.origin+location.pathname+'?logout=1&authv='+encodeURIComponent(AUTH_GUARD_VERSION));
+  }
+
+  try{
+    if('BroadcastChannel' in window){
+      canalLogout=new BroadcastChannel('empregai-auth-'+PROJECT_REF);
+      canalLogout.onmessage=e=>{if(e?.data?.tipo==='logout')receberLogoutOutraAbaEM()};
+    }
+  }catch(_){}
+
+  window.addEventListener('storage',e=>{if(e.key===LOGOUT_EVENT&&e.newValue)receberLogoutOutraAbaEM()});
+  window.addEventListener('pageshow',protegerEstadoDeslogadoEM);
+  document.addEventListener('visibilitychange',()=>{if(!document.hidden)protegerEstadoDeslogadoEM()});
+
+  window.empregaiAuthLogoutEM=pedirLogoutEmpregaiEM;
+  window.sair=pedirLogoutEmpregaiEM;
+  try{sair=pedirLogoutEmpregaiEM}catch(_){}
+
+  /* O marcador na URL é tratado antes das rotinas de restauração do DOMContentLoaded. */
   if(new URLSearchParams(location.search).get('logout')==='1'){
-    limparSessaoEmpregaiEM();
+    marcarLogoutEM(false);
+    limparSessaoEmpregaiEM({propagar:false});
+    aplicarEstadoPublicoEM();
     history.replaceState({},'',location.pathname);
   }
+
+  document.addEventListener('DOMContentLoaded',protegerEstadoDeslogadoEM);
 })();
 
 
