@@ -1803,9 +1803,28 @@ function vagasDaEmpresa(){
 }
 loginEmpresa=function(e){
  e.preventDefault();
- const credencial=String($('#loginEmpresaCnpj')?.value||'').trim(),cnpj=nums(credencial),senha=$('#loginEmpresaSenha')?.value||'';
- if(cnpj.length!==14&&!credencial.includes('@'))return msg('#msgLoginEmpresa','Informe o CNPJ ou e-mail do usuário.');
+ const form=e?.currentTarget||e?.target||document.getElementById('formLoginEmpresa');
+ const campoCredencial=
+   form?.querySelector('#loginEmpresaCnpj')||
+   form?.querySelector('[name="cnpj"]')||
+   form?.querySelector('[name="email"]')||
+   form?.querySelector('[name="usuario"]')||
+   form?.querySelector('input[type="text"]:not([disabled])')||
+   form?.querySelector('input[type="email"]:not([disabled])')||
+   document.getElementById('loginEmpresaCnpj');
+ const campoSenha=
+   form?.querySelector('#loginEmpresaSenha')||
+   form?.querySelector('input[type="password"]')||
+   document.getElementById('loginEmpresaSenha');
+
+ const credencial=String(campoCredencial?.value||'').trim();
+ const cnpj=nums(credencial);
+ const senha=String(campoSenha?.value||'');
+
+ if(!credencial)return msg('#msgLoginEmpresa','Informe o CNPJ ou e-mail do usuário.');
+ if(cnpj.length!==14&&!credencial.includes('@'))return msg('#msgLoginEmpresa','Informe um CNPJ válido ou um e-mail.');
  if(!senha)return msg('#msgLoginEmpresa','Informe sua senha.');
+
  msg('#msgLoginEmpresa','Entrando...');
  sbLoginAuthEmpresaEM(credencial,senha).then(auth=>{
    if(auth?.user?.id)sessionStorage.setItem('empresaSupabaseAuthUserId',auth.user.id);
@@ -1815,7 +1834,8 @@ loginEmpresa=function(e){
    if(cnpj.length===14&&nums(remota.cnpj)!==cnpj)throw new Error('O cadastro autenticado não corresponde ao CNPJ informado.');
    sessionStorage.setItem('empresaSupabaseUserId',remota.user_id||'');
    sessionStorage.setItem('empresaSupabaseEmpresaId',remota.id||'');
-   const d=sbEmpresaParaLocalEM(remota,senha);sbSalvarEmpresaLocalEM(d);
+   const d=sbEmpresaParaLocalEM(remota,senha);
+   sbSalvarEmpresaLocalEM(d);
    entrar('empresa',d);
    sessionStorage.setItem('empresaSupabaseUserId',remota.user_id||'');
    sessionStorage.setItem('empresaSupabaseEmpresaId',remota.id||'');
@@ -1823,7 +1843,15 @@ loginEmpresa=function(e){
    sessionStorage.setItem('empresaUsuarioAdministrador',String(authUid===String(remota.user_id||'')));
    msg('#msgLoginEmpresa','');
    if(sessionStorage.getItem('planoPretendido'))setTimeout(()=>irPara('planos'),30)
- }).catch(err=>{console.error('Supabase login empresa:',err);const texto=/rate limit/i.test(err.message)?'O Supabase bloqueou temporariamente novas tentativas. Aguarde alguns minutos e tente novamente.':/invalid login|invalid credentials/i.test(err.message)?'Não foi possível autenticar com esses dados. Se estiver usando e-mail corporativo, tente também o CNPJ da empresa com a mesma senha.':'Não foi possível entrar: '+err.message;msg('#msgLoginEmpresa',texto)})
+ }).catch(err=>{
+   console.error('Supabase login empresa:',err);
+   const texto=/rate limit/i.test(err.message)
+     ?'O Supabase bloqueou temporariamente novas tentativas. Aguarde alguns minutos e tente novamente.'
+     :/invalid login|invalid credentials/i.test(err.message)
+       ?'CNPJ/e-mail ou senha incorretos.'
+       :'Não foi possível entrar: '+err.message;
+   msg('#msgLoginEmpresa',texto)
+ })
 };
 async function sbCarregarVagasEmpresaAtualEM(){
  const t=await sbGarantirSessaoEM();if(!t)throw new Error('Sessão da empresa expirada.');
