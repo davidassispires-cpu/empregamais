@@ -191,6 +191,7 @@ function garantirAbaConectaComoFuncionaPersistenteEM(){
 }
 function aplicarAbaConectaComoFuncionaEM(){
  const pagina=document.getElementById('pagina-como-funciona');if(!pagina)return;
+ if(pagina.querySelector('[data-cfv3-tab="conecta"]'))return;
  if(document.getElementById('comoConectaTabEM')&&document.getElementById('comoConectaConteudoEM'))return;
  document.getElementById('comoConectaConteudoEM')?.remove();
  document.getElementById('comoConectaTabEM')?.remove();
