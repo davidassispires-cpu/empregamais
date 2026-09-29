@@ -136,6 +136,66 @@ function parseJsonLdJobs(html: string) {
   return found;
 }
 
+function parseYappCareerPage(html:string, source:URL){
+  const m=/window\.__remixContext\s*=\s*([\s\S]*?);\s*<\/script>/i.exec(html);
+  if(!m)return {jobs:[],total:0,size:10};
+  let ctx:any=null;
+  try{ctx=JSON.parse(m[1])}catch{return {jobs:[],total:0,size:10}}
+  const route=ctx?.state?.loaderData?.["pages/public/career/route"]||{};
+  const jobRoot=route?.jobs||{};
+  const list=Array.isArray(jobRoot?.jobs)?jobRoot.jobs:[];
+  const total=Number(jobRoot?.pagination?.total||route?.total||list.length||0);
+  const size=Number(route?.size||10)||10;
+  const jobs=list.map((j:any)=>{
+    const slug=String(j?.slug||"").trim();
+    const code=String(j?.job_code||"").trim();
+    const url=(slug&&code)?new URL("/vagas/"+slug+"-"+code,source.origin).toString():"";
+    const scenario=j?.job_hiring_scenario||{};
+    const work=String(scenario?.work_model||"").toUpperCase();
+    const modalidade=work==="REMOTE"?"Remoto":work==="HYBRID"?"Híbrido":work==="ONSITE"?"Presencial":"";
+    const rawContract=String(scenario?.contract_type||"").toUpperCase();
+    const contrato=rawContract==="SCHOLAR"?"Estágio":rawContract==="TEMPORARY"?"Temporário":rawContract==="PJ"?"PJ":rawContract==="CLT"?"CLT":rawContract;
+    return {
+      url,
+      title:String(j?.job_title||"Vaga integrada").trim(),
+      cidade:String(scenario?.city||"").trim(),
+      estado:String(scenario?.state||"").trim(),
+      contrato,
+      modalidade,
+      area:String(j?.job_publication?.category||"").trim(),
+      senioridade:String(j?.seniority_level||"").trim(),
+      opening_date:String(j?.job_schedule?.opening_date||"").slice(0,10),
+      confidential:j?.is_confidential===true
+    };
+  }).filter((x:any)=>x.url);
+  return {jobs,total,size};
+}
+
+async function extractYappJobs(source:URL){
+  const first=await fetchText(source.toString(),18000);
+  const p1=parseYappCareerPage(first.text,source);
+  const out=[...p1.jobs];
+  const pages=Math.min(30,Math.max(1,Math.ceil((p1.total||out.length)/(p1.size||10))));
+  for(let p=2;p<=pages;p++){
+    const u=new URL(source.toString());
+    u.searchParams.set("page",String(p));
+    try{
+      const r=await fetchText(u.toString(),18000);
+      const parsed=parseYappCareerPage(r.text,source);
+      out.push(...parsed.jobs);
+    }catch{}
+  }
+  const seen=new Set<string>();
+  const normalized:any[]=[];
+  for(const j of out){
+    if(!j.url||seen.has(j.url))continue;
+    seen.add(j.url);
+    const core={...j,provider:"yapp"};
+    normalized.push({...core,key:await sha256(j.url),hash:await sha256(JSON.stringify(core))});
+  }
+  return {jobs:normalized,total:p1.total||normalized.length};
+}
+
 function firstLocation(job:any){
   const loc=Array.isArray(job?.jobLocation)?job.jobLocation[0]:job?.jobLocation;
   const a=loc?.address||{};
@@ -239,6 +299,12 @@ async function extractSource(rawUrl:string, requestedProvider:string){
   if(!/^https?:$/.test(source.protocol)||unsafeHost(source.hostname))throw new Error("url_not_allowed");
   const detected=providerFromHost(source.hostname);
   const provider=requestedProvider&&requestedProvider!=="auto"&&requestedProvider!=="portal"?requestedProvider:detected;
+
+  if(provider==="yapp"){
+    const y=await extractYappJobs(source);
+    return {provider:"yapp",jobs:y.jobs,allowClose:y.jobs.length>0,extraction:"yapp_remix",sourceTotal:y.total};
+  }
+
   const {text:html}=await fetchText(source.toString(),18000);
   const map=new Map<string,{url:string,title:string}>();
   for(const a of collectAnchors(html,source,provider))map.set(a.url,a);
@@ -259,7 +325,6 @@ async function extractSource(rawUrl:string, requestedProvider:string){
   }
   return {provider:provider==="generic"?"portal_generico":provider,jobs:enriched,allowClose:true,extraction:"links"};
 }
-
 async function rpc(name:string,body:any){
   const r=await fetch(SUPABASE_URL+"/rest/v1/rpc/"+name,{method:"POST",headers:dbHeaders,body:JSON.stringify(body)});
   const text=await r.text();
