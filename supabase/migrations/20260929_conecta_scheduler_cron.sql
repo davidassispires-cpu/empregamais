@@ -3,7 +3,7 @@
 --   conecta_project_url
 --   conecta_publishable_key
 --
--- Em producao, o worker roda a cada 5 minutos e processa ate 5 empresas por chamada.
+-- Em producao, o worker roda a cada 1 minuto e processa ate 2 empresas por chamada.
 
 do $$
 declare j record;
@@ -11,15 +11,15 @@ begin
   for j in
     select jobid
     from cron.job
-    where jobname='conecta-worker-every-5m'
+    where jobname in ('conecta-worker-every-5m','conecta-worker-every-1m')
   loop
     perform cron.unschedule(j.jobid);
   end loop;
 end $$;
 
 select cron.schedule(
-  'conecta-worker-every-5m',
-  '*/5 * * * *',
+  'conecta-worker-every-1m',
+  '* * * * *',
   $cron$
     select net.http_post(
       url := (
@@ -35,7 +35,7 @@ select cron.schedule(
           where name='conecta_publishable_key'
         )
       ),
-      body := '{"batch":5}'::jsonb,
+      body := '{"batch":2}'::jsonb,
       timeout_milliseconds := 60000
     );
   $cron$
