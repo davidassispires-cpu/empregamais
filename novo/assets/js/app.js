@@ -473,6 +473,7 @@ function conectaDetectarSistemaEM(url){
  if(u.includes('myworkdayjobs.com')||u.includes('workday.com'))return'workday';
  if(u.includes('greenhouse.io'))return'greenhouse';
  if(u.includes('lever.co'))return'lever';
+ if(u.includes('yapp.rec.br'))return'yapp';
  return u?'portal':'auto'
 }
 function conectaSistemaInfoEM(sistema){
@@ -485,7 +486,8 @@ function conectaSistemaInfoEM(sistema){
   workday:['Workday','Portal/tenant e integração corporativa por API ou feed, conforme configuração.'],
   greenhouse:['Greenhouse','Job Board público e APIs autenticadas quando necessário.'],
   lever:['Lever','Portal Lever e Postings API para vagas públicas.'],
-  portal:['Portal próprio / outro','URL pública, feed JSON/XML ou API própria.']
+  yapp:['YAPP','Página pública de carreiras YAPP com leitura automática das vagas disponíveis.'],
+  portal:['Portal próprio / outro','URL pública, feed JSON/XML ou API própria. O Conecta tenta uma leitura genérica quando o fornecedor não é reconhecido.']
  };
  const x=mapa[sistema]||mapa.portal;return{nome:x[0],metodo:x[1]}
 }
@@ -614,7 +616,7 @@ async function renderPainelConectaEM(){
  '<form novalidate onsubmit="salvarConfiguracaoConectaEM(event)"><div class="conecta-integracao-body">'+
  '<section class="conecta-form-section"><div class="conecta-form-section-title"><i>01</i><div><strong>Fonte das vagas</strong><span>Informe o portal de carreiras, ATS ou feed que o Conecta deverá acompanhar.</span></div></div>'+
  '<div class="conecta-settings">'+
- '<div class="conecta-field"><label>Sistema utilizado</label><select id="conectaSistemaEM" onchange="conectaAtualizarSistemaEM(\'select\')"><option value="auto" '+(cfg.sistema==='auto'?'selected':'')+'>Detectar automaticamente</option><option value="abler" '+(cfg.sistema==='abler'?'selected':'')+'>Abler</option><option value="gupy" '+(cfg.sistema==='gupy'?'selected':'')+'>Gupy</option><option value="solides" '+(cfg.sistema==='solides'?'selected':'')+'>Sólides</option><option value="pandape" '+(cfg.sistema==='pandape'?'selected':'')+'>Pandapé</option><option value="workday" '+(cfg.sistema==='workday'?'selected':'')+'>Workday</option><option value="greenhouse" '+(cfg.sistema==='greenhouse'?'selected':'')+'>Greenhouse</option><option value="lever" '+(cfg.sistema==='lever'?'selected':'')+'>Lever</option><option value="portal" '+(cfg.sistema==='portal'?'selected':'')+'>Portal próprio / outro</option></select><small class="conecta-field-help">Se não souber, deixe em detectar automaticamente.</small></div>'+
+ '<div class="conecta-field"><label>Sistema utilizado</label><select id="conectaSistemaEM" onchange="conectaAtualizarSistemaEM(\'select\')"><option value="auto" '+(cfg.sistema==='auto'?'selected':'')+'>Detectar automaticamente</option><option value="abler" '+(cfg.sistema==='abler'?'selected':'')+'>Abler</option><option value="gupy" '+(cfg.sistema==='gupy'?'selected':'')+'>Gupy</option><option value="solides" '+(cfg.sistema==='solides'?'selected':'')+'>Sólides</option><option value="pandape" '+(cfg.sistema==='pandape'?'selected':'')+'>Pandapé</option><option value="workday" '+(cfg.sistema==='workday'?'selected':'')+'>Workday</option><option value="greenhouse" '+(cfg.sistema==='greenhouse'?'selected':'')+'>Greenhouse</option><option value="lever" '+(cfg.sistema==='lever'?'selected':'')+'>Lever</option><option value="yapp" '+(cfg.sistema==='yapp'?'selected':'')+'>YAPP</option><option value="portal" '+(cfg.sistema==='portal'?'selected':'')+'>Portal próprio / outro</option></select><small class="conecta-field-help">Se não souber, deixe em detectar automaticamente.</small></div>'+
  '<div class="conecta-field"><label>URL do portal de carreiras / ATS</label><input id="conectaUrlEM" type="url" value="'+esc(cfg.url)+'" placeholder="https://empresa.com/carreiras" oninput="conectaAtualizarSistemaEM(\'url\')" required><small class="conecta-field-help">Cole o endereço onde suas vagas ficam publicadas.</small></div>'+
  '<div id="conectaSistemaInfoEM" class="conecta-sistema-info"><strong>'+esc(conectaSistemaInfoEM(cfg.sistema==='auto'?conectaDetectarSistemaEM(cfg.url):cfg.sistema).nome)+'</strong><span>'+esc(conectaSistemaInfoEM(cfg.sistema==='auto'?conectaDetectarSistemaEM(cfg.url):cfg.sistema).metodo)+'</span></div>'+
  '<div class="conecta-field"><label>Tipo de origem</label><select id="conectaTipoEM"><option value="portal" '+(cfg.tipo==='portal'?'selected':'')+'>Portal de carreiras</option><option value="ats" '+(cfg.tipo==='ats'?'selected':'')+'>ATS / sistema de recrutamento</option><option value="feed" '+(cfg.tipo==='feed'?'selected':'')+'>Feed / API pública</option></select><small class="conecta-field-help">Escolha a tecnologia usada pela empresa.</small></div>'+
