@@ -771,8 +771,9 @@ async function salvarConfiguracaoConectaEM(e){
  try{
   if(btn){btn.disabled=true;btn.textContent='Salvando...'}
   setMsg('Salvando configuração...');
-  const local=conectaSalvarEmpresaLocalEM(config);
+  conectaSalvarEmpresaLocalEM(config);
   await conectaSalvarEmpresaCloudEM(config);
+  await conectaHidratarEmpresaSessaoEM();
   conectaRegistrarHistoricoEM('configuracao','Integração configurada',{detalhe:conectaSistemaInfoEM(sistema).nome+' · '+url});
   setMsg('Configuração salva com sucesso.','ok');
   if(typeof window.mostrarToast==='function')window.mostrarToast('Configuração do +Empregos Conecta salva.');
@@ -876,7 +877,7 @@ async function sincronizarAgoraConectaEM(){
   const stats=resultadoEmpresa?.stats||null;
   const texto=stats
    ? 'Sincronização concluída: '+Number(stats.inserted||0)+' nova(s), '+Number(stats.updated||0)+' atualizada(s) e '+Number(stats.closed||0)+' encerrada(s).'
-   : 'Origem validada e sincronização colocada na fila. O Conecta continuará atualizando automaticamente.';
+   : 'Origem salva e validada. A sincronização automática está ativa.';
   if(typeof window.mostrarToast==='function')window.mostrarToast(texto);else alert(texto);
   conectaAbaEM('vagas')
  }catch(err){
