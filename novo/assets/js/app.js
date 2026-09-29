@@ -252,20 +252,30 @@ window.renderPainelConectaEM=renderPainelConectaEM;
 
 function aplicarMensagemComercialConectaEM(){
  const pagina=document.getElementById('pagina-emprego-conecta');if(!pagina)return;
- if(document.getElementById('conectaMensagemComercialEM'))return;
- if(!document.getElementById('estiloConectaMensagemComercialEM')){
-  const st=document.createElement('style');st.id='estiloConectaMensagemComercialEM';
-  st.textContent='#conectaMensagemComercialEM{width:min(1180px,calc(100% - 32px));margin:28px auto 34px;padding:26px 28px;border-radius:20px;background:linear-gradient(135deg,#5b168d,#43106b);color:#fff;box-shadow:0 18px 45px rgba(72,19,105,.16);font-family:Montserrat,Arial,sans-serif}#conectaMensagemComercialEM small{display:block;margin-bottom:8px;font-size:10px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:#dfc4f3}#conectaMensagemComercialEM strong{display:block;max-width:950px;font-size:23px;line-height:1.35;letter-spacing:-.3px;color:#fff;font-weight:700}@media(max-width:700px){#conectaMensagemComercialEM{padding:22px 20px;margin:22px auto 28px}#conectaMensagemComercialEM strong{font-size:18px}}';
-  document.head.appendChild(st)
- }
+ document.getElementById('conectaMensagemComercialEM')?.remove();
+ const estiloAntigo=document.getElementById('estiloConectaMensagemComercialEM');if(estiloAntigo)estiloAntigo.remove();
+
+ const st=document.createElement('style');st.id='estiloConectaMensagemComercialEM';
+ st.textContent=
+ '#conectaMensagemComercialEM{width:min(1180px,calc(100% - 40px));margin:26px auto 30px;padding:20px 24px;border:1px solid #e3d6ed;border-left:5px solid #6d1aa2;border-radius:16px;background:rgba(255,255,255,.88);box-shadow:0 10px 26px rgba(78,29,108,.08);font-family:Montserrat,Arial,sans-serif;display:grid;grid-template-columns:190px minmax(0,1fr);gap:24px;align-items:center}'+
+ '#conectaMensagemComercialEM .conecta-mensagem-selo{display:flex;align-items:center;gap:9px;color:#651895;font-size:11px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;white-space:nowrap}'+
+ '#conectaMensagemComercialEM .conecta-mensagem-selo i{width:9px;height:9px;border-radius:50%;background:#8b2cc4;box-shadow:0 0 0 5px #f1e7f8}'+
+ '#conectaMensagemComercialEM strong{display:block;margin:0;color:#34203f;font-size:18px;line-height:1.5;letter-spacing:-.15px;font-weight:650}'+
+ '@media(max-width:760px){#conectaMensagemComercialEM{width:min(100% - 24px,1180px);grid-template-columns:1fr;gap:10px;padding:18px 18px;margin:20px auto 24px}#conectaMensagemComercialEM strong{font-size:16px;line-height:1.45}}';
+ document.head.appendChild(st);
+
  const box=document.createElement('section');box.id='conectaMensagemComercialEM';
- box.innerHTML='<small>+Empregos Conecta</small><strong>Continue usando seu ATS normalmente. O +Empregos sincroniza suas vagas automaticamente, amplia sua distribuição e envia os candidatos para o seu próprio processo seletivo.</strong>';
+ box.innerHTML='<div class="conecta-mensagem-selo"><i></i><span>+Empregos Conecta</span></div><strong>Continue usando seu ATS normalmente. O +Empregos sincroniza suas vagas automaticamente, amplia sua distribuição e envia os candidatos para o seu próprio processo seletivo.</strong>';
+
  const showcase=pagina.querySelector('#conectaShowcaseEM,.conecta-showcase-em');
- if(showcase)showcase.insertAdjacentElement('afterend',box);
- else{
-  const primeiroBloco=pagina.querySelector('section,main,.container,.wrap');
-  if(primeiroBloco&&primeiroBloco!==pagina)primeiroBloco.insertAdjacentElement('afterend',box);
-  else pagina.prepend(box)
+ if(showcase){
+  let bloco=showcase;
+  while(bloco.parentElement&&bloco.parentElement!==pagina)bloco=bloco.parentElement;
+  bloco.insertAdjacentElement('afterend',box);
+ }else{
+  const primeiro=pagina.firstElementChild;
+  if(primeiro)primeiro.insertAdjacentElement('afterend',box);
+  else pagina.appendChild(box)
  }
 }
 let conectaShowcaseIndiceEM=0;
