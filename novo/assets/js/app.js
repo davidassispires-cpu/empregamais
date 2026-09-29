@@ -439,9 +439,10 @@ function conectaSalvarEmpresaLocalEM(patch={}){
 async function conectaSalvarEmpresaCloudEM(config){
  const token=await sbGarantirSessaoEM();if(!token)throw new Error('Sessão da empresa expirada.');
  const emp=await sbBuscarMinhaEmpresaEM();if(!emp?.id)throw new Error('Empresa não encontrada.');
+ const agora=new Date().toISOString();
  const rows=await sbJsonEM(
   EMPREGAMAIS_SUPABASE_URL+'/rest/v1/empresas?id=eq.'+encodeURIComponent(emp.id),
-  {method:'PATCH',headers:Object.assign(sbHeadersEM(token),{'Prefer':'return=representation'}),body:JSON.stringify({conecta_config:config})}
+  {method:'PATCH',headers:Object.assign(sbHeadersEM(token),{'Prefer':'return=representation'}),body:JSON.stringify({conecta_config:config,conecta_sync_enabled:config?.ativo===true,conecta_next_sync_at:agora})}
  );
  const remoto=Array.isArray(rows)?rows[0]:null;
  if(remoto){const local=sbEmpresaParaLocalEM(remoto,'');sbSalvarEmpresaLocalEM(local)}
@@ -830,7 +831,7 @@ async function sincronizarAgoraConectaEM(){
  const cfg=conectaConfigEM();if(!cfg.url){conectaAbaEM('integracao');return}
  const btn=document.getElementById('conectaSyncBtnEM');
  try{
-  if(btn){btn.disabled=true;btn.textContent='Testando conexão...'}
+  if(btn){btn.disabled=true;btn.textContent='Validando origem...'}
   const token=await sbGarantirSessaoEM();if(!token)throw new Error('Sessão da empresa expirada.');
   const r=await fetch(EMPREGAMAIS_SUPABASE_URL+'/functions/v1/conecta-sync',{
    method:'POST',
@@ -843,19 +844,46 @@ async function sincronizarAgoraConectaEM(){
   const qtd=Number(data.jobs_found||0);
   const providerDetectado=String(data.provider||'').toLowerCase();
   const sistemaAtualizado=(providerDetectado&&providerDetectado!=='portal_generico')?providerDetectado:cfg.sistema;
-  const patchSync={ultima:agora,conectaUltimaSync:agora,ultimoTesteOk:true,ultimaQtdEncontrada:qtd,sistema:sistemaAtualizado};
+  const patchSync={ultima:agora,conectaUltimaSync:agora,ultimoTesteOk:true,ultimaQtdEncontrada:qtd,sistema:sistemaAtualizado,ativo:true};
   conectaSalvarEmpresaLocalEM(patchSync);
-  try{await conectaSalvarEmpresaCloudEM(Object.assign({},empresaLogada?.()?.conectaConfig||{},patchSync))}catch(_){}
+  await conectaSalvarEmpresaCloudEM(Object.assign({},empresaLogada?.()?.conectaConfig||{},patchSync));
   conectaSalvarDescobertasEM(data);
-  conectaRegistrarHistoricoEM('sincronizacao','Conexão validada com sucesso',{detalhe:'Origem: '+cfg.url+' · vagas encontradas: '+qtd});
+
+  if(btn)btn.textContent='Sincronizando vagas...';
+  const emp=await sbBuscarMinhaEmpresaEM();
+  const fila=await sbJsonEM(
+   EMPREGAMAIS_SUPABASE_URL+'/rest/v1/rpc/conecta_enqueue_my_company',
+   {method:'POST',headers:Object.assign(sbHeadersEM(token),{'Content-Type':'application/json'}),body:'{}'}
+  );
+
+  let workerData=null;
+  try{
+   const wr=await fetch(EMPREGAMAIS_SUPABASE_URL+'/functions/v1/conecta-worker',{
+    method:'POST',
+    headers:Object.assign(sbHeadersEM(token),{'Content-Type':'application/json'}),
+    body:JSON.stringify({batch:3})
+   });
+   workerData=await wr.json().catch(()=>null);
+   if(!wr.ok)throw new Error(workerData?.message||workerData?.error||('HTTP '+wr.status))
+  }catch(workerErr){
+   console.warn('Conecta worker imediato indisponível; fila seguirá pelo agendador:',workerErr)
+  }
+
+  try{await sbCarregarVagasEmpresaAtualEM()}catch(_){}
+  conectaRegistrarHistoricoEM('sincronizacao','Sincronização solicitada',{detalhe:'Origem: '+cfg.url+' · '+qtd+' vaga(s) detectada(s) · fila '+String(fila||'criada')});
   await renderPainelConectaEM();
-  const texto='Conexão com '+String(data.provider||cfg.sistema||'ATS')+' validada. '+qtd+' vaga(s) encontrada(s) na origem.';
+
+  const resultadoEmpresa=Array.isArray(workerData?.results)?workerData.results.find(x=>String(x.empresa_id||'')===String(emp?.id||'')):null;
+  const stats=resultadoEmpresa?.stats||null;
+  const texto=stats
+   ? 'Sincronização concluída: '+Number(stats.inserted||0)+' nova(s), '+Number(stats.updated||0)+' atualizada(s) e '+Number(stats.closed||0)+' encerrada(s).'
+   : 'Origem validada e sincronização colocada na fila. O Conecta continuará atualizando automaticamente.';
   if(typeof window.mostrarToast==='function')window.mostrarToast(texto);else alert(texto);
-  if(qtd>0)conectaAbaEM('vagas')
+  conectaAbaEM('vagas')
  }catch(err){
   console.error('Sincronização Conecta:',err);
-  conectaRegistrarHistoricoEM('erro','Falha ao testar integração',{detalhe:String(err?.message||err)});
-  alert('Não foi possível validar a integração: '+String(err?.message||err))
+  conectaRegistrarHistoricoEM('erro','Falha na sincronização',{detalhe:String(err?.message||err)});
+  alert('Não foi possível sincronizar o Conecta: '+String(err?.message||err))
  }finally{
   if(btn){btn.disabled=false;btn.textContent='Sincronizar agora'}
  }
