@@ -907,8 +907,8 @@ function formatarTextoVagaEM(texto=''){
  const fecharLista=()=>{if(listaAberta){html+='</div>';listaAberta=false}};
  for(const original of linhas){
   if(!String(original).trim()){fecharLista();continue}
-  const eraItem=/^\s*(?:[-–—•▪◦]+|\*{1,2})\s+/.test(original);
-  let linha=limparLinhaTextoVagaEM(original.replace(/^\s*(?:[-–—•▪◦]+|\*{1,2})\s+/, ''));
+  const eraItem=/^\s*(?:[-–—•▪◦]+|\*{1,2})\s*/.test(original);
+  let linha=limparLinhaTextoVagaEM(original.replace(/^\s*(?:[-–—•▪◦]+|\*{1,2})\s*/, ''));
   if(!linha)continue;
   const titulo=tituloBlocoTextoVagaEM(linha);
   if(titulo){
@@ -963,22 +963,23 @@ function garantirEstiloTextoVagaEM(){
  style.id='estiloTextoVagaEM';
  style.textContent=
  '#vagaConteudoDetalhe{font-family:Montserrat,Arial,sans-serif;color:#334155}'+
- '#vagaConteudoDetalhe section{margin:0;padding:24px 0;border-top:1px solid #e8edf3}'+
+ '#vagaConteudoDetalhe section{margin:0;padding:20px 0;border-top:1px solid #e8edf3}'+
  '#vagaConteudoDetalhe section:first-of-type{border-top:0}'+
- '#vagaConteudoDetalhe section h2{font-family:Montserrat,Arial,sans-serif;font-size:21px;line-height:1.25;font-weight:700;letter-spacing:-.2px;color:#12385f;margin:0 0 12px;padding:0}'+
- '.vaga-texto.vaga-texto-formatada{font-family:Montserrat,Arial,sans-serif;color:#334155;font-size:15.5px;font-weight:400;line-height:1.52;letter-spacing:0;margin:0;max-width:none}'+
- '.vaga-texto.vaga-texto-formatada p{font:400 15.5px/1.52 Montserrat,Arial,sans-serif;color:#334155;margin:0 0 7px;padding:0}'+
- '.vaga-texto.vaga-texto-formatada .vaga-texto-subtitulo{font:700 15.5px/1.35 Montserrat,Arial,sans-serif;color:#163b67;margin:14px 0 6px;padding:0}'+
- '.vaga-texto.vaga-texto-formatada .vaga-texto-lista{display:grid;gap:4px;margin:2px 0 10px;padding:0}'+
- '.vaga-texto.vaga-texto-formatada .vaga-texto-item{position:relative;font:400 15.5px/1.48 Montserrat,Arial,sans-serif;color:#334155;margin:0;padding:0 0 0 14px}'+
- '.vaga-texto.vaga-texto-formatada .vaga-texto-item:before{content:"";position:absolute;left:2px;top:.68em;width:4px;height:4px;border-radius:50%;background:#7890a8}'+
+ '#vagaConteudoDetalhe section h2{font:700 18.5px/1.3 Montserrat,Arial,sans-serif;letter-spacing:-.15px;color:#12385f;margin:0 0 10px;padding:0}'+
+ '.vaga-texto.vaga-texto-formatada{font:400 14.5px/1.5 Montserrat,Arial,sans-serif;color:#334155;letter-spacing:0;margin:0;max-width:none}'+
+ '.vaga-texto.vaga-texto-formatada p{font:400 14.5px/1.5 Montserrat,Arial,sans-serif;color:#334155;margin:0 0 6px;padding:0}'+
+ '.vaga-texto.vaga-texto-formatada .vaga-texto-subtitulo{font:700 15px/1.35 Montserrat,Arial,sans-serif;color:#163b67;margin:18px 0 7px;padding:0}'+
+ '.vaga-texto.vaga-texto-formatada .vaga-texto-subtitulo:first-child{margin-top:0}'+
+ '.vaga-texto.vaga-texto-formatada .vaga-texto-lista{display:grid;gap:3px;margin:0 0 13px;padding:0}'+
+ '.vaga-texto.vaga-texto-formatada .vaga-texto-item{font:400 14.5px/1.48 Montserrat,Arial,sans-serif;color:#334155;margin:0;padding:0}'+
+ '.vaga-texto.vaga-texto-formatada .vaga-texto-item:before{content:none}'+
  '#vaga-sobre,#vaga-requisitos,#vaga-beneficios{scroll-margin-top:100px}'+
- '#vaga-beneficios .beneficios-tags{display:flex;flex-wrap:wrap;align-items:flex-start;gap:7px;margin:0;padding:0}'+
- '#vaga-beneficios .beneficio-tag{font:600 13.5px/1.35 Montserrat,Arial,sans-serif;color:#235d5b;max-width:100%;white-space:normal;overflow-wrap:anywhere;padding:8px 12px;border-radius:9px}'+
+ '#vaga-beneficios .beneficios-tags{display:flex;flex-wrap:wrap;align-items:flex-start;gap:6px;margin:0;padding:0}'+
+ '#vaga-beneficios .beneficio-tag{font:600 13px/1.35 Montserrat,Arial,sans-serif;color:#235d5b;max-width:100%;white-space:normal;overflow-wrap:anywhere;padding:7px 10px;border-radius:8px}'+
  '.vaga-complementares{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;min-width:0}'+
- '.vaga-complementares span{display:block;min-width:0;max-width:100%;overflow:hidden;overflow-wrap:anywhere;word-break:normal;white-space:normal;font:400 14.5px/1.42 Montserrat,Arial,sans-serif;color:#334155;padding:12px 12px}'+
- '.vaga-complementares span b{display:block;font:700 10.5px/1.2 Montserrat,Arial,sans-serif;letter-spacing:.45px;text-transform:uppercase;color:#526579;margin:0 0 6px}'+
- '@media(max-width:700px){#vagaConteudoDetalhe section{padding:20px 0}#vagaConteudoDetalhe section h2{font-size:19px;margin-bottom:10px}.vaga-texto.vaga-texto-formatada,.vaga-texto.vaga-texto-formatada p,.vaga-texto.vaga-texto-formatada .vaga-texto-item{font-size:15px}.vaga-complementares{grid-template-columns:1fr}.vaga-complementares span{font-size:14px}}';
+ '.vaga-complementares span{display:block;min-width:0;max-width:100%;overflow:hidden;overflow-wrap:anywhere;word-break:normal;white-space:normal;font:400 14px/1.4 Montserrat,Arial,sans-serif;color:#334155;padding:11px 12px}'+
+ '.vaga-complementares span b{display:block;font:700 10px/1.2 Montserrat,Arial,sans-serif;letter-spacing:.4px;text-transform:uppercase;color:#526579;margin:0 0 5px}'+
+ '@media(max-width:700px){#vagaConteudoDetalhe section{padding:17px 0}#vagaConteudoDetalhe section h2{font-size:17.5px;margin-bottom:9px}.vaga-texto.vaga-texto-formatada,.vaga-texto.vaga-texto-formatada p,.vaga-texto.vaga-texto-formatada .vaga-texto-item{font-size:14px}.vaga-texto.vaga-texto-formatada .vaga-texto-subtitulo{font-size:14.5px;margin-top:16px}.vaga-complementares{grid-template-columns:1fr}.vaga-complementares span{font-size:13.5px}}';
  document.head.appendChild(style)
 }
 
