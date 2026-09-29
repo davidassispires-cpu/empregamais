@@ -1431,7 +1431,39 @@ async function sbGarantirSessaoEM(){
  }
 }
 function sbCadastrarAuthEmpresaEM(cnpj,senha){localStorage.removeItem('empregaMaisLogoutBloqueio');sessionStorage.removeItem('empregaMaisLogoutBloqueio');return sbJsonEM(EMPREGAMAIS_SUPABASE_URL+"/auth/v1/signup",{method:"POST",headers:sbHeadersEM(),body:JSON.stringify({email:sbEmailEmpresaEM(cnpj),password:senha})}).then(a=>{sbSalvarSessaoEM(a);return a})}
-function sbLoginAuthEmpresaEM(credencial,senha){localStorage.removeItem('empregaMaisLogoutBloqueio');sessionStorage.removeItem('empregaMaisLogoutBloqueio');const bruto=String(credencial||"").trim(),cnpj=nums(bruto),email=cnpj.length===14?sbEmailEmpresaEM(cnpj):bruto.toLowerCase();return sbJsonEM(EMPREGAMAIS_SUPABASE_URL+"/auth/v1/token?grant_type=password",{method:"POST",headers:sbHeadersEM(),body:JSON.stringify({email,password:senha})}).then(a=>{sbSalvarSessaoEM(a);return a})}
+async function sbLoginAuthEmpresaEM(credencial,senha){
+ localStorage.removeItem('empregaMaisLogoutBloqueio');
+ sessionStorage.removeItem('empregaMaisLogoutBloqueio');
+ const bruto=String(credencial||'').trim(),cnpj=nums(bruto),digitado=bruto.toLowerCase();
+ let emailAuth=cnpj.length===14?sbEmailEmpresaEM(cnpj):digitado;
+
+ if(cnpj.length!==14&&digitado.includes('@')){
+  const locais=ler('empregaMaisEmpresas')||[];
+  const empLocal=locais.find(e=>[
+   e.email,e.emailCorporativo,e.email_corporativo,e.emailCandidaturas,e.email_candidaturas
+  ].some(v=>String(v||'').trim().toLowerCase()===digitado));
+  if(empLocal&&nums(empLocal.cnpj).length===14)emailAuth=sbEmailEmpresaEM(nums(empLocal.cnpj));
+ }
+
+ try{
+  const a=await sbJsonEM(
+   EMPREGAMAIS_SUPABASE_URL+"/auth/v1/token?grant_type=password",
+   {method:"POST",headers:sbHeadersEM(),body:JSON.stringify({email:emailAuth,password:senha})}
+  );
+  sbSalvarSessaoEM(a);return a
+ }catch(err){
+  if(emailAuth!==digitado&&digitado.includes('@')){
+   try{
+    const a=await sbJsonEM(
+     EMPREGAMAIS_SUPABASE_URL+"/auth/v1/token?grant_type=password",
+     {method:"POST",headers:sbHeadersEM(),body:JSON.stringify({email:digitado,password:senha})}
+    );
+    sbSalvarSessaoEM(a);return a
+   }catch(_){}
+  }
+  throw err
+ }
+}
 function sbBuscarMinhaEmpresaEM(){const token=sbTokenEM();if(!token)return Promise.resolve(null);return sbJsonEM(EMPREGAMAIS_SUPABASE_URL+"/rest/v1/empresas?select=*&limit=1",{method:"GET",headers:sbHeadersEM(token)}).then(a=>Array.isArray(a)&&a.length?a[0]:null)}
 function sbEmpresaParaLocalEM(e,senha){if(!e)return null;return{id:e.id||"",userId:e.user_id||"",nome:e.nome||e.nome_fantasia||"",nomeFantasia:e.nome_fantasia||"",razaoSocial:e.razao_social||"",cnpj:nums(e.cnpj||""),email:e.email||e.email_corporativo||"",emailCorporativo:e.email_corporativo||e.email||"",emailCandidaturas:e.email_candidaturas||e.email||e.email_corporativo||"",telefone:e.telefone||"",responsavel:e.responsavel||"",funcaoResponsavel:e.funcao_responsavel||"",cep:e.cep||"",logradouro:e.logradouro||"",bairro:e.bairro||"",numero:e.numero||"",complemento:e.complemento||"",cidade:e.cidade||"",uf:e.uf||"",sobre:e.sobre||"",sobreInstitucional:e.sobre_institucional||"",site:e.site||"",matriz:e.matriz||"",setor:e.setor||"",funcionarios:e.funcionarios||"",faturamento:e.faturamento||"",logo:e.logo_url||"",plano:e.plano_id||e.plano||"basico",planoStatus:e.plano_status||e.assinatura_status||"ativo",planoLiberadoAdmin:e.plano_liberado_admin===true,planoSemCobranca:e.plano_sem_cobranca===true,planoAtivadoEm:e.plano_ativado_em||e.assinatura_inicio||"",planoValidoAte:e.plano_valido_ate||e.assinatura_fim||"",assinaturaAtiva:e.assinatura_ativa===true||((e.plano_id||e.plano||"basico")!=="basico"&&!["cancelado","inativo","expirado"].includes(String(e.plano_status||e.assinatura_status||"ativo").toLowerCase())),verificacaoStatus:e.verificacao_status||"nao_verificada",verificada:e.verificada===true,verificacaoEnviadaEm:e.verificacao_enviada_em||"",verificacaoMotivo:e.verificacao_motivo||"",aprovacaoAutomaticaSuspensa:e.aprovacao_automatica_suspensa===true,senha:senha||""}}
 function sbInserirEmpresaEM(auth,base){const token=auth.access_token,uid=auth.user&&auth.user.id;return sbJsonEM(EMPREGAMAIS_SUPABASE_URL+"/rest/v1/empresas",{method:"POST",headers:Object.assign(sbHeadersEM(token),{"Prefer":"return=representation"}),body:JSON.stringify({user_id:uid,nome:base.nome||"",cnpj:nums(base.cnpj),email:base.email||"",email_corporativo:base.email||"",email_candidaturas:base.emailCandidaturas||base.email||"",telefone:base.telefone||"",sobre:base.sobre||"",plano:"basico",plano_id:"basico",verificacao_status:"nao_verificada",verificada:false,plano_liberado_admin:false,plano_sem_cobranca:false,aprovacao_automatica_suspensa:false})}).then(a=>Array.isArray(a)?a[0]:a)}
@@ -1781,7 +1813,7 @@ loginEmpresa=function(e){
    sessionStorage.setItem('empresaUsuarioAdministrador',String(authUid===String(remota.user_id||'')));
    msg('#msgLoginEmpresa','');
    if(sessionStorage.getItem('planoPretendido'))setTimeout(()=>irPara('planos'),30)
- }).catch(err=>{console.error('Supabase login empresa:',err);const texto=/rate limit/i.test(err.message)?'O Supabase bloqueou temporariamente novas tentativas. Aguarde alguns minutos e tente novamente.':/invalid login|invalid credentials/i.test(err.message)?'CNPJ/e-mail ou senha incorretos.':'Não foi possível entrar: '+err.message;msg('#msgLoginEmpresa',texto)})
+ }).catch(err=>{console.error('Supabase login empresa:',err);const texto=/rate limit/i.test(err.message)?'O Supabase bloqueou temporariamente novas tentativas. Aguarde alguns minutos e tente novamente.':/invalid login|invalid credentials/i.test(err.message)?'Não foi possível autenticar com esses dados. Se estiver usando e-mail corporativo, tente também o CNPJ da empresa com a mesma senha.':'Não foi possível entrar: '+err.message;msg('#msgLoginEmpresa',texto)})
 };
 async function sbCarregarVagasEmpresaAtualEM(){
  const t=await sbGarantirSessaoEM();if(!t)throw new Error('Sessão da empresa expirada.');
