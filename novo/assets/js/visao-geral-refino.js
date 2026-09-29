@@ -31,7 +31,7 @@ function aplicarRefinoVisaoGeralEM(){
  #pagina-painel-empresa select,
  #pagina-painel-empresa textarea{font-family:'Montserrat','Segoe UI',Arial,sans-serif!important}
 
- #pagina-painel-empresa{font-weight:400!important;color:#173b4d!important}
+ #pagina-painel-empresa{font-weight:400!important;color:#174D96!important}
  #pagina-painel-empresa p,
  #pagina-painel-empresa small,
  #pagina-painel-empresa span{font-weight:400}
@@ -58,13 +58,13 @@ function aplicarRefinoVisaoGeralEM(){
  #empresaResumoRecursos{border:1px solid #e4ecef!important;border-radius:20px!important;background:#fff!important;box-shadow:0 8px 26px rgba(31,65,82,.055)!important;overflow:hidden!important}
  #empresaResumoRecursos .emp-plan-head{padding:24px 26px 20px!important;border:0!important;border-bottom:1px solid #eef2f4!important;background:#fff!important}
  #empresaResumoRecursos .emp-plan-head span{font-size:10px!important;letter-spacing:.13em!important;color:#66808e!important}
- #empresaResumoRecursos .emp-plan-head h2{margin:5px 0 7px!important;font-size:22px!important;line-height:1.2!important;color:#173e52!important}
+ #empresaResumoRecursos .emp-plan-head h2{margin:5px 0 7px!important;font-size:22px!important;line-height:1.2!important;color:#174D96!important}
  #empresaResumoRecursos .emp-plan-head p{margin:0!important;font-size:12px!important;line-height:1.55!important;color:#758a96!important}
- #empresaResumoRecursos .emp-plan-head button{min-height:40px!important;padding:0 15px!important;border:1px solid #d9e5ea!important;border-radius:10px!important;background:#fff!important;color:#1e6178!important;font-size:11px!important;font-weight:500!important;box-shadow:none!important}
+ #empresaResumoRecursos .emp-plan-head button{min-height:40px!important;padding:0 15px!important;border:1px solid #d9e5ea!important;border-radius:10px!important;background:#fff!important;color:#0E5FD8!important;font-size:11px!important;font-weight:500!important;box-shadow:none!important}
  #empresaResumoRecursos .emp-plan-usage{display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:14px!important;padding:20px 24px 24px!important;background:#fff!important}
  #empresaResumoRecursos .emp-plan-usage>div{padding:16px 17px!important;border:0!important;border-radius:14px!important;background:#f7fafb!important;box-shadow:none!important}
  #empresaResumoRecursos .emp-plan-usage>div>span{font-size:10.5px!important;color:#6d8491!important}
- #empresaResumoRecursos .emp-plan-usage>div>strong{display:block!important;margin:7px 0 10px!important;font-size:21px!important;color:#173f53!important}
+ #empresaResumoRecursos .emp-plan-usage>div>strong{display:block!important;margin:7px 0 10px!important;font-size:21px!important;color:#174D96!important}
  #empresaResumoRecursos .emp-plan-usage>div>i{height:5px!important;border:0!important;border-radius:999px!important;background:#e7eef1!important;overflow:hidden!important}
  #empresaResumoRecursos .emp-plan-usage>div>em{margin-top:8px!important;font-size:9.5px!important;font-style:normal!important;color:#82949e!important}
  #empresaResumoRecursos .emp-plan-usage>ul{grid-column:1/-1!important;display:flex!important;flex-wrap:wrap!important;gap:8px 18px!important;margin:4px 0 0!important;padding:0!important;border:0!important;list-style:none!important}
