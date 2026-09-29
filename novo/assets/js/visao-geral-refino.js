@@ -3,12 +3,20 @@
 'use strict';
 
 function carregarMontserratEM(){
- if(document.getElementById('emMontserratFont'))return;
- const link=document.createElement('link');
- link.id='emMontserratFont';
- link.rel='stylesheet';
- link.href='https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&display=swap';
- document.head.appendChild(link);
+ if(!document.getElementById('emMontserratFont')){
+  const link=document.createElement('link');
+  link.id='emMontserratFont';
+  link.rel='stylesheet';
+  link.href='https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&display=swap';
+  document.head.appendChild(link);
+ }
+ if(!document.getElementById('emPoppinsKpiFont')){
+  const linkKpi=document.createElement('link');
+  linkKpi.id='emPoppinsKpiFont';
+  linkKpi.rel='stylesheet';
+  linkKpi.href='https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap';
+  document.head.appendChild(linkKpi);
+ }
 }
 
 function aplicarRefinoVisaoGeralEM(){
@@ -39,10 +47,12 @@ function aplicarRefinoVisaoGeralEM(){
  #empresaMetricasNovas>button:before,
  #empresaMetricasNovas>button:after{display:none!important}
  #empresaMetricasNovas>button>*{border:0!important}
- #empresaMetricasNovas .kpi-num{display:block!important;margin:7px 0 5px!important;font-size:32px!important;line-height:1!important;font-weight:600!important;letter-spacing:-.045em!important;color:#153f55!important}
- #empresaMetricasNovas>button div>span{display:block!important;margin:0 0 8px!important;font-size:12px!important;line-height:1.25!important;font-weight:500!important;color:#4c6776!important}
- #empresaMetricasNovas>button div>small{display:block!important;font-size:10.5px!important;line-height:1.4!important;color:#81939d!important}
+ #empresaMetricasNovas .kpi-num{display:block!important;margin:6px 0 7px!important;font-family:'Poppins','Segoe UI',Arial,sans-serif!important;font-size:32px!important;line-height:1!important;font-weight:600!important;letter-spacing:-.035em!important;color:#0f4f9f!important}
+ #empresaMetricasNovas>button div>span{display:block!important;margin:0 0 8px!important;font-family:'Poppins','Segoe UI',Arial,sans-serif!important;font-size:11.5px!important;line-height:1.25!important;font-weight:600!important;letter-spacing:.01em!important;color:#35577f!important}
+ #empresaMetricasNovas>button div>small{display:block!important;font-family:'Poppins','Segoe UI',Arial,sans-serif!important;font-size:13px!important;line-height:1.45!important;font-weight:400!important;letter-spacing:0!important;color:#54708a!important}
  #empresaMetricasNovas>button i{opacity:.82!important;border:0!important;box-shadow:none!important}
+ #empresaMetricasNovas>button:nth-child(3) .kpi-num,
+ #empresaMetricasNovas>button:nth-child(4) .kpi-num{color:#d95b00!important}
 
  /* Plano atual: uma superfície principal, sem grade de divisórias pesadas */
  #empresaResumoRecursos{border:1px solid #e4ecef!important;border-radius:20px!important;background:#fff!important;box-shadow:0 8px 26px rgba(31,65,82,.055)!important;overflow:hidden!important}
