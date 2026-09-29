@@ -279,7 +279,7 @@ async function salvarPerfilEmpresaConectaEM(ev){
  const lista=ler('empregaMaisEmpresas')||[],cnpj=sessionStorage.getItem('empresaCnpj')||'',i=lista.findIndex(x=>String(x.cnpj||'')===String(cnpj));if(i<0)return alert('Empresa da sessão não encontrada.');
  const cfgNovo=Object.assign({},lista[i].conectaConfig||{},{perfil});lista[i].conectaConfig=cfgNovo;lista[i].perfil=Object.assign({},lista[i].perfil||{},perfil);lista[i].perfilAtualizadoEm=new Date().toISOString();gravar('empregaMaisEmpresas',lista);
  const btn=document.getElementById('conectaPerfilSalvarEM'),m=document.getElementById('conectaPerfilMsgEM');
- try{if(btn){btn.disabled=true;btn.textContent='Salvando...'}if(m){m.textContent='Sincronizando perfil...';m.className='conecta-profile-msg'}await conectaSalvarEmpresaCloudEM(cfgNovo);conectaRegistrarHistoricoEM('perfil','Perfil público da empresa atualizado');if(m){m.textContent='Perfil salvo com sucesso.';m.className='conecta-profile-msg ok'}mostrarToast?.('Perfil da empresa atualizado.');renderPainelConectaEM()}catch(err){console.error('Perfil Conecta:',err);if(m){m.textContent='Salvo localmente, mas a sincronização não foi concluída.';m.className='conecta-profile-msg erro'}}finally{if(btn){btn.disabled=false;btn.textContent='Salvar perfil da empresa'}}
+ try{if(btn){btn.disabled=true;btn.textContent='Salvando...'}if(m){m.textContent='Sincronizando perfil...';m.className='conecta-profile-msg'}await conectaSalvarEmpresaCloudEM(cfgNovo);conectaRegistrarHistoricoEM('perfil','Perfil público da empresa atualizado');if(m){m.textContent='Perfil salvo com sucesso.';m.className='conecta-profile-msg ok'}if(typeof window.mostrarToast==='function')window.mostrarToast('Perfil da empresa atualizado.');renderPainelConectaEM()}catch(err){console.error('Perfil Conecta:',err);if(m){m.textContent='Salvo localmente, mas a sincronização não foi concluída.';m.className='conecta-profile-msg erro'}}finally{if(btn){btn.disabled=false;btn.textContent='Salvar perfil da empresa'}}
 }
 window.conectaPerfilImagemSelecionadaEM=conectaPerfilImagemSelecionadaEM;window.salvarPerfilEmpresaConectaEM=salvarPerfilEmpresaConectaEM;
 
@@ -483,7 +483,7 @@ async function salvarConfiguracaoConectaEM(e){
   await conectaSalvarEmpresaCloudEM(config);
   conectaRegistrarHistoricoEM('configuracao','Integração configurada',{detalhe:conectaSistemaInfoEM(sistema).nome+' · '+url});
   setMsg('Configuração salva com sucesso.','ok');
-  mostrarToast?.('Configuração do +Empregos Conecta salva.');
+  if(typeof window.mostrarToast==='function')window.mostrarToast('Configuração do +Empregos Conecta salva.');
   await renderPainelConectaEM();
   return true
  }catch(err){
@@ -528,7 +528,7 @@ async function salvarDestinoVagaConectaEM(id){
   document.getElementById('conectaDestinoModalEM')?.remove();
   conectaRegistrarHistoricoEM('destino','Destino de candidatura alterado',{detalhe:conectaDestinoLabelEM(tipo)});
   renderPainelConectaEM();
-  mostrarToast?.('Destino da candidatura atualizado.')
+  if(typeof window.mostrarToast==='function')window.mostrarToast('Destino da candidatura atualizado.')
  }catch(err){console.error(err);alert('Não foi possível atualizar esta vaga.')}
 }
 window.abrirDestinoVagaConectaEM=abrirDestinoVagaConectaEM;
