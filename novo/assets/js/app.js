@@ -681,6 +681,7 @@ function conectaAbaEM(aba,btn){
 function conectaDataEM(v){try{return v?new Date(v).toLocaleString('pt-BR'):'—'}catch(_){return'—'}}
 async function renderPainelConectaEM(){
  garantirPainelConectaEM();
+ await conectaHidratarEmpresaSessaoEM();
  const e=empresaLogada?.()||{},cfg=conectaConfigEM(),vagas=conectaVagasEmpresaEM(),hist=conectaHistoricoEM(),metricas=await conectaMetricasEmpresaEM();
  const ativas=vagas.filter(v=>v.status==='aprovada'&&vagaDentroPrazo(v)).length;
  const pend=vagas.filter(v=>['pendente','em_analise','analise'].includes(String(v.status||'').toLowerCase())).length;
