@@ -431,6 +431,25 @@ function conectaVagasEmpresaEM(){
   v.candidatura_link
  ))
 }
+function conectaDescobertasEM(){
+ try{
+  const cnpj=sessionStorage.getItem('empresaCnpj')||'';
+  const raw=sessionStorage.getItem('empregaMaisConectaDescobertas:'+cnpj)||'';
+  const data=raw?JSON.parse(raw):null;
+  return data&&typeof data==='object'?data:{jobs:[],jobs_found:0,provider:'',checked_at:''}
+ }catch(_){return{jobs:[],jobs_found:0,provider:'',checked_at:''}}
+}
+function conectaSalvarDescobertasEM(data){
+ const cnpj=sessionStorage.getItem('empresaCnpj')||'';
+ const jobs=Array.isArray(data?.jobs)?data.jobs.slice(0,300):[];
+ const payload={jobs,jobs_found:Number(data?.jobs_found||jobs.length||0),provider:String(data?.provider||''),checked_at:String(data?.checked_at||new Date().toISOString()),source_url:String(data?.source_url||'')};
+ try{sessionStorage.setItem('empregaMaisConectaDescobertas:'+cnpj,JSON.stringify(payload))}catch(_){}
+ return payload
+}
+function conectaAbrirVagaDescobertaEM(url){
+ try{const u=new URL(String(url||''));if(/^https?:$/.test(u.protocol))window.open(u.toString(),'_blank','noopener,noreferrer')}catch(_){}
+}
+window.conectaAbrirVagaDescobertaEM=conectaAbrirVagaDescobertaEM;
 function conectaHistoricoEM(){
  const cnpj=sessionStorage.getItem('empresaCnpj')||'';
  return (ler('empregaMaisConectaHistorico',[])||[]).filter(x=>String(x.cnpj||'')===String(cnpj)).slice(0,30)
@@ -626,8 +645,11 @@ async function renderPainelConectaEM(){
  '<div class="conecta-field"><label>E-mail padrão</label><input id="conectaDestinoEmailEM" type="email" value="'+esc(cfg.destinoEmail)+'" placeholder="rh@empresa.com.br"><small class="conecta-field-help">Usado quando a candidatura for direcionada por e-mail.</small></div>'+
  '<div class="conecta-field"><label>WhatsApp padrão</label><input id="conectaDestinoWhatsappEM" value="'+esc(cfg.destinoWhatsapp)+'" placeholder="5531999999999"><small class="conecta-field-help">Informe DDI + DDD + número.</small></div>'+
  '<div class="conecta-field"><label>Link base opcional</label><input id="conectaDestinoLinkBaseEM" type="url" value="'+esc(cfg.destinoLinkBase)+'" placeholder="https://empresa.com/carreiras"><small class="conecta-field-help">Pode ser usado como fallback para vagas sem link individual.</small></div></div></section>'+
- '</div><div class="conecta-integracao-actions"><span id="conectaConfigMsgEM" class="conecta-profile-msg"></span><button id="conectaConfigSalvarEM" class="conecta-btn pri" type="submit">Salvar configuração</button></div></form></section>'; const vagasBox=document.getElementById('conectaSecVagasEM');if(vagasBox)vagasBox.innerHTML='<section class="conecta-card"><div class="conecta-card-head"><div><h3>Vagas sincronizadas</h3><p>'+vagas.length+' oportunidade(s) identificada(s).</p></div></div><div class="conecta-table">'+linhas+'</div></section>';
- const histBox=document.getElementById('conectaSecHistoricoEM');if(histBox)histBox.innerHTML='<section class="conecta-card"><div class="conecta-card-head"><div><h3>Histórico</h3><p>Registro das ações do Conecta nesta empresa.</p></div></div><div class="conecta-history">'+(hist.length?hist.map(x=>'<article><i></i><div><strong>'+esc(x.mensagem||x.tipo||'Atualização')+'</strong><span>'+esc(x.detalhe||'')+'</span></div><small>'+conectaDataEM(x.data)+'</small></article>').join(''):'<div class="conecta-empty"><b>Nenhuma sincronização registrada</b><span>O histórico começará a aparecer quando a integração for configurada e executada.</span></div>')+'</div></section>';
+ '</div><div class="conecta-integracao-actions"><span id="conectaConfigMsgEM" class="conecta-profile-msg"></span><button id="conectaConfigSalvarEM" class="conecta-btn pri" type="submit">Salvar configuração</button></div></form></section>'; const vagasBox=document.getElementById('conectaSecVagasEM');if(vagasBox){
+  const desc=conectaDescobertasEM(),descJobs=Array.isArray(desc.jobs)?desc.jobs:[],descQtd=Number(desc.jobs_found||descJobs.length||0);
+  const descLinhas=descJobs.length?descJobs.map((j,i)=>'<div class="conecta-row"><div><strong>'+esc(j.title||('Vaga encontrada '+(i+1)))+'</strong><small>'+esc(j.url||'')+'</small></div><span class="conecta-status ok">Encontrada</span><span>'+esc(desc.provider||'Origem')+'</span><button class="conecta-vaga-acao" type="button" onclick="conectaAbrirVagaDescobertaEM(\''+String(j.url||'').replace(/'/g,'')+'\')">Abrir origem</button></div>').join(''):'';
+  vagasBox.innerHTML='<section class="conecta-card"><div class="conecta-card-head"><div><h3>'+(descQtd?descQtd+' vaga(s) encontrada(s) na origem':'Vagas sincronizadas')+'</h3><p>'+(descQtd?'Conexão validada. Revise as oportunidades identificadas para seguir com a integração.':vagas.length+' oportunidade(s) identificada(s).')+'</p></div>'+(descQtd?'<button type="button" onclick="conectaAbaEM(\'integracao\')">Revisar origem</button>':'')+'</div>'+(descQtd?'<div style="margin:0 0 14px;padding:13px 15px;border:1px solid #e4d9eb;border-radius:12px;background:#faf7fc;color:#654f70;font-size:11px;line-height:1.5"><b style="color:#4b1c62">Próximo passo:</b> confira se essas vagas correspondem à origem configurada. A partir daqui seguimos para a importação e sincronização contínua.</div>':'')+'<div class="conecta-table">'+(descLinhas||linhas)+'</div></section>'
+ }; const histBox=document.getElementById('conectaSecHistoricoEM');if(histBox)histBox.innerHTML='<section class="conecta-card"><div class="conecta-card-head"><div><h3>Histórico</h3><p>Registro das ações do Conecta nesta empresa.</p></div></div><div class="conecta-history">'+(hist.length?hist.map(x=>'<article><i></i><div><strong>'+esc(x.mensagem||x.tipo||'Atualização')+'</strong><span>'+esc(x.detalhe||'')+'</span></div><small>'+conectaDataEM(x.data)+'</small></article>').join(''):'<div class="conecta-empty"><b>Nenhuma sincronização registrada</b><span>O histórico começará a aparecer quando a integração for configurada e executada.</span></div>')+'</div></section>';
  const perfil=conectaPerfilEmpresaEM(),perfilBox=document.getElementById('conectaSecPerfilEM');if(perfilBox)perfilBox.innerHTML=
  '<div class="conecta-profile-layout"><form class="conecta-profile-form" onsubmit="salvarPerfilEmpresaConectaEM(event)"><section class="conecta-profile-block"><h3>Identidade da empresa</h3><p>Logo e capa que vão acompanhar sua página institucional e fortalecer a apresentação das vagas.</p><div class="conecta-profile-media">'+
  '<div class="conecta-profile-upload"><strong>Logo</strong><div id="conectaPerfilLogoPreviewEM" class="conecta-profile-preview logo">'+(perfil.logo?'<img src="'+esc(perfil.logo)+'" alt="Logo">':'<span>Sua logo</span>')+'</div><label>Enviar logo<input type="file" accept="image/png,image/jpeg,image/webp" onchange="conectaPerfilImagemSelecionadaEM(this,\'conectaPerfilLogoEM\',\'conectaPerfilLogoPreviewEM\',\'logo\')"></label><input id="conectaPerfilLogoEM" type="hidden" value="'+esc(perfil.logo)+'"></div>'+
@@ -749,11 +771,13 @@ async function sincronizarAgoraConectaEM(){
   if(!r.ok||data?.ok!==true)throw new Error(data?.message||data?.error||('HTTP '+r.status));
   const agora=data.checked_at||new Date().toISOString();
   conectaSalvarEmpresaLocalEM({ultima:agora,conectaUltimaSync:agora,ultimoTesteOk:true,ultimaQtdEncontrada:Number(data.jobs_found||0)});
+  conectaSalvarDescobertasEM(data);
   conectaRegistrarHistoricoEM('sincronizacao','Conexão validada com sucesso',{detalhe:'Origem: '+cfg.url+' · vagas encontradas: '+Number(data.jobs_found||0)});
   await renderPainelConectaEM();
   const qtd=Number(data.jobs_found||0);
   const texto='Conexão com '+String(data.provider||cfg.sistema||'ATS')+' validada. '+qtd+' vaga(s) encontrada(s) na origem.';
-  if(typeof window.mostrarToast==='function')window.mostrarToast(texto);else alert(texto)
+  if(typeof window.mostrarToast==='function')window.mostrarToast(texto);else alert(texto);
+  if(qtd>0)setTimeout(()=>conectaAbaEM('vagas'),250)
  }catch(err){
   console.error('Sincronização Conecta:',err);
   conectaRegistrarHistoricoEM('erro','Falha ao testar integração',{detalhe:String(err?.message||err)});
