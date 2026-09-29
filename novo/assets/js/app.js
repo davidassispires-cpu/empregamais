@@ -429,7 +429,7 @@ async function renderPainelConectaEM(){
  const integ=document.getElementById('conectaSecIntegracaoEM');if(integ)integ.innerHTML=
  '<section class="conecta-card conecta-integracao-card">'+
  '<div class="conecta-integracao-head"><div class="conecta-integracao-icon">⌁</div><div><h3>Configuração da integração</h3><p>Defina de onde as vagas serão lidas e para onde os candidatos serão direcionados.</p></div><span class="conecta-integracao-status '+(conectado?'ok':'')+'"><i></i>'+(conectado?'Integração configurada':'Aguardando configuração')+'</span></div>'+
- '<form onsubmit="salvarConfiguracaoConectaEM(event)"><div class="conecta-integracao-body">'+
+ '<form novalidate onsubmit="salvarConfiguracaoConectaEM(event)"><div class="conecta-integracao-body">'+
  '<section class="conecta-form-section"><div class="conecta-form-section-title"><i>01</i><div><strong>Fonte das vagas</strong><span>Informe o portal de carreiras, ATS ou feed que o Conecta deverá acompanhar.</span></div></div>'+
  '<div class="conecta-settings">'+
  '<div class="conecta-field"><label>Sistema utilizado</label><select id="conectaSistemaEM" onchange="conectaAtualizarSistemaEM(\'select\')"><option value="auto" '+(cfg.sistema==='auto'?'selected':'')+'>Detectar automaticamente</option><option value="abler" '+(cfg.sistema==='abler'?'selected':'')+'>Abler</option><option value="gupy" '+(cfg.sistema==='gupy'?'selected':'')+'>Gupy</option><option value="solides" '+(cfg.sistema==='solides'?'selected':'')+'>Sólides</option><option value="pandape" '+(cfg.sistema==='pandape'?'selected':'')+'>Pandapé</option><option value="workday" '+(cfg.sistema==='workday'?'selected':'')+'>Workday</option><option value="greenhouse" '+(cfg.sistema==='greenhouse'?'selected':'')+'>Greenhouse</option><option value="lever" '+(cfg.sistema==='lever'?'selected':'')+'>Lever</option><option value="portal" '+(cfg.sistema==='portal'?'selected':'')+'>Portal próprio / outro</option></select><small class="conecta-field-help">Se não souber, deixe em detectar automaticamente.</small></div>'+
@@ -442,7 +442,7 @@ async function renderPainelConectaEM(){
  '<div class="conecta-field"><label>E-mail padrão</label><input id="conectaDestinoEmailEM" type="email" value="'+esc(cfg.destinoEmail)+'" placeholder="rh@empresa.com.br"><small class="conecta-field-help">Usado quando a candidatura for direcionada por e-mail.</small></div>'+
  '<div class="conecta-field"><label>WhatsApp padrão</label><input id="conectaDestinoWhatsappEM" value="'+esc(cfg.destinoWhatsapp)+'" placeholder="5531999999999"><small class="conecta-field-help">Informe DDI + DDD + número.</small></div>'+
  '<div class="conecta-field"><label>Link base opcional</label><input id="conectaDestinoLinkBaseEM" type="url" value="'+esc(cfg.destinoLinkBase)+'" placeholder="https://empresa.com/carreiras"><small class="conecta-field-help">Pode ser usado como fallback para vagas sem link individual.</small></div></div></section>'+
- '</div><div class="conecta-integracao-actions"><button class="conecta-btn pri" type="submit">Salvar configuração</button></div></form></section>'; const vagasBox=document.getElementById('conectaSecVagasEM');if(vagasBox)vagasBox.innerHTML='<section class="conecta-card"><div class="conecta-card-head"><div><h3>Vagas sincronizadas</h3><p>'+vagas.length+' oportunidade(s) identificada(s).</p></div></div><div class="conecta-table">'+linhas+'</div></section>';
+ '</div><div class="conecta-integracao-actions"><span id="conectaConfigMsgEM" class="conecta-profile-msg"></span><button id="conectaConfigSalvarEM" class="conecta-btn pri" type="submit">Salvar configuração</button></div></form></section>'; const vagasBox=document.getElementById('conectaSecVagasEM');if(vagasBox)vagasBox.innerHTML='<section class="conecta-card"><div class="conecta-card-head"><div><h3>Vagas sincronizadas</h3><p>'+vagas.length+' oportunidade(s) identificada(s).</p></div></div><div class="conecta-table">'+linhas+'</div></section>';
  const histBox=document.getElementById('conectaSecHistoricoEM');if(histBox)histBox.innerHTML='<section class="conecta-card"><div class="conecta-card-head"><div><h3>Histórico</h3><p>Registro das ações do Conecta nesta empresa.</p></div></div><div class="conecta-history">'+(hist.length?hist.map(x=>'<article><i></i><div><strong>'+esc(x.mensagem||x.tipo||'Atualização')+'</strong><span>'+esc(x.detalhe||'')+'</span></div><small>'+conectaDataEM(x.data)+'</small></article>').join(''):'<div class="conecta-empty"><b>Nenhuma sincronização registrada</b><span>O histórico começará a aparecer quando a integração for configurada e executada.</span></div>')+'</div></section>';
  const perfil=conectaPerfilEmpresaEM(),perfilBox=document.getElementById('conectaSecPerfilEM');if(perfilBox)perfilBox.innerHTML=
  '<div class="conecta-profile-layout"><form class="conecta-profile-form" onsubmit="salvarPerfilEmpresaConectaEM(event)"><section class="conecta-profile-block"><h3>Identidade da empresa</h3><p>Logo e capa que vão acompanhar sua página institucional e fortalecer a apresentação das vagas.</p><div class="conecta-profile-media">'+
@@ -458,27 +458,41 @@ async function renderPainelConectaEM(){
  const conf=document.getElementById('conectaSecConfigEM');if(conf)conf.innerHTML='<section class="conecta-card"><div class="conecta-card-head"><div><h3>Preferências do Conecta</h3><p>Controles gerais da integração.</p></div></div><div class="conecta-status-box"><div class="conecta-health '+(conectado?'':'off')+'"><i></i><div><strong>Integração '+(conectado?'configurada':'não configurada')+'</strong><small>'+esc(cfg.url||'Nenhuma fonte definida')+'</small></div></div><div class="conecta-health"><i></i><div><strong>Publicação passa por análise</strong><small>As vagas sincronizadas entram no fluxo de revisão antes da publicação.</small></div></div></div></section>'
 }
 async function salvarConfiguracaoConectaEM(e){
- e.preventDefault();
- const url=(document.getElementById('conectaUrlEM')?.value||'').trim();
+ if(e&&typeof e.preventDefault==='function')e.preventDefault();
+ const val=id=>(document.getElementById(id)?.value||'').trim();
+ const url=val('conectaUrlEM');
  const sistemaSelecionado=document.getElementById('conectaSistemaEM')?.value||'auto';
  const sistema=sistemaSelecionado==='auto'?conectaDetectarSistemaEM(url):sistemaSelecionado;
  const tipo=document.getElementById('conectaTipoEM')?.value||'portal';
  const frequencia=document.getElementById('conectaFreqEM')?.value||'60';
  const destinoPadrao=document.getElementById('conectaDestinoPadraoEM')?.value||'externo';
- const destinoEmail=(document.getElementById('conectaDestinoEmailEM')?.value||'').trim();
- const destinoWhatsapp=nums(document.getElementById('conectaDestinoWhatsappEM')?.value||'');
- const destinoLinkBase=(document.getElementById('conectaDestinoLinkBaseEM')?.value||'').trim();
- if(!/^https?:\/\//i.test(url)){alert('Informe uma URL válida começando com http:// ou https://');return}
+ const destinoEmail=val('conectaDestinoEmailEM');
+ const destinoWhatsapp=nums(val('conectaDestinoWhatsappEM'));
+ const destinoLinkBase=val('conectaDestinoLinkBaseEM');
+ const btn=document.getElementById('conectaConfigSalvarEM');
+ const msg=document.getElementById('conectaConfigMsgEM');
+ const setMsg=(texto,tipoMsg='')=>{if(msg){msg.textContent=texto;msg.className='conecta-profile-msg'+(tipoMsg?' '+tipoMsg:'')}};
+ if(!/^https?:\/\//i.test(url)){setMsg('Informe uma URL válida.','erro');alert('Informe uma URL válida começando com http:// ou https://');return false}
+ if(destinoEmail&&!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(destinoEmail)){setMsg('O e-mail opcional é inválido.','erro');alert('Revise o e-mail padrão ou deixe o campo vazio.');return false}
+ if(destinoLinkBase&&!/^https?:\/\//i.test(destinoLinkBase)){setMsg('O link opcional é inválido.','erro');alert('Revise o link base opcional ou deixe o campo vazio.');return false}
  const config=Object.assign({},empresaLogada?.()?.conectaConfig||{},{url,sistema,tipo,frequencia,ativo:true,ultima:conectaConfigEM().ultima||'',destinoPadrao,destinoEmail,destinoWhatsapp,destinoLinkBase});
  try{
-  conectaSalvarEmpresaLocalEM(config);
+  if(btn){btn.disabled=true;btn.textContent='Salvando...'}
+  setMsg('Salvando configuração...');
+  const local=conectaSalvarEmpresaLocalEM(config);
   await conectaSalvarEmpresaCloudEM(config);
-  conectaRegistrarHistoricoEM('configuracao','Integração e destino das candidaturas atualizados',{detalhe:conectaDestinoLabelEM(destinoPadrao)});
-  renderPainelConectaEM();
-  mostrarToast?.('Configuração do +Empregos Conecta salva.')
+  conectaRegistrarHistoricoEM('configuracao','Integração configurada',{detalhe:conectaSistemaInfoEM(sistema).nome+' · '+url});
+  setMsg('Configuração salva com sucesso.','ok');
+  mostrarToast?.('Configuração do +Empregos Conecta salva.');
+  await renderPainelConectaEM();
+  return true
  }catch(err){
   console.error('Configuração Conecta:',err);
-  alert('Não foi possível salvar a configuração do Conecta.')
+  setMsg('Não foi possível salvar no servidor.','erro');
+  alert('Não foi possível salvar a configuração do Conecta. '+(err?.message||''));
+  return false
+ }finally{
+  if(btn){btn.disabled=false;btn.textContent='Salvar configuração'}
  }
 }
 function abrirDestinoVagaConectaEM(id){
