@@ -438,13 +438,11 @@ function conectaSalvarEmpresaLocalEM(patch={}){
 }
 async function conectaSalvarEmpresaCloudEM(config){
  const token=await sbGarantirSessaoEM();if(!token)throw new Error('Sessão da empresa expirada.');
- const emp=await sbBuscarMinhaEmpresaEM();if(!emp?.id)throw new Error('Empresa não encontrada.');
- const agora=new Date().toISOString();
  const rows=await sbJsonEM(
-  EMPREGAMAIS_SUPABASE_URL+'/rest/v1/empresas?id=eq.'+encodeURIComponent(emp.id),
-  {method:'PATCH',headers:Object.assign(sbHeadersEM(token),{'Prefer':'return=representation'}),body:JSON.stringify({conecta_config:config,conecta_sync_enabled:config?.ativo===true,conecta_next_sync_at:agora})}
+  EMPREGAMAIS_SUPABASE_URL+'/rest/v1/rpc/conecta_save_my_config',
+  {method:'POST',headers:Object.assign(sbHeadersEM(token),{'Content-Type':'application/json'}),body:JSON.stringify({p_config:config})}
  );
- const remoto=Array.isArray(rows)?rows[0]:null;
+ const remoto=Array.isArray(rows)?rows[0]:rows;
  if(remoto){const local=sbEmpresaParaLocalEM(remoto,'');sbSalvarEmpresaLocalEM(local)}
  return remoto
 }
