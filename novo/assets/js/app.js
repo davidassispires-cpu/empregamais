@@ -1401,7 +1401,7 @@ const EMPREGAMAIS_SB_TOKEN="empregaMaisSupabaseAccessToken";
 const EMPREGAMAIS_SB_REFRESH="empregaMaisSupabaseRefreshToken";
 const EMPREGAMAIS_SB_ADMIN_TOKEN="empregaMaisAdminSupabaseAccessToken";
 const EMPREGAMAIS_SB_ADMIN_REFRESH="empregaMaisAdminSupabaseRefreshToken";
-function sbEmailEmpresaEM(cnpj){return nums(cnpj)+"@auth.maisempregos.com.br"}
+function sbEmailEmpresaEM(cnpj){return nums(cnpj)+"@auth.empregamais.com.br"}
 function sbHeadersEM(token){const h={"apikey":EMPREGAMAIS_SUPABASE_KEY,"Content-Type":"application/json"};if(token)h.Authorization="Bearer "+token;return h}
 function sbJsonEM(url,opt){return fetch(url,opt).then(async r=>{const t=await r.text();let j={};try{j=t?JSON.parse(t):{}}catch(e){}if(!r.ok)throw new Error(j.msg||j.message||j.error_description||j.error||("Erro "+r.status));return j})}
 function sbSalvarSessaoEM(a){if(localStorage.getItem('empregaMaisLogoutBloqueio')==='1'||sessionStorage.getItem('empregaMaisLogoutBloqueio')==='1')return;if(a?.access_token){sessionStorage.setItem(EMPREGAMAIS_SB_TOKEN,a.access_token);localStorage.setItem(EMPREGAMAIS_SB_TOKEN,a.access_token)}if(a?.refresh_token){sessionStorage.setItem(EMPREGAMAIS_SB_REFRESH,a.refresh_token);localStorage.setItem(EMPREGAMAIS_SB_REFRESH,a.refresh_token)}}
@@ -1436,6 +1436,7 @@ async function sbLoginAuthEmpresaEM(credencial,senha){
  sessionStorage.removeItem('empregaMaisLogoutBloqueio');
  const bruto=String(credencial||'').trim(),cnpj=nums(bruto),digitado=bruto.toLowerCase();
  let emailAuth=cnpj.length===14?sbEmailEmpresaEM(cnpj):digitado;
+ const emailAuthLegado=cnpj.length===14?(cnpj+"@auth.maisempregos.com.br"):'';
 
  if(cnpj.length!==14&&digitado.includes('@')){
   const locais=ler('empregaMaisEmpresas')||[];
@@ -1452,6 +1453,15 @@ async function sbLoginAuthEmpresaEM(credencial,senha){
   );
   sbSalvarSessaoEM(a);return a
  }catch(err){
+  if(emailAuthLegado&&emailAuthLegado!==emailAuth){
+   try{
+    const a=await sbJsonEM(
+     EMPREGAMAIS_SUPABASE_URL+"/auth/v1/token?grant_type=password",
+     {method:"POST",headers:sbHeadersEM(),body:JSON.stringify({email:emailAuthLegado,password:senha})}
+    );
+    sbSalvarSessaoEM(a);return a
+   }catch(_){}
+  }
   if(emailAuth!==digitado&&digitado.includes('@')){
    try{
     const a=await sbJsonEM(
