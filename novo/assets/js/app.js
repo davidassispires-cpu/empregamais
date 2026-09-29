@@ -1,4 +1,4 @@
-const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];const ler=(k,d=[])=>{try{return JSON.parse(localStorage.getItem(k))||d}catch{return d}},gravar=(k,v)=>localStorage.setItem(k,JSON.stringify(v)),nums=v=>(v||'').replace(/\D/g,'');function irPara(p='home'){const url=p==='home'?location.pathname:location.pathname+'?pagina='+encodeURIComponent(p);if(location.pathname+location.search!==url)history.pushState({},'',url);abrirRota(p)}function mostrarPagina(id){const mesmaPagina=$('#pagina-'+id)?.classList.contains('ativa');document.querySelectorAll('.pagina').forEach(x=>x.classList.remove('ativa'));let el=$('#pagina-'+id);if(!el){id='home';el=$('#pagina-home');if(location.search)history.replaceState({},'',location.pathname)}if(el)el.classList.add('ativa');document.querySelectorAll('.menu-drop').forEach(x=>x.classList.remove('aberto'));if(!mesmaPagina)scrollTo(0,0)}function papelAtual(){const sessao=sessionStorage.getItem('empregaMaisPapel')||'';if(sessao)return sessao;const token=sessionStorage.getItem('empregaMaisSupabaseAccessToken')||localStorage.getItem('empregaMaisSupabaseAccessToken')||sessionStorage.getItem('empregaMaisSupabaseRefreshToken')||localStorage.getItem('empregaMaisSupabaseRefreshToken');return token?(localStorage.getItem('empregaMaisPapelPersistido')||''):''}function abrirRota(p){garantirEstiloTextoVagaEM();const solicitada=p;if(p==='painel-empresa'&&papelAtual()!=='empresa')p='login-empresa';if(p==='painel-candidato'&&papelAtual()!=='candidato')p='login-candidato';if(p==='perfil-empresa'&&papelAtual()!=='empresa')p='login-empresa';if(p==='painel-admin'&&sessionStorage.getItem('empregaMaisAdmin')!=='1')p='login-admin';if(p==='publicar'&&papelAtual()!=='empresa')p='login-empresa';if(p==='candidatos-empresa'&&papelAtual()!=='empresa')p='login-empresa';if(p==='contratacoes-empresa'&&papelAtual()!=='empresa')p='login-empresa';if(p==='candidaturas'&&papelAtual()!=='candidato')p='login-candidato';if((p==='curriculo'||p==='salvas'||p==='perfil-candidato'||p==='premium-candidato'||p==='avaliar-processos')&&papelAtual()!=='candidato')p='login-candidato';if(p==='candidatar'&&papelAtual()!=='candidato')p='login-candidato';if(p!==solicitada){const url=p==='home'?location.pathname:location.pathname+'?pagina='+encodeURIComponent(p);history.replaceState({},'',url)}mostrarPagina(p||'home');if(p==='cadastro-empresa')setTimeout(()=>{try{reformularCadastroEmpresaProEM()}catch(e){console.error('Cadastro empresa Pro:',e)}},0);if(p==='publicar')setTimeout(prepararPublicacao,0);if(p==='vagas-empresa')setTimeout(()=>{if(typeof window.renderVagasEmpresaPaginaEM==='function')window.renderVagasEmpresaPaginaEM()},0);if(p==='candidatos-empresa')setTimeout(()=>{if(sessionStorage.getItem('vagaCandidatosSelecionada'))renderizarCandidatosEmpresa();else if(typeof window.renderCentralProcessosEmpresaEM==='function')window.renderCentralProcessosEmpresaEM();},0);if(p==='contratacoes-empresa')setTimeout(()=>{if(typeof window.renderContratacoesEmpresaEM==='function')window.renderContratacoesEmpresaEM()},0);if(p==='candidaturas')setTimeout(renderizarCandidaturasCandidato,0);if(p==='perfil-candidato')setTimeout(carregarPerfilCandidato,0);if(p==='curriculo')setTimeout(async()=>{try{await sincronizarCandidatoLogadoSupabaseEM()}catch(e){console.warn('Sincronização currículo:',e)}renderizarCurriculo();configurarUploadCurriculo();carregarCurriculoOnlineEM()},0);if(p==='salvas')setTimeout(renderizarSalvas,0);if(p==='senior')setTimeout(renderizarVagasSenior,0);if(p==='perfil-empresa')setTimeout(()=>{carregarPerfilEmpresa();mostrarPerfilEmpresaNormalEM()},0);if(p==='central-empresa')setTimeout(renderCentralEmpresaEM,0);if(p==='empresa-publica')setTimeout(renderizarEmpresaPublica,0);if(p==='painel-admin')setTimeout(()=>adminAba('geral'),0);if(p==='home')setTimeout(async()=>{await sincronizarAvaliacoesEmpresasSupabaseEM();renderizarVagasPortal()},0);if(p==='emprego-conecta')setTimeout(iniciarConectaShowcaseEM,80);if(p==='planos')setTimeout(renderizarPlanosModeloB,0);if(p==='plano-detalhe')setTimeout(renderizarDetalhesPlano,0);if(p==='vaga')setTimeout(()=>sincronizarCandidatoLogadoSupabaseEM().finally(renderizarVagaDetalhe),0);if(p==='candidatar')setTimeout(()=>sincronizarCandidatoLogadoSupabaseEM().finally(prepararCandidatura),0);if(p==='painel-empresa'){const e=$('#empresaSaudacao');if(e)e.textContent='Olá, '+(sessionStorage.getItem('empresaNome')||'empresa')+'. Gerencie suas vagas e candidatos.';setTimeout(renderizarPainelEmpresa,0)}if(p==='premium-candidato')setTimeout(atualizarPremiumCandidatoEM,0);if(p==='avaliar-processos')setTimeout(renderizarAvaliacoesProcessosEM,0);if(p==='painel-candidato'){setTimeout(atualizarPainelCandidato,0);const e=$('#candidatoSaudacao');if(e)e.textContent='Olá, '+(sessionStorage.getItem('candidatoNome')||'candidato')+'. Acompanhe sua jornada profissional.'}}
+const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];const ler=(k,d=[])=>{try{return JSON.parse(localStorage.getItem(k))||d}catch{return d}},gravar=(k,v)=>localStorage.setItem(k,JSON.stringify(v)),nums=v=>(v||'').replace(/\D/g,'');function irPara(p='home'){const url=p==='home'?location.pathname:location.pathname+'?pagina='+encodeURIComponent(p);if(location.pathname+location.search!==url)history.pushState({},'',url);abrirRota(p)}function mostrarPagina(id){const mesmaPagina=$('#pagina-'+id)?.classList.contains('ativa');document.querySelectorAll('.pagina').forEach(x=>x.classList.remove('ativa'));let el=$('#pagina-'+id);if(!el){id='home';el=$('#pagina-home');if(location.search)history.replaceState({},'',location.pathname)}if(el)el.classList.add('ativa');document.querySelectorAll('.menu-drop').forEach(x=>x.classList.remove('aberto'));if(!mesmaPagina)scrollTo(0,0)}function papelAtual(){const sessao=sessionStorage.getItem('empregaMaisPapel')||'';if(sessao)return sessao;const token=sessionStorage.getItem('empregaMaisSupabaseAccessToken')||localStorage.getItem('empregaMaisSupabaseAccessToken')||sessionStorage.getItem('empregaMaisSupabaseRefreshToken')||localStorage.getItem('empregaMaisSupabaseRefreshToken');return token?(localStorage.getItem('empregaMaisPapelPersistido')||''):''}function abrirRota(p){garantirEstiloTextoVagaEM();const solicitada=p;if(p==='painel-empresa'&&papelAtual()!=='empresa')p='login-empresa';if(p==='painel-candidato'&&papelAtual()!=='candidato')p='login-candidato';if(p==='perfil-empresa'&&papelAtual()!=='empresa')p='login-empresa';if(p==='painel-admin'&&sessionStorage.getItem('empregaMaisAdmin')!=='1')p='login-admin';if(p==='publicar'&&papelAtual()!=='empresa')p='login-empresa';if(p==='candidatos-empresa'&&papelAtual()!=='empresa')p='login-empresa';if(p==='contratacoes-empresa'&&papelAtual()!=='empresa')p='login-empresa';if(p==='candidaturas'&&papelAtual()!=='candidato')p='login-candidato';if((p==='curriculo'||p==='salvas'||p==='perfil-candidato'||p==='premium-candidato'||p==='avaliar-processos')&&papelAtual()!=='candidato')p='login-candidato';if(p==='candidatar'&&papelAtual()!=='candidato')p='login-candidato';if(p!==solicitada){const url=p==='home'?location.pathname:location.pathname+'?pagina='+encodeURIComponent(p);history.replaceState({},'',url)}mostrarPagina(p||'home');if(p==='cadastro-empresa')setTimeout(()=>{try{reformularCadastroEmpresaProEM()}catch(e){console.error('Cadastro empresa Pro:',e)}},0);if(p==='publicar')setTimeout(prepararPublicacao,0);if(p==='vagas-empresa')setTimeout(()=>{if(typeof window.renderVagasEmpresaPaginaEM==='function')window.renderVagasEmpresaPaginaEM()},0);if(p==='candidatos-empresa')setTimeout(()=>{if(sessionStorage.getItem('vagaCandidatosSelecionada'))renderizarCandidatosEmpresa();else if(typeof window.renderCentralProcessosEmpresaEM==='function')window.renderCentralProcessosEmpresaEM();},0);if(p==='contratacoes-empresa')setTimeout(()=>{if(typeof window.renderContratacoesEmpresaEM==='function')window.renderContratacoesEmpresaEM()},0);if(p==='candidaturas')setTimeout(async()=>{try{await sbCarregarCandidaturasEM(false)}catch(e){console.warn('Sincronização candidaturas candidato:',e)}renderizarCandidaturasCandidato()},0);if(p==='perfil-candidato')setTimeout(carregarPerfilCandidato,0);if(p==='curriculo')setTimeout(async()=>{try{await sincronizarCandidatoLogadoSupabaseEM()}catch(e){console.warn('Sincronização currículo:',e)}renderizarCurriculo();configurarUploadCurriculo();carregarCurriculoOnlineEM()},0);if(p==='salvas')setTimeout(renderizarSalvas,0);if(p==='senior')setTimeout(renderizarVagasSenior,0);if(p==='perfil-empresa')setTimeout(()=>{carregarPerfilEmpresa();mostrarPerfilEmpresaNormalEM()},0);if(p==='central-empresa')setTimeout(renderCentralEmpresaEM,0);if(p==='empresa-publica')setTimeout(renderizarEmpresaPublica,0);if(p==='painel-admin')setTimeout(()=>adminAba('geral'),0);if(p==='home')setTimeout(async()=>{await sincronizarAvaliacoesEmpresasSupabaseEM();renderizarVagasPortal()},0);if(p==='emprego-conecta')setTimeout(iniciarConectaShowcaseEM,80);if(p==='planos')setTimeout(renderizarPlanosModeloB,0);if(p==='plano-detalhe')setTimeout(renderizarDetalhesPlano,0);if(p==='vaga')setTimeout(()=>sincronizarCandidatoLogadoSupabaseEM().finally(renderizarVagaDetalhe),0);if(p==='candidatar')setTimeout(()=>sincronizarCandidatoLogadoSupabaseEM().finally(prepararCandidatura),0);if(p==='painel-empresa'){const e=$('#empresaSaudacao');if(e)e.textContent='Olá, '+(sessionStorage.getItem('empresaNome')||'empresa')+'. Gerencie suas vagas e candidatos.';setTimeout(renderizarPainelEmpresa,0)}if(p==='premium-candidato')setTimeout(atualizarPremiumCandidatoEM,0);if(p==='avaliar-processos')setTimeout(renderizarAvaliacoesProcessosEM,0);if(p==='painel-candidato'){setTimeout(atualizarPainelCandidato,0);const e=$('#candidatoSaudacao');if(e)e.textContent='Olá, '+(sessionStorage.getItem('candidatoNome')||'candidato')+'. Acompanhe sua jornada profissional.'}}
 function atualizarPremiumCandidatoEM(){const c=candidatoLogado(),ativo=candidatoPremiumAtivoEM(c),pag=document.getElementById('pagina-premium-candidato');if(!pag)return;pag.classList.toggle('premium-ativo',ativo);pag.querySelectorAll('.premium-comparativo-card.premium').forEach(el=>el.classList.toggle('plano-ativo',ativo));const btn=pag.querySelector('.premium-comparativo-card.premium button');if(btn){btn.textContent=ativo?'Premium ativo':'Conhecer planos Premium';btn.disabled=ativo}}
 function assinarPremiumCandidatoEM(periodo='mensal'){const opcoes={mensal:{nome:'Premium Mensal',valor:29.90},trimestral:{nome:'Premium Trimestral',valor:79.90},semestral:{nome:'Premium Semestral',valor:149.90}},pl=opcoes[periodo]||opcoes.mensal,cs=ler('empregaMaisCandidatos'),email=sessionStorage.getItem('candidatoEmail')||'',i=cs.findIndex(x=>String(x.email||'').toLowerCase()===email.toLowerCase());if(i<0){alert('Entre na sua conta de candidato para assinar o Premium.');irPara('login-candidato');return}const pedidos=ler('empregaMaisPedidosPremiumCandidato');pedidos.unshift({id:'PREM-'+Date.now(),candidatoEmail:email,candidatoNome:cs[i].nome||sessionStorage.getItem('candidatoNome')||'Candidato',plano:pl.nome,periodo,valor:pl.valor,status:'aguardando_pagamento',criadoEm:new Date().toISOString()});gravar('empregaMaisPedidosPremiumCandidato',pedidos);alert('Seu pedido do '+pl.nome+' foi criado. A etapa de pagamento será conectada ao checkout do portal.');}
 
@@ -2704,24 +2704,105 @@ document.addEventListener("submit",async function(e){
 const _sbCarregarCandidaturasBaseEM=sbCarregarCandidaturasEM;
 sbCarregarCandidaturasEM=async function(renderizar){
  if(sbCandidaturasCarregandoEM)return sbCandidaturasCacheEM;
- const legado=ler("empregaMaisCandidaturas").slice(),token=await sbGarantirSessaoEM();if(!token)return candidaturas();
+ const legado=(ler("empregaMaisCandidaturas")||[]).slice(),token=await sbGarantirSessaoEM();
+ if(!token)return candidaturas();
  sbCandidaturasCarregandoEM=true;
  try{
-  let rows=await sbJsonEM(EMPREGAMAIS_SUPABASE_URL+"/rest/v1/candidaturas?select=*&order=criado_em.desc",{method:"GET",headers:sbHeadersEM(token)});rows=Array.isArray(rows)?rows:[];
+  let rows=await sbJsonEM(EMPREGAMAIS_SUPABASE_URL+"/rest/v1/candidaturas?select=*&order=criado_em.desc",{method:"GET",headers:sbHeadersEM(token)});
+  rows=Array.isArray(rows)?rows:[];
   if(papelAtual()==="candidato"){
-   const u=await sbUsuarioAtualEM(),email=String(sessionStorage.getItem("candidatoEmail")||u.email||"").toLowerCase(),ids=new Set(rows.map(x=>x.id));
-   const antigas=legado.filter(c=>String(c.email||"").toLowerCase()===email&&!ids.has(c.id));
+   const u=await sbUsuarioAtualEM();
+   const email=String(sessionStorage.getItem("candidatoEmail")||u.email||"").trim().toLowerCase();
+   const ids=new Set(rows.map(x=>String(x.id||"")));
+   const antigas=legado.filter(c=>{
+    const ce=String(c.email||c.candidatoEmail||"").trim().toLowerCase();
+    const uid=String(c.candidatoUserId||c.candidato_user_id||"");
+    return (uid&&uid===String(u.id))||(ce&&email&&ce===email)
+   }).filter(c=>!ids.has(String(c.id||"")));
    for(const c of antigas){
-    const v=(sbVagasCacheEM.length?sbVagasCacheEM:ler("empregaMaisVagas")).find(x=>x.id===c.vagaId);if(!v?.userId)continue;
-    const criado=c.criadoEm||new Date().toISOString(),hist=Array.isArray(c.historico)&&c.historico.length?c.historico:[{status:"Candidatura enviada",data:criado},{status:c.status||"Em avaliação",data:c.atualizadoEm||criado}];
+    let v=(sbVagasCacheEM.length?sbVagasCacheEM:ler("empregaMaisVagas")).find(x=>String(x.id)===String(c.vagaId||c.vaga_id));
+    if((!v||!v.userId)&&String(c.vagaId||c.vaga_id)){
+     try{
+      const vr=await sbJsonEM(
+       EMPREGAMAIS_SUPABASE_URL+"/rest/v1/vagas?select=id,user_id&id=eq."+encodeURIComponent(c.vagaId||c.vaga_id),
+       {method:"GET",headers:sbHeadersEM(token)}
+      );
+      const raw=Array.isArray(vr)?vr[0]:null;
+      if(raw)v={...(v||{}),id:raw.id,userId:raw.user_id};
+     }catch(e){console.warn("Vaga da candidatura antiga não localizada:",c.vagaId||c.vaga_id,e)}
+    }
+    if(!v?.userId)continue;
+    const criado=c.criadoEm||c.criado_em||new Date().toISOString();
+    const hist=Array.isArray(c.historico)&&c.historico.length?c.historico:[
+      {status:"Candidatura enviada",data:criado},
+      {status:c.status||"Em avaliação",data:c.atualizadoEm||c.atualizado_em||criado}
+    ];
     try{
-     const payload={id:c.id,vaga_id:c.vagaId,candidato_user_id:u.id,empresa_user_id:v.userId,candidato_nome:c.candidato||c.nome||"",candidato_email:c.email||u.email||"",candidato_telefone:c.telefone||"",status:c.status||"Em avaliação",historico:hist,entrevista:c.entrevista||null,curriculo:c.curriculo||null,perfil_profissional:c.perfilProfissional||null,curriculo_origem:c.curriculoOrigem||"",aderencia:Number.isFinite(c.aderencia)?c.aderencia:calcularAderenciaCandidatoEM(c,v),criado_em:criado,atualizado_em:c.atualizadoEm||criado,contratado_em:c.contratadoEm||null};
-     const ins=await sbJsonEM(EMPREGAMAIS_SUPABASE_URL+"/rest/v1/candidaturas",{method:"POST",headers:Object.assign(sbHeadersEM(token),{"Prefer":"return=representation"}),body:JSON.stringify(payload)});if(Array.isArray(ins)&&ins[0])rows.push(ins[0])
+     const payload={
+      id:c.id,
+      vaga_id:c.vagaId||c.vaga_id,
+      candidato_user_id:u.id,
+      empresa_user_id:v.userId,
+      candidato_nome:c.candidato||c.nome||c.candidato_nome||"",
+      candidato_email:c.email||c.candidatoEmail||u.email||"",
+      candidato_telefone:c.telefone||c.candidato_telefone||"",
+      status:c.status||"Em avaliação",
+      historico:hist,
+      entrevista:c.entrevista||null,
+      curriculo:c.curriculo||null,
+      perfil_profissional:c.perfilProfissional||c.perfil_profissional||null,
+      curriculo_origem:c.curriculoOrigem||c.curriculo_origem||"",
+      aderencia:Number.isFinite(Number(c.aderencia))?Number(c.aderencia):calcularAderenciaCandidatoEM(c,v),
+      criado_em:criado,
+      atualizado_em:c.atualizadoEm||c.atualizado_em||criado,
+      contratado_em:c.contratadoEm||c.contratado_em||null
+     };
+     if(!payload.id)delete payload.id;
+     const ins=await sbJsonEM(
+      EMPREGAMAIS_SUPABASE_URL+"/rest/v1/candidaturas",
+      {method:"POST",headers:Object.assign(sbHeadersEM(token),{"Prefer":"return=representation"}),body:JSON.stringify(payload)}
+     );
+     if(Array.isArray(ins)&&ins[0]){rows.push(ins[0]);ids.add(String(ins[0].id||""))}
     }catch(err){console.warn("Candidatura antiga não migrada:",c.id,err)}
    }
+   const remotasMapeadas=rows.map(sbMapCandidaturaEM).filter(Boolean);
+   const remotoIds=new Set(remotasMapeadas.map(x=>String(x.id||"")));
+   const legadoDoCandidato=legado.filter(c=>{
+    const ce=String(c.email||c.candidatoEmail||"").trim().toLowerCase();
+    const uid=String(c.candidatoUserId||c.candidato_user_id||"");
+    return (uid&&uid===String(u.id))||(ce&&email&&ce===email)
+   }).filter(c=>!remotoIds.has(String(c.id||"")));
+   const legadoNormalizado=legadoDoCandidato.map(c=>({
+    id:c.id||("local_"+String(c.vagaId||c.vaga_id||"")+"_"+Date.now()),
+    vagaId:c.vagaId||c.vaga_id,
+    candidatoUserId:c.candidatoUserId||c.candidato_user_id||u.id,
+    empresaUserId:c.empresaUserId||c.empresa_user_id||"",
+    candidato:c.candidato||c.nome||c.candidato_nome||"",
+    nome:c.candidato||c.nome||c.candidato_nome||"",
+    email:c.email||c.candidatoEmail||c.candidato_email||email,
+    telefone:c.telefone||c.candidato_telefone||"",
+    status:c.status||"Em avaliação",
+    historico:Array.isArray(c.historico)?c.historico:[],
+    entrevista:c.entrevista||null,
+    curriculo:c.curriculo||null,
+    perfilProfissional:c.perfilProfissional||c.perfil_profissional||null,
+    curriculoOrigem:c.curriculoOrigem||c.curriculo_origem||"",
+    aderencia:c.aderencia,
+    criadoEm:c.criadoEm||c.criado_em||"",
+    atualizadoEm:c.atualizadoEm||c.atualizado_em||"",
+    contratadoEm:c.contratadoEm||c.contratado_em||""
+   }));
+   sbEspelharCandidaturasEM([...remotasMapeadas,...legadoNormalizado]);
+  }else{
+   sbEspelharCandidaturasEM(rows.map(sbMapCandidaturaEM));
   }
-  sbEspelharCandidaturasEM(rows.map(sbMapCandidaturaEM));
-  if(renderizar!==false){if(papelAtual()==="empresa"&&document.getElementById("listaCandidatosEmpresa"))renderizarCandidatosEmpresa();if(papelAtual()==="candidato"){if(document.getElementById("listaCandidaturas"))renderizarCandidaturasCandidato();if(document.getElementById("candMetricaCandidaturas"))atualizarPainelCandidato()}}
+  if(renderizar!==false){
+   if(papelAtual()==="empresa"&&document.getElementById("listaCandidatosEmpresa"))renderizarCandidatosEmpresa();
+   if(papelAtual()==="candidato"){
+    if(document.getElementById("listaCandidaturas"))renderizarCandidaturasCandidato();
+    if(document.getElementById("candMetricaCandidaturas"))atualizarPainelCandidato()
+   }
+  }
   return sbCandidaturasCacheEM
  }finally{sbCandidaturasCarregandoEM=false}
 };
