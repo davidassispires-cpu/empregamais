@@ -2,18 +2,18 @@
 (function(){
 'use strict';
 
-function carregarMontserratEM(){
- if(document.getElementById('emMontserratFont'))return;
+function carregarFonteConectaEM(){
+ if(document.getElementById('emConectaFont'))return;
  const link=document.createElement('link');
- link.id='emMontserratFont';
+ link.id='emConectaFont';
  link.rel='stylesheet';
- link.href='https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&display=swap';
+ link.href='https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap';
  document.head.appendChild(link);
 }
 
 function aplicarRefinoVisaoGeralEM(){
  if(document.getElementById('emVisaoGeralRefinoV1'))return;
- carregarMontserratEM();
+ carregarFonteConectaEM();
  const st=document.createElement('style');
  st.id='emVisaoGeralRefinoV1';
  st.textContent=`
@@ -21,7 +21,7 @@ function aplicarRefinoVisaoGeralEM(){
  #pagina-painel-empresa button,
  #pagina-painel-empresa input,
  #pagina-painel-empresa select,
- #pagina-painel-empresa textarea{font-family:'Montserrat','Segoe UI',Arial,sans-serif!important}
+ #pagina-painel-empresa textarea{font-family:'Poppins','Segoe UI',Arial,sans-serif!important}
 
  #pagina-painel-empresa{font-weight:400!important;color:#173b4d!important}
  #pagina-painel-empresa p,
