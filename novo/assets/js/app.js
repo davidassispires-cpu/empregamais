@@ -2113,7 +2113,7 @@ function carregarCurriculoOnlineEM(){
  const d=dadosCurriculoOnlineEM(),u=candidatoLogado()||{},p=u.perfil||{};const set=(id,v)=>{const e=document.getElementById(id);if(e)e.value=v||''};
  set('cvNome',d.nome||u.nome);set('cvTitulo',d.titulo||p.titulo);set('cvEmail',d.email||u.email||sessionStorage.getItem('candidatoEmail'));set('cvTelefone',d.telefone||u.telefone);set('cvCep',d.cep);set('cvLogradouro',d.logradouro);set('cvBairro',d.bairro);set('cvCidade',d.cidade||u.cidade);set('cvUf',d.uf||p.uf);set('cvArea',d.area||p.area);set('cvObjetivo',d.objetivo||p.titulo);const mods=Array.isArray(d.modalidades)?d.modalidades:(d.modalidade?[d.modalidade]:(p.modalidade?[p.modalidade]:[]));document.querySelectorAll('.cv-modalidade-check').forEach(x=>x.checked=mods.includes(x.value));atualizarModalidadesCV(false);set('cvPretensao',d.pretensao||p.pretensao);set('cvResumo',d.resumo||p.resumo);set('cvCnh',d.cnh);const cats=Array.isArray(d.categoriasCnh)?d.categoriasCnh:(d.categoriaCnh?String(d.categoriaCnh).split(''):[]);document.querySelectorAll('.cv-cnh-check').forEach(x=>x.checked=cats.includes(x.value));atualizarCategoriasCnhCV(false);set('cvVeiculo',d.veiculo);set('cvTipoVeiculo',d.tipoVeiculo);const chk=(id,v)=>{const e=document.getElementById(id);if(e)e.checked=!!v};chk('cvRegiaoMinhaCidade',d.regiaoMinhaCidade!==false);chk('cvCidadesProximas',d.cidadesProximas);chk('cvViagens',d.viagens===true||d.viagens==='sim');chk('cvMudanca',d.mudanca);set('cvCompetencias',d.competencias||p.competencias);set('cvIdiomas',d.idiomas);alternarMobilidadeCV();set('cvLinkedin',d.linkedin||p.linkedin);set('cvPortfolio',d.portfolio||p.portfolio);
  const ex=document.getElementById('cvExperiencias'),fo=document.getElementById('cvFormacoes'),cu=document.getElementById('cvCursos');if(ex){ex.innerHTML='';(d.experiencias?.length?d.experiencias:[{}]).forEach(adicionarExperienciaCV)}if(fo){fo.innerHTML='';(d.formacoes?.length?d.formacoes:[{}]).forEach(adicionarFormacaoCV)}if(cu){cu.innerHTML='';(d.cursos?.length?d.cursos:[]).forEach(adicionarCursoCV)}
- atualizarCidadeRegiaoCV();document.querySelectorAll('#formCurriculoOnline input,#formCurriculoOnline textarea,#formCurriculoOnline select').forEach(x=>{if(!x.dataset.cvbind){x.addEventListener('input',()=>{clearTimeout(window.cvAutoSave);window.cvAutoSave=setTimeout(salvarCurriculoOnlineEM,450)});x.dataset.cvbind='1'}});const atual=coletarCurriculoOnlineEM();atualizarPreviewCurriculoEM(atual);atualizarProgressoCurriculoEM(atual)
+ atualizarCidadeRegiaoCV();prepararBuscaCepCurriculoEM();document.querySelectorAll('#formCurriculoOnline input,#formCurriculoOnline textarea,#formCurriculoOnline select').forEach(x=>{if(!x.dataset.cvbind){x.addEventListener('input',()=>{clearTimeout(window.cvAutoSave);window.cvAutoSave=setTimeout(salvarCurriculoOnlineEM,450)});x.dataset.cvbind='1'}});const atual=coletarCurriculoOnlineEM();atualizarPreviewCurriculoEM(atual);atualizarProgressoCurriculoEM(atual)
 }
 function itensProgressoCurriculoEM(d){return[{nome:'Nome completo',ok:!!d.nome,alvo:'cvNome'},{nome:'Título profissional',ok:!!d.titulo,alvo:'cvTitulo'},{nome:'E-mail',ok:!!d.email,alvo:'cvEmail'},{nome:'Telefone',ok:!!d.telefone,alvo:'cvTelefone'},{nome:'Cidade',ok:!!d.cidade,alvo:'cvCidade'},{nome:'Área de atuação',ok:!!d.area,alvo:'cvArea'},{nome:'Objetivo profissional',ok:!!d.objetivo,alvo:'cvObjetivo'},{nome:'Resumo profissional',ok:!!d.resumo,alvo:'cvResumo'},{nome:'Competências',ok:!!d.competencias,alvo:'cvCompetencias'},{nome:'Experiência profissional',ok:!!d.experiencias?.some(x=>x.cargo),alvo:'cvExperiencias'},{nome:'Formação acadêmica',ok:!!d.formacoes?.some(x=>x.curso),alvo:'cvFormacoes'}]}
 function atualizarProgressoCurriculoEM(d){const itens=itensProgressoCurriculoEM(d),pct=Math.round(itens.filter(x=>x.ok).length/itens.length*100),t=document.getElementById('cvProgressoTexto'),b=document.getElementById('cvProgressoBarra'),card=document.querySelector('.cv-progress-card'),estado=document.getElementById('cvProgressoEstado'),badge=document.getElementById('cvCompleteBadge');let nivel='inicio',rotulo='Começando';if(pct>=100){nivel='completo';rotulo='Currículo completo'}else if(pct>=90){nivel='final';rotulo='Reta final'}else if(pct>=70){nivel='avancado';rotulo='Bom progresso'}else if(pct>=40){nivel='desenvolvimento';rotulo='Em desenvolvimento'}if(t)t.textContent=pct+'% completo';if(estado)estado.textContent=rotulo;if(b){b.style.width=pct+'%';b.dataset.nivel=nivel}if(card){card.dataset.progresso=nivel;card.classList.toggle('cv-chegou-100',pct===100&&localStorage.getItem('empregaMaisCv100Celebrado')!=='1')}if(badge)badge.classList.toggle('oculto',pct<100);if(pct===100&&localStorage.getItem('empregaMaisCv100Celebrado')!=='1'){localStorage.setItem('empregaMaisCv100Celebrado','1');setTimeout(()=>card?.classList.remove('cv-chegou-100'),1800)}const db=document.getElementById('cvProgressDetailBar'),dp=document.getElementById('cvProgressDetailPct');if(db)db.style.width=pct+'%';if(dp)dp.textContent=pct+'%'}
@@ -2128,8 +2128,30 @@ function atualizarPreviewCurriculoEM(d){const p=document.getElementById('cvPrevi
 function visualizarCurriculoEM(){const d=salvarCurriculoOnlineEM(),m=document.getElementById('modalCurriculoPreview'),p=document.getElementById('cvPreviewModal');if(p){p.innerHTML=htmlCurriculoEM(d);diagramarCurriculoEM(p,d,true)}m?.classList.remove('oculto');document.body.classList.add('cv-modal-open')}function fecharPreviewCurriculoEM(){document.getElementById('modalCurriculoPreview')?.classList.add('oculto');document.body.classList.remove('cv-modal-open')}
 function focarEditorCurriculoEM(){document.getElementById('cvEditor')?.scrollIntoView({behavior:'smooth',block:'start'})}
 
+function prepararBuscaCepCurriculoEM(){
+ const cep=document.getElementById('cvCep');
+ if(!cep||cep.dataset.cepAutoEM==='1')return;
+ cep.dataset.cepAutoEM='1';
+ let ultimo='';
+ const tentar=()=>{
+  const n=nums(cep.value);
+  if(n.length!==8){ultimo='';return}
+  if(n===ultimo)return;
+  ultimo=n;
+  clearTimeout(window.cvCepTimerEM);
+  window.cvCepTimerEM=setTimeout(()=>buscarCepCurriculoEM(),180)
+ };
+ cep.addEventListener('input',tentar);
+ cep.addEventListener('paste',()=>setTimeout(tentar,0));
+ cep.addEventListener('change',tentar);
+ cep.addEventListener('blur',()=>{
+  const n=nums(cep.value);
+  if(n.length===8&&n!==ultimo){ultimo=n;buscarCepCurriculoEM()}
+ });
+}
 async function buscarCepCurriculoEM(){
- const cep=nums(cvVal('cvCep')),aj=document.getElementById('cvCepAjuda');if(cep.length!==8){if(aj){aj.textContent='Informe um CEP com 8 dígitos.';aj.classList.add('erro')}return}
+ const cep=nums(cvVal('cvCep')),aj=document.getElementById('cvCepAjuda'),cepEl=document.getElementById('cvCep');if(cep.length!==8){if(aj){aj.textContent='Informe um CEP com 8 dígitos.';aj.classList.add('erro')}return}
+ if(cepEl)cepEl.value=cep.replace(/^(\d{5})(\d{3})$/,'$1-$2')
  if(aj){aj.textContent='Buscando endereço...';aj.classList.remove('erro')}
  try{const res=await fetch('https://viacep.com.br/ws/'+cep+'/json/');if(!res.ok)throw 0;const d=await res.json();if(d.erro)throw 0;
  const logradouro=document.getElementById('cvLogradouro'),bairro=document.getElementById('cvBairro'),cidade=document.getElementById('cvCidade'),uf=document.getElementById('cvUf');
