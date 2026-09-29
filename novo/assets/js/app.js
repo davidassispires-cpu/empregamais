@@ -164,7 +164,7 @@ function garantirTemaEmpresaAzulLaranjaEM(){
  '@media(max-width:700px){#pagina-vagas-empresa .evp-summary{grid-template-columns:1fr 1fr!important}#pagina-candidatos-empresa .recruta-cand-card{border-left-width:3px!important}}';
  document.head.appendChild(st)
 }
-function abrirRota(p){garantirEstiloTextoVagaEM();setTimeout(removerAnunciarVagaGratisHeaderEM,30);const solicitada=p;if(p==='admin-visualizador'&&sessionStorage.getItem('empregaMaisAdmin')!=='1')p='login-admin';if(p==='admin-visualizador')garantirAdminVisualizadorEM();if(p==='painel-empresa'&&papelAtual()!=='empresa')p='login-empresa';if(p==='painel-conecta'&&papelAtual()!=='empresa')p='login-conecta';if(p==='painel-candidato'&&papelAtual()!=='candidato')p='login-candidato';if(p==='perfil-empresa'&&papelAtual()!=='empresa')p='login-empresa';if(p==='painel-admin'&&sessionStorage.getItem('empregaMaisAdmin')!=='1')p='login-admin';if(p==='publicar'&&papelAtual()!=='empresa')p='login-empresa';if(p==='candidatos-empresa'&&papelAtual()!=='empresa')p='login-empresa';if(p==='contratacoes-empresa'&&papelAtual()!=='empresa')p='login-empresa';if(p==='candidaturas'&&papelAtual()!=='candidato')p='login-candidato';if((p==='curriculo'||p==='salvas'||p==='perfil-candidato'||p==='premium-candidato'||p==='avaliar-processos')&&papelAtual()!=='candidato')p='login-candidato';if(p==='candidatar'&&papelAtual()!=='candidato')p='login-candidato';if(p!==solicitada){const url=p==='home'?location.pathname:location.pathname+'?pagina='+encodeURIComponent(p);history.replaceState({},'',url)}if(p==='login-conecta')garantirLoginConectaEM();if(p==='painel-conecta')garantirPainelConectaEM();mostrarPagina(p||'home');if(['painel-empresa','vagas-empresa','candidatos-empresa','contratacoes-empresa','perfil-empresa','publicar','central-empresa','painel-conecta'].includes(p))setTimeout(garantirTemaEmpresaAzulLaranjaEM,0);setTimeout(atualizarBarraAdminVisualizacaoEM,10);if(p==='login-empresa'||p==='login-candidato'){[0,80,250,700].forEach(ms=>setTimeout(aplicarAbaConectaLoginEM,ms));}setTimeout(atualizarLauncherConectaEM,20);if(p==='cadastro-empresa')setTimeout(()=>{try{reformularCadastroEmpresaProEM()}catch(e){console.error('Cadastro empresa Pro:',e)}},0);if(p==='publicar')setTimeout(prepararPublicacao,0);if(p==='vagas-empresa')setTimeout(()=>{if(typeof window.renderVagasEmpresaPaginaEM==='function')window.renderVagasEmpresaPaginaEM()},0);if(p==='candidatos-empresa')setTimeout(()=>{if(sessionStorage.getItem('vagaCandidatosSelecionada'))renderizarCandidatosEmpresa();else if(typeof window.renderCentralProcessosEmpresaEM==='function')window.renderCentralProcessosEmpresaEM();},0);if(p==='contratacoes-empresa')setTimeout(()=>{if(typeof window.renderContratacoesEmpresaEM==='function')window.renderContratacoesEmpresaEM()},0);if(p==='candidaturas')setTimeout(async()=>{try{await sbCarregarCandidaturasEM(false)}catch(e){console.warn('Sincronização candidaturas candidato:',e)}renderizarCandidaturasCandidato()},0);if(p==='perfil-candidato')setTimeout(carregarPerfilCandidato,0);if(p==='curriculo')setTimeout(async()=>{try{await sincronizarCandidatoLogadoSupabaseEM()}catch(e){console.warn('Sincronização currículo:',e)}renderizarCurriculo();configurarUploadCurriculo();carregarCurriculoOnlineEM()},0);if(p==='salvas')setTimeout(renderizarSalvas,0);if(p==='senior')setTimeout(renderizarVagasSenior,0);if(p==='perfil-empresa')setTimeout(()=>{carregarPerfilEmpresa();mostrarPerfilEmpresaNormalEM()},0);if(p==='central-empresa')setTimeout(renderCentralEmpresaEM,0);if(p==='empresa-publica')setTimeout(renderizarEmpresaPublica,0);if(p==='painel-admin')setTimeout(async()=>{await adminAba('geral');inserirAtalhoVisualizadorAdminEM()},0);if(p==='home')setTimeout(async()=>{await sincronizarAvaliacoesEmpresasSupabaseEM();renderizarVagasPortal()},0);if(p==='como-funciona'){[60,250,700,1400].forEach(ms=>setTimeout(aplicarAbaConectaComoFuncionaEM,ms));}if(p==='emprego-conecta')setTimeout(()=>{aplicarMensagemComercialConectaEM();iniciarConectaShowcaseEM()},80);if(p==='painel-conecta')setTimeout(async()=>{await conectaHidratarEmpresaSessaoEM();normalizarOrdemPainelConectaEM();await renderPainelConectaEM();atualizarLauncherConectaEM()},0);if(p==='planos')setTimeout(renderizarPlanosModeloB,0);if(p==='plano-detalhe')setTimeout(renderizarDetalhesPlano,0);if(p==='vaga')setTimeout(()=>sincronizarCandidatoLogadoSupabaseEM().finally(renderizarVagaDetalhe),0);if(p==='candidatar')setTimeout(()=>sincronizarCandidatoLogadoSupabaseEM().finally(prepararCandidatura),0);if(p==='painel-empresa'){document.getElementById('empConectaLauncherEM')?.remove();document.getElementById('empConectaMenuEM')?.remove();setTimeout(renderizarPainelEmpresa,0)}if(p==='premium-candidato')setTimeout(atualizarPremiumCandidatoEM,0);if(p==='avaliar-processos')setTimeout(renderizarAvaliacoesProcessosEM,0);if(p==='painel-candidato'){setTimeout(atualizarPainelCandidato,0);const e=$('#candidatoSaudacao');if(e)e.textContent='Olá, '+(sessionStorage.getItem('candidatoNome')||'candidato')+'. Acompanhe sua jornada profissional.'}}
+function abrirRota(p){garantirEstiloTextoVagaEM();setTimeout(removerAnunciarVagaGratisHeaderEM,30);const solicitada=p;if(p==='admin-visualizador'&&sessionStorage.getItem('empregaMaisAdmin')!=='1')p='login-admin';if(p==='admin-visualizador')garantirAdminVisualizadorEM();if(p==='painel-empresa'&&papelAtual()!=='empresa')p='login-empresa';if(p==='painel-conecta'&&papelAtual()!=='empresa')p='login-conecta';if(p==='painel-candidato'&&papelAtual()!=='candidato')p='login-candidato';if(p==='perfil-empresa'&&papelAtual()!=='empresa')p='login-empresa';if(p==='painel-admin'&&sessionStorage.getItem('empregaMaisAdmin')!=='1')p='login-admin';if(p==='publicar'&&papelAtual()!=='empresa')p='login-empresa';if(p==='candidatos-empresa'&&papelAtual()!=='empresa')p='login-empresa';if(p==='contratacoes-empresa'&&papelAtual()!=='empresa')p='login-empresa';if(p==='candidaturas'&&papelAtual()!=='candidato')p='login-candidato';if((p==='curriculo'||p==='salvas'||p==='perfil-candidato'||p==='premium-candidato'||p==='avaliar-processos')&&papelAtual()!=='candidato')p='login-candidato';if(p==='candidatar'&&papelAtual()!=='candidato')p='login-candidato';if(p!==solicitada){const url=p==='home'?location.pathname:location.pathname+'?pagina='+encodeURIComponent(p);history.replaceState({},'',url)}if(p==='login-conecta')garantirLoginConectaEM();if(p==='painel-conecta')garantirPainelConectaEM();mostrarPagina(p||'home');if(['painel-empresa','vagas-empresa','candidatos-empresa','contratacoes-empresa','perfil-empresa','publicar','central-empresa','painel-conecta'].includes(p))setTimeout(garantirTemaEmpresaAzulLaranjaEM,0);setTimeout(atualizarBarraAdminVisualizacaoEM,10);if(p==='login-empresa'||p==='login-candidato'){[0,80,250,700].forEach(ms=>setTimeout(aplicarAbaConectaLoginEM,ms));}setTimeout(atualizarLauncherConectaEM,20);setTimeout(garantirAcessoConectaHeaderEM,40);if(p==='cadastro-empresa')setTimeout(()=>{try{reformularCadastroEmpresaProEM()}catch(e){console.error('Cadastro empresa Pro:',e)}},0);if(p==='publicar')setTimeout(prepararPublicacao,0);if(p==='vagas-empresa')setTimeout(()=>{if(typeof window.renderVagasEmpresaPaginaEM==='function')window.renderVagasEmpresaPaginaEM()},0);if(p==='candidatos-empresa')setTimeout(()=>{if(sessionStorage.getItem('vagaCandidatosSelecionada'))renderizarCandidatosEmpresa();else if(typeof window.renderCentralProcessosEmpresaEM==='function')window.renderCentralProcessosEmpresaEM();},0);if(p==='contratacoes-empresa')setTimeout(()=>{if(typeof window.renderContratacoesEmpresaEM==='function')window.renderContratacoesEmpresaEM()},0);if(p==='candidaturas')setTimeout(async()=>{try{await sbCarregarCandidaturasEM(false)}catch(e){console.warn('Sincronização candidaturas candidato:',e)}renderizarCandidaturasCandidato()},0);if(p==='perfil-candidato')setTimeout(carregarPerfilCandidato,0);if(p==='curriculo')setTimeout(async()=>{try{await sincronizarCandidatoLogadoSupabaseEM()}catch(e){console.warn('Sincronização currículo:',e)}renderizarCurriculo();configurarUploadCurriculo();carregarCurriculoOnlineEM()},0);if(p==='salvas')setTimeout(renderizarSalvas,0);if(p==='senior')setTimeout(renderizarVagasSenior,0);if(p==='perfil-empresa')setTimeout(()=>{carregarPerfilEmpresa();mostrarPerfilEmpresaNormalEM()},0);if(p==='central-empresa')setTimeout(renderCentralEmpresaEM,0);if(p==='empresa-publica')setTimeout(renderizarEmpresaPublica,0);if(p==='painel-admin')setTimeout(async()=>{await adminAba('geral');inserirAtalhoVisualizadorAdminEM()},0);if(p==='home')setTimeout(async()=>{await sincronizarAvaliacoesEmpresasSupabaseEM();renderizarVagasPortal()},0);if(p==='como-funciona'){[60,250,700,1400].forEach(ms=>setTimeout(aplicarAbaConectaComoFuncionaEM,ms));}if(p==='emprego-conecta')setTimeout(()=>{aplicarMensagemComercialConectaEM();iniciarConectaShowcaseEM()},80);if(p==='painel-conecta')setTimeout(async()=>{await conectaHidratarEmpresaSessaoEM();normalizarOrdemPainelConectaEM();await renderPainelConectaEM();atualizarLauncherConectaEM()},0);if(p==='planos')setTimeout(renderizarPlanosModeloB,0);if(p==='plano-detalhe')setTimeout(renderizarDetalhesPlano,0);if(p==='vaga')setTimeout(()=>sincronizarCandidatoLogadoSupabaseEM().finally(renderizarVagaDetalhe),0);if(p==='candidatar')setTimeout(()=>sincronizarCandidatoLogadoSupabaseEM().finally(prepararCandidatura),0);if(p==='painel-empresa'){document.getElementById('empConectaLauncherEM')?.remove();document.getElementById('empConectaMenuEM')?.remove();setTimeout(renderizarPainelEmpresa,0)}if(p==='premium-candidato')setTimeout(atualizarPremiumCandidatoEM,0);if(p==='avaliar-processos')setTimeout(renderizarAvaliacoesProcessosEM,0);if(p==='painel-candidato'){setTimeout(atualizarPainelCandidato,0);const e=$('#candidatoSaudacao');if(e)e.textContent='Olá, '+(sessionStorage.getItem('candidatoNome')||'candidato')+'. Acompanhe sua jornada profissional.'}}
 function atualizarPremiumCandidatoEM(){const c=candidatoLogado(),ativo=candidatoPremiumAtivoEM(c),pag=document.getElementById('pagina-premium-candidato');if(!pag)return;pag.classList.toggle('premium-ativo',ativo);pag.querySelectorAll('.premium-comparativo-card.premium').forEach(el=>el.classList.toggle('plano-ativo',ativo));const btn=pag.querySelector('.premium-comparativo-card.premium button');if(btn){btn.textContent=ativo?'Premium ativo':'Conhecer planos Premium';btn.disabled=ativo}}
 function assinarPremiumCandidatoEM(periodo='mensal'){const opcoes={mensal:{nome:'Premium Mensal',valor:29.90},trimestral:{nome:'Premium Trimestral',valor:79.90},semestral:{nome:'Premium Semestral',valor:149.90}},pl=opcoes[periodo]||opcoes.mensal,cs=ler('empregaMaisCandidatos'),email=sessionStorage.getItem('candidatoEmail')||'',i=cs.findIndex(x=>String(x.email||'').toLowerCase()===email.toLowerCase());if(i<0){alert('Entre na sua conta de candidato para assinar o Premium.');irPara('login-candidato');return}const pedidos=ler('empregaMaisPedidosPremiumCandidato');pedidos.unshift({id:'PREM-'+Date.now(),candidatoEmail:email,candidatoNome:cs[i].nome||sessionStorage.getItem('candidatoNome')||'Candidato',plano:pl.nome,periodo,valor:pl.valor,status:'aguardando_pagamento',criadoEm:new Date().toISOString()});gravar('empregaMaisPedidosPremiumCandidato',pedidos);alert('Seu pedido do '+pl.nome+' foi criado. A etapa de pagamento será conectada ao checkout do portal.');}
 
@@ -269,41 +269,67 @@ function aplicarAbaConectaLoginEM(){
   });
  });
 }
-/* EMPREGOS-CONECTA-ACESSO-RODAPE-V1 */
-function garantirAcessoConectaRodapeEM(){
+/* EMPREGOS-CONECTA-ACESSO-HEADER-V1 */
+function garantirAcessoConectaHeaderEM(){
  document.getElementById('acessoConectaRodapeEM')?.remove();
- const candidatos=[
-  document.querySelector('footer'),
-  document.getElementById('footer'),
-  document.getElementById('rodape'),
-  document.querySelector('.site-footer'),
-  document.querySelector('.rodape'),
-  document.querySelector('[class*="footer"]')
- ].filter(Boolean);
- const footer=candidatos[0];
- if(!footer)return false;
- if(!document.getElementById('estiloAcessoConectaRodapeEM')){
-  const st=document.createElement('style');st.id='estiloAcessoConectaRodapeEM';
-  st.textContent=
-   '#acessoConectaRodapeEM{display:flex!important;justify-content:center!important;align-items:center!important;gap:7px!important;width:100%!important;margin:14px auto 0!important;padding:10px 12px 0!important;border-top:1px solid rgba(120,130,150,.14)!important;color:#8b8291!important;font:500 10px/1.4 Montserrat,Arial,sans-serif!important}'+
-   '#acessoConectaRodapeEM button{appearance:none!important;border:0!important;background:transparent!important;padding:0!important;color:#817587!important;font:600 10px Montserrat,Arial,sans-serif!important;cursor:pointer!important;text-decoration:none!important}'+
-   '#acessoConectaRodapeEM button:hover{color:#61208a!important;text-decoration:underline!important}'+
-   '#acessoConectaRodapeEM span{opacity:.55!important}';
-  document.head.appendChild(st)
+ const existente=document.getElementById('headerConectaLoginEM');
+ if(existente&&document.body.contains(existente))return true;
+
+ const clicaveis=[...document.querySelectorAll('header a,header button,nav a,nav button,.header a,.header button,.topo a,.topo button')];
+ const normaliza=el=>String(el?.textContent||'').replace(/\s+/g,' ').trim().toLowerCase();
+ const empresa=clicaveis.find(el=>normaliza(el).includes('login empresa'));
+ const candidato=clicaveis.find(el=>normaliza(el).includes('login candidato'));
+ if(!empresa||!candidato)return false;
+
+ let grupo=empresa.parentElement;
+ if(candidato.parentElement!==grupo){
+  const ancestrais=[];let p=empresa.parentElement;
+  while(p&&p!==document.body){ancestrais.push(p);p=p.parentElement}
+  p=candidato.parentElement;
+  while(p&&p!==document.body&&!ancestrais.includes(p))p=p.parentElement;
+  if(p&&p!==document.body)grupo=p;
  }
- const wrap=document.createElement('div');wrap.id='acessoConectaRodapeEM';
- wrap.innerHTML='<span>Área restrita</span><span>•</span><button type="button" onclick="irPara(\'login-conecta\')">Acesso Conecta</button>';
- footer.appendChild(wrap);
+ if(!grupo)return false;
+
+ const base=empresa.cloneNode(true);
+ base.id='headerConectaLoginEM';
+ base.removeAttribute('href');
+ base.removeAttribute('onclick');
+ base.removeAttribute('data-pagina');
+ base.querySelectorAll('[id]').forEach(x=>x.removeAttribute('id'));
+ base.classList.remove('ativo','active','aberto','open','selected','selecionado');
+ base.setAttribute('type','button');
+ base.setAttribute('aria-label','Acessar Conecta');
+
+ // Preserva a aparência dos acessos existentes, mudando apenas conteúdo e identidade.
+ const strong=base.querySelector('strong,b');
+ const small=base.querySelector('small');
+ if(strong)strong.textContent='Conecta';
+ else {
+  const textos=[...base.querySelectorAll('span,div')].filter(x=>x.children.length===0&&/login empresa/i.test(x.textContent||''));
+  if(textos[0])textos[0].textContent='Conecta';
+  else base.textContent='Conecta';
+ }
+ if(small)small.textContent='Integração de vagas';
+
+ // Ícone simples e discreto caso exista um bloco visual de ícone.
+ const icon=base.querySelector('svg,i,[class*="icon"],[class*="icone"]');
+ if(icon&&icon.tagName==='I')icon.textContent='↗';
+
+ base.addEventListener('click',ev=>{ev.preventDefault();ev.stopPropagation();irPara('login-conecta')});
+ grupo.insertBefore(base,empresa);
  return true
 }
-function iniciarAcessoConectaRodapeEM(){
- if(garantirAcessoConectaRodapeEM())return;
+function iniciarAcessoConectaHeaderEM(){
  let tentativas=0;
- const timer=setInterval(()=>{tentativas++;if(garantirAcessoConectaRodapeEM()||tentativas>20)clearInterval(timer)},250);
+ const tentar=()=>{tentativas++;if(garantirAcessoConectaHeaderEM()||tentativas>24)return;setTimeout(tentar,250)};
+ tentar();
 }
-document.addEventListener('DOMContentLoaded',()=>setTimeout(iniciarAcessoConectaRodapeEM,80),{once:true});
-window.addEventListener('load',()=>setTimeout(iniciarAcessoConectaRodapeEM,120),{once:true});
-setTimeout(iniciarAcessoConectaRodapeEM,300);
+document.addEventListener('DOMContentLoaded',()=>setTimeout(iniciarAcessoConectaHeaderEM,80),{once:true});
+window.addEventListener('load',()=>setTimeout(iniciarAcessoConectaHeaderEM,120),{once:true});
+const observaHeaderConectaEM=new MutationObserver(()=>{if(!document.getElementById('headerConectaLoginEM'))setTimeout(garantirAcessoConectaHeaderEM,80)});
+setTimeout(()=>{if(document.body)observaHeaderConectaEM.observe(document.body,{childList:true,subtree:true})},150);
+setTimeout(iniciarAcessoConectaHeaderEM,300);
 
 /* EMPREGOS-CONECTA-LOGIN-V1 */
 function garantirLoginConectaEM(){
