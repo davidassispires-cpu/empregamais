@@ -6,70 +6,62 @@ function assinarPremiumCandidatoEM(periodo='mensal'){const opcoes={mensal:{nome:
 /* EMPREGOS-CONECTA-COMO-FUNCIONA-V1 */
 function aplicarAbaConectaComoFuncionaEM(){
  const pagina=document.getElementById('pagina-como-funciona');if(!pagina)return;
- if(document.getElementById('comoConectaTabEM'))return;
+ document.getElementById('comoConectaConteudoEM')?.remove();
+ document.getElementById('comoConectaTabEM')?.remove();
 
- const elementos=[...pagina.querySelectorAll('button,a,[role="button"],div')];
- const cand=elementos.find(el=>/^\s*Para candidatos\s*/i.test(el.textContent||''));
- const emp=elementos.find(el=>/^\s*Para empresas\s*/i.test(el.textContent||''));
+ const clicaveis=[...pagina.querySelectorAll('button,a,[role="button"]')];
+ const cand=clicaveis.find(el=>/^\s*Para candidatos\b/i.test((el.textContent||'').trim()));
+ const emp=clicaveis.find(el=>/^\s*Para empresas\b/i.test((el.textContent||'').trim()));
  if(!cand||!emp)return;
 
- const tabs=(cand.parentElement===emp.parentElement?cand.parentElement:emp.parentElement);
+ const ancestraisCand=[];let x=cand.parentElement;
+ while(x&&x!==pagina){ancestraisCand.push(x);x=x.parentElement}
+ let tabs=emp.parentElement;
+ while(tabs&&tabs!==pagina&&!ancestraisCand.includes(tabs))tabs=tabs.parentElement;
+ if(!tabs||tabs===pagina)tabs=cand.parentElement;
  if(!tabs)return;
+
  tabs.classList.add('como-tabs-tres-em');
+ const estiloAntigo=document.getElementById('estiloComoConectaEM');if(estiloAntigo)estiloAntigo.remove();
+ const st=document.createElement('style');st.id='estiloComoConectaEM';
+ st.textContent=
+ '.como-tabs-tres-em{display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:12px!important;align-items:stretch!important;width:100%!important}'+
+ '.como-tabs-tres-em>button,.como-tabs-tres-em>a,.como-tabs-tres-em>[role="button"]{width:100%!important;min-width:0!important;height:100%!important}'+
+ '#comoConectaTabEM{display:flex!important;align-items:center!important;gap:11px!important;padding:12px 15px!important;border:1px solid #dccae7!important;border-radius:14px!important;background:#fff!important;color:#5d1a85!important;text-align:left!important;cursor:pointer!important;font-family:Montserrat,Arial,sans-serif!important}'+
+ '#comoConectaTabEM .como-conecta-ico{width:39px;height:39px;flex:0 0 39px;border-radius:11px;background:#f1e6f7;color:#6d1aa2;display:grid;place-items:center;font-size:18px;font-weight:800}'+
+ '#comoConectaTabEM strong{display:block;color:#5a1780;font-size:14px;line-height:1.2}#comoConectaTabEM small{display:block;margin-top:3px;color:#887593;font-size:11px;line-height:1.3}'+
+ '#comoConectaTabEM.ativo{border-color:#6d1aa2!important;box-shadow:inset 0 0 0 1px #6d1aa2!important;background:#fbf7fd!important}'+
+ '#comoConectaConteudoEM{margin-top:24px;font-family:Montserrat,Arial,sans-serif}'+
+ '#comoConectaConteudoEM .cc-hero{border:1px solid #dac8e6;border-radius:20px;background:linear-gradient(135deg,#fbf7fd 0%,#fff 100%);padding:30px;display:flex;justify-content:space-between;align-items:center;gap:28px}'+
+ '#comoConectaConteudoEM .cc-kicker{display:block;color:#6e1c9e;font-size:10px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;margin-bottom:8px}'+
+ '#comoConectaConteudoEM h2{margin:0;color:#43105f;font-size:30px;line-height:1.16;letter-spacing:-.5px}#comoConectaConteudoEM .cc-hero p{margin:10px 0 0;color:#76647f;font-size:13px;line-height:1.65;max-width:860px}'+
+ '#comoConectaConteudoEM .cc-hero button{flex:0 0 auto;border:0;border-radius:11px;background:#6a1c99;color:#fff;padding:13px 18px;font:750 11px Montserrat;cursor:pointer;box-shadow:0 8px 20px rgba(106,28,153,.16)}'+
+ '#comoConectaConteudoEM .cc-passos{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;margin-top:18px}#comoConectaConteudoEM .cc-passos article{padding:20px;border:1px solid #e3d6ea;border-top:3px solid #d7b8e8;border-radius:16px;background:#fff;min-height:180px}'+
+ '#comoConectaConteudoEM .cc-passos i{display:grid;place-items:center;width:38px;height:38px;border-radius:10px;background:#f1e6f7;color:#6d1aa2;font-style:normal;font-weight:800;font-size:12px;margin-bottom:15px}'+
+ '#comoConectaConteudoEM .cc-passos b{display:block;color:#6e1c9e;font-size:9px;letter-spacing:.1em;margin-bottom:6px}#comoConectaConteudoEM .cc-passos strong{display:block;color:#3f244e;font-size:13px;margin-bottom:7px}#comoConectaConteudoEM .cc-passos span{display:block;color:#85758d;font-size:11px;line-height:1.55}'+
+ '#pagina-como-funciona .como-conecta-ocultar-em{display:none!important}'+
+ '@media(max-width:900px){.como-tabs-tres-em{grid-template-columns:repeat(3,minmax(180px,1fr))!important;overflow-x:auto!important}.como-tabs-tres-em>*{min-width:180px!important}#comoConectaConteudoEM .cc-passos{grid-template-columns:1fr 1fr}#comoConectaConteudoEM .cc-hero{align-items:flex-start;flex-direction:column}}@media(max-width:560px){.como-tabs-tres-em{grid-template-columns:1fr!important;overflow:visible!important}.como-tabs-tres-em>*{min-width:0!important}#comoConectaConteudoEM .cc-passos{grid-template-columns:1fr}#comoConectaConteudoEM .cc-hero{padding:22px}#comoConectaConteudoEM h2{font-size:24px}}';
+ document.head.appendChild(st);
 
- if(!document.getElementById('estiloComoConectaEM')){
-  const st=document.createElement('style');st.id='estiloComoConectaEM';
-  st.textContent=
-  '.como-tabs-tres-em{display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:12px!important;align-items:stretch!important}'+
-  '#comoConectaTabEM{display:flex!important;align-items:center!important;gap:11px!important;padding:12px 15px!important;border:1px solid #e0d3e8!important;border-radius:14px!important;background:#fff!important;color:#5d1a85!important;text-align:left!important;cursor:pointer!important;min-width:0!important;font-family:Montserrat,Arial,sans-serif!important}'+
-  '#comoConectaTabEM .como-conecta-ico{width:39px;height:39px;flex:0 0 39px;border-radius:11px;background:#f1e6f7;color:#6d1aa2;display:grid;place-items:center;font-size:18px;font-weight:800}'+
-  '#comoConectaTabEM strong{display:block;color:#5a1780;font-size:14px;line-height:1.2}#comoConectaTabEM small{display:block;margin-top:3px;color:#887593;font-size:11px;line-height:1.3}'+
-  '#comoConectaTabEM.ativo{border-color:#6d1aa2!important;box-shadow:inset 0 0 0 1px #6d1aa2!important;background:#fbf7fd!important}'+
-  '#comoConectaConteudoEM{margin-top:25px;border:1px solid #e2d6eb;border-radius:20px;background:linear-gradient(135deg,#fbf7fd 0%,#fff 100%);padding:28px 30px;font-family:Montserrat,Arial,sans-serif}'+
-  '#comoConectaConteudoEM .cc-kicker{display:block;color:#6e1c9e;font-size:10px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;margin-bottom:8px}'+
-  '#comoConectaConteudoEM h2{margin:0;color:#43105f;font-size:29px;line-height:1.16;letter-spacing:-.5px}#comoConectaConteudoEM>p{margin:9px 0 22px;color:#76647f;font-size:13px;line-height:1.65;max-width:900px}'+
-  '#comoConectaConteudoEM .cc-passos{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}#comoConectaConteudoEM .cc-passos article{padding:17px;border:1px solid #eadff0;border-radius:15px;background:#fff}'+
-  '#comoConectaConteudoEM .cc-passos i{display:grid;place-items:center;width:34px;height:34px;border-radius:10px;background:#f1e6f7;color:#6d1aa2;font-style:normal;font-weight:800;font-size:12px;margin-bottom:11px}'+
-  '#comoConectaConteudoEM .cc-passos strong{display:block;color:#3f244e;font-size:12px;margin-bottom:5px}#comoConectaConteudoEM .cc-passos span{display:block;color:#85758d;font-size:10.5px;line-height:1.5}'+
-  '#comoConectaConteudoEM .cc-cta{margin-top:20px;display:flex;justify-content:space-between;align-items:center;gap:18px;padding:16px 18px;border-radius:14px;background:#5a1684;color:#fff}#comoConectaConteudoEM .cc-cta strong{font-size:13px;color:#fff}#comoConectaConteudoEM .cc-cta button{border:0;border-radius:10px;background:#fff;color:#5a1684;padding:10px 14px;font:750 10.5px Montserrat;cursor:pointer}'+
-  '@media(max-width:850px){.como-tabs-tres-em{grid-template-columns:1fr!important}#comoConectaConteudoEM .cc-passos{grid-template-columns:1fr 1fr}}@media(max-width:560px){#comoConectaConteudoEM{padding:21px 18px}#comoConectaConteudoEM h2{font-size:23px}#comoConectaConteudoEM .cc-passos{grid-template-columns:1fr}#comoConectaConteudoEM .cc-cta{align-items:flex-start;flex-direction:column}}';
-  document.head.appendChild(st)
- }
-
- const btn=document.createElement('button');
- btn.type='button';btn.id='comoConectaTabEM';
+ const btn=document.createElement('button');btn.type='button';btn.id='comoConectaTabEM';
  btn.innerHTML='<span class="como-conecta-ico">↗</span><span><strong>Para Conecta</strong><small>Sincronize, distribua e atraia candidatos</small></span>';
  tabs.appendChild(btn);
 
  const conteudo=document.createElement('section');conteudo.id='comoConectaConteudoEM';conteudo.style.display='none';
- conteudo.innerHTML='<span class="cc-kicker">Para empresas com alto volume de vagas</span><h2>Distribua suas vagas sem mudar seu processo seletivo.</h2><p>O +Empregos Conecta importa as oportunidades do seu portal de carreiras ou ATS, publica automaticamente no +Empregos e direciona os candidatos para o destino definido pela sua empresa.</p><div class="cc-passos"><article><i>01</i><strong>Conecte seu ATS</strong><span>Informe a origem das vagas no Painel Conecta.</span></article><article><i>02</i><strong>Sincronização automática</strong><span>Novas vagas, alterações e encerramentos são acompanhados automaticamente.</span></article><article><i>03</i><strong>Mais alcance</strong><span>As vagas entram na distribuição do +Empregos e podem receber tráfego de candidatos.</span></article><article><i>04</i><strong>Candidato no seu processo</strong><span>O candidato segue para o seu site, ATS, WhatsApp, e-mail ou fluxo interno.</span></article></div><div class="cc-cta"><strong>Continue usando seu ATS. O +Empregos cuida da distribuição e da atração de candidatos.</strong><button type="button" onclick="irPara(\'emprego-conecta\')">Conhecer o Conecta →</button></div>';
+ conteudo.innerHTML='<div class="cc-hero"><div><span class="cc-kicker">PARA CONECTA</span><h2>Distribua vagas em escala sem mudar seu processo seletivo.</h2><p>Continue usando seu ATS normalmente. O +Empregos sincroniza suas vagas automaticamente, amplia a distribuição e direciona os candidatos para o processo definido pela sua empresa.</p></div><button type="button" onclick="irPara(\'login-conecta\')">Acessar Conecta →</button></div><div class="cc-passos"><article><i>01</i><b>INTEGRAÇÃO</b><strong>Conecte seu ATS</strong><span>Informe a origem das vagas no Painel Conecta e mantenha seu sistema atual.</span></article><article><i>02</i><b>AUTOMAÇÃO</b><strong>Sincronização automática</strong><span>Novas vagas, alterações e encerramentos acompanham o fluxo da empresa.</span></article><article><i>03</i><b>DISTRIBUIÇÃO</b><strong>Mais alcance para as vagas</strong><span>As oportunidades entram no +Empregos e podem receber tráfego de candidatos.</span></article><article><i>04</i><b>RESULTADOS</b><strong>Acompanhe o desempenho</strong><span>Visualizações, cliques e candidatos enviados ao site ou ATS ficam registrados no painel.</span></article></div>';
  tabs.insertAdjacentElement('afterend',conteudo);
 
- const candidatosOriginal=cand;
- const empresaOriginal=emp;
+ const apos=[];let n=conteudo.nextElementSibling;while(n){apos.push(n);n=n.nextElementSibling}
  const restaurar=()=>{
-   conteudo.style.display='none';
-   btn.classList.remove('ativo');
-   candidatosOriginal.classList.remove?.('como-tab-inativa-em');
-   empresaOriginal.classList.remove?.('como-tab-inativa-em');
+  conteudo.style.display='none';btn.classList.remove('ativo');
+  apos.forEach(el=>el.classList.remove('como-conecta-ocultar-em'))
  };
- candidatosOriginal.addEventListener('click',()=>setTimeout(restaurar,0));
- empresaOriginal.addEventListener('click',()=>setTimeout(restaurar,0));
+ cand.addEventListener('click',()=>setTimeout(restaurar,0));
+ emp.addEventListener('click',()=>setTimeout(restaurar,0));
  btn.addEventListener('click',()=>{
-   btn.classList.add('ativo');
-   conteudo.style.display='block';
-   const areaOriginal=conteudo.nextElementSibling;
-   [...pagina.children].forEach(()=>{});
-   pagina.querySelectorAll('.como-conecta-ocultar-em').forEach(x=>x.classList.remove('como-conecta-ocultar-em'));
-   const depoisTabs=[];
-   let n=conteudo.nextElementSibling;
-   while(n){depoisTabs.push(n);n=n.nextElementSibling}
-   // Mantemos os blocos originais no DOM, mas ocultamos o conteúdo principal enquanto a aba Conecta estiver ativa.
-   depoisTabs.forEach(x=>{if(x!==conteudo&&!x.closest?.('#comoConectaConteudoEM'))x.classList.add('como-conecta-ocultar-em')});
-   if(!document.getElementById('estiloComoConectaOcultarEM')){
-    const s=document.createElement('style');s.id='estiloComoConectaOcultarEM';s.textContent='#pagina-como-funciona .como-conecta-ocultar-em{display:none!important}';document.head.appendChild(s)
-   }
-  });
+  pagina.querySelectorAll('.como-tabs-tres-em .ativo,.como-tabs-tres-em .active,.como-tabs-tres-em .selected,.como-tabs-tres-em .selecionado').forEach(el=>{if(el!==btn)el.classList.remove('ativo','active','selected','selecionado')});
+  btn.classList.add('ativo');conteudo.style.display='block';apos.forEach(el=>el.classList.add('como-conecta-ocultar-em'))
+ })
 }
 function aplicarAbaConectaLoginEM(){
  const pagina=document.querySelector('#pagina-login-empresa.ativa,#pagina-login-candidato.ativa')||
