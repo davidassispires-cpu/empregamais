@@ -535,14 +535,33 @@ async function salvarDestinoVagaConectaEM(id){
 window.abrirDestinoVagaConectaEM=abrirDestinoVagaConectaEM;
 window.salvarDestinoVagaConectaEM=salvarDestinoVagaConectaEM;
 
-function sincronizarAgoraConectaEM(){
+async function sincronizarAgoraConectaEM(){
  const cfg=conectaConfigEM();if(!cfg.url){conectaAbaEM('integracao');return}
- const agora=new Date().toISOString();
- conectaSalvarEmpresaLocalEM({ultima:agora,conectaUltimaSync:agora});
- conectaRegistrarHistoricoEM('sincronizacao','Sincronização solicitada manualmente',{detalhe:'Origem: '+cfg.url});
- renderPainelConectaEM();
- if(typeof window.mostrarToast==='function')window.mostrarToast('Sincronização registrada.');
- else alert('Sincronização registrada. Acompanhe o status no Painel Conecta.')
+ const btn=document.getElementById('conectaSyncBtnEM');
+ try{
+  if(btn){btn.disabled=true;btn.textContent='Testando conexão...'}
+  const token=await sbGarantirSessaoEM();if(!token)throw new Error('Sessão da empresa expirada.');
+  const r=await fetch(EMPREGAMAIS_SUPABASE_URL+'/functions/v1/conecta-sync',{
+   method:'POST',
+   headers:Object.assign(sbHeadersEM(token),{'Content-Type':'application/json'}),
+   body:JSON.stringify({url:cfg.url,sistema:cfg.sistema||conectaDetectarSistemaEM(cfg.url)})
+  });
+  const data=await r.json().catch(()=>({}));
+  if(!r.ok||data?.ok!==true)throw new Error(data?.message||data?.error||('HTTP '+r.status));
+  const agora=data.checked_at||new Date().toISOString();
+  conectaSalvarEmpresaLocalEM({ultima:agora,conectaUltimaSync:agora,ultimoTesteOk:true,ultimaQtdEncontrada:Number(data.jobs_found||0)});
+  conectaRegistrarHistoricoEM('sincronizacao','Conexão validada com sucesso',{detalhe:'Origem: '+cfg.url+' · vagas encontradas: '+Number(data.jobs_found||0)});
+  await renderPainelConectaEM();
+  const qtd=Number(data.jobs_found||0);
+  const texto='Conexão com '+String(data.provider||cfg.sistema||'ATS')+' validada. '+qtd+' vaga(s) encontrada(s) na origem.';
+  if(typeof window.mostrarToast==='function')window.mostrarToast(texto);else alert(texto)
+ }catch(err){
+  console.error('Sincronização Conecta:',err);
+  conectaRegistrarHistoricoEM('erro','Falha ao testar integração',{detalhe:String(err?.message||err)});
+  alert('Não foi possível validar a integração: '+String(err?.message||err))
+ }finally{
+  if(btn){btn.disabled=false;btn.textContent='Sincronizar agora'}
+ }
 }
 window.conectaAbaEM=conectaAbaEM;
 window.salvarConfiguracaoConectaEM=salvarConfiguracaoConectaEM;
