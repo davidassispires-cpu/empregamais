@@ -693,10 +693,26 @@ async function conectaAtualizarMetricasAsyncEM(empresaId){
  }catch(err){console.warn('Conecta: métricas em segundo plano indisponíveis:',err)}
 }
 
-async function renderPainelConectaEM(){
+async function renderPainelConectaEM(opcoes={
+ // Atualiza sessão e vagas em segundo plano somente depois da primeira pintura.
+ // A segunda renderização usa os dados remotos, sem iniciar nova leitura e sem
+ // alterar a lógica de sincronização automática.
+ if(carregarRemoto){
+  Promise.allSettled([
+   conectaHidratarEmpresaSessaoEM(),
+   sbCarregarVagasEmpresaAtualEM()
+  ]).then(resultados=>{
+   const falhas=resultados.filter(x=>x.status==='rejected');
+   if(falhas.length)console.warn('Conecta: atualização remota parcial:',falhas.map(x=>x.reason));
+   const rota=new URLSearchParams(location.search).get('pagina')||'home';
+   if(rota==='painel-conecta')renderPainelConectaEM({carregarRemoto:false});
+  }).catch(err=>console.warn('Conecta: atualização remota não concluída:',err));
+ }
+}){
  garantirPainelConectaEM();
- await conectaHidratarEmpresaSessaoEM();
- try{await sbCarregarVagasEmpresaAtualEM()}catch(err){console.warn('Conecta: vagas remotas não atualizadas:',err)}
+ // Renderiza imediatamente com o estado local. A atualização remota acontece
+ // depois que a estrutura já está visível, evitando tela vazia/lenta no F5.
+ const carregarRemoto=opcoes.carregarRemoto!==false;
  const e=empresaLogada?.()||{},cfg=conectaConfigEM(),vagas=conectaVagasEmpresaEM(),hist=conectaHistoricoEM(),metricas=conectaMetricasCacheEM();
  const trial=conectaTrialInfoEM(cfg);
  const ativas=vagas.filter(v=>v.status==='aprovada'&&vagaDentroPrazo(v)).length;
