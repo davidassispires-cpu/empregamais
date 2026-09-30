@@ -755,6 +755,18 @@ function conectaDetectarSistemaEM(url){
  if(u.includes('greenhouse.io'))return'greenhouse';
  if(u.includes('lever.co'))return'lever';
  if(u.includes('yapp.rec.br'))return'yapp';
+ if(u.includes('smartrecruiters.com'))return'smartrecruiters';
+ if(u.includes('icims.com'))return'icims';
+ if(u.includes('taleo.net')||u.includes('oraclecloud.com'))return'oracle';
+ if(u.includes('successfactors.com')||u.includes('successfactors.eu'))return'successfactors';
+ if(u.includes('ashbyhq.com'))return'ashby';
+ if(u.includes('workable.com'))return'workable';
+ if(u.includes('teamtailor.com'))return'teamtailor';
+ if(u.includes('bamboohr.com'))return'bamboohr';
+ if(u.includes('inhire.app')||u.includes('inhire.io'))return'inhire';
+ if(u.includes('jobconvo.com'))return'jobconvo';
+ if(u.includes('recrutei.com.br'))return'recrutei';
+ if(u.includes('vagas.com.br'))return'vagas';
  return u?'portal':'auto'
 }
 function conectaSistemaInfoEM(sistema){
