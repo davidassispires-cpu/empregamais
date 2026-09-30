@@ -4756,229 +4756,402 @@ var b=document.body,logout=localStorage.getItem('empregaMaisLogoutBloqueio')==='
  #pagina-emprego-conecta .conecta-showcase-controls-em{grid-template-columns:auto 1fr auto!important}
  #pagina-emprego-conecta .conecta-showcase-count-em{display:none!important}
 }
-</style><section class="pagina conecta-page-em cxv5" id="pagina-emprego-conecta">
-  <div class="cx5-hero">
-    <div class="cx5-shell cx5-hero-grid">
-      <div class="cx5-hero-copy">
-        <span class="cx5-kicker">+ EMPREGO CONECTA · AUTOMAÇÃO + ATRAÇÃO</span>
-        <h1>Seu RH publica uma vez.<br><b>O Conecta faz o resto.</b></h1>
-        <p>Conectamos o portal de carreiras ou ATS da empresa ao +Empregos para sincronizar vagas automaticamente e ampliar a descoberta das oportunidades por candidatos mais alinhados ao perfil buscado.</p>
-        <div class="cx5-actions">
-          <button type="button" class="cx5-primary" onclick="irPara('login-conecta')">Conectar minhas vagas</button>
-          <button type="button" class="cx5-secondary" onclick="document.getElementById('conecta-fluxo')?.scrollIntoView({behavior:'smooth'})">Ver como funciona</button>
-        </div>
-        <div class="cx5-seals">
-          <span><i>✓</i>Sem recadastro manual</span>
-          <span><i>✓</i>Atualização automática</span>
-          <span><i>✓</i>Atração por perfil e região</span>
-          <span><i>✓</i>Operação em todo o Brasil</span>
-        </div>
-      </div>
+</style><section class="pagina cx6-page" id="pagina-emprego-conecta">
+<style id="EMPREGOS-CONECTA-CX6-20260930">
+#pagina-emprego-conecta{--cx-purple:#7c2cc4;--cx-purple-dark:#5d159d;--cx-purple-soft:#f5effb;--cx-ink:#153b55;--cx-text:#4f6677;--cx-line:#e5e8ee;--cx-soft:#f7f9fc;--cx-green:#18a36f;--cx-orange:#f38a2f;background:#fff!important;color:var(--cx-ink)!important;font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif!important}
+#pagina-emprego-conecta *{box-sizing:border-box}
+#pagina-emprego-conecta button,#pagina-emprego-conecta summary{font-family:inherit}
+#pagina-emprego-conecta .cx6-shell{width:min(1180px,calc(100% - 48px));margin:0 auto}
+#pagina-emprego-conecta .cx6-kicker{display:inline-flex;align-items:center;gap:8px;color:var(--cx-purple);font-size:12px;font-weight:800;letter-spacing:.11em;text-transform:uppercase}
+#pagina-emprego-conecta .cx6-kicker:before{content:"";width:8px;height:8px;border-radius:50%;background:var(--cx-purple)}
+#pagina-emprego-conecta .cx6-title{max-width:760px;margin-bottom:34px}
+#pagina-emprego-conecta .cx6-title h2{margin:8px 0 10px;color:var(--cx-ink);font-size:38px;line-height:1.12;letter-spacing:-.035em;font-weight:780}
+#pagina-emprego-conecta .cx6-title p{margin:0;color:var(--cx-text);font-size:16px;line-height:1.65}
+#pagina-emprego-conecta .cx6-hero{padding:74px 0 54px;background:linear-gradient(180deg,#fbf8fe 0%,#fff 74%)}
+#pagina-emprego-conecta .cx6-hero-grid{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(420px,.95fr);gap:64px;align-items:center}
+#pagina-emprego-conecta .cx6-hero h1{margin:16px 0 18px;color:var(--cx-ink);font-size:59px;line-height:1.02;letter-spacing:-.055em;font-weight:780}
+#pagina-emprego-conecta .cx6-hero h1 b{color:var(--cx-purple);font-weight:800}
+#pagina-emprego-conecta .cx6-hero-copy>p{max-width:680px;margin:0;color:var(--cx-text);font-size:17px;line-height:1.72}
+#pagina-emprego-conecta .cx6-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:26px}
+#pagina-emprego-conecta .cx6-actions button{min-height:47px;padding:0 18px;border-radius:10px;font-size:14px;font-weight:750;cursor:pointer}
+#pagina-emprego-conecta .cx6-primary{border:1px solid var(--cx-purple);background:var(--cx-purple);color:#fff;box-shadow:0 10px 24px rgba(124,44,196,.18)}
+#pagina-emprego-conecta .cx6-secondary{border:1px solid #d7dbe2;background:#fff;color:var(--cx-ink)}
+#pagina-emprego-conecta .cx6-hero-seals{display:flex;gap:9px;flex-wrap:wrap;margin-top:22px}
+#pagina-emprego-conecta .cx6-hero-seals span{display:inline-flex;align-items:center;gap:7px;padding:8px 10px;border:1px solid #e5e0ea;border-radius:999px;background:#fff;color:#506777;font-size:11px;font-weight:700}
+#pagina-emprego-conecta .cx6-hero-seals i{width:17px;height:17px;display:grid;place-items:center;border-radius:50%;background:#e7f7f1;color:var(--cx-green);font-style:normal;font-size:10px;font-weight:900}
+#pagina-emprego-conecta .cx6-live{padding:20px;border:1px solid #dfd6e8;border-radius:22px;background:#fff;box-shadow:0 24px 58px rgba(60,35,80,.12)}
+#pagina-emprego-conecta .cx6-live-head{display:flex;align-items:center;justify-content:space-between;padding-bottom:15px;border-bottom:1px solid #ece8f0}
+#pagina-emprego-conecta .cx6-live-head>div{display:flex;align-items:center;gap:9px}
+#pagina-emprego-conecta .cx6-live-head i{width:10px;height:10px;border-radius:50%;background:#52d39a;box-shadow:0 0 0 5px #e8faf2}
+#pagina-emprego-conecta .cx6-live-head b{display:block;color:var(--cx-ink);font-size:13px}
+#pagina-emprego-conecta .cx6-live-head small{display:block;margin-top:2px;color:#8a97a1;font-size:10px}
+#pagina-emprego-conecta .cx6-live-head em{padding:6px 8px;border-radius:999px;background:#eef9f4;color:#21815c;font-style:normal;font-size:9px;font-weight:800}
+#pagina-emprego-conecta .cx6-live-flow{display:grid;gap:0;margin-top:3px}
+#pagina-emprego-conecta .cx6-live-flow article{position:relative;display:grid;grid-template-columns:38px 1fr auto;gap:11px;align-items:center;padding:15px 0;border-bottom:1px solid #edf0f3}
+#pagina-emprego-conecta .cx6-live-flow article:last-child{border-bottom:0}
+#pagina-emprego-conecta .cx6-live-flow .num{width:31px;height:31px;display:grid;place-items:center;border-radius:9px;background:var(--cx-purple-soft);color:var(--cx-purple);font-size:11px;font-weight:900}
+#pagina-emprego-conecta .cx6-live-flow b{display:block;color:#253f52;font-size:12px}
+#pagina-emprego-conecta .cx6-live-flow small{display:block;margin-top:3px;color:#8997a2;font-size:10px}
+#pagina-emprego-conecta .cx6-live-flow em{padding:5px 7px;border-radius:999px;background:#f1f7f4;color:#26805e;font-style:normal;font-size:8px;font-weight:800}
+#pagina-emprego-conecta .cx6-live-note{margin-top:13px;padding:14px 15px;border-radius:12px;background:#f7f0fb}
+#pagina-emprego-conecta .cx6-live-note b{display:block;color:#6a278f;font-size:12px}
+#pagina-emprego-conecta .cx6-live-note span{display:block;margin-top:4px;color:#816b8b;font-size:10px;line-height:1.5}
+#pagina-emprego-conecta .cx6-anchorbar{position:sticky;top:0;z-index:20;border-top:1px solid #eef0f4;border-bottom:1px solid #e8ebef;background:rgba(255,255,255,.96);backdrop-filter:blur(10px)}
+#pagina-emprego-conecta .cx6-anchorbar .cx6-shell{display:flex;gap:4px;overflow:auto}
+#pagina-emprego-conecta .cx6-anchorbar button{flex:0 0 auto;padding:14px 15px;border:0;background:transparent;color:#536a79;font-size:12px;font-weight:750;cursor:pointer}
+#pagina-emprego-conecta .cx6-anchorbar button:hover{color:var(--cx-purple)}
+#pagina-emprego-conecta .cx6-section{padding:78px 0}
+#pagina-emprego-conecta .cx6-section.alt{background:var(--cx-soft)}
+#pagina-emprego-conecta .cx6-way-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+#pagina-emprego-conecta .cx6-way-card{padding:26px;border:1px solid var(--cx-line);border-radius:18px;background:#fff}
+#pagina-emprego-conecta .cx6-way-card h3{margin:0 0 8px;color:var(--cx-ink);font-size:20px}
+#pagina-emprego-conecta .cx6-way-card p{margin:0;color:var(--cx-text);font-size:13px;line-height:1.6}
+#pagina-emprego-conecta .cx6-way-card.origin{border-color:#cfd9e4}
+#pagina-emprego-conecta .cx6-way-card.bridge{border-color:#dbc7ec;background:linear-gradient(180deg,#fff,#fbf7fe)}
+#pagina-emprego-conecta .cx6-way-head{display:flex;align-items:center;gap:12px;margin-bottom:18px}
+#pagina-emprego-conecta .cx6-way-icon{width:44px;height:44px;display:grid;place-items:center;border-radius:12px;background:#edf3f7;color:#356079}
+#pagina-emprego-conecta .cx6-way-card.bridge .cx6-way-icon{background:#f1e7f8;color:var(--cx-purple)}
+#pagina-emprego-conecta .cx6-way-list{display:grid;gap:10px;margin-top:18px}
+#pagina-emprego-conecta .cx6-way-list span{display:flex;align-items:center;gap:9px;padding:11px 12px;border-radius:10px;background:#f8fafb;color:#445e6e;font-size:12px;font-weight:650}
+#pagina-emprego-conecta .cx6-way-list span:before{content:"✓";width:19px;height:19px;display:grid;place-items:center;border-radius:50%;background:#e7f7f1;color:var(--cx-green);font-size:10px;font-weight:900}
+#pagina-emprego-conecta .cx6-flowline{display:grid;grid-template-columns:repeat(5,1fr);gap:10px}
+#pagina-emprego-conecta .cx6-flowline article{position:relative;min-height:178px;padding:20px;border:1px solid var(--cx-line);border-radius:16px;background:#fff}
+#pagina-emprego-conecta .cx6-flowline article:after{content:"→";position:absolute;right:-18px;top:50%;z-index:2;width:26px;height:26px;display:grid;place-items:center;border-radius:50%;background:#fff;color:#9f7ab9;border:1px solid #e2d8e9;transform:translateY(-50%)}
+#pagina-emprego-conecta .cx6-flowline article:last-child:after{display:none}
+#pagina-emprego-conecta .cx6-flowline i{width:36px;height:36px;display:grid;place-items:center;border-radius:10px;background:#f0e6f7;color:var(--cx-purple);font-style:normal;font-size:12px;font-weight:900}
+#pagina-emprego-conecta .cx6-flowline h3{margin:16px 0 7px;color:var(--cx-ink);font-size:15px}
+#pagina-emprego-conecta .cx6-flowline p{margin:0;color:#748692;font-size:11px;line-height:1.55}
+#pagina-emprego-conecta .cx6-actions-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+#pagina-emprego-conecta .cx6-action-card{display:grid;grid-template-columns:52px 1fr auto;gap:14px;align-items:center;padding:18px;border:1px solid var(--cx-line);border-radius:15px;background:#fff}
+#pagina-emprego-conecta .cx6-action-card>i{width:45px;height:45px;display:grid;place-items:center;border-radius:12px;background:#f3edf8;color:var(--cx-purple);font-style:normal;font-size:18px}
+#pagina-emprego-conecta .cx6-action-card b{display:block;color:var(--cx-ink);font-size:14px}
+#pagina-emprego-conecta .cx6-action-card small{display:block;margin-top:4px;color:#7f8f99;font-size:11px;line-height:1.45}
+#pagina-emprego-conecta .cx6-action-card em{padding:6px 8px;border-radius:999px;background:#ecf8f2;color:#26845f;font-style:normal;font-size:9px;font-weight:800}
+#pagina-emprego-conecta .cx6-dedupe{display:grid;grid-template-columns:1fr .95fr;gap:44px;align-items:center}
+#pagina-emprego-conecta .cx6-dedupe-list{display:grid;gap:10px;margin-top:22px}
+#pagina-emprego-conecta .cx6-dedupe-list span{display:flex;align-items:center;gap:10px;color:#445d6d;font-size:13px}
+#pagina-emprego-conecta .cx6-dedupe-list i{width:23px;height:23px;display:grid;place-items:center;border-radius:50%;background:#eaf7f2;color:var(--cx-green);font-style:normal;font-size:11px;font-weight:900}
+#pagina-emprego-conecta .cx6-dedupe-ui{padding:22px;border:1px solid #dfd7e6;border-radius:19px;background:#fff;box-shadow:0 18px 42px rgba(62,42,78,.08)}
+#pagina-emprego-conecta .cx6-dedupe-ui h4{margin:0 0 14px;color:var(--cx-ink);font-size:13px}
+#pagina-emprego-conecta .cx6-dedupe-row{display:flex;justify-content:space-between;align-items:center;padding:13px 0;border-top:1px solid #edf0f2}
+#pagina-emprego-conecta .cx6-dedupe-row div b{display:block;color:#344d5e;font-size:11px}
+#pagina-emprego-conecta .cx6-dedupe-row div small{display:block;margin-top:3px;color:#8a98a2;font-size:9px}
+#pagina-emprego-conecta .cx6-dedupe-row em{padding:6px 8px;border-radius:999px;background:#edf8f3;color:#27805e;font-style:normal;font-size:8px;font-weight:850}
+#pagina-emprego-conecta .cx6-dashboard{overflow:hidden;border:1px solid #dfe4e9;border-radius:20px;background:#fff;box-shadow:0 18px 45px rgba(31,53,68,.08)}
+#pagina-emprego-conecta .cx6-dash-head{display:flex;justify-content:space-between;align-items:center;padding:17px 20px;border-bottom:1px solid #e8edf1;background:#fbfcfd}
+#pagina-emprego-conecta .cx6-dash-head b{color:var(--cx-ink);font-size:13px}
+#pagina-emprego-conecta .cx6-dash-head span{display:inline-flex;align-items:center;gap:7px;color:#297b5b;font-size:10px;font-weight:750}
+#pagina-emprego-conecta .cx6-dash-head span:before{content:"";width:8px;height:8px;border-radius:50%;background:#38c487}
+#pagina-emprego-conecta .cx6-kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:#e8edf1}
+#pagina-emprego-conecta .cx6-kpis article{padding:18px;background:#fff}
+#pagina-emprego-conecta .cx6-kpis small{display:block;color:#83939d;font-size:9px;text-transform:uppercase;letter-spacing:.06em}
+#pagina-emprego-conecta .cx6-kpis b{display:block;margin-top:7px;color:var(--cx-ink);font-size:26px}
+#pagina-emprego-conecta .cx6-kpis em{display:block;margin-top:4px;color:#738691;font-style:normal;font-size:9px}
+#pagina-emprego-conecta .cx6-dash-table{padding:0 20px 18px}
+#pagina-emprego-conecta .cx6-dash-table header,#pagina-emprego-conecta .cx6-dash-table article{display:grid;grid-template-columns:1.5fr .75fr .75fr .8fr;gap:14px;align-items:center}
+#pagina-emprego-conecta .cx6-dash-table header{padding:12px 0;color:#8a99a3;font-size:9px;font-weight:800;text-transform:uppercase}
+#pagina-emprego-conecta .cx6-dash-table article{padding:13px 0;border-top:1px solid #edf0f3}
+#pagina-emprego-conecta .cx6-dash-table article b{color:#3a5364;font-size:11px}
+#pagina-emprego-conecta .cx6-dash-table article span{color:#71848f;font-size:10px}
+#pagina-emprego-conecta .cx6-dash-table article em{justify-self:start;padding:5px 7px;border-radius:999px;background:#edf8f3;color:#267f5d;font-style:normal;font-size:8px;font-weight:850}
+#pagina-emprego-conecta .cx6-scale-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+#pagina-emprego-conecta .cx6-scale-grid article{padding:20px;border:1px solid var(--cx-line);border-radius:15px;background:#fff}
+#pagina-emprego-conecta .cx6-scale-grid i{font-style:normal;color:var(--cx-purple);font-size:24px;font-weight:850}
+#pagina-emprego-conecta .cx6-scale-grid h3{margin:10px 0 6px;color:var(--cx-ink);font-size:14px}
+#pagina-emprego-conecta .cx6-scale-grid p{margin:0;color:#758894;font-size:11px;line-height:1.5}
+#pagina-emprego-conecta .cx6-security{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+#pagina-emprego-conecta .cx6-security article{padding:22px;border:1px solid var(--cx-line);border-radius:16px;background:#fff}
+#pagina-emprego-conecta .cx6-security strong{display:block;color:var(--cx-ink);font-size:15px}
+#pagina-emprego-conecta .cx6-security p{margin:7px 0 0;color:#738590;font-size:12px;line-height:1.55}
+#pagina-emprego-conecta .cx6-before-after{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+#pagina-emprego-conecta .cx6-before-after article{padding:24px;border-radius:18px}
+#pagina-emprego-conecta .cx6-before{border:1px solid #eadfd6;background:#fffaf6}
+#pagina-emprego-conecta .cx6-after{border:1px solid #dccbea;background:#fbf7fe}
+#pagina-emprego-conecta .cx6-before-after h3{margin:0 0 15px;color:var(--cx-ink);font-size:17px}
+#pagina-emprego-conecta .cx6-before-after span{display:block;padding:9px 0;border-top:1px solid rgba(0,0,0,.06);color:#596f7d;font-size:12px}
+#pagina-emprego-conecta .cx6-faq{display:grid;gap:9px}
+#pagina-emprego-conecta .cx6-faq details{border:1px solid var(--cx-line);border-radius:13px;background:#fff}
+#pagina-emprego-conecta .cx6-faq summary{position:relative;padding:17px 46px 17px 18px;list-style:none;color:var(--cx-ink);font-size:13px;font-weight:750;cursor:pointer}
+#pagina-emprego-conecta .cx6-faq summary::-webkit-details-marker{display:none}
+#pagina-emprego-conecta .cx6-faq summary:after{content:"+";position:absolute;right:18px;top:50%;transform:translateY(-50%);color:var(--cx-purple);font-size:20px}
+#pagina-emprego-conecta .cx6-faq details[open] summary:after{content:"−"}
+#pagina-emprego-conecta .cx6-faq p{margin:0;padding:0 18px 17px;color:#6d808d;font-size:12px;line-height:1.6}
+#pagina-emprego-conecta .cx6-final{padding:34px;border-radius:22px;background:linear-gradient(135deg,#1b4059 0%,#17354b 54%,#5f1b90 100%);display:grid;grid-template-columns:1fr auto;gap:28px;align-items:center}
+#pagina-emprego-conecta .cx6-final span{color:#d7b7ec;font-size:10px;font-weight:850;letter-spacing:.11em}
+#pagina-emprego-conecta .cx6-final h2{margin:8px 0 9px;color:#fff;font-size:30px;line-height:1.15}
+#pagina-emprego-conecta .cx6-final p{margin:0;max-width:700px;color:#dbe4ea;font-size:13px;line-height:1.6}
+#pagina-emprego-conecta .cx6-final button{min-height:46px;padding:0 18px;border:0;border-radius:10px;background:#fff;color:#58207d;font-size:13px;font-weight:800;cursor:pointer}
+@media(max-width:980px){
+ #pagina-emprego-conecta .cx6-hero-grid,#pagina-emprego-conecta .cx6-dedupe{grid-template-columns:1fr}
+ #pagina-emprego-conecta .cx6-hero-grid{gap:34px}
+ #pagina-emprego-conecta .cx6-hero h1{font-size:50px}
+ #pagina-emprego-conecta .cx6-flowline{grid-template-columns:repeat(2,1fr)}
+ #pagina-emprego-conecta .cx6-flowline article:after{display:none}
+ #pagina-emprego-conecta .cx6-scale-grid{grid-template-columns:repeat(2,1fr)}
+}
+@media(max-width:700px){
+ #pagina-emprego-conecta .cx6-shell{width:min(100% - 28px,1180px)}
+ #pagina-emprego-conecta .cx6-hero{padding:46px 0 35px}
+ #pagina-emprego-conecta .cx6-hero h1{font-size:40px}
+ #pagina-emprego-conecta .cx6-hero-copy>p{font-size:15px}
+ #pagina-emprego-conecta .cx6-title h2{font-size:30px}
+ #pagina-emprego-conecta .cx6-section{padding:56px 0}
+ #pagina-emprego-conecta .cx6-way-grid,#pagina-emprego-conecta .cx6-actions-grid,#pagina-emprego-conecta .cx6-security,#pagina-emprego-conecta .cx6-before-after{grid-template-columns:1fr}
+ #pagina-emprego-conecta .cx6-flowline{grid-template-columns:1fr}
+ #pagina-emprego-conecta .cx6-kpis{grid-template-columns:1fr 1fr}
+ #pagina-emprego-conecta .cx6-dash-table{overflow:auto}
+ #pagina-emprego-conecta .cx6-dash-table header,#pagina-emprego-conecta .cx6-dash-table article{min-width:620px}
+ #pagina-emprego-conecta .cx6-final{grid-template-columns:1fr}
+}
+@media(max-width:470px){
+ #pagina-emprego-conecta .cx6-hero h1{font-size:35px}
+ #pagina-emprego-conecta .cx6-live{padding:15px}
+ #pagina-emprego-conecta .cx6-scale-grid{grid-template-columns:1fr}
+ #pagina-emprego-conecta .cx6-action-card{grid-template-columns:45px 1fr}
+ #pagina-emprego-conecta .cx6-action-card em{grid-column:2}
+}
+</style>
 
-      <aside class="cx5-hero-card">
-        <div class="cx5-hero-card-head"><i></i><span>AUTOMAÇÃO ATIVA</span><b>RH focado em candidatos</b></div>
-        <div class="cx5-hero-flow">
-          <article><span>1</span><div><b>Publicou na origem</b><small>ATS ou portal de carreiras</small></div><em>RH</em></article>
-          <article><span>2</span><div><b>Conecta sincronizou</b><small>Dados organizados automaticamente</small></div><em>AUTO</em></article>
-          <article><span>3</span><div><b>Vaga ganhou alcance</b><small>Busca, filtros e descoberta</small></div><em>BRASIL</em></article>
-          <article><span>4</span><div><b>RH recebe interesse</b><small>Mais tempo para selecionar</small></div><em>FOCO</em></article>
-        </div>
-        <div class="cx5-hero-note"><strong>Menos operação repetitiva.</strong><span>Mais tempo para triagem, entrevistas e contratação.</span></div>
-      </aside>
+<div class="cx6-hero">
+  <div class="cx6-shell cx6-hero-grid">
+    <div class="cx6-hero-copy">
+      <span class="cx6-kicker">+ Emprego Conecta · integração automática</span>
+      <h1>Sua empresa publica.<br><b>O Conecta sincroniza.</b></h1>
+      <p>Continue divulgando suas vagas no portal de carreiras, ATS ou canal oficial que sua equipe já utiliza. O Conecta acompanha a origem e mantém as oportunidades sincronizadas no +Empregos — sem recadastro manual e sem transformar mais um portal em trabalho para o RH.</p>
+      <div class="cx6-actions">
+        <button class="cx6-primary" type="button" onclick="irPara('login-conecta')">Conectar minhas vagas</button>
+        <button class="cx6-secondary" type="button" onclick="document.getElementById('cx6-como-funciona')?.scrollIntoView({behavior:'smooth'})">Ver como funciona</button>
+      </div>
+      <div class="cx6-hero-seals">
+        <span><i>✓</i>Sem copiar e colar</span>
+        <span><i>✓</i>Atualização automática</span>
+        <span><i>✓</i>Duplicidade controlada</span>
+        <span><i>✓</i>Painel de acompanhamento</span>
+      </div>
     </div>
+
+    <aside class="cx6-live">
+      <div class="cx6-live-head">
+        <div><i></i><div><b>Sincronização ativa</b><small>Origem oficial acompanhada</small></div></div>
+        <em>ONLINE</em>
+      </div>
+      <div class="cx6-live-flow">
+        <article><span class="num">1</span><div><b>Vaga publicada na empresa</b><small>ATS ou portal de carreiras</small></div><em>ORIGEM</em></article>
+        <article><span class="num">2</span><div><b>Conecta identificou</b><small>Dados capturados e organizados</small></div><em>AUTO</em></article>
+        <article><span class="num">3</span><div><b>Vaga publicada no +Empregos</b><small>Busca, filtros e descoberta</small></div><em>ATIVA</em></article>
+        <article><span class="num">4</span><div><b>Alteração detectada</b><small>Informações sincronizadas novamente</small></div><em>SYNC</em></article>
+      </div>
+      <div class="cx6-live-note"><b>Seu RH continua trabalhando onde já trabalha.</b><span>O Conecta funciona como a ponte entre a origem da vaga e o +Empregos.</span></div>
+    </aside>
   </div>
+</div>
 
-  <nav class="cx5-nav">
-    <div class="cx5-shell">
-      <button onclick="document.getElementById('conecta-beneficios')?.scrollIntoView({behavior:'smooth'})">Benefícios</button>
-      <button onclick="document.getElementById('conecta-fluxo')?.scrollIntoView({behavior:'smooth'})">Como funciona</button>
-      <button onclick="document.getElementById('conecta-atracao')?.scrollIntoView({behavior:'smooth'})">Atração de candidatos</button>
-      <button onclick="document.getElementById('conecta-empresas')?.scrollIntoView({behavior:'smooth'})">Empresas</button>
-      <button onclick="document.getElementById('conecta-faq')?.scrollIntoView({behavior:'smooth'})">Dúvidas</button>
+<nav class="cx6-anchorbar">
+  <div class="cx6-shell">
+    <button onclick="document.getElementById('cx6-rotina')?.scrollIntoView({behavior:'smooth'})">Sua rotina</button>
+    <button onclick="document.getElementById('cx6-como-funciona')?.scrollIntoView({behavior:'smooth'})">Como funciona</button>
+    <button onclick="document.getElementById('cx6-automatico')?.scrollIntoView({behavior:'smooth'})">Automação</button>
+    <button onclick="document.getElementById('cx6-painel')?.scrollIntoView({behavior:'smooth'})">Painel</button>
+    <button onclick="document.getElementById('cx6-faq')?.scrollIntoView({behavior:'smooth'})">Dúvidas</button>
+  </div>
+</nav>
+
+<main>
+  <section class="cx6-section" id="cx6-rotina">
+    <div class="cx6-shell">
+      <div class="cx6-title">
+        <span class="cx6-kicker">Você não precisa mudar sua operação</span>
+        <h2>Continue publicando onde sempre publicou.</h2>
+        <p>O Conecta foi pensado para entrar na rotina sem criar outra rotina. Sua equipe administra as vagas na fonte oficial; nós cuidamos da sincronização com o +Empregos.</p>
+      </div>
+      <div class="cx6-way-grid">
+        <article class="cx6-way-card origin">
+          <div class="cx6-way-head"><span class="cx6-way-icon">▣</span><div><h3>Seu portal continua sendo a fonte</h3><p>É ali que o RH cria, altera, encerra ou reabre oportunidades.</p></div></div>
+          <div class="cx6-way-list">
+            <span>Publique a vaga normalmente</span>
+            <span>Edite informações no sistema de origem</span>
+            <span>Encerre quando o processo terminar</span>
+            <span>Reabra quando a oportunidade voltar</span>
+          </div>
+        </article>
+        <article class="cx6-way-card bridge">
+          <div class="cx6-way-head"><span class="cx6-way-icon">↻</span><div><h3>O Conecta vira a ponte</h3><p>Ele acompanha a origem e mantém o +Empregos alinhado às informações disponíveis.</p></div></div>
+          <div class="cx6-way-list">
+            <span>Identifica novas oportunidades</span>
+            <span>Organiza e sincroniza os dados</span>
+            <span>Atualiza quando detecta mudanças</span>
+            <span>Evita recadastro e reduz divergências</span>
+          </div>
+        </article>
+      </div>
     </div>
-  </nav>
+  </section>
 
-  <main class="cx5-shell">
-    <section class="cx5-benefits" id="conecta-beneficios">
-      <div class="cx5-title">
-        <span>POR QUE O RH GANHA TEMPO</span>
-        <h2>O trabalho repetitivo fica com o Conecta.</h2>
-        <p>Sua equipe continua gerenciando as vagas na fonte oficial. O +Empregos entra como um canal sincronizado de distribuição e descoberta.</p>
+  <section class="cx6-section alt" id="cx6-como-funciona">
+    <div class="cx6-shell">
+      <div class="cx6-title">
+        <span class="cx6-kicker">Uma única publicação</span>
+        <h2>Do seu portal ao +Empregos, automaticamente.</h2>
+        <p>O fluxo foi desenhado para ser simples de entender e simples de operar.</p>
       </div>
-      <div class="cx5-benefit-grid">
-        <article>
-          <i><svg viewBox="0 0 24 24"><path d="M4 7h16v12H4z"/><path d="M8 7V5h8v2M8 12h8M8 16h5"/></svg></i>
-          <h3>Sem cadastro duplicado</h3><p>O RH não precisa copiar a mesma vaga para mais um portal.</p>
-        </article>
-        <article>
-          <i><svg viewBox="0 0 24 24"><path d="M20 7h-6V1M4 17h6v6M19 12a7 7 0 0 0-12-5l-3 3M5 12a7 7 0 0 0 12 5l3-3"/></svg></i>
-          <h3>Vagas sempre atualizadas</h3><p>Alterações e encerramentos acompanham a origem conforme a sincronização.</p>
-        </article>
-        <article>
-          <i><svg viewBox="0 0 24 24"><circle cx="9" cy="8" r="3"/><path d="M3 20c.5-4.2 2.5-6.5 6-6.5s5.5 2.3 6 6.5"/><path d="m16 9 2 2 3-4"/></svg></i>
-          <h3>Candidatos mais compatíveis</h3><p>As vagas ganham visibilidade por cargo, área, localização, modalidade e interesse.</p>
-        </article>
-        <article>
-          <i><svg viewBox="0 0 24 24"><path d="M12 3v18M3 12h18"/><circle cx="12" cy="12" r="9"/></svg></i>
-          <h3>Alcance nacional</h3><p>Oportunidades podem ser encontradas por candidatos em diferentes regiões do Brasil.</p>
-        </article>
-        <article>
-          <i><svg viewBox="0 0 24 24"><path d="M5 5h14v14H5z"/><path d="M8 9h8M8 13h5"/></svg></i>
-          <h3>Painel de acompanhamento</h3><p>Origem, status, vagas sincronizadas e próxima execução em um único lugar.</p>
-        </article>
-        <article>
-          <i><svg viewBox="0 0 24 24"><path d="M4 19V9m5 10V5m5 14v-7m5 7V3"/></svg></i>
-          <h3>Mais foco em seleção</h3><p>O tempo da equipe volta para triagem, entrevistas, contato e decisão.</p>
-        </article>
+      <div class="cx6-flowline">
+        <article><i>01</i><h3>Empresa publica</h3><p>O RH cria a vaga no canal oficial que já utiliza.</p></article>
+        <article><i>02</i><h3>Conecta identifica</h3><p>A origem é acompanhada e a oportunidade é reconhecida.</p></article>
+        <article><i>03</i><h3>Dados sincronizados</h3><p>As informações disponíveis entram no padrão do +Empregos.</p></article>
+        <article><i>04</i><h3>Vaga ganha alcance</h3><p>A oportunidade passa a aparecer em busca, filtros e descoberta.</p></article>
+        <article><i>05</i><h3>RH acompanha</h3><p>O painel mostra o que foi sincronizado e o que exige atenção.</p></article>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <section class="cx5-showcase" id="conecta-fluxo">
-      <div class="cx5-title">
-        <span>5 ETAPAS · UMA ROTINA MAIS LEVE</span>
-        <h2>Veja o Conecta trabalhando no lugar do RH.</h2>
-        <p>O carrossel mostra o fluxo desde a publicação na origem até a chegada de candidatos.</p>
+  <section class="cx6-section" id="cx6-automatico">
+    <div class="cx6-shell">
+      <div class="cx6-title">
+        <span class="cx6-kicker">Mudou na origem? O Conecta acompanha.</span>
+        <h2>Automação durante todo o ciclo da vaga.</h2>
+        <p>Não é apenas importar uma vez. O objetivo é manter a oportunidade coerente ao longo do processo conforme mudanças são identificadas na fonte.</p>
       </div>
-      <div class="cx5-slider" id="cx5SliderEM">
-        <div class="cx5-track" id="cx5TrackEM">
-          <article class="cx5-slide">
-            <div class="cx5-slide-copy"><span>01 · PUBLICAÇÃO NA ORIGEM</span><h3>Seu RH continua usando o sistema de sempre.</h3><p>A vaga é criada no ATS, portal de carreiras ou fonte oficial da empresa. Nada muda na rotina principal.</p><b>O RH não precisa aprender outro processo.</b></div>
-            <div class="cx5-slide-ui">
-              <div class="cx5-ui-card"><small>PORTAL / ATS</small><strong>Analista de Logística</strong><span>Contagem · MG</span><span>Presencial · CLT</span><em>PUBLICADA</em></div>
-              <div class="cx5-ui-arrow">→</div>
-              <div class="cx5-ui-status"><i>✓</i><b>Origem identificada</b><small>Conecta acompanha a fonte oficial.</small></div>
-            </div>
-          </article>
-          <article class="cx5-slide">
-            <div class="cx5-slide-copy"><span>02 · SINCRONIZAÇÃO</span><h3>Os dados são organizados automaticamente.</h3><p>Título, descrição, requisitos, benefícios, localização, modalidade e canal de candidatura entram no padrão do +Empregos quando disponíveis.</p><b>Menos copiar, colar e revisar.</b></div>
-            <div class="cx5-slide-ui cx5-fields-ui">
-              <span>✓ Cargo</span><span>✓ Descrição</span><span>✓ Requisitos</span><span>✓ Benefícios</span><span>✓ Cidade / UF</span><span>✓ Modalidade</span><span>✓ Contrato</span><span>✓ Candidatura</span>
-            </div>
-          </article>
-          <article class="cx5-slide">
-            <div class="cx5-slide-copy"><span>03 · ATRAÇÃO</span><h3>A vaga aparece para quem está procurando algo compatível.</h3><p>Busca, localização, modalidade, filtros e recursos de descoberta ajudam a aproximar oportunidades de candidatos mais alinhados.</p><b>Mais relevância sem criar trabalho extra para o RH.</b></div>
-            <div class="cx5-slide-ui cx5-match-ui">
-              <div class="cx5-match-job"><small>VAGA</small><strong>Supervisor de Vendas</strong><span>Belo Horizonte · MG</span></div>
-              <div class="cx5-match-center">✦</div>
-              <div class="cx5-match-candidates"><span><i>92%</i>Experiência + região</span><span><i>86%</i>Área + modalidade</span><span><i>79%</i>Perfil de interesse</span></div>
-            </div>
-          </article>
-          <article class="cx5-slide">
-            <div class="cx5-slide-copy"><span>04 · ATUALIZAÇÃO CONTÍNUA</span><h3>Mudou na origem? O Conecta acompanha.</h3><p>Nas verificações automáticas, alterações disponíveis são sincronizadas e vagas encerradas deixam de permanecer desatualizadas.</p><b>Uma fonte oficial. Menos divergência entre canais.</b></div>
-            <div class="cx5-slide-ui cx5-sync-ui">
-              <div><small>ANTES</small><strong>Assistente Comercial</strong><span>Presencial</span></div><i>↻</i><div class="ok"><small>ATUALIZADO</small><strong>Assistente Comercial</strong><span>Híbrido</span></div>
-            </div>
-          </article>
-          <article class="cx5-slide">
-            <div class="cx5-slide-copy"><span>05 · FOCO NO CANDIDATO</span><h3>Seu RH usa o tempo onde realmente importa.</h3><p>Com a operação de publicação automatizada, a equipe concentra energia em avaliar perfis, conversar com candidatos e conduzir processos seletivos.</p><b>Conecta cuida da distribuição. RH cuida da contratação.</b></div>
-            <div class="cx5-slide-ui cx5-rh-ui">
-              <article><i>⌕</i><strong>Triagem</strong><small>Perfis mais alinhados</small></article>
-              <article><i>☎</i><strong>Contato</strong><small>Mais agilidade</small></article>
-              <article><i>✓</i><strong>Entrevistas</strong><small>Foco em decisão</small></article>
-            </div>
-          </article>
+      <div class="cx6-actions-grid">
+        <article class="cx6-action-card"><i>＋</i><div><b>Publicou uma nova vaga</b><small>O Conecta identifica a oportunidade e prepara a publicação.</small></div><em>PUBLICAR</em></article>
+        <article class="cx6-action-card"><i>✎</i><div><b>Alterou título ou descrição</b><small>As mudanças detectadas podem ser refletidas na vaga sincronizada.</small></div><em>ATUALIZAR</em></article>
+        <article class="cx6-action-card"><i>R$</i><div><b>Alterou salário ou condições</b><small>Os campos disponíveis são atualizados sem novo cadastro manual.</small></div><em>SINCRONIZAR</em></article>
+        <article class="cx6-action-card"><i>✓</i><div><b>Encerrou a oportunidade</b><small>O status da origem orienta o encerramento da vaga sincronizada.</small></div><em>ENCERRAR</em></article>
+      </div>
+    </div>
+  </section>
+
+  <section class="cx6-section alt">
+    <div class="cx6-shell cx6-dedupe">
+      <div>
+        <div class="cx6-title" style="margin-bottom:0">
+          <span class="cx6-kicker">Uma vaga. Uma oportunidade.</span>
+          <h2>Atualizar não significa duplicar.</h2>
+          <p>O Conecta mantém o vínculo com a origem para que alterações da mesma oportunidade sejam tratadas como atualização, e não como uma nova vaga a cada mudança.</p>
         </div>
-        <button class="cx5-prev" type="button" onclick="moverConectaRhSlideEM(-1)" aria-label="Slide anterior">‹</button>
-        <button class="cx5-next" type="button" onclick="moverConectaRhSlideEM(1)" aria-label="Próximo slide">›</button>
-        <div class="cx5-dots">
-          <button class="ativo" onclick="irConectaRhSlideEM(0)" aria-label="Slide 1"></button>
-          <button onclick="irConectaRhSlideEM(1)" aria-label="Slide 2"></button>
-          <button onclick="irConectaRhSlideEM(2)" aria-label="Slide 3"></button>
-          <button onclick="irConectaRhSlideEM(3)" aria-label="Slide 4"></button>
-          <button onclick="irConectaRhSlideEM(4)" aria-label="Slide 5"></button>
+        <div class="cx6-dedupe-list">
+          <span><i>✓</i>Origem identificada</span>
+          <span><i>✓</i>Registro vinculado à oportunidade</span>
+          <span><i>✓</i>Atualizações no mesmo ciclo</span>
+          <span><i>✓</i>Controle de duplicidade e inconsistências</span>
         </div>
       </div>
-    </section>
-
-    <section class="cx5-attraction" id="conecta-atracao">
-      <div class="cx5-attraction-copy">
-        <span>ATRAÇÃO DE CANDIDATOS COMPATÍVEIS</span>
-        <h2>Não basta publicar. A vaga precisa ser encontrada pelas pessoas certas.</h2>
-        <p>O +Empregos organiza as oportunidades para que candidatos possam encontrá-las por contexto profissional e localização. O objetivo é aumentar a chance de a vaga chegar a pessoas mais aderentes ao que a empresa procura.</p>
-        <div class="cx5-attraction-tags">
-          <span>📍 Localização</span><span>◫ Área profissional</span><span>⌂ Modalidade</span><span>▣ Tipo de contrato</span><span>⌕ Palavra-chave</span><span>★ Interesse do candidato</span>
-        </div>
-      </div>
-      <aside class="cx5-attraction-panel">
-        <small>EXEMPLO DE DESCOBERTA</small>
-        <div class="cx5-job-mini"><b>Analista Administrativo</b><span>São Paulo · Híbrido · CLT</span></div>
-        <div class="cx5-profile-mini"><i>✓</i><div><b>Perfil compatível</b><span>Área administrativa · SP · interesse em híbrido</span></div></div>
-        <div class="cx5-profile-mini"><i>✓</i><div><b>Região compatível</b><span>Busca ativa na cidade e proximidades</span></div></div>
-        <div class="cx5-profile-mini"><i>✓</i><div><b>Interesse compatível</b><span>Histórico de busca relacionado à oportunidade</span></div></div>
-        <p>Compatibilidade ajuda na descoberta; a decisão de candidatura e seleção continua sendo humana.</p>
+      <aside class="cx6-dedupe-ui">
+        <h4>Histórico da oportunidade</h4>
+        <div class="cx6-dedupe-row"><div><b>Analista Comercial</b><small>Publicada na origem · 08:42</small></div><em>CRIADA</em></div>
+        <div class="cx6-dedupe-row"><div><b>Modalidade alterada</b><small>Presencial → Híbrido · 10:18</small></div><em>ATUALIZADA</em></div>
+        <div class="cx6-dedupe-row"><div><b>Faixa salarial atualizada</b><small>Alteração detectada · 11:06</small></div><em>ATUALIZADA</em></div>
+        <div class="cx6-dedupe-row"><div><b>Mesma vaga, mesmo vínculo</b><small>Nenhuma nova publicação desnecessária</small></div><em>SEM DUPLICAR</em></div>
       </aside>
-    </section>
+    </div>
+  </section>
 
-    <section class="cx5-companies" id="conecta-empresas">
-      <div class="cx5-title">
-        <span>EMPRESAS CONECTADAS</span>
-        <h2>Feito para operações que não podem perder tempo com recadastro.</h2>
-        <p>O espaço abaixo está preparado para exibir automaticamente as marcas das empresas conectadas ao serviço conforme a base crescer.</p>
+  <section class="cx6-section" id="cx6-painel">
+    <div class="cx6-shell">
+      <div class="cx6-title">
+        <span class="cx6-kicker">Você não opera. Você acompanha.</span>
+        <h2>Um painel para saber o que está acontecendo.</h2>
+        <p>O Painel Conecta existe para dar visibilidade à integração: origem, sincronizações, vagas e eventuais pontos que exigem atenção.</p>
       </div>
-      <div class="cx5-company-marquee" aria-label="Perfis de empresas conectadas ao Conecta">
-        <div class="cx5-company-track">
-          <div class="cx5-company-logo"><b>REDE</b><span>Varejo</span></div>
-          <div class="cx5-company-logo"><b>LOG</b><span>Logística</span></div>
-          <div class="cx5-company-logo"><b>IND</b><span>Indústria</span></div>
-          <div class="cx5-company-logo"><b>RH+</b><span>Consultoria</span></div>
-          <div class="cx5-company-logo"><b>TEC</b><span>Tecnologia</span></div>
-          <div class="cx5-company-logo"><b>SAÚDE</b><span>Saúde</span></div>
-          <div class="cx5-company-logo"><b>REDE</b><span>Varejo</span></div>
-          <div class="cx5-company-logo"><b>LOG</b><span>Logística</span></div>
-          <div class="cx5-company-logo"><b>IND</b><span>Indústria</span></div>
-          <div class="cx5-company-logo"><b>RH+</b><span>Consultoria</span></div>
-          <div class="cx5-company-logo"><b>TEC</b><span>Tecnologia</span></div>
-          <div class="cx5-company-logo"><b>SAÚDE</b><span>Saúde</span></div>
+      <div class="cx6-dashboard">
+        <div class="cx6-dash-head"><b>Painel Conecta</b><span>Integração ativa</span></div>
+        <div class="cx6-kpis">
+          <article><small>Vagas encontradas</small><b>128</b><em>na origem conectada</em></article>
+          <article><small>Sincronizadas</small><b>124</b><em>publicadas e alinhadas</em></article>
+          <article><small>Atualizadas</small><b>18</b><em>nas últimas execuções</em></article>
+          <article><small>Requer atenção</small><b>4</b><em>campos para revisar</em></article>
+        </div>
+        <div class="cx6-dash-table">
+          <header><span>Vaga</span><span>Origem</span><span>Última atualização</span><span>Status</span></header>
+          <article><b>Operador Comercial</b><span>Portal de carreiras</span><span>há 4 min</span><em>SINCRONIZADA</em></article>
+          <article><b>Analista de Logística</b><span>ATS</span><span>há 11 min</span><em>ATUALIZADA</em></article>
+          <article><b>Promotor de Vendas</b><span>Portal de carreiras</span><span>há 18 min</span><em>SINCRONIZADA</em></article>
         </div>
       </div>
-      <div class="cx5-company-note">Redes, franquias, consultorias, indústrias e operações nacionais podem usar o Conecta para distribuir vagas sem duplicar a rotina do RH.</div>
-    </section>
+    </div>
+  </section>
 
-    <section class="cx5-control">
-      <div class="cx5-title">
-        <span>CONTROLE PARA O RH</span>
-        <h2>Automático, mas sempre acompanhado.</h2>
+  <section class="cx6-section alt">
+    <div class="cx6-shell">
+      <div class="cx6-title">
+        <span class="cx6-kicker">A escala muda. A rotina não.</span>
+        <h2>Uma vaga ou centenas de oportunidades.</h2>
+        <p>Quando o volume cresce, a automação passa a poupar ainda mais trabalho operacional.</p>
       </div>
-      <div class="cx5-control-grid">
-        <article><i>01</i><h3>Origem conectada</h3><p>Veja qual ATS ou portal está alimentando as oportunidades.</p></article>
-        <article><i>02</i><h3>Próxima sincronização</h3><p>Acompanhe quando a próxima verificação automática será executada.</p></article>
-        <article><i>03</i><h3>Status por vaga</h3><p>Identifique publicadas, em análise e registros que exigem atenção.</p></article>
-        <article><i>04</i><h3>Destino da candidatura</h3><p>Site da empresa, ATS, e-mail ou WhatsApp conforme o fluxo da vaga.</p></article>
+      <div class="cx6-scale-grid">
+        <article><i>10+</i><h3>Contratação recorrente</h3><p>Novas oportunidades entram no fluxo sem exigir cadastro repetido.</p></article>
+        <article><i>100+</i><h3>Grandes volumes</h3><p>Mais vagas podem ser acompanhadas sem multiplicar tarefas manuais.</p></article>
+        <article><i>BR</i><h3>Várias cidades</h3><p>Oportunidades podem ser distribuídas por região e localização.</p></article>
+        <article><i>∞</i><h3>Várias unidades</h3><p>Operações com filiais e diferentes frentes de contratação ganham padronização.</p></article>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <section class="cx5-faq" id="conecta-faq">
-      <div class="cx5-title"><span>DÚVIDAS FREQUENTES</span><h2>O essencial antes de conectar.</h2></div>
-      <div class="cx5-faq-grid">
-        <details><summary>Precisamos cadastrar as vagas novamente?</summary><p>Não quando a integração consegue ler os dados necessários na fonte. Essa é justamente a principal economia operacional do Conecta.</p></details>
-        <details><summary>Precisamos trocar nosso ATS?</summary><p>Não. A empresa continua usando o sistema atual e o Conecta atua como camada de sincronização e distribuição.</p></details>
-        <details><summary>Como o Conecta ajuda a atrair candidatos?</summary><p>As vagas entram na busca e nos filtros do +Empregos, podendo ser descobertas por cargo, região, modalidade e outros sinais de interesse disponíveis no portal.</p></details>
-        <details><summary>A integração garante candidatos?</summary><p>Não. O Conecta amplia distribuição e descoberta, mas candidatura e contratação dependem do mercado, da vaga e das decisões de candidatos e empresas.</p></details>
-        <details><summary>O que acontece quando a vaga é alterada?</summary><p>Nas verificações automáticas, mudanças disponíveis na fonte podem ser refletidas na vaga sincronizada.</p></details>
-        <details><summary>Como sabemos se está funcionando?</summary><p>O Painel Conecta mostra origem, última execução, próxima sincronização, vagas sincronizadas e eventuais erros.</p></details>
+  <section class="cx6-section">
+    <div class="cx6-shell">
+      <div class="cx6-title">
+        <span class="cx6-kicker">Controle e transparência</span>
+        <h2>Sua empresa continua no controle.</h2>
+        <p>O Conecta não substitui o seu portal de carreiras. Ele usa a origem autorizada como referência para manter a distribuição organizada.</p>
       </div>
-    </section>
+      <div class="cx6-security">
+        <article><strong>Origem validada</strong><p>A integração fica vinculada ao canal autorizado da empresa.</p></article>
+        <article><strong>Histórico de sincronizações</strong><p>O painel ajuda a acompanhar o que foi identificado e atualizado.</p></article>
+        <article><strong>Status por oportunidade</strong><p>Cada vaga pode indicar se está sincronizada, atualizada ou se requer atenção.</p></article>
+        <article><strong>Pausa e acompanhamento</strong><p>A empresa visualiza a situação da conexão e mantém clareza sobre a operação.</p></article>
+      </div>
+    </div>
+  </section>
 
-    <section class="cx5-final">
-      <div><span>MENOS OPERAÇÃO. MAIS RECRUTAMENTO.</span><h2>Seu RH cuida de pessoas. O Conecta cuida da distribuição das vagas.</h2><p>Conecte a fonte oficial da empresa e transforme uma rotina repetitiva em um processo automático, acompanhado e preparado para alcançar candidatos em todo o Brasil.</p></div>
-      <div><button type="button" class="primary" onclick="irPara('login-conecta')">Conectar minhas vagas</button><button type="button" onclick="irPara('login-conecta')">Acessar Painel Conecta</button></div>
-    </section>
-  </main>
+  <section class="cx6-section alt">
+    <div class="cx6-shell">
+      <div class="cx6-title">
+        <span class="cx6-kicker">Onde o RH deve gastar tempo?</span>
+        <h2>Menos publicação. Mais recrutamento.</h2>
+      </div>
+      <div class="cx6-before-after">
+        <article class="cx6-before">
+          <h3>Sem automação</h3>
+          <span>Copiar e colar a mesma vaga</span>
+          <span>Revisar publicação em mais de um canal</span>
+          <span>Atualizar informações manualmente</span>
+          <span>Encerrar anúncios em vários lugares</span>
+          <span>Conferir se existem divergências</span>
+        </article>
+        <article class="cx6-after">
+          <h3>Com o Conecta</h3>
+          <span>Publicar na origem oficial</span>
+          <span>Acompanhar a sincronização</span>
+          <span>Receber interesse dos candidatos</span>
+          <span>Fazer triagem e contato</span>
+          <span>Conduzir entrevistas e contratações</span>
+        </article>
+      </div>
+    </div>
+  </section>
 
-  <script>
-  (function(){
-    let cx5Index=0,cx5Timer=null;
-    function render(){
-      const track=document.getElementById('cx5TrackEM');if(!track)return;
-      track.style.transform='translateX(-'+(cx5Index*100)+'%)';
-      document.querySelectorAll('#pagina-emprego-conecta .cx5-dots button').forEach((b,i)=>b.classList.toggle('ativo',i===cx5Index));
-    }
-    window.moverConectaRhSlideEM=function(dir){cx5Index=(cx5Index+dir+5)%5;render();reiniciar()};
-    window.irConectaRhSlideEM=function(i){cx5Index=Math.max(0,Math.min(4,Number(i)||0));render();reiniciar()};
-    function reiniciar(){if(cx5Timer)clearInterval(cx5Timer);cx5Timer=setInterval(()=>{cx5Index=(cx5Index+1)%5;render()},6500)}
-    if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',()=>{render();reiniciar()});else{render();reiniciar()}
-  })();
-  </script>
+  <section class="cx6-section" id="cx6-faq">
+    <div class="cx6-shell">
+      <div class="cx6-title"><span class="cx6-kicker">Dúvidas frequentes</span><h2>O essencial antes de conectar.</h2></div>
+      <div class="cx6-faq">
+        <details><summary>Precisamos cadastrar as vagas novamente no +Empregos?</summary><p>Quando a integração consegue ler as informações necessárias na fonte, não. A proposta do Conecta é justamente reduzir o recadastro manual.</p></details>
+        <details><summary>Precisamos trocar nosso ATS ou portal de carreiras?</summary><p>Não. A empresa continua usando o sistema atual e o Conecta atua como camada de sincronização e distribuição.</p></details>
+        <details><summary>O que acontece quando uma vaga é alterada?</summary><p>Nas verificações automáticas, as mudanças identificadas na fonte podem ser refletidas na oportunidade vinculada no +Empregos.</p></details>
+        <details><summary>Uma alteração cria uma vaga duplicada?</summary><p>A integração mantém vínculo com a oportunidade de origem para tratar mudanças como atualização do mesmo ciclo sempre que a origem permite essa identificação.</p></details>
+        <details><summary>Como sabemos se a sincronização está funcionando?</summary><p>O Painel Conecta mostra a origem, execuções, vagas sincronizadas, atualizações e eventuais registros que exigem atenção.</p></details>
+        <details><summary>O Conecta garante candidatos?</summary><p>Não. Ele reduz trabalho operacional e amplia a distribuição e descoberta das vagas. O interesse dos candidatos e a contratação continuam dependendo da oportunidade, do mercado e do processo seletivo da empresa.</p></details>
+      </div>
+    </div>
+  </section>
+
+  <section class="cx6-section" style="padding-top:20px">
+    <div class="cx6-shell">
+      <div class="cx6-final">
+        <div><span>UMA PUBLICAÇÃO. TODO O RESTANTE SINCRONIZADO.</span><h2>Seu portal continua sendo a fonte. O Conecta vira a ponte.</h2><p>Conecte a origem oficial da empresa e deixe a publicação, atualização e acompanhamento das vagas muito mais simples para o seu RH.</p></div>
+        <button type="button" onclick="irPara('login-conecta')">Quero conectar minhas vagas</button>
+      </div>
+    </div>
+  </section>
+</main>
 </section><section class="pagina" id="pagina-painel-empresa"><div class="emp-dash">
 <aside class="emp-dash-side emp-side-premium"><div class="emp-dash-brand"><strong>Empregai</strong><small>Painel do recrutador</small></div><div class="emp-side-plan"><span>PLANO ATUAL</span><div><strong id="empresaSidePlano">Plano</strong><b>ATIVO</b></div><small id="empresaSideVigencia">Assinatura ativa</small><button onclick="irPara('planos')">Gerenciar →</button></div><button class="emp-side-publish" onclick="abrirPublicacao()"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg><span>Publicar nova vaga</span></button><nav><div class="emp-side-group"><small>RECRUTAMENTO</small><button class="ativo" onclick="irPara('painel-empresa')"><span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 11 12 4l8 7v9H5V11"/><path d="M9 20v-6h6v6"/></svg></span>Visão geral</button><button onclick="irPara('vagas-empresa')"><span><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="7" width="18" height="12" rx="2"/><path d="M8 7V5.5A1.5 1.5 0 0 1 9.5 4h5A1.5 1.5 0 0 1 16 5.5V7"/></svg></span>Processo seletivo</button><button onclick="irPara('candidatos-empresa')"><span><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="9" r="3"/><circle cx="17" cy="10" r="2"/><path d="M3.5 19c.5-3.3 2.3-5 5.5-5s5 1.7 5.5 5M15 15c3-.3 4.8 1 5.3 4"/></svg></span>Candidatos<em id="empresaSideCandidatos" class="emp-side-count"></em></button><button onclick="irPara('contratacoes-empresa')"><span><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="m8 12 2.7 2.7L16.5 9"/></svg></span>Contratações</button><button onclick="irPara('central-empresa')"><span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h16v12H8l-4 3V5Z"/><path d="M8 9h8M8 13h5"/></svg></span>Mensagens<em id="empresaSideMensagens" class="emp-side-count"></em></button></div><div class="emp-side-group management"><small>GESTÃO</small><button onclick="irPara('perfil-empresa')"><span><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M8 8h8M8 12h8M8 16h5"/></svg></span>Minha empresa</button><button id="menuRelatorios" onclick="abrirRecursoEmpresa('relatorios')"><span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 19V9M12 19V5M19 19v-7"/></svg></span>Relatórios<small id="lockRelatorios"></small></button><button onclick="abrirAvaliacoesEmpresaEM()"><span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 3 2.7 5.5 6.1.9-4.4 4.3 1 6.1-5.4-2.9-5.4 2.9 1-6.1-4.4-4.3 6.1-.9L12 3Z"/></svg></span>Avaliações<em id="empresaSideAvaliacoes" class="emp-side-count"></em></button><button onclick="irPara('planos')"><span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 3 3 6 6 .9-4.5 4.4 1.1 6.2L12 17.6l-5.6 2.9 1.1-6.2L3 9.9 9 9l3-6Z"/></svg></span>Plano e assinatura</button><button onclick="abrirUsuariosEmpresaEM()"><span><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="8" cy="8" r="3"/><circle cx="17" cy="9" r="2.5"/><path d="M2.5 20c.5-4.3 2.4-6.5 5.5-6.5s5 2.2 5.5 6.5M14 14.5c4.1-.8 6.4 1 7 5.5"/></svg></span>Usuários da empresa</button><button onclick="irPara('perfil-empresa')"><span><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M19 12a7 7 0 0 0-.1-1l2-1.5-2-3.4-2.4 1a7 7 0 0 0-1.7-1L14.5 3h-5l-.4 3.1a7 7 0 0 0-1.7 1L5 6.1 3 9.5 5.1 11a7 7 0 0 0 0 2L3 14.5l2 3.4 2.4-1a7 7 0 0 0 1.7 1l.4 3.1h5l.4-3.1a7 7 0 0 0 1.7-1l2.4 1 2-3.4-2.1-1.5a7 7 0 0 0 .1-1Z"/></svg></span>Configurações</button></div></nav><div class="emp-side-footer"><button class="emp-help-pro" onclick="irPara('central-empresa')"><span>?</span><div><b>Central de ajuda</b><small>Dúvidas e suporte</small></div><em>↗</em></button><button class="emp-side-account-pro" onclick="irPara('perfil-empresa')"><span id="empSideAccountAvatar">E</span><div><b id="empSideAccountName">Empresa</b><small><i></i> Conta empresarial <u id="empSideAccountPlan">· Plano ativo</u></small></div><em>›</em></button><button class="emp-dash-exit" onclick="typeof empregaiAuthLogoutEM==='function'?empregaiAuthLogoutEM():sair()">Sair</button></div></aside>
 <div class="modal-candidato oculto" id="modalUsuariosEmpresaEM" onclick="if(event.target===this)fecharUsuariosEmpresaEM()"><div class="modal-candidato-card empresa-usuarios-modal-em"><button class="modal-fechar" type="button" onclick="fecharUsuariosEmpresaEM()">×</button><span class="empresa-usuarios-kicker">EQUIPE DE RECRUTAMENTO</span><h2>Usuários da empresa</h2><p>Gerencie quem pode acessar as vagas e os processos seletivos desta empresa.</p><div class="empresa-usuarios-resumo" id="empresaUsuariosResumoEM">Carregando usuários...</div><div id="empresaUsuariosListaEM" class="empresa-usuarios-lista"></div><form id="empresaUsuarioFormEM" class="empresa-usuario-form" onsubmit="adicionarUsuarioEmpresaEM(event)"><h3>Adicionar recrutador</h3><div class="empresa-usuario-grid"><label>Nome<input class="campo" id="empUserNomeEM" required></label><label>E-mail<input class="campo" id="empUserEmailEM" type="email" required></label><label>Senha inicial<input class="campo" id="empUserSenhaEM" type="password" minlength="6" required></label></div><button class="btn btn-azul" type="submit">Criar acesso</button></form><p id="empresaUsuariosLimiteEM" class="empresa-usuarios-aviso"></p><div id="empresaUsuariosMsgEM" class="form-msg"></div></div></div><div class="modal-candidato oculto" id="modalAvaliacoesEmpresaEM"><div class="modal-candidato-card empresa-avaliacoes-modal-em"><button class="modal-fechar" type="button" onclick="fecharAvaliacoesEmpresaEM()">×</button><div id="conteudoAvaliacoesEmpresaEM"></div></div></div><main class="emp-dash-main emp-premium-v2">
