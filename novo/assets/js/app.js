@@ -367,52 +367,66 @@ function aplicarAbaConectaLoginEM(){
 /* EMPREGOS-CONECTA-ACESSO-HEADER-V1 */
 function garantirAcessoConectaHeaderEM(){
  document.getElementById('acessoConectaRodapeEM')?.remove();
- const existente=document.getElementById('headerConectaLoginEM');
- if(existente&&document.body.contains(existente))return true;
+ document.getElementById('empConectaLauncherEM')?.remove();
+ document.getElementById('empConectaMenuEM')?.remove();
+ document.querySelectorAll('.btn-anunciar-vaga,.anunciar-card-topo').forEach(el=>el.remove());
 
- const clicaveis=[...document.querySelectorAll('header a,header button,nav a,nav button,.header a,.header button,.topo a,.topo button')];
- const normaliza=el=>String(el?.textContent||'').replace(/\s+/g,' ').trim().toLowerCase();
- const empresa=clicaveis.find(el=>normaliza(el).includes('login empresa'));
- const candidato=clicaveis.find(el=>normaliza(el).includes('login candidato'));
+ const topo=document.querySelector('.topo');
+ const acoes=topo?.querySelector('.acoes');
+ if(!topo||!acoes)return false;
+
+ const empresa=topo.querySelector('.menu-drop-empresa');
+ const candidato=topo.querySelector('.menu-drop-candidato');
  if(!empresa||!candidato)return false;
 
- let grupo=empresa.parentElement;
- if(candidato.parentElement!==grupo){
-  const ancestrais=[];let p=empresa.parentElement;
-  while(p&&p!==document.body){ancestrais.push(p);p=p.parentElement}
-  p=candidato.parentElement;
-  while(p&&p!==document.body&&!ancestrais.includes(p))p=p.parentElement;
-  if(p&&p!==document.body)grupo=p;
+ if(!document.getElementById('estiloAcessosTopoSimplesEM')){
+  const st=document.createElement('style');st.id='estiloAcessosTopoSimplesEM';
+  st.textContent=
+   '.topo .acoes{display:flex!important;align-items:center!important;gap:8px!important}'+
+   '.topo .header-acesso-publico-em{margin:0!important}'+
+   '.topo .header-acesso-publico-em>.menu-drop-gatilho,.topo .header-acesso-simples-em{height:42px!important;min-width:auto!important;width:auto!important;padding:0 16px!important;border:1px solid #d8e2ea!important;border-radius:10px!important;background:#fff!important;color:#17394f!important;box-shadow:none!important;font:700 13px/1 Montserrat,Arial,sans-serif!important;display:flex!important;align-items:center!important;justify-content:center!important;cursor:pointer!important;transition:.18s ease!important}'+
+   '.topo .header-acesso-publico-em>.menu-drop-gatilho:hover,.topo .header-acesso-simples-em:hover{background:#f5f8fb!important;border-color:#b8c9d7!important;transform:translateY(-1px)!important}'+
+   '.topo .header-acesso-publico-em .login-card-icone,.topo .header-acesso-publico-em .login-card-seta,.topo .header-acesso-publico-em .login-card-texto small{display:none!important}'+
+   '.topo .header-acesso-publico-em .login-card-texto{display:block!important;line-height:1!important}'+
+   '.topo .header-acesso-publico-em .login-card-texto b{font-size:13px!important;font-weight:750!important;color:#17394f!important}'+
+   '.topo .header-acesso-conecta-em{border-color:#d7c5e6!important;color:#651b99!important;background:#faf6fd!important}'+
+   '.topo .header-acesso-conecta-em:hover{background:#f1e8f8!important;border-color:#b991d4!important}'+
+   'body.sessao-empresa .header-acesso-publico-em,body.sessao-candidato .header-acesso-publico-em{display:none!important}'+
+   '@media(max-width:860px){.topo .header-acesso-publico-em>.menu-drop-gatilho,.topo .header-acesso-simples-em{padding:0 10px!important;font-size:12px!important}}';
+  document.head.appendChild(st)
  }
- if(!grupo)return false;
 
- const base=empresa.cloneNode(true);
- base.id='headerConectaLoginEM';
- base.removeAttribute('href');
- base.removeAttribute('onclick');
- base.removeAttribute('data-pagina');
- base.querySelectorAll('[id]').forEach(x=>x.removeAttribute('id'));
- base.classList.remove('ativo','active','aberto','open','selected','selecionado');
- base.setAttribute('type','button');
- base.setAttribute('aria-label','Acessar Conecta');
+ empresa.classList.add('header-acesso-publico-em');
+ candidato.classList.add('header-acesso-publico-em');
 
- // Preserva a aparência dos acessos existentes, mudando apenas conteúdo e identidade.
- const strong=base.querySelector('strong,b');
- const small=base.querySelector('small');
- if(strong)strong.textContent='Conecta';
- else {
-  const textos=[...base.querySelectorAll('span,div')].filter(x=>x.children.length===0&&/login empresa/i.test(x.textContent||''));
-  if(textos[0])textos[0].textContent='Conecta';
-  else base.textContent='Conecta';
+ const btnEmpresa=empresa.querySelector('.menu-drop-gatilho');
+ const btnCandidato=candidato.querySelector('.menu-drop-gatilho');
+ if(btnEmpresa){
+  const b=btnEmpresa.querySelector('.login-card-texto b')||btnEmpresa.querySelector('b');
+  if(b)b.textContent='Empresa';
+  btnEmpresa.setAttribute('aria-label','Acessar área da empresa');
  }
- if(small)small.textContent='Integração de vagas';
+ if(btnCandidato){
+  const b=btnCandidato.querySelector('.login-card-texto b')||btnCandidato.querySelector('b');
+  if(b)b.textContent='Candidato';
+  btnCandidato.setAttribute('aria-label','Acessar área do candidato');
+ }
 
- // Ícone simples e discreto caso exista um bloco visual de ícone.
- const icon=base.querySelector('svg,i,[class*="icon"],[class*="icone"]');
- if(icon&&icon.tagName==='I')icon.textContent='↗';
+ if(empresa.parentElement!==acoes)acoes.insertBefore(empresa,candidato);
+ if(candidato.parentElement!==acoes)acoes.appendChild(candidato);
 
- base.addEventListener('click',ev=>{ev.preventDefault();ev.stopPropagation();irPara('login-conecta')});
- grupo.insertBefore(base,empresa);
+ let conecta=document.getElementById('headerConectaLoginEM');
+ if(!conecta){
+  conecta=document.createElement('button');
+  conecta.id='headerConectaLoginEM';
+  conecta.type='button';
+  conecta.className='header-acesso-simples-em header-acesso-conecta-em header-acesso-publico-em';
+  conecta.textContent='Conecta';
+  conecta.setAttribute('aria-label','Acessar Conecta');
+  conecta.addEventListener('click',ev=>{ev.preventDefault();ev.stopPropagation();irPara('login-conecta')});
+ }
+ if(conecta.parentElement!==acoes||candidato.nextElementSibling!==conecta)acoes.insertBefore(conecta,candidato.nextSibling);
+
  return true
 }
 function iniciarAcessoConectaHeaderEM(){
