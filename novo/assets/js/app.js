@@ -557,6 +557,12 @@ function conectaDetectarSistemaEM(url){
  if(u.includes('yapp.rec.br'))return'yapp';
  return u?'portal':'auto'
 }
+function conectaDetectarTipoOrigemEM(url,sistema){
+ const s=String(sistema||'auto').toLowerCase(),u=String(url||'').toLowerCase();
+ if(s&&!['auto','portal'].includes(s))return'ats';
+ if(/\.(json|xml)(?:[?#]|$)/i.test(u)||/\/(api|feed)(?:\/|[?#]|$)/i.test(u))return'feed';
+ return'portal'
+}
 function conectaSistemaInfoEM(sistema){
  const mapa={
   auto:['Detectar automaticamente','Cole a URL e o Conecta tentará reconhecer o sistema.'],
@@ -583,7 +589,12 @@ function conectaAtualizarSistemaEM(origem){
  const info=conectaSistemaInfoEM(sistema),box=document.getElementById('conectaSistemaInfoEM');
  if(box)box.innerHTML='<strong>'+esc(info.nome)+'</strong><span>'+esc(info.metodo)+'</span>';
  const tipo=document.getElementById('conectaTipoEM');
- if(tipo&&sistema!=='auto'&&sistema!=='portal')tipo.value='ats'
+ if(tipo){
+  const tipoDetectado=conectaDetectarTipoOrigemEM(url,sistema);
+  tipo.value=tipoDetectado;
+  tipo.dataset.auto='1';
+  tipo.title='Detectado automaticamente pelo Conecta';
+ }
 }
 window.conectaAtualizarSistemaEM=conectaAtualizarSistemaEM;
 
@@ -731,7 +742,7 @@ async function renderPainelConectaEM(){
  '<div class="conecta-field"><label>Sistema utilizado</label><select id="conectaSistemaEM" onchange="conectaAtualizarSistemaEM(\'select\')"><option value="auto" '+(cfg.sistema==='auto'?'selected':'')+'>Detectar automaticamente</option><option value="abler" '+(cfg.sistema==='abler'?'selected':'')+'>Abler</option><option value="gupy" '+(cfg.sistema==='gupy'?'selected':'')+'>Gupy</option><option value="solides" '+(cfg.sistema==='solides'?'selected':'')+'>Sólides</option><option value="pandape" '+(cfg.sistema==='pandape'?'selected':'')+'>Pandapé</option><option value="workday" '+(cfg.sistema==='workday'?'selected':'')+'>Workday</option><option value="greenhouse" '+(cfg.sistema==='greenhouse'?'selected':'')+'>Greenhouse</option><option value="lever" '+(cfg.sistema==='lever'?'selected':'')+'>Lever</option><option value="yapp" '+(cfg.sistema==='yapp'?'selected':'')+'>YAPP</option><option value="portal" '+(cfg.sistema==='portal'?'selected':'')+'>Portal próprio / outro</option></select><small class="conecta-field-help">Se não souber, deixe em detectar automaticamente.</small></div>'+
  '<div class="conecta-field"><label>URL do portal de carreiras / ATS</label><input id="conectaUrlEM" type="url" value="'+esc(cfg.url)+'" placeholder="https://empresa.com/carreiras" oninput="conectaAtualizarSistemaEM(\'url\')" required><small class="conecta-field-help">Cole o endereço onde suas vagas ficam publicadas.</small></div>'+
  '<div id="conectaSistemaInfoEM" class="conecta-sistema-info"><strong>'+esc(conectaSistemaInfoEM(cfg.sistema==='auto'?conectaDetectarSistemaEM(cfg.url):cfg.sistema).nome)+'</strong><span>'+esc(conectaSistemaInfoEM(cfg.sistema==='auto'?conectaDetectarSistemaEM(cfg.url):cfg.sistema).metodo)+'</span></div>'+
- '<div class="conecta-field"><label>Tipo de origem</label><select id="conectaTipoEM"><option value="portal" '+(cfg.tipo==='portal'?'selected':'')+'>Portal de carreiras</option><option value="ats" '+(cfg.tipo==='ats'?'selected':'')+'>ATS / sistema de recrutamento</option><option value="feed" '+(cfg.tipo==='feed'?'selected':'')+'>Feed / API pública</option></select><small class="conecta-field-help">Escolha a tecnologia usada pela empresa.</small></div>'+
+ '<div class="conecta-field"><label>Tipo de origem</label><select id="conectaTipoEM" title="Detectado automaticamente pelo Conecta"><option value="portal" '+(conectaDetectarTipoOrigemEM(cfg.url,cfg.sistema==='auto'?conectaDetectarSistemaEM(cfg.url):cfg.sistema)==='portal'?'selected':'')+'>Portal de carreiras</option><option value="ats" '+(conectaDetectarTipoOrigemEM(cfg.url,cfg.sistema==='auto'?conectaDetectarSistemaEM(cfg.url):cfg.sistema)==='ats'?'selected':'')+'>ATS / sistema de recrutamento</option><option value="feed" '+(conectaDetectarTipoOrigemEM(cfg.url,cfg.sistema==='auto'?conectaDetectarSistemaEM(cfg.url):cfg.sistema)==='feed'?'selected':'')+'>Feed / API pública</option></select><small class="conecta-field-help">Detectado automaticamente a partir da URL e do sistema identificado.</small></div>'+
  '<div class="conecta-field"><label>Frequência</label><select id="conectaFreqEM"><option value="30" '+(cfg.frequencia==='30'?'selected':'')+'>A cada 30 minutos</option><option value="60" '+(cfg.frequencia==='60'?'selected':'')+'>A cada 1 hora</option><option value="180" '+(cfg.frequencia==='180'?'selected':'')+'>A cada 3 horas</option><option value="360" '+(cfg.frequencia==='360'?'selected':'')+'>A cada 6 horas</option></select><small class="conecta-field-help">Define com que frequência o sistema verificará alterações.</small></div></div></section>'+
  '<section class="conecta-form-section conecta-form-section-opcional"><div class="conecta-form-section-title"><i>02</i><div><strong>Destino padrão das candidaturas <em class="conecta-opcional-badge">Opcional</em></strong><span>Preencha apenas se quiser definir um destino padrão. Se a vaga sincronizada já trouxer o próprio link, ele terá prioridade.</span></div></div>'+
  '<div class="conecta-settings"><div class="conecta-field"><label>Tipo de candidatura</label><select id="conectaDestinoPadraoEM"><option value="externo" '+(cfg.destinoPadrao==='externo'?'selected':'')+'>Site da empresa</option><option value="whatsapp" '+(cfg.destinoPadrao==='whatsapp'?'selected':'')+'>WhatsApp</option><option value="email" '+(cfg.destinoPadrao==='email'?'selected':'')+'>E-mail</option><option value="portal" '+(cfg.destinoPadrao==='portal'?'selected':'')+'>Portal +Empregos</option></select><small class="conecta-field-help">O link próprio da vaga sempre terá prioridade.</small></div>'+
@@ -778,7 +789,7 @@ async function salvarConfiguracaoConectaEM(e){
  const url=val('conectaUrlEM');
  const sistemaSelecionado=document.getElementById('conectaSistemaEM')?.value||'auto';
  const sistema=sistemaSelecionado==='auto'?conectaDetectarSistemaEM(url):sistemaSelecionado;
- const tipo=document.getElementById('conectaTipoEM')?.value||'portal';
+ const tipo=conectaDetectarTipoOrigemEM(url,sistema);
  const frequencia=document.getElementById('conectaFreqEM')?.value||'60';
  const destinoPadrao=document.getElementById('conectaDestinoPadraoEM')?.value||'externo';
  const destinoEmail=val('conectaDestinoEmailEM');
