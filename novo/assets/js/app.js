@@ -142,30 +142,55 @@ function garantirTemaEmpresaAzulLaranjaEM(){
  '#pagina-publicar .opcao-card.selecionado,#pagina-publicar .beneficio-card.selecionado{border-color:var(--emp-blue)!important;background:var(--emp-blue-soft)!important}'+
  '#pagina-publicar .opcao-card:hover,#pagina-publicar .beneficio-card:hover{border-color:#AFCBED!important}'+
 
- /* Conecta: identidade exclusiva roxo + branco */
- '#pagina-painel-conecta{--conecta-roxo:#6B238F!important;--conecta-roxo-escuro:#421260!important;--conecta-lilas:#F2ECF7!important;background:#F7F5FB!important;color:#30233F!important;font-family:Montserrat,Arial,sans-serif!important}'+
+ /* Conecta: paleta oficial roxo + azul petróleo + lilás + branco quente + menta */
+ '#pagina-painel-conecta{--conecta-roxo:#6F2DBD!important;--conecta-roxo-escuro:#5B1FA6!important;--conecta-petroleo:#183B56!important;--conecta-petroleo-2:#2C5877!important;--conecta-lilas:#F5EEFC!important;--conecta-lilas-2:#EFE5FA!important;--conecta-bg:#FCFAFE!important;--conecta-muted:#786D86!important;--conecta-menta:#DDF5EA!important;--conecta-verde:#1E8E5A!important;background:var(--conecta-bg)!important;color:var(--conecta-petroleo)!important;font-family:Montserrat,Arial,sans-serif!important}'+
  '#pagina-painel-conecta *{font-family:Montserrat,Arial,sans-serif!important}'+
- '#pagina-painel-conecta .conecta-side{background:linear-gradient(180deg,#5B1E8C 0%,#421260 100%)!important;color:#fff!important}'+
- '#pagina-painel-conecta .conecta-side *,#pagina-painel-conecta .conecta-brand small,#pagina-painel-conecta .conecta-brand strong,#pagina-painel-conecta .conecta-brand b{color:#fff!important}'+
+ '#pagina-painel-conecta .conecta-side{background:linear-gradient(180deg,#6F2DBD 0%,#5B1FA6 100%)!important;color:#fff!important}'+
+ '#pagina-painel-conecta .conecta-side *,#pagina-painel-conecta .conecta-brand small,#pagina-painel-conecta .conecta-brand strong{color:#fff!important}'+
+ '#pagina-painel-conecta .conecta-brand b{color:#EAD8FF!important}'+
  '#pagina-painel-conecta .conecta-brand strong{white-space:nowrap!important;font-size:21px!important;letter-spacing:-.55px!important}'+
- '#pagina-painel-conecta .conecta-nav button{color:rgba(255,255,255,.88)!important}'+
- '#pagina-painel-conecta .conecta-nav button.ativo,#pagina-painel-conecta .conecta-nav button:hover{background:rgba(255,255,255,.14)!important;color:#fff!important;box-shadow:inset 0 0 0 1px rgba(255,255,255,.08)!important}'+
- '#pagina-painel-conecta .conecta-top h1,#pagina-painel-conecta h1,#pagina-painel-conecta h2{color:#421260!important}'+
- '#pagina-painel-conecta .conecta-top p{color:#7A6B87!important}'+
- '#pagina-painel-conecta .conecta-btn.sec{background:#EFE7F6!important;color:#5B1E8C!important}'+
- '#pagina-painel-conecta .conecta-btn.pri{background:linear-gradient(135deg,#6B238F,#4D166F)!important;color:#fff!important;box-shadow:0 8px 20px rgba(91,30,140,.18)!important}'+
- '#pagina-painel-conecta .conecta-hero{background:linear-gradient(135deg,#6B238F 0%,#511A78 52%,#421260 100%)!important;color:#fff!important}'+
+ '#pagina-painel-conecta .conecta-nav button{color:rgba(255,255,255,.9)!important}'+
+ '#pagina-painel-conecta .conecta-nav button.ativo,#pagina-painel-conecta .conecta-nav button:hover{background:rgba(255,255,255,.14)!important;color:#fff!important;box-shadow:inset 0 0 0 1px rgba(255,255,255,.12)!important}'+
+ '#pagina-painel-conecta .conecta-top h1,#pagina-painel-conecta h1,#pagina-painel-conecta h2,#pagina-painel-conecta .conecta-card-head h3,#pagina-painel-conecta .conecta-plans-hero h3,#pagina-painel-conecta .conecta-plan-name{color:var(--conecta-petroleo)!important}'+
+ '#pagina-painel-conecta .conecta-top p,#pagina-painel-conecta .conecta-card-head p,#pagina-painel-conecta .conecta-plan-desc,#pagina-painel-conecta .conecta-plan-note{color:var(--conecta-muted)!important}'+
+ '#pagina-painel-conecta .conecta-btn.sec{background:var(--conecta-lilas)!important;color:var(--conecta-roxo-escuro)!important}'+
+ '#pagina-painel-conecta .conecta-btn.pri{background:linear-gradient(135deg,#6F2DBD,#5B1FA6)!important;color:#fff!important;box-shadow:0 8px 20px rgba(111,45,189,.19)!important}'+
+ '#pagina-painel-conecta .conecta-hero{background:linear-gradient(135deg,#6F2DBD 0%,#5B1FA6 58%,#183B56 100%)!important;color:#fff!important}'+
  '#pagina-painel-conecta .conecta-hero h2,#pagina-painel-conecta .conecta-hero h3,#pagina-painel-conecta .conecta-hero p,#pagina-painel-conecta .conecta-hero strong,#pagina-painel-conecta .conecta-hero b,#pagina-painel-conecta .conecta-hero small,#pagina-painel-conecta .conecta-hero span{color:#fff!important}'+
- '#pagina-painel-conecta .conecta-kpi{background:#fff!important;border-color:#EBE4F1!important;box-shadow:0 8px 22px rgba(66,18,96,.05)!important}'+
- '#pagina-painel-conecta .conecta-kpi span,#pagina-painel-conecta .conecta-kpi small{color:#84778F!important}'+
- '#pagina-painel-conecta .conecta-kpi strong{color:#421260!important}'+
- '#pagina-painel-conecta .conecta-card{border-color:#EBE4F1!important;box-shadow:0 8px 22px rgba(66,18,96,.045)!important}'+
- '#pagina-painel-conecta .conecta-integracao-icon{background:linear-gradient(135deg,#6B238F,#4D166F)!important}'+
- '#pagina-painel-conecta .conecta-integracao-status{background:#F2ECF7!important;color:#5B1E8C!important}'+
- '#pagina-painel-conecta .conecta-form-section-title i{background:#F2ECF7!important;color:#5B1E8C!important}'+
- '#pagina-painel-conecta .conecta-opcional-badge{background:#F2ECF7!important;color:#5B1E8C!important}'+
- '#pagina-painel-conecta input,#pagina-painel-conecta select,#pagina-painel-conecta textarea{border-color:#DFD5E6!important;color:#3D2B47!important;background:#fff!important}'+
- '#pagina-painel-conecta input:focus,#pagina-painel-conecta select:focus,#pagina-painel-conecta textarea:focus{border-color:#7D36A9!important;outline:3px solid rgba(125,54,169,.08)!important}'+
+ '#pagina-painel-conecta .conecta-kpi{background:#fff!important;border-color:#E7DDF3!important;box-shadow:0 8px 22px rgba(24,59,86,.055)!important}'+
+ '#pagina-painel-conecta .conecta-kpi span,#pagina-painel-conecta .conecta-kpi small{color:var(--conecta-muted)!important}'+
+ '#pagina-painel-conecta .conecta-kpi strong{color:var(--conecta-petroleo)!important}'+
+ '#pagina-painel-conecta .conecta-card{border-color:#E7DDF3!important;box-shadow:0 8px 22px rgba(24,59,86,.045)!important}'+
+ '#pagina-painel-conecta .conecta-integracao-icon{background:linear-gradient(135deg,#6F2DBD,#5B1FA6)!important}'+
+ '#pagina-painel-conecta .conecta-integracao-status{background:var(--conecta-menta)!important;color:var(--conecta-verde)!important}'+
+ '#pagina-painel-conecta .conecta-form-section-title i{background:var(--conecta-lilas)!important;color:var(--conecta-roxo-escuro)!important}'+
+ '#pagina-painel-conecta .conecta-opcional-badge{background:var(--conecta-lilas)!important;color:var(--conecta-roxo-escuro)!important}'+
+ '#pagina-painel-conecta .conecta-integracao-card .conecta-field label{color:var(--conecta-petroleo)!important;font-weight:850!important}'+
+ '#pagina-painel-conecta input,#pagina-painel-conecta select,#pagina-painel-conecta textarea{border-color:#DED4E8!important;color:#243A4C!important;background:#fff!important}'+
+ '#pagina-painel-conecta input:focus,#pagina-painel-conecta select:focus,#pagina-painel-conecta textarea:focus{border-color:#7F4BC3!important;outline:3px solid rgba(111,45,189,.08)!important}'+
+ '#pagina-painel-conecta .conecta-sistema-info{background:linear-gradient(90deg,#F5EEFC,#fff)!important;border-color:#E4D9EE!important}'+
+ '#pagina-painel-conecta .conecta-sistema-info strong{color:var(--conecta-petroleo)!important}'+
+ '#pagina-painel-conecta .conecta-sistema-info:after{background:var(--conecta-menta)!important;color:var(--conecta-verde)!important}'+
+ '#pagina-painel-conecta .conecta-plans-hero{background:linear-gradient(135deg,#fff 0%,#F5EEFC 72%,#F0F7FA 100%)!important;border-color:#E7DDF3!important}'+
+ '#pagina-painel-conecta .conecta-plans-trial{border-color:#DDE7EC!important;background:#fff!important}'+
+ '#pagina-painel-conecta .conecta-plans-trial small{color:var(--conecta-petroleo-2)!important}'+
+ '#pagina-painel-conecta .conecta-plans-trial strong{color:var(--conecta-roxo)!important}'+
+ '#pagina-painel-conecta .conecta-plans-launch{background:linear-gradient(90deg,#6F2DBD 0%,#5B1FA6 58%,#2C5877 100%)!important;color:#fff!important;box-shadow:0 10px 24px rgba(79,38,126,.18)!important}'+
+ '#pagina-painel-conecta .conecta-plans-launch b,#pagina-painel-conecta .conecta-plans-launch span{color:#fff!important}'+
+ '#pagina-painel-conecta .conecta-plan-card{border-color:#E7DDF3!important;box-shadow:0 10px 26px rgba(24,59,86,.05)!important}'+
+ '#pagina-painel-conecta .conecta-plan-card:hover{border-color:#BDA9D2!important;box-shadow:0 15px 34px rgba(24,59,86,.09)!important}'+
+ '#pagina-painel-conecta .conecta-plan-card.recomendado{border-color:#6F2DBD!important;box-shadow:0 16px 36px rgba(111,45,189,.13)!important}'+
+ '#pagina-painel-conecta .conecta-plan-badge{background:var(--conecta-petroleo)!important;color:#fff!important}'+
+ '#pagina-painel-conecta .conecta-plan-price{color:var(--conecta-petroleo)!important}'+
+ '#pagina-painel-conecta .conecta-plan-price strong{color:var(--conecta-roxo)!important}'+
+ '#pagina-painel-conecta .conecta-plan-list{border-color:#EAE2F0!important}'+
+ '#pagina-painel-conecta .conecta-plan-list span{color:#506475!important}'+
+ '#pagina-painel-conecta .conecta-plan-list span b{color:var(--conecta-verde)!important}'+
+ '#pagina-painel-conecta .conecta-plan-status{border-color:#DDE7EC!important;background:linear-gradient(90deg,#fff,#F7FBFC)!important}'+
+ '#pagina-painel-conecta .conecta-plan-status strong{color:var(--conecta-petroleo)!important}'+
+ '#pagina-painel-conecta .conecta-status.ok,#pagina-painel-conecta .conecta-next-state{background:var(--conecta-menta)!important;color:var(--conecta-verde)!important}'+
+ '#pagina-painel-conecta .conecta-card-head button,#pagina-painel-conecta .conecta-job-select button{background:var(--conecta-lilas)!important;color:var(--conecta-roxo-escuro)!important}'+
+ '#pagina-painel-conecta .conecta-profile-preview-cover{background:linear-gradient(135deg,#6F2DBD,#183B56)!important}'
 
  '@media(max-width:700px){#pagina-vagas-empresa .evp-summary{grid-template-columns:1fr 1fr!important}#pagina-candidatos-empresa .recruta-cand-card{border-left-width:3px!important}}';
  document.head.appendChild(st)
