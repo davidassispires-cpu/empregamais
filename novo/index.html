@@ -414,6 +414,17 @@ body .topo .menu-drop-candidato .menu-candidato-cadastro:hover{background:#0d5fb
 #pagina-emprego-conecta .cx6-destino-card p{margin:0;color:#748690;font-size:11px;line-height:1.55}
 #pagina-emprego-conecta .cx6-destino-note{margin-top:14px;padding:16px 18px;border:1px solid #dac8e8;border-radius:14px;background:linear-gradient(90deg,#f6eefc,#fff);color:#5f7380;font-size:11.5px;line-height:1.6}
 #pagina-emprego-conecta .cx6-destino-note b{color:#652295}
+
+#pagina-emprego-conecta .cx6-brand{display:flex;align-items:center;gap:0;margin:0 0 10px;font-weight:850;letter-spacing:-.04em;line-height:1}
+#pagina-emprego-conecta .cx6-brand .plus{color:#7c2cc4;font-size:31px;margin-right:2px}
+#pagina-emprego-conecta .cx6-brand .jobs{color:#122f45;font-size:27px}
+#pagina-emprego-conecta .cx6-brand .connect{color:#7c2cc4;font-size:27px}
+#pagina-emprego-conecta .cx6-brand-sub{display:block;margin:0 0 16px;color:#7c2cc4;font-size:10px;font-weight:800;letter-spacing:.14em;text-transform:uppercase}
+@media(max-width:700px){
+ #pagina-emprego-conecta .cx6-brand .plus{font-size:27px}
+ #pagina-emprego-conecta .cx6-brand .jobs,#pagina-emprego-conecta .cx6-brand .connect{font-size:23px}
+}
+
 @media(max-width:980px){#pagina-emprego-conecta .cx6-destinos{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:560px){#pagina-emprego-conecta .cx6-destinos{grid-template-columns:1fr}}
 
@@ -4819,7 +4830,7 @@ var b=document.body,logout=localStorage.getItem('empregaMaisLogoutBloqueio')==='
 #pagina-emprego-conecta .cx6-title{max-width:860px;margin-bottom:22px}
 #pagina-emprego-conecta .cx6-title h2{margin:8px 0 10px;color:var(--cx-ink);font-size:38px;line-height:1.12;letter-spacing:-.035em;font-weight:780}
 #pagina-emprego-conecta .cx6-title p{margin:0;color:var(--cx-text);font-size:16px;line-height:1.65}
-#pagina-emprego-conecta .cx6-hero{padding:74px 0 54px;background:linear-gradient(180deg,#fbf8fe 0%,#fff 74%)}
+#pagina-emprego-conecta .cx6-hero{padding:88px 0 54px;background:linear-gradient(180deg,#fbf8fe 0%,#fff 74%)}
 #pagina-emprego-conecta .cx6-hero-grid{display:grid;grid-template-columns:minmax(0,1.08fr) minmax(430px,.92fr);gap:34px;align-items:center}
 #pagina-emprego-conecta .cx6-hero h1{margin:16px 0 18px;color:var(--cx-ink);font-size:59px;line-height:1.02;letter-spacing:-.055em;font-weight:780}
 #pagina-emprego-conecta .cx6-hero h1 b{color:var(--cx-purple);font-weight:800}
@@ -4971,7 +4982,8 @@ var b=document.body,logout=localStorage.getItem('empregaMaisLogoutBloqueio')==='
 <div class="cx6-hero">
   <div class="cx6-shell cx6-hero-grid">
     <div class="cx6-hero-copy">
-      <span class="cx6-kicker">+ Emprego Conecta · integração automática</span>
+      <div class="cx6-brand" aria-label="+EmpregosConecta"><span class="plus">+</span><span class="jobs">Empregos</span><span class="connect">Conecta</span></div>
+      <span class="cx6-brand-sub">Integração automática</span>
       <h1>Sua empresa publica.<br><b>O Conecta sincroniza.</b></h1>
       <p>Continue divulgando suas vagas no portal de carreiras, ATS ou canal oficial que sua equipe já utiliza. O Conecta acompanha a origem e mantém as oportunidades sincronizadas no +Empregos — sem recadastro manual e sem transformar mais um portal em trabalho para o RH.</p>
       <div class="cx6-actions">
