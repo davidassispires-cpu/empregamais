@@ -405,7 +405,19 @@ body .topo .menu-drop-candidato .menu-candidato-cadastro:hover{background:#0d5fb
 #pagina-emprego-conecta .cx6-after h3{color:#69239a}
 #pagina-emprego-conecta .cx6-way-card.bridge{background:linear-gradient(180deg,#faf6fd,#fff)}
 
-#pagina-emprego-conecta .cx6-tight-top{padding-top:36px!important}\n#pagina-emprego-conecta .cx6-section + .cx6-section{border-top:1px solid rgba(229,232,238,.45)}\n@media(max-width:980px){#pagina-candidatos-empresa #listaCandidatosEmpresa{grid-template-columns:1fr!important}}
+#pagina-emprego-conecta .cx6-tight-top{padding-top:36px!important}\n#pagina-emprego-conecta .cx6-section + .cx6-section{border-top:1px solid rgba(229,232,238,.45)}\n
+#pagina-emprego-conecta .cx6-destinos{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+#pagina-emprego-conecta .cx6-destino-card{padding:20px;border:1px solid var(--cx-line);border-radius:15px;background:#fff;box-shadow:0 8px 20px rgba(74,35,96,.035)}
+#pagina-emprego-conecta .cx6-destino-card i{width:40px;height:40px;display:grid;place-items:center;border-radius:11px;background:#f2e9f8;color:var(--cx-purple);font-style:normal}
+#pagina-emprego-conecta .cx6-destino-card i svg{width:21px;height:21px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+#pagina-emprego-conecta .cx6-destino-card h3{margin:13px 0 6px;color:var(--cx-ink);font-size:14px}
+#pagina-emprego-conecta .cx6-destino-card p{margin:0;color:#748690;font-size:11px;line-height:1.55}
+#pagina-emprego-conecta .cx6-destino-note{margin-top:14px;padding:16px 18px;border:1px solid #dac8e8;border-radius:14px;background:linear-gradient(90deg,#f6eefc,#fff);color:#5f7380;font-size:11.5px;line-height:1.6}
+#pagina-emprego-conecta .cx6-destino-note b{color:#652295}
+@media(max-width:980px){#pagina-emprego-conecta .cx6-destinos{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:560px){#pagina-emprego-conecta .cx6-destinos{grid-template-columns:1fr}}
+
+@media(max-width:980px){#pagina-candidatos-empresa #listaCandidatosEmpresa{grid-template-columns:1fr!important}}
 #pagina-candidatos-empresa #listaCandidatosEmpresa>.processo-head,#pagina-candidatos-empresa #listaCandidatosEmpresa>.candidatos-empresa-filtro-vaga,#pagina-candidatos-empresa #listaCandidatosEmpresa>.etapas-tabs,#pagina-candidatos-empresa #listaCandidatosEmpresa>.vagas-vazio{grid-column:1/-1!important}
 #pagina-candidatos-empresa #listaCandidatosEmpresa .recruta-cand-card{width:100%!important;max-width:none!important;margin:0!important;display:block!important;border:1px solid #dbe6ed!important;border-top:3px solid #172a3a!important;border-radius:14px!important;background:#fff!important;overflow:hidden!important;box-shadow:0 7px 22px rgba(18,66,92,.07)!important;color:#172a3a!important;font-family:'Montserrat',Arial,sans-serif!important}
 #pagina-candidatos-empresa .recruta-cand-card.recruta-expandido{grid-column:1/-1!important;display:grid!important;grid-template-columns:minmax(0,1fr) auto!important;grid-template-areas:"cabeca processo" "andamento andamento"!important;align-items:center!important;background:#fff!important;box-shadow:0 18px 42px rgba(23,42,58,.12)!important}
@@ -4997,6 +5009,7 @@ var b=document.body,logout=localStorage.getItem('empregaMaisLogoutBloqueio')==='
     <button onclick="document.getElementById('cx6-integracoes')?.scrollIntoView({behavior:'smooth'})">Integrações</button>
     <button onclick="document.getElementById('cx6-automatico')?.scrollIntoView({behavior:'smooth'})">Automação</button>
     <button onclick="document.getElementById('cx6-atracao')?.scrollIntoView({behavior:'smooth'})">Atração</button>
+    <button onclick="document.getElementById('cx6-destino')?.scrollIntoView({behavior:'smooth'})">Candidaturas</button>
     <button onclick="document.getElementById('cx6-painel')?.scrollIntoView({behavior:'smooth'})">Painel</button>
     <button onclick="document.getElementById('cx6-faq')?.scrollIntoView({behavior:'smooth'})">Dúvidas</button>
   </div>
@@ -5154,6 +5167,23 @@ var b=document.body,logout=localStorage.getItem('empregaMaisLogoutBloqueio')==='
           <article><i><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="8" r="3"/><path d="M3 20c.5-4 2.5-6 6-6s5.5 2 6 6"/><path d="m17 9 1 2 2 .3-1.5 1.5.4 2.2-1.9-1-1.9 1 .4-2.2L14 11.3l2-.3 1-2Z"/></svg></i><h4>Descoberta por perfil</h4><p>Área profissional, interesse, modalidade e contexto da vaga ajudam a tornar a descoberta mais relevante.</p></article>
         </div>
       </div>
+    </div>
+  </section>
+
+  <section class="cx6-section" id="cx6-destino">
+    <div class="cx6-shell">
+      <div class="cx6-title">
+        <span class="cx6-kicker">Cada vaga pode ter seu próprio destino</span>
+        <h2>O canal de candidatura também pode ser ajustado por oportunidade.</h2>
+        <p>Nem todo processo seletivo precisa seguir o mesmo fluxo. Para uma vaga específica, a empresa pode definir como quer receber os candidatos, sem alterar a origem da publicação nem a integração das demais oportunidades.</p>
+      </div>
+      <div class="cx6-destinos">
+        <article class="cx6-destino-card"><i><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 8h8M8 12h8M8 16h5"/></svg></i><h3>Candidatura pelo portal</h3><p>O candidato se inscreve pelo +Empregos e a empresa acompanha a candidatura dentro do fluxo do portal.</p></article>
+        <article class="cx6-destino-card"><i><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m4 7 8 6 8-6"/></svg></i><h3>Recebimento por e-mail</h3><p>Uma vaga específica pode direcionar o candidato para o e-mail definido pela empresa ou pelo recrutador responsável.</p></article>
+        <article class="cx6-destino-card"><i><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 11.5a8 8 0 0 1-11.8 7L4 20l1.5-4.1A8 8 0 1 1 20 11.5Z"/><path d="M9 8.5c.8 2.2 2.2 3.6 4.5 4.5"/></svg></i><h3>Recebimento por WhatsApp</h3><p>Quando fizer sentido para o processo, a candidatura pode ser encaminhada para um número de WhatsApp configurado para aquela vaga.</p></article>
+        <article class="cx6-destino-card"><i><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.1 0l2-2a5 5 0 0 0-7.1-7.1l-1.1 1.1"/><path d="M14 11a5 5 0 0 0-7.1 0l-2 2A5 5 0 0 0 12 20.1l1.1-1.1"/></svg></i><h3>Link externo</h3><p>A oportunidade também pode continuar levando o candidato para o ATS, formulário ou página de candidatura da própria empresa.</p></article>
+      </div>
+      <div class="cx6-destino-note"><b>Flexibilidade por vaga:</b> a empresa pode manter a integração principal ativa e, em processos específicos, escolher um destino diferente para a candidatura — portal, e-mail, WhatsApp ou link externo — conforme a necessidade daquela oportunidade.</div>
     </div>
   </section>
 
