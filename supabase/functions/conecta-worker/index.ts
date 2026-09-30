@@ -173,7 +173,7 @@ function parseYappCareerPage(html:string, source:URL){
 
 function extractHeadingSectionHtml(html:string, headings:string[]){
   for(const heading of headings){
-    const escaped=heading.replace(/[.*+?^$()|[\]\\]/g,"\\async function extractYappJobs(source:URL){");
+    const escaped=heading.replace(/[.*+?^$()|[\]\\]/g,"\\$&");
     const re=new RegExp('<h[1-6]\\b[^>]*>\\s*'+escaped+'\\s*<\\/h[1-6]>([\\s\\S]*?)(?=<h[1-6]\\b|<\\/main>|<\\/article>|$)','i');
     const m=re.exec(html);
     if(m?.[1])return m[1];
@@ -183,10 +183,6 @@ function extractHeadingSectionHtml(html:string, headings:string[]){
 function splitYappProfileBenefits(html:string){
   const profileHtml=extractHeadingSectionHtml(html,["Perfil comportamental","Perfil Comportamental"]);
   if(!profileHtml)return {perfil:"",beneficios:""};
-  const marker=/<(?:p|div)\\b[^>]*>\\s*<(?:strong|b)\\b[^>]*>\\s*Benef[ií]cios[^<]*<\\/(?:strong|b)>/i.exec(profileHtml);
-  if(marker){
-    return {perfil:stripTags(profileHtml.slice(0,marker.index)),beneficios:stripTags(profileHtml.slice(marker.index))};
-  }
   const t=stripTags(profileHtml),p=t.search(/Benef[ií]cios/i);
   return p>=0?{perfil:t.slice(0,p).trim(),beneficios:t.slice(p).trim()}:{perfil:t,beneficios:""};
 }
