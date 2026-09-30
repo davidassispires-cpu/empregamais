@@ -171,6 +171,57 @@ function parseYappCareerPage(html:string, source:URL){
   return {jobs,total,size};
 }
 
+function extractHeadingSectionHtml(html:string, headings:string[]){
+  for(const heading of headings){
+    const escaped=heading.replace(/[.*+?^$()|[\]\\]/g,"\\async function extractYappJobs(source:URL){");
+    const re=new RegExp('<h[1-6]\\b[^>]*>\\s*'+escaped+'\\s*<\\/h[1-6]>([\\s\\S]*?)(?=<h[1-6]\\b|<\\/main>|<\\/article>|$)','i');
+    const m=re.exec(html);
+    if(m?.[1])return m[1];
+  }
+  return "";
+}
+function splitYappProfileBenefits(html:string){
+  const profileHtml=extractHeadingSectionHtml(html,["Perfil comportamental","Perfil Comportamental"]);
+  if(!profileHtml)return {perfil:"",beneficios:""};
+  const marker=/<(?:p|div)\\b[^>]*>\\s*<(?:strong|b)\\b[^>]*>\\s*Benef[ií]cios[^<]*<\\/(?:strong|b)>/i.exec(profileHtml);
+  if(marker){
+    return {perfil:stripTags(profileHtml.slice(0,marker.index)),beneficios:stripTags(profileHtml.slice(marker.index))};
+  }
+  const t=stripTags(profileHtml),p=t.search(/Benef[ií]cios/i);
+  return p>=0?{perfil:t.slice(0,p).trim(),beneficios:t.slice(p).trim()}:{perfil:t,beneficios:""};
+}
+async function enrichYappJob(base:any){
+  const seed={...base};
+  try{
+    const {text:html}=await fetchText(base.url,14000);
+    const job=parseJsonLdJobs(html)[0]||null;
+    const responsabilidades=stripTags(extractHeadingSectionHtml(html,["Principais responsabilidades","Responsabilidades","Atividades"]));
+    const requisitosTecnicos=stripTags(extractHeadingSectionHtml(html,["Requisitos técnicos","Requisitos","Requisitos e qualificações"]));
+    const perfilPartes=splitYappProfileBenefits(html);
+    let descricao="",cidade=String(base.cidade||""),estado=String(base.estado||""),cep="",salario="",data_encerramento="";
+    let contrato=String(base.contrato||""),modalidade=String(base.modalidade||"");
+    if(job){
+      const resumo=stripTags(job.description||"").slice(0,12000);
+      descricao=[resumo,responsabilidades?("Principais responsabilidades\n"+responsabilidades):""].filter(Boolean).join("\n\n").slice(0,30000);
+      const loc=firstLocation(job);cidade=loc.cidade||cidade;estado=loc.estado||estado;cep=loc.cep||"";
+      salario=salary(job);
+      data_encerramento=String(job.validThrough||"").slice(0,10);
+      if(!contrato)contrato=employment(job);
+      const jl=String(job.jobLocationType||"").toUpperCase();if(!modalidade&&jl.includes("TELECOMMUTE"))modalidade="Remoto";
+    }else{
+      const resumo=metaContent(html,"description")||metaContent(html,"og:description");
+      descricao=[resumo,responsabilidades?("Principais responsabilidades\n"+responsabilidades):""].filter(Boolean).join("\n\n").slice(0,30000);
+    }
+    const requisitos=[requisitosTecnicos,perfilPartes.perfil?("Perfil comportamental\n"+perfilPartes.perfil):""].filter(Boolean).join("\n\n").slice(0,30000);
+    const beneficios=String(perfilPartes.beneficios||"").slice(0,30000);
+    const normalized={...seed,title:String(seed.title||job?.title||"Vaga integrada").replace(/\\s+/g," ").trim().slice(0,240),descricao,cidade,estado,cep,contrato,modalidade,data_encerramento,salario,requisitos,beneficios,provider:"yapp"};
+    return {...normalized,key:await sha256(base.url),hash:await sha256(JSON.stringify(normalized))};
+  }catch(err){
+    console.warn("YAPP detalhe indisponível:",base?.url,String((err as Error)?.message||err));
+    const core={...seed,provider:"yapp"};
+    return {...core,key:await sha256(base.url),hash:await sha256(JSON.stringify(core))};
+  }
+}
 async function extractYappJobs(source:URL){
   const first=await fetchText(source.toString(),18000);
   const p1=parseYappCareerPage(first.text,source);
@@ -186,12 +237,15 @@ async function extractYappJobs(source:URL){
     }catch{}
   }
   const seen=new Set<string>();
-  const normalized:any[]=[];
+  const unique:any[]=[];
   for(const j of out){
     if(!j.url||seen.has(j.url))continue;
     seen.add(j.url);
-    const core={...j,provider:"yapp"};
-    normalized.push({...core,key:await sha256(j.url),hash:await sha256(JSON.stringify(core))});
+    unique.push(j);
+  }
+  const normalized:any[]=[];
+  for(let i=0;i<unique.length;i+=6){
+    normalized.push(...await Promise.all(unique.slice(i,i+6).map(j=>enrichYappJob(j))));
   }
   return {jobs:normalized,total:p1.total||normalized.length};
 }
