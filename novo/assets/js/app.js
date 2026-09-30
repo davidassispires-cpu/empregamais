@@ -693,22 +693,7 @@ async function conectaAtualizarMetricasAsyncEM(empresaId){
  }catch(err){console.warn('Conecta: métricas em segundo plano indisponíveis:',err)}
 }
 
-async function renderPainelConectaEM(opcoes={
- // Atualiza sessão e vagas em segundo plano somente depois da primeira pintura.
- // A segunda renderização usa os dados remotos, sem iniciar nova leitura e sem
- // alterar a lógica de sincronização automática.
- if(carregarRemoto){
-  Promise.allSettled([
-   conectaHidratarEmpresaSessaoEM(),
-   sbCarregarVagasEmpresaAtualEM()
-  ]).then(resultados=>{
-   const falhas=resultados.filter(x=>x.status==='rejected');
-   if(falhas.length)console.warn('Conecta: atualização remota parcial:',falhas.map(x=>x.reason));
-   const rota=new URLSearchParams(location.search).get('pagina')||'home';
-   if(rota==='painel-conecta')renderPainelConectaEM({carregarRemoto:false});
-  }).catch(err=>console.warn('Conecta: atualização remota não concluída:',err));
- }
-}){
+async function renderPainelConectaEM(opcoes={}){
  garantirPainelConectaEM();
  // Renderiza imediatamente com o estado local. A atualização remota acontece
  // depois que a estrutura já está visível, evitando tela vazia/lenta no F5.
@@ -789,6 +774,21 @@ async function renderPainelConectaEM(opcoes={
  '<details id="docConectaFaq"><summary>9. Perguntas frequentes</summary><div class="conecta-doc-body"><h4>A integração pode parar?</h4><p>Sim. Mudanças externas podem interromper o conector; por isso histórico e monitoramento são essenciais.</p><h4>Troquei de ATS. Preciso configurar novamente?</h4><p>Sim. A nova origem precisa ser validada e o conector correspondente deve estar disponível.</p><h4>O Conecta substitui meu ATS?</h4><p>Não. Ele complementa sua operação e amplia a distribuição das vagas.</p><h4>Posso usar mais de uma origem?</h4><p>Depende do plano e da configuração contratada.</p></div></details>'+
  '</div>';
 
+
+ // Atualiza sessão e vagas em segundo plano somente depois da primeira pintura.
+ // A segunda renderização usa os dados remotos, sem iniciar nova leitura e sem
+ // alterar a lógica de sincronização automática.
+ if(carregarRemoto){
+  Promise.allSettled([
+   conectaHidratarEmpresaSessaoEM(),
+   sbCarregarVagasEmpresaAtualEM()
+  ]).then(resultados=>{
+   const falhas=resultados.filter(x=>x.status==='rejected');
+   if(falhas.length)console.warn('Conecta: atualização remota parcial:',falhas.map(x=>x.reason));
+   const rota=new URLSearchParams(location.search).get('pagina')||'home';
+   if(rota==='painel-conecta')renderPainelConectaEM({carregarRemoto:false});
+  }).catch(err=>console.warn('Conecta: atualização remota não concluída:',err));
+ }
 }
 async function salvarConfiguracaoConectaEM(e){
  if(e&&typeof e.preventDefault==='function')e.preventDefault();
