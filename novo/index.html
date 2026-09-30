@@ -4756,215 +4756,229 @@ var b=document.body,logout=localStorage.getItem('empregaMaisLogoutBloqueio')==='
  #pagina-emprego-conecta .conecta-showcase-controls-em{grid-template-columns:auto 1fr auto!important}
  #pagina-emprego-conecta .conecta-showcase-count-em{display:none!important}
 }
-</style><section class="pagina conecta-page-em cxv4" id="pagina-emprego-conecta">
-  <div class="cxv4-hero">
-    <div class="cxv4-shell cxv4-hero-grid">
-      <div class="cxv4-hero-copy">
-        <span class="cxv4-kicker">+ EMPREGO CONECTA · AUTOMAÇÃO PARA RH</span>
-        <h1>Menos trabalho operacional.<br><b>Mais tempo para recrutar.</b></h1>
-        <p>Conectamos o portal de carreiras ou ATS da sua empresa ao +Empregos. As vagas são identificadas, publicadas, atualizadas e encerradas automaticamente — sem sua equipe cadastrar tudo de novo.</p>
-        <div class="cxv4-actions">
-          <button type="button" class="cxv4-primary" onclick="irPara('login-conecta')">Conectar minhas vagas</button>
-          <button type="button" class="cxv4-secondary" onclick="document.getElementById('conecta-como')?.scrollIntoView({behavior:'smooth'})">Entender como funciona</button>
+</style><section class="pagina conecta-page-em cxv5" id="pagina-emprego-conecta">
+  <div class="cx5-hero">
+    <div class="cx5-shell cx5-hero-grid">
+      <div class="cx5-hero-copy">
+        <span class="cx5-kicker">+ EMPREGO CONECTA · AUTOMAÇÃO + ATRAÇÃO</span>
+        <h1>Seu RH publica uma vez.<br><b>O Conecta faz o resto.</b></h1>
+        <p>Conectamos o portal de carreiras ou ATS da empresa ao +Empregos para sincronizar vagas automaticamente e ampliar a descoberta das oportunidades por candidatos mais alinhados ao perfil buscado.</p>
+        <div class="cx5-actions">
+          <button type="button" class="cx5-primary" onclick="irPara('login-conecta')">Conectar minhas vagas</button>
+          <button type="button" class="cx5-secondary" onclick="document.getElementById('conecta-fluxo')?.scrollIntoView({behavior:'smooth'})">Ver como funciona</button>
         </div>
-        <div class="cxv4-trust">
-          <span>✓ Sem cadastro manual de cada vaga</span>
-          <span>✓ Atualização automática</span>
-          <span>✓ RH continua usando o sistema de sempre</span>
+        <div class="cx5-seals">
+          <span><i>✓</i>Sem recadastro manual</span>
+          <span><i>✓</i>Atualização automática</span>
+          <span><i>✓</i>Atração por perfil e região</span>
+          <span><i>✓</i>Operação em todo o Brasil</span>
         </div>
       </div>
 
-      <aside class="cxv4-hero-panel" aria-label="Resumo da automação">
-        <div class="cxv4-panel-head"><span></span><b>Enquanto seu RH trabalha no recrutamento</b></div>
-        <div class="cxv4-automation-list">
-          <article><i>01</i><div><strong>Nova vaga na origem</strong><small>O Conecta identifica a oportunidade.</small></div><em>AUTOMÁTICO</em></article>
-          <article><i>02</i><div><strong>Publicação no +Empregos</strong><small>Os dados entram no padrão do portal.</small></div><em>AUTOMÁTICO</em></article>
-          <article><i>03</i><div><strong>Alterações sincronizadas</strong><small>Título, local, descrição e status acompanham a origem.</small></div><em>AUTOMÁTICO</em></article>
-          <article><i>04</i><div><strong>Vaga encerrada</strong><small>Quando a origem encerra, o portal acompanha.</small></div><em>AUTOMÁTICO</em></article>
+      <aside class="cx5-hero-card">
+        <div class="cx5-hero-card-head"><i></i><span>AUTOMAÇÃO ATIVA</span><b>RH focado em candidatos</b></div>
+        <div class="cx5-hero-flow">
+          <article><span>1</span><div><b>Publicou na origem</b><small>ATS ou portal de carreiras</small></div><em>RH</em></article>
+          <article><span>2</span><div><b>Conecta sincronizou</b><small>Dados organizados automaticamente</small></div><em>AUTO</em></article>
+          <article><span>3</span><div><b>Vaga ganhou alcance</b><small>Busca, filtros e descoberta</small></div><em>BRASIL</em></article>
+          <article><span>4</span><div><b>RH recebe interesse</b><small>Mais tempo para selecionar</small></div><em>FOCO</em></article>
         </div>
-        <div class="cxv4-panel-foot"><b>Seu RH não precisa repetir essas tarefas.</b><span>O foco fica em candidatos, entrevistas e decisões.</span></div>
+        <div class="cx5-hero-note"><strong>Menos operação repetitiva.</strong><span>Mais tempo para triagem, entrevistas e contratação.</span></div>
       </aside>
     </div>
   </div>
 
-  <nav class="cxv4-nav">
-    <div class="cxv4-shell">
-      <button onclick="document.getElementById('conecta-visao')?.scrollIntoView({behavior:'smooth'})">Visão geral</button>
-      <button onclick="document.getElementById('conecta-como')?.scrollIntoView({behavior:'smooth'})">Como funciona</button>
-      <button onclick="document.getElementById('conecta-integracao')?.scrollIntoView({behavior:'smooth'})">Integração</button>
+  <nav class="cx5-nav">
+    <div class="cx5-shell">
+      <button onclick="document.getElementById('conecta-beneficios')?.scrollIntoView({behavior:'smooth'})">Benefícios</button>
+      <button onclick="document.getElementById('conecta-fluxo')?.scrollIntoView({behavior:'smooth'})">Como funciona</button>
       <button onclick="document.getElementById('conecta-atracao')?.scrollIntoView({behavior:'smooth'})">Atração de candidatos</button>
-      <button onclick="document.getElementById('conecta-planos')?.scrollIntoView({behavior:'smooth'})">Planos</button>
+      <button onclick="document.getElementById('conecta-empresas')?.scrollIntoView({behavior:'smooth'})">Empresas</button>
+      <button onclick="document.getElementById('conecta-faq')?.scrollIntoView({behavior:'smooth'})">Dúvidas</button>
     </div>
   </nav>
 
-  <main class="cxv4-shell">
-    <section class="cxv4-intro" id="conecta-visao">
-      <div class="cxv4-section-title">
-        <span>O PROBLEMA QUE O CONECTA RESOLVE</span>
-        <h2>Seu time não deveria publicar a mesma vaga em vários lugares.</h2>
-        <p>Quando a empresa já possui portal de carreiras ou ATS, repetir cadastro, alteração e encerramento em outros canais consome tempo e aumenta o risco de informações divergentes.</p>
+  <main class="cx5-shell">
+    <section class="cx5-benefits" id="conecta-beneficios">
+      <div class="cx5-title">
+        <span>POR QUE O RH GANHA TEMPO</span>
+        <h2>O trabalho repetitivo fica com o Conecta.</h2>
+        <p>Sua equipe continua gerenciando as vagas na fonte oficial. O +Empregos entra como um canal sincronizado de distribuição e descoberta.</p>
       </div>
-      <div class="cxv4-before-after">
-        <article class="antes">
-          <span>SEM CONECTA</span>
-          <h3>Trabalho duplicado</h3>
-          <ul>
-            <li>Cadastrar novamente cada oportunidade</li>
-            <li>Copiar descrição, requisitos e benefícios</li>
-            <li>Atualizar cidade, modalidade ou salário em mais de um lugar</li>
-            <li>Controlar manualmente vagas encerradas</li>
-            <li>Conferir se os anúncios continuam iguais à origem</li>
-          </ul>
+      <div class="cx5-benefit-grid">
+        <article>
+          <i><svg viewBox="0 0 24 24"><path d="M4 7h16v12H4z"/><path d="M8 7V5h8v2M8 12h8M8 16h5"/></svg></i>
+          <h3>Sem cadastro duplicado</h3><p>O RH não precisa copiar a mesma vaga para mais um portal.</p>
         </article>
-        <div class="cxv4-switch">→</div>
-        <article class="depois">
-          <span>COM + EMPREGO CONECTA</span>
-          <h3>Uma origem. Distribuição automática.</h3>
-          <ul>
-            <li>RH publica somente no sistema que já utiliza</li>
-            <li>O Conecta identifica e estrutura as vagas</li>
-            <li>Alterações são acompanhadas automaticamente</li>
-            <li>Encerramentos deixam de depender de ação manual</li>
-            <li>Equipe acompanha tudo em um painel próprio</li>
-          </ul>
+        <article>
+          <i><svg viewBox="0 0 24 24"><path d="M20 7h-6V1M4 17h6v6M19 12a7 7 0 0 0-12-5l-3 3M5 12a7 7 0 0 0 12 5l3-3"/></svg></i>
+          <h3>Vagas sempre atualizadas</h3><p>Alterações e encerramentos acompanham a origem conforme a sincronização.</p>
+        </article>
+        <article>
+          <i><svg viewBox="0 0 24 24"><circle cx="9" cy="8" r="3"/><path d="M3 20c.5-4.2 2.5-6.5 6-6.5s5.5 2.3 6 6.5"/><path d="m16 9 2 2 3-4"/></svg></i>
+          <h3>Candidatos mais compatíveis</h3><p>As vagas ganham visibilidade por cargo, área, localização, modalidade e interesse.</p>
+        </article>
+        <article>
+          <i><svg viewBox="0 0 24 24"><path d="M12 3v18M3 12h18"/><circle cx="12" cy="12" r="9"/></svg></i>
+          <h3>Alcance nacional</h3><p>Oportunidades podem ser encontradas por candidatos em diferentes regiões do Brasil.</p>
+        </article>
+        <article>
+          <i><svg viewBox="0 0 24 24"><path d="M5 5h14v14H5z"/><path d="M8 9h8M8 13h5"/></svg></i>
+          <h3>Painel de acompanhamento</h3><p>Origem, status, vagas sincronizadas e próxima execução em um único lugar.</p>
+        </article>
+        <article>
+          <i><svg viewBox="0 0 24 24"><path d="M4 19V9m5 10V5m5 14v-7m5 7V3"/></svg></i>
+          <h3>Mais foco em seleção</h3><p>O tempo da equipe volta para triagem, entrevistas, contato e decisão.</p>
         </article>
       </div>
     </section>
 
-    <section class="cxv4-value">
-      <div class="cxv4-section-title">
-        <span>O QUE O RH GANHA</span>
-        <h2>Automatizamos a operação para sua equipe cuidar das pessoas.</h2>
+    <section class="cx5-showcase" id="conecta-fluxo">
+      <div class="cx5-title">
+        <span>5 ETAPAS · UMA ROTINA MAIS LEVE</span>
+        <h2>Veja o Conecta trabalhando no lugar do RH.</h2>
+        <p>O carrossel mostra o fluxo desde a publicação na origem até a chegada de candidatos.</p>
       </div>
-      <div class="cxv4-value-grid">
-        <article><i>↻</i><h3>Menos tarefas repetitivas</h3><p>Cadastro, atualização e encerramento deixam de ocupar a rotina da equipe em mais um portal.</p></article>
-        <article><i>◎</i><h3>Mais consistência</h3><p>A vaga publicada no +Empregos acompanha a fonte oficial da empresa, reduzindo diferenças entre canais.</p></article>
-        <article><i>⌕</i><h3>Mais tempo para selecionar</h3><p>O esforço sai da digitação e volta para triagem, contato, entrevistas e condução do processo.</p></article>
-        <article><i>▣</i><h3>Visão centralizada</h3><p>Vagas sincronizadas, status, origem e indicadores ficam organizados no Painel Conecta.</p></article>
-      </div>
-    </section>
-
-    <section class="cxv4-how" id="conecta-como">
-      <div class="cxv4-section-title">
-        <span>COMO FUNCIONA NA PRÁTICA</span>
-        <h2>O RH continua trabalhando do jeito que já trabalha.</h2>
-        <p>O Conecta entra entre a fonte oficial da empresa e o +Empregos. Não é necessário mudar a rotina de publicação para usar o serviço.</p>
-      </div>
-      <div class="cxv4-flow">
-        <article><b>1</b><div><small>NA EMPRESA</small><h3>RH cria ou altera a vaga</h3><p>A equipe usa o portal de carreiras ou ATS normalmente.</p></div></article>
-        <i>→</i>
-        <article><b>2</b><div><small>NO CONECTA</small><h3>Origem é monitorada</h3><p>O sistema verifica novas vagas e mudanças de acordo com a frequência configurada.</p></div></article>
-        <i>→</i>
-        <article><b>3</b><div><small>NO +EMPREGOS</small><h3>Vaga é sincronizada</h3><p>As informações são organizadas e disponibilizadas no portal.</p></div></article>
-        <i>→</i>
-        <article><b>4</b><div><small>PARA O RH</small><h3>Candidato segue o fluxo</h3><p>A candidatura continua pelo canal definido pela empresa.</p></div></article>
-      </div>
-    </section>
-
-    <section class="cxv4-automation" id="conecta-integracao">
-      <div class="cxv4-automation-copy">
-        <span>O QUE PODE SER SINCRONIZADO</span>
-        <h2>Não é só o título da vaga.</h2>
-        <p>Quando a fonte disponibiliza os dados, o Conecta organiza as principais informações da oportunidade para reduzir ao máximo qualquer preenchimento manual.</p>
-        <div class="cxv4-field-tags">
-          <span>Cargo</span><span>Descrição</span><span>Responsabilidades</span><span>Requisitos</span><span>Benefícios</span><span>Cidade / UF</span><span>Modalidade</span><span>Contrato</span><span>Salário</span><span>Prazo</span><span>Canal de candidatura</span><span>Status</span>
+      <div class="cx5-slider" id="cx5SliderEM">
+        <div class="cx5-track" id="cx5TrackEM">
+          <article class="cx5-slide">
+            <div class="cx5-slide-copy"><span>01 · PUBLICAÇÃO NA ORIGEM</span><h3>Seu RH continua usando o sistema de sempre.</h3><p>A vaga é criada no ATS, portal de carreiras ou fonte oficial da empresa. Nada muda na rotina principal.</p><b>O RH não precisa aprender outro processo.</b></div>
+            <div class="cx5-slide-ui">
+              <div class="cx5-ui-card"><small>PORTAL / ATS</small><strong>Analista de Logística</strong><span>Contagem · MG</span><span>Presencial · CLT</span><em>PUBLICADA</em></div>
+              <div class="cx5-ui-arrow">→</div>
+              <div class="cx5-ui-status"><i>✓</i><b>Origem identificada</b><small>Conecta acompanha a fonte oficial.</small></div>
+            </div>
+          </article>
+          <article class="cx5-slide">
+            <div class="cx5-slide-copy"><span>02 · SINCRONIZAÇÃO</span><h3>Os dados são organizados automaticamente.</h3><p>Título, descrição, requisitos, benefícios, localização, modalidade e canal de candidatura entram no padrão do +Empregos quando disponíveis.</p><b>Menos copiar, colar e revisar.</b></div>
+            <div class="cx5-slide-ui cx5-fields-ui">
+              <span>✓ Cargo</span><span>✓ Descrição</span><span>✓ Requisitos</span><span>✓ Benefícios</span><span>✓ Cidade / UF</span><span>✓ Modalidade</span><span>✓ Contrato</span><span>✓ Candidatura</span>
+            </div>
+          </article>
+          <article class="cx5-slide">
+            <div class="cx5-slide-copy"><span>03 · ATRAÇÃO</span><h3>A vaga aparece para quem está procurando algo compatível.</h3><p>Busca, localização, modalidade, filtros e recursos de descoberta ajudam a aproximar oportunidades de candidatos mais alinhados.</p><b>Mais relevância sem criar trabalho extra para o RH.</b></div>
+            <div class="cx5-slide-ui cx5-match-ui">
+              <div class="cx5-match-job"><small>VAGA</small><strong>Supervisor de Vendas</strong><span>Belo Horizonte · MG</span></div>
+              <div class="cx5-match-center">✦</div>
+              <div class="cx5-match-candidates"><span><i>92%</i>Experiência + região</span><span><i>86%</i>Área + modalidade</span><span><i>79%</i>Perfil de interesse</span></div>
+            </div>
+          </article>
+          <article class="cx5-slide">
+            <div class="cx5-slide-copy"><span>04 · ATUALIZAÇÃO CONTÍNUA</span><h3>Mudou na origem? O Conecta acompanha.</h3><p>Nas verificações automáticas, alterações disponíveis são sincronizadas e vagas encerradas deixam de permanecer desatualizadas.</p><b>Uma fonte oficial. Menos divergência entre canais.</b></div>
+            <div class="cx5-slide-ui cx5-sync-ui">
+              <div><small>ANTES</small><strong>Assistente Comercial</strong><span>Presencial</span></div><i>↻</i><div class="ok"><small>ATUALIZADO</small><strong>Assistente Comercial</strong><span>Híbrido</span></div>
+            </div>
+          </article>
+          <article class="cx5-slide">
+            <div class="cx5-slide-copy"><span>05 · FOCO NO CANDIDATO</span><h3>Seu RH usa o tempo onde realmente importa.</h3><p>Com a operação de publicação automatizada, a equipe concentra energia em avaliar perfis, conversar com candidatos e conduzir processos seletivos.</p><b>Conecta cuida da distribuição. RH cuida da contratação.</b></div>
+            <div class="cx5-slide-ui cx5-rh-ui">
+              <article><i>⌕</i><strong>Triagem</strong><small>Perfis mais alinhados</small></article>
+              <article><i>☎</i><strong>Contato</strong><small>Mais agilidade</small></article>
+              <article><i>✓</i><strong>Entrevistas</strong><small>Foco em decisão</small></article>
+            </div>
+          </article>
+        </div>
+        <button class="cx5-prev" type="button" onclick="moverConectaRhSlideEM(-1)" aria-label="Slide anterior">‹</button>
+        <button class="cx5-next" type="button" onclick="moverConectaRhSlideEM(1)" aria-label="Próximo slide">›</button>
+        <div class="cx5-dots">
+          <button class="ativo" onclick="irConectaRhSlideEM(0)" aria-label="Slide 1"></button>
+          <button onclick="irConectaRhSlideEM(1)" aria-label="Slide 2"></button>
+          <button onclick="irConectaRhSlideEM(2)" aria-label="Slide 3"></button>
+          <button onclick="irConectaRhSlideEM(3)" aria-label="Slide 4"></button>
+          <button onclick="irConectaRhSlideEM(4)" aria-label="Slide 5"></button>
         </div>
       </div>
-      <aside class="cxv4-sync-card">
-        <span>EXEMPLO DE ROTINA</span>
-        <div><b>08:00</b><p>RH publica uma nova vaga no ATS.</p></div>
-        <div><b>↻</b><p>Conecta verifica a origem automaticamente.</p></div>
-        <div><b>✓</b><p>Oportunidade aparece no +Empregos sem novo cadastro manual.</p></div>
-        <small>A frequência de sincronização é definida na configuração da empresa.</small>
+    </section>
+
+    <section class="cx5-attraction" id="conecta-atracao">
+      <div class="cx5-attraction-copy">
+        <span>ATRAÇÃO DE CANDIDATOS COMPATÍVEIS</span>
+        <h2>Não basta publicar. A vaga precisa ser encontrada pelas pessoas certas.</h2>
+        <p>O +Empregos organiza as oportunidades para que candidatos possam encontrá-las por contexto profissional e localização. O objetivo é aumentar a chance de a vaga chegar a pessoas mais aderentes ao que a empresa procura.</p>
+        <div class="cx5-attraction-tags">
+          <span>📍 Localização</span><span>◫ Área profissional</span><span>⌂ Modalidade</span><span>▣ Tipo de contrato</span><span>⌕ Palavra-chave</span><span>★ Interesse do candidato</span>
+        </div>
+      </div>
+      <aside class="cx5-attraction-panel">
+        <small>EXEMPLO DE DESCOBERTA</small>
+        <div class="cx5-job-mini"><b>Analista Administrativo</b><span>São Paulo · Híbrido · CLT</span></div>
+        <div class="cx5-profile-mini"><i>✓</i><div><b>Perfil compatível</b><span>Área administrativa · SP · interesse em híbrido</span></div></div>
+        <div class="cx5-profile-mini"><i>✓</i><div><b>Região compatível</b><span>Busca ativa na cidade e proximidades</span></div></div>
+        <div class="cx5-profile-mini"><i>✓</i><div><b>Interesse compatível</b><span>Histórico de busca relacionado à oportunidade</span></div></div>
+        <p>Compatibilidade ajuda na descoberta; a decisão de candidatura e seleção continua sendo humana.</p>
       </aside>
     </section>
 
-    <section class="cxv4-control">
-      <div class="cxv4-section-title">
-        <span>CONTROLE SEM COMPLEXIDADE</span>
-        <h2>Automático não significa perder o controle.</h2>
-        <p>A empresa acompanha o que foi sincronizado e pode revisar configurações específicas sempre que necessário.</p>
+    <section class="cx5-companies" id="conecta-empresas">
+      <div class="cx5-title">
+        <span>EMPRESAS CONECTADAS</span>
+        <h2>Feito para operações que não podem perder tempo com recadastro.</h2>
+        <p>O espaço abaixo está preparado para exibir automaticamente as marcas das empresas conectadas ao serviço conforme a base crescer.</p>
       </div>
-      <div class="cxv4-control-grid">
-        <article><span>01</span><h3>Origem conectada</h3><p>Veja qual portal ou ATS está alimentando as vagas.</p></article>
-        <article><span>02</span><h3>Próxima sincronização</h3><p>Acompanhe o horário previsto para a próxima verificação.</p></article>
-        <article><span>03</span><h3>Status das vagas</h3><p>Identifique vagas publicadas, em análise ou que precisam de atenção.</p></article>
-        <article><span>04</span><h3>Destino da candidatura</h3><p>Configure site da empresa, ATS, e-mail ou WhatsApp conforme a vaga.</p></article>
+      <div class="cx5-company-marquee" aria-label="Perfis de empresas conectadas ao Conecta">
+        <div class="cx5-company-track">
+          <div class="cx5-company-logo"><b>REDE</b><span>Varejo</span></div>
+          <div class="cx5-company-logo"><b>LOG</b><span>Logística</span></div>
+          <div class="cx5-company-logo"><b>IND</b><span>Indústria</span></div>
+          <div class="cx5-company-logo"><b>RH+</b><span>Consultoria</span></div>
+          <div class="cx5-company-logo"><b>TEC</b><span>Tecnologia</span></div>
+          <div class="cx5-company-logo"><b>SAÚDE</b><span>Saúde</span></div>
+          <div class="cx5-company-logo"><b>REDE</b><span>Varejo</span></div>
+          <div class="cx5-company-logo"><b>LOG</b><span>Logística</span></div>
+          <div class="cx5-company-logo"><b>IND</b><span>Indústria</span></div>
+          <div class="cx5-company-logo"><b>RH+</b><span>Consultoria</span></div>
+          <div class="cx5-company-logo"><b>TEC</b><span>Tecnologia</span></div>
+          <div class="cx5-company-logo"><b>SAÚDE</b><span>Saúde</span></div>
+        </div>
+      </div>
+      <div class="cx5-company-note">Redes, franquias, consultorias, indústrias e operações nacionais podem usar o Conecta para distribuir vagas sem duplicar a rotina do RH.</div>
+    </section>
+
+    <section class="cx5-control">
+      <div class="cx5-title">
+        <span>CONTROLE PARA O RH</span>
+        <h2>Automático, mas sempre acompanhado.</h2>
+      </div>
+      <div class="cx5-control-grid">
+        <article><i>01</i><h3>Origem conectada</h3><p>Veja qual ATS ou portal está alimentando as oportunidades.</p></article>
+        <article><i>02</i><h3>Próxima sincronização</h3><p>Acompanhe quando a próxima verificação automática será executada.</p></article>
+        <article><i>03</i><h3>Status por vaga</h3><p>Identifique publicadas, em análise e registros que exigem atenção.</p></article>
+        <article><i>04</i><h3>Destino da candidatura</h3><p>Site da empresa, ATS, e-mail ou WhatsApp conforme o fluxo da vaga.</p></article>
       </div>
     </section>
 
-    <section class="cxv4-candidate" id="conecta-atracao">
-      <div>
-        <span>ALÉM DA AUTOMAÇÃO</span>
-        <h2>As vagas entram em um portal preparado para ajudar candidatos a encontrá-las.</h2>
-        <p>Depois de sincronizadas, as oportunidades podem ser encontradas por cargo, localização, modalidade e outros filtros disponíveis no +Empregos. Isso amplia a descoberta sem criar mais tarefas para o RH.</p>
-        <ul>
-          <li>Busca por cargo e palavra-chave</li>
-          <li>Localização e região do candidato</li>
-          <li>Filtros de modalidade e tipo de vaga</li>
-          <li>Vagas em destaque e contratação urgente quando aplicável</li>
-          <li>Notificações e recursos de descoberta do portal</li>
-        </ul>
-      </div>
-      <aside>
-        <small>PARA O RH</small>
-        <strong>Você não precisa administrar mais um processo de publicação.</strong>
-        <p>O portal trabalha como um canal adicional de distribuição, enquanto sua fonte continua sendo o ponto principal de gestão.</p>
-      </aside>
-    </section>
-
-    <section class="cxv4-fit">
-      <div class="cxv4-section-title">
-        <span>PARA QUEM FAZ MAIS SENTIDO</span>
-        <h2>Feito para empresas que já têm volume e processo próprio.</h2>
-      </div>
-      <div class="cxv4-fit-grid">
-        <article><b>Redes e varejo</b><p>Muitas unidades e vagas distribuídas por diferentes cidades.</p></article>
-        <article><b>Consultorias e recrutamento</b><p>Grande quantidade de processos ativos e necessidade de distribuição contínua.</p></article>
-        <article><b>Operações nacionais</b><p>Empresas que contratam em várias regiões do Brasil.</p></article>
-        <article><b>Times com ATS</b><p>RH que já possui sistema estruturado e não quer repetir cadastros.</p></article>
+    <section class="cx5-faq" id="conecta-faq">
+      <div class="cx5-title"><span>DÚVIDAS FREQUENTES</span><h2>O essencial antes de conectar.</h2></div>
+      <div class="cx5-faq-grid">
+        <details><summary>Precisamos cadastrar as vagas novamente?</summary><p>Não quando a integração consegue ler os dados necessários na fonte. Essa é justamente a principal economia operacional do Conecta.</p></details>
+        <details><summary>Precisamos trocar nosso ATS?</summary><p>Não. A empresa continua usando o sistema atual e o Conecta atua como camada de sincronização e distribuição.</p></details>
+        <details><summary>Como o Conecta ajuda a atrair candidatos?</summary><p>As vagas entram na busca e nos filtros do +Empregos, podendo ser descobertas por cargo, região, modalidade e outros sinais de interesse disponíveis no portal.</p></details>
+        <details><summary>A integração garante candidatos?</summary><p>Não. O Conecta amplia distribuição e descoberta, mas candidatura e contratação dependem do mercado, da vaga e das decisões de candidatos e empresas.</p></details>
+        <details><summary>O que acontece quando a vaga é alterada?</summary><p>Nas verificações automáticas, mudanças disponíveis na fonte podem ser refletidas na vaga sincronizada.</p></details>
+        <details><summary>Como sabemos se está funcionando?</summary><p>O Painel Conecta mostra origem, última execução, próxima sincronização, vagas sincronizadas e eventuais erros.</p></details>
       </div>
     </section>
 
-    <section class="cxv4-plans" id="conecta-planos">
-      <div>
-        <span>PLANOS CONECTA</span>
-        <h2>Escolha o período que faz sentido para sua operação.</h2>
-        <p>Os planos organizam o acesso ao Conecta conforme a contratação da empresa. Consulte limites, condições e recursos disponíveis antes de ativar.</p>
-      </div>
-      <div class="cxv4-plan-pills">
-        <span>Grátis</span><span>Mensal</span><span>Trimestral</span><span>Semestral</span>
-      </div>
-      <button type="button" onclick="irPara('planos')">Ver planos e condições</button>
-    </section>
-
-    <section class="cxv4-faq">
-      <div class="cxv4-section-title">
-        <span>DÚVIDAS FREQUENTES</span>
-        <h2>O que a equipe de RH precisa saber antes de conectar.</h2>
-      </div>
-      <div class="cxv4-faq-grid">
-        <details><summary>Precisamos cadastrar as vagas novamente?</summary><p>Não quando a integração consegue ler os dados necessários na fonte configurada. A proposta do Conecta é justamente reduzir o recadastro manual.</p></details>
-        <details><summary>Precisamos trocar de ATS ou portal de carreiras?</summary><p>Não. A empresa continua usando sua fonte atual. O Conecta funciona como uma camada de sincronização e distribuição para o +Empregos.</p></details>
-        <details><summary>O que acontece quando uma vaga muda?</summary><p>Nas verificações automáticas, o sistema identifica alterações disponíveis na origem e atualiza a vaga sincronizada.</p></details>
-        <details><summary>E quando a vaga é encerrada?</summary><p>Quando o encerramento pode ser identificado na fonte, o Conecta acompanha esse status para evitar manter oportunidades antigas publicadas.</p></details>
-        <details><summary>Onde o candidato envia o currículo?</summary><p>Depende da configuração da vaga. A empresa pode direcionar a candidatura para o próprio site ou ATS, e-mail, WhatsApp ou outro fluxo suportado.</p></details>
-        <details><summary>Como sabemos se a integração está funcionando?</summary><p>O Painel Conecta mostra origem, status da integração, vagas sincronizadas, última execução e próxima sincronização programada.</p></details>
-      </div>
-    </section>
-
-    <section class="cxv4-final">
-      <div>
-        <span>MENOS OPERAÇÃO. MAIS RECRUTAMENTO.</span>
-        <h2>Deixe as vagas se atualizarem. Deixe seu RH cuidar dos candidatos.</h2>
-        <p>Conecte sua fonte de vagas ao +Empregos e transforme um trabalho repetitivo em um fluxo automático e acompanhável.</p>
-      </div>
-      <div>
-        <button class="primary" type="button" onclick="irPara('login-conecta')">Acessar Painel Conecta</button>
-        <button type="button" onclick="irPara('planos')">Conhecer os planos</button>
-      </div>
+    <section class="cx5-final">
+      <div><span>MENOS OPERAÇÃO. MAIS RECRUTAMENTO.</span><h2>Seu RH cuida de pessoas. O Conecta cuida da distribuição das vagas.</h2><p>Conecte a fonte oficial da empresa e transforme uma rotina repetitiva em um processo automático, acompanhado e preparado para alcançar candidatos em todo o Brasil.</p></div>
+      <div><button type="button" class="primary" onclick="irPara('login-conecta')">Conectar minhas vagas</button><button type="button" onclick="irPara('login-conecta')">Acessar Painel Conecta</button></div>
     </section>
   </main>
+
+  <script>
+  (function(){
+    let cx5Index=0,cx5Timer=null;
+    function render(){
+      const track=document.getElementById('cx5TrackEM');if(!track)return;
+      track.style.transform='translateX(-'+(cx5Index*100)+'%)';
+      document.querySelectorAll('#pagina-emprego-conecta .cx5-dots button').forEach((b,i)=>b.classList.toggle('ativo',i===cx5Index));
+    }
+    window.moverConectaRhSlideEM=function(dir){cx5Index=(cx5Index+dir+5)%5;render();reiniciar()};
+    window.irConectaRhSlideEM=function(i){cx5Index=Math.max(0,Math.min(4,Number(i)||0));render();reiniciar()};
+    function reiniciar(){if(cx5Timer)clearInterval(cx5Timer);cx5Timer=setInterval(()=>{cx5Index=(cx5Index+1)%5;render()},6500)}
+    if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',()=>{render();reiniciar()});else{render();reiniciar()}
+  })();
+  </script>
 </section><section class="pagina" id="pagina-painel-empresa"><div class="emp-dash">
 <aside class="emp-dash-side emp-side-premium"><div class="emp-dash-brand"><strong>Empregai</strong><small>Painel do recrutador</small></div><div class="emp-side-plan"><span>PLANO ATUAL</span><div><strong id="empresaSidePlano">Plano</strong><b>ATIVO</b></div><small id="empresaSideVigencia">Assinatura ativa</small><button onclick="irPara('planos')">Gerenciar →</button></div><button class="emp-side-publish" onclick="abrirPublicacao()"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg><span>Publicar nova vaga</span></button><nav><div class="emp-side-group"><small>RECRUTAMENTO</small><button class="ativo" onclick="irPara('painel-empresa')"><span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 11 12 4l8 7v9H5V11"/><path d="M9 20v-6h6v6"/></svg></span>Visão geral</button><button onclick="irPara('vagas-empresa')"><span><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="7" width="18" height="12" rx="2"/><path d="M8 7V5.5A1.5 1.5 0 0 1 9.5 4h5A1.5 1.5 0 0 1 16 5.5V7"/></svg></span>Processo seletivo</button><button onclick="irPara('candidatos-empresa')"><span><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="9" r="3"/><circle cx="17" cy="10" r="2"/><path d="M3.5 19c.5-3.3 2.3-5 5.5-5s5 1.7 5.5 5M15 15c3-.3 4.8 1 5.3 4"/></svg></span>Candidatos<em id="empresaSideCandidatos" class="emp-side-count"></em></button><button onclick="irPara('contratacoes-empresa')"><span><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="m8 12 2.7 2.7L16.5 9"/></svg></span>Contratações</button><button onclick="irPara('central-empresa')"><span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h16v12H8l-4 3V5Z"/><path d="M8 9h8M8 13h5"/></svg></span>Mensagens<em id="empresaSideMensagens" class="emp-side-count"></em></button></div><div class="emp-side-group management"><small>GESTÃO</small><button onclick="irPara('perfil-empresa')"><span><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M8 8h8M8 12h8M8 16h5"/></svg></span>Minha empresa</button><button id="menuRelatorios" onclick="abrirRecursoEmpresa('relatorios')"><span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 19V9M12 19V5M19 19v-7"/></svg></span>Relatórios<small id="lockRelatorios"></small></button><button onclick="abrirAvaliacoesEmpresaEM()"><span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 3 2.7 5.5 6.1.9-4.4 4.3 1 6.1-5.4-2.9-5.4 2.9 1-6.1-4.4-4.3 6.1-.9L12 3Z"/></svg></span>Avaliações<em id="empresaSideAvaliacoes" class="emp-side-count"></em></button><button onclick="irPara('planos')"><span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 3 3 6 6 .9-4.5 4.4 1.1 6.2L12 17.6l-5.6 2.9 1.1-6.2L3 9.9 9 9l3-6Z"/></svg></span>Plano e assinatura</button><button onclick="abrirUsuariosEmpresaEM()"><span><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="8" cy="8" r="3"/><circle cx="17" cy="9" r="2.5"/><path d="M2.5 20c.5-4.3 2.4-6.5 5.5-6.5s5 2.2 5.5 6.5M14 14.5c4.1-.8 6.4 1 7 5.5"/></svg></span>Usuários da empresa</button><button onclick="irPara('perfil-empresa')"><span><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M19 12a7 7 0 0 0-.1-1l2-1.5-2-3.4-2.4 1a7 7 0 0 0-1.7-1L14.5 3h-5l-.4 3.1a7 7 0 0 0-1.7 1L5 6.1 3 9.5 5.1 11a7 7 0 0 0 0 2L3 14.5l2 3.4 2.4-1a7 7 0 0 0 1.7 1l.4 3.1h5l.4-3.1a7 7 0 0 0 1.7-1l2.4 1 2-3.4-2.1-1.5a7 7 0 0 0 .1-1Z"/></svg></span>Configurações</button></div></nav><div class="emp-side-footer"><button class="emp-help-pro" onclick="irPara('central-empresa')"><span>?</span><div><b>Central de ajuda</b><small>Dúvidas e suporte</small></div><em>↗</em></button><button class="emp-side-account-pro" onclick="irPara('perfil-empresa')"><span id="empSideAccountAvatar">E</span><div><b id="empSideAccountName">Empresa</b><small><i></i> Conta empresarial <u id="empSideAccountPlan">· Plano ativo</u></small></div><em>›</em></button><button class="emp-dash-exit" onclick="typeof empregaiAuthLogoutEM==='function'?empregaiAuthLogoutEM():sair()">Sair</button></div></aside>
 <div class="modal-candidato oculto" id="modalUsuariosEmpresaEM" onclick="if(event.target===this)fecharUsuariosEmpresaEM()"><div class="modal-candidato-card empresa-usuarios-modal-em"><button class="modal-fechar" type="button" onclick="fecharUsuariosEmpresaEM()">×</button><span class="empresa-usuarios-kicker">EQUIPE DE RECRUTAMENTO</span><h2>Usuários da empresa</h2><p>Gerencie quem pode acessar as vagas e os processos seletivos desta empresa.</p><div class="empresa-usuarios-resumo" id="empresaUsuariosResumoEM">Carregando usuários...</div><div id="empresaUsuariosListaEM" class="empresa-usuarios-lista"></div><form id="empresaUsuarioFormEM" class="empresa-usuario-form" onsubmit="adicionarUsuarioEmpresaEM(event)"><h3>Adicionar recrutador</h3><div class="empresa-usuario-grid"><label>Nome<input class="campo" id="empUserNomeEM" required></label><label>E-mail<input class="campo" id="empUserEmailEM" type="email" required></label><label>Senha inicial<input class="campo" id="empUserSenhaEM" type="password" minlength="6" required></label></div><button class="btn btn-azul" type="submit">Criar acesso</button></form><p id="empresaUsuariosLimiteEM" class="empresa-usuarios-aviso"></p><div id="empresaUsuariosMsgEM" class="form-msg"></div></div></div><div class="modal-candidato oculto" id="modalAvaliacoesEmpresaEM"><div class="modal-candidato-card empresa-avaliacoes-modal-em"><button class="modal-fechar" type="button" onclick="fecharAvaliacoesEmpresaEM()">×</button><div id="conteudoAvaliacoesEmpresaEM"></div></div></div><main class="emp-dash-main emp-premium-v2">
