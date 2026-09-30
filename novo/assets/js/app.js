@@ -1768,14 +1768,15 @@ function seloNotaEmpresaEM(cnpj,verificada){
 function candidaturaFacilEM(v){
  const tipo=normalizarTipoCandidaturaEM(v);
  const link=String(v?.candidaturaLink||v?.candidatura_link||'').trim();
- return tipo==='portal'&&!link;
+ if(tipo==='portal')return !link;
+ return tipo==='email'||tipo==='whatsapp';
 }
 function candidaturaWhatsAppAtivaEM(v){
  return normalizarTipoCandidaturaEM(v)==='whatsapp'||!!nums(v?.candidaturaWhatsapp||v?.candidatura_whatsapp||'');
 }
 function selosCandidaturaVagaEM(v){
  const itens=[];
- if(candidaturaFacilEM(v))itens.push('<span class="vaga-selo candidatura-facil-selo" title="Candidate-se pelo + Empregos usando seu currículo online ou enviando seu currículo.">CANDIDATE-SE FÁCIL</span>');
+ if(candidaturaFacilEM(v))itens.push('<span class="vaga-selo candidatura-facil-selo" title="Esta vaga oferece uma forma simplificada de candidatura.">CANDIDATURA FÁCIL</span>');
  if(candidaturaWhatsAppAtivaEM(v))itens.push('<span class="vaga-selo candidatura-whatsapp-selo" title="Esta empresa também recebe candidaturas pelo WhatsApp.">CANDIDATURA VIA WHATSAPP</span>');
  return itens.join('');
 }
