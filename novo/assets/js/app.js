@@ -655,15 +655,15 @@ function conectaDestinoLabelEM(tipo){
 }
 function conectaVagasEmpresaEM(){
  const todas=typeof vagasDaEmpresa==='function'?vagasDaEmpresa():[];
- return todas.filter(v=>v&&(
-  v.importada===true||
-  v.origem==='integracao'||
-  v.origem==='conecta'||
-  v.fonte==='integracao'||
-  v.fonte==='conecta'||
-  v.candidaturaLink||
-  v.candidatura_link
- ))
+ return todas.filter(v=>{
+  if(!v)return false;
+  const gerenciada=v.conectaManaged===true||v.conecta_managed===true||v.importada===true||v.origem==='integracao'||v.origem==='conecta'||v.fonte==='integracao'||v.fonte==='conecta';
+  if(!gerenciada)return false;
+  // Vagas encerradas de uma origem anterior permanecem no histórico, mas não
+  // pertencem mais à integração atualmente exibida no painel.
+  if(String(v.status||'').toLowerCase()==='encerrada')return false;
+  return true;
+ })
 }
 function conectaDescobertasEM(){
  try{
