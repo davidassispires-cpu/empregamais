@@ -386,6 +386,25 @@ body .topo .menu-drop-candidato .menu-candidato-cadastro:hover{background:#0d5fb
 #pagina-emprego-conecta .cx6-attraction-grid h4{margin:11px 0 5px;color:var(--cx-ink);font-size:13px}
 #pagina-emprego-conecta .cx6-attraction-grid p{margin:0;color:#768994;font-size:10.5px;line-height:1.5}
 #pagina-emprego-conecta .cx6-attraction-foot{margin-top:12px;padding:13px 15px;border-radius:12px;background:#eef8f3;color:#3e6d59;font-size:11px;line-height:1.5}
+
+#pagina-emprego-conecta .cx6-iconbox svg,#pagina-emprego-conecta .cx6-int-icon svg,#pagina-emprego-conecta .cx6-action-card>i svg,#pagina-emprego-conecta .cx6-attraction-grid i svg{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+#pagina-emprego-conecta .cx6-integrations{gap:14px}
+#pagina-emprego-conecta .cx6-integration-card{position:relative;overflow:hidden;transition:.2s ease;box-shadow:0 8px 22px rgba(74,35,96,.035)}
+#pagina-emprego-conecta .cx6-integration-card:before{content:"";position:absolute;inset:0 0 auto;height:3px;background:linear-gradient(90deg,#7c2cc4,#a66ad8);opacity:.8}
+#pagina-emprego-conecta .cx6-integration-card:hover,#pagina-emprego-conecta .cx6-attraction-grid article:hover{transform:translateY(-2px);box-shadow:0 12px 28px rgba(74,35,96,.08)}
+#pagina-emprego-conecta .cx6-int-icon{display:grid!important;place-items:center!important}
+#pagina-emprego-conecta .cx6-action-card{box-shadow:0 8px 20px rgba(74,35,96,.035);transition:.2s ease}
+#pagina-emprego-conecta .cx6-action-card:hover{transform:translateY(-1px);box-shadow:0 12px 26px rgba(74,35,96,.07)}
+#pagina-emprego-conecta .cx6-attraction-grid article{box-shadow:0 8px 20px rgba(41,66,83,.035);transition:.2s ease}
+#pagina-emprego-conecta .cx6-attraction-grid i{display:grid!important;place-items:center!important}
+#pagina-emprego-conecta #cx6-integracoes{background:linear-gradient(180deg,#f8f4fc 0%,#fbf9fe 100%)}
+#pagina-emprego-conecta #cx6-atracao{background:linear-gradient(180deg,#f6f1fb 0%,#faf8fd 100%)}
+#pagina-emprego-conecta .cx6-sync-callout{background:linear-gradient(110deg,#f3e9fb 0%,#faf7fd 55%,#fff 100%);border-color:#d9c6e9}
+#pagina-emprego-conecta .cx6-before{background:#fffaf7}
+#pagina-emprego-conecta .cx6-after{background:linear-gradient(180deg,#f6eefc,#fbf8fe);border-color:#d8c2e8}
+#pagina-emprego-conecta .cx6-after h3{color:#69239a}
+#pagina-emprego-conecta .cx6-way-card.bridge{background:linear-gradient(180deg,#faf6fd,#fff)}
+
 @media(max-width:980px){#pagina-candidatos-empresa #listaCandidatosEmpresa{grid-template-columns:1fr!important}}
 #pagina-candidatos-empresa #listaCandidatosEmpresa>.processo-head,#pagina-candidatos-empresa #listaCandidatosEmpresa>.candidatos-empresa-filtro-vaga,#pagina-candidatos-empresa #listaCandidatosEmpresa>.etapas-tabs,#pagina-candidatos-empresa #listaCandidatosEmpresa>.vagas-vazio{grid-column:1/-1!important}
 #pagina-candidatos-empresa #listaCandidatosEmpresa .recruta-cand-card{width:100%!important;max-width:none!important;margin:0!important;display:block!important;border:1px solid #dbe6ed!important;border-top:3px solid #172a3a!important;border-radius:14px!important;background:#fff!important;overflow:hidden!important;box-shadow:0 7px 22px rgba(18,66,92,.07)!important;color:#172a3a!important;font-family:'Montserrat',Arial,sans-serif!important}
@@ -5040,25 +5059,25 @@ var b=document.body,logout=localStorage.getItem('empregaMaisLogoutBloqueio')==='
       </div>
       <div class="cx6-integrations">
         <article class="cx6-integration-card">
-          <span class="cx6-int-icon">{ }</span>
+          <span class="cx6-int-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 7 4 12l4 5M16 7l4 5-4 5M14 4l-4 16"/></svg></span>
           <h3>Integração via API</h3>
           <p>Quando o sistema da empresa disponibiliza API, a conexão pode consumir os dados estruturados da vaga diretamente da fonte.</p>
           <strong>Ideal para ATS, sistemas próprios e operações com maior volume.</strong>
         </article>
         <article class="cx6-integration-card">
-          <span class="cx6-int-icon">▣</span>
+          <span class="cx6-int-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 8h18M7 6h.01M10 6h.01"/></svg></span>
           <h3>Site de carreiras</h3>
           <p>O Conecta pode acompanhar a página oficial de vagas da empresa e identificar novas oportunidades e alterações publicadas.</p>
           <strong>A empresa continua administrando tudo no próprio site.</strong>
         </article>
         <article class="cx6-integration-card">
-          <span class="cx6-int-icon">↗</span>
+          <span class="cx6-int-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.1 0l2-2a5 5 0 0 0-7.1-7.1l-1.1 1.1"/><path d="M14 11a5 5 0 0 0-7.1 0l-2 2A5 5 0 0 0 12 20.1l1.1-1.1"/></svg></span>
           <h3>Link “Trabalhe Conosco”</h3>
           <p>Para empresas que concentram as vagas em uma página pública, o link oficial pode ser usado como origem da sincronização.</p>
           <strong>Sem precisar cadastrar a mesma vaga novamente.</strong>
         </article>
         <article class="cx6-integration-card">
-          <span class="cx6-int-icon">⇄</span>
+          <span class="cx6-int-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M19 12a7 7 0 0 0-.1-1l2-1.5-2-3.4-2.4 1a7 7 0 0 0-1.7-1L14.5 3h-5l-.4 3.1a7 7 0 0 0-1.7 1L5 6.1 3 9.5 5.1 11a7 7 0 0 0 0 2L3 14.5l2 3.4 2.4-1a7 7 0 0 0 1.7 1l.4 3.1h5l.4-3.1a7 7 0 0 0 1.7-1l2.4 1 2-3.4-2.1-1.5a7 7 0 0 0 .1-1Z"/></svg></span>
           <h3>ATS e fontes compatíveis</h3>
           <p>Também trabalhamos com fontes conectáveis de recrutamento, feeds e estruturas compatíveis com leitura e atualização automatizada.</p>
           <strong>A forma de conexão é definida conforme a estrutura da empresa.</strong>
@@ -5066,7 +5085,7 @@ var b=document.body,logout=localStorage.getItem('empregaMaisLogoutBloqueio')==='
       </div>
       <div class="cx6-sync-callout">
         <i>↻</i>
-        <div><b>Sincronização automática por integração.</b><span>Depois que a origem é configurada, o fluxo deixa de depender de cadastro manual de vaga por vaga. A empresa publica onde já trabalha e o Conecta cuida da sincronização conforme a integração disponível.</span></div>
+        <div><b>Sincronização automática por integração.</b><span>Depois que a origem é configurada, a sincronização passa a funcionar pela integração disponível e dispensa o cadastro manual de vaga por vaga. A empresa continua publicando onde já trabalha; o Conecta cuida da atualização no +Empregos.</span></div>
       </div>
     </div>
   </section>
@@ -5079,10 +5098,10 @@ var b=document.body,logout=localStorage.getItem('empregaMaisLogoutBloqueio')==='
         <p>Não é apenas importar uma vez. O objetivo é manter a oportunidade coerente ao longo do processo conforme mudanças são identificadas na fonte.</p>
       </div>
       <div class="cx6-actions-grid">
-        <article class="cx6-action-card"><i>＋</i><div><b>Publicou uma nova vaga</b><small>O Conecta identifica a oportunidade e prepara a publicação.</small></div><em>PUBLICAR</em></article>
-        <article class="cx6-action-card"><i>✎</i><div><b>Alterou título ou descrição</b><small>As mudanças detectadas podem ser refletidas na vaga sincronizada.</small></div><em>ATUALIZAR</em></article>
-        <article class="cx6-action-card"><i>R$</i><div><b>Alterou salário ou condições</b><small>Os campos disponíveis são atualizados sem novo cadastro manual.</small></div><em>SINCRONIZAR</em></article>
-        <article class="cx6-action-card"><i>✓</i><div><b>Encerrou a oportunidade</b><small>O status da origem orienta o encerramento da vaga sincronizada.</small></div><em>ENCERRAR</em></article>
+        <article class="cx6-action-card"><i><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></i><div><b>Publicou uma nova vaga</b><small>O Conecta identifica a oportunidade e prepara a publicação.</small></div><em>PUBLICAR</em></article>
+        <article class="cx6-action-card"><i><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m4 20 4.5-1 10-10-3.5-3.5-10 10L4 20Z"/><path d="m13.5 6.5 3.5 3.5"/></svg></i><div><b>Alterou título ou descrição</b><small>As mudanças detectadas podem ser refletidas na vaga sincronizada.</small></div><em>ATUALIZAR</em></article>
+        <article class="cx6-action-card"><i><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="6" width="18" height="12" rx="2"/><path d="M8 12h8M12 9v6"/></svg></i><div><b>Alterou salário ou condições</b><small>Os campos disponíveis são atualizados sem novo cadastro manual.</small></div><em>SINCRONIZAR</em></article>
+        <article class="cx6-action-card"><i><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="m8 12 2.5 2.5L16 9"/></svg></i><div><b>Encerrou a oportunidade</b><small>O status da origem orienta o encerramento da vaga sincronizada.</small></div><em>ENCERRAR</em></article>
       </div>
     </div>
   </section>
@@ -5116,7 +5135,7 @@ var b=document.body,logout=localStorage.getItem('empregaMaisLogoutBloqueio')==='
     <div class="cx6-shell">
       <div class="cx6-title">
         <span class="cx6-kicker">Publicar é só metade do trabalho</span>
-        <h2>Depois de sincronizar, ajudamos a vaga a chegar aos candidatos.</h2>
+        <h2>Depois de sincronizar, ajudamos a vaga a ganhar alcance e chegar aos candidatos.</h2>
         <p>O Conecta não existe apenas para copiar uma oportunidade de um lugar para outro. A vaga entra no ecossistema do +Empregos e pode ganhar distribuição em diferentes canais de atração, de acordo com a estratégia da operação.</p>
       </div>
       <div class="cx6-attraction">
@@ -5127,12 +5146,12 @@ var b=document.body,logout=localStorage.getItem('empregaMaisLogoutBloqueio')==='
           <div class="cx6-attraction-foot">A automação de vagas reduz o trabalho operacional; a estratégia de atração trabalha para aumentar a visibilidade das oportunidades.</div>
         </div>
         <div class="cx6-attraction-grid">
-          <article><i>⌕</i><h4>Site +Empregos</h4><p>Busca por cargo, cidade, modalidade, tipo de contrato e outros filtros ajudam candidatos a encontrar oportunidades compatíveis.</p></article>
-          <article><i>◎</i><h4>Redes sociais</h4><p>As oportunidades podem ser divulgadas em canais sociais para ampliar alcance e gerar novas entradas de candidatos.</p></article>
-          <article><i>↗</i><h4>Anúncios patrocinados</h4><p>Campanhas segmentadas podem direcionar tráfego para vagas, regiões ou perfis específicos conforme a necessidade de atração.</p></article>
-          <article><i>⇢</i><h4>Portais parceiros</h4><p>A distribuição também pode contar com canais e parceiros de vagas para ampliar a exposição das oportunidades.</p></article>
-          <article><i>⌖</i><h4>Distribuição regional</h4><p>Localização e região ajudam a aproximar as oportunidades de candidatos que buscam naquela área.</p></article>
-          <article><i>★</i><h4>Descoberta por perfil</h4><p>Área profissional, interesse, modalidade e contexto da vaga ajudam a tornar a descoberta mais relevante.</p></article>
+          <article><i><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.5" cy="10.5" r="5.5"/><path d="m15 15 5 5"/></svg></i><h4>Site +Empregos</h4><p>Busca por cargo, cidade, modalidade, tipo de contrato e outros filtros ajudam candidatos a encontrar oportunidades compatíveis.</p></article>
+          <article><i><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="6" cy="12" r="2"/><circle cx="18" cy="6" r="2"/><circle cx="18" cy="18" r="2"/><path d="m8 11 8-4M8 13l8 4"/></svg></i><h4>Redes sociais</h4><p>As oportunidades podem ser divulgadas em canais sociais para ampliar alcance e gerar novas entradas de candidatos.</p></article>
+          <article><i><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="3"/><path d="M12 2v3M22 12h-3M12 22v-3M2 12h3"/></svg></i><h4>Anúncios patrocinados</h4><p>Campanhas segmentadas podem direcionar tráfego para vagas, regiões ou perfis específicos conforme a necessidade de atração.</p></article>
+          <article><i><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 12 4 8l-2 2 6 6M16 12l4-4 2 2-6 6"/><path d="M8 12l3-3a2 2 0 0 1 3 0l2 2a2 2 0 0 1 0 3l-3 3"/></svg></i><h4>Portais parceiros</h4><p>A distribuição também pode contar com canais e parceiros de vagas para ampliar a exposição das oportunidades.</p></article>
+          <article><i><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s6-5.2 6-11a6 6 0 1 0-12 0c0 5.8 6 11 6 11Z"/><circle cx="12" cy="10" r="2"/></svg></i><h4>Distribuição regional</h4><p>Localização e região ajudam a aproximar as oportunidades de candidatos que buscam naquela área.</p></article>
+          <article><i><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="8" r="3"/><path d="M3 20c.5-4 2.5-6 6-6s5.5 2 6 6"/><path d="m17 9 1 2 2 .3-1.5 1.5.4 2.2-1.9-1-1.9 1 .4-2.2L14 11.3l2-.3 1-2Z"/></svg></i><h4>Descoberta por perfil</h4><p>Área profissional, interesse, modalidade e contexto da vaga ajudam a tornar a descoberta mais relevante.</p></article>
         </div>
       </div>
     </div>
