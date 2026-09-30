@@ -4756,782 +4756,216 @@ var b=document.body,logout=localStorage.getItem('empregaMaisLogoutBloqueio')==='
  #pagina-emprego-conecta .conecta-showcase-controls-em{grid-template-columns:auto 1fr auto!important}
  #pagina-emprego-conecta .conecta-showcase-count-em{display:none!important}
 }
-</style><section class="pagina conecta-page-em" id="pagina-emprego-conecta">
-  <div class="conecta-hero-em">
-    <div class="conecta-hero-inner-em">
-      <div class="conecta-hero-copy-em">
-        <span class="conecta-kicker-em">INTEGRAÇÃO AUTOMÁTICA PARA QUEM JÁ TEM PORTAL DE CARREIRAS</span>
-        <h1><span>+</span>Emprego <b>Conecta</b></h1>
-        <p>Seu portal continua sendo a fonte oficial. O +Empregos sincroniza, publica, atualiza e encerra suas vagas automaticamente para ampliar o alcance sem trabalho manual.</p>
-        <div class="conecta-hero-actions-em">
-          <button type="button" class="conecta-primary-em" onclick="document.getElementById('conecta-planos')?.scrollIntoView({behavior:'smooth'})">Ver planos e contratar</button>
-          <button type="button" class="conecta-secondary-em" onclick="document.getElementById('conecta-integracao')?.scrollIntoView({behavior:'smooth'})">Como integrar</button>
+</style><section class="pagina conecta-page-em cxv4" id="pagina-emprego-conecta">
+  <div class="cxv4-hero">
+    <div class="cxv4-shell cxv4-hero-grid">
+      <div class="cxv4-hero-copy">
+        <span class="cxv4-kicker">+ EMPREGO CONECTA · AUTOMAÇÃO PARA RH</span>
+        <h1>Menos trabalho operacional.<br><b>Mais tempo para recrutar.</b></h1>
+        <p>Conectamos o portal de carreiras ou ATS da sua empresa ao +Empregos. As vagas são identificadas, publicadas, atualizadas e encerradas automaticamente — sem sua equipe cadastrar tudo de novo.</p>
+        <div class="cxv4-actions">
+          <button type="button" class="cxv4-primary" onclick="irPara('login-conecta')">Conectar minhas vagas</button>
+          <button type="button" class="cxv4-secondary" onclick="document.getElementById('conecta-como')?.scrollIntoView({behavior:'smooth'})">Entender como funciona</button>
         </div>
-        <div class="conecta-trust-em">
-          <span>✓ Publicação automática</span>
+        <div class="cxv4-trust">
+          <span>✓ Sem cadastro manual de cada vaga</span>
           <span>✓ Atualização automática</span>
-          <span>✓ Encerramento automático</span>
-          <span>✓ Sem duplicidades</span>
+          <span>✓ RH continua usando o sistema de sempre</span>
         </div>
       </div>
 
-      <div class="conecta-showcase-em" id="conectaShowcaseEM" aria-label="Demonstração das etapas do +Emprego Conecta">
-        <div class="conecta-showcase-top-em">
-          <div><span class="conecta-live-dot-em"></span><b>Veja o Conecta em ação</b></div>
-          <small>8 etapas · demonstração automática</small>
+      <aside class="cxv4-hero-panel" aria-label="Resumo da automação">
+        <div class="cxv4-panel-head"><span></span><b>Enquanto seu RH trabalha no recrutamento</b></div>
+        <div class="cxv4-automation-list">
+          <article><i>01</i><div><strong>Nova vaga na origem</strong><small>O Conecta identifica a oportunidade.</small></div><em>AUTOMÁTICO</em></article>
+          <article><i>02</i><div><strong>Publicação no +Empregos</strong><small>Os dados entram no padrão do portal.</small></div><em>AUTOMÁTICO</em></article>
+          <article><i>03</i><div><strong>Alterações sincronizadas</strong><small>Título, local, descrição e status acompanham a origem.</small></div><em>AUTOMÁTICO</em></article>
+          <article><i>04</i><div><strong>Vaga encerrada</strong><small>Quando a origem encerra, o portal acompanha.</small></div><em>AUTOMÁTICO</em></article>
         </div>
-
-        <div class="conecta-showcase-window-em">
-          <div class="conecta-slide-em ativo" data-conecta-slide="0">
-            <div class="conecta-slide-copy-em">
-              <span>01 · SINCRONIZAÇÃO INTELIGENTE</span>
-              <h3>Conecte a fonte oficial das suas vagas</h3>
-              <p>Seu portal continua sendo a origem. O Conecta sincroniza, publica, atualiza e encerra automaticamente.</p>
-            </div>
-            <div class="conecta-slide-ui-em conecta-ui-fluxo-em">
-              <article><small>PORTAL DA EMPRESA</small><b>Fonte oficial das vagas</b><i>Novas vagas · alterações · encerramentos</i></article>
-              <div class="conecta-pulso-em">↻</div>
-              <article class="destino"><small>+EMPREGO CONECTA</small><b>Distribuição sincronizada</b><i>Publicação automática e contínua</i></article>
-            </div>
-          </div>
-
-          <div class="conecta-slide-em" data-conecta-slide="1">
-            <div class="conecta-slide-copy-em">
-              <span>02 · MAPEAMENTO AUTOMÁTICO</span>
-              <h3>Os dados da vaga são organizados em segundos</h3>
-              <p>Cargo, cidade, modalidade, contrato, salário e candidatura entram no padrão do portal.</p>
-            </div>
-            <div class="conecta-map-ui-em">
-              <div class="conecta-map-source-em"><b>Fonte original</b><small>Analista de Marketing · SP</small><small>Híbrido · CLT · R$ 5.000</small></div>
-              <div class="conecta-map-core-em">✦</div>
-              <div class="conecta-map-fields-em"><span>✓ Cargo</span><span>✓ Cidade</span><span>✓ Modalidade</span><span>✓ Contrato</span><span>✓ Salário</span><span>✓ Candidatura</span></div>
-            </div>
-          </div>
-
-          <div class="conecta-slide-em" data-conecta-slide="2">
-            <div class="conecta-slide-copy-em">
-              <span>03 · VALIDAÇÃO DA INTEGRAÇÃO</span>
-              <h3>Revise tudo antes de publicar</h3>
-              <p>O sistema apresenta uma prévia das vagas encontradas e sinaliza o que está pronto ou precisa de revisão.</p>
-            </div>
-            <div class="conecta-validate-ui-em">
-              <div class="conecta-validate-list-em"><b>Prévia das vagas</b><span>Analista de Marketing <i>Pronta</i></span><span>Desenvolvedor(a) <i>Pronta</i></span><span>Assistente Administrativo <i class="rev">Revisar</i></span></div>
-              <div class="conecta-validate-stats-em"><strong>84<small>vagas encontradas</small></strong><div><b>82</b><span>prontas</span></div><div class="warn"><b>2</b><span>para revisar</span></div></div>
-            </div>
-          </div>
-
-          <div class="conecta-slide-em" data-conecta-slide="3">
-            <div class="conecta-slide-copy-em">
-              <span>04 · PUBLICAÇÃO AUTOMÁTICA</span>
-              <h3>Novas vagas entram no ar sem retrabalho</h3>
-              <p>Assim que a integração identifica oportunidades novas, elas são publicadas automaticamente no +Empregos.</p>
-            </div>
-            <div class="conecta-publish-ui-em">
-              <div class="conecta-publish-source-em"><b>Portal da empresa</b><span>Analista de RH</span><span>Desenvolvedor(a)</span><span>Assistente Administrativo</span></div>
-              <div class="conecta-publish-flow-em">→</div>
-              <div class="conecta-publish-cards-em"><article><b>Analista de RH</b><i>PUBLICADA</i></article><article><b>Desenvolvedor(a)</b><i>PUBLICADA</i></article><article><b>Assistente Administrativo</b><i>PUBLICADA</i></article></div>
-            </div>
-          </div>
-
-          <div class="conecta-slide-em" data-conecta-slide="4">
-            <div class="conecta-slide-copy-em">
-              <span>05 · ATUALIZAÇÃO CONTÍNUA</span>
-              <h3>Mudou na origem? Atualizou aqui.</h3>
-              <p>Título, cidade, modalidade, status e encerramento acompanham automaticamente a vaga original.</p>
-            </div>
-            <div class="conecta-update-ui-em">
-              <article><small>ORIGEM</small><b>Analista de Marketing</b><span>São Paulo · Híbrido</span></article>
-              <div class="conecta-update-sync-em">↻</div>
-              <article class="ok"><small>+EMPREGO CONECTA</small><b>Analista de Marketing</b><span>Atualizada automaticamente</span></article>
-              <article><small>ORIGEM</small><b>Desenvolvedor Backend</b><span>Encerrar vaga</span></article>
-              <div class="conecta-update-sync-em">↻</div>
-              <article class="off"><small>+EMPREGO CONECTA</small><b>Desenvolvedor Backend</b><span>Encerrada automaticamente</span></article>
-            </div>
-          </div>
-
-          <div class="conecta-slide-em" data-conecta-slide="5">
-            <div class="conecta-slide-copy-em">
-              <span>06 · CANDIDATURA FLEXÍVEL</span>
-              <h3>A candidatura segue o fluxo da sua empresa</h3>
-              <p>Após o login, o candidato continua pelo canal configurado em cada vaga.</p>
-            </div>
-            <div class="conecta-apply-ui-em">
-              <div class="conecta-candidate-node-em"><span>👤</span><b>Candidato</b><small>Login obrigatório</small></div>
-              <div class="conecta-apply-paths-em"><article><b>PDF por e-mail</b><span>Currículo enviado ao endereço da vaga</span></article><article><b>WhatsApp</b><span>Direcionamento com mensagem pronta</span></article><article><b>Link externo</b><span>Portal ou formulário da empresa</span></article></div>
-            </div>
-          </div>
-
-          <div class="conecta-slide-em" data-conecta-slide="6">
-            <div class="conecta-slide-copy-em">
-              <span>07 · ATRAÇÃO DE CANDIDATOS</span>
-              <h3>Mais alcance para as vagas certas</h3>
-              <p>Busca, filtros, recomendações e notificações ampliam a descoberta das oportunidades pelo Brasil.</p>
-            </div>
-            <div class="conecta-attract-ui-em">
-              <div class="conecta-search-demo-em"><b>Buscar vagas</b><span>Região do candidato</span><span>Área de atuação</span><span>Mais filtros</span></div>
-              <div class="conecta-candidates-demo-em"><i>●</i><i>●</i><i>●</i><i>●</i><i>●</i></div>
-              <div class="conecta-reach-demo-em"><span>Busca</span><span>Recomendadas</span><span>Notificações</span><span>Relevância local</span></div>
-            </div>
-          </div>
-
-          <div class="conecta-slide-em" data-conecta-slide="7">
-            <div class="conecta-slide-copy-em">
-              <span>08 · MÉTRICAS E CRESCIMENTO</span>
-              <h3>Acompanhe resultados e escale com segurança</h3>
-              <p>Visualizações, cliques e redirecionamentos mostram o desempenho e ajudam a evoluir o plano.</p>
-            </div>
-            <div class="conecta-metrics-ui-em">
-              <div><small>Visualizações</small><b>12.568</b><span>↗ +28%</span></div>
-              <div><small>Cliques</small><b>3.421</b><span>↗ +35%</span></div>
-              <div><small>Redirecionamentos</small><b>2.184</b><span>↗ +42%</span></div>
-              <div><small>Vagas ativas</small><b>320</b><span>↗ +18%</span></div>
-              <footer><span>Start</span><b>→</b><span>Pro</span><b>→</b><span>Enterprise</span></footer>
-            </div>
-          </div>
-        </div>
-
-        <div class="conecta-showcase-controls-em">
-          <button type="button" class="conecta-show-prev-em" onclick="moverConectaShowcaseEM(-1)" aria-label="Etapa anterior">‹</button>
-          <div class="conecta-showcase-dots-em" aria-label="Etapas do carrossel">
-            <button type="button" class="ativo" onclick="irConectaShowcaseEM(0)" aria-label="Etapa 1"></button>
-            <button type="button" onclick="irConectaShowcaseEM(1)" aria-label="Etapa 2"></button>
-            <button type="button" onclick="irConectaShowcaseEM(2)" aria-label="Etapa 3"></button>
-            <button type="button" onclick="irConectaShowcaseEM(3)" aria-label="Etapa 4"></button>
-            <button type="button" onclick="irConectaShowcaseEM(4)" aria-label="Etapa 5"></button>
-            <button type="button" onclick="irConectaShowcaseEM(5)" aria-label="Etapa 6"></button>
-            <button type="button" onclick="irConectaShowcaseEM(6)" aria-label="Etapa 7"></button>
-            <button type="button" onclick="irConectaShowcaseEM(7)" aria-label="Etapa 8"></button>
-          </div>
-          <span class="conecta-showcase-count-em"><b id="conectaShowcaseAtualEM">01</b> / 08</span>
-          <button type="button" class="conecta-show-next-em" onclick="moverConectaShowcaseEM(1)" aria-label="Próxima etapa">›</button>
-        </div>
-        <div class="conecta-showcase-progress-em"><i id="conectaShowcaseProgressEM"></i></div>
-      </div>
+        <div class="cxv4-panel-foot"><b>Seu RH não precisa repetir essas tarefas.</b><span>O foco fica em candidatos, entrevistas e decisões.</span></div>
+      </aside>
     </div>
   </div>
 
-  <div class="conecta-tabs-wrap-em">
-    <div class="conecta-tabs-em">
-      <button type="button" onclick="document.getElementById('conecta-visao')?.scrollIntoView({behavior:'smooth'})">Visão geral</button>
-      <button type="button" onclick="document.getElementById('conecta-planos')?.scrollIntoView({behavior:'smooth'})">Planos</button>
-      <button type="button" onclick="document.getElementById('conecta-integracao')?.scrollIntoView({behavior:'smooth'})">Integração</button>
-      <button type="button" onclick="document.getElementById('conecta-atracao')?.scrollIntoView({behavior:'smooth'})">Atração de candidatos</button>
+  <nav class="cxv4-nav">
+    <div class="cxv4-shell">
+      <button onclick="document.getElementById('conecta-visao')?.scrollIntoView({behavior:'smooth'})">Visão geral</button>
+      <button onclick="document.getElementById('conecta-como')?.scrollIntoView({behavior:'smooth'})">Como funciona</button>
+      <button onclick="document.getElementById('conecta-integracao')?.scrollIntoView({behavior:'smooth'})">Integração</button>
+      <button onclick="document.getElementById('conecta-atracao')?.scrollIntoView({behavior:'smooth'})">Atração de candidatos</button>
+      <button onclick="document.getElementById('conecta-planos')?.scrollIntoView({behavior:'smooth'})">Planos</button>
     </div>
-  </div>
+  </nav>
 
-  <div class="conecta-shell-em" id="conecta-visao">
-    <section class="conecta-benefits-em">
-      <article>
-        <i><svg viewBox="0 0 24 24"><path d="M20 7h-6V1M4 17h6v6M19 12a7 7 0 0 0-12-5l-3 3M5 12a7 7 0 0 0 12 5l3-3"/></svg></i>
-        <div><span>SINCRONIZAÇÃO</span><h3>Vagas sempre atualizadas</h3><p>O que muda no portal da empresa é refletido no +Empregos, sem republicação manual.</p></div>
-      </article>
-      <article>
-        <i><svg viewBox="0 0 24 24"><path d="M8 7V5h8v2M5 9h14v11H5zM9 13h6M9 16h4"/></svg></i>
-        <div><span>AUTOMAÇÃO</span><h3>Publicação e encerramento automáticos</h3><p>Novas oportunidades entram e vagas encerradas deixam de ser exibidas automaticamente.</p></div>
-      </article>
-      <article>
-        <i><svg viewBox="0 0 24 24"><path d="M4 19V9m5 10V5m5 14v-7m5 7V3"/></svg></i>
-        <div><span>RESULTADOS</span><h3>Métricas de acesso</h3><p>Acompanhe visualizações, cliques e interesse gerado pelas vagas sincronizadas.</p></div>
-      </article>
-      <article>
-        <i><svg viewBox="0 0 24 24"><path d="M8 8h11v11H8zM5 16H3V3h13v2"/></svg></i>
-        <div><span>CONTROLE</span><h3>Sem vagas duplicadas</h3><p>Cada oportunidade mantém uma referência de origem para atualização segura e consistente.</p></div>
-      </article>
-    </section>
-
-    <section class="conecta-how-em" id="conecta-como-funciona">
-      <div class="conecta-section-head-em">
-        <span>COMO FUNCIONA</span>
-        <h2>Seu time publica uma vez. O Conecta cuida do restante.</h2>
-        <p>A empresa continua gerenciando as oportunidades no ambiente que já utiliza. O +Empregos passa a atuar como um novo canal de distribuição sincronizado.</p>
+  <main class="cxv4-shell">
+    <section class="cxv4-intro" id="conecta-visao">
+      <div class="cxv4-section-title">
+        <span>O PROBLEMA QUE O CONECTA RESOLVE</span>
+        <h2>Seu time não deveria publicar a mesma vaga em vários lugares.</h2>
+        <p>Quando a empresa já possui portal de carreiras ou ATS, repetir cadastro, alteração e encerramento em outros canais consome tempo e aumenta o risco de informações divergentes.</p>
       </div>
-      <div class="conecta-steps-em">
-        <article><b>01</b><h3>Conectamos seu portal</h3><p>Mapeamos a página de carreiras, feed, API ou outra fonte disponível para leitura das oportunidades.</p></article>
-        <article><b>02</b><h3>Estruturamos as vagas</h3><p>Cargo, cidade, modalidade, contrato, descrição, requisitos, benefícios e canal de candidatura entram no padrão do +Empregos.</p></article>
-        <article><b>03</b><h3>Sincronizamos continuamente</h3><p>Novas vagas são publicadas, alterações são atualizadas e oportunidades encerradas são retiradas automaticamente.</p></article>
-        <article><b>04</b><h3>Você acompanha o desempenho</h3><p>O painel concentra os indicadores de alcance e os resultados gerados pelas vagas conectadas.</p></article>
-      </div>
-    </section>
-
-    <section class="conecta-candidatura-em">
-      <div class="conecta-candidatura-copy-em" style="color:#fff!important">
-        <span style="color:#fff!important">CANDIDATURA FLEXÍVEL</span>
-        <h2 style="color:#fff!important">A empresa escolhe o canal de candidatura de cada vaga.</h2>
-        <p style="color:rgba(255,255,255,.88)!important">Nos planos Conecta, o currículo online do +Empregos não é obrigatório. A vaga pode direcionar o candidato para o canal definido pela empresa.</p>
-        <div class="conecta-login-rule-em" style="color:#fff!important"><b style="color:#fff!important">Login obrigatório do candidato</b><span style="color:rgba(255,255,255,.92)!important">Antes de qualquer envio ou redirecionamento, o candidato entra na conta do +Empregos para que o interesse seja registrado.</span></div>
-      </div>
-      <div class="conecta-channel-grid-em">
-        <article><i>PDF</i><div><h3>Currículo por e-mail</h3><p>Recebimento de currículo em PDF no e-mail específico configurado para a vaga.</p></div></article>
-        <article><i>WA</i><div><h3>WhatsApp</h3><p>Botão direciona para o WhatsApp da empresa com mensagem da vaga já preparada.</p></div></article>
-        <article><i>↗</i><div><h3>Link externo</h3><p>Direcionamento para o portal, ATS ou formulário de candidatura utilizado pela empresa.</p></div></article>
+      <div class="cxv4-before-after">
+        <article class="antes">
+          <span>SEM CONECTA</span>
+          <h3>Trabalho duplicado</h3>
+          <ul>
+            <li>Cadastrar novamente cada oportunidade</li>
+            <li>Copiar descrição, requisitos e benefícios</li>
+            <li>Atualizar cidade, modalidade ou salário em mais de um lugar</li>
+            <li>Controlar manualmente vagas encerradas</li>
+            <li>Conferir se os anúncios continuam iguais à origem</li>
+          </ul>
+        </article>
+        <div class="cxv4-switch">→</div>
+        <article class="depois">
+          <span>COM + EMPREGO CONECTA</span>
+          <h3>Uma origem. Distribuição automática.</h3>
+          <ul>
+            <li>RH publica somente no sistema que já utiliza</li>
+            <li>O Conecta identifica e estrutura as vagas</li>
+            <li>Alterações são acompanhadas automaticamente</li>
+            <li>Encerramentos deixam de depender de ação manual</li>
+            <li>Equipe acompanha tudo em um painel próprio</li>
+          </ul>
+        </article>
       </div>
     </section>
 
-    <section class="conecta-integracao-self-em" id="conecta-integracao">
-      <div class="conecta-section-head-em">
-        <span>INTEGRAÇÃO SELF-SERVICE</span>
-        <h2>Contratou, configurou e começou a sincronizar.</h2>
-        <p>A configuração é feita pela própria empresa dentro do painel. Nossa plataforma orienta cada etapa e valida a conexão antes de iniciar a publicação automática.</p>
+    <section class="cxv4-value">
+      <div class="cxv4-section-title">
+        <span>O QUE O RH GANHA</span>
+        <h2>Automatizamos a operação para sua equipe cuidar das pessoas.</h2>
       </div>
-      <div class="conecta-self-grid-em">
-        <article><b>01</b><h3>Escolha e contrate o plano</h3><p>Selecione Start, Pro ou Enterprise conforme o volume de vagas e os recursos necessários.</p></article>
-        <article><b>02</b><h3>Informe a fonte oficial</h3><p>Cadastre a origem das vagas e os dados necessários para a sincronização técnica compatível com sua estrutura.</p></article>
-        <article><b>03</b><h3>Valide a conexão</h3><p>O sistema faz a leitura inicial, identifica os campos da vaga e apresenta uma prévia para conferência.</p></article>
-        <article><b>04</b><h3>Ative a divulgação</h3><p>Após a validação, as oportunidades passam a ser publicadas, atualizadas e encerradas automaticamente.</p></article>
-      </div>
-      <div class="conecta-self-cta-em">
-        <div><strong>Sem implantação manual para começar.</strong><span>A empresa acompanha o status da integração, o limite do plano e as vagas sincronizadas diretamente no painel.</span></div>
-        <button type="button" onclick="document.getElementById('conecta-planos')?.scrollIntoView({behavior:'smooth'})">Escolher meu plano</button>
+      <div class="cxv4-value-grid">
+        <article><i>↻</i><h3>Menos tarefas repetitivas</h3><p>Cadastro, atualização e encerramento deixam de ocupar a rotina da equipe em mais um portal.</p></article>
+        <article><i>◎</i><h3>Mais consistência</h3><p>A vaga publicada no +Empregos acompanha a fonte oficial da empresa, reduzindo diferenças entre canais.</p></article>
+        <article><i>⌕</i><h3>Mais tempo para selecionar</h3><p>O esforço sai da digitação e volta para triagem, contato, entrevistas e condução do processo.</p></article>
+        <article><i>▣</i><h3>Visão centralizada</h3><p>Vagas sincronizadas, status, origem e indicadores ficam organizados no Painel Conecta.</p></article>
       </div>
     </section>
 
-    <section class="conecta-audience-em">
+    <section class="cxv4-how" id="conecta-como">
+      <div class="cxv4-section-title">
+        <span>COMO FUNCIONA NA PRÁTICA</span>
+        <h2>O RH continua trabalhando do jeito que já trabalha.</h2>
+        <p>O Conecta entra entre a fonte oficial da empresa e o +Empregos. Não é necessário mudar a rotina de publicação para usar o serviço.</p>
+      </div>
+      <div class="cxv4-flow">
+        <article><b>1</b><div><small>NA EMPRESA</small><h3>RH cria ou altera a vaga</h3><p>A equipe usa o portal de carreiras ou ATS normalmente.</p></div></article>
+        <i>→</i>
+        <article><b>2</b><div><small>NO CONECTA</small><h3>Origem é monitorada</h3><p>O sistema verifica novas vagas e mudanças de acordo com a frequência configurada.</p></div></article>
+        <i>→</i>
+        <article><b>3</b><div><small>NO +EMPREGOS</small><h3>Vaga é sincronizada</h3><p>As informações são organizadas e disponibilizadas no portal.</p></div></article>
+        <i>→</i>
+        <article><b>4</b><div><small>PARA O RH</small><h3>Candidato segue o fluxo</h3><p>A candidatura continua pelo canal definido pela empresa.</p></div></article>
+      </div>
+    </section>
+
+    <section class="cxv4-automation" id="conecta-integracao">
+      <div class="cxv4-automation-copy">
+        <span>O QUE PODE SER SINCRONIZADO</span>
+        <h2>Não é só o título da vaga.</h2>
+        <p>Quando a fonte disponibiliza os dados, o Conecta organiza as principais informações da oportunidade para reduzir ao máximo qualquer preenchimento manual.</p>
+        <div class="cxv4-field-tags">
+          <span>Cargo</span><span>Descrição</span><span>Responsabilidades</span><span>Requisitos</span><span>Benefícios</span><span>Cidade / UF</span><span>Modalidade</span><span>Contrato</span><span>Salário</span><span>Prazo</span><span>Canal de candidatura</span><span>Status</span>
+        </div>
+      </div>
+      <aside class="cxv4-sync-card">
+        <span>EXEMPLO DE ROTINA</span>
+        <div><b>08:00</b><p>RH publica uma nova vaga no ATS.</p></div>
+        <div><b>↻</b><p>Conecta verifica a origem automaticamente.</p></div>
+        <div><b>✓</b><p>Oportunidade aparece no +Empregos sem novo cadastro manual.</p></div>
+        <small>A frequência de sincronização é definida na configuração da empresa.</small>
+      </aside>
+    </section>
+
+    <section class="cxv4-control">
+      <div class="cxv4-section-title">
+        <span>CONTROLE SEM COMPLEXIDADE</span>
+        <h2>Automático não significa perder o controle.</h2>
+        <p>A empresa acompanha o que foi sincronizado e pode revisar configurações específicas sempre que necessário.</p>
+      </div>
+      <div class="cxv4-control-grid">
+        <article><span>01</span><h3>Origem conectada</h3><p>Veja qual portal ou ATS está alimentando as vagas.</p></article>
+        <article><span>02</span><h3>Próxima sincronização</h3><p>Acompanhe o horário previsto para a próxima verificação.</p></article>
+        <article><span>03</span><h3>Status das vagas</h3><p>Identifique vagas publicadas, em análise ou que precisam de atenção.</p></article>
+        <article><span>04</span><h3>Destino da candidatura</h3><p>Configure site da empresa, ATS, e-mail ou WhatsApp conforme a vaga.</p></article>
+      </div>
+    </section>
+
+    <section class="cxv4-candidate" id="conecta-atracao">
       <div>
-        <span>FEITO PARA ESCALAR</span>
-        <h2>Ideal para empresas que já possuem operação própria de recrutamento.</h2>
-        <p>Redes, varejistas, transportadoras, consultorias, franquias e grandes empregadores podem ampliar a distribuição das vagas sem duplicar o trabalho da equipe de RH.</p>
+        <span>ALÉM DA AUTOMAÇÃO</span>
+        <h2>As vagas entram em um portal preparado para ajudar candidatos a encontrá-las.</h2>
+        <p>Depois de sincronizadas, as oportunidades podem ser encontradas por cargo, localização, modalidade e outros filtros disponíveis no +Empregos. Isso amplia a descoberta sem criar mais tarefas para o RH.</p>
+        <ul>
+          <li>Busca por cargo e palavra-chave</li>
+          <li>Localização e região do candidato</li>
+          <li>Filtros de modalidade e tipo de vaga</li>
+          <li>Vagas em destaque e contratação urgente quando aplicável</li>
+          <li>Notificações e recursos de descoberta do portal</li>
+        </ul>
       </div>
-      <div class="conecta-audience-tags-em">
-        <span>Portal de carreiras</span><span>ATS próprio</span><span>Consultorias de RH</span><span>Grandes redes</span><span>Operações nacionais</span><span>Alto volume de vagas</span>
+      <aside>
+        <small>PARA O RH</small>
+        <strong>Você não precisa administrar mais um processo de publicação.</strong>
+        <p>O portal trabalha como um canal adicional de distribuição, enquanto sua fonte continua sendo o ponto principal de gestão.</p>
+      </aside>
+    </section>
+
+    <section class="cxv4-fit">
+      <div class="cxv4-section-title">
+        <span>PARA QUEM FAZ MAIS SENTIDO</span>
+        <h2>Feito para empresas que já têm volume e processo próprio.</h2>
+      </div>
+      <div class="cxv4-fit-grid">
+        <article><b>Redes e varejo</b><p>Muitas unidades e vagas distribuídas por diferentes cidades.</p></article>
+        <article><b>Consultorias e recrutamento</b><p>Grande quantidade de processos ativos e necessidade de distribuição contínua.</p></article>
+        <article><b>Operações nacionais</b><p>Empresas que contratam em várias regiões do Brasil.</p></article>
+        <article><b>Times com ATS</b><p>RH que já possui sistema estruturado e não quer repetir cadastros.</p></article>
       </div>
     </section>
 
-    <style id="conecta-atracao-v2-css">
-      #pagina-emprego-conecta .conecta-atracao-v2{padding:52px 0 8px!important}
-      #pagina-emprego-conecta .conecta-atracao-v2 .conecta-section-head-em{max-width:900px!important;margin:0 auto 26px!important;text-align:center!important}
-      #pagina-emprego-conecta .conecta-atracao-v2 .conecta-section-head-em>span{color:#7b1cb1!important}
-      #pagina-emprego-conecta .conecta-atracao-v2 .conecta-section-head-em h2{max-width:820px!important;margin-left:auto!important;margin-right:auto!important}
-      #pagina-emprego-conecta .conecta-atracao-v2 .conecta-section-head-em p{max-width:820px!important;margin-left:auto!important;margin-right:auto!important}
-      #pagina-emprego-conecta .conecta-attraction-grid-v2{display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:14px!important}
-      #pagina-emprego-conecta .conecta-attraction-grid-v2 article{min-height:205px!important;padding:20px!important;border:1px solid #e2d6e9!important;border-top:3px solid #8b22c2!important;border-radius:17px!important;background:#fff!important;box-shadow:0 7px 22px rgba(83,28,113,.045)!important}
-      #pagina-emprego-conecta .conecta-attraction-grid-v2 i{display:grid!important;place-items:center!important;width:38px!important;height:38px!important;margin-bottom:16px!important;border-radius:11px!important;background:#f3e9f9!important;color:#7818ae!important;font-style:normal!important;font-size:11px!important;font-weight:800!important}
-      #pagina-emprego-conecta .conecta-attraction-grid-v2 h3{margin:0 0 8px!important;color:#173e52!important;font-size:15px!important;line-height:1.3!important}
-      #pagina-emprego-conecta .conecta-attraction-grid-v2 p{margin:0!important;color:#607685!important;font-size:12.5px!important;line-height:1.6!important}
-      #pagina-emprego-conecta .conecta-distribuicao-flow-v2{margin-top:18px!important;padding:26px!important;border-radius:20px!important;background:linear-gradient(135deg,#561879 0%,#7b1ab2 100%)!important;color:#fff!important}
-      #pagina-emprego-conecta .conecta-distribuicao-flow-v2>span{display:block!important;margin-bottom:6px!important;color:#ead8f3!important;font-size:10px!important;font-weight:800!important;letter-spacing:.09em!important}
-      #pagina-emprego-conecta .conecta-distribuicao-flow-v2 h3{margin:0 0 16px!important;color:#fff!important;font-size:21px!important}
-      #pagina-emprego-conecta .conecta-flow-steps-v2{display:grid!important;grid-template-columns:repeat(7,minmax(0,1fr))!important;gap:8px!important;align-items:center!important}
-      #pagina-emprego-conecta .conecta-flow-steps-v2 b{min-height:48px!important;padding:9px 10px!important;border:1px solid rgba(255,255,255,.15)!important;border-radius:11px!important;background:rgba(255,255,255,.09)!important;color:#fff!important;display:grid!important;place-items:center!important;text-align:center!important;font-size:10.5px!important;line-height:1.3!important}
-      #pagina-emprego-conecta .conecta-flow-steps-v2 i{color:#e5c8f2!important;font-style:normal!important;text-align:center!important;font-weight:800!important}
-      #pagina-emprego-conecta .conecta-attraction-proof-v2{display:grid!important;grid-template-columns:repeat(4,minmax(0,1fr))!important;gap:10px!important;margin-top:16px!important}
-      #pagina-emprego-conecta .conecta-attraction-proof-v2 div{padding:15px 16px!important;border:1px solid #e2d5e9!important;border-radius:13px!important;background:#faf7fc!important}
-      #pagina-emprego-conecta .conecta-attraction-proof-v2 strong{display:block!important;margin-bottom:4px!important;color:#5e167f!important;font-size:12px!important}
-      #pagina-emprego-conecta .conecta-attraction-proof-v2 span{display:block!important;color:#75808e!important;font-size:10.5px!important;line-height:1.45!important}
-      #pagina-emprego-conecta .conecta-partner-note-v2{margin-top:12px!important;padding:12px 15px!important;border:1px solid #e4d8ea!important;border-radius:12px!important;background:#fff!important;color:#6b7683!important;font-size:10.5px!important;line-height:1.5!important}
-      #pagina-emprego-conecta .conecta-partner-note-v2 strong{color:#5f177f!important}
-      @media(max-width:900px){#pagina-emprego-conecta .conecta-attraction-grid-v2{grid-template-columns:1fr 1fr!important}#pagina-emprego-conecta .conecta-attraction-proof-v2{grid-template-columns:1fr 1fr!important}#pagina-emprego-conecta .conecta-flow-steps-v2{grid-template-columns:1fr!important}#pagina-emprego-conecta .conecta-flow-steps-v2 i{transform:rotate(90deg)!important}}
-      @media(max-width:560px){#pagina-emprego-conecta .conecta-attraction-grid-v2,#pagina-emprego-conecta .conecta-attraction-proof-v2{grid-template-columns:1fr!important}}
-    </style>
-
-    <section class="conecta-atracao-em conecta-atracao-v2" id="conecta-atracao">
-      <div class="conecta-section-head-em">
-        <span>REDE DE DISTRIBUIÇÃO E ATRAÇÃO DE CANDIDATOS</span>
-        <h2>A vaga não fica esperando o candidato. Nós ajudamos ela a chegar até ele.</h2>
-        <p>O +Empregos combina distribuição no portal, segmentação regional, mídia patrocinada, notificações e canais externos para ampliar o alcance das oportunidades em todo o Brasil — sempre direcionando o candidato para o processo definido pela empresa.</p>
+    <section class="cxv4-plans" id="conecta-planos">
+      <div>
+        <span>PLANOS CONECTA</span>
+        <h2>Escolha o período que faz sentido para sua operação.</h2>
+        <p>Os planos organizam o acesso ao Conecta conforme a contratação da empresa. Consulte limites, condições e recursos disponíveis antes de ativar.</p>
       </div>
-
-      <div class="conecta-attraction-grid-v2">
-        <article><i>01</i><h3>Campanhas segmentadas em todo o Brasil</h3><p>Divulgação direcionada por cidade, estado, região e área profissional para concentrar a exposição onde a empresa realmente precisa contratar.</p></article>
-        <article><i>02</i><h3>Anúncios patrocinados</h3><p>Vagas prioritárias podem receber campanhas pagas para ampliar alcance, tráfego e volume de candidatos em posições estratégicas ou de difícil preenchimento.</p></article>
-        <article><i>03</i><h3>Busca e recomendações do +Empregos</h3><p>As oportunidades aparecem na busca do portal, filtros por localização, áreas de descoberta e recomendações relacionadas ao interesse do candidato.</p></article>
-        <article><i>04</i><h3>Notificações e recorrência</h3><p>Candidatos cadastrados podem voltar ao portal por alertas de novas oportunidades relacionadas à localização, área e comportamento de busca.</p></article>
-        <article><i>05</i><h3>Portais e redes parceiras</h3><p>A distribuição pode ser ampliada por integrações com agregadores e canais parceiros de emprego quando esses canais estiverem habilitados para a operação.</p></article>
-        <article><i>06</i><h3>Tráfego para o processo da empresa</h3><p>Depois de encontrar a vaga, o candidato segue para o canal configurado: ATS, portal de carreiras, WhatsApp, formulário externo ou envio de currículo.</p></article>
+      <div class="cxv4-plan-pills">
+        <span>Grátis</span><span>Mensal</span><span>Trimestral</span><span>Semestral</span>
       </div>
-
-      <div class="conecta-distribuicao-flow-v2">
-        <span>ESTRATÉGIA DE DISTRIBUIÇÃO</span>
-        <h3>Mais pontos de contato entre sua vaga e os candidatos.</h3>
-        <div class="conecta-flow-steps-v2">
-          <b>Vaga sincronizada</b><i>→</i><b>Distribuição</b><i>→</i><b>Candidato impactado</b><i>→</i><b>Processo da empresa</b>
-        </div>
-      </div>
-
-      <div class="conecta-attraction-proof-v2">
-        <div><strong>Cobertura nacional</strong><span>Divulgação para candidatos em diferentes regiões do Brasil.</span></div>
-        <div><strong>Segmentação regional</strong><span>Campanhas por cidade, estado, região e área profissional.</span></div>
-        <div><strong>Múltiplos canais</strong><span>Portal, mídia, notificações e redes externas habilitadas.</span></div>
-        <div><strong>Resultados mensuráveis</strong><span>Visualizações, cliques e candidatos encaminhados acompanhados no painel.</span></div>
-      </div>
-
-      <div class="conecta-partner-note-v2"><strong>Sobre canais externos:</strong> integrações com portais e agregadores, como Jooble, dependem de parceria ou integração técnica ativa. O painel deve exibir apenas os canais efetivamente habilitados para cada operação.</div>
+      <button type="button" onclick="irPara('planos')">Ver planos e condições</button>
     </section>
 
-    <section class="conecta-planos-preview-em" id="conecta-planos">
-      <div class="conecta-section-head-em">
-        <span>PLANOS +EMPREGO CONECTA</span>
-        <h2>Escolha o plano pelo volume e pelos recursos que sua operação precisa.</h2>
-        <p>Todos os planos incluem o núcleo da automação. Os recursos de análise, suporte e complexidade de integração aumentam conforme o plano. Os valores são mensais e o upgrade pode ser feito sem refazer a integração.</p>
+    <section class="cxv4-faq">
+      <div class="cxv4-section-title">
+        <span>DÚVIDAS FREQUENTES</span>
+        <h2>O que a equipe de RH precisa saber antes de conectar.</h2>
       </div>
-
-      <div class="conecta-plans-grid-em">
-        <article class="conecta-plan-card-em">
-          <span class="conecta-plan-label-em">START</span>
-          <h3>Conecta Start</h3>
-          <div class="conecta-plan-price-em"><strong>R$ 299,90</strong><small>/mês</small></div>
-          <div class="conecta-plan-limit-em"><b>70</b><span>vagas ativas<br>sincronizadas</span></div>
-          <p>Para empresas com operação recorrente e um volume inicial relevante de vagas.</p>
-          <ul>
-            <li>Até 70 vagas ativas simultaneamente</li>
-            <li><strong>2 usuários</strong> da empresa incluídos</li>
-            <li>Publicação, atualização e encerramento automáticos</li>
-            <li>Proteção contra duplicidades</li>
-            <li>Métricas básicas de visualizações e cliques</li>
-            <li>Candidatura por PDF/e-mail, WhatsApp ou link externo</li>
-            <li>Suporte padrão da integração</li>
-          </ul>
-          <button type="button" onclick="sessionStorage.setItem('planoConectaPretendido','start');irPara('cadastro-empresa')">Contratar Start</button>
-        </article>
-
-        <article class="conecta-plan-card-em destaque">
-          <div class="conecta-popular-em">MAIS ESCOLHIDO</div>
-          <span class="conecta-plan-label-em">PRO</span>
-          <h3>Conecta Pro</h3>
-          <div class="conecta-plan-price-em"><strong>R$ 579,90</strong><small>/mês</small></div>
-          <div class="conecta-plan-limit-em"><b>150</b><span>vagas ativas<br>sincronizadas</span></div>
-          <p>Para operações com maior giro de vagas e necessidade de mais capacidade de distribuição.</p>
-          <ul>
-            <li>Até 150 vagas ativas simultaneamente</li>
-            <li><strong>5 usuários</strong> da empresa incluídos</li>
-            <li>Todos os recursos do Start</li>
-            <li>Dashboard avançado de desempenho</li>
-            <li>Relatórios por vaga e por período</li>
-            <li>Exportação de relatórios</li>
-            <li>Indicadores avançados de cliques e redirecionamentos</li>
-            <li>Suporte prioritário</li>
-          </ul>
-          <button type="button" onclick="sessionStorage.setItem('planoConectaPretendido','pro');irPara('cadastro-empresa')">Contratar Pro</button>
-        </article>
-
-        <article class="conecta-plan-card-em">
-          <span class="conecta-plan-label-em">ENTERPRISE</span>
-          <h3>Conecta Enterprise</h3>
-          <div class="conecta-plan-price-em"><strong>R$ 1.099,90</strong><small>/mês</small></div>
-          <div class="conecta-plan-limit-em"><b>350</b><span>vagas ativas<br>sincronizadas</span></div>
-          <p>Para grandes empregadores, redes e operações de alto volume em diferentes regiões.</p>
-          <ul>
-            <li>Até 350 vagas ativas simultaneamente</li>
-            <li><strong>10 usuários</strong> da empresa incluídos</li>
-            <li>Todos os recursos do Pro</li>
-            <li>Múltiplas fontes de vagas</li>
-            <li>Integração personalizada conforme a estrutura da empresa</li>
-            <li>Operação preparada para alto volume</li>
-            <li>Acompanhamento prioritário da integração</li>
-            <li>Suporte dedicado à operação</li>
-          </ul>
-          <button type="button" onclick="sessionStorage.setItem('planoConectaPretendido','enterprise');irPara('cadastro-empresa')">Contratar Enterprise</button>
-        </article>
-      </div>
-
-      <div class="conecta-upgrade-note-em">
-        <div><b>Cresceu? Faça upgrade.</b><span>Start → Pro → Enterprise, mantendo a integração já configurada.</span></div>
-        <div><b>Precisa de mais de 350 vagas?</b><span>Entre em contato para um plano personalizado de maior volume.</span></div>
-        <button type="button" onclick="irPara('contato')">Plano acima de 350 vagas</button>
+      <div class="cxv4-faq-grid">
+        <details><summary>Precisamos cadastrar as vagas novamente?</summary><p>Não quando a integração consegue ler os dados necessários na fonte configurada. A proposta do Conecta é justamente reduzir o recadastro manual.</p></details>
+        <details><summary>Precisamos trocar de ATS ou portal de carreiras?</summary><p>Não. A empresa continua usando sua fonte atual. O Conecta funciona como uma camada de sincronização e distribuição para o +Empregos.</p></details>
+        <details><summary>O que acontece quando uma vaga muda?</summary><p>Nas verificações automáticas, o sistema identifica alterações disponíveis na origem e atualiza a vaga sincronizada.</p></details>
+        <details><summary>E quando a vaga é encerrada?</summary><p>Quando o encerramento pode ser identificado na fonte, o Conecta acompanha esse status para evitar manter oportunidades antigas publicadas.</p></details>
+        <details><summary>Onde o candidato envia o currículo?</summary><p>Depende da configuração da vaga. A empresa pode direcionar a candidatura para o próprio site ou ATS, e-mail, WhatsApp ou outro fluxo suportado.</p></details>
+        <details><summary>Como sabemos se a integração está funcionando?</summary><p>O Painel Conecta mostra origem, status da integração, vagas sincronizadas, última execução e próxima sincronização programada.</p></details>
       </div>
     </section>
 
-    <section class="conecta-cta-em">
-      <div><span>+EMPREGO CONECTA</span><h2>Seu portal de carreiras conectado a mais candidatos.</h2><p>Menos operação manual para o RH, mais distribuição para as vagas e uma integração que acompanha o crescimento da empresa.</p></div>
-      <button type="button" onclick="document.getElementById('conecta-planos')?.scrollIntoView({behavior:'smooth'})">Ver planos e começar →</button>
-    </section>
-  </div>
-</section><section class="pagina empresa-login-page" id="pagina-login-empresa">
-  <div class="empresa-login-shell">
-    <div class="empresa-login-card">
-      <div class="empresa-login-title">
-        <div class="empresa-login-icon">▦</div>
-        <div><h1>Área da empresa</h1><p>Acesse o painel do recrutador e gerencie suas vagas de forma simples e segura.</p></div>
+    <section class="cxv4-final">
+      <div>
+        <span>MENOS OPERAÇÃO. MAIS RECRUTAMENTO.</span>
+        <h2>Deixe as vagas se atualizarem. Deixe seu RH cuidar dos candidatos.</h2>
+        <p>Conecte sua fonte de vagas ao +Empregos e transforme um trabalho repetitivo em um fluxo automático e acompanhável.</p>
       </div>
-      <form id="formLoginEmpresa" class="empresa-login-form">
-        <label for="loginEmpresaCnpj">CNPJ ou e-mail</label>
-        <div class="empresa-input-wrap"><span>▦</span><input class="campo" id="loginEmpresaCnpj" autocomplete="username" placeholder="Digite o CNPJ ou e-mail da empresa" required></div>
-        <div class="empresa-senha-label"><label for="loginEmpresaSenha">Senha</label><button type="button" onclick="recuperarSenhaEmpresa()">Esqueceu a senha?</button></div>
-        <div class="empresa-input-wrap"><span>♙</span><input class="campo" id="loginEmpresaSenha" type="password" autocomplete="current-password" placeholder="Digite sua senha" required><button class="empresa-ver-senha" type="button" onclick="alternarSenhaEmpresa(this)" aria-label="Mostrar ou ocultar senha">◉</button></div>
-        <label class="empresa-lembrar"><input type="checkbox" id="lembrarEmpresa"> <span>Lembrar de mim neste navegador</span></label>
-        <div class="form-msg" id="msgLoginEmpresa"></div>
-        <button class="btn btn-azul empresa-entrar" type="submit">↪ <span>Entrar no painel</span></button>
-        <div class="empresa-ou"><span></span><b>ou</b><span></span></div>
-        <button class="em-google-btn em-google-empresa" type="button" onclick="entrarComGoogleEM('empresa')"><span class="em-google-g">G</span><strong>Continuar com Google</strong></button>
-        <div class="empresa-ou empresa-ou-cadastro"><span></span><b>ou cadastre-se</b><span></span></div>
-        <div class="empresa-cadastro-box"><div><strong>Ainda não possui conta?</strong><small>Cadastre sua empresa e comece a divulgar suas vagas hoje mesmo.</small></div><button type="button" onclick="irPara('cadastro-empresa')">Cadastrar empresa ›</button></div>
-      </form>
-    </div>
-    <aside class="empresa-login-banner empresa-login-beneficios-v4">
-  <div class="empresa-banner-content">
-    <span class="empresa-kicker">PARA EMPRESAS</span>
-    <h2>Um processo seletivo <em>mais prático e eficiente</em></h2>
-    <p>Publique suas vagas, receba currículos, gerencie todas as etapas e encontre os melhores talentos com o <strong>EmpregaMais.</strong></p>
-    <div class="empresa-beneficios-cards">
-      <article><i>▤</i><b>Publique suas vagas em minutos</b><small>Cadastro simples e intuitivo para colocar sua oportunidade no ar.</small></article>
-      <article><i>♟</i><b>Receba candidatos qualificados</b><small>Organize profissionais interessados em cada oportunidade.</small></article>
-      <article><i>⚙</i><b>Gerencie todo o processo</b><small>Acompanhe as etapas e centralize a seleção no painel.</small></article>
-      <article><i>▥</i><b>Mais visibilidade para sua empresa</b><small>Fortaleça sua presença e alcance novos talentos.</small></article>
-      <article><i>◷</i><b>Economize tempo e recursos</b><small>Centralize vagas e candidaturas em um só lugar.</small></article>
-      <article><i>✓</i><b>Ambiente seguro e confiável</b><small>Mais organização e segurança durante a contratação.</small></article>
-    </div>
-    <div class="empresa-beneficios-footer"><strong>Talentos impulsionam negócios.</strong><span>Mais agilidade&nbsp;&nbsp; • &nbsp;&nbsp;Mais organização&nbsp;&nbsp; • &nbsp;&nbsp;Mais resultados</span></div>
-  </div>
-</aside>
-  </div>
-  <div class="empresa-trust">
-    <div><i>✣</i><span><b>Talentos certos</b><small>Profissionais alinhados à sua empresa</small></span></div>
-    <div><i>◷</i><span><b>Processos mais ágeis</b><small>Do anúncio à contratação</small></span></div>
-    <div><i>▥</i><span><b>Resultados reais</b><small>Sua empresa mais forte</small></span></div>
-    <div><i>✓</i><span><b>Suporte especializado</b><small>Estamos com você em todas as etapas</small></span></div>
-  </div>
-</section><section class="pagina cadastro-empresa-v4" id="pagina-cadastro-empresa" data-cadastro-v4="1">
-<style id="cadastro-empresa-v4-css">
-#pagina-cadastro-empresa{font-family:'Montserrat',Arial,sans-serif;background:#f5f8fa!important;color:#183746;min-height:100vh}
-#pagina-cadastro-empresa *{box-sizing:border-box}
-#pagina-cadastro-empresa .cev4-head{background:#eef4f6;border-bottom:1px solid #dce7eb;padding:34px 24px}
-#pagina-cadastro-empresa .cev4-head-inner{width:min(1180px,100%);margin:auto}
-#pagina-cadastro-empresa .cev4-head span{display:inline-flex;padding:6px 9px;border-radius:7px;background:#dfecef;color:#16586b;font-size:10px;font-weight:800;letter-spacing:.08em}
-#pagina-cadastro-empresa .cev4-head h1{margin:12px 0 6px;color:#173f51;font-size:38px;line-height:1.08;font-weight:800;letter-spacing:-.035em}
-#pagina-cadastro-empresa .cev4-head p{margin:0;color:#607681;font-size:14px;line-height:1.55}
-#pagina-cadastro-empresa .cev4-shell{width:min(1180px,calc(100% - 48px));margin:36px auto 56px;display:grid;grid-template-columns:minmax(0,1.75fr) minmax(340px,.85fr);gap:24px;align-items:start}
-#pagina-cadastro-empresa .cev4-card{background:#fff;border:1px solid #d7e3e8;border-radius:18px;padding:28px 30px;box-shadow:0 12px 30px rgba(22,63,81,.07)}
-#pagina-cadastro-empresa .cev4-card-head{padding-bottom:17px;margin-bottom:18px;border-bottom:1px solid #e3ecef}
-#pagina-cadastro-empresa .cev4-card-head span{display:inline-flex;padding:6px 9px;border-radius:7px;background:#edf4f6;color:#176176;font-size:10px;font-weight:800;letter-spacing:.08em}
-#pagina-cadastro-empresa .cev4-card-head h2{margin:10px 0 5px;color:#173f51;font-size:23px;line-height:1.2;font-weight:800}
-#pagina-cadastro-empresa .cev4-card-head p{margin:0;color:#697d87;font-size:12.5px;line-height:1.5}
-#pagina-cadastro-empresa .cev4-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:17px 20px}
-#pagina-cadastro-empresa .cev4-field{display:grid;gap:7px;min-width:0}
-#pagina-cadastro-empresa .cev4-field.full{grid-column:1/-1}
-#pagina-cadastro-empresa .cev4-field label{font-size:12.5px;font-weight:700;color:#294d5b}
-#pagina-cadastro-empresa .cev4-field input:not([type="checkbox"]){width:100%;height:48px;border:1px solid #c8d8df;border-radius:9px;background:#fff;padding:0 13px;color:#203f4d;font:500 14px 'Montserrat',Arial,sans-serif;outline:none}
-#pagina-cadastro-empresa .cev4-field input:not([type="checkbox"]):focus{border-color:#17677b;box-shadow:0 0 0 3px rgba(23,103,123,.10)}
-#pagina-cadastro-empresa .cev4-field small{color:#788b94;font-size:10.5px;line-height:1.4}
-#pagina-cadastro-empresa .cev4-emailbox{grid-column:1/-1;padding:14px 16px;border:1px solid #d9e5e9;border-radius:11px;background:#f8fbfc}
-#pagina-cadastro-empresa .cev4-same{display:flex;align-items:center;gap:8px;margin-top:2px;color:#536b76;font-size:11.5px;font-weight:600}
-#pagina-cadastro-empresa .cev4-same input{width:16px;height:16px;accent-color:#17677b}
-#pagina-cadastro-empresa .cev4-actions{display:flex;align-items:center;gap:14px;margin-top:20px;flex-wrap:wrap}
-#pagina-cadastro-empresa .cev4-submit{min-height:47px;border:0;border-radius:9px;background:#17657a;color:#fff;padding:0 23px;font:800 13px 'Montserrat',Arial,sans-serif;cursor:pointer}
-#pagina-cadastro-empresa .cev4-submit:hover{background:#124f61}
-#pagina-cadastro-empresa .cev4-login{color:#607681;font-size:11.5px}
-#pagina-cadastro-empresa .cev4-login button{border:0;background:none;color:#17657a;font:800 11.5px 'Montserrat',Arial,sans-serif;cursor:pointer;padding:0}
-#pagina-cadastro-empresa .cev4-side{background:#164f61;border-radius:18px;padding:29px 30px;color:#fff;box-shadow:0 12px 30px rgba(22,63,81,.10)}
-#pagina-cadastro-empresa .cev4-side-tag{display:inline-flex;padding:6px 9px;border:1px solid rgba(255,255,255,.24);border-radius:7px;background:rgba(255,255,255,.10);font-size:10px;font-weight:800;letter-spacing:.08em}
-#pagina-cadastro-empresa .cev4-side h2{margin:16px 0 8px;color:#fff;font-size:23px;line-height:1.25;font-weight:800}
-#pagina-cadastro-empresa .cev4-side>p{margin:0 0 20px;color:rgba(255,255,255,.84);font-size:12.5px;line-height:1.55}
-#pagina-cadastro-empresa .cev4-benefits{display:grid}
-#pagina-cadastro-empresa .cev4-benefits article{display:grid;grid-template-columns:28px 1fr;gap:10px;padding:12px 0;border-top:1px solid rgba(255,255,255,.14)}
-#pagina-cadastro-empresa .cev4-benefits i{width:25px;height:25px;border-radius:50%;display:grid;place-items:center;background:#fff;color:#164f61;font-style:normal;font-weight:900;font-size:12px}
-#pagina-cadastro-empresa .cev4-benefits div{display:grid;gap:3px}
-#pagina-cadastro-empresa .cev4-benefits b{color:#fff;font-size:12.5px}
-#pagina-cadastro-empresa .cev4-benefits small{color:rgba(255,255,255,.78);font-size:10.8px;line-height:1.4}
-#pagina-cadastro-empresa .cev4-note{margin-top:16px;padding-top:16px;border-top:1px solid rgba(255,255,255,.14);display:grid;gap:4px}
-#pagina-cadastro-empresa .cev4-note b{font-size:11.5px}
-#pagina-cadastro-empresa .cev4-note span{color:rgba(255,255,255,.72);font-size:10.7px;line-height:1.45}
-#pagina-cadastro-empresa #msgCadastroEmpresa{margin-top:12px}
-@media(max-width:900px){#pagina-cadastro-empresa .cev4-shell{grid-template-columns:1fr;width:min(760px,calc(100% - 24px))}#pagina-cadastro-empresa .cev4-side{order:2}}
-@media(max-width:620px){#pagina-cadastro-empresa .cev4-head{padding:26px 16px}#pagina-cadastro-empresa .cev4-head h1{font-size:30px}#pagina-cadastro-empresa .cev4-shell{width:calc(100% - 16px);margin:18px auto 38px;gap:14px}#pagina-cadastro-empresa .cev4-card{padding:18px}#pagina-cadastro-empresa .cev4-grid{grid-template-columns:1fr}#pagina-cadastro-empresa .cev4-field.full,#pagina-cadastro-empresa .cev4-emailbox{grid-column:1}#pagina-cadastro-empresa .cev4-side{padding:21px}}
-
-#pagina-cadastro-empresa .cev4-submit,
-#pagina-cadastro-empresa .cev4-submit:hover,
-#pagina-cadastro-empresa .cev4-submit:focus,
-#pagina-cadastro-empresa .cev4-submit:active{color:#fff!important}
-#pagina-cadastro-empresa .cev4-submit *{color:#fff!important}
-#pagina-cadastro-empresa .cev4-side,
-#pagina-cadastro-empresa .cev4-side h1,
-#pagina-cadastro-empresa .cev4-side h2,
-#pagina-cadastro-empresa .cev4-side h3,
-#pagina-cadastro-empresa .cev4-side p,
-#pagina-cadastro-empresa .cev4-side b,
-#pagina-cadastro-empresa .cev4-side strong,
-#pagina-cadastro-empresa .cev4-side span{color:#fff!important}
-#pagina-cadastro-empresa .cev4-side small{color:rgba(255,255,255,.82)!important}
-#pagina-cadastro-empresa .cev4-side-tag{color:#fff!important}
-#pagina-cadastro-empresa .cev4-benefits i{color:#164f61!important;background:#fff!important}
-</style>
-<div class="cev4-head"><div class="cev4-head-inner"><span>EMPRESAS</span><h1>Cadastre sua empresa</h1><p>Crie sua conta empresarial para publicar vagas e gerenciar processos seletivos no Empregaí.</p></div></div>
-<div class="cev4-shell">
-<main class="cev4-card">
-<div class="cev4-card-head"><span>CONTA DA EMPRESA</span><h2>Dados básicos para começar</h2><p>Essas informações criam o acesso da empresa. A verificação empresarial é uma etapa separada.</p></div>
-<form id="formCadastroEmpresa">
-<div class="cev4-grid">
-<div class="cev4-field"><label for="cadEmpresaNome">Nome da empresa</label><input id="cadEmpresaNome" autocomplete="organization" placeholder="Ex.: Empresa Exemplo" required></div>
-<div class="cev4-field"><label for="cadEmpresaCnpj">CNPJ</label><input id="cadEmpresaCnpj" inputmode="numeric" placeholder="00.000.000/0000-00" required></div>
-<div class="cev4-field"><label for="cadEmpresaEmail">E-mail corporativo</label><input id="cadEmpresaEmail" type="email" autocomplete="email" placeholder="contato@suaempresa.com.br" required><small>Usado para comunicações da conta e segurança.</small></div>
-<div class="cev4-field"><label for="cadEmpresaTelefone">Telefone corporativo</label><input id="cadEmpresaTelefone" autocomplete="tel" placeholder="(00) 00000-0000" required></div>
-<div class="cev4-emailbox cev4-field"><label for="cadEmpresaEmailCandidaturas">E-mail para recebimento de candidaturas</label><input id="cadEmpresaEmailCandidaturas" type="email" autocomplete="email" placeholder="rh@suaempresa.com.br" required><small>Será o e-mail padrão para vagas que recebem currículos por e-mail.</small><label class="cev4-same"><input id="cadEmpresaMesmoEmailEM" type="checkbox"><span>Usar o mesmo e-mail corporativo para candidaturas</span></label></div>
-<div class="cev4-field"><label for="cadEmpresaSenha">Crie uma senha</label><input id="cadEmpresaSenha" type="password" minlength="6" autocomplete="new-password" placeholder="Mínimo de 6 caracteres" required></div>
-<div class="cev4-field"><label for="cadEmpresaSenha2">Confirme a senha</label><input id="cadEmpresaSenha2" type="password" minlength="6" autocomplete="new-password" placeholder="Repita a senha" required></div>
-</div>
-<div class="form-msg" id="msgCadastroEmpresa"></div>
-<div class="cev4-actions"><button class="cev4-submit" type="submit">Criar conta da empresa</button><span class="cev4-login">Já possui conta? <button type="button" onclick="irPara('login-empresa')">Entrar como empresa</button></span></div>
-</form>
-</main>
-<aside class="cev4-side"><span class="cev4-side-tag">EMPREGAÍ PARA EMPRESAS</span><h2>Comece a recrutar com uma conta profissional.</h2><p>O cadastro inicial é simples. Depois você poderá completar o perfil, publicar vagas e solicitar a verificação da empresa.</p><div class="cev4-benefits"><article><i>✓</i><div><b>Cadastro rápido</b><small>Somente os dados essenciais para criar sua conta empresarial.</small></div></article><article><i>✓</i><div><b>E-mails separados</b><small>Organize o e-mail da conta e o endereço que receberá currículos.</small></div></article><article><i>✓</i><div><b>Verificação independente</b><small>Valide sua empresa depois, sem repetir todo o cadastro.</small></div></article><article><i>✓</i><div><b>Gestão de processos</b><small>Publique vagas e acompanhe candidatos pelo painel.</small></div></article></div><div class="cev4-note"><b>Ambiente empresarial</b><span>Os dados cadastrados ficam vinculados à conta da empresa e podem ser atualizados em Minha Empresa.</span></div></aside>
-</div>
-</section><section class="pagina candidato-login-page" id="pagina-login-candidato"><div class="candidato-login-shell">
-<div class="candidato-login-card"><span class="candidato-eyebrow">ÁREA DO CANDIDATO</span><h1>Acesse sua conta</h1><p class="candidato-intro">Entre para gerenciar seu currículo e acompanhar suas candidaturas.</p>
-<form id="formLoginCandidato" class="candidato-login-form"><label for="loginCandEmail">E-mail</label><div class="cand-input"><span>✉</span><input id="loginCandEmail" type="email" autocomplete="username" placeholder="Seu e-mail" required></div>
-<div class="cand-label-row"><label for="loginCandSenha">Senha</label><button type="button" onclick="recuperarSenhaCandidato()">Esqueceu a senha?</button></div><div class="cand-input"><span>▣</span><input id="loginCandSenha" type="password" autocomplete="current-password" placeholder="Sua senha" required><button class="cand-eye" type="button" onclick="alternarSenhaCandidato(this)" aria-label="Mostrar ou ocultar senha">◉</button></div>
-<label class="cand-check"><input type="checkbox" id="lembrarCandidato"><span>Manter-me conectado</span></label><div class="form-msg" id="msgLoginCandidato"></div><button class="btn btn-azul cand-login-btn" type="submit">Entrar</button>
-<div class="em-google-ou"><span></span><b>ou</b><span></span></div>
-<button class="em-google-btn" type="button" onclick="entrarComGoogleEM('candidato')"><span class="em-google-g">G</span><strong>Continuar com Google</strong></button>
-<div class="cand-register"><span>Ainda não possui conta?</span><button type="button" onclick="irPara('cadastro-candidato')">Cadastrar currículo</button></div></form></div>
-<aside class="candidato-info-panel"><div class="cand-info-head"><span>SEU ESPAÇO NO EMPREGAMAIS</span><h2>Área do candidato</h2><p>Suas informações profissionais organizadas em um só lugar.</p></div><div class="cand-dashboard-preview">
-<div class="cand-preview-row"><i>▤</i><div><strong>Currículo</strong><small>Mantenha seus dados profissionais atualizados</small></div><b>Perfil</b></div>
-<div class="cand-preview-row"><i>✓</i><div><strong>Candidaturas</strong><small>Acompanhe o andamento de cada processo</small></div><b>Status</b></div>
-<div class="cand-preview-row"><i>♡</i><div><strong>Vagas salvas</strong><small>Guarde oportunidades para consultar depois</small></div><b>Salvas</b></div>
-<div class="cand-preview-row"><i>◷</i><div><strong>Entrevistas</strong><small>Consulte os agendamentos informados pelas empresas</small></div><b>Agenda</b></div></div>
-<div class="cand-free-box"><strong>Cadastro gratuito</strong><p>Crie seu currículo e candidate-se às vagas disponíveis sem cobrança.</p><button type="button" onclick="irPara('cadastro-candidato')">Criar meu currículo →</button></div></aside>
-</div></section><section class="pagina cadastro-candidato-premium" id="pagina-cadastro-candidato"><div class="cand-signup-shell"><section class="cand-signup-hero"><div class="cand-hero-copy"><span>PARA QUEM QUER IR MAIS LONGE</span><h1>Seu próximo passo profissional começa aqui.</h1><p>Crie seu perfil, encontre oportunidades e acompanhe seus processos seletivos em um só lugar.</p><div class="cand-gratis-card"><i>✓</i><div><strong>100% gratuito para candidatos</strong><small>Você não paga para criar seu perfil, buscar vagas ou se candidatar.</small></div></div></div><div class="cand-hero-art" aria-hidden="true"><div class="cand-person"><div class="cand-head"></div><div class="cand-body"></div></div><div class="cand-art-card c1"><b>✓</b><span>Candidatura<br><strong>enviada</strong></span></div><div class="cand-art-card c2"><b>★</b><span>Novas<br><strong>oportunidades</strong></span></div><div class="cand-art-card c3"><b>↗</b><span>Acompanhe seu<br><strong>processo seletivo</strong></span></div></div></section><div class="cand-signup-grid"><main class="cand-form-card"><div class="cand-form-head"><span>CRIE SUA CONTA</span><h2>Comece gratuitamente</h2><p>Leva poucos minutos. Depois você poderá completar seu perfil profissional.</p></div><form id="formCadastroCandidato"><div class="form-grid"><div><label>Nome completo</label><input class="campo" id="cadCandNome" autocomplete="name" placeholder="Digite seu nome completo" required></div><div><label>E-mail</label><input class="campo" id="cadCandEmail" type="email" autocomplete="email" placeholder="voce@email.com" required></div><div><label>Celular</label><input class="campo" id="cadCandTelefone" autocomplete="tel" placeholder="(00) 00000-0000" required></div><div><label>Cidade</label><input class="campo" id="cadCandCidade" autocomplete="address-level2" placeholder="Sua cidade" required></div><div><label>Senha</label><input class="campo" id="cadCandSenha" type="password" minlength="6" autocomplete="new-password" placeholder="Mínimo de 6 caracteres" required></div><div><label>Confirmar senha</label><input class="campo" id="cadCandSenha2" type="password" minlength="6" autocomplete="new-password" placeholder="Repita sua senha" required></div></div><div class="cand-privacy">🔒 Seus dados são utilizados para conectar seu perfil às oportunidades e processos seletivos.</div><div class="form-msg" id="msgCadastroCandidato"></div><button class="btn btn-azul cand-submit" type="submit">Criar minha conta grátis <b>→</b></button><p class="cand-login-link">Já possui uma conta? <button type="button" onclick="irPara('login-candidato')">Entrar como candidato</button></p></form></main><aside class="cand-info-side"><div class="cand-info-intro"><span>EMPREGAMAIS PARA CANDIDATOS</span><h2>Mais do que procurar vagas.</h2><p>Tenha uma área organizada para cuidar da sua jornada profissional.</p></div><div class="cand-benefits"><article><i>01</i><div><strong>Encontre oportunidades</strong><p>Pesquise vagas por área, localização, modalidade e outros filtros.</p></div></article><article><i>02</i><div><strong>Perfil e currículo</strong><p>Mantenha suas informações profissionais disponíveis para suas candidaturas.</p></div></article><article><i>03</i><div><strong>Acompanhe cada processo</strong><p>Veja o andamento das candidaturas, entrevistas e atualizações em um só lugar.</p></div></article><article><i>04</i><div><strong>Converse com recrutadores</strong><p>Receba mensagens relacionadas aos processos seletivos diretamente pelo portal.</p></div></article></div><div class="cand-companies-card"><div class="cand-companies-icon">▦</div><div><span>EMPRESAS NO PORTAL</span><strong id="cadCandEmpresasCount">Empresas e recrutadores</strong><p>Perfis empresariais e oportunidades reunidos para facilitar sua busca.</p></div></div><div class="cand-trust"><b>✓ Gratuito para candidatos</b><b>✓ Processo organizado</b><b>✓ Acompanhamento online</b></div></aside></div></div></section><style id="emp-recruiter-critical">
-#pagina-painel-empresa{--r:#075d73;--rd:#073d56;--ink:#082f49;background:#f4f8fb!important;font-family:'Montserrat',Arial,sans-serif!important}
-#pagina-painel-empresa .emp-dash{display:grid!important;grid-template-columns:230px minmax(0,1fr)!important;min-height:100vh!important}
-#pagina-painel-empresa .emp-dash-main{display:block!important;min-width:0!important;width:100%!important;max-width:none!important;padding:26px 30px 40px!important;box-sizing:border-box!important}
-#pagina-painel-empresa .emp-rec-hero{display:grid!important;grid-template-columns:minmax(0,1.1fr) minmax(360px,.9fr)!important;gap:34px!important;align-items:center!important;min-height:220px!important;padding:28px 34px!important;border-radius:17px!important;background:linear-gradient(118deg,#073d56,#075d73 58%,#08758a)!important;color:#fff!important;box-shadow:0 14px 30px rgba(6,61,86,.12)!important}
-#pagina-painel-empresa .emp-rec-hero-copy>span{display:block!important;color:#ffe18a!important;font-size:11px!important;font-weight:900!important;letter-spacing:.12em!important}
-#pagina-painel-empresa .emp-rec-hero-copy h1{display:block!important;margin:8px 0 7px!important;color:#fff!important;font-size:31px!important;line-height:1.08!important;font-weight:900!important}
-#pagina-painel-empresa .emp-rec-hero-copy p{display:block!important;margin:0!important;max-width:620px!important;color:#d7e8ee!important;font-size:14px!important;line-height:1.5!important}
-#pagina-painel-empresa .emp-rec-hero-actions{display:flex!important;gap:10px!important;margin-top:20px!important}
-#pagina-painel-empresa .emp-rec-hero-actions button{display:inline-flex!important;align-items:center!important;justify-content:center!important;min-height:42px!important;padding:0 17px!important;border:1px solid rgba(255,255,255,.38)!important;border-radius:9px!important;background:transparent!important;color:#fff!important;font:800 12px 'Montserrat',Arial,sans-serif!important}
-#pagina-painel-empresa .emp-rec-hero-actions .primary{background:#ffe293!important;border-color:#ffe293!important;color:#173d50!important}
-#pagina-painel-empresa .emp-rec-benefits{display:block!important;padding:19px 22px!important;border:1px solid rgba(255,255,255,.2)!important;border-radius:14px!important;background:rgba(255,255,255,.07)!important;color:#fff!important}
-#pagina-painel-empresa .emp-rec-benefits>strong{display:block!important;margin-bottom:12px!important;font-size:11px!important}
-#pagina-painel-empresa .emp-rec-benefits>div{display:grid!important;grid-template-columns:24px 1fr!important;gap:8px!important;align-items:center!important;margin:8px 0!important}
-#pagina-painel-empresa .emp-rec-benefits>div span{display:grid!important;place-items:center!important;width:22px!important;height:22px!important;border:1px solid #f0d36d!important;border-radius:50%!important;color:#ffe17d!important}
-#pagina-painel-empresa .emp-rec-benefits p{margin:0!important;color:#edf7fa!important;font-size:12px!important}
-#pagina-painel-empresa .emp-rec-planbar{display:grid!important;grid-template-columns:minmax(0,1fr) 125px 150px 170px!important;align-items:center!important;min-height:88px!important;margin-top:15px!important;border:1px solid #ead393!important;border-radius:15px!important;background:linear-gradient(90deg,#fffaf0,#fff)!important;overflow:hidden!important}
-#pagina-painel-empresa .emp-rec-plan-ident{display:flex!important;align-items:center!important;gap:14px!important;padding:15px 20px!important}
-#pagina-painel-empresa .emp-rec-plan-ident>i{display:grid!important;place-items:center!important;width:46px!important;height:46px!important;border-radius:12px!important;background:#fff1bf!important;color:#a47708!important}
-#pagina-painel-empresa .emp-rec-plan-ident span,#pagina-painel-empresa .emp-rec-plan-status span,#pagina-painel-empresa .emp-rec-plan-date span{display:block!important;font-size:9px!important;font-weight:900!important;color:#927115!important}
-#pagina-painel-empresa .emp-rec-plan-ident strong{display:block!important;margin:3px 0!important;color:#173d50!important;font-size:17px!important}
-#pagina-painel-empresa .emp-rec-plan-ident small{display:block!important;color:#6e8190!important;font-size:10px!important}
-#pagina-painel-empresa .emp-rec-plan-status,#pagina-painel-empresa .emp-rec-plan-date{display:block!important;padding:12px 18px!important;border-left:1px solid #eee5cd!important}
-#pagina-painel-empresa .emp-rec-plan-status strong{display:block!important;margin-top:5px!important;color:#16865c!important}
-#pagina-painel-empresa .emp-rec-plan-date strong{display:block!important;margin-top:5px!important;color:#173d50!important}
-#pagina-painel-empresa .emp-rec-planbar>button{display:block!important;min-height:40px!important;margin-right:18px!important;border:0!important;border-radius:9px!important;background:#073d56!important;color:#fff!important;font-weight:800!important}
-#pagina-painel-empresa .emp-dash-section-head{display:block!important;margin:22px 1px 10px!important}
-#pagina-painel-empresa .emp-dash-section-head h2{margin:0!important;color:#082f49!important;font-size:16px!important}
-#pagina-painel-empresa .emp-dash-section-head p{margin:4px 0 0!important;color:#758999!important;font-size:11px!important}
-#pagina-painel-empresa .emp-dash-kpis{display:grid!important;grid-template-columns:repeat(5,minmax(0,1fr))!important;gap:12px!important}
-#pagina-painel-empresa .emp-dash-kpis>button{display:grid!important;grid-template-columns:42px minmax(0,1fr) 14px!important;gap:10px!important;min-height:116px!important;padding:16px!important;border:1px solid #dce6ec!important;border-radius:13px!important;background:#fff!important;text-align:left!important}
-#pagina-painel-empresa .emp-dash-kpis>button>i{display:grid!important;place-items:center!important;width:42px!important;height:42px!important;border-radius:11px!important;background:#eef5f8!important;color:#16789b!important}
-#pagina-painel-empresa .emp-dash-kpis .kpi-num{display:block!important;margin:6px 0 3px!important;color:#0a3b55!important;font-size:27px!important}
-#pagina-painel-empresa .emp-dash-actions{display:grid!important;grid-template-columns:repeat(4,minmax(0,1fr))!important;gap:12px!important}
-#pagina-painel-empresa .emp-dash-actions>button{display:grid!important;grid-template-columns:36px minmax(0,1fr) 14px!important;gap:10px!important;align-items:center!important;min-height:110px!important;padding:16px!important;border:1px solid #dce6ec!important;border-radius:13px!important;background:#fff!important;text-align:left!important}
-#pagina-painel-empresa .emp-rec-closing{display:flex!important;align-items:center!important;justify-content:space-between!important;gap:20px!important;min-height:104px!important;margin-top:20px!important;padding:22px 28px!important;border-radius:15px!important;background:linear-gradient(105deg,#eaf5f9,#f8fbfd)!important}
-#pagina-painel-empresa .emp-dash-hidden-data{display:none!important}
-@media(max-width:1050px){#pagina-painel-empresa .emp-rec-hero{grid-template-columns:1fr!important}#pagina-painel-empresa .emp-dash-kpis{grid-template-columns:repeat(3,1fr)!important}#pagina-painel-empresa .emp-dash-actions{grid-template-columns:repeat(2,1fr)!important}}
-@media(max-width:760px){#pagina-painel-empresa .emp-dash{display:block!important}#pagina-painel-empresa .emp-dash-main{padding:14px!important}#pagina-painel-empresa .emp-rec-planbar{display:block!important}#pagina-painel-empresa .emp-dash-kpis{grid-template-columns:repeat(2,1fr)!important}#pagina-painel-empresa .emp-dash-actions{grid-template-columns:1fr!important}}
-
-/* SIDEBAR RECRUTADOR — SOFISTICADA */
-#pagina-painel-empresa .emp-dash-side{padding:22px 14px 16px!important;background:linear-gradient(180deg,#fff 0%,#fbfdfe 100%)!important;border-right:1px solid #dbe5eb!important;box-shadow:8px 0 28px rgba(20,57,76,.035)!important}
-#pagina-painel-empresa .emp-dash-brand{padding:7px 12px 20px!important;margin:0 2px 10px!important;border-bottom:1px solid #e8eef2!important}
-#pagina-painel-empresa .emp-dash-brand strong{font-size:20px!important;letter-spacing:-.02em!important;color:#083c58!important}
-#pagina-painel-empresa .emp-dash-brand small{margin-top:6px!important;font-size:11px!important;color:#8495a1!important;letter-spacing:.02em!important}
-#pagina-painel-empresa .emp-dash-side nav{gap:4px!important;padding-top:4px!important}
-#pagina-painel-empresa .emp-dash-side nav button{position:relative!important;min-height:46px!important;padding:0 13px!important;border:1px solid transparent!important;border-radius:11px!important;color:#35586d!important;font-size:13px!important;font-weight:800!important;transition:background .18s ease,border-color .18s ease,transform .18s ease!important}
-#pagina-painel-empresa .emp-dash-side nav button span{display:grid!important;place-items:center!important;width:24px!important;height:24px!important;border-radius:7px!important;background:#f2f6f8!important;color:#668394!important;font-size:12px!important;transition:inherit!important}
-#pagina-painel-empresa .emp-dash-side nav button:hover{background:#f4f8fa!important;border-color:#e2eaef!important;color:#0b536b!important;transform:translateX(2px)!important}
-#pagina-painel-empresa .emp-dash-side nav button:hover span{background:#e5f1f4!important;color:#08748e!important}
-#pagina-painel-empresa .emp-dash-side nav button.ativo{background:linear-gradient(90deg,#e8f4f7,#f1f8fa)!important;border-color:#d9e9ee!important;color:#075d73!important;box-shadow:none!important}
-#pagina-painel-empresa .emp-dash-side nav button.ativo:before{content:""!important;position:absolute!important;left:-1px!important;top:9px!important;bottom:9px!important;width:3px!important;border-radius:0 4px 4px 0!important;background:#0b8ca4!important}
-#pagina-painel-empresa .emp-dash-side nav button.ativo span{background:#fff!important;color:#07819a!important;box-shadow:0 2px 8px rgba(7,93,115,.08)!important}
-#pagina-painel-empresa .emp-dash-support{margin:18px 2px 0!important;padding:16px!important;border:1px solid #dbe6eb!important;border-radius:14px!important;background:linear-gradient(145deg,#f7fbfc,#eef6f8)!important;box-shadow:0 7px 20px rgba(24,65,84,.045)!important}
-#pagina-painel-empresa .emp-dash-support:before{content:"?"!important;display:grid!important;place-items:center!important;width:30px!important;height:30px!important;margin-bottom:10px!important;border-radius:9px!important;background:#e2f1f4!important;color:#08748e!important;font-size:14px!important;font-weight:900!important}
-#pagina-painel-empresa .emp-dash-support strong{display:block!important;color:#123f57!important;font-size:12px!important}
-#pagina-painel-empresa .emp-dash-support p{margin:5px 0 12px!important;color:#718695!important;font-size:10.5px!important;line-height:1.45!important}
-#pagina-painel-empresa .emp-dash-support button{min-height:38px!important;border:1px solid #cfe0e7!important;border-radius:9px!important;background:#fff!important;color:#075d73!important;font:800 11px 'Montserrat',Arial,sans-serif!important;box-shadow:0 3px 10px rgba(15,61,82,.04)!important}
-#pagina-painel-empresa .emp-dash-exit{margin:8px 3px 0!important;padding:10px 12px!important;border-radius:9px!important;color:#81919c!important;font:700 11px 'Montserrat',Arial,sans-serif!important}
-#pagina-painel-empresa .emp-dash-exit:hover{background:#f6f8f9!important;color:#4d6878!important}
-
-/* KPIs — CORES SUTIS E ÍCONES PROFISSIONAIS */
-#pagina-painel-empresa .emp-dash-kpis>button{transition:transform .18s ease,box-shadow .18s ease,border-color .18s ease!important;overflow:hidden!important}
-#pagina-painel-empresa .emp-dash-kpis>button:hover{transform:translateY(-2px)!important;box-shadow:0 10px 24px rgba(21,57,76,.08)!important}
-#pagina-painel-empresa .emp-dash-kpis>button>i{border:1px solid transparent!important}
-#pagina-painel-empresa .emp-dash-kpis>button>i svg{width:21px!important;height:21px!important;fill:none!important;stroke:currentColor!important;stroke-width:1.8!important;stroke-linecap:round!important;stroke-linejoin:round!important}
-#pagina-painel-empresa .emp-dash-kpis>button:nth-child(1){background:linear-gradient(145deg,#fff 35%,#f1f8ff)!important;border-color:#cfe3f5!important}#pagina-painel-empresa .emp-dash-kpis>button:nth-child(1)>i{background:#e7f3ff!important;border-color:#d2e7fa!important;color:#2677b8!important}
-#pagina-painel-empresa .emp-dash-kpis>button:nth-child(2){background:linear-gradient(145deg,#fff 35%,#fff8e9)!important;border-color:#f0dfb6!important}#pagina-painel-empresa .emp-dash-kpis>button:nth-child(2)>i{background:#fff1d4!important;border-color:#f5dfae!important;color:#b9790d!important}
-#pagina-painel-empresa .emp-dash-kpis>button:nth-child(3){background:linear-gradient(145deg,#fff 35%,#f7f3ff)!important;border-color:#dfd3f4!important}#pagina-painel-empresa .emp-dash-kpis>button:nth-child(3)>i{background:#eee7fb!important;border-color:#ded1f3!important;color:#7251b5!important}
-#pagina-painel-empresa .emp-dash-kpis>button:nth-child(4){background:linear-gradient(145deg,#fff 35%,#eefaf7)!important;border-color:#cde8df!important}#pagina-painel-empresa .emp-dash-kpis>button:nth-child(4)>i{background:#e1f5ef!important;border-color:#cce9df!important;color:#23866b!important}
-#pagina-painel-empresa .emp-dash-kpis>button:nth-child(5){background:linear-gradient(145deg,#fff 35%,#fff3f4)!important;border-color:#efd4d7!important}#pagina-painel-empresa .emp-dash-kpis>button:nth-child(5)>i{background:#fde7e9!important;border-color:#f3d2d6!important;color:#b84e5a!important}
-#pagina-painel-empresa .emp-dash-kpis>button:nth-child(1)>b{color:#2677b8!important}#pagina-painel-empresa .emp-dash-kpis>button:nth-child(2)>b{color:#b9790d!important}#pagina-painel-empresa .emp-dash-kpis>button:nth-child(3)>b{color:#7251b5!important}#pagina-painel-empresa .emp-dash-kpis>button:nth-child(4)>b{color:#23866b!important}#pagina-painel-empresa .emp-dash-kpis>button:nth-child(5)>b{color:#b84e5a!important}
-
-/* SIDEBAR PREMIUM V2 */
-#pagina-painel-empresa .emp-side-premium{padding:20px 14px 14px!important;align-items:stretch!important}
-#pagina-painel-empresa .emp-side-premium .emp-dash-brand{padding:5px 10px 15px!important;margin:0!important}
-#pagina-painel-empresa .emp-side-plan{margin:14px 2px 10px!important;padding:13px 14px!important;border:1px solid #eadba9!important;border-radius:12px!important;background:linear-gradient(145deg,#fffdf7,#fff8e8)!important}
-#pagina-painel-empresa .emp-side-plan>span{display:block!important;font-size:8px!important;font-weight:900!important;letter-spacing:.1em!important;color:#96720b!important}
-#pagina-painel-empresa .emp-side-plan>div{display:flex!important;align-items:center!important;justify-content:space-between!important;gap:7px!important;margin-top:5px!important}
-#pagina-painel-empresa .emp-side-plan strong{font-size:12px!important;color:#173e54!important}
-#pagina-painel-empresa .emp-side-plan b{padding:3px 6px!important;border-radius:999px!important;background:#e2f4e9!important;color:#218058!important;font-size:7px!important;letter-spacing:.06em!important}
-#pagina-painel-empresa .emp-side-plan>small{display:block!important;margin-top:4px!important;color:#7b8c97!important;font-size:9px!important}
-#pagina-painel-empresa .emp-side-plan>button{margin-top:9px!important;padding:0!important;border:0!important;background:transparent!important;color:#866406!important;font:800 9px 'Montserrat',Arial,sans-serif!important}
-#pagina-painel-empresa .emp-side-publish{display:flex!important;align-items:center!important;justify-content:center!important;gap:8px!important;width:calc(100% - 4px)!important;min-height:43px!important;margin:2px 2px 13px!important;border:0!important;border-radius:10px!important;background:linear-gradient(135deg,#075d73,#087e92)!important;color:#fff!important;font:800 12px 'Montserrat',Arial,sans-serif!important;box-shadow:0 7px 16px rgba(7,93,115,.17)!important;cursor:pointer!important}
-#pagina-painel-empresa .emp-side-publish svg{width:17px!important;height:17px!important;fill:none!important;stroke:currentColor!important;stroke-width:2!important;stroke-linecap:round!important}
-#pagina-painel-empresa .emp-side-premium nav{padding:0!important;gap:15px!important}
-#pagina-painel-empresa .emp-side-group{display:flex!important;flex-direction:column!important;gap:3px!important}
-#pagina-painel-empresa .emp-side-group>small{display:block!important;padding:4px 11px 5px!important;color:#9aa8b1!important;font-size:8px!important;font-weight:900!important;letter-spacing:.12em!important}
-#pagina-painel-empresa .emp-side-group.management{padding-top:11px!important;border-top:1px solid #edf1f3!important}
-#pagina-painel-empresa .emp-side-premium nav button{min-height:42px!important;padding:0 10px!important;gap:9px!important;border-radius:10px!important;font-size:12px!important}
-#pagina-painel-empresa .emp-side-premium nav button>span{flex:0 0 27px!important;width:27px!important;height:27px!important;border-radius:8px!important}
-#pagina-painel-empresa .emp-side-premium nav button>span svg{width:16px!important;height:16px!important;fill:none!important;stroke:currentColor!important;stroke-width:1.8!important;stroke-linecap:round!important;stroke-linejoin:round!important}
-#pagina-painel-empresa .emp-side-count{display:none!important;margin-left:auto!important;min-width:20px!important;height:20px!important;padding:0 6px!important;border-radius:999px!important;background:#e8f3f6!important;color:#08738a!important;font-style:normal!important;font-size:9px!important;line-height:20px!important;text-align:center!important}
-#pagina-painel-empresa .emp-side-count.tem-valor{display:inline-block!important}
-#pagina-painel-empresa .emp-side-footer{margin-top:auto!important;padding:12px 2px 0!important;border-top:1px solid #edf1f3!important;display:flex!important;flex-direction:column!important;gap:3px!important}
-#pagina-painel-empresa .emp-side-footer>button{display:flex!important;align-items:center!important;gap:9px!important;width:100%!important;min-height:37px!important;padding:0 10px!important;border:0!important;border-radius:9px!important;background:transparent!important;color:#657d8c!important;font:750 10.5px 'Montserrat',Arial,sans-serif!important;text-align:left!important}
-#pagina-painel-empresa .emp-side-footer>button>span{display:grid!important;place-items:center!important;width:23px!important;height:23px!important;border-radius:7px!important;background:#e9f5f7!important;color:#08748e!important;font-weight:900!important}
-#pagina-painel-empresa .emp-side-footer .emp-dash-exit{margin:0!important;color:#8b9aa4!important}
-#pagina-painel-empresa .emp-side-premium .emp-dash-support{display:none!important}
-
-/* VAGAS EM ABERTO — FIX CRÍTICO V9 */
-#pagina-painel-empresa .emp-open-vagas{display:block!important;margin-top:22px!important;padding:20px!important;border:1px solid #dce7ed!important;border-radius:16px!important;background:#fff!important;box-shadow:0 7px 22px rgba(18,66,92,.045)!important;overflow:hidden!important}
-#pagina-painel-empresa .emp-open-vagas-head{display:flex!important;align-items:flex-end!important;justify-content:space-between!important;gap:20px!important;margin-bottom:16px!important}
-#pagina-painel-empresa .emp-open-vagas-head span{display:block!important;margin-bottom:4px!important;color:#6d8796!important;font-size:9px!important;font-weight:900!important;letter-spacing:.1em!important}
-#pagina-painel-empresa .emp-open-vagas-head h2{margin:0!important;color:#0a3c56!important;font-size:20px!important;line-height:1.15!important}
-#pagina-painel-empresa .emp-open-vagas-head p{margin:5px 0 0!important;color:#718796!important;font-size:11px!important}
-#pagina-painel-empresa .emp-open-vagas-head>button{flex:0 0 auto!important;min-height:38px!important;padding:0 14px!important;border:1px solid #d5e2e8!important;border-radius:9px!important;background:#fff!important;color:#17536d!important;font:800 10px 'Montserrat',Arial,sans-serif!important}
-#pagina-painel-empresa .emp-open-vagas-list{display:block!important;width:100%!important}
-#pagina-painel-empresa .emp-open-vagas-grid{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:14px!important;width:100%!important}
-#pagina-painel-empresa .emp-open-vaga-card{display:flex!important;flex-direction:column!important;gap:13px!important;min-width:0!important;min-height:220px!important;padding:18px!important;border:1px solid #dfe9ee!important;border-radius:14px!important;background:linear-gradient(145deg,#fff,#f8fbfc)!important;box-shadow:none!important;overflow:hidden!important}
-#pagina-painel-empresa .emp-open-vaga-main{display:grid!important;grid-template-columns:42px minmax(0,1fr)!important;gap:12px!important;align-items:center!important}
-#pagina-painel-empresa .emp-open-vaga-icon{display:grid!important;place-items:center!important;width:42px!important;height:42px!important;border-radius:11px!important;background:#e9f5f7!important;color:#08778c!important;overflow:hidden!important}
-#pagina-painel-empresa .emp-open-vaga-icon svg{display:block!important;width:20px!important;height:20px!important;max-width:20px!important;max-height:20px!important;fill:none!important;stroke:currentColor!important;stroke-width:1.8!important;stroke-linecap:round!important;stroke-linejoin:round!important}
-#pagina-painel-empresa .emp-open-vaga-status{display:block!important;margin:0 0 4px!important;color:#188260!important;font-size:8px!important;font-weight:900!important;letter-spacing:.08em!important}
-#pagina-painel-empresa .emp-open-vaga-main h3{margin:0!important;color:#103d55!important;font-size:15px!important;line-height:1.25!important;white-space:nowrap!important;overflow:hidden!important;text-overflow:ellipsis!important}
-#pagina-painel-empresa .emp-open-vaga-main p{margin:5px 0 0!important;color:#7d909d!important;font-size:10px!important;white-space:nowrap!important;overflow:hidden!important;text-overflow:ellipsis!important}
-#pagina-painel-empresa .emp-open-vaga-numeros{display:grid!important;grid-template-columns:1fr 1fr!important;margin-top:2px!important;padding:11px 0!important;border-top:1px solid #e5ecef!important;border-bottom:1px solid #e5ecef!important}
-#pagina-painel-empresa .emp-open-vaga-numeros>div{padding:0 14px!important}
-#pagina-painel-empresa .emp-open-vaga-numeros>div+div{border-left:1px solid #e9eff2!important}
-#pagina-painel-empresa .emp-open-vaga-numeros strong{display:block!important;color:#0b3c56!important;font-size:20px!important;line-height:1!important}
-#pagina-painel-empresa .emp-open-vaga-numeros span{display:block!important;margin-top:5px!important;color:#82929d!important;font-size:9px!important}
-#pagina-painel-empresa .emp-open-vaga-actions{display:grid!important;grid-template-columns:minmax(0,1.35fr) minmax(0,.8fr)!important;gap:8px!important;margin-top:auto!important}
-#pagina-painel-empresa .emp-open-vaga-actions button{display:flex!important;align-items:center!important;justify-content:center!important;min-height:38px!important;padding:0 12px!important;border:1px solid #d5e2e8!important;border-radius:9px!important;background:#fff!important;color:#315a70!important;font:800 10px 'Montserrat',Arial,sans-serif!important}
-#pagina-painel-empresa .emp-open-vaga-actions button.primary{background:#075d73!important;border-color:#075d73!important;color:#fff!important}
-#pagina-painel-empresa .emp-open-vagas-pagination{display:flex!important;align-items:center!important;justify-content:space-between!important;gap:14px!important;margin-top:16px!important;padding-top:14px!important;border-top:1px solid #e7eef2!important;color:#81929e!important;font-size:10px!important}
-#pagina-painel-empresa .emp-open-vagas-pagination>div{display:flex!important;align-items:center!important;gap:9px!important}
-#pagina-painel-empresa .emp-open-vagas-pagination button{min-height:34px!important;padding:0 12px!important;border:1px solid #d7e3e9!important;border-radius:8px!important;background:#fff!important;color:#28566c!important;font:800 10px 'Montserrat',Arial,sans-serif!important}
-@media(max-width:900px){#pagina-painel-empresa .emp-open-vagas-grid{grid-template-columns:1fr!important}}
-@media(max-width:600px){#pagina-painel-empresa .emp-open-vagas{padding:14px!important}#pagina-painel-empresa .emp-open-vagas-head{align-items:flex-start!important;flex-direction:column!important}#pagina-painel-empresa .emp-open-vagas-pagination{align-items:flex-start!important;flex-direction:column!important}}
-
-/* VAGAS EM ABERTO — GRID PROFISSIONAL / 8 POR PÁGINA */
-#pagina-painel-empresa .emp-open-vagas{margin-top:24px!important;padding:22px!important;border:1px solid #dce7ed!important;border-radius:16px!important;background:#fff!important;box-shadow:0 7px 22px rgba(18,66,92,.045)!important}
-#pagina-painel-empresa .emp-open-vagas-head{display:flex!important;align-items:flex-end!important;justify-content:space-between!important;gap:20px!important;margin-bottom:18px!important}
-#pagina-painel-empresa .emp-open-vagas-head span{display:block!important;margin-bottom:5px!important;color:#788d9c!important;font-size:9px!important;font-weight:900!important;letter-spacing:.11em!important}
-#pagina-painel-empresa .emp-open-vagas-head h2{margin:0!important;color:#0a3d58!important;font-size:20px!important;line-height:1.15!important}
-#pagina-painel-empresa .emp-open-vagas-head p{margin:5px 0 0!important;color:#758999!important;font-size:11px!important}
-#pagina-painel-empresa .emp-open-vagas-head>button{min-height:38px!important;padding:0 14px!important;border:1px solid #d3e0e7!important;border-radius:9px!important;background:#fff!important;color:#075d73!important;font:800 11px 'Montserrat',Arial,sans-serif!important}
-#pagina-painel-empresa .emp-open-vagas-grid{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:14px!important}
-#pagina-painel-empresa .emp-open-vaga-card{min-width:0!important;padding:18px!important;border:1px solid #dce6ec!important;border-radius:14px!important;background:linear-gradient(145deg,#fff,#f9fbfc)!important;box-shadow:0 5px 16px rgba(15,58,79,.045)!important;overflow:hidden!important}
-#pagina-painel-empresa .emp-open-vaga-main{display:grid!important;grid-template-columns:42px minmax(0,1fr)!important;gap:12px!important;align-items:start!important}
-#pagina-painel-empresa .emp-open-vaga-icon{display:grid!important;place-items:center!important;width:42px!important;height:42px!important;border-radius:11px!important;background:#eaf5f8!important;color:#087b91!important}
-#pagina-painel-empresa .emp-open-vaga-icon svg{display:block!important;width:21px!important;height:21px!important;max-width:21px!important;max-height:21px!important;fill:none!important;stroke:currentColor!important;stroke-width:1.8!important;stroke-linecap:round!important;stroke-linejoin:round!important}
-#pagina-painel-empresa .emp-open-vaga-status{display:block!important;margin-bottom:5px!important;color:#16835c!important;font-size:9px!important;font-weight:900!important;letter-spacing:.06em!important}
-#pagina-painel-empresa .emp-open-vaga-card h3{margin:0!important;color:#0a3d58!important;font-size:16px!important;line-height:1.25!important;white-space:nowrap!important;overflow:hidden!important;text-overflow:ellipsis!important}
-#pagina-painel-empresa .emp-open-vaga-card p{margin:6px 0 0!important;color:#758999!important;font-size:10.5px!important;line-height:1.4!important;white-space:nowrap!important;overflow:hidden!important;text-overflow:ellipsis!important}
-#pagina-painel-empresa .emp-open-vaga-numeros{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:8px!important;margin:15px 0!important;padding:11px 0!important;border-top:1px solid #edf1f4!important;border-bottom:1px solid #edf1f4!important}
-#pagina-painel-empresa .emp-open-vaga-numeros>div{display:flex!important;align-items:baseline!important;gap:6px!important}
-#pagina-painel-empresa .emp-open-vaga-numeros>div+div{padding-left:12px!important;border-left:1px solid #e8eef2!important}
-#pagina-painel-empresa .emp-open-vaga-numeros strong{color:#0a3d58!important;font-size:20px!important}
-#pagina-painel-empresa .emp-open-vaga-numeros span{color:#758999!important;font-size:10px!important}
-#pagina-painel-empresa .emp-open-vaga-actions{display:grid!important;grid-template-columns:1fr auto!important;gap:8px!important}
-#pagina-painel-empresa .emp-open-vaga-actions button{min-height:38px!important;padding:0 13px!important;border:1px solid #d3e0e7!important;border-radius:9px!important;background:#fff!important;color:#31566b!important;font:800 10.5px 'Montserrat',Arial,sans-serif!important;white-space:nowrap!important}
-#pagina-painel-empresa .emp-open-vaga-actions button.primary{background:#075d73!important;border-color:#075d73!important;color:#fff!important}
-#pagina-painel-empresa .emp-open-vagas-pagination{display:flex!important;align-items:center!important;justify-content:space-between!important;gap:15px!important;margin-top:16px!important;padding-top:15px!important;border-top:1px solid #e8eef2!important}
-#pagina-painel-empresa .emp-open-vagas-pagination>span{color:#7b8e9b!important;font-size:10px!important}
-#pagina-painel-empresa .emp-open-vagas-pagination>div{display:flex!important;align-items:center!important;gap:8px!important}
-#pagina-painel-empresa .emp-open-vagas-pagination button{min-height:34px!important;padding:0 11px!important;border:1px solid #d4e0e6!important;border-radius:8px!important;background:#fff!important;color:#31566b!important;font:800 10px 'Montserrat',Arial,sans-serif!important}
-#pagina-painel-empresa .emp-open-vagas-pagination button:disabled{opacity:.4!important;cursor:not-allowed!important}
-#pagina-painel-empresa .emp-open-vagas-pagination b{color:#526d7d!important;font-size:10px!important}
-#pagina-painel-empresa .emp-open-vagas-empty{padding:30px!important;text-align:center!important;border:1px dashed #d5e2e8!important;border-radius:12px!important;background:#fafcfd!important}
-#pagina-painel-empresa .emp-open-vagas-empty strong,#pagina-painel-empresa .emp-open-vagas-empty span{display:block!important}.emp-open-vagas-empty span{margin:5px 0 12px!important;color:#7a8e9b!important;font-size:11px!important}
-@media(max-width:850px){#pagina-painel-empresa .emp-open-vagas-grid{grid-template-columns:1fr!important}#pagina-painel-empresa .emp-open-vagas-head,#pagina-painel-empresa .emp-open-vagas-pagination{align-items:flex-start!important;flex-direction:column!important}}
-/* Refinamento visual restrito a Minhas vagas no painel da empresa. */
-#pagina-painel-empresa .emp-open-vagas{padding:26px!important;border-radius:18px!important;border-color:#d8e5eb!important;box-shadow:0 8px 26px rgba(12,55,76,.06)!important}
-#pagina-painel-empresa .emp-open-vagas-head{align-items:center!important;margin-bottom:22px!important;padding-bottom:18px!important;border-bottom:1px solid #e8eff3!important}
-#pagina-painel-empresa .emp-open-vagas-head span{font-size:10px!important;letter-spacing:.14em!important;color:#087f8b!important}
-#pagina-painel-empresa .emp-open-vagas-head h2{font-size:25px!important;letter-spacing:-.02em!important}
-#pagina-painel-empresa .emp-open-vagas-head p{font-size:13px!important;line-height:1.45!important;color:#637e8d!important}
-#pagina-painel-empresa .emp-open-vagas-head>button{min-height:40px!important;font-size:12px!important}
-#pagina-painel-empresa .emp-open-vagas-grid{gap:18px!important}
-#pagina-painel-empresa .emp-open-vaga-card.emp-vaga-selecao-card{padding:21px!important;border:1px solid #cfdee5!important;border-top:3px solid #168996!important;border-radius:13px!important;background:#fff!important;box-shadow:0 4px 14px rgba(12,55,76,.045)!important;transition:box-shadow .18s ease,border-color .18s ease!important}
-#pagina-painel-empresa .emp-open-vaga-card.emp-vaga-selecao-card:hover{transform:none!important;border-color:#9ec6d0!important;border-top-color:#087985!important;box-shadow:0 9px 24px rgba(12,55,76,.09)!important}
-#pagina-painel-empresa .emp-open-vaga-card .emp-vaga-selecao-titulo h3{font-size:18px!important;line-height:1.3!important;overflow-wrap:anywhere!important}
-#pagina-painel-empresa .emp-open-vaga-card .emp-vaga-selecao-titulo p{font-size:11px!important;line-height:1.5!important;color:#607b8b!important;white-space:normal!important}
-#pagina-painel-empresa .emp-open-vaga-card .emp-vaga-selecao-metricas>div{min-height:82px!important}
-#pagina-painel-empresa .emp-open-vaga-card .emp-vaga-selecao-metricas strong{font-size:22px!important;font-weight:750!important}
-#pagina-painel-empresa .emp-open-vaga-card .emp-vaga-selecao-actions button{font-size:12px!important;font-weight:700!important}
-#pagina-painel-empresa .emp-open-vaga-card button:focus-visible,#pagina-painel-empresa .emp-open-vagas-head button:focus-visible{outline:3px solid #e4b64c!important;outline-offset:2px!important}
-@media(max-width:850px){#pagina-painel-empresa .emp-open-vagas-grid{grid-template-columns:1fr!important}}
-@media(max-width:600px){#pagina-painel-empresa .emp-open-vagas{padding:16px!important}#pagina-painel-empresa .emp-open-vagas-head{align-items:flex-start!important}#pagina-painel-empresa .emp-open-vaga-card.emp-vaga-selecao-card{padding:16px!important}}
-/* Plano e indicadores: ajuste pontual do painel do recrutador. */
-#pagina-painel-empresa .emp-rec-planbar{grid-template-columns:minmax(220px,1fr) 120px 150px minmax(190px,220px)!important;gap:0!important;padding:0 18px 0 0!important;overflow:visible!important;background:#fff!important;border-color:#e2d5b8!important;box-shadow:0 5px 18px rgba(24,55,73,.045)!important}
-#pagina-painel-empresa .emp-rec-plan-ident{min-width:0!important}
-#pagina-painel-empresa .emp-rec-planbar>button{box-sizing:border-box!important;width:100%!important;min-width:0!important;max-width:220px!important;height:44px!important;min-height:44px!important;margin:0!important;padding:0 14px!important;white-space:nowrap!important;border:0!important;background:#103f57!important;box-shadow:none!important;font-size:12px!important;font-weight:800!important}
-#pagina-painel-empresa .emp-rec-planbar>button:hover{background:#0b6277!important;filter:none!important}
-#pagina-painel-empresa .emp-rec-plan-status,#pagina-painel-empresa .emp-rec-plan-date{min-width:0!important}
-#pagina-painel-empresa .emp-dash-kpis{gap:12px!important}
-#pagina-painel-empresa .emp-dash-kpis>button,#pagina-painel-empresa .emp-dash-kpis>button:nth-child(n){box-sizing:border-box!important;grid-template-columns:38px minmax(0,1fr) 12px!important;align-items:start!important;gap:10px!important;min-width:0!important;min-height:132px!important;padding:17px 13px!important;background:#fff!important;border:1px solid #dce7ed!important;box-shadow:0 4px 16px rgba(24,55,73,.045)!important}
-#pagina-painel-empresa .emp-dash-kpis>button>i{width:38px!important;height:38px!important}
-#pagina-painel-empresa .emp-dash-kpis>button>div{min-width:0!important}
-#pagina-painel-empresa .emp-dash-kpis>button span{display:block!important;color:#31546a!important;font-size:12px!important;font-weight:750!important;line-height:1.25!important;white-space:normal!important}
-#pagina-painel-empresa .emp-dash-kpis .kpi-num{margin:6px 0 2px!important;font-size:30px!important;line-height:1!important;font-weight:850!important}
-#pagina-painel-empresa .emp-dash-kpis>button small{display:block!important;color:#6f8594!important;font-size:10.5px!important;line-height:1.25!important;white-space:normal!important}
-#pagina-painel-empresa .emp-dash-kpis>button>b{font-size:14px!important;color:#55778a!important}
-#pagina-painel-empresa .emp-rec-planbar>button:focus-visible,#pagina-painel-empresa .emp-dash-kpis>button:focus-visible{outline:3px solid #e7b948!important;outline-offset:2px!important}
-@media(max-width:1100px){#pagina-painel-empresa .emp-rec-planbar{grid-template-columns:minmax(200px,1fr) 115px 140px 190px!important}#pagina-painel-empresa .emp-dash-kpis{grid-template-columns:repeat(3,minmax(0,1fr))!important}}
-@media(max-width:760px){#pagina-painel-empresa .emp-rec-planbar{display:grid!important;grid-template-columns:1fr 1fr!important;gap:0!important;padding:0 16px 16px!important}#pagina-painel-empresa .emp-rec-plan-ident{grid-column:1/-1!important;padding-left:0!important}#pagina-painel-empresa .emp-rec-plan-status{border-left:0!important;padding-left:0!important}#pagina-painel-empresa .emp-rec-plan-date{padding-left:16px!important}#pagina-painel-empresa .emp-rec-planbar>button{grid-column:1/-1!important;max-width:none!important;margin-top:14px!important}#pagina-painel-empresa .emp-dash-kpis{grid-template-columns:repeat(2,minmax(0,1fr))!important}}
-@media(max-width:480px){#pagina-painel-empresa .emp-dash-kpis{grid-template-columns:1fr!important}#pagina-painel-empresa .emp-dash-kpis>button{min-height:105px!important}}
-/* Ícones vetoriais dos indicadores do recrutador. */
-#pagina-painel-empresa .emp-dash-kpis>button>i{border-radius:12px!important;box-shadow:inset 0 0 0 1px rgba(10,70,96,.06)!important}
-#pagina-painel-empresa .emp-dash-kpis>button>i svg{width:22px!important;height:22px!important;fill:none!important;stroke:currentColor!important;stroke-width:1.7!important;stroke-linecap:round!important;stroke-linejoin:round!important}
-#pagina-painel-empresa .emp-dash-kpis>button:nth-child(1)>i{background:#eaf4fb!important;color:#126b9b!important}
-#pagina-painel-empresa .emp-dash-kpis>button:nth-child(2)>i{background:#f5f2e9!important;color:#95671e!important}
-#pagina-painel-empresa .emp-dash-kpis>button:nth-child(3)>i{background:#f0f1fa!important;color:#6655a0!important}
-#pagina-painel-empresa .emp-dash-kpis>button:nth-child(4)>i{background:#eaf5f2!important;color:#237766!important}
-#pagina-painel-empresa .emp-dash-kpis>button:nth-child(5)>i{background:#f9eff0!important;color:#a05263!important}
-
-/* Painel da empresa — regras canônicas consolidadas */
-#pagina-painel-empresa .emp-dash-main{font-family:'Montserrat',Arial,sans-serif!important}
-#pagina-painel-empresa .emp-dash-kpis{display:grid!important;grid-template-columns:repeat(5,minmax(0,1fr))!important;gap:12px!important;margin:14px 0 18px!important}
-#pagina-painel-empresa .emp-dash-kpis>button{min-width:0!important;min-height:116px!important;padding:16px!important;display:grid!important;grid-template-columns:42px 1fr auto!important;gap:11px!important;align-items:center!important;text-align:left!important;background:#fff!important;border:1px solid #dce7eb!important;border-top:3px solid #0b6673!important;border-radius:15px!important;box-shadow:0 5px 16px rgba(12,55,70,.055)!important}
-#pagina-painel-empresa .emp-dash-kpis>button>i{position:static!important;width:42px!important;height:42px!important;display:grid!important;place-items:center!important;background:#eaf5f6!important;border-radius:11px!important;color:#0b6673!important}
-#pagina-painel-empresa .emp-dash-kpis svg{width:22px!important;height:22px!important;fill:none!important;stroke:currentColor!important;stroke-width:1.7!important}
-#pagina-painel-empresa .emp-dash-kpis>button>div{display:flex!important;flex-direction:column!important;gap:3px!important;min-width:0!important}
-#pagina-painel-empresa .emp-dash-kpis span{font-size:12px!important;font-weight:700!important;color:#536f7d!important}
-#pagina-painel-empresa .emp-dash-kpis strong{font-size:27px!important;line-height:1!important;color:#103d50!important}
-#pagina-painel-empresa .emp-dash-kpis small{font-size:10.5px!important;color:#7b909a!important}
-#pagina-painel-empresa .emp-dash-kpis>button>b{font-size:17px!important;color:#8aa0aa!important}
-#pagina-painel-empresa .emp-performance{margin:0 0 20px!important;padding:18px!important;background:#fff!important;border:1px solid #dce7eb!important;border-radius:16px!important;box-shadow:0 5px 16px rgba(12,55,70,.04)!important}
-#pagina-painel-empresa .emp-performance-head{display:flex!important;align-items:flex-end!important;justify-content:space-between!important;gap:16px!important;margin-bottom:13px!important}
-#pagina-painel-empresa .emp-performance-head span{font-size:10px!important;font-weight:800!important;letter-spacing:.09em!important;color:#0b6673!important}
-#pagina-painel-empresa .emp-performance-head h2{margin:3px 0!important;font-size:18px!important;color:#103d50!important}
-#pagina-painel-empresa .emp-performance-head p,#pagina-painel-empresa .emp-performance-head small{margin:0!important;font-size:11px!important;color:#758b96!important}
-#pagina-painel-empresa .emp-performance-grid{display:grid!important;grid-template-columns:repeat(4,minmax(0,1fr))!important;gap:10px!important}
-#pagina-painel-empresa .emp-performance-grid article{min-height:82px!important;padding:13px 14px!important;background:#f8fbfc!important;border:1px solid #e2ecef!important;border-radius:12px!important}
-#pagina-painel-empresa .emp-performance-grid article span{display:block!important;font-size:10.5px!important;font-weight:700!important;color:#627b87!important}
-#pagina-painel-empresa .emp-performance-grid article strong{display:block!important;margin:5px 0 3px!important;font-size:21px!important;color:#0b6673!important}
-#pagina-painel-empresa .emp-performance-grid article small{font-size:9.5px!important;color:#8497a0!important}
-#pagina-painel-empresa .emp-open-vagas-head h2{font-size:22px!important;line-height:1.2!important;margin:4px 0!important}
-@media(max-width:1050px){#pagina-painel-empresa .emp-dash-kpis{grid-template-columns:repeat(2,minmax(0,1fr))!important}#pagina-painel-empresa .emp-performance-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important}}
-@media(max-width:640px){#pagina-painel-empresa .emp-dash-kpis,#pagina-painel-empresa .emp-performance-grid{grid-template-columns:1fr!important}}
-
-
-
-/* Resumo do recrutamento — Opção 1 refinada */
-#pagina-painel-empresa #empresaMetricasNovas.emp-dash-kpis{display:grid!important;grid-template-columns:repeat(5,minmax(0,1fr))!important;gap:12px!important;margin:0 0 12px!important}
-#pagina-painel-empresa #empresaMetricasNovas.emp-dash-kpis>button{position:relative!important;height:98px!important;min-height:98px!important;padding:14px 15px!important;display:grid!important;grid-template-columns:44px minmax(0,1fr)!important;column-gap:12px!important;align-items:start!important;text-align:left!important;background:#fff!important;border:1px solid #dce8ee!important;border-radius:14px!important;box-shadow:0 4px 12px rgba(17,61,80,.03)!important;overflow:hidden!important}
-#pagina-painel-empresa #empresaMetricasNovas.emp-dash-kpis>button::after{content:""!important;position:absolute!important;right:-26px!important;bottom:-43px!important;width:108px!important;height:86px!important;border-radius:50%!important;filter:none!important;opacity:.42!important;pointer-events:none!important}
-#pagina-painel-empresa #empresaMetricasNovas.emp-dash-kpis>button:nth-child(1)::after{background:#eaf7ff!important}#pagina-painel-empresa #empresaMetricasNovas.emp-dash-kpis>button:nth-child(2)::after{background:#fff5e7!important}#pagina-painel-empresa #empresaMetricasNovas.emp-dash-kpis>button:nth-child(3)::after{background:#f3efff!important}#pagina-painel-empresa #empresaMetricasNovas.emp-dash-kpis>button:nth-child(4)::after{background:#eaf8f3!important}#pagina-painel-empresa #empresaMetricasNovas.emp-dash-kpis>button:nth-child(5)::after{background:#fff0f3!important}
-#pagina-painel-empresa #empresaMetricasNovas.emp-dash-kpis>button>i{position:static!important;width:44px!important;height:44px!important;display:grid!important;place-items:center!important;border-radius:11px!important;z-index:1!important}
-#pagina-painel-empresa #empresaMetricasNovas.emp-dash-kpis>button:nth-child(1)>i{background:#e5f4ff!important;color:#167fc2!important}#pagina-painel-empresa #empresaMetricasNovas.emp-dash-kpis>button:nth-child(2)>i{background:#fff2df!important;color:#c77c0b!important}#pagina-painel-empresa #empresaMetricasNovas.emp-dash-kpis>button:nth-child(3)>i{background:#eee9ff!important;color:#6945d9!important}#pagina-painel-empresa #empresaMetricasNovas.emp-dash-kpis>button:nth-child(4)>i{background:#e2f6f0!important;color:#159979!important}#pagina-painel-empresa #empresaMetricasNovas.emp-dash-kpis>button:nth-child(5)>i{background:#fde9ee!important;color:#d0536d!important}
-#pagina-painel-empresa #empresaMetricasNovas.emp-dash-kpis svg{display:block!important;width:23px!important;height:23px!important;fill:none!important;stroke:currentColor!important;stroke-width:1.65!important;stroke-linecap:round!important;stroke-linejoin:round!important}
-#pagina-painel-empresa #empresaMetricasNovas.emp-dash-kpis>button>div{min-width:0!important;padding:0 17px 0 0!important;display:flex!important;flex-direction:column!important;align-items:flex-start!important;z-index:1!important}
-#pagina-painel-empresa #empresaMetricasNovas.emp-dash-kpis span{height:16px!important;font-size:11.7px!important;line-height:16px!important;font-weight:750!important;white-space:nowrap!important;color:#164965!important}
-#pagina-painel-empresa #empresaMetricasNovas.emp-dash-kpis strong{margin-top:3px!important;font-size:25px!important;line-height:25px!important;font-weight:800!important;letter-spacing:-.035em!important;color:#083f5f!important}
-#pagina-painel-empresa #empresaMetricasNovas.emp-dash-kpis small{display:block!important;margin-top:4px!important;max-width:100%!important;font-size:9.2px!important;line-height:10.5px!important;color:#6c8798!important}
-#pagina-painel-empresa #empresaMetricasNovas.emp-dash-kpis>button>b{position:absolute!important;right:12px!important;top:14px!important;font-size:14px!important;line-height:1!important;font-weight:400!important;z-index:2!important}
-#pagina-painel-empresa #empresaMetricasNovas.emp-dash-kpis>button:nth-child(1)>b{color:#168bd0!important}#pagina-painel-empresa #empresaMetricasNovas.emp-dash-kpis>button:nth-child(2)>b{color:#d58a13!important}#pagina-painel-empresa #empresaMetricasNovas.emp-dash-kpis>button:nth-child(3)>b{color:#714de0!important}#pagina-painel-empresa #empresaMetricasNovas.emp-dash-kpis>button:nth-child(4)>b{color:#169b78!important}#pagina-painel-empresa #empresaMetricasNovas.emp-dash-kpis>button:nth-child(5)>b{color:#d75a70!important}
-/* EMPREGAMAIS: bloco legado de desempenho circular removido na V93 */
-
-
-/* Tooltips explicativos dos indicadores */
-/* EMPREGAMAIS: tooltips legados do desempenho removidos na V93 */
-
-</style><section class="pagina" id="pagina-painel-empresa"><div class="emp-dash">
+      <div>
+        <button class="primary" type="button" onclick="irPara('login-conecta')">Acessar Painel Conecta</button>
+        <button type="button" onclick="irPara('planos')">Conhecer os planos</button>
+      </div>
+    </section>
+  </main>
+</section><section class="pagina" id="pagina-painel-empresa"><div class="emp-dash">
 <aside class="emp-dash-side emp-side-premium"><div class="emp-dash-brand"><strong>Empregai</strong><small>Painel do recrutador</small></div><div class="emp-side-plan"><span>PLANO ATUAL</span><div><strong id="empresaSidePlano">Plano</strong><b>ATIVO</b></div><small id="empresaSideVigencia">Assinatura ativa</small><button onclick="irPara('planos')">Gerenciar →</button></div><button class="emp-side-publish" onclick="abrirPublicacao()"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg><span>Publicar nova vaga</span></button><nav><div class="emp-side-group"><small>RECRUTAMENTO</small><button class="ativo" onclick="irPara('painel-empresa')"><span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 11 12 4l8 7v9H5V11"/><path d="M9 20v-6h6v6"/></svg></span>Visão geral</button><button onclick="irPara('vagas-empresa')"><span><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="7" width="18" height="12" rx="2"/><path d="M8 7V5.5A1.5 1.5 0 0 1 9.5 4h5A1.5 1.5 0 0 1 16 5.5V7"/></svg></span>Processo seletivo</button><button onclick="irPara('candidatos-empresa')"><span><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="9" r="3"/><circle cx="17" cy="10" r="2"/><path d="M3.5 19c.5-3.3 2.3-5 5.5-5s5 1.7 5.5 5M15 15c3-.3 4.8 1 5.3 4"/></svg></span>Candidatos<em id="empresaSideCandidatos" class="emp-side-count"></em></button><button onclick="irPara('contratacoes-empresa')"><span><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="m8 12 2.7 2.7L16.5 9"/></svg></span>Contratações</button><button onclick="irPara('central-empresa')"><span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h16v12H8l-4 3V5Z"/><path d="M8 9h8M8 13h5"/></svg></span>Mensagens<em id="empresaSideMensagens" class="emp-side-count"></em></button></div><div class="emp-side-group management"><small>GESTÃO</small><button onclick="irPara('perfil-empresa')"><span><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M8 8h8M8 12h8M8 16h5"/></svg></span>Minha empresa</button><button id="menuRelatorios" onclick="abrirRecursoEmpresa('relatorios')"><span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 19V9M12 19V5M19 19v-7"/></svg></span>Relatórios<small id="lockRelatorios"></small></button><button onclick="abrirAvaliacoesEmpresaEM()"><span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 3 2.7 5.5 6.1.9-4.4 4.3 1 6.1-5.4-2.9-5.4 2.9 1-6.1-4.4-4.3 6.1-.9L12 3Z"/></svg></span>Avaliações<em id="empresaSideAvaliacoes" class="emp-side-count"></em></button><button onclick="irPara('planos')"><span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 3 3 6 6 .9-4.5 4.4 1.1 6.2L12 17.6l-5.6 2.9 1.1-6.2L3 9.9 9 9l3-6Z"/></svg></span>Plano e assinatura</button><button onclick="abrirUsuariosEmpresaEM()"><span><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="8" cy="8" r="3"/><circle cx="17" cy="9" r="2.5"/><path d="M2.5 20c.5-4.3 2.4-6.5 5.5-6.5s5 2.2 5.5 6.5M14 14.5c4.1-.8 6.4 1 7 5.5"/></svg></span>Usuários da empresa</button><button onclick="irPara('perfil-empresa')"><span><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M19 12a7 7 0 0 0-.1-1l2-1.5-2-3.4-2.4 1a7 7 0 0 0-1.7-1L14.5 3h-5l-.4 3.1a7 7 0 0 0-1.7 1L5 6.1 3 9.5 5.1 11a7 7 0 0 0 0 2L3 14.5l2 3.4 2.4-1a7 7 0 0 0 1.7 1l.4 3.1h5l.4-3.1a7 7 0 0 0 1.7-1l2.4 1 2-3.4-2.1-1.5a7 7 0 0 0 .1-1Z"/></svg></span>Configurações</button></div></nav><div class="emp-side-footer"><button class="emp-help-pro" onclick="irPara('central-empresa')"><span>?</span><div><b>Central de ajuda</b><small>Dúvidas e suporte</small></div><em>↗</em></button><button class="emp-side-account-pro" onclick="irPara('perfil-empresa')"><span id="empSideAccountAvatar">E</span><div><b id="empSideAccountName">Empresa</b><small><i></i> Conta empresarial <u id="empSideAccountPlan">· Plano ativo</u></small></div><em>›</em></button><button class="emp-dash-exit" onclick="typeof empregaiAuthLogoutEM==='function'?empregaiAuthLogoutEM():sair()">Sair</button></div></aside>
 <div class="modal-candidato oculto" id="modalUsuariosEmpresaEM" onclick="if(event.target===this)fecharUsuariosEmpresaEM()"><div class="modal-candidato-card empresa-usuarios-modal-em"><button class="modal-fechar" type="button" onclick="fecharUsuariosEmpresaEM()">×</button><span class="empresa-usuarios-kicker">EQUIPE DE RECRUTAMENTO</span><h2>Usuários da empresa</h2><p>Gerencie quem pode acessar as vagas e os processos seletivos desta empresa.</p><div class="empresa-usuarios-resumo" id="empresaUsuariosResumoEM">Carregando usuários...</div><div id="empresaUsuariosListaEM" class="empresa-usuarios-lista"></div><form id="empresaUsuarioFormEM" class="empresa-usuario-form" onsubmit="adicionarUsuarioEmpresaEM(event)"><h3>Adicionar recrutador</h3><div class="empresa-usuario-grid"><label>Nome<input class="campo" id="empUserNomeEM" required></label><label>E-mail<input class="campo" id="empUserEmailEM" type="email" required></label><label>Senha inicial<input class="campo" id="empUserSenhaEM" type="password" minlength="6" required></label></div><button class="btn btn-azul" type="submit">Criar acesso</button></form><p id="empresaUsuariosLimiteEM" class="empresa-usuarios-aviso"></p><div id="empresaUsuariosMsgEM" class="form-msg"></div></div></div><div class="modal-candidato oculto" id="modalAvaliacoesEmpresaEM"><div class="modal-candidato-card empresa-avaliacoes-modal-em"><button class="modal-fechar" type="button" onclick="fecharAvaliacoesEmpresaEM()">×</button><div id="conteudoAvaliacoesEmpresaEM"></div></div></div><main class="emp-dash-main emp-premium-v2">
 <section class="emp-rec-hero emp-premium-hero-v2 emp-top-clean-v94"><div class="emp-hero-company-v97"><div class="emp-hero-logo-v97" id="empresaPainelLogo" aria-label="Logo da empresa"><span id="empresaPainelLogoFallback">E</span></div><div class="emp-rec-hero-copy"><span>PAINEL DO RECRUTADOR</span><h1 id="empresaPainelOla">Olá!</h1><p id="empresaSaudacao">Gerencie suas vagas, acompanhe as candidaturas e encontre os melhores talentos para o seu time.</p></div></div><div class="emp-rec-hero-actions"><button class="primary" onclick="abrirPublicacao()">＋ Publicar nova vaga</button><button onclick="focarVagasEmpresa()">Gerenciar vagas</button></div></section>
