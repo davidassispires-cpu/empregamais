@@ -190,7 +190,44 @@ function garantirTemaEmpresaAzulLaranjaEM(){
  '#pagina-painel-conecta .conecta-plan-status strong{color:var(--conecta-petroleo)!important}'+
  '#pagina-painel-conecta .conecta-status.ok,#pagina-painel-conecta .conecta-next-state{background:var(--conecta-menta)!important;color:var(--conecta-verde)!important}'+
  '#pagina-painel-conecta .conecta-card-head button,#pagina-painel-conecta .conecta-job-select button{background:var(--conecta-lilas)!important;color:var(--conecta-roxo-escuro)!important}'+
- '#pagina-painel-conecta .conecta-profile-preview-cover{background:linear-gradient(135deg,#6F2DBD,#183B56)!important}'
+ '#pagina-painel-conecta .conecta-profile-preview-cover{background:linear-gradient(135deg,#6F2DBD,#183B56)!important}'+
+'#pagina-painel-conecta .conecta-hero{background:linear-gradient(135deg,#FFFFFF 0%,#FBF8FE 58%,#F1E8FB 100%)!important;border:1px solid #E6DAF0!important;box-shadow:0 16px 38px rgba(24,59,86,.08)!important;color:var(--conecta-petroleo)!important;padding:27px 28px!important}'+
+'#pagina-painel-conecta .conecta-hero:before{height:4px!important;background:linear-gradient(90deg,#6F2DBD 0%,#9E6ED6 55%,#55D995 100%)!important;box-shadow:none!important}'+
+'#pagina-painel-conecta .conecta-hero h2,#pagina-painel-conecta .conecta-hero h3,#pagina-painel-conecta .conecta-hero strong,#pagina-painel-conecta .conecta-hero b{color:var(--conecta-petroleo)!important}'+
+'#pagina-painel-conecta .conecta-hero p{color:#5F7080!important;font-size:13px!important;line-height:1.65!important}'+
+'#pagina-painel-conecta .conecta-hero-kicker{color:var(--conecta-roxo-escuro)!important;font-size:10px!important;letter-spacing:.12em!important}'+
+'#pagina-painel-conecta .conecta-dot{background:#42BF7D!important;box-shadow:0 0 0 5px #DDF5EA!important}'+
+'#pagina-painel-conecta .conecta-hero-health{gap:9px!important;margin-top:17px!important}'+
+'#pagina-painel-conecta .conecta-hero-health span{background:#fff!important;border:1px solid #E4D9ED!important;color:#536878!important;padding:8px 10px!important;box-shadow:0 4px 12px rgba(24,59,86,.035)!important}'+
+'#pagina-painel-conecta .conecta-hero-health i{background:#43BD7B!important;box-shadow:0 0 0 4px #E5F7ED!important}'+
+'#pagina-painel-conecta .conecta-source{background:#fff!important;border:1px solid #E1D5EA!important;color:var(--conecta-petroleo)!important;border-radius:17px!important;padding:17px 18px!important;box-shadow:0 10px 24px rgba(24,59,86,.055)!important}'+
+'#pagina-painel-conecta .conecta-source small{color:#8B7C95!important;font-size:9.5px!important;font-weight:800!important}'+
+'#pagina-painel-conecta .conecta-source strong{color:var(--conecta-petroleo)!important;font-size:12.5px!important}'+
+'#pagina-painel-conecta .conecta-source span{color:#71808E!important;font-size:10.5px!important}'+
+'#pagina-painel-conecta .conecta-source-status{background:var(--conecta-menta)!important;color:var(--conecta-verde)!important;border:1px solid #CAEBD9!important}'+
+'#pagina-painel-conecta .conecta-next{border:1px solid #E3D9EB!important;border-left:4px solid #6F2DBD!important;border-radius:18px!important;background:#fff!important;box-shadow:0 12px 30px rgba(24,59,86,.055)!important;padding:20px 22px!important}'+
+'#pagina-painel-conecta .conecta-next-kicker{color:var(--conecta-petroleo-2)!important;font-size:10px!important}'+
+'#pagina-painel-conecta .conecta-next h3{color:var(--conecta-petroleo)!important;font-size:16px!important}'+
+'#pagina-painel-conecta .conecta-next p{color:#637687!important;font-size:11.5px!important}'+
+'#pagina-painel-conecta .conecta-next-meta span{background:#F6F1FA!important;color:#607181!important;border:1px solid #ECE3F2!important;padding:6px 9px!important}'+
+'#pagina-painel-conecta .conecta-next-note{color:#8794A0!important;font-size:10px!important}'+
+'#pagina-painel-conecta .conecta-kpis{gap:12px!important;margin:16px 0!important}'+
+'#pagina-painel-conecta .conecta-kpi{position:relative!important;overflow:hidden!important;border:1px solid #E4DCEB!important;border-radius:17px!important;padding:18px 18px 17px!important;background:#fff!important;box-shadow:0 8px 22px rgba(24,59,86,.045)!important;transition:.18s ease!important}'+
+'#pagina-painel-conecta .conecta-kpi:before{content:"";position:absolute;left:0;top:0;bottom:0;width:3px;background:linear-gradient(180deg,#6F2DBD,#A777DA)}'+
+'#pagina-painel-conecta .conecta-kpi:nth-child(2):before{background:linear-gradient(180deg,#2C5877,#6D9CB8)}#pagina-painel-conecta .conecta-kpi:nth-child(3):before{background:linear-gradient(180deg,#D99A32,#F0C46B)}#pagina-painel-conecta .conecta-kpi:nth-child(4):before{background:linear-gradient(180deg,#4AAE7C,#7CD0A5)}'+
+'#pagina-painel-conecta .conecta-kpi span{color:#657887!important;font-size:10px!important;font-weight:800!important}'+
+'#pagina-painel-conecta .conecta-kpi strong{color:var(--conecta-petroleo)!important;font-size:29px!important;margin:8px 0 4px!important}'+
+'#pagina-painel-conecta .conecta-kpi small{color:#8796A2!important;font-size:10.5px!important;line-height:1.4!important}'+
+'#pagina-painel-conecta .conecta-kpi.clickable:hover{transform:translateY(-2px)!important;border-color:#CDBBDD!important;box-shadow:0 13px 28px rgba(24,59,86,.08)!important}'+
+'#pagina-painel-conecta .conecta-grid{gap:18px!important;margin-top:18px!important}'+
+'#pagina-painel-conecta .conecta-card{border:1px solid #E4DCEB!important;border-radius:18px!important;background:#fff!important;box-shadow:0 10px 28px rgba(24,59,86,.045)!important}'+
+'#pagina-painel-conecta .conecta-card-head h3{color:var(--conecta-petroleo)!important;font-size:16px!important}'+
+'#pagina-painel-conecta .conecta-card-head p{color:#778895!important;font-size:11px!important}'+
+'#pagina-painel-conecta .conecta-health{background:#F8FAFB!important;border:1px solid #E8EEF1!important;border-radius:13px!important;padding:13px!important}'+
+'#pagina-painel-conecta .conecta-health strong{color:var(--conecta-petroleo)!important;font-size:11.5px!important}'+
+'#pagina-painel-conecta .conecta-health small{color:#7F8D99!important;font-size:10px!important}'+
+'@media(max-width:900px){#pagina-painel-conecta .conecta-hero{grid-template-columns:1fr!important}#pagina-painel-conecta .conecta-grid{grid-template-columns:1fr!important}}'+
+'@media(max-width:620px){#pagina-painel-conecta .conecta-hero{padding:20px!important}#pagina-painel-conecta .conecta-hero h2{font-size:21px!important}#pagina-painel-conecta .conecta-kpi strong{font-size:25px!important}}'+
 
  '@media(max-width:700px){#pagina-vagas-empresa .evp-summary{grid-template-columns:1fr 1fr!important}#pagina-candidatos-empresa .recruta-cand-card{border-left-width:3px!important}}';
  document.head.appendChild(st)
