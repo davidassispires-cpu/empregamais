@@ -145,8 +145,11 @@ function garantirTemaEmpresaAzulLaranjaEM(){
  /* Conecta: paleta oficial roxo + azul petróleo + lilás + branco quente + menta */
  '#pagina-painel-conecta{--conecta-roxo:#6F2DBD!important;--conecta-roxo-escuro:#5B1FA6!important;--conecta-petroleo:#183B56!important;--conecta-petroleo-2:#2C5877!important;--conecta-lilas:#F5EEFC!important;--conecta-lilas-2:#EFE5FA!important;--conecta-bg:#FCFAFE!important;--conecta-muted:#786D86!important;--conecta-menta:#DDF5EA!important;--conecta-verde:#1E8E5A!important;background:var(--conecta-bg)!important;color:var(--conecta-petroleo)!important;font-family:Montserrat,Arial,sans-serif!important}'+
  '#pagina-painel-conecta *{font-family:Montserrat,Arial,sans-serif!important}'+
- '#pagina-painel-conecta .conecta-side{background:linear-gradient(180deg,#6F2DBD 0%,#5B1FA6 100%)!important;color:#fff!important}'+
+ '#pagina-painel-conecta .conecta-side{background:#5B1FA6!important;color:#fff!important}'+
  '#pagina-painel-conecta .conecta-side *,#pagina-painel-conecta .conecta-brand small,#pagina-painel-conecta .conecta-brand strong{color:#fff!important}'+
+ '#pagina-painel-conecta .conecta-side-company-logo{color:#5B1FA6!important;background:#fff!important}'+
+ '#pagina-painel-conecta .conecta-nav button.ativo .conecta-nav-ico{color:#5B1FA6!important;background:#fff!important;border-color:#fff!important}'+
+ '#pagina-painel-conecta .conecta-nav button.ativo .conecta-nav-ico svg{stroke:#5B1FA6!important}'+
  '#pagina-painel-conecta .conecta-brand b{color:#EAD8FF!important}'+
  '#pagina-painel-conecta .conecta-brand strong{white-space:nowrap!important;font-size:21px!important;letter-spacing:-.55px!important}'+
  '#pagina-painel-conecta .conecta-nav button{color:rgba(255,255,255,.9)!important}'+
@@ -753,7 +756,7 @@ function garantirPainelConectaEM(){
   '#pagina-painel-conecta{font-family:Montserrat,Arial,sans-serif;background:#f7f5fb;min-height:calc(100vh - 76px);color:#30233f;width:100%;max-width:none;margin:0;padding:0;position:relative;clear:both}'+
   '#pagina-painel-conecta *{box-sizing:border-box}'+
   '.conecta-app{display:grid;grid-template-columns:252px minmax(0,1fr);min-height:calc(100vh - 76px);align-items:stretch}'+
-  '.conecta-side{background:linear-gradient(180deg,#6f2dbd 0%,#5b1fa6 52%,#44206b 100%);color:#fff;padding:22px 16px 18px;display:flex;flex-direction:column;gap:18px;min-height:100%;align-self:stretch;overflow:auto;box-shadow:14px 0 35px rgba(45,17,72,.10)}'+
+  '.conecta-side{background:#5b1fa6;color:#fff;padding:22px 16px 18px;display:flex;flex-direction:column;gap:18px;min-height:100%;align-self:stretch;overflow:auto;box-shadow:14px 0 35px rgba(45,17,72,.10)}'+
   '.conecta-brand{padding:6px 10px 20px;border-bottom:1px solid rgba(255,255,255,.14)}'+
   '.conecta-brand small{display:block;font-size:9.5px;letter-spacing:.13em;text-transform:uppercase;opacity:.72;margin-bottom:7px;font-weight:700}'+
   '.conecta-brand strong{display:block;font-size:22px;line-height:1.15;letter-spacing:-.55px}.conecta-brand strong b{color:#ead8ff}'+
