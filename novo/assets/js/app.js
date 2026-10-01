@@ -2813,7 +2813,7 @@ function sbCarregarVagasEM(){
   const t=sbTokenEM();
   sbSincronizarEmpresasPublicasEM().then(()=>{try{renderizarVagasPortal()}catch(e){}});
   const locaisAntes=ler('empregaMaisVagas');
-  const publico=sbJsonEM(EMPREGAMAIS_SUPABASE_URL+'/rest/v1/vagas?select=*&status=eq.aprovada&order=criado_em.desc',{method:'GET',headers:Object.assign(sbHeadersEM(),{'Cache-Control':'no-cache','Pragma':'no-cache'}),cache:'no-store'}).catch(()=>[]);
+  const publico=sbJsonEM(EMPREGAMAIS_SUPABASE_URL+'/rest/v1/vagas?select=id,empresa_id,empresa,empresa_cnpj,cargo,area,contrato,modalidade,cep,estado,cidade,data_encerramento,escolaridade,experiencia,jornada,pcd,salario,salario_max,salario_combinar,horario_entrada,horario_saida,descricao,requisitos,beneficios,beneficios_lista,beneficios_outros,sobre_empresa,senior50,confidencial,destaque,urgente,status,criado_em,editado_em,destaque_ate,logo,latitude,longitude,candidatura_tipo,candidatura_email,candidatura_whatsapp,candidatura_link&status=eq.aprovada&order=criado_em.desc',{method:'GET',headers:sbHeadersEM()}).catch(()=>[]);
   const proprio=t?sbUsuarioAtualEM().then(u=>sbJsonEM(EMPREGAMAIS_SUPABASE_URL+'/rest/v1/vagas?select=*&user_id=eq.'+encodeURIComponent(u.id)+'&order=criado_em.desc',{method:'GET',headers:sbHeadersEM(t)})).catch(()=>[]):Promise.resolve([]);
   return Promise.all([publico,proprio]).then(r=>{
     const mapa=new Map();
