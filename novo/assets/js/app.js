@@ -1939,7 +1939,7 @@ function atualizarBarraLocalHomeEM(){
  const bar=document.getElementById('homeLocalPreferidoEM');if(!bar)return;
  const pref=localPreferidoCandidatoEM();
  const ico='<span class="home-local-icone-em" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 21s7-6.2 7-12a7 7 0 1 0-14 0c0 5.8 7 12 7 12Z"/><circle cx="12" cy="9" r="2.5"/></svg></span>';
- if(!pref){bar.innerHTML=ico+'<div class="home-local-copy-em"><div class="home-local-titulo-em"><b>Encontre oportunidades perto de você</b><span class="home-local-status-em">LOCALIZAÇÃO</span></div><small>Entre como candidato e informe sua cidade para priorizarmos vagas da sua região.</small></div><button class="home-local-btn-em" type="button" onclick="irPara(\'login-candidato\')">Entrar como candidato</button>';return}
+ if(!pref){bar.innerHTML='<span class="home-local-icone-em home-local-pin-ref-em" aria-hidden="true"><svg viewBox="0 0 64 64"><ellipse cx="32" cy="52" rx="22" ry="7" class="pin-ring pin-ring-1"/><ellipse cx="32" cy="52" rx="14" ry="4" class="pin-ring pin-ring-2"/><path class="pin-body" d="M32 5c-11.6 0-21 9.4-21 21 0 15.4 21 31 21 31s21-15.6 21-31C53 14.4 43.6 5 32 5Z"/><circle cx="32" cy="26" r="8" class="pin-hole"/></svg></span><div class="home-local-copy-em"><div class="home-local-titulo-em"><b>Encontre oportunidades perto de você</b><span class="home-local-status-em">⌖&nbsp; LOCALIZAÇÃO</span></div><small>Veja primeiro as vagas da sua cidade e região. Não é necessário entrar<br class="home-local-ref-br-em"> para buscar oportunidades próximas.</small></div><button class="home-local-btn-em home-local-btn-ref-em" type="button" onclick="document.getElementById(\'buscaCidade\')?.focus()"><span class="home-local-send-em">➤</span><strong>Ver vagas perto de mim</strong><span class="home-local-arrow-em">→</span></button>';return}
  const local=esc(pref.cidade)+(pref.uf?' - '+esc(pref.uf):'');
  bar.innerHTML=ico+'<div class="home-local-copy-em"><div class="home-local-titulo-em"><b>Vagas em '+local+' e região</b><span class="home-local-status-em ativo"><i></i> LOCALIZAÇÃO ATIVA</span></div><small>Estamos priorizando oportunidades próximas ao seu perfil, sem ocultar vagas de todo o Brasil.</small></div><button class="home-local-btn-em" type="button" onclick="document.getElementById(\'buscaCidade\')?.focus()">Alterar localização</button>'
 }
@@ -6151,19 +6151,29 @@ window.addEventListener('load',removerAnunciarVagaGratisHeaderEM);
 
 
 
-/* EMPREGAI-LOCAL-COR-LARANJA-V1 */
+
+/* EMPREGAI-LOCAL-REFERENCIA-EXATA-V2 */
 (function(){
- if(document.getElementById('empregaiLocalCorLaranjaV1'))return;
- const st=document.createElement('style');
- st.id='empregaiLocalCorLaranjaV1';
- st.textContent=`
- #homeLocalPreferidoEM{border-left-color:#ff5a0a!important}
- #homeLocalPreferidoEM .home-local-icone-em{background:#fff1e7!important;border-color:#ffc69f!important;color:#ff5a0a!important}
- #homeLocalPreferidoEM .home-local-icone-em svg{stroke:#ff5a0a!important}
- #homeLocalPreferidoEM .home-local-status-em{background:#fff0e5!important;color:#f05a14!important;border-color:#ffc69f!important}
- #homeLocalPreferidoEM .home-local-status-em.ativo{background:#fff0e5!important;color:#f05a14!important;border-color:#ffc69f!important}
- #homeLocalPreferidoEM .home-local-btn-em{background:linear-gradient(135deg,#ff4b0a,#ff6909)!important;border-color:#ff4b0a!important;color:#fff!important;box-shadow:0 8px 20px rgba(255,82,8,.24)!important}
- #homeLocalPreferidoEM .home-local-btn-em:hover{background:linear-gradient(135deg,#f04400,#ff5900)!important;border-color:#f04400!important;color:#fff!important}
- `;
- document.head.appendChild(st);
+ if(document.getElementById('empregaiLocalReferenciaExataV2'))return;
+ const st=document.createElement('style');st.id='empregaiLocalReferenciaExataV2';st.textContent=`
+ body #homeLocalPreferidoEM{box-sizing:border-box!important;position:relative!important;display:flex!important;align-items:center!important;gap:26px!important;width:100%!important;min-height:124px!important;padding:18px 28px!important;overflow:hidden!important;border:1px solid #d9eaf7!important;border-left:5px solid #ff5a0a!important;border-radius:18px!important;background:linear-gradient(105deg,#fff 0%,#fbfdff 55%,#eef8ff 100%)!important;box-shadow:0 12px 30px rgba(25,92,139,.11)!important}
+ body #homeLocalPreferidoEM:before{content:""!important;position:absolute!important;right:15%!important;top:-95px!important;width:440px!important;height:300px!important;background:radial-gradient(circle,rgba(38,151,238,.11),rgba(38,151,238,0) 68%)!important;pointer-events:none!important}
+ body #homeLocalPreferidoEM .home-local-pin-ref-em{box-sizing:border-box!important;position:relative!important;z-index:1!important;display:flex!important;align-items:center!important;justify-content:center!important;width:82px!important;height:82px!important;min-width:82px!important;margin:0!important;border:1px solid #ffc49b!important;border-radius:18px!important;background:linear-gradient(145deg,#fff6ed,#ffe9d7)!important;box-shadow:0 7px 18px rgba(255,86,8,.10)!important}
+ body #homeLocalPreferidoEM .home-local-pin-ref-em svg{width:60px!important;height:60px!important;overflow:visible!important}
+ body #homeLocalPreferidoEM .pin-body{fill:#ff5108!important;stroke:none!important}
+ body #homeLocalPreferidoEM .pin-hole{fill:#fff!important;stroke:none!important}
+ body #homeLocalPreferidoEM .pin-ring-1{fill:#ffd5b8!important;opacity:.72!important}
+ body #homeLocalPreferidoEM .pin-ring-2{fill:#ffb47e!important;opacity:.55!important}
+ body #homeLocalPreferidoEM .home-local-copy-em{position:relative!important;z-index:1!important;flex:1 1 auto!important;min-width:0!important;margin:0!important}
+ body #homeLocalPreferidoEM .home-local-titulo-em{display:flex!important;align-items:center!important;gap:14px!important;flex-wrap:wrap!important;margin:0!important}
+ body #homeLocalPreferidoEM .home-local-titulo-em b{margin:0!important;color:#0b3f77!important;font:800 21px/1.2 Montserrat,Arial,sans-serif!important;letter-spacing:-.4px!important}
+ body #homeLocalPreferidoEM .home-local-status-em{box-sizing:border-box!important;display:inline-flex!important;align-items:center!important;justify-content:center!important;margin:0!important;padding:8px 14px!important;border:0!important;border-radius:999px!important;background:#fff0e4!important;color:#f05a14!important;font:800 10px/1 Montserrat,Arial,sans-serif!important;letter-spacing:.04em!important}
+ body #homeLocalPreferidoEM .home-local-copy-em>small{display:block!important;margin:8px 0 0!important;color:#3b5e78!important;font:500 14px/1.48 Montserrat,Arial,sans-serif!important}
+ body #homeLocalPreferidoEM .home-local-btn-ref-em{box-sizing:border-box!important;position:relative!important;z-index:2!important;flex:0 0 auto!important;display:inline-flex!important;align-items:center!important;justify-content:center!important;gap:13px!important;width:auto!important;min-width:292px!important;height:64px!important;min-height:64px!important;margin:0!important;padding:0 25px!important;border:0!important;border-radius:15px!important;background:linear-gradient(135deg,#ff4708 0%,#ff6909 100%)!important;color:#fff!important;box-shadow:0 13px 27px rgba(255,78,7,.29)!important;white-space:nowrap!important}
+ body #homeLocalPreferidoEM .home-local-btn-ref-em strong{color:#fff!important;font:800 15px/1 Montserrat,Arial,sans-serif!important}
+ body #homeLocalPreferidoEM .home-local-send-em{color:#fff!important;font-size:24px!important;line-height:1!important;transform:rotate(-12deg)!important}
+ body #homeLocalPreferidoEM .home-local-arrow-em{color:#fff!important;font-size:24px!important;line-height:1!important;margin-left:2px!important}
+ body #homeLocalPreferidoEM .home-local-btn-ref-em:hover{background:linear-gradient(135deg,#f23f00,#ff5900)!important;box-shadow:0 16px 31px rgba(255,78,7,.35)!important;transform:translateY(-1px)!important}
+ @media(max-width:760px){body #homeLocalPreferidoEM{align-items:flex-start!important;gap:14px!important;min-height:0!important;padding:16px!important;flex-wrap:wrap!important}body #homeLocalPreferidoEM .home-local-pin-ref-em{width:62px!important;height:62px!important;min-width:62px!important}body #homeLocalPreferidoEM .home-local-pin-ref-em svg{width:46px!important;height:46px!important}body #homeLocalPreferidoEM .home-local-copy-em{flex:1 1 calc(100% - 80px)!important}body #homeLocalPreferidoEM .home-local-titulo-em b{font-size:16px!important}body #homeLocalPreferidoEM .home-local-copy-em>small{font-size:12px!important}body #homeLocalPreferidoEM .home-local-ref-br-em{display:none!important}body #homeLocalPreferidoEM .home-local-btn-ref-em{flex:1 0 100%!important;width:100%!important;min-width:0!important;height:54px!important;min-height:54px!important;margin-top:2px!important}}
+ `;document.head.appendChild(st);
 })();
