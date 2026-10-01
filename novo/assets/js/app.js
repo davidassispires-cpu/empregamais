@@ -4007,10 +4007,19 @@ salvarEntrevista=async function(e){
  const agora=new Date().toISOString(),entrevista={data:data,hora:hora,formato:$("#entrevistaFormato").value,local:$("#entrevistaLocal").value.trim(),observacoes:$("#entrevistaObs").value.trim(),agendadaEm:agora};
  try{await sbAtualizarCandidaturaEM(c,{status:"Entrevista agendada",historico:sbHistoricoComEM(c,"Entrevista agendada",agora,{entrevista:{data:data,hora:hora}}),entrevista:entrevista,atualizadoEm:agora,contratadoEm:c.contratadoEm});fecharEntrevista();renderizarCandidatosEmpresa()}catch(err){console.error("Entrevista Supabase:",err);alert("Não foi possível agendar a entrevista: "+err.message)}
 };
-function sbAtualizarPaineisCandidaturasEM(){if(!["empresa","candidato"].includes(papelAtual()))return;sbCarregarCandidaturasEM(true).catch(err=>console.warn("Sincronização de candidaturas:",err))}
-window.addEventListener("focus",()=>sbAtualizarPaineisCandidaturasEM());
-document.addEventListener("visibilitychange",()=>{if(!document.hidden)sbAtualizarPaineisCandidaturasEM()});
-window.addEventListener("load",()=>{setTimeout(sbAtualizarPaineisCandidaturasEM,900);if(!sbCandidaturasTimerEM)sbCandidaturasTimerEM=setInterval(()=>{if(!document.hidden)sbAtualizarPaineisCandidaturasEM()},12000)});
+function sbTelaCandidaturasAtivaEM(){
+ const p=papelAtual();if(!["empresa","candidato"].includes(p))return false;
+ const ids=p==="empresa"?["pagina-painel-empresa","pagina-candidatos-empresa"]:["pagina-painel-candidato","pagina-candidaturas"];
+ return ids.some(id=>document.getElementById(id)?.classList.contains("ativa"))
+}
+function sbAtualizarPaineisCandidaturasEM(forcar){
+ if(!["empresa","candidato"].includes(papelAtual()))return;
+ if(!forcar&&!sbTelaCandidaturasAtivaEM())return;
+ sbCarregarCandidaturasEM(true).catch(err=>console.warn("Sincronização de candidaturas:",err))
+}
+window.addEventListener("focus",()=>sbAtualizarPaineisCandidaturasEM(false));
+document.addEventListener("visibilitychange",()=>{if(!document.hidden)sbAtualizarPaineisCandidaturasEM(false)});
+window.addEventListener("load",()=>{setTimeout(()=>sbAtualizarPaineisCandidaturasEM(false),900);if(!sbCandidaturasTimerEM)sbCandidaturasTimerEM=setInterval(()=>{if(!document.hidden)sbAtualizarPaineisCandidaturasEM(false)},60000)});
 
 
 /* EMPREGAMAIS-CANDIDATO-LEGADO-MIGRACAO-AUTH-V2 */
