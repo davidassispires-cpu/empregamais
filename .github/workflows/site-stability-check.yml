@@ -1,0 +1,35 @@
+name: Site stability check
+on:
+  push:
+    branches: [reconstrucao-limpa]
+  pull_request:
+    branches: [reconstrucao-limpa]
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Validate JavaScript syntax
+        shell: bash
+        run: |
+          set -e
+          find novo/assets/js -type f -name '*.js' -print0 | while IFS= read -r -d '' f; do
+            echo "Checking $f"
+            node --check "$f"
+          done
+          node --check novo/sw.js
+      - name: Guard critical portal files
+        shell: bash
+        run: |
+          test -s novo/index.html
+          test -s novo/assets/js/app.js
+          test -s novo/assets/css/app.css
+          grep -q 'pagina-home' novo/index.html
+          grep -q 'function irPara' novo/assets/js/app.js
+          grep -q 'pagina-painel-conecta' novo/assets/js/app.js
+          grep -q 'conectaAbaEM' novo/assets/js/app.js
+          grep -q 'renderPainelConectaEM' novo/assets/js/app.js
+          echo "Critical portal checks passed."
