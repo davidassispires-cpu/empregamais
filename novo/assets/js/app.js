@@ -5814,7 +5814,15 @@ window.addEventListener('load',()=>setTimeout(bindCadastroEmpresaV4EM,50));
  }
  document.addEventListener('DOMContentLoaded',()=>{[0,120,500,1200].forEach(ms=>setTimeout(aplicarHeroReferenciaEM,ms))});
  window.addEventListener('load',()=>setTimeout(aplicarHeroReferenciaEM,100));
- const obs=new MutationObserver(()=>{if(document.getElementById('pagina-home')?.classList.contains('ativa'))aplicarHeroReferenciaEM()});
- document.addEventListener('DOMContentLoaded',()=>{if(document.body)obs.observe(document.body,{childList:true,subtree:true})},{once:true});
+ const obs=new MutationObserver(mudancas=>{
+  const home=document.getElementById('pagina-home');
+  if(!home?.classList.contains('ativa'))return;
+  /* Observa apenas alterações que possam recriar/substituir o hero.
+     Mudanças em cards, modais, cabeçalho e outras páginas não precisam
+     reaplicar a ilustração da Home. */
+  const precisa= mudancas.some(m=>m.target===home||home.contains(m.target));
+  if(precisa)aplicarHeroReferenciaEM();
+ });
+ document.addEventListener('DOMContentLoaded',()=>{const home=document.getElementById('pagina-home');if(home)obs.observe(home,{childList:true,subtree:true})},{once:true});
  window.aplicarHeroReferenciaEM=aplicarHeroReferenciaEM;
 })();
