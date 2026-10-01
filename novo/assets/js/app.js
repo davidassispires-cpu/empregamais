@@ -3323,9 +3323,9 @@ function aplicarLayoutDestaquesDesktopEM(el){
   card.style.setProperty('width','100%','important');
   card.style.setProperty('max-width','none','important');
   card.style.setProperty('min-width','0','important');
-  card.style.setProperty('height',mobile?'auto':tablet?'430px':'440px','important');
-  card.style.setProperty('min-height',mobile?'0':tablet?'430px':'440px','important');
-  card.style.setProperty('max-height',mobile?'none':tablet?'430px':'440px','important');
+  card.style.setProperty('height',mobile?'auto':tablet?'410px':'420px','important');
+  card.style.setProperty('min-height',mobile?'0':tablet?'410px':'420px','important');
+  card.style.setProperty('max-height',mobile?'none':tablet?'410px':'420px','important');
   card.style.setProperty('aspect-ratio','auto','important');
   card.style.setProperty('margin','0','important');
   card.style.setProperty('box-sizing','border-box','important');
@@ -6194,4 +6194,51 @@ window.addEventListener('load',removerAnunciarVagaGratisHeaderEM);
  body #homeLocalPreferidoEM .home-local-btn-ref-em:hover{background:linear-gradient(135deg,#f23f00,#ff5900)!important;box-shadow:0 16px 31px rgba(255,78,7,.35)!important;transform:translateY(-1px)!important}
  @media(max-width:760px){body #homeLocalPreferidoEM{align-items:flex-start!important;gap:14px!important;min-height:0!important;padding:16px!important;flex-wrap:wrap!important}body #homeLocalPreferidoEM .home-local-pin-ref-em{width:62px!important;height:62px!important;min-width:62px!important}body #homeLocalPreferidoEM .home-local-pin-ref-em svg{width:46px!important;height:46px!important}body #homeLocalPreferidoEM .home-local-copy-em{flex:1 1 calc(100% - 80px)!important}body #homeLocalPreferidoEM .home-local-titulo-em b{font-size:16px!important}body #homeLocalPreferidoEM .home-local-copy-em>small{font-size:12px!important}body #homeLocalPreferidoEM .home-local-ref-br-em{display:none!important}body #homeLocalPreferidoEM .home-local-btn-ref-em{flex:1 0 100%!important;width:100%!important;min-width:0!important;height:54px!important;min-height:54px!important;margin-top:2px!important}}
  `;document.head.appendChild(st);
+})();
+
+
+/* EMPREGAI-DESTAQUES-REFERENCIA-PRO-V1 */
+(function(){
+ if(document.getElementById('empregaiDestaquesReferenciaProV1'))return;
+ const st=document.createElement('style');st.id='empregaiDestaquesReferenciaProV1';
+ st.textContent=`
+#listaDestaques{align-items:stretch!important}
+#listaDestaques .portal-vaga-nova{position:relative!important;display:flex!important;flex-direction:column!important;padding:16px 18px 16px!important;border:1px solid #dce8f3!important;border-left:3px solid #1477f8!important;border-radius:16px!important;background:#fff!important;box-shadow:0 9px 24px rgba(18,72,116,.08)!important;color:#123b68!important;overflow:hidden!important}
+#listaDestaques .portal-vaga-nova.urgente{border-left-color:#ff4b32!important}
+#listaDestaques .vaga-destaque-selos-topo{min-height:29px!important;display:flex!important;align-items:center!important;gap:6px!important;margin-bottom:12px!important}
+#listaDestaques .vaga-selo{display:inline-flex!important;align-items:center!important;width:max-content!important;padding:7px 10px!important;border-radius:7px!important;font:800 10px/1 Montserrat,Arial,sans-serif!important;letter-spacing:.01em!important}
+#listaDestaques .destaque-selo{background:#1477f8!important;color:#fff!important}
+#listaDestaques .urgente-selo{background:#ff3150!important;color:#fff!important}
+#listaDestaques .vaga-identidade{display:grid!important;grid-template-columns:58px minmax(0,1fr)!important;gap:12px!important;align-items:center!important;margin:0 0 15px!important}
+#listaDestaques .vaga-logo{width:58px!important;height:58px!important;min-width:58px!important;border:0!important;border-radius:12px!important;object-fit:contain!important;background:#fff!important;padding:3px!important}
+#listaDestaques .vaga-logo-fallback{display:grid!important;place-items:center!important;background:#edf5ff!important;color:#0b4a8f!important;font-weight:850!important}
+#listaDestaques .vaga-identidade-copy h3{margin:0 0 5px!important;color:#082f67!important;font:800 17px/1.22 Montserrat,Arial,sans-serif!important;letter-spacing:-.25px!important;display:-webkit-box!important;-webkit-line-clamp:2!important;-webkit-box-orient:vertical!important;overflow:hidden!important}
+#listaDestaques .vaga-identidade-copy p{margin:0!important;color:#214b75!important;font:650 12px/1.3 Montserrat,Arial,sans-serif!important}
+#listaDestaques .empresa-verificada-card{display:inline-grid!important;place-items:center!important;margin-left:5px!important;width:16px!important;height:16px!important;border-radius:50%!important;background:#1477f8!important;color:#fff!important;font-size:10px!important}
+#listaDestaques .vaga-meta{display:flex!important;flex-wrap:wrap!important;gap:6px!important;margin:0 0 12px!important}
+#listaDestaques .vaga-meta>span{display:inline-flex!important;align-items:center!important;gap:5px!important;padding:7px 9px!important;border-radius:8px!important;background:#f2f6fa!important;color:#294f75!important;font:600 10.5px/1 Montserrat,Arial,sans-serif!important}
+#listaDestaques .meta-ico{font-style:normal!important;color:#0b4a8f!important}
+#listaDestaques .vaga-resumo-area{margin:0 0 12px!important}
+#listaDestaques .vaga-resumo-area>small{display:none!important}
+#listaDestaques .vaga-resumo{margin:0!important;color:#345574!important;font:500 12px/1.48 Montserrat,Arial,sans-serif!important;display:-webkit-box!important;-webkit-line-clamp:3!important;-webkit-box-orient:vertical!important;overflow:hidden!important}
+#listaDestaques .vaga-card-rodape{margin-top:auto!important;padding-top:12px!important;border-top:1px solid #e6eef5!important;display:grid!important;grid-template-columns:1fr!important;gap:10px!important}
+#listaDestaques .vaga-rodape-salario{display:block!important}
+#listaDestaques .vaga-rodape-salario small{display:none!important}
+#listaDestaques .salario-card{display:block!important;color:#079447!important;font:800 15px/1.25 Montserrat,Arial,sans-serif!important}
+#listaDestaques .data-card-em{display:flex!important;align-items:center!important;gap:6px!important;color:#365b7c!important;font:600 10.5px/1.2 Montserrat,Arial,sans-serif!important}
+#listaDestaques .data-card-em:before{content:'◷';color:#0b4a8f;font-size:14px}
+#listaDestaques .vaga-ver-btn{width:100%!important;min-height:45px!important;border:0!important;border-radius:10px!important;background:linear-gradient(135deg,#ff4a0b,#ff6508)!important;color:#fff!important;font:800 13px/1 Montserrat,Arial,sans-serif!important;box-shadow:0 8px 18px rgba(255,83,9,.18)!important;cursor:pointer!important}
+#listaDestaques .vaga-ver-btn:hover{transform:translateY(-1px)!important;box-shadow:0 10px 22px rgba(255,83,9,.25)!important}
+.destaques-mobile-seta{border:1px solid #dbe8f3!important;background:#fff!important;color:#0b5fca!important;box-shadow:0 6px 16px rgba(20,77,123,.10)!important}
+.destaques-mobile-ponto{background:#d8e4ef!important}
+.destaques-mobile-ponto.ativo{background:#ff5a0a!important}
+@media(max-width:700px){
+ #listaDestaques .portal-vaga-nova{padding:14px!important;border-radius:16px!important}
+ #listaDestaques .vaga-identidade{grid-template-columns:52px minmax(0,1fr)!important}
+ #listaDestaques .vaga-logo{width:52px!important;height:52px!important;min-width:52px!important}
+ #listaDestaques .vaga-identidade-copy h3{font-size:16px!important}
+ #listaDestaques .vaga-resumo{-webkit-line-clamp:2!important}
+}
+`;
+ document.head.appendChild(st);
 })();
