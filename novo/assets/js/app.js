@@ -4788,7 +4788,9 @@ body.recruta-modal-aberto{overflow:hidden!important}
 
 /* EMPREGAMAIS — RECUPERAÇÃO DE VAGAS E AÇÕES V8 */
 (function(){
-  const carregarVagasSeguro = async function(){
+  let carregarVagasSeguroEmVooEM=null;
+  let carregarVagasSeguroUltimaEM=0;
+  const carregarVagasSeguroBaseEM = async function(){
     const locais = Array.isArray(ler('empregaMaisVagas')) ? ler('empregaMaisVagas') : [];
     const mapa = new Map();
     locais.forEach(v=>{if(v?.id) mapa.set(String(v.id),v)});
@@ -4820,6 +4822,17 @@ body.recruta-modal-aberto{overflow:hidden!important}
       console.warn('+ Empregos: cache local de vagas indisponível; usando memória.',e);
     }
     return consolidado;
+  };
+  const carregarVagasSeguro = function(forcar){
+    const agora=Date.now();
+    if(carregarVagasSeguroEmVooEM)return carregarVagasSeguroEmVooEM;
+    if(!forcar && carregarVagasSeguroUltimaEM && (agora-carregarVagasSeguroUltimaEM)<30000 && Array.isArray(sbVagasCacheEM) && sbVagasCacheEM.length){
+      return Promise.resolve(sbVagasCacheEM);
+    }
+    carregarVagasSeguroEmVooEM=carregarVagasSeguroBaseEM()
+      .then(vs=>{carregarVagasSeguroUltimaEM=Date.now();return vs})
+      .finally(()=>{carregarVagasSeguroEmVooEM=null});
+    return carregarVagasSeguroEmVooEM;
   };
   window.sbCarregarVagasEM=carregarVagasSeguro;
   sbCarregarVagasEM=carregarVagasSeguro;
@@ -4900,6 +4913,8 @@ body.recruta-modal-aberto{overflow:hidden!important}
 
   document.addEventListener('DOMContentLoaded',()=>{
     setTimeout(()=>{
+      /* A carga inicial já é disparada pelo bootstrap principal. Aqui apenas
+         reutilizamos o cache/promise existente para evitar uma segunda leitura. */
       carregarVagasSeguro().then(()=>{
         try{
           if(papelAtual()==='empresa')renderizarPainelEmpresa();
