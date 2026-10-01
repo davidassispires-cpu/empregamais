@@ -74,6 +74,22 @@ function likelyJob(url: string, title: string, provider: string, sourceHost: str
     /\b(vaga|job|position|oportunidade)\b/i.test(t);
 }
 
+function solidesPageUrl(source:URL,page:number){const u=new URL(source.toString());if(page<=1){u.searchParams.delete("page");return u.toString()}u.searchParams.set("page",String(page));return u.toString()}
+function collectSolidesJobUrls(html:string,source:URL){
+ const map=new Map<string,{url:string,title:string}>();
+ const patterns=[/href\\s*=\\s*["']([^"']*\\/vaga\\/\\d+[^"']*)["']/gi,/["'](\\/vaga\\/\\d+(?:\\/[^"'?#<]*)?(?:\\?[^"'<>]*)?)["']/gi,/https?:\\?\\/\\?\\/[^"'<>\\s]*vagas\\.solides\\.com\\.br\\?\\/vaga\\?\\/\\d+[^"'<>\\s]*/gi];
+ for(const re of patterns){let m:RegExpExecArray|null;while((m=re.exec(html))){try{const raw=(m[1]||m[0]).replace(/\\\\\\//g,"/").replace(/&amp;/g,"&");const u=new URL(raw,source);u.hash="";if(!/\\/vaga\\/\\d+/i.test(u.pathname))continue;map.set(u.toString(),{url:u.toString(),title:""});}catch{}}}
+ for(const a of collectAnchors(html,source,"solides")){try{const u=new URL(a.url);if(/\\/vaga\\/\\d+/i.test(u.pathname))map.set(u.toString(),a)}catch{}}
+ return [...map.values()];
+}
+async function extractSolidesJobs(source:URL){
+ const map=new Map<string,{url:string,title:string}>();let empty=0;
+ for(let p=1;p<=60;p++){try{const r=await fetchText(solidesPageUrl(source,p),18000);const found=collectSolidesJobUrls(r.text,source);const before=map.size;for(const x of found)map.set(x.url,x);if(!found.length||map.size===before)empty++;else empty=0;if(empty>=2&&p>=3)break}catch{break}}
+ const base=[...map.values()].slice(0,600),jobs:any[]=[];
+ for(let i=0;i<base.length;i+=8)jobs.push(...await Promise.all(base.slice(i,i+8).map(x=>enrichJob(x,"solides"))));
+ return {jobs,total:jobs.length};
+}
+
 function randstadPageUrl(source:URL,page:number){const u=new URL(source.toString());if(page<=1){u.searchParams.delete("page");return u.toString()}u.searchParams.set("page",String(page));return u.toString()}
 function parseRandstadTotal(html:string){const text=stripTags(html);const m=text.match(/([\d.]+)\s+vagas?\s+encontradas?/i)||text.match(/pesquisar\s+([\d.]+)\s+vagas?/i);return m?Number(String(m[1]).replace(/\./g,""))||0:0}
 async function extractRandstadJobs(source:URL){
@@ -363,6 +379,11 @@ async function extractSource(rawUrl:string, requestedProvider:string){
   if(!/^https?:$/.test(source.protocol)||unsafeHost(source.hostname))throw new Error("url_not_allowed");
   const detected=providerFromHost(source.hostname);
   const provider=requestedProvider&&requestedProvider!=="auto"&&requestedProvider!=="portal"?requestedProvider:detected;
+
+  if(provider==="solides"){
+    const s=await extractSolidesJobs(source);
+    return {provider:"solides",jobs:s.jobs,allowClose:s.jobs.length>0,extraction:"solides_pages",sourceTotal:s.total};
+  }
 
   if(provider==="randstad"){
     const r=await extractRandstadJobs(source);
