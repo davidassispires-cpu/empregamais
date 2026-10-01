@@ -1935,11 +1935,29 @@ function prioridadeLocalVagaEM(v){
  if(remoto)return 4;
  return 5
 }
+function aplicarVisualLocalLaranjaEM(bar){
+ if(!bar)return;
+ const set=(el,p,v)=>{if(el)el.style.setProperty(p,v,'important')};
+ [['display','flex'],['align-items','center'],['gap','26px'],['min-height','124px'],['padding','18px 28px'],['border','1px solid #d9eaf7'],['border-left','5px solid #ff5a0a'],['border-radius','18px'],['background','linear-gradient(105deg,#fff 0%,#fbfdff 55%,#eef8ff 100%)'],['box-shadow','0 12px 30px rgba(25,92,139,.11)'],['overflow','hidden']].forEach(x=>set(bar,x[0],x[1]));
+ const ico=bar.querySelector('.home-local-pin-ref-em');
+ [['display','flex'],['align-items','center'],['justify-content','center'],['width','82px'],['height','82px'],['min-width','82px'],['border','1px solid #ffc49b'],['border-radius','18px'],['background','linear-gradient(145deg,#fff6ed,#ffe9d7)'],['box-shadow','0 7px 18px rgba(255,86,8,.10)']].forEach(x=>set(ico,x[0],x[1]));
+ const svg=ico?.querySelector('svg');set(svg,'width','60px');set(svg,'height','60px');
+ set(ico?.querySelector('.pin-body'),'fill','#ff5108');set(ico?.querySelector('.pin-body'),'stroke','none');
+ set(ico?.querySelector('.pin-hole'),'fill','#fff');set(ico?.querySelector('.pin-hole'),'stroke','none');
+ set(ico?.querySelector('.pin-ring-1'),'fill','#ffd5b8');set(ico?.querySelector('.pin-ring-2'),'fill','#ffb47e');
+ const copy=bar.querySelector('.home-local-copy-em');set(copy,'flex','1 1 auto');
+ const titulo=bar.querySelector('.home-local-titulo-em b');set(titulo,'color','#0b3f77');set(titulo,'font-size','21px');set(titulo,'font-weight','800');
+ const selo=bar.querySelector('.home-local-status-em');[['background','#fff0e4'],['color','#f05a14'],['border','0'],['border-radius','999px'],['padding','8px 14px'],['font-weight','800']].forEach(x=>set(selo,x[0],x[1]));
+ const texto=bar.querySelector('.home-local-copy-em>small');set(texto,'color','#3b5e78');set(texto,'font-size','14px');set(texto,'line-height','1.48');
+ const btn=bar.querySelector('.home-local-btn-ref-em');
+ [['display','inline-flex'],['align-items','center'],['justify-content','center'],['gap','13px'],['min-width','292px'],['height','64px'],['min-height','64px'],['padding','0 25px'],['border','0'],['border-radius','15px'],['background','linear-gradient(135deg,#ff4708,#ff6909)'],['color','#fff'],['box-shadow','0 13px 27px rgba(255,78,7,.29)']].forEach(x=>set(btn,x[0],x[1]));
+ bar.querySelectorAll('.home-local-btn-ref-em *').forEach(el=>set(el,'color','#fff'));
+}
 function atualizarBarraLocalHomeEM(){
  const bar=document.getElementById('homeLocalPreferidoEM');if(!bar)return;
  const pref=localPreferidoCandidatoEM();
  const ico='<span class="home-local-icone-em" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 21s7-6.2 7-12a7 7 0 1 0-14 0c0 5.8 7 12 7 12Z"/><circle cx="12" cy="9" r="2.5"/></svg></span>';
- if(!pref){bar.innerHTML='<span class="home-local-icone-em home-local-pin-ref-em" aria-hidden="true"><svg viewBox="0 0 64 64"><ellipse cx="32" cy="52" rx="22" ry="7" class="pin-ring pin-ring-1"/><ellipse cx="32" cy="52" rx="14" ry="4" class="pin-ring pin-ring-2"/><path class="pin-body" d="M32 5c-11.6 0-21 9.4-21 21 0 15.4 21 31 21 31s21-15.6 21-31C53 14.4 43.6 5 32 5Z"/><circle cx="32" cy="26" r="8" class="pin-hole"/></svg></span><div class="home-local-copy-em"><div class="home-local-titulo-em"><b>Encontre oportunidades perto de você</b><span class="home-local-status-em">⌖&nbsp; LOCALIZAÇÃO</span></div><small>Veja primeiro as vagas da sua cidade e região. Não é necessário entrar<br class="home-local-ref-br-em"> para buscar oportunidades próximas.</small></div><button class="home-local-btn-em home-local-btn-ref-em" type="button" onclick="document.getElementById(\'buscaCidade\')?.focus()"><span class="home-local-send-em">➤</span><strong>Ver vagas perto de mim</strong><span class="home-local-arrow-em">→</span></button>';return}
+ if(!pref){bar.innerHTML='<span class="home-local-icone-em home-local-pin-ref-em" aria-hidden="true"><svg viewBox="0 0 64 64"><ellipse cx="32" cy="52" rx="22" ry="7" class="pin-ring pin-ring-1"/><ellipse cx="32" cy="52" rx="14" ry="4" class="pin-ring pin-ring-2"/><path class="pin-body" d="M32 5c-11.6 0-21 9.4-21 21 0 15.4 21 31 21 31s21-15.6 21-31C53 14.4 43.6 5 32 5Z"/><circle cx="32" cy="26" r="8" class="pin-hole"/></svg></span><div class="home-local-copy-em"><div class="home-local-titulo-em"><b>Encontre oportunidades perto de você</b><span class="home-local-status-em">⌖&nbsp; LOCALIZAÇÃO</span></div><small>Veja primeiro as vagas da sua cidade e região. Não é necessário entrar<br class="home-local-ref-br-em"> para buscar oportunidades próximas.</small></div><button class="home-local-btn-em home-local-btn-ref-em" type="button" onclick="document.getElementById(\'buscaCidade\')?.focus()"><span class="home-local-send-em">➤</span><strong>Ver vagas perto de mim</strong><span class="home-local-arrow-em">→</span></button>';aplicarVisualLocalLaranjaEM(bar);return}
  const local=esc(pref.cidade)+(pref.uf?' - '+esc(pref.uf):'');
  bar.innerHTML=ico+'<div class="home-local-copy-em"><div class="home-local-titulo-em"><b>Vagas em '+local+' e região</b><span class="home-local-status-em ativo"><i></i> LOCALIZAÇÃO ATIVA</span></div><small>Estamos priorizando oportunidades próximas ao seu perfil, sem ocultar vagas de todo o Brasil.</small></div><button class="home-local-btn-em" type="button" onclick="document.getElementById(\'buscaCidade\')?.focus()">Alterar localização</button>'
 }
