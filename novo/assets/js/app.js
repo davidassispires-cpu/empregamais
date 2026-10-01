@@ -3224,7 +3224,9 @@ function empresaPainelIniciarAutoRefreshEM(){
  if(empresaPainelAutoRefreshTimerEM)clearInterval(empresaPainelAutoRefreshTimerEM);
  empresaPainelAssinaturaEM='';
  setTimeout(()=>empresaPainelAtualizarSemF5EM(true),300);
- empresaPainelAutoRefreshTimerEM=setInterval(()=>empresaPainelAtualizarSemF5EM(false),5000)
+ /* Blindagem: o painel não precisa consultar o Supabase a cada 5 segundos.
+    Mantemos atualização periódica leve; ações explícitas e retorno à aba continuam atualizando imediatamente. */
+ empresaPainelAutoRefreshTimerEM=setInterval(()=>empresaPainelAtualizarSemF5EM(false),60000)
 }
 document.addEventListener('visibilitychange',()=>{if(!document.hidden&&empresaPainelEstaAbertoEM())empresaPainelAtualizarSemF5EM(false)});
 const _abrirRotaAutoRefreshEM=abrirRota;
