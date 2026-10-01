@@ -77,9 +77,11 @@ function likelyJob(url: string, title: string, provider: string, sourceHost: str
 function solidesPageUrl(source:URL,page:number){const u=new URL(source.toString());if(page<=1){u.searchParams.delete("page");return u.toString()}u.searchParams.set("page",String(page));return u.toString()}
 function collectSolidesJobUrls(html:string,source:URL){
  const map=new Map<string,{url:string,title:string}>();
- const patterns=[/href\\s*=\\s*["']([^"']*\\/vaga\\/\\d+[^"']*)["']/gi,/["'](\\/vaga\\/\\d+(?:\\/[^"'?#<]*)?(?:\\?[^"'<>]*)?)["']/gi,/https?:\\?\\/\\?\\/[^"'<>\\s]*vagas\\.solides\\.com\\.br\\?\\/vaga\\?\\/\\d+[^"'<>\\s]*/gi];
- for(const re of patterns){let m:RegExpExecArray|null;while((m=re.exec(html))){try{const raw=(m[1]||m[0]).replace(/\\\\\\//g,"/").replace(/&amp;/g,"&");const u=new URL(raw,source);u.hash="";if(!/\\/vaga\\/\\d+/i.test(u.pathname))continue;map.set(u.toString(),{url:u.toString(),title:""});}catch{}}}
- for(const a of collectAnchors(html,source,"solides")){try{const u=new URL(a.url);if(/\\/vaga\\/\\d+/i.test(u.pathname))map.set(u.toString(),a)}catch{}}
+ const decoded=String(html).replace(/\\\\\\//g,"/").replace(/&amp;/g,"&");
+ const re=/\\/vaga\\/\\d+(?:\\/[^"'<\\s?#]*)?(?:\\?[^"'<\\s]*)?/gi;
+ let m:RegExpExecArray|null;
+ while((m=re.exec(decoded))){try{const u=new URL(m[0],source);u.hash="";map.set(u.toString(),{url:u.toString(),title:""});}catch{}}
+ for(const x of collectAnchors(html,source,"solides")){try{const u=new URL(x.url);if(/\\/vaga\\/\\d+/i.test(u.pathname))map.set(u.toString(),x)}catch{}}
  return [...map.values()];
 }
 async function extractSolidesJobs(source:URL){
