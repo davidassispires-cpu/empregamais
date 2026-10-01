@@ -77,11 +77,14 @@ function likelyJob(url: string, title: string, provider: string, sourceHost: str
 function solidesPageUrl(source:URL,page:number){const u=new URL(source.toString());if(page<=1){u.searchParams.delete("page");return u.toString()}u.searchParams.set("page",String(page));return u.toString()}
 function collectSolidesJobUrls(html:string,source:URL){
  const map=new Map<string,{url:string,title:string}>();
- const decoded=String(html).replace(/\\\\\\//g,"/").replace(/&amp;/g,"&");
- const re=/\\/vaga\\/\\d+(?:\\/[^"'<\\s?#]*)?(?:\\?[^"'<\\s]*)?/gi;
- let m:RegExpExecArray|null;
- while((m=re.exec(decoded))){try{const u=new URL(m[0],source);u.hash="";map.set(u.toString(),{url:u.toString(),title:""});}catch{}}
- for(const x of collectAnchors(html,source,"solides")){try{const u=new URL(x.url);if(/\\/vaga\\/\\d+/i.test(u.pathname))map.set(u.toString(),x)}catch{}}
+ const decoded=String(html).split("\\\\/").join("/").replace(/&amp;/g,"&");
+ const chunks=decoded.split("/vaga/");
+ for(let i=1;i<chunks.length;i++){
+   const tail=chunks[i]||"", id=(tail.match(/^([0-9]+)/)||[])[1]; if(!id)continue;
+   const suffix=(tail.slice(id.length).split(/["'<\\s#]/)[0]||"").slice(0,500);
+   try{const u=new URL("/vaga/"+id+suffix,source);u.hash="";map.set(u.toString(),{url:u.toString(),title:""});}catch{}
+ }
+ for(const x of collectAnchors(html,source,"solides")){try{const u=new URL(x.url);if(u.pathname.indexOf("/vaga/")>=0)map.set(u.toString(),x)}catch{}}
  return [...map.values()];
 }
 async function extractSolidesJobs(source:URL){
