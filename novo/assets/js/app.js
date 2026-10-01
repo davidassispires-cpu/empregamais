@@ -267,7 +267,7 @@ function assinarPremiumCandidatoEM(periodo='mensal'){const opcoes={mensal:{nome:
 /* EMPREGOS-CONECTA-COMO-FUNCIONA-V1 */
 function garantirAbaConectaComoFuncionaPersistenteEM(){
  if(window.__comoConectaObserverEM)return;
- const alvo=document.body;
+ const alvo=document.getElementById('pagina-como-funciona');
  if(!alvo)return;
  let timer=null;
  const tentar=()=>{
@@ -437,7 +437,10 @@ function iniciarAcessoConectaHeaderEM(){
 document.addEventListener('DOMContentLoaded',()=>setTimeout(iniciarAcessoConectaHeaderEM,80),{once:true});
 window.addEventListener('load',()=>setTimeout(iniciarAcessoConectaHeaderEM,120),{once:true});
 const observaHeaderConectaEM=new MutationObserver(()=>{if(!document.getElementById('headerConectaLoginEM'))setTimeout(garantirAcessoConectaHeaderEM,80)});
-setTimeout(()=>{if(document.body)observaHeaderConectaEM.observe(document.body,{childList:true,subtree:true})},150);
+setTimeout(()=>{
+ const header=document.querySelector('header,.header,.topo,nav');
+ if(header)observaHeaderConectaEM.observe(header,{childList:true,subtree:true});
+},150);
 setTimeout(iniciarAcessoConectaHeaderEM,300);
 
 /* EMPREGOS-CONECTA-LOGIN-V1 */
@@ -3088,13 +3091,8 @@ function abrirMetricaEmpresa(tipo){
 
 
 /* EMPREGAMAIS-VAGAS-SYNC-CONTEXTO-V4 */
-async function sbCarregarVagasEmpresaAtualEM(){
- const t=await sbGarantirSessaoEM();if(!t)throw new Error('Sessão da empresa expirada.');
- const u=await sbUsuarioAtualEM();
- const a=await sbJsonEM(EMPREGAMAIS_SUPABASE_URL+'/rest/v1/vagas?select=*&user_id=eq.'+encodeURIComponent(u.id)+'&order=criado_em.desc',{method:'GET',headers:sbHeadersEM(t)});
- const proprias=(Array.isArray(a)?a:[]).map(sbMapVagaEM),publicas=ler('empregaMaisVagas').filter(v=>v.status==='aprovada'&&!proprias.some(p=>p.id===v.id));
- sbVagasCacheEM=[...proprias,...publicas];gravar('empregaMaisVagas',sbVagasCacheEM);return proprias
-}
+/* Carregador legado V4 removido: a implementação EMPRESA-EQUIPE-V6 abaixo
+   é a fonte única para vagas da empresa e consolida empresa_id, usuário e CNPJ. */
 const _renderizarPainelEmpresaSyncV4=renderizarPainelEmpresa;
 renderizarPainelEmpresa=async function(){
  const box=$('#empresaVagasRecentes');if(box)box.innerHTML='<div class="vagas-vazio">Carregando suas vagas...</div>';
