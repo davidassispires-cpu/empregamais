@@ -634,11 +634,17 @@ async function conectaMetricasEmpresaEM(empresaId=''){
   if(!id){const emp=await sbBuscarMinhaEmpresaEM();id=String(emp?.id||'').trim()}
   if(!id)return {visualizacoes:0,cliques:0,enviados:0,conversao:0,porVaga:{}};
   const desde=new Date(Date.now()-30*86400000).toISOString();
+  // Métricas pertencem às vagas da integração Conecta atualmente ativa,
+  // não a todo o histórico da empresa. Isso impede herdar números de uma
+  // origem anterior quando a empresa troca de portal/ATS.
+  const vagasAtuais=conectaVagasEmpresaEM();
+  const idsAtuais=new Set(vagasAtuais.map(v=>String(v.id||'')).filter(conectaUuidValidoEM));
+  if(!idsAtuais.size)return {visualizacoes:0,cliques:0,enviados:0,conversao:0,porVaga:{}};
   const rows=await sbJsonEM(
    EMPREGAMAIS_SUPABASE_URL+'/rest/v1/conecta_metricas_eventos?select=vaga_id,evento,criado_em&empresa_id=eq.'+encodeURIComponent(id)+'&criado_em=gte.'+encodeURIComponent(desde),
    {method:'GET',headers:sbHeadersEM(token)}
   );
-  const lista=Array.isArray(rows)?rows:[],porVaga={};
+  const lista=(Array.isArray(rows)?rows:[]).filter(x=>idsAtuais.has(String(x.vaga_id||''))),porVaga={};
   let visualizacoes=0,cliques=0,enviados=0;
   lista.forEach(x=>{
    const id=String(x.vaga_id||'');if(!porVaga[id])porVaga[id]={visualizacoes:0,cliques:0,enviados:0};
