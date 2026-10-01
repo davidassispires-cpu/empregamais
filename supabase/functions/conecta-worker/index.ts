@@ -89,7 +89,7 @@ function collectSolidesJobUrls(html:string,source:URL){
 }
 async function extractSolidesJobs(source:URL){
  const map=new Map<string,{url:string,title:string}>();let empty=0;
- for(let p=1;p<=60;p++){try{const r=await fetchText(solidesPageUrl(source,p),18000);const found=collectSolidesJobUrls(r.text,source);const before=map.size;for(const x of found)map.set(x.url,x);if(!found.length||map.size===before)empty++;else empty=0;if(empty>=2&&p>=3)break}catch{break}}
+ for(let p=1;p<=60;p++){try{const r=await fetchText(solidesPageUrl(source,p),18000,"Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)");const found=collectSolidesJobUrls(r.text,source);const before=map.size;for(const x of found)map.set(x.url,x);if(!found.length||map.size===before)empty++;else empty=0;if(empty>=2&&p>=3)break}catch{break}}
  const base=[...map.values()].slice(0,600),jobs:any[]=[];
  for(let i=0;i<base.length;i+=8)jobs.push(...await Promise.all(base.slice(i,i+8).map(x=>enrichJob(x,"solides"))));
  return {jobs,total:jobs.length};
@@ -331,7 +331,7 @@ async function sha256(text:string){
   return [...new Uint8Array(hash)].map(b=>b.toString(16).padStart(2,"0")).join("");
 }
 
-async function fetchText(url:string, timeoutMs=15000){
+async function fetchText(url:string, timeoutMs=15000, userAgent="Mozilla/5.0 (+Empregos Conecta; automated-sync)"){
   const controller=new AbortController();
   const timer=setTimeout(()=>controller.abort(),timeoutMs);
   try{
@@ -339,7 +339,7 @@ async function fetchText(url:string, timeoutMs=15000){
       redirect:"follow",
       signal:controller.signal,
       headers:{
-        "User-Agent":"Mozilla/5.0 (+Empregos Conecta; automated-sync)",
+        "User-Agent":userAgent,
         "Accept":"text/html,application/xhtml+xml,application/json;q=0.9,*/*;q=0.8"
       }
     });
