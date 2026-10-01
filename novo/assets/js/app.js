@@ -4078,6 +4078,8 @@ async function sbRestaurarSessaoEmpresaEM(){
  const token=await sbGarantirSessaoEM();if(!token)return false;
  try{
   const u=await sbUsuarioAtualEM(),emp=await sbBuscarMinhaEmpresaEM();if(!emp?.id)return false;
+  /* Uma resposta iniciada antes do logout não pode reconstruir a sessão. */
+  if(localStorage.getItem('empregaMaisLogoutBloqueio')==='1'||sessionStorage.getItem('empregaMaisLogoutBloqueio')==='1')return false;
   const d=sbEmpresaParaLocalEM(emp,'');sbSalvarEmpresaLocalEM(d);
   sessionStorage.setItem('empregaMaisPapel','empresa');localStorage.setItem('empregaMaisPapelPersistido','empresa');sessionStorage.setItem('empresaNome',d.nome||'Empresa');sessionStorage.setItem('empresaCnpj',d.cnpj||'');
   sessionStorage.setItem('empresaSupabaseAuthUserId',u.id||'');sessionStorage.setItem('empresaSupabaseUserId',emp.user_id||'');sessionStorage.setItem('empresaSupabaseEmpresaId',emp.id||'');
@@ -4134,6 +4136,8 @@ async function sbRestaurarSessaoCandidatoEM(){
  let remoto=null;
  try{remoto=await sbBuscarCandidatoCloudEM(token)}catch(e){return false}
  if(!remoto?.user_id)return false;
+ /* Evita que uma restauração assíncrona terminada após o logout reative o candidato. */
+ if(localStorage.getItem('empregaMaisLogoutBloqueio')==='1'||sessionStorage.getItem('empregaMaisLogoutBloqueio')==='1')return false;
  const cloud=sbMapPerfilCandidatoCloudEM(remoto,{});
  sbSalvarCandidatoLocalEM(cloud);
  const email=String(cloud.email||"").toLowerCase();
