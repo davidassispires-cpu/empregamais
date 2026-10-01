@@ -4792,7 +4792,7 @@ body.recruta-modal-aberto{overflow:hidden!important}
     const locais = Array.isArray(ler('empregaMaisVagas')) ? ler('empregaMaisVagas') : [];
     const mapa = new Map();
     locais.forEach(v=>{if(v?.id) mapa.set(String(v.id),v)});
-    const req=[sbJsonEM(EMPREGAMAIS_SUPABASE_URL+'/rest/v1/vagas?select=*&status=eq.aprovada&order=criado_em.desc',{method:'GET',headers:sbHeadersEM()}).catch(()=>[])];
+    const req=[sbJsonEM(EMPREGAMAIS_SUPABASE_URL+'/rest/v1/vagas?select=id,empresa_id,empresa,empresa_cnpj,cargo,area,contrato,modalidade,cep,estado,cidade,data_encerramento,escolaridade,experiencia,jornada,pcd,salario,salario_max,salario_combinar,horario_entrada,horario_saida,descricao,requisitos,beneficios,beneficios_lista,beneficios_outros,sobre_empresa,senior50,confidencial,destaque,urgente,status,criado_em,editado_em,destaque_ate,logo,latitude,longitude,candidatura_tipo,candidatura_email,candidatura_whatsapp,candidatura_link&status=eq.aprovada&order=criado_em.desc',{method:'GET',headers:sbHeadersEM()}).catch(()=>[])];
     const token=sbTokenEM();
     if(token) req.push(sbUsuarioAtualEM().then(u=>{
       if(u?.id) sessionStorage.setItem('empresaSupabaseUserId',u.id);
