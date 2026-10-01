@@ -54,6 +54,7 @@ function providerFromHost(host: string) {
   if (h.includes("greenhouse.io")) return "greenhouse";
   if (h.includes("lever.co")) return "lever";
   if (h === "ai.yapp.rec.br" || h.endsWith(".yapp.rec.br")) return "yapp";
+  if (h === "randstad.com.br" || h.endsWith(".randstad.com.br")) return "randstad";
   return "generic";
 }
 
@@ -71,6 +72,19 @@ function likelyJob(url: string, title: string, provider: string, sourceHost: str
   }
   return /\/(vaga|vagas|job|jobs|position|positions|opening|openings|opportunity|oportunidade|oportunidades)\b/i.test(u) ||
     /\b(vaga|job|position|oportunidade)\b/i.test(t);
+}
+
+function randstadPageUrl(source:URL,page:number){const u=new URL(source.toString());if(page<=1){u.searchParams.delete("page");return u.toString()}u.searchParams.set("page",String(page));return u.toString()}
+function parseRandstadTotal(html:string){const text=stripTags(html);const m=text.match(/([\d.]+)\s+vagas?\s+encontradas?/i)||text.match(/pesquisar\s+([\d.]+)\s+vagas?/i);return m?Number(String(m[1]).replace(/\./g,""))||0:0}
+async function extractRandstadJobs(source:URL){
+ const first=await fetchText(randstadPageUrl(source,1),18000),total=parseRandstadTotal(first.text),map=new Map<string,{url:string,title:string}>();
+ const add=(html:string)=>{for(const a of collectAnchors(html,source,"randstad")){try{const u=new URL(a.url);if(u.hostname.endsWith("randstad.com.br")&&/\/vagas\/[^/?#]+_[^/?#]+\/?$/i.test(u.pathname))map.set(u.toString(),a)}catch{}}};
+ add(first.text);
+ const perPage=Math.max(1,map.size||10),pages=Math.min(130,Math.max(1,Math.ceil((total||perPage)/perPage)));
+ for(let p=2;p<=pages;p++){try{const r=await fetchText(randstadPageUrl(source,p),18000);const before=map.size;add(r.text);if(map.size===before&&p>3)break}catch{break}}
+ const base=[...map.values()].slice(0,1300),jobs:any[]=[];
+ for(let i=0;i<base.length;i+=8)jobs.push(...await Promise.all(base.slice(i,i+8).map(x=>enrichJob(x,"randstad"))));
+ return {jobs,total:total||jobs.length};
 }
 
 function collectAnchors(html: string, base: URL, provider: string) {
@@ -349,6 +363,11 @@ async function extractSource(rawUrl:string, requestedProvider:string){
   if(!/^https?:$/.test(source.protocol)||unsafeHost(source.hostname))throw new Error("url_not_allowed");
   const detected=providerFromHost(source.hostname);
   const provider=requestedProvider&&requestedProvider!=="auto"&&requestedProvider!=="portal"?requestedProvider:detected;
+
+  if(provider==="randstad"){
+    const r=await extractRandstadJobs(source);
+    return {provider:"randstad",jobs:r.jobs,allowClose:r.jobs.length>0,extraction:"randstad_pages",sourceTotal:r.total};
+  }
 
   if(provider==="yapp"){
     const y=await extractYappJobs(source);
