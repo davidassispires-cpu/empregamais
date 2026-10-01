@@ -6150,3 +6150,20 @@ window.addEventListener('load',removerAnunciarVagaGratisHeaderEM);
 
 
 
+
+/* EMPREGAI-LOCAL-COR-LARANJA-V1 */
+(function(){
+ if(document.getElementById('empregaiLocalCorLaranjaV1'))return;
+ const st=document.createElement('style');
+ st.id='empregaiLocalCorLaranjaV1';
+ st.textContent=`
+ #homeLocalPreferidoEM{border-left-color:#ff5a0a!important}
+ #homeLocalPreferidoEM .home-local-icone-em{background:#fff1e7!important;border-color:#ffc69f!important;color:#ff5a0a!important}
+ #homeLocalPreferidoEM .home-local-icone-em svg{stroke:#ff5a0a!important}
+ #homeLocalPreferidoEM .home-local-status-em{background:#fff0e5!important;color:#f05a14!important;border-color:#ffc69f!important}
+ #homeLocalPreferidoEM .home-local-status-em.ativo{background:#fff0e5!important;color:#f05a14!important;border-color:#ffc69f!important}
+ #homeLocalPreferidoEM .home-local-btn-em{background:linear-gradient(135deg,#ff4b0a,#ff6909)!important;border-color:#ff4b0a!important;color:#fff!important;box-shadow:0 8px 20px rgba(255,82,8,.24)!important}
+ #homeLocalPreferidoEM .home-local-btn-em:hover{background:linear-gradient(135deg,#f04400,#ff5900)!important;border-color:#f04400!important;color:#fff!important}
+ `;
+ document.head.appendChild(st);
+})();
