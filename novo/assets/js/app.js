@@ -4870,23 +4870,25 @@ body.recruta-modal-aberto{overflow:hidden!important}
 
   async function carregarEmpresaSeguro(){
     const locais=Array.isArray(ler('empregaMaisVagas'))?ler('empregaMaisVagas'):[];
-    const cnpj=nums(sessionStorage.getItem('empresaCnpj')||'');
-    let uid=String(sessionStorage.getItem('empresaSupabaseUserId')||''),remotas=[];
+    let cnpj=nums(sessionStorage.getItem('empresaCnpj')||''),uid=String(sessionStorage.getItem('empresaSupabaseUserId')||''),empresaId=String(sessionStorage.getItem('empresaSupabaseEmpresaId')||''),remotas=[];
     try{
       const token=await sbGarantirSessaoEM();
       if(token){
-        const u=await sbUsuarioAtualEM();
-        uid=String(u?.id||uid);
-        if(uid)sessionStorage.setItem('empresaSupabaseUserId',uid);
-        const a=await sbJsonEM(EMPREGAMAIS_SUPABASE_URL+'/rest/v1/vagas?select=*&user_id=eq.'+encodeURIComponent(uid)+'&order=criado_em.desc',{method:'GET',headers:sbHeadersEM(token)});
-        remotas=Array.isArray(a)?a.map(sbMapVagaEM).filter(Boolean):[];
+        const emp=await sbBuscarMinhaEmpresaEM();
+        if(emp?.id){
+          empresaId=String(emp.id);uid=String(emp.user_id||uid);cnpj=nums(emp.cnpj||cnpj);
+          sessionStorage.setItem('empresaSupabaseEmpresaId',empresaId);
+          if(uid)sessionStorage.setItem('empresaSupabaseUserId',uid);
+          const a=await sbJsonEM(EMPREGAMAIS_SUPABASE_URL+'/rest/v1/vagas?select=*&empresa_id=eq.'+encodeURIComponent(empresaId)+'&order=criado_em.desc',{method:'GET',headers:sbHeadersEM(token)});
+          remotas=Array.isArray(a)?a.map(sbMapVagaEM).filter(Boolean):[];
+        }
       }
     }catch(e){console.warn('+ Empregos: usando vagas locais.',e)}
     const empresaMap=new Map();
     locais.forEach(v=>{
       if(!v?.id)return;
-      const vc=nums(v.empresaCnpj||v.cnpj||''),vu=String(v.userId||v.user_id||'');
-      if((uid&&vu===uid)||(cnpj&&vc===cnpj))empresaMap.set(String(v.id),v);
+      const ve=String(v.empresaId||v.empresa_id||''),vc=nums(v.empresaCnpj||v.cnpj||''),vu=String(v.userId||v.user_id||'');
+      if((empresaId&&ve===empresaId)||(uid&&vu===uid)||(cnpj&&vc===cnpj))empresaMap.set(String(v.id),v);
     });
     remotas.forEach(v=>empresaMap.set(String(v.id),v));
     const geral=new Map((Array.isArray(sbVagasCacheEM)?sbVagasCacheEM:[]).filter(v=>v?.id).map(v=>[String(v.id),v]));
