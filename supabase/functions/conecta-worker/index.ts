@@ -88,11 +88,42 @@ function collectSolidesJobUrls(html:string,source:URL){
  return [...map.values()];
 }
 async function extractSolidesJobs(source:URL){
- const map=new Map<string,{url:string,title:string}>();let empty=0;
- for(let p=1;p<=60;p++){try{const r=await fetchText(solidesPageUrl(source,p),18000,"Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)");const found=collectSolidesJobUrls(r.text,source);const before=map.size;for(const x of found)map.set(x.url,x);if(!found.length||map.size===before)empty++;else empty=0;if(empty>=2&&p>=3)break}catch{break}}
- const base=[...map.values()].slice(0,600),jobs:any[]=[];
- for(let i=0;i<base.length;i+=8)jobs.push(...await Promise.all(base.slice(i,i+8).map(x=>enrichJob(x,"solides"))));
- return {jobs,total:jobs.length};
+ const slug=source.hostname.split(".")[0].trim();
+ const apiBase="https://apigw.solides.com.br/jobs/v3/home/vacancy";
+ const jobs:any[]=[];let total=0,totalPages=1;
+ const money=(n:any)=>{const v=Number(n);return Number.isFinite(v)?v.toLocaleString("pt-BR",{style:"currency",currency:"BRL"}):""};
+ for(let page=1;page<=Math.min(totalPages,60);page++){
+  const u=new URL(apiBase);u.searchParams.set("take","100");u.searchParams.set("page",String(page));u.searchParams.set("slug",slug);
+  const controller=new AbortController(),timer=setTimeout(()=>controller.abort(),18000);
+  let payload:any;
+  try{
+   const r=await fetch(u.toString(),{signal:controller.signal,headers:{"Accept":"application/json","User-Agent":"Mozilla/5.0 (+Empregos Conecta; automated-sync)"}});
+   if(!r.ok)throw new Error("solides_api_http_"+r.status);
+   payload=await r.json();
+  }finally{clearTimeout(timer)}
+  const root=payload?.data||{},list=Array.isArray(root.data)?root.data:[];
+  total=Number(root.count||total||list.length);totalPages=Math.max(1,Number(root.totalPages||1));
+  for(const j of list){
+   const id=String(j?.id||"").trim();if(!id)continue;
+   const salary=j?.salary||{};let salario="";
+   if(salary.negotiable)salario="A combinar";
+   else if(salary.showRangeToApplicant!==false){
+    const a=money(salary.initialRange),b=money(salary.finalRange);
+    salario=a&&b&&a!==b?a+" a "+b:(a||b);
+   }
+   const benefits=Array.isArray(j?.benefits)?j.benefits.map((x:any)=>String(x?.name||"").trim()).filter(Boolean):[];
+   const education=Array.isArray(j?.education)?j.education.map((x:any)=>String(x?.name||"").trim()).filter(Boolean):[];
+   const area=Array.isArray(j?.occupationAreas)?j.occupationAreas.map((x:any)=>String(x?.name||"").trim()).filter(Boolean).join(", "):"";
+   const contrato=Array.isArray(j?.recruitmentContractType)?j.recruitmentContractType.map((x:any)=>String(x?.name||"").trim()).filter(Boolean).join(", "):"";
+   const jt=String(j?.jobType||"").toLowerCase(),modalidade=jt==="home_office"||j?.homeOffice===true?"Remoto":jt==="hibrido"?"Híbrido":jt==="presencial"?"Presencial":String(j?.jobType||"");
+   const descricao=stripTags(String(j?.description||"")).slice(0,30000);
+   const requisitos=education.length?("Escolaridade\n"+education.join("\n")):"";
+   const normalized:any={url:new URL("/vaga/"+id,source.origin).toString(),title:String(j?.title||"Vaga integrada").trim().slice(0,240),descricao,cidade:String(j?.city?.name||j?.address?.city?.name||"").trim(),estado:String(j?.state?.code||j?.address?.state?.code||"").trim(),cep:String(j?.address?.zip_code||"").trim(),contrato,modalidade,area,salario,requisitos,beneficios:[...new Set(benefits)].join("\n"),provider:"solides"};
+   normalized.key=await sha256(normalized.url);normalized.hash=await sha256(JSON.stringify(normalized));jobs.push(normalized);
+  }
+  if(!list.length||page>=totalPages)break;
+ }
+ return {jobs,total:total||jobs.length};
 }
 
 function randstadPageUrl(source:URL,page:number){const u=new URL(source.toString());if(page<=1){u.searchParams.delete("page");return u.toString()}u.searchParams.set("page",String(page));return u.toString()}
