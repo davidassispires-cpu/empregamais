@@ -2599,6 +2599,20 @@ function renderizarSalvas(){const box=$('#listaVagasSalvas');if(!box)return;cons
 #pagina-vagas-empresa a,#pagina-candidatos-empresa a,#pagina-contratacoes-empresa a,#pagina-perfil-empresa a,#pagina-publicar a,#pagina-central-empresa a{color:var(--em-rh-blue2)}
 `;document.head.appendChild(st)})();
 
+/* EMPREGAMAIS — COBERTURA VISUAL COMPLETA AREA EMPRESA V2 */
+(function(){if(document.getElementById('emEmpresaVisualCompletoV2'))return;const st=document.createElement('style');st.id='emEmpresaVisualCompletoV2';st.textContent=`
+body:has(#pagina-painel-empresa.ativa),body:has(#pagina-vagas-empresa.ativa),body:has(#pagina-candidatos-empresa.ativa),body:has(#pagina-contratacoes-empresa.ativa),body:has(#pagina-perfil-empresa.ativa),body:has(#pagina-publicar.ativa){--petroleo:#0b4f9f!important;--azul-petroleo:#0b4f9f!important;--empresa:#0b4f9f!important;--empresa-cor:#0b4f9f!important;--primary:#0b4f9f!important;--cor-primaria:#0b4f9f!important;--laranja:#ff6b17!important}
+#pagina-vagas-empresa,#pagina-candidatos-empresa,#pagina-contratacoes-empresa,#pagina-perfil-empresa,#pagina-publicar{--petroleo:#0b4f9f!important;--azul-petroleo:#0b4f9f!important;--primary:#0b4f9f!important;--accent:#ff6b17!important;--orange:#ff6b17!important}
+#pagina-vagas-empresa [class*="head"],#pagina-candidatos-empresa [class*="head"],#pagina-contratacoes-empresa [class*="head"],#pagina-perfil-empresa [class*="head"],#pagina-publicar [class*="head"]{border-color:#c9ddf2!important}
+#pagina-vagas-empresa [class*="tab"].ativo,#pagina-candidatos-empresa [class*="tab"].ativo,#pagina-contratacoes-empresa [class*="tab"].ativo,#pagina-perfil-empresa [class*="tab"].ativo,#pagina-publicar [class*="tab"].ativo{color:#0b4f9f!important;border-color:#0b4f9f!important}
+#pagina-vagas-empresa .btn-azul,#pagina-candidatos-empresa .btn-azul,#pagina-contratacoes-empresa .btn-azul,#pagina-perfil-empresa .btn-azul,#pagina-publicar .btn-azul{background:#0b4f9f!important;border-color:#0b4f9f!important;color:#fff!important}
+#pagina-vagas-empresa .btn-laranja,#pagina-candidatos-empresa .btn-laranja,#pagina-contratacoes-empresa .btn-laranja,#pagina-perfil-empresa .btn-laranja,#pagina-publicar .btn-laranja{background:#ff6b17!important;border-color:#ff6b17!important;color:#fff!important}
+#pagina-perfil-empresa .perfil-verificacao-em,#pagina-perfil-empresa .em-verificacao-dialog{font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif!important;color:#123f70!important}
+#pagina-perfil-empresa .perfil-verificacao-em h1,#pagina-perfil-empresa .perfil-verificacao-em h2,#pagina-perfil-empresa .perfil-verificacao-em h3,#pagina-perfil-empresa .em-verificacao-dialog h2{color:#0b4f9f!important}
+#pagina-perfil-empresa .perfil-empresa-tabs button.ativo{background:#eef6ff!important;color:#0b4f9f!important;border-color:#0b4f9f!important}
+#pagina-perfil-empresa .perfil-verificacao-em button:not(.secundario){background:#ff6b17!important;border-color:#ff6b17!important;color:#fff!important}
+`;document.head.appendChild(st)})();
+
 /* EMPREGAMAIS-PAINEL-RECRUTADOR-SIMPLES-V1 */
 function garantirPainelRecrutadorSimplesEM(){
  const pagina=document.getElementById('pagina-painel-empresa');if(!pagina)return null;
