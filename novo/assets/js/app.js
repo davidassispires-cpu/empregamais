@@ -1384,6 +1384,7 @@ function lerRota(){
   }
  }
  abrirRota(pagina);
+ if(pagina==='painel-empresa'&&typeof window.EmpregaiRecrutadorV2?.abrir==='function'&&new URLSearchParams(location.search).get('recrutadorLegado')!=='1')window.EmpregaiRecrutadorV2.abrir('visao');
  if(pagina==='candidatos-empresa'){
   setTimeout(function(){
    if(vaga&&typeof renderizarCandidatosEmpresa==='function')renderizarCandidatosEmpresa();
