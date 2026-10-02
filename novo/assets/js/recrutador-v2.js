@@ -64,5 +64,16 @@ function shell(rota){
  return '<div class="rh2-shell"><aside class="rh2-side"><div class="rh2-brand">Emprega<b>í</b> Empresas</div><nav class="rh2-nav">'+nav+'</nav></aside><main class="rh2-main"><header class="rh2-top"><div><h1>'+((ROTAS.find(x=>x[0]===rota)||[])[1]||'Visão geral')+'</h1><p>Novo painel do recrutador</p></div>'+(rota==='vagas'?'<button class="rh2-primary" type="button" onclick="if(window.irPara)irPara(\'publicar-vaga\')">+ Nova vaga</button>':'')+'</header>'+conteudo+'</main></div>';
 }
 function render(rota='visao'){const root=document.getElementById('empregaiRecrutadorV2');if(!root)return;root.innerHTML=shell(rota);root.querySelectorAll('[data-rh2]').forEach(b=>b.addEventListener('click',()=>render(b.dataset.rh2)));root.querySelectorAll('[data-processo],[data-candidatura-vaga]').forEach(b=>b.addEventListener('click',()=>{const id=b.dataset.processo||b.dataset.candidaturaVaga;sessionStorage.setItem('vagaCandidatosSelecionada',id);if(typeof window.irPara==='function')window.irPara('candidatos-empresa')}));root.querySelectorAll('[data-vaga]').forEach(b=>b.addEventListener('click',()=>{const id=b.dataset.vaga;if(typeof window.abrirGestaoVagaIndividualEM==='function')return window.abrirGestaoVagaIndividualEM(id);sessionStorage.setItem('vagaCandidatosSelecionada',id);if(typeof window.irPara==='function')window.irPara('vagas-empresa')}))}
-window.EmpregaiRecrutadorV2={render};
+
+function garantirPaginaRH2(){
+ let sec=document.getElementById('pagina-painel-recrutador-v2');
+ if(sec)return sec;
+ sec=document.createElement('section');sec.id='pagina-painel-recrutador-v2';sec.className='pagina';
+ sec.innerHTML='<div id="empregaiRecrutadorV2"></div>';document.body.appendChild(sec);return sec
+}
+function abrirPainelRH2(rota='visao'){
+ if(typeof window.papelAtual==='function'&&window.papelAtual()!=='empresa'){if(typeof window.irPara==='function')window.irPara('login-empresa');return}
+ garantirPaginaRH2();document.querySelectorAll('.pagina').forEach(x=>x.classList.remove('ativa'));document.getElementById('pagina-painel-recrutador-v2').classList.add('ativa');render(rota)
+}
+window.EmpregaiRecrutadorV2={render,abrir:abrirPainelRH2};window.abrirPainelRecrutadorV2=abrirPainelRH2;
 })();
