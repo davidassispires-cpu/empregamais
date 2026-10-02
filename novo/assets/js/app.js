@@ -2502,6 +2502,41 @@ function renderizarSalvas(){const box=$('#listaVagasSalvas');if(!box)return;cons
 @media(max-width:640px){#emPainelRecrutadorSimplesEM .emrs-kpi{padding:18px!important;align-items:center!important;text-align:center!important}#emPainelRecrutadorSimplesEM .emrs-kpi-icon{position:static!important;transform:none!important;margin-bottom:10px!important}#emPainelRecrutadorSimplesEM .emrs-kpi span,#emPainelRecrutadorSimplesEM .emrs-kpi strong,#emPainelRecrutadorSimplesEM .emrs-kpi small{text-align:center!important}}
 `;document.head.appendChild(st)})();
 
+/* EMPREGAMAIS — ORGANIZACAO VISUAL PAINEL V3 — SOMENTE APRESENTACAO */
+(function(){if(document.getElementById('emPainelOrganizacaoV3'))return;const st=document.createElement('style');st.id='emPainelOrganizacaoV3';st.textContent=`
+#emPainelRecrutadorSimplesEM{grid-template-columns:244px minmax(0,1fr)!important}
+#emPainelRecrutadorSimplesEM .emrs-side{padding:24px 16px!important;gap:20px!important}
+#emPainelRecrutadorSimplesEM .emrs-brand{padding:4px 8px 20px!important}
+#emPainelRecrutadorSimplesEM .emrs-brand small{font-size:11px!important;text-transform:uppercase!important;letter-spacing:.07em!important}
+#emPainelRecrutadorSimplesEM .emrs-brand strong{font-size:21px!important}
+#emPainelRecrutadorSimplesEM .emrs-nav{gap:9px!important}
+#emPainelRecrutadorSimplesEM .emrs-nav button{padding:12px 13px!important;font-size:12.5px!important}
+#emPainelRecrutadorSimplesEM .emrs-nav i{width:29px!important;height:29px!important;flex-basis:29px!important;border-radius:9px!important}
+#emPainelRecrutadorSimplesEM .emrs-main{max-width:1600px!important;width:100%!important;margin:0 auto!important}
+#emPainelRecrutadorSimplesEM .emrs-top{min-height:118px!important;padding:24px 28px!important;margin-bottom:22px!important}
+#emPainelRecrutadorSimplesEM .emrs-top-avatar{width:58px!important;height:58px!important;flex-basis:58px!important;font-size:20px!important}
+#emPainelRecrutadorSimplesEM .emrs-top h1{font-size:27px!important}
+#emPainelRecrutadorSimplesEM .emrs-top p{font-size:12.5px!important}
+#emPainelRecrutadorSimplesEM .emrs-plan-pill{min-height:38px!important;padding:0 13px!important;border-radius:10px!important}
+#emPainelRecrutadorSimplesEM .emrs-primary{min-height:44px!important;padding:0 19px!important;font-size:11.5px!important}
+#emPainelRecrutadorSimplesEM .emrs-kpis{margin-bottom:22px!important}
+#emPainelRecrutadorSimplesEM .emrs-kpi{min-height:132px!important}
+#emPainelRecrutadorSimplesEM .emrs-kpi strong{margin:3px 0!important}
+#emPainelRecrutadorSimplesEM .emrs-grid>div>.emrs-card{min-height:430px!important}
+#emPainelRecrutadorSimplesEM .emrs-card-head h2{font-size:18px!important;line-height:1.2!important}
+#emPainelRecrutadorSimplesEM .emrs-card-head p{font-size:11.5px!important}
+#emPainelRecrutadorSimplesEM .emrs-row{grid-template-columns:minmax(0,1fr) 105px 110px 36px!important;min-height:64px!important}
+#emPainelRecrutadorSimplesEM .emrs-row strong{font-size:12px!important}
+#emPainelRecrutadorSimplesEM .emrs-row small{font-size:10.5px!important;font-weight:600!important}
+#emPainelRecrutadorSimplesEM .emrs-shortcuts{gap:10px!important}
+#emPainelRecrutadorSimplesEM .emrs-shortcuts button{padding:0 14px!important}
+#emPainelRecrutadorSimplesEM .emrs-account{padding:15px!important;border-radius:13px!important}
+#emPainelRecrutadorSimplesEM .emrs-account strong{font-size:12px!important}
+#emPainelRecrutadorSimplesEM .emrs-account span{font-size:10.5px!important}
+@media(max-width:1100px){#emPainelRecrutadorSimplesEM{grid-template-columns:215px minmax(0,1fr)!important}#emPainelRecrutadorSimplesEM .emrs-main{padding:22px!important}#emPainelRecrutadorSimplesEM .emrs-grid{grid-template-columns:1fr!important}}
+@media(max-width:980px){#emPainelRecrutadorSimplesEM{grid-template-columns:1fr!important}#emPainelRecrutadorSimplesEM .emrs-main{max-width:none!important}}
+`;document.head.appendChild(st)})();
+
 /* EMPREGAMAIS-PAINEL-RECRUTADOR-SIMPLES-V1 */
 function garantirPainelRecrutadorSimplesEM(){
  const pagina=document.getElementById('pagina-painel-empresa');if(!pagina)return null;
