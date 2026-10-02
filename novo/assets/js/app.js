@@ -2575,6 +2575,17 @@ function renderizarSalvas(){const box=$('#listaVagasSalvas');if(!box)return;cons
 #emPainelRecrutadorSimplesEM .emrs-nav button.ativo:before{display:none!important}
 `;document.head.appendChild(st)})();
 
+/* EMPREGAMAIS — CORRECAO INDICADORES V6 */
+(function(){if(document.getElementById('emIndicadoresCorrecaoV6'))return;const st=document.createElement('style');st.id='emIndicadoresCorrecaoV6';st.textContent=`
+#emPainelRecrutadorSimplesEM .emrs-kpi{display:grid!important;grid-template-columns:42px minmax(0,1fr)!important;grid-template-rows:auto auto auto!important;column-gap:12px!important;align-content:center!important;align-items:center!important;justify-items:stretch!important;min-height:108px!important;padding:14px 18px!important;text-align:left!important;overflow:visible!important}
+#emPainelRecrutadorSimplesEM .emrs-kpi-icon{position:static!important;grid-column:1!important;grid-row:1/4!important;transform:none!important;left:auto!important;top:auto!important;width:38px!important;height:38px!important}
+#emPainelRecrutadorSimplesEM .emrs-kpi>span{grid-column:2!important;grid-row:1!important;margin:0!important;text-align:center!important;font-size:9px!important}
+#emPainelRecrutadorSimplesEM .emrs-kpi>strong{grid-column:2!important;grid-row:2!important;display:block!important;visibility:visible!important;opacity:1!important;height:auto!important;min-height:30px!important;margin:2px 0!important;text-align:center!important;font-size:29px!important;line-height:1!important;color:#0b4f9f!important}
+#emPainelRecrutadorSimplesEM .emrs-kpi:nth-child(3)>strong,#emPainelRecrutadorSimplesEM .emrs-kpi:nth-child(4)>strong{color:#d95a13!important}
+#emPainelRecrutadorSimplesEM .emrs-kpi>small{grid-column:2!important;grid-row:3!important;margin:0!important;text-align:center!important;font-size:9.5px!important}
+#emPainelRecrutadorSimplesEM .emrs-kpi:before{display:none!important}
+`;document.head.appendChild(st)})();
+
 /* EMPREGAMAIS-PAINEL-RECRUTADOR-SIMPLES-V1 */
 function garantirPainelRecrutadorSimplesEM(){
  const pagina=document.getElementById('pagina-painel-empresa');if(!pagina)return null;
