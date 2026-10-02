@@ -2586,35 +2586,7 @@ function renderizarSalvas(){const box=$('#listaVagasSalvas');if(!box)return;cons
 #emPainelRecrutadorSimplesEM .emrs-kpi:before{display:none!important}
 `;document.head.appendChild(st)})();
 
-/* EMPREGAMAIS — INTER UNICA FONTE V2 */
-(function(){if(document.getElementById('emInterUnicaFonteV2'))return;const link=document.createElement('link');link.rel='stylesheet';link.href='https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap';document.head.appendChild(link);const st=document.createElement('style');st.id='emInterUnicaFonteV2';st.textContent=`
-html,body,body *,body *::before,body *::after,input,textarea,select,button,option{font-family:var(--em-font)}
-`;document.head.appendChild(st)})();
-
-/* EMPREGAMAIS — INTER GLOBAL CANONICA V2 */
-(function(){
- if(document.getElementById('emInterGlobalCanonicaV2'))return;
- if(!document.querySelector('link[data-em-inter-font]')){const pre=document.createElement('link');pre.rel='preconnect';pre.href='https://fonts.googleapis.com';document.head.appendChild(pre);const l=document.createElement('link');l.rel='stylesheet';l.href='https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap';l.dataset.emInterFont='1';document.head.appendChild(l)}
- const st=document.createElement('style');st.id='emInterGlobalCanonicaV2';st.textContent=`
-:root{--em-font:Inter,Arial,sans-serif}
-html,body,body *,body *::before,body *::after,input,button,select,textarea,option{font-family:var(--em-font)!important;font-synthesis:none}
-body{font-weight:400}
-h1,h2,h3,h4,h5,h6{font-family:var(--em-font)!important;font-weight:700!important;letter-spacing:-.025em}
-button,.btn,[role="button"]{font-family:var(--em-font)!important;font-weight:600!important}
-input,select,textarea,option{font-family:var(--em-font)!important;font-weight:400!important}
-strong,b{font-family:var(--em-font)!important;font-weight:700!important}
-`;document.head.appendChild(st)
-})();
-
-/* EMPREGAMAIS — FONTE UNICA REAL V2 */
-(function(){if(document.getElementById('emFonteUnicaRealV2'))return;
-if(!document.querySelector('link[data-em-inter-real]')){const l=document.createElement('link');l.rel='stylesheet';l.href='https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap';l.dataset.emInterReal='1';document.head.appendChild(l)}
-const st=document.createElement('style');st.id='emFonteUnicaRealV2';st.textContent=`
-:root{--em-font:"Inter",Arial,sans-serif!important}
-html,body{font-family:var(--em-font)}
-body *{font-family:var(--em-font)}
-button,input,select,textarea,option{font-family:var(--em-font)}
-`;document.head.appendChild(st)})();
+/* Tipografia global adicional removida; o site volta à configuração anterior. */
 
 /* EMPREGAMAIS-PAINEL-RECRUTADOR-SIMPLES-V1 */
 function garantirPainelRecrutadorSimplesEM(){
