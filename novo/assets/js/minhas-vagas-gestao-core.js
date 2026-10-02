@@ -185,13 +185,13 @@ function renderVagasEmpresaPaginaGestaoEM(){
    '<div class="evp-actions"><button class="view-job" type="button" onclick="sessionStorage.setItem(\'vagaSelecionada\',\''+escEM(v.id)+'\');irPara(\'vaga\')">Ver vaga</button><button class="manage-job" type="button" onclick="abrirGestaoVagaIndividualEM(\''+escEM(v.id)+'\')">Gerenciar vaga</button></div></article>';
  }).join('');
  box.innerHTML='<div class="evp-summary"><article data-kpi="Ativa" title="Mostrar vagas ativas"><svg viewBox="0 0 24 24"><rect x="3" y="6" width="18" height="14" rx="2"/><path d="M8 6V4h8v2M3 11h18"/></svg><span>VAGAS ATIVAS NO SITE</span><strong>'+ativa+'</strong><small>Publicadas no portal</small></article><article data-kpi="Em análise" title="Filtrar vagas em análise"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><span>EM ANÁLISE</span><strong>'+analise+'</strong><small>Aguardando publicação</small></article><article data-kpi="Encerrada" title="Abrir vagas encerradas"><svg viewBox="0 0 24 24"><rect x="4" y="5" width="16" height="15" rx="2"/><path d="M8 3v4M16 3v4M8 12h8M8 16h5"/></svg><span>VAGAS ENCERRADAS</span><strong>'+enc+'</strong><small>Abrir lista de encerradas</small></article></div><div id="evpClosedHead"></div><section class="evp-board"><div class="evp-tools"><input id="evpBusca" placeholder="Buscar vaga por cargo ou localização"><select id="evpStatus" style="display:none"><option value="Ativa">Vagas ativas</option><option value="Em análise">Em análise</option><option value="Encerrada">Encerradas</option></select><select id="evpOrdem"><option value="recentes">Mais recentes</option><option value="antigas">Mais antigas</option><option value="candidaturas">Mais candidaturas</option></select></div><div class="evp-table-head"><span>VAGA</span><span>STATUS</span><span>CANDIDATURAS</span><span>VISUALIZAÇÕES</span><span>AÇÕES</span></div><div id="evpLista">'+(rows||'<div class="evp-empty"><strong>Nenhuma vaga cadastrada</strong><span>Publique uma nova vaga para começar.</span></div>')+'</div><div id="evpPaginacao" class="evp-pagination"></div></section>';
- let paginaAtual=1,modoEncerradas=false;
+ let paginaAtual=1,modoLista='Ativa';
  const porPagina=6;
  const atualizarLista=function(reset){
   if(reset)paginaAtual=1;
-  const q=(document.getElementById('evpBusca').value||'').toLowerCase(),s=document.getElementById('evpStatus').value,ordem=(document.getElementById('evpOrdem')||{}).value||'recentes';
+  const q=(document.getElementById('evpBusca').value||'').toLowerCase(),ordem=(document.getElementById('evpOrdem')||{}).value||'recentes';
   const lista=document.getElementById('evpLista'),todos=Array.from(lista.querySelectorAll('.evp-vaga'));
-  const filtrados=todos.filter(function(el){const modoAnalise=statusSel.value==='Em análise';const statusOk=modoEncerradas?el.dataset.status==='Encerrada':modoAnalise?el.dataset.status==='Em análise':el.dataset.status==='Ativa';return statusOk&&(!q||el.dataset.titulo.toLowerCase().includes(q))&&(!s||el.dataset.status===s)});
+  const filtrados=todos.filter(function(el){return el.dataset.status===modoLista&&(!q||el.dataset.titulo.toLowerCase().includes(q))});
   filtrados.sort(function(a,b){if(ordem==='antigas')return Number(a.dataset.data)-Number(b.dataset.data);if(ordem==='candidaturas')return Number(b.dataset.candidaturas)-Number(a.dataset.candidaturas);return Number(b.dataset.data)-Number(a.dataset.data)});
   filtrados.forEach(function(el){lista.appendChild(el)});
   const paginas=Math.max(1,Math.ceil(filtrados.length/porPagina));if(paginaAtual>paginas)paginaAtual=paginas;
@@ -206,15 +206,23 @@ function renderVagasEmpresaPaginaGestaoEM(){
   pg.innerHTML=html;
   pg.querySelectorAll('button[data-pg]:not([disabled])').forEach(function(btn){btn.onclick=function(){paginaAtual=Number(btn.dataset.pg);atualizarLista(false)}});
  };
- const statusSel=document.getElementById('evpStatus'),closedHead=document.getElementById('evpClosedHead');
+ const closedHead=document.getElementById('evpClosedHead');
  const marcarKpi=function(valor){box.querySelectorAll('.evp-summary article').forEach(function(a){a.classList.toggle('ativo',a.dataset.kpi===valor)})};
  const abrirModo=function(valor){
-  if(valor==='Encerrada'){modoEncerradas=true;statusSel.value='';closedHead.innerHTML='<div class="evp-closed-head"><div><strong>Vagas encerradas</strong><br><span>'+enc+' oportunidades arquivadas. Você pode gerenciar ou reabrir uma vaga.</span></div><button type="button" id="evpVoltarAbertas">← Voltar às vagas atuais</button></div>';document.getElementById('evpVoltarAbertas').onclick=function(){abrirModo('abertas')}}
-  else{modoEncerradas=false;statusSel.value=valor==='Em análise'?'Em análise':'Ativa';closedHead.innerHTML=valor==='Em análise'?'<div class="evp-closed-head" style="background:#fff8ec;border-color:#efd9ad"><div><strong style="color:#a95a13">Vagas em análise</strong><br><span>'+analise+' oportunidade aguardando publicação.</span></div><button type="button" id="evpVoltarAbertas">← Voltar às vagas ativas</button></div>':'';if(valor==='Em análise')setTimeout(function(){const b=document.getElementById('evpVoltarAbertas');if(b)b.onclick=function(){abrirModo('Ativa')}},0)
+  modoLista=valor;
+  closedHead.innerHTML='';
+  if(valor==='Encerrada'){
+   closedHead.innerHTML='<div class="evp-closed-head"><div><strong>Vagas encerradas</strong><br><span>'+enc+' oportunidades arquivadas.</span></div><button type="button" id="evpVoltarAbertas">← Voltar às vagas ativas</button></div>';
+  }else if(valor==='Em análise'){
+   closedHead.innerHTML='<div class="evp-closed-head" style="background:#fff8ec;border-color:#efd9ad"><div><strong style="color:#a95a13">Vagas em análise</strong><br><span>'+analise+' oportunidade aguardando publicação.</span></div><button type="button" id="evpVoltarAbertas">← Voltar às vagas ativas</button></div>';
+  }
+  const voltar=document.getElementById('evpVoltarAbertas');if(voltar)voltar.onclick=function(){abrirModo('Ativa')};
   marcarKpi(valor);atualizarLista(true);
  };
  box.querySelectorAll('.evp-summary article[data-kpi]').forEach(function(a){a.onclick=function(){abrirModo(a.dataset.kpi)}});
- document.getElementById('evpBusca').oninput=function(){atualizarLista(true)};statusSel.onchange=function(){modoEncerradas=statusSel.value==='Encerrada';if(modoEncerradas){closedHead.innerHTML='<div class="evp-closed-head"><div><strong>Vagas encerradas</strong><br><span>'+enc+' oportunidades arquivadas.</span></div><button type="button" id="evpVoltarAbertas">← Voltar às vagas atuais</button></div>';document.getElementById('evpVoltarAbertas').onclick=function(){abrirModo('abertas')}}else closedHead.innerHTML='';atualizarLista(true)};document.getElementById('evpOrdem').onchange=function(){atualizarLista(true)};statusSel.value='Ativa';marcarKpi('Ativa');atualizarLista(true);
+ document.getElementById('evpBusca').oninput=function(){atualizarLista(true)};
+ document.getElementById('evpOrdem').onchange=function(){atualizarLista(true)};
+ abrirModo('Ativa');
 }
 window.renderVagasEmpresaPaginaGestaoEM=renderVagasEmpresaPaginaGestaoEM;
 window.abrirGestaoVagaIndividualEM=abrirGestaoVagaIndividualEM;
