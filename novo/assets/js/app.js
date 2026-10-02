@@ -267,7 +267,7 @@ function assinarPremiumCandidatoEM(periodo='mensal'){const opcoes={mensal:{nome:
 /* EMPREGOS-CONECTA-COMO-FUNCIONA-V1 */
 function garantirAbaConectaComoFuncionaPersistenteEM(){
  if(window.__comoConectaObserverEM)return;
- const alvo=document.getElementById('pagina-como-funciona');
+ const alvo=document.body;
  if(!alvo)return;
  let timer=null;
  const tentar=()=>{
@@ -437,10 +437,7 @@ function iniciarAcessoConectaHeaderEM(){
 document.addEventListener('DOMContentLoaded',()=>setTimeout(iniciarAcessoConectaHeaderEM,80),{once:true});
 window.addEventListener('load',()=>setTimeout(iniciarAcessoConectaHeaderEM,120),{once:true});
 const observaHeaderConectaEM=new MutationObserver(()=>{if(!document.getElementById('headerConectaLoginEM'))setTimeout(garantirAcessoConectaHeaderEM,80)});
-setTimeout(()=>{
- const header=document.querySelector('header,.header,.topo,nav');
- if(header)observaHeaderConectaEM.observe(header,{childList:true,subtree:true});
-},150);
+setTimeout(()=>{if(document.body)observaHeaderConectaEM.observe(document.body,{childList:true,subtree:true})},150);
 setTimeout(iniciarAcessoConectaHeaderEM,300);
 
 /* EMPREGOS-CONECTA-LOGIN-V1 */
@@ -1209,7 +1206,7 @@ async function sincronizarAgoraConectaEM(){
  if(ta.ativo&&ta.selectedUrls.length===0){conectaRegistrarHistoricoEM('descoberta','Vagas encontradas na origem',{detalhe:qtd+' vaga(s) · aguardando seleção'});if(typeof window.mostrarToast==='function')window.mostrarToast(qtd+' vaga(s) encontradas. Escolha até '+ta.limite+'.');await renderPainelConectaEM();conectaAbaEM('vagas');return}
  if(btn)btn.textContent='Sincronizando...';const emp=await sbBuscarMinhaEmpresaEM(),fila=await sbJsonEM(EMPREGAMAIS_SUPABASE_URL+'/rest/v1/rpc/conecta_enqueue_my_company',{method:'POST',headers:Object.assign(sbHeadersEM(token),{'Content-Type':'application/json'}),body:'{}'});let wd=null;
  try{const wr=await fetch(EMPREGAMAIS_SUPABASE_URL+'/functions/v1/conecta-worker',{method:'POST',headers:Object.assign(sbHeadersEM(token),{'Content-Type':'application/json'}),body:JSON.stringify({batch:3})});wd=await wr.json().catch(()=>null);if(!wr.ok)throw Error(wd?.message||wd?.error||('HTTP '+wr.status))}catch(x){console.warn('Worker seguirá pela fila:',x)}
- try{await sbCarregarVagasEmpresaAtualEM()}catch(_){}conectaRegistrarHistoricoEM('sincronizacao','Sincronização solicitada',{detalhe:qtd+' vaga(s) detectada(s) · fila '+String(fila||'criada')});await renderPainelConectaEM();const re=Array.isArray(wd?.results)?wd.results.find(x=>String(x.empresa_id||'')===String(emp?.id||'')):null,st=re?.stats||null;const qtdReal=Number(st?.discovered??qtd??0);if(st&&qtdReal!==qtd){const syncPatch={ultimaQtdEncontrada:qtdReal,ultima:new Date().toISOString(),conectaUltimaSync:new Date().toISOString(),ultimoTesteOk:true,ultimoStatus:'success'};conectaSalvarEmpresaLocalEM(syncPatch);try{await conectaSalvarEmpresaCloudEM(Object.assign({},empresaLogada?.()?.conectaConfig||{},syncPatch));await conectaHidratarEmpresaSessaoEM()}catch(e){console.warn('Conecta: não foi possível persistir a quantidade real descoberta:',e)}}const txt=st?'Sincronização concluída: '+qtdReal+' encontrada(s) na origem; '+Number(st.inserted||0)+' nova(s), '+Number(st.updated||0)+' atualizada(s) e '+Number(st.closed||0)+' encerrada(s).':'Origem validada e sincronização colocada na fila.';if(typeof window.mostrarToast==='function')window.mostrarToast(txt);else alert(txt);conectaAbaEM('vagas')
+ try{await sbCarregarVagasEmpresaAtualEM()}catch(_){}conectaRegistrarHistoricoEM('sincronizacao','Sincronização solicitada',{detalhe:qtd+' vaga(s) detectada(s) · fila '+String(fila||'criada')});await renderPainelConectaEM();const re=Array.isArray(wd?.results)?wd.results.find(x=>String(x.empresa_id||'')===String(emp?.id||'')):null,st=re?.stats||null,txt=st?'Sincronização concluída: '+Number(st.inserted||0)+' nova(s), '+Number(st.updated||0)+' atualizada(s) e '+Number(st.closed||0)+' encerrada(s).':'Origem validada e sincronização colocada na fila.';if(typeof window.mostrarToast==='function')window.mostrarToast(txt);else alert(txt);conectaAbaEM('vagas')
  }catch(err){console.error(err);conectaRegistrarHistoricoEM('erro','Falha na sincronização',{detalhe:String(err?.message||err)});alert('Não foi possível sincronizar o Conecta: '+String(err?.message||err))}finally{if(btn){btn.disabled=false;btn.textContent='Sincronizar agora'}}
 }
 
@@ -1347,7 +1344,6 @@ function iniciarConectaShowcaseEM(){
  clearInterval(conectaShowcaseTimerEM);
  const box=document.getElementById('conectaShowcaseEM');if(!box)return;
  conectaShowcaseTimerEM=setInterval(()=>{
-   if(document.hidden||!box.isConnected||box.offsetParent===null)return;
    conectaShowcaseIndiceEM++;
    renderConectaShowcaseEM();
  },6000);
@@ -1457,23 +1453,7 @@ function renderizarEmpresaPublica(){
  const cb=$('#empresaPublicaContratados');if(cb)cb.innerHTML=contratados.length?'<div class="empresa-publica-kpi-big sucesso"><strong>'+contratados.length+'</strong><span>contratação(ões) realizada(s) pelo + Empregos</span></div>':empresaPublicaVazioEM('Contratados pelo site','Quando uma contratação for concluída pelo + Empregos, o total aparecerá aqui.','✓');
  atualizarSeguirEmpresaEM();
 }
-function abrirPublicacao(){if(papelAtual()!=='empresa'){irPara('login-empresa');return}sessionStorage.removeItem('vagaEdicao');const f=$('#formVaga');if(f)f.reset();irPara('publicar')}async function sair(){
- const tema=sessionStorage.getItem('temaEmpregaMais'),token=sbTokenEM();
- /* Bloqueia qualquer restauracao/refresh antes de iniciar a limpeza. */
- localStorage.setItem('empregaMaisLogoutBloqueio','1');
- sessionStorage.setItem('empregaMaisLogoutBloqueio','1');
- try{
-  if(token)await fetch(EMPREGAMAIS_SUPABASE_URL+'/auth/v1/logout',{method:'POST',headers:sbHeadersEM(token)});
- }catch(e){console.warn('Logout remoto indisponivel; sessao local sera encerrada.',e)}
- sessionStorage.clear();
- [EMPREGAMAIS_SB_TOKEN,EMPREGAMAIS_SB_REFRESH].forEach(k=>localStorage.removeItem(k));
- localStorage.removeItem('empregaMaisPapelPersistido');
- /* O bloqueio permanece apos sessionStorage.clear para impedir que rotinas concorrentes restaurem a sessao. */
- localStorage.setItem('empregaMaisLogoutBloqueio','1');
- sessionStorage.setItem('empregaMaisLogoutBloqueio','1');
- if(tema)sessionStorage.setItem('temaEmpregaMais',tema);
- irPara('home')
-}addEventListener('popstate',lerRota);addEventListener('DOMContentLoaded',async()=>{/* A rota inicial já é preparada pelo inicializador de navegação. Restaurar a sessão não deve reabrir a HOME nem alterar a posição da página. */try{if(localStorage.getItem('empregaMaisLogoutBloqueio')!=='1'&&sessionStorage.getItem('empregaMaisLogoutBloqueio')!=='1'){const cand=await sbRestaurarSessaoCandidatoEM();if(!cand)await sbRestaurarSessaoEmpresaEM()}}catch(e){console.warn('Restauração da sessão:',e)}$('#formCadastroEmpresa')?.addEventListener('submit',cadastrarEmpresa);$('#formLoginEmpresa')?.addEventListener('submit',loginEmpresa);$('#formCadastroCandidato')?.addEventListener('submit',cadastrarCandidato);/* Login candidato é tratado pelo guard global EMPREGAMAIS-CANDIDATO-LOGIN-GUARD-V1, que também bloqueia envio duplo. */$('#formVaga')?.addEventListener('submit',publicarVagaNova);$('#formCandidatura')?.addEventListener('submit',enviarCandidatura);$('#formCurriculo')?.addEventListener('submit',salvarCurriculoLocal);$('#formCurriculoOnline')?.addEventListener('submit',salvarCurriculoOnlineEM);$('#formLoginAdmin')?.addEventListener('submit',loginAdmin);$('#formPerfilEmpresa')?.addEventListener('submit',salvarPerfilEmpresa);$('#formPerfilCandidato')?.addEventListener('submit',salvarPerfilCandidato)});function mostrarEtapa(n){$('#formVaga .job-card').forEach(x=>x.classList.toggle('ativo',+x.dataset.panel===n));$('#jobProgress .job-step').forEach(x=>{const k=+x.dataset.step;x.classList.toggle('ativo',k===n);x.classList.toggle('feito',k<n)});if(n===4)montarRevisao();scrollTo(0,0)}function proximaEtapa(n){const p=document.querySelector('#formVaga .job-card[data-panel="'+n+'"]');if(!p)return;for(const e of p.querySelectorAll('[required]'))if(!e.checkValidity()){e.reportValidity();return}mostrarEtapa(n+1)}function moedaVagaInput(e){let n=e.target.value.replace(/\D/g,'');if(!n){e.target.value='';return}e.target.value=(Number(n)/100).toLocaleString('pt-BR',{style:'currency',currency:'BRL'})}function configurarSalarioVaga(){['salarioVaga'].forEach(id=>{const e=$('#'+id);if(e&&!e.dataset.moeda){e.addEventListener('input',moedaVagaInput);e.dataset.moeda='1'}});const c=$('#salarioCombinarVaga');if(c&&!c.dataset.bind){c.addEventListener('change',()=>{['salarioVaga'].forEach(id=>{const e=$('#'+id);if(e){e.disabled=c.checked;if(c.checked)e.value=''}})});c.dataset.bind='1'}}function beneficiosSelecionados(){const a=[];document.querySelectorAll('.beneficio-check:checked').forEach(c=>{const id=c.dataset.valor,val=id?($('#'+id)?.value.trim()||''):'';a.push(c.value+(val?' - '+val:''))});const outros=$('#beneficiosVaga')?.value.trim();if(outros)a.push(outros);return a}function aplicarBeneficiosVaga(v){document.querySelectorAll('.beneficio-check').forEach(c=>{c.checked=false;const id=c.dataset.valor;if(id&&$('#'+id))$('#'+id).value=''});const itens=Array.isArray(v.beneficiosLista)?v.beneficiosLista:[];itens.forEach(txt=>{document.querySelectorAll('.beneficio-check').forEach(c=>{if(txt===c.value||txt.startsWith(c.value+' - ')){c.checked=true;const id=c.dataset.valor;if(id&&$('#'+id))$('#'+id).value=txt.slice(c.value.length+3)}})});if($('#beneficiosVaga'))$('#beneficiosVaga').value=v.beneficiosOutros||(!itens.length?v.beneficios||'':'')}function montarRevisao(){const v=id=>$('#'+id)?.value.trim()||'',nome=v('empresaVaga'),cargo=v('cargoVaga'),cidade=v('cidadeVaga'),uf=v('estadoVaga'),sal=v('salarioVaga'),comb=$('#salarioCombinarVaga')?.checked,faixa=comb?'A combinar':sal,benef=beneficiosSelecionados(),flags=[$('#senior50Vaga')?.checked?'Profissionais 50+':'',$('#vagaConfidencial')?.checked?'Vaga confidencial':'',$('#vagaDestaque')?.checked?'Destaque':'',$('#vagaUrgente')?.checked?'Urgente':''].filter(Boolean);$('#reviewVaga').innerHTML='<div class="review-grid"><div><span>Título</span><strong>'+esc(String(cargo).toLocaleUpperCase('pt-BR'))+'</strong></div><div><span>Empresa</span><strong>'+esc(nome)+'</strong></div><div><span>Área</span><strong>'+esc(v('areaVaga'))+'</strong></div><div><span>Contrato</span><strong>'+esc(v('contratoVaga'))+'</strong></div><div><span>Modalidade</span><strong>'+esc(v('modalidadeVaga'))+'</strong></div><div><span>Localização</span><strong>'+esc(cidade+(uf?' - '+uf:''))+'</strong></div><div><span>Salário</span><strong>'+esc(faixa||'Não informado')+'</strong></div><div><span>Jornada</span><strong>'+esc(v('jornadaVaga')||'Não informada')+'</strong></div><div><span>Horário</span><strong>'+esc('Não informado')+'</strong></div><div><span>Escolaridade</span><strong>'+esc(v('escolaridadeVaga'))+'</strong></div><div><span>Experiência</span><strong>'+esc(v('experienciaVaga'))+'</strong></div><div><span>PcD</span><strong>'+esc(v('pcdVaga'))+'</strong></div></div>'+(flags.length?'<div class="review-flags">'+flags.map(x=>'<span>'+esc(x)+'</span>').join('')+'</div>':'')+'<div class="review-texto"><h4>Descrição</h4><p>'+esc(v('descricaoVaga')).replace(/\n/g,'<br>')+'</p><h4>Requisitos</h4><p>'+esc(v('requisitosVaga')).replace(/\n/g,'<br>')+'</p><h4>Benefícios</h4><div class="beneficios-tags">'+(benef.length?benef.map(x=>'<span class="beneficio-tag">'+esc(x)+'</span>').join(''):'<span>Não informados</span>')+'</div></div>';$('#previewVaga').innerHTML='<div class="preview-vaga-cab"><span>PRÉVIA PARA O CANDIDATO</span><h3>'+esc(String(cargo).toLocaleUpperCase('pt-BR'))+'</h3><button type="button" class="empresa-link">'+esc($('#vagaConfidencial')?.checked?'Empresa confidencial':nome)+'</button></div><div class="detalhe-tags"><span>'+esc(v('contratoVaga'))+'</span><span>'+esc(v('modalidadeVaga'))+'</span>'+(flags.includes('Urgente')?'<span>Urgente</span>':'')+(flags.includes('Destaque')?'<span>Destaque</span>':'')+'</div><strong class="preview-salario">'+esc(faixa||'Salário a combinar')+'</strong><p>'+esc(v('descricaoVaga')).replace(/\n/g,'<br>')+'</p>'}function prepararPublicacao(){if(papelAtual()!=='empresa'){irPara('login-empresa');return}const editId=sessionStorage.getItem('vagaEdicao'),vagaEdit=editId?vagasDaEmpresa().find(v=>v.id===editId):null,existe=!!vagaEdit;if(editId&&!existe)sessionStorage.removeItem('vagaEdicao');
+function abrirPublicacao(){if(papelAtual()!=='empresa'){irPara('login-empresa');return}sessionStorage.removeItem('vagaEdicao');const f=$('#formVaga');if(f)f.reset();irPara('publicar')}function sair(){const tema=sessionStorage.getItem('temaEmpregaMais');sessionStorage.clear();localStorage.removeItem('empregaMaisPapelPersistido');if(tema)sessionStorage.setItem('temaEmpregaMais',tema);irPara('home')}addEventListener('popstate',lerRota);addEventListener('DOMContentLoaded',async()=>{/* A rota inicial já é preparada pelo inicializador de navegação. Restaurar a sessão não deve reabrir a HOME nem alterar a posição da página. */try{if(localStorage.getItem('empregaMaisLogoutBloqueio')!=='1'&&sessionStorage.getItem('empregaMaisLogoutBloqueio')!=='1'){const cand=await sbRestaurarSessaoCandidatoEM();if(!cand)await sbRestaurarSessaoEmpresaEM()}}catch(e){console.warn('Restauração da sessão:',e)}$('#formCadastroEmpresa')?.addEventListener('submit',cadastrarEmpresa);$('#formLoginEmpresa')?.addEventListener('submit',loginEmpresa);$('#formCadastroCandidato')?.addEventListener('submit',cadastrarCandidato);$('#formLoginCandidato')?.addEventListener('submit',async e=>{e.preventDefault();e.stopImmediatePropagation();await loginCandidato(e)});$('#formVaga')?.addEventListener('submit',publicarVagaNova);$('#formCandidatura')?.addEventListener('submit',enviarCandidatura);$('#formCurriculo')?.addEventListener('submit',salvarCurriculoLocal);$('#formCurriculoOnline')?.addEventListener('submit',salvarCurriculoOnlineEM);$('#formLoginAdmin')?.addEventListener('submit',loginAdmin);$('#formPerfilEmpresa')?.addEventListener('submit',salvarPerfilEmpresa);$('#formPerfilCandidato')?.addEventListener('submit',salvarPerfilCandidato)});function mostrarEtapa(n){$('#formVaga .job-card').forEach(x=>x.classList.toggle('ativo',+x.dataset.panel===n));$('#jobProgress .job-step').forEach(x=>{const k=+x.dataset.step;x.classList.toggle('ativo',k===n);x.classList.toggle('feito',k<n)});if(n===4)montarRevisao();scrollTo(0,0)}function proximaEtapa(n){const p=document.querySelector('#formVaga .job-card[data-panel="'+n+'"]');if(!p)return;for(const e of p.querySelectorAll('[required]'))if(!e.checkValidity()){e.reportValidity();return}mostrarEtapa(n+1)}function moedaVagaInput(e){let n=e.target.value.replace(/\D/g,'');if(!n){e.target.value='';return}e.target.value=(Number(n)/100).toLocaleString('pt-BR',{style:'currency',currency:'BRL'})}function configurarSalarioVaga(){['salarioVaga'].forEach(id=>{const e=$('#'+id);if(e&&!e.dataset.moeda){e.addEventListener('input',moedaVagaInput);e.dataset.moeda='1'}});const c=$('#salarioCombinarVaga');if(c&&!c.dataset.bind){c.addEventListener('change',()=>{['salarioVaga'].forEach(id=>{const e=$('#'+id);if(e){e.disabled=c.checked;if(c.checked)e.value=''}})});c.dataset.bind='1'}}function beneficiosSelecionados(){const a=[];document.querySelectorAll('.beneficio-check:checked').forEach(c=>{const id=c.dataset.valor,val=id?($('#'+id)?.value.trim()||''):'';a.push(c.value+(val?' - '+val:''))});const outros=$('#beneficiosVaga')?.value.trim();if(outros)a.push(outros);return a}function aplicarBeneficiosVaga(v){document.querySelectorAll('.beneficio-check').forEach(c=>{c.checked=false;const id=c.dataset.valor;if(id&&$('#'+id))$('#'+id).value=''});const itens=Array.isArray(v.beneficiosLista)?v.beneficiosLista:[];itens.forEach(txt=>{document.querySelectorAll('.beneficio-check').forEach(c=>{if(txt===c.value||txt.startsWith(c.value+' - ')){c.checked=true;const id=c.dataset.valor;if(id&&$('#'+id))$('#'+id).value=txt.slice(c.value.length+3)}})});if($('#beneficiosVaga'))$('#beneficiosVaga').value=v.beneficiosOutros||(!itens.length?v.beneficios||'':'')}function montarRevisao(){const v=id=>$('#'+id)?.value.trim()||'',nome=v('empresaVaga'),cargo=v('cargoVaga'),cidade=v('cidadeVaga'),uf=v('estadoVaga'),sal=v('salarioVaga'),comb=$('#salarioCombinarVaga')?.checked,faixa=comb?'A combinar':sal,benef=beneficiosSelecionados(),flags=[$('#senior50Vaga')?.checked?'Profissionais 50+':'',$('#vagaConfidencial')?.checked?'Vaga confidencial':'',$('#vagaDestaque')?.checked?'Destaque':'',$('#vagaUrgente')?.checked?'Urgente':''].filter(Boolean);$('#reviewVaga').innerHTML='<div class="review-grid"><div><span>Título</span><strong>'+esc(String(cargo).toLocaleUpperCase('pt-BR'))+'</strong></div><div><span>Empresa</span><strong>'+esc(nome)+'</strong></div><div><span>Área</span><strong>'+esc(v('areaVaga'))+'</strong></div><div><span>Contrato</span><strong>'+esc(v('contratoVaga'))+'</strong></div><div><span>Modalidade</span><strong>'+esc(v('modalidadeVaga'))+'</strong></div><div><span>Localização</span><strong>'+esc(cidade+(uf?' - '+uf:''))+'</strong></div><div><span>Salário</span><strong>'+esc(faixa||'Não informado')+'</strong></div><div><span>Jornada</span><strong>'+esc(v('jornadaVaga')||'Não informada')+'</strong></div><div><span>Horário</span><strong>'+esc('Não informado')+'</strong></div><div><span>Escolaridade</span><strong>'+esc(v('escolaridadeVaga'))+'</strong></div><div><span>Experiência</span><strong>'+esc(v('experienciaVaga'))+'</strong></div><div><span>PcD</span><strong>'+esc(v('pcdVaga'))+'</strong></div></div>'+(flags.length?'<div class="review-flags">'+flags.map(x=>'<span>'+esc(x)+'</span>').join('')+'</div>':'')+'<div class="review-texto"><h4>Descrição</h4><p>'+esc(v('descricaoVaga')).replace(/\n/g,'<br>')+'</p><h4>Requisitos</h4><p>'+esc(v('requisitosVaga')).replace(/\n/g,'<br>')+'</p><h4>Benefícios</h4><div class="beneficios-tags">'+(benef.length?benef.map(x=>'<span class="beneficio-tag">'+esc(x)+'</span>').join(''):'<span>Não informados</span>')+'</div></div>';$('#previewVaga').innerHTML='<div class="preview-vaga-cab"><span>PRÉVIA PARA O CANDIDATO</span><h3>'+esc(String(cargo).toLocaleUpperCase('pt-BR'))+'</h3><button type="button" class="empresa-link">'+esc($('#vagaConfidencial')?.checked?'Empresa confidencial':nome)+'</button></div><div class="detalhe-tags"><span>'+esc(v('contratoVaga'))+'</span><span>'+esc(v('modalidadeVaga'))+'</span>'+(flags.includes('Urgente')?'<span>Urgente</span>':'')+(flags.includes('Destaque')?'<span>Destaque</span>':'')+'</div><strong class="preview-salario">'+esc(faixa||'Salário a combinar')+'</strong><p>'+esc(v('descricaoVaga')).replace(/\n/g,'<br>')+'</p>'}function prepararPublicacao(){if(papelAtual()!=='empresa'){irPara('login-empresa');return}const editId=sessionStorage.getItem('vagaEdicao'),vagaEdit=editId?vagasDaEmpresa().find(v=>v.id===editId):null,existe=!!vagaEdit;if(editId&&!existe)sessionStorage.removeItem('vagaEdicao');
  const emp=typeof empresaLogada==='function'?(empresaLogada()||{}):{},p=emp.perfil||{},setSeVazio=(id,val)=>{const el=$('#'+id);if(el&&!el.value&&val)el.value=val};
  const e=$('#empresaVaga');if(e)e.value=vagaEdit?.empresa||p.nome||emp.nome||sessionStorage.getItem('empresaNome')||'';
  if(!vagaEdit){
@@ -1749,33 +1729,25 @@ function mudarEtapaCandidato(id,status){const a=candidaturas(),i=a.findIndex(c=>
 function contatarWhats(id){const c=candidaturas().find(x=>x.id===id),v=ler('empregaMaisVagas').find(x=>x.id===c?.vagaId);if(!c||!c.telefone)return;let f=nums(c.telefone);if(f.length<10){alert('O telefone deste candidato está incompleto.');return}if(f.length<=11)f='55'+f;const texto='Olá, '+(c.candidato||c.nome||'')+'! Meu nome é [SEU NOME] e falo em nome da '+(sessionStorage.getItem('empresaNome')||'empresa')+'. Recebemos seu currículo para a vaga de '+tituloVaga(v||{})+' pelo + Empregos e gostaríamos de conversar sobre o processo seletivo.';window.open('https://wa.me/'+f+'?text='+encodeURIComponent(texto),'_blank')}
 function atualizarPainelCandidato(){const email=(sessionStorage.getItem('candidatoEmail')||'').toLowerCase(),apps=candidaturasDoCandidatoAtualEM(),curr=ler(chaveCurriculo(),null),cvOnline=dadosCurriculoOnlineEM(),ids=salvas(),perfil=candidatoLogado()?.perfil||{},entrev=apps.filter(c=>grupoEtapa(c.status)==='Entrevista').length;const set=(id,v)=>{const e=$('#'+id);if(e)e.textContent=v};const nomeCand=sessionStorage.getItem('candidatoNome')||candidatoLogado()?.nome||'Candidato';set('candSideNome',nomeCand);set('candSideAvatar',String(nomeCand).charAt(0).toUpperCase());set('candHeroTitulo','Olá, '+String(nomeCand).split(' ')[0]+'!');const camposPerfil=[perfil.titulo,perfil.area,perfil.escolaridade,perfil.experiencia,perfil.resumo,perfil.competencias,perfil.modalidade,candidatoLogado()?.cidade],preenchidos=camposPerfil.filter(Boolean).length,pct=Math.round(preenchidos/camposPerfil.length*100);set('candPerfilProgressoTexto',pct+'% completo');const barra=$('#candPerfilProgressoBarra');if(barra)barra.style.width=pct+'%';const cvCampos=[cvOnline.nome,cvOnline.titulo,cvOnline.email,cvOnline.telefone,cvOnline.cidade,cvOnline.uf,cvOnline.area,cvOnline.objetivo,cvOnline.escolaridade,cvOnline.competencias],cvPreenchidos=cvCampos.filter(v=>String(v||'').trim()).length,cvExtras=(Array.isArray(cvOnline.experiencias)&&cvOnline.experiencias.length?1:0)+(Array.isArray(cvOnline.formacoes)&&cvOnline.formacoes.length?1:0),cvTotal=cvCampos.length+2,cvPct=Math.min(100,Math.round((cvPreenchidos+cvExtras)/cvTotal*100)),cvExiste=cvPreenchidos>0||cvExtras>0,cvStatus=!cvExiste?'Pendente':cvPct>=80?'Completo':cvPct+'% completo';set('candMetricaCurriculo',cvStatus);set('candMetricaCandidaturas',apps.length);set('candMetricaEntrevistas',entrev);set('candMetricaSalvas',ids.length);const cvSmall=document.querySelector('#candMetricaCurriculo')?.parentElement?.querySelector('small');if(cvSmall)cvSmall.textContent=!cvExiste?'Crie seu currículo online':cvPct>=80?'Currículo online atualizado':'Continue preenchendo seu currículo';const cvKpi=document.querySelector('#candMetricaCurriculo')?.closest('article');if(cvKpi){cvKpi.classList.toggle('curriculo-completo',cvExiste&&cvPct>=80);cvKpi.classList.toggle('curriculo-parcial',cvExiste&&cvPct<80);cvKpi.classList.toggle('curriculo-pendente',!cvExiste);cvKpi.setAttribute('aria-label',cvExiste&&cvPct>=80?'Currículo completo. Abrir currículo online':!cvExiste?'Currículo pendente. Criar currículo online':'Currículo '+cvPct+'% completo. Continuar preenchimento');}const jornada=$('#resumoJornadaCandidato');if(jornada)jornada.innerHTML=apps.length?apps.slice().sort((a,b)=>new Date(b.criadoEm||0)-new Date(a.criadoEm||0)).slice(0,4).map(c=>{const v=ler('empregaMaisVagas').find(x=>x.id===c.vagaId)||{};return'<div class="jornada-item"><div><strong>'+esc(tituloVaga(v)||c.vagaTitulo||'Vaga')+'</strong><span>'+esc(v.confidencial?'Empresa confidencial':v.empresa||'')+'</span></div><span class="vaga-status">'+esc(c.status||'Em avaliação')+'</span></div>'}).join(''):'<div class="vagas-vazio"><strong>Nenhuma candidatura ainda</strong><span>Encontre uma oportunidade e acompanhe o processo por aqui.</span></div>';const rec=$('#vagasRecomendadasCandidato');if(rec){const area=String(perfil.area||'').toLowerCase(),cidade=String(candidatoLogado()?.cidade||'').toLowerCase(),mod=perfil.modalidade||'',aplicadas=new Set(apps.map(c=>c.vagaId));let vagas=vagasPublicas().filter(v=>!aplicadas.has(v.id));vagas.sort((a,b)=>{const pa=(area&&String(a.area||'').toLowerCase().includes(area)?3:0)+(cidade&&String(a.cidade||'').toLowerCase()===cidade?2:0)+(mod&&a.modalidade===mod?1:0),pb=(area&&String(b.area||'').toLowerCase().includes(area)?3:0)+(cidade&&String(b.cidade||'').toLowerCase()===cidade?2:0)+(mod&&b.modalidade===mod?1:0);return pb-pa||new Date(b.criadoEm||0)-new Date(a.criadoEm||0)});rec.innerHTML=vagas.length?vagas.slice(0,4).map(cardVagaPortal).join(''):'<div class="vagas-vazio"><strong>Sem recomendações no momento</strong><span>Complete seu perfil e volte em breve.</span></div>'}try{atualizarSeguirEmpresaEM()}catch(e){} }
 
-let sincronizarCandidatoLogadoEmVooEM=null,sincronizarCandidatoLogadoUltimaEM=0;
-async function sincronizarCandidatoLogadoSupabaseEM(forcar){
- if(sincronizarCandidatoLogadoEmVooEM)return sincronizarCandidatoLogadoEmVooEM;
+async function sincronizarCandidatoLogadoSupabaseEM(){
  const email=(sessionStorage.getItem('candidatoEmail')||'').toLowerCase(),userId=sessionStorage.getItem('candidatoSupabaseUserId')||'';
  if(!email&&!userId)return null;
- if(!forcar&&sincronizarCandidatoLogadoUltimaEM&&(Date.now()-sincronizarCandidatoLogadoUltimaEM)<15000)return candidatoLogado()||null;
- sincronizarCandidatoLogadoEmVooEM=(async()=>{
-  try{
-   const t=await sbGarantirSessaoEM();if(!t)return null;
-   const filtro=userId?'user_id=eq.'+encodeURIComponent(userId):'email=eq.'+encodeURIComponent(email);
-   const rows=await sbJsonEM(EMPREGAMAIS_SUPABASE_URL+'/rest/v1/candidatos?select=*&'+filtro+'&limit=1',{method:'GET',headers:sbHeadersEM(t)});
-   const x=Array.isArray(rows)?rows[0]:null;if(!x){sessionStorage.setItem('candidatoPremiumVerificadoEM','0');return null;}
-   sessionStorage.setItem('candidatoPremiumVerificadoEM',x.premium===true?'1':'0');
-   const atual=sbSalvarCandidatoLocalEM(sbMapPerfilCandidatoCloudEM(x,candidatoLogado()||{}));
-   const cloudEmail=String(atual.email||email||'').toLowerCase();
-   if(cloudEmail){
-    gravar('empregaMaisCurriculoOnline_'+cloudEmail,atual.curriculoOnline||{});
-    if(atual.curriculoArquivo)gravar('empregaMaisCurriculo_'+cloudEmail,atual.curriculoArquivo);
-    else localStorage.removeItem('empregaMaisCurriculo_'+cloudEmail);
-    gravar('empregaMaisSalvas_'+cloudEmail,atual.vagasSalvas||[]);
-   }
-   sincronizarCandidatoLogadoUltimaEM=Date.now();
-   return atual
-  }catch(err){console.error('Sincronização candidato logado / Supabase:',err);return null}
- })();
- try{return await sincronizarCandidatoLogadoEmVooEM}
- finally{sincronizarCandidatoLogadoEmVooEM=null}
+ try{
+  const t=await sbGarantirSessaoEM();if(!t)return null;
+  const filtro=userId?'user_id=eq.'+encodeURIComponent(userId):'email=eq.'+encodeURIComponent(email);
+  const rows=await sbJsonEM(EMPREGAMAIS_SUPABASE_URL+'/rest/v1/candidatos?select=*&'+filtro+'&limit=1',{method:'GET',headers:sbHeadersEM(t)});
+  const x=Array.isArray(rows)?rows[0]:null;if(!x){sessionStorage.setItem('candidatoPremiumVerificadoEM','0');return null;}
+  sessionStorage.setItem('candidatoPremiumVerificadoEM',x.premium===true?'1':'0');
+  const atual=sbSalvarCandidatoLocalEM(sbMapPerfilCandidatoCloudEM(x,candidatoLogado()||{}));
+  const cloudEmail=String(atual.email||email||'').toLowerCase();
+  if(cloudEmail){
+   gravar('empregaMaisCurriculoOnline_'+cloudEmail,atual.curriculoOnline||{});
+   if(atual.curriculoArquivo)gravar('empregaMaisCurriculo_'+cloudEmail,atual.curriculoArquivo);
+   else localStorage.removeItem('empregaMaisCurriculo_'+cloudEmail);
+   gravar('empregaMaisSalvas_'+cloudEmail,atual.vagasSalvas||[]);
+  }
+  return atual
+ }catch(err){console.error('Sincronização candidato logado / Supabase:',err);return null}
 }
 const _atualizarPainelCandidatoLocalEM=atualizarPainelCandidato;
 atualizarPainelCandidato=async function(){
@@ -2188,7 +2160,7 @@ async function abrirVaga(id){
    try{
      const rows=await sbJsonEM(
        EMPREGAMAIS_SUPABASE_URL+'/rest/v1/vagas?select=*&id=eq.'+encodeURIComponent(id)+'&limit=1',
-       {method:'GET',headers:sbHeadersEM()}
+       {method:'GET',headers:Object.assign(sbHeadersEM(),{'Cache-Control':'no-cache','Pragma':'no-cache'}),cache:'no-store'}
      );
      const remota=Array.isArray(rows)?rows[0]:null;
      if(remota){
@@ -2581,8 +2553,8 @@ function adminTabelaVagas(a){return a.length?'<div class="admin-lista">'+a.map(v
 function adminVerVaga(id){const v=ler('empregaMaisVagas').find(x=>x.id===id),box=$('#adminVagaConteudo');if(!v||!box)return;const hist=Array.isArray(v.historicoModeracao)?v.historicoModeracao:[],sal=v.salarioCombinar?'A combinar':(v.salarioMax?(v.salario+' a '+v.salarioMax):(v.salario||'Não informado'));box.innerHTML='<div class="admin-vaga-top"><span class="vaga-status '+esc(v.status||'')+'">'+esc(({pendente:'Em análise',aprovada:'Aprovada',reprovada:'Reprovada',encerrada:'Encerrada',suspensa:'Suspensa'}[v.status]||v.status||''))+'</span><h2>'+esc(tituloVaga(v))+'</h2><p>'+esc(v.empresa||'')+' · '+esc(v.cidade||'')+(v.estado?' - '+esc(v.estado):'')+'</p></div><div class="ficha-grid"><div class="ficha-linha"><span>Área</span><strong>'+esc(v.area||'Não informada')+'</strong></div><div class="ficha-linha"><span>Contrato</span><strong>'+esc(v.contrato||'Não informado')+'</strong></div><div class="ficha-linha"><span>Modalidade</span><strong>'+esc(v.modalidade||'Não informada')+'</strong></div><div class="ficha-linha"><span>Salário</span><strong>'+esc(sal)+'</strong></div><div class="ficha-linha"><span>Escolaridade</span><strong>'+esc(v.escolaridade||'Não informada')+'</strong></div><div class="ficha-linha"><span>Experiência</span><strong>'+esc(v.experiencia||'Não informada')+'</strong></div></div><section><h3>Descrição</h3><p>'+esc(v.descricao||'Não informada').replace(/\n/g,'<br>')+'</p></section><section><h3>Requisitos</h3><p>'+esc(v.requisitos||'Não informados').replace(/\n/g,'<br>')+'</p></section>'+(v.motivoReprovacao?'<section class="motivo-reprovacao"><h3>Motivo da reprovação</h3><p>'+esc(v.motivoReprovacao)+'</p></section>':'')+(hist.length?'<section><h3>Histórico da moderação</h3><div class="historico-candidato">'+hist.slice().reverse().map(x=>'<div><strong>'+esc(x.acao)+'</strong><span>'+new Date(x.data).toLocaleString('pt-BR')+(x.motivo?' · '+esc(x.motivo):'')+'</span></div>').join('')+'</div></section>':'')+'<div class="admin-modal-acoes">'+(v.status!=='aprovada'&&v.status!=='encerrada'?'<button class="btn btn-azul" onclick="adminAprovarVaga(\''+v.id+'\')">Aprovar vaga</button>':'')+(v.status!=='reprovada'&&v.status!=='encerrada'?'<button class="btn btn-perigo" onclick="adminReprovarVaga(\''+v.id+'\')">Reprovar vaga</button>':'')+'</div>';$('#modalAdminVaga').classList.remove('oculto')}
 function fecharAdminVaga(){$('#modalAdminVaga')?.classList.add('oculto')}
 function adminRegistrarModeracao(id,status,motivo){const a=ler('empregaMaisVagas'),i=a.findIndex(v=>v.id===id);if(i<0)return;a[i].status=status;a[i].moderadoEm=new Date().toISOString();a[i].historicoModeracao=Array.isArray(a[i].historicoModeracao)?a[i].historicoModeracao:[];a[i].historicoModeracao.push({acao:status==='aprovada'?'Aprovada':'Reprovada',motivo:motivo||'',data:a[i].moderadoEm});if(status==='reprovada')a[i].motivoReprovacao=motivo;else a[i].motivoReprovacao='';gravar('empregaMaisVagas',a);fecharAdminVaga();adminAba('vagas')}
-/* Moderação local legada removida; aprovação usa Supabase. */
-/* Reprovação local legada removida; moderação usa Supabase. */
+function adminAprovarVaga(id){const v=ler('empregaMaisVagas').find(x=>x.id===id);if(!v)return;if(v.status==='encerrada'){alert('Uma vaga encerrada não pode ser republicada diretamente. A empresa deve duplicá-la para uma nova publicação.');return}if(v.dataEncerramento&&!vagaDentroPrazo(v)){alert('Esta vaga está com o prazo de candidatura vencido. Solicite à empresa a correção da data antes da aprovação.');return}if(confirm(v.status==='suspensa'?'Reativar e aprovar esta vaga no portal?':'Aprovar esta vaga e publicá-la no portal?'))adminRegistrarModeracao(id,'aprovada','')}
+function adminReprovarVaga(id){const v=ler('empregaMaisVagas').find(x=>x.id===id);if(!v||v.status==='encerrada'){if(v?.status==='encerrada')alert('Esta vaga já foi encerrada pela empresa.');return}const motivo=prompt('Informe o motivo da reprovação para a empresa:');if(motivo===null)return;if(!motivo.trim()){alert('Informe o motivo da reprovação.');return}adminRegistrarModeracao(id,'reprovada',motivo.trim())}
 function adminTabelaPessoas(a,tipo){return a.length?'<div class="admin-lista">'+a.map(x=>'<div class="admin-linha"><div><strong>'+esc(x.nome||'Sem nome')+'</strong><small>'+esc(x.email||'')+(tipo==='empresa'&&x.cnpj?' · '+esc(x.cnpj):'')+'</small></div></div>').join('')+'</div>':'<div class="vagas-vazio">Nenhum cadastro encontrado.</div>'}
 function adminTabelaEmpresas(es,vs,cands){return es.length?'<div class="admin-lista">'+es.map(e=>{const vagas=vs.filter(v=>v.empresaCnpj===e.cnpj),contr=cands.filter(c=>{const v=vs.find(v=>v.id===c.vagaId);return v&&v.empresaCnpj===e.cnpj&&grupoEtapa(c.status)==='Contratados'}).length;return'<div class="admin-linha"><div><strong>'+esc(e.nome||'Empresa')+'</strong><small>'+esc(e.cnpj||'')+' · Plano '+esc((PLANOS_EMPRESA[e.plano||'basico']||PLANOS_EMPRESA.basico).nome)+'</small></div><div class="admin-empresa-resumo"><span>'+vagas.length+' vaga(s)</span><span>'+contr+' contratação(ões)</span></div></div>'}).join('')+'</div>':'<div class="vagas-vazio">Nenhuma empresa cadastrada.</div>'}
 function adminTabelaContratacoes(a){return a.length?'<div class="admin-lista">'+a.map(c=>{const v=ler('empregaMaisVagas').find(x=>x.id===c.vagaId)||{};return'<div class="admin-linha"><div><strong>'+esc(c.candidato||c.nome||'Candidato')+'</strong><small>'+esc(tituloVaga(v)||c.vagaTitulo||'')+' · '+esc(v.empresa||'')+'</small></div><span class="vaga-status aprovada">Contratado</span></div>'}).join('')+'</div>':'<div class="vagas-vazio">Nenhuma contratação registrada.</div>'}
@@ -2609,8 +2581,8 @@ function adminAtivarExtra(id){const extras=ler('empregaMaisExtras'),i=extras.fin
 /* EMPREGAMAIS-ADMIN-SUPABASE-MODERACAO-V3 */
 async function adminSbToken(){if(sessionStorage.getItem('empregaMaisAdmin')!=='1')throw new Error('Sessão administrativa ausente.');let t=sessionStorage.getItem(EMPREGAMAIS_SB_ADMIN_TOKEN)||'',r=sessionStorage.getItem(EMPREGAMAIS_SB_ADMIN_REFRESH)||'';if(t){try{const u=await sbJsonEM(EMPREGAMAIS_SUPABASE_URL+'/auth/v1/user',{method:'GET',headers:sbHeadersEM(t)});if(u?.id)return t}catch(e){}}if(r){try{const a=await sbJsonEM(EMPREGAMAIS_SUPABASE_URL+'/auth/v1/token?grant_type=refresh_token',{method:'POST',headers:sbHeadersEM(),body:JSON.stringify({refresh_token:r})});if(a?.access_token){sessionStorage.setItem(EMPREGAMAIS_SB_ADMIN_TOKEN,a.access_token);if(a.refresh_token)sessionStorage.setItem(EMPREGAMAIS_SB_ADMIN_REFRESH,a.refresh_token);return a.access_token}}catch(e){}}throw new Error('Sessão administrativa expirada.')}
 async function abrirImportadorAdminEM(){try{await adminSbToken();window.location.href='importar-vagas.html?v=4.0'}catch(e){alert('Sua sessão administrativa precisa ser renovada. Entre novamente no painel administrativo.');irPara('login-admin')}}
-/* Loader ADM de empresas V3 substituído pela versão de verificação consolidada. */
-/* Loader ADM de vagas V3 substituído pela versão com proteção RLS/cache. */
+async function adminCarregarEmpresasSupabaseEM(){const t=await adminSbToken();const a=await sbJsonEM(EMPREGAMAIS_SUPABASE_URL+'/rest/v1/empresas?select=*&order=criado_em.desc',{method:'GET',headers:sbHeadersEM(t)});const remotas=(Array.isArray(a)?a:[]).map(x=>sbEmpresaParaLocalEM(x,''));const locais=ler('empregaMaisEmpresas'),map=new Map();locais.forEach(x=>map.set(nums(x.cnpj)||x.id,x));remotas.forEach(x=>{const k=nums(x.cnpj)||x.id,ant=map.get(k)||{};map.set(k,Object.assign({},ant,x,{senha:ant.senha||''}))});const todas=[...map.values()];gravar('empregaMaisEmpresas',todas);return todas}
+async function adminCarregarVagasSupabase(){const t=await adminSbToken();const a=await sbJsonEM(EMPREGAMAIS_SUPABASE_URL+'/rest/v1/vagas?select=*&order=criado_em.desc',{method:'GET',headers:sbHeadersEM(t)});const vs=(Array.isArray(a)?a:[]).map(sbMapVagaEM);gravar('empregaMaisVagas',vs);return vs}
 async function adminAtualizarStatusSupabase(id,status,motivo){const t=await adminSbToken(),body={status:status,motivo_reprovacao:motivo||null,editado_em:new Date().toISOString()};await sbJsonEM(EMPREGAMAIS_SUPABASE_URL+'/rest/v1/vagas?id=eq.'+encodeURIComponent(id),{method:'PATCH',headers:Object.assign(sbHeadersEM(t),{'Prefer':'return=representation'}),body:JSON.stringify(body)});await adminCarregarVagasSupabase();adminHistoricoRegistrar(status==='aprovada'?'Vaga aprovada':status==='reprovada'?'Vaga reprovada':'Status da vaga alterado',id+(motivo?' · '+motivo:''));fecharAdminVaga();await adminAba('vagas')}
 async function adminAprovarVaga(id){const v=ler('empregaMaisVagas').find(x=>x.id===id);if(!v)return;if(v.status==='encerrada'){alert('Uma vaga encerrada não pode ser republicada diretamente.');return}if(v.dataEncerramento&&!vagaDentroPrazo(v)){alert('Esta vaga está com o prazo de candidatura vencido. Solicite à empresa a correção da data.');return}if(!confirm(v.status==='suspensa'?'Reativar e aprovar esta vaga no portal?':'Aprovar esta vaga e publicá-la no portal?'))return;try{await adminAtualizarStatusSupabase(id,'aprovada','');alert('Vaga aprovada e atualizada no Supabase.')}catch(err){console.error('ADM aprovação Supabase:',err);alert('Não foi possível aprovar no banco: '+err.message)}}
 async function adminReprovarVaga(id){const v=ler('empregaMaisVagas').find(x=>x.id===id);if(!v||v.status==='encerrada')return;const motivo=prompt('Informe o motivo da reprovação para a empresa:');if(motivo===null)return;if(!motivo.trim()){alert('Informe o motivo da reprovação.');return}try{await adminAtualizarStatusSupabase(id,'reprovada',motivo.trim());alert('Vaga reprovada e atualizada no Supabase.')}catch(err){console.error('ADM reprovação Supabase:',err);alert('Não foi possível reprovar no banco: '+err.message)}}
@@ -2780,12 +2752,10 @@ function sbSalvarEmpresaLocalEM(emp){if(!emp)return;const lista=ler("empregaMais
 
 cadastrarEmpresa=function(e){e.preventDefault();const senha=$("#cadEmpresaSenha").value,nome=$("#cadEmpresaNome").value.trim(),email=$("#cadEmpresaEmail").value.trim().toLowerCase(),telefone=$("#cadEmpresaTelefone").value.trim(),cnpj=nums($("#cadEmpresaCnpj").value),emailCandidaturas=($("#cadEmpresaEmailCandidaturas")?.value||email).trim().toLowerCase();if(nome.length<2)return msg("#msgCadastroEmpresa","Informe o nome da empresa.");if(cnpj.length!==14)return msg("#msgCadastroEmpresa","Informe um CNPJ com 14 números.");if(!email.includes("@"))return msg("#msgCadastroEmpresa","Informe um e-mail corporativo válido.");if(!emailCandidaturas.includes("@"))return msg("#msgCadastroEmpresa","Informe um e-mail válido para recebimento de candidaturas.");if(nums(telefone).length<10)return msg("#msgCadastroEmpresa","Informe um telefone válido.");if(senha.length<6)return msg("#msgCadastroEmpresa","A senha deve ter pelo menos 6 caracteres.");if(senha!==$("#cadEmpresaSenha2").value)return msg("#msgCadastroEmpresa","As senhas não conferem.");const base={nome,cnpj,email,emailCandidaturas,telefone,senha};sbCadastrarAuthEmpresaEM(cnpj,senha).then(auth=>{if(!auth.access_token||!auth.user?.id)throw new Error("O Supabase não criou a sessão da empresa.");return sbInserirEmpresaEM(auth,base)}).then(remota=>{const d=sbEmpresaParaLocalEM(remota,senha);sbSalvarEmpresaLocalEM(d);entrar("empresa",d);mostrarToast("Empresa cadastrada com sucesso.");if(sessionStorage.getItem("planoPretendido"))setTimeout(()=>irPara("planos"),30)}).catch(err=>{console.error("Supabase cadastro empresa:",err);msg("#msgCadastroEmpresa",/already|registered|exists/i.test(err.message)?"Este CNPJ já possui cadastro no Supabase.":err.message)})};
 
-/* Login empresarial legado removido: EMPRESA-EQUIPE-V6 abaixo é a implementação única
-   e suporta tanto CNPJ quanto e-mail de usuário vinculado. */
+loginEmpresa=function(e){e.preventDefault();const cnpj=nums($("#loginEmpresaCnpj").value),senha=$("#loginEmpresaSenha").value;if(cnpj.length!==14)return msg("#msgLoginEmpresa","Informe um CNPJ válido.");if(!senha)return msg("#msgLoginEmpresa","Informe sua senha.");msg("#msgLoginEmpresa","Entrando...");sbLoginAuthEmpresaEM(cnpj,senha).then(()=>sbBuscarMinhaEmpresaEM()).then(remota=>{if(!remota)throw new Error("Cadastro da empresa não encontrado no Supabase.");if(nums(remota.cnpj)!==cnpj)throw new Error("O cadastro autenticado não corresponde ao CNPJ informado.");const d=sbEmpresaParaLocalEM(remota,senha);sbSalvarEmpresaLocalEM(d);entrar("empresa",d);msg("#msgLoginEmpresa","");if(sessionStorage.getItem("planoPretendido"))setTimeout(()=>irPara("planos"),30)}).catch(err=>{console.error("Supabase login empresa:",err);const texto=/rate limit/i.test(err.message)?"O Supabase bloqueou temporariamente novas tentativas. Aguarde alguns minutos e tente novamente.":/invalid login|invalid credentials/i.test(err.message)?"CNPJ ou senha incorretos.":"Não foi possível entrar: "+err.message;msg("#msgLoginEmpresa",texto)})};
 
 async function validarSessaoSupabaseEmpresaEM(){const token=await sbGarantirSessaoEM();if(!token)return false;try{const u=await sbJsonEM(EMPREGAMAIS_SUPABASE_URL+"/auth/v1/user",{method:"GET",headers:sbHeadersEM(token)});const e=await sbBuscarMinhaEmpresaEM();return !!(u?.id&&e?.id)}catch(err){return false}}
-/* A restauração central de sessão já valida token + empresa no DOMContentLoaded.
-   Evita uma segunda validação automática idêntica no evento load. */
+window.addEventListener("load",()=>{if(sessionStorage.getItem(EMPREGAMAIS_SB_TOKEN))validarSessaoSupabaseEmpresaEM()});
 
 /* =========================================================
    EMPREGAMAIS — VAGAS NO SUPABASE
@@ -2815,11 +2785,7 @@ function sbMapVagaEM(v){
   };
 }
 function sbUsuarioAtualEM(){const t=sbTokenEM();if(!t)return Promise.reject(new Error('Sessão Supabase ausente.'));return sbJsonEM(EMPREGAMAIS_SUPABASE_URL+'/auth/v1/user',{method:'GET',headers:sbHeadersEM(t)})}
-let sbEmpresasPublicasCargaEM=null,sbEmpresasPublicasUltimaEM=0;
-async function sbSincronizarEmpresasPublicasEM(forcar){
- if(sbEmpresasPublicasCargaEM)return sbEmpresasPublicasCargaEM;
- if(!forcar&&sbEmpresasPublicasUltimaEM&&(Date.now()-sbEmpresasPublicasUltimaEM)<60000)return;
- sbEmpresasPublicasCargaEM=(async()=>{
+async function sbSincronizarEmpresasPublicasEM(){
  try{
   const rows=await sbJsonEM(EMPREGAMAIS_SUPABASE_URL+'/rest/v1/empresas?select=id,nome,nome_fantasia,cnpj,logo_url,plano,plano_id,plano_liberado_admin,verificada,verificacao_status',{method:'GET',headers:sbHeadersEM()});
   if(!Array.isArray(rows))return;
@@ -2841,16 +2807,13 @@ async function sbSincronizarEmpresasPublicasEM(forcar){
    }
    sbSalvarEmpresaLocalEM(local)
   });
-  sbEmpresasPublicasUltimaEM=Date.now();
  }catch(e){console.warn('Empresas públicas não sincronizadas para logos:',e)}
- })().finally(()=>{sbEmpresasPublicasCargaEM=null});
- return sbEmpresasPublicasCargaEM
 }
 function sbCarregarVagasEM(){
   const t=sbTokenEM();
   sbSincronizarEmpresasPublicasEM().then(()=>{try{renderizarVagasPortal()}catch(e){}});
   const locaisAntes=ler('empregaMaisVagas');
-  const publico=sbJsonEM(EMPREGAMAIS_SUPABASE_URL+'/rest/v1/vagas?select=id,empresa_id,empresa,empresa_cnpj,cargo,area,contrato,modalidade,cep,estado,cidade,data_encerramento,escolaridade,experiencia,jornada,pcd,salario,salario_max,salario_combinar,horario_entrada,horario_saida,descricao,requisitos,beneficios,beneficios_lista,beneficios_outros,sobre_empresa,senior50,confidencial,destaque,urgente,status,criado_em,editado_em,destaque_ate,logo,latitude,longitude,candidatura_tipo,candidatura_email,candidatura_whatsapp,candidatura_link&status=eq.aprovada&order=criado_em.desc',{method:'GET',headers:sbHeadersEM()}).catch(()=>[]);
+  const publico=sbJsonEM(EMPREGAMAIS_SUPABASE_URL+'/rest/v1/vagas?select=*&status=eq.aprovada&order=criado_em.desc',{method:'GET',headers:Object.assign(sbHeadersEM(),{'Cache-Control':'no-cache','Pragma':'no-cache'}),cache:'no-store'}).catch(()=>[]);
   const proprio=t?sbUsuarioAtualEM().then(u=>sbJsonEM(EMPREGAMAIS_SUPABASE_URL+'/rest/v1/vagas?select=*&user_id=eq.'+encodeURIComponent(u.id)+'&order=criado_em.desc',{method:'GET',headers:sbHeadersEM(t)})).catch(()=>[]):Promise.resolve([]);
   return Promise.all([publico,proprio]).then(r=>{
     const mapa=new Map();
@@ -2990,8 +2953,7 @@ vagasDaEmpresa=function(){
 };
 const _renderizarVagasPortalLocalEM=renderizarVagasPortal;
 renderizarVagasPortal=function(){const box=$('#listaVagasPortal');if(box&&sbVagasCacheEM.length)return _renderizarVagasPortalLocalEM();if(box&&!sbVagasCacheEM.length)sbCarregarVagasEM().then(()=>{try{_renderizarVagasPortalLocalEM()}catch(e){console.error(e)}}).catch(e=>{console.error('Supabase vagas:',e);try{_renderizarVagasPortalLocalEM()}catch(x){}})};
-/* Carga inicial de vagas consolidada no RECUPERACAO-DE-VAGAS-E-ACOES-V8.
-   Evita uma segunda consulta concorrente no DOMContentLoaded. */
+document.addEventListener('DOMContentLoaded',()=>{setTimeout(()=>{if(sbTokenEM())sbCarregarVagasEM().catch(()=>{});else sbCarregarVagasEM().catch(()=>{})},250)});
 
 function alternarSenhaEmpresa(btn){const input=document.getElementById('loginEmpresaSenha');if(!input)return;const mostrar=input.type==='password';input.type=mostrar?'text':'password';btn.textContent=mostrar?'◌':'◉';btn.setAttribute('aria-label',mostrar?'Ocultar senha':'Mostrar senha')}
 function recuperarSenhaEmpresa(){const cnpj=nums(document.getElementById('loginEmpresaCnpj')?.value||'');if(cnpj.length!==14){msg('#msgLoginEmpresa','Informe seu CNPJ para recuperar a senha.');return}const email=sbEmailEmpresaEM(cnpj);msg('#msgLoginEmpresa','Solicitando recuperação de senha...');sbJsonEM(EMPREGAMAIS_SUPABASE_URL+'/auth/v1/recover',{method:'POST',headers:sbHeadersEM(),body:JSON.stringify({email})}).then(()=>msg('#msgLoginEmpresa','Solicitação enviada. Se a conta permitir recuperação por e-mail, verifique a caixa de entrada cadastrada.',true)).catch(err=>msg('#msgLoginEmpresa',/rate limit/i.test(err.message)?'Limite temporário de e-mails do Supabase atingido. Tente novamente mais tarde.':'Não foi possível iniciar a recuperação: '+err.message))}
@@ -3109,8 +3071,13 @@ function abrirMetricaEmpresa(tipo){
 
 
 /* EMPREGAMAIS-VAGAS-SYNC-CONTEXTO-V4 */
-/* Carregador legado V4 removido: a implementação EMPRESA-EQUIPE-V6 abaixo
-   é a fonte única para vagas da empresa e consolida empresa_id, usuário e CNPJ. */
+async function sbCarregarVagasEmpresaAtualEM(){
+ const t=await sbGarantirSessaoEM();if(!t)throw new Error('Sessão da empresa expirada.');
+ const u=await sbUsuarioAtualEM();
+ const a=await sbJsonEM(EMPREGAMAIS_SUPABASE_URL+'/rest/v1/vagas?select=*&user_id=eq.'+encodeURIComponent(u.id)+'&order=criado_em.desc',{method:'GET',headers:sbHeadersEM(t)});
+ const proprias=(Array.isArray(a)?a:[]).map(sbMapVagaEM),publicas=ler('empregaMaisVagas').filter(v=>v.status==='aprovada'&&!proprias.some(p=>p.id===v.id));
+ sbVagasCacheEM=[...proprias,...publicas];gravar('empregaMaisVagas',sbVagasCacheEM);return proprias
+}
 const _renderizarPainelEmpresaSyncV4=renderizarPainelEmpresa;
 renderizarPainelEmpresa=async function(){
  const box=$('#empresaVagasRecentes');if(box)box.innerHTML='<div class="vagas-vazio">Carregando suas vagas...</div>';
@@ -3240,20 +3207,17 @@ function empresaPainelIniciarAutoRefreshEM(){
  if(empresaPainelAutoRefreshTimerEM)clearInterval(empresaPainelAutoRefreshTimerEM);
  empresaPainelAssinaturaEM='';
  setTimeout(()=>empresaPainelAtualizarSemF5EM(true),300);
- /* Blindagem: o painel não precisa consultar o Supabase a cada 5 segundos.
-    Mantemos atualização periódica leve; ações explícitas e retorno à aba continuam atualizando imediatamente. */
- empresaPainelAutoRefreshTimerEM=setInterval(()=>empresaPainelAtualizarSemF5EM(false),60000)
+ empresaPainelAutoRefreshTimerEM=setInterval(()=>empresaPainelAtualizarSemF5EM(false),5000)
 }
 document.addEventListener('visibilitychange',()=>{if(!document.hidden&&empresaPainelEstaAbertoEM())empresaPainelAtualizarSemF5EM(false)});
 const _abrirRotaAutoRefreshEM=abrirRota;
 abrirRota=function(p){
  const r=_abrirRotaAutoRefreshEM(p);
- const painelAtivo=document.getElementById('pagina-painel-empresa')?.classList.contains('ativa')&&papelAtual()==='empresa';
- if(painelAtivo)empresaPainelIniciarAutoRefreshEM();
+ if(p==='painel-empresa')empresaPainelIniciarAutoRefreshEM();
  else if(empresaPainelAutoRefreshTimerEM){clearInterval(empresaPainelAutoRefreshTimerEM);empresaPainelAutoRefreshTimerEM=null}
  return r
 };
-if(new URLSearchParams(location.search).get('pagina')==='painel-empresa')setTimeout(()=>{if(empresaPainelEstaAbertoEM())empresaPainelIniciarAutoRefreshEM()},700);
+if(new URLSearchParams(location.search).get('pagina')==='painel-empresa')setTimeout(empresaPainelIniciarAutoRefreshEM,700);
 
 /* EMPREGAMAIS-VAGA-VALIDADE-30D-V1 */
 function dataFimPadraoVagaEM(v){const base=new Date(v.criadoEm||Date.now());base.setDate(base.getDate()+30);return base}
@@ -3343,7 +3307,7 @@ function vagasDestaqueOrdenadasEM(){
 }
 async function carregarDestaquesPublicosEM(){
  try{
-  const rows=await sbJsonEM(EMPREGAMAIS_SUPABASE_URL+'/rest/v1/vagas?select=id,empresa_id,empresa,empresa_cnpj,cargo,area,contrato,modalidade,cep,estado,cidade,data_encerramento,escolaridade,experiencia,jornada,pcd,salario,salario_max,salario_combinar,horario_entrada,horario_saida,descricao,requisitos,beneficios,beneficios_lista,beneficios_outros,sobre_empresa,senior50,confidencial,destaque,urgente,status,criado_em,editado_em,destaque_ate,logo,latitude,longitude,candidatura_tipo,candidatura_email,candidatura_whatsapp,candidatura_link&status=eq.aprovada&destaque=eq.true&order=criado_em.desc',{method:'GET',headers:sbHeadersEM()});
+  const rows=await sbJsonEM(EMPREGAMAIS_SUPABASE_URL+'/rest/v1/vagas?select=*&status=eq.aprovada&destaque=eq.true&order=criado_em.desc',{method:'GET',headers:sbHeadersEM()});
   if(Array.isArray(rows)){
    sbDestaquesPublicosEM=rows.map(sbMapVagaEM).filter(v=>v&&vagaDentroPrazo(v)&&destaqueAtivo(v));
    const geral=new Map((Array.isArray(sbVagasCacheEM)?sbVagasCacheEM:[]).filter(v=>v?.id).map(v=>[String(v.id),v]));
@@ -3510,12 +3474,7 @@ function atualizarVerificacaoSidebarPainelEM(){
 }
 
 const _renderizarPainelEmpresaVerEM=renderizarPainelEmpresa;
-renderizarPainelEmpresa=function(){
- const r=_renderizarPainelEmpresaVerEM.apply(this,arguments);
- const finalizar=()=>{renderStatusVerificacaoEmpresaEM();setTimeout(atualizarVerificacaoSidebarPainelEM,0)};
- if(r&&typeof r.then==='function')return r.then(v=>{finalizar();return v},err=>{finalizar();throw err});
- finalizar();return r
-};
+renderizarPainelEmpresa=function(){const r=_renderizarPainelEmpresaVerEM.apply(this,arguments);renderStatusVerificacaoEmpresaEM();setTimeout(atualizarVerificacaoSidebarPainelEM,0);return r};
 
 
 /* EMPREGAMAIS — acesso inteligente à verificação empresarial */
@@ -4029,19 +3988,10 @@ salvarEntrevista=async function(e){
  const agora=new Date().toISOString(),entrevista={data:data,hora:hora,formato:$("#entrevistaFormato").value,local:$("#entrevistaLocal").value.trim(),observacoes:$("#entrevistaObs").value.trim(),agendadaEm:agora};
  try{await sbAtualizarCandidaturaEM(c,{status:"Entrevista agendada",historico:sbHistoricoComEM(c,"Entrevista agendada",agora,{entrevista:{data:data,hora:hora}}),entrevista:entrevista,atualizadoEm:agora,contratadoEm:c.contratadoEm});fecharEntrevista();renderizarCandidatosEmpresa()}catch(err){console.error("Entrevista Supabase:",err);alert("Não foi possível agendar a entrevista: "+err.message)}
 };
-function sbTelaCandidaturasAtivaEM(){
- const p=papelAtual();if(!["empresa","candidato"].includes(p))return false;
- const ids=p==="empresa"?["pagina-painel-empresa","pagina-candidatos-empresa"]:["pagina-painel-candidato","pagina-candidaturas"];
- return ids.some(id=>document.getElementById(id)?.classList.contains("ativa"))
-}
-function sbAtualizarPaineisCandidaturasEM(forcar){
- if(!["empresa","candidato"].includes(papelAtual()))return;
- if(!forcar&&!sbTelaCandidaturasAtivaEM())return;
- sbCarregarCandidaturasEM(true).catch(err=>console.warn("Sincronização de candidaturas:",err))
-}
-window.addEventListener("focus",()=>sbAtualizarPaineisCandidaturasEM(false));
-document.addEventListener("visibilitychange",()=>{if(!document.hidden)sbAtualizarPaineisCandidaturasEM(false)});
-window.addEventListener("load",()=>{setTimeout(()=>sbAtualizarPaineisCandidaturasEM(false),900);if(!sbCandidaturasTimerEM)sbCandidaturasTimerEM=setInterval(()=>{if(!document.hidden)sbAtualizarPaineisCandidaturasEM(false)},60000)});
+function sbAtualizarPaineisCandidaturasEM(){if(!["empresa","candidato"].includes(papelAtual()))return;sbCarregarCandidaturasEM(true).catch(err=>console.warn("Sincronização de candidaturas:",err))}
+window.addEventListener("focus",()=>sbAtualizarPaineisCandidaturasEM());
+document.addEventListener("visibilitychange",()=>{if(!document.hidden)sbAtualizarPaineisCandidaturasEM()});
+window.addEventListener("load",()=>{setTimeout(sbAtualizarPaineisCandidaturasEM,900);if(!sbCandidaturasTimerEM)sbCandidaturasTimerEM=setInterval(()=>{if(!document.hidden)sbAtualizarPaineisCandidaturasEM()},12000)});
 
 
 /* EMPREGAMAIS-CANDIDATO-LEGADO-MIGRACAO-AUTH-V2 */
@@ -4100,8 +4050,6 @@ async function sbRestaurarSessaoEmpresaEM(){
  const token=await sbGarantirSessaoEM();if(!token)return false;
  try{
   const u=await sbUsuarioAtualEM(),emp=await sbBuscarMinhaEmpresaEM();if(!emp?.id)return false;
-  /* Uma resposta iniciada antes do logout não pode reconstruir a sessão. */
-  if(localStorage.getItem('empregaMaisLogoutBloqueio')==='1'||sessionStorage.getItem('empregaMaisLogoutBloqueio')==='1')return false;
   const d=sbEmpresaParaLocalEM(emp,'');sbSalvarEmpresaLocalEM(d);
   sessionStorage.setItem('empregaMaisPapel','empresa');localStorage.setItem('empregaMaisPapelPersistido','empresa');sessionStorage.setItem('empresaNome',d.nome||'Empresa');sessionStorage.setItem('empresaCnpj',d.cnpj||'');
   sessionStorage.setItem('empresaSupabaseAuthUserId',u.id||'');sessionStorage.setItem('empresaSupabaseUserId',emp.user_id||'');sessionStorage.setItem('empresaSupabaseEmpresaId',emp.id||'');
@@ -4158,8 +4106,6 @@ async function sbRestaurarSessaoCandidatoEM(){
  let remoto=null;
  try{remoto=await sbBuscarCandidatoCloudEM(token)}catch(e){return false}
  if(!remoto?.user_id)return false;
- /* Evita que uma restauração assíncrona terminada após o logout reative o candidato. */
- if(localStorage.getItem('empregaMaisLogoutBloqueio')==='1'||sessionStorage.getItem('empregaMaisLogoutBloqueio')==='1')return false;
  const cloud=sbMapPerfilCandidatoCloudEM(remoto,{});
  sbSalvarCandidatoLocalEM(cloud);
  const email=String(cloud.email||"").toLowerCase();
@@ -4372,7 +4318,17 @@ sbCarregarCandidaturasEM=async function(renderizar){
  }finally{sbCandidaturasCarregandoEM=false}
 };
 
-/* Rota intermediária de pendências consolidada no NOVO PAINEL ADMINISTRATIVO V1 abaixo. */
+/* EMPREGAMAIS-ADMIN-CENTRAL-PENDENCIAS-ROTA-V1 */
+const _adminAbaPendenciasEM=adminAba;
+adminAba=async function(aba,btn){
+ if(aba!=='pendencias'){const r=await _adminAbaPendenciasEM(aba,btn);adminAtualizarBadgePendenciasEM();return r}
+ if(sessionStorage.getItem('empregaMaisAdmin')!=='1'){irPara('login-admin');return}
+ document.querySelectorAll('[data-admin-tab]').forEach(b=>b.classList.toggle('ativo',b.dataset.adminTab===aba));
+ const out=document.getElementById('adminConteudo');if(!out)return;
+ out.innerHTML='<div class="admin-bloco"><h2>Central de pendências</h2><div class="admin-empty">Atualizando pendências...</div></div>';
+ try{await adminSincronizarPainelSupabase()}catch(err){console.error('ADM pendências:',err)}
+ out.innerHTML=adminRenderPendenciasEM();
+};
 
 /* EMPREGAMAIS — NOVO PAINEL ADMINISTRATIVO V1 */
 const ADMIN2_TITULOS_EM={geral:['Visão geral','Acompanhe o + Empregos em um único lugar.'],pendencias:['Central de pendências','Tudo que precisa de uma ação administrativa.'],vagas:['Gestão de vagas','Analise e acompanhe todas as oportunidades do portal.'],empresas:['Empresas','Cadastros, planos e situação das empresas.'],verificacoes:['Verificações','Analise empresas que aguardam verificação ou reanálise.'],candidatos:['Candidatos','Cadastros e recursos dos profissionais.'],contratacoes:['Contratações','Acompanhe as contratações registradas no portal.'],planos:['Planos e assinaturas','Controle solicitações, vigências e concessões.'],'premium-candidatos':['Premium para candidatos','Conceda, acompanhe e remova acessos Premium dos candidatos.'],extras:['Extras','Destaques, urgências e benefícios adicionais.'],financeiro:['Financeiro','Visão administrativa das movimentações do portal.'],denuncias:['Denúncias','Analise ocorrências enviadas para moderação.'],relatorios:['Relatórios','Indicadores consolidados do + Empregos.'],historico:['Histórico administrativo','Registro das ações realizadas no painel.'],configuracoes:['Configurações','Controles administrativos e regras do portal.']};
@@ -4832,24 +4788,16 @@ body.recruta-modal-aberto{overflow:hidden!important}
 
 /* EMPREGAMAIS — RECUPERAÇÃO DE VAGAS E AÇÕES V8 */
 (function(){
-  let carregarVagasSeguroEmVooEM=null;
-  let carregarVagasSeguroUltimaEM=0;
-  const carregarVagasSeguroBaseEM = async function(){
+  const carregarVagasSeguro = async function(){
     const locais = Array.isArray(ler('empregaMaisVagas')) ? ler('empregaMaisVagas') : [];
     const mapa = new Map();
     locais.forEach(v=>{if(v?.id) mapa.set(String(v.id),v)});
-    const req=[sbJsonEM(EMPREGAMAIS_SUPABASE_URL+'/rest/v1/vagas?select=id,empresa_id,empresa,empresa_cnpj,cargo,area,contrato,modalidade,cep,estado,cidade,data_encerramento,escolaridade,experiencia,jornada,pcd,salario,salario_max,salario_combinar,horario_entrada,horario_saida,descricao,requisitos,beneficios,beneficios_lista,beneficios_outros,sobre_empresa,senior50,confidencial,destaque,urgente,status,criado_em,editado_em,destaque_ate,logo,latitude,longitude,candidatura_tipo,candidatura_email,candidatura_whatsapp,candidatura_link&status=eq.aprovada&order=criado_em.desc',{method:'GET',headers:sbHeadersEM()}).catch(()=>[])];
+    const req=[sbJsonEM(EMPREGAMAIS_SUPABASE_URL+'/rest/v1/vagas?select=*&status=eq.aprovada&order=criado_em.desc',{method:'GET',headers:sbHeadersEM()}).catch(()=>[])];
     const token=sbTokenEM();
-    /* A leitura privada só é necessária no contexto empresarial.
-       Candidatos e visitantes usam a consulta pública aprovada acima. */
-    if(token&&papelAtual()==='empresa') req.push(
-      sbBuscarMinhaEmpresaEM().then(emp=>{
-        if(!emp?.id)return [];
-        sessionStorage.setItem('empresaSupabaseEmpresaId',String(emp.id));
-        if(emp.user_id)sessionStorage.setItem('empresaSupabaseUserId',String(emp.user_id));
-        return sbJsonEM(EMPREGAMAIS_SUPABASE_URL+'/rest/v1/vagas?select=*&empresa_id=eq.'+encodeURIComponent(emp.id)+'&order=criado_em.desc',{method:'GET',headers:sbHeadersEM(token)});
-      }).catch(()=>[])
-    );
+    if(token) req.push(sbUsuarioAtualEM().then(u=>{
+      if(u?.id) sessionStorage.setItem('empresaSupabaseUserId',u.id);
+      return sbJsonEM(EMPREGAMAIS_SUPABASE_URL+'/rest/v1/vagas?select=*&user_id=eq.'+encodeURIComponent(u.id)+'&order=criado_em.desc',{method:'GET',headers:sbHeadersEM(token)});
+    }).catch(()=>[]));
     const respostas=await Promise.all(req);
     respostas.flat().forEach(v=>{
       if(!v?.id)return;
@@ -4873,41 +4821,28 @@ body.recruta-modal-aberto{overflow:hidden!important}
     }
     return consolidado;
   };
-  const carregarVagasSeguro = function(forcar){
-    const agora=Date.now();
-    if(carregarVagasSeguroEmVooEM)return carregarVagasSeguroEmVooEM;
-    if(!forcar && carregarVagasSeguroUltimaEM && (agora-carregarVagasSeguroUltimaEM)<30000 && Array.isArray(sbVagasCacheEM) && sbVagasCacheEM.length){
-      return Promise.resolve(sbVagasCacheEM);
-    }
-    carregarVagasSeguroEmVooEM=carregarVagasSeguroBaseEM()
-      .then(vs=>{carregarVagasSeguroUltimaEM=Date.now();return vs})
-      .finally(()=>{carregarVagasSeguroEmVooEM=null});
-    return carregarVagasSeguroEmVooEM;
-  };
   window.sbCarregarVagasEM=carregarVagasSeguro;
   sbCarregarVagasEM=carregarVagasSeguro;
 
   async function carregarEmpresaSeguro(){
     const locais=Array.isArray(ler('empregaMaisVagas'))?ler('empregaMaisVagas'):[];
-    let cnpj=nums(sessionStorage.getItem('empresaCnpj')||''),uid=String(sessionStorage.getItem('empresaSupabaseUserId')||''),empresaId=String(sessionStorage.getItem('empresaSupabaseEmpresaId')||''),remotas=[];
+    const cnpj=nums(sessionStorage.getItem('empresaCnpj')||'');
+    let uid=String(sessionStorage.getItem('empresaSupabaseUserId')||''),remotas=[];
     try{
       const token=await sbGarantirSessaoEM();
       if(token){
-        const emp=await sbBuscarMinhaEmpresaEM();
-        if(emp?.id){
-          empresaId=String(emp.id);uid=String(emp.user_id||uid);cnpj=nums(emp.cnpj||cnpj);
-          sessionStorage.setItem('empresaSupabaseEmpresaId',empresaId);
-          if(uid)sessionStorage.setItem('empresaSupabaseUserId',uid);
-          const a=await sbJsonEM(EMPREGAMAIS_SUPABASE_URL+'/rest/v1/vagas?select=*&empresa_id=eq.'+encodeURIComponent(empresaId)+'&order=criado_em.desc',{method:'GET',headers:sbHeadersEM(token)});
-          remotas=Array.isArray(a)?a.map(sbMapVagaEM).filter(Boolean):[];
-        }
+        const u=await sbUsuarioAtualEM();
+        uid=String(u?.id||uid);
+        if(uid)sessionStorage.setItem('empresaSupabaseUserId',uid);
+        const a=await sbJsonEM(EMPREGAMAIS_SUPABASE_URL+'/rest/v1/vagas?select=*&user_id=eq.'+encodeURIComponent(uid)+'&order=criado_em.desc',{method:'GET',headers:sbHeadersEM(token)});
+        remotas=Array.isArray(a)?a.map(sbMapVagaEM).filter(Boolean):[];
       }
     }catch(e){console.warn('+ Empregos: usando vagas locais.',e)}
     const empresaMap=new Map();
     locais.forEach(v=>{
       if(!v?.id)return;
-      const ve=String(v.empresaId||v.empresa_id||''),vc=nums(v.empresaCnpj||v.cnpj||''),vu=String(v.userId||v.user_id||'');
-      if((empresaId&&ve===empresaId)||(uid&&vu===uid)||(cnpj&&vc===cnpj))empresaMap.set(String(v.id),v);
+      const vc=nums(v.empresaCnpj||v.cnpj||''),vu=String(v.userId||v.user_id||'');
+      if((uid&&vu===uid)||(cnpj&&vc===cnpj))empresaMap.set(String(v.id),v);
     });
     remotas.forEach(v=>empresaMap.set(String(v.id),v));
     const geral=new Map((Array.isArray(sbVagasCacheEM)?sbVagasCacheEM:[]).filter(v=>v?.id).map(v=>[String(v.id),v]));
@@ -4965,8 +4900,6 @@ body.recruta-modal-aberto{overflow:hidden!important}
 
   document.addEventListener('DOMContentLoaded',()=>{
     setTimeout(()=>{
-      /* A carga inicial já é disparada pelo bootstrap principal. Aqui apenas
-         reutilizamos o cache/promise existente para evitar uma segunda leitura. */
       carregarVagasSeguro().then(()=>{
         try{
           if(papelAtual()==='empresa')renderizarPainelEmpresa();
@@ -5834,15 +5767,7 @@ window.addEventListener('load',()=>setTimeout(bindCadastroEmpresaV4EM,50));
  }
  document.addEventListener('DOMContentLoaded',()=>{[0,120,500,1200].forEach(ms=>setTimeout(aplicarHeroReferenciaEM,ms))});
  window.addEventListener('load',()=>setTimeout(aplicarHeroReferenciaEM,100));
- const obs=new MutationObserver(mudancas=>{
-  const home=document.getElementById('pagina-home');
-  if(!home?.classList.contains('ativa'))return;
-  /* Observa apenas alterações que possam recriar/substituir o hero.
-     Mudanças em cards, modais, cabeçalho e outras páginas não precisam
-     reaplicar a ilustração da Home. */
-  const precisa= mudancas.some(m=>m.target===home||home.contains(m.target));
-  if(precisa)aplicarHeroReferenciaEM();
- });
- document.addEventListener('DOMContentLoaded',()=>{const home=document.getElementById('pagina-home');if(home)obs.observe(home,{childList:true,subtree:true})},{once:true});
+ const obs=new MutationObserver(()=>{if(document.getElementById('pagina-home')?.classList.contains('ativa'))aplicarHeroReferenciaEM()});
+ document.addEventListener('DOMContentLoaded',()=>{if(document.body)obs.observe(document.body,{childList:true,subtree:true})},{once:true});
  window.aplicarHeroReferenciaEM=aplicarHeroReferenciaEM;
 })();
