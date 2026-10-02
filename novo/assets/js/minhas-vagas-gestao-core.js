@@ -113,9 +113,12 @@ function cssEM(){
  #pagina-vagas-empresa .evp-summary article small{font-size:10.5px!important;color:#637b8b!important}
  #pagina-vagas-empresa .evp-summary article.ativo{box-shadow:0 0 0 2px currentColor inset,0 10px 25px rgba(17,61,96,.10)!important}
  #pagina-vagas-empresa .evp-feature-usage{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:10px 0 14px}
- #pagina-vagas-empresa .evp-feature-card{display:flex;align-items:center;justify-content:center;gap:10px;min-height:58px;padding:9px 13px;border:1px solid #d5e2ee;border-radius:12px;background:#fff;box-shadow:0 3px 10px rgba(13,74,143,.05)}
+ #pagina-vagas-empresa .evp-feature-card{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;min-height:72px;padding:9px 13px;border:1px solid #d5e2ee;border-radius:12px;background:#fff;box-shadow:0 3px 10px rgba(13,74,143,.05);text-align:center;cursor:pointer;transition:.18s ease}
+ #pagina-vagas-empresa .evp-feature-card:hover{transform:translateY(-2px);border-color:#9fc1df;box-shadow:0 8px 18px rgba(13,74,143,.09)}
+ #pagina-vagas-empresa .evp-feature-card.ativo{border-color:#0d67b5;box-shadow:0 0 0 2px rgba(13,103,181,.12),0 7px 18px rgba(13,74,143,.09)}
  #pagina-vagas-empresa .evp-feature-card svg{width:20px;height:20px;flex:0 0 20px;fill:none;stroke:#0d67b5;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
- #pagina-vagas-empresa .evp-feature-card span{display:block;color:#607b90;font-size:9.5px;font-weight:800;text-transform:uppercase;letter-spacing:.04em}
+ #pagina-vagas-empresa .evp-feature-card div{display:flex;flex-direction:column;align-items:center;justify-content:center}
+ #pagina-vagas-empresa .evp-feature-card span{display:block;color:#607b90;font-size:9.5px;font-weight:800;text-transform:uppercase;letter-spacing:.04em;text-align:center}
  #pagina-vagas-empresa .evp-feature-card strong{display:block;margin-top:2px;color:#0d4f8f;font-size:16px;line-height:1}
  #pagina-vagas-empresa .evp-feature-card small{display:block;margin-top:2px;color:#8193a0;font-size:9px}
  #pagina-vagas-empresa .evp-feature-card.urgencia svg{stroke:#d66a12}
@@ -242,20 +245,20 @@ function renderVagasEmpresaPaginaGestaoEM(){
  const rows=vagas.map(v=>{
   const cand=cs.filter(x=>String(x.vagaId)===String(v.id)),st=statusVagaEM(v),cl=st==='Em análise'?'analise':st==='Encerrada'?'encerrada':'';
   const dataOrdem=Date.parse(v.dataPublicacao||v.data||v.criadoEm||'')||0;
-  return '<article class="evp-vaga" data-titulo="'+escEM((v.cargo||v.titulo||'')+' '+(v.cidade||''))+'" data-status="'+escEM(st)+'" data-candidaturas="'+cand.length+'" data-data="'+dataOrdem+'">'+
+  return '<article class="evp-vaga" data-titulo="'+escEM((v.cargo||v.titulo||'')+' '+(v.cidade||''))+'" data-status="'+escEM(st)+'" data-candidaturas="'+cand.length+'" data-data="'+dataOrdem+'" data-destaque="'+(v.destaque?'1':'0')+'" data-urgente="'+(v.urgente?'1':'0')+'" data-confidencial="'+(v.confidencial?'1':'0')+'">'+
    '<div class="evp-title"><div class="evp-title-line"><strong>'+escEM(v.cargo||v.titulo||'Vaga')+'</strong><span class="evp-status '+cl+'">'+st+'</span></div><small>'+escEM([v.cidade,v.estado||v.uf].filter(Boolean).join(' - ')||'Localização não informada')+' · '+escEM(v.modalidade||'Modalidade não informada')+'</small><div class="evp-flags">'+flagsVagaEM(v)+'</div></div>'+
    '<div class="evp-card-status"><small>'+escEM(v.dataPublicacao||v.data||'')+'</small></div>'+
    '<div class="evp-card-metrics"><div class="evp-metric"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="8" r="3"/><path d="M3.5 19c.5-3.4 2.3-5.2 5.5-5.2s5 1.8 5.5 5.2"/><path d="M16 9.5a2.4 2.4 0 1 0 0-4.8M16 14c2.7-.1 4.2 1.5 4.5 4"/></svg><strong>'+cand.length+'</strong><span>Candidaturas</span></div><div class="evp-metric"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2.5 12s3.5-6 9.5-6 9.5 6 9.5 6-3.5 6-9.5 6-9.5-6-9.5-6Z"/><circle cx="12" cy="12" r="2.5"/></svg><strong>'+escEM(v.visualizacoes||0)+'</strong><span>Visualizações</span></div></div>'+
    '<div class="evp-actions"><button class="view-job" type="button" onclick="sessionStorage.setItem(\'vagaSelecionada\',\''+escEM(v.id)+'\');irPara(\'vaga\')">Ver vaga</button><button class="manage-job" type="button" onclick="abrirPopupGestaoVagaEM(\''+escEM(v.id)+'\')">Gerenciar vaga</button></div></article>';
  }).join('');
- box.innerHTML='<div class="evp-summary"><article data-kpi="Ativa" title="Mostrar vagas ativas"><svg viewBox="0 0 24 24"><rect x="3" y="6" width="18" height="14" rx="2"/><path d="M8 6V4h8v2M3 11h18"/></svg><span>VAGAS ATIVAS NO SITE</span><strong>'+ativa+'</strong><small>Publicadas no portal</small></article><article data-kpi="Em análise" title="Filtrar vagas em análise"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><span>EM ANÁLISE</span><strong>'+analise+'</strong><small>Aguardando publicação</small></article><article data-kpi="Encerrada" title="Abrir vagas encerradas"><svg viewBox="0 0 24 24"><rect x="4" y="5" width="16" height="15" rx="2"/><path d="M8 3v4M16 3v4M8 12h8M8 16h5"/></svg><span>VAGAS ENCERRADAS</span><strong>'+enc+'</strong><small>Abrir lista de encerradas</small></article></div><div class="evp-feature-usage"><article class="evp-feature-card destaque"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 3 2.7 5.5 6.1.9-4.4 4.3 1 6.1-5.4-2.9-5.4 2.9 1-6.1-4.4-4.3 6.1-.9L12 3Z"/></svg><div><span>Vagas em destaque</span><strong>'+emDestaque+' em uso</strong><small>Vagas ativas</small></div></article><article class="evp-feature-card urgencia"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m13 2-7 12h6l-1 8 7-12h-6l1-8Z"/></svg><div><span>Vagas com urgência</span><strong>'+comUrgencia+' em uso</strong><small>Vagas ativas</small></div></article><article class="evp-feature-card confidencial"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 4l16 16M3 12s3.5-6 9-6c1.5 0 2.8.4 4 1M21 12s-3.5 6-9 6c-1.5 0-2.8-.4-4-1"/></svg><div><span>Vagas confidenciais</span><strong>'+confidenciais+' em uso</strong><small>Vagas ativas</small></div></article></div><div id="evpClosedHead"></div><section class="evp-board"><div class="evp-tools"><input id="evpBusca" placeholder="Buscar vaga por cargo ou localização"><select id="evpStatus" style="display:none"><option value="Ativa">Vagas ativas</option><option value="Em análise">Em análise</option><option value="Encerrada">Encerradas</option></select><select id="evpOrdem"><option value="recentes">Mais recentes</option><option value="antigas">Mais antigas</option><option value="candidaturas">Mais candidaturas</option></select></div><div class="evp-table-head"><span>VAGA</span><span>STATUS</span><span>CANDIDATURAS</span><span>VISUALIZAÇÕES</span><span>AÇÕES</span></div><div id="evpLista">'+(rows||'<div class="evp-empty"><strong>Nenhuma vaga cadastrada</strong><span>Publique uma nova vaga para começar.</span></div>')+'</div><div id="evpPaginacao" class="evp-pagination"></div></section>';
- let paginaAtual=1,modoLista='Ativa';
+ box.innerHTML='<div class="evp-summary"><article data-kpi="Ativa" title="Mostrar vagas ativas"><svg viewBox="0 0 24 24"><rect x="3" y="6" width="18" height="14" rx="2"/><path d="M8 6V4h8v2M3 11h18"/></svg><span>VAGAS ATIVAS NO SITE</span><strong>'+ativa+'</strong><small>Publicadas no portal</small></article><article data-kpi="Em análise" title="Filtrar vagas em análise"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><span>EM ANÁLISE</span><strong>'+analise+'</strong><small>Aguardando publicação</small></article><article data-kpi="Encerrada" title="Abrir vagas encerradas"><svg viewBox="0 0 24 24"><rect x="4" y="5" width="16" height="15" rx="2"/><path d="M8 3v4M16 3v4M8 12h8M8 16h5"/></svg><span>VAGAS ENCERRADAS</span><strong>'+enc+'</strong><small>Abrir lista de encerradas</small></article></div><div class="evp-feature-usage"><article class="evp-feature-card destaque" data-recurso="destaque"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 3 2.7 5.5 6.1.9-4.4 4.3 1 6.1-5.4-2.9-5.4 2.9 1-6.1-4.4-4.3 6.1-.9L12 3Z"/></svg><div><span>Vagas em destaque</span><strong>'+emDestaque+' em uso</strong><small>Vagas ativas</small></div></article><article class="evp-feature-card urgencia" data-recurso="urgente"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m13 2-7 12h6l-1 8 7-12h-6l1-8Z"/></svg><div><span>Vagas com urgência</span><strong>'+comUrgencia+' em uso</strong><small>Vagas ativas</small></div></article><article class="evp-feature-card confidencial" data-recurso="confidencial"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 4l16 16M3 12s3.5-6 9-6c1.5 0 2.8.4 4 1M21 12s-3.5 6-9 6c-1.5 0-2.8-.4-4-1"/></svg><div><span>Vagas confidenciais</span><strong>'+confidenciais+' em uso</strong><small>Vagas ativas</small></div></article></div><div id="evpClosedHead"></div><section class="evp-board"><div class="evp-tools"><input id="evpBusca" placeholder="Buscar vaga por cargo ou localização"><select id="evpStatus" style="display:none"><option value="Ativa">Vagas ativas</option><option value="Em análise">Em análise</option><option value="Encerrada">Encerradas</option></select><select id="evpOrdem"><option value="recentes">Mais recentes</option><option value="antigas">Mais antigas</option><option value="candidaturas">Mais candidaturas</option></select></div><div class="evp-table-head"><span>VAGA</span><span>STATUS</span><span>CANDIDATURAS</span><span>VISUALIZAÇÕES</span><span>AÇÕES</span></div><div id="evpLista">'+(rows||'<div class="evp-empty"><strong>Nenhuma vaga cadastrada</strong><span>Publique uma nova vaga para começar.</span></div>')+'</div><div id="evpPaginacao" class="evp-pagination"></div></section>';
+ let paginaAtual=1,modoLista='Ativa',filtroRecurso='';
  const porPagina=6;
  const atualizarLista=function(reset){
   if(reset)paginaAtual=1;
   const q=(document.getElementById('evpBusca').value||'').toLowerCase(),ordem=(document.getElementById('evpOrdem')||{}).value||'recentes';
   const lista=document.getElementById('evpLista'),todos=Array.from(lista.querySelectorAll('.evp-vaga'));
-  const filtrados=todos.filter(function(el){return el.dataset.status===modoLista&&(!q||el.dataset.titulo.toLowerCase().includes(q))});
+  const filtrados=todos.filter(function(el){const recursoOk=!filtroRecurso||el.dataset[filtroRecurso]==='1';return el.dataset.status===modoLista&&recursoOk&&(!q||el.dataset.titulo.toLowerCase().includes(q))});
   filtrados.sort(function(a,b){if(ordem==='antigas')return Number(a.dataset.data)-Number(b.dataset.data);if(ordem==='candidaturas')return Number(b.dataset.candidaturas)-Number(a.dataset.candidaturas);return Number(b.dataset.data)-Number(a.dataset.data)});
   filtrados.forEach(function(el){lista.appendChild(el)});
   const paginas=Math.max(1,Math.ceil(filtrados.length/porPagina));if(paginaAtual>paginas)paginaAtual=paginas;
@@ -273,7 +276,7 @@ function renderVagasEmpresaPaginaGestaoEM(){
  const closedHead=document.getElementById('evpClosedHead');
  const marcarKpi=function(valor){box.querySelectorAll('.evp-summary article').forEach(function(a){a.classList.toggle('ativo',a.dataset.kpi===valor)})};
  const abrirModo=function(valor){
-  modoLista=valor;
+  modoLista=valor;filtroRecurso='';box.querySelectorAll('.evp-feature-card').forEach(function(x){x.classList.remove('ativo')});
   closedHead.innerHTML='';
   if(valor==='Encerrada'){
    closedHead.innerHTML='<div class="evp-closed-head"><div><strong>Vagas encerradas</strong><br><span>'+enc+' oportunidades arquivadas.</span></div><button type="button" id="evpVoltarAbertas">← Voltar às vagas ativas</button></div>';
@@ -284,6 +287,15 @@ function renderVagasEmpresaPaginaGestaoEM(){
   marcarKpi(valor);atualizarLista(true);
  };
  box.querySelectorAll('.evp-summary article[data-kpi]').forEach(function(a){a.onclick=function(){abrirModo(a.dataset.kpi)}});
+ box.querySelectorAll('.evp-feature-card[data-recurso]').forEach(function(card){card.onclick=function(){
+  const recurso=card.dataset.recurso;
+  const desligar=filtroRecurso===recurso;
+  filtroRecurso=desligar?'':recurso;
+  modoLista='Ativa';
+  box.querySelectorAll('.evp-feature-card').forEach(function(x){x.classList.toggle('ativo',!desligar&&x===card)});
+  marcarKpi('Ativa');closedHead.innerHTML='';
+  atualizarLista(true);
+ }});
  document.getElementById('evpBusca').oninput=function(){atualizarLista(true)};
  document.getElementById('evpOrdem').onchange=function(){atualizarLista(true)};
  abrirModo('Ativa');
