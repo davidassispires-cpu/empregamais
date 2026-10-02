@@ -3978,6 +3978,7 @@ async function sbCarregarCandidaturasEM(renderizar){
   return sbCandidaturasCacheEM
  }finally{sbCandidaturasCarregandoEM=false}
 }
+window.sbCarregarCandidaturasEM=sbCarregarCandidaturasEM;
 function sbHistoricoComEM(c,status,data,extra){
  const h=Array.isArray(c?.historico)?c.historico.slice():[];
  h.push(Object.assign({status:status,data:data||new Date().toISOString()},extra||{}));return h
