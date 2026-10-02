@@ -2430,6 +2430,44 @@ function alternarSalvarVaga(){const v=vagaAtual();if(!v||v.status!=='aprovada'||
 function renderizarSalvas(){const box=$('#listaVagasSalvas');if(!box)return;const ids=salvas(),publicas=vagasPublicas(),a=publicas.filter(v=>ids.includes(v.id)),validos=new Set(a.map(v=>v.id));if(ids.some(id=>!validos.has(id)))gravar(chaveSalvas(),ids.filter(id=>validos.has(id)));box.innerHTML=a.length?a.map(cardVagaPortal).join(''):'<div class="vagas-vazio"><strong>Nenhuma vaga salva</strong><span>Use o botão “Salvar vaga” para guardar oportunidades.</span></div>'}
 
 
+/* EMPREGAMAIS — CAMADA VISUAL PROFISSIONAL DO PAINEL V1 — SOMENTE CSS */
+(function(){if(document.getElementById('emPainelVisualProfissionalV1'))return;const st=document.createElement('style');st.id='emPainelVisualProfissionalV1';st.textContent=`
+#emPainelRecrutadorSimplesEM .emrs-side{background:#fff!important;border-right:1px solid #d9e2ec!important;box-shadow:7px 0 24px rgba(24,54,84,.08)!important}
+#emPainelRecrutadorSimplesEM .emrs-brand strong,#emPainelRecrutadorSimplesEM .emrs-top h1,#emPainelRecrutadorSimplesEM .emrs-card-head h2{font-weight:900!important;color:#123f72!important}
+#emPainelRecrutadorSimplesEM .emrs-nav button{min-height:48px!important;border:1px solid #dce5ee!important;border-radius:12px!important;background:#fff!important;color:#294d70!important;font-weight:800!important;box-shadow:0 3px 9px rgba(25,57,88,.05)!important;transition:transform .18s ease,box-shadow .18s ease!important}
+#emPainelRecrutadorSimplesEM .emrs-nav button:hover{transform:translateY(-3px)!important;box-shadow:0 11px 22px rgba(25,57,88,.14)!important}
+#emPainelRecrutadorSimplesEM .emrs-nav button.ativo{background:linear-gradient(135deg,#123f72,#0b5fa5)!important;color:#fff!important;border-color:#123f72!important;box-shadow:0 10px 22px rgba(18,63,114,.22)!important}
+#emPainelRecrutadorSimplesEM .emrs-nav button.ativo:before{display:none!important}
+#emPainelRecrutadorSimplesEM .emrs-main{background:linear-gradient(180deg,#f6f8fb,#eef3f8)!important;padding:26px 30px 44px!important}
+#emPainelRecrutadorSimplesEM .emrs-top{background:#fff!important;border:1px solid #d9e2ec!important;border-radius:18px!important;box-shadow:0 10px 28px rgba(26,55,84,.10)!important}
+#emPainelRecrutadorSimplesEM .emrs-top:after{display:none!important}
+#emPainelRecrutadorSimplesEM .emrs-top h1{text-transform:none!important;letter-spacing:-.5px!important}
+#emPainelRecrutadorSimplesEM .emrs-top p{font-weight:600!important}
+#emPainelRecrutadorSimplesEM .emrs-top-kicker{font-weight:900!important;color:#e96913!important}
+#emPainelRecrutadorSimplesEM .emrs-primary{background:linear-gradient(145deg,#ff852f,#e9630b)!important;border:1px solid #db5b06!important;font-weight:900!important;box-shadow:0 8px 18px rgba(226,94,9,.28)!important;transition:.18s ease!important}
+#emPainelRecrutadorSimplesEM .emrs-primary:hover{transform:translateY(-3px)!important;box-shadow:0 14px 26px rgba(226,94,9,.35)!important}
+#emPainelRecrutadorSimplesEM .emrs-kpi{min-height:138px!important;border:1px solid #d7e1eb!important;border-radius:17px!important;background:#fff!important;box-shadow:0 7px 18px rgba(24,54,84,.09)!important;transition:.2s ease!important}
+#emPainelRecrutadorSimplesEM .emrs-kpi:before{display:none!important}
+#emPainelRecrutadorSimplesEM .emrs-kpi:hover{transform:translateY(-5px)!important;border-color:#b8cadc!important;box-shadow:0 18px 34px rgba(24,54,84,.17)!important}
+#emPainelRecrutadorSimplesEM .emrs-kpi span,#emPainelRecrutadorSimplesEM .emrs-kpi small{font-weight:800!important}
+#emPainelRecrutadorSimplesEM .emrs-kpi strong{font-size:36px!important;font-weight:900!important;color:#123f72!important}
+#emPainelRecrutadorSimplesEM .emrs-card{border:1px solid #d8e2ec!important;border-radius:17px!important;background:#fff!important;box-shadow:0 8px 22px rgba(24,54,84,.09)!important;transition:.2s ease!important}
+#emPainelRecrutadorSimplesEM .emrs-card:hover{transform:translateY(-4px)!important;border-color:#b9ccde!important;box-shadow:0 18px 35px rgba(24,54,84,.15)!important}
+#emPainelRecrutadorSimplesEM .emrs-card-head h2{font-size:17px!important}
+#emPainelRecrutadorSimplesEM .emrs-card-head p{font-weight:600!important}
+#emPainelRecrutadorSimplesEM .emrs-use{border:1px solid #d8e2ec!important;border-radius:13px!important;background:#fff!important;box-shadow:0 5px 13px rgba(24,54,84,.08)!important;transition:.18s ease!important}
+#emPainelRecrutadorSimplesEM .emrs-use:before{display:none!important}
+#emPainelRecrutadorSimplesEM .emrs-use:hover{transform:translateY(-3px)!important;box-shadow:0 12px 24px rgba(24,54,84,.14)!important}
+#emPainelRecrutadorSimplesEM .emrs-use span,#emPainelRecrutadorSimplesEM .emrs-use strong{font-weight:900!important}
+#emPainelRecrutadorSimplesEM .emrs-bar{height:9px!important;border:1px solid #d7e0e9!important;box-shadow:inset 0 1px 2px rgba(20,45,70,.09)!important}
+#emPainelRecrutadorSimplesEM .emrs-row{margin:7px 0!important;padding:14px 12px!important;border:1px solid #dfe7ef!important;border-radius:12px!important;background:#fff!important;box-shadow:0 3px 9px rgba(24,54,84,.05)!important;transition:.18s ease!important}
+#emPainelRecrutadorSimplesEM .emrs-row:hover{transform:translateY(-3px)!important;background:#fff!important;border-color:#b9ccde!important;box-shadow:0 11px 22px rgba(24,54,84,.13)!important}
+#emPainelRecrutadorSimplesEM .emrs-row strong{font-weight:900!important}
+#emPainelRecrutadorSimplesEM .emrs-shortcuts button{min-height:46px!important;border:1px solid #d5e0ea!important;font-weight:800!important;box-shadow:0 4px 10px rgba(24,54,84,.06)!important;transition:.18s ease!important}
+#emPainelRecrutadorSimplesEM .emrs-shortcuts button:hover{transform:translateY(-3px)!important;box-shadow:0 11px 22px rgba(24,54,84,.14)!important}
+#emPainelRecrutadorSimplesEM .emrs-account{border:1px solid #d8e2ec!important;background:#f8fafc!important;box-shadow:0 5px 13px rgba(24,54,84,.08)!important}
+`;document.head.appendChild(st)})();
+
 /* EMPREGAMAIS-PAINEL-RECRUTADOR-SIMPLES-V1 */
 function garantirPainelRecrutadorSimplesEM(){
  const pagina=document.getElementById('pagina-painel-empresa');if(!pagina)return null;
