@@ -4672,25 +4672,28 @@ function alternarTimelineCandidatoEM(btn){const card=btn&&btn.closest('.candidat
 function alternarProcessoCandidatoEmpresaEM(btn){const card=btn?.closest('.recruta-cand-card');if(!card)return;const box=card.querySelector('.recruta-extra');if(!box)return;const aberto=box.classList.toggle('aberto');btn.classList.toggle('ativo',aberto);}
 
 
+/* EMPREGAMAIS — MODAL ACOES VAGA AMPLIADO V2 */
+(function(){if(document.getElementById('emModalAcoesVagaV2'))return;const st=document.createElement('style');st.id='emModalAcoesVagaV2';st.textContent=`
+.emp-vaga-acoes-modal-em{position:fixed;inset:0;z-index:99999;display:grid;place-items:center;padding:28px;font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}.emp-vaga-acoes-backdrop{position:absolute;inset:0;background:rgba(15,42,67,.58);backdrop-filter:blur(4px)}.emp-vaga-acoes-dialog{position:relative;width:min(760px,96vw);max-height:90vh;overflow:auto;background:#fff;border:1px solid #cbdff2;border-radius:22px;padding:30px;box-shadow:0 28px 80px rgba(12,55,94,.28)}.emp-vaga-acoes-x{position:absolute;right:22px;top:20px;width:38px;height:38px;border:1px solid #d5e2ee;border-radius:11px;background:#f7fafc;color:#49677f;font-size:22px;cursor:pointer}.emp-vaga-acoes-head{padding:0 52px 22px 0;border-bottom:1px solid #dbe7f1}.emp-vaga-acoes-head small{display:block;color:#0e66c8;font-size:10px;font-weight:800;letter-spacing:.1em}.emp-vaga-acoes-head h2{margin:7px 0 7px;color:#073f7d;font-size:27px;line-height:1.15;font-weight:800;letter-spacing:-.025em}.emp-vaga-acoes-head p{margin:0;color:#71869a;font-size:13px;font-weight:500}.emp-vaga-acoes-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:22px}.emp-vaga-acoes-grid>button{min-height:92px;display:flex;align-items:center;gap:13px;text-align:left;padding:16px;border:1px solid #cbddeb;border-radius:14px;background:#f9fbfd;color:#244f75;cursor:pointer;transition:.18s ease}.emp-vaga-acoes-grid>button:hover{transform:translateY(-2px);border-color:#7eb2e4;box-shadow:0 9px 20px rgba(11,79,159,.09)}.emp-vaga-acoes-grid i{width:38px;height:38px;flex:0 0 38px;display:grid;place-items:center;border-radius:10px;background:#eaf4ff;color:#0e66c8;font-style:normal;font-weight:800}.emp-vaga-acoes-grid span{display:grid;gap:4px}.emp-vaga-acoes-grid b{font-size:13px;font-weight:800}.emp-vaga-acoes-grid small{font-size:11px;line-height:1.35;color:#7a8fa2;font-weight:500}.emp-vaga-acoes-grid>button.principal{background:#0e66c8;border-color:#0e66c8;color:#fff}.emp-vaga-acoes-grid>button.principal i{background:rgba(255,255,255,.15);color:#fff}.emp-vaga-acoes-grid>button.principal small{color:#dcecff}.emp-vaga-acoes-grid>button.encerrar-processo{grid-column:1/-1;background:#fff6f0;border-color:#ffc8a6;color:#b74400}.emp-vaga-acoes-grid>button.encerrar-processo i{background:#ffe5d4;color:#e95708}.emp-vaga-acoes-grid>button.encerrado{grid-column:1/-1;background:#f4f6f8;color:#788a99;cursor:not-allowed}@media(max-width:620px){.emp-vaga-acoes-dialog{padding:22px}.emp-vaga-acoes-grid{grid-template-columns:1fr}.emp-vaga-acoes-grid>button.encerrar-processo,.emp-vaga-acoes-grid>button.encerrado{grid-column:auto}.emp-vaga-acoes-head h2{font-size:22px}}
+`;document.head.appendChild(st)})();
+
 /* EMPREGAMAIS-MENU-VAGA-RECURSOS-V1 */
-function fecharMenuVagaEM(){document.querySelectorAll('.emp-vaga-popover').forEach(x=>x.remove());if(window._empMenuVagaScroll){window.removeEventListener('scroll',window._empMenuVagaScroll,true);window.removeEventListener('resize',window._empMenuVagaScroll);window._empMenuVagaScroll=null}}
+function fecharMenuVagaEM(){document.querySelectorAll('.emp-vaga-popover').forEach(x=>x.remove());document.getElementById('empVagaAcoesModalEM')?.remove();document.body.classList.remove('emp-vaga-acoes-aberto');if(window._empMenuVagaScroll){window.removeEventListener('scroll',window._empMenuVagaScroll,true);window.removeEventListener('resize',window._empMenuVagaScroll);window._empMenuVagaScroll=null}}
 function abrirMenuVagaEM(ev,id){
  ev?.preventDefault();ev?.stopPropagation();fecharMenuVagaEM();
  const v=vagasDaEmpresa().find(x=>String(x.id)===String(id));if(!v)return;
- const box=document.createElement('div');box.className='emp-vaga-popover';
- box.innerHTML='<div class="emp-vaga-popover-head"><strong>Opções da vaga</strong><small>'+esc(tituloVaga(v))+'</small></div>'+
- '<button type="button" onclick="fecharMenuVagaEM();editarVaga(\''+id+'\')"><i class="editar">✎</i><span><b>Editar vaga</b><small>Alterar informações da oportunidade</small></span></button>'+
- '<button type="button" onclick="alternarRecursoVagaEM(\''+id+'\',\'destaque\')"><i class="dest">★</i><span><b>'+(v.destaque?'Retirar destaque':'Adicionar destaque')+'</b><small>'+(v.destaque?'A vaga deixará de receber destaque':'Dar mais visibilidade à oportunidade')+'</small></span></button>'+
- '<button type="button" onclick="alternarRecursoVagaEM(\''+id+'\',\'urgente\')"><i class="urg">⚡</i><span><b>'+(v.urgente?'Retirar urgência':'Marcar como urgente')+'</b><small>'+(v.urgente?'Remover sinalização de urgência':'Sinalizar contratação prioritária')+'</small></span></button>'+
- '<button type="button" onclick="alternarRecursoVagaEM(\''+id+'\',\'confidencial\')"><i class="conf">◉</i><span><b>'+(v.confidencial?'Retirar confidencial':'Tornar confidencial')+'</b><small>'+(v.confidencial?'Voltar a identificar a empresa':'Ocultar a identificação da empresa')+'</small></span></button>'+
- (v.status==='encerrada'?'<button type="button" class="encerrada" disabled><i>✓</i><span><b>Vaga encerrada</b><small>Esta vaga não pode ser reaberta</small></span></button>':'<button type="button" class="encerrar" onclick="abrirEncerrarVagaEM(\''+id+'\')"><i>×</i><span><b>Encerrar vaga</b><small>Finalizar esta publicação definitivamente</small></span></button>');
- document.body.appendChild(box);
- const r=ev.currentTarget.getBoundingClientRect(),w=box.offsetWidth||300,left=Math.min(innerWidth-w-12,Math.max(12,r.right-w)),top=Math.min(innerHeight-(box.offsetHeight||330)-12,Math.max(12,r.bottom+7));
- box.style.left=left+'px';box.style.top=top+'px';
- window._empMenuVagaScroll=()=>fecharMenuVagaEM();
- window.addEventListener('scroll',window._empMenuVagaScroll,true);
- window.addEventListener('resize',window._empMenuVagaScroll);
- setTimeout(()=>document.addEventListener('click',fecharMenuVagaEM,{once:true}),0)
+ document.getElementById('empVagaAcoesModalEM')?.remove();
+ const m=document.createElement('div');m.id='empVagaAcoesModalEM';m.className='emp-vaga-acoes-modal-em';
+ const encerrada=v.status==='encerrada';
+ m.innerHTML='<div class="emp-vaga-acoes-backdrop" onclick="fecharMenuVagaEM()"></div><section class="emp-vaga-acoes-dialog" role="dialog" aria-modal="true"><button class="emp-vaga-acoes-x" type="button" onclick="fecharMenuVagaEM()">×</button><div class="emp-vaga-acoes-head"><small>AÇÕES DA VAGA</small><h2>'+esc(tituloVaga(v))+'</h2><p>Gerencie a publicação e o processo seletivo desta oportunidade.</p></div><div class="emp-vaga-acoes-grid">'+
+ '<button class="principal" type="button" onclick="fecharMenuVagaEM();editarVaga(\''+id+'\')"><i>✎</i><span><b>Editar vaga</b><small>Altere informações e configurações.</small></span></button>'+
+ '<button type="button" onclick="fecharMenuVagaEM();sessionStorage.setItem(\'vagaSelecionada\',\''+id+'\');irPara(\'vaga\')"><i>↗</i><span><b>Ver publicação</b><small>Veja como a vaga aparece no portal.</small></span></button>'+
+ '<button type="button" onclick="alternarRecursoVagaEM(\''+id+'\',\'destaque\')"><i>★</i><span><b>'+(v.destaque?'Retirar destaque':'Destacar vaga')+'</b><small>Aumente a visibilidade da oportunidade.</small></span></button>'+
+ '<button type="button" onclick="alternarRecursoVagaEM(\''+id+'\',\'urgente\')"><i>⚡</i><span><b>'+(v.urgente?'Retirar urgência':'Marcar como urgente')+'</b><small>Sinalize prioridade na contratação.</small></span></button>'+
+ '<button type="button" onclick="alternarRecursoVagaEM(\''+id+'\',\'confidencial\')"><i>◉</i><span><b>'+(v.confidencial?'Retirar confidencial':'Empresa confidencial')+'</b><small>Controle a identificação da empresa.</small></span></button>'+
+ (encerrada?'<button class="encerrado" type="button" disabled><i>✓</i><span><b>Processo encerrado</b><small>Esta oportunidade já foi finalizada.</small></span></button>':'<button class="encerrar-processo" type="button" onclick="fecharMenuVagaEM();abrirEncerrarVagaEM(\''+id+'\')"><i>×</i><span><b>Encerrar processo seletivo</b><small>Finalize a vaga e interrompa novas candidaturas.</small></span></button>')+
+ '</div></section>';
+ document.body.appendChild(m);document.body.classList.add('emp-vaga-acoes-aberto');
 }
 function abrirEncerrarVagaEM(id){
  fecharMenuVagaEM();
