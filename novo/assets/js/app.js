@@ -5903,3 +5903,35 @@ window.addEventListener('load',()=>setTimeout(bindCadastroEmpresaV4EM,50));
 `;
  document.head.appendChild(st);
 })();
+
+
+/* EMPREGAMAI-VAGAS-EMPRESA-FILTROS-SOFISTICADOS-V1 */
+(function(){
+ function aprimorar(){
+  const busca=document.getElementById('evpBusca'); if(!busca)return;
+  const tools=busca.closest('.evp-tools'); if(!tools)return;
+  busca.placeholder='Buscar por cargo, cidade ou localização';
+  const area=document.getElementById('evpArea'),status=document.getElementById('evpStatus');
+  if(area)area.setAttribute('aria-label','Filtrar vagas por área');
+  if(status)status.setAttribute('aria-label','Filtrar vagas por status');
+  tools.classList.add('evp-tools-pro');
+  if(!tools.querySelector('.evp-filter-label-area')&&area){const w=document.createElement('label');w.className='evp-filter-field evp-filter-label-area';w.innerHTML='<span>Área</span>';area.parentNode.insertBefore(w,area);w.appendChild(area)}
+  if(!tools.querySelector('.evp-filter-label-status')&&status){const w=document.createElement('label');w.className='evp-filter-field evp-filter-label-status';w.innerHTML='<span>Status</span>';status.parentNode.insertBefore(w,status);w.appendChild(status)}
+  if(!busca.closest('.evp-search-pro')){const w=document.createElement('label');w.className='evp-search-pro';w.innerHTML='<span>Buscar vagas</span><i aria-hidden="true">⌕</i>';busca.parentNode.insertBefore(w,busca);w.appendChild(busca)}
+  const selects=[...tools.querySelectorAll('select')];const ordem=selects.find(s=>[...s.options].some(o=>/mais recentes/i.test(o.textContent||'')));
+  if(ordem&&!ordem.closest('.evp-filter-label-order')){const w=document.createElement('label');w.className='evp-filter-field evp-filter-label-order';w.innerHTML='<span>Ordenar</span>';ordem.parentNode.insertBefore(w,ordem);w.appendChild(ordem)}
+ }
+ const css=document.createElement('style');css.id='evpFiltrosProCSS';css.textContent=`
+ .evp-tools.evp-tools-pro{display:grid!important;grid-template-columns:minmax(300px,2.2fr) minmax(180px,.8fr) minmax(165px,.7fr) minmax(170px,.7fr)!important;gap:12px!important;align-items:end!important;padding:16px!important;background:#fff!important;border-bottom:1px solid #dbe7f3!important}
+ .evp-tools-pro label{margin:0!important}.evp-search-pro,.evp-filter-field{position:relative!important;display:flex!important;flex-direction:column!important;gap:6px!important;color:#294861!important;font:700 10px/1.2 Inter,Arial,sans-serif!important;text-transform:uppercase!important;letter-spacing:.055em!important}
+ .evp-search-pro i{position:absolute!important;left:14px!important;bottom:12px!important;font:700 20px/1 Arial!important;color:#1670d2!important;font-style:normal!important}
+ .evp-tools-pro input,.evp-tools-pro select{box-sizing:border-box!important;width:100%!important;height:44px!important;margin:0!important;border:1px solid #cdddeb!important;border-radius:11px!important;background:#f9fbfd!important;color:#163a59!important;font:600 12.5px/1 Inter,Arial,sans-serif!important;box-shadow:0 1px 2px rgba(15,63,100,.03)!important;outline:none!important;transition:.18s ease!important}
+ .evp-tools-pro input{padding:0 14px 0 43px!important}.evp-tools-pro select{padding:0 35px 0 13px!important;cursor:pointer!important}
+ .evp-tools-pro input:focus,.evp-tools-pro select:focus{background:#fff!important;border-color:#2c83e8!important;box-shadow:0 0 0 3px rgba(44,131,232,.10)!important}
+ .evp-tools-pro input::placeholder{color:#7a8fa1!important;font-weight:500!important}
+ @media(max-width:1050px){.evp-tools.evp-tools-pro{grid-template-columns:1fr 1fr!important}.evp-search-pro{grid-column:1/-1!important}}
+ @media(max-width:650px){.evp-tools.evp-tools-pro{grid-template-columns:1fr!important}.evp-search-pro{grid-column:auto!important}}
+ `;if(!document.getElementById(css.id))document.head.appendChild(css);
+ const mo=new MutationObserver(()=>aprimorar());mo.observe(document.body,{childList:true,subtree:true});
+ document.addEventListener('DOMContentLoaded',()=>setTimeout(aprimorar,50));window.addEventListener('load',()=>setTimeout(aprimorar,150));setTimeout(aprimorar,50);
+})();
