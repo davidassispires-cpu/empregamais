@@ -2639,6 +2639,17 @@ small{font-weight:500!important}
 .em-numero,.numero,[class*="numero"],[class*="metric"] strong,[class*="kpi"] strong,[class*="stat"] strong,[class*="indicador"] strong{font-variant-numeric:tabular-nums!important;font-weight:800!important;letter-spacing:-.035em!important}
 `;document.head.appendChild(st)})();
 
+/* EMPREGAMAIS — FONTE GLOBAL FINAL V2 */
+(function(){if(document.getElementById('emFonteGlobalFinalV2'))return;const st=document.createElement('style');st.id='emFonteGlobalFinalV2';st.textContent=`
+:root{--em-font:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif!important}
+html,body,body *,body *::before,body *::after{font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif!important}
+body{font-weight:500!important}
+h1,h2,h3,h4,h5,h6{font-weight:800!important;letter-spacing:-.025em!important}
+p,span,label,a,li,td,th,input,select,textarea,option{font-weight:500!important}
+button,[role="button"],.btn{font-weight:700!important}
+strong,b{font-weight:800!important}
+`;document.head.appendChild(st)})();
+
 /* EMPREGAMAIS-PAINEL-RECRUTADOR-SIMPLES-V1 */
 function garantirPainelRecrutadorSimplesEM(){
  const pagina=document.getElementById('pagina-painel-empresa');if(!pagina)return null;
