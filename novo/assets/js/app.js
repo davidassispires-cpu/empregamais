@@ -2430,6 +2430,113 @@ function alternarSalvarVaga(){const v=vagaAtual();if(!v||v.status!=='aprovada'||
 function renderizarSalvas(){const box=$('#listaVagasSalvas');if(!box)return;const ids=salvas(),publicas=vagasPublicas(),a=publicas.filter(v=>ids.includes(v.id)),validos=new Set(a.map(v=>v.id));if(ids.some(id=>!validos.has(id)))gravar(chaveSalvas(),ids.filter(id=>validos.has(id)));box.innerHTML=a.length?a.map(cardVagaPortal).join(''):'<div class="vagas-vazio"><strong>Nenhuma vaga salva</strong><span>Use o botão “Salvar vaga” para guardar oportunidades.</span></div>'}
 
 
+/* EMPREGAMAIS — ANTI-FLASH PAINEL V1
+   Esconde apenas a estrutura antiga enquanto o painel atual é montado. */
+(function(){
+ const st=document.createElement('style');st.id='emPainelAntiFlashV1';st.textContent='#pagina-painel-empresa:not(.em-painel-pronto-v1)>:not(#emPainelRecrutadorSimplesEM){visibility:hidden!important}#pagina-painel-empresa.em-painel-pronto-v1{visibility:visible!important}';document.head.appendChild(st);
+ const marcar=()=>{const p=document.getElementById('pagina-painel-empresa');if(!p)return;const novo=document.getElementById('emPainelRecrutadorSimplesEM');if(novo)p.classList.add('em-painel-pronto-v1')};
+ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',()=>requestAnimationFrame(marcar),{once:true});else requestAnimationFrame(marcar);
+ const obs=new MutationObserver(()=>{marcar();if(document.getElementById('emPainelRecrutadorSimplesEM'))obs.disconnect()});
+ const iniciar=()=>{const p=document.getElementById('pagina-painel-empresa');if(p)obs.observe(p,{childList:true,subtree:false})};
+ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',iniciar,{once:true});else iniciar();
+})();
+
+/* EMPREGAMAIS — CAMADA VISUAL PROFISSIONAL DO PAINEL V1 — SOMENTE CSS */
+(function(){if(document.getElementById('emPainelVisualProfissionalV1'))return;const st=document.createElement('style');st.id='emPainelVisualProfissionalV1';st.textContent=`
+#emPainelRecrutadorSimplesEM .emrs-side{background:#fff!important;border-right:1px solid #d9e2ec!important;box-shadow:7px 0 24px rgba(24,54,84,.08)!important}
+#emPainelRecrutadorSimplesEM .emrs-brand strong,#emPainelRecrutadorSimplesEM .emrs-top h1,#emPainelRecrutadorSimplesEM .emrs-card-head h2{font-weight:900!important;color:#123f72!important}
+#emPainelRecrutadorSimplesEM .emrs-nav button{min-height:48px!important;border:1px solid #dce5ee!important;border-radius:12px!important;background:#fff!important;color:#294d70!important;font-weight:800!important;box-shadow:0 3px 9px rgba(25,57,88,.05)!important;transition:transform .18s ease,box-shadow .18s ease!important}
+#emPainelRecrutadorSimplesEM .emrs-nav button:hover{transform:translateY(-3px)!important;box-shadow:0 11px 22px rgba(25,57,88,.14)!important}
+#emPainelRecrutadorSimplesEM .emrs-nav button.ativo{background:linear-gradient(135deg,#123f72,#0b5fa5)!important;color:#fff!important;border-color:#123f72!important;box-shadow:0 10px 22px rgba(18,63,114,.22)!important}
+#emPainelRecrutadorSimplesEM .emrs-nav button.ativo:before{display:none!important}
+#emPainelRecrutadorSimplesEM .emrs-main{background:linear-gradient(180deg,#f6f8fb,#eef3f8)!important;padding:26px 30px 44px!important}
+#emPainelRecrutadorSimplesEM .emrs-top{background:#fff!important;border:1px solid #d9e2ec!important;border-radius:18px!important;box-shadow:0 10px 28px rgba(26,55,84,.10)!important}
+#emPainelRecrutadorSimplesEM .emrs-top:after{display:none!important}
+#emPainelRecrutadorSimplesEM .emrs-top h1{text-transform:none!important;letter-spacing:-.5px!important}
+#emPainelRecrutadorSimplesEM .emrs-top p{font-weight:600!important}
+#emPainelRecrutadorSimplesEM .emrs-top-kicker{font-weight:900!important;color:#e96913!important}
+#emPainelRecrutadorSimplesEM .emrs-primary{background:linear-gradient(145deg,#ff852f,#e9630b)!important;border:1px solid #db5b06!important;font-weight:900!important;box-shadow:0 8px 18px rgba(226,94,9,.28)!important;transition:.18s ease!important}
+#emPainelRecrutadorSimplesEM .emrs-primary:hover{transform:translateY(-3px)!important;box-shadow:0 14px 26px rgba(226,94,9,.35)!important}
+#emPainelRecrutadorSimplesEM .emrs-kpi{min-height:138px!important;border:1px solid #d7e1eb!important;border-radius:17px!important;background:#fff!important;box-shadow:0 7px 18px rgba(24,54,84,.09)!important;transition:.2s ease!important}
+#emPainelRecrutadorSimplesEM .emrs-kpi:before{display:none!important}
+#emPainelRecrutadorSimplesEM .emrs-kpi:hover{transform:translateY(-5px)!important;border-color:#b8cadc!important;box-shadow:0 18px 34px rgba(24,54,84,.17)!important}
+#emPainelRecrutadorSimplesEM .emrs-kpi span,#emPainelRecrutadorSimplesEM .emrs-kpi small{font-weight:800!important}
+#emPainelRecrutadorSimplesEM .emrs-kpi strong{font-size:36px!important;font-weight:900!important;color:#123f72!important}
+#emPainelRecrutadorSimplesEM .emrs-card{border:1px solid #d8e2ec!important;border-radius:17px!important;background:#fff!important;box-shadow:0 8px 22px rgba(24,54,84,.09)!important;transition:.2s ease!important}
+#emPainelRecrutadorSimplesEM .emrs-card:hover{transform:translateY(-4px)!important;border-color:#b9ccde!important;box-shadow:0 18px 35px rgba(24,54,84,.15)!important}
+#emPainelRecrutadorSimplesEM .emrs-card-head h2{font-size:17px!important}
+#emPainelRecrutadorSimplesEM .emrs-card-head p{font-weight:600!important}
+#emPainelRecrutadorSimplesEM .emrs-use{border:1px solid #d8e2ec!important;border-radius:13px!important;background:#fff!important;box-shadow:0 5px 13px rgba(24,54,84,.08)!important;transition:.18s ease!important}
+#emPainelRecrutadorSimplesEM .emrs-use:before{display:none!important}
+#emPainelRecrutadorSimplesEM .emrs-use:hover{transform:translateY(-3px)!important;box-shadow:0 12px 24px rgba(24,54,84,.14)!important}
+#emPainelRecrutadorSimplesEM .emrs-use span,#emPainelRecrutadorSimplesEM .emrs-use strong{font-weight:900!important}
+#emPainelRecrutadorSimplesEM .emrs-bar{height:9px!important;border:1px solid #d7e0e9!important;box-shadow:inset 0 1px 2px rgba(20,45,70,.09)!important}
+#emPainelRecrutadorSimplesEM .emrs-row{margin:7px 0!important;padding:14px 12px!important;border:1px solid #dfe7ef!important;border-radius:12px!important;background:#fff!important;box-shadow:0 3px 9px rgba(24,54,84,.05)!important;transition:.18s ease!important}
+#emPainelRecrutadorSimplesEM .emrs-row:hover{transform:translateY(-3px)!important;background:#fff!important;border-color:#b9ccde!important;box-shadow:0 11px 22px rgba(24,54,84,.13)!important}
+#emPainelRecrutadorSimplesEM .emrs-row strong{font-weight:900!important}
+#emPainelRecrutadorSimplesEM .emrs-shortcuts button{min-height:46px!important;border:1px solid #d5e0ea!important;font-weight:800!important;box-shadow:0 4px 10px rgba(24,54,84,.06)!important;transition:.18s ease!important}
+#emPainelRecrutadorSimplesEM .emrs-shortcuts button:hover{transform:translateY(-3px)!important;box-shadow:0 11px 22px rgba(24,54,84,.14)!important}
+#emPainelRecrutadorSimplesEM .emrs-account{border:1px solid #d8e2ec!important;background:#f8fafc!important;box-shadow:0 5px 13px rgba(24,54,84,.08)!important}
+`;document.head.appendChild(st)})();
+
+/* refinamento profissional V2 */
+(function(){if(document.getElementById('emPainelVisualProfissionalV2'))return;const st=document.createElement('style');st.id='emPainelVisualProfissionalV2';st.textContent=`
+#emPainelRecrutadorSimplesEM .emrs-kpis{gap:18px!important}
+#emPainelRecrutadorSimplesEM .emrs-kpi{align-items:flex-start!important;text-align:left!important;padding:22px 22px 20px 76px!important;justify-content:center!important}
+#emPainelRecrutadorSimplesEM .emrs-kpi span,#emPainelRecrutadorSimplesEM .emrs-kpi strong,#emPainelRecrutadorSimplesEM .emrs-kpi small{text-align:left!important;width:auto!important}
+#emPainelRecrutadorSimplesEM .emrs-kpi-icon{left:20px!important;top:50%!important;transform:translateY(-50%)!important;width:44px!important;height:44px!important;border-radius:12px!important}
+#emPainelRecrutadorSimplesEM .emrs-grid{gap:20px!important;grid-template-columns:minmax(0,1.55fr) minmax(330px,.45fr)!important}
+#emPainelRecrutadorSimplesEM .emrs-card{padding:22px!important}
+#emPainelRecrutadorSimplesEM .emrs-card-head{padding-bottom:14px!important;margin-bottom:14px!important;border-bottom:1px solid #e7edf3!important}
+#emPainelRecrutadorSimplesEM .emrs-card-head button{min-height:36px!important;border:1px solid #cbd9e6!important;border-radius:9px!important;background:#f7fafc!important;color:#164f82!important;font-weight:900!important;box-shadow:0 3px 8px rgba(24,54,84,.06)!important}
+#emPainelRecrutadorSimplesEM .emrs-plan-title{border:1px solid #d9e3ec!important;border-radius:12px!important;padding:14px!important;background:linear-gradient(135deg,#f8fbfe,#fff)!important;box-shadow:0 4px 11px rgba(24,54,84,.06)!important}
+#emPainelRecrutadorSimplesEM .emrs-plan-title strong{font-weight:900!important;color:#123f72!important}
+#emPainelRecrutadorSimplesEM .emrs-plan-title>span{font-weight:900!important;border:1px solid #bcdcca!important;background:#eff9f3!important}
+#emPainelRecrutadorSimplesEM .emrs-status{border:1px solid #d6e1eb!important;font-weight:900!important;box-shadow:0 2px 5px rgba(24,54,84,.04)!important}
+#emPainelRecrutadorSimplesEM .emrs-status.ativa{border-color:#b9dfca!important}
+#emPainelRecrutadorSimplesEM .emrs-status.analise{border-color:#f2cfb5!important}
+#emPainelRecrutadorSimplesEM .emrs-row button{border:1px solid #cddae7!important;background:#f7fafc!important;box-shadow:0 3px 7px rgba(24,54,84,.06)!important;font-weight:900!important;transition:.18s ease!important}
+#emPainelRecrutadorSimplesEM .emrs-row button:hover{transform:translateY(-2px)!important;box-shadow:0 8px 14px rgba(24,54,84,.13)!important}
+#emPainelRecrutadorSimplesEM .emrs-plan-pill{font-weight:800!important;border:1px solid #c8d8e7!important;background:#f8fbfd!important;box-shadow:0 3px 8px rgba(24,54,84,.05)!important}
+@media(max-width:1200px){#emPainelRecrutadorSimplesEM .emrs-kpi{padding-left:66px!important}#emPainelRecrutadorSimplesEM .emrs-kpi-icon{left:14px!important}}
+@media(max-width:640px){#emPainelRecrutadorSimplesEM .emrs-kpi{padding:18px!important;align-items:center!important;text-align:center!important}#emPainelRecrutadorSimplesEM .emrs-kpi-icon{position:static!important;transform:none!important;margin-bottom:10px!important}#emPainelRecrutadorSimplesEM .emrs-kpi span,#emPainelRecrutadorSimplesEM .emrs-kpi strong,#emPainelRecrutadorSimplesEM .emrs-kpi small{text-align:center!important}}
+`;document.head.appendChild(st)})();
+
+/* EMPREGAMAIS — ORGANIZACAO VISUAL PAINEL V3 — SOMENTE APRESENTACAO */
+(function(){if(document.getElementById('emPainelOrganizacaoV3'))return;const st=document.createElement('style');st.id='emPainelOrganizacaoV3';st.textContent=`
+#emPainelRecrutadorSimplesEM{grid-template-columns:244px minmax(0,1fr)!important}
+#emPainelRecrutadorSimplesEM .emrs-side{padding:24px 16px!important;gap:20px!important}
+#emPainelRecrutadorSimplesEM .emrs-brand{padding:4px 8px 20px!important}
+#emPainelRecrutadorSimplesEM .emrs-brand small{font-size:11px!important;text-transform:uppercase!important;letter-spacing:.07em!important}
+#emPainelRecrutadorSimplesEM .emrs-brand strong{font-size:21px!important}
+#emPainelRecrutadorSimplesEM .emrs-nav{gap:9px!important}
+#emPainelRecrutadorSimplesEM .emrs-nav button{padding:12px 13px!important;font-size:12.5px!important}
+#emPainelRecrutadorSimplesEM .emrs-nav i{width:29px!important;height:29px!important;flex-basis:29px!important;border-radius:9px!important}
+#emPainelRecrutadorSimplesEM .emrs-main{max-width:1600px!important;width:100%!important;margin:0 auto!important}
+#emPainelRecrutadorSimplesEM .emrs-top{min-height:118px!important;padding:24px 28px!important;margin-bottom:22px!important}
+#emPainelRecrutadorSimplesEM .emrs-top-avatar{width:58px!important;height:58px!important;flex-basis:58px!important;font-size:20px!important}
+#emPainelRecrutadorSimplesEM .emrs-top h1{font-size:27px!important}
+#emPainelRecrutadorSimplesEM .emrs-top p{font-size:12.5px!important}
+#emPainelRecrutadorSimplesEM .emrs-plan-pill{min-height:38px!important;padding:0 13px!important;border-radius:10px!important}
+#emPainelRecrutadorSimplesEM .emrs-primary{min-height:44px!important;padding:0 19px!important;font-size:11.5px!important}
+#emPainelRecrutadorSimplesEM .emrs-kpis{margin-bottom:22px!important}
+#emPainelRecrutadorSimplesEM .emrs-kpi{min-height:132px!important}
+#emPainelRecrutadorSimplesEM .emrs-kpi strong{margin:3px 0!important}
+#emPainelRecrutadorSimplesEM .emrs-grid>div>.emrs-card{min-height:430px!important}
+#emPainelRecrutadorSimplesEM .emrs-card-head h2{font-size:18px!important;line-height:1.2!important}
+#emPainelRecrutadorSimplesEM .emrs-card-head p{font-size:11.5px!important}
+#emPainelRecrutadorSimplesEM .emrs-row{grid-template-columns:minmax(0,1fr) 105px 110px 36px!important;min-height:64px!important}
+#emPainelRecrutadorSimplesEM .emrs-row strong{font-size:12px!important}
+#emPainelRecrutadorSimplesEM .emrs-row small{font-size:10.5px!important;font-weight:600!important}
+#emPainelRecrutadorSimplesEM .emrs-shortcuts{gap:10px!important}
+#emPainelRecrutadorSimplesEM .emrs-shortcuts button{padding:0 14px!important}
+#emPainelRecrutadorSimplesEM .emrs-account{padding:15px!important;border-radius:13px!important}
+#emPainelRecrutadorSimplesEM .emrs-account strong{font-size:12px!important}
+#emPainelRecrutadorSimplesEM .emrs-account span{font-size:10.5px!important}
+@media(max-width:1100px){#emPainelRecrutadorSimplesEM{grid-template-columns:215px minmax(0,1fr)!important}#emPainelRecrutadorSimplesEM .emrs-main{padding:22px!important}#emPainelRecrutadorSimplesEM .emrs-grid{grid-template-columns:1fr!important}}
+@media(max-width:980px){#emPainelRecrutadorSimplesEM{grid-template-columns:1fr!important}#emPainelRecrutadorSimplesEM .emrs-main{max-width:none!important}}
+`;document.head.appendChild(st)})();
+
 /* EMPREGAMAIS-PAINEL-RECRUTADOR-SIMPLES-V1 */
 function garantirPainelRecrutadorSimplesEM(){
  const pagina=document.getElementById('pagina-painel-empresa');if(!pagina)return null;
@@ -5216,178 +5323,7 @@ renderizarCandidatosEmpresa=function(){
 };
 
 
-/* EMPREGAMAI-PAINEL-TOPO-PREMIUM-V105 — topo + resumo do plano mais compacto, forte e profissional */
-(function(){
- const id='empregamai-painel-topo-premium-v105';
- if(document.getElementById(id))return;
- const st=document.createElement('style');
- st.id=id;
- st.textContent=`
-#pagina-painel-empresa .emp-top-clean-v94{
- min-height:116px!important;
- padding:17px 24px!important;
- display:grid!important;
- grid-template-columns:minmax(0,1fr) auto!important;
- gap:24px!important;
- align-items:center!important;
- background:#fff!important;
- border:1px solid #d9e5eb!important;
- border-left:4px solid #176b87!important;
- border-radius:14px!important;
- box-shadow:0 4px 14px rgba(18,54,75,.045)!important;
- color:#173f50!important
-}
-#pagina-painel-empresa .emp-hero-company-v97{
- display:flex!important;align-items:center!important;gap:12px!important;min-width:0!important
-}
-#pagina-painel-empresa .emp-hero-logo-v97{
- width:58px!important;height:58px!important;min-width:58px!important;
- border:1px solid #d6e2e9!important;border-radius:12px!important;
- background:#fff!important;color:#176b87!important;
- display:grid!important;place-items:center!important;
- font-size:21px!important;font-weight:800!important;
- box-shadow:0 2px 8px rgba(18,54,75,.035)!important
-}
-#pagina-painel-empresa .emp-top-clean-v94 .emp-rec-hero-copy>span{
- margin:0 0 4px!important;color:#466675!important;font-size:11.5px!important;
- line-height:1.2!important;font-weight:700!important;letter-spacing:.065em!important
-}
-#pagina-painel-empresa .emp-top-clean-v94 .emp-rec-hero-copy h1{
- margin:0 0 6px!important;color:#123d54!important;font-size:28px!important;
- line-height:1.1!important;font-weight:750!important;letter-spacing:-.025em!important
-}
-#pagina-painel-empresa .emp-top-clean-v94 .emp-rec-hero-copy>p{
- max-width:720px!important;margin:0!important;color:#506a78!important;
- font-size:14.5px!important;line-height:1.48!important;font-weight:500!important
-}
-#pagina-painel-empresa .emp-top-clean-v94 .emp-rec-hero-actions{
- display:flex!important;align-items:center!important;justify-content:flex-end!important;
- gap:9px!important;margin:0!important
-}
-#pagina-painel-empresa .emp-top-clean-v94 .emp-rec-hero-actions button{
- height:42px!important;min-height:42px!important;padding:0 16px!important;
- border:1px solid #c9d9e1!important;border-radius:9px!important;
- background:#fff!important;color:#176b87!important;
- font-size:13px!important;font-weight:650!important;white-space:nowrap!important;
- box-shadow:none!important
-}
-#pagina-painel-empresa .emp-top-clean-v94 .emp-rec-hero-actions .primary{
- background:#176b87!important;border-color:#176b87!important;color:#fff!important
-}
-#pagina-painel-empresa .emp-top-clean-v94 .emp-rec-hero-actions button:hover{
- transform:translateY(-1px)!important;box-shadow:0 5px 12px rgba(23,107,135,.12)!important
-}
-
-#pagina-painel-empresa .emp-plan-overview-v100{
- display:grid!important;
- grid-template-columns:minmax(165px,1.08fr) repeat(4,minmax(128px,.82fr)) minmax(155px,.98fr) 132px!important;
- gap:9px!important;align-items:stretch!important;
- width:100%!important;min-height:0!important;
- margin:12px 0 19px!important;padding:10px!important;
- background:#fff!important;border:1px solid #d9e5eb!important;border-radius:14px!important;
- box-shadow:0 4px 14px rgba(18,54,75,.035)!important;overflow:visible!important
-}
-#pagina-painel-empresa .emp-plan-overview-ident,
-#pagina-painel-empresa .emp-plan-overview-metric,
-#pagina-painel-empresa .emp-plan-overview-vigencia{
- min-width:0!important;min-height:88px!important;height:auto!important;
- padding:11px 12px!important;border:1px solid #dde7ec!important;border-radius:11px!important;
- background:#fbfcfd!important;box-shadow:none!important
-}
-#pagina-painel-empresa .emp-plan-overview-ident{
- display:grid!important;grid-template-columns:34px minmax(0,1fr)!important;gap:10px!important;align-items:center!important;
- background:#f7fafc!important
-}
-#pagina-painel-empresa .emp-plan-overview-metric{
- display:grid!important;grid-template-columns:34px minmax(0,1fr)!important;
- grid-template-rows:auto auto!important;column-gap:9px!important;row-gap:4px!important;align-items:center!important
-}
-#pagina-painel-empresa .emp-plan-overview-vigencia{
- display:grid!important;grid-template-columns:34px minmax(0,1fr)!important;gap:9px!important;align-items:center!important;
- background:#f8fafc!important
-}
-#pagina-painel-empresa .emp-plan-overview-ident>i,
-#pagina-painel-empresa .emp-plan-overview-metric>i,
-#pagina-painel-empresa .emp-plan-overview-vigencia>i{
- width:34px!important;height:34px!important;min-width:34px!important;flex:0 0 34px!important;
- border-radius:9px!important;font-size:15px!important;font-weight:700!important
-}
-#pagina-painel-empresa .emp-plan-overview-v100 span{
- display:block!important;margin:0!important;color:#425d6b!important;
- font-size:12px!important;line-height:1.28!important;font-weight:600!important
-}
-#pagina-painel-empresa .emp-plan-overview-ident span,
-#pagina-painel-empresa .emp-plan-overview-vigencia span{
- color:#607580!important;font-size:10.5px!important;line-height:1.25!important;
- font-weight:700!important;letter-spacing:.045em!important
-}
-#pagina-painel-empresa .emp-plan-overview-v100 strong{
- display:block!important;margin:2px 0!important;color:#103b53!important;
- font-size:29px!important;line-height:1!important;font-weight:750!important;letter-spacing:-.02em!important
-}
-#pagina-painel-empresa .emp-plan-overview-ident strong{
- font-size:17px!important;line-height:1.18!important;font-weight:700!important;letter-spacing:-.01em!important
-}
-#pagina-painel-empresa .emp-plan-overview-vigencia strong{
- font-size:15px!important;line-height:1.2!important;font-weight:700!important;letter-spacing:0!important
-}
-#pagina-painel-empresa .emp-plan-overview-v100 small{
- display:block!important;margin:4px 0 0!important;color:#617783!important;
- font-size:11px!important;line-height:1.35!important;font-weight:500!important
-}
-#pagina-painel-empresa .emp-plan-overview-v100 small b{
- font-weight:700!important;color:#314f60!important
-}
-#pagina-painel-empresa .emp-plan-overview-metric>div{
- display:block!important;grid-column:2!important;grid-row:1/3!important;min-width:0!important
-}
-#pagina-painel-empresa .emp-plan-overview-metric>div>strong,
-#pagina-painel-empresa .emp-plan-overview-metric>div>span,
-#pagina-painel-empresa .emp-plan-overview-metric>div>small{
- position:static!important;width:auto!important;margin-left:0!important;padding-top:0!important;border-top:0!important
-}
-#pagina-painel-empresa .emp-plan-overview-manage{
- align-self:stretch!important;justify-self:stretch!important;
- display:flex!important;align-items:center!important;justify-content:center!important;gap:9px!important;
- width:100%!important;height:auto!important;min-height:88px!important;margin:0!important;padding:12px!important;
- border:1px solid #cbdde5!important;border-radius:11px!important;
- background:#f2f8fb!important;color:#176b87!important;
- font-size:12.5px!important;line-height:1.3!important;font-weight:700!important;white-space:normal!important;
- box-shadow:none!important
-}
-#pagina-painel-empresa .emp-plan-overview-manage b{font-size:16px!important;font-weight:600!important}
-#pagina-painel-empresa .emp-plan-overview-manage:hover{
- background:#eaf4f8!important;border-color:#aac8d3!important;transform:translateY(-1px)!important
-}
-
-@media(max-width:1320px){
- #pagina-painel-empresa .emp-plan-overview-v100{grid-template-columns:repeat(3,minmax(0,1fr))!important}
- #pagina-painel-empresa .emp-plan-overview-manage{min-height:76px!important}
-}
-@media(max-width:900px){
- #pagina-painel-empresa .emp-top-clean-v94{grid-template-columns:1fr!important;gap:14px!important}
- #pagina-painel-empresa .emp-top-clean-v94 .emp-rec-hero-actions{justify-content:flex-start!important}
-}
-@media(max-width:760px){
- #pagina-painel-empresa .emp-plan-overview-v100{grid-template-columns:repeat(2,minmax(0,1fr))!important}
- #pagina-painel-empresa .emp-plan-overview-ident,
- #pagina-painel-empresa .emp-plan-overview-metric,
- #pagina-painel-empresa .emp-plan-overview-vigencia,
- #pagina-painel-empresa .emp-plan-overview-manage{min-height:82px!important}
-}
-@media(max-width:520px){
- #pagina-painel-empresa .emp-top-clean-v94{padding:15px!important}
- #pagina-painel-empresa .emp-hero-company-v97{align-items:flex-start!important}
- #pagina-painel-empresa .emp-top-clean-v94 .emp-rec-hero-copy h1{font-size:23px!important}
- #pagina-painel-empresa .emp-top-clean-v94 .emp-rec-hero-copy>p{font-size:13.5px!important}
- #pagina-painel-empresa .emp-top-clean-v94 .emp-rec-hero-actions{display:grid!important;grid-template-columns:1fr 1fr!important;width:100%!important}
- #pagina-painel-empresa .emp-top-clean-v94 .emp-rec-hero-actions button{width:100%!important;padding:0 10px!important}
- #pagina-painel-empresa .emp-plan-overview-v100{grid-template-columns:1fr!important;padding:8px!important}
-}
-`;
- document.head.appendChild(st);
-})();
-
+/* Painel premium legado V105 removido: substituído pelo painel único emrs. */
 
 /* EMPREGAMais-CADASTRO-VERIFICACAO-SEPARADOS-V1 */
 function instalarEstilosCadastroVerificacaoSeparadosEM(){
