@@ -2813,7 +2813,11 @@ function sbMapVagaEM(v){
   };
 }
 function sbUsuarioAtualEM(){const t=sbTokenEM();if(!t)return Promise.reject(new Error('Sessão Supabase ausente.'));return sbJsonEM(EMPREGAMAIS_SUPABASE_URL+'/auth/v1/user',{method:'GET',headers:sbHeadersEM(t)})}
-async function sbSincronizarEmpresasPublicasEM(){
+let sbEmpresasPublicasCargaEM=null,sbEmpresasPublicasUltimaEM=0;
+async function sbSincronizarEmpresasPublicasEM(forcar){
+ if(sbEmpresasPublicasCargaEM)return sbEmpresasPublicasCargaEM;
+ if(!forcar&&sbEmpresasPublicasUltimaEM&&(Date.now()-sbEmpresasPublicasUltimaEM)<60000)return;
+ sbEmpresasPublicasCargaEM=(async()=>{
  try{
   const rows=await sbJsonEM(EMPREGAMAIS_SUPABASE_URL+'/rest/v1/empresas?select=id,nome,nome_fantasia,cnpj,logo_url,plano,plano_id,plano_liberado_admin,verificada,verificacao_status',{method:'GET',headers:sbHeadersEM()});
   if(!Array.isArray(rows))return;
@@ -2835,7 +2839,10 @@ async function sbSincronizarEmpresasPublicasEM(){
    }
    sbSalvarEmpresaLocalEM(local)
   });
+  sbEmpresasPublicasUltimaEM=Date.now();
  }catch(e){console.warn('Empresas públicas não sincronizadas para logos:',e)}
+ })().finally(()=>{sbEmpresasPublicasCargaEM=null});
+ return sbEmpresasPublicasCargaEM
 }
 function sbCarregarVagasEM(){
   const t=sbTokenEM();
