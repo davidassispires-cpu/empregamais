@@ -68,7 +68,7 @@ function shell(rota){
 function render(rota='visao'){const root=document.getElementById('empregaiRecrutadorV2');if(!root)return;root.innerHTML=shell(rota);
 root.querySelectorAll('[data-rh2-action="nova-vaga"]').forEach(b=>b.addEventListener('click',()=>{if(typeof window.irPara==='function')window.irPara('publicar')}));
 root.querySelectorAll('[data-rh2-action="editar-empresa"]').forEach(b=>b.addEventListener('click',()=>{if(typeof window.irPara==='function')window.irPara('perfil-empresa')}));
-root.querySelectorAll('[data-plano]').forEach(b=>b.addEventListener('click',()=>{if(typeof window.irPara==='function')window.irPara('planos')}));root.querySelectorAll('[data-rh2]').forEach(b=>b.addEventListener('click',()=>render(b.dataset.rh2)));root.querySelectorAll('[data-processo],[data-candidatura-vaga]').forEach(b=>b.addEventListener('click',()=>{const id=b.dataset.processo||b.dataset.candidaturaVaga;sessionStorage.setItem('vagaCandidatosSelecionada',id);if(typeof window.irPara==='function')window.irPara('candidatos-empresa')}));root.querySelectorAll('[data-vaga]').forEach(b=>b.addEventListener('click',()=>{const id=b.dataset.vaga;if(typeof window.abrirGestaoVagaIndividualEM==='function')return window.abrirGestaoVagaIndividualEM(id);if(typeof window.abrirGestaoVaga==='function')return window.abrirGestaoVaga(id);sessionStorage.setItem('vagaCandidatosSelecionada',id);if(typeof window.irPara==='function')window.irPara('candidatos-empresa')}))}
+root.querySelectorAll('[data-plano]').forEach(b=>b.addEventListener('click',()=>{if(typeof window.irPara==='function')window.irPara('planos')}));root.querySelectorAll('[data-rh2]').forEach(b=>b.addEventListener('click',()=>{rotaAtualRH2=b.dataset.rh2;render(rotaAtualRH2)}));root.querySelectorAll('[data-processo],[data-candidatura-vaga]').forEach(b=>b.addEventListener('click',()=>{const id=b.dataset.processo||b.dataset.candidaturaVaga;sessionStorage.setItem('vagaCandidatosSelecionada',id);if(typeof window.irPara==='function')window.irPara('candidatos-empresa')}));root.querySelectorAll('[data-vaga]').forEach(b=>b.addEventListener('click',()=>{const id=b.dataset.vaga;if(typeof window.abrirGestaoVagaIndividualEM==='function')return window.abrirGestaoVagaIndividualEM(id);if(typeof window.abrirGestaoVaga==='function')return window.abrirGestaoVaga(id);sessionStorage.setItem('vagaCandidatosSelecionada',id);if(typeof window.irPara==='function')window.irPara('candidatos-empresa')}))}
 
 function garantirPaginaRH2(){
  let sec=document.getElementById('pagina-painel-recrutador-v2');
@@ -76,7 +76,13 @@ function garantirPaginaRH2(){
  sec=document.createElement('section');sec.id='pagina-painel-recrutador-v2';sec.className='pagina';
  sec.innerHTML='<div id="empregaiRecrutadorV2"></div>';document.body.appendChild(sec);return sec
 }
-let syncRH2EmAndamento=false;
+let syncRH2EmAndamento=false,rotaAtualRH2='visao',timerRH2=null;
+function painelRH2Ativo(){return !!document.getElementById('pagina-painel-recrutador-v2')?.classList.contains('ativa')}
+function iniciarAtualizacaoRH2(){
+ if(timerRH2)clearInterval(timerRH2);
+ timerRH2=setInterval(()=>{if(painelRH2Ativo()&&document.visibilityState!=='hidden')sincronizarRH2(rotaAtualRH2)},60000)
+}
+document.addEventListener('visibilitychange',()=>{if(!document.hidden&&painelRH2Ativo())sincronizarRH2(rotaAtualRH2)});
 async function sincronizarRH2(rota){
  if(syncRH2EmAndamento)return;
  const tarefas=[];
@@ -91,7 +97,7 @@ async function sincronizarRH2(rota){
 }
 function abrirPainelRH2(rota='visao'){
  if(typeof window.papelAtual==='function'&&window.papelAtual()!=='empresa'){if(typeof window.irPara==='function')window.irPara('login-empresa');return}
- garantirPaginaRH2();document.querySelectorAll('.pagina').forEach(x=>x.classList.remove('ativa'));document.getElementById('pagina-painel-recrutador-v2').classList.add('ativa');render(rota);sincronizarRH2(rota)
+ rotaAtualRH2=rota;garantirPaginaRH2();document.querySelectorAll('.pagina').forEach(x=>x.classList.remove('ativa'));document.getElementById('pagina-painel-recrutador-v2').classList.add('ativa');render(rota);sincronizarRH2(rota);iniciarAtualizacaoRH2()
 }
 window.EmpregaiRecrutadorV2={render,abrir:abrirPainelRH2};window.abrirPainelRecrutadorV2=abrirPainelRH2;
 })();
