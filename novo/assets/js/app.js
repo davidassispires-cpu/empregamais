@@ -1347,6 +1347,7 @@ function iniciarConectaShowcaseEM(){
  clearInterval(conectaShowcaseTimerEM);
  const box=document.getElementById('conectaShowcaseEM');if(!box)return;
  conectaShowcaseTimerEM=setInterval(()=>{
+   if(document.hidden||!box.isConnected||box.offsetParent===null)return;
    conectaShowcaseIndiceEM++;
    renderConectaShowcaseEM();
  },6000);
@@ -3251,7 +3252,7 @@ abrirRota=function(p){
  else if(empresaPainelAutoRefreshTimerEM){clearInterval(empresaPainelAutoRefreshTimerEM);empresaPainelAutoRefreshTimerEM=null}
  return r
 };
-if(new URLSearchParams(location.search).get('pagina')==='painel-empresa')setTimeout(empresaPainelIniciarAutoRefreshEM,700);
+if(new URLSearchParams(location.search).get('pagina')==='painel-empresa')setTimeout(()=>{if(empresaPainelEstaAbertoEM())empresaPainelIniciarAutoRefreshEM()},700);
 
 /* EMPREGAMAIS-VAGA-VALIDADE-30D-V1 */
 function dataFimPadraoVagaEM(v){const base=new Date(v.criadoEm||Date.now());base.setDate(base.getDate()+30);return base}
