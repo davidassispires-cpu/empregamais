@@ -2665,6 +2665,26 @@ button,.btn,[class*="btn"],[class*="button"]{font-weight:700!important}
 `;document.head.appendChild(st);
 })();
 
+/* EMPREGAMAIS — TIPOGRAFIA REFERENCIA GLOBAL V3 */
+(function(){
+ const aplicar=()=>{
+  let st=document.getElementById('emTipografiaReferenciaGlobalV3');
+  if(!st){st=document.createElement('style');st.id='emTipografiaReferenciaGlobalV3';document.head.appendChild(st)}
+  st.textContent=`
+html body,html body *,html body *::before,html body *::after{font-family:Inter,Arial,sans-serif!important;font-style:normal!important}
+html body{font-weight:400!important}
+html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{font-weight:700!important;letter-spacing:-.02em!important}
+html body strong,html body b{font-weight:700!important}
+html body p,html body span,html body small,html body label,html body a,html body li,html body td,html body th,html body input,html body select,html body textarea{font-weight:400!important}
+html body button,html body .btn,html body [role="button"]{font-weight:600!important}
+html body [class*="kpi"] strong,html body [class*="stat"] strong,html body [class*="metric"] strong,html body [class*="indicador"] strong,html body .emrs-kpi>strong,html body .emrs-plan-banner-stats strong{font-weight:700!important;letter-spacing:-.035em!important;font-variant-numeric:tabular-nums!important}
+`;
+  document.head.appendChild(st);
+ };
+ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',aplicar,{once:true});else aplicar();
+ window.addEventListener('load',aplicar,{once:true});
+})();
+
 /* EMPREGAMAIS-PAINEL-RECRUTADOR-SIMPLES-V1 */
 function garantirPainelRecrutadorSimplesEM(){
  const pagina=document.getElementById('pagina-painel-empresa');if(!pagina)return null;
