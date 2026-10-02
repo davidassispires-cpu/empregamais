@@ -22,7 +22,7 @@ function aplicarRefinoVisaoGeralEM(){
  #pagina-painel-empresa button,
  #pagina-painel-empresa input,
  #pagina-painel-empresa select,
- #pagina-painel-empresa textarea{font-family:'Inter','Segoe UI',Arial,sans-serif!important}
+ #pagina-painel-empresa textarea{font-family:'Inter',sans-serif!important}
 
  #pagina-painel-empresa{font-weight:400!important;color:#174D96!important}
  #pagina-painel-empresa p,
@@ -40,9 +40,9 @@ function aplicarRefinoVisaoGeralEM(){
  #empresaMetricasNovas>button:before,
  #empresaMetricasNovas>button:after{display:none!important}
  #empresaMetricasNovas>button>*{border:0!important}
- #empresaMetricasNovas .kpi-num{display:block!important;margin:6px 0 7px!important;font-family:'Inter','Segoe UI',Arial,sans-serif!important;font-size:32px!important;line-height:1!important;font-weight:600!important;letter-spacing:-.035em!important;color:#0f4f9f!important}
- #empresaMetricasNovas>button div>span{display:block!important;margin:0 0 8px!important;font-family:'Inter','Segoe UI',Arial,sans-serif!important;font-size:11.5px!important;line-height:1.25!important;font-weight:600!important;letter-spacing:.01em!important;color:#35577f!important}
- #empresaMetricasNovas>button div>small{display:block!important;font-family:'Inter','Segoe UI',Arial,sans-serif!important;font-size:13px!important;line-height:1.45!important;font-weight:400!important;letter-spacing:0!important;color:#54708a!important}
+ #empresaMetricasNovas .kpi-num{display:block!important;margin:6px 0 7px!important;font-family:'Inter',sans-serif!important;font-size:32px!important;line-height:1!important;font-weight:600!important;letter-spacing:-.035em!important;color:#0f4f9f!important}
+ #empresaMetricasNovas>button div>span{display:block!important;margin:0 0 8px!important;font-family:'Inter',sans-serif!important;font-size:11.5px!important;line-height:1.25!important;font-weight:600!important;letter-spacing:.01em!important;color:#35577f!important}
+ #empresaMetricasNovas>button div>small{display:block!important;font-family:'Inter',sans-serif!important;font-size:13px!important;line-height:1.45!important;font-weight:400!important;letter-spacing:0!important;color:#54708a!important}
  #empresaMetricasNovas>button i{opacity:.82!important;border:0!important;box-shadow:none!important}
  #empresaMetricasNovas>button:nth-child(3) .kpi-num,
  #empresaMetricasNovas>button:nth-child(4) .kpi-num{color:#d95b00!important}
