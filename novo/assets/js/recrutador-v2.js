@@ -76,9 +76,22 @@ function garantirPaginaRH2(){
  sec=document.createElement('section');sec.id='pagina-painel-recrutador-v2';sec.className='pagina';
  sec.innerHTML='<div id="empregaiRecrutadorV2"></div>';document.body.appendChild(sec);return sec
 }
+let syncRH2EmAndamento=false;
+async function sincronizarRH2(rota){
+ if(syncRH2EmAndamento)return;
+ const tarefas=[];
+ if(typeof window.sbCarregarVagasEmpresaAtualEM==='function')tarefas.push(window.sbCarregarVagasEmpresaAtualEM());
+ if(typeof window.sbCarregarCandidaturasEM==='function')tarefas.push(window.sbCarregarCandidaturasEM(false));
+ if(!tarefas.length)return;
+ syncRH2EmAndamento=true;
+ try{
+  await Promise.allSettled(tarefas);
+  if(document.getElementById('pagina-painel-recrutador-v2')?.classList.contains('ativa'))render(rota)
+ }finally{syncRH2EmAndamento=false}
+}
 function abrirPainelRH2(rota='visao'){
  if(typeof window.papelAtual==='function'&&window.papelAtual()!=='empresa'){if(typeof window.irPara==='function')window.irPara('login-empresa');return}
- garantirPaginaRH2();document.querySelectorAll('.pagina').forEach(x=>x.classList.remove('ativa'));document.getElementById('pagina-painel-recrutador-v2').classList.add('ativa');render(rota)
+ garantirPaginaRH2();document.querySelectorAll('.pagina').forEach(x=>x.classList.remove('ativa'));document.getElementById('pagina-painel-recrutador-v2').classList.add('ativa');render(rota);sincronizarRH2(rota)
 }
 window.EmpregaiRecrutadorV2={render,abrir:abrirPainelRH2};window.abrirPainelRecrutadorV2=abrirPainelRH2;
 })();
