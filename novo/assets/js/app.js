@@ -5775,3 +5775,93 @@ window.addEventListener('load',()=>setTimeout(bindCadastroEmpresaV4EM,50));
  document.addEventListener('DOMContentLoaded',()=>{if(document.body)obs.observe(document.body,{childList:true,subtree:true})},{once:true});
  window.aplicarHeroReferenciaEM=aplicarHeroReferenciaEM;
 })();
+
+
+/* EMPREGAMAI-PROCESSOS-GESTAO-CANDIDATURAS-V114 */
+(function(){
+ function estilosProcessosV114(){
+  if(document.getElementById('estilosProcessosV114'))return;
+  const st=document.createElement('style');st.id='estilosProcessosV114';
+  st.textContent=\`
+#pagina-candidatos-empresa .psc3{display:grid;gap:18px;font-family:var(--em-font,Inter,sans-serif);color:#183b56}
+#pagina-candidatos-empresa .psc3-kpis{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+#pagina-candidatos-empresa .psc3-kpi{min-height:94px;background:#fff;border:1px solid #dfe8ef;border-radius:14px;padding:17px 18px;display:flex;align-items:center;gap:14px;box-shadow:0 5px 18px rgba(24,59,86,.035)}
+#pagina-candidatos-empresa .psc3-kpi i{width:42px;height:42px;border-radius:11px;display:grid;place-items:center;background:#edf7fb;color:#14728e;font-style:normal;flex:0 0 auto}
+#pagina-candidatos-empresa .psc3-kpi i svg{width:21px;height:21px;fill:none;stroke:currentColor;stroke-width:1.8}
+#pagina-candidatos-empresa .psc3-kpi div{display:grid;grid-template-columns:auto 1fr;align-items:end;column-gap:9px;row-gap:2px}
+#pagina-candidatos-empresa .psc3-kpi strong{font-size:27px;line-height:1;color:#0f5f7b;letter-spacing:-1px}
+#pagina-candidatos-empresa .psc3-kpi b{font-size:11px;line-height:1.2;color:#38566a;text-transform:uppercase}
+#pagina-candidatos-empresa .psc3-kpi small{grid-column:1/-1;font-size:11.5px;color:#718491}
+#pagina-candidatos-empresa .psc3-kpi:nth-child(2) i{background:#e9f7ef;color:#1b8b57}
+#pagina-candidatos-empresa .psc3-kpi:nth-child(2) strong{color:#14814d}
+#pagina-candidatos-empresa .psc3-kpi:nth-child(3) i{background:#fff4df;color:#c47a00}
+#pagina-candidatos-empresa .psc3-kpi:nth-child(3) strong{color:#ad6c00}
+#pagina-candidatos-empresa .psc3-kpi:nth-child(4) i{background:#f2edff;color:#7049b6}
+#pagina-candidatos-empresa .psc3-kpi:nth-child(4) strong{color:#6842aa}
+#pagina-candidatos-empresa .psc3-board{background:#fff;border:1px solid #dfe8ef;border-radius:16px;overflow:hidden;box-shadow:0 7px 22px rgba(24,59,86,.035)}
+#pagina-candidatos-empresa .psc3-tools{padding:14px;display:grid;grid-template-columns:minmax(260px,1fr) 190px 170px;gap:10px;border-bottom:1px solid #e8eef2;background:#fbfdfe}
+#pagina-candidatos-empresa .psc3-search{position:relative}
+#pagina-candidatos-empresa .psc3-search svg{position:absolute;left:14px;top:50%;transform:translateY(-50%);width:18px;height:18px;fill:none;stroke:#6f8491;stroke-width:1.8}
+#pagina-candidatos-empresa .psc3-tools input,#pagina-candidatos-empresa .psc3-tools select{width:100%;height:44px;border:1px solid #d5e0e7;border-radius:10px;background:#fff;color:#294b60;font:500 13px var(--em-font,Inter,sans-serif);outline:none}
+#pagina-candidatos-empresa .psc3-tools input{padding:0 14px 0 42px}
+#pagina-candidatos-empresa .psc3-tools select{padding:0 12px}
+#pagina-candidatos-empresa .psc3-tools input:focus,#pagina-candidatos-empresa .psc3-tools select:focus{border-color:#6fa9bc;box-shadow:0 0 0 3px rgba(20,114,142,.08)}
+#pagina-candidatos-empresa .psc3-head{display:grid;grid-template-columns:minmax(310px,1.45fr) minmax(420px,1.7fr) 160px;gap:16px;padding:12px 18px 9px;color:#728592;font-size:10px;font-weight:800;letter-spacing:.04em;text-transform:uppercase}
+#pagina-candidatos-empresa .psc3-row{display:grid;grid-template-columns:minmax(310px,1.45fr) minmax(420px,1.7fr) 160px;gap:16px;align-items:center;margin:0 12px 10px;padding:17px 6px 17px 8px;border:1px solid #e2e9ee;border-radius:13px;background:#fff;transition:.15s ease}
+#pagina-candidatos-empresa .psc3-row:hover{border-color:#c5d9e2;box-shadow:0 6px 18px rgba(24,59,86,.055)}
+#pagina-candidatos-empresa .psc3-job{min-width:0;padding-left:8px;cursor:pointer}
+#pagina-candidatos-empresa .psc3-title{display:flex;align-items:center;gap:8px;min-width:0;margin-bottom:8px}
+#pagina-candidatos-empresa .psc3-title h3{margin:0;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:14.5px;line-height:1.25;color:#073f5b!important;font-weight:800}
+#pagina-candidatos-empresa .psc3-status{flex:0 0 auto;padding:5px 8px;border-radius:999px;background:#eaf8f1;color:#237453;font-size:10.5px;font-weight:750}
+#pagina-candidatos-empresa .psc3-status.analise{background:#fff3dc;color:#9a6406}
+#pagina-candidatos-empresa .psc3-status.encerrada{background:#f0f2f4;color:#6b7880}
+#pagina-candidatos-empresa .psc3-meta{display:flex;align-items:center;gap:13px;flex-wrap:wrap;color:#6b808d;font-size:11px}
+#pagina-candidatos-empresa .psc3-meta span{display:flex;align-items:center;gap:5px}
+#pagina-candidatos-empresa .psc3-meta svg{width:13px;height:13px;fill:none;stroke:currentColor;stroke-width:1.8}
+#pagina-candidatos-empresa .psc3-flow{display:grid;grid-template-columns:repeat(5,minmax(70px,1fr));gap:7px}
+#pagina-candidatos-empresa .psc3-step{position:relative;min-height:58px;padding:10px 8px;border-radius:9px;background:#f7fafb;border:1px solid #e1e9ed;cursor:pointer;text-align:left}
+#pagina-candidatos-empresa .psc3-step:before{content:"";position:absolute;left:8px;right:8px;top:0;height:2px;border-radius:0 0 3px 3px;background:#1d819d}
+#pagina-candidatos-empresa .psc3-step:nth-child(2):before{background:#d28b19}.psc3-step:nth-child(3):before{background:#7558aa}.psc3-step:nth-child(4):before{background:#4d98b2}.psc3-step:nth-child(5):before{background:#438767}
+#pagina-candidatos-empresa .psc3-step strong{display:block;font-size:17px;line-height:1;color:#164f68;margin-bottom:6px}
+#pagina-candidatos-empresa .psc3-step span{font-size:9.8px;color:#687e8b;white-space:nowrap}
+#pagina-candidatos-empresa .psc3-step:hover{background:#f0f7f9;border-color:#c9dce4}
+#pagina-candidatos-empresa .psc3-manage{width:100%;height:42px;border:0!important;border-radius:9px!important;background:#116f8a!important;color:#fff!important;display:flex;align-items:center;justify-content:center;gap:7px;font:750 11.5px var(--em-font,Inter,sans-serif)!important;cursor:pointer;box-shadow:none!important}
+#pagina-candidatos-empresa .psc3-manage svg{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:1.8}
+#pagina-candidatos-empresa .psc3-manage:hover{background:#0c6078!important}
+#pagina-candidatos-empresa .psc3-empty{padding:50px 20px;text-align:center;display:grid;gap:6px;color:#718491}.psc3-empty strong{color:#294b60}
+@media(max-width:1050px){#pagina-candidatos-empresa .psc3-kpis{grid-template-columns:repeat(2,1fr)}#pagina-candidatos-empresa .psc3-head{display:none}#pagina-candidatos-empresa .psc3-row{grid-template-columns:1fr}#pagina-candidatos-empresa .psc3-tools{grid-template-columns:1fr 1fr}#pagina-candidatos-empresa .psc3-search{grid-column:1/-1}#pagina-candidatos-empresa .psc3-manage{max-width:220px}}
+@media(max-width:620px){#pagina-candidatos-empresa .psc3{gap:12px}#pagina-candidatos-empresa .psc3-kpis{grid-template-columns:1fr 1fr;gap:8px}#pagina-candidatos-empresa .psc3-kpi{min-height:82px;padding:12px;gap:9px}#pagina-candidatos-empresa .psc3-kpi i{width:36px;height:36px}#pagina-candidatos-empresa .psc3-kpi strong{font-size:23px}#pagina-candidatos-empresa .psc3-kpi small{display:none}#pagina-candidatos-empresa .psc3-tools{grid-template-columns:1fr;padding:10px}#pagina-candidatos-empresa .psc3-search{grid-column:auto}#pagina-candidatos-empresa .psc3-row{margin:0 8px 8px;padding:14px 10px;gap:13px}#pagina-candidatos-empresa .psc3-flow{grid-template-columns:repeat(5,108px);overflow-x:auto;padding-bottom:5px}#pagina-candidatos-empresa .psc3-title{align-items:flex-start;flex-direction:column}#pagina-candidatos-empresa .psc3-title h3{white-space:normal}#pagina-candidatos-empresa .psc3-manage{max-width:none}}
+\`;
+  document.head.appendChild(st);
+ }
+ const ico={
+  processos:'<svg viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M8 8h8M8 12h8M8 16h5"/></svg>',
+  ativos:'<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><path d="m8.5 12 2.2 2.2 4.8-5"/></svg>',
+  analise:'<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><path d="M12 7v5l3 2"/></svg>',
+  cand:'<svg viewBox="0 0 24 24"><circle cx="9" cy="8" r="3"/><path d="M3.5 19c.5-3.5 2.4-5.5 5.5-5.5s5 2 5.5 5.5M17 8v6M14 11h6"/></svg>',
+  search:'<svg viewBox="0 0 24 24"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m15.5 15.5 5 5"/></svg>',
+  pin:'<svg viewBox="0 0 24 24"><path d="M12 21s6-5.4 6-11a6 6 0 1 0-12 0c0 5.6 6 11 6 11Z"/><circle cx="12" cy="10" r="2"/></svg>',
+  work:'<svg viewBox="0 0 24 24"><rect x="4" y="7" width="16" height="12" rx="2"/><path d="M9 7V5h6v2M4 12h16"/></svg>',
+  cal:'<svg viewBox="0 0 24 24"><rect x="4" y="5" width="16" height="15" rx="2"/><path d="M8 3v4M16 3v4M4 10h16"/></svg>'
+ };
+ window.renderCentralProcessosEmpresaEM=function(){
+  estilosProcessosV114();alternarVistaProcessosEM(false);
+  const box=document.getElementById('psCentralConteudo');if(!box)return;
+  const vr=typeof vagasDaEmpresa==='function'?vagasDaEmpresa():[],vagas=Array.isArray(vr)?vr.filter(Boolean):[];
+  const cr=typeof candidaturas==='function'?candidaturas():[],cs=(Array.isArray(cr)?cr:[]).filter(c=>c&&vagas.some(v=>String(v.id)===String(c.vagaId)));
+  const oldQ=document.getElementById('psc3Busca')?.value||'',oldS=document.getElementById('psc3Status')?.value||'todos',oldO=document.getElementById('psc3Ordem')?.value||'recentes';
+  const busca=oldQ.toLowerCase(),filtro=oldS,ordem=oldO;
+  const ativas=vagas.filter(v=>statusProcessoCanonicoEM(v)[0]==='Ativa').length,analise=vagas.filter(v=>statusProcessoCanonicoEM(v)[0]==='Em análise').length;
+  let lista=vagas.filter(v=>{const st=statusProcessoCanonicoEM(v)[0].toLowerCase(),txt=(tituloVaga(v)+' '+(v.cidade||'')+' '+(v.estado||v.uf||'')).toLowerCase();return(filtro==='todos'||st===filtro)&&(!busca||txt.includes(busca))});
+  lista.sort((a,b)=>ordem==='az'?tituloVaga(a).localeCompare(tituloVaga(b),'pt-BR'):ordem==='antigos'?new Date(a.criadoEm||0)-new Date(b.criadoEm||0):new Date(b.criadoEm||0)-new Date(a.criadoEm||0));
+  const kpis='<div class="psc3-kpis"><article class="psc3-kpi"><i>'+ico.processos+'</i><div><strong>'+vagas.length+'</strong><b>Processos</b><small>Total de processos seletivos</small></div></article><article class="psc3-kpi"><i>'+ico.ativos+'</i><div><strong>'+ativas+'</strong><b>Ativos</b><small>Recrutamentos em andamento</small></div></article><article class="psc3-kpi"><i>'+ico.analise+'</i><div><strong>'+analise+'</strong><b>Em análise</b><small>Aguardando publicação</small></div></article><article class="psc3-kpi"><i>'+ico.cand+'</i><div><strong>'+cs.length+'</strong><b>Candidaturas</b><small>Currículos recebidos</small></div></article></div>';
+  const tools='<div class="psc3-tools"><div class="psc3-search">'+ico.search+'<input id="psc3Busca" type="search" placeholder="Buscar por cargo ou localização" value="'+esc(oldQ)+'" oninput="renderCentralProcessosEmpresaEM()"></div><select id="psc3Status" onchange="renderCentralProcessosEmpresaEM()"><option value="todos">Todos os status</option><option value="ativa" '+(filtro==='ativa'?'selected':'')+'>Ativos</option><option value="em análise" '+(filtro==='em análise'?'selected':'')+'>Em análise</option><option value="encerrada" '+(filtro==='encerrada'?'selected':'')+'>Encerrados</option></select><select id="psc3Ordem" onchange="renderCentralProcessosEmpresaEM()"><option value="recentes" '+(ordem==='recentes'?'selected':'')+'>Mais recentes</option><option value="antigos" '+(ordem==='antigos'?'selected':'')+'>Mais antigos</option><option value="az" '+(ordem==='az'?'selected':'')+'>Cargo A–Z</option></select></div>';
+  const rows=lista.map(v=>{const vc=cs.filter(c=>String(c.vagaId)===String(v.id)),av=vc.filter(c=>grupoEtapa(c.status)==='Em avaliação').length,se=vc.filter(c=>grupoEtapa(c.status)==='Selecionados').length,en=vc.filter(c=>grupoEtapa(c.status)==='Entrevista').length,co=vc.filter(c=>grupoEtapa(c.status)==='Contratados').length,st=statusProcessoCanonicoEM(v),local=[v.cidade,v.estado||v.uf].filter(Boolean).join(' - ')||'Localização não informada',dt=v.criadoEm?new Date(v.criadoEm).toLocaleDateString('pt-BR'):'—';
+   const step=(n,l,f)=>'<button class="psc3-step" type="button" onclick="abrirMetricaVagaEM(event,\\''+v.id+'\\',\\''+f+'\\')"><strong>'+n+'</strong><span>'+l+'</span></button>';
+   return '<article class="psc3-row"><div class="psc3-job" onclick="abrirGestaoVaga(\\''+v.id+'\\')"><div class="psc3-title"><h3>'+esc(tituloVaga(v))+'</h3><span class="psc3-status '+st[1]+'">'+st[0]+'</span></div><div class="psc3-meta"><span>'+ico.pin+esc(local)+'</span><span>'+ico.work+esc(v.modalidade||'Não informada')+'</span><span>'+ico.cal+dt+'</span></div></div><div class="psc3-flow">'+step(vc.length,'Candidaturas','todos')+step(av,'Em análise','em-analise')+step(se,'Selecionados','selecionados')+step(en,'Entrevistas','entrevistas')+step(co,'Contratados','contratados')+'</div><div><button class="psc3-manage" type="button" onclick="abrirGestaoVaga(\\''+v.id+'\\')">'+ico.cand+'Gerenciar</button></div></article>';
+  }).join('');
+  box.innerHTML='<div class="psc3">'+kpis+'<section class="psc3-board">'+tools+'<div class="psc3-head"><span>Processo / vaga</span><span>Andamento dos candidatos</span><span>Gestão</span></div>'+(rows||'<div class="psc3-empty"><strong>Nenhum processo encontrado</strong><span>Publique uma vaga para iniciar um processo seletivo.</span></div>')+'</section></div>';
+ };
+ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',()=>setTimeout(()=>{if(new URLSearchParams(location.search).get('pagina')==='candidatos-empresa'&&!sessionStorage.getItem('vagaCandidatosSelecionada'))window.renderCentralProcessosEmpresaEM()},0));
+ else setTimeout(()=>{if(new URLSearchParams(location.search).get('pagina')==='candidatos-empresa'&&!sessionStorage.getItem('vagaCandidatosSelecionada'))window.renderCentralProcessosEmpresaEM()},0);
+})();
