@@ -2185,7 +2185,7 @@ async function abrirVaga(id){
    try{
      const rows=await sbJsonEM(
        EMPREGAMAIS_SUPABASE_URL+'/rest/v1/vagas?select=*&id=eq.'+encodeURIComponent(id)+'&limit=1',
-       {method:'GET',headers:Object.assign(sbHeadersEM(),{'Cache-Control':'no-cache','Pragma':'no-cache'}),cache:'no-store'}
+       {method:'GET',headers:sbHeadersEM()}
      );
      const remota=Array.isArray(rows)?rows[0]:null;
      if(remota){
@@ -3331,7 +3331,7 @@ function vagasDestaqueOrdenadasEM(){
 }
 async function carregarDestaquesPublicosEM(){
  try{
-  const rows=await sbJsonEM(EMPREGAMAIS_SUPABASE_URL+'/rest/v1/vagas?select=*&status=eq.aprovada&destaque=eq.true&order=criado_em.desc',{method:'GET',headers:sbHeadersEM()});
+  const rows=await sbJsonEM(EMPREGAMAIS_SUPABASE_URL+'/rest/v1/vagas?select=id,empresa_id,empresa,empresa_cnpj,cargo,area,contrato,modalidade,cep,estado,cidade,data_encerramento,escolaridade,experiencia,jornada,pcd,salario,salario_max,salario_combinar,horario_entrada,horario_saida,descricao,requisitos,beneficios,beneficios_lista,beneficios_outros,sobre_empresa,senior50,confidencial,destaque,urgente,status,criado_em,editado_em,destaque_ate,logo,latitude,longitude,candidatura_tipo,candidatura_email,candidatura_whatsapp,candidatura_link&status=eq.aprovada&destaque=eq.true&order=criado_em.desc',{method:'GET',headers:sbHeadersEM()});
   if(Array.isArray(rows)){
    sbDestaquesPublicosEM=rows.map(sbMapVagaEM).filter(v=>v&&vagaDentroPrazo(v)&&destaqueAtivo(v));
    const geral=new Map((Array.isArray(sbVagasCacheEM)?sbVagasCacheEM:[]).filter(v=>v?.id).map(v=>[String(v.id),v]));
