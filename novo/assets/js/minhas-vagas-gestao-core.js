@@ -192,12 +192,12 @@ function abrirPopupGestaoVagaEM(id){
  const encerrada=statusVagaEM(v)==='Encerrada',modal=document.createElement('div');modal.className='evp-manage-modal';
  const acao=(cls,titulo,desc,onclick)=>'<button type="button" class="evp-manage-action '+cls+'" onclick="'+onclick+'"><strong>'+titulo+'</strong><span>'+desc+'</span></button>';
  modal.innerHTML='<div class="evp-manage-backdrop" data-close></div><section class="evp-manage-dialog" role="dialog" aria-modal="true" aria-label="Ações da vaga"><header class="evp-manage-head"><div><small>AÇÕES DA VAGA</small><h3>Gerenciar oportunidade</h3><p>'+escEM(v.cargo||v.titulo||'Vaga')+'</p></div><button class="evp-manage-close" type="button" data-close aria-label="Fechar">×</button></header><div class="evp-manage-actions">'+
-  acao('primary','Editar vaga','Altere informações e configurações.','fecharPopupGestaoVagaEM();editarVaga(\\''+escEM(v.id)+'\\')')+
-  acao('','Ver publicação','Veja como a vaga aparece no portal.','fecharPopupGestaoVagaEM();sessionStorage.setItem(\\'vagaSelecionada\\',\\''+escEM(v.id)+'\\');irPara(\\'vaga\\')')+
-  acao(v.destaque?'ativo':'',v.destaque?'Remover destaque':'Destacar vaga','Aumente a visibilidade da oportunidade.','alternarFlagGestaoEM(\\''+escEM(v.id)+'\\',\\'destaque\\',this);fecharPopupGestaoVagaEM()')+
-  acao(v.urgente?'ativo':'',v.urgente?'Retirar urgência':'Marcar como urgente','Sinalize prioridade na contratação.','alternarFlagGestaoEM(\\''+escEM(v.id)+'\\',\\'urgente\\',this);fecharPopupGestaoVagaEM()')+
-  acao(v.confidencial?'ativo':'',v.confidencial?'Exibir empresa':'Empresa confidencial','Controle a identificação da empresa.','alternarFlagGestaoEM(\\''+escEM(v.id)+'\\',\\'confidencial\\',this);fecharPopupGestaoVagaEM()')+
-  (encerrada?acao('reopen','Reativar vaga','Volta ao portal e utiliza +1 vaga do plano.','reabrirVagaEM(\\''+escEM(v.id)+'\\',this)'):acao('danger','Encerrar vaga','Retire a oportunidade do portal.','encerrarVagaGestaoEM(\\''+escEM(v.id)+'\\',this)'))+
+  acao('primary','Editar vaga','Altere informações e configurações.','fecharPopupGestaoVagaEM();editarVaga(\''+escEM(v.id)+'\')')+
+  acao('','Ver publicação','Veja como a vaga aparece no portal.','fecharPopupGestaoVagaEM();sessionStorage.setItem(\'vagaSelecionada\',\''+escEM(v.id)+'\');irPara(\'vaga\')')+
+  acao(v.destaque?'ativo':'',v.destaque?'Remover destaque':'Destacar vaga','Aumente a visibilidade da oportunidade.','alternarFlagGestaoEM(\''+escEM(v.id)+'\',\'destaque\',this);fecharPopupGestaoVagaEM()')+
+  acao(v.urgente?'ativo':'',v.urgente?'Retirar urgência':'Marcar como urgente','Sinalize prioridade na contratação.','alternarFlagGestaoEM(\''+escEM(v.id)+'\',\'urgente\',this);fecharPopupGestaoVagaEM()')+
+  acao(v.confidencial?'ativo':'',v.confidencial?'Exibir empresa':'Empresa confidencial','Controle a identificação da empresa.','alternarFlagGestaoEM(\''+escEM(v.id)+'\',\'confidencial\',this);fecharPopupGestaoVagaEM()')+
+  (encerrada?acao('reopen','Reativar vaga','Volta ao portal e utiliza +1 vaga do plano.','reabrirVagaEM(\''+escEM(v.id)+'\',this)'):acao('danger','Encerrar vaga','Retire a oportunidade do portal.','encerrarVagaGestaoEM(\''+escEM(v.id)+'\',this)'))+
  '</div></section>';
  document.body.appendChild(modal);document.body.classList.add('evp-modal-open');
  modal.querySelectorAll('[data-close]').forEach(x=>x.addEventListener('click',fecharPopupGestaoVagaEM));
