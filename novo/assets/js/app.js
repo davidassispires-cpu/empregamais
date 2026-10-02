@@ -2430,6 +2430,17 @@ function alternarSalvarVaga(){const v=vagaAtual();if(!v||v.status!=='aprovada'||
 function renderizarSalvas(){const box=$('#listaVagasSalvas');if(!box)return;const ids=salvas(),publicas=vagasPublicas(),a=publicas.filter(v=>ids.includes(v.id)),validos=new Set(a.map(v=>v.id));if(ids.some(id=>!validos.has(id)))gravar(chaveSalvas(),ids.filter(id=>validos.has(id)));box.innerHTML=a.length?a.map(cardVagaPortal).join(''):'<div class="vagas-vazio"><strong>Nenhuma vaga salva</strong><span>Use o botão “Salvar vaga” para guardar oportunidades.</span></div>'}
 
 
+/* EMPREGAMAIS — ANTI-FLASH PAINEL V1
+   Esconde apenas a estrutura antiga enquanto o painel atual é montado. */
+(function(){
+ const st=document.createElement('style');st.id='emPainelAntiFlashV1';st.textContent='#pagina-painel-empresa:not(.em-painel-pronto-v1)>:not(#emPainelRecrutadorSimplesEM){visibility:hidden!important}#pagina-painel-empresa.em-painel-pronto-v1{visibility:visible!important}';document.head.appendChild(st);
+ const marcar=()=>{const p=document.getElementById('pagina-painel-empresa');if(!p)return;const novo=document.getElementById('emPainelRecrutadorSimplesEM');if(novo)p.classList.add('em-painel-pronto-v1')};
+ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',()=>requestAnimationFrame(marcar),{once:true});else requestAnimationFrame(marcar);
+ const obs=new MutationObserver(()=>{marcar();if(document.getElementById('emPainelRecrutadorSimplesEM'))obs.disconnect()});
+ const iniciar=()=>{const p=document.getElementById('pagina-painel-empresa');if(p)obs.observe(p,{childList:true,subtree:false})};
+ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',iniciar,{once:true});else iniciar();
+})();
+
 /* EMPREGAMAIS — CAMADA VISUAL PROFISSIONAL DO PAINEL V1 — SOMENTE CSS */
 (function(){if(document.getElementById('emPainelVisualProfissionalV1'))return;const st=document.createElement('style');st.id='emPainelVisualProfissionalV1';st.textContent=`
 #emPainelRecrutadorSimplesEM .emrs-side{background:#fff!important;border-right:1px solid #d9e2ec!important;box-shadow:7px 0 24px rgba(24,54,84,.08)!important}
