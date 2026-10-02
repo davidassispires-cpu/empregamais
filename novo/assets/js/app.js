@@ -450,7 +450,9 @@ function blindarAcessoEmpresaHeaderEM(){
   gatilho.dataset.acessoEmpresaBlindado='1';
   gatilho.addEventListener('click',ev=>{
    ev.preventDefault();ev.stopPropagation();
-   if(typeof alternarMenuTopo==='function')alternarMenuTopo('empresa',ev);
+   // O botão Empresa do cabeçalho é um acesso direto: não depende do dropdown legado.
+   if(typeof fecharMenusTopo==='function')fecharMenusTopo();
+   irPara('login-empresa');
   });
  }
  empresa.querySelectorAll('a,button').forEach(el=>{
