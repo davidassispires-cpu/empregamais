@@ -12756,3 +12756,14 @@ textarea{
   line-height:1.15!important;
   align-self:start!important;
 }
+
+/* EMPREGAMAI-VAGAS-EMPRESA-FILTROS-SOFISTICADOS-V1 */
+#pagina-painel-empresa .evp-board{border:1px solid #d8e5f2!important;border-radius:18px!important;background:#fff!important;overflow:hidden!important;box-shadow:0 10px 28px rgba(29,78,121,.055)!important}
+#pagina-painel-empresa .evp-tools{display:grid!important;grid-template-columns:minmax(320px,2.1fr) minmax(190px,.75fr) minmax(175px,.7fr) minmax(165px,.65fr)!important;gap:10px!important;padding:14px!important;background:linear-gradient(180deg,#fbfdff,#f7faff)!important;border-bottom:1px solid #e1eaf3!important;align-items:center!important}
+#pagina-painel-empresa .evp-tools input,#pagina-painel-empresa .evp-tools select{height:46px!important;width:100%!important;border:1px solid #c9dbef!important;border-radius:12px!important;background:#fff!important;color:#173d67!important;padding:0 14px!important;font-size:13px!important;font-weight:600!important;outline:none!important;box-shadow:0 2px 7px rgba(30,78,121,.025)!important;transition:border-color .18s,box-shadow .18s,transform .18s!important}
+#pagina-painel-empresa .evp-tools input{padding-left:42px!important;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='18' height='18' viewBox='0 0 24 24' fill='none' stroke='%235c7ea5' stroke-width='2' stroke-linecap='round'%3E%3Ccircle cx='11' cy='11' r='7'/%3E%3Cpath d='m20 20-3.6-3.6'/%3E%3C/svg%3E")!important;background-repeat:no-repeat!important;background-position:14px center!important}
+#pagina-painel-empresa .evp-tools select{appearance:auto!important;cursor:pointer!important}
+#pagina-painel-empresa .evp-tools input:focus,#pagina-painel-empresa .evp-tools select:focus{border-color:#6aa9ed!important;box-shadow:0 0 0 3px rgba(41,124,215,.11)!important}
+#pagina-painel-empresa .evp-tools input::placeholder{color:#70859a!important;font-weight:500!important}
+@media(max-width:1050px){#pagina-painel-empresa .evp-tools{grid-template-columns:1fr 1fr!important}}
+@media(max-width:620px){#pagina-painel-empresa .evp-tools{grid-template-columns:1fr!important;padding:11px!important}#pagina-painel-empresa .evp-tools input,#pagina-painel-empresa .evp-tools select{height:44px!important}}
