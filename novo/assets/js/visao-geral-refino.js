@@ -2,7 +2,7 @@
 (function(){
 'use strict';
 
-function carregarMontserratEM(){
+function carregarInterEM(){
   if(!document.getElementById('emInterFont')){
    const link=document.createElement('link');
    link.id='emInterFont';
@@ -14,7 +14,7 @@ function carregarMontserratEM(){
 
 function aplicarRefinoVisaoGeralEM(){
  if(document.getElementById('emVisaoGeralRefinoV1'))return;
- carregarMontserratEM();
+ carregarInterEM();
  const st=document.createElement('style');
  st.id='emVisaoGeralRefinoV1';
  st.textContent=`
