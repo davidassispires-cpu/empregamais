@@ -95,9 +95,10 @@ async function sincronizarRH2(rota){
   if(document.getElementById('pagina-painel-recrutador-v2')?.classList.contains('ativa'))render(rota)
  }finally{syncRH2EmAndamento=false}
 }
+function fecharPainelRH2(){if(timerRH2){clearInterval(timerRH2);timerRH2=null}document.getElementById('pagina-painel-recrutador-v2')?.classList.remove('ativa')}
 function abrirPainelRH2(rota='visao'){
  if(typeof window.papelAtual==='function'&&window.papelAtual()!=='empresa'){if(typeof window.irPara==='function')window.irPara('login-empresa');return}
  rotaAtualRH2=rota;garantirPaginaRH2();document.querySelectorAll('.pagina').forEach(x=>x.classList.remove('ativa'));document.getElementById('pagina-painel-recrutador-v2').classList.add('ativa');render(rota);sincronizarRH2(rota);iniciarAtualizacaoRH2()
 }
-window.EmpregaiRecrutadorV2={render,abrir:abrirPainelRH2};window.abrirPainelRecrutadorV2=abrirPainelRH2;
+window.EmpregaiRecrutadorV2={render,abrir:abrirPainelRH2,fechar:fecharPainelRH2};window.abrirPainelRecrutadorV2=abrirPainelRH2;
 })();
