@@ -5851,7 +5851,11 @@ window.addEventListener('load',()=>setTimeout(bindCadastroEmpresaV4EM,50));
 /* EMPREGAI-RECRUTADOR-V2-LOADER */
 (function(){
  const q=new URLSearchParams(location.search);
- if(q.get('recrutadorV2')!=='1')return;
+ const rota=q.get('pagina')||'';
+ const forcarLegado=q.get('recrutadorLegado')==='1';
+ const testeV2=q.get('recrutadorV2')==='1';
+ const painelEmpresa=rota==='painel-empresa';
+ if(forcarLegado||(!testeV2&&!painelEmpresa))return;
  function css(){
   if(document.getElementById('empregaiRecrutadorV2Css'))return;
   const l=document.createElement('link');l.id='empregaiRecrutadorV2Css';l.rel='stylesheet';l.href='./assets/css/recrutador-v2.css?v=20261001';document.head.appendChild(l)
