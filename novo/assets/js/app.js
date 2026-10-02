@@ -4850,68 +4850,6 @@ body.recruta-modal-aberto{overflow:hidden!important}
 })();
 
 
-/* EMPREGAMAIS — HOTFIX PAINEL EMPRESA V9
-   Mantem navegacao clicavel e recupera vagas por empresa_id/user_id/CNPJ sem apagar cache local. */
-(function(){
- const _irParaV9=irPara;
- window.irPara=function(p='home'){
-   try{return _irParaV9(p)}catch(e){
-     console.error('+ Empregos: falha de navegacao, usando fallback.',e);
-     const url=p==='home'?location.pathname:location.pathname+'?pagina='+encodeURIComponent(p);
-     if(location.pathname+location.search!==url)history.pushState({},'',url);
-     try{mostrarPagina(p)}catch(_){}
-   }
- };
- irPara=window.irPara;
-
- window.vagasDaEmpresa=function(){
-   const locais=Array.isArray(ler('empregaMaisVagas'))?ler('empregaMaisVagas'):[];
-   const cache=Array.isArray(sbVagasCacheEM)?sbVagasCacheEM:[];
-   const uid=String(sessionStorage.getItem('empresaSupabaseUserId')||'');
-   const empresaId=String(sessionStorage.getItem('empresaSupabaseEmpresaId')||'');
-   const cnpj=nums(sessionStorage.getItem('empresaCnpj')||'');
-   const nome=String(sessionStorage.getItem('empresaNome')||'').trim().toLowerCase();
-   const mapa=new Map();[...locais,...cache].forEach(v=>{if(v?.id)mapa.set(String(v.id),v)});
-   return [...mapa.values()].filter(v=>{
-     const vi=String(v.empresaId||v.empresa_id||'');
-     const vu=String(v.userId||v.user_id||'');
-     const vc=nums(v.empresaCnpj||v.cnpj||'');
-     const vn=String(v.empresa||v.empresaNome||'').trim().toLowerCase();
-     return (empresaId&&vi===empresaId)||(uid&&vu===uid)||(cnpj&&vc===cnpj)||(!vi&&!vu&&!vc&&nome&&vn===nome);
-   });
- };
- vagasDaEmpresa=window.vagasDaEmpresa;
-
- window.sbCarregarVagasEmpresaAtualEM=async function(){
-   const locais=Array.isArray(ler('empregaMaisVagas'))?ler('empregaMaisVagas'):[];
-   let uid=String(sessionStorage.getItem('empresaSupabaseUserId')||''),empresaId=String(sessionStorage.getItem('empresaSupabaseEmpresaId')||''),cnpj=nums(sessionStorage.getItem('empresaCnpj')||''),remotas=[];
-   try{
-     const token=await sbGarantirSessaoEM();
-     if(token){
-       const emp=await sbBuscarMinhaEmpresaEM().catch(()=>null);
-       if(emp){
-         empresaId=String(emp.id||empresaId);uid=String(emp.user_id||uid);cnpj=nums(emp.cnpj||cnpj);
-         if(empresaId)sessionStorage.setItem('empresaSupabaseEmpresaId',empresaId);
-         if(uid)sessionStorage.setItem('empresaSupabaseUserId',uid);
-       }
-       let url=EMPREGAMAIS_SUPABASE_URL+'/rest/v1/vagas?select=*&order=criado_em.desc';
-       if(empresaId)url=EMPREGAMAIS_SUPABASE_URL+'/rest/v1/vagas?select=*&empresa_id=eq.'+encodeURIComponent(empresaId)+'&order=criado_em.desc';
-       else if(uid)url=EMPREGAMAIS_SUPABASE_URL+'/rest/v1/vagas?select=*&user_id=eq.'+encodeURIComponent(uid)+'&order=criado_em.desc';
-       const a=await sbJsonEM(url,{method:'GET',headers:sbHeadersEM(token)});
-       remotas=Array.isArray(a)?a.map(sbMapVagaEM).filter(Boolean):[];
-     }
-   }catch(e){console.warn('+ Empregos: painel usando cache local de vagas.',e)}
-   const mapa=new Map();
-   locais.forEach(v=>{if(v?.id)mapa.set(String(v.id),v)});
-   (Array.isArray(sbVagasCacheEM)?sbVagasCacheEM:[]).forEach(v=>{if(v?.id)mapa.set(String(v.id),v)});
-   remotas.forEach(v=>{if(v?.id)mapa.set(String(v.id),v)});
-   sbVagasCacheEM=[...mapa.values()];
-   try{gravar('empregaMaisVagas',sbVagasCacheEM)}catch(_){}
-   return window.vagasDaEmpresa();
- };
- sbCarregarVagasEmpresaAtualEM=window.sbCarregarVagasEmpresaAtualEM;
-})();
-
 /* EMPREGAMAIS — RECUPERAÇÃO DE VAGAS E AÇÕES V8 */
 (function(){
   const carregarVagasSeguro = async function(){
