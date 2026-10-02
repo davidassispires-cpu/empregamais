@@ -2650,6 +2650,21 @@ button,[role="button"],.btn{font-weight:700!important}
 strong,b{font-weight:800!important}
 `;document.head.appendChild(st)})();
 
+/* EMPREGAMAIS — FONTE GLOBAL REAL V2 */
+(function(){
+ if(document.getElementById('emFonteGlobalRealV2'))return;
+ const link=document.createElement('link');link.id='emFonteGlobalRealV2';link.rel='stylesheet';link.href='https://rsms.me/inter/inter.css';document.head.appendChild(link);
+ const st=document.createElement('style');st.id='emFonteGlobalRealV2CSS';st.textContent=`
+:root{font-family:Inter,Arial,sans-serif!important;font-feature-settings:"liga" 1,"calt" 1!important}
+@supports(font-variation-settings:normal){:root{font-family:InterVariable,Inter,Arial,sans-serif!important}}
+html,body,body *,body *::before,body *::after,button,input,select,textarea,option{font-family:Inter,Arial,sans-serif!important}
+@supports(font-variation-settings:normal){html,body,body *,body *::before,body *::after,button,input,select,textarea,option{font-family:InterVariable,Inter,Arial,sans-serif!important}}
+body,p,span,label,a,li,td,th,input,select,textarea,button{font-weight:500!important}
+h1,h2,h3,h4,h5,h6,strong,b{font-weight:800!important}
+button,.btn,[class*="btn"],[class*="button"]{font-weight:700!important}
+`;document.head.appendChild(st);
+})();
+
 /* EMPREGAMAIS-PAINEL-RECRUTADOR-SIMPLES-V1 */
 function garantirPainelRecrutadorSimplesEM(){
  const pagina=document.getElementById('pagina-painel-empresa');if(!pagina)return null;
