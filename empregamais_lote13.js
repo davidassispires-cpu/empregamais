@@ -171,3 +171,38 @@ var obsV230=new MutationObserver(function(){setTimeout(corrigirPainelV230,20);})
 obsV230.observe(document.documentElement,{childList:true,subtree:true});
 })();
 //
+
+
+/* EmpregaMais v233 - corrige CTAs Entrar/Cadastrar empresa */
+(function(){
+"use strict";
+function normV233(s){return String(s||"").toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g,"").trim();}
+function irV233(p){
+ try{if(typeof window.irPara==="function"){window.irPara(p);return true;}}catch(e){}
+ try{location.href="?pagina="+encodeURIComponent(p);return true;}catch(e){}
+ return false;
+}
+function instalarV233(){
+ document.querySelectorAll("a,button").forEach(function(el){
+   var t=normV233(el.textContent);
+   if(t==="entrar como empresa"){
+     el.setAttribute("data-em-cta-v233","login");
+     if(el.tagName==="A")el.setAttribute("href","?pagina=login-empresa");
+   }else if(t==="cadastrar empresa"||t==="cadastre sua empresa"||t==="criar conta empresa"){
+     el.setAttribute("data-em-cta-v233","cadastro");
+     if(el.tagName==="A")el.setAttribute("href","?pagina=cadastro-empresa");
+   }
+ });
+}
+document.addEventListener("click",function(e){
+ var el=e.target.closest&&e.target.closest("[data-em-cta-v233]");
+ if(!el)return;
+ e.preventDefault();e.stopPropagation();
+ var tipo=el.getAttribute("data-em-cta-v233");
+ if(tipo==="login")irV233("login-empresa");
+ else irV233("cadastro-empresa");
+},true);
+if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",instalarV233);else instalarV233();
+window.addEventListener("load",function(){setTimeout(instalarV233,250);setTimeout(instalarV233,1200);});
+new MutationObserver(function(){clearTimeout(window.__emCta233T);window.__emCta233T=setTimeout(instalarV233,50)}).observe(document.documentElement,{childList:true,subtree:true});
+})();
