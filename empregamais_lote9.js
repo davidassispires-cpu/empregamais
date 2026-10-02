@@ -547,3 +547,31 @@ setTimeout(restaurarHomeV109,30);
 });
 })();
 //
+
+
+/* EmpregaMais v234 - rotas corretas do menu Área da empresa */
+(function(){
+"use strict";
+function abrirV234(p){
+ var mapa={login:"login-empresa",cadastro:"cadastro-empresa"};
+ p=mapa[p]||p;
+ try{if(typeof window.mostrarPagina==="function"){window.mostrarPagina(p);return;}}catch(e){}
+ try{if(typeof window.irPara==="function"){window.irPara(p);return;}}catch(e){}
+ window.location.assign(window.location.pathname+"?pagina="+encodeURIComponent(p));
+}
+function normV234(s){return String(s||"").toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g,"").replace(/\s+/g," ").trim();}
+document.addEventListener("click",function(e){
+ var el=e.target.closest&&e.target.closest("button,a");
+ if(!el)return;
+ var t=normV234(el.textContent);
+ var area=el.closest(".header-v98-menu,.header-v98-area,header");
+ if(!area)return;
+ if(t.indexOf("entrar como empresa")>=0||t.indexOf("entrar na minha conta")>=0){
+   e.preventDefault();e.stopImmediatePropagation();abrirV234("login");return false;
+ }
+ if(t.indexOf("cadastrar empresa")>=0||t.indexOf("cadastre sua empresa")>=0){
+   e.preventDefault();e.stopImmediatePropagation();abrirV234("cadastro");return false;
+ }
+},true);
+window.EmpregaMaisAbrirEmpresaV234=abrirV234;
+})();
