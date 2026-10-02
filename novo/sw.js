@@ -1,4 +1,4 @@
-const EMPREGAMAIS_SW_VERSION='2026-10-01-v49';
+const EMPREGAMAIS_SW_VERSION='2026-10-02-v50-recruiter-ui';
 
 const EMPREGAMAIS_DESKTOP_VAGAS_FIX=`
 @media (min-width: 901px){
