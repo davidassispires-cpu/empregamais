@@ -439,6 +439,33 @@ window.addEventListener('load',()=>setTimeout(iniciarAcessoConectaHeaderEM,120),
 const observaHeaderConectaEM=new MutationObserver(()=>{if(!document.getElementById('headerConectaLoginEM'))setTimeout(garantirAcessoConectaHeaderEM,80)});
 setTimeout(()=>{if(document.body)observaHeaderConectaEM.observe(document.body,{childList:true,subtree:true})},150);
 setTimeout(iniciarAcessoConectaHeaderEM,300);
+/* EMPREGAI — HOTFIX ACESSO EMPRESA 2026-10-01
+   Mantém os gatilhos do cabeçalho funcionais mesmo se camadas antigas
+   tiverem substituído/removido handlers inline. */
+function blindarAcessoEmpresaHeaderEM(){
+ const empresa=document.querySelector('.topo .menu-drop-empresa');
+ if(!empresa)return false;
+ const gatilho=empresa.querySelector('.menu-drop-gatilho');
+ if(gatilho&&!gatilho.dataset.acessoEmpresaBlindado){
+  gatilho.dataset.acessoEmpresaBlindado='1';
+  gatilho.addEventListener('click',ev=>{
+   ev.preventDefault();ev.stopPropagation();
+   if(typeof alternarMenuTopo==='function')alternarMenuTopo('empresa',ev);
+  });
+ }
+ empresa.querySelectorAll('a,button').forEach(el=>{
+  const txt=String(el.textContent||'').replace(/\s+/g,' ').trim().toLowerCase();
+  if((txt.includes('entrar')||txt.includes('login')||txt.includes('acessar'))&&!el.classList.contains('menu-drop-gatilho')&&!el.dataset.loginEmpresaBlindado){
+   el.dataset.loginEmpresaBlindado='1';
+   el.addEventListener('click',ev=>{ev.preventDefault();ev.stopPropagation();irPara('login-empresa')});
+  }
+ });
+ return true;
+}
+document.addEventListener('DOMContentLoaded',()=>setTimeout(blindarAcessoEmpresaHeaderEM,160),{once:true});
+window.addEventListener('load',()=>setTimeout(blindarAcessoEmpresaHeaderEM,180),{once:true});
+setTimeout(blindarAcessoEmpresaHeaderEM,500);
+
 
 /* EMPREGOS-CONECTA-LOGIN-V1 */
 function garantirLoginConectaEM(){
