@@ -3246,7 +3246,8 @@ document.addEventListener('visibilitychange',()=>{if(!document.hidden&&empresaPa
 const _abrirRotaAutoRefreshEM=abrirRota;
 abrirRota=function(p){
  const r=_abrirRotaAutoRefreshEM(p);
- if(p==='painel-empresa')empresaPainelIniciarAutoRefreshEM();
+ const painelAtivo=document.getElementById('pagina-painel-empresa')?.classList.contains('ativa')&&papelAtual()==='empresa';
+ if(painelAtivo)empresaPainelIniciarAutoRefreshEM();
  else if(empresaPainelAutoRefreshTimerEM){clearInterval(empresaPainelAutoRefreshTimerEM);empresaPainelAutoRefreshTimerEM=null}
  return r
 };
