@@ -3502,6 +3502,41 @@ const _emSalvarPerfilEmpresaV3=salvarPerfilEmpresa;salvarPerfilEmpresa=function(
 @media(max-width:850px){#pagina-perfil-empresa .perfil-wizard-shell{width:calc(100% - 24px)!important}#pagina-perfil-empresa .perfil-wizard-layout-split{grid-template-columns:1fr!important}#pagina-perfil-empresa #perfilProgress{position:static!important}}
 `;document.head.appendChild(st)})();
 
+/* EMPREGAMAIS — MINHA EMPRESA AZUL + FLUXO VERIFICACAO V6 */
+(function(){if(document.getElementById('emMinhaEmpresaFluxoV6'))return;const st=document.createElement('style');st.id='emMinhaEmpresaFluxoV6';st.textContent=`
+#pagina-perfil-empresa{--em-blue:#0b4f9f!important;--em-blue2:#126dce!important;--em-orange:#ff6b17!important}
+#pagina-perfil-empresa .perfil-wizard-head,#pagina-perfil-empresa .perfil-empresa-hero,#pagina-perfil-empresa [class*="perfil-hero"]{background:linear-gradient(115deg,#0b4f9f,#126dce)!important;border-color:#0b4f9f!important}
+#pagina-perfil-empresa .perfil-wizard-head{display:block!important;text-align:center!important;padding:28px 32px!important;border-radius:16px!important}
+#pagina-perfil-empresa .perfil-wizard-head>*{max-width:850px!important;margin-left:auto!important;margin-right:auto!important}
+#pagina-perfil-empresa .perfil-wizard-head h1{color:#fff!important;text-align:center!important}
+#pagina-perfil-empresa .perfil-wizard-head p{color:#eaf4ff!important;text-align:center!important}
+#pagina-perfil-empresa .perfil-wizard-head .perfil-tabs,#pagina-perfil-empresa .perfil-wizard-head [class*="tabs"]{justify-content:center!important}
+#pagina-perfil-empresa .perfil-wizard-head button.ativo,#pagina-perfil-empresa .perfil-wizard-head button:hover{background:#ff6b17!important;border-color:#ff6b17!important;color:#fff!important}
+#pagina-perfil-empresa .perfil-wizard-head .em-verificada-v6{display:inline-flex!important;align-items:center!important;gap:6px!important;margin-top:13px!important;padding:7px 11px!important;border-radius:999px!important;background:#fff!important;color:#0b4f9f!important;font-size:10px!important;font-weight:800!important;box-shadow:0 4px 12px rgba(0,0,0,.1)!important}
+#pagina-perfil-empresa .perfil-wizard-head .em-analise-v6{display:inline-flex!important;align-items:center!important;gap:6px!important;margin-top:13px!important;padding:7px 11px!important;border-radius:999px!important;background:#fff3e9!important;color:#d85508!important;font-size:10px!important;font-weight:800!important}
+#pagina-perfil-empresa #perfilProgress [data-perfil-step].ativo{background:#eef6ff!important;color:#0b4f9f!important}
+#pagina-perfil-empresa #perfilProgress [data-perfil-step].ativo::before,#pagina-perfil-empresa #perfilProgress [data-perfil-step].ativo b,#pagina-perfil-empresa #perfilProgress [data-perfil-step].ativo span:first-child{background:#ff6b17!important;border-color:#ff6b17!important;color:#fff!important}
+#pagina-perfil-empresa .perfil-candidato-card,#pagina-perfil-empresa [class*="perfil-empresarial"]{border-color:#c8dcf1!important}
+#pagina-perfil-empresa .perfil-candidato-card [class*="head"],#pagina-perfil-empresa [class*="perfil-empresarial"]>[class*="head"]{background:linear-gradient(115deg,#0b4f9f,#126dce)!important}
+`;document.head.appendChild(st);
+function statusHero(){
+ const pg=document.getElementById('pagina-perfil-empresa'),head=pg?.querySelector('.perfil-wizard-head'),emp=typeof empresaLogada==='function'?empresaLogada():null;if(!head||!emp)return;
+ head.querySelectorAll('.em-verificada-v6,.em-analise-v6').forEach(x=>x.remove());
+ const aprovado=emp.verificada===true||['aprovada','verificada'].includes(String(emp.verificacaoStatus||'').toLowerCase());
+ const analise=['pendente','em_analise','analise','reanálise','reanalise'].includes(String(emp.verificacaoStatus||'').toLowerCase());
+ if(aprovado)head.insertAdjacentHTML('beforeend','<span class="em-verificada-v6">✓ Empresa verificada</span>');
+ else if(analise)head.insertAdjacentHTML('beforeend','<span class="em-analise-v6">◷ Cadastro em análise</span>');
+}
+function removerAbaVerificar(){
+ const pg=document.getElementById('pagina-perfil-empresa');if(!pg)return;
+ document.querySelectorAll('button,a').forEach(x=>{const t=(x.textContent||'').trim().toLowerCase();if(t==='verificar empresa'&&x.closest('nav,.perfil-empresa-tabs,.empresa-subnav,[class*="empresa"]'))x.style.display='none'});
+ statusHero();
+}
+if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',()=>setTimeout(removerAbaVerificar,0),{once:true});else setTimeout(removerAbaVerificar,0);
+document.addEventListener('click',e=>{if(e.target.closest('[onclick*="perfil-empresa"],[data-pagina="perfil-empresa"]'))setTimeout(removerAbaVerificar,50)},true);
+window.atualizarStatusHeroMinhaEmpresaV6=statusHero;
+})();
+
 /* EMPREGAMAIS-PERFIL-EMPRESA-WIZARD-V1 */
 function perfilEmpresaEtapa(n){document.querySelectorAll('#formPerfilEmpresa .perfil-step').forEach(x=>x.classList.toggle('ativo',+x.dataset.perfilPanel===n));document.querySelectorAll('#perfilProgress [data-perfil-step]').forEach(x=>{const k=+x.dataset.perfilStep;x.classList.toggle('ativo',k===n);x.classList.toggle('feito',k<n)});document.querySelector('#pagina-perfil-empresa')?.scrollIntoView({behavior:'auto',block:'start'})}
 function prepararChoicesPerfilEmpresa(){document.querySelectorAll('#formPerfilEmpresa .perfil-choice-row').forEach(g=>{if(g.dataset.ready)return;g.dataset.ready='1';const inp=document.getElementById(g.dataset.target);g.querySelectorAll('button').forEach(b=>b.addEventListener('click',()=>{b.classList.toggle('ativo');if(inp)inp.value=[...g.querySelectorAll('button.ativo')].map(x=>x.textContent.trim()).join(', ')}));if(inp?.value){const vals=inp.value.split(',').map(x=>x.trim());g.querySelectorAll('button').forEach(b=>b.classList.toggle('ativo',vals.includes(b.textContent.trim())))}})}
