@@ -198,6 +198,8 @@ window.encerrarVagaGestaoEM=encerrarVagaGestaoEM;
 window.alternarFlagGestaoEM=alternarFlagGestaoEM;
 window.renderVagasEmpresaPaginaEM=renderVagasEmpresaPaginaGestaoEM;
 
-document.addEventListener('DOMContentLoaded',function(){setTimeout(function(){window.renderVagasEmpresaPaginaEM=renderVagasEmpresaPaginaGestaoEM;if(new URLSearchParams(location.search).get('pagina')==='vagas-empresa')renderVagasEmpresaPaginaGestaoEM()},700)});
+function assumirRotaMinhasVagasEM(){window.renderVagasEmpresaPaginaEM=renderVagasEmpresaPaginaGestaoEM;if(new URLSearchParams(location.search).get('pagina')==='vagas-empresa')renderVagasEmpresaPaginaGestaoEM()}
+document.addEventListener('DOMContentLoaded',function(){[0,250,700,1400].forEach(function(ms){setTimeout(assumirRotaMinhasVagasEM,ms)})});
+window.addEventListener('load',function(){setTimeout(assumirRotaMinhasVagasEM,0)});
 window.addEventListener('popstate',function(){if(new URLSearchParams(location.search).get('pagina')==='vagas-empresa')setTimeout(renderVagasEmpresaPaginaGestaoEM,30)});
 })();
