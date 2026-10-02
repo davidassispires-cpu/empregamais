@@ -3498,7 +3498,12 @@ function atualizarVerificacaoSidebarPainelEM(){
 }
 
 const _renderizarPainelEmpresaVerEM=renderizarPainelEmpresa;
-renderizarPainelEmpresa=function(){const r=_renderizarPainelEmpresaVerEM.apply(this,arguments);renderStatusVerificacaoEmpresaEM();setTimeout(atualizarVerificacaoSidebarPainelEM,0);return r};
+renderizarPainelEmpresa=function(){
+ const r=_renderizarPainelEmpresaVerEM.apply(this,arguments);
+ const finalizar=()=>{renderStatusVerificacaoEmpresaEM();setTimeout(atualizarVerificacaoSidebarPainelEM,0)};
+ if(r&&typeof r.then==='function')return r.then(v=>{finalizar();return v},err=>{finalizar();throw err});
+ finalizar();return r
+};
 
 
 /* EMPREGAMAIS — acesso inteligente à verificação empresarial */
