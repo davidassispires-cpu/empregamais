@@ -23,10 +23,10 @@ function chavePlanoRH2(pl){
 }
 const RECURSOS_RH2={
  // Mantém as permissões já aplicadas no portal legado.
- gratis:{publicar:true,candidaturas:true,processos:true,banco:false,destaque:false,urgencia:false,usuarios:1},
- mensal:{publicar:true,candidaturas:true,processos:true,banco:false,destaque:true,urgencia:true,usuarios:null},
- semestral:{publicar:true,candidaturas:true,processos:true,banco:true,destaque:true,urgencia:true,usuarios:null},
- anual:{publicar:true,candidaturas:true,processos:true,banco:true,destaque:true,urgencia:true,usuarios:null}
+ gratis:{publicar:true,candidaturas:true,processos:true,banco:false,destaque:false,urgencia:false},
+ mensal:{publicar:true,candidaturas:true,processos:true,banco:false,destaque:true,urgencia:true},
+ semestral:{publicar:true,candidaturas:true,processos:true,banco:true,destaque:true,urgencia:true},
+ anual:{publicar:true,candidaturas:true,processos:true,banco:true,destaque:true,urgencia:true}
 };
 function recursosPlanoRH2(pl){return RECURSOS_RH2[chavePlanoRH2(pl)]||RECURSOS_RH2.gratis}
 function configHtmlRH2(pl){
