@@ -1748,25 +1748,31 @@ function mudarEtapaCandidato(id,status){const a=candidaturas(),i=a.findIndex(c=>
 function contatarWhats(id){const c=candidaturas().find(x=>x.id===id),v=ler('empregaMaisVagas').find(x=>x.id===c?.vagaId);if(!c||!c.telefone)return;let f=nums(c.telefone);if(f.length<10){alert('O telefone deste candidato está incompleto.');return}if(f.length<=11)f='55'+f;const texto='Olá, '+(c.candidato||c.nome||'')+'! Meu nome é [SEU NOME] e falo em nome da '+(sessionStorage.getItem('empresaNome')||'empresa')+'. Recebemos seu currículo para a vaga de '+tituloVaga(v||{})+' pelo + Empregos e gostaríamos de conversar sobre o processo seletivo.';window.open('https://wa.me/'+f+'?text='+encodeURIComponent(texto),'_blank')}
 function atualizarPainelCandidato(){const email=(sessionStorage.getItem('candidatoEmail')||'').toLowerCase(),apps=candidaturasDoCandidatoAtualEM(),curr=ler(chaveCurriculo(),null),cvOnline=dadosCurriculoOnlineEM(),ids=salvas(),perfil=candidatoLogado()?.perfil||{},entrev=apps.filter(c=>grupoEtapa(c.status)==='Entrevista').length;const set=(id,v)=>{const e=$('#'+id);if(e)e.textContent=v};const nomeCand=sessionStorage.getItem('candidatoNome')||candidatoLogado()?.nome||'Candidato';set('candSideNome',nomeCand);set('candSideAvatar',String(nomeCand).charAt(0).toUpperCase());set('candHeroTitulo','Olá, '+String(nomeCand).split(' ')[0]+'!');const camposPerfil=[perfil.titulo,perfil.area,perfil.escolaridade,perfil.experiencia,perfil.resumo,perfil.competencias,perfil.modalidade,candidatoLogado()?.cidade],preenchidos=camposPerfil.filter(Boolean).length,pct=Math.round(preenchidos/camposPerfil.length*100);set('candPerfilProgressoTexto',pct+'% completo');const barra=$('#candPerfilProgressoBarra');if(barra)barra.style.width=pct+'%';const cvCampos=[cvOnline.nome,cvOnline.titulo,cvOnline.email,cvOnline.telefone,cvOnline.cidade,cvOnline.uf,cvOnline.area,cvOnline.objetivo,cvOnline.escolaridade,cvOnline.competencias],cvPreenchidos=cvCampos.filter(v=>String(v||'').trim()).length,cvExtras=(Array.isArray(cvOnline.experiencias)&&cvOnline.experiencias.length?1:0)+(Array.isArray(cvOnline.formacoes)&&cvOnline.formacoes.length?1:0),cvTotal=cvCampos.length+2,cvPct=Math.min(100,Math.round((cvPreenchidos+cvExtras)/cvTotal*100)),cvExiste=cvPreenchidos>0||cvExtras>0,cvStatus=!cvExiste?'Pendente':cvPct>=80?'Completo':cvPct+'% completo';set('candMetricaCurriculo',cvStatus);set('candMetricaCandidaturas',apps.length);set('candMetricaEntrevistas',entrev);set('candMetricaSalvas',ids.length);const cvSmall=document.querySelector('#candMetricaCurriculo')?.parentElement?.querySelector('small');if(cvSmall)cvSmall.textContent=!cvExiste?'Crie seu currículo online':cvPct>=80?'Currículo online atualizado':'Continue preenchendo seu currículo';const cvKpi=document.querySelector('#candMetricaCurriculo')?.closest('article');if(cvKpi){cvKpi.classList.toggle('curriculo-completo',cvExiste&&cvPct>=80);cvKpi.classList.toggle('curriculo-parcial',cvExiste&&cvPct<80);cvKpi.classList.toggle('curriculo-pendente',!cvExiste);cvKpi.setAttribute('aria-label',cvExiste&&cvPct>=80?'Currículo completo. Abrir currículo online':!cvExiste?'Currículo pendente. Criar currículo online':'Currículo '+cvPct+'% completo. Continuar preenchimento');}const jornada=$('#resumoJornadaCandidato');if(jornada)jornada.innerHTML=apps.length?apps.slice().sort((a,b)=>new Date(b.criadoEm||0)-new Date(a.criadoEm||0)).slice(0,4).map(c=>{const v=ler('empregaMaisVagas').find(x=>x.id===c.vagaId)||{};return'<div class="jornada-item"><div><strong>'+esc(tituloVaga(v)||c.vagaTitulo||'Vaga')+'</strong><span>'+esc(v.confidencial?'Empresa confidencial':v.empresa||'')+'</span></div><span class="vaga-status">'+esc(c.status||'Em avaliação')+'</span></div>'}).join(''):'<div class="vagas-vazio"><strong>Nenhuma candidatura ainda</strong><span>Encontre uma oportunidade e acompanhe o processo por aqui.</span></div>';const rec=$('#vagasRecomendadasCandidato');if(rec){const area=String(perfil.area||'').toLowerCase(),cidade=String(candidatoLogado()?.cidade||'').toLowerCase(),mod=perfil.modalidade||'',aplicadas=new Set(apps.map(c=>c.vagaId));let vagas=vagasPublicas().filter(v=>!aplicadas.has(v.id));vagas.sort((a,b)=>{const pa=(area&&String(a.area||'').toLowerCase().includes(area)?3:0)+(cidade&&String(a.cidade||'').toLowerCase()===cidade?2:0)+(mod&&a.modalidade===mod?1:0),pb=(area&&String(b.area||'').toLowerCase().includes(area)?3:0)+(cidade&&String(b.cidade||'').toLowerCase()===cidade?2:0)+(mod&&b.modalidade===mod?1:0);return pb-pa||new Date(b.criadoEm||0)-new Date(a.criadoEm||0)});rec.innerHTML=vagas.length?vagas.slice(0,4).map(cardVagaPortal).join(''):'<div class="vagas-vazio"><strong>Sem recomendações no momento</strong><span>Complete seu perfil e volte em breve.</span></div>'}try{atualizarSeguirEmpresaEM()}catch(e){} }
 
+let sincronizarCandidatoLogadoEmVooEM=null;
 async function sincronizarCandidatoLogadoSupabaseEM(){
+ if(sincronizarCandidatoLogadoEmVooEM)return sincronizarCandidatoLogadoEmVooEM;
  const email=(sessionStorage.getItem('candidatoEmail')||'').toLowerCase(),userId=sessionStorage.getItem('candidatoSupabaseUserId')||'';
  if(!email&&!userId)return null;
- try{
-  const t=await sbGarantirSessaoEM();if(!t)return null;
-  const filtro=userId?'user_id=eq.'+encodeURIComponent(userId):'email=eq.'+encodeURIComponent(email);
-  const rows=await sbJsonEM(EMPREGAMAIS_SUPABASE_URL+'/rest/v1/candidatos?select=*&'+filtro+'&limit=1',{method:'GET',headers:sbHeadersEM(t)});
-  const x=Array.isArray(rows)?rows[0]:null;if(!x){sessionStorage.setItem('candidatoPremiumVerificadoEM','0');return null;}
-  sessionStorage.setItem('candidatoPremiumVerificadoEM',x.premium===true?'1':'0');
-  const atual=sbSalvarCandidatoLocalEM(sbMapPerfilCandidatoCloudEM(x,candidatoLogado()||{}));
-  const cloudEmail=String(atual.email||email||'').toLowerCase();
-  if(cloudEmail){
-   gravar('empregaMaisCurriculoOnline_'+cloudEmail,atual.curriculoOnline||{});
-   if(atual.curriculoArquivo)gravar('empregaMaisCurriculo_'+cloudEmail,atual.curriculoArquivo);
-   else localStorage.removeItem('empregaMaisCurriculo_'+cloudEmail);
-   gravar('empregaMaisSalvas_'+cloudEmail,atual.vagasSalvas||[]);
-  }
-  return atual
- }catch(err){console.error('Sincronização candidato logado / Supabase:',err);return null}
+ sincronizarCandidatoLogadoEmVooEM=(async()=>{
+  try{
+   const t=await sbGarantirSessaoEM();if(!t)return null;
+   const filtro=userId?'user_id=eq.'+encodeURIComponent(userId):'email=eq.'+encodeURIComponent(email);
+   const rows=await sbJsonEM(EMPREGAMAIS_SUPABASE_URL+'/rest/v1/candidatos?select=*&'+filtro+'&limit=1',{method:'GET',headers:sbHeadersEM(t)});
+   const x=Array.isArray(rows)?rows[0]:null;if(!x){sessionStorage.setItem('candidatoPremiumVerificadoEM','0');return null;}
+   sessionStorage.setItem('candidatoPremiumVerificadoEM',x.premium===true?'1':'0');
+   const atual=sbSalvarCandidatoLocalEM(sbMapPerfilCandidatoCloudEM(x,candidatoLogado()||{}));
+   const cloudEmail=String(atual.email||email||'').toLowerCase();
+   if(cloudEmail){
+    gravar('empregaMaisCurriculoOnline_'+cloudEmail,atual.curriculoOnline||{});
+    if(atual.curriculoArquivo)gravar('empregaMaisCurriculo_'+cloudEmail,atual.curriculoArquivo);
+    else localStorage.removeItem('empregaMaisCurriculo_'+cloudEmail);
+    gravar('empregaMaisSalvas_'+cloudEmail,atual.vagasSalvas||[]);
+   }
+   return atual
+  }catch(err){console.error('Sincronização candidato logado / Supabase:',err);return null}
+ })();
+ try{return await sincronizarCandidatoLogadoEmVooEM}
+ finally{sincronizarCandidatoLogadoEmVooEM=null}
 }
 const _atualizarPainelCandidatoLocalEM=atualizarPainelCandidato;
 atualizarPainelCandidato=async function(){
