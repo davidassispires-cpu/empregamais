@@ -2627,6 +2627,18 @@ body:has(#pagina-painel-empresa.ativa),body:has(#pagina-vagas-empresa.ativa),bod
 #emPainelRecrutadorSimplesEM .emrs-primary,#emPainelRecrutadorSimplesEM button{font-weight:700!important}
 `;document.head.appendChild(st)})();
 
+/* EMPREGAMAIS — TIPOGRAFIA GLOBAL UNIFICADA V1 */
+(function(){if(document.getElementById('emTipografiaGlobalV1'))return;const st=document.createElement('style');st.id='emTipografiaGlobalV1';st.textContent=`
+html,body,button,input,select,textarea,option,label,a,p,span,small,strong,b,i,em,div,section,article,aside,header,footer,nav,ul,ol,li,table,thead,tbody,tr,th,td,h1,h2,h3,h4,h5,h6{font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif!important}
+body{font-weight:500!important;letter-spacing:0!important}
+h1,h2,h3,h4,h5,h6{font-weight:800!important;letter-spacing:-.025em!important}
+button,.btn,[class*="btn-"],[class*="button"]{font-weight:700!important}
+strong,b{font-weight:800!important}
+input,select,textarea{font-weight:500!important}
+small{font-weight:500!important}
+.em-numero,.numero,[class*="numero"],[class*="metric"] strong,[class*="kpi"] strong,[class*="stat"] strong,[class*="indicador"] strong{font-variant-numeric:tabular-nums!important;font-weight:800!important;letter-spacing:-.035em!important}
+`;document.head.appendChild(st)})();
+
 /* EMPREGAMAIS-PAINEL-RECRUTADOR-SIMPLES-V1 */
 function garantirPainelRecrutadorSimplesEM(){
  const pagina=document.getElementById('pagina-painel-empresa');if(!pagina)return null;
