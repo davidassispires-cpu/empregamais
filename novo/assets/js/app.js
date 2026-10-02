@@ -2784,7 +2784,8 @@ cadastrarEmpresa=function(e){e.preventDefault();const senha=$("#cadEmpresaSenha"
    e suporta tanto CNPJ quanto e-mail de usuário vinculado. */
 
 async function validarSessaoSupabaseEmpresaEM(){const token=await sbGarantirSessaoEM();if(!token)return false;try{const u=await sbJsonEM(EMPREGAMAIS_SUPABASE_URL+"/auth/v1/user",{method:"GET",headers:sbHeadersEM(token)});const e=await sbBuscarMinhaEmpresaEM();return !!(u?.id&&e?.id)}catch(err){return false}}
-window.addEventListener("load",()=>{if(sessionStorage.getItem(EMPREGAMAIS_SB_TOKEN))validarSessaoSupabaseEmpresaEM()});
+/* A restauração central de sessão já valida token + empresa no DOMContentLoaded.
+   Evita uma segunda validação automática idêntica no evento load. */
 
 /* =========================================================
    EMPREGAMAIS — VAGAS NO SUPABASE
