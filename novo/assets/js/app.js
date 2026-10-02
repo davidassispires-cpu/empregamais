@@ -5877,3 +5877,29 @@ window.addEventListener('load',()=>setTimeout(bindCadastroEmpresaV4EM,50));
 `;
  document.head.appendChild(st);
 })();
+
+/* EMPREGAMAI-PAINEL-KPIS-REFERENCIA-V1 */
+(function(){
+ if(document.getElementById('empregaiPainelKpisReferenciaV1'))return;
+ const st=document.createElement('style');st.id='empregaiPainelKpisReferenciaV1';
+ st.textContent=`
+#emPainelRecrutadorSimplesEM .emrs-kpis{display:grid!important;grid-template-columns:repeat(4,minmax(0,1fr))!important;gap:12px!important;margin:0 0 22px!important}
+#emPainelRecrutadorSimplesEM .emrs-kpi{min-height:108px!important;display:grid!important;grid-template-columns:48px 1fr!important;grid-template-rows:auto auto!important;column-gap:14px!important;align-content:center!important;align-items:center!important;padding:17px 18px!important;border-radius:14px!important;background:#f8fcff!important;border:1px solid #b9ddf5!important;box-shadow:0 5px 14px rgba(20,80,120,.035)!important;text-align:left!important;position:relative!important;overflow:hidden!important}
+#emPainelRecrutadorSimplesEM .emrs-kpi:nth-child(2){background:#f8fdf9!important;border-color:#c6e8cf!important}
+#emPainelRecrutadorSimplesEM .emrs-kpi:nth-child(3){background:#fffaf3!important;border-color:#f3d28e!important}
+#emPainelRecrutadorSimplesEM .emrs-kpi:nth-child(4){background:#fbf8ff!important;border-color:#dcc8f6!important}
+#emPainelRecrutadorSimplesEM .emrs-kpi:after{content:"";position:absolute!important;width:120px!important;height:55px!important;right:-25px!important;bottom:-26px!important;border-radius:50%!important;background:rgba(255,255,255,.6)!important}
+#emPainelRecrutadorSimplesEM .emrs-kpi-icon{grid-row:1/3!important;width:42px!important;height:42px!important;border-radius:11px!important;display:grid!important;place-items:center!important;background:#e2f2fc!important;color:#087db6!important;margin:0!important}
+#emPainelRecrutadorSimplesEM .emrs-kpi:nth-child(2) .emrs-kpi-icon{background:#e1f5e6!important;color:#11923d!important}
+#emPainelRecrutadorSimplesEM .emrs-kpi:nth-child(3) .emrs-kpi-icon{background:#fff0ce!important;color:#d68500!important}
+#emPainelRecrutadorSimplesEM .emrs-kpi:nth-child(4) .emrs-kpi-icon{background:#eee2ff!important;color:#6b2cc5!important}
+#emPainelRecrutadorSimplesEM .emrs-kpi-icon svg{width:19px!important;height:19px!important;fill:none!important;stroke:currentColor!important;stroke-width:1.8!important}
+#emPainelRecrutadorSimplesEM .emrs-kpi>span{grid-column:2!important;grid-row:1!important;align-self:end!important;margin:0 0 1px!important;color:#294b60!important;font-size:11px!important;line-height:1.1!important;font-weight:800!important;text-transform:uppercase!important;letter-spacing:0!important}
+#emPainelRecrutadorSimplesEM .emrs-kpi>strong{grid-column:2!important;grid-row:2!important;align-self:start!important;display:inline!important;margin:0!important;font-size:29px!important;line-height:1!important;font-weight:800!important;color:#0878b1!important}
+#emPainelRecrutadorSimplesEM .emrs-kpi:nth-child(2)>strong{color:#00953c!important}#emPainelRecrutadorSimplesEM .emrs-kpi:nth-child(3)>strong{color:#d48700!important}#emPainelRecrutadorSimplesEM .emrs-kpi:nth-child(4)>strong{color:#5f22b6!important}
+#emPainelRecrutadorSimplesEM .emrs-kpi>small{grid-column:2!important;grid-row:2!important;align-self:start!important;margin:2px 0 0 42px!important;color:#567083!important;font-size:11px!important;line-height:1.25!important;font-weight:500!important;white-space:normal!important}
+@media(max-width:1050px){#emPainelRecrutadorSimplesEM .emrs-kpis{grid-template-columns:repeat(2,minmax(0,1fr))!important}}
+@media(max-width:620px){#emPainelRecrutadorSimplesEM .emrs-kpis{grid-template-columns:1fr!important}#emPainelRecrutadorSimplesEM .emrs-kpi{min-height:96px!important}}
+`;
+ document.head.appendChild(st);
+})();
