@@ -5845,3 +5845,35 @@ window.addEventListener('load',()=>setTimeout(bindCadastroEmpresaV4EM,50));
   return abrirMenuEmpresaEM(b.classList.contains('menu-empresa-login')?'login-empresa':'cadastro-empresa');
  },true);
 })();
+
+
+/* EMPREGAMAIS-KPIS-PAINEL-REF-FOTO1-V1 */
+(function(){
+ if(document.getElementById('emKpisFoto1V1'))return;
+ var st=document.createElement('style');st.id='emKpisFoto1V1';
+ st.textContent=`
+#emPainelRecrutadorSimplesEM .emrs-kpis{display:grid!important;grid-template-columns:repeat(4,minmax(0,1fr))!important;gap:12px!important;margin:14px 0 18px!important}
+#emPainelRecrutadorSimplesEM .emrs-kpi{position:relative!important;min-height:110px!important;padding:20px 18px!important;border-radius:15px!important;background:#fff!important;box-shadow:0 5px 18px rgba(20,55,75,.035)!important;display:grid!important;grid-template-columns:44px 1fr!important;grid-template-rows:auto auto auto!important;column-gap:15px!important;align-content:center!important;text-align:left!important;overflow:hidden!important}
+#emPainelRecrutadorSimplesEM .emrs-kpi:after{content:""!important;position:absolute!important;width:130px!important;height:60px!important;right:-22px!important;bottom:-34px!important;border-radius:50%!important;background:rgba(255,255,255,.58)!important}
+#emPainelRecrutadorSimplesEM .emrs-kpi:nth-child(1){border:1px solid #b8ddf7!important;background:linear-gradient(115deg,#fff 0%,#f5fbff 100%)!important}
+#emPainelRecrutadorSimplesEM .emrs-kpi:nth-child(2){border:1px solid #bfe7ca!important;background:linear-gradient(115deg,#fff 0%,#f5fcf7 100%)!important}
+#emPainelRecrutadorSimplesEM .emrs-kpi:nth-child(3){border:1px solid #f3cf87!important;background:linear-gradient(115deg,#fff 0%,#fffaf1 100%)!important}
+#emPainelRecrutadorSimplesEM .emrs-kpi:nth-child(4){border:1px solid #dcc7fa!important;background:linear-gradient(115deg,#fff 0%,#faf7ff 100%)!important}
+#emPainelRecrutadorSimplesEM .emrs-kpi-icon{grid-column:1!important;grid-row:1/4!important;width:44px!important;height:44px!important;border-radius:11px!important;display:grid!important;place-items:center!important;margin:0!important}
+#emPainelRecrutadorSimplesEM .emrs-kpi-icon svg{width:20px!important;height:20px!important;fill:none!important;stroke:currentColor!important;stroke-width:1.8!important;stroke-linecap:round!important;stroke-linejoin:round!important}
+#emPainelRecrutadorSimplesEM .emrs-kpi:nth-child(1) .emrs-kpi-icon{background:#e4f3fd!important;color:#0879bc!important}
+#emPainelRecrutadorSimplesEM .emrs-kpi:nth-child(2) .emrs-kpi-icon{background:#e2f5e8!important;color:#138b42!important}
+#emPainelRecrutadorSimplesEM .emrs-kpi:nth-child(3) .emrs-kpi-icon{background:#fff0cf!important;color:#c67b00!important}
+#emPainelRecrutadorSimplesEM .emrs-kpi:nth-child(4) .emrs-kpi-icon{background:#eee2ff!important;color:#6b2cc2!important}
+#emPainelRecrutadorSimplesEM .emrs-kpi>span{grid-column:2!important;grid-row:1!important;margin:0 0 2px!important;color:#294d63!important;font-size:11px!important;line-height:1.2!important;font-weight:800!important;letter-spacing:.01em!important;text-transform:uppercase!important}
+#emPainelRecrutadorSimplesEM .emrs-kpi>strong{grid-column:2!important;grid-row:2!important;margin:0!important;font-size:29px!important;line-height:1!important;font-weight:800!important;letter-spacing:-.035em!important}
+#emPainelRecrutadorSimplesEM .emrs-kpi:nth-child(1)>strong{color:#066ca9!important}
+#emPainelRecrutadorSimplesEM .emrs-kpi:nth-child(2)>strong{color:#07913b!important}
+#emPainelRecrutadorSimplesEM .emrs-kpi:nth-child(3)>strong{color:#c97a00!important}
+#emPainelRecrutadorSimplesEM .emrs-kpi:nth-child(4)>strong{color:#6023b8!important}
+#emPainelRecrutadorSimplesEM .emrs-kpi>small{grid-column:2!important;grid-row:3!important;margin:3px 0 0!important;color:#587386!important;font-size:10.5px!important;line-height:1.3!important;font-weight:500!important}
+@media(max-width:980px){#emPainelRecrutadorSimplesEM .emrs-kpis{grid-template-columns:repeat(2,minmax(0,1fr))!important}}
+@media(max-width:560px){#emPainelRecrutadorSimplesEM .emrs-kpis{grid-template-columns:1fr!important}#emPainelRecrutadorSimplesEM .emrs-kpi{min-height:100px!important}}
+`;
+ document.head.appendChild(st);
+})();
