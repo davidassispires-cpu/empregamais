@@ -29,9 +29,9 @@ function cssEM(){
  const s=document.createElement('style');
  s.id='emMinhasVagasGestaoCss';
  s.textContent=`
- #pagina-vagas-empresa #evpLista{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:12px!important;padding:14px!important;background:#f7fafb}
- #pagina-vagas-empresa .evp-vaga{display:flex!important;flex-direction:column!important;align-items:stretch!important;gap:6px!important;min-width:0!important;padding:11px 14px!important;border:1px solid #dbe6eb!important;border-radius:14px!important;background:#fff!important;box-shadow:0 3px 12px rgba(15,61,84,.035)!important}
- #pagina-vagas-empresa .evp-vaga:hover{background:#fff!important;border-color:#c5d9e2!important;box-shadow:0 8px 22px rgba(15,61,84,.07)!important}
+ #pagina-vagas-empresa #evpLista{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:14px!important;padding:15px!important;background:#f3f7fb}
+ #pagina-vagas-empresa .evp-vaga{display:flex!important;flex-direction:column!important;align-items:stretch!important;gap:6px!important;min-width:0!important;padding:11px 14px!important;border:1.5px solid #c9d9ea!important;border-radius:14px!important;background:#fff!important;box-shadow:0 4px 14px rgba(13,74,143,.07)!important}
+ #pagina-vagas-empresa .evp-vaga:hover{background:#fff!important;border-color:#8fb7df!important;box-shadow:0 8px 22px rgba(13,74,143,.12)!important}
  #pagina-vagas-empresa .evp-title{min-width:0}
  #pagina-vagas-empresa .evp-title-line{display:flex;align-items:center;justify-content:space-between;gap:12px}
  #pagina-vagas-empresa .evp-title-line strong{display:block;min-width:0;color:#123d56;font-size:15px;line-height:1.3}
@@ -46,13 +46,13 @@ function cssEM(){
  #pagina-vagas-empresa .evp-card-status{display:flex;align-items:center;justify-content:flex-end;gap:10px;padding-top:4px;border-top:1px solid #edf2f4}
  #pagina-vagas-empresa .evp-card-metrics{display:grid;grid-template-columns:1fr 1fr;gap:8px}
  #pagina-vagas-empresa .evp-card-metrics .evp-metric{display:grid!important;grid-template-columns:28px auto!important;grid-template-rows:auto auto!important;align-items:center!important;justify-content:center!important;column-gap:8px!important;padding:5px 8px!important;min-height:42px!important;border-radius:8px;background:#f5f8fa;text-align:left!important}
- #pagina-vagas-empresa .evp-card-metrics .evp-metric svg{grid-row:1/3;width:20px;height:20px;fill:none;stroke:#176b87;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+ #pagina-vagas-empresa .evp-card-metrics .evp-metric svg{grid-row:1/3;width:20px;height:20px;fill:none;stroke:#0d5ea8;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
  #pagina-vagas-empresa .evp-card-metrics .evp-metric strong{display:block!important;font-size:15px!important;line-height:1!important;margin:0!important}
  #pagina-vagas-empresa .evp-card-metrics .evp-metric span{display:block!important;font-size:10px!important;line-height:1.1!important;margin:2px 0 0!important}
  #pagina-vagas-empresa .evp-actions{display:grid!important;grid-template-columns:1fr 1fr!important;gap:7px!important;align-items:center!important;margin-top:auto!important}
  #pagina-vagas-empresa .evp-actions button{min-height:32px!important;border-radius:9px!important;padding:0 12px!important;font-size:10.5px!important;font-weight:750!important;white-space:nowrap!important;line-height:1.2!important}
- #pagina-vagas-empresa .evp-actions .manage-job{background:#0b7a87!important;border:1px solid #0b7a87!important;color:#fff!important}
- #pagina-vagas-empresa .evp-actions .view-job{background:#fff!important;border:1px solid #c9d9e1!important;color:#315c72!important}
+ #pagina-vagas-empresa .evp-actions .manage-job{background:#0d5ea8!important;border:1px solid #0d5ea8!important;color:#fff!important}
+ #pagina-vagas-empresa .evp-actions .view-job{background:#fff!important;border:1px solid #c9d9e1!important;color:#315f8f!important}
  #pagina-vagas-empresa .evp-job-detail{display:grid;gap:18px}
  #pagina-vagas-empresa .evp-detail-back{width:max-content;border:0;background:transparent;color:#58758a;font-size:12px;font-weight:750;cursor:pointer;padding:0}
  #pagina-vagas-empresa .evp-detail-hero{display:flex;justify-content:space-between;gap:22px;align-items:flex-start;padding:25px;border:1px solid #d7e4ea;border-radius:18px;background:#fff;box-shadow:0 8px 28px rgba(15,61,84,.06)}
@@ -63,7 +63,7 @@ function cssEM(){
  #pagina-vagas-empresa .evp-detail-status.encerrada{background:#f2f4f5;color:#667681}
  #pagina-vagas-empresa .evp-detail-grid{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(290px,.7fr);gap:18px}
  #pagina-vagas-empresa .evp-detail-card{padding:22px;border:1px solid #dbe6eb;border-radius:16px;background:#fff}
- #pagina-vagas-empresa .evp-detail-card>span{display:block;margin-bottom:5px;color:#0b7a87;font-size:10px;font-weight:800;letter-spacing:.09em}
+ #pagina-vagas-empresa .evp-detail-card>span{display:block;margin-bottom:5px;color:#0d5ea8;font-size:10px;font-weight:800;letter-spacing:.09em}
  #pagina-vagas-empresa .evp-detail-card h3{margin:0 0 16px;color:#173f52;font-size:18px}
  #pagina-vagas-empresa .evp-detail-info{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
  #pagina-vagas-empresa .evp-detail-info div{padding:13px;border-radius:11px;background:#f6f9fa}
@@ -71,8 +71,8 @@ function cssEM(){
  #pagina-vagas-empresa .evp-detail-info strong{display:block;margin-top:4px;color:#284f63;font-size:13px;line-height:1.35}
  #pagina-vagas-empresa .evp-detail-actions{display:grid;gap:9px}
  #pagina-vagas-empresa .evp-detail-actions button{min-height:44px;padding:0 14px;border-radius:10px;font-size:12px;font-weight:750;cursor:pointer}
- #pagina-vagas-empresa .evp-detail-actions .primary{background:#0b7a87;border:1px solid #0b7a87;color:#fff}
- #pagina-vagas-empresa .evp-detail-actions .secondary{background:#fff;border:1px solid #cddce4;color:#315c72}
+ #pagina-vagas-empresa .evp-detail-actions .primary{background:#0d5ea8;border:1px solid #0d5ea8;color:#fff}
+ #pagina-vagas-empresa .evp-detail-actions .secondary{background:#fff;border:1px solid #cddce4;color:#315f8f}
  #pagina-vagas-empresa .evp-detail-actions .toggle{background:#f8fafb;border:1px solid #d8e3e8;color:#466677}
  #pagina-vagas-empresa .evp-detail-actions .toggle.ativo{background:#eef8f6;border-color:#b9ded5;color:#17725e}
  #pagina-vagas-empresa .evp-detail-actions .danger{background:#fff5f4;border:1px solid #ebc9c5;color:#a63f35}
@@ -99,8 +99,8 @@ function cssEM(){
  #pagina-vagas-empresa .evp-closed-head button{height:34px;padding:0 12px;border:1px solid #e2c6ba;border-radius:8px;background:#fff;color:#8d492b;font-weight:700;font-size:11px;cursor:pointer}
  #pagina-vagas-empresa .evp-table-head{display:none!important}
  #pagina-vagas-empresa .evp-pagination{display:flex;align-items:center;justify-content:center;gap:6px;padding:16px;border-top:1px solid #e5ecef;background:#fff}
- #pagina-vagas-empresa .evp-pagination button{min-width:36px;height:36px;border:1px solid #d2e0e6;border-radius:8px;background:#fff;color:#315c72;font:700 11px Inter;cursor:pointer}
- #pagina-vagas-empresa .evp-pagination button.ativo{background:#0b7a87;border-color:#0b7a87;color:#fff}
+ #pagina-vagas-empresa .evp-pagination button{min-width:36px;height:36px;border:1px solid #d2e0e6;border-radius:8px;background:#fff;color:#315f8f;font:700 11px Inter;cursor:pointer}
+ #pagina-vagas-empresa .evp-pagination button.ativo{background:#0d5ea8;border-color:#0d5ea8;color:#fff}
  #pagina-vagas-empresa .evp-pagination button:disabled{opacity:.4;cursor:default}
  #pagina-vagas-empresa .evp-pagination span{margin:0 5px;color:#718697;font-size:11px}
  @media(max-width:900px){#pagina-vagas-empresa .evp-summary{grid-template-columns:repeat(2,1fr)!important}#pagina-vagas-empresa #evpLista{grid-template-columns:1fr!important}#pagina-vagas-empresa .evp-detail-grid{grid-template-columns:1fr}}
@@ -159,7 +159,7 @@ function renderDetalheVagaEM(box,v,cs){
  const dataTxt=data?(()=>{try{return new Date(data).toLocaleDateString('pt-BR')}catch(_){return String(data)}})():'—';
  box.innerHTML='<div class="evp-job-detail">'+
   '<button class="evp-detail-back" type="button" onclick="voltarMinhasVagasEM()">← Voltar para Minhas vagas</button>'+
-  '<section class="evp-detail-hero"><div><span style="font-size:10px;font-weight:800;letter-spacing:.09em;color:#0b7a87">GESTÃO DA VAGA</span><h2>'+escEM(v.cargo||v.titulo||'Vaga')+'</h2><p>'+escEM(local)+' · '+escEM(v.modalidade||'Modalidade não informada')+' · Publicada em '+escEM(dataTxt)+'</p><div class="evp-flags">'+flagsVagaEM(v)+'</div></div><span class="evp-detail-status '+cl+'">'+escEM(st)+'</span></section>'+
+  '<section class="evp-detail-hero"><div><span style="font-size:10px;font-weight:800;letter-spacing:.09em;color:#0d5ea8">GESTÃO DA VAGA</span><h2>'+escEM(v.cargo||v.titulo||'Vaga')+'</h2><p>'+escEM(local)+' · '+escEM(v.modalidade||'Modalidade não informada')+' · Publicada em '+escEM(dataTxt)+'</p><div class="evp-flags">'+flagsVagaEM(v)+'</div></div><span class="evp-detail-status '+cl+'">'+escEM(st)+'</span></section>'+
   '<div class="evp-detail-grid"><main class="evp-detail-card"><span>INFORMAÇÕES DA OPORTUNIDADE</span><h3>Dados da vaga</h3><div class="evp-detail-info"><div><small>Cargo</small><strong>'+escEM(v.cargo||v.titulo||'—')+'</strong></div><div><small>Localização</small><strong>'+escEM(local)+'</strong></div><div><small>Modalidade</small><strong>'+escEM(v.modalidade||'—')+'</strong></div><div><small>Tipo de contrato</small><strong>'+escEM(v.contrato||v.tipoContrato||'—')+'</strong></div><div><small>Candidaturas</small><strong>'+cand.length+'</strong></div><div><small>Visualizações</small><strong>'+escEM(v.visualizacoes||0)+'</strong></div></div></main>'+
   '<aside class="evp-detail-card"><span>AÇÕES DA VAGA</span><h3>Gerenciar oportunidade</h3><div class="evp-detail-actions"><button class="primary" type="button" onclick="editarVaga(\''+escEM(v.id)+'\')">Editar vaga</button><button class="secondary" type="button" onclick="sessionStorage.setItem(\'vagaSelecionada\',\''+escEM(v.id)+'\');irPara(\'vaga\')">Ver publicação</button><button class="toggle '+(v.destaque?'ativo':'')+'" type="button" onclick="alternarFlagGestaoEM(\''+escEM(v.id)+'\',\'destaque\',this)">'+(v.destaque?'Remover destaque':'Destacar vaga')+'</button><button class="toggle '+(v.urgente?'ativo':'')+'" type="button" onclick="alternarFlagGestaoEM(\''+escEM(v.id)+'\',\'urgente\',this)">'+(v.urgente?'Retirar urgência':'Marcar como urgente')+'</button><button class="toggle '+(v.confidencial?'ativo':'')+'" type="button" onclick="alternarFlagGestaoEM(\''+escEM(v.id)+'\',\'confidencial\',this)">'+(v.confidencial?'Exibir empresa':'Empresa confidencial')+'</button><button class="'+(encerrada?'reopen':'danger')+'" type="button" onclick="'+(encerrada?'reabrirVagaEM(\''+escEM(v.id)+'\',this)':'encerrarVagaGestaoEM(\''+escEM(v.id)+'\',this)')+'">'+(encerrada?'Reabrir vaga':'Encerrar vaga')+'</button></div></aside></div>'+
   '<section class="evp-process-callout"><strong>Processo seletivo desta vaga</strong><p>Candidatos, etapas, entrevistas e comunicação ficam em uma área separada da configuração da vaga.</p><button type="button" onclick="abrirProcessoVagaEM(\''+escEM(v.id)+'\')">Abrir processo seletivo →</button></section>'+
