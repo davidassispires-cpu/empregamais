@@ -3484,45 +3484,23 @@ const _emSalvarPerfilEmpresaV3=salvarPerfilEmpresa;salvarPerfilEmpresa=function(
 @media(max-width:850px){#pagina-perfil-empresa .perfil-wizard-layout-split{grid-template-columns:1fr!important}#pagina-perfil-empresa #perfilProgress{position:static!important}}
 `;document.head.appendChild(st)})();
 
-/* EMPREGAMAIS — MINHA EMPRESA REESTRUTURADA V5 */
-(function(){
- if(document.getElementById('emMinhaEmpresaReestruturadaV5'))return;
- const st=document.createElement('style');st.id='emMinhaEmpresaReestruturadaV5';st.textContent=`
-#pagina-perfil-empresa{--em-blue:#0b4f9f!important;--em-blue2:#0e66c8!important;--em-orange:#ff6b17!important;--em-orange2:#e95708!important;--em-line:#c8dcf1!important;--em-bg:#f4f8fc!important;background:var(--em-bg)!important}
-#pagina-perfil-empresa .perfil-wizard-shell{max-width:1180px!important;margin:0 auto!important;padding:22px!important}
-#pagina-perfil-empresa .perfil-wizard-head{display:none!important}
-#pagina-perfil-empresa .perfil-wizard-layout-split{display:grid!important;grid-template-columns:245px minmax(0,1fr)!important;gap:20px!important;align-items:start!important;width:100%!important;max-width:1180px!important;margin:0 auto!important}
-#pagina-perfil-empresa .perfil-wizard-layout-split>#perfilProgress{grid-column:1!important;position:sticky!important;top:88px!important}
-#pagina-perfil-empresa .perfil-wizard-layout-split>#formPerfilEmpresa{grid-column:2!important;width:100%!important;min-width:0!important;margin:0!important}
-#pagina-perfil-empresa #perfilProgress{background:#fff!important;border:2px solid var(--em-line)!important;border-radius:16px!important;padding:17px 13px!important;box-shadow:0 7px 18px rgba(11,79,159,.055)!important}
-#pagina-perfil-empresa #perfilProgress:before{content:"DADOS DA EMPRESA";display:block!important;margin:0 8px 12px!important;color:#0b4f9f!important;font-size:10px!important;font-weight:800!important;letter-spacing:.08em!important}
-#pagina-perfil-empresa #perfilProgress [data-perfil-step]{min-height:42px!important;color:#315b82!important;background:transparent!important;border-radius:10px!important}
-#pagina-perfil-empresa #perfilProgress [data-perfil-step].ativo{background:#eef6ff!important;color:#0b4f9f!important}
-#pagina-perfil-empresa #perfilProgress [data-perfil-step].ativo::before,#pagina-perfil-empresa #perfilProgress [data-perfil-step].ativo b,#pagina-perfil-empresa #perfilProgress [data-perfil-step].ativo span:first-child{background:#ff6b17!important;border-color:#ff6b17!important;color:#fff!important}
-#pagina-perfil-empresa #formPerfilEmpresa{background:#fff!important;border:2px solid var(--em-line)!important;border-radius:16px!important;box-shadow:0 8px 22px rgba(11,79,159,.06)!important;overflow:hidden!important}
-#pagina-perfil-empresa #formPerfilEmpresa .perfil-step{padding:26px 28px!important;min-height:420px!important}
-#pagina-perfil-empresa #formPerfilEmpresa h2,#pagina-perfil-empresa #formPerfilEmpresa h3{color:#0b4f9f!important}
-#pagina-perfil-empresa #formPerfilEmpresa label{color:#244f78!important;font-weight:700!important}
-#pagina-perfil-empresa #formPerfilEmpresa input,#pagina-perfil-empresa #formPerfilEmpresa select,#pagina-perfil-empresa #formPerfilEmpresa textarea{border:1px solid #c7d9eb!important;background:#fff!important;color:#173f67!important;border-radius:10px!important}
-#pagina-perfil-empresa #formPerfilEmpresa input:focus,#pagina-perfil-empresa #formPerfilEmpresa select:focus,#pagina-perfil-empresa #formPerfilEmpresa textarea:focus{border-color:#0e66c8!important;box-shadow:0 0 0 3px rgba(14,102,200,.10)!important;outline:0!important}
-#pagina-perfil-empresa .perfil-upload-box{border:2px dashed #9fc5e9!important;background:#f7fbff!important;border-radius:14px!important}
-#pagina-perfil-empresa .perfil-upload-btn{background:#0b4f9f!important;border-color:#0b4f9f!important;color:#fff!important}
-#pagina-perfil-empresa .perfil-upload-box:nth-of-type(2) .perfil-upload-btn,#pagina-perfil-empresa .perfil-next,#pagina-perfil-empresa .btn-salvar-perfil,#pagina-perfil-empresa #formPerfilEmpresa button[type="submit"]{background:linear-gradient(135deg,#ff6b17,#e95708)!important;border-color:#ff6b17!important;color:#fff!important}
-#pagina-perfil-empresa .perfil-empresa-tabs button.ativo{background:#ff6b17!important;border-color:#ff6b17!important;color:#fff!important}
-#pagina-perfil-empresa [style*="#0f"],#pagina-perfil-empresa [style*="#117"],#pagina-perfil-empresa [style*="#0d7"]{border-color:var(--em-line)!important}
-@media(max-width:850px){#pagina-perfil-empresa .perfil-wizard-shell{padding:14px!important}#pagina-perfil-empresa .perfil-wizard-layout-split{grid-template-columns:1fr!important}#pagina-perfil-empresa .perfil-wizard-layout-split>#perfilProgress,#pagina-perfil-empresa .perfil-wizard-layout-split>#formPerfilEmpresa{grid-column:1!important;position:static!important}#pagina-perfil-empresa #formPerfilEmpresa .perfil-step{padding:20px!important;min-height:0!important}}
-`;document.head.appendChild(st);
- function organizar(){
-  const pg=document.getElementById('pagina-perfil-empresa'),layout=pg?.querySelector('.perfil-wizard-layout-split'),progress=pg?.querySelector('#perfilProgress'),form=pg?.querySelector('#formPerfilEmpresa');
-  if(!pg||!layout||!progress||!form)return;
-  if(progress.parentElement!==layout)layout.appendChild(progress);
-  if(form.parentElement!==layout)layout.appendChild(form);
-  pg.classList.add('minha-empresa-v5');
- }
- if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',organizar,{once:true});else organizar();
- document.addEventListener('click',e=>{if(e.target.closest('[onclick*="perfil-empresa"],[data-pagina="perfil-empresa"]'))setTimeout(organizar,0)},true);
- window.organizarMinhaEmpresaV5=organizar;
-})();
+/* Minha Empresa V5 removida: reorganização por DOM causava quebra do layout. */
+
+/* EMPREGAMAIS — ESTABILIZACAO MINHA EMPRESA V6 */
+(function(){if(document.getElementById('emMinhaEmpresaEstavelV6'))return;const st=document.createElement('style');st.id='emMinhaEmpresaEstavelV6';st.textContent=`
+#pagina-perfil-empresa .perfil-wizard-shell{width:min(1180px,calc(100% - 32px))!important;max-width:1180px!important;margin:0 auto!important;padding:20px 0 36px!important}
+#pagina-perfil-empresa .perfil-wizard-layout-split{display:grid!important;grid-template-columns:235px minmax(0,1fr)!important;gap:18px!important;align-items:start!important;width:100%!important;max-width:none!important;margin:0!important}
+#pagina-perfil-empresa .perfil-wizard-layout-split>*{min-width:0!important;max-width:none!important}
+#pagina-perfil-empresa #perfilProgress{position:sticky!important;top:86px!important;width:100%!important;margin:0!important}
+#pagina-perfil-empresa #formPerfilEmpresa{width:100%!important;max-width:none!important;margin:0!important;position:static!important;transform:none!important}
+#pagina-perfil-empresa #formPerfilEmpresa .perfil-step{width:100%!important;max-width:none!important;min-height:0!important;padding:24px!important}
+#pagina-perfil-empresa #formPerfilEmpresa .perfil-step:not(.ativo){display:none!important}
+#pagina-perfil-empresa #formPerfilEmpresa .perfil-step.ativo{display:block!important}
+#pagina-perfil-empresa .perfil-wizard-layout-split~*{max-width:1180px!important;margin-left:auto!important;margin-right:auto!important}
+#pagina-perfil-empresa .perfil-corporativo-hero,#pagina-perfil-empresa .perfil-page-hero,#pagina-perfil-empresa .perfil-hero{background:linear-gradient(115deg,#0b4f9f,#0e66c8)!important}
+#pagina-perfil-empresa .perfil-step button[type=submit],#pagina-perfil-empresa .perfil-next,#pagina-perfil-empresa .btn-salvar-perfil{background:linear-gradient(135deg,#ff6b17,#e95708)!important;color:#fff!important}
+@media(max-width:850px){#pagina-perfil-empresa .perfil-wizard-shell{width:calc(100% - 24px)!important}#pagina-perfil-empresa .perfil-wizard-layout-split{grid-template-columns:1fr!important}#pagina-perfil-empresa #perfilProgress{position:static!important}}
+`;document.head.appendChild(st)})();
 
 /* EMPREGAMAIS-PERFIL-EMPRESA-WIZARD-V1 */
 function perfilEmpresaEtapa(n){document.querySelectorAll('#formPerfilEmpresa .perfil-step').forEach(x=>x.classList.toggle('ativo',+x.dataset.perfilPanel===n));document.querySelectorAll('#perfilProgress [data-perfil-step]').forEach(x=>{const k=+x.dataset.perfilStep;x.classList.toggle('ativo',k===n);x.classList.toggle('feito',k<n)});document.querySelector('#pagina-perfil-empresa')?.scrollIntoView({behavior:'auto',block:'start'})}
