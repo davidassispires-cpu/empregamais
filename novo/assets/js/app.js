@@ -5820,3 +5820,28 @@ window.addEventListener('load',()=>setTimeout(bindCadastroEmpresaV4EM,50));
 
 /* EMPREGAMAIS-KPIS-MODELO-VAGAS-CANONICO-V122 */
 (function(){var st=document.createElement('style');st.id='kpisCanonicoV122';st.textContent="#emPainelRecrutadorSimplesEM .emrs-kpis{display:grid!important;grid-template-columns:repeat(4,minmax(0,1fr))!important;gap:12px!important;margin:14px 0 18px!important}#emPainelRecrutadorSimplesEM .emrs-kpi{position:relative!important;min-height:118px!important;padding:15px 14px!important;border:1px solid #d5e2eb!important;border-radius:15px!important;background:#fff!important;box-shadow:0 3px 12px rgba(20,61,95,.03)!important;display:flex!important;flex-direction:column!important;align-items:center!important;justify-content:center!important;text-align:center!important}#emPainelRecrutadorSimplesEM .emrs-kpi:before{display:none!important}#emPainelRecrutadorSimplesEM .emrs-kpi .emrs-kpi-icon{position:static!important;inset:auto!important;order:1!important;width:24px!important;height:24px!important;margin:0 auto 5px!important;border:0!important;border-radius:0!important;background:transparent!important;box-shadow:none!important;display:grid!important;place-items:center!important;color:#126a9a!important}#emPainelRecrutadorSimplesEM .emrs-kpi .emrs-kpi-icon svg{width:18px!important;height:18px!important;fill:none!important;stroke:currentColor!important;stroke-width:1.7!important;stroke-linecap:round!important;stroke-linejoin:round!important}#emPainelRecrutadorSimplesEM .emrs-kpi span{order:2!important;width:100%!important;margin:0 0 3px!important;font-size:8.5px!important;line-height:1.2!important;font-weight:800!important;letter-spacing:.06em!important;color:#536d7d!important;text-align:center!important}#emPainelRecrutadorSimplesEM .emrs-kpi strong{order:3!important;width:100%!important;margin:0!important;font-size:27px!important;line-height:1!important;font-weight:800!important;letter-spacing:-.7px!important;color:#0d5d95!important;text-align:center!important}#emPainelRecrutadorSimplesEM .emrs-kpi small{order:4!important;width:100%!important;margin:5px 0 0!important;font-size:8.5px!important;line-height:1.25!important;font-weight:500!important;letter-spacing:0!important;color:#728692!important;text-align:center!important}#emPainelRecrutadorSimplesEM .emrs-kpi:nth-child(3){background:#f5fcf9!important;border-color:#cfe6da!important}#emPainelRecrutadorSimplesEM .emrs-kpi:nth-child(3) .emrs-kpi-icon,#emPainelRecrutadorSimplesEM .emrs-kpi:nth-child(3) strong{color:#12805f!important}#emPainelRecrutadorSimplesEM .emrs-kpi:nth-child(4){background:#fffaf4!important;border-color:#f0d7b8!important}#emPainelRecrutadorSimplesEM .emrs-kpi:nth-child(4) .emrs-kpi-icon,#emPainelRecrutadorSimplesEM .emrs-kpi:nth-child(4) strong{color:#d85b09!important}@media(max-width:850px){#emPainelRecrutadorSimplesEM .emrs-kpis{grid-template-columns:repeat(2,1fr)!important}}@media(max-width:480px){#emPainelRecrutadorSimplesEM .emrs-kpis{grid-template-columns:1fr!important}}";document.head.appendChild(st)})();
+
+
+/* EMPREGAMAI-MENU-EMPRESA-ROTA-DIRETA-V1 */
+(function(){
+ function abrirMenuEmpresaEM(rota){
+  try{fecharMenusTopo()}catch(_){}
+  const pagina=document.getElementById('pagina-'+rota);
+  if(!pagina){console.error('Rota empresarial inexistente:',rota);return false;}
+  document.querySelectorAll('.pagina').forEach(function(el){el.classList.remove('ativa')});
+  pagina.classList.add('ativa');
+  try{history.pushState({},'',location.pathname+'?pagina='+encodeURIComponent(rota))}catch(_){}
+  try{if(rota==='cadastro-empresa'&&typeof reformularCadastroEmpresaProEM==='function')reformularCadastroEmpresaProEM()}catch(e){console.error(e)}
+  window.scrollTo(0,0);return false;
+ }
+ window.rotaMenuTopo=function(rota){
+  if(rota==='login-empresa'||rota==='cadastro-empresa')return abrirMenuEmpresaEM(rota);
+  try{fecharMenusTopo()}catch(_){}
+  return irPara(rota);
+ };
+ document.addEventListener('click',function(e){
+  var b=e.target.closest&&e.target.closest('.menu-empresa-login,.menu-empresa-cadastro');if(!b)return;
+  e.preventDefault();e.stopImmediatePropagation();
+  return abrirMenuEmpresaEM(b.classList.contains('menu-empresa-login')?'login-empresa':'cadastro-empresa');
+ },true);
+})();
