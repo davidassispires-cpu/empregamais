@@ -599,3 +599,27 @@ body.empresa-premium-v44 .plano-premium-v44{min-height:96px!important;margin:0 0
   #pagina-vaga .aplicar-lateral #btnSalvarDetalhe{position:fixed!important;}
   #pagina-vaga .vaga-cabecalho-top{padding-right:165px!important;}
 }
+
+
+
+/* ===== Perfil Empresa • formulário à direita v232 ===== */
+#pagina-perfil-empresa-em{background:#f3f7f9!important}
+#pagina-perfil-empresa-em [data-painel-dados-v22="publico"]{display:grid!important;grid-template-columns:minmax(250px,.72fr) minmax(520px,1.45fr)!important;grid-template-areas:"lateral aviso" "lateral intro" "lateral secoes" "lateral acoes"!important;column-gap:22px!important;align-items:start!important;padding:22px!important;padding-right:22px!important;min-height:0!important}
+#pagina-perfil-empresa-em .perfil-lateral-pro-v130{grid-area:lateral!important;position:sticky!important;top:20px!important;right:auto!important;width:100%!important;max-width:none!important;margin:0!important;border-radius:15px!important;background:#087f8c!important;box-shadow:0 8px 24px rgba(8,91,105,.10)!important}
+#pagina-perfil-empresa-em .perfil-lateral-pro-v130 .arte-v130{height:190px!important;background:linear-gradient(145deg,#08737f 0%,#0b8995 62%,#19a2ad 100%)!important}
+#pagina-perfil-empresa-em .perfil-lateral-pro-v130 .ilustra-v130 svg{width:150px!important;height:150px!important}
+#pagina-perfil-empresa-em .perfil-lateral-pro-v130 .texto-v130{padding:19px 19px 21px!important}
+#pagina-perfil-empresa-em .perfil-lateral-pro-v130 h3{font-size:18px!important}
+#pagina-perfil-empresa-em .perfil-lateral-pro-v130 p{font-size:11px!important}
+#pagina-perfil-empresa-em .perfil-lateral-pro-v130 li{font-size:10.5px!important}
+#pagina-perfil-empresa-em .perfil-publico-aviso-v23{grid-area:aviso!important;margin:0 0 12px!important}
+#pagina-perfil-empresa-em .perfil-form-intro-v23{grid-area:intro!important;margin:0 0 12px!important;background:#fff!important;border:1px solid #dce7ec!important}
+#pagina-perfil-empresa-em .perfil-form-intro-v23 h2{font-size:20px!important;color:#073f56!important}
+#pagina-perfil-empresa-em [data-painel-dados-v22="publico"]>.perfil-secao-v23{grid-column:2!important;margin:0 0 12px!important;background:#fff!important;border:1px solid #dce7ec!important}
+#pagina-perfil-empresa-em [data-painel-dados-v22="publico"]>.perfil-acoes-v23,#pagina-perfil-empresa-em [data-painel-dados-v22="publico"]>#avisoRascunhoPerfilV24{grid-column:2!important}
+#pagina-perfil-empresa-em .perfil-secao-grid-v23{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:13px 15px!important}
+#pagina-perfil-empresa-em .empresa-perfil-campo-em input,#pagina-perfil-empresa-em .empresa-perfil-campo-em select,#pagina-perfil-empresa-em .empresa-perfil-campo-em textarea,#pagina-perfil-empresa-em .perfil-campo-v23 textarea{min-height:42px!important;border-radius:8px!important}
+#pagina-perfil-empresa-em .perfil-acoes-v23{display:flex!important;justify-content:flex-end!important}
+#pagina-perfil-empresa-em .perfil-acoes-v23 button{min-width:150px!important;background:#087d88!important;border-color:#087d88!important}
+@media(max-width:980px){#pagina-perfil-empresa-em [data-painel-dados-v22="publico"]{display:block!important;padding:18px!important}#pagina-perfil-empresa-em .perfil-lateral-pro-v130{position:relative!important;top:auto!important;margin:0 0 14px!important}#pagina-perfil-empresa-em .perfil-lateral-pro-v130 .arte-v130{height:180px!important}}
+@media(max-width:620px){#pagina-perfil-empresa-em [data-painel-dados-v22="publico"]{padding:12px!important}#pagina-perfil-empresa-em .perfil-secao-grid-v23{grid-template-columns:1fr!important}}
