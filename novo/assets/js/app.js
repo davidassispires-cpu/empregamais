@@ -4369,17 +4369,7 @@ sbCarregarCandidaturasEM=async function(renderizar){
  }finally{sbCandidaturasCarregandoEM=false}
 };
 
-/* EMPREGAMAIS-ADMIN-CENTRAL-PENDENCIAS-ROTA-V1 */
-const _adminAbaPendenciasEM=adminAba;
-adminAba=async function(aba,btn){
- if(aba!=='pendencias'){const r=await _adminAbaPendenciasEM(aba,btn);adminAtualizarBadgePendenciasEM();return r}
- if(sessionStorage.getItem('empregaMaisAdmin')!=='1'){irPara('login-admin');return}
- document.querySelectorAll('[data-admin-tab]').forEach(b=>b.classList.toggle('ativo',b.dataset.adminTab===aba));
- const out=document.getElementById('adminConteudo');if(!out)return;
- out.innerHTML='<div class="admin-bloco"><h2>Central de pendências</h2><div class="admin-empty">Atualizando pendências...</div></div>';
- try{await adminSincronizarPainelSupabase()}catch(err){console.error('ADM pendências:',err)}
- out.innerHTML=adminRenderPendenciasEM();
-};
+/* Rota intermediária de pendências consolidada no NOVO PAINEL ADMINISTRATIVO V1 abaixo. */
 
 /* EMPREGAMAIS — NOVO PAINEL ADMINISTRATIVO V1 */
 const ADMIN2_TITULOS_EM={geral:['Visão geral','Acompanhe o + Empregos em um único lugar.'],pendencias:['Central de pendências','Tudo que precisa de uma ação administrativa.'],vagas:['Gestão de vagas','Analise e acompanhe todas as oportunidades do portal.'],empresas:['Empresas','Cadastros, planos e situação das empresas.'],verificacoes:['Verificações','Analise empresas que aguardam verificação ou reanálise.'],candidatos:['Candidatos','Cadastros e recursos dos profissionais.'],contratacoes:['Contratações','Acompanhe as contratações registradas no portal.'],planos:['Planos e assinaturas','Controle solicitações, vigências e concessões.'],'premium-candidatos':['Premium para candidatos','Conceda, acompanhe e remova acessos Premium dos candidatos.'],extras:['Extras','Destaques, urgências e benefícios adicionais.'],financeiro:['Financeiro','Visão administrativa das movimentações do portal.'],denuncias:['Denúncias','Analise ocorrências enviadas para moderação.'],relatorios:['Relatórios','Indicadores consolidados do + Empregos.'],historico:['Histórico administrativo','Registro das ações realizadas no painel.'],configuracoes:['Configurações','Controles administrativos e regras do portal.']};
