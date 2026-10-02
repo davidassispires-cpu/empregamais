@@ -12716,3 +12716,43 @@ textarea{
 #pagina-painel-empresa .emp-kpis-ref-foto1 .kpi-contratacoes{border:1px solid #ddc7f5!important;background:linear-gradient(135deg,#fff 55%,#faf6ff)!important}.emp-kpis-ref-foto1 .kpi-contratacoes .emp-kpi-ref-icon{background:#eee2ff!important;color:#7133c2!important}.emp-kpis-ref-foto1 .kpi-contratacoes .kpi-num{color:#5720aa!important}
 @media(max-width:1050px){#pagina-painel-empresa .emp-kpis-ref-foto1{grid-template-columns:repeat(2,minmax(0,1fr))!important}}
 @media(max-width:620px){#pagina-painel-empresa .emp-kpis-ref-foto1{grid-template-columns:1fr!important}#pagina-painel-empresa .emp-kpis-ref-foto1>.emp-model-card{min-height:96px!important}}
+
+
+/* EM KPI VAGAS COMPACTO V240 */
+#emPainelRecrutadorSimplesEM .emrs-kpi{
+  display:grid!important;
+  grid-template-columns:42px auto!important;
+  grid-template-rows:auto auto auto!important;
+  column-gap:14px!important;
+  row-gap:0!important;
+  align-items:center!important;
+  justify-content:start!important;
+  text-align:left!important;
+  padding:18px 20px!important;
+}
+#emPainelRecrutadorSimplesEM .emrs-kpi-icon{
+  grid-column:1!important;
+  grid-row:1 / 4!important;
+  margin:0!important;
+}
+#emPainelRecrutadorSimplesEM .emrs-kpi>span{
+  grid-column:2!important;
+  grid-row:1!important;
+  margin:0 0 1px!important;
+  line-height:1.1!important;
+  align-self:end!important;
+}
+#emPainelRecrutadorSimplesEM .emrs-kpi>strong{
+  grid-column:2!important;
+  grid-row:2!important;
+  margin:0!important;
+  line-height:.95!important;
+  align-self:center!important;
+}
+#emPainelRecrutadorSimplesEM .emrs-kpi>small{
+  grid-column:2!important;
+  grid-row:3!important;
+  margin:2px 0 0!important;
+  line-height:1.15!important;
+  align-self:start!important;
+}
