@@ -137,8 +137,23 @@ function abrirProcessoVagaEM(id){
 }
 async function reabrirVagaEM(id,btn){
  const v=vagasEmpresaEM().find(x=>String(x.id)===String(id));if(!v)return;
- if(!confirm('Reabrir a vaga “'+(v.cargo||v.titulo||'Vaga')+'” e voltar a receber candidaturas?'))return;
- try{if(btn){btn.disabled=true;btn.textContent='Reabrindo...'}await patchVagaEM(id,{status:'aprovada',encerrada_em:null,data_encerramento:null});renderVagasEmpresaPaginaGestaoEM()}catch(e){alert(e.message||'Não foi possível reabrir a vaga.');if(btn){btn.disabled=false;btn.textContent='Reabrir vaga'}}
+ const saldo=typeof window.saldoPlano==='function'?window.saldoPlano():(typeof saldoPlano==='function'?saldoPlano():null);
+ if(saldo&&saldo.vagas<=0){
+  alert('Você não possui vagas disponíveis no plano atual. Para reativar esta vaga, é necessário ter pelo menos 1 publicação disponível.');
+  if(confirm('Deseja ver as opções de plano agora?')&&typeof irPara==='function')irPara('planos');
+  return;
+ }
+ const restante=saldo?Math.max(0,saldo.vagas-1):null;
+ const msg='Reativar a vaga “'+(v.cargo||v.titulo||'Vaga')+'”?\n\nA reativação será contabilizada como +1 vaga utilizada do seu plano.'+(restante!==null?'\nApós a reativação, restará(ão) '+restante+' publicação(ões) disponível(is).':'')+'\n\nDeseja continuar?';
+ if(!confirm(msg))return;
+ try{
+  if(btn){btn.disabled=true;btn.textContent='Reativando...'}
+  await patchVagaEM(id,{status:'aprovada',encerrada_em:null,data_encerramento:null,reativada_em:new Date().toISOString()});
+  const cnpj=sessionStorage.getItem('empresaCnpj')||'',chave='empregaMaisReativacoesPlano',lista=typeof ler==='function'?ler(chave):JSON.parse(localStorage.getItem(chave)||'[]');
+  lista.push({id:'reat_'+Date.now(),vagaId:String(id),empresaCnpj:cnpj,criadoEm:new Date().toISOString()});
+  if(typeof gravar==='function')gravar(chave,lista);else localStorage.setItem(chave,JSON.stringify(lista));
+  renderVagasEmpresaPaginaGestaoEM();
+ }catch(e){alert(e.message||'Não foi possível reativar a vaga.');if(btn){btn.disabled=false;btn.textContent='Reativar vaga'}}
 }
 async function encerrarVagaGestaoEM(id,btn){
  const v=vagasEmpresaEM().find(x=>String(x.id)===String(id));if(!v)return;
@@ -161,7 +176,7 @@ function renderDetalheVagaEM(box,v,cs){
   '<button class="evp-detail-back" type="button" onclick="voltarMinhasVagasEM()">← Voltar para Minhas vagas</button>'+
   '<section class="evp-detail-hero"><div><span style="font-size:10px;font-weight:800;letter-spacing:.09em;color:#0d5ea8">GESTÃO DA VAGA</span><h2>'+escEM(v.cargo||v.titulo||'Vaga')+'</h2><p>'+escEM(local)+' · '+escEM(v.modalidade||'Modalidade não informada')+' · Publicada em '+escEM(dataTxt)+'</p><div class="evp-flags">'+flagsVagaEM(v)+'</div></div><span class="evp-detail-status '+cl+'">'+escEM(st)+'</span></section>'+
   '<div class="evp-detail-grid"><main class="evp-detail-card"><span>INFORMAÇÕES DA OPORTUNIDADE</span><h3>Dados da vaga</h3><div class="evp-detail-info"><div><small>Cargo</small><strong>'+escEM(v.cargo||v.titulo||'—')+'</strong></div><div><small>Localização</small><strong>'+escEM(local)+'</strong></div><div><small>Modalidade</small><strong>'+escEM(v.modalidade||'—')+'</strong></div><div><small>Tipo de contrato</small><strong>'+escEM(v.contrato||v.tipoContrato||'—')+'</strong></div><div><small>Candidaturas</small><strong>'+cand.length+'</strong></div><div><small>Visualizações</small><strong>'+escEM(v.visualizacoes||0)+'</strong></div></div></main>'+
-  '<aside class="evp-detail-card"><span>AÇÕES DA VAGA</span><h3>Gerenciar oportunidade</h3><div class="evp-detail-actions"><button class="primary" type="button" onclick="editarVaga(\''+escEM(v.id)+'\')">Editar vaga</button><button class="secondary" type="button" onclick="sessionStorage.setItem(\'vagaSelecionada\',\''+escEM(v.id)+'\');irPara(\'vaga\')">Ver publicação</button><button class="toggle '+(v.destaque?'ativo':'')+'" type="button" onclick="alternarFlagGestaoEM(\''+escEM(v.id)+'\',\'destaque\',this)">'+(v.destaque?'Remover destaque':'Destacar vaga')+'</button><button class="toggle '+(v.urgente?'ativo':'')+'" type="button" onclick="alternarFlagGestaoEM(\''+escEM(v.id)+'\',\'urgente\',this)">'+(v.urgente?'Retirar urgência':'Marcar como urgente')+'</button><button class="toggle '+(v.confidencial?'ativo':'')+'" type="button" onclick="alternarFlagGestaoEM(\''+escEM(v.id)+'\',\'confidencial\',this)">'+(v.confidencial?'Exibir empresa':'Empresa confidencial')+'</button><button class="'+(encerrada?'reopen':'danger')+'" type="button" onclick="'+(encerrada?'reabrirVagaEM(\''+escEM(v.id)+'\',this)':'encerrarVagaGestaoEM(\''+escEM(v.id)+'\',this)')+'">'+(encerrada?'Reabrir vaga':'Encerrar vaga')+'</button></div></aside></div>'+
+  '<aside class="evp-detail-card"><span>AÇÕES DA VAGA</span><h3>Gerenciar oportunidade</h3><div class="evp-detail-actions"><button class="primary" type="button" onclick="editarVaga(\''+escEM(v.id)+'\')">Editar vaga</button><button class="secondary" type="button" onclick="sessionStorage.setItem(\'vagaSelecionada\',\''+escEM(v.id)+'\');irPara(\'vaga\')">Ver publicação</button><button class="toggle '+(v.destaque?'ativo':'')+'" type="button" onclick="alternarFlagGestaoEM(\''+escEM(v.id)+'\',\'destaque\',this)">'+(v.destaque?'Remover destaque':'Destacar vaga')+'</button><button class="toggle '+(v.urgente?'ativo':'')+'" type="button" onclick="alternarFlagGestaoEM(\''+escEM(v.id)+'\',\'urgente\',this)">'+(v.urgente?'Retirar urgência':'Marcar como urgente')+'</button><button class="toggle '+(v.confidencial?'ativo':'')+'" type="button" onclick="alternarFlagGestaoEM(\''+escEM(v.id)+'\',\'confidencial\',this)">'+(v.confidencial?'Exibir empresa':'Empresa confidencial')+'</button><button class="'+(encerrada?'reopen':'danger')+'" type="button" onclick="'+(encerrada?'reabrirVagaEM(\''+escEM(v.id)+'\',this)':'encerrarVagaGestaoEM(\''+escEM(v.id)+'\',this)')+'">'+(encerrada?'Reativar vaga':'Encerrar vaga')+'</button></div></aside></div>'+
   '<section class="evp-process-callout"><strong>Processo seletivo desta vaga</strong><p>Candidatos, etapas, entrevistas e comunicação ficam em uma área separada da configuração da vaga.</p><button type="button" onclick="abrirProcessoVagaEM(\''+escEM(v.id)+'\')">Abrir processo seletivo →</button></section>'+
   '</div>';
 }
