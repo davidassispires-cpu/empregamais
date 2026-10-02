@@ -2613,6 +2613,20 @@ body:has(#pagina-painel-empresa.ativa),body:has(#pagina-vagas-empresa.ativa),bod
 #pagina-perfil-empresa .perfil-verificacao-em button:not(.secundario){background:#ff6b17!important;border-color:#ff6b17!important;color:#fff!important}
 `;document.head.appendChild(st)})();
 
+/* EMPREGAMAIS — TIPOGRAFIA UNIFICADA PAINEL V7 */
+(function(){if(document.getElementById('emTipografiaPainelV7'))return;const st=document.createElement('style');st.id='emTipografiaPainelV7';st.textContent=`
+#emPainelRecrutadorSimplesEM,#emPainelRecrutadorSimplesEM *{font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif!important}
+#emPainelRecrutadorSimplesEM .emrs-top h1{font-size:28px!important;font-weight:800!important;line-height:1.08!important;letter-spacing:-.035em!important;color:#073f7d!important}
+#emPainelRecrutadorSimplesEM .emrs-top-kicker,#emPainelRecrutadorSimplesEM .emrs-kpi>span,#emPainelRecrutadorSimplesEM .emrs-plan-banner small{font-weight:800!important;letter-spacing:.015em!important}
+#emPainelRecrutadorSimplesEM .emrs-top p,#emPainelRecrutadorSimplesEM .emrs-kpi>small,#emPainelRecrutadorSimplesEM .emrs-plan-banner span{font-weight:500!important;letter-spacing:0!important}
+#emPainelRecrutadorSimplesEM .emrs-kpi>strong{font-size:31px!important;font-weight:800!important;line-height:1!important;letter-spacing:-.045em!important;font-variant-numeric:tabular-nums!important}
+#emPainelRecrutadorSimplesEM .emrs-plan-banner-main strong{font-size:20px!important;font-weight:800!important;line-height:1.05!important;letter-spacing:-.025em!important}
+#emPainelRecrutadorSimplesEM .emrs-plan-banner-stats strong{font-size:21px!important;font-weight:800!important;line-height:1!important;letter-spacing:-.035em!important;font-variant-numeric:tabular-nums!important}
+#emPainelRecrutadorSimplesEM .emrs-card-head h2{font-size:19px!important;font-weight:800!important;letter-spacing:-.025em!important;color:#073f7d!important}
+#emPainelRecrutadorSimplesEM .emrs-row strong{font-weight:800!important;letter-spacing:-.012em!important}
+#emPainelRecrutadorSimplesEM .emrs-primary,#emPainelRecrutadorSimplesEM button{font-weight:700!important}
+`;document.head.appendChild(st)})();
+
 /* EMPREGAMAIS-PAINEL-RECRUTADOR-SIMPLES-V1 */
 function garantirPainelRecrutadorSimplesEM(){
  const pagina=document.getElementById('pagina-painel-empresa');if(!pagina)return null;
