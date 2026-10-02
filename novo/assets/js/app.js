@@ -5846,3 +5846,21 @@ window.addEventListener('load',()=>setTimeout(bindCadastroEmpresaV4EM,50));
  document.addEventListener('DOMContentLoaded',()=>{const home=document.getElementById('pagina-home');if(home)obs.observe(home,{childList:true,subtree:true})},{once:true});
  window.aplicarHeroReferenciaEM=aplicarHeroReferenciaEM;
 })();
+
+
+/* EMPREGAI-RECRUTADOR-V2-LOADER */
+(function(){
+ const q=new URLSearchParams(location.search);
+ if(q.get('recrutadorV2')!=='1')return;
+ function css(){
+  if(document.getElementById('empregaiRecrutadorV2Css'))return;
+  const l=document.createElement('link');l.id='empregaiRecrutadorV2Css';l.rel='stylesheet';l.href='./assets/css/recrutador-v2.css?v=20261001';document.head.appendChild(l)
+ }
+ function js(){
+  if(window.EmpregaiRecrutadorV2){window.EmpregaiRecrutadorV2.abrir('visao');return}
+  if(document.getElementById('empregaiRecrutadorV2Js'))return;
+  const x=document.createElement('script');x.id='empregaiRecrutadorV2Js';x.src='./assets/js/recrutador-v2.js?v=20261001';x.onload=()=>window.EmpregaiRecrutadorV2?.abrir('visao');document.head.appendChild(x)
+ }
+ function iniciar(){css();setTimeout(js,0)}
+ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',iniciar,{once:true});else iniciar()
+})();
