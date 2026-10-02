@@ -2588,15 +2588,22 @@ function renderizarSalvas(){const box=$('#listaVagasSalvas');if(!box)return;cons
 
 /* Tipografia global adicional removida; o site volta à configuração anterior. */
 
-/* EMPREGAMAIS — FONTE GLOBAL INTER DEFINITIVA V2 */
+/* EMPREGAMAIS — TIPOGRAFIA CANONICA INTER V3 — UNICA CAMADA GLOBAL */
 (function(){
- if(!document.getElementById('fonteInterGlobalEM')){const l=document.createElement('link');l.id='fonteInterGlobalEM';l.rel='stylesheet';l.href='https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap';document.head.appendChild(l)}
- if(document.getElementById('emFonteGlobalInterV2'))return;
- const st=document.createElement('style');st.id='emFonteGlobalInterV2';st.textContent=`
-:root{--em-font:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif!important}
+ if(!document.getElementById('fonteInterCanonicaEM')){const l=document.createElement('link');l.id='fonteInterCanonicaEM';l.rel='stylesheet';l.href='https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap';document.head.appendChild(l)}
+ document.getElementById('emTipografiaCanonicaV3')?.remove();
+ const st=document.createElement('style');st.id='emTipografiaCanonicaV3';st.textContent=`
+:root{--em-font:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif}
 html,body,body *,button,input,select,textarea,option{font-family:var(--em-font)!important}
+body{font-weight:400!important;letter-spacing:0!important}
+h1,h2,h3,h4,h5,h6{font-family:var(--em-font)!important;font-weight:700!important;letter-spacing:-.025em!important}
+p,span,label,li,td,th,input,select,textarea{font-weight:400}
+button,.btn,[role="button"]{font-weight:600!important}
+strong,b{font-weight:700!important}
+small{font-weight:400!important}
 `;document.head.appendChild(st)
 })();
+
 
 /* EMPREGAMAIS-PAINEL-RECRUTADOR-SIMPLES-V1 */
 function garantirPainelRecrutadorSimplesEM(){
