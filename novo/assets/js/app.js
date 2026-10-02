@@ -97,12 +97,7 @@ window.adminVisualizarComoEM=adminVisualizarComoEM;window.adminRestaurarVisualiz
 
 /* EMPREGAMAI-TEMA-EMPRESA-AZUL-LARANJA-GLOBAL-V1 */
 function garantirTemaEmpresaAzulLaranjaEM(){
- if(!document.getElementById('fonteInterEmpresaGlobalEM')){
-  const l=document.createElement('link');l.id='fonteInterEmpresaGlobalEM';l.rel='stylesheet';
-  l.href='https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap';
-  document.head.appendChild(l)
- }
- document.getElementById('estiloTemaEmpresaGlobalEM')?.remove();
+document.getElementById('estiloTemaEmpresaGlobalEM')?.remove();
  const st=document.createElement('style');st.id='estiloTemaEmpresaGlobalEM';
  st.textContent=
  ':root{--emp-blue:#0E5FD8;--emp-blue-dark:#0B3475;--emp-blue-soft:#EAF3FF;--emp-orange:#FF6B17;--emp-orange-soft:#FFF0E5;--emp-bg:#F4F8FD;--emp-card:#FFFFFF;--emp-text:#174D96;--emp-muted:#6D7D96;--emp-line:#DCE7F4}'+
