@@ -39,8 +39,8 @@ function bindJobActions(company){
   if(action==='delete'&&!confirm('Excluir esta vaga? Ela será removida da sua lista.'))return;
   b.disabled=true;try{
    if(action==='delete')await deleteJob(company,id);else await updateJobStatus(company,id,action==='close'?'encerrada':'pendente');
-   jobsCache=(await getCompanyJobs(company)).filter(v=>v.status!=='excluida');renderRows();bindJobActions(company);
+   jobsCache=(await getCompanyJobs(company)).filter(v=>v.status!=='excluida');renderRows();
   }catch(e){alert(e.message)}finally{b.disabled=false}
  };
- document.addEventListener('click',()=>box.querySelectorAll('.job-menu.open').forEach(x=>x.classList.remove('open')),{once:true});
+ if(!document.body.dataset.jobMenuClose){document.body.dataset.jobMenuClose='1';document.addEventListener('click',()=>document.querySelectorAll('.job-menu.open').forEach(x=>x.classList.remove('open')))}
 }
