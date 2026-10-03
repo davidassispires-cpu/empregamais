@@ -71,3 +71,13 @@ export async function updateApplication(id,status){
  if(!Array.isArray(rows)||!rows[0])throw new Error("Não foi possível atualizar a candidatura.");
  return rows[0];
 }
+
+export async function updateCompany(company,data){
+ const t=await ensureSession();if(!t)throw new Error("Sua sessão expirou. Entre novamente.");
+ if(!company?.id)throw new Error("Empresa não encontrada.");
+ const allowed=["nome","nome_fantasia","razao_social","email_corporativo","email_candidaturas","telefone","responsavel","funcao_responsavel","cep","logradouro","bairro","numero","complemento","cidade","uf","sobre","site","setor","funcionarios"];
+ const body={};for(const k of allowed)if(k in data)body[k]=data[k]||null;
+ const rows=await json("/rest/v1/empresas?id=eq."+encodeURIComponent(company.id),{method:"PATCH",headers:{...headers(t),Prefer:"return=representation"},body:JSON.stringify(body)});
+ if(!Array.isArray(rows)||!rows[0])throw new Error("Não foi possível salvar os dados da empresa.");
+ return rows[0];
+}
