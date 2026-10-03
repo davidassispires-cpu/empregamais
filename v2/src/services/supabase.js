@@ -50,7 +50,7 @@ export async function getJob(id,company){
  const rows=await json("/rest/v1/vagas?select=*&id=eq."+encodeURIComponent(id)+"&empresa_id=eq."+encodeURIComponent(company.id)+"&limit=1",{headers:headers()});
  return Array.isArray(rows)?rows[0]||null:null;
 }
-export const COMPANY_PLANS={basico:{nome:"Grátis",dias:30,vagas:3,destaques:0,urgentes:0,confidenciais:0},mensal:{nome:"Mensal",dias:30,vagas:6,destaques:1,urgentes:1,confidenciais:0},trimestral:{nome:"Trimestral",dias:90,vagas:12,destaques:3,urgentes:3,confidenciais:2},semestral:{nome:"Semestral",dias:180,vagas:25,destaques:5,urgentes:5,confidenciais:4}};
+export const COMPANY_PLANS={basico:{nome:"Grátis",dias:30,vagas:3,destaques:0,urgentes:0,confidenciais:0},mensal:{nome:"Mensal",dias:30,vagas:6,destaques:1,urgentes:1,confidenciais:0},trimestral:{nome:"Trimestral",dias:90,vagas:12,destaques:3,urgentes:3,confidenciais:2},semestral:{nome:"Semestral",dias:180,vagas:25,destaques:5,urgentes:5,confidenciais:4},anual:{nome:"Anual",dias:365,vagas:60,destaques:10,urgentes:10,confidenciais:8}};
 function closingDate(days=30){const d=new Date();d.setDate(d.getDate()+days);return d.toISOString().slice(0,10)}
 export function planUsage(company,jobs){
  const p=COMPANY_PLANS[company?.plano_id||company?.plano]||COMPANY_PLANS.basico,endRaw=company?.plano_valido_ate||company?.assinatura_fim||"",startRaw=company?.plano_ativado_em||company?.assinatura_inicio||company?.criado_em||"";
