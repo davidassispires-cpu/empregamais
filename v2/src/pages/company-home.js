@@ -1,0 +1,18 @@
+import { getCompany,getCompanyJobs,getApplications,jobStatus } from '../services/supabase.js';
+const esc=s=>String(s??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[m]));
+export function renderCompanyHome(){
+ return `<main class="page"><header class="dashboard-hero"><div><span>PAINEL DA EMPRESA</span><h1 id="companyWelcome">Visão geral</h1><p>Acompanhe o recrutamento e acesse rapidamente as principais tarefas.</p></div><a class="publish" href="./?pagina=publicar-vaga">+ Publicar nova vaga</a></header><section id="dashboardKpis" class="dashboard-kpis"><article><span>CARREGANDO</span><strong>—</strong></article></section><div class="dashboard-grid"><section class="panel"><div class="panel-head"><div><h2>Processos seletivos</h2><p>Vagas em andamento e movimentação de candidatos.</p></div><a href="./?pagina=vagas-empresa">Ver todas</a></div><div id="dashboardJobs">Carregando...</div></section><aside class="panel quick-panel"><h2>Ações rápidas</h2><a href="./?pagina=publicar-vaga"><b>＋</b><span>Publicar vaga<small>Criar nova oportunidade</small></span></a><a href="./?pagina=vagas-empresa"><b>▣</b><span>Minhas vagas<small>Gerenciar oportunidades</small></span></a><a href="./?pagina=candidatos-empresa"><b>♟</b><span>Candidatos<small>Acompanhar processos</small></span></a></aside></div></main>`;
+}
+export async function hydrateCompanyHome(){
+ const k=document.querySelector('#dashboardKpis'),list=document.querySelector('#dashboardJobs');
+ try{
+  const company=await getCompany();if(!company)throw new Error('Sessão empresarial necessária.');
+  const [jobs,apps]=await Promise.all([getCompanyJobs(company),getApplications()]);
+  const active=jobs.filter(v=>jobStatus(v)==='Ativa'),analysis=apps.filter(c=>String(c.status||'').toLowerCase().includes('avalia')||String(c.status||'').toLowerCase().includes('análise')),interviews=apps.filter(c=>String(c.status||'').toLowerCase().includes('entrevista')),hires=apps.filter(c=>/aprov|contrat/i.test(String(c.status||'')));
+  document.querySelector('#companyWelcome').textContent='Olá, '+esc(company.nome||company.razao_social||'Empresa');
+  const data=[['Vagas ativas',active.length,'Oportunidades publicadas'],['Candidaturas',apps.length,'Recebidas no total'],['Em análise',analysis.length,'Aguardando decisão'],['Entrevistas',interviews.length,'Etapa de entrevista'],['Contratações',hires.length,'Aprovados / contratados']];
+  k.innerHTML=data.map(x=>`<a href="${x[0]==='Vagas ativas'?'./?pagina=vagas-empresa':'./?pagina=candidatos-empresa'}"><span>${x[0]}</span><strong>${x[1]}</strong><small>${x[2]}</small></a>`).join('');
+  const rows=active.slice(0,6).map(v=>{const cs=apps.filter(c=>String(c.vaga_id)===String(v.id));return `<article class="dash-job"><div><strong>${esc(v.cargo||v.titulo||'Vaga')}</strong><small>${esc([v.cidade,v.estado||v.uf].filter(Boolean).join(' - ')||'Localização não informada')}</small></div><span>${cs.length} candidatura${cs.length===1?'':'s'}</span><a href="./?pagina=candidatos-empresa&vaga=${encodeURIComponent(v.id)}">Ver candidaturas</a></article>`}).join('');
+  list.innerHTML=rows||'<div class="empty"><strong>Nenhum processo ativo</strong><p>Publique uma vaga para iniciar um novo recrutamento.</p></div>';
+ }catch(e){list.innerHTML='<div class="empty error"><strong>Não foi possível carregar o painel</strong><p>'+esc(e.message)+'</p></div>';k.innerHTML=''}
+}
