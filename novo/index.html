@@ -16990,4 +16990,5 @@ function sync(){
  var b=document.getElementById('empresaPaginaVagasCopiar');if(b&&!b.dataset.ready){b.dataset.ready='1';b.onclick=function(){var x=document.getElementById('empresaPaginaVagasLinkText');if(!x)return;var url='https://'+x.textContent;navigator.clipboard&&navigator.clipboard.writeText(url);var old=this.innerHTML;this.textContent='✓ Copiado';setTimeout(()=>this.innerHTML=old,1200)}}
 }
 document.addEventListener('DOMContentLoaded',()=>{setTimeout(sync,300);setTimeout(sync,1200);setTimeout(sync,2800)});
-})();</script></body></html>
+})();</script>
+</body></html>
