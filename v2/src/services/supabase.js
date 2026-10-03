@@ -170,7 +170,8 @@ export async function registerCompany(data){
 }
 export async function requestCompanyPasswordReset(cnpj){
  const n=digits(cnpj);if(n.length!==14)throw new Error("Informe um CNPJ válido.");
- await json("/auth/v1/recover",{method:"POST",headers:headers(""),body:JSON.stringify({email:authEmail(n),redirect_to:location.origin+location.pathname+"?pagina=redefinir-senha"})});
+ const r=await fetch(URL+"/functions/v1/recuperar-senha-empresa",{method:"POST",headers:{"Content-Type":"application/json",apikey:KEY},body:JSON.stringify({cnpj:n,redirectTo:location.origin+location.pathname+"?pagina=redefinir-senha"})});
+ if(!r.ok)throw new Error("Não foi possível solicitar a recuperação agora.");
  return true;
 }
 export async function updateCompanyPassword(password){
