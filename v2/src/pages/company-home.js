@@ -9,6 +9,7 @@ export async function hydrateCompanyHome(){
  try{
   const company=await getCompany();if(!company)throw new Error('Sessão empresarial necessária.');
   const [allJobs,apps]=await Promise.all([getCompanyJobs(company),getApplications(company)]),jobs=allJobs.filter(v=>v.status!=='excluida'),active=jobs.filter(v=>jobStatus(v)==='Ativa'),usage=planUsage(company,allJobs);
+  if(usage.expirado&&usage.plano.nome!=='Grátis'){document.querySelectorAll('a[href="./?pagina=publicar-vaga"]').forEach(a=>{a.href='./?pagina=planos';a.textContent=a.classList.contains('publish')?'Renovar plano':'Renovar plano';a.title='Seu plano venceu. Renove para publicar uma nova vaga.'})}
   const analysis=apps.filter(c=>norm(c.status)==='em avaliacao'),interviews=apps.filter(c=>norm(c.status)==='entrevista agendada'),hires=apps.filter(c=>norm(c.status)==='contratado'),approved=apps.filter(c=>norm(c.status)==='aprovado');
   document.querySelector('#companyWelcome').textContent='Olá, '+(company.nome||company.razao_social||'Empresa');
   const data=[['Vagas ativas',active.length,'Oportunidades publicadas'],['Candidaturas',apps.length,'Recebidas no total'],['Em análise',analysis.length,'Aguardando decisão'],['Entrevistas',interviews.length,'Etapa de entrevista'],['Contratações',hires.length,'Contratados registrados']];
