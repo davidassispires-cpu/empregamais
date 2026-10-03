@@ -41,3 +41,20 @@ export function jobStatus(v){
  if(["pendente","em_analise","analise"].includes(v.status))return "Em análise";
  return "Encerrada";
 }
+
+export async function getJob(id,company){
+ if(!id||!company?.id)return null;
+ const rows=await json("/rest/v1/vagas?select=*&id=eq."+encodeURIComponent(id)+"&empresa_id=eq."+encodeURIComponent(company.id)+"&limit=1",{headers:headers()});
+ return Array.isArray(rows)?rows[0]||null:null;
+}
+export async function saveJob(company,data,id=""){
+ const t=await ensureSession();if(!t)throw new Error("Sua sessão expirou. Entre novamente.");
+ if(!company?.id)throw new Error("Empresa não encontrada.");
+ const u=await getCurrentUser();if(!u?.id)throw new Error("Usuário não autenticado.");
+ const payload={user_id:u.id,empresa_id:company.id,empresa:company.nome||company.razao_social||"",empresa_cnpj:String(company.cnpj||"").replace(/\D/g,""),cargo:data.cargo,area:data.area||null,contrato:data.contrato||null,modalidade:data.modalidade||null,cep:data.cep||null,estado:data.estado||null,cidade:data.cidade||null,data_encerramento:data.data_encerramento||null,escolaridade:data.escolaridade||null,experiencia:data.experiencia||null,jornada:data.jornada||null,pcd:data.pcd||null,salario:data.salario||null,salario_combinar:!!data.salario_combinar,descricao:data.descricao,requisitos:data.requisitos||null,beneficios:data.beneficios||null,confidencial:!!data.confidencial,destaque:!!data.destaque,urgente:!!data.urgente,candidatura_tipo:data.candidatura_tipo||"portal",candidatura_email:data.candidatura_email||null,candidatura_whatsapp:data.candidatura_whatsapp||null,candidatura_link:data.candidatura_link||null,status:"pendente"};
+ const path=id?"/rest/v1/vagas?id=eq."+encodeURIComponent(id)+"&empresa_id=eq."+encodeURIComponent(company.id):"/rest/v1/vagas";
+ const method=id?"PATCH":"POST";if(id)payload.editado_em=new Date().toISOString();
+ const rows=await json(path,{method,headers:{...headers(t),Prefer:"return=representation"},body:JSON.stringify(payload)});
+ if(!Array.isArray(rows)||!rows[0])throw new Error("O Supabase não confirmou o salvamento da vaga.");
+ return rows[0];
+}
