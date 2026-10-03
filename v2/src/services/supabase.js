@@ -64,6 +64,7 @@ export async function saveJob(company,data,id=""){
  const u=await getCurrentUser();if(!u?.id)throw new Error("Usuário não autenticado.");
  const jobs=await getCompanyJobs(company),old=id?jobs.find(v=>String(v.id)===String(id)):null,usage=planUsage(company,jobs),p=usage.plano,free=p.nome==="Grátis";
  if(!id&&usage.vagas>=p.vagas)throw new Error("Limite de publicações atingido para o plano "+p.nome+".");
+ if(id&&old?.status==="excluida")throw new Error("Uma vaga excluída não pode ser editada.");
  if(!free&&data.destaque&&!(old?.destaque)&&usage.destaques>=p.destaques)throw new Error("Seu plano não possui Destaque disponível neste período.");
  if(!free&&data.urgente&&!(old?.urgente)&&usage.urgentes>=p.urgentes)throw new Error("Seu plano não possui Urgência disponível neste período.");
  if(data.confidencial&&!(old?.confidencial)&&usage.confidenciais>=p.confidenciais)throw new Error("Seu plano não possui vaga Confidencial disponível neste período.");
@@ -125,6 +126,8 @@ export async function hasCompanySession(){return !!(await getCompany())}
 export async function updateJobStatus(company,id,status){
  const t=await ensureSession();if(!t)throw new Error("Sua sessão expirou. Entre novamente.");
  if(!company?.id||!id)throw new Error("Vaga inválida.");
+ const current=await getJob(id,company);if(!current||current.status==="excluida")throw new Error("Vaga não encontrada.");
+ if(status==="pendente"&&current.status!=="encerrada")throw new Error("Somente vagas encerradas podem ser reabertas.");
  const body={status,editado_em:new Date().toISOString()};
  if(status==="encerrada")body.data_encerramento=new Date().toISOString().slice(0,10);
  if(status==="pendente")body.data_encerramento=closingDate(30);
