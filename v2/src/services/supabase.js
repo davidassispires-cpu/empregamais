@@ -2,9 +2,11 @@ const URL="https://mkezlcewyengejdmtppl.supabase.co";
 const KEY="sb_publishable_8YnXpzGX8zj-tvzvcMYdyw_FVBhQutR";
 const TOKEN_KEY="empregaMaisSupabaseAccessToken";
 const REFRESH_KEY="empregaMaisSupabaseRefreshToken";
+const LOGOUT_KEY="empregaMaisLogoutBloqueio";
 
 function token(){return sessionStorage.getItem(TOKEN_KEY)||localStorage.getItem(TOKEN_KEY)||""}
 function refreshToken(){return sessionStorage.getItem(REFRESH_KEY)||localStorage.getItem(REFRESH_KEY)||""}
+function clearSession(){for(const k of [TOKEN_KEY,REFRESH_KEY]){sessionStorage.removeItem(k);localStorage.removeItem(k)}}
 function saveSession(a){
  if(a?.access_token){sessionStorage.setItem(TOKEN_KEY,a.access_token);localStorage.setItem(TOKEN_KEY,a.access_token)}
  if(a?.refresh_token){sessionStorage.setItem(REFRESH_KEY,a.refresh_token);localStorage.setItem(REFRESH_KEY,a.refresh_token)}
@@ -17,10 +19,11 @@ async function json(path,opt={}){
  return data;
 }
 async function ensureSession(){
- let t=token();if(t){try{await json("/auth/v1/user",{headers:headers(t)});return t}catch{for(const k of [TOKEN_KEY]){sessionStorage.removeItem(k);localStorage.removeItem(k)}}}
- const rt=refreshToken();if(!rt)return "";
- const a=await json("/auth/v1/token?grant_type=refresh_token",{method:"POST",headers:headers(""),body:JSON.stringify({refresh_token:rt})});
- saveSession(a);return a.access_token||"";
+ if(localStorage.getItem(LOGOUT_KEY)==="1"||sessionStorage.getItem(LOGOUT_KEY)==="1"){clearSession();return ""}
+ let t=token();if(t){try{await json("/auth/v1/user",{headers:headers(t)});return t}catch{sessionStorage.removeItem(TOKEN_KEY);localStorage.removeItem(TOKEN_KEY)}}
+ const rt=refreshToken();if(!rt){clearSession();return ""}
+ try{const a=await json("/auth/v1/token?grant_type=refresh_token",{method:"POST",headers:headers(""),body:JSON.stringify({refresh_token:rt})});saveSession(a);return a.access_token||""}
+ catch{clearSession();return ""}
 }
 export async function getCurrentUser(){
  const t=await ensureSession();if(!t)return null;
@@ -102,6 +105,7 @@ export async function updateCompany(company,data){
 function digits(v){return String(v||"").replace(/\D/g,"")}
 function authEmail(cnpj){return digits(cnpj)+"@auth.empregamais.com.br"}
 export async function loginCompany(cnpj,password){
+ localStorage.removeItem(LOGOUT_KEY);sessionStorage.removeItem(LOGOUT_KEY);
  if(digits(cnpj).length!==14)throw new Error("Informe um CNPJ válido.");
  if(!password)throw new Error("Informe sua senha.");
  const a=await json("/auth/v1/token?grant_type=password",{method:"POST",headers:headers(""),body:JSON.stringify({email:authEmail(cnpj),password})});
@@ -113,8 +117,8 @@ export async function loginCompany(cnpj,password){
  return c;
 }
 export async function logoutCompany(){
- const t=token();try{if(t)await fetch(URL+"/auth/v1/logout",{method:"POST",headers:headers(t)})}catch{}
- for(const k of [TOKEN_KEY,REFRESH_KEY]){sessionStorage.removeItem(k);localStorage.removeItem(k)}
+ const t=token();localStorage.setItem(LOGOUT_KEY,"1");sessionStorage.setItem(LOGOUT_KEY,"1");clearSession();try{if(t)await fetch(URL+"/auth/v1/logout",{method:"POST",headers:headers(t)})}catch{}
+ clearSession()
  sessionStorage.removeItem("empresaSupabaseUserId");sessionStorage.removeItem("empresaSupabaseEmpresaId");
 }
 export async function hasCompanySession(){return !!(await getCompany())}
@@ -145,6 +149,7 @@ export async function uploadCompanyImage(company,file,type="logo"){
  return URL+"/storage/v1/object/public/logos-empresas/"+path;
 }
 export async function registerCompany(data){
+ localStorage.removeItem(LOGOUT_KEY);sessionStorage.removeItem(LOGOUT_KEY);
  const cnpj=digits(data.cnpj),email=String(data.email||"").trim().toLowerCase(),emailApps=String(data.email_candidaturas||email).trim().toLowerCase(),phone=digits(data.telefone);
  if(String(data.nome||"").trim().length<2)throw new Error("Informe o nome da empresa.");
  if(cnpj.length!==14)throw new Error("Informe um CNPJ com 14 números.");
@@ -161,4 +166,18 @@ export async function registerCompany(data){
   const rows=await json("/rest/v1/empresas",{method:"POST",headers:{...headers(a.access_token),Prefer:"return=representation"},body:JSON.stringify({user_id:a.user.id,nome:String(data.nome).trim(),cnpj,email,email_corporativo:email,email_candidaturas:emailApps,telefone:String(data.telefone||"").trim(),plano:"basico",plano_id:"basico",verificacao_status:"nao_verificada",verificada:false,plano_liberado_admin:false,plano_sem_cobranca:false,aprovacao_automatica_suspensa:false})});
   if(!Array.isArray(rows)||!rows[0])throw new Error("O Supabase não confirmou o cadastro da empresa.");return rows[0];
  }catch(e){await logoutCompany();throw e}
+}
+export async function requestCompanyPasswordReset(cnpj){
+ const n=digits(cnpj);if(n.length!==14)throw new Error("Informe um CNPJ válido.");
+ await json("/auth/v1/recover",{method:"POST",headers:headers(""),body:JSON.stringify({email:authEmail(n),redirect_to:location.origin+location.pathname+"?pagina=redefinir-senha"})});
+ return true;
+}
+export async function updateCompanyPassword(password){
+ if(String(password||"").length<6)throw new Error("A nova senha deve ter pelo menos 6 caracteres.");
+ const t=await ensureSession();if(!t)throw new Error("O link de recuperação expirou ou não é válido.");
+ await json("/auth/v1/user",{method:"PUT",headers:headers(t),body:JSON.stringify({password})});return true;
+}
+export function captureRecoverySession(){
+ const raw=(location.hash||"").replace(/^#/,""),p=new URLSearchParams(raw),a=p.get("access_token"),r=p.get("refresh_token"),type=p.get("type");
+ if(a&&r&&(type==="recovery"||p.get("expires_in"))){localStorage.removeItem(LOGOUT_KEY);sessionStorage.removeItem(LOGOUT_KEY);saveSession({access_token:a,refresh_token:r});history.replaceState({},document.title,location.pathname+"?pagina=redefinir-senha");return true}return false;
 }
