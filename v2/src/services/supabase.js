@@ -107,15 +107,13 @@ function digits(v){return String(v||"").replace(/\D/g,"")}
 function authEmail(cnpj){return digits(cnpj)+"@auth.empregamais.com.br"}
 export async function loginCompany(cnpj,password){
  localStorage.removeItem(LOGOUT_KEY);sessionStorage.removeItem(LOGOUT_KEY);
- if(digits(cnpj).length!==14)throw new Error("Informe um CNPJ válido.");
- if(!password)throw new Error("Informe sua senha.");
- const a=await json("/auth/v1/token?grant_type=password",{method:"POST",headers:headers(""),body:JSON.stringify({email:authEmail(cnpj),password})});
- if(!a?.access_token||!a?.user?.id)throw new Error("Não foi possível iniciar a sessão.");
- saveSession(a);
- const c=await getCompany();
- if(!c||digits(c.cnpj)!==digits(cnpj)){await logoutCompany();throw new Error("O cadastro autenticado não corresponde ao CNPJ informado.");}
- localStorage.removeItem("empregaMaisLogoutBloqueio");sessionStorage.removeItem("empregaMaisLogoutBloqueio");
- return c;
+ const n=digits(cnpj);if(n.length!==14)throw new Error("Informe um CNPJ válido.");if(!password)throw new Error("Informe sua senha.");
+ let email=authEmail(n);
+ try{const r=await fetch(URL+"/functions/v1/auth-empresa-cnpj",{method:"POST",headers:{"Content-Type":"application/json",apikey:KEY},body:JSON.stringify({cnpj:n})});if(r.ok){const d=await r.json();if(d?.email)email=d.email}}catch{}
+ let a;try{a=await json("/auth/v1/token?grant_type=password",{method:"POST",headers:headers(""),body:JSON.stringify({email,password})})}catch(e){if(email!==authEmail(n))a=await json("/auth/v1/token?grant_type=password",{method:"POST",headers:headers(""),body:JSON.stringify({email:authEmail(n),password})});else throw e}
+ if(!a?.access_token||!a?.user?.id)throw new Error("Não foi possível iniciar a sessão.");saveSession(a);
+ const company=await getCompany();if(!company||digits(company.cnpj)!==n){await logoutCompany();throw new Error("O cadastro autenticado não corresponde ao CNPJ informado.");}
+ localStorage.removeItem(LOGOUT_KEY);sessionStorage.removeItem(LOGOUT_KEY);return company;
 }
 export async function logoutCompany(){
  const t=token();localStorage.setItem(LOGOUT_KEY,"1");sessionStorage.setItem(LOGOUT_KEY,"1");clearSession();try{if(t)await fetch(URL+"/auth/v1/logout",{method:"POST",headers:headers(t)})}catch{}
@@ -160,7 +158,7 @@ export async function registerCompany(data){
  if(String(data.password||"").length<6)throw new Error("A senha deve ter pelo menos 6 caracteres.");
  if(data.password!==data.password2)throw new Error("As senhas não conferem.");
  const existing=await json("/rest/v1/empresas?select=id&cnpj=eq."+encodeURIComponent(cnpj)+"&limit=1",{headers:headers("")});if(Array.isArray(existing)&&existing.length)throw new Error("Já existe uma empresa cadastrada com este CNPJ.");
- const a=await json("/auth/v1/signup",{method:"POST",headers:headers(""),body:JSON.stringify({email:authEmail(cnpj),password:data.password})});
+ const a=await json("/auth/v1/signup",{method:"POST",headers:headers(""),body:JSON.stringify({email,password:data.password})});
  if(!a?.access_token||!a?.user?.id)throw new Error("O cadastro foi criado, mas a sessão automática não foi liberada. Entre pela tela de login.");
  saveSession(a);
  try{
