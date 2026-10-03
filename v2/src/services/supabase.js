@@ -92,7 +92,7 @@ export async function updateApplication(id,status,extra={}){
 export async function updateCompany(company,data){
  const t=await ensureSession();if(!t)throw new Error("Sua sessão expirou. Entre novamente.");
  if(!company?.id)throw new Error("Empresa não encontrada.");
- const allowed=["nome","nome_fantasia","razao_social","email_corporativo","email_candidaturas","telefone","responsavel","funcao_responsavel","cep","logradouro","bairro","numero","complemento","cidade","uf","sobre","site","setor","funcionarios"];
+ const allowed=["nome","nome_fantasia","razao_social","email_corporativo","email_candidaturas","telefone","responsavel","funcao_responsavel","cep","logradouro","bairro","numero","complemento","cidade","uf","sobre","site","setor","funcionarios","logo_url","capa_url"];
  const body={};for(const k of allowed)if(k in data)body[k]=data[k]||null;
  const rows=await json("/rest/v1/empresas?id=eq."+encodeURIComponent(company.id),{method:"PATCH",headers:{...headers(t),Prefer:"return=representation"},body:JSON.stringify(body)});
  if(!Array.isArray(rows)||!rows[0])throw new Error("Não foi possível salvar os dados da empresa.");
@@ -133,4 +133,14 @@ export async function deleteJob(company,id){
  if(!company?.id||!id)throw new Error("Vaga inválida.");
  const rows=await json("/rest/v1/vagas?id=eq."+encodeURIComponent(id)+"&empresa_id=eq."+encodeURIComponent(company.id),{method:"PATCH",headers:{...headers(t),Prefer:"return=representation"},body:JSON.stringify({status:"excluida",editado_em:new Date().toISOString()})});
  if(!Array.isArray(rows)||!rows[0])throw new Error("Não foi possível excluir a vaga.");return rows[0];
+}
+
+export async function uploadCompanyImage(company,file,type="logo"){
+ const t=await ensureSession();if(!t)throw new Error("Sua sessão expirou. Entre novamente.");
+ if(!company?.id||!file)throw new Error("Arquivo inválido.");if(file.size>3*1024*1024)throw new Error("A imagem deve ter no máximo 3 MB.");
+ if(!/^image\/(png|jpeg|webp)$/i.test(file.type))throw new Error("Envie uma imagem PNG, JPG ou WEBP.");
+ const u=await getCurrentUser(),ext=(file.name.split(".").pop()||"jpg").toLowerCase().replace(/[^a-z0-9]/g,"")||"jpg",path=u.id+"/"+type+"-"+Date.now()+"."+ext;
+ const r=await fetch(URL+"/storage/v1/object/logos-empresas/"+encodeURI(path),{method:"POST",headers:{apikey:KEY,Authorization:"Bearer "+t,"Content-Type":file.type,"x-upsert":"true"},body:file});
+ if(!r.ok){let m="";try{m=(await r.json()).message||""}catch{}throw new Error(m||"Não foi possível enviar a imagem.");}
+ return URL+"/storage/v1/object/public/logos-empresas/"+path;
 }
