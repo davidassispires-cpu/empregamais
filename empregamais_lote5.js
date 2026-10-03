@@ -81,15 +81,10 @@ if(typeof sincronizarVagasGoogleSheets==="function")sincronizarVagasGoogleSheets
 .catch(function(){});
 }
 }catch(e){}
-try{
-if(typeof montarPainelReferenciaRecrutadorEM==="function"){
-var ref=document.getElementById("painelReferenciaRecrutadorEM");
-if(ref && ref.parentNode)ref.parentNode.removeChild(ref);
-montarPainelReferenciaRecrutadorEM();
-}
-}catch(e){}
+/* v242: atualização pontual após encerrar vaga.
+   Não reconstruir nenhum painel: isso substituía o dashboard canônico. */
 try{if(typeof renderizarVagasAprovadasEmpresa==="function")renderizarVagasAprovadasEmpresa();}catch(e){}
-try{if(typeof renderizarPainelEmpresa==="function")renderizarPainelEmpresa();}catch(e){}
+try{if(typeof em200Render==="function")em200Render();}catch(e){}
 try{if(typeof renderizarHome==="function")renderizarHome();}catch(e){}
 }
 window.encerrarVagaEmpresa=encerrarVagaCorrigidaV18;
