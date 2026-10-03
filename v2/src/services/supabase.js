@@ -166,7 +166,7 @@ export async function registerCompany(data){
  if(!email.includes("@"))throw new Error("Informe um e-mail corporativo válido.");
  if(!emailApps.includes("@"))throw new Error("Informe um e-mail válido para candidaturas.");
  if(phone.length<10)throw new Error("Informe um telefone válido.");
- if(String(data.password||"").length<6)throw new Error("A senha deve ter pelo menos 6 caracteres.");
+ if(String(data.password||"").length<8||!/\p{L}/u.test(String(data.password||""))||!/\d/.test(String(data.password||"")))throw new Error("A senha deve ter pelo menos 8 caracteres, contendo letra e número.");
  if(data.password!==data.password2)throw new Error("As senhas não conferem.");
  const existing=await json("/rest/v1/empresas?select=id&cnpj=eq."+encodeURIComponent(cnpj)+"&limit=1",{headers:headers("")});if(Array.isArray(existing)&&existing.length)throw new Error("Já existe uma empresa cadastrada com este CNPJ.");
  const a=await json("/auth/v1/signup",{method:"POST",headers:headers(""),body:JSON.stringify({email,password:data.password})});
@@ -184,7 +184,7 @@ export async function requestCompanyPasswordReset(cnpj){
  return true;
 }
 export async function updateCompanyPassword(password){
- if(String(password||"").length<6)throw new Error("A nova senha deve ter pelo menos 6 caracteres.");
+ if(String(password||"").length<8||!/\p{L}/u.test(String(password||""))||!/\d/.test(String(password||"")))throw new Error("A nova senha deve ter pelo menos 8 caracteres, contendo letra e número.");
  const t=await ensureSession();if(!t)throw new Error("O link de recuperação expirou ou não é válido.");
  await json("/auth/v1/user",{method:"PUT",headers:headers(t),body:JSON.stringify({password})});return true;
 }
