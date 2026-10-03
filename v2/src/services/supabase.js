@@ -75,9 +75,10 @@ export async function saveJob(company,data,id=""){
  if(!Array.isArray(rows)||!rows[0])throw new Error("O Supabase não confirmou o salvamento da vaga.");return rows[0];
 }
 
-export async function getApplications(){
+export async function getApplications(company){
  const t=await ensureSession();if(!t)throw new Error("Sua sessão expirou. Entre novamente.");
- const rows=await json("/rest/v1/candidaturas?select=*&order=criado_em.desc",{headers:headers(t)});
+ if(!company?.id)throw new Error("Empresa não encontrada.");
+ const rows=await json("/rest/v1/candidaturas?select=*&empresa_id=eq."+encodeURIComponent(company.id)+"&order=criado_em.desc",{headers:headers(t)});
  return Array.isArray(rows)?rows:[];
 }
 export async function updateApplication(id,status,extra={}){
