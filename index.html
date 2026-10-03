@@ -16355,7 +16355,36 @@ Atualize a etapa de cada processo seletivo.
 #avisoEdicaoVaga{{margin-bottom:15px}}
 @media(max-width:760px){{.em-job-shell{{padding:0 10px;margin-top:14px}}.em-job-top{{padding:16px 8px}}.em-job-step span{{font-size:10px}}.em-job-num{{width:30px;height:30px}}.em-grid,.em-review-grid{{grid-template-columns:1fr}}.em-field.full{{grid-column:auto}}.em-job-body{{padding:20px 16px}}.em-job-card-head{{padding:20px 16px}}.em-job-actions{{padding:15px 16px}}}}
 </style>
-<section class='page-header empresa-header'><div class='page-header-inner'><button class='voltar' onclick='irPara(&quot;painel-empresa&quot;)' type='button'>&#8592; Painel da empresa</button><h1 id='tituloPublicarVaga'>Publicar nova vaga</h1><p id='subtituloPublicarVaga'>Cadastre a oportunidade em 4 etapas simples e revise antes de publicar.</p></div></section>
+<style id='em-form-novo-main-v1' type='text/css'>
+#pagina-publicar .page-header{background:#123f73!important}
+#pagina-publicar .em-job-shell{max-width:1080px!important}
+#pagina-publicar .em-job-top{border-radius:16px!important;box-shadow:0 8px 24px rgba(18,63,115,.06)!important}
+#pagina-publicar .em-job-step.active,#pagina-publicar .em-job-step.done{color:#123f73!important}
+#pagina-publicar .em-job-step.active .em-job-num,#pagina-publicar .em-job-step.done .em-job-num{background:#123f73!important}
+#pagina-publicar .em-job-card{border-radius:20px!important;box-shadow:0 14px 36px rgba(18,63,115,.06)!important}
+#pagina-publicar .em-job-card-head h2{color:#123f73!important}
+#pagina-publicar .em-btn-next,#pagina-publicar .em-btn-publish{background:#123f73!important;color:#fff!important}
+#pagina-publicar .em-company-identity{display:flex;align-items:center;gap:14px;padding:14px 16px;border:1px solid #dce8f5;border-radius:14px;background:#f7faff}
+#pagina-publicar .em-company-logo{width:58px;height:58px;flex:0 0 58px;display:grid;place-items:center;border:1px solid #dbe5f0;border-radius:13px;background:#fff;overflow:hidden;color:#123f73;font-size:20px;font-weight:800}
+#pagina-publicar .em-company-logo img{width:100%;height:100%;object-fit:contain;padding:5px}
+#pagina-publicar .em-company-identity small{display:block;color:#71849a;font-size:9px;font-weight:800;letter-spacing:.1em}
+#pagina-publicar .em-company-identity strong{display:block;color:#173f68;font-size:15px;margin:3px 0}
+#pagina-publicar .em-company-identity span{display:block;color:#8190a3;font-size:11px}
+#pagina-publicar .em-modal-choice,#pagina-publicar .em-contact-choice{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+#pagina-publicar .em-contact-choice{grid-template-columns:1fr 1fr;margin-top:4px}
+#pagina-publicar .em-modal-choice label,#pagina-publicar .em-contact-choice label{position:relative;cursor:pointer}
+#pagina-publicar .em-modal-choice input,#pagina-publicar .em-contact-choice>label>input{position:absolute;opacity:0}
+#pagina-publicar .em-modal-choice span,#pagina-publicar .em-contact-choice>label>span{min-height:52px;display:flex;align-items:center;justify-content:center;gap:7px;border:1px solid #d6e0ec;border-radius:12px;background:#fff;color:#45617e}
+#pagina-publicar .em-contact-choice>label>span{min-height:74px;flex-direction:column}
+#pagina-publicar .em-contact-choice small{font-size:10px!important;color:#7d8da0}
+#pagina-publicar .em-modal-choice input:checked+span,#pagina-publicar .em-contact-choice input:checked+span{border-color:#123f73;background:#edf4fc;color:#123f73;box-shadow:inset 0 0 0 1px #123f73}
+#pagina-publicar .em-curriculo-box{padding:20px;border:1px solid #dce6f0;border-radius:14px;background:#f9fbfd}
+#pagina-publicar .em-contact-field{margin-top:15px}
+#pagina-publicar .em-contact-field label{margin-bottom:7px}
+#pagina-publicar .em-salary-exact{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+#pagina-publicar #cepVaga[readonly]{background:#f2f6fa!important;color:#61758b!important}
+@media(max-width:700px){#pagina-publicar .em-modal-choice,#pagina-publicar .em-contact-choice,#pagina-publicar .em-salary-exact{grid-template-columns:1fr}}
+</style><section class='page-header empresa-header'><div class='page-header-inner'><button class='voltar' onclick='irPara(&quot;painel-empresa&quot;)' type='button'>&#8592; Painel da empresa</button><h1 id='tituloPublicarVaga'>Publicar nova vaga</h1><p id='subtituloPublicarVaga'>Cadastre a oportunidade em 4 etapas simples e revise antes de publicar.</p></div></section>
 <div class='em-job-shell'>
 <div class='em-job-top'><div class='em-job-progress' id='emJobProgress'>
 <div class='em-job-step active' data-step='1'><div class='em-job-num'>1</div><span>Informações da vaga</span></div>
@@ -16367,17 +16396,13 @@ Atualize a etapa de cada processo seletivo.
 <div id='avisoEdicaoVaga'/>
 <div class='em-admin-hidden' id='adminPublicacaoIdentidadeEM'><input id='adminEmpresaNomeVagaEM' type='text'/><input id='adminEmpresaCnpjVagaEM' type='text'/><input id='adminEmpresaEmailVagaEM' type='email'/><input id='adminDestaqueVagaEM' type='checkbox'/><input id='adminAprovarVagaEM' type='checkbox'/></div>
 <section class='em-job-card active' data-panel='1'><div class='em-job-card-head'><h2>Informações da vaga</h2><p>Comece pelas informações principais da oportunidade.</p></div><div class='em-job-body'><div class='em-grid'>
-<div class='em-field full'><label>Logo da empresa</label><div id='previewLogo'/><input accept='image/*' id='logoVaga' type='file'/></div>
-<div class='em-field'><label>Empresa *</label><input id='empresaVaga' required='required' type='text'/></div>
+<div class='em-company-identity full'><div class='em-company-logo' id='previewLogo'><span id='emCompanyInitial'>E</span></div><div><small>PUBLICANDO COMO</small><strong id='emCompanyNameDisplay'>Sua empresa</strong><span>Nome e logo carregados automaticamente do perfil da empresa.</span></div></div><input accept='image/*' id='logoVaga' type='file' style='display:none'/><input id='empresaVaga' required='required' type='hidden'/>
 <div class='em-field'><label>Título da vaga *</label><input id='cargoVaga' placeholder='Ex.: Analista de Marketing' required='required' type='text'/></div>
 <div class='em-field'><label>Área de atuação *</label><select id='areaVaga' required='required'><option value=''>Selecione</option><option value='Administração'>Administração</option><option value='Agricultura, Pecuária, Veterinária'>Agricultura, Pecuária, Veterinária</option><option value='Alimentação / Gastronomia'>Alimentação / Gastronomia</option><option value='Arquitetura, Decoração, Design'>Arquitetura, Decoração, Design</option><option value='Artes'>Artes</option><option value='Auditoria'>Auditoria</option><option value='Ciências, Pesquisa'>Ciências, Pesquisa</option><option value='Comercial, Vendas'>Comercial, Vendas</option><option value='Comércio Exterior, Importação, Exportação'>Comércio Exterior, Importação, Exportação</option><option value='Compras'>Compras</option><option value='Comunicação, TV, Cinema'>Comunicação, TV, Cinema</option><option value='Construção, Manutenção'>Construção, Manutenção</option><option value='Contábil, Finanças, Economia'>Contábil, Finanças, Economia</option><option value='Cultura, Lazer, Entretenimento'>Cultura, Lazer, Entretenimento</option><option value='Educação, Ensino, Idiomas'>Educação, Ensino, Idiomas</option><option value='Engenharia'>Engenharia</option><option value='Estética'>Estética</option><option value='Hotelaria, Turismo'>Hotelaria, Turismo</option><option value='Industrial, Produção, Fábrica'>Industrial, Produção, Fábrica</option><option value='Informática, TI, Telecomunicações'>Informática, TI, Telecomunicações</option><option value='Jurídica'>Jurídica</option><option value='Logística'>Logística</option><option value='Marketing'>Marketing</option><option value='Meio Ambiente, Ecologia'>Meio Ambiente, Ecologia</option></select></div>
 <div class='em-field'><label>Tipo de contrato *</label><select id='contratoVaga' required='required'><option value=''>Selecione</option><option value='Efetivo – CLT'>Efetivo &#8211; CLT</option><option value='Autônomo'>Autônomo</option><option value='Prestador de Serviços'>Prestador de Serviços</option><option value='Cooperado'>Cooperado</option><option value='Jovem Aprendiz'>Jovem Aprendiz</option><option value='Estágio'>Estágio</option><option value='Temporário'>Temporário</option><option value='Trainee'>Trainee</option><option value='Outros'>Outros</option></select></div>
-<div class='em-field'><label>Modalidade</label><select id='modalidadeVaga'><option value='Presencial'>Presencial</option><option value='Remoto'>Remoto</option><option value='Híbrido'>Híbrido</option></select></div>
 </div></div><div class='em-job-actions'><span/><button class='em-btn em-btn-next' id='emNextStep1V203' type='button'>Próximo &#8594;</button></div></section>
-<section class='em-job-card' data-panel='2'><div class='em-job-card-head'><h2>Detalhes da vaga</h2><p>Informe localização, jornada, experiência e remuneração.</p></div><div class='em-job-body'><div class='em-grid'>
-<div class='em-field'><label>CEP</label><input id='cepVaga' maxlength='9' placeholder='00000-000' type='text'/><small id='cepStatusEM'/></div>
-<div class='em-field'><label>Estado</label><input id='estadoVaga' maxlength='2' placeholder='UF' type='text'/></div>
-<div class='em-field'><label>Cidade</label><input id='cidadeVaga' type='text'/></div><div id='m3EnderecoSlot'/><div id='m3PrivacidadeSlot'/>
+<section class='em-job-card' data-panel='2'><div class='em-job-card-head'><h2>Detalhes da oportunidade</h2><p>Defina modalidade, localização, jornada, experiência e remuneração.</p></div><div class='em-job-body'><div class='em-grid'><div class='em-field full'><label>Modalidade *</label><div class='em-modal-choice'><label><input name='emModalidadeEscolha' type='radio' value='Presencial' checked='checked'/><span>▣ <b>Presencial</b></span></label><label><input name='emModalidadeEscolha' type='radio' value='Híbrido'/><span>◐ <b>Híbrido</b></span></label><label><input name='emModalidadeEscolha' type='radio' value='Remoto'/><span>◎ <b>Remoto</b></span></label></div><input id='modalidadeVaga' type='hidden' value='Presencial'/></div>
+<div class='em-field em-local-field'><label>Cidade *</label><input id='cidadeVaga' type='text'/></div><div class='em-field em-local-field'><label>UF *</label><input id='estadoVaga' maxlength='2' placeholder='UF' type='text'/></div><div class='em-field em-local-field'><label>Bairro</label><input id='bairroVaga' placeholder='Opcional' type='text'/></div><div class='em-field em-local-field'><label>CEP</label><input id='cepVaga' maxlength='9' placeholder='Preenchido automaticamente' readonly='readonly' type='text'/><small id='cepStatusEM'>Usado internamente para localização e distância.</small></div><div class='em-field full em-remote-field' style='display:none'><label>Abrangência da vaga</label><select id='abrangenciaVaga'><option>Todo o Brasil</option><option>Estado específico</option><option>Região específica</option></select></div><div id='m3EnderecoSlot'/><div id='m3PrivacidadeSlot'/>
 <div class='em-field'><label>Escolaridade mínima *</label><select id='escolaridadeVaga' required='required'><option value=''>
 Selecione
 </option><option value='Fundamental incompleto'>
@@ -16409,14 +16434,13 @@ Não exigida
 <div class='em-field'><label>Horário de saída</label><input id='horarioSaidaV183' type='time'/></div>
 <div class='em-field'><label>Observação de horário</label><input id='horarioObsV183' type='text'/></div>
 <div class='em-field'><label>PcD</label><select id='pcdVaga'><option value='Não exclusiva para PcD'>Não exclusiva para PcD</option><option value='Auditiva'>Auditiva</option><option value='Física'>Física</option><option value='Visual'>Visual</option><option value='Mental'>Mental</option><option value='Reabilitados'>Reabilitados</option><option value='Psicossocial'>Psicossocial</option><option value='Fala'>Fala</option><option value='Intelectual'>Intelectual</option><option value='TEA - Transtornos do espectro autista'>TEA - Transtornos do espectro autista</option></select></div>
-<div class='em-field'><label>Faixa salarial</label><input id='salarioVaga' placeholder='Ex.: R$ 2.500,00' type='text'/></div>
+<div class='em-field full'><label>Faixa salarial</label><select id='salarioVaga'><option value=''>Selecione</option><option>Até R$ 1.500</option><option>R$ 1.501 a R$ 2.000</option><option>R$ 2.001 a R$ 2.500</option><option>R$ 2.501 a R$ 3.000</option><option>R$ 3.001 a R$ 4.000</option><option>R$ 4.001 a R$ 5.000</option><option>R$ 5.001 a R$ 7.000</option><option>R$ 7.001 a R$ 10.000</option><option>Acima de R$ 10.000</option><option>A combinar</option><option>Informar valor exato</option></select></div><div class='em-field full' id='emSalaryExact' style='display:none'><div class='em-salary-exact'><input id='emSalaryMin' placeholder='Valor mínimo' type='text'/><input id='emSalaryMax' placeholder='Valor máximo' type='text'/></div></div><div class='em-field full'><label class='em-check'><input id='emExibirSalario' type='checkbox' checked='checked'/> Exibir salário na vaga</label></div>
 <div class='em-field full'><label class='em-check'><input id='senior50VagaEM' type='checkbox'/> Oportunidade aberta também para profissionais 50+</label></div>
 </div></div><div class='em-job-actions'><button class='em-btn em-btn-back' onclick='emShowJobStep(1)' type='button'>&#8592; Voltar</button><button class='em-btn em-btn-next' id='emNextStep2V203' type='button'>Próximo &#8594;</button></div></section>
 <section class='em-job-card' data-panel='3'><div class='em-job-card-head'><h2>Descrição e benefícios</h2><p>Apresente a oportunidade de forma clara para os candidatos.</p></div><div class='em-job-body'><div class='em-grid'>
 <div class='em-field full'><label>Descrição da vaga *</label><textarea id='descricaoVaga' required='required' placeholder='Descreva as atividades, responsabilidades e rotina da vaga.'/></div>
 <div class='em-field full'><label>Requisitos *</label><textarea id='requisitosVaga' required='required' placeholder='Liste os requisitos necessários.'/></div>
-<div class='em-field full'><label>Benefícios</label><textarea id='beneficiosVaga' placeholder='Ex.: Vale alimentação, vale transporte, plano de saúde...'/></div>
-<div class='em-field full'><label>Sobre a empresa</label><textarea id='sobreEmpresaVaga' placeholder='Conte brevemente sobre a empresa e o ambiente de trabalho.'/></div>
+<div class='em-field full'><label>Benefícios oferecidos</label><textarea id='beneficiosVaga' placeholder='Ex.: Vale-transporte, vale-refeição de R$ 35 por dia, plano de saúde após o período de experiência, seguro de vida e participação nos resultados.'/><small>Informe livremente os benefícios, valores, condições e observações.</small></div><div class='em-field full'><label>Sobre a empresa</label><textarea id='sobreEmpresaVaga' placeholder='Conte brevemente sobre a empresa e o ambiente de trabalho.'/></div><div class='em-field full em-curriculo-box'><label>Como você quer receber os currículos?</label><div class='em-contact-choice'><label><input id='tipoContatoEmail' name='tipoContato' type='radio' value='email' checked='checked'/><span>✉ <b>E-mail</b><small>Receber os currículos no e-mail informado.</small></span></label><label><input id='opcaoContatoWhatsapp' name='tipoContato' type='radio' value='whatsapp'/><span>◉ <b>WhatsApp</b><small>Receber candidatos pelo WhatsApp.</small></span></label></div><div id='campoContatoEmail' class='em-contact-field'><label>E-mail para receber currículos *</label><input id='emailCandidaturaVaga' type='email' placeholder='rh@empresa.com.br'/></div><div id='campoContatoWhatsapp' class='em-contact-field' style='display:none'><label>WhatsApp para receber currículos *</label><input id='whatsappCandidaturaVaga' type='text' placeholder='(31) 99999-9999'/></div><input id='tipoContatoWhatsapp' type='hidden'/><input id='tipoContatoLink' type='hidden'/><input id='linkCandidaturaVaga' type='hidden'/><div id='campoContatoLink' style='display:none'/><div id='contatoUpgradeAviso'/><span id='contatoPlanoSelo' style='display:none'/></div>
 </div></div><div class='em-job-actions'><button class='em-btn em-btn-back' onclick='emShowJobStep(2)' type='button'>&#8592; Voltar</button><button class='em-btn em-btn-next' id='emNextStep3V203' type='button'>Revisar vaga &#8594;</button></div></section>
 <section class='em-job-card' data-panel='4'><div class='em-job-card-head'><h2>Revisar e publicar</h2><p>Confira todas as informações antes de disponibilizar a oportunidade.</p></div><div class='em-job-body'><div class='em-review-grid'>
 <div class='em-review-box'><h3>Resumo da vaga</h3><div id='emReviewContent'/></div>
@@ -16425,7 +16449,7 @@ Não exigida
 <label class='em-check'><input id='vagaConfidencialEM' type='checkbox'/> <span>Vaga confidencial <small id='vagaConfidencialMsgEM'>(não exibe o nome da empresa)</small></span></label>
 <div class='em-check' id='m3Destaque'><input id='emDestaqueCheck' type='checkbox'/> <span>Destacar vaga</span></div>
 <div class='em-check' id='m3Urgente'><input id='emUrgenteCheck' type='checkbox'/> <span>Marcar como urgente</span></div>
-<div style='display:none'><span id='contatoPlanoSelo'/><input id='tipoContatoEmail' name='tipoContato' type='radio' value='email'/><input id='opcaoContatoWhatsapp' name='tipoContato' type='radio' value='whatsapp'/><input id='tipoContatoWhatsapp' type='hidden'/><input id='opcaoContatoLink' name='tipoContato' type='radio' value='link'/><input id='tipoContatoLink' type='hidden'/><div id='campoContatoEmail'><input id='emailCandidaturaVaga' type='email'/></div><div id='campoContatoWhatsapp'><input id='whatsappCandidaturaVaga' type='text'/></div><div id='campoContatoLink'><input id='linkCandidaturaVaga' type='url'/></div><div id='contatoUpgradeAviso'/><span id='publicacaoPlanoNome'/><span id='publicacaoPlanoTexto'/><span id='publicacaoConsumoBarra'/></div>
+<div style='display:none'><span id='publicacaoPlanoNome'/><span id='publicacaoPlanoTexto'/><span id='publicacaoConsumoBarra'/></div>
 </div></div></div></div><div class='em-job-actions'><button class='em-btn em-btn-back' onclick='emShowJobStep(3)' type='button'>&#8592; Voltar</button><button class='em-btn em-btn-publish' id='btnSalvarVaga' type='submit'>Publicar vaga</button></div></section>
 </form></div>
 <script type='text/javascript'>//<![CDATA[
@@ -16452,7 +16476,34 @@ Não exigida
  document.addEventListener('DOMContentLoaded',function(){emShowJobStep(1);});
 })();
 //]]></script>
-</div><div class='pagina' id='pagina-login-admin'><section class='page-header admin-header'><div class='page-header-inner'><button class='voltar' onclick='irPara(&quot;home&quot;)' type='button'>
+</div><script id='em-form-novo-main-js' type='text/javascript'>//<![CDATA[
+(function(){
+function syncCompany(){
+ var input=document.getElementById('empresaVaga'),display=document.getElementById('emCompanyNameDisplay'),box=document.getElementById('previewLogo');
+ if(!input||!display)return;
+ var nome=input.value||sessionStorage.getItem('empresaNome')||'Sua empresa';display.textContent=nome;
+ var initial=document.getElementById('emCompanyInitial');if(initial)initial.textContent=(nome.trim().charAt(0)||'E').toUpperCase();
+}
+function modal(){
+ var checked=document.querySelector("input[name='emModalidadeEscolha']:checked"),hidden=document.getElementById('modalidadeVaga');if(!checked||!hidden)return;
+ hidden.value=checked.value;var remoto=checked.value==='Remoto';
+ document.querySelectorAll('#formVaga .em-local-field').forEach(function(x){x.style.display=remoto?'none':''});
+ var r=document.querySelector('#formVaga .em-remote-field');if(r)r.style.display=remoto?'block':'none';
+}
+function contato(){
+ var c=document.querySelector("input[name='tipoContato']:checked"),e=document.getElementById('campoContatoEmail'),w=document.getElementById('campoContatoWhatsapp');if(!c)return;
+ if(e)e.style.display=c.value==='email'?'block':'none';if(w)w.style.display=c.value==='whatsapp'?'block':'none';
+}
+function bind(){
+ syncCompany();setTimeout(syncCompany,300);setTimeout(syncCompany,900);
+ document.querySelectorAll("input[name='emModalidadeEscolha']").forEach(function(x){x.addEventListener('change',modal)});modal();
+ document.querySelectorAll("input[name='tipoContato']").forEach(function(x){x.addEventListener('change',contato)});contato();
+ var sal=document.getElementById('salarioVaga');if(sal)sal.addEventListener('change',function(){var ex=document.getElementById('emSalaryExact');if(ex)ex.style.display=this.value==='Informar valor exato'?'block':'none';});
+}
+document.addEventListener('DOMContentLoaded',bind);setTimeout(bind,700);
+new MutationObserver(function(){var p=document.getElementById('pagina-publicar');if(p&&p.classList.contains('ativa'))syncCompany()}).observe(document.documentElement,{attributes:true,subtree:true,attributeFilter:['class']});
+})();
+//]]></script><div class='pagina' id='pagina-login-admin'><section class='page-header admin-header'><div class='page-header-inner'><button class='voltar' onclick='irPara(&quot;home&quot;)' type='button'>
 &#8592; Voltar
 </button><h1>
 Acesso administrativo
