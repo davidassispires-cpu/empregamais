@@ -68,7 +68,8 @@ export async function saveJob(company,data,id=""){
  if(!company?.id)throw new Error("Empresa não encontrada.");
  const u=await getCurrentUser();if(!u?.id)throw new Error("Usuário não autenticado.");
  const jobs=await getCompanyJobs(company),old=id?jobs.find(v=>String(v.id)===String(id)):null,usage=planUsage(company,jobs),p=usage.plano,free=p.nome==="Grátis";
- if(usage.expirado&&p.nome!=="Grátis")throw new Error("A vigência do plano "+p.nome+" terminou. Renove o plano para publicar ou editar vagas.");
+ if(!id&&usage.expirado&&p.nome!=="Grátis")throw new Error("A vigência do plano "+p.nome+" terminou. Renove o plano para publicar novas vagas.");
+ if(id&&usage.expirado&&p.nome!=="Grátis"&&((!!data.destaque&&!old?.destaque)||(!!data.urgente&&!old?.urgente)||(!!data.confidencial&&!old?.confidencial)))throw new Error("Com o plano vencido, você pode corrigir ou encerrar vagas existentes, mas não ativar novos benefícios de visibilidade.");
  if(!id&&usage.vagas>=p.vagas)throw new Error("Limite de publicações atingido para o plano "+p.nome+".");
  if(id&&old?.status==="excluida")throw new Error("Uma vaga excluída não pode ser editada.");
  if(!free&&data.destaque&&!(old?.destaque)&&usage.destaques>=p.destaques)throw new Error("Seu plano não possui Destaque disponível neste período.");
