@@ -13,10 +13,10 @@ export async function hydratePlans(){
  const cur=document.querySelector('#currentPlan'),msg=document.querySelector('#planMsg');
  try{
   const c=await getCompany();if(!c)throw new Error('Sessão empresarial necessária.');const jobs=await getCompanyJobs(c),usage=planUsage(c,jobs),id=c.plano_id||c.plano||'basico',p=plans.find(x=>x.id===id)||plans[0],lim=usage.plano;
-  const until=c.plano_valido_ate||c.assinatura_fim||'',valid=until?' · válido até '+new Date(until+'T12:00:00').toLocaleDateString('pt-BR'):'';
-  cur.innerHTML='<div><span>SEU PLANO ATUAL</span><strong>'+p.name+'</strong><small>'+p.period+valid+'</small></div><div class="plan-balance"><b>'+(Math.max(0,lim.vagas-usage.vagas))+' vagas</b><span>'+Math.max(0,lim.destaques-usage.destaques)+' destaques · '+Math.max(0,lim.urgentes-usage.urgentes)+' urgências</span></div><a href="./?pagina=vagas-empresa">Gerenciar vagas</a>';
+  const until=usage.fim,valid=until?' · '+(usage.expirado?'venceu em ':'válido até ')+new Date(until).toLocaleDateString('pt-BR'):'';
+  cur.innerHTML='<div><span>'+(usage.expirado?'PLANO VENCIDO':'SEU PLANO ATUAL')+'</span><strong>'+p.name+'</strong><small>'+p.period+valid+'</small></div>'+(usage.expirado?'<div class="plan-balance"><b>Renovação necessária</b><span>Suas vagas, candidatos e histórico permanecem preservados.</span></div>':'<div class="plan-balance"><b>'+Math.max(0,lim.vagas-usage.vagas)+' vagas</b><span>'+Math.max(0,lim.destaques-usage.destaques)+' destaques · '+Math.max(0,lim.urgentes-usage.urgentes)+' urgências</span></div>')+'<a href="./?pagina=vagas-empresa">Gerenciar vagas</a>';
   document.querySelector('[data-plan="'+p.id+'"]')?.classList.add('current');
-  document.querySelectorAll('[data-select]').forEach(b=>{if(b.dataset.select===p.id){b.textContent='Plano atual';b.disabled=true}else b.onclick=()=>openCheckout(b.dataset.select,msg)});
+  document.querySelectorAll('[data-select]').forEach(b=>{if(b.dataset.select===p.id&&!usage.expirado){b.textContent='Plano atual';b.disabled=true}else b.onclick=()=>openCheckout(b.dataset.select,msg)});
  }catch(e){cur.textContent=e.message;cur.classList.add('error')}
 }
 function openCheckout(id,msg){
