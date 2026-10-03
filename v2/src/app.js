@@ -1,9 +1,10 @@
 import { renderEmpresaDashboard,hydrateEmpresaDashboard } from './pages/empresa-dashboard.js';
 import { renderJobForm,hydrateJobForm } from './pages/job-form.js';
 import { renderCandidates,hydrateCandidates } from './pages/candidates.js';
+import { renderCompanyHome,hydrateCompanyHome } from './pages/company-home.js';
 
 const routes={
- 'painel-empresa':[renderEmpresaDashboard,hydrateEmpresaDashboard],
+ 'painel-empresa':[renderCompanyHome,hydrateCompanyHome],
  'vagas-empresa':[renderEmpresaDashboard,hydrateEmpresaDashboard],
  'publicar-vaga':[renderJobForm,hydrateJobForm],
  'candidatos-empresa':[renderCandidates,hydrateCandidates]
