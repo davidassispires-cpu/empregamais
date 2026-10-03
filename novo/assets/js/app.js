@@ -5980,3 +5980,22 @@ abrirMenuVagaEM=function(ev,id){
  (encerrada?'<button class="encerrado" type="button" disabled><i>'+iconeAcaoVagaV3('encerrado')+'</i><span><b>Processo encerrado</b><small>Esta oportunidade já foi finalizada.</small></span></button>':'<button class="encerrar-processo" type="button" onclick="fecharMenuVagaEM();abrirEncerrarVagaEM(\''+id+'\')"><i>'+iconeAcaoVagaV3('encerrar')+'</i><span><b>Encerrar vaga</b><small>Finalize a vaga e interrompa novas candidaturas.</small></span></button>')+
  '</div></section>';document.body.appendChild(m);document.body.classList.add('emp-vaga-acoes-aberto');
 };
+
+/* EMPREGAMAIS-MODAL-ACOES-VAGA-FINAL-V4 */
+(function(){
+ const st=document.createElement('style');st.id='emModalAcoesVagaFinalV4';st.textContent=`
+#empVagaAcoesModalEM .emp-vaga-acoes-dialog{width:min(900px,94vw)!important;padding:38px 40px!important;border-radius:26px!important}
+#empVagaAcoesModalEM .emp-vaga-acoes-head{padding:0 64px 26px 0!important}
+#empVagaAcoesModalEM .emp-vaga-acoes-head small{font-size:12px!important;letter-spacing:.12em!important}
+#empVagaAcoesModalEM .emp-vaga-acoes-head h2{font-size:31px!important;line-height:1.15!important;margin:9px 0 8px!important;color:#153f5b!important}
+#empVagaAcoesModalEM .emp-vaga-acoes-head p{font-size:15px!important}
+#empVagaAcoesModalEM .emp-vaga-acoes-grid{gap:15px!important;margin-top:26px!important}
+#empVagaAcoesModalEM .emp-vaga-acoes-grid>button{min-height:108px!important;padding:18px 20px!important;gap:16px!important;border-radius:16px!important}
+#empVagaAcoesModalEM .emp-vaga-acoes-grid i{width:48px!important;height:48px!important;flex:0 0 48px!important;border-radius:13px!important}
+#empVagaAcoesModalEM .emp-vaga-acoes-grid i svg{width:23px!important;height:23px!important;fill:none!important;stroke:currentColor!important;stroke-width:1.9!important;stroke-linecap:round!important;stroke-linejoin:round!important}
+#empVagaAcoesModalEM .emp-vaga-acoes-grid b{font-size:15px!important}
+#empVagaAcoesModalEM .emp-vaga-acoes-grid small{font-size:12.5px!important;line-height:1.4!important}
+#empVagaAcoesModalEM .emp-vaga-acoes-x{width:44px!important;height:44px!important;font-size:25px!important}
+@media(max-width:650px){#empVagaAcoesModalEM .emp-vaga-acoes-dialog{padding:27px 22px!important}#empVagaAcoesModalEM .emp-vaga-acoes-head h2{font-size:25px!important}}
+`;document.head.appendChild(st);
+})();
