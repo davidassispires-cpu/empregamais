@@ -166,9 +166,8 @@ paginaMinhas.querySelectorAll(".em-vaga-acoes-v229").forEach(function(box){box.s
 }
 function reforcarV230(){corrigirPainelV230();setTimeout(corrigirPainelV230,120);setTimeout(corrigirPainelV230,600);}
 if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",reforcarV230);else reforcarV230();
-window.addEventListener("load",function(){setTimeout(corrigirPainelV230,1500);setTimeout(corrigirPainelV230,3200);});
-var obsV230=new MutationObserver(function(){setTimeout(corrigirPainelV230,20);});
-obsV230.observe(document.documentElement,{childList:true,subtree:true});
+window.addEventListener("load",function(){setTimeout(corrigirPainelV230,80);});
+/* v237: removido observer global que reprocessava o painel e sobrescrevia o layout novo após o carregamento. */
 })();
 //
 
