@@ -81,3 +81,23 @@ export async function updateCompany(company,data){
  if(!Array.isArray(rows)||!rows[0])throw new Error("Não foi possível salvar os dados da empresa.");
  return rows[0];
 }
+
+function digits(v){return String(v||"").replace(/\D/g,"")}
+function authEmail(cnpj){return digits(cnpj)+"@auth.empregamais.com.br"}
+export async function loginCompany(cnpj,password){
+ if(digits(cnpj).length!==14)throw new Error("Informe um CNPJ válido.");
+ if(!password)throw new Error("Informe sua senha.");
+ const a=await json("/auth/v1/token?grant_type=password",{method:"POST",headers:headers(""),body:JSON.stringify({email:authEmail(cnpj),password})});
+ if(!a?.access_token||!a?.user?.id)throw new Error("Não foi possível iniciar a sessão.");
+ saveSession(a);
+ const c=await getCompany();
+ if(!c||digits(c.cnpj)!==digits(cnpj)){await logoutCompany();throw new Error("O cadastro autenticado não corresponde ao CNPJ informado.");}
+ localStorage.removeItem("empregaMaisLogoutBloqueio");sessionStorage.removeItem("empregaMaisLogoutBloqueio");
+ return c;
+}
+export async function logoutCompany(){
+ const t=token();try{if(t)await fetch(URL+"/auth/v1/logout",{method:"POST",headers:headers(t)})}catch{}
+ for(const k of [TOKEN_KEY,REFRESH_KEY]){sessionStorage.removeItem(k);localStorage.removeItem(k)}
+ sessionStorage.removeItem("empresaSupabaseUserId");sessionStorage.removeItem("empresaSupabaseEmpresaId");
+}
+export async function hasCompanySession(){return !!(await getCompany())}
