@@ -41053,13 +41053,9 @@ function gerenciarVaga(id){
  try{
   irPara("painel-empresa");
   setTimeout(function(){
-   var pag=document.getElementById("pagina-painel-empresa");
-   if(pag)pag.classList.remove("em200-on");
-   if(typeof renderizarPainelEmpresa==="function")renderizarPainelEmpresa();
-   setTimeout(function(){
-    if(typeof alternarDetalhesVagaEmpresa==="function")alternarDetalhesVagaEmpresa(id);
-    var el=document.getElementById("btnDetalhesEmpresa_"+id);if(el)el.scrollIntoView({behavior:"smooth",block:"center"});
-   },120);
+   render();
+   if(typeof alternarDetalhesVagaEmpresa==="function")alternarDetalhesVagaEmpresa(id);
+   var el=document.getElementById("btnDetalhesEmpresa_"+id);if(el)el.scrollIntoView({behavior:"smooth",block:"center"});
   },30);
  }catch(e){}
 }
@@ -41098,7 +41094,7 @@ function render(){
  '<div class="em200-kpis"><div class="em200-kpi" onclick="em200Filtrar(\'ativa\',document.querySelector(\'.em200-tab[data-f=ativa]\'))"><b>'+ativas+'</b><span>Vagas ativas</span><small>Abertas para candidaturas</small></div><div class="em200-kpi" onclick="irPara(\'candidatos-empresa\')"><b>'+cand+'</b><span>Candidaturas recebidas</span><small>Em todas as suas vagas</small></div><div class="em200-kpi" onclick="em200Filtrar(\'analise\',document.querySelector(\'.em200-tab[data-f=analise]\'))"><b>'+analise+'</b><span>Em análise</span><small>Aguardando aprovação</small></div><div class="em200-kpi" onclick="em200Filtrar(\'encerrada\',document.querySelector(\'.em200-tab[data-f=encerrada]\'))"><b>'+encerradas+'</b><span>Vagas encerradas</span><small>Histórico da empresa</small></div></div>'+
  '<section class="em200-section"><div class="em200-section-head"><div><h2>Suas vagas publicadas</h2><p>Gerencie cada oportunidade e acesse os candidatos daquela vaga separadamente.</p></div></div>'+
  '<div class="em200-tabs"><button class="em200-tab ativo" data-f="todas" onclick="em200Filtrar(\'todas\',this)">Todas ('+vs.length+')</button><button class="em200-tab" data-f="ativa" onclick="em200Filtrar(\'ativa\',this)">Ativas ('+ativas+')</button><button class="em200-tab" data-f="analise" onclick="em200Filtrar(\'analise\',this)">Em análise ('+analise+')</button><button class="em200-tab" data-f="encerrada" onclick="em200Filtrar(\'encerrada\',this)">Encerradas ('+encerradas+')</button></div><div class="em200-list" id="em200Lista"></div>'+
- '<button class="em200-footer-link" onclick="document.getElementById(\'pagina-painel-empresa\').classList.remove(\'em200-on\');setTimeout(function(){if(typeof renderizarPainelEmpresa===\'function\')renderizarPainelEmpresa()},20)">Ver todas as minhas vagas e ferramentas →</button></section>';
+ '<button class="em200-footer-link" onclick="em200Filtrar(\'todas\',document.querySelector(\'.em200-tab[data-f=todas]\'))">Ver todas as minhas vagas e ferramentas →</button></section>';
  pag.classList.add("em200-on");renderLista();
 }
 window.em200Render=render;
