@@ -17,7 +17,7 @@ async function json(path,opt={}){
  return data;
 }
 async function ensureSession(){
- let t=token();if(t)return t;
+ let t=token();if(t){try{await json("/auth/v1/user",{headers:headers(t)});return t}catch{for(const k of [TOKEN_KEY]){sessionStorage.removeItem(k);localStorage.removeItem(k)}}}
  const rt=refreshToken();if(!rt)return "";
  const a=await json("/auth/v1/token?grant_type=refresh_token",{method:"POST",headers:headers(""),body:JSON.stringify({refresh_token:rt})});
  saveSession(a);return a.access_token||"";
@@ -47,16 +47,29 @@ export async function getJob(id,company){
  const rows=await json("/rest/v1/vagas?select=*&id=eq."+encodeURIComponent(id)+"&empresa_id=eq."+encodeURIComponent(company.id)+"&limit=1",{headers:headers()});
  return Array.isArray(rows)?rows[0]||null:null;
 }
+export const COMPANY_PLANS={basico:{nome:"Grátis",dias:30,vagas:3,destaques:0,urgentes:0,confidenciais:0},mensal:{nome:"Mensal",dias:30,vagas:6,destaques:1,urgentes:1,confidenciais:0},trimestral:{nome:"Trimestral",dias:90,vagas:12,destaques:3,urgentes:3,confidenciais:2},semestral:{nome:"Semestral",dias:180,vagas:25,destaques:5,urgentes:5,confidenciais:4}};
+function closingDate(days=30){const d=new Date();d.setDate(d.getDate()+days);return d.toISOString().slice(0,10)}
+export function planUsage(company,jobs){
+ const p=COMPANY_PLANS[company?.plano_id||company?.plano]||COMPANY_PLANS.basico,endRaw=company?.plano_valido_ate||company?.assinatura_fim||"",startRaw=company?.plano_ativado_em||company?.assinatura_inicio||company?.criado_em||"";
+ let start=startRaw?new Date(startRaw):new Date(),end=endRaw?new Date(endRaw):new Date(start.getTime()+p.dias*86400000);if(!startRaw)start=new Date(end.getTime()-p.dias*86400000);
+ const used=(jobs||[]).filter(v=>v.status!=="excluida"&&new Date(v.criado_em||0)>=start&&new Date(v.criado_em||0)<=end);
+ return {plano:p,vagas:used.length,destaques:used.filter(v=>v.destaque).length,urgentes:used.filter(v=>v.urgente).length,confidenciais:used.filter(v=>v.confidencial).length};
+}
 export async function saveJob(company,data,id=""){
  const t=await ensureSession();if(!t)throw new Error("Sua sessão expirou. Entre novamente.");
  if(!company?.id)throw new Error("Empresa não encontrada.");
  const u=await getCurrentUser();if(!u?.id)throw new Error("Usuário não autenticado.");
- const payload={user_id:u.id,empresa_id:company.id,empresa:company.nome||company.razao_social||"",empresa_cnpj:String(company.cnpj||"").replace(/\D/g,""),cargo:data.cargo,area:data.area||null,contrato:data.contrato||null,modalidade:data.modalidade||null,cep:data.cep||null,estado:data.estado||null,cidade:data.cidade||null,data_encerramento:data.data_encerramento||null,escolaridade:data.escolaridade||null,experiencia:data.experiencia||null,jornada:data.jornada||null,pcd:data.pcd||null,salario:data.salario||null,salario_combinar:!!data.salario_combinar,descricao:data.descricao,requisitos:data.requisitos||null,beneficios:data.beneficios||null,confidencial:!!data.confidencial,destaque:!!data.destaque,urgente:!!data.urgente,candidatura_tipo:data.candidatura_tipo||"portal",candidatura_email:data.candidatura_email||null,candidatura_whatsapp:data.candidatura_whatsapp||null,candidatura_link:data.candidatura_link||null,status:"pendente"};
- const path=id?"/rest/v1/vagas?id=eq."+encodeURIComponent(id)+"&empresa_id=eq."+encodeURIComponent(company.id):"/rest/v1/vagas";
- const method=id?"PATCH":"POST";if(id)payload.editado_em=new Date().toISOString();
+ const jobs=await getCompanyJobs(company),old=id?jobs.find(v=>String(v.id)===String(id)):null,usage=planUsage(company,jobs),p=usage.plano,free=p.nome==="Grátis";
+ if(!id&&usage.vagas>=p.vagas)throw new Error("Limite de publicações atingido para o plano "+p.nome+".");
+ if(!free&&data.destaque&&!(old?.destaque)&&usage.destaques>=p.destaques)throw new Error("Seu plano não possui Destaque disponível neste período.");
+ if(!free&&data.urgente&&!(old?.urgente)&&usage.urgentes>=p.urgentes)throw new Error("Seu plano não possui Urgência disponível neste período.");
+ if(data.confidencial&&!(old?.confidencial)&&usage.confidenciais>=p.confidenciais)throw new Error("Seu plano não possui vaga Confidencial disponível neste período.");
+ const destaqueSolicitado=free&&!!data.destaque&&!id,urgenciaSolicitada=free&&!!data.urgente&&!id;
+ const payload={user_id:u.id,empresa_id:company.id,empresa:company.nome||company.razao_social||"",empresa_cnpj:String(company.cnpj||"").replace(/\D/g,""),cargo:data.cargo,area:data.area||null,contrato:data.contrato||null,modalidade:data.modalidade||null,cep:data.cep||null,estado:data.estado||null,cidade:data.cidade||null,data_encerramento:data.data_encerramento||closingDate(30),escolaridade:data.escolaridade||null,experiencia:data.experiencia||null,jornada:data.jornada||null,pcd:data.pcd||null,salario:data.salario||null,salario_combinar:!!data.salario_combinar,descricao:data.descricao,requisitos:data.requisitos||null,beneficios:data.beneficios||null,confidencial:!!data.confidencial,destaque:destaqueSolicitado?false:!!data.destaque,urgente:urgenciaSolicitada?false:!!data.urgente,destaque_solicitado:destaqueSolicitado,urgencia_solicitada:urgenciaSolicitada,candidatura_tipo:data.candidatura_tipo||"portal",candidatura_email:data.candidatura_email||null,candidatura_whatsapp:data.candidatura_whatsapp||null,candidatura_link:data.candidatura_link||null,status:old?.status==="aprovada"?"pendente":(old?.status||"pendente")};
+ if(id){payload.editado_em=new Date().toISOString();payload.edicoes_apos_aprovacao=old?.status==="aprovada"?Number(old.edicoes_apos_aprovacao||0)+1:Number(old?.edicoes_apos_aprovacao||0);payload.motivo_reprovacao=null}
+ const path=id?"/rest/v1/vagas?id=eq."+encodeURIComponent(id)+"&empresa_id=eq."+encodeURIComponent(company.id):"/rest/v1/vagas",method=id?"PATCH":"POST";
  const rows=await json(path,{method,headers:{...headers(t),Prefer:"return=representation"},body:JSON.stringify(payload)});
- if(!Array.isArray(rows)||!rows[0])throw new Error("O Supabase não confirmou o salvamento da vaga.");
- return rows[0];
+ if(!Array.isArray(rows)||!rows[0])throw new Error("O Supabase não confirmou o salvamento da vaga.");return rows[0];
 }
 
 export async function getApplications(){
