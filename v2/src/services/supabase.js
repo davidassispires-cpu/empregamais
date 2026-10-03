@@ -77,12 +77,16 @@ export async function getApplications(){
  const rows=await json("/rest/v1/candidaturas?select=*&order=criado_em.desc",{headers:headers(t)});
  return Array.isArray(rows)?rows:[];
 }
-export async function updateApplication(id,status){
+export async function updateApplication(id,status,extra={}){
  const t=await ensureSession();if(!t)throw new Error("Sua sessão expirou. Entre novamente.");
- const now=new Date().toISOString();
- const rows=await json("/rest/v1/candidaturas?id=eq."+encodeURIComponent(id),{method:"PATCH",headers:{...headers(t),Prefer:"return=representation"},body:JSON.stringify({status,atualizado_em:now})});
- if(!Array.isArray(rows)||!rows[0])throw new Error("Não foi possível atualizar a candidatura.");
- return rows[0];
+ const now=new Date().toISOString(),current=await json("/rest/v1/candidaturas?select=*&id=eq."+encodeURIComponent(id)+"&limit=1",{headers:headers(t)}),old=Array.isArray(current)?current[0]:null;
+ if(!old)throw new Error("Candidatura não encontrada.");
+ const history=Array.isArray(old.historico)?old.historico.slice():[];if(status&&status!==old.status)history.push({status,data:now});
+ const body={status:status||old.status,atualizado_em:now,historico:history};
+ if("entrevista" in extra)body.entrevista=extra.entrevista||null;
+ if(status==="Contratado")body.contratado_em=now;else if(status)body.contratado_em=null;
+ const rows=await json("/rest/v1/candidaturas?id=eq."+encodeURIComponent(id),{method:"PATCH",headers:{...headers(t),Prefer:"return=representation"},body:JSON.stringify(body)});
+ if(!Array.isArray(rows)||!rows[0])throw new Error("Não foi possível atualizar a candidatura.");return rows[0];
 }
 
 export async function updateCompany(company,data){
