@@ -27,7 +27,7 @@ async function ensureSession(){
 }
 export async function getCurrentUser(){
  const t=await ensureSession();if(!t)return null;
- try{return await json("/auth/v1/user",{headers:headers(t)})}catch{return null}
+ try{return await json("/auth/v1/user",{headers:headers(t)})}catch{clearSession();return null}
 }
 export async function getCompany(){
  const u=await getCurrentUser();if(!u?.id)return null;
@@ -88,7 +88,7 @@ export async function updateApplication(id,status,extra={}){
  const history=Array.isArray(old.historico)?old.historico.slice():[];if(status&&status!==old.status)history.push({status,data:now});
  const body={status:status||old.status,atualizado_em:now,historico:history};
  if("entrevista" in extra)body.entrevista=extra.entrevista||null;
- if(status==="Contratado")body.contratado_em=now;else if(status)body.contratado_em=null;
+ if(status==="Contratado")body.contratado_em=old.contratado_em||now;else if(status&&old.status==="Contratado")body.contratado_em=null;
  const rows=await json("/rest/v1/candidaturas?id=eq."+encodeURIComponent(id),{method:"PATCH",headers:{...headers(t),Prefer:"return=representation"},body:JSON.stringify(body)});
  if(!Array.isArray(rows)||!rows[0])throw new Error("Não foi possível atualizar a candidatura.");return rows[0];
 }
