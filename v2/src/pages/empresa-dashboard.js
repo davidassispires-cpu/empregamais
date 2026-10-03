@@ -1,6 +1,6 @@
 import { EmpresaHeader } from '../ui/empresa-header.js';
 import { KpiCard } from '../ui/kpi-card.js';
-import { getCompany,getCompanyJobs,jobStatus } from '../services/supabase.js';
+import { getCompany,getCompanyJobs,jobStatus,updateJobStatus,deleteJob } from '../services/supabase.js';
 
 let jobsCache=[];
 export function renderEmpresaDashboard(){
@@ -13,18 +13,34 @@ function renderRows(){
  const q=(document.querySelector('#jobSearch')?.value||'').trim().toLowerCase(),st=document.querySelector('#jobStatusFilter')?.value||'',ord=document.querySelector('#jobOrder')?.value||'recent';
  let vs=jobsCache.filter(v=>{const txt=[val(v,'titulo','cargo'),v.cidade,val(v,'uf','estado')].join(' ').toLowerCase();return(!q||txt.includes(q))&&(!st||jobStatus(v)===st)});
  if(ord==='az')vs.sort((a,b)=>String(val(a,'titulo','cargo')).localeCompare(String(val(b,'titulo','cargo')),'pt-BR'));
- box.innerHTML=vs.length?vs.map(v=>`<article class="job-row"><div class="job-main"><strong>${esc(val(v,'titulo','cargo')||'Vaga')}</strong><small>${esc([v.cidade,val(v,'uf','estado')].filter(Boolean).join(' - ')||'Localização não informada')} · ${esc(v.modalidade||'Modalidade não informada')}</small></div><span class="status status-${jobStatus(v).toLowerCase().replaceAll(' ','-').replace('á','a')}">${jobStatus(v)}</span><div class="metric"><strong>${esc(val(v,'candidaturas_count','total_candidaturas')||0)}</strong><small>Candidaturas</small></div><div class="metric"><strong>${esc(val(v,'visualizacoes','views')||0)}</strong><small>Visualizações</small></div><div class="actions"><a href="./?pagina=candidatos-empresa&vaga=${encodeURIComponent(v.id||'')}" class="action primary">Gerenciar</a><a href="./?pagina=publicar-vaga&editar=${encodeURIComponent(v.id||'')}" class="action">Editar</a><button class="action more" type="button" data-job="${esc(v.id||'')}">•••</button></div></article>`).join(''):'<div class="empty"><strong>Nenhuma vaga encontrada</strong><p>Ajuste os filtros ou publique uma nova oportunidade.</p></div>';
+ box.innerHTML=vs.length?vs.map(v=>`<article class="job-row"><div class="job-main"><strong>${esc(val(v,'titulo','cargo')||'Vaga')}</strong><small>${esc([v.cidade,val(v,'uf','estado')].filter(Boolean).join(' - ')||'Localização não informada')} · ${esc(v.modalidade||'Modalidade não informada')}</small></div><span class="status status-${jobStatus(v).toLowerCase().replaceAll(' ','-').replace('á','a')}">${jobStatus(v)}</span><div class="metric"><strong>${esc(val(v,'candidaturas_count','total_candidaturas')||0)}</strong><small>Candidaturas</small></div><div class="metric"><strong>${esc(val(v,'visualizacoes','views')||0)}</strong><small>Visualizações</small></div><div class="actions"><a href="./?pagina=candidatos-empresa&vaga=${encodeURIComponent(v.id||'')}" class="action primary">Gerenciar</a><a href="./?pagina=publicar-vaga&editar=${encodeURIComponent(v.id||'')}" class="action">Editar</a><button class="action more" type="button" data-job="${esc(v.id||'')}">•••</button><div class="job-menu" data-menu="${esc(v.id||'')}"><button data-do="close" data-id="${esc(v.id||'')}">Encerrar vaga</button><button data-do="reopen" data-id="${esc(v.id||'')}">Reabrir / reativar</button><button class="danger" data-do="delete" data-id="${esc(v.id||'')}">Excluir vaga</button></div></div></article>`).join(''):'<div class="empty"><strong>Nenhuma vaga encontrada</strong><p>Ajuste os filtros ou publique uma nova oportunidade.</p></div>';
 }
 export async function hydrateEmpresaDashboard(){
  const k=document.querySelector('#kpis'),jobs=document.querySelector('#jobs');if(!k||!jobs)return;
  try{
   const company=await getCompany();
   if(!company){k.innerHTML='';jobs.innerHTML='<div class="empty"><strong>Sessão empresarial necessária</strong><p>Entre pela versão atual do portal para autenticar a empresa. A V2 reutiliza a mesma sessão do Supabase.</p></div>';return}
-  jobsCache=await getCompanyJobs(company);
+  jobsCache=(await getCompanyJobs(company)).filter(v=>v.status!=='excluida');
   const ativa=jobsCache.filter(v=>jobStatus(v)==='Ativa').length,analise=jobsCache.filter(v=>jobStatus(v)==='Em análise').length,enc=jobsCache.filter(v=>jobStatus(v)==='Encerrada').length;
   const destaque=jobsCache.filter(v=>jobStatus(v)==='Ativa'&&(v.destaque===true||v.em_destaque===true)).length,urgente=jobsCache.filter(v=>jobStatus(v)==='Ativa'&&(v.urgente===true||v.urgencia===true)).length,confid=jobsCache.filter(v=>jobStatus(v)==='Ativa'&&v.confidencial===true).length;
   k.innerHTML=[['Vagas ativas no site',ativa,'Publicadas no portal'],['Em análise',analise,'Aguardando publicação'],['Vagas encerradas',enc,'Processos finalizados'],['Vagas em destaque',destaque+' em uso','Vagas ativas'],['Vagas com urgência',urgente+' em uso','Vagas ativas'],['Vagas confidenciais',confid+' em uso','Vagas ativas']].map(c=>KpiCard(...c)).join('');
   renderRows();
-  document.querySelector('#jobSearch').oninput=renderRows;document.querySelector('#jobStatusFilter').onchange=renderRows;document.querySelector('#jobOrder').onchange=renderRows;
+  document.querySelector('#jobSearch').oninput=renderRows;document.querySelector('#jobStatusFilter').onchange=renderRows;document.querySelector('#jobOrder').onchange=renderRows;bindJobActions(company);
  }catch(e){console.error(e);jobs.innerHTML='<div class="empty error"><strong>Não foi possível carregar as vagas</strong><p>'+esc(e.message)+'</p></div>'}
+}
+function bindJobActions(company){
+ const box=document.querySelector('#jobs');if(!box)return;
+ box.onclick=async ev=>{
+  const more=ev.target.closest('.more');if(more){ev.stopPropagation();const menu=box.querySelector('[data-menu="'+more.dataset.job+'"]');box.querySelectorAll('.job-menu.open').forEach(x=>x!==menu&&x.classList.remove('open'));menu?.classList.toggle('open');return}
+  const b=ev.target.closest('[data-do]');if(!b)return;const id=b.dataset.id,job=jobsCache.find(x=>String(x.id)===String(id));if(!job)return;
+  const action=b.dataset.do;
+  if(action==='close'&&!confirm('Encerrar esta vaga? Ela deixará de receber novas candidaturas.'))return;
+  if(action==='reopen'&&!confirm('Reabrir esta vaga? Ela será enviada novamente para análise.'))return;
+  if(action==='delete'&&!confirm('Excluir esta vaga? Ela será removida da sua lista.'))return;
+  b.disabled=true;try{
+   if(action==='delete')await deleteJob(company,id);else await updateJobStatus(company,id,action==='close'?'encerrada':'pendente');
+   jobsCache=(await getCompanyJobs(company)).filter(v=>v.status!=='excluida');renderRows();bindJobActions(company);
+  }catch(e){alert(e.message)}finally{b.disabled=false}
+ };
+ document.addEventListener('click',()=>box.querySelectorAll('.job-menu.open').forEach(x=>x.classList.remove('open')),{once:true});
 }
