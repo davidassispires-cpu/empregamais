@@ -17606,4 +17606,58 @@ window.trocarComoFuncionaEM=function(tipo,btn){
 @media(max-width:1100px){#pagina-home .home-hero-compacto-em .home-hero-content{width:calc(100% - 36px)!important}#pagina-home .home-hero-compacto-em .busca.busca-home{grid-template-columns:1.4fr 1.12fr .8fr .8fr 1fr!important;gap:9px!important}#pagina-home .home-hero-cv-art{right:-110px!important;opacity:.32!important}}
 @media(max-width:820px){#pagina-home .home-hero-compacto-em .home-hero-copy h1,#pagina-home .home-hero-compacto-em .home-hero-copy h1 strong{font-size:34px!important;white-space:normal!important}#pagina-home .home-hero-compacto-em .busca.busca-home{grid-template-columns:1fr 1fr!important;gap:12px!important}#pagina-home .home-hero-compacto-em .home-search-submit{grid-column:1/-1!important}#pagina-home .home-hero-cv-art{right:-150px!important;opacity:.15!important}}
 @media(max-width:620px){#pagina-home .home-hero-visual.home-hero-compacto-em{padding:28px 0 30px!important}#pagina-home .home-hero-compacto-em .home-hero-content{width:calc(100% - 28px)!important;gap:22px!important}#pagina-home .home-hero-compacto-em .home-hero-copy h1{font-size:29px!important;white-space:normal!important}#pagina-home .home-hero-compacto-em .home-hero-copy h1 strong{display:block!important;margin:4px 0 0!important;font-size:34px!important}#pagina-home .home-hero-compacto-em .busca.busca-home{grid-template-columns:1fr!important;gap:12px!important}#pagina-home .home-hero-compacto-em .home-search-field,#pagina-home .home-hero-compacto-em .home-search-submit{grid-column:1!important;width:100%!important}#pagina-home .home-hero-compacto-em .home-search-field input,#pagina-home .home-hero-compacto-em .home-search-field select,#pagina-home .home-hero-compacto-em .home-search-submit{height:58px!important}#pagina-home .home-hero-compacto-em .home-search-field:after{bottom:20px!important}#pagina-home .home-hero-cv-art{display:none!important}}
-</style></body></html>
+</style>
+<style id="EMPREGAMAI-PUBLICAR-HOTFIX-V302">
+/* Regra final canônica: nenhuma rolagem interna no publicar */
+html:has(#pagina-publicar.ativa),body:has(#pagina-publicar.ativa){height:auto!important;overflow-y:auto!important;overflow-x:hidden!important}
+#pagina-publicar.ativa{height:auto!important;max-height:none!important;min-height:calc(100vh - 72px)!important;overflow:visible!important;padding:22px 0 48px!important}
+#pagina-publicar.ativa>.em-publish-layout{height:auto!important;max-height:none!important;min-height:0!important;overflow:visible!important;align-items:start!important}
+#pagina-publicar.ativa .em-publish-main{height:auto!important;max-height:none!important;min-height:0!important;overflow:visible!important;overflow-y:visible!important;overflow-x:visible!important;scrollbar-gutter:auto!important;padding-right:0!important}
+#pagina-publicar.ativa .job-shell,#pagina-publicar.ativa .job-card{height:auto!important;max-height:none!important;overflow:visible!important}
+#pagina-publicar.ativa .em-publish-visual{height:auto!important;max-height:none!important;overflow:hidden!important;position:sticky!important;top:88px!important}
+/* elimina restos do formulário antigo que ainda são injetados por scripts */
+#pagina-publicar .em-localizacao-bloco,#pagina-publicar .em-tipo-local,#pagina-publicar .em-rh-cliente,#pagina-publicar #localAjudaVaga,#pagina-publicar #m3EnderecoSlot,#pagina-publicar #m3PrivacidadeSlot{display:none!important}
+#pagina-publicar #modalidadeVaga{display:none!important}
+#pagina-publicar #logradouroVaga,#pagina-publicar #numeroVaga,#pagina-publicar #complementoVaga{display:none!important}
+#pagina-publicar #logoVagaInput,#pagina-publicar input[type=file]{display:none!important}
+/* identidade e cabeçalho */
+#pagina-publicar .em-company-profile-card{border-left:3px solid #123e70!important;background:#f7faff!important}
+#pagina-publicar .em-publish-main .job-shell:before{color:#0d3765!important}
+#pagina-publicar .job-progress{background:#edf3f8!important}
+#pagina-publicar .job-step.ativo{color:#0d3765!important}
+#pagina-publicar .job-step.ativo b{background:#0d3765!important;color:#fff!important}
+#pagina-publicar .job-card{border:1px solid #d9e4ee!important;border-left:4px solid #0d3765!important;background:#fff!important}
+#pagina-publicar .job-card>h2{color:#0d3765!important}
+#pagina-publicar .btn-azul,#pagina-publicar .btn-publicar,#pagina-publicar .em-add-city{color:#0d3765!important}
+#pagina-publicar .btn-azul,#pagina-publicar .btn-publicar{background:#0d3765!important;color:#fff!important;border-color:#0d3765!important}
+/* novo bloco localização */
+#pagina-publicar .em-location-simple{display:block!important;background:#f9fbfd!important;border:1px solid #d9e4ee!important;border-radius:15px!important;padding:18px!important}
+#pagina-publicar .em-location-simple .em-secao-titulo{display:flex!important;align-items:center!important;justify-content:flex-start!important;gap:10px!important;text-align:left!important;border-bottom:1px solid #e2eaf1!important;padding-bottom:12px!important;margin-bottom:14px!important}
+#pagina-publicar .em-location-simple .em-secao-titulo>span{width:34px!important;height:34px!important;display:grid!important;place-items:center!important;border-radius:9px!important;background:#e7f0f8!important;color:#0d3765!important}
+#pagina-publicar .em-location-simple h3{margin:0!important;color:#0d3765!important;font-size:16px!important}
+#pagina-publicar .em-location-simple p{margin:2px 0 0!important;color:#718399!important;font-size:11px!important}
+#pagina-publicar .em-modalidade-cards span{border-color:#d4e0eb!important;color:#3e5872!important;background:#fff!important}
+#pagina-publicar .em-modalidade-cards input:checked+span{border-color:#0d3765!important;background:#eaf2fa!important;color:#0d3765!important;box-shadow:inset 0 0 0 1px #0d3765!important}
+#pagina-publicar .em-location-fields{margin-top:4px!important}
+#pagina-publicar .em-location-fields label{text-align:left!important;color:#284864!important}
+#pagina-publicar .em-location-fields input{background:#fff!important}
+#pagina-publicar .em-add-city{display:inline-flex!important;margin:13px 0 0!important;padding:0!important;background:transparent!important;border:0!important}
+/* esconde qualquer campo órfão inserido logo depois do bloco novo */
+#pagina-publicar .em-location-simple~input#logradouroVaga,
+#pagina-publicar .em-location-simple~input#numeroVaga,
+#pagina-publicar .em-location-simple~input#complementoVaga{display:none!important}
+</style>
+<script id="EMPREGAMAI-PUBLICAR-HOTFIX-V302-JS">
+(function(){
+ function limpar(){
+  var pg=document.getElementById('pagina-publicar');if(!pg)return;
+  ['logradouroVaga','numeroVaga','complementoVaga'].forEach(function(id){var e=document.getElementById(id);if(e){e.type='hidden';e.style.display='none'}});
+  var sel=document.getElementById('modalidadeVaga');if(sel){sel.hidden=true;sel.style.display='none'}
+  pg.querySelectorAll('.em-localizacao-bloco,.em-tipo-local,.em-rh-cliente,#localAjudaVaga,#m3EnderecoSlot,#m3PrivacidadeSlot').forEach(function(e){e.style.setProperty('display','none','important')});
+  var main=pg.querySelector('.em-publish-main');if(main){main.style.setProperty('overflow','visible','important');main.style.setProperty('height','auto','important');main.style.setProperty('max-height','none','important')}
+ }
+ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',limpar);else limpar();
+ setTimeout(limpar,300);setTimeout(limpar,1000);setTimeout(limpar,2200);
+ new MutationObserver(limpar).observe(document.documentElement,{childList:true,subtree:true});
+})();
+</script></body></html>
