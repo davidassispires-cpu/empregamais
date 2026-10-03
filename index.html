@@ -41236,4 +41236,40 @@ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',
  var p=new URLSearchParams(location.search).get('pagina');
  if(p==='login-empresa'||p==='cadastro-empresa')setTimeout(function(){mostrar(p)},0);
 })();
-//]]></script></body></html>
+//]]></script><style id="em-pr-v243-lock-canonico">
+#pagina-painel-empresa.ativa{display:block!important}
+#pagina-painel-empresa.ativa>*>:not(*){}
+#pagina-painel-empresa.ativa>#emPainelRecrutadorNovoV1{display:grid!important;visibility:visible!important;opacity:1!important}
+#pagina-painel-empresa.ativa>.page-header,
+#pagina-painel-empresa.ativa>.container-dashboard,
+#pagina-painel-empresa.ativa>#painelReferenciaRecrutadorEM{display:none!important}
+</style>
+<script id="em-pr-v243-lock-canonico-js">
+(function(){
+ if(window.__EM_PR_V243_LOCK)return;window.__EM_PR_V243_LOCK=true;
+ function limpar(){
+  var pg=document.getElementById("pagina-painel-empresa");if(!pg)return;
+  pg.classList.remove("em-pr-subtela-v3");
+  var ref=document.getElementById("painelReferenciaRecrutadorEM");if(ref)ref.remove();
+  var novo=document.getElementById("emPainelRecrutadorNovoV1");
+  if(!novo && typeof window.atualizarPainelRecrutadorModernoV1==="function"){
+    try{window.atualizarPainelRecrutadorModernoV1()}catch(e){}
+    novo=document.getElementById("emPainelRecrutadorNovoV1");
+  }
+ }
+ var antiga=window.renderizarPainelEmpresa;
+ window.renderizarPainelEmpresa=function(){
+   var pg=document.getElementById("pagina-painel-empresa");
+   if(pg&&pg.classList.contains("ativa")){
+     limpar();
+     if(typeof window.atualizarPainelRecrutadorModernoV1==="function")try{window.atualizarPainelRecrutadorModernoV1()}catch(e){}
+     return;
+   }
+   if(typeof antiga==="function")return antiga.apply(this,arguments);
+ };
+ document.addEventListener("DOMContentLoaded",function(){setTimeout(limpar,0);setTimeout(limpar,500);setTimeout(limpar,1800)});
+ window.addEventListener("load",function(){setTimeout(limpar,0);setTimeout(limpar,1200);setTimeout(limpar,3500)});
+ window.addEventListener("storage",function(){setTimeout(limpar,0)});
+})();
+</script>
+</body></html>
