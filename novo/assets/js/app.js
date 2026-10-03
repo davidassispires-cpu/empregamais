@@ -5999,3 +5999,31 @@ abrirMenuVagaEM=function(ev,id){
 @media(max-width:650px){#empVagaAcoesModalEM .emp-vaga-acoes-dialog{padding:27px 22px!important}#empVagaAcoesModalEM .emp-vaga-acoes-head h2{font-size:25px!important}}
 `;document.head.appendChild(st);
 })();
+
+/* EMPREGAMAIS-MODAL-ACOES-VAGA-IDENTICO-REF-V5 */
+(function(){
+ const antigo=document.getElementById('emModalAcoesVagaIdenticoRefV5');if(antigo)antigo.remove();
+ const st=document.createElement('style');st.id='emModalAcoesVagaIdenticoRefV5';st.textContent=`
+#empVagaAcoesModalEM .emp-vaga-acoes-dialog{width:min(1040px,94vw)!important;max-height:92vh!important;overflow:auto!important;padding:44px 46px 42px!important;border-radius:28px!important;background:#fff!important}
+#empVagaAcoesModalEM .emp-vaga-acoes-head{padding:0 72px 28px 0!important;border-bottom:1px solid #dbe7ef!important}
+#empVagaAcoesModalEM .emp-vaga-acoes-head>small{display:block!important;font-size:13px!important;font-weight:800!important;letter-spacing:.12em!important;color:#0871c9!important;margin-bottom:8px!important}
+#empVagaAcoesModalEM .emp-vaga-acoes-head h2{font-size:32px!important;font-weight:800!important;line-height:1.16!important;color:#163f59!important;margin:0 0 10px!important}
+#empVagaAcoesModalEM .emp-vaga-acoes-head p{font-size:16px!important;line-height:1.45!important;color:#71899b!important;margin:0!important}
+#empVagaAcoesModalEM .emp-vaga-acoes-grid{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:16px!important;margin-top:28px!important}
+#empVagaAcoesModalEM .emp-vaga-acoes-grid>button{min-height:118px!important;padding:20px 22px!important;display:flex!important;align-items:center!important;justify-content:flex-start!important;gap:18px!important;border:1px solid #cbdce8!important;border-radius:17px!important;background:#fafdff!important;text-align:left!important;color:#315c75!important}
+#empVagaAcoesModalEM .emp-vaga-acoes-grid>button:hover{transform:translateY(-1px)!important;box-shadow:0 10px 24px rgba(28,73,104,.09)!important}
+#empVagaAcoesModalEM .emp-vaga-acoes-grid>button i{width:54px!important;height:54px!important;flex:0 0 54px!important;display:grid!important;place-items:center!important;border-radius:14px!important;background:#eaf4ff!important;color:#0874ce!important}
+#empVagaAcoesModalEM .emp-vaga-acoes-grid>button i svg{width:26px!important;height:26px!important;fill:none!important;stroke:currentColor!important;stroke-width:1.9!important;stroke-linecap:round!important;stroke-linejoin:round!important}
+#empVagaAcoesModalEM .emp-vaga-acoes-grid>button span{display:block!important;min-width:0!important}
+#empVagaAcoesModalEM .emp-vaga-acoes-grid>button b{display:block!important;font-size:17px!important;font-weight:800!important;line-height:1.25!important;margin-bottom:6px!important;color:inherit!important}
+#empVagaAcoesModalEM .emp-vaga-acoes-grid>button small{display:block!important;font-size:13.5px!important;font-weight:500!important;line-height:1.4!important;color:#728a9c!important}
+#empVagaAcoesModalEM .emp-vaga-acoes-grid>button.principal{background:#1476c8!important;border-color:#1476c8!important;color:#fff!important}
+#empVagaAcoesModalEM .emp-vaga-acoes-grid>button.principal i{background:rgba(255,255,255,.16)!important;color:#fff!important}
+#empVagaAcoesModalEM .emp-vaga-acoes-grid>button.principal small{color:#e3f1fc!important}
+#empVagaAcoesModalEM .emp-vaga-acoes-grid>button.encerrar-processo{grid-column:1/-1!important;background:#fff7f4!important;border-color:#f0c7b7!important;color:#b44b23!important}
+#empVagaAcoesModalEM .emp-vaga-acoes-grid>button.encerrar-processo i{background:#ffe9df!important;color:#df5a22!important}
+#empVagaAcoesModalEM .emp-vaga-acoes-grid>button.encerrado{grid-column:1/-1!important}
+#empVagaAcoesModalEM .emp-vaga-acoes-x{width:48px!important;height:48px!important;border-radius:13px!important;font-size:28px!important}
+@media(max-width:700px){#empVagaAcoesModalEM .emp-vaga-acoes-dialog{padding:30px 22px!important}#empVagaAcoesModalEM .emp-vaga-acoes-grid{grid-template-columns:1fr!important}#empVagaAcoesModalEM .emp-vaga-acoes-grid>button.encerrar-processo,#empVagaAcoesModalEM .emp-vaga-acoes-grid>button.encerrado{grid-column:auto!important}#empVagaAcoesModalEM .emp-vaga-acoes-head h2{font-size:25px!important}}
+`;document.head.appendChild(st);
+})();
