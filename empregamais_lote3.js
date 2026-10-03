@@ -875,7 +875,8 @@ if(ok)localStorage.setItem(k,JSON.stringify(a));
 });
 }
 function atualizar(){
-try{if(typeof montarPainelReferenciaRecrutadorEM==="function")montarPainelReferenciaRecrutadorEM();}catch(e){}
+/* v239: não remontar o painel inteiro ao atualizar dados de plano/vaga.
+   A remontagem destruía o dashboard novo e restaurava a estrutura legada. */
 setTimeout(injetarAcoes,140);
 setTimeout(atualizarFormulario,180);
 setTimeout(cardPlano,220);
