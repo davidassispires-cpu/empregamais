@@ -3,12 +3,14 @@ import { renderJobForm,hydrateJobForm } from './pages/job-form.js';
 import { renderCandidates,hydrateCandidates } from './pages/candidates.js';
 import { renderCompanyHome,hydrateCompanyHome } from './pages/company-home.js';
 import { CompanyShell,bindCompanyShell } from './ui/company-shell.js';
+import { renderCompanyProfile,hydrateCompanyProfile } from './pages/company-profile.js';
 
 const routes={
  'painel-empresa':[renderCompanyHome,hydrateCompanyHome],
  'vagas-empresa':[renderEmpresaDashboard,hydrateEmpresaDashboard],
  'publicar-vaga':[renderJobForm,hydrateJobForm],
- 'candidatos-empresa':[renderCandidates,hydrateCandidates]
+ 'candidatos-empresa':[renderCandidates,hydrateCandidates],
+ 'minha-empresa':[renderCompanyProfile,hydrateCompanyProfile]
 };
 async function router(){
  const pagina=new URLSearchParams(location.search).get('pagina')||'painel-empresa',route=routes[pagina]||routes['painel-empresa'];
