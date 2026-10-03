@@ -16245,59 +16245,7 @@ Sobre a empresa
 Crie uma senha
 </label><input class='campo' id='cadEmpresaSenha' minlength='4' required='required' type='password'/></div><button class='btn btn-empresa btn-total btn-grande' type='submit'>
 Cadastrar empresa
-</button></form></div></div></div><div class='pagina' id='pagina-painel-empresa'><section class='page-header empresa-header'><div class='page-header-inner'><h1>
-Painel da empresa
-</h1><p id='painelEmpresaNome'>
-Administre suas vagas.
-</p></div></section><div class='container-dashboard painel-empresa-layout'><aside class='painel-empresa-sidebar'><div class='painel-sidebar-empresa'><strong id='sidebarEmpresaNome'>Sua empresa</strong><span id='sidebarEmpresaPlano'>Plano Essencial</span></div><div class='painel-side-nav'><button class='ativo' onclick='irPara(&quot;painel-empresa&quot;)' type='button'>Visão geral</button><button onclick='irPara(&quot;painel-empresa&quot;)' type='button'>Minhas vagas</button><button onclick='irPara(&quot;candidatos-empresa&quot;)' type='button'>Candidatos</button><button class='publicar' onclick='irPara(&quot;publicar&quot;)' type='button'>+ Publicar vaga</button><button onclick='irPara(&quot;planos&quot;)' type='button'>Planos</button><button class='verificacao-destaque' id='btnMenuVerificacaoEmpresa' onclick='irPara(&quot;verificacao-empresa&quot;)' type='button'>&#10003; Verificar empresa</button><button class='sair' onclick='sairTodasContas()' type='button'>Sair</button></div><div class='painel-plano-mini'><div class='painel-plano-mini-top'><strong id='painelPlanoMiniNome'>Essencial</strong><span id='painelPlanoMiniUso'>0/5</span></div><p id='painelPlanoMiniTexto'>Vagas utilizadas neste mês</p><div class='painel-plano-barra'><div id='painelPlanoMiniBarra'/></div><button onclick='irPara(&quot;planos&quot;)' type='button'>Conhecer planos</button></div></aside><main class='painel-empresa-main'><div class='dashboard-topo'><div><h1>
-Minhas vagas publicadas
-</h1><p>
-As vagas enviadas precisam ser aprovadas pela administração para aparecer no portal.
-</p></div><button class='btn btn-empresa' onclick='irPara(&quot;publicar&quot;)' type='button'>
-+ Publicar nova vaga
-</button></div><div class='dashboard-nav'><button onclick='irPara(&quot;painel-empresa&quot;)' type='button'>
-&#9635; Minhas vagas
-</button><button onclick='irPara(&quot;candidatos-empresa&quot;)' type='button'>
-👥 Candidatos
-</button><button onclick='irPara(&quot;publicar&quot;)' type='button'>
-+ Publicar vaga
-</button></div><div class='upgrade-plano-box oculto' id='upgradePlanoEssencial'><div class='upgrade-plano-inner'><div class='upgrade-plano-info'><div aria-hidden='true' class='upgrade-plano-icone'><svg viewBox='0 0 24 24'><path d='M4 19V5'/><path d='M4 19h16'/><path d='M7 15l4-4 3 2 5-6'/><path d='M16 7h3v3'/></svg></div><div class='upgrade-plano-texto'><h3>Quer dar mais destaque às suas vagas?</h3><p>
-Você está no plano Essencial, com até 100 vagas gratuitas por mês.
-Conheça os planos Profissional e Premium para publicar mais vagas,
-ganhar destaque no portal e aumentar a visibilidade das oportunidades.
-</p><div class='upgrade-plano-beneficios'><span>Vagas em destaque</span><span>Mais vagas por mês</span><span>Mais tempo de publicação</span><span>Maior visibilidade</span></div></div></div><div class='upgrade-plano-acao'><button class='btn btn-azul' onclick='irPara(&quot;planos&quot;)' type='button'>
-Conhecer planos
-</button></div></div></div><div class='verificacao-card' id='cardVerificacaoEmpresa'><div class='verificacao-card-topo'><div><h2>Verificação da empresa</h2><p id='textoVerificacaoEmpresa'>Complete seu perfil empresarial e solicite a verificação para aumentar a credibilidade das suas vagas.</p><div class='verificacao-beneficios'><span>Selo de empresa verificada</span><span>Nome clicável nas vagas</span><span>Página institucional</span><span>Mais credibilidade</span></div></div><div><span class='selo-verificacao' id='seloStatusVerificacaoEmpresa'>Não verificada</span></div></div><button class='btn btn-azul' id='btnSolicitarVerificacaoEmpresa' onclick='irPara(&quot;verificacao-empresa&quot;)' style='margin-top:17px;' type='button'>
-Solicitar verificação
-</button></div><div class='metricas'><div class='metrica'><span>
-Vagas aprovadas
-</span><strong id='empresaAprovadas'>
-0
-</strong></div><div class='metrica'><span>
-Aguardando aprovação
-</span><strong id='empresaPendentes'>
-0
-</strong></div><div class='metrica'><span>
-Candidaturas
-</span><strong id='empresaCandidaturas'>
-0
-</strong></div><div class='metrica'><span>
-Visualizações
-</span><strong id='empresaVisualizacoes'>
-0
-</strong></div></div><section class='vagas-aprovadas-painel painel-vagas-pendentes'><div class='vagas-aprovadas-painel-cab'><div><h2>Vagas em análise</h2><p>Oportunidades enviadas e aguardando aprovação da administração.</p></div></div><div class='vagas-aprovadas-lista' id='listaVagasPendentesEmpresa'/></section><section class='vagas-aprovadas-painel'><div class='vagas-aprovadas-painel-cab'><div><h2>Vagas aprovadas</h2><p>Acesse, edite ou encerre suas vagas que já estão publicadas.</p></div><button class='btn btn-empresa' onclick='irPara(&quot;publicar&quot;)' type='button'>+ Publicar vaga</button></div><div class='vagas-aprovadas-lista' id='listaVagasAprovadasEmpresa'/></section><div class='painel-recursos'><h3>Recursos da sua área empresarial</h3><p>Acesse rapidamente as principais funções da sua conta.</p><div class='painel-recursos-grid'><div class='painel-recurso'><strong>Publicar vagas</strong><span>Cadastre novas oportunidades de forma rápida.</span></div><div class='painel-recurso'><strong>Acompanhar candidaturas</strong><span>Consulte os candidatos recebidos nas suas vagas.</span></div><div class='painel-recurso'><strong>Mais visibilidade</strong><span>Conheça os planos com vagas em destaque.</span></div></div></div><section class='admin-denuncias-box'><h2>Denúncias de vagas</h2><p>Veja denúncias enviadas pelos candidatos e marque os casos analisados.</p><div id='listaDenunciasAdminEstavel'/></section><div class='admin-destaque-exclusivo-aviso'><strong>Destaque controlado pelo administrador:</strong>
-todas as vagas do portal aparecem abaixo e somente o administrador pode ativar ou remover o destaque de qualquer oportunidade.
-</div><div class='admin-barra admin-aba-conteudo-em' data-admin-aba-em='vagas'><input class='campo' id='empresaBuscaVaga' oninput='renderizarPainelEmpresa()' placeholder='Pesquisar vaga' type='text'/><select class='campo' id='empresaFiltroAprovacao' onchange='renderizarPainelEmpresa()'><option value=''>
-Todas
-</option><option value='pendente'>
-Aguardando aprovação
-</option><option value='aprovada'>
-Aprovadas
-</option><option value='rejeitada'>
-Reprovadas
-</option><option value='encerrada'>
-Encerradas
-</option></select></div><div class='admin-lista' id='painelListaVagasEmpresa'/></main></div><div class='mobile-publicar-empresa'><button aria-label='Publicar vaga' onclick='irPara(&quot;publicar&quot;)' type='button'>+</button></div></div><div class='pagina' id='pagina-candidatos-empresa'><section class='page-header empresa-header'><div class='page-header-inner'><button class='voltar' onclick='irPara(&quot;painel-empresa&quot;)' type='button'>
+</button></form></div></div></div><div class='pagina' id='pagina-painel-empresa'></div><div class='pagina' id='pagina-candidatos-empresa'><section class='page-header empresa-header'><div class='page-header-inner'><button class='voltar' onclick='irPara(&quot;painel-empresa&quot;)' type='button'>
 &#8592; Voltar ao painel
 </button><h1>
 Candidatos recebidos
