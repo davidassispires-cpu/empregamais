@@ -6048,3 +6048,54 @@ abrirMenuVagaEM=function(ev,id){
 @media(max-width:700px){#empVagaAcoesModalEM .emp-vaga-acoes-dialog{padding:30px 22px!important}#empVagaAcoesModalEM .emp-vaga-acoes-grid{grid-template-columns:1fr!important}#empVagaAcoesModalEM .emp-vaga-acoes-grid>button.encerrar-processo,#empVagaAcoesModalEM .emp-vaga-acoes-grid>button.encerrado{grid-column:auto!important}}
 `;document.head.appendChild(st);
 })();
+
+/* EMPREGAMAIS-MODAL-ACOES-VAGA-FINAL-V7 */
+(function(){
+ document.getElementById('emModalAcoesVagaFinalV7')?.remove();
+ const st=document.createElement('style');st.id='emModalAcoesVagaFinalV7';st.textContent=`
+body.emp-vaga-acoes-aberto{overflow:hidden!important}
+#empVagaAcoesModalEM{padding:22px!important}
+#empVagaAcoesModalEM .emp-vaga-acoes-dialog{width:min(900px,94vw)!important;max-height:none!important;overflow:visible!important;padding:32px 34px!important;border-radius:24px!important;background:#fff!important}
+#empVagaAcoesModalEM .emp-vaga-acoes-head{padding:0 62px 22px 0!important}
+#empVagaAcoesModalEM .emp-vaga-acoes-head small{font-size:12px!important;color:#0872c9!important}
+#empVagaAcoesModalEM .emp-vaga-acoes-head h2{font-size:30px!important;color:#163f59!important;margin:7px 0 7px!important}
+#empVagaAcoesModalEM .emp-vaga-acoes-head p{font-size:14px!important;color:#72899b!important}
+#empVagaAcoesModalEM .emp-vaga-acoes-grid{grid-template-columns:1fr 1fr!important;gap:13px!important;margin-top:22px!important}
+#empVagaAcoesModalEM .emp-vaga-acoes-grid>button{min-height:94px!important;padding:16px 18px!important;gap:15px!important;border-radius:15px!important;background:#f9fcff!important;border:1px solid #cddfea!important;color:#315b74!important}
+#empVagaAcoesModalEM .emp-vaga-acoes-grid>button i{width:48px!important;height:48px!important;flex:0 0 48px!important;border-radius:13px!important;background:#eaf4ff!important;color:#0874ce!important}
+#empVagaAcoesModalEM .emp-vaga-acoes-grid>button i svg{width:24px!important;height:24px!important;fill:none!important;stroke:currentColor!important;stroke-width:1.9!important;stroke-linecap:round!important;stroke-linejoin:round!important}
+#empVagaAcoesModalEM .emp-vaga-acoes-grid>button b{font-size:16px!important;margin:0 0 5px!important;color:inherit!important}
+#empVagaAcoesModalEM .emp-vaga-acoes-grid>button small{font-size:12.5px!important;line-height:1.35!important;color:#71889a!important}
+#empVagaAcoesModalEM .emp-vaga-acoes-grid>button.acao-editar{background:#1476c8!important;border-color:#1476c8!important;color:#fff!important}
+#empVagaAcoesModalEM .emp-vaga-acoes-grid>button.acao-editar i{background:rgba(255,255,255,.16)!important;color:#fff!important}
+#empVagaAcoesModalEM .emp-vaga-acoes-grid>button.acao-editar small{color:#e3f1fc!important}
+#empVagaAcoesModalEM .emp-vaga-acoes-grid>button.acao-ver i{background:#eaf4ff!important;color:#0874ce!important}
+#empVagaAcoesModalEM .emp-vaga-acoes-grid>button.acao-destaque{background:#fffdf7!important;border-color:#efdca8!important;color:#8b6500!important}
+#empVagaAcoesModalEM .emp-vaga-acoes-grid>button.acao-destaque i{background:#fff2c9!important;color:#d79500!important}
+#empVagaAcoesModalEM .emp-vaga-acoes-grid>button.acao-urgente{background:#fff9f4!important;border-color:#f1d0b6!important;color:#a95113!important}
+#empVagaAcoesModalEM .emp-vaga-acoes-grid>button.acao-urgente i{background:#ffead9!important;color:#e66a13!important}
+#empVagaAcoesModalEM .emp-vaga-acoes-grid>button.acao-confidencial{background:#fbf9ff!important;border-color:#ddd1f1!important;color:#6842a4!important}
+#empVagaAcoesModalEM .emp-vaga-acoes-grid>button.acao-confidencial i{background:#eee8fb!important;color:#7250b7!important}
+#empVagaAcoesModalEM .emp-vaga-acoes-grid>button.acao-encerrar{grid-column:1/-1!important;min-height:82px!important;background:#fff7f5!important;border-color:#efc6bd!important;color:#b7442d!important}
+#empVagaAcoesModalEM .emp-vaga-acoes-grid>button.acao-encerrar i{background:#ffe7e1!important;color:#dc5034!important}
+#empVagaAcoesModalEM .emp-vaga-acoes-grid>button.acao-encerrada{grid-column:1/-1!important;min-height:82px!important;background:#f4f7f9!important;color:#718493!important}
+#empVagaAcoesModalEM .emp-vaga-acoes-x{width:44px!important;height:44px!important;right:24px!important;top:22px!important}
+@media(max-width:700px){#empVagaAcoesModalEM{padding:12px!important}#empVagaAcoesModalEM .emp-vaga-acoes-dialog{width:min(96vw,560px)!important;max-height:96vh!important;overflow:auto!important;padding:24px 18px!important}#empVagaAcoesModalEM .emp-vaga-acoes-grid{grid-template-columns:1fr!important}#empVagaAcoesModalEM .emp-vaga-acoes-grid>button.acao-encerrar,#empVagaAcoesModalEM .emp-vaga-acoes-grid>button.acao-encerrada{grid-column:auto!important}#empVagaAcoesModalEM .emp-vaga-acoes-head h2{font-size:24px!important}}
+`;document.head.appendChild(st);
+})();
+abrirMenuVagaEM=function(ev,id){
+ ev?.preventDefault();ev?.stopPropagation();fecharMenuVagaEM();
+ const v=vagasDaEmpresa().find(x=>String(x.id)===String(id));if(!v)return;
+ const encerrada=String(v.status||'').toLowerCase()==='encerrada';
+ const m=document.createElement('div');m.id='empVagaAcoesModalEM';m.className='emp-vaga-acoes-modal-em';
+ const ico=typeof iconeAcaoVagaV3==='function'?iconeAcaoVagaV3:(()=> '');
+ m.innerHTML='<div class="emp-vaga-acoes-backdrop" onclick="fecharMenuVagaEM()"></div><section class="emp-vaga-acoes-dialog" role="dialog" aria-modal="true"><button class="emp-vaga-acoes-x" type="button" onclick="fecharMenuVagaEM()">×</button><div class="emp-vaga-acoes-head"><small>AÇÕES DA VAGA</small><h2>'+esc(tituloVaga(v))+'</h2><p>Gerencie a publicação e o processo seletivo desta oportunidade.</p></div><div class="emp-vaga-acoes-grid">'+
+ '<button class="acao-editar" type="button" onclick="fecharMenuVagaEM();editarVaga(\''+id+'\')"><i>'+ico('editar')+'</i><span><b>Editar vaga</b><small>Altere informações e configurações.</small></span></button>'+
+ '<button class="acao-ver" type="button" onclick="fecharMenuVagaEM();sessionStorage.setItem(\'vagaSelecionada\',\''+id+'\');irPara(\'vaga\')"><i>'+ico('ver')+'</i><span><b>Ver publicação</b><small>Veja como a vaga aparece no portal.</small></span></button>'+
+ '<button class="acao-destaque" type="button" onclick="alternarRecursoVagaEM(\''+id+'\',\'destaque\')"><i>'+ico('destaque')+'</i><span><b>'+(v.destaque?'Retirar destaque':'Destacar vaga')+'</b><small>Aumente a visibilidade da oportunidade.</small></span></button>'+
+ '<button class="acao-urgente" type="button" onclick="alternarRecursoVagaEM(\''+id+'\',\'urgente\')"><i>'+ico('urgente')+'</i><span><b>'+(v.urgente?'Retirar urgência':'Marcar como urgente')+'</b><small>Sinalize prioridade na contratação.</small></span></button>'+
+ '<button class="acao-confidencial" type="button" onclick="alternarRecursoVagaEM(\''+id+'\',\'confidencial\')"><i>'+ico('confidencial')+'</i><span><b>'+(v.confidencial?'Retirar confidencial':'Empresa confidencial')+'</b><small>Controle a identificação da empresa.</small></span></button>'+
+ (encerrada?'<button class="acao-encerrada" type="button" disabled><i>'+ico('encerrado')+'</i><span><b>Vaga encerrada</b><small>Este processo seletivo já foi finalizado.</small></span></button>':'<button class="acao-encerrar" type="button" onclick="fecharMenuVagaEM();abrirEncerrarVagaEM(\''+id+'\')"><i>'+ico('encerrar')+'</i><span><b>Encerrar vaga</b><small>Finalize a oportunidade e interrompa novas candidaturas.</small></span></button>')+
+ '</div></section>';
+ document.body.appendChild(m);document.body.classList.add('emp-vaga-acoes-aberto');
+};
