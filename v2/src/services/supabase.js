@@ -18,16 +18,18 @@ async function json(path,opt={}){
  if(!r.ok)throw new Error(data.message||data.msg||data.error_description||data.error||("Erro "+r.status));
  return data;
 }
+let sessionUser=null;
 async function ensureSession(){
- if(localStorage.getItem(LOGOUT_KEY)==="1"||sessionStorage.getItem(LOGOUT_KEY)==="1"){clearSession();return ""}
- let t=token();if(t){try{await json("/auth/v1/user",{headers:headers(t)});return t}catch{sessionStorage.removeItem(TOKEN_KEY);localStorage.removeItem(TOKEN_KEY)}}
- const rt=refreshToken();if(!rt){clearSession();return ""}
- try{const a=await json("/auth/v1/token?grant_type=refresh_token",{method:"POST",headers:headers(""),body:JSON.stringify({refresh_token:rt})});saveSession(a);return a.access_token||""}
- catch{clearSession();return ""}
+ if(localStorage.getItem(LOGOUT_KEY)==="1"||sessionStorage.getItem(LOGOUT_KEY)==="1"){sessionUser=null;clearSession();return ""}
+ let t=token();if(t){try{sessionUser=await json("/auth/v1/user",{headers:headers(t)});return t}catch{sessionUser=null;sessionStorage.removeItem(TOKEN_KEY);localStorage.removeItem(TOKEN_KEY)}}
+ const rt=refreshToken();if(!rt){sessionUser=null;clearSession();return ""}
+ try{const a=await json("/auth/v1/token?grant_type=refresh_token",{method:"POST",headers:headers(""),body:JSON.stringify({refresh_token:rt})});saveSession(a);sessionUser=a.user||null;return a.access_token||""}
+ catch{sessionUser=null;clearSession();return ""}
 }
 export async function getCurrentUser(){
  const t=await ensureSession();if(!t)return null;
- try{return await json("/auth/v1/user",{headers:headers(t)})}catch{clearSession();return null}
+ if(sessionUser)return sessionUser;
+ try{return sessionUser=await json("/auth/v1/user",{headers:headers(t)})}catch{sessionUser=null;clearSession();return null}
 }
 export async function getCompany(){
  const u=await getCurrentUser();if(!u?.id)return null;
