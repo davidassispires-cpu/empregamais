@@ -17,6 +17,7 @@ async function router(){
  if(pagina==='cadastro-empresa'){app.innerHTML=renderRegister();hydrateRegister();return}
  if(pagina==='redefinir-senha'){app.innerHTML=renderResetPassword();hydrateResetPassword();return}
  let company=null;try{company=await getCompany()}catch{}
+ if(pagina==='publicar-vaga'&&company&&!new URLSearchParams(location.search).get('editar')){try{const usage=planUsage(company,await getCompanyJobs(company));if(usage.expirado&&usage.plano.nome!=='Grátis'){location.replace('./?pagina=planos');return}}catch{}}
  if(!company){location.replace('./?pagina=login-empresa');return}
  const route=routes[pagina]||routes['painel-empresa'];app.innerHTML=CompanyShell(route[0](),pagina);
  bindCompanyShell(async()=>{await logoutCompany();location.replace('./?pagina=login-empresa')});try{const usage=planUsage(company,await getCompanyJobs(company));if(usage.expirado&&usage.plano.nome!=='Grátis'){document.querySelectorAll('.top-publish').forEach(a=>{a.href='./?pagina=planos';a.textContent='Renovar plano';a.title='Seu plano venceu. Renove para publicar novas vagas.'})}}catch{}await route[1]?.();
