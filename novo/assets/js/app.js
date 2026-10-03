@@ -5935,3 +5935,48 @@ window.addEventListener('load',()=>setTimeout(bindCadastroEmpresaV4EM,50));
  const mo=new MutationObserver(()=>aprimorar());mo.observe(document.body,{childList:true,subtree:true});
  document.addEventListener('DOMContentLoaded',()=>setTimeout(aprimorar,50));window.addEventListener('load',()=>setTimeout(aprimorar,150));setTimeout(aprimorar,50);
 })();
+
+/* EMPREGAMAIS-MODAL-ACOES-VAGA-IDENTICO-REF-V3 */
+(function(){
+ const st=document.createElement('style');st.id='emModalAcoesVagaV3';st.textContent=`
+.emp-vaga-acoes-dialog{width:min(860px,96vw)!important;border-radius:26px!important;padding:38px 40px!important}
+.emp-vaga-acoes-x{right:26px!important;top:24px!important;width:46px!important;height:46px!important;border-radius:13px!important;font-size:25px!important}
+.emp-vaga-acoes-head{padding:0 66px 26px 0!important}
+.emp-vaga-acoes-head small{font-size:12px!important;letter-spacing:.12em!important}
+.emp-vaga-acoes-head h2{font-size:31px!important;margin:9px 0 9px!important;line-height:1.12!important}
+.emp-vaga-acoes-head p{font-size:15px!important}
+.emp-vaga-acoes-grid{gap:15px!important;margin-top:26px!important}
+.emp-vaga-acoes-grid>button{min-height:108px!important;padding:18px 20px!important;border-radius:16px!important;gap:16px!important}
+.emp-vaga-acoes-grid>button i{width:48px!important;height:48px!important;flex:0 0 48px!important;border-radius:13px!important;display:grid!important;place-items:center!important;font-style:normal!important}
+.emp-vaga-acoes-grid>button i svg{width:24px!important;height:24px!important;fill:none!important;stroke:currentColor!important;stroke-width:1.9!important;stroke-linecap:round!important;stroke-linejoin:round!important}
+.emp-vaga-acoes-grid>button b{font-size:15px!important;line-height:1.25!important}
+.emp-vaga-acoes-grid>button small{font-size:12px!important;line-height:1.45!important;margin-top:4px!important}
+.emp-vaga-acoes-grid>button.encerrar-processo{min-height:96px!important}
+@media(max-width:620px){.emp-vaga-acoes-dialog{padding:28px 22px!important}.emp-vaga-acoes-head h2{font-size:25px!important}.emp-vaga-acoes-grid>button{min-height:94px!important}}
+`;document.head.appendChild(st);
+})();
+function iconeAcaoVagaV3(tipo){
+ const m={
+ editar:'<svg viewBox="0 0 24 24"><path d="M4 20h4l11-11-4-4L4 16v4Z"/><path d="m13.5 6.5 4 4"/></svg>',
+ ver:'<svg viewBox="0 0 24 24"><path d="M14 4h6v6"/><path d="M20 4 11 13"/><path d="M19 13v6a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1h6"/></svg>',
+ destaque:'<svg viewBox="0 0 24 24"><path d="m12 3 2.8 5.7 6.2.9-4.5 4.4 1.1 6.2-5.6-2.9-5.6 2.9 1.1-6.2L3 9.6l6.2-.9L12 3Z"/></svg>',
+ urgente:'<svg viewBox="0 0 24 24"><path d="m13 2-7 12h6l-1 8 7-12h-6l1-8Z"/></svg>',
+ confidencial:'<svg viewBox="0 0 24 24"><path d="M3 3l18 18"/><path d="M10.6 10.7a2 2 0 0 0 2.7 2.7"/><path d="M9.9 4.2A10.5 10.5 0 0 1 12 4c5 0 8.5 4 9.5 6-0.4.9-1.2 2.1-2.3 3.2"/><path d="M6.6 6.6C4.5 8 3.1 10 2.5 11c1 2 4.5 6 9.5 6 1.2 0 2.3-.2 3.3-.6"/></svg>',
+ encerrar:'<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M8 8l8 8M16 8l-8 8"/></svg>',
+ encerrado:'<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="m8 12 2.5 2.5L16 9"/></svg>'
+ };return m[tipo]||'';
+}
+const _abrirMenuVagaEMV3=abrirMenuVagaEM;
+abrirMenuVagaEM=function(ev,id){
+ ev?.preventDefault();ev?.stopPropagation();fecharMenuVagaEM();
+ const v=vagasDaEmpresa().find(x=>String(x.id)===String(id));if(!v)return;
+ const m=document.createElement('div');m.id='empVagaAcoesModalEM';m.className='emp-vaga-acoes-modal-em';const encerrada=v.status==='encerrada';
+ m.innerHTML='<div class="emp-vaga-acoes-backdrop" onclick="fecharMenuVagaEM()"></div><section class="emp-vaga-acoes-dialog" role="dialog" aria-modal="true"><button class="emp-vaga-acoes-x" type="button" onclick="fecharMenuVagaEM()">×</button><div class="emp-vaga-acoes-head"><small>AÇÕES DA VAGA</small><h2>'+esc(tituloVaga(v))+'</h2><p>Gerencie a publicação e o processo seletivo desta oportunidade.</p></div><div class="emp-vaga-acoes-grid">'+
+ '<button class="principal" type="button" onclick="fecharMenuVagaEM();editarVaga(\''+id+'\')"><i>'+iconeAcaoVagaV3('editar')+'</i><span><b>Editar vaga</b><small>Altere informações e configurações.</small></span></button>'+
+ '<button type="button" onclick="fecharMenuVagaEM();sessionStorage.setItem(\'vagaSelecionada\',\''+id+'\');irPara(\'vaga\')"><i>'+iconeAcaoVagaV3('ver')+'</i><span><b>Ver publicação</b><small>Veja como a vaga aparece no portal.</small></span></button>'+
+ '<button type="button" onclick="alternarRecursoVagaEM(\''+id+'\',\'destaque\')"><i>'+iconeAcaoVagaV3('destaque')+'</i><span><b>'+(v.destaque?'Retirar destaque':'Destacar vaga')+'</b><small>Aumente a visibilidade da oportunidade.</small></span></button>'+
+ '<button type="button" onclick="alternarRecursoVagaEM(\''+id+'\',\'urgente\')"><i>'+iconeAcaoVagaV3('urgente')+'</i><span><b>'+(v.urgente?'Retirar urgência':'Marcar como urgente')+'</b><small>Sinalize prioridade na contratação.</small></span></button>'+
+ '<button type="button" onclick="alternarRecursoVagaEM(\''+id+'\',\'confidencial\')"><i>'+iconeAcaoVagaV3('confidencial')+'</i><span><b>'+(v.confidencial?'Retirar confidencial':'Empresa confidencial')+'</b><small>Controle a identificação da empresa.</small></span></button>'+
+ (encerrada?'<button class="encerrado" type="button" disabled><i>'+iconeAcaoVagaV3('encerrado')+'</i><span><b>Processo encerrado</b><small>Esta oportunidade já foi finalizada.</small></span></button>':'<button class="encerrar-processo" type="button" onclick="fecharMenuVagaEM();abrirEncerrarVagaEM(\''+id+'\')"><i>'+iconeAcaoVagaV3('encerrar')+'</i><span><b>Encerrar vaga</b><small>Finalize a vaga e interrompa novas candidaturas.</small></span></button>')+
+ '</div></section>';document.body.appendChild(m);document.body.classList.add('emp-vaga-acoes-aberto');
+};
