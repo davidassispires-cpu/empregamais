@@ -1,15 +1,14 @@
 import { renderEmpresaDashboard,hydrateEmpresaDashboard } from './pages/empresa-dashboard.js';
+import { renderJobForm,hydrateJobForm } from './pages/job-form.js';
 
-const routes = {
-  'painel-empresa': renderEmpresaDashboard,
-  'vagas-empresa': renderEmpresaDashboard
+const routes={
+ 'painel-empresa':[renderEmpresaDashboard,hydrateEmpresaDashboard],
+ 'vagas-empresa':[renderEmpresaDashboard,hydrateEmpresaDashboard],
+ 'publicar-vaga':[renderJobForm,hydrateJobForm]
 };
-
-function router(){
-  const pagina=new URLSearchParams(location.search).get('pagina')||'painel-empresa';
-  const render=routes[pagina]||renderEmpresaDashboard;
-  document.querySelector('#app').innerHTML=render();
-  if(pagina==='painel-empresa'||pagina==='vagas-empresa')hydrateEmpresaDashboard();
+async function router(){
+ const pagina=new URLSearchParams(location.search).get('pagina')||'painel-empresa',route=routes[pagina]||routes['painel-empresa'];
+ document.querySelector('#app').innerHTML=route[0]();
+ await route[1]?.();
 }
-addEventListener('popstate',router);
-router();
+addEventListener('popstate',router);router();
