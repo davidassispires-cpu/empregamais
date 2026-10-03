@@ -1090,11 +1090,8 @@ try{salvarVagasPortal(a);}catch(e){}
 try{if(typeof renderizarVagas==="function")renderizarVagas();}catch(e){}
 }
 function redesenharV54(){
-try{
-if(typeof montarPainelReferenciaRecrutadorEM==="function"){
-montarPainelReferenciaRecrutadorEM();
-}
-}catch(e){}
+/* v242: preserva o dashboard canônico; atualiza apenas ações da vaga. */
+try{if(typeof em200Render==="function")em200Render();}catch(e){}
 setTimeout(aplicarBotoesV54,180);
 setTimeout(function(){
 try{if(typeof aplicarRecursosPlanoV53==="function")aplicarRecursosPlanoV53();}catch(e){}
