@@ -133,7 +133,7 @@ export async function updateJobStatus(company,id,status){
  const t=await ensureSession();if(!t)throw new Error("Sua sessão expirou. Entre novamente.");
  if(!company?.id||!id)throw new Error("Vaga inválida.");
  const current=await getJob(id,company);if(!current||current.status==="excluida")throw new Error("Vaga não encontrada.");
- if(status==="pendente"&&current.status!=="encerrada")throw new Error("Somente vagas encerradas podem ser reabertas.");
+ if(status==="pendente"){const usage=planUsage(company,await getCompanyJobs(company));if(usage.expirado&&usage.plano.nome!=="Grátis")throw new Error("Seu plano está vencido. Renove o plano antes de reabrir uma vaga.");if(current.status!=="encerrada")throw new Error("Somente vagas encerradas podem ser reabertas.");}
  const body={status,editado_em:new Date().toISOString()};
  if(status==="encerrada")body.data_encerramento=new Date().toISOString().slice(0,10);
  if(status==="pendente")body.data_encerramento=closingDate(30);
