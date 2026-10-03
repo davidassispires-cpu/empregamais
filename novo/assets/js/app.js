@@ -5302,6 +5302,15 @@ function renderVagasEmpresaPaginaEM(){
  const areaSel=document.getElementById('evpArea');if(areaSel){const areas=[...new Set(vagas.map(v=>String(v.area||v.categoria||'Não informada').trim()).filter(Boolean))].sort((a,b)=>a.localeCompare(b,'pt-BR'));areaSel.innerHTML='<option value="">Todas as áreas ('+vagas.length+')</option>'+areas.map(a=>'<option value="'+esc2(a)+'">'+esc2(a)+' ('+vagas.filter(v=>String(v.area||v.categoria||'Não informada').trim()===a).length+')</option>').join('')}const filtrar=()=>{const q=(document.getElementById('evpBusca').value||'').toLowerCase(),a=document.getElementById('evpArea')?.value||'',s=document.getElementById('evpStatus').value;box.querySelectorAll('.evp-vaga').forEach(el=>el.style.display=(!q||el.dataset.titulo.toLowerCase().includes(q))&&(!a||el.dataset.area===a)&&(!s||el.dataset.status===s)?'grid':'none')};document.getElementById('evpBusca').oninput=filtrar;if(areaSel)areaSel.onchange=filtrar;document.getElementById('evpStatus').onchange=filtrar;
 }
 window.renderVagasEmpresaPaginaLegacyEM=renderVagasEmpresaPaginaEM;
+/* VAGAS-EMPRESA-RENDER-FINAL-HOOK-V1 */
+const _renderVagasEmpresaPaginaBaseFinalEM=renderVagasEmpresaPaginaEM;
+renderVagasEmpresaPaginaEM=function(){
+ const r=_renderVagasEmpresaPaginaBaseFinalEM.apply(this,arguments);
+ requestAnimationFrame(()=>{try{aplicarCabecalhoMinhasVagasProEM();aplicarCabecalhoMinhasVagasReferenciaEM();aplicarLayoutMinhasVagasFinalEM();compactarCardsMinhasVagasEM()}catch(e){console.warn('Layout final Minhas vagas:',e)}});
+ return r
+};
+window.renderVagasEmpresaPaginaEM=renderVagasEmpresaPaginaEM;
+
 
 /* EMPREGAMAIS-PROCESSOS-CANONICO-JS-V113 */
 function statusProcessoCanonicoEM(v){
