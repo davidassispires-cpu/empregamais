@@ -8,8 +8,9 @@ function token(){return sessionStorage.getItem(TOKEN_KEY)||localStorage.getItem(
 function refreshToken(){return sessionStorage.getItem(REFRESH_KEY)||localStorage.getItem(REFRESH_KEY)||""}
 function clearSession(){for(const k of [TOKEN_KEY,REFRESH_KEY]){sessionStorage.removeItem(k);localStorage.removeItem(k)}}
 function saveSession(a){
- if(a?.access_token){sessionStorage.setItem(TOKEN_KEY,a.access_token);localStorage.setItem(TOKEN_KEY,a.access_token)}
- if(a?.refresh_token){sessionStorage.setItem(REFRESH_KEY,a.refresh_token);localStorage.setItem(REFRESH_KEY,a.refresh_token)}
+ if(a?.access_token)sessionStorage.setItem(TOKEN_KEY,a.access_token);
+ if(a?.refresh_token)sessionStorage.setItem(REFRESH_KEY,a.refresh_token);
+ localStorage.removeItem(TOKEN_KEY);localStorage.removeItem(REFRESH_KEY);
 }
 function headers(t=token()){const h={apikey:KEY,"Content-Type":"application/json"};if(t)h.Authorization="Bearer "+t;return h}
 async function json(path,opt={}){
