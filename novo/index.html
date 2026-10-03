@@ -5605,45 +5605,20 @@ var b=document.body,logout=localStorage.getItem('empregaMaisLogoutBloqueio')==='
 </section><section class="pagina" id="pagina-painel-empresa"><div class="emp-dash">
 <aside class="emp-dash-side emp-side-premium"><div class="emp-dash-brand"><strong>Empregai</strong><small>Painel do recrutador</small></div><div class="emp-side-plan"><span>PLANO ATUAL</span><div><strong id="empresaSidePlano">Plano</strong><b>ATIVO</b></div><small id="empresaSideVigencia">Assinatura ativa</small><button onclick="irPara('planos')">Gerenciar →</button></div><button class="emp-side-publish" onclick="abrirPublicacao()"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg><span>Publicar nova vaga</span></button><nav><div class="emp-side-group"><small>RECRUTAMENTO</small><button class="ativo" onclick="irPara('painel-empresa')"><span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 11 12 4l8 7v9H5V11"/><path d="M9 20v-6h6v6"/></svg></span>Visão geral</button><button onclick="irPara('vagas-empresa')"><span><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="7" width="18" height="12" rx="2"/><path d="M8 7V5.5A1.5 1.5 0 0 1 9.5 4h5A1.5 1.5 0 0 1 16 5.5V7"/></svg></span>Processo seletivo</button><button onclick="irPara('candidatos-empresa')"><span><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="9" r="3"/><circle cx="17" cy="10" r="2"/><path d="M3.5 19c.5-3.3 2.3-5 5.5-5s5 1.7 5.5 5M15 15c3-.3 4.8 1 5.3 4"/></svg></span>Candidatos<em id="empresaSideCandidatos" class="emp-side-count"></em></button><button onclick="irPara('contratacoes-empresa')"><span><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="m8 12 2.7 2.7L16.5 9"/></svg></span>Contratações</button><button onclick="irPara('central-empresa')"><span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h16v12H8l-4 3V5Z"/><path d="M8 9h8M8 13h5"/></svg></span>Mensagens<em id="empresaSideMensagens" class="emp-side-count"></em></button></div><div class="emp-side-group management"><small>GESTÃO</small><button onclick="irPara('perfil-empresa')"><span><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M8 8h8M8 12h8M8 16h5"/></svg></span>Minha empresa</button><button id="menuRelatorios" onclick="abrirRecursoEmpresa('relatorios')"><span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 19V9M12 19V5M19 19v-7"/></svg></span>Relatórios<small id="lockRelatorios"></small></button><button onclick="abrirAvaliacoesEmpresaEM()"><span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 3 2.7 5.5 6.1.9-4.4 4.3 1 6.1-5.4-2.9-5.4 2.9 1-6.1-4.4-4.3 6.1-.9L12 3Z"/></svg></span>Avaliações<em id="empresaSideAvaliacoes" class="emp-side-count"></em></button><button onclick="irPara('planos')"><span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 3 3 6 6 .9-4.5 4.4 1.1 6.2L12 17.6l-5.6 2.9 1.1-6.2L3 9.9 9 9l3-6Z"/></svg></span>Plano e assinatura</button><button onclick="abrirUsuariosEmpresaEM()"><span><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="8" cy="8" r="3"/><circle cx="17" cy="9" r="2.5"/><path d="M2.5 20c.5-4.3 2.4-6.5 5.5-6.5s5 2.2 5.5 6.5M14 14.5c4.1-.8 6.4 1 7 5.5"/></svg></span>Usuários da empresa</button><button onclick="irPara('perfil-empresa')"><span><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M19 12a7 7 0 0 0-.1-1l2-1.5-2-3.4-2.4 1a7 7 0 0 0-1.7-1L14.5 3h-5l-.4 3.1a7 7 0 0 0-1.7 1L5 6.1 3 9.5 5.1 11a7 7 0 0 0 0 2L3 14.5l2 3.4 2.4-1a7 7 0 0 0 1.7 1l.4 3.1h5l.4-3.1a7 7 0 0 0 1.7-1l2.4 1 2-3.4-2.1-1.5a7 7 0 0 0 .1-1Z"/></svg></span>Configurações</button></div></nav><div class="emp-side-footer"><button class="emp-help-pro" onclick="irPara('central-empresa')"><span>?</span><div><b>Central de ajuda</b><small>Dúvidas e suporte</small></div><em>↗</em></button><button class="emp-side-account-pro" onclick="irPara('perfil-empresa')"><span id="empSideAccountAvatar">E</span><div><b id="empSideAccountName">Empresa</b><small><i></i> Conta empresarial <u id="empSideAccountPlan">· Plano ativo</u></small></div><em>›</em></button><button class="emp-dash-exit" onclick="typeof empregaiAuthLogoutEM==='function'?empregaiAuthLogoutEM():sair()">Sair</button></div></aside>
 <div class="modal-candidato oculto" id="modalUsuariosEmpresaEM" onclick="if(event.target===this)fecharUsuariosEmpresaEM()"><div class="modal-candidato-card empresa-usuarios-modal-em"><button class="modal-fechar" type="button" onclick="fecharUsuariosEmpresaEM()">×</button><span class="empresa-usuarios-kicker">EQUIPE DE RECRUTAMENTO</span><h2>Usuários da empresa</h2><p>Gerencie quem pode acessar as vagas e os processos seletivos desta empresa.</p><div class="empresa-usuarios-resumo" id="empresaUsuariosResumoEM">Carregando usuários...</div><div id="empresaUsuariosListaEM" class="empresa-usuarios-lista"></div><form id="empresaUsuarioFormEM" class="empresa-usuario-form" onsubmit="adicionarUsuarioEmpresaEM(event)"><h3>Adicionar recrutador</h3><div class="empresa-usuario-grid"><label>Nome<input class="campo" id="empUserNomeEM" required></label><label>E-mail<input class="campo" id="empUserEmailEM" type="email" required></label><label>Senha inicial<input class="campo" id="empUserSenhaEM" type="password" minlength="6" required></label></div><button class="btn btn-azul" type="submit">Criar acesso</button></form><p id="empresaUsuariosLimiteEM" class="empresa-usuarios-aviso"></p><div id="empresaUsuariosMsgEM" class="form-msg"></div></div></div><div class="modal-candidato oculto" id="modalAvaliacoesEmpresaEM"><div class="modal-candidato-card empresa-avaliacoes-modal-em"><button class="modal-fechar" type="button" onclick="fecharAvaliacoesEmpresaEM()">×</button><div id="conteudoAvaliacoesEmpresaEM"></div></div></div><main class="emp-dash-main emp-premium-v2">
-<section class="emp-rec-hero emp-premium-hero-v2 emp-top-clean-v94"><div class="emp-hero-company-v97"><div class="emp-hero-logo-v97" id="empresaPainelLogo" aria-label="Logo da empresa"><span id="empresaPainelLogoFallback">E</span></div><div class="emp-rec-hero-copy"><span>PAINEL DO RECRUTADOR</span><h1 id="empresaPainelOla">Olá!</h1><p id="empresaSaudacao">Gerencie suas vagas, acompanhe as candidaturas e encontre os melhores talentos para o seu time.</p></div></div><div class="emp-rec-hero-actions"><button class="primary" onclick="abrirPublicacao()">＋ Publicar nova vaga</button><button onclick="focarVagasEmpresa()">Gerenciar vagas</button></div></section>
-<section class="emp-plan-overview-v100 emp-overview-modelo-unico" id="empresaPlanoOverview">
-  <article class="emp-model-card emp-model-plan">
-    <div class="emp-model-head"><span>Plano atual</span><i>♛</i></div>
-    <strong id="empProPlanoHero">Plano</strong>
-    <small id="empProDias">Plano ativo</small>
-  </article>
-  <article class="emp-model-card">
-    <div class="emp-model-head"><span>Vagas no plano</span><i>▣</i></div>
-    <strong id="empPlanLimiteVagas">0</strong>
-    <small><b id="empPlanUsadasVagas">0</b> utilizadas neste mês</small>
-  </article>
-  <article class="emp-model-card">
-    <div class="emp-model-head"><span>Publicadas</span><i>✓</i></div>
-    <strong id="empPlanPublicadas">0</strong>
-    <small>Total da empresa</small>
-  </article>
-  <article class="emp-model-card">
-    <div class="emp-model-head"><span>Destaques</span><i>☆</i></div>
-    <strong id="empPlanDestaquesAtivos">0</strong>
-    <small><b id="empPlanDestaquesLimite">0</b> disponíveis</small>
-  </article>
-  <article class="emp-model-card">
-    <div class="emp-model-head"><span>Urgentes</span><i>ϟ</i></div>
-    <strong id="empPlanUrgentesAtivos">0</strong>
-    <small><b id="empPlanUrgentesLimite">0</b> disponíveis</small>
-  </article>
-  <article class="emp-model-card">
-    <div class="emp-model-head"><span>Vigência</span><i>▦</i></div>
-    <strong id="empProVigencia">—</strong>
-    <small id="empPlanVigenciaDias">Plano ativo</small>
-  </article>
-  <button class="emp-model-card emp-model-manage" onclick="irPara('planos')">
-    <div class="emp-model-head"><span>Plano e assinatura</span><i>→</i></div>
-    <strong>Gerenciar</strong>
-    <small>Ver detalhes do plano</small>
-  </button>
-</section>
-<section class="emp-dash-section-head emp-premium-section-title"><div><span class="emp-premium-eyebrow">VISÃO GERAL</span><h2>Resumo do recrutamento</h2><p>Indicadores atualizados da sua operação.</p></div></section>
+<section class="em-new-recruiter-top" id="emRecruiterTopV120">
+ <div class="em-new-hero">
+  <div class="em-new-company"><div class="emp-hero-logo-v97 em-new-logo" id="empresaPainelLogo"><span id="empresaPainelLogoFallback">E</span></div><div><span class="em-new-kicker">PAINEL DO RECRUTADOR</span><h1 id="empresaPainelOla">Olá!</h1><p id="empresaSaudacao">Gerencie suas vagas, acompanhe as candidaturas e encontre os melhores talentos para o seu time.</p></div></div>
+  <div class="em-new-actions"><label>PLANO ATUAL</label><button class="em-plan-select" type="button" onclick="irPara('planos')"><span id="empProPlanoHero">Plano</span><b>⌄</b></button><button class="em-publish-btn" type="button" onclick="abrirPublicacao()">＋ Publicar nova vaga</button></div>
+ </div>
+ <div class="em-public-link-card"><div class="em-link-icon"><svg viewBox="0 0 24 24"><path d="M10 13a5 5 0 0 0 7.5.5l2-2a5 5 0 0 0-7-7l-1.1 1.1M14 11a5 5 0 0 0-7.5-.5l-2 2a5 5 0 0 0 7 7l1.1-1.1"/></svg></div><div><span>PÁGINA PÚBLICA DE VAGAS</span><strong id="empresaPaginaVagasLinkText">suaempresa.vagas.maisempregos.com.br</strong><small>Compartilhe este endereço para divulgar somente as vagas da sua empresa.</small></div><button id="empresaPaginaVagasCopiar" type="button">Copiar link</button></div>
+ <div class="em-plan-banner">
+  <div class="em-plan-main"><span>SEU PLANO ATUAL</span><strong id="empProPlanoHeroVisual">Plano</strong><small id="empProDias">Plano ativo</small><button type="button" onclick="irPara('planos')">Gerenciar plano →</button></div>
+  <div class="em-plan-stat"><span>VAGAS</span><strong id="empPlanLimiteVagas">0</strong><small><b id="empPlanUsadasVagas">0</b> utilizadas</small></div>
+  <div class="em-plan-stat"><span>DESTAQUES</span><strong id="empPlanDestaquesAtivos">0</strong><small><b id="empPlanDestaquesLimite">0</b> disponíveis</small></div>
+  <div class="em-plan-stat"><span>URGÊNCIAS</span><strong id="empPlanUrgentesAtivos">0</strong><small><b id="empPlanUrgentesLimite">0</b> disponíveis</small></div>
+  <span id="empPlanPublicadas" hidden>0</span><span id="empProVigencia" hidden>—</span><span id="empPlanVigenciaDias" hidden>Plano ativo</span>
+ </div>
+</section><section class="emp-dash-section-head emp-premium-section-title"><div><span class="emp-premium-eyebrow">VISÃO GERAL</span><h2>Resumo do recrutamento</h2><p>Indicadores atualizados da sua operação.</p></div></section>
 <div class="emp-plan-summary-kpis-v112 emp-dash-kpis emp-kpis-modelo-unico emp-kpis-ref-foto1" id="empresaMetricasNovas">
   <button class="emp-model-card kpi-vagas" onclick="abrirMetricaEmpresa('vagas')"><i class="emp-kpi-ref-icon"><svg viewBox="0 0 24 24"><rect x="4" y="7" width="16" height="12" rx="2"/><path d="M9 7V5.5h6V7"/></svg></i><div><span>VAGAS ATIVAS</span><strong class="kpi-num">0</strong><small>Publicadas agora</small></div></button>
   <button class="emp-model-card kpi-candidaturas" onclick="abrirMetricaEmpresa('candidatos')"><i class="emp-kpi-ref-icon"><svg viewBox="0 0 24 24"><circle cx="9" cy="8" r="3"/><path d="M3.5 20c.5-4 2.4-6 5.5-6s5 2 5.5 6M18 7v6M15 10h6"/></svg></i><div><span>CANDIDATURAS</span><strong class="kpi-num">0</strong><small>Total recebido</small></div></button>
@@ -17790,4 +17765,42 @@ html:has(#pagina-publicar.ativa),body:has(#pagina-publicar.ativa){height:auto!im
 #pagina-publicar .em-publish-visual h2,#pagina-publicar .em-publish-visual h2 span,#pagina-publicar .em-publish-visual .em-visual-kicker,#pagina-publicar .em-publish-visual strong{color:var(--blue)!important}
 #pagina-publicar .em-publish-visual .em-visual-item,#pagina-publicar .em-visual-stats>div{background:#fff!important;box-shadow:none!important;border-color:#dce6ef!important}
 @media(max-width:800px){#pagina-publicar .em-location-fields{grid-template-columns:1fr 1fr!important}}@media(max-width:520px){#pagina-publicar .em-location-fields{grid-template-columns:1fr!important}}
-</style></body></html>
+</style><style id="EM-RECRUITER-TOP-V120">
+#pagina-painel-empresa .em-new-recruiter-top{font-family:Inter,Arial,sans-serif;margin:0 0 22px}
+#pagina-painel-empresa .em-new-hero{display:flex;justify-content:space-between;align-items:center;gap:28px;padding:24px 28px;background:#fff;border:1px solid #e3eaf1;border-radius:18px;box-shadow:0 8px 28px rgba(27,61,92,.06)}
+#pagina-painel-empresa .em-new-company{display:flex;align-items:center;gap:18px;min-width:0}
+#pagina-painel-empresa .em-new-logo{width:66px!important;height:66px!important;flex:0 0 66px!important;border:1px solid #e0e8ef!important;border-radius:14px!important;background:#fff!important;display:flex!important;align-items:center!important;justify-content:center!important;overflow:hidden!important}
+#pagina-painel-empresa .em-new-logo img{width:100%;height:100%;object-fit:contain}
+#pagina-painel-empresa .em-new-kicker{font-size:10px;font-weight:800;letter-spacing:.14em;color:#55708b}
+#pagina-painel-empresa .em-new-company h1{margin:5px 0 4px!important;font-size:25px!important;line-height:1.15!important;font-weight:750!important;letter-spacing:-.025em!important;color:#193b5e!important}
+#pagina-painel-empresa .em-new-company p{margin:0!important;max-width:650px;font-size:12px!important;color:#718295!important}
+#pagina-painel-empresa .em-new-actions{display:grid;grid-template-columns:154px 184px;gap:6px 10px;align-items:end;flex:0 0 auto}
+#pagina-painel-empresa .em-new-actions label{grid-column:1;font-size:9px;font-weight:800;letter-spacing:.08em;color:#708397}
+#pagina-painel-empresa .em-new-actions button{height:42px!important;border-radius:10px!important;font:700 11px Inter,Arial,sans-serif!important}
+#pagina-painel-empresa .em-plan-select{display:flex;align-items:center;justify-content:space-between;padding:0 13px!important;border:1px solid #d6e0e9!important;background:#fff!important;color:#294862!important;box-shadow:none!important}
+#pagina-painel-empresa .em-publish-btn{grid-column:2;grid-row:2;border:0!important;background:#f1872d!important;color:#fff!important;box-shadow:0 7px 16px rgba(241,135,45,.2)!important}
+#pagina-painel-empresa .em-public-link-card{display:grid;grid-template-columns:42px 1fr auto;align-items:center;gap:13px;margin:12px 0;padding:13px 16px;border:1px solid #dce7f0;border-radius:14px;background:#f8fbfe}
+#pagina-painel-empresa .em-link-icon{width:38px;height:38px;border-radius:10px;background:#e9f2fb;display:grid;place-items:center}
+#pagina-painel-empresa .em-link-icon svg{width:20px;fill:none;stroke:#23649e;stroke-width:1.8}
+#pagina-painel-empresa .em-public-link-card span{display:block;font-size:9px;font-weight:800;letter-spacing:.1em;color:#6f8295}
+#pagina-painel-empresa .em-public-link-card strong{display:block;margin:2px 0;color:#164f86;font-size:13px;font-weight:750}
+#pagina-painel-empresa .em-public-link-card small{display:block;color:#7c8d9e;font-size:10px}
+#pagina-painel-empresa .em-public-link-card button{height:34px!important;padding:0 14px!important;border:1px solid #cddce8!important;border-radius:9px!important;background:#fff!important;color:#174f84!important;font:700 10px Inter,Arial,sans-serif!important;box-shadow:none!important}
+#pagina-painel-empresa .em-plan-banner{display:grid;grid-template-columns:1.35fr repeat(3,.75fr);min-height:142px;border-radius:18px;overflow:hidden;background:linear-gradient(110deg,#163f75,#2c68a7);box-shadow:0 12px 28px rgba(27,73,119,.13);color:#fff}
+#pagina-painel-empresa .em-plan-main{padding:24px 28px}
+#pagina-painel-empresa .em-plan-main>span,#pagina-painel-empresa .em-plan-stat>span{font-size:9px;font-weight:800;letter-spacing:.12em;opacity:.72}
+#pagina-painel-empresa .em-plan-main>strong{display:block;margin:7px 0 3px;font-size:23px;font-weight:750}
+#pagina-painel-empresa .em-plan-main>small{font-size:10px;opacity:.75}
+#pagina-painel-empresa .em-plan-main button{display:block;margin-top:16px!important;height:31px!important;padding:0 15px!important;border:0!important;border-radius:8px!important;background:#f1872d!important;color:#fff!important;font:700 9px Inter,Arial,sans-serif!important}
+#pagina-painel-empresa .em-plan-stat{display:flex;flex-direction:column;justify-content:center;padding:20px 25px;border-left:1px solid rgba(255,255,255,.15)}
+#pagina-painel-empresa .em-plan-stat>strong{margin:8px 0 2px;font-size:29px;font-weight:650}
+#pagina-painel-empresa .em-plan-stat small{font-size:10px;opacity:.7}
+#pagina-painel-empresa .emp-premium-section-title{margin-top:20px!important}
+#pagina-painel-empresa .emp-plan-summary-kpis-v112 .emp-model-card{border:1px solid #e2e9f0!important;border-radius:15px!important;background:#fff!important;box-shadow:0 6px 18px rgba(25,61,94,.045)!important}
+#pagina-painel-empresa .emp-plan-summary-kpis-v112 .emp-kpi-ref-icon{border-radius:10px!important}
+@media(max-width:800px){#pagina-painel-empresa .em-new-hero{align-items:flex-start;flex-direction:column}#pagina-painel-empresa .em-new-actions{width:100%;grid-template-columns:1fr 1fr}#pagina-painel-empresa .em-public-link-card{grid-template-columns:38px 1fr}#pagina-painel-empresa .em-public-link-card button{grid-column:1/-1}#pagina-painel-empresa .em-plan-banner{grid-template-columns:1fr 1fr}#pagina-painel-empresa .em-plan-main{grid-column:1/-1}#pagina-painel-empresa .em-plan-stat{border-top:1px solid rgba(255,255,255,.15)}} 
+</style>
+<script id="EM-RECRUITER-TOP-V120-JS">(function(){
+function clean(v){return String(v||'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase().replace(/[^a-z0-9]/g,'').slice(0,63)||'empresa'}
+function sync(){var ola=document.getElementById('empresaPainelOla'),nome=((document.getElementById('empProNome')||{}).textContent||'').trim();if(!nome||nome==='Empresa')nome=((ola||{}).textContent||'').replace(/^Olá,?\s*/i,'').replace(/!+$/,'').trim();var host=clean(nome)+'.vagas.maisempregos.com.br',el=document.getElementById('empresaPaginaVagasLinkText');if(el)el.textContent=host;var p=document.getElementById('empProPlanoHero'),v=document.getElementById('empProPlanoHeroVisual');if(p&&v)v.textContent=p.textContent}
+document.addEventListener('DOMContentLoaded',function(){sync();setTimeout(sync,600);setTimeout(sync,1800);var b=document.getElementById('empresaPaginaVagasCopiar');if(b)b.onclick=function(){var e=document.getElementById('empresaPaginaVagasLinkText'),u='https://'+(e?e.textContent:'');if(navigator.clipboard)navigator.clipboard.writeText(u);this.textContent='Copiado ✓';var x=this;setTimeout(function(){x.textContent='Copiar link'},1200)};var o=document.getElementById('empresaPainelOla');if(o&&window.MutationObserver)new MutationObserver(sync).observe(o,{childList:true,subtree:true,characterData:true})})})();</script></body></html>
