@@ -1,0 +1,8 @@
+export function CompanyShell(content,active='painel-empresa'){
+ const items=[['painel-empresa','⌂','Visão geral'],['vagas-empresa','▣','Minhas vagas'],['candidatos-empresa','♟','Candidatos'],['minha-empresa','◇','Minha empresa'],['planos','☆','Planos']];
+ return `<div class="company-app"><aside class="company-sidebar"><a class="brand" href="./?pagina=painel-empresa"><b>+Empregos</b><span>EMPRESA</span></a><nav>${items.map(i=>`<a class="${active===i[0]?'active':''}" href="./?pagina=${i[0]}"><i>${i[1]}</i><span>${i[2]}</span></a>`).join('')}</nav><div class="sidebar-foot"><small>AMBIENTE EMPRESARIAL</small><button id="companyLogout" class="sidebar-logout" type="button">Sair da conta</button></div></aside><div class="company-main"><header class="company-topbar"><button class="menu-toggle" type="button">☰</button><div><strong>Área da empresa</strong><small>Recrutamento e gestão de talentos</small></div><a class="top-publish" href="./?pagina=publicar-vaga">+ Publicar vaga</a></header>${content}</div><div class="sidebar-overlay"></div></div>`;
+}
+export function bindCompanyShell(onLogout){
+ const app=document.querySelector('.company-app'),btn=document.querySelector('.menu-toggle'),overlay=document.querySelector('.sidebar-overlay');if(!app)return;
+ const close=()=>app.classList.remove('menu-open');btn?.addEventListener('click',()=>app.classList.toggle('menu-open'));overlay?.addEventListener('click',close);document.querySelector('#companyLogout')?.addEventListener('click',()=>onLogout?.());
+}
