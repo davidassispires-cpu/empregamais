@@ -127,8 +127,8 @@ export async function loginCompany(cnpj,password){
  localStorage.removeItem(LOGOUT_KEY);sessionStorage.removeItem(LOGOUT_KEY);return company;
 }
 export async function logoutCompany(){
- const t=token();localStorage.setItem(LOGOUT_KEY,"1");sessionStorage.setItem(LOGOUT_KEY,"1");clearSession();try{if(t)await fetch(URL+"/auth/v1/logout",{method:"POST",headers:headers(t)})}catch{}
- clearSession()
+ const t=token();sessionUser=null;localStorage.setItem(LOGOUT_KEY,"1");sessionStorage.setItem(LOGOUT_KEY,"1");clearSession();try{if(t)await fetch(URL+"/auth/v1/logout",{method:"POST",headers:headers(t)})}catch{}
+ sessionUser=null;clearSession()
  sessionStorage.removeItem("empresaSupabaseUserId");sessionStorage.removeItem("empresaSupabaseEmpresaId");
 }
 export async function hasCompanySession(){return !!(await getCompany())}
