@@ -53,16 +53,22 @@ export async function getJob(id,company){
 export const COMPANY_PLANS={basico:{nome:"Grátis",dias:30,vagas:3,destaques:0,urgentes:0,confidenciais:0},mensal:{nome:"Mensal",dias:30,vagas:6,destaques:1,urgentes:1,confidenciais:0},trimestral:{nome:"Trimestral",dias:90,vagas:12,destaques:3,urgentes:3,confidenciais:2},semestral:{nome:"Semestral",dias:180,vagas:25,destaques:5,urgentes:5,confidenciais:4},anual:{nome:"Anual",dias:365,vagas:60,destaques:10,urgentes:10,confidenciais:8}};
 function closingDate(days=30){const d=new Date();d.setDate(d.getDate()+days);return d.toISOString().slice(0,10)}
 export function planUsage(company,jobs){
- const p=COMPANY_PLANS[company?.plano_id||company?.plano]||COMPANY_PLANS.basico,endRaw=company?.plano_valido_ate||company?.assinatura_fim||"",startRaw=company?.plano_ativado_em||company?.assinatura_inicio||company?.criado_em||"";
- let start=startRaw?new Date(startRaw):new Date(),end=endRaw?new Date(endRaw):new Date(start.getTime()+p.dias*86400000);if(!startRaw)start=new Date(end.getTime()-p.dias*86400000);
+ const p=COMPANY_PLANS[company?.plano_id||company?.plano]||COMPANY_PLANS.basico,now=new Date(),explicitEnd=company?.plano_valido_ate||company?.assinatura_fim||"",explicitStart=company?.plano_inicio||company?.plano_liberado_em||company?.assinatura_inicio||"";
+ let start,end;
+ if(explicitStart){start=new Date(explicitStart);end=explicitEnd?new Date(explicitEnd):new Date(start.getTime()+p.dias*86400000)}
+ else if(explicitEnd){end=new Date(explicitEnd);start=new Date(end.getTime()-p.dias*86400000)}
+ else if((company?.plano_id||company?.plano||"basico")==="basico"){const created=company?.criado_em?new Date(company.criado_em):now,elapsed=Math.max(0,now-created),cycle=Math.floor(elapsed/(p.dias*86400000));start=new Date(created.getTime()+cycle*p.dias*86400000);end=new Date(start.getTime()+p.dias*86400000)}
+ else {start=company?.criado_em?new Date(company.criado_em):now;end=new Date(start.getTime()+p.dias*86400000)}
+ const expired=now>end;
  const used=(jobs||[]).filter(v=>v.status!=="excluida"&&new Date(v.criado_em||0)>=start&&new Date(v.criado_em||0)<=end);
- return {plano:p,vagas:used.length,destaques:used.filter(v=>v.destaque||v.destaque_solicitado).length,urgentes:used.filter(v=>v.urgente||v.urgencia_solicitada).length,confidenciais:used.filter(v=>v.confidencial).length};
+ return {plano:p,inicio:start,fim:end,expirado:expired,vagas:used.length,destaques:used.filter(v=>v.destaque||v.destaque_solicitado).length,urgentes:used.filter(v=>v.urgente||v.urgencia_solicitada).length,confidenciais:used.filter(v=>v.confidencial).length};
 }
 export async function saveJob(company,data,id=""){
  const t=await ensureSession();if(!t)throw new Error("Sua sessão expirou. Entre novamente.");
  if(!company?.id)throw new Error("Empresa não encontrada.");
  const u=await getCurrentUser();if(!u?.id)throw new Error("Usuário não autenticado.");
  const jobs=await getCompanyJobs(company),old=id?jobs.find(v=>String(v.id)===String(id)):null,usage=planUsage(company,jobs),p=usage.plano,free=p.nome==="Grátis";
+ if(usage.expirado&&p.nome!=="Grátis")throw new Error("A vigência do plano "+p.nome+" terminou. Renove o plano para publicar ou editar vagas.");
  if(!id&&usage.vagas>=p.vagas)throw new Error("Limite de publicações atingido para o plano "+p.nome+".");
  if(id&&old?.status==="excluida")throw new Error("Uma vaga excluída não pode ser editada.");
  if(!free&&data.destaque&&!(old?.destaque)&&usage.destaques>=p.destaques)throw new Error("Seu plano não possui Destaque disponível neste período.");
