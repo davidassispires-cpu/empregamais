@@ -15613,8 +15613,8 @@ document.addEventListener('DOMContentLoaded',()=>{setTimeout(sync,300);setTimeou
 })();</script>
 
 <style id="EM-PAINEL-REFERENCIA-FINAL">
-#pagina-painel-empresa .emp-dash-main{padding:30px 32px!important;background:#f3f8fd!important}
-#pagina-painel-empresa #emRecruiterTopV120{display:block!important;margin:0 0 24px!important;font-family:Inter,Arial,sans-serif!important}
+#pagina-painel-empresa .emp-dash-main{padding:30px 32px!important;background:#f3f8fd!important;max-width:none!important;width:100%!important}
+#pagina-painel-empresa #emRecruiterTopV120{display:block!important;margin:0 0 24px!important;font-family:Inter,Arial,sans-serif!important;max-width:none!important;width:100%!important}
 #pagina-painel-empresa #emRecruiterTopV120 .em-new-hero{display:grid!important;grid-template-columns:1.08fr .98fr!important;gap:34px!important;align-items:center!important;min-height:282px!important;padding:28px 42px!important;border:1px solid #dbe5ef!important;border-radius:28px!important;background:#fff!important;box-shadow:0 10px 30px rgba(22,53,82,.055)!important}
 #pagina-painel-empresa #emRecruiterTopV120 .em-new-company{display:flex!important;align-items:center!important;gap:36px!important}
 #pagina-painel-empresa #emRecruiterTopV120 .em-new-logo{width:165px!important;height:165px!important;flex:0 0 165px!important;border-radius:30px!important;background:linear-gradient(145deg,#0878ef,#0750ad)!important;color:#fff!important;font-size:70px!important;display:grid!important;place-items:center!important}
@@ -15647,4 +15647,15 @@ document.addEventListener('DOMContentLoaded',()=>{setTimeout(sync,300);setTimeou
 #pagina-painel-empresa #empresaMetricasNovas small{font-size:18px!important}
 @media(max-width:1100px){#pagina-painel-empresa #emRecruiterTopV120 .em-new-hero{grid-template-columns:1fr!important}#pagina-painel-empresa #emRecruiterTopV120 .em-plan-banner{grid-template-columns:1fr 1fr!important}#pagina-painel-empresa #empresaMetricasNovas{grid-template-columns:1fr 1fr!important}}
 @media(max-width:700px){#pagina-painel-empresa .emp-dash-main{padding:14px!important}#pagina-painel-empresa #emRecruiterTopV120 .em-new-logo{width:88px!important;height:88px!important;flex-basis:88px!important;font-size:40px!important}#pagina-painel-empresa #emRecruiterTopV120 h1{font-size:30px!important}#pagina-painel-empresa #emRecruiterTopV120 .em-public-link-card{grid-template-columns:54px 1fr!important}#pagina-painel-empresa #emRecruiterTopV120 .em-public-link-card button{grid-column:1/-1!important}#pagina-painel-empresa #emRecruiterTopV120 .em-action-row{flex-direction:column!important}#pagina-painel-empresa #emRecruiterTopV120 .em-plan-select,#pagina-painel-empresa #emRecruiterTopV120 .em-publish-btn{width:100%!important}#pagina-painel-empresa #emRecruiterTopV120 .em-plan-banner,#pagina-painel-empresa #empresaMetricasNovas{grid-template-columns:1fr!important}}
-</style></body></html>
+</style>
+<style id="EM-PAINEL-REFERENCIA-V130">
+#pagina-painel-empresa .emp-app-shell{grid-template-columns:0 minmax(0,1fr)!important}
+#pagina-painel-empresa .emp-side{display:none!important}
+#pagina-painel-empresa .emp-dash-main{margin:0!important;max-width:none!important;width:100%!important;padding:30px 32px!important}
+#pagina-painel-empresa #emRecruiterTopV120 .em-new-hero{grid-template-columns:minmax(0,1.08fr) minmax(0,.98fr)!important}
+#pagina-painel-empresa #emRecruiterTopV120 .em-public-link-card{display:grid!important}
+@media(min-width:1100px){
+#pagina-painel-empresa #emRecruiterTopV120 .em-new-hero{grid-template-columns:minmax(560px,1.08fr) minmax(590px,.98fr)!important}
+}
+</style>
+</body></html>
