@@ -21,13 +21,12 @@ export async function hydrateEmpresaDashboard(){
   const company=await getCompany();
   if(!company){k.innerHTML='';jobs.innerHTML='<div class="empty"><strong>Sessão empresarial necessária</strong><p>Entre pela versão atual do portal para autenticar a empresa. A V2 reutiliza a mesma sessão do Supabase.</p></div>';return}
   const loaded=await Promise.all([getCompanyJobs(company),getApplications(company)]);jobsCache=loaded[0];appsCache=loaded[1];
-  const visibleJobs=jobsCache.filter(v=>v.status!=='excluida'),ativa=visibleJobs.filter(v=>jobStatus(v)==='Ativa').length,analise=visibleJobs.filter(v=>jobStatus(v)==='Em análise').length,enc=visibleJobs.filter(v=>jobStatus(v)==='Encerrada').length;
-  const destaque=visibleJobs.filter(v=>jobStatus(v)==='Ativa'&&(v.destaque===true||v.em_destaque===true)).length,urgente=visibleJobs.filter(v=>jobStatus(v)==='Ativa'&&(v.urgente===true||v.urgencia===true)).length,confid=visibleJobs.filter(v=>jobStatus(v)==='Ativa'&&v.confidencial===true).length;
-  k.innerHTML=[['Vagas ativas no site',ativa,'Publicadas no portal'],['Em análise',analise,'Aguardando publicação'],['Vagas encerradas',enc,'Processos finalizados'],['Vagas em destaque',destaque+' em uso','Vagas ativas'],['Vagas com urgência',urgente+' em uso','Vagas ativas'],['Vagas confidenciais',confid+' em uso','Vagas ativas']].map(c=>KpiCard(...c)).join('');
+  refreshKpis();
   renderRows();
   document.querySelector('#jobSearch').oninput=renderRows;document.querySelector('#jobStatusFilter').onchange=renderRows;document.querySelector('#jobOrder').onchange=renderRows;bindJobActions(company);
  }catch(e){console.error(e);jobs.innerHTML='<div class="empty error"><strong>Não foi possível carregar as vagas</strong><p>'+esc(e.message)+'</p></div>'}
 }
+function refreshKpis(){const k=document.querySelector('#kpis');if(!k)return;const visible=jobsCache.filter(v=>v.status!=='excluida'),ativa=visible.filter(v=>jobStatus(v)==='Ativa').length,analise=visible.filter(v=>jobStatus(v)==='Em análise').length,enc=visible.filter(v=>jobStatus(v)==='Encerrada').length,destaque=visible.filter(v=>jobStatus(v)==='Ativa'&&(v.destaque===true||v.em_destaque===true)).length,urgente=visible.filter(v=>jobStatus(v)==='Ativa'&&(v.urgente===true||v.urgencia===true)).length,confid=visible.filter(v=>jobStatus(v)==='Ativa'&&v.confidencial===true).length;k.innerHTML=[['Vagas ativas no site',ativa,'Publicadas no portal'],['Em análise',analise,'Aguardando publicação'],['Vagas encerradas',enc,'Processos finalizados'],['Vagas em destaque',destaque+' em uso','Vagas ativas'],['Vagas com urgência',urgente+' em uso','Vagas ativas'],['Vagas confidenciais',confid+' em uso','Vagas ativas']].map(c=>KpiCard(...c)).join('')}
 function bindJobActions(company){
  const box=document.querySelector('#jobs');if(!box)return;
  box.onclick=async ev=>{
@@ -39,7 +38,7 @@ function bindJobActions(company){
   if(action==='delete'&&!confirm('Excluir esta vaga da sua lista? As candidaturas e o histórico do processo serão preservados.'))return;
   b.disabled=true;try{
    if(action==='delete')await deleteJob(company,id);else await updateJobStatus(company,id,action==='close'?'encerrada':'pendente');
-   const loaded=await Promise.all([getCompanyJobs(company),getApplications(company)]);jobsCache=loaded[0];appsCache=loaded[1];renderRows();
+   const loaded=await Promise.all([getCompanyJobs(company),getApplications(company)]);jobsCache=loaded[0];appsCache=loaded[1];renderRows();refreshKpis();
   }catch(e){alert(e.message)}finally{b.disabled=false}
  };
  if(!document.body.dataset.jobMenuClose){document.body.dataset.jobMenuClose='1';document.addEventListener('click',()=>document.querySelectorAll('.job-menu.open').forEach(x=>x.classList.remove('open')))}
