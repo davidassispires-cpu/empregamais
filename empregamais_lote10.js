@@ -228,17 +228,9 @@ var inp=document.getElementById("buscaPainelRefEM");
 inp.oninput=function(){busca=String(this.value||"").toLowerCase().trim();renderTabela();};
 renderTabela();
 }
-var antigaIrPara=window.irPara;
-if(typeof antigaIrPara==="function"&&!window.irParaPainelRefPatchedEM){
-window.irParaPainelRefPatchedEM=true;
-window.irPara=function(pagina){
-var r=antigaIrPara.apply(this,arguments);
-if(pagina==="painel-empresa")setTimeout(window.montarPainelReferenciaRecrutadorEM,120);
-return r;
-};
-}
-document.addEventListener("DOMContentLoaded",function(){setTimeout(window.montarPainelReferenciaRecrutadorEM,500);});
-window.addEventListener("load",function(){setTimeout(window.montarPainelReferenciaRecrutadorEM,700);});
+/* v240: desativados os gatilhos automáticos do construtor legado.
+   O dashboard novo já é renderizado pelo fluxo atual; estas chamadas em
+   navegação/DOMContentLoaded/load eram exatamente as que o substituíam. */
 })();
 
 (function(){
