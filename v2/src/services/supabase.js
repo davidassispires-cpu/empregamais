@@ -58,3 +58,16 @@ export async function saveJob(company,data,id=""){
  if(!Array.isArray(rows)||!rows[0])throw new Error("O Supabase não confirmou o salvamento da vaga.");
  return rows[0];
 }
+
+export async function getApplications(){
+ const t=await ensureSession();if(!t)throw new Error("Sua sessão expirou. Entre novamente.");
+ const rows=await json("/rest/v1/candidaturas?select=*&order=criado_em.desc",{headers:headers(t)});
+ return Array.isArray(rows)?rows:[];
+}
+export async function updateApplication(id,status){
+ const t=await ensureSession();if(!t)throw new Error("Sua sessão expirou. Entre novamente.");
+ const now=new Date().toISOString();
+ const rows=await json("/rest/v1/candidaturas?id=eq."+encodeURIComponent(id),{method:"PATCH",headers:{...headers(t),Prefer:"return=representation"},body:JSON.stringify({status,atualizado_em:now})});
+ if(!Array.isArray(rows)||!rows[0])throw new Error("Não foi possível atualizar a candidatura.");
+ return rows[0];
+}
