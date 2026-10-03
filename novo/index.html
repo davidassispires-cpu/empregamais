@@ -17660,4 +17660,49 @@ html:has(#pagina-publicar.ativa),body:has(#pagina-publicar.ativa){height:auto!im
  setTimeout(limpar,300);setTimeout(limpar,1000);setTimeout(limpar,2200);
  new MutationObserver(limpar).observe(document.documentElement,{childList:true,subtree:true});
 })();
-</script></body></html>
+</script><style id="EMPREGAMAI-PUBLICAR-AZUL-CANONICO-V303">
+/* Paleta canônica do formulário de publicação: somente azul */
+#pagina-publicar{
+ --pub-blue:#0d3765;
+ --pub-blue-2:#164f86;
+ --pub-blue-soft:#edf4fb;
+ --pub-border:#d7e3ee;
+ --pub-text:#173650;
+}
+#pagina-publicar .job-card{border-left-color:var(--pub-blue)!important}
+#pagina-publicar .job-card h2,#pagina-publicar .job-card h3,#pagina-publicar .job-card label,#pagina-publicar .em-company-profile-card strong{color:var(--pub-blue)!important}
+#pagina-publicar .job-progress .job-step.ativo,
+#pagina-publicar .job-progress .job-step.ativo span{color:var(--pub-blue)!important}
+#pagina-publicar .job-progress .job-step.ativo b{background:var(--pub-blue)!important;color:#fff!important}
+#pagina-publicar .btn-azul,#pagina-publicar .btn-publicar,
+#pagina-publicar .job-actions .btn-azul,#pagina-publicar .job-actions button[type=submit]{
+ background:var(--pub-blue)!important;border-color:var(--pub-blue)!important;color:#fff!important;
+ box-shadow:0 7px 16px rgba(13,55,101,.15)!important
+}
+#pagina-publicar .btn-azul:hover,#pagina-publicar .btn-publicar:hover{background:#092e57!important;border-color:#092e57!important}
+#pagina-publicar input:focus,#pagina-publicar select:focus,#pagina-publicar textarea:focus{
+ border-color:var(--pub-blue-2)!important;box-shadow:0 0 0 3px rgba(22,79,134,.10)!important;outline:none!important
+}
+#pagina-publicar .em-company-profile-card{border-left-color:var(--pub-blue)!important}
+#pagina-publicar .em-modalidade-cards input:checked+span,#pagina-publicar .em-curriculo-options input:checked+span{
+ border-color:var(--pub-blue)!important;background:var(--pub-blue-soft)!important;color:var(--pub-blue)!important;box-shadow:inset 0 0 0 1px var(--pub-blue)!important
+}
+#pagina-publicar .em-add-city{color:var(--pub-blue)!important}
+#pagina-publicar .em-secao-titulo>span{background:var(--pub-blue-soft)!important;color:var(--pub-blue)!important}
+#pagina-publicar .em-publish-visual{border-color:var(--pub-border)!important}
+#pagina-publicar .em-publish-visual .em-visual-kicker,
+#pagina-publicar .em-publish-visual .em-visual-kicker span,
+#pagina-publicar .em-publish-visual h2,
+#pagina-publicar .em-publish-visual h2 span,
+#pagina-publicar .em-publish-visual strong,
+#pagina-publicar .em-publish-visual .em-visual-foot b{
+ color:var(--pub-blue)!important
+}
+#pagina-publicar .em-publish-visual .em-visual-line{background:var(--pub-blue)!important}
+#pagina-publicar .em-publish-visual .em-visual-brand{
+ background:var(--pub-blue-soft)!important;color:var(--pub-blue)!important;border-color:#d9e6f1!important
+}
+#pagina-publicar .em-publish-visual .em-visual-item i{
+ color:var(--pub-blue)!important;border-color:#cfe0ee!important;background:#f4f8fc!important
+}
+</style></body></html>
