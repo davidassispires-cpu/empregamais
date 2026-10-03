@@ -6099,3 +6099,61 @@ abrirMenuVagaEM=function(ev,id){
  '</div></section>';
  document.body.appendChild(m);document.body.classList.add('emp-vaga-acoes-aberto');
 };
+
+
+/* EMPREGAI-PUBLICAR-ELEGANTE-V16 */
+(function(){
+ const STYLE_ID='empregai-publicar-elegante-v16';
+ function aplicar(){
+  const form=document.getElementById('formVaga');
+  if(!form)return;
+  if(!document.getElementById(STYLE_ID)){
+   const st=document.createElement('style');st.id=STYLE_ID;
+   st.textContent=
+   '#pagina-publicar{background:#f4f7fb!important}'+
+   '#pagina-publicar #formVaga{max-width:1060px!important;margin:0 auto!important}'+
+   '#pagina-publicar #jobProgress{position:sticky!important;top:0!important;z-index:25!important;background:#fff!important;border:1px solid #dbe5f0!important;border-radius:16px!important;padding:9px!important;margin-bottom:18px!important;box-shadow:0 8px 24px rgba(12,47,88,.06)!important}'+
+   '#pagina-publicar #jobProgress .job-step{color:#718197!important;font-weight:750!important}'+
+   '#pagina-publicar #jobProgress .job-step.ativo{color:#123f73!important}'+
+   '#pagina-publicar #jobProgress .job-step b{background:#edf2f8!important;color:#60748b!important}'+
+   '#pagina-publicar #jobProgress .job-step.ativo b,#pagina-publicar #jobProgress .job-step.feito b{background:#123f73!important;color:#fff!important}'+
+   '#pagina-publicar .job-card{background:#fff!important;border:1px solid #dbe5f0!important;border-radius:20px!important;box-shadow:0 14px 36px rgba(13,48,91,.055)!important;padding:28px!important;max-height:none!important;overflow:visible!important}'+
+   '#pagina-publicar .job-card h2,#pagina-publicar .job-card h3{color:#123f73!important;font-weight:800!important}'+
+   '#pagina-publicar .job-card p{color:#75869a!important}'+
+   '#pagina-publicar label{color:#314d6b!important;font-weight:700!important}'+
+   '#pagina-publicar input:not([type=checkbox]):not([type=radio]),#pagina-publicar select,#pagina-publicar textarea{border:1px solid #cfdae8!important;border-radius:11px!important;background:#fff!important;color:#1d334e!important;box-shadow:0 1px 2px rgba(20,49,83,.02)!important}'+
+   '#pagina-publicar input:not([type=checkbox]):not([type=radio]):focus,#pagina-publicar select:focus,#pagina-publicar textarea:focus{border-color:#315f94!important;outline:3px solid rgba(34,83,137,.09)!important;box-shadow:none!important}'+
+   '#pagina-publicar textarea{min-height:120px!important;line-height:1.55!important}'+
+   '#pagina-publicar button[type=submit],#pagina-publicar #btnPublicarVaga,#pagina-publicar .btn-primary,#pagina-publicar .job-next{background:#123f73!important;border-color:#123f73!important;color:#fff!important;border-radius:10px!important;box-shadow:0 7px 16px rgba(18,63,115,.16)!important;font-weight:800!important}'+
+   '#pagina-publicar .btn-secondary,#pagina-publicar .job-back{background:#fff!important;border:1px solid #d4dfeb!important;color:#405d79!important;border-radius:10px!important}'+
+   '#pagina-publicar .beneficio-chip,#pagina-publicar .option-card,#pagina-publicar .job-option{border-color:#d6e0ec!important;border-radius:12px!important;background:#fff!important;color:#45617e!important}'+
+   '#pagina-publicar .beneficio-chip.ativo,#pagina-publicar .option-card.ativo,#pagina-publicar .job-option.ativo{border-color:#164d84!important;background:#edf4fc!important;color:#123f73!important}'+
+   '#pagina-publicar #reviewVaga,#pagina-publicar #previewVaga{border:1px solid #dbe5ef!important;border-radius:15px!important;background:#f9fbfd!important}'+
+   '@media(max-width:720px){#pagina-publicar .job-card{padding:18px!important;border-radius:15px!important}#pagina-publicar #jobProgress{border-radius:12px!important}}';
+   document.head.appendChild(st);
+  }
+  const prog=document.getElementById('jobProgress');
+  if(prog&&!prog.dataset.v16){
+   prog.dataset.v16='1';
+   const steps=prog.querySelectorAll('.job-step');
+   const labels=['Informações','Detalhes','Descrição','Revisão'];
+   steps.forEach((el,i)=>{const sp=el.querySelector('span');if(sp&&labels[i])sp.textContent=labels[i]});
+  }
+  if(!form.dataset.v16){
+   form.dataset.v16='1';
+   const empresa=document.getElementById('empresaVaga');
+   if(empresa){
+    try{
+     const e=typeof empresaLogada==='function'?(empresaLogada()||{}):{};
+     const nome=e.nomeFantasia||e.nome_fantasia||e.nome||sessionStorage.getItem('empresaNome')||empresa.value;
+     if(nome)empresa.value=nome;
+    }catch(_){}
+   }
+   const cep=document.getElementById('cepVaga');
+   if(cep){cep.readOnly=true;cep.title='Preenchido automaticamente pelo perfil/localização da empresa';cep.style.background='#f2f6fa'}
+  }
+ }
+ const run=()=>{aplicar();setTimeout(aplicar,250)};
+ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',run);else run();
+ new MutationObserver(aplicar).observe(document.documentElement,{childList:true,subtree:true});
+})();
