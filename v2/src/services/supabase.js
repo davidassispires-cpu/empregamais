@@ -144,3 +144,21 @@ export async function uploadCompanyImage(company,file,type="logo"){
  if(!r.ok){let m="";try{m=(await r.json()).message||""}catch{}throw new Error(m||"Não foi possível enviar a imagem.");}
  return URL+"/storage/v1/object/public/logos-empresas/"+path;
 }
+export async function registerCompany(data){
+ const cnpj=digits(data.cnpj),email=String(data.email||"").trim().toLowerCase(),emailApps=String(data.email_candidaturas||email).trim().toLowerCase(),phone=digits(data.telefone);
+ if(String(data.nome||"").trim().length<2)throw new Error("Informe o nome da empresa.");
+ if(cnpj.length!==14)throw new Error("Informe um CNPJ com 14 números.");
+ if(!email.includes("@"))throw new Error("Informe um e-mail corporativo válido.");
+ if(!emailApps.includes("@"))throw new Error("Informe um e-mail válido para candidaturas.");
+ if(phone.length<10)throw new Error("Informe um telefone válido.");
+ if(String(data.password||"").length<6)throw new Error("A senha deve ter pelo menos 6 caracteres.");
+ if(data.password!==data.password2)throw new Error("As senhas não conferem.");
+ const existing=await json("/rest/v1/empresas?select=id&cnpj=eq."+encodeURIComponent(cnpj)+"&limit=1",{headers:headers("")});if(Array.isArray(existing)&&existing.length)throw new Error("Já existe uma empresa cadastrada com este CNPJ.");
+ const a=await json("/auth/v1/signup",{method:"POST",headers:headers(""),body:JSON.stringify({email:authEmail(cnpj),password:data.password})});
+ if(!a?.access_token||!a?.user?.id)throw new Error("O cadastro foi criado, mas a sessão automática não foi liberada. Entre pela tela de login.");
+ saveSession(a);
+ try{
+  const rows=await json("/rest/v1/empresas",{method:"POST",headers:{...headers(a.access_token),Prefer:"return=representation"},body:JSON.stringify({user_id:a.user.id,nome:String(data.nome).trim(),cnpj,email,email_corporativo:email,email_candidaturas:emailApps,telefone:String(data.telefone||"").trim(),plano:"basico",plano_id:"basico",verificacao_status:"nao_verificada",verificada:false,plano_liberado_admin:false,plano_sem_cobranca:false,aprovacao_automatica_suspensa:false})});
+  if(!Array.isArray(rows)||!rows[0])throw new Error("O Supabase não confirmou o cadastro da empresa.");return rows[0];
+ }catch(e){await logoutCompany();throw e}
+}
