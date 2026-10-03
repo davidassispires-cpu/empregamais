@@ -8,7 +8,7 @@ export async function hydrateCompanyHome(){
  const k=document.querySelector('#dashboardKpis'),list=document.querySelector('#dashboardJobs'),perf=document.querySelector('#performanceMetrics');
  try{
   const company=await getCompany();if(!company)throw new Error('Sessão empresarial necessária.');
-  const [allJobs,apps]=await Promise.all([getCompanyJobs(company),getApplications()]),jobs=allJobs.filter(v=>v.status!=='excluida'),active=jobs.filter(v=>jobStatus(v)==='Ativa');
+  const [allJobs,apps]=await Promise.all([getCompanyJobs(company),getApplications(company)]),jobs=allJobs.filter(v=>v.status!=='excluida'),active=jobs.filter(v=>jobStatus(v)==='Ativa');
   const analysis=apps.filter(c=>['em avaliacao','em analise','analise'].some(x=>norm(c.status).includes(x))),interviews=apps.filter(c=>norm(c.status).includes('entrevista')),hires=apps.filter(c=>norm(c.status).includes('contratado')),approved=apps.filter(c=>norm(c.status).includes('aprovado'));
   document.querySelector('#companyWelcome').textContent='Olá, '+(company.nome||company.razao_social||'Empresa');
   const data=[['Vagas ativas',active.length,'Oportunidades publicadas'],['Candidaturas',apps.length,'Recebidas no total'],['Em análise',analysis.length,'Aguardando decisão'],['Entrevistas',interviews.length,'Etapa de entrevista'],['Contratações',hires.length,'Contratados registrados']];
