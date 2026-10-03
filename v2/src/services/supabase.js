@@ -114,3 +114,19 @@ export async function logoutCompany(){
  sessionStorage.removeItem("empresaSupabaseUserId");sessionStorage.removeItem("empresaSupabaseEmpresaId");
 }
 export async function hasCompanySession(){return !!(await getCompany())}
+
+export async function updateJobStatus(company,id,status){
+ const t=await ensureSession();if(!t)throw new Error("Sua sessão expirou. Entre novamente.");
+ if(!company?.id||!id)throw new Error("Vaga inválida.");
+ const body={status,editado_em:new Date().toISOString()};
+ if(status==="encerrada")body.data_encerramento=new Date().toISOString().slice(0,10);
+ if(status==="pendente")body.data_encerramento=closingDate(30);
+ const rows=await json("/rest/v1/vagas?id=eq."+encodeURIComponent(id)+"&empresa_id=eq."+encodeURIComponent(company.id),{method:"PATCH",headers:{...headers(t),Prefer:"return=representation"},body:JSON.stringify(body)});
+ if(!Array.isArray(rows)||!rows[0])throw new Error("Não foi possível atualizar a vaga.");return rows[0];
+}
+export async function deleteJob(company,id){
+ const t=await ensureSession();if(!t)throw new Error("Sua sessão expirou. Entre novamente.");
+ if(!company?.id||!id)throw new Error("Vaga inválida.");
+ const rows=await json("/rest/v1/vagas?id=eq."+encodeURIComponent(id)+"&empresa_id=eq."+encodeURIComponent(company.id),{method:"PATCH",headers:{...headers(t),Prefer:"return=representation"},body:JSON.stringify({status:"excluida",editado_em:new Date().toISOString()})});
+ if(!Array.isArray(rows)||!rows[0])throw new Error("Não foi possível excluir a vaga.");return rows[0];
+}
