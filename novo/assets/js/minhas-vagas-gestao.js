@@ -21,7 +21,7 @@ function carregarCoreMinhasVagasEM(){
 function carregarRefinoVisaoGeralEM(){
  if(document.querySelector('script[data-em-visao-geral-refino]'))return;
  const s=document.createElement('script');
- s.src='./assets/js/visao-geral-refino.js?v=1-20260928';
+ s.src='./assets/js/visao-geral-refino.js?v=20261004-1047';
  s.async=false;
  s.dataset.emVisaoGeralRefino='1';
  document.head.appendChild(s);
