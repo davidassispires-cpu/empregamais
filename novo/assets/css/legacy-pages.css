@@ -1314,7 +1314,6 @@ input::placeholder,textarea::placeholder,
 /* Denunciar vaga: cabeçalho, imediatamente abaixo de Salvar vaga */
 @media(min-width:801px){
  #pagina-vaga .em-denunciar-topo{right:24px!important;top:70px!important;width:148px!important;height:32px!important;display:flex!important;align-items:center!important;justify-content:center!important}
- #pagina-vaga .vaga-acao-v2 .denunciar-vaga,#pagina-vaga .vaga-acao-v2 .vaga-denunciar{display:none!important}
 }
 
 /* EMPREGAMAIS-INFO-CARDS-FIX-V60 */
