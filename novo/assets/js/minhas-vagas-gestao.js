@@ -54,10 +54,14 @@ function ajustarNavegacaoRecrutadorEM(){
  const botoes=[...grupo.querySelectorAll(':scope > button')];
  const texto=b=>(b.textContent||'').replace(/\s+/g,' ').trim().toLowerCase();
  const btnProcesso=botoes.find(b=>texto(b).startsWith('processo seletivo'));
+ const btnMinhas=botoes.find(b=>texto(b).startsWith('minhas vagas'));
  const btnCandidatos=botoes.find(b=>texto(b).startsWith('candidatos'));
  const btnMensagens=botoes.find(b=>texto(b).startsWith('mensagens'));
  const jaMinhas=[...grupo.querySelectorAll(':scope > button')].some(b=>texto(b).startsWith('minhas vagas'));
 
+ if(btnMinhas){
+  btnMinhas.setAttribute('onclick',"sessionStorage.removeItem('vagaCandidatosSelecionada');irPara('vagas-empresa')");
+ }
  if(btnProcesso){
   btnProcesso.setAttribute('onclick',"if(typeof abrirCentralProcessosEmpresaEM==='function'){abrirCentralProcessosEmpresaEM()}else{sessionStorage.removeItem('vagaCandidatosSelecionada');irPara('candidatos-empresa')}");
   if(!jaMinhas){
