@@ -87,6 +87,19 @@ function aplicarRefinoVisaoGeralEM(){
  #pagina-painel-empresa .empresa-vaga-linha strong,
  #pagina-painel-empresa .empresa-candidato-linha strong{font-weight:500!important}
 
+
+ /* REFERENCIA PAINEL PREMIUM - 2026-10-04 */
+ #pagina-painel-empresa{background:#f3f8fd!important}
+ #pagina-painel-empresa .emp-dashboard-hero{border:1px solid #dbe7f2!important;border-radius:22px!important;background:linear-gradient(120deg,#fff 0%,#fff 54%,#edf6ff 100%)!important;box-shadow:0 8px 28px rgba(24,72,116,.07)!important}
+ #pagina-painel-empresa .emp-dashboard-hero h1{font-size:32px!important;color:#083f83!important}
+ #pagina-painel-empresa .emp-dashboard-hero .emp-avatar{border-radius:22px!important;background:linear-gradient(145deg,#0877ee,#004cae)!important;box-shadow:0 10px 24px rgba(0,87,190,.20)!important}
+ #empresaMetricasNovas{grid-template-columns:repeat(4,minmax(0,1fr))!important;gap:18px!important}
+ #empresaMetricasNovas>button{min-height:142px!important;border-radius:22px!important;padding:24px!important}
+ #empresaMetricasNovas .kpi-num{font-size:38px!important}
+ #pagina-painel-empresa .emp-open-vagas,#empresaResumoRecursos{border-radius:22px!important}
+ @media(max-width:1180px){#empresaMetricasNovas{grid-template-columns:repeat(2,minmax(0,1fr))!important}}
+ @media(max-width:600px){#empresaMetricasNovas{grid-template-columns:1fr!important}}
+
  @media(max-width:1180px){
   #empresaMetricasNovas{grid-template-columns:repeat(3,minmax(0,1fr))!important}
  }
