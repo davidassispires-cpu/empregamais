@@ -33,7 +33,7 @@ Trabalho realizado diretamente na `main`, mantendo GitHub Pages, Supabase e os r
 - Checkout existente não tinha provedor de pagamento conectado. Solicitações agora são reais e persistidas, mas cobrança automática ainda depende de configurar um provedor e webhook; a interface informa isso.
 - Fluxos autenticados completos precisam ser verificados com sessões autorizadas de candidato, empresa e administrador. Não foi criada conta fictícia nem candidatura de teste em produção.
 - Há 3 vagas antigas cuja referência à empresa não coincide com o usuário responsável. Os registros foram preservados; uma revisão administrativa de propriedade é necessária antes de alterar seus vínculos.
-- Denúncias e pedidos extras históricos ainda possuem partes locais no legado e precisam de revisão/persistência complementar.
+- Denúncias e solicitações de extras têm persistência no Supabase; caches históricos de extras locais são arquivados sem ativação automática.
 - A extração de CSS preserva regras históricas; a remoção das regras conflitantes deve continuar com verificação visual por página, especialmente em mobile.
 
 ## Comandos de validação
@@ -55,4 +55,13 @@ Funções existentes atualizadas no Supabase, versão 2: consulta por CNPJ exige
 - Suspensão da vaga, resolução da denúncia e histórico administrativo são atômicos.
 - Dados de teste são revertidos com rollback; 940 vagas, 3 empresas e 1 candidato preservados.
 - O envio mantém o formulário em caso de erro e só confirma após resposta do servidor; envios concorrentes são bloqueados.
-- Pedidos extras históricos e checkout automático permanecem pendentes.
+- Checkout automático permanece pendente de provedor e webhook.
+
+## Continuação — destaque e urgência
+
+- Solicitações de extras têm RLS por empresa; visitante não pode ler pedidos, e empresas não podem definir preço ou ativar recursos.
+- Publicação e pedidos opcionais são gravados na mesma transação por trigger interno. Valores preservados: destaque R$ 19,90 por 7 dias e urgência R$ 9,90.
+- Índice impede pedidos pendentes duplicados. Ativação/cancelamento administrativo, flags da vaga e histórico são atômicos. A ativação requer vaga aprovada e dentro do prazo.
+- Minhas Vagas oferece solicitação e acompanhamento reais. Pedidos antigos apenas no navegador são arquivados para referência. Nenhum é tratado como pagamento confirmado.
+- 18 testes de frontend passaram. SQL com rollback verificou preço/duração, bloqueio de autoativação, duplicidade, geração de dois pedidos por publicação, ativação com histórico e cancelamento.
+- Depois dos testes: 940 vagas, 3 empresas, 1 candidato e nenhum pedido fictício persistido. Cobrança online continua dependendo de configuração de provedor/webhook.
