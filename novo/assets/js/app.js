@@ -5752,6 +5752,24 @@ window.addEventListener('load',()=>setTimeout(bindCadastroEmpresaV4EM,50));
 })();
 
 
+/* EMPREGOS-HOME-RESULTADOS-CONSOLIDATED-V1 */
+(function(){
+ function aplicarResultadosHomeEM(){
+  const lista=document.getElementById('listaVagasPortal'); if(!lista)return;
+  const sec=lista.closest('section')||lista.parentElement; if(sec)sec.classList.add('home-resultados-consolidado-em');
+  const filtros=document.getElementById('filtrosVagasLateral'); if(filtros)filtros.classList.add('home-filtros-consolidado-em');
+  const cab=document.querySelector('.home-recentes-cab'); if(cab)cab.classList.add('home-resultados-cab-consolidado-em');
+  const pag=document.getElementById('paginacaoVagasPortal'); if(pag)pag.classList.add('home-paginacao-consolidado-em');
+  if(!document.getElementById('homeResultadosConsolidadoStyleEM')){
+   const st=document.createElement('style');st.id='homeResultadosConsolidadoStyleEM';
+   st.textContent='.home-resultados-consolidado-em{max-width:1220px!important;margin:0 auto!important;padding:30px 20px 48px!important}.home-resultados-cab-consolidado-em{display:flex!important;align-items:center!important;justify-content:space-between!important;gap:16px!important;margin:0 0 16px!important}.home-resultados-cab-consolidado-em h2,.home-resultados-cab-consolidado-em h3{margin:0!important;color:#18324a!important;font-size:22px!important;font-weight:800!important}.home-filtros-consolidado-em{background:#fff!important;border:1px solid #dfe7ef!important;border-radius:14px!important;padding:18px!important;box-shadow:0 4px 14px rgba(24,50,74,.045)!important}.home-filtros-consolidado-em input,.home-filtros-consolidado-em select{width:100%!important;min-height:42px!important;border:1px solid #d9e3ec!important;border-radius:8px!important;background:#fff!important;color:#263b4d!important}.home-filtros-consolidado-em label{color:#30485e!important;font-size:11px!important;font-weight:700!important}.home-paginacao-consolidado-em{display:flex!important;justify-content:center!important;align-items:center!important;gap:7px!important;padding:24px 0 4px!important}.home-paginacao-consolidado-em button{min-width:38px!important;height:38px!important;border:1px solid #d8e3ed!important;border-radius:8px!important;background:#fff!important;color:#31506c!important;font-weight:700!important}.home-paginacao-consolidado-em button.ativo{background:#0b66c3!important;border-color:#0b66c3!important;color:#fff!important}.home-paginacao-consolidado-em button:disabled{opacity:.45!important}@media(max-width:760px){.home-resultados-consolidado-em{padding:22px 12px 36px!important}.home-resultados-cab-consolidado-em{align-items:flex-start!important;flex-direction:column!important}.home-filtros-consolidado-em{padding:14px!important}.home-paginacao-consolidado-em{flex-wrap:wrap!important}}';
+   document.head.appendChild(st);
+  }
+ }
+ document.addEventListener('DOMContentLoaded',()=>{[100,500,1200].forEach(ms=>setTimeout(aplicarResultadosHomeEM,ms))});
+ window.aplicarResultadosHomeEM=aplicarResultadosHomeEM;
+})();
+
 /* EMPREGOS-HOME-HERO-CONSOLIDATED-V2 */
 (function(){
  function aplicarHeroEmpregosEM(){
