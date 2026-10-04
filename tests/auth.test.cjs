@@ -10,7 +10,7 @@ function setup(fetch) {
   }
   const context = {fetch,console,URLSearchParams,Set,Promise,setTimeout,clearTimeout,sessionStorage:storage(),localStorage:storage(),location:{origin:'https://example.test',pathname:'/novo/',search:'',hash:''},history:{replaceState(){}},document:{getElementById(){return null;},addEventListener(){}},sbCandidaturasCacheEM:[],sbCandidaturasCarregadasEM:false,EMPREGAMAIS_SUPABASE_URL:'https://example.test',EMPREGAMAIS_SB_ADMIN_TOKEN:'adminToken',EMPREGAMAIS_SB_REFRESH:'empregaMaisSupabaseRefreshToken',EMPREGAMAIS_SB_TOKEN:'empregaMaisSupabaseAccessToken'};
   context.window=context;context.addEventListener=()=>{};
-  for(const name of ['sbGarantirSessaoEM','sbJsonEM','sbBuscarMinhaEmpresaEM','loginEmpresa','loginCandidato','cadastrarEmpresa','cadastrarCandidato','sair','atualizarHeaderContextualEM','garantirLoginCandidatoEM'])context[name]=()=>{};
+  for(const name of ['sbLoginAuthEmpresaEM','sbGarantirSessaoEM','sbJsonEM','sbBuscarMinhaEmpresaEM','loginEmpresa','loginCandidato','cadastrarEmpresa','cadastrarCandidato','sair','atualizarHeaderContextualEM','garantirLoginCandidatoEM'])context[name]=()=>{};
   context.routes=[];context.abrirRota=route=>context.routes.push(route);context.irPara=route=>context.abrirRota(route);
   context.sbTokenEM=()=>context.sessionStorage.getItem(context.EMPREGAMAIS_SB_TOKEN)||context.localStorage.getItem(context.EMPREGAMAIS_SB_TOKEN)||'';
   context.sbRefreshTokenEM=()=>context.sessionStorage.getItem(context.EMPREGAMAIS_SB_REFRESH)||context.localStorage.getItem(context.EMPREGAMAIS_SB_REFRESH)||'';
@@ -57,3 +57,17 @@ test('logout clears both token stores and revokes the remote session without rem
   assert.ok(c.localStorage.getItem('empregaMaisCurriculoOnline_test'));
   assert.ok(requests.some(url=>url.endsWith('/logout?scope=global')));
 });
+
+ test('CNPJ login requires an authenticated session before saving credentials',async()=>{
+  const c=setup(async()=>response(200,{}));
+  let request;
+  c.sbJsonEM=async(url,options)=>{request={url,body:JSON.parse(options.body)};return {email:'must-not-be-trusted'};};
+  await assert.rejects(c.sbLoginAuthEmpresaEM('12.345.678/0001-90','example-password'),/Credenciais inválidas/);
+  assert.equal(request.url,'https://example.test/functions/v1/auth-empresa-cnpj');
+  assert.equal(request.body.cnpj,'12345678000190');
+  assert.equal(c.localStorage.getItem(c.EMPREGAMAIS_SB_TOKEN),null);
+  c.sbJsonEM=async()=>({access_token:'verified',refresh_token:'refresh',user:{id:'owner'}});
+  const auth=await c.sbLoginAuthEmpresaEM('12345678000190','example-password');
+  assert.equal(auth.user.id,'owner');
+  assert.equal(c.localStorage.getItem(c.EMPREGAMAIS_SB_TOKEN),'verified');
+ });

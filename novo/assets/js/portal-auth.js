@@ -162,7 +162,7 @@
       const base = {papel:'empresa',nome:field('cadEmpresaNome'),cnpj:nums(field('cadEmpresaCnpj')),email:field('cadEmpresaEmail').toLowerCase(),emailCandidaturas:field('cadEmpresaEmailCandidaturas').toLowerCase() || field('cadEmpresaEmail').toLowerCase(),telefone:field('cadEmpresaTelefone')};
       if (base.cnpj.length !== 14 || base.nome.length < 2 || nums(base.telefone).length < 10) throw new Error('Confira o nome, o CNPJ e o telefone da empresa.');
       enableSession(); msg('#msgCadastroEmpresa','Criando sua conta...');
-      const auth = await sbJsonEM(EMPREGAMAIS_SUPABASE_URL+'/auth/v1/signup',{method:'POST',headers:sbHeadersEM(),body:JSON.stringify({email:base.email,password,data:base,email_redirect_to:location.origin+location.pathname+'?pagina=login-empresa'})});
+      const auth = await sbJsonEM(EMPREGAMAIS_SUPABASE_URL+'/auth/v1/signup?redirect_to='+encodeURIComponent(location.origin+location.pathname+'?pagina=login-empresa'),{method:'POST',headers:sbHeadersEM(),body:JSON.stringify({email:base.email,password,data:base})});
       if (!auth?.access_token) { msg('#msgCadastroEmpresa','Confira seu e-mail para confirmar o cadastro. Depois, entre com seu e-mail e senha.',true); return; }
       sbSalvarSessaoEM(auth); verifiedUser = auth.user;
       if (!await hydrateCompany()) throw new Error('Não foi possível concluir o perfil da empresa. Entre novamente para tentar concluir.');
@@ -181,13 +181,24 @@
       irPara('painel-candidato');
     });
   };
+  const previousCompanyLogin = sbLoginAuthEmpresaEM;
+  window.sbLoginAuthEmpresaEM = sbLoginAuthEmpresaEM = async function (credential,password) {
+    const cnpj=String(credential||'').replace(/\D/g,'');
+    if (cnpj.length !== 14 || String(credential).includes('@')) return previousCompanyLogin(credential,password);
+    const auth=await sbJsonEM(EMPREGAMAIS_SUPABASE_URL+'/functions/v1/auth-empresa-cnpj',{method:'POST',headers:sbHeadersEM(),body:JSON.stringify({cnpj,password})});
+    if (!auth?.access_token || !auth?.user) throw new Error('Credenciais inválidas.');
+    sbSalvarSessaoEM(auth); return auth;
+  };
   window.recuperarAcessoEmpregosEM = async function (role) {
     const messageId = role === 'empresa' ? '#msgLoginEmpresa' : '#msgLoginCandidato';
     const email = role === 'empresa' ? field('loginEmpresaCnpj') : field('loginCandEmail');
-    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { msg(messageId,'Informe o e-mail da sua conta para receber o link de recuperação.'); return; }
+    const cnpj=role==='empresa' && !email.includes('@') ? email.replace(/\D/g,'') : '';
+    if (cnpj.length!==14 && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { msg(messageId,'Informe o e-mail da sua conta para receber o link de recuperação.'); return; }
     try {
-      await sbJsonEM(EMPREGAMAIS_SUPABASE_URL+'/auth/v1/recover',{method:'POST',headers:sbHeadersEM(),body:JSON.stringify({email,redirect_to:location.origin+location.pathname+'?pagina=recuperar-senha'})});
-      msg(messageId,'Se esse e-mail possui uma conta, o link de recuperação será enviado.',true);
+      const redirect=location.origin+location.pathname+'?pagina=recuperar-senha&tipo='+role;
+      const endpoint=cnpj.length===14 ? '/functions/v1/recuperar-senha-empresa' : '/auth/v1/recover?redirect_to='+encodeURIComponent(redirect);
+      await sbJsonEM(EMPREGAMAIS_SUPABASE_URL+endpoint,{method:'POST',headers:sbHeadersEM(),body:JSON.stringify(cnpj.length===14?{cnpj}:{email})});
+      msg(messageId,'Se houver uma conta correspondente, o link será enviado ao e-mail registrado.',true);
     } catch (error) { msg(messageId,error.message); }
   };
   window.atualizarSenhaEmpregosEM = async function (event) {
@@ -199,8 +210,9 @@
       const token = await validateSession(); if (!token) throw new Error('O link de recuperação expirou. Solicite um novo link.');
       await sbJsonEM(EMPREGAMAIS_SUPABASE_URL+'/auth/v1/user',{method:'PUT',headers:sbHeadersEM(token),body:JSON.stringify({password})});
       sessionStorage.removeItem('empregosRecovery');
+      const companyRecovery=new URLSearchParams(location.search).get('tipo')==='empresa';
       await sair();
-      irPara('login-candidato'); msg('#msgLoginCandidato','Senha atualizada. Entre novamente com sua nova senha.',true);
+      irPara(companyRecovery?'login-empresa':'login-candidato'); msg(companyRecovery?'#msgLoginEmpresa':'#msgLoginCandidato','Senha atualizada. Entre novamente com sua nova senha.',true);
     });
   };
   window.sair = sair = window.empregaiAuthLogoutEM = async function () {
@@ -246,7 +258,7 @@
     if (hash.get('access_token') && hash.get('refresh_token')) {
       enableSession(); sbSalvarSessaoEM({access_token:hash.get('access_token'),refresh_token:hash.get('refresh_token')});
       const recovery = hash.get('type') === 'recovery';
-      history.replaceState({},'',location.pathname+(recovery?'?pagina=recuperar-senha':location.search));
+      history.replaceState({},'',location.pathname+(recovery?'?pagina=recuperar-senha&tipo='+(new URLSearchParams(location.search).get('tipo')==='empresa'?'empresa':'candidato'):location.search));
       if (recovery) { sessionStorage.setItem('empregosRecovery','1'); originalRoute('recuperar-senha'); }
     }
     if (sbTokenEM() || sbRefreshTokenEM()) validateSession().then(async token => {

@@ -45,3 +45,7 @@ python3 scripts/build_pages.py
 ```
 
 O deploy valida antes de publicar e monta um artefato público separado, sem incluir testes, migrações ou arquivos de manutenção.
+
+## Autenticação por CNPJ e recuperação
+
+Funções existentes atualizadas no Supabase, versão 2: consulta por CNPJ exige senha e retorna somente sessão autenticada; recuperação usa o e-mail registrado em Auth, sem alterar usuário ou confirmar e-mail, com retorno fixo ao portal. Frontend integrado ao novo contrato. Redirecionamento de confirmação/recuperação enviado em query `redirect_to`, conforme cliente oficial. Validação de entrega de e-mail e acesso autenticado ainda depende de conta real e configuração de URLs do Auth.

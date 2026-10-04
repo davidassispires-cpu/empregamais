@@ -2705,7 +2705,7 @@ async function sbGarantirSessaoEM(){
   return ""
  }
 }
-function sbCadastrarAuthEmpresaEM(cnpj,senha){localStorage.removeItem('empregaMaisLogoutBloqueio');sessionStorage.removeItem('empregaMaisLogoutBloqueio');return sbJsonEM(EMPREGAMAIS_SUPABASE_URL+"/auth/v1/signup",{method:"POST",headers:sbHeadersEM(),body:JSON.stringify({email:sbEmailEmpresaEM(cnpj),password:senha})}).then(a=>{sbSalvarSessaoEM(a);return a})}
+function sbCadastrarAuthEmpresaEM(cnpj,senha){localStorage.removeItem('empregaMaisLogoutBloqueio');sessionStorage.removeItem('empregaMaisLogoutBloqueio');return sbJsonEM(EMPREGAMAIS_SUPABASE_URL+"/auth/v1/signup?redirect_to="+encodeURIComponent(location.origin+location.pathname+"?pagina=login-candidato"),{method:"POST",headers:sbHeadersEM(),body:JSON.stringify({email:sbEmailEmpresaEM(cnpj),password:senha})}).then(a=>{sbSalvarSessaoEM(a);return a})}
 async function sbLoginAuthEmpresaEM(credencial,senha){
  localStorage.removeItem('empregaMaisLogoutBloqueio');
  sessionStorage.removeItem('empregaMaisLogoutBloqueio');
@@ -3857,7 +3857,7 @@ function retirarCandidaturaEM(id){if(!confirm('Deseja realmente retirar esta can
 /* EMPREGAMAIS-CANDIDATO-SUPABASE-AUTH-V1 */
 function sbCadastrarAuthCandidatoEM(email,senha,nome,telefone,cidade){
  localStorage.removeItem('empregaMaisLogoutBloqueio');sessionStorage.removeItem('empregaMaisLogoutBloqueio');
- return sbJsonEM(EMPREGAMAIS_SUPABASE_URL+"/auth/v1/signup",{method:"POST",headers:sbHeadersEM(),body:JSON.stringify({email:email,password:senha,data:{papel:"candidato",nome:nome,telefone:telefone,cidade:cidade}})}).then(a=>{sbSalvarSessaoEM(a);return a})
+ return sbJsonEM(EMPREGAMAIS_SUPABASE_URL+"/auth/v1/signup?redirect_to="+encodeURIComponent(location.origin+location.pathname+"?pagina=login-candidato"),{method:"POST",headers:sbHeadersEM(),body:JSON.stringify({email:email,password:senha,data:{papel:"candidato",nome:nome,telefone:telefone,cidade:cidade}})}).then(a=>{sbSalvarSessaoEM(a);return a})
 }
 function sbLoginAuthCandidatoEM(email,senha){
  localStorage.removeItem('empregaMaisLogoutBloqueio');sessionStorage.removeItem('empregaMaisLogoutBloqueio');
