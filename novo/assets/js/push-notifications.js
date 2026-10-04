@@ -283,7 +283,7 @@ setInterval(()=>{try{hook();if(typeof papelAtual==='function'&&papelAtual()==='c
 (function(){
  if(document.querySelector('script[data-em-minhas-vagas-gestao]'))return;
  const s=document.createElement('script');
- s.src='./assets/js/minhas-vagas-gestao.js?v=1-20260928';
+ s.src='./assets/js/minhas-vagas-gestao.js?v=20261004-stable-2';
  s.async=false;
  s.dataset.emMinhasVagasGestao='1';
  document.head.appendChild(s);

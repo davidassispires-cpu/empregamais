@@ -1,0 +1,26 @@
+.auth-stable {background:#f4f7fb; padding:40px 20px 60px; color:#20364c;}
+.auth-layout {max-width:1080px; margin:auto; display:grid; grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr); border:1px solid #dae4ed; border-radius:20px; overflow:hidden; background:#fff; box-shadow:0 12px 35px #193a5910;}
+.auth-aside {padding:44px 36px; background:linear-gradient(140deg,#103d67,#0c6588); color:#fff;}
+.auth-aside>span {font-weight:700; font-size:13px; color:#bfdef9;}
+.auth-aside h1 {font-size:36px; line-height:1.2; margin:24px 0 16px; color:#fff;}
+.auth-aside p,.auth-aside li {font-size:15px; line-height:1.7; color:#e0edf8;}
+.auth-aside ul {padding-left:20px; margin-top:36px;}
+.auth-panel {padding:32px 36px; min-width:0;}
+.auth-panel h2 {font-size:25px; color:#193c59; margin:20px 0 8px;}
+.auth-panel>p {font-size:14px; line-height:1.6; color:#586f80;}
+.auth-panel form {display:grid; gap:16px; margin-top:24px;}
+.auth-field label {display:block; font-size:13px; font-weight:600; color:#284b62; margin-bottom:7px;}
+.auth-field input {width:100%; height:48px; padding:0 13px; border:1px solid #cbdce8; border-radius:9px; background:#fff; color:#20364c; font:inherit; font-size:16px; box-sizing:border-box;}
+.auth-field input:focus {outline:3px solid #1685cb24; border-color:#1685cb;}
+.auth-submit {min-height:48px; padding:12px 18px; border:0; border-radius:9px; background:#1268b4; color:#fff; font:inherit; font-weight:700; cursor:pointer;}
+.auth-submit:disabled {opacity:.6; cursor:wait;}
+.auth-link {border:0; background:transparent; color:#156bb0; padding:4px 0; font:inherit; font-size:13px; cursor:pointer; text-align:left;}
+.auth-consent {display:block; color:#536a7d; font-size:12px; line-height:1.7;}
+.auth-consent input {width:17px; height:17px; vertical-align:middle; margin-right:5px;}
+.auth-consent a {color:#156bb0; text-decoration:underline;}
+.auth-panel .form-msg {font-size:13px; line-height:1.5; min-height:18px;}
+.auth-panel .form-msg.erro {color:#ab3041;}
+.auth-panel .form-msg.ok {color:#168059;}
+.empregos-status-toast {position:fixed;z-index:999999;bottom:24px;left:50%;transform:translateX(-50%);max-width:min(560px,calc(100vw - 32px));padding:14px 20px;border-radius:12px;background:#173d60;color:#fff;font-size:14px;box-shadow:0 8px 28px #0002;}
+.empregos-status-toast[hidden] {display:none;}
+@media(max-width:760px) {.auth-stable{padding:20px 12px 36px}.auth-layout{grid-template-columns:1fr}.auth-aside{padding:26px 24px}.auth-aside h1{font-size:28px;margin:12px 0}.auth-aside ul{display:none}.auth-panel{padding:24px}.auth-panel h2{font-size:23px}}

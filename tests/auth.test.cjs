@@ -1,0 +1,59 @@
+const test = require('node:test');
+const assert = require('node:assert/strict');
+const vm = require('node:vm');
+const fs = require('node:fs');
+
+function setup(fetch) {
+  function storage() {
+    const data = new Map();
+    return {getItem:k=>data.get(k) ?? null,setItem:(k,v)=>data.set(k,String(v)),removeItem:k=>data.delete(k)};
+  }
+  const context = {fetch,console,URLSearchParams,Set,Promise,setTimeout,clearTimeout,sessionStorage:storage(),localStorage:storage(),location:{origin:'https://example.test',pathname:'/novo/',search:'',hash:''},history:{replaceState(){}},document:{getElementById(){return null;},addEventListener(){}},sbCandidaturasCacheEM:[],sbCandidaturasCarregadasEM:false,EMPREGAMAIS_SUPABASE_URL:'https://example.test',EMPREGAMAIS_SB_ADMIN_TOKEN:'adminToken',EMPREGAMAIS_SB_REFRESH:'empregaMaisSupabaseRefreshToken',EMPREGAMAIS_SB_TOKEN:'empregaMaisSupabaseAccessToken'};
+  context.window=context;context.addEventListener=()=>{};
+  for(const name of ['sbGarantirSessaoEM','sbJsonEM','sbBuscarMinhaEmpresaEM','loginEmpresa','loginCandidato','cadastrarEmpresa','cadastrarCandidato','sair','atualizarHeaderContextualEM','garantirLoginCandidatoEM'])context[name]=()=>{};
+  context.routes=[];context.abrirRota=route=>context.routes.push(route);context.irPara=route=>context.abrirRota(route);
+  context.sbTokenEM=()=>context.sessionStorage.getItem(context.EMPREGAMAIS_SB_TOKEN)||context.localStorage.getItem(context.EMPREGAMAIS_SB_TOKEN)||'';
+  context.sbRefreshTokenEM=()=>context.sessionStorage.getItem(context.EMPREGAMAIS_SB_REFRESH)||context.localStorage.getItem(context.EMPREGAMAIS_SB_REFRESH)||'';
+  context.sbHeadersEM=token=>({apikey:'publishable',...(token?{Authorization:'Bearer '+token}:{})});
+  context.sbSalvarSessaoEM=auth=>{context.localStorage.setItem(context.EMPREGAMAIS_SB_TOKEN,auth.access_token);context.localStorage.setItem(context.EMPREGAMAIS_SB_REFRESH,auth.refresh_token);};
+  context.ler=(key,defaultValue=[])=>JSON.parse(context.localStorage.getItem(key)||JSON.stringify(defaultValue));
+  context.gravar=(key,value)=>context.localStorage.setItem(key,JSON.stringify(value));
+  vm.createContext(context);
+  vm.runInContext(fs.readFileSync('novo/assets/js/portal-auth.js','utf8'),context);
+  return context;
+}
+const response=(status,data)=>({ok:status<400,status,text:async()=>JSON.stringify(data)});
+
+test('private routes require a server session, even with a forged local role',async()=>{
+  const c=setup(async()=>{throw Error('No request expected');});
+  c.sessionStorage.setItem('empregaMaisPapel','empresa');
+  await c.abrirRota('vagas-empresa');
+  assert.deepEqual(c.routes,['login-empresa']);
+});
+test('concurrent checks refresh an expired token only once',async()=>{
+  let refreshes=0,checks=0;
+  const c=setup(async url=>{
+    if(url.includes('/user')) {checks++;return response(401,{message:'expired'});}
+    refreshes++;return response(200,{user:{id:'test-user'},access_token:'new',refresh_token:'refresh-new'});
+  });
+  c.localStorage.setItem(c.EMPREGAMAIS_SB_TOKEN,'expired');c.localStorage.setItem(c.EMPREGAMAIS_SB_REFRESH,'refresh-old');
+  assert.deepEqual(await Promise.all([c.sbGarantirSessaoEM(),c.sbGarantirSessaoEM()]),['new','new']);
+  assert.equal(refreshes,1);assert.equal(checks,1);
+});
+test('a network failure preserves credentials for retry',async()=>{
+  const c=setup(async()=>{throw Error('Network unavailable');});
+  c.localStorage.setItem(c.EMPREGAMAIS_SB_TOKEN,'existing');
+  await assert.rejects(c.sbGarantirSessaoEM(),/Network unavailable/);
+  assert.equal(c.localStorage.getItem(c.EMPREGAMAIS_SB_TOKEN),'existing');
+});
+test('logout clears both token stores and revokes the remote session without removing CVs',async()=>{
+  const requests=[];const c=setup(async url=>{requests.push(url);return response(200,{});});
+  c.localStorage.setItem(c.EMPREGAMAIS_SB_TOKEN,'local');c.sessionStorage.setItem(c.EMPREGAMAIS_SB_TOKEN,'session');
+  c.localStorage.setItem(c.EMPREGAMAIS_SB_REFRESH,'refresh');c.localStorage.setItem('empregaMaisCurriculoOnline_test','{"nome":"Preserved"}');
+  await c.sair();
+  assert.equal(c.localStorage.getItem(c.EMPREGAMAIS_SB_TOKEN),null);
+  assert.equal(c.sessionStorage.getItem(c.EMPREGAMAIS_SB_TOKEN),null);
+  assert.equal(c.localStorage.getItem(c.EMPREGAMAIS_SB_REFRESH),null);
+  assert.ok(c.localStorage.getItem('empregaMaisCurriculoOnline_test'));
+  assert.ok(requests.some(url=>url.endsWith('/logout?scope=global')));
+});
