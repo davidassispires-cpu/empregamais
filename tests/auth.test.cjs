@@ -71,3 +71,23 @@ test('logout clears both token stores and revokes the remote session without rem
   assert.equal(auth.user.id,'owner');
   assert.equal(c.localStorage.getItem(c.EMPREGAMAIS_SB_TOKEN),'verified');
  });
+
+test('logout during user validation cannot restore the former identity',async()=>{
+ let finish;const c=setup(async url=>url.includes('/user')?new Promise(resolve=>{finish=resolve}):response(200,{}));
+ c.localStorage.setItem(c.EMPREGAMAIS_SB_TOKEN,'existing');const pending=c.sbGarantirSessaoEM();await c.sair();
+ finish(response(200,{id:'former-user'}));assert.equal(await pending,'');assert.equal(c.sbTokenEM(),'');
+});
+test('logout during token renewal cannot save the late refreshed credentials',async()=>{
+ let finish;const c=setup(async url=>url.includes('/token?')?new Promise(resolve=>{finish=resolve}):response(200,{}));
+ c.localStorage.setItem(c.EMPREGAMAIS_SB_REFRESH,'refresh-old');const pending=c.sbGarantirSessaoEM();await c.sair();
+ finish(response(200,{user:{id:'former-user'},access_token:'late-token',refresh_token:'late-refresh'}));
+ assert.equal(await pending,'');assert.equal(c.sbTokenEM(),'');assert.equal(c.sbRefreshTokenEM(),'');
+});
+
+test('a company lookup finishing after logout cannot restore its private route or role',async()=>{
+ let finish,started;const ready=new Promise(resolve=>{started=resolve});
+ const c=setup(async url=>{if(url.includes('/empresas?')){started();return new Promise(resolve=>{finish=resolve})}return response(200,{id:'owner'})});
+ c.localStorage.setItem(c.EMPREGAMAIS_SB_TOKEN,'existing');const pending=c.abrirRota('vagas-empresa');await ready;await c.sair();
+ finish(response(200,[{id:'company',user_id:'owner'}]));await pending;
+ assert.equal(c.sessionStorage.getItem('empregaMaisPapel'),null);assert.equal(c.localStorage.getItem('empregaMaisPapelPersistido'),null);assert.deepEqual(c.routes,['home']);
+});

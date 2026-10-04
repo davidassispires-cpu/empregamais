@@ -3,7 +3,8 @@
   'use strict';
   const empresaRotas = new Set(['painel-empresa','vagas-empresa','candidatos-empresa','contratacoes-empresa','perfil-empresa','publicar','central-empresa','painel-conecta']);
   const candidatoRotas = new Set(['painel-candidato','perfil-candidato','curriculo','salvas','candidaturas','candidatar','avaliar-processos']);
-  let sessionRequest = null, verifiedUser = null, routeSequence = 0;
+  let sessionRequest = null, sessionRequestRevision = -1, verifiedUser = null, routeSequence = 0;
+  window.empregosSessionRevisionEM = 0;
   window.mostrarToast = function (message) {
     let toast = document.getElementById('empregosStatusToast');
     if (!toast) { toast = document.createElement('div'); toast.id='empregosStatusToast'; toast.className='empregos-status-toast'; toast.setAttribute('role','status'); toast.setAttribute('aria-live','polite'); document.body.appendChild(toast); }
@@ -24,6 +25,7 @@
     }
   }
   function clearSession() {
+    window.empregosSessionRevisionEM++;
     verifiedUser = null;
     sessionKeys.forEach(key => { sessionStorage.removeItem(key); localStorage.removeItem(key); });
     sbCandidaturasCacheEM = []; sbCandidaturasCarregadasEM = false;
@@ -33,32 +35,40 @@
     atualizarHeaderContextualEM();
   }
   function enableSession() {
+    window.empregosSessionRevisionEM++;
     localStorage.removeItem('empregaMaisLogoutBloqueio');
     sessionStorage.removeItem('empregaMaisLogoutBloqueio');
   }
   async function validateSession() {
-    if (sessionRequest) return sessionRequest;
+    const revision = window.empregosSessionRevisionEM;
+    if (sessionRequest && sessionRequestRevision === revision) return sessionRequest;
+    sessionRequestRevision = revision;
     sessionRequest = (async () => {
       const token = sbTokenEM(), refresh = sbRefreshTokenEM();
       if (!token && !refresh) return '';
       if (localStorage.getItem('empregaMaisLogoutBloqueio') === '1') return '';
       try {
-        let current = token;
+        let current = token, user = null;
         if (current) {
-          try { verifiedUser = await sbJsonEM(EMPREGAMAIS_SUPABASE_URL + '/auth/v1/user', {headers: sbHeadersEM(current)}); }
+          try { user = await sbJsonEM(EMPREGAMAIS_SUPABASE_URL + '/auth/v1/user', {headers: sbHeadersEM(current)}); }
           catch (error) { if (![401,403].includes(error.status)) throw error; current = ''; }
         }
+        if (revision !== window.empregosSessionRevisionEM) return '';
         if (!current && refresh) {
           const auth = await sbJsonEM(EMPREGAMAIS_SUPABASE_URL + '/auth/v1/token?grant_type=refresh_token', {method:'POST', headers:sbHeadersEM(), body:JSON.stringify({refresh_token:refresh})});
-          sbSalvarSessaoEM(auth); verifiedUser = auth.user; current = auth.access_token;
+          if (revision !== window.empregosSessionRevisionEM) return '';
+          sbSalvarSessaoEM(auth); user = auth.user; current = auth.access_token;
         }
-        if (!current || !verifiedUser?.id) { clearSession(); return ''; }
+        if (revision !== window.empregosSessionRevisionEM) return '';
+        if (!current || !user?.id) { clearSession(); return ''; }
+        verifiedUser = user;
         return current;
       } catch (error) {
+        if (revision !== window.empregosSessionRevisionEM) return '';
         if ([400,401,403].includes(error.status)) { clearSession(); return ''; }
         // A network outage is not a logout. Preserve the session for a retry.
         throw error;
-      } finally { sessionRequest = null; }
+      } finally { if (sessionRequestRevision === revision) sessionRequest = null; }
     })();
     return sessionRequest;
   }
@@ -89,12 +99,14 @@
     return company?.[0] || null;
   };
   async function hydrateCompany() {
+    const revision = window.empregosSessionRevisionEM;
     let company = await sbBuscarMinhaEmpresaEM();
+    if (revision !== window.empregosSessionRevisionEM) return false;
     if (!company && verifiedUser?.user_metadata?.papel === 'empresa') {
       const base = verifiedUser.user_metadata;
       if (nums(base.cnpj).length === 14) company = await sbInserirEmpresaEM({access_token:sbTokenEM(),user:verifiedUser}, base);
     }
-    if (!company) return false;
+    if (revision !== window.empregosSessionRevisionEM || !company) return false;
     const local = sbEmpresaParaLocalEM(company, ''); delete local.senha;
     sbSalvarEmpresaLocalEM(local);
     sessionStorage.setItem('empregaMaisPapel','empresa'); localStorage.setItem('empregaMaisPapelPersistido','empresa');
@@ -105,16 +117,19 @@
     atualizarHeaderContextualEM(); return true;
   }
   async function hydrateCandidate() {
-    const token = await validateSession(); if (!token) return false;
+    const revision = window.empregosSessionRevisionEM;
+    const token = await validateSession(); if (!token || revision !== window.empregosSessionRevisionEM) return false;
     const rows = await sbJsonEM(EMPREGAMAIS_SUPABASE_URL+'/rest/v1/candidatos?select=*&user_id=eq.'+encodeURIComponent(verifiedUser.id)+'&limit=1', {headers:sbHeadersEM(token)});
+    if (revision !== window.empregosSessionRevisionEM) return false;
     let candidate = rows?.[0];
     if (!candidate && verifiedUser.user_metadata?.papel !== 'empresa') {
       const base = sbCandidatoDoAuthEM({user:verifiedUser}, {nome:verifiedUser.user_metadata?.full_name || '',email:verifiedUser.email});
       await sbUpsertCandidatoSupabaseEM(base,token);
+      if (revision !== window.empregosSessionRevisionEM) return false;
       const created = await sbJsonEM(EMPREGAMAIS_SUPABASE_URL+'/rest/v1/candidatos?select=*&user_id=eq.'+encodeURIComponent(verifiedUser.id)+'&limit=1', {headers:sbHeadersEM(token)});
       candidate = created?.[0];
     }
-    if (!candidate) return false;
+    if (revision !== window.empregosSessionRevisionEM || !candidate) return false;
     const local = sbMapPerfilCandidatoCloudEM(candidate,{}); delete local.senha;
     sbSalvarCandidatoLocalEM(local);
     sessionStorage.setItem('empregaMaisPapel','candidato'); localStorage.setItem('empregaMaisPapelPersistido','candidato');

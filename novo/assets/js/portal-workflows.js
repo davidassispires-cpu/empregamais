@@ -7,6 +7,8 @@ function coletarDadosPublicacaoPortalEM() {
  'use strict';
  let companyRequest=null,applicationRequest=null;
  const rest='/rest/v1/';
+ const sessionRevision=()=>Number(window.empregosSessionRevisionEM)||0;
+ const checkSession=revision=>{if(revision!==sessionRevision())throw Error('A sessão foi alterada. Entre novamente para atualizar.');};
  async function allRows(path,token){
   const rows=[],size=500;
   for(let offset=0;;offset+=size){const page=await sbJsonEM(EMPREGAMAIS_SUPABASE_URL+rest+path+'&limit='+size+'&offset='+offset,{headers:sbHeadersEM(token),cache:'no-store'});if(!Array.isArray(page))throw Error('Resposta inválida do servidor.');rows.push(...page);if(page.length<size)return rows;}
@@ -14,9 +16,11 @@ function coletarDadosPublicacaoPortalEM() {
  window.sbCarregarVagasEmpresaAtualEM=sbCarregarVagasEmpresaAtualEM=function(){
   if(companyRequest)return companyRequest;
   companyRequest=(async()=>{
+   const revision=sessionRevision();
    const token=await sbGarantirSessaoEM();if(!token)throw Error('Entre na conta da empresa.');
    const company=await sbBuscarMinhaEmpresaEM();if(!company)throw Error('Empresa não encontrada.');
    const jobs=(await allRows('vagas?select=*&empresa_id=eq.'+encodeURIComponent(company.id)+'&order=criado_em.desc,id.asc',token)).map(sbMapVagaEM);
+   checkSession(revision);
    const other=(Array.isArray(sbVagasCacheEM)?sbVagasCacheEM:[]).filter(v=>String(v.empresaId)!==String(company.id));
    sbVagasCacheEM=[...other,...jobs];
    try{gravar('empregaMaisVagas',sbVagasCacheEM);}catch(error){console.warn('Cache de vagas indisponível.',error);}
@@ -30,8 +34,10 @@ function coletarDadosPublicacaoPortalEM() {
   };
   if(applicationRequest)return applicationRequest.then(renderRows);
   applicationRequest=(async()=>{
+   const revision=sessionRevision();
    const token=await sbGarantirSessaoEM();if(!token)return [];
    const [applications,messages]=await Promise.all([allRows('candidaturas?select=*&order=criado_em.desc,id.asc',token),allRows('mensagens_candidaturas?select=*&order=criado_em.asc,id.asc',token)]);
+   checkSession(revision);
    const byApplication=new Map();
    messages.forEach(m=>{if(!byApplication.has(m.candidatura_id))byApplication.set(m.candidatura_id,[]);byApplication.get(m.candidatura_id).push({id:m.id,autor:m.autor,texto:m.texto,data:m.criado_em,remetenteUserId:m.remetente_user_id});});
    const mapped=applications.map(row=>({...sbMapCandidaturaEM(row),mensagens:byApplication.get(row.id)||[]}));

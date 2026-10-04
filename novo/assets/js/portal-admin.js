@@ -54,8 +54,7 @@
   const token=await adminSbToken();
   await loadReports(token);
   const okay=await oldSync();
-  const [applications,audit]=await Promise.all([sbJsonEM(EMPREGAMAIS_SUPABASE_URL+'/rest/v1/candidaturas?select=*&order=criado_em.desc',{headers:sbHeadersEM(token)}),sbJsonEM(EMPREGAMAIS_SUPABASE_URL+'/rest/v1/historico_administrativo?select=*&order=criado_em.desc&limit=300',{headers:sbHeadersEM(token)})]);
-  sbEspelharCandidaturasEM(applications.map(sbMapCandidaturaEM));
+  const [,audit]=await Promise.all([sbCarregarCandidaturasEM(false),sbJsonEM(EMPREGAMAIS_SUPABASE_URL+'/rest/v1/historico_administrativo?select=*&order=criado_em.desc&limit=300',{headers:sbHeadersEM(token)})]);
   gravar('empregaMaisHistoricoAdmin',audit.map(row=>({id:row.id,acao:row.acao,detalhe:row.detalhe,data:row.criado_em,admin:'Administrador'})));return okay;
  };
  const oldTab=adminAba;

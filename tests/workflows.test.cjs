@@ -35,3 +35,9 @@ test('a visible application refresh renders even while a silent refresh is runni
  const silent=c.sbCarregarCandidaturasEM(false);const visible=c.sbCarregarCandidaturasEM(true);
  finish();await Promise.all([silent,visible]);assert.equal(calls,2);assert.equal(rendered,1);
 });
+
+test('application responses from a previous session cannot repopulate the private cache',async()=>{
+ let finish,saved=false;const gate=new Promise(resolve=>{finish=resolve});const {c}=setup({request:async()=>{await gate;return[]}});
+ c.sbEspelharCandidaturasEM=()=>{saved=true};const pending=c.sbCarregarCandidaturasEM(false);
+ await Promise.resolve();c.window.empregosSessionRevisionEM=1;finish();await assert.rejects(pending,/sessão foi alterada/);assert.equal(saved,false);
+});

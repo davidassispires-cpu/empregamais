@@ -80,3 +80,12 @@ Funções existentes atualizadas no Supabase, versão 2: consulta por CNPJ exige
 ## Atualização concorrente de candidaturas
 - A abertura da tela aguarda uma sincronização já em andamento e renderiza seu resultado, mesmo quando a consulta inicial foi silenciosa. Antes, a tela podia ficar sem atualização até a próxima consulta.
 - 23 testes passaram; a consulta concorrente continua compartilhando a mesma requisição.
+
+## Candidaturas na administração
+- Administração reutiliza a consulta paginada de candidaturas e mensagens. A consulta anterior podia parar no limite padrão do Supabase e sobrescrevia as conversas já carregadas.
+- Falhas na consulta impedem tratar a sincronização como concluída. 25 testes passaram.
+
+## Logout durante consultas em andamento
+- Respostas de validação ou renovação iniciadas antes do logout são descartadas; não restauram identidade nem tokens. Consultas de candidaturas e catálogo da empresa de sessões anteriores não repõem os caches.
+- 29 testes passaram, incluindo logout durante validação/renovação e resposta tardia de candidaturas.
+- Hidratação de perfil também descarta respostas anteriores ao logout, impedindo restaurar o papel ou a rota privada.
