@@ -70,6 +70,18 @@ function aplicarRefinoVisaoGeralEM(){
  #empresaResumoRecursos .emp-plan-usage>ul{grid-column:1/-1!important;display:flex!important;flex-wrap:wrap!important;gap:8px 18px!important;margin:4px 0 0!important;padding:0!important;border:0!important;list-style:none!important}
  #empresaResumoRecursos .emp-plan-usage>ul li{padding:0!important;border:0!important;background:transparent!important;font-size:10.5px!important;color:#607884!important}
 
+
+ #empresaResumoRecursos{margin-top:18px!important;border:0!important;border-radius:24px!important;background:linear-gradient(120deg,#064aab 0%,#0874df 58%,#0759bd 100%)!important;box-shadow:0 12px 30px rgba(5,76,164,.18)!important}
+ #empresaResumoRecursos .emp-plan-head{padding:26px 28px!important;border:0!important;background:transparent!important}
+ #empresaResumoRecursos .emp-plan-head span,#empresaResumoRecursos .emp-plan-head p{color:rgba(255,255,255,.78)!important}
+ #empresaResumoRecursos .emp-plan-head h2{color:#fff!important;font-size:27px!important}
+ #empresaResumoRecursos .emp-plan-head button{border:1px solid rgba(255,255,255,.35)!important;background:#ff6a13!important;color:#fff!important;font-weight:700!important}
+ #empresaResumoRecursos .emp-plan-usage{padding:8px 28px 28px!important;background:transparent!important}
+ #empresaResumoRecursos .emp-plan-usage>div{background:rgba(255,255,255,.10)!important;border:1px solid rgba(255,255,255,.16)!important}
+ #empresaResumoRecursos .emp-plan-usage>div>span,#empresaResumoRecursos .emp-plan-usage>div>em,#empresaResumoRecursos .emp-plan-usage>ul li{color:rgba(255,255,255,.78)!important}
+ #empresaResumoRecursos .emp-plan-usage>div>strong{color:#fff!important;font-size:25px!important}
+ #empresaResumoRecursos .emp-plan-usage>div>i{background:rgba(255,255,255,.20)!important}
+
  /* Blocos da visão geral: borda sutil, sem efeito de tabela */
  #pagina-painel-empresa .emp-open-vagas,
  #pagina-painel-empresa #empresaAtalhos,
