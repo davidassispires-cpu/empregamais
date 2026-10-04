@@ -1,0 +1,35 @@
+/* +Empregos 2.0 — fundacao visual limpa */
+:root{
+ --em2-blue-950:#062c5e;--em2-blue-900:#073b78;--em2-blue-700:#0867d5;--em2-blue-600:#0b74e5;
+ --em2-blue-100:#eaf4ff;--em2-orange:#ff6411;--em2-orange-100:#fff0e7;
+ --em2-green:#168a52;--em2-red:#d94444;--em2-ink:#172b43;--em2-muted:#60758a;
+ --em2-line:#dce7f1;--em2-bg:#f5f8fc;--em2-card:#fff;
+ --em2-radius-sm:10px;--em2-radius:16px;--em2-radius-lg:24px;
+ --em2-shadow:0 10px 30px rgba(18,55,94,.08);
+}
+html,body{font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif!important;background:var(--em2-bg);color:var(--em2-ink)}
+body.em2-ui{margin:0}
+body.em2-ui button,body.em2-ui input,body.em2-ui select,body.em2-ui textarea{font:inherit}
+body.em2-ui .topo{position:sticky;top:0;z-index:1000;background:#fff;border-bottom:1px solid var(--em2-line);box-shadow:0 4px 18px rgba(16,50,85,.04)}
+body.em2-ui .topo-inner{max-width:1440px;margin:auto;min-height:76px;padding:0 28px;display:flex;align-items:center;gap:26px}
+body.em2-ui .marca{background:none;border:0;cursor:pointer;text-align:left}
+body.em2-ui .marca-nome{font-size:26px;font-weight:800;letter-spacing:-1px}
+body.em2-ui .marca-mais{color:var(--em2-blue-600)}
+body.em2-ui .marca-empregos{color:var(--em2-ink)}
+body.em2-ui .marca-tagline{display:block;margin-top:1px;color:#7990a5;font-size:8px;letter-spacing:.12em}
+body.em2-ui .menu{display:flex;align-items:center;gap:5px}
+body.em2-ui .menu>button{border:0;background:transparent;color:#38536d;padding:11px 13px;border-radius:10px;font-size:13px;font-weight:600;cursor:pointer}
+body.em2-ui .menu>button:hover{background:var(--em2-blue-100);color:var(--em2-blue-700)}
+body.em2-ui .acoes{margin-left:auto;display:flex;align-items:center;gap:10px}
+body.em2-ui .home-hero-visual{background:linear-gradient(115deg,#062d61 0%,#073f82 56%,#0751a8 100%)!important;border-radius:0!important;min-height:390px!important;position:relative;overflow:hidden}
+body.em2-ui .home-hero-visual:before{content:"";position:absolute;width:520px;height:520px;border:90px solid rgba(255,255,255,.035);border-radius:50%;right:-160px;top:-230px}
+body.em2-ui #pagina-home{background:var(--em2-bg)!important}
+body.em2-ui #pagina-home h1{font-family:Inter,sans-serif!important;letter-spacing:-1.5px}
+body.em2-ui .busca-home,body.em2-ui .home-busca,body.em2-ui .busca-principal{font-family:Inter,sans-serif!important}
+body.em2-ui .vaga-card-infojobs{border:1px solid var(--em2-line)!important;border-radius:var(--em2-radius)!important;background:#fff!important;box-shadow:0 4px 16px rgba(18,55,94,.045)!important}
+body.em2-ui .vaga-card-infojobs h3{font-family:Inter,sans-serif!important;color:var(--em2-blue-700)!important}
+@media(max-width:900px){
+ body.em2-ui .topo-inner{padding:0 16px;min-height:66px}
+ body.em2-ui .menu-publico{display:none}
+ body.em2-ui .home-hero-visual{min-height:520px!important}
+}
