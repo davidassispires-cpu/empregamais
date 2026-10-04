@@ -4981,6 +4981,19 @@ setTimeout(solicitarLocalizacaoCandidatoEM,700);
  sincronizarFiltrosRecentesEM();
 });
 
+/* EMPREGOS-HOME-PREVIEW-CONSOLIDATED-V1 */
+(function(){
+ function aplicarPreviewHomeEM(){
+  const p=document.getElementById('previewVagaPortal');if(!p)return;p.classList.add('home-preview-consolidado-em');
+  if(!document.getElementById('homePreviewConsolidadoStyleEM')){
+   const st=document.createElement('style');st.id='homePreviewConsolidadoStyleEM';
+   st.textContent='.home-preview-consolidado-em{position:sticky!important;top:88px!important;border:1px solid #dce6ef!important;border-radius:15px!important;background:#fff!important;box-shadow:0 5px 18px rgba(24,50,74,.055)!important;overflow:hidden!important}.home-preview-consolidado-em .rec-prev-head{padding:20px!important;border-bottom:1px solid #edf2f6!important}.home-preview-consolidado-em .rec-prev-company{display:flex!important;align-items:flex-start!important;gap:12px!important}.home-preview-consolidado-em .rec-prev-logo{width:52px!important;height:52px!important;border-radius:10px!important;object-fit:contain!important;border:1px solid #e2e9f0!important;background:#fff!important}.home-preview-consolidado-em h3{margin:5px 0 3px!important;color:#173a5c!important;font-size:19px!important;line-height:1.25!important}.home-preview-consolidado-em .rec-prev-empresa{color:#60768a!important;font-size:11px!important}.home-preview-consolidado-em .rec-prev-local{margin-top:15px!important;color:#536b80!important;font-size:11px!important}.home-preview-consolidado-em .rec-prev-chips{display:flex!important;gap:7px!important;flex-wrap:wrap!important;margin-top:10px!important}.home-preview-consolidado-em .rec-prev-chips span{padding:5px 8px!important;border-radius:7px!important;background:#f3f7fa!important;border:1px solid #e1e9f0!important;color:#50687d!important;font-size:10px!important}.home-preview-consolidado-em .rec-prev-actions{display:grid!important;grid-template-columns:1fr 42px!important;gap:8px!important;margin-top:15px!important}.home-preview-consolidado-em .rec-prev-primary{min-height:40px!important;border:0!important;border-radius:8px!important;background:#0b66c3!important;color:#fff!important;font-weight:750!important;font-size:11px!important}.home-preview-consolidado-em .rec-prev-save{border:1px solid #dce5ed!important;border-radius:8px!important;background:#fff!important;color:#0b66c3!important}.home-preview-consolidado-em .rec-prev-body{padding:18px 20px 20px!important}.home-preview-consolidado-em .rec-prev-section{padding:0 0 15px!important;margin:0 0 15px!important;border-bottom:1px solid #edf2f6!important}.home-preview-consolidado-em .rec-prev-section h4{margin:0 0 7px!important;color:#203d57!important;font-size:11px!important;text-transform:uppercase!important;letter-spacing:.04em!important}.home-preview-consolidado-em .rec-prev-section p{margin:0!important;color:#5e7183!important;font-size:11px!important;line-height:1.6!important}.home-preview-consolidado-em .rec-prev-salario{display:block!important;color:#20834d!important;font-size:16px!important;font-weight:800!important}.home-preview-consolidado-em .rec-prev-data{color:#8392a0!important;font-size:9.5px!important}@media(max-width:980px){.home-preview-consolidado-em{position:relative!important;top:auto!important}}';
+   document.head.appendChild(st);
+  }
+ }
+ document.addEventListener('DOMContentLoaded',()=>{[150,600,1300].forEach(ms=>setTimeout(aplicarPreviewHomeEM,ms))});
+ window.aplicarPreviewHomeEM=aplicarPreviewHomeEM;
+})();
 /* EMPREGOS-HOME-RESULTADOS-CONSOLIDATED-V1 */
 (function(){
  function consolidarResultadosHomeEM(){
