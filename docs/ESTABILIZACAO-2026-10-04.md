@@ -49,3 +49,10 @@ O deploy valida antes de publicar e monta um artefato público separado, sem inc
 ## Autenticação por CNPJ e recuperação
 
 Funções existentes atualizadas no Supabase, versão 2: consulta por CNPJ exige senha e retorna somente sessão autenticada; recuperação usa o e-mail registrado em Auth, sem alterar usuário ou confirmar e-mail, com retorno fixo ao portal. Frontend integrado ao novo contrato. Redirecionamento de confirmação/recuperação enviado em query `redirect_to`, conforme cliente oficial. Validação de entrega de e-mail e acesso autenticado ainda depende de conta real e configuração de URLs do Auth.
+## Continuação — denúncias
+
+- Denúncias passam a ser gravadas no Supabase, inclusive para visitantes. Somente administradores podem lê-las e resolvê-las; campos de status não podem ser definidos por quem envia.
+- Suspensão da vaga, resolução da denúncia e histórico administrativo são atômicos.
+- Dados de teste são revertidos com rollback; 940 vagas, 3 empresas e 1 candidato preservados.
+- O envio mantém o formulário em caso de erro e só confirma após resposta do servidor; envios concorrentes são bloqueados.
+- Pedidos extras históricos e checkout automático permanecem pendentes.

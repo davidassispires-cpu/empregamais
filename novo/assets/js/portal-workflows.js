@@ -70,6 +70,15 @@ function coletarDadosPublicacaoPortalEM() {
   set('salarioMaxVaga',job?.salarioMax||'');set('horarioEntradaVaga',job?.horarioEntrada||'');set('horarioSaidaVaga',job?.horarioSaida||'');set('dataEncerramentoVaga',job?.dataEncerramento||dataEncerramentoAutomaticaEM());
   document.getElementById('candidaturaTipoVaga')?.onchange();return result;
  };
+ window.enviarDenuncia=enviarDenuncia=async function(event){
+  event.preventDefault();const job=vagaAtual(),form=document.getElementById('formDenuncia');if(!job||!form||form.dataset.sending==='1')return;
+  const motivo=document.getElementById('denunciaMotivo')?.value||'',detalhes=document.getElementById('denunciaDetalhes')?.value.trim()||'';
+  if(!motivo){msg('#msgDenuncia','Selecione o motivo da denúncia.');return;}
+  const button=form.querySelector('button[type="submit"]');form.dataset.sending='1';if(button)button.disabled=true;
+  try{const token=await sbGarantirSessaoEM();await sbJsonEM(EMPREGAMAIS_SUPABASE_URL+rest+'denuncias_vagas',{method:'POST',headers:{...sbHeadersEM(token),Prefer:'return=minimal'},body:JSON.stringify({vaga_id:job.id,motivo,detalhes})});
+   msg('#msgDenuncia','Denúncia recebida pela equipe para análise.',true);setTimeout(fecharDenuncia,900);
+  }catch(error){msg('#msgDenuncia','Não foi possível enviar a denúncia: '+error.message);}finally{delete form.dataset.sending;if(button)button.disabled=false;}
+ };
  const getPublication=sbDadosVagaAtualEM;
  window.sbDadosVagaAtualEM=sbDadosVagaAtualEM=async function(){
   const data=await getPublication();

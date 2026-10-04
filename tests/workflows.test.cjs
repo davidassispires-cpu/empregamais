@@ -8,3 +8,12 @@ test('failed message submission keeps the draft and does not announce success',a
 test('publication rejects dangerous external schemes and invalid salary ranges',async()=>{const a=setup({publication:{cargo:'Analista',descricao:'Atividades',requisitos:'Experiência',candidaturaTipo:'externo',candidaturaLink:'javascript:alert(1)'}});await assert.rejects(a.c.sbDadosVagaAtualEM(),/Link de candidatura inválido/);const b=setup({publication:{cargo:'Analista',descricao:'Atividades',requisitos:'Experiência',candidaturaTipo:'portal',salario:'5000',salarioMax:'2000'}});await assert.rejects(b.c.sbDadosVagaAtualEM(),/salário máximo/);});
 
 test("expired paid plans use free limits",()=>{const {c}=setup({company:{planoValidoAte:"2020-01-01"}});assert.equal(c.planoEmpresaAtual().nome,"Grátis");assert.equal(c.saldoPlano().vagas,3);});
+
+function reportSetup(request){
+ const {c}=setup({request});let message='',closed=false;const button={disabled:false},form={dataset:{},querySelector:()=>button};
+ const fields={formDenuncia:form,denunciaMotivo:{value:'Outro motivo'},denunciaDetalhes:{value:'Descrição da ocorrência'}};
+ c.document.getElementById=id=>fields[id]||null;c.vagaAtual=()=>({id:'job'});c.msg=(id,text)=>{message=text};c.fecharDenuncia=()=>{closed=true};c.setTimeout=fn=>fn();
+ return {c,form,button,message:()=>message,closed:()=>closed};
+}
+test('report failure preserves the form without a success message or closing it',async()=>{const a=reportSetup(async()=>{throw Error('offline')});await a.c.enviarDenuncia({preventDefault(){}});assert.match(a.message(),/Não foi possível enviar/);assert.equal(a.closed(),false);assert.equal(a.button.disabled,false);});
+test('report waits for server acknowledgement and blocks concurrent submissions',async()=>{let finish,calls=0;const a=reportSetup(async()=>{calls++;return new Promise(resolve=>{finish=resolve})});const pending=a.c.enviarDenuncia({preventDefault(){}});await Promise.resolve();assert.equal(a.message(),'');assert.equal(a.button.disabled,true);await a.c.enviarDenuncia({preventDefault(){}});assert.equal(calls,1);finish(null);await pending;assert.match(a.message(),/recebida/);assert.equal(a.closed(),true);assert.equal(a.form.dataset.sending,undefined);});

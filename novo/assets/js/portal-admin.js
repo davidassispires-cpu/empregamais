@@ -36,9 +36,23 @@
    const row=rows[0];gravar('empregaMaisHistoricoAdmin',[{id:row.id,acao:row.acao,detalhe:row.detalhe,data:row.criado_em,admin:sessionStorage.getItem('empregaMaisAdminEmail')||'Administrador'},...ler('empregaMaisHistoricoAdmin')].slice(0,300));
   }catch(error){console.warn('O histórico administrativo não foi atualizado.',error);}
  };
+ window.adminTabelaDenuncias=adminTabelaDenuncias=function(reports,jobs){
+  if(!reports.length)return '<div class="vagas-vazio">Nenhuma denúncia registrada.</div>';
+  return '<div class="admin-lista">'+reports.map(r=>{const job=jobs.find(v=>String(v.id)===String(r.vagaId)),pending=r.status==='pendente';return '<div class="admin-linha"><div><strong>'+esc(job?tituloVaga(job):'Vaga indisponível')+'</strong><small>'+esc(r.motivo)+' · '+esc(r.status)+'</small>'+(r.detalhes?'<p>'+esc(r.detalhes)+'</p>':'')+'</div><div class="admin-empresa-resumo">'+(job?'<button class="btn" onclick="adminVerVaga(\''+job.id+'\')">Ver vaga</button>':'')+(pending?'<button class="btn btn-perigo" onclick="adminSuspenderDenuncia(\''+r.id+'\')">Suspender vaga</button><button class="btn" onclick="adminResolverDenuncia(\''+r.id+'\',\'resolvida\')">Resolver</button><button class="btn" onclick="adminResolverDenuncia(\''+r.id+'\',\'descartada\')">Descartar</button>':'')+'</div></div>';}).join('')+'</div>';
+ };
+ async function loadReports(token){
+  const reports=[];for(let offset=0;;offset+=500){const rows=await sbJsonEM(EMPREGAMAIS_SUPABASE_URL+'/rest/v1/denuncias_vagas?select=*&order=criado_em.desc,id.asc&limit=500&offset='+offset,{headers:sbHeadersEM(token),cache:'no-store'});reports.push(...rows);if(rows.length<500)break;}
+  gravar('empregaMaisDenuncias',reports.map(r=>({id:r.id,vagaId:r.vaga_id,motivo:r.motivo,detalhes:r.detalhes,status:r.status,acao:r.acao,criadoEm:r.criado_em,resolvidaEm:r.resolvida_em})));
+ }
+ async function resolveReport(id,action){
+  try{const token=await adminSbToken();await sbJsonEM(EMPREGAMAIS_SUPABASE_URL+'/rest/v1/rpc/admin_resolver_denuncia_portal',{method:'POST',headers:sbHeadersEM(token),body:JSON.stringify({p_id:id,p_acao:action})});await adminAba('denuncias');mostrarToast('Análise registrada no Supabase.');}catch(error){mostrarToast('Não foi possível concluir a análise: '+error.message);}
+ }
+ window.adminResolverDenuncia=adminResolverDenuncia=function(id,status){if(!['resolvida','descartada'].includes(status))return;return resolveReport(id,status==='descartada'?'descartar':'resolver');};
+ window.adminSuspenderDenuncia=adminSuspenderDenuncia=function(id){if(!confirm('Suspender esta vaga enquanto a denúncia é analisada?'))return;return resolveReport(id,'suspender');};
  const oldSync=adminSincronizarPainelSupabase;
  window.adminSincronizarPainelSupabase=adminSincronizarPainelSupabase=async function(){
   const token=await adminSbToken();
+  await loadReports(token);
   const okay=await oldSync();
   const [applications,audit]=await Promise.all([sbJsonEM(EMPREGAMAIS_SUPABASE_URL+'/rest/v1/candidaturas?select=*&order=criado_em.desc',{headers:sbHeadersEM(token)}),sbJsonEM(EMPREGAMAIS_SUPABASE_URL+'/rest/v1/historico_administrativo?select=*&order=criado_em.desc&limit=300',{headers:sbHeadersEM(token)})]);
   sbEspelharCandidaturasEM(applications.map(sbMapCandidaturaEM));
