@@ -27,7 +27,14 @@
 
 /* Scope colors explicitly against historical global important rules. */
 .auth-stable .auth-aside h1,.auth-stable .auth-aside p,.auth-stable .auth-aside span,.auth-stable .auth-aside li{color:#fff!important}
-.auth-stable .auth-primary{color:#fff!important;background:#1265b0!important}
+.auth-stable .auth-submit{color:#fff!important;background:#1265b0!important}
 .auth-stable .auth-panel h2{color:#14364d!important}
 .catalog-status{padding:16px;margin:12px 0;border-radius:12px;background:#eef5fb;color:#173b55}
 .catalog-status.erro{background:#fff3e9;color:#733b12}.catalog-status button{margin-left:12px}
+.portal-publication-options{padding:18px;border:1px solid #dce5ee;border-radius:12px;margin:20px 0;background:#f8fafc}
+.portal-publication-options h3{font-size:18px!important;margin:0 0 16px!important;color:#153b61!important}
+.portal-fields{display:grid;grid-template-columns:1fr 1fr;gap:16px}.portal-fields .full{grid-column:1/-1}
+.portal-fields label{display:grid;gap:7px;font-size:13px;font-weight:600}.portal-fields [hidden]{display:none!important}
+.portal-fields input,.portal-fields select{width:100%;box-sizing:border-box;padding:12px;border:1px solid #cbdce8;border-radius:8px;background:#fff;font:inherit;min-height:44px}
+.portal-publication-options p{font-size:13px;line-height:1.6}.portal-plan-requests{padding:24px;border:1px solid #dce5ee;border-radius:14px;background:white;margin-top:20px}.portal-plan-requests article{display:flex;gap:16px;justify-content:space-between;padding:12px 0;border-bottom:1px solid #eef1f5}
+@media(max-width:600px){.portal-fields{grid-template-columns:1fr}.portal-plan-requests article{display:block}.portal-plan-requests{padding:16px}}
