@@ -117,3 +117,23 @@
 #emPainelRecrutadorSimplesEM .emrs-plan-pill{height:52px!important;padding:0 21px!important;font-size:14px!important}
 #emPainelRecrutadorSimplesEM .emrs-primary{height:56px!important;min-width:240px!important;font-size:14px!important}
 }
+
+/* plan banner final reference */
+@media (min-width:1260px){
+#emPainelRecrutadorSimplesEM .emrs-plan-premium{margin:22px 0 20px!important;min-height:204px!important;border-radius:22px!important;background:linear-gradient(105deg,#0649a5 0%,#0877d8 67%,#0758b8 100%)!important;box-shadow:0 14px 32px rgba(4,77,164,.18)!important}
+#emPainelRecrutadorSimplesEM .emrs-plan-layout{min-height:204px!important;grid-template-columns:minmax(430px,1.45fr) repeat(3,minmax(165px,.58fr)) minmax(205px,.78fr)!important}
+#emPainelRecrutadorSimplesEM .emrs-plan-title{padding:32px 32px!important;gap:18px!important;border-right:1px solid rgba(255,255,255,.22)!important}
+#emPainelRecrutadorSimplesEM .emrs-plan-badge-icon{width:68px!important;height:68px!important;flex-basis:68px!important;border-radius:17px!important;background:#1788ef!important}
+#emPainelRecrutadorSimplesEM .emrs-plan-badge-icon:before{width:28px!important;height:28px!important;border-width:4px!important}
+#emPainelRecrutadorSimplesEM .emrs-plan-title small{font-size:12px!important}
+#emPainelRecrutadorSimplesEM .emrs-plan-title strong{display:inline-block!important;font-size:29px!important;line-height:1.1!important}
+#emPainelRecrutadorSimplesEM .emrs-active-badge{margin-left:10px!important;padding:6px 11px!important;font-size:10px!important}
+#emPainelRecrutadorSimplesEM .emrs-plan-title p{max-width:410px!important;font-size:12px!important;line-height:1.45!important}
+#emPainelRecrutadorSimplesEM .emrs-use{padding:31px 25px!important;border-left:1px solid rgba(255,255,255,.22)!important;border-right:0!important;background:transparent!important}
+#emPainelRecrutadorSimplesEM .emrs-use span{font-size:12px!important}
+#emPainelRecrutadorSimplesEM .emrs-use strong{font-size:28px!important;margin:7px 0 3px!important}
+#emPainelRecrutadorSimplesEM .emrs-use small{font-size:12px!important}
+#emPainelRecrutadorSimplesEM .emrs-use .emrs-bar{display:none!important}
+#emPainelRecrutadorSimplesEM .emrs-plan-manage{padding:25px!important;border-left:1px solid rgba(255,255,255,.18)!important}
+#emPainelRecrutadorSimplesEM .emrs-plan-manage button{min-height:62px!important;border-radius:13px!important;font-size:14px!important;background:linear-gradient(135deg,#ff8018,#ff5008)!important}
+}
