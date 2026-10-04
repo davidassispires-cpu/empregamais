@@ -24,7 +24,11 @@ function coletarDadosPublicacaoPortalEM() {
   })().finally(()=>{companyRequest=null;});return companyRequest;
  };
  window.sbCarregarCandidaturasEM=sbCarregarCandidaturasEM=function(render=true){
-  if(applicationRequest)return applicationRequest;
+  const renderRows=rows=>{
+   if(render!==false){if(papelAtual()==='empresa')renderizarCandidatosEmpresa();else if(papelAtual()==='candidato'){renderizarCandidaturasCandidato();atualizarPainelCandidato();}}
+   return rows;
+  };
+  if(applicationRequest)return applicationRequest.then(renderRows);
   applicationRequest=(async()=>{
    const token=await sbGarantirSessaoEM();if(!token)return [];
    const [applications,messages]=await Promise.all([allRows('candidaturas?select=*&order=criado_em.desc,id.asc',token),allRows('mensagens_candidaturas?select=*&order=criado_em.asc,id.asc',token)]);
@@ -32,9 +36,8 @@ function coletarDadosPublicacaoPortalEM() {
    messages.forEach(m=>{if(!byApplication.has(m.candidatura_id))byApplication.set(m.candidatura_id,[]);byApplication.get(m.candidatura_id).push({id:m.id,autor:m.autor,texto:m.texto,data:m.criado_em,remetenteUserId:m.remetente_user_id});});
    const mapped=applications.map(row=>({...sbMapCandidaturaEM(row),mensagens:byApplication.get(row.id)||[]}));
    sbEspelharCandidaturasEM(mapped);
-   if(render!==false){if(papelAtual()==='empresa')renderizarCandidatosEmpresa();else if(papelAtual()==='candidato'){renderizarCandidaturasCandidato();atualizarPainelCandidato();}}
    return mapped;
-  })().finally(()=>{applicationRequest=null;});return applicationRequest;
+  })().finally(()=>{applicationRequest=null;});return applicationRequest.then(renderRows);
  };
  const updateApplication=sbAtualizarCandidaturaEM;
  window.sbAtualizarCandidaturaEM=sbAtualizarCandidaturaEM=async function(application,patch){

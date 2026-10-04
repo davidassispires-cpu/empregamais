@@ -27,3 +27,11 @@ test('changing an application stage preserves the loaded conversation',async()=>
  const updated=await c.sbAtualizarCandidaturaEM(rows[0],{status:'Entrevista'});
  assert.equal(updated.status,'Entrevista');assert.equal(rows[0].mensagens[0].texto,'Conversa existente');
 });
+
+test('a visible application refresh renders even while a silent refresh is running',async()=>{
+ let finish,calls=0,rendered=0;const gate=new Promise(resolve=>{finish=resolve});
+ const {c}=setup({request:async()=>{calls++;await gate;return[]}});
+ c.sbEspelharCandidaturasEM=()=>{};c.renderizarCandidaturasCandidato=()=>{rendered++};c.atualizarPainelCandidato=()=>{};
+ const silent=c.sbCarregarCandidaturasEM(false);const visible=c.sbCarregarCandidaturasEM(true);
+ finish();await Promise.all([silent,visible]);assert.equal(calls,2);assert.equal(rendered,1);
+});

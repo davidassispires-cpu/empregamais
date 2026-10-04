@@ -76,3 +76,7 @@ Funções existentes atualizadas no Supabase, versão 2: consulta por CNPJ exige
 ## Conversas após atualização de etapa
 - A atualização confirmada de uma candidatura preserva as mensagens carregadas na tela. Antes, o mapeamento da resposta de atualização removia a conversa até a próxima sincronização.
 - Teste de regressão cobre a troca de etapa mantendo a conversa; total de 22 testes.
+
+## Atualização concorrente de candidaturas
+- A abertura da tela aguarda uma sincronização já em andamento e renderiza seu resultado, mesmo quando a consulta inicial foi silenciosa. Antes, a tela podia ficar sem atualização até a próxima consulta.
+- 23 testes passaram; a consulta concorrente continua compartilhando a mesma requisição.
