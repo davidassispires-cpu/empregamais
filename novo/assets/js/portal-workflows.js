@@ -36,6 +36,15 @@ function coletarDadosPublicacaoPortalEM() {
    return mapped;
   })().finally(()=>{applicationRequest=null;});return applicationRequest;
  };
+ const updateApplication=sbAtualizarCandidaturaEM;
+ window.sbAtualizarCandidaturaEM=sbAtualizarCandidaturaEM=async function(application,patch){
+  const current=candidaturas().find(row=>row.id===application.id)||application;
+  const messages=Array.isArray(current.mensagens)?current.mensagens.slice():[];
+  const updated=await updateApplication(application,patch);
+  updated.mensagens=messages;
+  sbEspelharCandidaturasEM(candidaturas().map(row=>row.id===updated.id?updated:row));
+  return updated;
+ };
  window.enviarMensagemCandidaturaEM=enviarMensagemCandidaturaEM=async function(id){
   const input=document.getElementById('chatTextoEM_'+id),text=input?.value.trim()||'';
   if(!text){mostrarToast('Digite uma mensagem antes de enviar.');return;}

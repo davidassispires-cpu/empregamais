@@ -72,3 +72,7 @@ Funções existentes atualizadas no Supabase, versão 2: consulta por CNPJ exige
 - Cabeçalho identifica Minhas Vagas; as ações são editar, encerrar e visualizar o anúncio ativo. A gestão de candidaturas permanece em Candidaturas.
 - Encerramento só modifica o cache ou anuncia sucesso quando o Supabase devolve a vaga encerrada. A lista é atualizada após a confirmação.
 - 21 testes passaram; sintaxe, referências de arquivos e artefato público validados. Verificação visual integral das áreas privadas continua dependendo de uma sessão autorizada no navegador.
+
+## Conversas após atualização de etapa
+- A atualização confirmada de uma candidatura preserva as mensagens carregadas na tela. Antes, o mapeamento da resposta de atualização removia a conversa até a próxima sincronização.
+- Teste de regressão cobre a troca de etapa mantendo a conversa; total de 22 testes.
