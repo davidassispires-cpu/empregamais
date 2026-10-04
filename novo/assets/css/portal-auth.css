@@ -24,3 +24,10 @@
 .empregos-status-toast {position:fixed;z-index:999999;bottom:24px;left:50%;transform:translateX(-50%);max-width:min(560px,calc(100vw - 32px));padding:14px 20px;border-radius:12px;background:#173d60;color:#fff;font-size:14px;box-shadow:0 8px 28px #0002;}
 .empregos-status-toast[hidden] {display:none;}
 @media(max-width:760px) {.auth-stable{padding:20px 12px 36px}.auth-layout{grid-template-columns:1fr}.auth-aside{padding:26px 24px}.auth-aside h1{font-size:28px;margin:12px 0}.auth-aside ul{display:none}.auth-panel{padding:24px}.auth-panel h2{font-size:23px}}
+
+/* Scope colors explicitly against historical global important rules. */
+.auth-stable .auth-aside h1,.auth-stable .auth-aside p,.auth-stable .auth-aside span,.auth-stable .auth-aside li{color:#fff!important}
+.auth-stable .auth-primary{color:#fff!important;background:#1265b0!important}
+.auth-stable .auth-panel h2{color:#14364d!important}
+.catalog-status{padding:16px;margin:12px 0;border-radius:12px;background:#eef5fb;color:#173b55}
+.catalog-status.erro{background:#fff3e9;color:#733b12}.catalog-status button{margin-left:12px}

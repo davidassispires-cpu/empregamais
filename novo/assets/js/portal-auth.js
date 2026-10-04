@@ -20,7 +20,7 @@
       if (!Array.isArray(rows)) continue;
       let changed = false;
       rows.forEach(row => { if (row && ('senha' in row || 'password' in row)) { delete row.senha; delete row.password; changed = true; } });
-      if (changed) gravar(key, rows);
+      if (changed) { try { gravar(key, rows); } catch (error) { console.warn("Não foi possível atualizar o cache de perfil.", error); } }
     }
   }
   function clearSession() {
