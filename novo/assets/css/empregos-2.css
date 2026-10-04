@@ -33,3 +33,54 @@ body.em2-ui .vaga-card-infojobs h3{font-family:Inter,sans-serif!important;color:
  body.em2-ui .menu-publico{display:none}
  body.em2-ui .home-hero-visual{min-height:520px!important}
 }
+
+/* Home 2.0 */
+body.em2-ui .home-hero-content{position:relative;z-index:2;max-width:1440px;margin:auto;min-height:390px;padding:72px 430px 54px 36px;display:flex;flex-direction:column;justify-content:center}
+body.em2-ui .home-hero-copy{text-align:center}
+body.em2-ui .home-hero-copy h1{margin:0;color:#fff;font-size:clamp(36px,4vw,58px);line-height:1.04;font-weight:800}
+body.em2-ui .home-hero-copy h1 strong{color:#68aaff}
+body.em2-ui .home-hero-copy p{margin:14px 0 30px;color:#d8e9ff;font-size:17px}
+body.em2-ui .home-hero-cv-art{position:absolute!important;right:max(18px,calc((100vw - 1440px)/2 + 24px));top:24px;width:390px!important;height:330px!important;opacity:.95}
+body.em2-ui .home-search-wrap{width:100%}
+body.em2-ui .busca-home{display:grid!important;grid-template-columns:1.55fr 1.15fr .9fr .75fr auto;gap:8px;background:#fff!important;border:1px solid rgba(255,255,255,.5);border-radius:18px!important;padding:9px!important;box-shadow:0 18px 44px rgba(0,20,55,.24)}
+body.em2-ui .home-search-field{min-width:0;border-right:1px solid #e5edf5;padding:4px 13px}
+body.em2-ui .home-search-field label{display:block}
+body.em2-ui .home-search-field small{display:block;color:#73879b;font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.07em;margin-bottom:2px}
+body.em2-ui .home-search-field input,body.em2-ui .home-search-field select{width:100%;height:32px;border:0!important;outline:0;background:transparent!important;color:#263e55;font-size:13px;padding:0!important}
+body.em2-ui .home-search-submit{border:0;border-radius:12px;background:var(--em2-blue-600);color:#fff;font-weight:800;padding:0 23px;min-height:52px;cursor:pointer;box-shadow:0 8px 18px rgba(11,116,229,.22)}
+body.em2-ui .home-search-submit:hover{background:#075fbd}
+body.em2-ui .home-premium{max-width:1320px!important;margin:auto!important;padding:38px 24px 70px!important}
+body.em2-ui .home-title-row h2,body.em2-ui .home-areas h2{color:var(--em2-ink);font-size:27px;letter-spacing:-.6px}
+body.em2-ui .home-destaques-kicker,body.em2-ui .home-recentes-kicker,body.em2-ui .home-areas-cab>span{color:var(--em2-blue-600);font-size:10px;font-weight:800;letter-spacing:.1em}
+body.em2-ui .home-recentes-layout{display:grid;grid-template-columns:270px minmax(0,1fr);gap:24px;align-items:start}
+body.em2-ui .recentes-filtros{background:#fff;border:1px solid var(--em2-line);border-radius:18px;box-shadow:var(--em2-shadow);overflow:hidden}
+body.em2-ui .recentes-filtros-cab{padding:20px;border-bottom:1px solid var(--em2-line)}
+body.em2-ui .recentes-filtros-corpo{padding:18px}
+body.em2-ui .recentes-filtro-grupo{padding:0 0 18px;margin:0 0 18px;border-bottom:1px solid #edf2f7}
+body.em2-ui .recentes-filtro-grupo input[type=search],body.em2-ui .recentes-filtro-grupo select{width:100%;box-sizing:border-box;border:1px solid #d7e3ee;border-radius:10px;background:#fff;min-height:42px;padding:0 11px}
+body.em2-ui .home-curriculo-banner{border-radius:18px!important;background:linear-gradient(145deg,#083e7e,#0869d4)!important;box-shadow:var(--em2-shadow)}
+body.em2-ui .vagas-grid{display:grid;gap:14px}
+body.em2-ui .home-areas-pro,body.em2-ui .home-empresas{margin-top:52px}
+body.em2-ui .area-atalhos{display:grid!important;grid-template-columns:repeat(4,1fr);gap:12px}
+body.em2-ui .area-card{min-height:132px!important;border:1px solid var(--em2-line)!important;border-radius:16px!important;background:#fff!important;box-shadow:0 4px 14px rgba(18,55,94,.04)!important}
+@media(max-width:1050px){
+ body.em2-ui .home-hero-content{padding-right:300px}
+ body.em2-ui .home-hero-cv-art{width:300px!important}
+ body.em2-ui .busca-home{grid-template-columns:1fr 1fr!important}
+ body.em2-ui .home-search-submit{min-height:50px}
+ body.em2-ui .area-atalhos{grid-template-columns:repeat(2,1fr)}
+}
+@media(max-width:760px){
+ body.em2-ui .home-hero-visual{min-height:auto!important}
+ body.em2-ui .home-hero-cv-art{display:none!important}
+ body.em2-ui .home-hero-content{min-height:auto;padding:48px 16px 34px}
+ body.em2-ui .home-hero-copy h1{font-size:36px}
+ body.em2-ui .home-hero-copy p{font-size:15px;margin-bottom:24px}
+ body.em2-ui .busca-home{grid-template-columns:1fr!important;padding:10px!important}
+ body.em2-ui .home-search-field{border-right:0;border-bottom:1px solid #e7eef5;padding:7px 9px}
+ body.em2-ui .home-search-submit{width:100%}
+ body.em2-ui .home-premium{padding:28px 14px 50px!important}
+ body.em2-ui .home-recentes-layout{grid-template-columns:1fr}
+ body.em2-ui .home-recentes-lateral{order:0}
+ body.em2-ui .area-atalhos{grid-template-columns:1fr}
+}
