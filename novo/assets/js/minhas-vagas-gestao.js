@@ -98,5 +98,20 @@ else setTimeout(ajustarNavegacaoRecrutadorEM,350);
 window.addEventListener('popstate',()=>setTimeout(ajustarNavegacaoRecrutadorEM,120));
 window.addEventListener('pageshow',()=>setTimeout(ajustarNavegacaoRecrutadorEM,120));
 setInterval(()=>{try{ajustarNavegacaoRecrutadorEM()}catch(_){}},2500);
+
+// Garante que a rota Minhas vagas use o renderizador exclusivo de vagas,
+// mesmo quando o app legado tentar reaproveitar a tela de processo seletivo.
+function garantirRotaMinhasVagasEM(){
+ if(new URLSearchParams(location.search).get('pagina')!=='vagas-empresa')return;
+ sessionStorage.removeItem('vagaCandidatosSelecionada');
+ if(typeof window.renderVagasEmpresaPaginaGestaoEM==='function'){
+  window.renderVagasEmpresaPaginaEM=window.renderVagasEmpresaPaginaGestaoEM;
+  window.renderVagasEmpresaPaginaGestaoEM();
+ }
+}
+window.addEventListener('popstate',()=>setTimeout(garantirRotaMinhasVagasEM,180));
+window.addEventListener('pageshow',()=>setTimeout(garantirRotaMinhasVagasEM,500));
+setTimeout(garantirRotaMinhasVagasEM,900);
+
 window.ajustarNavegacaoRecrutadorEM=ajustarNavegacaoRecrutadorEM;
 })();
