@@ -84,3 +84,37 @@ body.em2-ui .area-card{min-height:132px!important;border:1px solid var(--em2-lin
  body.em2-ui .home-recentes-lateral{order:0}
  body.em2-ui .area-atalhos{grid-template-columns:1fr}
 }
+
+/* Home reference lock — approved 2026-10-04 */
+body.em2-ui #pagina-home{background:#f7faff}
+body.em2-ui #pagina-home .home-hero-visual{position:relative;overflow:hidden;background:radial-gradient(circle at 72% 42%,#126bd0 0,#0753a7 23%,transparent 45%),linear-gradient(118deg,#063568 0%,#064a91 48%,#05356c 100%)!important}
+body.em2-ui #pagina-home .home-hero-visual:after{content:"";position:absolute;width:460px;height:460px;border-radius:50%;right:-170px;bottom:-270px;background:#0759ad;opacity:.42}
+body.em2-ui .home-hero-content{max-width:1440px;min-height:460px;padding:70px 34% 72px 5%;align-items:flex-start}
+body.em2-ui .home-hero-copy{text-align:left!important;max-width:760px}
+body.em2-ui .home-hero-copy:before{content:"MILHARES DE OPORTUNIDADES";display:inline-flex;padding:9px 15px;border-radius:999px;background:#0c62b8;color:#fff;font-size:11px;font-weight:800;letter-spacing:.04em;margin-bottom:18px}
+body.em2-ui .home-hero-copy h1{font-size:clamp(42px,4.2vw,64px);max-width:760px;letter-spacing:-1.8px}
+body.em2-ui .home-hero-copy h1 strong{color:#ff7a1a}
+body.em2-ui .home-hero-copy p{font-size:18px;color:#e8f2ff}
+body.em2-ui .home-search-wrap{position:absolute;left:5%;right:5%;bottom:30px;width:auto}
+body.em2-ui .busca-home{grid-template-columns:1.45fr 1fr .92fr .75fr auto;max-width:1380px;margin:auto;border-radius:16px!important}
+body.em2-ui .home-search-submit{background:#f45b0b!important;box-shadow:none!important}
+body.em2-ui .home-search-submit:hover{background:#dc4d00!important}
+body.em2-ui .home-premium{max-width:1440px!important;padding-top:30px!important}
+body.em2-ui .home-areas-pro{margin-top:20px!important;order:-1}
+body.em2-ui .area-atalhos{grid-template-columns:repeat(7,1fr)!important}
+body.em2-ui .area-card{min-height:120px!important;text-align:center!important;display:flex!important;flex-direction:column!important;justify-content:center!important;align-items:center!important;gap:8px!important}
+body.em2-ui .area-card .area-icone{color:#0874e8!important}
+body.em2-ui .area-card .area-seta{display:none!important}
+body.em2-ui .home-destaques{margin-top:36px}
+body.em2-ui .home-destaques-icon{color:#0874e8!important}
+body.em2-ui .destaques-carrossel>*{border-radius:14px!important;border:1px solid #dfe9f3!important;box-shadow:0 7px 22px rgba(20,55,90,.05)!important}
+body.em2-ui .home-recentes{margin-top:48px}
+@media(max-width:1100px){body.em2-ui .area-atalhos{grid-template-columns:repeat(4,1fr)!important}}
+@media(max-width:760px){
+ body.em2-ui .home-hero-content{padding:44px 16px 210px;align-items:center;min-height:auto}
+ body.em2-ui .home-hero-copy{text-align:center!important}
+ body.em2-ui .home-hero-copy:before{font-size:9px}
+ body.em2-ui .home-hero-copy h1{font-size:38px;letter-spacing:-1px}
+ body.em2-ui .home-search-wrap{left:14px;right:14px;bottom:18px}
+ body.em2-ui .area-atalhos{grid-template-columns:repeat(2,1fr)!important}
+}
