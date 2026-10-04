@@ -173,6 +173,7 @@ function renderDetalheVagaEM(box,v,cs){
 }
 function renderVagasEmpresaPaginaGestaoEM(){
  cssEM();
+ try{document.body.classList.add('em-minhas-vagas-ativa')}catch(_){} 
  const box=document.getElementById('empresaVagasPagina');if(!box)return;
  const vagas=vagasEmpresaEM().filter(Boolean),cs=candidaturasEM().filter(Boolean),params=new URLSearchParams(location.search),vagaId=params.get('vaga');
  if(vagaId){
@@ -204,5 +205,6 @@ window.alternarFlagGestaoEM=alternarFlagGestaoEM;
 window.renderVagasEmpresaPaginaEM=renderVagasEmpresaPaginaGestaoEM;
 
 document.addEventListener('DOMContentLoaded',function(){setTimeout(function(){window.renderVagasEmpresaPaginaEM=renderVagasEmpresaPaginaGestaoEM;if(new URLSearchParams(location.search).get('pagina')==='vagas-empresa')renderVagasEmpresaPaginaGestaoEM()},700)});
-window.addEventListener('popstate',function(){if(new URLSearchParams(location.search).get('pagina')==='vagas-empresa')setTimeout(renderVagasEmpresaPaginaGestaoEM,30)});
+window.addEventListener('popstate',function(){if(new URLSearchParams(location.search).get('pagina')==='vagas-empresa')setTimeout(renderVagasEmpresaPaginaGestaoEM,30);else try{document.body.classList.remove('em-minhas-vagas-ativa')}catch(_){}});
+ window.addEventListener('pageshow',function(){if(new URLSearchParams(location.search).get('pagina')==='vagas-empresa')setTimeout(renderVagasEmpresaPaginaGestaoEM,80)});
 })();
