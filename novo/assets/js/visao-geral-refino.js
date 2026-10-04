@@ -119,6 +119,19 @@ function aplicarRefinoVisaoGeralEM(){
  @media(max-width:900px){#pagina-painel-empresa .emp-performance-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important}}
  @media(max-width:520px){#pagina-painel-empresa .emp-performance-grid{grid-template-columns:1fr!important}}
 
+
+ #pagina-painel-empresa .emp-open-vagas{padding:26px!important;background:#fff!important}
+ #pagina-painel-empresa .emp-open-vagas-head{display:flex!important;align-items:flex-start!important;justify-content:space-between!important;gap:18px!important}
+ #pagina-painel-empresa .emp-open-vagas-head h2{margin:0 0 5px!important;color:#0b4b94!important}
+ #pagina-painel-empresa .emp-open-vagas-head button{min-height:40px!important;padding:0 15px!important;border:1px solid #cfe0ed!important;border-radius:10px!important;background:#f8fbfe!important;color:#0a5dbb!important;font-weight:700!important}
+ #pagina-painel-empresa .empresa-vaga-linha{padding:15px 4px!important;border:0!important;border-bottom:1px solid #e8eef2!important;border-radius:0!important;background:#fff!important}
+ #pagina-painel-empresa .empresa-vaga-linha:last-child{border-bottom:0!important}
+ #pagina-painel-empresa .empresa-vaga-linha strong{color:#174f7f!important;font-size:13px!important}
+ #pagina-painel-empresa .emp-recent-activity{padding:24px!important;border-radius:22px!important;background:#fff!important}
+ #pagina-painel-empresa .emp-recent-activity h2{color:#0b4b94!important;font-size:21px!important}
+ #pagina-painel-empresa #empresaAtalhos{padding:22px!important;border-radius:22px!important;background:#fff!important}
+ #pagina-painel-empresa #empresaAtalhos button{border-radius:13px!important;border-color:#dce7ee!important;background:#fbfdff!important;color:#175b92!important}
+
  /* Remove aparência excessivamente pesada em linhas e cards internos */
  #pagina-painel-empresa .empresa-vaga-linha,
  #pagina-painel-empresa .empresa-candidato-linha{border-color:#edf2f4!important;box-shadow:none!important}
