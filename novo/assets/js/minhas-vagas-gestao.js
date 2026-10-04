@@ -12,7 +12,7 @@ function empresaLogadaEM(){
 function carregarCoreMinhasVagasEM(){
  if(document.querySelector('script[data-em-minhas-vagas-core]'))return;
  const s=document.createElement('script');
- s.src='./assets/js/minhas-vagas-gestao-core.js?v=2-20260928';
+ s.src='./assets/js/minhas-vagas-gestao-core.js?v=20261004-stable-1';
  s.async=false;
  s.dataset.emMinhasVagasCore='1';
  document.head.appendChild(s);
