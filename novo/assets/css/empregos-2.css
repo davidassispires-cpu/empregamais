@@ -118,3 +118,18 @@ body.em2-ui .home-recentes{margin-top:48px}
  body.em2-ui .home-search-wrap{left:14px;right:14px;bottom:18px}
  body.em2-ui .area-atalhos{grid-template-columns:repeat(2,1fr)!important}
 }
+
+/* Job cards 2.0 — shared home/listing */
+body.em2-ui #listaVagasPortal>article,body.em2-ui #listaVagasPortal>.vaga-card,body.em2-ui #listaVagasPortal>.card-vaga,body.em2-ui #listaDestaques>article,body.em2-ui #listaDestaques>.vaga-card{position:relative;background:#fff!important;border:1px solid #dfe8f2!important;border-radius:15px!important;padding:20px!important;box-shadow:0 5px 18px rgba(16,48,82,.045)!important;transition:transform .18s ease,box-shadow .18s ease,border-color .18s ease}
+body.em2-ui #listaVagasPortal>article:hover,body.em2-ui #listaVagasPortal>.vaga-card:hover,body.em2-ui #listaVagasPortal>.card-vaga:hover,body.em2-ui #listaDestaques>article:hover,body.em2-ui #listaDestaques>.vaga-card:hover{transform:translateY(-2px);border-color:#bdd4ec!important;box-shadow:0 12px 28px rgba(16,48,82,.09)!important}
+body.em2-ui #listaVagasPortal .destaque,body.em2-ui #listaVagasPortal [class*=destaque]{border-left-color:#0874e8!important}
+body.em2-ui #listaVagasPortal h3,body.em2-ui #listaVagasPortal .vaga-titulo,body.em2-ui #listaDestaques h3,body.em2-ui #listaDestaques .vaga-titulo{color:#082b58!important;font-size:18px!important;font-weight:800!important;line-height:1.28!important;letter-spacing:-.2px!important}
+body.em2-ui #listaVagasPortal .empresa,body.em2-ui #listaDestaques .empresa{color:#48647f!important;font-weight:650!important}
+body.em2-ui #listaVagasPortal .salario,body.em2-ui #listaDestaques .salario{color:#16834f!important;font-weight:800!important}
+body.em2-ui #listaVagasPortal .badge,body.em2-ui #listaVagasPortal .selo,body.em2-ui #listaDestaques .badge,body.em2-ui #listaDestaques .selo{border-radius:999px!important;font-size:10px!important;font-weight:800!important;letter-spacing:.03em!important}
+body.em2-ui #listaVagasPortal [class*=urgente],body.em2-ui #listaDestaques [class*=urgente]{background:#fff0ef!important;color:#c7372f!important;border-color:#ffd3cf!important}
+body.em2-ui #listaVagasPortal [class*=destaque],body.em2-ui #listaDestaques [class*=destaque]{color:#075fbd}
+body.em2-ui #listaVagasPortal button,body.em2-ui #listaVagasPortal .btn,body.em2-ui #listaDestaques button,body.em2-ui #listaDestaques .btn{border-radius:10px}
+body.em2-ui #paginacaoVagasPortal{display:flex;justify-content:center;gap:7px;margin-top:26px}
+body.em2-ui #paginacaoVagasPortal button{min-width:38px;height:38px;border:1px solid #d6e3ef;border-radius:9px;background:#fff;color:#31516f;font-weight:700;cursor:pointer}
+body.em2-ui #paginacaoVagasPortal button.ativo,body.em2-ui #paginacaoVagasPortal button[aria-current=page]{background:#0874e8;color:#fff;border-color:#0874e8}
