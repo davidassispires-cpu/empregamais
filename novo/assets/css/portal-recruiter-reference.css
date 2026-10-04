@@ -47,3 +47,43 @@
 @media(max-width:1100px){#emPainelRecrutadorSimplesEM .emrs-top{grid-template-columns:1fr!important}#emPainelRecrutadorSimplesEM .emrs-plan-layout{grid-template-columns:1.2fr repeat(3,1fr)!important}#emPainelRecrutadorSimplesEM .emrs-plan-manage{grid-column:1/-1!important;padding:12px 20px 20px!important}}
 @media(max-width:760px){#emPainelRecrutadorSimplesEM .emrs-main{padding:14px!important}#emPainelRecrutadorSimplesEM .emrs-top{padding:20px!important;min-height:0!important}#emPainelRecrutadorSimplesEM .emrs-top-left{align-items:flex-start!important}#emPainelRecrutadorSimplesEM .emrs-top-avatar{width:62px!important;height:62px!important;font-size:30px!important}#emPainelRecrutadorSimplesEM .emrs-top h1{font-size:24px!important}#emPainelRecrutadorSimplesEM .emrs-public-link{grid-template-columns:42px 1fr!important}#emPainelRecrutadorSimplesEM .emrs-copy-link{grid-column:1/-1!important}#emPainelRecrutadorSimplesEM .emrs-top-actions{justify-content:stretch!important;flex-wrap:wrap!important}#emPainelRecrutadorSimplesEM .emrs-primary{flex:1!important}#emPainelRecrutadorSimplesEM .emrs-plan-layout{grid-template-columns:1fr 1fr!important}#emPainelRecrutadorSimplesEM .emrs-plan-title{grid-column:1/-1!important;border-right:0!important;border-bottom:1px solid rgba(255,255,255,.2)!important}#emPainelRecrutadorSimplesEM .emrs-use:nth-of-type(3){border-right:0!important}#emPainelRecrutadorSimplesEM .emrs-kpis{grid-template-columns:1fr 1fr!important}}
 @media(max-width:480px){#emPainelRecrutadorSimplesEM .emrs-top-left{display:grid!important;grid-template-columns:62px 1fr!important}#emPainelRecrutadorSimplesEM .emrs-top-text p{grid-column:1/-1!important}#emPainelRecrutadorSimplesEM .emrs-plan-layout,#emPainelRecrutadorSimplesEM .emrs-kpis{grid-template-columns:1fr!important}#emPainelRecrutadorSimplesEM .emrs-use{border-right:0!important;border-bottom:1px solid rgba(255,255,255,.18)!important}}
+
+/* Refinamento de fidelidade visual — referência do recrutador */
+#emPainelRecrutadorSimplesEM .emrs-main{font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif!important}
+#emPainelRecrutadorSimplesEM .emrs-top{min-height:204px!important;padding:30px 34px!important;grid-template-columns:minmax(480px,1.05fr) minmax(500px,.95fr)!important}
+#emPainelRecrutadorSimplesEM .emrs-top-avatar{width:104px!important;height:104px!important;border-radius:25px!important;font-size:48px!important}
+#emPainelRecrutadorSimplesEM .emrs-top h1{font-size:36px!important;letter-spacing:-1.1px!important}
+#emPainelRecrutadorSimplesEM .emrs-top p{font-size:15px!important;line-height:1.5!important}
+#emPainelRecrutadorSimplesEM .emrs-public-link{min-height:82px!important;padding:16px 18px!important}
+#emPainelRecrutadorSimplesEM .emrs-public-icon{width:50px!important;height:50px!important}
+#emPainelRecrutadorSimplesEM .emrs-public-copy small{font-size:11px!important}
+#emPainelRecrutadorSimplesEM .emrs-public-copy strong{font-size:14px!important}
+#emPainelRecrutadorSimplesEM .emrs-copy-link{display:inline-flex!important;align-items:center!important;justify-content:center!important;min-width:112px!important;height:42px!important;font-size:12px!important}
+#emPainelRecrutadorSimplesEM .emrs-plan-pill{font-size:13px!important}
+#emPainelRecrutadorSimplesEM .emrs-primary{min-width:220px!important;height:52px!important;font-size:13px!important}
+#emPainelRecrutadorSimplesEM .emrs-plan-premium{min-height:164px!important;border-radius:20px!important;background:linear-gradient(105deg,#074ba7 0%,#0877da 68%,#0758bb 100%)!important}
+#emPainelRecrutadorSimplesEM .emrs-plan-layout{grid-template-columns:minmax(390px,1.45fr) repeat(3,minmax(145px,.58fr)) minmax(190px,.78fr)!important;min-height:164px!important}
+#emPainelRecrutadorSimplesEM .emrs-plan-title{padding:28px 30px!important;gap:18px!important}
+#emPainelRecrutadorSimplesEM .emrs-plan-badge-icon{width:62px!important;height:62px!important;flex-basis:62px!important;border-radius:16px!important;background:#1686ef!important;font-size:0!important}
+#emPainelRecrutadorSimplesEM .emrs-plan-badge-icon:before{content:"";width:25px;height:25px;border:4px solid #fff;border-radius:7px;transform:rotate(45deg);box-sizing:border-box}
+#emPainelRecrutadorSimplesEM .emrs-plan-title small{font-size:11px!important}
+#emPainelRecrutadorSimplesEM .emrs-plan-title strong{font-size:26px!important;letter-spacing:-.5px!important}
+#emPainelRecrutadorSimplesEM .emrs-active-badge{display:inline-flex!important;vertical-align:middle!important;margin:0 0 0 10px!important;padding:6px 11px!important}
+#emPainelRecrutadorSimplesEM .emrs-plan-title p{max-width:420px!important;margin-top:9px!important;font-size:12px!important}
+#emPainelRecrutadorSimplesEM .emrs-use{position:relative!important;margin:0!important;padding:29px 24px!important;border:0!important;border-left:1px solid rgba(255,255,255,.25)!important;border-radius:0!important;box-shadow:none!important;background:transparent!important}
+#emPainelRecrutadorSimplesEM .emrs-use span{font-size:11px!important}
+#emPainelRecrutadorSimplesEM .emrs-use strong{font-size:25px!important}
+#emPainelRecrutadorSimplesEM .emrs-use small{font-size:11px!important}
+#emPainelRecrutadorSimplesEM .emrs-use .emrs-bar{display:none!important}
+#emPainelRecrutadorSimplesEM .emrs-plan-manage{padding:24px!important;border-left:1px solid rgba(255,255,255,.18)!important}
+#emPainelRecrutadorSimplesEM .emrs-plan-manage button{min-height:58px!important;font-size:13px!important}
+#emPainelRecrutadorSimplesEM .emrs-kpis{gap:18px!important}
+#emPainelRecrutadorSimplesEM .emrs-kpi{min-height:132px!important;padding:24px 24px 20px 94px!important;border-radius:19px!important}
+#emPainelRecrutadorSimplesEM .emrs-kpi:after{content:"›";position:absolute;right:22px;top:50%;transform:translateY(-50%);color:#234d72;font-size:30px;font-weight:400}
+#emPainelRecrutadorSimplesEM .emrs-kpi-icon{left:22px!important;top:27px!important;width:54px!important;height:54px!important;border-radius:14px!important}
+#emPainelRecrutadorSimplesEM .emrs-kpi-icon svg{width:28px!important;height:28px!important;stroke-width:1.9!important}
+#emPainelRecrutadorSimplesEM .emrs-kpi span{font-size:11px!important}
+#emPainelRecrutadorSimplesEM .emrs-kpi strong{font-size:32px!important;margin-top:6px!important}
+#emPainelRecrutadorSimplesEM .emrs-kpi small{font-size:11px!important}
+@media(max-width:1250px){#emPainelRecrutadorSimplesEM .emrs-top{grid-template-columns:1fr!important}#emPainelRecrutadorSimplesEM .emrs-plan-layout{grid-template-columns:minmax(330px,1.2fr) repeat(3,1fr)!important}#emPainelRecrutadorSimplesEM .emrs-plan-manage{grid-column:1/-1!important;border-left:0!important;padding:12px 24px 22px!important}}
+@media(max-width:760px){#emPainelRecrutadorSimplesEM .emrs-top{min-height:0!important;padding:20px!important}#emPainelRecrutadorSimplesEM .emrs-top-avatar{width:66px!important;height:66px!important;font-size:31px!important}#emPainelRecrutadorSimplesEM .emrs-top h1{font-size:25px!important}#emPainelRecrutadorSimplesEM .emrs-primary{min-width:0!important}#emPainelRecrutadorSimplesEM .emrs-plan-layout{grid-template-columns:1fr 1fr!important}#emPainelRecrutadorSimplesEM .emrs-plan-title{grid-column:1/-1!important}#emPainelRecrutadorSimplesEM .emrs-use{border-left:0!important;border-top:1px solid rgba(255,255,255,.18)!important}#emPainelRecrutadorSimplesEM .emrs-kpi{min-height:120px!important}}
