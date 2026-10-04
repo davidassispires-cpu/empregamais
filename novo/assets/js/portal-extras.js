@@ -50,7 +50,11 @@
  const confirmation=abrirConfirmacaoVagaAnaliseEM;
  window.abrirConfirmacaoVagaAnaliseEM=abrirConfirmacaoVagaAnaliseEM=function(edit){const result=confirmation(edit);if(lastRequested){const p=document.getElementById('emVagaAnaliseTexto');if(p)p.textContent+=' Os recursos avulsos solicitados foram registrados e aguardam confirmação de pagamento. Nenhuma cobrança foi realizada.';}return result;};
  const renderJobs=renderVagasEmpresaPaginaEM;
- window.renderVagasEmpresaPaginaEM=renderVagasEmpresaPaginaEM=async function(){const result=await renderJobs.apply(this,arguments);try{renderCompany(await window.carregarExtrasPortalEM());}catch(error){const panel=document.getElementById('portalExtrasEmpresa');if(panel)panel.textContent='Não foi possível carregar as solicitações. '+error.message;else mostrarToast('Não foi possível carregar os recursos: '+error.message);}return result;};
+ window.renderVagasEmpresaPaginaEM=renderVagasEmpresaPaginaEM=async function(){
+  try{await sbCarregarVagasEmpresaAtualEM();}catch(error){mostrarToast('Não foi possível atualizar suas vagas: '+error.message);return;}
+  const result=await renderJobs.apply(this,arguments);
+  try{renderCompany(await window.carregarExtrasPortalEM());}catch(error){const panel=document.getElementById('portalExtrasEmpresa');if(panel)panel.textContent='Não foi possível carregar as solicitações. '+error.message;else mostrarToast('Não foi possível carregar os recursos: '+error.message);}return result;
+ };
  const sync=adminSincronizarPainelSupabase;
  window.adminSincronizarPainelSupabase=adminSincronizarPainelSupabase=async function(){const token=await adminSbToken();await window.carregarExtrasPortalEM(token);return sync.apply(this,arguments);};
  async function adminReview(id,action){

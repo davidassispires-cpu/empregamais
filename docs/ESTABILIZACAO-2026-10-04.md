@@ -65,3 +65,10 @@ Funções existentes atualizadas no Supabase, versão 2: consulta por CNPJ exige
 - Minhas Vagas oferece solicitação e acompanhamento reais. Pedidos antigos apenas no navegador são arquivados para referência. Nenhum é tratado como pagamento confirmado.
 - 18 testes de frontend passaram. SQL com rollback verificou preço/duração, bloqueio de autoativação, duplicidade, geração de dois pedidos por publicação, ativação com histórico e cancelamento.
 - Depois dos testes: 940 vagas, 3 empresas, 1 candidato e nenhum pedido fictício persistido. Cobrança online continua dependendo de configuração de provedor/webhook.
+
+## Continuação — Minhas Vagas e encerramento
+
+- A página aguarda o catálogo real da empresa antes de renderizar, inclusive em acesso direto. Falhas de rede não apresentam cache antigo como atualização confirmada.
+- Cabeçalho identifica Minhas Vagas; as ações são editar, encerrar e visualizar o anúncio ativo. A gestão de candidaturas permanece em Candidaturas.
+- Encerramento só modifica o cache ou anuncia sucesso quando o Supabase devolve a vaga encerrada. A lista é atualizada após a confirmação.
+- 21 testes passaram; sintaxe, referências de arquivos e artefato público validados. Verificação visual integral das áreas privadas continua dependendo de uma sessão autorizada no navegador.
