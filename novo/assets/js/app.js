@@ -5714,64 +5714,24 @@ window.addEventListener('load',()=>setTimeout(bindCadastroEmpresaV4EM,50));
 })();
 
 
-/* EMPREGOS-HOME-HERO-REFERENCE-V1 */
+/* EMPREGOS-HOME-HERO-CONSOLIDATED-V2 */
 (function(){
- function aplicarHeroReferenciaEM(){
-  const busca=document.getElementById('buscaVagas');
-  if(!busca)return;
-  let hero=busca.closest('section');
-  if(!hero){
-   let p=busca.parentElement;
-   while(p&&p!==document.body){if(p.querySelector('h1,h2')&&p.querySelector('button')){hero=p;break}p=p.parentElement}
-  }
-  if(!hero)return;
-  hero.classList.add('home-hero-ref-em');
-
-  const titulos=[...hero.querySelectorAll('h1,h2')];
-  let titulo=titulos.find(el=>/encontre/i.test(el.textContent||''))||titulos[0];
-  if(titulo){
-   titulo.classList.add('home-hero-titulo-ref-em');
-   titulo.innerHTML='Encontre sua vaga no <span>+Empregos</span>';
-  }
+ function aplicarHeroEmpregosEM(){
+  const busca=document.getElementById('buscaVagas'); if(!busca)return;
+  let hero=busca.closest('section'); if(!hero)return;
+  hero.classList.add('home-hero-consolidado-em');
+  const titulo=[...hero.querySelectorAll('h1,h2')].find(el=>/encontre/i.test(el.textContent||''))||hero.querySelector('h1,h2');
+  if(titulo)titulo.innerHTML='Encontre sua vaga no <span>+Empregos</span>';
   const subt=[...hero.querySelectorAll('p,small')].find(el=>/vagas disponíveis em todo o brasil/i.test(el.textContent||''));
-  if(subt)subt.classList.add('home-hero-sub-ref-em');
-
-  let art=hero.querySelector('.home-hero-art-ref-em');
-  if(!art){
-   art=document.createElement('div');
-   art.className='home-hero-art-ref-em';
-   art.setAttribute('aria-hidden','true');
-   art.innerHTML='<svg viewBox="0 0 560 390" role="img">'+
-    '<defs><linearGradient id="cvbgEM" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#4d91ff"/><stop offset="1" stop-color="#1856ba"/></linearGradient><filter id="shadowEM"><feDropShadow dx="0" dy="14" stdDeviation="16" flood-color="#001a4d" flood-opacity=".34"/></filter></defs>'+
-    '<g opacity=".24"><rect x="294" y="38" width="198" height="276" rx="26" fill="none" stroke="#3181ff" stroke-width="4" transform="rotate(-9 294 38)"/><circle cx="170" cy="82" r="12" fill="#3489ff"/><circle cx="145" cy="112" r="5" fill="#3489ff"/></g>'+
-    '<g filter="url(#shadowEM)" transform="translate(145 40) rotate(9 155 145)"><rect x="40" y="15" width="300" height="300" rx="24" fill="url(#cvbgEM)" opacity=".92"/><rect x="70" y="54" width="92" height="92" rx="18" fill="#1d58b7"/><circle cx="116" cy="86" r="18" fill="#0a3d93"/><path d="M88 130c6-23 50-23 56 0" fill="#0a3d93"/><rect x="184" y="62" width="112" height="13" rx="7" fill="#0b3e94"/><rect x="184" y="88" width="88" height="9" rx="5" fill="#174fa6"/><rect x="184" y="108" width="104" height="9" rx="5" fill="#174fa6"/><rect x="74" y="177" width="218" height="10" rx="5" fill="#174fa6"/><rect x="74" y="202" width="190" height="9" rx="5" fill="#174fa6"/><rect x="74" y="226" width="220" height="9" rx="5" fill="#174fa6"/><rect x="74" y="250" width="160" height="9" rx="5" fill="#174fa6"/></g>'+
-    '<g transform="translate(86 216)" filter="url(#shadowEM)"><circle cx="72" cy="72" r="54" fill="none" stroke="#0c438e" stroke-width="15"/><path d="M111 112l54 54" stroke="#0c438e" stroke-width="16" stroke-linecap="round"/></g>'+
-    '<g transform="translate(404 68)" filter="url(#shadowEM)"><rect width="94" height="94" rx="22" fill="#2777ea"/><path d="M24 48l18 18 34-40" fill="none" stroke="#7fb5ff" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/></g>'+
-    '<g transform="translate(376 208) rotate(10)" opacity=".9"><rect width="168" height="84" rx="18" fill="#1454b0" stroke="#367edc" stroke-width="2"/><circle cx="34" cy="31" r="13" fill="#4d91f4"/><path d="M18 62c5-18 28-18 33 0" fill="#4d91f4"/><rect x="66" y="27" width="76" height="8" rx="4" fill="#397fd7"/><rect x="66" y="45" width="55" height="7" rx="4" fill="#397fd7"/></g>'+
-    '<g transform="translate(390 302) rotate(8)" opacity=".72"><rect width="150" height="62" rx="16" fill="#114a9e" stroke="#2e73cc" stroke-width="2"/><circle cx="29" cy="23" r="10" fill="#4b8ee8"/><rect x="53" y="19" width="72" height="7" rx="4" fill="#3377ca"/><rect x="53" y="36" width="50" height="6" rx="3" fill="#3377ca"/></g>'+
-   '</svg>';
-   hero.appendChild(art);
-  }
-
-  if(!document.getElementById('homeHeroReferenceStyleEM')){
-   const st=document.createElement('style');st.id='homeHeroReferenceStyleEM';
-   st.textContent=
-   '.home-hero-ref-em{position:relative!important;overflow:hidden!important;isolation:isolate!important}'+
-   '.home-hero-ref-em .home-hero-art-ref-em{position:absolute!important;right:-12px!important;top:10px!important;width:min(37vw,560px)!important;height:auto!important;z-index:0!important;pointer-events:none!important;opacity:.9!important}'+
-   '.home-hero-ref-em .home-hero-art-ref-em svg{display:block!important;width:100%!important;height:auto!important}'+
-   '.home-hero-ref-em>*:not(.home-hero-art-ref-em){position:relative!important;z-index:2!important}'+
-   '.home-hero-ref-em .home-hero-titulo-ref-em{width:100%!important;max-width:none!important;margin-left:auto!important;margin-right:auto!important;text-align:center!important;transform:none!important;position:relative!important;left:auto!important;right:auto!important;padding-left:0!important;padding-right:0!important}'+
-   '.home-hero-ref-em .home-hero-titulo-ref-em span{color:#3288ff!important}'+
-   '.home-hero-ref-em .home-hero-sub-ref-em{width:100%!important;max-width:none!important;text-align:center!important;margin-left:auto!important;margin-right:auto!important;transform:none!important;left:auto!important;right:auto!important}'+
-   '.home-hero-ref-em form,.home-hero-ref-em [class*="busca"],.home-hero-ref-em [class*="search"]{position:relative!important;z-index:3!important}'+
-   '@media(max-width:900px){.home-hero-ref-em .home-hero-art-ref-em{right:-70px!important;top:70px!important;width:420px!important;opacity:.32!important}}'+
-   '@media(max-width:640px){.home-hero-ref-em .home-hero-art-ref-em{right:-105px!important;top:92px!important;width:340px!important;opacity:.22!important}.home-hero-ref-em .home-hero-titulo-ref-em{font-size:clamp(28px,8vw,38px)!important;line-height:1.08!important}}';
+  if(subt)subt.textContent='Vagas disponíveis em todo o Brasil';
+  hero.querySelectorAll('.home-hero-art-ref-em').forEach(el=>el.remove());
+  if(!document.getElementById('homeHeroConsolidadoStyleEM')){
+   const st=document.createElement('style'); st.id='homeHeroConsolidadoStyleEM';
+   st.textContent='.home-hero-consolidado-em{position:relative!important;overflow:hidden!important;padding-top:34px!important;padding-bottom:30px!important;background:linear-gradient(118deg,#071f42,#0a315f)!important}.home-hero-consolidado-em h1,.home-hero-consolidado-em h2{text-align:center!important;margin:0 auto 7px!important;max-width:980px!important;color:#fff!important;font-size:clamp(30px,3.1vw,48px)!important;line-height:1.08!important;font-weight:800!important;letter-spacing:-.035em!important}.home-hero-consolidado-em h1 span,.home-hero-consolidado-em h2 span{color:#56a4ff!important}.home-hero-consolidado-em>p,.home-hero-consolidado-em>small{display:block!important;text-align:center!important;color:#cbd9e8!important}.home-hero-consolidado-em input,.home-hero-consolidado-em select{min-height:50px!important;border-radius:10px!important;border:1px solid rgba(255,255,255,.2)!important;background:#fff!important;color:#26394c!important;box-shadow:none!important}.home-hero-consolidado-em button{min-height:50px!important;border-radius:10px!important}.home-hero-consolidado-em form,.home-hero-consolidado-em [class*=busca],.home-hero-consolidado-em [class*=search]{position:relative!important;z-index:2!important}@media(max-width:700px){.home-hero-consolidado-em{padding:26px 14px 22px!important}.home-hero-consolidado-em h1,.home-hero-consolidado-em h2{font-size:30px!important}.home-hero-consolidado-em input,.home-hero-consolidado-em select,.home-hero-consolidado-em button{width:100%!important;min-height:48px!important}}';
    document.head.appendChild(st);
   }
  }
- document.addEventListener('DOMContentLoaded',()=>{[0,120,500,1200].forEach(ms=>setTimeout(aplicarHeroReferenciaEM,ms))});
- window.addEventListener('load',()=>setTimeout(aplicarHeroReferenciaEM,100));
- const obs=new MutationObserver(()=>{if(document.getElementById('pagina-home')?.classList.contains('ativa'))aplicarHeroReferenciaEM()});
- document.addEventListener('DOMContentLoaded',()=>{if(document.body)obs.observe(document.body,{childList:true,subtree:true})},{once:true});
- window.aplicarHeroReferenciaEM=aplicarHeroReferenciaEM;
+ document.addEventListener('DOMContentLoaded',()=>{[0,180,700].forEach(ms=>setTimeout(aplicarHeroEmpregosEM,ms))});
+ window.addEventListener('load',()=>setTimeout(aplicarHeroEmpregosEM,100));
+ window.aplicarHeroEmpregosEM=aplicarHeroEmpregosEM;
 })();
