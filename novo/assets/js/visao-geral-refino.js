@@ -107,6 +107,18 @@ function aplicarRefinoVisaoGeralEM(){
  #pagina-painel-empresa .emp-open-vagas-head h2{font-size:23px!important;font-weight:600!important}
  #pagina-painel-empresa .emp-open-vagas-head p{font-size:11.5px!important;font-weight:400!important;line-height:1.55!important;color:#748994!important}
 
+
+ #pagina-painel-empresa .emp-performance{padding:26px!important;border-radius:22px!important;background:#fff!important}
+ #pagina-painel-empresa .emp-performance h2{margin:0 0 5px!important;color:#0b4b94!important;font-size:23px!important}
+ #pagina-painel-empresa .emp-performance>p{margin:0 0 20px!important;color:#738a9b!important;font-size:12px!important}
+ #pagina-painel-empresa .emp-performance-grid{display:grid!important;grid-template-columns:repeat(4,minmax(0,1fr))!important;gap:14px!important}
+ #pagina-painel-empresa .emp-performance-grid>div{min-height:120px!important;padding:18px!important;border:1px solid #e1eaf0!important;border-radius:16px!important;background:#fbfdff!important}
+ #pagina-painel-empresa .emp-performance-grid strong{font-family:'Poppins','Segoe UI',Arial,sans-serif!important;font-size:25px!important;color:#0757b7!important}
+ #pagina-painel-empresa .emp-performance-grid span{color:#46667f!important;font-size:11px!important}
+ #pagina-painel-empresa .emp-performance-grid small{color:#8294a1!important;font-size:10px!important}
+ @media(max-width:900px){#pagina-painel-empresa .emp-performance-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important}}
+ @media(max-width:520px){#pagina-painel-empresa .emp-performance-grid{grid-template-columns:1fr!important}}
+
  /* Remove aparência excessivamente pesada em linhas e cards internos */
  #pagina-painel-empresa .empresa-vaga-linha,
  #pagina-painel-empresa .empresa-candidato-linha{border-color:#edf2f4!important;box-shadow:none!important}
