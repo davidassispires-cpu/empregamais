@@ -6323,3 +6323,26 @@ window.compactarCardsMinhasVagasEM=compactarCardsMinhasVagasEM;
  '@media(max-width:600px){#pagina-vagas-empresa .evp-v5-summary{grid-template-columns:repeat(2,1fr)!important}#pagina-vagas-empresa .evp-v5-header{height:auto!important;min-height:190px!important;padding:20px 18px 72px 72px!important}}';document.head.appendChild(st)}
  document.addEventListener('DOMContentLoaded',()=>{setTimeout(aplicarV5,250);setTimeout(aplicarV5,1000)});new MutationObserver(aplicarV5).observe(document.documentElement,{childList:true,subtree:true});window.aplicarMinhasVagasV5=aplicarV5;
 })();
+
+/* MINHAS-VAGAS-CORRECAO-ESTRUTURAL-V6 */
+(function(){
+ function corrigir(){const pg=document.getElementById('pagina-vagas-empresa');if(!pg)return;
+  const title=[...pg.querySelectorAll('h1,h2')].find(x=>/minhas vagas/i.test(x.textContent||''));if(!title)return;
+  const hero=title.closest('.evp-header-final-em')||title.closest('.evp-header-ref-em')||title.closest('.evp-header-pro-em')||title.parentElement;
+  if(hero){hero.querySelectorAll('.evp-header-art-em,.evp-art-sheet-em,.evp-art-case-em').forEach(x=>x.remove());hero.classList.add('evp-v6-header')}
+  const rx=/vagas ativas no site|em análise|vagas encerradas|vagas em destaque|vagas com urgência|vagas confidenciais/i;
+  const cards=[...pg.querySelectorAll('article')].filter(x=>rx.test((x.textContent||'').replace(/\s+/g,' ')));
+  if(cards.length>=6){let grid=pg.querySelector('.evp-v6-kpis');if(!grid){grid=document.createElement('div');grid.className='evp-v6-kpis';hero?.insertAdjacentElement('afterend',grid)}cards.slice(0,6).forEach(x=>grid.appendChild(x));}
+ }
+ if(!document.getElementById('estiloMinhasVagasV6')){const st=document.createElement('style');st.id='estiloMinhasVagasV6';st.textContent=
+ '#pagina-vagas-empresa .evp-v6-header{height:124px!important;min-height:124px!important;padding:20px 230px 18px 88px!important;background:#F1F7FD!important;border:1px solid #D5E5F3!important;box-shadow:none!important}'+
+ '#pagina-vagas-empresa .evp-v6-header .evp-header-art-em,#pagina-vagas-empresa .evp-v6-header .evp-art-sheet-em,#pagina-vagas-empresa .evp-v6-header .evp-art-case-em{display:none!important}'+
+ '#pagina-vagas-empresa .evp-v6-header h1,#pagina-vagas-empresa .evp-v6-header h2{font-size:28px!important;margin:3px 0 6px!important;color:#0B4380!important}'+
+ '#pagina-vagas-empresa .evp-v6-header p{font-size:11.5px!important;white-space:normal!important;color:#617990!important}'+
+ '#pagina-vagas-empresa .evp-v6-header .evp-header-cta-em{right:22px!important;top:50%!important;bottom:auto!important;transform:translateY(-50%)!important;width:178px!important;height:42px!important;background:#126DB5!important;box-shadow:none!important}'+
+ '#pagina-vagas-empresa .evp-v6-kpis{display:grid!important;grid-template-columns:repeat(6,minmax(0,1fr))!important;gap:8px!important;width:100%!important;margin:12px 0!important}'+
+ '#pagina-vagas-empresa .evp-v6-kpis>article{width:auto!important;min-width:0!important;height:78px!important;min-height:78px!important;margin:0!important;padding:8px 6px!important;border-radius:12px!important;display:flex!important;flex-direction:column!important;align-items:center!important;justify-content:center!important;text-align:center!important;gap:1px!important}'+
+ '#pagina-vagas-empresa .evp-v6-kpis>article span{font-size:7.5px!important;line-height:1.05!important;white-space:nowrap!important;margin:0!important}#pagina-vagas-empresa .evp-v6-kpis>article strong{font-size:18px!important;line-height:1!important;margin:2px 0!important}#pagina-vagas-empresa .evp-v6-kpis>article small,#pagina-vagas-empresa .evp-v6-kpis>article p{font-size:7.5px!important;line-height:1.05!important;margin:0!important}'+
+ '@media(max-width:900px){#pagina-vagas-empresa .evp-v6-kpis{grid-template-columns:repeat(3,1fr)!important}}@media(max-width:600px){#pagina-vagas-empresa .evp-v6-kpis{grid-template-columns:repeat(2,1fr)!important}#pagina-vagas-empresa .evp-v6-header{height:auto!important;min-height:190px!important;padding:20px 18px 72px 72px!important}}';document.head.appendChild(st)}
+ document.addEventListener('DOMContentLoaded',()=>{setTimeout(corrigir,100);setTimeout(corrigir,600);setTimeout(corrigir,1600)});new MutationObserver(corrigir).observe(document.documentElement,{childList:true,subtree:true});window.corrigirMinhasVagasV6=corrigir;
+})();
