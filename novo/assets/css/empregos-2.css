@@ -133,3 +133,27 @@ body.em2-ui #listaVagasPortal button,body.em2-ui #listaVagasPortal .btn,body.em2
 body.em2-ui #paginacaoVagasPortal{display:flex;justify-content:center;gap:7px;margin-top:26px}
 body.em2-ui #paginacaoVagasPortal button{min-width:38px;height:38px;border:1px solid #d6e3ef;border-radius:9px;background:#fff;color:#31516f;font-weight:700;cursor:pointer}
 body.em2-ui #paginacaoVagasPortal button.ativo,body.em2-ui #paginacaoVagasPortal button[aria-current=page]{background:#0874e8;color:#fff;border-color:#0874e8}
+
+/* Job detail 2.0 */
+body.em2-ui #pagina-vaga{background:#f6f9fc;color:var(--em2-ink)}
+body.em2-ui #pagina-vaga .vaga-topbar{background:#fff;border-bottom:1px solid var(--em2-line)}
+body.em2-ui #pagina-vaga .vaga-topbar>.container{max-width:1260px;margin:auto;padding:13px 24px;display:flex;align-items:center;justify-content:space-between}
+body.em2-ui #pagina-vaga .voltar-link{border:0;background:transparent;color:#42617e;font-weight:700;cursor:pointer}
+body.em2-ui #pagina-vaga .vaga-topbar-acoes button{border:1px solid #d5e2ee;background:#fff;color:#244b70;border-radius:10px;padding:10px 14px;font-weight:700}
+body.em2-ui #pagina-vaga .vaga-layout-v2{max-width:1260px!important;margin:auto!important;padding:28px 24px 50px!important;display:grid!important;grid-template-columns:minmax(0,1fr) 330px!important;gap:24px!important;align-items:start}
+body.em2-ui #pagina-vaga .vaga-hero-card,body.em2-ui #pagina-vaga .vaga-conteudo-v2,body.em2-ui #pagina-vaga .vaga-acao-sticky,body.em2-ui #pagina-vaga .vaga-curriculo-side,body.em2-ui #pagina-vaga .vaga-empresa-side{background:#fff!important;border:1px solid #dfe8f2!important;border-radius:18px!important;box-shadow:0 7px 24px rgba(16,48,82,.05)!important}
+body.em2-ui #pagina-vaga .vaga-hero-card{padding:28px!important;border-top:4px solid #0874e8!important}
+body.em2-ui #pagina-vaga .vaga-hero-card h1{color:#082b58!important;font-size:clamp(27px,3vw,38px)!important;line-height:1.15!important;letter-spacing:-.8px!important}
+body.em2-ui #pagina-vaga .vaga-hero-card .salario{color:#16834f!important;font-weight:850!important}
+body.em2-ui #pagina-vaga .vaga-conteudo-v2{margin-top:18px;padding:28px!important}
+body.em2-ui #pagina-vaga .vaga-conteudo-v2 h2,body.em2-ui #pagina-vaga .vaga-conteudo-v2 h3{color:#0b315c!important}
+body.em2-ui #pagina-vaga .vaga-conteudo-v2 p,body.em2-ui #pagina-vaga .vaga-conteudo-v2 li{color:#425c74!important;line-height:1.72!important}
+body.em2-ui #pagina-vaga .vaga-acao-sticky{position:sticky;top:88px;padding:20px}
+body.em2-ui #pagina-vaga .vaga-acao-v2 button,body.em2-ui #pagina-vaga .vaga-acao-v2 .btn{width:100%;min-height:48px;border-radius:11px;font-weight:800}
+body.em2-ui #pagina-vaga .vaga-acao-v2 .btn-primary,body.em2-ui #pagina-vaga .vaga-acao-v2 button.primary{background:#f45b0b!important;color:#fff!important;border-color:#f45b0b!important}
+body.em2-ui #pagina-vaga .vaga-curriculo-side,body.em2-ui #pagina-vaga .vaga-empresa-side{margin-top:16px;padding:20px}
+body.em2-ui #pagina-vaga .vaga-curriculo-side{background:linear-gradient(145deg,#082f60,#0758a9)!important;color:#fff!important;border:0!important}
+body.em2-ui #pagina-vaga .vaga-curriculo-side h3,body.em2-ui #pagina-vaga .vaga-curriculo-side p,body.em2-ui #pagina-vaga .vaga-curriculo-side span{color:#fff!important}
+body.em2-ui #pagina-vaga .vaga-curriculo-side button{width:100%;border:0;border-radius:10px;padding:12px;background:#fff;color:#0756a6;font-weight:800}
+body.em2-ui #pagina-vaga .relacionadas-wrap{max-width:1260px!important;margin:0 auto!important;padding:0 24px 60px!important}
+@media(max-width:850px){body.em2-ui #pagina-vaga .vaga-layout-v2{grid-template-columns:1fr!important;padding:18px 14px 36px!important}body.em2-ui #pagina-vaga .vaga-acao-sticky{position:static}body.em2-ui #pagina-vaga .relacionadas-wrap{padding:0 14px 40px!important}}
