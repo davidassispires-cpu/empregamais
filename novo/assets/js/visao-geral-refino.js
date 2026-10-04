@@ -19,6 +19,20 @@ function carregarMontserratEM(){
  }
 }
 
+
+function aplicarLinkPublicoEmpresaEM(){
+ const pagina=document.getElementById('pagina-painel-empresa');if(!pagina)return;
+ const hero=pagina.querySelector('.emp-dashboard-hero');if(!hero||hero.querySelector('.em-public-jobs-link'))return;
+ let nome='empresa';
+ const h=hero.querySelector('h1');if(h)nome=(h.textContent||'empresa').trim();
+ const slug=nome.normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase().replace(/[^a-z0-9]+/g,'').replace(/^$|^empresa$/g,'empresa');
+ const url=location.origin+location.pathname+'?pagina=empresa-vagas&empresa='+encodeURIComponent(slug);
+ const box=document.createElement('div');box.className='em-public-jobs-link';
+ box.innerHTML='<div class="em-public-link-icon">↗</div><div class="em-public-link-copy"><span>PÁGINA PÚBLICA DE VAGAS DA SUA EMPRESA</span><strong>'+url.replace(/^https?:\/\//,'')+'</strong><small>Compartilhe este link para divulgar suas vagas.</small></div><button type="button">Copiar link</button>';
+ box.querySelector('button').onclick=async function(){try{await navigator.clipboard.writeText(url);const old=this.textContent;this.textContent='Link copiado';setTimeout(()=>this.textContent=old,1600)}catch(_){prompt('Copie o link da sua página de vagas:',url)}};
+ hero.appendChild(box);
+}
+
 function aplicarRefinoVisaoGeralEM(){
  if(document.getElementById('emVisaoGeralRefinoV1'))return;
  carregarMontserratEM();
@@ -100,6 +114,18 @@ function aplicarRefinoVisaoGeralEM(){
  #pagina-painel-empresa .empresa-candidato-linha strong{font-weight:500!important}
 
 
+
+ #pagina-painel-empresa .emp-dashboard-hero{display:grid!important;grid-template-columns:minmax(420px,.95fr) minmax(480px,1.05fr)!important;gap:20px 28px!important;align-items:center!important}
+ #pagina-painel-empresa .em-public-jobs-link{display:grid!important;grid-template-columns:52px 1fr auto!important;gap:14px!important;align-items:center!important;padding:16px 18px!important;border-radius:17px!important;background:#eaf4ff!important;border:1px solid #d9eaff!important}
+ #pagina-painel-empresa .em-public-link-icon{display:grid!important;place-items:center!important;width:52px!important;height:52px!important;border-radius:50%!important;background:linear-gradient(145deg,#55a9ff,#0877ee)!important;color:#fff!important;font-size:24px!important;font-weight:700!important}
+ #pagina-painel-empresa .em-public-link-copy{min-width:0!important}
+ #pagina-painel-empresa .em-public-link-copy span{display:block!important;color:#1262b8!important;font-size:10px!important;font-weight:800!important;letter-spacing:.045em!important}
+ #pagina-painel-empresa .em-public-link-copy strong{display:block!important;margin:4px 0!important;overflow:hidden!important;text-overflow:ellipsis!important;white-space:nowrap!important;color:#074d9d!important;font-size:13px!important}
+ #pagina-painel-empresa .em-public-link-copy small{display:block!important;color:#58738c!important;font-size:10.5px!important}
+ #pagina-painel-empresa .em-public-jobs-link button{min-height:42px!important;padding:0 15px!important;border:1px solid #bcd8f4!important;border-radius:11px!important;background:#fff!important;color:#075ab7!important;font-weight:700!important;white-space:nowrap!important}
+ @media(max-width:1100px){#pagina-painel-empresa .emp-dashboard-hero{grid-template-columns:1fr!important}}
+ @media(max-width:650px){#pagina-painel-empresa .em-public-jobs-link{grid-template-columns:44px 1fr!important}.em-public-jobs-link button{grid-column:1/-1!important;width:100%!important}}
+
  /* REFERENCIA PAINEL PREMIUM - 2026-10-04 */
  #pagina-painel-empresa{background:#f3f8fd!important}
  #pagina-painel-empresa .emp-dashboard-hero{border:1px solid #dbe7f2!important;border-radius:22px!important;background:linear-gradient(120deg,#fff 0%,#fff 54%,#edf6ff 100%)!important;box-shadow:0 8px 28px rgba(24,72,116,.07)!important}
@@ -139,6 +165,7 @@ function aplicarRefinoVisaoGeralEM(){
  }
  `;
  document.head.appendChild(st);
+ setTimeout(aplicarLinkPublicoEmpresaEM,250);
 }
 
 if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',aplicarRefinoVisaoGeralEM);
