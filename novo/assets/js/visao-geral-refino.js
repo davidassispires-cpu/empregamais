@@ -1,3 +1,24 @@
+
+function aplicarLayoutPremiumRealEM(){
+ const app=document.getElementById('emPainelRecrutadorSimplesEM'); if(!app)return;
+ const main=app.querySelector('.emrs-main'), top=app.querySelector('.emrs-top'), kpis=app.querySelector('.emrs-kpis'), grid=app.querySelector('.emrs-grid');
+ if(!main||!top||!kpis)return;
+ top.classList.add('em-premium-top');
+ const aside=grid&&grid.querySelector('aside'); const plano=aside&&aside.querySelector('.emrs-card');
+ if(plano&&!plano.classList.contains('em-premium-plan')){
+   plano.classList.add('em-premium-plan'); main.insertBefore(plano,kpis);
+ }
+ if(!top.querySelector('.em-public-jobs-real')){
+   const nome=(document.getElementById('emrsOla')?.textContent||'Empresa').trim();
+   const slug=nome.normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase().replace(/[^a-z0-9]+/g,'');
+   const url=location.origin+location.pathname+'?pagina=empresa-vagas&empresa='+encodeURIComponent(slug||'empresa');
+   const b=document.createElement('div');b.className='em-public-jobs-real';
+   b.innerHTML='<div><span>PÁGINA PÚBLICA DE VAGAS DA SUA EMPRESA</span><strong>'+url.replace(/^https?:\/\//,'')+'</strong><small>Compartilhe este link para divulgar suas vagas.</small></div><button type="button">Copiar link</button>';
+   b.querySelector('button').onclick=async function(){try{await navigator.clipboard.writeText(url);this.textContent='Copiado';setTimeout(()=>this.textContent='Copiar link',1400)}catch(e){prompt('Copie o link:',url)}};
+   top.appendChild(b);
+ }
+}
+
 /* EMPREGAMAIS - VISAO GERAL REFINO VISUAL V1 */
 (function(){
 'use strict';
@@ -151,6 +172,31 @@ function aplicarRefinoVisaoGeralEM(){
  @media(max-width:1100px){#pagina-painel-empresa .emp-dashboard-hero{grid-template-columns:1fr!important}}
  @media(max-width:650px){#pagina-painel-empresa .em-public-jobs-link{grid-template-columns:44px 1fr!important}.em-public-jobs-link button{grid-column:1/-1!important;width:100%!important}}
 
+
+ #emPainelRecrutadorSimplesEM .emrs-main{background:#f3f8fd!important}
+ #emPainelRecrutadorSimplesEM .emrs-top{display:grid!important;grid-template-columns:minmax(390px,1fr) minmax(420px,.9fr)!important;gap:20px!important;padding:28px!important;border-radius:22px!important;background:linear-gradient(115deg,#fff 0%,#fff 58%,#edf6ff 100%)!important}
+ #emPainelRecrutadorSimplesEM .emrs-top-left{align-items:center!important}
+ #emPainelRecrutadorSimplesEM .emrs-top-avatar{width:78px!important;height:78px!important;border-radius:20px!important;font-size:28px!important}
+ #emPainelRecrutadorSimplesEM .emrs-top-text h1{font-size:30px!important;color:#073f80!important}
+ #emPainelRecrutadorSimplesEM .emrs-top-actions{grid-column:2!important;justify-content:flex-end!important}
+ #emPainelRecrutadorSimplesEM .em-public-jobs-real{grid-column:2!important;grid-row:1!important;display:grid!important;grid-template-columns:1fr auto!important;gap:12px!important;align-items:center!important;padding:15px 16px!important;border:1px solid #d6e8f8!important;border-radius:15px!important;background:#eaf5ff!important}
+ #emPainelRecrutadorSimplesEM .em-public-jobs-real span,#emPainelRecrutadorSimplesEM .em-public-jobs-real small{display:block!important;color:#52718b!important;font-size:10px!important}
+ #emPainelRecrutadorSimplesEM .em-public-jobs-real span{font-weight:800!important;color:#1766b7!important}
+ #emPainelRecrutadorSimplesEM .em-public-jobs-real strong{display:block!important;margin:4px 0!important;color:#064f9f!important;font-size:12px!important;white-space:nowrap!important;overflow:hidden!important;text-overflow:ellipsis!important;max-width:420px!important}
+ #emPainelRecrutadorSimplesEM .em-public-jobs-real button{height:40px!important;border:1px solid #bdd9ef!important;border-radius:10px!important;background:#fff!important;color:#075bb7!important;font-weight:700!important}
+ #emPainelRecrutadorSimplesEM .em-premium-plan{margin:18px 0!important;padding:26px 28px!important;border:0!important;border-radius:22px!important;background:linear-gradient(120deg,#0649aa,#0874df 60%,#0758bd)!important;box-shadow:0 12px 28px rgba(5,76,164,.18)!important;color:#fff!important}
+ #emPainelRecrutadorSimplesEM .em-premium-plan h2,#emPainelRecrutadorSimplesEM .em-premium-plan p,#emPainelRecrutadorSimplesEM .em-premium-plan strong{color:#fff!important}
+ #emPainelRecrutadorSimplesEM .em-premium-plan .emrs-plan-title small,#emPainelRecrutadorSimplesEM .em-premium-plan .emrs-use span,#emPainelRecrutadorSimplesEM .em-premium-plan .emrs-use small,#emPainelRecrutadorSimplesEM .em-premium-plan .emrs-plan-foot small{color:rgba(255,255,255,.78)!important}
+ #emPainelRecrutadorSimplesEM .em-premium-plan .emrs-usage{grid-template-columns:repeat(4,minmax(0,1fr))!important}
+ #emPainelRecrutadorSimplesEM .em-premium-plan .emrs-use{border-color:rgba(255,255,255,.18)!important;background:rgba(255,255,255,.09)!important}
+ #emPainelRecrutadorSimplesEM .em-premium-plan .emrs-bar{background:rgba(255,255,255,.2)!important}
+ #emPainelRecrutadorSimplesEM .em-premium-plan .emrs-secondary{background:#ff6814!important;color:#fff!important;border-color:#ff6814!important}
+ #emPainelRecrutadorSimplesEM .emrs-kpis{gap:18px!important}
+ #emPainelRecrutadorSimplesEM .emrs-kpi{min-height:142px!important;border-radius:20px!important;padding:22px!important}
+ #emPainelRecrutadorSimplesEM .emrs-kpi strong{font-size:38px!important}
+ @media(max-width:1050px){#emPainelRecrutadorSimplesEM .emrs-top{grid-template-columns:1fr!important}#emPainelRecrutadorSimplesEM .em-public-jobs-real,#emPainelRecrutadorSimplesEM .emrs-top-actions{grid-column:1!important}#emPainelRecrutadorSimplesEM .em-public-jobs-real{grid-row:auto!important}#emPainelRecrutadorSimplesEM .em-premium-plan .emrs-usage{grid-template-columns:repeat(2,1fr)!important}}
+ @media(max-width:600px){#emPainelRecrutadorSimplesEM .em-public-jobs-real{grid-template-columns:1fr!important}#emPainelRecrutadorSimplesEM .em-premium-plan .emrs-usage{grid-template-columns:1fr!important}}
+
  /* REFERENCIA PAINEL PREMIUM - 2026-10-04 */
  #pagina-painel-empresa{background:#f3f8fd!important}
  #pagina-painel-empresa .emp-dashboard-hero{border:1px solid #dbe7f2!important;border-radius:22px!important;background:linear-gradient(120deg,#fff 0%,#fff 54%,#edf6ff 100%)!important;box-shadow:0 8px 28px rgba(24,72,116,.07)!important}
@@ -190,7 +236,7 @@ function aplicarRefinoVisaoGeralEM(){
  }
  `;
  document.head.appendChild(st);
- setTimeout(aplicarLinkPublicoEmpresaEM,250);
+ setTimeout(aplicarLinkPublicoEmpresaEM,250); setTimeout(aplicarLayoutPremiumRealEM,350); setTimeout(aplicarLayoutPremiumRealEM,900);
 }
 
 if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',aplicarRefinoVisaoGeralEM);
