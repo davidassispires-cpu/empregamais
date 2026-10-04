@@ -875,8 +875,7 @@ if(ok)localStorage.setItem(k,JSON.stringify(a));
 });
 }
 function atualizar(){
-/* v239: não remontar o painel inteiro ao atualizar dados de plano/vaga.
-   A remontagem destruía o dashboard novo e restaurava a estrutura legada. */
+try{if(typeof montarPainelReferenciaRecrutadorEM==="function")montarPainelReferenciaRecrutadorEM();}catch(e){}
 setTimeout(injetarAcoes,140);
 setTimeout(atualizarFormulario,180);
 setTimeout(cardPlano,220);
@@ -1090,8 +1089,11 @@ try{salvarVagasPortal(a);}catch(e){}
 try{if(typeof renderizarVagas==="function")renderizarVagas();}catch(e){}
 }
 function redesenharV54(){
-/* v242: preserva o dashboard canônico; atualiza apenas ações da vaga. */
-try{if(typeof em200Render==="function")em200Render();}catch(e){}
+try{
+if(typeof montarPainelReferenciaRecrutadorEM==="function"){
+montarPainelReferenciaRecrutadorEM();
+}
+}catch(e){}
 setTimeout(aplicarBotoesV54,180);
 setTimeout(function(){
 try{if(typeof aplicarRecursosPlanoV53==="function")aplicarRecursosPlanoV53();}catch(e){}

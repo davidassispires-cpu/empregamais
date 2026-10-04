@@ -41,39 +41,130 @@ timer=setTimeout(limparUrgenciaDaPontaV59,40);
 ;
 //
 (function(){
-/* V60 consolidado: mantém apenas a página "Ver todas as vagas em destaque".
-   O antigo carrossel automático da Home foi removido para não disputar o
-   controle de #listaDestaques com a renderização oficial de renderizarVagas(). */
+var timerV60=null;
+var pausadoV60=false;
 function listaV60(){return document.getElementById("listaDestaques");}
 function prepararCabecalhoV60(){
 var lista=listaV60();if(!lista)return;
-var sec=lista.closest("section")||lista.parentElement;if(!sec)return;
+var sec=lista.closest("section")||lista.parentElement;
+if(!sec)return;
 sec.id=sec.id||"secao-destaques";
 if(sec.querySelector(".cabecalho-destaques-v60"))return;
 var titulo=null,els=sec.querySelectorAll("h1,h2,h3");
-for(var i=0;i<els.length;i++){if(String(els[i].textContent||"").toLowerCase().indexOf("vagas em destaque")>=0){titulo=els[i];break;}}
+for(var i=0;i<els.length;i++){
+if(String(els[i].textContent||"").toLowerCase().indexOf("vagas em destaque")>=0){titulo=els[i];break;}
+}
 if(!titulo)return;
-var p=titulo.nextElementSibling,wrap=document.createElement("div");wrap.className="cabecalho-destaques-v60";
-var textos=document.createElement("div");titulo.parentNode.insertBefore(wrap,titulo);textos.appendChild(titulo);
-if(p&&p.tagName&&p.tagName.toLowerCase()==="p")textos.appendChild(p);wrap.appendChild(textos);
+var p=titulo.nextElementSibling;
+var wrap=document.createElement("div");wrap.className="cabecalho-destaques-v60";
+var textos=document.createElement("div");
+titulo.parentNode.insertBefore(wrap,titulo);
+textos.appendChild(titulo);
+if(p&&p.tagName&&p.tagName.toLowerCase()==="p")textos.appendChild(p);
+wrap.appendChild(textos);
 var b=document.createElement("button");b.type="button";b.className="ver-todos-destaques-v60";
 b.innerHTML="Ver todas as vagas em destaque <svg viewBox='0 0 24 24'><path d='M5 12h14M13 6l6 6-6 6'/></svg>";
-b.onclick=function(){abrirPaginaDestaquesV60();};wrap.appendChild(b);
+b.onclick=function(){abrirPaginaDestaquesV60();};
+wrap.appendChild(b);
+}
+function iniciarCarrosselV60(){
+var lista=listaV60();if(!lista)return;
+lista.classList.add("carrossel-destaques-v60");
+if(timerV60)clearInterval(timerV60);
+timerV60=setInterval(function(){
+if(pausadoV60||!lista.isConnected||lista.children.length<2)return;
+var primeiro=lista.querySelector(".vaga-card")||lista.firstElementChild;
+if(!primeiro)return;
+var passo=primeiro.getBoundingClientRect().width+16;
+var limite=lista.scrollWidth-lista.clientWidth-8;
+if(lista.scrollLeft>=limite){
+lista.scrollTo({left:0,behavior:"smooth"});
+}else{
+lista.scrollBy({left:passo,behavior:"smooth"});
+}
+},3600);
+lista.onmouseenter=function(){pausadoV60=true;};
+lista.onmouseleave=function(){pausadoV60=false;};
+lista.ontouchstart=function(){pausadoV60=true;};
+lista.ontouchend=function(){setTimeout(function(){pausadoV60=false;},1800);};
 }
 function garantirPaginaV60(){
 var p=document.getElementById("pagina-destaques-v60");if(p)return p;
 p=document.createElement("main");p.id="pagina-destaques-v60";
-p.innerHTML="<div class='pagina-destaques-inner-v60'><button type='button' class='voltar-destaques-v60'>&#8592; Voltar para vagas</button><div class='hero-destaques-v60'><small>OPORTUNIDADES EM EVIDENCIA</small><h1>Vagas em destaque</h1><p>Confira as oportunidades que estao em destaque no EmpregaMais.</p></div><div class='grade-destaques-v60' id='gradeDestaquesV60'></div></div>";
-var rodape=document.querySelector("footer");if(rodape&&rodape.parentNode)rodape.parentNode.insertBefore(p,rodape);else document.body.appendChild(p);
-p.querySelector(".voltar-destaques-v60").onclick=function(){history.back();};return p;
+p.innerHTML="<div class='pagina-destaques-inner-v60'>"+
+"<button type='button' class='voltar-destaques-v60'>&amp;#8592; Voltar para vagas</button>"+
+"<div class='hero-destaques-v60'><small>OPORTUNIDADES EM EVIDENCIA</small>"+
+"<h1>Vagas em destaque</h1><p>Confira as oportunidades que estao em destaque no EmpregaMais.</p></div>"+
+"<div class='grade-destaques-v60' id='gradeDestaquesV60'></div></div>";
+var rodape=document.querySelector("footer");
+if(rodape&&rodape.parentNode)rodape.parentNode.insertBefore(p,rodape);
+else document.body.appendChild(p);
+p.querySelector(".voltar-destaques-v60").onclick=function(){history.back();};
+return p;
 }
-function vagasDestaqueV60(){var a=[];try{a=carregarVagasPortal()||[];}catch(e){}return a.filter(function(v){var d=v.destaque===true||String(v.destaque).toLowerCase()==="true";var st=String(v.status||"").toLowerCase();return d&&st!=="encerrada"&&st!=="excluida"&&st!=="cancelada";});}
-function renderPaginaV60(){var grade=document.getElementById("gradeDestaquesV60");if(!grade)return;grade.innerHTML="";var a=vagasDestaqueV60();if(!a.length){grade.innerHTML="<div class='vazio-destaques-v60'>Nenhuma vaga em destaque disponivel no momento.</div>";return;}for(var i=0;i<a.length;i++){try{grade.appendChild(criarCardVaga(a[i],true));}catch(e){}}}
-function esconderPaginasV60(){var ids=["pagina-inicial","pagina-vagas","pagina-vaga","pagina-cadastro","pagina-candidato","pagina-empresa","pagina-painel-empresa","pagina-planos","pagina-contato","pagina-ajuda"];for(var i=0;i<ids.length;i++){var el=document.getElementById(ids[i]);if(el)el.style.display="none";}}
-window.abrirPaginaDestaquesV60=function(semHistorico){var p=garantirPaginaV60();esconderPaginasV60();p.style.display="block";renderPaginaV60();if(!semHistorico){try{history.pushState({pagina:"destaques-v60"},"","?pagina=vagas-em-destaque");}catch(e){}}window.scrollTo({top:0,behavior:"smooth"});};
-function rotaInicialV60(){var q="";try{q=new URLSearchParams(location.search).get("pagina")||"";}catch(e){}if(q==="vagas-em-destaque")setTimeout(function(){abrirPaginaDestaquesV60(true);},80);}
-window.addEventListener("popstate",function(){var q="";try{q=new URLSearchParams(location.search).get("pagina")||"";}catch(e){}if(q==="vagas-em-destaque"){abrirPaginaDestaquesV60(true);return;}var p=document.getElementById("pagina-destaques-v60");if(p)p.style.display="none";try{if(typeof irPara==="function")irPara(q||"inicio");}catch(e){location.reload();}});
-window.addEventListener("load",function(){garantirPaginaV60();rotaInicialV60();setTimeout(prepararCabecalhoV60,250);setTimeout(prepararCabecalhoV60,1100);});
+function vagasDestaqueV60(){
+var a=[];
+try{a=carregarVagasPortal()||[];}catch(e){}
+return a.filter(function(v){
+var d=v.destaque===true||String(v.destaque).toLowerCase()==="true";
+var s=String(v.status||"").toLowerCase();
+return d&&s!=="encerrada"&&s!=="excluida"&&s!=="cancelada";
+});
+}
+function renderPaginaV60(){
+var grade=document.getElementById("gradeDestaquesV60");if(!grade)return;
+grade.innerHTML="";
+var a=vagasDestaqueV60();
+if(!a.length){
+grade.innerHTML="<div class='vazio-destaques-v60'>Nenhuma vaga em destaque disponivel no momento.</div>";
+return;
+}
+for(var i=0;i<a.length;i++){
+try{grade.appendChild(criarCardVaga(a[i]));}catch(e){}
+}
+}
+function esconderPaginasV60(){
+var ids=["pagina-inicial","pagina-vagas","pagina-vaga","pagina-cadastro","pagina-candidato","pagina-empresa","pagina-painel-empresa","pagina-planos","pagina-contato","pagina-ajuda"];
+for(var i=0;i<ids.length;i++){
+var el=document.getElementById(ids[i]);if(el)el.style.display="none";
+}
+}
+window.abrirPaginaDestaquesV60=function(semHistorico){
+var p=garantirPaginaV60();
+esconderPaginasV60();
+p.style.display="block";
+renderPaginaV60();
+if(!semHistorico){
+try{history.pushState({pagina:"destaques-v60"},"","?pagina=vagas-em-destaque");}catch(e){}
+}
+window.scrollTo({top:0,behavior:"smooth"});
+};
+function rotaInicialV60(){
+var q="";
+try{q=new URLSearchParams(location.search).get("pagina")||"";}catch(e){}
+if(q==="vagas-em-destaque")setTimeout(function(){abrirPaginaDestaquesV60(true);},80);
+}
+window.addEventListener("popstate",function(){
+var q="";
+try{q=new URLSearchParams(location.search).get("pagina")||"";}catch(e){}
+if(q==="vagas-em-destaque"){abrirPaginaDestaquesV60(true);return;}
+var p=document.getElementById("pagina-destaques-v60");if(p)p.style.display="none";
+try{if(typeof irPara==="function")irPara(q||"inicio");}catch(e){location.reload();}
+});
+function aplicarV60(){
+prepararCabecalhoV60();
+iniciarCarrosselV60();
+}
+window.addEventListener("load",function(){
+garantirPaginaV60();rotaInicialV60();
+setTimeout(aplicarV60,250);setTimeout(aplicarV60,1100);
+});
+var lista=listaV60();
+if(lista&&window.MutationObserver){
+var tm=0;
+new MutationObserver(function(){clearTimeout(tm);tm=setTimeout(aplicarV60,100);})
+.observe(lista,{childList:true});
+}
 })();
 //
 ;
@@ -216,9 +307,52 @@ obsV74.observe(paginaV74,{childList:true,subtree:true});
 //
 ;
 //
-
-/* Removido: rotina legada que reprocessava cards da Home e conflitava com Destaques. */
-
+(function(){
+var seletorLegadoV76=[
+".distancia-vaga-em",
+".distancia-automatica-em",
+".distancia-cep-final-em",
+".distancia-card-fixa-em",
+".ativar-distancia-em"
+].join(",");
+function limparDistanciasDuplicadasV76(raiz){
+raiz=raiz||document;
+var cards=raiz.querySelectorAll
+? raiz.querySelectorAll("#listaVagas .vaga-card,#listaDestaques .card-destaque")
+: [];
+for(var i=0;i<cards.length;i++){
+var card=cards[i];
+var antigas=card.querySelectorAll(seletorLegadoV76);
+for(var a=0;a<antigas.length;a++){
+antigas[a].remove();
+}
+var canonicas=card.querySelectorAll(".local-distancia-card-em");
+for(var c=1;c<canonicas.length;c++){
+canonicas[c].remove();
+}
+}
+}
+function atualizarUnicaDistanciaV76(){
+if(typeof aplicarDistanciaCanonicaCardsEM==="function"){
+try{ aplicarDistanciaCanonicaCardsEM(); }catch(e){}
+}
+limparDistanciasDuplicadasV76(document);
+}
+window.EmpregaMaisAtualizarDistanciaUnica=atualizarUnicaDistanciaV76;
+window.addEventListener("load",function(){
+[150,700,1400,2400].forEach(function(ms){
+setTimeout(atualizarUnicaDistanciaV76,ms);
+});
+});
+var alvo=document.getElementById("pagina-home")||document.body;
+if(alvo){
+var timerV76=null;
+new MutationObserver(function(){
+clearTimeout(timerV76);
+timerV76=setTimeout(atualizarUnicaDistanciaV76,60);
+}).observe(alvo,{childList:true,subtree:true});
+}
+})();
 //
 ;
 //
@@ -567,7 +701,44 @@ ev.preventDefault();ev.stopPropagation();ev.stopImmediatePropagation();abrir();
 //
 ;
 //
-
-/* Removido: rotina legada que reprocessava cards da Home e conflitava com Destaques. */
-
+(function(){
+var executandoV83=false;
+function garantirDistanciaPreviaV83(){
+if(executandoV83)return;
+executandoV83=true;
+try{
+if(typeof aplicarDistanciaCanonicaCardsEM==="function"){
+aplicarDistanciaCanonicaCardsEM();
+}else if(typeof atualizarDistanciaCanonicaEM==="function"){
+atualizarDistanciaCanonicaEM();
+}
+document.querySelectorAll("#pagina-home .vaga-card, #pagina-home .card-destaque").forEach(function(card){
+var canonicas=card.querySelectorAll(".local-distancia-card-em");
+for(var i=1;i<canonicas.length;i++)canonicas[i].remove();
+card.querySelectorAll(".distancia-vaga-em,.distancia-automatica-em,.distancia-cep-final-em,.distancia-card-fixa-em,.ativar-distancia-em").forEach(function(el){
+el.remove();
+});
+if(canonicas[0]){
+canonicas[0].style.display="flex";
+canonicas[0].removeAttribute("hidden");
+}
+});
+}catch(e){}
+executandoV83=false;
+}
+window.EmpregaMaisAtualizarDistanciaPreviaV83=garantirDistanciaPreviaV83;
+window.addEventListener("load",function(){
+[150,500,1000,1800,3000].forEach(function(ms){
+setTimeout(garantirDistanciaPreviaV83,ms);
+});
+});
+var home=document.getElementById("pagina-home");
+if(home){
+var timerV83=null;
+new MutationObserver(function(){
+clearTimeout(timerV83);
+timerV83=setTimeout(garantirDistanciaPreviaV83,100);
+}).observe(home,{childList:true,subtree:true});
+}
+})();
 //
