@@ -105,6 +105,14 @@ function aplicarRefinoVisaoGeralEM(){
  #pagina-painel-empresa .emp-dashboard-hero{border:1px solid #dbe7f2!important;border-radius:22px!important;background:linear-gradient(120deg,#fff 0%,#fff 54%,#edf6ff 100%)!important;box-shadow:0 8px 28px rgba(24,72,116,.07)!important}
  #pagina-painel-empresa .emp-dashboard-hero h1{font-size:32px!important;color:#083f83!important}
  #pagina-painel-empresa .emp-dashboard-hero .emp-avatar{border-radius:22px!important;background:linear-gradient(145deg,#0877ee,#004cae)!important;box-shadow:0 10px 24px rgba(0,87,190,.20)!important}
+
+ #pagina-painel-empresa .emp-dashboard-hero{padding:28px 30px!important;min-height:154px!important}
+ #pagina-painel-empresa .emp-dashboard-hero>div:first-child{display:flex!important;align-items:center!important;gap:22px!important}
+ #pagina-painel-empresa .emp-dashboard-hero .emp-avatar{width:78px!important;height:78px!important;min-width:78px!important;font-size:28px!important}
+ #pagina-painel-empresa .emp-dashboard-hero p{font-size:13px!important;color:#58738c!important}
+ #pagina-painel-empresa .emp-dashboard-hero button{min-height:46px!important;border-radius:12px!important;padding:0 18px!important;font-weight:700!important}
+ #pagina-painel-empresa .emp-dashboard-hero button:last-child{background:#ff6412!important;border-color:#ff6412!important;color:#fff!important;box-shadow:0 8px 18px rgba(255,100,18,.18)!important}
+
  #empresaMetricasNovas{grid-template-columns:repeat(4,minmax(0,1fr))!important;gap:18px!important}
  #empresaMetricasNovas>button{min-height:142px!important;border-radius:22px!important;padding:24px!important}
  #empresaMetricasNovas .kpi-num{font-size:38px!important}
