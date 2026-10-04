@@ -41,3 +41,9 @@ test('application responses from a previous session cannot repopulate the privat
  c.sbEspelharCandidaturasEM=()=>{saved=true};const pending=c.sbCarregarCandidaturasEM(false);
  await Promise.resolve();c.window.empregosSessionRevisionEM=1;finish();await assert.rejects(pending,/sessão foi alterada/);assert.equal(saved,false);
 });
+
+test('admin application loading uses its validated token without a candidate or company session',async()=>{
+ const headers=[];const {c}=setup({request:async(url,options)=>{headers.push(options.headers);return url.includes('/mensagens_candidaturas?')?[{id:'message',candidatura_id:'application',texto:'Conversa'}]:[{id:'application'}]}});
+ c.sbGarantirSessaoEM=async()=>{throw Error('Must not require a company session')};c.sbHeadersEM=token=>({Authorization:'Bearer '+token});c.sbMapCandidaturaEM=row=>row;c.sbEspelharCandidaturasEM=()=>{};
+ const rows=await c.sbCarregarCandidaturasEM(false,'admin-token');assert.equal(rows[0].mensagens[0].texto,'Conversa');assert.ok(headers.every(h=>h.Authorization==='Bearer admin-token'));
+});

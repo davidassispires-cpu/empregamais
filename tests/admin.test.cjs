@@ -6,8 +6,8 @@ function setup(load){
  vm.createContext(c);vm.runInContext(fs.readFileSync('novo/assets/js/portal-admin.js','utf8'),c);return{c,requests,saved};
 }
 test('admin refresh delegates to the complete application and message loader',async()=>{
- let called=0,render=null;const a=setup(async value=>{called++;render=value;return[{id:'application',mensagens:[{texto:'Conversa'}]}]});
- assert.equal(await a.c.adminSincronizarPainelSupabase(),true);assert.equal(called,1);assert.equal(render,false);
+ let called=0,render=null,token=null;const a=setup(async(value,credential)=>{called++;render=value;token=credential;return[{id:'application',mensagens:[{texto:'Conversa'}]}]});
+ assert.equal(await a.c.adminSincronizarPainelSupabase(),true);assert.equal(called,1);assert.equal(render,false);assert.equal(token,'token');
  assert.equal(a.requests.some(url=>url.includes('/candidaturas?')),false);assert.ok(a.saved.has('empregaMaisHistoricoAdmin'));
 });
 test('admin synchronization propagates application load failures',async()=>{

@@ -89,3 +89,4 @@ Funções existentes atualizadas no Supabase, versão 2: consulta por CNPJ exige
 - Respostas de validação ou renovação iniciadas antes do logout são descartadas; não restauram identidade nem tokens. Consultas de candidaturas e catálogo da empresa de sessões anteriores não repõem os caches.
 - 29 testes passaram, incluindo logout durante validação/renovação e resposta tardia de candidaturas.
 - Hidratação de perfil também descarta respostas anteriores ao logout, impedindo restaurar o papel ou a rota privada.
+- A consulta administrativa usa seu token próprio validado, sem exigir uma sessão de empresa/candidato. Teste específico confirma o token e as conversas; total de 30 testes.
