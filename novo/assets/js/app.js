@@ -1,3 +1,24 @@
+/* CONECTA-REMOVIDO-2026-10-04 */
+(function(){
+ const rotasConecta=['emprego-conecta','painel-conecta','login-conecta'];
+ function removerConectaCompletoEM(){
+  document.querySelectorAll('[id*="conecta" i],[class*="login-conecta" i],a[href*="conecta" i],button[onclick*="conecta" i]').forEach(el=>{
+   if(el.closest && el.closest('#pagina-painel-empresa')) return;
+   el.remove();
+  });
+  document.querySelectorAll('header a,header button,nav a,nav button,footer a,footer button,.footer a,.footer button').forEach(el=>{
+   const t=String(el.textContent||'').replace(/\s+/g,' ').trim().toLowerCase();
+   const href=String(el.getAttribute?.('href')||'').toLowerCase();
+   const oc=String(el.getAttribute?.('onclick')||'').toLowerCase();
+   if(t.includes('emprego conecta')||t==='conecta'||href.includes('conecta')||oc.includes('conecta'))el.remove();
+  });
+  const p=new URLSearchParams(location.search).get('pagina')||'';
+  if(rotasConecta.includes(p)){history.replaceState({},'',location.pathname); if(typeof abrirRota==='function')abrirRota('home');}
+ }
+ document.addEventListener('DOMContentLoaded',()=>{removerConectaCompletoEM();setTimeout(removerConectaCompletoEM,300);setTimeout(removerConectaCompletoEM,1200)});
+ new MutationObserver(removerConectaCompletoEM).observe(document.documentElement,{childList:true,subtree:true});
+ window.removerConectaCompletoEM=removerConectaCompletoEM;
+})();
 function removerAcessoConectaLegadoEM(){
  document.querySelectorAll('header a,header button,nav a,nav button,.header a,.header button,.topo a,.topo button').forEach(el=>{
   const t=String(el.textContent||'').replace(/\s+/g,' ').trim().toLowerCase();
