@@ -133,7 +133,19 @@ document.addEventListener("keydown",function(e){if(e.key==="Escape")fechar()},fa
 var obs=null;
 function iniciar(){
  instalar();var f=form();
- if(f&&!obs){obs=new MutationObserver(function(){instalar()});obs.observe(f,{childList:true,subtree:true})}
+ if(f&&!obs){
+ var timerInstalarV5=null;
+ obs=new MutationObserver(function(muts){
+  var precisa=false;
+  for(var i=0;i<muts.length;i++){
+   if(muts[i].addedNodes&&muts[i].addedNodes.length){precisa=true;break;}
+  }
+  if(!precisa)return;
+  clearTimeout(timerInstalarV5);
+  timerInstalarV5=setTimeout(instalar,40);
+ });
+ obs.observe(f,{childList:true,subtree:true});
+}
  setTimeout(instalar,250);setTimeout(instalar,800);
 }
 if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",iniciar);else iniciar();

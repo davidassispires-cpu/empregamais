@@ -82,8 +82,14 @@ if(prox){
 if(etapaAtualV132===etapasV132.length-1){
 prox.textContent="Revisar e publicar";
 prox.onclick=function(){
-var submit=document.querySelector("#pagina-publicar #formVaga button[type='submit'],#pagina-publicar #formVaga input[type='submit']");
-if(submit)submit.click();
+if(!validarEtapa(etapaAtualV132))return;
+var form=document.getElementById("formVaga");
+if(!form)return;
+var submit=form.querySelector("button[type='submit'],input[type='submit']");
+if(submit){
+ if(typeof form.requestSubmit==="function")form.requestSubmit(submit);
+ else submit.click();
+}
 };
 }else{
 prox.textContent="Continuar";
@@ -208,6 +214,14 @@ var el=form.querySelector("button[type='submit'],input[type='submit']");
 if(el && !el.classList.contains("em-processando-v134"))iniciar(el,true);
 },true);
 window.addEventListener("pageshow",function(){finalizar()});
+window.addEventListener("load",function(){
+/* Nunca mantém bloqueio visual herdado de uma navegação/reload anterior. */
+clearTimeout(timerOverlay);
+var ov=document.getElementById("emLoadingGlobalV134");
+if(ov)ov.classList.remove("ativo");
+document.body.classList.remove("em-bloqueado-v134");
+if(botaoAtual)finalizar(botaoAtual);
+});
 window.addEventListener("beforeunload",function(){
 clearTimeout(timerOverlay);
 });
@@ -375,17 +389,13 @@ return true;
 }catch(e){return false;}
 }
 window.sincronizarPlanoPublicacaoV145=sincronizarPlanoPublicacaoV145;
-var irAntes=window.irPara;
-if(typeof irAntes==="function"){
-window.irPara=function(pagina){
-var r=irAntes.apply(this,arguments);
+document.addEventListener("empregamais:navegacao",function(ev){
+var pagina=String((ev&&ev.detail&&ev.detail.pagina)||"");
 if(pagina==="publicar"){
 setTimeout(sincronizarPlanoPublicacaoV145,80);
 setTimeout(sincronizarPlanoPublicacaoV145,700);
 }
-return r;
-};
-}
+});
 var DRAFT="empregaMaisRascunhoVagaV145";
 function formVaga(){
 return document.getElementById("formVaga")||
@@ -588,10 +598,8 @@ return false;
 }
 }
 window.sincronizarPlanoPublicacaoV146=sincronizarPlanoV146;
-var irV146=window.irPara;
-if(typeof irV146==="function"){
-window.irPara=function(pagina){
-var r=irV146.apply(this,arguments);
+document.addEventListener("empregamais:navegacao",function(ev){
+var pagina=String((ev&&ev.detail&&ev.detail.pagina)||"");
 if(pagina==="publicar"){
 setTimeout(sincronizarPlanoV146,40);
 setTimeout(sincronizarPlanoV146,450);
@@ -599,9 +607,7 @@ setTimeout(sincronizarPlanoV146,450);
 if(pagina==="painel-admin"){
 setTimeout(atualizarAdminV146,80);
 }
-return r;
-};
-}
+});
 var DRAFT="empregaMaisRascunhoVagaV146";
 function formV146(){
 return document.getElementById("formVaga")||
@@ -736,11 +742,47 @@ ac.appendChild(botao("Ver vaga","btn-claro",function(){
 if(typeof verVagaAdminEmpregaMais==="function")verVagaAdminEmpregaMais(v.id);
 else if(typeof abrirVaga==="function")abrirVaga(v.id);
 }));
+function concluirAprovacaoV146(status,b){
+if(typeof atualizarAprovacaoVaga!=="function"){
+ alert("Não foi possível atualizar esta vaga.");return;
+}
+if(b)b.disabled=true;
+var retorno;
+try{retorno=atualizarAprovacaoVaga(v.id,status);}catch(e){
+ if(b)b.disabled=false;alert("Não foi possível atualizar esta vaga.");return;
+}
+Promise.resolve(retorno).then(function(res){
+ if(res===false)throw new Error("Atualização não confirmada");
+ /* Garante no cache local o mesmo estado confirmado pelo admin. */
+ try{
+  var lista=typeof carregarVagasPortal==="function"?(carregarVagasPortal()||[]):[];
+  if(Array.isArray(lista)){
+   var pos=lista.findIndex(function(x){return String(x&&x.id||"")===String(v.id);});
+   if(pos>=0){
+    lista[pos].aprovacao=status;
+    if(status==="aprovada"){
+     lista[pos].jaFoiAprovada=true;
+     if(lista[pos].ativa===undefined)lista[pos].ativa=true;
+    }
+    if(typeof salvarVagasPortal==="function")salvarVagasPortal(lista);
+   }
+  }
+ }catch(e){}
+ /* Sincroniza todas as visões somente depois da confirmação da alteração. */
+ try{if(typeof renderizarFilaPendentesAdmin==="function")renderizarFilaPendentesAdmin();}catch(e){}
+ try{if(typeof montarPainelReferenciaRecrutadorEM==="function")montarPainelReferenciaRecrutadorEM();}catch(e){}
+ try{if(typeof renderizarVagas==="function")renderizarVagas();}catch(e){}
+ try{if(typeof renderizarHome==="function")renderizarHome();}catch(e){}
+ try{document.dispatchEvent(new CustomEvent("empregamais:vaga-aprovacao-atualizada",{detail:{id:v.id,status:status}}));}catch(e){}
+}).catch(function(){
+ alert("A alteração não foi confirmada. A vaga continuará no estado anterior.");
+}).finally(function(){if(b)b.disabled=false;});
+}
 ac.appendChild(botao("Aprovar","btn-verde",function(){
-if(typeof atualizarAprovacaoVaga==="function")atualizarAprovacaoVaga(v.id,"aprovada");
+concluirAprovacaoV146("aprovada",this);
 }));
 ac.appendChild(botao("Reprovar","btn-perigo",function(){
-if(typeof atualizarAprovacaoVaga==="function")atualizarAprovacaoVaga(v.id,"rejeitada");
+concluirAprovacaoV146("rejeitada",this);
 }));
 card.appendChild(ac);
 bloco.appendChild(card);
@@ -773,15 +815,20 @@ statusAdminV146("",false);
 });
 }
 window.atualizarAdminV146=atualizarAdminV146;
+function painelAdminAtivoV146(){
+var pa=document.getElementById("pagina-painel-admin");
+return !!(pa&amp;&amp;(pa.classList.contains("ativa")||pa.classList.contains("pagina-ativa")));
+}
 window.addEventListener("load",function(){
 setTimeout(function(){
 restaurarDraftV146();
 sincronizarPlanoV146();
-var pa=document.getElementById("pagina-painel-admin");
-if(pa&&(pa.classList.contains("ativa")||pa.style.display!=="none")){
-atualizarAdminV146();
-}
-},700);
+if(painelAdminAtivoV146())atualizarAdminV146();
+},300);
+});
+document.addEventListener("empregamais:navegacao",function(ev){
+var p=String((ev&amp;&amp;ev.detail&amp;&amp;ev.detail.pagina)||"");
+if(p==="painel-admin"||p==="admin")setTimeout(atualizarAdminV146,120);
 });
 window.addEventListener("pageshow",function(){
 try{
@@ -1035,12 +1082,8 @@ el.style.display="";
 };
 window.preencherPrivacidadeLocalizacaoV149=preencherEdicaoV149;
 window.salvarPreferenciaLocalizacaoV149=salvarPreferenciaV149;
-document.addEventListener("DOMContentLoaded",function(){
-setTimeout(criarControleV149,250);
-});
-window.addEventListener("load",function(){
-setTimeout(criarControleV149,400);
-});
+/* O controle V149 está desativado na própria criarControleV149().
+   Não agenda timers globais para uma função que retorna imediatamente. */
 document.addEventListener("submit",function(ev){
 var f=ev.target;
 if(!f)return;
@@ -1060,18 +1103,23 @@ if(typeof vagaAtual!=="undefined" && vagaAtual)return vagaAtual;
 }catch(e){}
 return null;
 }
-window.addEventListener("load",function(){
-setTimeout(function(){
+function detalheVagaAtivoV149(){
+var p=document.getElementById("pagina-vaga");
+return !!(p&amp;&amp;(p.classList.contains("ativa")||p.classList.contains("pagina-ativa")));
+}
+function aplicarLocalizacaoAtualV149(){
 try{
 var v=obterVagaAtualV149();
-if(v && typeof preencherPrivacidadeLocalizacaoV149==="function"){
-preencherPrivacidadeLocalizacaoV149(v);
-}
-if(v && typeof aplicarPrivacidadeLocalizacaoV149==="function"){
-aplicarPrivacidadeLocalizacaoV149(v,document);
-}
+if(v &amp;&amp; typeof preencherPrivacidadeLocalizacaoV149==="function")preencherPrivacidadeLocalizacaoV149(v);
+if(v &amp;&amp; typeof aplicarPrivacidadeLocalizacaoV149==="function")aplicarPrivacidadeLocalizacaoV149(v,document);
 }catch(e){}
-},650);
+}
+window.addEventListener("load",function(){
+if(detalheVagaAtivoV149())setTimeout(aplicarLocalizacaoAtualV149,220);
+});
+document.addEventListener("empregamais:navegacao",function(ev){
+var p=String((ev&amp;&amp;ev.detail&amp;&amp;ev.detail.pagina)||"");
+if(p==="vaga"||p==="detalhe-vaga")setTimeout(aplicarLocalizacaoAtualV149,140);
 });
 window.completarDadosLocalizacaoV149=function(dados){
 if(typeof salvarPreferenciaLocalizacaoV149==="function"){
@@ -1154,12 +1202,21 @@ if(typeof window.atualizarPreviewEnderecoV150==="function"){
 window.atualizarPreviewEnderecoV150();
 }
 }
+function publicacaoAtivaV151(){
+var p=document.getElementById("pagina-publicar");
+return !!(p&amp;&amp;(p.classList.contains("ativa")||p.classList.contains("pagina-ativa")));
+}
 document.addEventListener("DOMContentLoaded",function(){
+if(!publicacaoAtivaV151())return;
 setTimeout(reorganizarV151,150);
-setTimeout(sincronizarPreviewV151,500);
+setTimeout(sincronizarPreviewV151,220);
 });
-window.addEventListener("load",function(){
-setTimeout(reorganizarV151,250);
+document.addEventListener("empregamais:navegacao",function(ev){
+var p=String((ev&amp;&amp;ev.detail&amp;&amp;ev.detail.pagina)||"");
+if(p==="publicar"||p==="publicar-vaga"){
+ setTimeout(reorganizarV151,120);
+ setTimeout(sincronizarPreviewV151,180);
+}
 });
 document.addEventListener("change",function(e){
 if(e.target && (e.target.id==="cidadeVaga" || e.target.id==="estadoVaga")){
@@ -1240,16 +1297,20 @@ if(typeof window.atualizarPreviewEnderecoV150==="function"){
 setTimeout(window.atualizarPreviewEnderecoV150,50);
 }
 }
+function formularioPublicacaoAtivoV153(){
+var p=document.getElementById("pagina-publicar");
+return !!(p&amp;&amp;(p.classList.contains("ativa")||p.classList.contains("pagina-ativa")));
+}
 document.addEventListener("DOMContentLoaded",function(){
-setTimeout(unificarEnderecoV153,180);
+if(formularioPublicacaoAtivoV153())setTimeout(unificarEnderecoV153,180);
 });
 window.addEventListener("load",function(){
-setTimeout(unificarEnderecoV153,300);
-setTimeout(unificarEnderecoV153,700);
+if(formularioPublicacaoAtivoV153())setTimeout(unificarEnderecoV153,240);
 });
-document.addEventListener("click",function(){
-setTimeout(unificarEnderecoV153,180);
-},true);
+document.addEventListener("empregamais:navegacao",function(ev){
+var p=String((ev&amp;&amp;ev.detail&amp;&amp;ev.detail.pagina)||"");
+if(p==="publicar"||p==="publicar-vaga")setTimeout(unificarEnderecoV153,160);
+});
 window.unificarEnderecoV153=unificarEnderecoV153;
 })();
 //

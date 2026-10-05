@@ -10,15 +10,27 @@ anual:{nome:"Plano Anual",periodo:"12 meses",preco:"R$ 239,90",texto:"Maior capa
 var detPlanoAtualV16="basico";
 function abrirDetalhesPlanoV16(chave){
 var d=DET_PLANOS_V16[chave]||DET_PLANOS_V16.basico;detPlanoAtualV16=DET_PLANOS_V16[chave]?chave:"basico";
-document.querySelectorAll(".pagina").forEach(function(x){x.classList.remove("ativa");});
-var pg=document.getElementById("pagina-detalhes-plano-v16");if(pg)pg.classList.add("ativa");
+var pg=document.getElementById("pagina-detalhes-plano-v16");
+if(typeof window.mostrarPagina==="function")window.mostrarPagina("detalhes-plano-v16");
+else{
+ document.querySelectorAll(".pagina").forEach(function(x){x.classList.remove("ativa");});
+ if(pg)pg.classList.add("ativa");
+}
 document.getElementById("detNomeV16").textContent=d.nome;document.getElementById("detTextoV16").textContent=d.texto;document.getElementById("detPeriodoV16").textContent=d.periodo;document.getElementById("detPrecoV16").textContent=d.preco;
 document.getElementById("detVagasV16").textContent=d.vagas;document.getElementById("detVagasObsV16").textContent=d.vagasObs;document.getElementById("detDestaquesV16").textContent=d.destaques;document.getElementById("detUrgentesV16").textContent=d.urgentes;document.getElementById("detConfV16").textContent=d.conf;document.getElementById("detConfObsV16").textContent=d.confObs;
 var b=document.getElementById("detBeneficiosV16");b.innerHTML="";d.beneficios.forEach(function(x){var e=document.createElement("div");e.className="det-beneficio-v16";e.innerHTML="<b>&amp;#10003;</b>"+x;b.appendChild(e);});
 var r=document.getElementById("detResumoV16");r.innerHTML="";d.resumo.forEach(function(x){var e=document.createElement("div");e.className="det-resumo-item-v16";e.innerHTML="<strong>"+x[0]+"</strong>"+x[1];r.appendChild(e);});
 document.getElementById("detEscolherV16").onclick=function(){escolherDetalhePlanoV16();};document.getElementById("detEscolher2V16").onclick=function(){escolherDetalhePlanoV16();};window.scrollTo(0,0);
 }
-function voltarPlanosV16(){var p=document.getElementById("pagina-detalhes-plano-v16");if(p)p.classList.remove("ativa");var x=document.getElementById("pagina-planos");if(x)x.classList.add("ativa");window.scrollTo(0,0);}
+function voltarPlanosV16(){
+if(typeof window.irPara==="function")window.irPara("planos");
+else if(typeof window.mostrarPagina==="function")window.mostrarPagina("planos");
+else{
+ var p=document.getElementById("pagina-detalhes-plano-v16");if(p)p.classList.remove("ativa");
+ var x=document.getElementById("pagina-planos");if(x)x.classList.add("ativa");
+}
+window.scrollTo(0,0);
+}
 function escolherDetalhePlanoV16(){var chave=detPlanoAtualV16;voltarPlanosV16();setTimeout(function(){var b=document.querySelector('[data-plano-em="'+chave+'"]');if(b)b.click();},80);}
 document.addEventListener("click",function(e){var b=e.target.closest("[data-info-plano-v16]");if(b){e.preventDefault();abrirDetalhesPlanoV16(b.getAttribute("data-info-plano-v16"));}});
 document.addEventListener("DOMContentLoaded",function(){var b=document.getElementById("detVoltarV16");if(b)b.onclick=voltarPlanosV16;});
@@ -61,26 +73,14 @@ vaga.ativa=false;
 vaga.encerrada=true;
 vaga.dataEncerramento=agora;
 vaga.encerradaEm=agora;
+/* Primeiro confirma o encerramento no servidor. O painel só é alterado
+   definitivamente depois da confirmação, evitando a vaga sumir apenas localmente. */
+function aplicarEncerramentoLocalV18(){
 try{salvarVagasPortal(vagas);}catch(e){
 alert("N\u00E3o foi poss\u00EDvel salvar o encerramento da vaga.");
-return;
+return false;
 }
-try{
-if(typeof mostrarToast==="function")mostrarToast("Vaga encerrada com sucesso.");
-}catch(e){}
-try{
-if(typeof apiEmpregaMaisPost==="function"){
-apiEmpregaMaisPost({acao:"encerrar",id:id})
-.then(function(resultado){
-if(resultado && resultado.sucesso===true){
-try{
-if(typeof sincronizarVagasGoogleSheets==="function")sincronizarVagasGoogleSheets();
-}catch(e){}
-}
-})
-.catch(function(){});
-}
-}catch(e){}
+try{if(typeof mostrarToast==="function")mostrarToast("Vaga encerrada com sucesso.");}catch(e){}
 try{
 if(typeof montarPainelReferenciaRecrutadorEM==="function"){
 var ref=document.getElementById("painelReferenciaRecrutadorEM");
@@ -91,6 +91,30 @@ montarPainelReferenciaRecrutadorEM();
 try{if(typeof renderizarVagasAprovadasEmpresa==="function")renderizarVagasAprovadasEmpresa();}catch(e){}
 try{if(typeof renderizarPainelEmpresa==="function")renderizarPainelEmpresa();}catch(e){}
 try{if(typeof renderizarHome==="function")renderizarHome();}catch(e){}
+return true;
+}
+if(typeof apiEmpregaMaisPost==="function"){
+try{
+var botaoAcao=document.activeElement;
+if(botaoAcao&&botaoAcao.tagName==="BUTTON")botaoAcao.disabled=true;
+apiEmpregaMaisPost({acao:"encerrar",id:id})
+.then(function(resultado){
+if(botaoAcao)botaoAcao.disabled=false;
+if(!resultado || resultado.sucesso!==true){
+alert((resultado&&resultado.erro)||"N\u00E3o foi poss\u00EDvel confirmar o encerramento da vaga.");
+return;
+}
+if(!aplicarEncerramentoLocalV18())return;
+try{if(typeof sincronizarVagasGoogleSheets==="function")sincronizarVagasGoogleSheets();}catch(e){}
+})
+.catch(function(){
+if(botaoAcao)botaoAcao.disabled=false;
+alert("N\u00E3o foi poss\u00EDvel confirmar o encerramento da vaga. Tente novamente.");
+});
+return;
+}catch(e){}
+}
+if(!aplicarEncerramentoLocalV18())return;
 }
 window.encerrarVagaEmpresa=encerrarVagaCorrigidaV18;
 window.encerrarVaga=encerrarVagaCorrigidaV18;
@@ -211,12 +235,16 @@ if(!el)return;
 e.preventDefault();
 abrirMetricaV19(el.getAttribute("data-metrica-link-v19"));
 });
+function metricasPainelAtivoV19(){
+var p=document.getElementById("pagina-painel-empresa");
+return !!(p&amp;&amp;(p.classList.contains("ativa")||p.classList.contains("pagina-ativa")));
+}
 window.addEventListener("load",function(){
-setTimeout(prepararMetricasV19,300);
-setTimeout(prepararMetricasV19,1000);
+if(metricasPainelAtivoV19())setTimeout(prepararMetricasV19,300);
 });
-document.addEventListener("click",function(){
-setTimeout(prepararMetricasV19,120);
+document.addEventListener("empregamais:navegacao",function(ev){
+var p=String((ev&amp;&amp;ev.detail&amp;&amp;ev.detail.pagina)||"");
+if(p==="painel-empresa")setTimeout(prepararMetricasV19,120);
 });
 })();
 //
@@ -285,9 +313,16 @@ moverPerfilAntesRodapeV20();
 prepararVoltarV20();
 }
 window.voltarPainelDadosEmpresaV20=voltarPainelV20;
+function perfilEmpresaAtivoV20(){
+var p=document.getElementById(paginaIdV20);
+return !!(p&amp;&amp;(p.classList.contains("ativa")||p.classList.contains("pagina-ativa")));
+}
 window.addEventListener("load",function(){
-setTimeout(corrigirPerfilV20,150);
-setTimeout(corrigirPerfilV20,700);
+if(perfilEmpresaAtivoV20())setTimeout(corrigirPerfilV20,150);
+});
+document.addEventListener("empregamais:navegacao",function(ev){
+var p=String((ev&amp;&amp;ev.detail&amp;&amp;ev.detail.pagina)||"");
+if(p==="perfil-empresa")setTimeout(corrigirPerfilV20,100);
 });
 document.addEventListener("click",function(e){
 var alvo=e.target.closest("button,a");
@@ -373,9 +408,16 @@ e.preventDefault();
 abrirAbaDadosV22(b.getAttribute("data-aba-dados-v22"));
 });
 window.abrirAbaDadosEmpresaV22=abrirAbaDadosV22;
+function dadosEmpresaAtivoV22(){
+var p=document.getElementById("pagina-perfil-empresa-em");
+return !!(p&amp;&amp;(p.classList.contains("ativa")||p.classList.contains("pagina-ativa")));
+}
 window.addEventListener("load",function(){
-setTimeout(iniciarV22,150);
-setTimeout(iniciarV22,650);
+if(dadosEmpresaAtivoV22())setTimeout(iniciarV22,150);
+});
+document.addEventListener("empregamais:navegacao",function(ev){
+var p=String((ev&amp;&amp;ev.detail&amp;&amp;ev.detail.pagina)||"");
+if(p==="perfil-empresa")setTimeout(iniciarV22,120);
 });
 document.addEventListener("click",function(e){
 var a=e.target.closest("a,button");
@@ -530,7 +572,15 @@ outros.addEventListener("input",atual);atual();
 function iniciarV23(){
 window.montarFormularioV23();
 }
-window.addEventListener("load",function(){setTimeout(iniciarV23,250);setTimeout(iniciarV23,900);});
+function formularioPerfilAtivoV23(){
+var p=document.getElementById("pagina-perfil-empresa-em");
+return !!(p&amp;&amp;(p.classList.contains("ativa")||p.classList.contains("pagina-ativa")));
+}
+window.addEventListener("load",function(){if(formularioPerfilAtivoV23())setTimeout(iniciarV23,180);});
+document.addEventListener("empregamais:navegacao",function(ev){
+var p=String((ev&amp;&amp;ev.detail&amp;&amp;ev.detail.pagina)||"");
+if(p==="perfil-empresa")setTimeout(iniciarV23,140);
+});
 document.addEventListener("click",function(e){
 var a=e.target.closest("[data-aba-dados-v22],a,button");
 if(!a)return;
@@ -568,7 +618,15 @@ card.style.display="block";
 try{if(typeof window.montarFormularioV23==="function")window.montarFormularioV23();}catch(e){}
 avisoV24();
 }
-window.addEventListener("load",function(){setTimeout(garantirV24,300);setTimeout(garantirV24,900);});
+function perfilPublicoAtivoV24(){
+var p=document.getElementById("pagina-perfil-empresa-em");
+return !!(p&amp;&amp;(p.classList.contains("ativa")||p.classList.contains("pagina-ativa")));
+}
+window.addEventListener("load",function(){if(perfilPublicoAtivoV24())setTimeout(garantirV24,220);});
+document.addEventListener("empregamais:navegacao",function(ev){
+var p=String((ev&amp;&amp;ev.detail&amp;&amp;ev.detail.pagina)||"");
+if(p==="perfil-empresa")setTimeout(garantirV24,160);
+});
 document.addEventListener("click",function(e){
 var b=e.target.closest("[data-aba-dados-v22]");
 if(b&&b.getAttribute("data-aba-dados-v22")==="publico")setTimeout(garantirV24,60);
@@ -601,8 +659,7 @@ function garantirRodapeDepoisConteudoV25(){
 organizarPaginasAntesRodapeV25();
 }
 window.addEventListener("load",function(){
-setTimeout(garantirRodapeDepoisConteudoV25,100);
-setTimeout(garantirRodapeDepoisConteudoV25,700);
+setTimeout(garantirRodapeDepoisConteudoV25,120);
 });
 document.addEventListener("click",function(e){
 var alvo=e.target.closest("button,a");
@@ -714,7 +771,15 @@ if(porte)porte.setAttribute("aria-label","Porte ou numero aproximado de colabora
 if(uf)uf.setAttribute("aria-label","Estado");
 }
 window.padronizarPerfilEmpresaV26=padronizarV26;
-window.addEventListener("load",function(){setTimeout(padronizarV26,500);setTimeout(padronizarV26,1200);});
+function perfilPadronizavelAtivoV26(){
+var p=document.getElementById("pagina-perfil-empresa-em");
+return !!(p&amp;&amp;(p.classList.contains("ativa")||p.classList.contains("pagina-ativa")));
+}
+window.addEventListener("load",function(){if(perfilPadronizavelAtivoV26())setTimeout(padronizarV26,220);});
+document.addEventListener("empregamais:navegacao",function(ev){
+var p=String((ev&amp;&amp;ev.detail&amp;&amp;ev.detail.pagina)||"");
+if(p==="perfil-empresa")setTimeout(padronizarV26,160);
+});
 document.addEventListener("click",function(e){
 var b=e.target.closest("[data-aba-dados-v22]");
 if(b&&b.getAttribute("data-aba-dados-v22")==="publico")setTimeout(padronizarV26,120);
@@ -797,9 +862,14 @@ blocoUploadV27("logo",document.getElementById("perfilLogoEM"));
 blocoUploadV27("capa",document.getElementById("perfilCapaEM"));
 }
 window.montarUploadsPerfilV27=montarUploadsV27;
-window.addEventListener("load",function(){
-setTimeout(montarUploadsV27,650);
-setTimeout(montarUploadsV27,1400);
+function uploadsPerfilAtivoV27(){
+var p=document.getElementById("pagina-perfil-empresa-em");
+return !!(p&amp;&amp;(p.classList.contains("ativa")||p.classList.contains("pagina-ativa")));
+}
+window.addEventListener("load",function(){if(uploadsPerfilAtivoV27())setTimeout(montarUploadsV27,240);});
+document.addEventListener("empregamais:navegacao",function(ev){
+var p=String((ev&amp;&amp;ev.detail&amp;&amp;ev.detail.pagina)||"");
+if(p==="perfil-empresa")setTimeout(montarUploadsV27,180);
 });
 document.addEventListener("click",function(e){
 var b=e.target.closest("[data-aba-dados-v22]");
@@ -872,9 +942,14 @@ img.style.objectPosition="center";
 }
 }
 window.corrigirHeroPerfilEmpresaV28=corrigirHeroV28;
-window.addEventListener("load",function(){
-setTimeout(corrigirHeroV28,250);
-setTimeout(corrigirHeroV28,900);
+function perfilPublicoVisivelV28(){
+var p=document.getElementById("pagina-perfil-publico-empresa-em");
+return !!(p&amp;&amp;(p.classList.contains("ativa")||p.classList.contains("pagina-ativa")));
+}
+window.addEventListener("load",function(){if(perfilPublicoVisivelV28())setTimeout(corrigirHeroV28,180);});
+document.addEventListener("empregamais:navegacao",function(ev){
+var p=String((ev&amp;&amp;ev.detail&amp;&amp;ev.detail.pagina)||"");
+if(p==="perfil-publico-empresa"||p==="empresa-publica")setTimeout(corrigirHeroV28,140);
 });
 document.addEventListener("click",function(e){
 var a=e.target.closest("button,a");
@@ -904,7 +979,10 @@ var c=[];
 try{
 if(typeof carregarCandidaturas==="function")c=carregarCandidaturas()||[];
 }catch(e){}
-return c.filter(function(x){return ids[String(x.vagaId||"")];});
+return c.filter(function(x){
+var id=String(x&&(x.vagaId||x.idVaga||x.vaga_id||x.jobId||x.job_id||(x.vaga&&x.vaga.id))||"");
+return !!ids[id];
+});
 }
 function empresaVerificadaV29(){
 try{
@@ -960,9 +1038,14 @@ stats.innerHTML=
 hero.appendChild(stats);
 }
 window.montarCabecalhoEmpresaV29=montarCabecalhoV29;
-window.addEventListener("load",function(){
-setTimeout(montarCabecalhoV29,350);
-setTimeout(montarCabecalhoV29,1000);
+function perfilPublicoAtivoV29(){
+var p=document.getElementById("pagina-perfil-publico-empresa-em");
+return !!(p&amp;&amp;(p.classList.contains("ativa")||p.classList.contains("pagina-ativa")));
+}
+window.addEventListener("load",function(){if(perfilPublicoAtivoV29())setTimeout(montarCabecalhoV29,200);});
+document.addEventListener("empregamais:navegacao",function(ev){
+var p=String((ev&amp;&amp;ev.detail&amp;&amp;ev.detail.pagina)||"");
+if(p==="perfil-publico-empresa"||p==="empresa-publica")setTimeout(montarCabecalhoV29,160);
 });
 document.addEventListener("click",function(e){
 var a=e.target.closest("button,a");
@@ -1018,9 +1101,14 @@ var stats=hero.querySelector(".perfil-stats-v29");
 if(stats)hero.appendChild(stats);
 }
 window.normalizarHeroEmpresaV30=normalizarHeroV30;
-window.addEventListener("load",function(){
-setTimeout(normalizarHeroV30,450);
-setTimeout(normalizarHeroV30,1100);
+function perfilPublicoAtivoV30(){
+var p=document.getElementById("pagina-perfil-publico-empresa-em");
+return !!(p&amp;&amp;(p.classList.contains("ativa")||p.classList.contains("pagina-ativa")));
+}
+window.addEventListener("load",function(){if(perfilPublicoAtivoV30())setTimeout(normalizarHeroV30,220);});
+document.addEventListener("empregamais:navegacao",function(ev){
+var p=String((ev&amp;&amp;ev.detail&amp;&amp;ev.detail.pagina)||"");
+if(p==="perfil-publico-empresa"||p==="empresa-publica")setTimeout(normalizarHeroV30,180);
 });
 document.addEventListener("click",function(e){
 var a=e.target.closest("button,a");

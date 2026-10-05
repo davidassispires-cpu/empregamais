@@ -16,11 +16,25 @@ var p=Math.round(ok/total*100),n=document.getElementById("cvProgressoV85"),b=doc
 }
 function init(){
 var root=document.getElementById("curriculoOnlineV84");if(!root)return;
-carregarExtras();root.addEventListener("input",progresso);root.addEventListener("change",progresso);
-var save=document.getElementById("cvSalvarV84");if(save)save.addEventListener("click",salvarExtras);
-setTimeout(progresso,700);
+carregarExtras();
+if(root.getAttribute("data-extras-v85-instalado")!=="1"){
+ root.setAttribute("data-extras-v85-instalado","1");
+ root.addEventListener("input",progresso);
+ root.addEventListener("change",progresso);
+ var save=document.getElementById("cvSalvarV84");
+ if(save&amp;&amp;save.getAttribute("data-extras-v85-instalado")!=="1"){
+  save.setAttribute("data-extras-v85-instalado","1");
+  save.addEventListener("click",salvarExtras);
+ }
 }
-window.addEventListener("load",function(){setTimeout(init,500)});
+setTimeout(progresso,120);
+}
+function iniciarExtrasCurriculoV85(){
+var p=document.getElementById("curriculoOnlineV84");
+if(p)init();
+}
+window.addEventListener("load",function(){setTimeout(iniciarExtrasCurriculoV85,350)});
+document.addEventListener("empregamais:navegacao",function(){setTimeout(iniciarExtrasCurriculoV85,80)});
 })();
 //
 ;
@@ -70,12 +84,36 @@ function fechar(){modal.classList.remove("ativo");document.body.style.overflow="
 q("cvEyeV86").onclick=abrir;q("cvOpenFullV86").onclick=abrir;q("cvCloseV86").onclick=fechar;
 modal.addEventListener("click",function(e){if(e.target===modal)fechar()});
 cv.addEventListener("input",atualizar);cv.addEventListener("change",atualizar);
-new MutationObserver(atualizar).observe(q("cvExperienciasV84"),{childList:true,subtree:true});
-new MutationObserver(atualizar).observe(q("cvFormacoesV84"),{childList:true,subtree:true});
-setTimeout(atualizar,800);
+var exp=q("cvExperienciasV84"),form=q("cvFormacoesV84");
+var timerPreviewV86=0;
+function agendarPreviewV86(){
+ clearTimeout(timerPreviewV86);
+ timerPreviewV86=setTimeout(atualizar,60);
+}
+if(exp&amp;&amp;window.MutationObserver)new MutationObserver(function(muts){
+ for(var i=0;i&lt;muts.length;i++){
+  if((muts[i].addedNodes&amp;&amp;muts[i].addedNodes.length)||(muts[i].removedNodes&amp;&amp;muts[i].removedNodes.length)){agendarPreviewV86();break;}
+ }
+}).observe(exp,{childList:true,subtree:true});
+if(form&amp;&amp;window.MutationObserver)new MutationObserver(function(muts){
+ for(var i=0;i&lt;muts.length;i++){
+  if((muts[i].addedNodes&amp;&amp;muts[i].addedNodes.length)||(muts[i].removedNodes&amp;&amp;muts[i].removedNodes.length)){agendarPreviewV86();break;}
+ }
+}).observe(form,{childList:true,subtree:true});
+setTimeout(atualizar,180);
 }
 window.EmpregaMaisAtualizarPreviewCurriculoV86=atualizar;
-window.addEventListener("load",function(){setTimeout(montar,650)});
+function iniciarPreviewCurriculoV86(){if(q("curriculoOnlineV84"))montar()}
+window.addEventListener("load",function(){setTimeout(iniciarPreviewCurriculoV86,400)});
+document.addEventListener("empregamais:navegacao",function(ev){
+var pagina=String((ev&amp;&amp;ev.detail&amp;&amp;ev.detail.pagina)||"");
+var modal=q("cvModalV86");
+if(modal &amp;&amp; pagina!=="curriculo" &amp;&amp; pagina!=="cadastro-curriculo"){
+ modal.classList.remove("ativo");
+ document.body.style.removeProperty("overflow");
+}
+setTimeout(iniciarPreviewCurriculoV86,100);
+});
 })();
 //
 ;
@@ -97,7 +135,12 @@ if(t&&!t.value)t.value=c.telefone||c.celular||"";
 }
 }catch(e){}
 }
-function salvar(){var d={};ids.forEach(function(id){var el=document.getElementById(id);if(el)d[id]=el.value});try{localStorage.setItem(key(),JSON.stringify(d))}catch(e){}}
+var timerSalvarDadosV87=0;
+function salvarAgoraV87(){var d={};ids.forEach(function(id){var el=document.getElementById(id);if(el)d[id]=el.value});try{localStorage.setItem(key(),JSON.stringify(d))}catch(e){}}
+function salvar(){
+clearTimeout(timerSalvarDadosV87);
+timerSalvarDadosV87=setTimeout(salvarAgoraV87,180);
+}
 function atualizarPreview(){
 var paper=document.getElementById("cvPreviewPaperV86");if(!paper)return;
 var nome=document.getElementById("cvNomeV87"),cidade=document.getElementById("cvCidadePessoalV87"),tel=document.getElementById("cvTelefoneV87"),em=document.getElementById("cvEmailV87");
@@ -115,11 +158,23 @@ var modal=document.getElementById("cvModalPaperV86");if(modal)modal.innerHTML=pa
 function init(){
 if(!document.getElementById("cvNomeV87"))return;
 carregar();
-ids.forEach(function(id){var e=document.getElementById(id);if(e)e.addEventListener("input",function(){salvar();setTimeout(atualizarPreview,0)})});
-var save=document.getElementById("cvSalvarV84");if(save)save.addEventListener("click",salvar);
-setTimeout(function(){if(window.EmpregaMaisAtualizarPreviewCurriculoV86)window.EmpregaMaisAtualizarPreviewCurriculoV86();atualizarPreview()},900);
+ids.forEach(function(id){
+ var e=document.getElementById(id);
+ if(e&amp;&amp;e.getAttribute("data-dados-v87-instalado")!=="1"){
+  e.setAttribute("data-dados-v87-instalado","1");
+  e.addEventListener("input",function(){salvar();setTimeout(atualizarPreview,0)});
+ }
+});
+var save=document.getElementById("cvSalvarV84");
+if(save&amp;&amp;save.getAttribute("data-dados-v87-instalado")!=="1"){
+ save.setAttribute("data-dados-v87-instalado","1");
+ save.addEventListener("click",function(){clearTimeout(timerSalvarDadosV87);salvarAgoraV87();});
 }
-window.addEventListener("load",function(){setTimeout(init,750)});
+setTimeout(function(){if(window.EmpregaMaisAtualizarPreviewCurriculoV86)window.EmpregaMaisAtualizarPreviewCurriculoV86();atualizarPreview()},180);
+}
+function iniciarDadosCurriculoV87(){if(document.getElementById("cvNomeV87"))init()}
+window.addEventListener("load",function(){setTimeout(iniciarDadosCurriculoV87,450)});
+document.addEventListener("empregamais:navegacao",function(){setTimeout(iniciarDadosCurriculoV87,120)});
 })();
 //
 ;
@@ -138,14 +193,15 @@ p.style.overflowY="visible";
 p=p.parentElement;
 }
 }
-window.addEventListener("load",function(){setTimeout(liberarStickyV89,900)});
+window.addEventListener("load",function(){setTimeout(liberarStickyV89,500)});
+document.addEventListener("empregamais:navegacao",function(){setTimeout(liberarStickyV89,150)});
 window.addEventListener("resize",liberarStickyV89);
 })();
 //
 ;
 //
 (function(){
-var ticking=false, side=null, ws=null, placeholder=null;
+var ticking=false, side=null, ws=null, placeholder=null, listenersV90Instalados=false;
 function resetV90(){
 if(!side)return;
 side.classList.remove("cv90-fixed","cv90-bottom");
@@ -194,21 +250,28 @@ ws=document.getElementById("cvWorkspaceV86");
 if(!ws)return;
 side=ws.querySelector(".cv86-preview-col");
 if(!side)return;
-placeholder=document.createElement("div");
-placeholder.id="cvPreviewPlaceholderV90";
-placeholder.style.display="none";
-placeholder.style.width="100%";
-placeholder.style.minHeight="1px";
-ws.insertBefore(placeholder,side);
-placeholder.style.gridColumn="2";
+placeholder=document.getElementById("cvPreviewPlaceholderV90");
+if(!placeholder){
+ placeholder=document.createElement("div");
+ placeholder.id="cvPreviewPlaceholderV90";
+ placeholder.style.display="none";
+ placeholder.style.width="100%";
+ placeholder.style.minHeight="1px";
+ ws.insertBefore(placeholder,side);
+ placeholder.style.gridColumn="2";
+}
 side.style.gridColumn="2";
 var editor=ws.querySelector(".cv86-editor");
 if(editor)editor.style.gridColumn="1";
-window.addEventListener("scroll",requestV90,{passive:true});
-window.addEventListener("resize",function(){resetV90();setTimeout(requestV90,50)});
-setTimeout(requestV90,300);
+if(!listenersV90Instalados){
+ listenersV90Instalados=true;
+ window.addEventListener("scroll",requestV90,{passive:true});
+ window.addEventListener("resize",function(){resetV90();setTimeout(requestV90,50)});
 }
-window.addEventListener("load",function(){setTimeout(initV90,900)});
+setTimeout(requestV90,120);
+}
+window.addEventListener("load",function(){setTimeout(initV90,550)});
+document.addEventListener("empregamais:navegacao",function(){setTimeout(initV90,180)});
 })();
 //
 ;
@@ -285,7 +348,19 @@ function salvarCand(c){var ix=candidatos.findIndex(function(x){return norm(x.ema
 function darPremium(c,m){var d=new Date();d.setMonth(d.getMonth()+m);c.plano_candidato="premium";c.premium_valido_ate=d.toISOString();c.premium_origem="presente_admin";salvarCand(c);alert("Premium concedido ao candidato por "+m+" meses.");detCand(c)}
 function removerPremium(c){c.plano_candidato="gratuito";delete c.premium_valido_ate;delete c.premiumValidoAte;salvarCand(c);alert("Premium removido do candidato.");detCand(c)}
 window.EmpregaMaisAdminV91={abrir:abrir,recarregar:carregar};
-window.addEventListener("load",function(){setTimeout(montar,1100)});
+function iniciarAdminV91(){
+var q="";
+try{q=new URLSearchParams(location.search).get("pagina")||"";}catch(e){}
+var pagina=document.getElementById("pagina-painel-admin");
+if(q==="painel-admin" || q==="admin" || (pagina&amp;&amp;pagina.classList.contains("ativa"))){
+ montar();
+}
+}
+window.addEventListener("load",function(){setTimeout(iniciarAdminV91,500)});
+document.addEventListener("empregamais:navegacao",function(ev){
+var p=String((ev&amp;&amp;ev.detail&amp;&amp;ev.detail.pagina)||"");
+if(p==="painel-admin" || p==="admin")setTimeout(iniciarAdminV91,120);
+});
 })();
 //
 ;
@@ -340,9 +415,15 @@ else if(typeof renderizarAderenciaVagaEM==="function")renderizarAderenciaVagaEM(
 }catch(e){}
 }
 window.EmpregaMaisPremiumCandidatoV92={atualizar:aplicar,ehPremium:function(){return premium(achar())}};
-window.addEventListener("load",function(){setTimeout(aplicar,1000);setTimeout(aplicar,2200)});
-window.addEventListener("storage",function(e){if(e.key==="candidatosEmpregaMais")aplicar()});
-document.addEventListener("click",function(){setTimeout(aplicar,120)},true);
+window.addEventListener("load",function(){setTimeout(function(){var p=document.getElementById("pagina-painel-candidato");if(p&&(p.classList.contains("ativa")||p.classList.contains("pagina-ativa")))aplicar();},300)});
+window.addEventListener("storage",function(e){if(e.key!=="candidatosEmpregaMais")return;var p=document.getElementById("pagina-painel-candidato");if(p&&(p.classList.contains("ativa")||p.classList.contains("pagina-ativa")))aplicar()});
+var timerPremiumV92=0;
+document.addEventListener("click",function(e){
+var alvo=e.target&amp;&amp;e.target.closest?e.target.closest("#pagina-painel-candidato button,#pagina-painel-candidato a,[data-candidato-tab]"):null;
+if(!alvo)return;
+clearTimeout(timerPremiumV92);
+timerPremiumV92=setTimeout(aplicar,120);
+},true);
 })();
 //
 ;
@@ -360,7 +441,22 @@ var em=email(),all=arr("candidaturasEmpregaMais").concat(arr("candidaturas"));
 return all.filter(function(x){return norm(x.email||x.candidato_email||x.candidatoEmail)===em})
 }
 function visto(x){return x.visualizada===true||x.curriculo_visualizado===true||!!x.visualizado_em||!!x.visualizadoEm}
-function status(x){return x.status_processo||x.statusProcesso||x.status||"Candidatura enviada"}
+function status(x){return x.status_processo||x.statusProcesso||x.etapa||x.status||"Candidatura enviada"}
+function statusNormalizadoV93(x){
+var s=norm(status(x));
+try{s=s.normalize("NFD").replace(/[\u0300-\u036f]/g,"")}catch(e){}
+if(window.EmpregaMaisEtapasCandidatoEM&&typeof window.EmpregaMaisEtapasCandidatoEM.normalizar==="function"){
+ return window.EmpregaMaisEtapasCandidatoEM.normalizar(s);
+}
+if(s==="enviada"||s==="candidatura enviada"||s==="pendente"||s==="em analise")return "em avaliacao";
+if(s==="selecionada")return "selecionado";
+if(s==="contato")return "em contato";
+if(s==="em entrevista")return "entrevista";
+if(s==="aprovada")return "aprovado";
+if(s==="rejeitada"||s==="reprovada"||s==="rejeitado")return "reprovado";
+if(s==="contratada")return "contratado";
+return s;
+}
 function aderencia(x){var n=Number(x.aderencia||x.percentual_aderencia||x.percentualAderencia);return isFinite(n)&&n>0?Math.min(100,Math.round(n)):0}
 function montar(){
 var page=document.getElementById("pagina-painel-candidato");if(!page)return;
@@ -373,7 +469,7 @@ render();
 }
 function render(){
 var box=document.getElementById("centralPremiumV93");if(!box)return;
-var a=minhas(),vis=a.filter(visto).length,processo=a.filter(function(x){var s=norm(status(x));return s!=="candidatura enviada"&&s!=="enviada"}).length,entrev=a.filter(function(x){return norm(status(x)).includes("entrevista")}).length,max=a.reduce(function(m,x){return Math.max(m,aderencia(x))},0);
+var a=minhas(),vis=a.filter(visto).length,processo=a.filter(function(x){var s=statusNormalizadoV93(x);return ["selecionado","em contato","entrevista","aprovado"].indexOf(s)>=0}).length,entrev=a.filter(function(x){return statusNormalizadoV93(x)==="entrevista"}).length,max=a.reduce(function(m,x){return Math.max(m,aderencia(x))},0);
 box.innerHTML="<div class='cp93-head'><div><small>CENTRAL PREMIUM</small><h2>Inteligência da sua busca por emprego</h2><p>Acompanhe suas candidaturas e os recursos avançados da sua conta.</p></div><span class='cp93-pill'>★ PREMIUM ATIVO</span></div>"+
 "<div class='cp93-metrics'><div class='cp93-metric'><span>CANDIDATURAS</span><strong>"+a.length+"</strong><em>enviadas</em></div><div class='cp93-metric'><span>VISUALIZADAS</span><strong>"+vis+"</strong><em>pela empresa</em></div><div class='cp93-metric'><span>EM PROCESSO</span><strong>"+processo+"</strong><em>com atualização</em></div><div class='cp93-metric'><span>ENTREVISTAS</span><strong>"+entrev+"</strong><em>registradas</em></div><div class='cp93-metric'><span>MAIOR ADERÊNCIA</span><strong>"+(max?max+"%":"—")+"</strong><em>entre candidaturas</em></div></div>"+
 "<div class='cp93-grid'><div class='cp93-box'><h3>Minhas candidaturas</h3><p>Movimentações mais recentes do seu processo seletivo.</p><div id='cp93Apps'>"+apps(a)+"</div></div>"+
@@ -390,8 +486,27 @@ if(!a.length)return"<div class='cp93-empty'>Suas candidaturas aparecerão aqui a
 return a.slice().reverse().slice(0,5).map(function(x){var ad=aderencia(x),vi=visto(x),cargo=x.cargo||x.vaga||x.titulo||"Vaga",emp=x.empresa||x.empresa_nome||x.empresaNome||"Empresa";return"<div class='cp93-app'><div class='cp93-app-top'><div><strong>"+cargo+"</strong><br/><small>"+emp+"</small></div><span class='cp93-status "+(vi?"visto":"")+"'>"+status(x)+"</span></div><div class='cp93-line'><i class='cp93-dot ok'></i>Candidatura enviada <i class='cp93-dot "+(vi?"ok":"")+"'></i>"+(vi?"Visualizada pela empresa":"Aguardando visualização")+"</div>"+(ad?"<div class='cp93-aderencia'><div class='cp93-ad-top'><span>Aderência à vaga</span><b>"+ad+"%</b></div><div class='cp93-bar'><i style='width:"+ad+"%'></i></div></div>":"")+"</div>"}).join("");
 }
 window.EmpregaMaisCentralPremiumV93={atualizar:render};
-window.addEventListener("load",function(){setTimeout(montar,1500)});
-document.addEventListener("click",function(){setTimeout(render,250)},true);
-window.addEventListener("storage",function(){setTimeout(render,100)});
+window.addEventListener("load",function(){setTimeout(function(){var p=document.getElementById("pagina-painel-candidato");if(p&&(p.classList.contains("ativa")||p.classList.contains("pagina-ativa")))montar();},300)});
+var timerCentralPremiumV93=0;
+document.addEventListener("click",function(e){
+var alvo=e.target&amp;&amp;e.target.closest?e.target.closest("#pagina-painel-candidato button,#pagina-painel-candidato a,[data-candidato-tab]"):null;
+if(!alvo)return;
+clearTimeout(timerCentralPremiumV93);
+timerCentralPremiumV93=setTimeout(render,180);
+},true);
+window.addEventListener("storage",function(e){
+if(!e.key || ["candidaturasEmpregaMais","candidaturas","candidatosEmpregaMais"].indexOf(e.key)&gt;=0){
+ var p=document.getElementById("pagina-painel-candidato");
+ if(!p||(!p.classList.contains("ativa")&amp;&amp;!p.classList.contains("pagina-ativa")))return;
+ clearTimeout(timerCentralPremiumV93);
+ timerCentralPremiumV93=setTimeout(render,100);
+}
+});
+document.addEventListener("empregamais:candidatura-atualizada",function(){
+var p=document.getElementById("pagina-painel-candidato");
+if(!p||(!p.classList.contains("ativa")&amp;&amp;!p.classList.contains("pagina-ativa")))return;
+clearTimeout(timerCentralPremiumV93);
+timerCentralPremiumV93=setTimeout(render,60);
+});
 })();
 //

@@ -503,9 +503,15 @@ var cs=[];try{cs=typeof carregarCandidaturas==="function"?(carregarCandidaturas(
 var ids=vs.map(function(v){return String(v.id||v.vagaId||"");});
 var ce=cs.filter(function(c){return ids.indexOf(String(c.vagaId||c.idVaga||""))>=0;});
 var aprov=ce.filter(function(c){return nm(c.status)==="aprovado";}).length;
-var contrat=ce.filter(function(c){return nm(c.status)==="contratado";}).length;
-var entrev=ce.filter(function(c){return nm(c.status).indexOf("entrevista")>=0;}).length;
-var selec=ce.filter(function(c){return nm(c.status)==="selecionado";}).length;
+function etapaCandAdminEM(c){
+ var s=nm(c.status_processo||c.statusProcesso||c.etapa||c.status);
+ if(window.EmpregaMaisEtapasCandidatoEM&&typeof window.EmpregaMaisEtapasCandidatoEM.normalizar==="function")return window.EmpregaMaisEtapasCandidatoEM.normalizar(s);
+ if(s==="contratada")return"contratado";if(s==="selecionada")return"selecionado";if(s==="em entrevista")return"entrevista";if(s==="aprovada")return"aprovado";
+ return s;
+}
+var contrat=ce.filter(function(c){return etapaCandAdminEM(c)==="contratado"||c.contratadoPeloEmpregaMais===true||c.contratado_pelo_empregamais===true;}).length;
+var entrev=ce.filter(function(c){return etapaCandAdminEM(c)==="entrevista";}).length;
+var selec=ce.filter(function(c){return etapaCandAdminEM(c)==="selecionado";}).length;
 return{vs:vs,mes:mes,dest:dest,at:at,an:an,cands:ce.length,entrev:entrev,selec:selec,aprov:aprov,contrat:contrat,candidaturas:ce};}
 async function vagas(){try{if(typeof apiEmpregaMaisGet==="function"){var r=await apiEmpregaMaisGet("listar");if(r&&r.sucesso===true&&Array.isArray(r.vagas))return r.vagas;}}catch(x){}try{return typeof carregarVagasPortal==="function"?(carregarVagasPortal()||[]):[];}catch(x){return[];}}
 function inf(k,v){return"<div class='admin-empresa-info-item-em'><small>"+e(k)+"</small><strong>"+e(v||"\u2014")+"</strong></div>";}
@@ -686,15 +692,28 @@ var site=document.getElementById("empresaPublicaSiteSeguroEM");
 if(site){site.className="empresa-publica-site-novo-em";card.appendChild(site);}
 }
 }
-var obs=new MutationObserver(function(){
+var obsTimer=0,obsExecutando=false;
+var obs=new MutationObserver(function(muts){
+if(obsExecutando)return;
+var precisa=false;
+for(var i=0;i<muts.length;i++){
+ if(muts[i].addedNodes&&muts[i].addedNodes.length){precisa=true;break;}
+}
+if(!precisa)return;
 var p=document.getElementById("pagina-empresa-publica");
-if(p&&p.style.display!=="none")setTimeout(reconstruir,80);
+if(p&&(p.classList.contains("ativa")||p.classList.contains("pagina-ativa"))){
+ clearTimeout(obsTimer);
+ obsTimer=setTimeout(function(){
+  obsExecutando=true;
+  try{reconstruir();}finally{setTimeout(function(){obsExecutando=false;},0);}
+ },80);
+}
 });
 document.addEventListener("DOMContentLoaded",function(){
 var p=document.getElementById("pagina-empresa-publica");
-if(p)obs.observe(p,{subtree:true,childList:true,characterData:true});
+if(p)obs.observe(p,{subtree:true,childList:true});
 });
-window.addEventListener("load",function(){setTimeout(reconstruir,1000);});
+window.addEventListener("load",function(){setTimeout(function(){var p=document.getElementById("pagina-empresa-publica");if(p&&(p.classList.contains("ativa")||p.classList.contains("pagina-ativa")))reconstruir();},300);});
 })();
 //
 ;
@@ -761,13 +780,93 @@ confidencial:!!(el("vagaConfidencialEM")&&el("vagaConfidencialEM").checked&&type
 contratacaoUrgente:!!(el("contratacaoUrgenteEmpregaMais")&&el("contratacaoUrgenteEmpregaMais").checked)
 };
 }
+function salvarEdicaoSeguraEM(id,event){
+var vagas=[];
+try{vagas=typeof carregarVagasPortal==="function"?(carregarVagasPortal()||[]):[];}catch(e){vagas=[];}
+if(!Array.isArray(vagas))vagas=[];
+var idx=vagas.findIndex(function(v){return String(v&&v.id||"")===String(id||"");});
+if(idx<0){falha("Não foi possível localizar a vaga original para edição.");return false;}
+var original=vagas[idx];
+try{
+ if(typeof vagaPertenceEmpresaAtual==="function"&&!vagaPertenceEmpresaAtual(original)){
+  falha("Esta vaga não pertence à empresa conectada.");return false;
+ }
+}catch(e){}
+var aprov=String(original.aprovacao||original.statusAprovacao||"").toLowerCase();
+var jaAprovada=original.jaFoiAprovada===true||aprov==="aprovada"||aprov==="aprovado";
+var edicoes=parseInt(original.edicoesAposAprovacao||0,10)||0;
+if(jaAprovada&&edicoes>=1){
+ falha("Esta vaga já utilizou a edição permitida após a aprovação.");return false;
+}
+if(typeof publicarVagaAntesAdminEM!=="function"){
+ falha("Não foi possível iniciar o salvamento da edição.");return false;
+}
+/* Mantém a identidade e o histórico da vaga durante o fluxo legado de edição. */
+try{window.vagaEdicaoId=String(original.id);}catch(e){}
+try{sessionStorage.setItem("empregaMaisVagaEdicaoId",String(original.id));}catch(e){}
+function finalizarEdicaoSeguraEM(res){
+ if(res===false)return res;
+ var atualizadas=[];
+ try{atualizadas=typeof carregarVagasPortal==="function"?(carregarVagasPortal()||[]):[];}catch(e){atualizadas=[];}
+ if(Array.isArray(atualizadas)){
+  var pos=atualizadas.findIndex(function(v){return String(v&&v.id||"")===String(original.id);});
+  /* Remove eventual duplicata criada pelo fluxo antigo durante a edição. */
+  if(pos>=0){
+   atualizadas=atualizadas.filter(function(v,i){
+    if(i===pos)return true;
+    var mesmoId=String(v&&v.id||"")===String(original.id);
+    var criadoNaEdicao=String(v&&v.id||"")!==String(original.id) &&
+     String(v&&v.empresaCnpj||"")===String(original.empresaCnpj||"") &&
+     String(v&&v.cargo||v&&v.titulo||"")===String(original.cargo||original.titulo||"") &&
+     Math.abs((new Date(v&&v.dataAtualizacao||v&&v.updated_at||0)).getTime()-(new Date()).getTime())<120000;
+    return !mesmoId&&!criadoNaEdicao;
+   });
+   pos=atualizadas.findIndex(function(v){return String(v&&v.id||"")===String(original.id);});
+  }
+  if(pos>=0){
+   /* A edição nunca cria uma segunda identidade nem devolve uma vaga já aprovada
+      para a fila pendente. Mantém também o histórico de edição pós-aprovação. */
+   atualizadas[pos].id=original.id;
+   if(jaAprovada){
+    atualizadas[pos].aprovacao="aprovada";
+    atualizadas[pos].jaFoiAprovada=true;
+    atualizadas[pos].edicoesAposAprovacao=edicoes+1;
+   }else{
+    atualizadas[pos].aprovacao=original.aprovacao||atualizadas[pos].aprovacao||"pendente";
+    atualizadas[pos].jaFoiAprovada=original.jaFoiAprovada===true;
+    atualizadas[pos].edicoesAposAprovacao=edicoes;
+   }
+   try{if(typeof salvarVagasPortal==="function")salvarVagasPortal(atualizadas);}catch(e){}
+  }
+ }
+ try{sessionStorage.removeItem("empregaMaisVagaEdicaoId");}catch(e){}
+ try{window.vagaEdicaoId="";}catch(e){}
+ try{var h=document.getElementById("vagaEditandoId");if(h)h.value="";}catch(e){}
+ try{if(typeof montarPainelReferenciaRecrutadorEM==="function")montarPainelReferenciaRecrutadorEM();}catch(e){}
+ return res;
+}
+var retorno=publicarVagaAntesAdminEM(event);
+/* Só finaliza a referência e os contadores quando o salvamento realmente conclui. */
+if(retorno&&typeof retorno.then==="function"){
+ return retorno.then(finalizarEdicaoSeguraEM);
+}
+return finalizarEdicaoSeguraEM(retorno);
+}
 async function enviar(event){
 if(event){event.preventDefault();event.stopPropagation();if(event.stopImmediatePropagation)event.stopImmediatePropagation();}
 if(enviando)return false;
 if(typeof modoPublicacaoAdminEM!=="undefined"&&modoPublicacaoAdminEM)return false;
 if(typeof empresaEstaLogada==="function"&&!empresaEstaLogada()){if(typeof irPara==="function")irPara("login-empresa");return false;}
-if(typeof vagaEdicaoId!=="undefined"&&vagaEdicaoId){
-return publicarVagaAntesAdminEM?publicarVagaAntesAdminEM(event):false;
+var idEdicaoAtual="";
+try{
+ idEdicaoAtual=String(
+  (typeof vagaEdicaoId!=="undefined"&&vagaEdicaoId) ||
+  ((document.getElementById("vagaEditandoId")||{}).value) ||
+  sessionStorage.getItem("empregaMaisVagaEdicaoId") || ""
+ );
+}catch(e){}
+if(idEdicaoAtual){
+ return salvarEdicaoSeguraEM(idEdicaoAtual,event);
 }
 if(!validar())return false;
 var empresa=typeof obterEmpresaAtual==="function"?obterEmpresaAtual():null;
@@ -790,6 +889,10 @@ var existe=vagas.some(function(v){return String(v.id)===String(vaga.id);});
 if(!existe){vagas.unshift(vaga);if(typeof salvarVagasPortal==="function")salvarVagasPortal(vagas);}
 try{if(typeof sincronizarVagasGoogleSheets==="function")await sincronizarVagasGoogleSheets();}catch(e){}
 var form=el("formVaga");if(form)form.reset();
+try{
+ if(typeof window.limparRascunhoVagaV145==="function")window.limparRascunhoVagaV145();
+ localStorage.removeItem("empregaMaisBackupEdicaoV148");
+}catch(e){}
 if(typeof logoAtual!=="undefined")logoAtual="";
 var prev=el("previewLogo");if(prev)prev.style.display="none";
 if(typeof prepararContatoPublicacao==="function")prepararContatoPublicacao();
@@ -822,10 +925,12 @@ window.addEventListener("load",function(){setTimeout(instalar,300);});
 (function(){
 var timer=null;
 function paginaPesadaDeFormulario(){
-var pub=document.getElementById("pagina-publicar");
-if(pub&&(pub.classList.contains("ativa")||getComputedStyle(pub).display!=="none"))return true;
-var cad=document.getElementById("pagina-cadastro-empresa");
-if(cad&&(cad.classList.contains("ativa")||getComputedStyle(cad).display!=="none"))return true;
+var ids=["pagina-publicar","pagina-cadastro-empresa"];
+for(var i=0;i&lt;ids.length;i++){
+ var p=document.getElementById(ids[i]);
+ if(!p)continue;
+ if(p.classList.contains("ativa")||p.classList.contains("pagina-ativa"))return true;
+}
 return false;
 }
 function atualizarLeve(){
@@ -839,7 +944,7 @@ try{if(typeof aplicarSegurancaDetalheEM==="function")aplicarSegurancaDetalheEM()
 },180);
 }
 document.addEventListener("DOMContentLoaded",function(){
-var alvo=document.querySelector("main")||document.body;
+var alvo=document.querySelector("main");
 if(!alvo)return;
 var obs=new MutationObserver(function(muts){
 if(paginaPesadaDeFormulario())return;

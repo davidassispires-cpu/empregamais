@@ -858,22 +858,40 @@ return null;
 }
 function salvar(vaga){
 try{
-if(typeof salvarVagaV9==="function"){
-salvarVagaV9(vaga);
+ if(typeof salvarVagaV9==="function"){
+  salvarVagaV9(vaga);
+ }else if(typeof carregarVagasPortal==="function"&&typeof salvarVagasPortal==="function"){
+  var lista=carregarVagasPortal()||[],ok=false;
+  for(var i=0;i<lista.length;i++)if(String(lista[i].id)===String(vaga.id)){lista[i]=Object.assign({},lista[i],vaga);ok=true;break;}
+  if(ok)salvarVagasPortal(lista);
+ }else{
+  var keys=["vagasEmpregaMais","vagas"];
+  keys.forEach(function(k){
+   try{
+    var a=JSON.parse(localStorage.getItem(k)||"[]"),achou=false;
+    if(!Array.isArray(a))return;
+    for(var j=0;j<a.length;j++)if(String(a[j].id)===String(vaga.id)){a[j]=Object.assign({},a[j],vaga);achou=true;break;}
+    if(achou)localStorage.setItem(k,JSON.stringify(a));
+   }catch(e){}
+  });
+ }
+}catch(e){return false;}
 try{if(typeof renderizarVagas==="function")renderizarVagas();}catch(x){}
-return;
+return true;
 }
-}catch(e){}
-var keys=["vagasEmpregaMais","vagas"];
-keys.forEach(function(k){
-try{
-var a=JSON.parse(localStorage.getItem(k)||"[]"),ok=false;
-if(!Array.isArray(a))return;
-for(var i=0;i<a.length;i++)if(String(a[i].id)===String(vaga.id)){a[i]=Object.assign({},a[i],vaga);ok=true;break;}
-if(ok)localStorage.setItem(k,JSON.stringify(a));
-}catch(e){}
-});
+async function persistirRecursoVagaV53(vaga,acao){
+if(!salvar(vaga))throw new Error("Não foi possível salvar a alteração da vaga.");
+if(typeof apiEmpregaMaisPost==="function"){
+ try{
+  var r=await apiEmpregaMaisPost({acao:acao,id:vaga.id,destaque:!!vaga.destaque,contratacaoUrgente:!!vaga.contratacaoUrgente,urgente:!!vaga.urgente});
+  if(r&amp;&amp;r.sucesso!==true)console.warn("EmpregaMais: recurso da vaga salvo localmente; sincronização remota não confirmada.",r.erro||r);
+ }catch(e){
+  console.warn("EmpregaMais: recurso da vaga salvo localmente; sincronização remota indisponível.",e);
+ }
 }
+return true;
+}
+window.persistirRecursoVagaV53=persistirRecursoVagaV53;
 function atualizar(){
 try{if(typeof montarPainelReferenciaRecrutadorEM==="function")montarPainelReferenciaRecrutadorEM();}catch(e){}
 setTimeout(injetarAcoes,140);
@@ -928,7 +946,7 @@ v.urgente=true;
 v.contratacaoUrgentePagamentoStatus="incluido_plano";
 v.contratacaoUrgenteValor=0;
 v.contratacaoUrgenteAtivadoEm=new Date().toISOString();
-salvar(v);atualizar();
+persistirRecursoVagaV53(v,"atualizar_recursos_vaga").then(atualizar).catch(function(e){alert(e.message||"Não foi possível ativar a urgência.");});
 }
 if(restam===1){
 popup("\u00DAltimo selo dispon\u00EDvel",
@@ -940,14 +958,14 @@ window.ativarUrgentePlanoV53=ativarUrgente;
 function alternarDestaque(id){
 var v=localizar(id),r=regra();if(!v)return;
 if(!r.pago){alert("Vagas em destaque est\u00E3o dispon\u00EDveis nos planos pagos.");return;}
-if(bool(v.destaque)){v.destaque=false;salvar(v);atualizar();return;}
+if(bool(v.destaque)){v.destaque=false;v.destaqueAtivadoEm="";persistirRecursoVagaV53(v,"atualizar_recursos_vaga").then(atualizar).catch(function(e){alert(e.message||"Não foi possível remover o destaque.");});return;}
 var usados=destaquesAtivos().length;
 if(usados>=r.destaques){
 popup("Limite de destaques atingido",
 "Seu "+r.nome+" permite at\u00E9 "+r.destaques+" vagas em destaque ao mesmo tempo. Remova o destaque de uma vaga atual para destacar outra.");
 return;
 }
-v.destaque=true;v.destaqueAtivadoEm=new Date().toISOString();salvar(v);atualizar();
+v.destaque=true;v.destaqueAtivadoEm=new Date().toISOString();persistirRecursoVagaV53(v,"atualizar_recursos_vaga").then(atualizar).catch(function(e){alert(e.message||"Não foi possível ativar o destaque.");});
 }
 window.alternarDestaquePlanoV53=alternarDestaque;
 var abrirAntigo=window.abrirContratacaoUrgenteV9;
@@ -1058,9 +1076,25 @@ document.addEventListener("empregamais:empresa-sincronizada",function(){setTimeo
 //
 (function(){
 function vagasV54(){
-try{return carregarVagasPortal()||[];}catch(e){}
-try{return typeof vagasDaEmpresa==="function"?(vagasDaEmpresa()||[]):[];}catch(e){}
-return [];
+var todas=[];
+try{todas=carregarVagasPortal()||[];}catch(e){todas=[];}
+if(!Array.isArray(todas))todas=[];
+/* O menu Gerenciar vaga só pode mapear vagas da empresa conectada.
+   Usar todas as vagas do portal fazia títulos iguais apontarem para outra empresa. */
+try{
+ if(typeof vagaPertenceEmpresaAtual==="function"){
+  return todas.filter(function(v){
+   try{return vagaPertenceEmpresaAtual(v);}catch(x){return false;}
+  });
+ }
+}catch(e){}
+try{
+ if(typeof vagasDaEmpresa==="function"){
+  var proprias=vagasDaEmpresa()||[];
+  if(Array.isArray(proprias))return proprias;
+ }
+}catch(e){}
+return todas;
 }
 var mapaVagasV58={};
 function reconstruirMapaV58(){
@@ -1104,27 +1138,37 @@ function removerUrgenteV54(v){
 v.contratacaoUrgente=false;v.urgente=false;
 v.contratacaoUrgentePagamentoStatus="";
 v.contratacaoUrgenteAtivadoEm="";
-persistirV54(v);
-try{if(typeof removerUrgentePlanoV50==="function")removerUrgentePlanoV50(v.id);}catch(e){}
-redesenharV54();
-setTimeout(function(){try{if(typeof atualizarTagsVagasV55==="function")atualizarTagsVagasV55();}catch(e){}},320);
+if(typeof persistirRecursoVagaV53==="function"){
+ persistirRecursoVagaV53(v,"atualizar_recursos_vaga").then(function(){
+  try{if(typeof removerUrgentePlanoV50==="function")removerUrgentePlanoV50(v.id);}catch(e){}
+  redesenharV54();
+  setTimeout(function(){try{if(typeof atualizarTagsVagasV55==="function")atualizarTagsVagasV55();}catch(e){}},320);
+ }).catch(function(e){alert(e.message||"Não foi possível remover a urgência.");});
+ return;
+}
+persistirV54(v);redesenharV54();
 }
 function removerDestaqueV54(v){
 v.destaque=false;v.destaqueAtivadoEm="";
+if(typeof persistirRecursoVagaV53==="function"){
+ persistirRecursoVagaV53(v,"atualizar_recursos_vaga").then(function(){
+  redesenharV54();
+  setTimeout(function(){try{if(typeof atualizarTagsVagasV55==="function")atualizarTagsVagasV55();}catch(e){}},320);
+ }).catch(function(e){alert(e.message||"Não foi possível remover o destaque.");});
+ return;
+}
 persistirV54(v);redesenharV54();
-setTimeout(function(){try{if(typeof atualizarTagsVagasV55==="function")atualizarTagsVagasV55();}catch(e){}},320);
 }
 function excluirV54(v){
-if(!window.confirm("Deseja realmente excluir esta vaga? Ela ser\u00E1 retirada do painel da empresa."))return;
-var a=vagasV54().filter(function(x){return String(x.id)!==String(v.id);});
-try{salvarVagasPortal(a);}catch(e){return alert("N\u00E3o foi poss\u00EDvel excluir esta vaga.");}
-try{
-if(typeof apiEmpregaMaisPost==="function"){
-apiEmpregaMaisPost({acao:"encerrar",id:v.id}).catch(function(){});
-}
-}catch(e){}
-try{if(typeof mostrarToast==="function")mostrarToast("Vaga exclu\u00EDda do painel.");}catch(e){}
-redesenharV54();
+if(!v||!v.id)return;
+if(!window.confirm("Deseja retirar esta vaga? Ela será encerrada e mantida no histórico da empresa."))return;
+/* A API disponível trata retirada de vaga como encerramento. Não removemos mais
+   o registro local antes da confirmação do servidor, pois isso fazia a vaga
+   desaparecer do painel e reaparecer após uma nova sincronização. */
+if(typeof encerrarVagaRefEM==="function"){encerrarVagaRefEM(v.id);return;}
+if(typeof encerrarVagaEmpresa==="function"){encerrarVagaEmpresa(v.id);return;}
+if(typeof encerrarVaga==="function"){encerrarVaga(v.id);return;}
+alert("Não foi possível iniciar o encerramento desta vaga.");
 }
 function fecharV54(){
 var p=document.getElementById("popupAcoesVagaV54");if(p)p.classList.remove("aberto");
@@ -1182,7 +1226,7 @@ if(typeof ativarUrgentePlanoV53==="function")ativarUrgentePlanoV53(v.id);
 }));
 }
 var sep2=document.createElement("div");sep2.className="separador-acoes-v54";l.appendChild(sep2);
-l.appendChild(itemV54(icons.trash,"Excluir vaga","Remover esta vaga do painel","perigo",function(){excluirV54(v);}));
+l.appendChild(itemV54(icons.trash,"Retirar vaga","Encerrar e manter esta vaga no histórico","perigo",function(){excluirV54(v);}));
 p.classList.add("aberto");
 }
 function aplicarBotoesV54(){
@@ -1190,16 +1234,30 @@ var corpo=document.getElementById("corpoTabelaPainelRefEM");if(!corpo)return;
 var a=reconstruirMapaV58(),porTitulo={};
 for(var j=0;j<a.length;j++){
 var tit=String(a[j].cargo||a[j].titulo||a[j].vaga||"").trim();
-if(tit&&!porTitulo[tit])porTitulo[tit]=a[j];
+if(tit){
+ if(!porTitulo[tit])porTitulo[tit]=[];
+ porTitulo[tit].push(a[j]);
+}
 }
 var linhas=corpo.querySelectorAll("tr");
 for(var i=0;i<linhas.length;i++){
 var tr=linhas[i],v=null,primeira=tr.querySelector("td");
 if(!primeira)continue;
-var texto=String(primeira.textContent||"").trim();
-var nomes=Object.keys(porTitulo);
-for(var n=0;n<nomes.length;n++){
-if(texto.indexOf(nomes[n])>=0){v=porTitulo[nomes[n]];break;}
+/* Prioriza o ID gravado na própria linha/card. Isso evita abrir a vaga errada
+   quando a mesma empresa possui duas oportunidades com o mesmo cargo. */
+var idLinha=tr.getAttribute("data-vaga-id")||tr.getAttribute("data-id")||
+ (tr.querySelector("[data-vaga-id]")&&tr.querySelector("[data-vaga-id]").getAttribute("data-vaga-id"))||"";
+if(idLinha)v=acharV54(idLinha);
+if(!v){
+ var texto=String(primeira.textContent||"").trim();
+ var nomes=Object.keys(porTitulo);
+ for(var n=0;n<nomes.length;n++){
+  if(texto.indexOf(nomes[n])>=0){
+   var candidatas=porTitulo[nomes[n]];
+   if(candidatas.length===1)v=candidatas[0];
+   break;
+  }
+ }
 }
 if(!v)continue;
 var td=tr.querySelector("td:last-child");if(!td)continue;
@@ -1270,14 +1328,21 @@ var a=vagas();
 for(var i=0;i<a.length;i++){
 var v=a[i],tr=acharLinha(v);if(!tr)continue;
 var td=tr.querySelector("td");if(!td)continue;
-var old=td.querySelector(".tags-vaga-v55");if(old)old.remove();
-if(!sim(v.destaque)&&!sim(v.contratacaoUrgente)&&!sim(v.urgente))continue;
+var old=td.querySelector(".tags-vaga-v55");
+var querDestaque=sim(v.destaque),querUrgente=sim(v.contratacaoUrgente)||sim(v.urgente);
+if(!querDestaque&&!querUrgente){if(old)old.remove();continue;}
+var atualD=!!(old&&old.querySelector(".tag-vaga-v55.destaque"));
+var atualU=!!(old&&old.querySelector(".tag-vaga-v55.urgente"));
+/* Não recria as tags quando o estado visual já corresponde à vaga.
+   Isso evita o MutationObserver disparar novamente por uma mutação criada por ele próprio. */
+if(old&&atualD===querDestaque&&atualU===querUrgente)continue;
+if(old)old.remove();
 var box=document.createElement("div");box.className="tags-vaga-v55";
-if(sim(v.destaque)){
+if(querDestaque){
 var d=document.createElement("span");d.className="tag-vaga-v55 destaque";
 d.innerHTML=svgStar()+" Destaque";box.appendChild(d);
 }
-if(sim(v.contratacaoUrgente)||sim(v.urgente)){
+if(querUrgente){
 var u=document.createElement("span");u.className="tag-vaga-v55 urgente";
 u.innerHTML=svgBolt()+" Contrata\u00E7\u00E3o Urgente";box.appendChild(u);
 }
@@ -1297,7 +1362,16 @@ document.addEventListener("empregamais:empresa-sincronizada",refresh);
 var corpo=document.getElementById("corpoTabelaPainelRefEM");
 if(corpo&&window.MutationObserver){
 var tm=0;
-new MutationObserver(function(){
+new MutationObserver(function(muts){
+var externa=false;
+for(var i=0;i<muts.length&&!externa;i++){
+ var nodes=[].slice.call(muts[i].addedNodes||[]).concat([].slice.call(muts[i].removedNodes||[]));
+ for(var j=0;j<nodes.length;j++){
+  var n=nodes[j];
+  if(!(n.nodeType===1&&(n.classList&&n.classList.contains("tags-vaga-v55")))){externa=true;break;}
+ }
+}
+if(!externa)return;
 clearTimeout(tm);tm=setTimeout(tags,100);
 }).observe(corpo,{childList:true,subtree:true});
 }

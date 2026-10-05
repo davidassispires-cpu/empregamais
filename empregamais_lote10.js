@@ -19,56 +19,346 @@ if(v[campos[i]]!==undefined&&v[campos[i]]!==null&&String(v[campos[i]]).trim()!==
 return padrao;
 }
 function vagasEmpresaRefEM(){
-try{return typeof vagasDaEmpresa==="function"?(vagasDaEmpresa()||[]):[];}catch(e){return[];}
+var proprias=[];
+try{
+ if(typeof vagasDaEmpresa==="function"){
+  proprias=vagasDaEmpresa()||[];
+  if(Array.isArray(proprias)&&proprias.length)return proprias;
+ }
+}catch(e){}
+var todas=[];
+try{todas=typeof carregarVagasPortal==="function"?(carregarVagasPortal()||[]):[];}catch(e){todas=[];}
+if(!Array.isArray(todas))return [];
+try{
+ if(typeof vagaPertenceEmpresaAtual==="function"){
+  return todas.filter(function(v){
+   try{return vagaPertenceEmpresaAtual(v);}catch(x){return false;}
+  });
+ }
+}catch(e){}
+return proprias;
 }
 function candidaturasRefEM(){
 try{return typeof carregarCandidaturas==="function"?(carregarCandidaturas()||[]):[];}catch(e){return[];}
 }
+function idVagaCandRefEM(c){
+return String(c&&(
+ c.vagaId||c.idVaga||c.vaga_id||c.jobId||c.job_id||
+ (c.vaga&&c.vaga.id)||""
+)||"");
+}
 function pertenceRefEM(c,ids){
-return ids.indexOf(String(c.vagaId||c.idVaga||""))>=0;
+return ids.indexOf(idVagaCandRefEM(c))>=0;
 }
 function abrirCandRefEM(id){
-try{sessionStorage.setItem("vagaCandidatosSelecionada",String(id));}catch(e){}
-if(typeof abrirCandidatosDaVaga==="function"){abrirCandidatosDaVaga(id);return;}
-if(typeof irPara==="function")irPara("candidatos-empresa");
+var vagaId=String(id||"");
+if(!vagaId)return;
+try{
+ var vagas=vagasEmpresaRefEM();
+ var pertence=vagas.some(function(v){return String(v&&v.id||"")===vagaId;});
+ if(!pertence){alert("Não foi possível localizar esta vaga entre as vagas da empresa.");return;}
+}catch(e){}
+try{sessionStorage.setItem("vagaCandidatosSelecionada",vagaId);}catch(e){}
+if(typeof abrirCandidatosDaVaga==="function"){abrirCandidatosDaVaga(vagaId);return;}
+if(typeof irPara==="function"){
+ irPara("candidatos-empresa");
+ setTimeout(function(){
+  try{document.dispatchEvent(new CustomEvent("empregamais:filtrar-candidaturas",{detail:{vagaId:vagaId}}));}catch(e){}
+ },80);
 }
+}
+function normEtapaCandRefEM(v){
+var s=String(v||"").trim().toLowerCase();
+try{s=s.normalize("NFD").replace(/[\u0300-\u036f]/g,"");}catch(e){}
+var mapa={
+ "candidatura enviada":"em avaliacao","enviada":"em avaliacao","pendente":"em avaliacao",
+ "em analise":"em avaliacao","em avaliacao":"em avaliacao","avaliacao":"em avaliacao",
+ "selecionada":"selecionado","selecionado":"selecionado",
+ "contato":"em contato","em contato":"em contato",
+ "entrevista":"entrevista","em entrevista":"entrevista",
+ "aprovada":"aprovado","aprovado":"aprovado",
+ "rejeitada":"reprovado","rejeitado":"reprovado","reprovada":"reprovado","reprovado":"reprovado",
+ "contratada":"contratado","contratado":"contratado"
+};
+return mapa[s]||s||"em avaliacao";
+}
+window.EmpregaMaisEtapasCandidatoEM={
+ordem:["em avaliacao","selecionado","em contato","entrevista","aprovado","reprovado","contratado"],
+normalizar:normEtapaCandRefEM
+};
+function idCandRefEM(c){
+return String(c&&(c.id||c.candidaturaId||c.candidatura_id||c.applicationId||c.application_id)||"");
+}
+function salvarEtapaCandLocalRefEM(id,etapa){
+var lista=candidaturasRefEM(),alvo=null,idx=-1;
+if(!Array.isArray(lista))lista=[];
+for(var i=0;i<lista.length;i++){
+ if(String(idCandRefEM(lista[i]))===String(id)){idx=i;alvo=lista[i];break;}
+}
+if(idx<0)return false;
+var normal=normEtapaCandRefEM(etapa);
+alvo.status=normal;
+alvo.etapa=normal;
+alvo.statusProcesso=normal;
+alvo.status_processo=normal;
+alvo.atualizadoEm=new Date().toISOString();
+try{
+ if(typeof salvarCandidaturas==="function")salvarCandidaturas(lista);
+ else localStorage.setItem("candidaturasEmpregaMais",JSON.stringify(lista));
+}catch(e){return false;}
+return true;
+}
+window.atualizarEtapaCandidaturaEM=async function(id,etapa){
+var normal=normEtapaCandRefEM(etapa);
+if(window.EmpregaMaisEtapasCandidatoEM.ordem.indexOf(normal)<0)throw new Error("Etapa de recrutamento inválida.");
+var resp=null;
+if(!salvarEtapaCandLocalRefEM(id,normal))throw new Error("Não foi possível localizar a candidatura.");
+try{
+ if(typeof apiEmpregaMaisPost==="function"){
+  resp=await apiEmpregaMaisPost({acao:"atualizar_candidatura",id:id,status:normal,etapa:normal});
+  if(resp&amp;&amp;resp.sucesso!==true)console.warn("EmpregaMais: sincronização remota da candidatura não confirmada.",resp.erro||resp);
+ }
+}catch(e){
+ console.warn("EmpregaMais: etapa salva localmente; sincronização remota indisponível.",e);
+}
+try{document.dispatchEvent(new CustomEvent("empregamais:candidatura-atualizada",{detail:{id:String(id),status:normal}}));}catch(e){}
+try{if(typeof montarPainelReferenciaRecrutadorEM==="function")montarPainelReferenciaRecrutadorEM();}catch(e){}
+return true;
+};
+function curriculoCandRefEM(c){
+if(!c)return null;
+var url=c.curriculoUrl||c.curriculo_url||c.cvUrl||c.cv_url||c.arquivoCurriculo||c.arquivo_curriculo||"";
+var online=c.curriculo||c.curriculoOnline||c.curriculo_online||c.cv||null;
+return {url:String(url||""),online:online};
+}
+function marcarCurriculoVisualizadoRefEM(c){
+var id=idCandRefEM(c);if(!id)return false;
+/* Só a empresa dona da vaga pode registrar a visualização do currículo. */
+try{
+ var vagaId=idVagaCandRefEM(c),vagas=vagasEmpresaRefEM();
+ if(!vagaId||!vagas.some(function(v){return String(v&&v.id||"")===String(vagaId);})){return false;}
+}catch(e){return false;}
+var lista=candidaturasRefEM();if(!Array.isArray(lista))return false;
+var idx=lista.findIndex(function(x){return idCandRefEM(x)===id;});if(idx<0)return false;
+var agora=new Date().toISOString();
+lista[idx].visualizada=true;
+lista[idx].curriculo_visualizado=true;
+lista[idx].visualizado_em=lista[idx].visualizado_em||agora;
+lista[idx].visualizadoEm=lista[idx].visualizadoEm||agora;
+try{
+ if(typeof salvarCandidaturas==="function")salvarCandidaturas(lista);
+ else localStorage.setItem("candidaturasEmpregaMais",JSON.stringify(lista));
+}catch(e){return false;}
+try{
+ if(typeof apiEmpregaMaisPost==="function"){
+  apiEmpregaMaisPost({acao:"visualizar_candidatura",id:id,visualizada:true,visualizado_em:agora}).catch(function(){});
+ }
+}catch(e){}
+try{document.dispatchEvent(new CustomEvent("empregamais:candidatura-atualizada",{detail:{id:id,visualizada:true}}));}catch(e){}
+return true;
+}
+window.abrirCurriculoCandidaturaEM=function(candidatura){
+if(!candidatura)return false;
+var cv=curriculoCandRefEM(candidatura);
+if(!marcarCurriculoVisualizadoRefEM(candidatura)){
+ alert("Não foi possível validar esta candidatura para a empresa conectada.");return false;
+}
+if(cv.url){
+ try{window.open(cv.url,"_blank","noopener");return true;}catch(e){}
+}
+if(cv.online){
+ try{
+  if(typeof abrirCurriculoCandidato==="function"){abrirCurriculoCandidato(candidatura);return true;}
+  if(typeof visualizarCurriculoCandidato==="function"){visualizarCurriculoCandidato(candidatura);return true;}
+ }catch(e){}
+}
+alert("Esta candidatura não possui currículo anexado ou currículo online disponível.");
+return false;
+};
+function dadosContatoCandRefEM(c){
+var vagaId=idVagaCandRefEM(c),vaga=null;
+try{vaga=vagasEmpresaRefEM().find(function(v){return String(v&&v.id||"")===String(vagaId);})||null;}catch(e){}
+var nome=String(c&& (c.nome||c.candidatoNome||c.candidato_nome||c.nomeCandidato)||"candidato(a)").trim();
+var empresa=String(vaga&&(vaga.empresa||vaga.empresaNome)||"nossa empresa").trim();
+var cargo=String(vaga&&(vaga.cargo||vaga.titulo)||c&&(c.cargoVaga||c.vaga||c.titulo)||"oportunidade").trim();
+var tel=String(c&&(c.whatsapp||c.telefone||c.celular||c.phone)||"").replace(/\D/g,"");
+var email=String(c&&(c.email||c.candidato_email||c.candidatoEmail)||"").trim();
+var msg="Olá, "+nome+"! Meu nome é [SEU NOME] e falo em nome da "+empresa+". Recebemos seu currículo pelo EmpregaMais para a vaga de "+cargo+" e gostaríamos de conversar com você sobre o processo seletivo.";
+return{vaga:vaga,nome:nome,empresa:empresa,cargo:cargo,telefone:tel,email:email,mensagem:msg};
+}
+window.contatarCandidatoEmpregaMais=async function(candidatura,canal){
+if(!candidatura)return false;
+var d=dadosContatoCandRefEM(candidatura);
+if(!d.vaga){alert("Não foi possível validar a vaga desta candidatura.");return false;}
+var ch=String(canal||"").toLowerCase(),destino="";
+if(ch==="whatsapp"){
+ if(!d.telefone){alert("O candidato não possui WhatsApp/telefone cadastrado.");return false;}
+ var n=d.telefone;if(n.length===10||n.length===11)n="55"+n;
+ destino="https://wa.me/"+n+"?text="+encodeURIComponent(d.mensagem);
+}else if(ch==="email"){
+ if(!d.email){alert("O candidato não possui e-mail cadastrado.");return false;}
+ destino="mailto:"+encodeURIComponent(d.email)+"?subject="+encodeURIComponent("Processo seletivo - "+d.cargo)+"&body="+encodeURIComponent(d.mensagem);
+}else if(ch==="ligacao"||ch==="telefone"){
+ if(!d.telefone){alert("O candidato não possui telefone cadastrado.");return false;}
+ destino="tel:+"+(d.telefone.length===10||d.telefone.length===11?"55":"")+d.telefone;
+}else{alert("Selecione WhatsApp, e-mail ou ligação.");return false;}
+var idCand=idCandRefEM(candidatura);
+if(idCand){
+ try{await window.atualizarEtapaCandidaturaEM(idCand,"em contato");}
+ catch(e){console.warn("EmpregaMais - contato aberto sem atualização de etapa:",e);}
+}
+try{
+ var registro={id:idCand,vagaId:idVagaCandRefEM(candidatura),canal:ch,data:new Date().toISOString()};
+ var hist=JSON.parse(localStorage.getItem("empregaMaisHistoricoContatos")||"[]");
+ if(!Array.isArray(hist))hist=[];
+ hist.push(registro);if(hist.length>500)hist=hist.slice(-500);
+ localStorage.setItem("empregaMaisHistoricoContatos",JSON.stringify(hist));
+}catch(e){}
+if(ch==="whatsapp"){window.open(destino,"_blank","noopener");}else{window.location.href=destino;}
+return true;
+};
+window.mensagemContatoCandidatoEmpregaMais=function(candidatura){
+return dadosContatoCandRefEM(candidatura).mensagem;
+};
+window.registrarContratacaoEmpregaMais=async function(candidatura){
+if(!candidatura)return false;
+var id=idCandRefEM(candidatura),vagaId=idVagaCandRefEM(candidatura);
+if(!id||!vagaId){alert("Não foi possível identificar a candidatura ou a vaga.");return false;}
+var vaga=null;
+try{vaga=vagasEmpresaRefEM().find(function(v){return String(v&&v.id||"")===String(vagaId);})||null;}catch(e){}
+if(!vaga){alert("Esta candidatura não pertence a uma vaga da empresa conectada.");return false;}
+var agora=new Date().toISOString(),resp=null;
+try{
+ await window.atualizarEtapaCandidaturaEM(id,"contratado");
+}catch(e){alert(e&amp;&amp;e.message?e.message:"Não foi possível registrar a contratação.");return false;}
+try{
+ if(typeof apiEmpregaMaisPost==="function"){
+  resp=await apiEmpregaMaisPost({acao:"registrar_contratacao",candidaturaId:id,vagaId:vagaId,dataContratacao:agora});
+  if(resp&amp;&amp;resp.sucesso!==true)console.warn("EmpregaMais: contratação registrada localmente; sincronização remota não confirmada.",resp.erro||resp);
+ }
+}catch(e){
+ console.warn("EmpregaMais: contratação registrada localmente; sincronização remota indisponível.",e);
+}
+var lista=candidaturasRefEM();
+if(Array.isArray(lista)){
+ var pos=lista.findIndex(function(x){return idCandRefEM(x)===String(id);});
+ if(pos>=0){
+  lista[pos].contratadoPeloEmpregaMais=true;
+  lista[pos].contratado_pelo_empregamais=true;
+  lista[pos].dataContratacao=agora;
+  lista[pos].data_contratacao=agora;
+  try{
+   if(typeof salvarCandidaturas==="function")salvarCandidaturas(lista);
+   else localStorage.setItem("candidaturasEmpregaMais",JSON.stringify(lista));
+  }catch(e){}
+ }
+}
+try{
+ var hist=JSON.parse(localStorage.getItem("empregaMaisContratacoes")||"[]");if(!Array.isArray(hist))hist=[];
+ if(!hist.some(function(x){return String(x.candidaturaId||"")===String(id);})){
+  hist.push({candidaturaId:String(id),vagaId:String(vagaId),empresaCnpj:vaga.empresaCnpj||vaga.cnpj||"",cargo:vaga.cargo||vaga.titulo||"",dataContratacao:agora});
+  localStorage.setItem("empregaMaisContratacoes",JSON.stringify(hist));
+ }
+}catch(e){}
+try{if(typeof montarPainelReferenciaRecrutadorEM==="function")montarPainelReferenciaRecrutadorEM();}catch(e){}
+try{if(typeof carregarEmpresasMasterEM==="function")carregarEmpresasMasterEM();}catch(e){}
+try{document.dispatchEvent(new CustomEvent("empregamais:contratacao-registrada",{detail:{candidaturaId:String(id),vagaId:String(vagaId),data:agora}}));}catch(e){}
+return true;
+};
 function verVagaRefEM(id){
 if(typeof abrirVaga==="function"){abrirVaga(id);return;}
 if(typeof abrirDetalheVaga==="function"){abrirDetalheVaga(id);return;}
 }
 function editarVagaRefEM(id){
+var vaga=null;
+try{
+ var lista=typeof carregarVagasPortal==="function"?(carregarVagasPortal()||[]):[];
+ if(Array.isArray(lista))vaga=lista.find(function(v){return String(v&&v.id||"")===String(id||"");})||null;
+}catch(e){}
+if(!vaga){alert("Não foi possível localizar esta vaga para edição.");return;}
+try{
+ if(typeof vagaPertenceEmpresaAtual==="function"&&!vagaPertenceEmpresaAtual(vaga)){
+  alert("Esta vaga não pertence à empresa conectada.");return;
+ }
+}catch(e){}
+try{sessionStorage.setItem("empregaMaisVagaEdicaoId",String(id));}catch(e){}
+try{
+ var oculto=document.getElementById("vagaEditandoId");
+ if(!oculto){
+  oculto=document.createElement("input");oculto.type="hidden";oculto.id="vagaEditandoId";oculto.name="vagaEditandoId";
+  var form=document.getElementById("formVaga");if(form)form.appendChild(oculto);
+ }
+ if(oculto)oculto.value=String(id);
+}catch(e){}
+try{window.vagaEdicaoId=String(id);}catch(e){}
 if(typeof editarVagaEmpresa==="function"){editarVagaEmpresa(id);return;}
 if(typeof editarVaga==="function"){editarVaga(id);return;}
+alert("A edição desta vaga ainda não está disponível nesta versão.");
 }
 function encerrarVagaRefEM(id){
 if(typeof encerrarVagaEmpresa==="function"){encerrarVagaEmpresa(id);return;}
 if(typeof encerrarVaga==="function"){encerrarVaga(id);return;}
 }
+function restaurarConteudoPainelRefEM(){
+var pagina=document.getElementById("pagina-painel-empresa");
+if(!pagina)return;
+var shell=document.getElementById("painelReferenciaRecrutadorEM");
+if(shell)shell.remove();
+Array.prototype.forEach.call(pagina.children,function(el){
+ if(el.getAttribute("data-oculto-painel-ref-em")==="1"){
+  el.style.removeProperty("display");
+  el.removeAttribute("data-oculto-painel-ref-em");
+ }
+});
+}
+window.restaurarConteudoPainelRefEM=restaurarConteudoPainelRefEM;
 window.montarPainelReferenciaRecrutadorEM=function(){
 var pagina=document.getElementById("pagina-painel-empresa");
 if(!pagina)return;
-var anterior=document.getElementById("painelReferenciaRecrutadorEM");
-if(anterior)anterior.remove();
+restaurarConteudoPainelRefEM();
 var emp={};
 try{emp=typeof empresaLogadaPainelEM==="function"?(empresaLogadaPainelEM()||{}):{};}catch(e){}
 var nome=emp.nomeFantasia||emp.nome||emp.razaoSocial||sessionStorage.getItem("empresaNome")||"Sua empresa";
 var vagas=vagasEmpresaRefEM();
 var ids=vagas.map(function(v){return String(v.id);});
 var cs=candidaturasRefEM().filter(function(c){return pertenceRefEM(c,ids);});
+function normStatusRefEM(v){
+return String(v==null?"":v).trim().toLowerCase()
+.normalize?String(v==null?"":v).trim().toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g,""):String(v==null?"":v).trim().toLowerCase();
+}
+function aprovacaoRefEM(v){
+var a=normStatusRefEM(v.aprovacao||v.statusAprovacao||v.status_aprovacao||v.approvalStatus||"");
+var st=normStatusRefEM(v.status||"");
+if(a==="aprovado")a="aprovada";
+if(a==="reprovada"||a==="reprovado")a="rejeitada";
+if(a==="aguardando aprovacao"||a==="em analise")a="pendente";
+if(!a){
+ if(st==="pendente"||st==="em analise")a="pendente";
+ else if(st==="aprovada"||st==="aprovado"||st==="publicada"||st==="ativa")a="aprovada";
+ else if(st==="rejeitada"||st==="reprovada"||st==="reprovado")a="rejeitada";
+}
+return a;
+}
+function encerradaRefEM(v){
+var st=normStatusRefEM(v.status||"");
+return st==="encerrada"||st==="excluida"||st==="cancelada"||v.ativa===false;
+}
 var aprovadas=vagas.filter(function(v){
-return String(v.aprovacao||"").toLowerCase()==="aprovada"&&String(v.status||"").toLowerCase()!=="encerrada";
+return !encerradaRefEM(v)&&aprovacaoRefEM(v)==="aprovada";
 });
 var pendentes=vagas.filter(function(v){
-return String(v.aprovacao||"").toLowerCase()==="pendente"&&String(v.status||"").toLowerCase()!=="encerrada";
+return !encerradaRefEM(v)&&aprovacaoRefEM(v)==="pendente";
 });
 var encerradas=vagas.filter(function(v){
-return String(v.status||"").toLowerCase()==="encerrada";
+return encerradaRefEM(v);
 });
 var processo=cs.filter(function(c){
-var s=String(c.status||"").toLowerCase();
-return s.indexOf("entrevista")>=0||s==="selecionado"||s==="aprovado"||s.indexOf("pr\u00e9-selecionado")>=0;
+var s=normEtapaCandRefEM(c.status_processo||c.statusProcesso||c.etapa||c.status);
+return ["selecionado","em contato","entrevista","aprovado"].indexOf(s)>=0;
 }).length;
-var contratados=cs.filter(function(c){return String(c.status||"").toLowerCase()==="contratado";}).length;
+var contratados=cs.filter(function(c){
+return normEtapaCandRefEM(c.status_processo||c.statusProcesso||c.etapa||c.status)==="contratado";
+}).length;
 var shell=document.createElement("div");
 shell.id="painelReferenciaRecrutadorEM";
 shell.className="recrutador-shell-ref-em";
@@ -114,8 +404,13 @@ shell.innerHTML=
 "<div class='recrutador-rodape-tabela-ref-em'><span id='textoRodapePainelRefEM'></span><div class='recrutador-paginacao-ref-em'><button type='button' disabled='disabled'>&#8249;</button><button class='ativo' type='button'>1</button><button type='button' disabled='disabled'></button></div></div>"+
 "</section>"+
 "</main>";
-var filhos=pagina.children;
-for(var i=0;i<filhos.length;i++){filhos[i].style.display="none";}
+var filhos=Array.prototype.slice.call(pagina.children);
+for(var i=0;i<filhos.length;i++){
+ if(filhos[i]!==shell){
+  filhos[i].setAttribute("data-oculto-painel-ref-em","1");
+  filhos[i].style.display="none";
+ }
+}
 pagina.appendChild(shell);
 var aba="aprovadas";
 var busca="";
@@ -145,6 +440,7 @@ try{n=typeof contarCandidaturasVaga==="function"?contarCandidaturasVaga(v.id):0;
 var st=aba==="pendentes"?"Em aprova\u00e7\u00e3o":(aba==="encerradas"?"Encerrada":"Ativa");
 var cls=aba==="pendentes"?"pendente":(aba==="encerradas"?"encerrada":"");
 var tr=document.createElement("tr");
+tr.setAttribute("data-vaga-id",String(v.id||""));
 tr.innerHTML=
 "<td><strong>"+txtRefEM(titulo)+"</strong>"+(empresa?"<small>"+txtRefEM(empresa)+"</small>":"")+"</td>"+
 "<td>"+txtRefEM(local)+"</td><td>"+txtRefEM(modalidade)+"</td><td>"+txtRefEM(salario)+"</td>"+
@@ -198,16 +494,29 @@ var inp=document.getElementById("buscaPainelRefEM");
 inp.oninput=function(){busca=String(this.value||"").toLowerCase().trim();renderTabela();};
 renderTabela();
 }
-var antigaIrPara=window.irPara;
-if(typeof antigaIrPara==="function"&&!window.irParaPainelRefPatchedEM){
-window.irParaPainelRefPatchedEM=true;
-window.irPara=function(pagina){
-var r=antigaIrPara.apply(this,arguments);
-if(pagina==="painel-empresa")setTimeout(window.montarPainelReferenciaRecrutadorEM,120);
-return r;
+/* Mantém apenas a navegação protegida principal. Recursos auxiliares
+   escutam um evento central, sem empilhar novas sobrescritas de irPara. */
+if(!window.EmpregaMaisNavegacaoCentralEM){
+window.EmpregaMaisNavegacaoCentralEM=function(pagina){
+try{document.dispatchEvent(new CustomEvent("empregamais:navegacao",{detail:{pagina:String(pagina||"")}}));}catch(e){}
 };
 }
-document.addEventListener("DOMContentLoaded",function(){setTimeout(window.montarPainelReferenciaRecrutadorEM,500);});
-window.addEventListener("load",function(){setTimeout(window.montarPainelReferenciaRecrutadorEM,700);});
+document.addEventListener("empregamais:navegacao",function(ev){
+var pagina=String((ev&&ev.detail&&ev.detail.pagina)||"");
+if(pagina==="painel-empresa")setTimeout(window.montarPainelReferenciaRecrutadorEM,120);
+else restaurarConteudoPainelRefEM();
+});
+function iniciarPainelReferenciaRecrutadorEM(){
+var pagina=document.getElementById("pagina-painel-empresa");
+var rota="";
+try{rota=String(new URLSearchParams(location.search).get("pagina")||"")}catch(e){}
+if(rota==="painel-empresa"||(pagina&amp;&amp;pagina.classList.contains("ativa"))){
+ setTimeout(window.montarPainelReferenciaRecrutadorEM,120);
+}else{
+ restaurarConteudoPainelRefEM();
+}
+}
+document.addEventListener("DOMContentLoaded",iniciarPainelReferenciaRecrutadorEM);
+window.addEventListener("load",iniciarPainelReferenciaRecrutadorEM);
 })();
 //
