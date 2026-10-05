@@ -95,3 +95,5 @@ Funções existentes atualizadas no Supabase, versão 2: consulta por CNPJ exige
 - Apresentação de salário centralizada para lista, destaque, página da vaga, relacionadas e visualização administrativa. Salário mínimo zero com máximo informado aparece como “Até R$ …”; valores iguais aparecem uma vez; ausência de valores positivos aparece como salário a combinar. Os registros foram preservados.
 - 31 testes passaram, incluindo faixas salariais, valores fixos, teto e salário não divulgado.
 - Sessão autenticada no navegador continua indisponível após interrupção da solicitação segura de login. Nenhuma conta foi criada ou credencial modificada para contornar essa validação.
+
+- Verificação publicada identificou faixas antigas armazenadas no campo único `salario`. Leitor ajustado para esse formato; regressão específica cobre mínimo zero e faixa completa. Total: 32 testes.

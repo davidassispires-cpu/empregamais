@@ -20,7 +20,9 @@ function textoSalarioPortalEM(v, fallback='Salário a combinar') {
     else if ((text.match(/\./g)||[]).length>1) text=text.replace(/\./g,'');
     return Number(text)||0;
   };
-  const min=number(v.salario),max=number(v.salarioMax);
+  const parts=String(v.salario??'').split(/\s+a\s+/i);
+  const ceiling=/^at[eé]\s/i.test(parts[0]);
+  const min=ceiling?0:number(parts[0]),max=number(v.salarioMax || parts[1] || (ceiling?parts[0]:''));
   const money=value=>value.toLocaleString('pt-BR',{style:'currency',currency:'BRL'});
   if (min>0 && max>min) return money(min)+' a '+money(max);
   if (min>0) return money(min);

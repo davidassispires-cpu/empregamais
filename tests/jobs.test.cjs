@@ -26,3 +26,10 @@ test('salary presentation handles maximum-only, fixed, ranged and undisclosed va
  assert.equal(c.textoSalarioPortalEM({salario:0,salarioMax:0}),'Salário a combinar');
  assert.equal(c.textoSalarioPortalEM({salario:5000,salarioCombinar:true}),'Salário a combinar');
 });
+
+test('salary presentation retains legacy ranges stored in a single field',()=>{
+ const c=setup();const spaces=s=>s.replace(/\s/g,' ');
+ assert.equal(spaces(c.textoSalarioPortalEM({salario:'R$ 0,00 a R$ 1.100,00',salarioMax:null})),'Até R$ 1.100,00');
+ assert.equal(spaces(c.textoSalarioPortalEM({salario:'R$ 1.621,00 a R$ 5.000,00'})),'R$ 1.621,00 a R$ 5.000,00');
+ assert.equal(spaces(c.textoSalarioPortalEM({salario:'Até R$ 2.200,00'})),'Até R$ 2.200,00');
+});
