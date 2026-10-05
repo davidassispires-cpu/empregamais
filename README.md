@@ -1,2 +1,3 @@
-# empregamais
-Arquivos do portal EmpregaMais
+# +Empregos
+
+Reconstrução iniciada do zero em 05/10/2026.
