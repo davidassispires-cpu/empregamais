@@ -12,6 +12,21 @@ function textoContratoPortalEM(value) {
   if (/^autonomo/.test(normalized)) return 'Autônomo';
   return text.length <= 80 ? text : 'Não informado';
 }
+function textoSalarioPortalEM(v, fallback='Salário a combinar') {
+  if (v.salarioCombinar) return fallback;
+  const number=value=>{
+    let text=String(value??'').replace(/[^0-9,.]/g,'');
+    if (text.includes(',')) text=text.replace(/\./g,'').replace(',','.');
+    else if ((text.match(/\./g)||[]).length>1) text=text.replace(/\./g,'');
+    return Number(text)||0;
+  };
+  const min=number(v.salario),max=number(v.salarioMax);
+  const money=value=>value.toLocaleString('pt-BR',{style:'currency',currency:'BRL'});
+  if (min>0 && max>min) return money(min)+' a '+money(max);
+  if (min>0) return money(min);
+  if (max>0) return 'Até '+money(max);
+  return fallback;
+}
 function coordenadaPortalEM(value) {
   if (value === '' || value == null) return null;
   const number=Number(value); return Number.isFinite(number) ? number : null;

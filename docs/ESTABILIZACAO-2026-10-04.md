@@ -90,3 +90,8 @@ Funções existentes atualizadas no Supabase, versão 2: consulta por CNPJ exige
 - 29 testes passaram, incluindo logout durante validação/renovação e resposta tardia de candidaturas.
 - Hidratação de perfil também descarta respostas anteriores ao logout, impedindo restaurar o papel ou a rota privada.
 - A consulta administrativa usa seu token próprio validado, sem exigir uma sessão de empresa/candidato. Teste específico confirma o token e as conversas; total de 30 testes.
+
+## Revisão de 5 de outubro — salários
+- Apresentação de salário centralizada para lista, destaque, página da vaga, relacionadas e visualização administrativa. Salário mínimo zero com máximo informado aparece como “Até R$ …”; valores iguais aparecem uma vez; ausência de valores positivos aparece como salário a combinar. Os registros foram preservados.
+- 31 testes passaram, incluindo faixas salariais, valores fixos, teto e salário não divulgado.
+- Sessão autenticada no navegador continua indisponível após interrupção da solicitação segura de login. Nenhuma conta foi criada ou credencial modificada para contornar essa validação.

@@ -16,3 +16,13 @@ test('loads all pages, removes stale public jobs and retains private cache',asyn
 test('coalesces concurrent catalog requests and keeps the last successful response on failure',async()=>{
  let count=0;const c=setup(async()=>{count++;return [{id:'live',status:'aprovada'}];});await Promise.all([c.sbCarregarVagasEM(),c.sbCarregarVagasEM()]);assert.equal(count,1);c.sbJsonEM=async()=>{throw Error('offline')};await assert.rejects(c.sbCarregarVagasEM(true));assert.equal(c.vagasPublicas()[0].id,'live');
 });
+
+test('salary presentation handles maximum-only, fixed, ranged and undisclosed values',()=>{
+ const c=setup();
+ const spaces=s=>s.replace(/\s/g,' ');
+ assert.equal(spaces(c.textoSalarioPortalEM({salario:'R$ 0,00',salarioMax:'R$ 2.200,00'})),'Até R$ 2.200,00');
+ assert.equal(spaces(c.textoSalarioPortalEM({salario:'1621',salarioMax:'5000'})),'R$ 1.621,00 a R$ 5.000,00');
+ assert.equal(spaces(c.textoSalarioPortalEM({salario:'2200',salarioMax:'2200'})),'R$ 2.200,00');
+ assert.equal(c.textoSalarioPortalEM({salario:0,salarioMax:0}),'Salário a combinar');
+ assert.equal(c.textoSalarioPortalEM({salario:5000,salarioCombinar:true}),'Salário a combinar');
+});
