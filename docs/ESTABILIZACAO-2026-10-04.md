@@ -97,3 +97,6 @@ Funções existentes atualizadas no Supabase, versão 2: consulta por CNPJ exige
 - Sessão autenticada no navegador continua indisponível após interrupção da solicitação segura de login. Nenhuma conta foi criada ou credencial modificada para contornar essa validação.
 
 - Verificação publicada identificou faixas antigas armazenadas no campo único `salario`. Leitor ajustado para esse formato; regressão específica cobre mínimo zero e faixa completa. Total: 32 testes.
+
+## Listagem — conflito de grades
+A inspeção visual identificou uma grade externa de duas colunas sobreposta à grade interna de filtros/resultados. A lista ficava com largura de 4px, deixando o botão fora da área clicável. Regras finais mantêm uma única grade interna, com lista flexível e uma coluna abaixo de 900px. A confirmação visual de mobile continua pendente de viewport móvel disponível.

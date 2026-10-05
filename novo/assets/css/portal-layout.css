@@ -1,0 +1,20 @@
+/* The results section wraps one sidebar/list grid, not a second outer grid. */
+#pagina-home .home-recentes.home-recentes-v19.home-resultados-consolidado-em {
+  display: block !important;
+}
+#pagina-home .home-recentes .home-recentes-layout {
+  width: 100% !important;
+  grid-template-columns: 238px minmax(0, 1fr) !important;
+}
+#pagina-home .home-recentes .home-recentes-main {
+  min-width: 0 !important;
+}
+#pagina-home .home-recentes #listaVagasPortal {
+  width: 100% !important;
+  grid-template-columns: minmax(0, 1fr) !important;
+}
+@media (max-width: 900px) {
+  #pagina-home .home-recentes .home-recentes-layout {
+    grid-template-columns: minmax(0, 1fr) !important;
+  }
+}
