@@ -1079,3 +1079,13 @@ html body #pagina-home #listaVagas article.em-lista-final .em-lista-fav{display:
  html body #pagina-home #listaVagas article.em-lista-final .em-lista-data{grid-column:2!important;grid-row:1 / span 2!important}
  html body #pagina-home #listaVagas article.em-lista-final .em-lista-ver{grid-column:1 / -1!important;grid-row:3!important;width:100%!important}
 }
+
+/* Titulos de vagas: Montserrat padronizado */
+html body #pagina-home #listaVagas article.em-lista-final .em-lista-titulo,
+html body #pagina-home #listaDestaques .dz-titulo,
+html body .em-lista-titulo,
+html body .dz-titulo{
+ font-family:"Montserrat",Arial,sans-serif!important;
+ font-weight:700!important;
+ letter-spacing:-.02em!important;
+}
