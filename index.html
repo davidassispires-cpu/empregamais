@@ -25326,6 +25326,18 @@ if(!destaque){
     chanceLista.innerHTML='<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="4" y="14" width="3" height="6" rx=".7"/><rect x="10.5" y="9" width="3" height="11" rx=".7"/><rect x="17" y="4" width="3" height="16" rx=".7"/></svg><span>Pouca concorrência</span>';
     footerLista.appendChild(chanceLista);
   }
+  var indicadoresLista=document.createElement("div");
+  indicadoresLista.className="em-lista-indicadores";
+  if(chanceLista)indicadoresLista.appendChild(chanceLista);
+  indicadoresLista.appendChild(candLista);
+  if(String(vaga.tipoContato||"").trim().toLowerCase()==="email"){
+    var rapidaLista=document.createElement("span");
+    rapidaLista.className="em-lista-rapida";
+    rapidaLista.title="Esta vaga recebe candidaturas por e-mail";
+    rapidaLista.innerHTML='<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m13 2-9 12h7l-1 8 10-12h-7l0-8Z"/></svg><span>Candidatura rápida</span>';
+    indicadoresLista.appendChild(rapidaLista);
+  }
+  footerLista.appendChild(indicadoresLista);
   var acoesLista=document.createElement("div");
   acoesLista.className="em-lista-acoes";
   var favLista=document.createElement("button");
@@ -40930,4 +40942,9 @@ html body #pagina-home #listaVagas article.em-lista-final .em-lista-salario{heig
 html body #pagina-home #listaVagas article.em-lista-final .em-lista-resumo{margin:0 0 6px!important;line-height:18px!important;max-height:36px!important;-webkit-line-clamp:2!important}
 html body #pagina-home #listaVagas article.em-lista-final .em-lista-data{margin-bottom:6px!important}
 @media(max-width:760px){html body #pagina-home #listaVagas article.em-lista-final{grid-template-columns:56px minmax(0,1fr)!important}html body #pagina-home #listaVagas article.em-lista-final .em-lista-meta{margin-top:6px!important}html body #pagina-home #listaVagas article.em-lista-final .em-lista-data{margin:8px 0 6px!important}}
+</style><style id="em-indicadores-v32">html body #pagina-home #listaVagas article.em-lista-final .em-lista-indicadores{grid-column:2!important;grid-row:5!important;display:flex!important;align-items:center!important;flex-wrap:wrap!important;gap:6px 12px!important;min-width:0!important}
+html body #pagina-home #listaVagas article.em-lista-final .em-lista-indicadores :is(.em-lista-pouca-concorrencia,.em-lista-candidaturas){position:static!important;margin:0!important;flex:0 0 auto!important;font-size:10px!important}
+html body #pagina-home #listaVagas article.em-lista-final .em-lista-rapida{display:inline-flex!important;align-items:center!important;gap:5px!important;padding:4px 7px!important;border-radius:999px!important;background:#eef4ff!important;color:#1762bc!important;font-size:10px!important;font-weight:600!important;line-height:1.2!important;white-space:nowrap!important}
+html body #pagina-home #listaVagas article.em-lista-final .em-lista-rapida svg{width:13px!important;height:13px!important;flex:0 0 13px!important;fill:none!important;stroke:currentColor!important;stroke-width:1.8!important;stroke-linejoin:round!important}
+@media(max-width:760px){html body #pagina-home #listaVagas article.em-lista-final .em-lista-indicadores{grid-column:1 / 3!important;grid-row:5 / 7!important}}
 </style></body></html>
