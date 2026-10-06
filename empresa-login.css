@@ -1,0 +1,64 @@
+/* Login empresarial: estilos limitados à página de acesso. */
+html body #pagina-login-empresa{background:#f5f8fc!important;color:#16324f!important;padding-bottom:48px!important;font-family:Montserrat,Arial,sans-serif!important}
+html body #pagina-login-empresa>.page-header{background:#f5f8fc!important;min-height:0!important;padding:28px 24px 18px!important;border:0!important;box-shadow:none!important;overflow:visible!important}
+html body #pagina-login-empresa>.page-header:before,html body #pagina-login-empresa>.page-header:after{display:none!important}
+html body #pagina-login-empresa .empresa-hero-v105{max-width:1040px!important;margin:auto!important;padding:0!important;min-height:0!important}
+html body #pagina-login-empresa .empresa-breadcrumb-v105{display:flex!important;align-items:center!important;gap:10px!important;margin:0 0 22px!important;color:#63778d!important;font-size:12px!important}
+html body #pagina-login-empresa .empresa-breadcrumb-v105 button{background:transparent!important;border:0!important;padding:0!important;color:#526b85!important;font:inherit!important;cursor:pointer}
+html body #pagina-login-empresa .empresa-breadcrumb-v105 strong{font-weight:600!important;color:#183d65!important}
+html body #pagina-login-empresa .empresa-kicker-v105{display:inline-block!important;border:0!important;background:transparent!important;padding:0!important;color:#126ac0!important;font-size:11px!important;font-weight:700!important;letter-spacing:1.3px!important;margin-bottom:9px!important}
+html body #pagina-login-empresa .empresa-hero-v105 h1{color:#143453!important;font-size:30px!important;line-height:1.2!important;font-weight:700!important;letter-spacing:-.8px!important;margin:0 0 9px!important}
+html body #pagina-login-empresa .empresa-hero-v105>p{color:#62758b!important;font-size:14px!important;line-height:1.6!important;margin:0!important;max-width:680px!important}
+html body #pagina-login-empresa .empresa-hero-beneficios-v105{display:none!important}
+html body #pagina-login-empresa .portal-empresa-area-em{max-width:1088px!important;margin:0 auto!important;padding:8px 24px 0!important;position:relative!important;top:auto!important}
+html body #pagina-login-empresa .portal-empresa-grid-em{display:grid!important;grid-template-columns:1fr .92fr!important;gap:0!important;align-items:stretch!important;border:1px solid #dce5ef!important;border-radius:20px!important;background:#fff!important;box-shadow:0 14px 42px rgba(22,50,79,.07)!important;overflow:hidden!important}
+html body #pagina-login-empresa .portal-empresa-card-em{min-width:0!important;width:auto!important;margin:0!important;border:0!important;border-radius:0!important;padding:32px 38px!important;box-shadow:none!important}
+html body #pagina-login-empresa .portal-login-card-em{background:#fff!important}
+html body #pagina-login-empresa .portal-card-icone-em{display:flex!important;align-items:center!important;justify-content:center!important;width:42px!important;height:42px!important;border-radius:12px!important;background:#eef5fd!important;color:#146bbb!important;margin:0 0 18px!important;font-size:21px!important}
+html body #pagina-login-empresa .portal-card-icone-em svg{width:21px;height:21px}
+html body #pagina-login-empresa .portal-card-kicker-em{font-size:10px!important;letter-spacing:1.1px!important;font-weight:700!important;color:#1766b1!important;margin:0 0 8px!important;display:block!important}
+html body #pagina-login-empresa .portal-login-card-em h2{font-size:24px!important;line-height:1.3!important;letter-spacing:-.7px!important;font-weight:700!important;color:#163653!important;margin:0 0 10px!important}
+html body #pagina-login-empresa .portal-card-desc-em{color:#65788e!important;font-size:13px!important;line-height:1.65!important;margin:0 0 24px!important}
+html body #pagina-login-empresa #formLoginEmpresaProfissionalEM .grupo{margin:0 0 18px!important}
+html body #pagina-login-empresa #formLoginEmpresaProfissionalEM label{display:block!important;color:#25435e!important;font-size:12px!important;line-height:1.4!important;font-weight:600!important;margin-bottom:8px!important}
+html body #pagina-login-empresa #formLoginEmpresaProfissionalEM .campo{width:100%!important;box-sizing:border-box!important;height:48px!important;min-height:48px!important;background:#fff!important;border:1px solid #cbd9e8!important;border-radius:9px!important;padding:0 14px!important;font-family:inherit!important;font-size:14px!important;color:#193a59!important;box-shadow:none!important;transition:border-color .15s,box-shadow .15s}
+html body #pagina-login-empresa #formLoginEmpresaProfissionalEM .campo::placeholder{color:#7a8da1!important}
+html body #pagina-login-empresa #formLoginEmpresaProfissionalEM .campo:focus{outline:2px solid #2184dc!important;outline-offset:2px!important;border-color:#2184dc!important}
+html body #pagina-login-empresa .portal-senha-wrap-em{position:relative!important}
+html body #pagina-login-empresa #loginEmpresaSenhaEM{padding-right:54px!important}
+html body #pagina-login-empresa .portal-olho-em{position:absolute!important;right:4px!important;top:2px!important;width:44px!important;height:44px!important;border:0!important;background:transparent!important;color:#637c94!important;display:flex!important;align-items:center!important;justify-content:center!important;cursor:pointer}
+html body #pagina-login-empresa .portal-olho-em svg{width:20px;height:20px}
+html body #pagina-login-empresa #btnLoginEmpresaProfissionalEM{width:100%!important;min-height:48px!important;border:0!important;border-radius:9px!important;padding:12px 18px!important;background:#1269b5!important;color:#fff!important;font-family:inherit!important;font-size:13px!important;font-weight:700!important;cursor:pointer;box-shadow:0 4px 12px rgba(18,105,181,.15)!important;transition:background .15s}
+html body #pagina-login-empresa #btnLoginEmpresaProfissionalEM:hover{background:#0e5899!important}
+html body #pagina-login-empresa #btnLoginEmpresaProfissionalEM:disabled{opacity:.65!important;cursor:wait}
+html body #pagina-login-empresa .portal-seguranca-em{display:flex!important;align-items:center!important;gap:9px!important;border:0!important;background:transparent!important;margin:18px 0 0!important;padding:0!important}
+html body #pagina-login-empresa .portal-seguranca-em>span{color:#8095aa!important;display:flex!important}
+html body #pagina-login-empresa .portal-seguranca-em svg{width:15px;height:15px;flex-shrink:0}
+html body #pagina-login-empresa .portal-seguranca-em p{margin:0!important;color:#72869a!important;font-size:11px!important;line-height:1.5!important}
+html body #pagina-login-empresa .portal-cadastro-card-em{background:linear-gradient(145deg,#103859,#164f7c)!important;color:#fff!important;position:relative!important;overflow:hidden!important;display:flex!important;align-items:center!important}
+html body #pagina-login-empresa .portal-cadastro-card-em:before,html body #pagina-login-empresa .portal-cadastro-card-em:after{display:none!important}
+html body #pagina-login-empresa .portal-cadastro-conteudo-em{position:relative!important;width:100%!important;padding:0!important}
+html body #pagina-login-empresa .portal-card-icone-claro-em{background:rgba(255,255,255,.09)!important;color:#d4e9fb!important;border:1px solid rgba(255,255,255,.12)!important}
+html body #pagina-login-empresa .portal-kicker-claro-em{color:#a8d5fa!important}
+html body #pagina-login-empresa .portal-cadastro-card-em h2{color:#fff!important;font-size:25px!important;font-weight:700!important;line-height:1.3!important;letter-spacing:-.6px!important;margin:0 0 12px!important}
+html body #pagina-login-empresa .portal-cadastro-conteudo-em>p{font-size:13px!important;line-height:1.65!important;color:#d3e3f1!important;margin:0 0 22px!important}
+html body #pagina-login-empresa .portal-beneficios-em{display:grid!important;gap:17px!important;margin:0 0 26px!important}
+html body #pagina-login-empresa .portal-beneficios-em>div{display:flex!important;gap:12px!important;align-items:flex-start!important;margin:0!important;padding:0!important;border:0!important;background:transparent!important}
+html body #pagina-login-empresa .portal-beneficios-em b{display:flex!important;align-items:center!important;justify-content:center!important;width:25px!important;height:25px!important;min-width:25px!important;border-radius:7px!important;background:rgba(255,255,255,.09)!important;color:#abd9ff!important;font-size:13px!important}
+html body #pagina-login-empresa .portal-beneficios-em strong{display:block!important;font-size:12px!important;font-weight:600!important;color:#fff!important;line-height:1.5!important}
+html body #pagina-login-empresa .portal-beneficios-em small{display:block!important;font-size:11px!important;color:#b7d0e6!important;line-height:1.5!important;margin-top:2px!important}
+html body #pagina-login-empresa .portal-btn-cadastro-em{display:block!important;width:100%!important;min-height:48px!important;padding:12px 16px!important;border:1px solid #a9ccea!important;background:#fff!important;color:#164b77!important;border-radius:9px!important;font:600 13px Montserrat,Arial,sans-serif!important;cursor:pointer;box-shadow:none!important}
+html body #pagina-login-empresa .portal-btn-cadastro-em:hover{background:#edf6ff!important}
+html body #pagina-login-empresa .portal-gratis-em{display:block!important;color:#b7d0e6!important;font-size:11px!important;line-height:1.5!important;text-align:center!important;margin-top:12px!important}
+html body #pagina-login-empresa>.login-container{display:none!important}
+@media(max-width:760px){
+ html body #pagina-login-empresa>.page-header{padding:22px 18px 16px!important}
+ html body #pagina-login-empresa .empresa-breadcrumb-v105{margin-bottom:18px!important}
+ html body #pagina-login-empresa .empresa-hero-v105 h1{font-size:26px!important}
+ html body #pagina-login-empresa .portal-empresa-area-em{padding:4px 16px 0!important}
+ html body #pagina-login-empresa .portal-empresa-grid-em{grid-template-columns:1fr!important;border-radius:16px!important}
+ html body #pagina-login-empresa .portal-empresa-card-em{padding:26px 24px!important}
+ html body #pagina-login-empresa .portal-login-card-em h2,html body #pagina-login-empresa .portal-cadastro-card-em h2{font-size:23px!important}
+ html body #pagina-login-empresa #formLoginEmpresaProfissionalEM .campo{font-size:16px!important}
+}
+@media(prefers-reduced-motion:reduce){html body #pagina-login-empresa *{transition:none!important}}

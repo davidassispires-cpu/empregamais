@@ -157,7 +157,7 @@ ajustarSessaoEmpresa();
 wrap.addEventListener("mouseenter",ajustarSessaoEmpresa);
 wrap.addEventListener("focusin",ajustarSessaoEmpresa);
 btn.addEventListener("click",ajustarSessaoEmpresa,true);
-btn.addEventListener("click",function(e){e.preventDefault();e.stopPropagation();document.querySelectorAll(".header-v98-area").forEach(function(w){if(w!==wrap)w.classList.remove("open")});wrap.classList.toggle("open")});
+btn.addEventListener("click",function(e){e.preventDefault();e.stopPropagation();document.querySelectorAll(".header-v98-area").forEach(function(w){if(w!==wrap)w.classList.remove("open")});wrap.classList.toggle("open");btn.setAttribute("aria-expanded",String(wrap.classList.contains("open")));document.querySelectorAll(".header-v98-area").forEach(function(w){var trigger=w.querySelector(":scope > button");if(trigger)trigger.setAttribute("aria-expanded",String(w.classList.contains("open")))})});
 }
 function instalar(){
 var cand=findButton(["candidato"]);
@@ -165,7 +165,7 @@ var emp=findButton(["empresa"]);
 if(cand){menu(cand,"cand")}
 if(emp){menu(emp,"emp")}
 }
-document.addEventListener("click",function(){document.querySelectorAll(".header-v98-area").forEach(function(w){w.classList.remove("open")})});
+document.addEventListener("click",function(){document.querySelectorAll(".header-v98-area").forEach(function(w){w.classList.remove("open");var trigger=w.querySelector(":scope > button");if(trigger)trigger.setAttribute("aria-expanded","false")})});
 if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",instalar);else instalar();
 window.addEventListener("load",function(){setTimeout(instalar,300)});
 })();
@@ -204,38 +204,7 @@ new MutationObserver(limparV99).observe(document.documentElement,{childList:true
 //
 ;
 //
-(function(){
-function neutralizarV100(){
-document.querySelectorAll(".header-v98-area").forEach(function(area){
-var gatilho=area.querySelector(":scope > a, :scope > button");
-if(!gatilho||gatilho.getAttribute("data-v100-pronto")==="1")return;
-gatilho.setAttribute("data-v100-pronto","1");
-if(gatilho.tagName==="A"){
-gatilho.removeAttribute("href");
-gatilho.setAttribute("role","button");
-}
-gatilho.addEventListener("click",function(e){
-e.preventDefault();
-e.stopImmediatePropagation();
-area.classList.toggle("open");
-return false;
-},true);
-area.addEventListener("mouseenter",function(){
-document.querySelectorAll(".header-v98-area").forEach(function(x){
-if(x!==area)x.classList.remove("open");
-});
-area.classList.add("open");
-});
-area.addEventListener("mouseleave",function(){
-area.classList.remove("open");
-});
-});
-}
-if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",neutralizarV100);
-else neutralizarV100();
-window.addEventListener("load",function(){setTimeout(neutralizarV100,200)});
-new MutationObserver(neutralizarV100).observe(document.documentElement,{childList:true,subtree:true});
-})();
+
 //
 ;
 //

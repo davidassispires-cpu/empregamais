@@ -1001,7 +1001,7 @@ sairAdminRealEM(ev);
 //
 ;
 //
-function alternarSenhaPortalEmpresaEM(id,b){var c=document.getElementById(id);if(!c)return;var m=c.type==="password";c.type=m?"text":"password";b.innerHTML=m?"&amp;#128584;":"&amp;#128065;";}
+function alternarSenhaPortalEmpresaEM(id,b){var c=document.getElementById(id);if(!c)return;var mostrar=c.type==="password";c.type=mostrar?"text":"password";b.setAttribute("aria-label",mostrar?"Ocultar senha":"Mostrar senha");b.setAttribute("aria-pressed",String(mostrar));b.innerHTML='<svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12Z"/><circle cx="12" cy="12" r="3"/>'+(mostrar?'<path d="m3 3 18 18"/>':'')+'</svg>';}
 function abrirCadastroEmpresaProfissionalEM(){var m=document.getElementById("cadastroEmpresaModalEM");if(m){m.classList.add("ativo");m.setAttribute("aria-hidden","false");document.body.style.overflow="hidden";}}
 function fecharCadastroEmpresaProfissionalEM(){var m=document.getElementById("cadastroEmpresaModalEM");if(m){m.classList.remove("ativo");m.setAttribute("aria-hidden","true");document.body.style.overflow="";}}
 function loginEmpresaProfissionalEM(e){
