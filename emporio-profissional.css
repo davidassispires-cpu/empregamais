@@ -180,3 +180,11 @@ html body #pagina-home #listaVagas .em-lista-acoes{grid-column:3!important;grid-
 html body #pagina-home #listaVagas .em-lista-resumo{grid-column:1/-1!important;grid-row:4!important}
 html body #pagina-home #listaVagas .em-lista-data{grid-column:1!important;grid-row:5!important;justify-self:start!important}
 html body #pagina-home #listaVagas .em-lista-acoes{grid-column:2!important;grid-row:5!important}}
+
+/* Prévia de currículo é um diálogo, fora do fluxo da página. */
+html body #cvModalV86.cv86-modal{display:none!important;position:fixed!important;inset:0!important;z-index:10000!important;background:rgba(15,35,58,.55)!important;padding:24px!important;overflow:auto!important;box-sizing:border-box!important}
+html body #cvModalV86.cv86-modal.ativo{display:flex!important;align-items:flex-start!important;justify-content:center!important}
+html body #cvModalV86 .cv86-modal-box{position:relative!important;width:100%!important;max-width:800px!important;background:white!important;border-radius:14px!important;padding:40px!important;margin:24px auto!important;box-sizing:border-box!important}
+html body #cvModalV86 .cv86-modal-close{position:absolute!important;top:10px!important;right:14px!important;width:32px!important;height:32px!important;font-size:24px!important;border:0!important;background:transparent!important;cursor:pointer!important}
+html body .rodape .rodape-grid h3{font-size:17px!important;line-height:1.4!important;margin:0 0 12px!important}
+@media(max-width:650px){html body #cvModalV86.cv86-modal{padding:12px!important}html body #cvModalV86 .cv86-modal-box{padding:40px 20px 24px!important}}
