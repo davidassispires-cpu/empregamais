@@ -25323,7 +25323,7 @@ if(!destaque){
   if(totalCandLista<15){
     var chanceLista=document.createElement("span");
     chanceLista.className="em-lista-pouca-concorrencia";
-    chanceLista.textContent="Pouca concorrência";
+    chanceLista.innerHTML='<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="4" y="14" width="3" height="6" rx=".7"/><rect x="10.5" y="9" width="3" height="11" rx=".7"/><rect x="17" y="4" width="3" height="16" rx=".7"/></svg><span>Pouca concorrência</span>';
     footerLista.appendChild(chanceLista);
   }
   var acoesLista=document.createElement("div");
@@ -40919,4 +40919,4 @@ html body #pagina-home #listaVagas article.em-lista-final .em-lista-meta-item{pa
 html body #pagina-home #listaVagas article.em-lista-final .em-lista-meta-item b{font-weight:600!important;font-size:10px!important}
 html body #pagina-home #listaVagas article.em-lista-final .em-lista-candidaturas,html body #pagina-home #listaVagas article.em-lista-final .em-lista-data span{font-weight:600!important}
 html body #pagina-home #listaVagas article.em-lista-final .em-lista-ver{font-weight:700!important}
-</style></body></html>
+</style><style id="em-concorrencia-svg-v30">html body #pagina-home #listaVagas article.em-lista-final .em-lista-pouca-concorrencia::before{content:none!important;display:none!important}html body #pagina-home #listaVagas article.em-lista-final .em-lista-pouca-concorrencia{display:inline-flex!important;align-items:center!important;gap:5px!important}html body #pagina-home #listaVagas article.em-lista-final .em-lista-pouca-concorrencia svg{display:block!important;width:13px!important;height:13px!important;flex:0 0 13px!important;fill:currentColor!important;stroke:none!important;overflow:visible!important}</style></body></html>
