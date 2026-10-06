@@ -40818,4 +40818,35 @@ html body #contaEmpresaTopo #menuContaEmpresa>button:not(.sair):after{font-size:
 html body #contaEmpresaTopo #menuContaEmpresa>button.sair{margin-top:7px!important;min-height:52px!important;border-radius:10px!important}
 html body #contaEmpresaTopo #menuContaEmpresa>button.sair:after{font-size:22px!important}
 @media(max-width:480px){html body #contaEmpresaTopo #menuContaEmpresa{width:min(350px,calc(100vw - 20px))!important}}
-</style></body></html>
+</style><script id="em-perfil-campos-padronizados-v84">
+(function(){
+if(window.__EM_V84)return;window.__EM_V84=true;
+function trocarPorSelect(id,opcoes){
+ var old=document.getElementById(id);if(!old||old.tagName==="SELECT")return old;
+ var s=document.createElement("select");s.id=id;s.className=old.className;s.innerHTML='<option value="">Selecione</option>'+opcoes.map(function(v){return '<option value="'+v+'">'+v+'</option>'}).join('');
+ s.value=old.value||"";old.parentNode.replaceChild(s,old);return s;
+}
+function campoDepois(refId,id,label,placeholder){
+ var ref=document.getElementById(refId);if(!ref||document.getElementById(id))return;
+ var wrap=document.createElement("div");wrap.className="empresa-perfil-campo-em";wrap.innerHTML='<label>'+label+'</label><input id="'+id+'" type="text" placeholder="'+(placeholder||"")+'"/>';
+ ref.closest(".empresa-perfil-campo-em").parentNode.insertBefore(wrap,ref.closest(".empresa-perfil-campo-em"));
+}
+function setv(id,v){var x=document.getElementById(id);if(x&&v!=null){x.value=v;x.dispatchEvent(new Event("input",{bubbles:true}));x.dispatchEvent(new Event("change",{bubbles:true}))}}
+function cep(){
+ var x=document.getElementById("perfilCepEM");if(!x)return;var n=String(x.value||"").replace(/\D/g,"");if(n.length!==8)return;
+ x.value=n.slice(0,5)+"-"+n.slice(5);
+ fetch("https://viacep.com.br/ws/"+n+"/json/").then(function(r){return r.json()}).then(function(d){if(!d||d.erro)return;setv("perfilLogradouroEM",d.logradouro);setv("perfilBairroEM",d.bairro);setv("perfilCidadeEM",d.localidade);setv("perfilUfEM",d.uf)}).catch(function(){});
+}
+function montar(){
+ trocarPorSelect("perfilSegmentoEM",["Comércio e varejo","Tecnologia","Serviços","Indústria","Construção civil","Saúde","Educação","Logística e transporte","Alimentação e gastronomia","Financeiro","Agronegócio","Hotelaria e turismo","Comunicação e marketing","Recursos humanos","Imobiliário","Outros"]);
+ trocarPorSelect("perfilPorteEM",["MEI / 1 pessoa","Microempresa / 2 a 9 colaboradores","Pequena / 10 a 49 colaboradores","Média / 50 a 199 colaboradores","Grande / 200 a 999 colaboradores","Muito grande / 1.000+ colaboradores"]);
+ var cidade=document.getElementById("perfilCidadeEM");
+ if(cidade){
+  campoDepois("perfilCidadeEM","perfilCepEM","CEP","00000-000");campoDepois("perfilCidadeEM","perfilLogradouroEM","Logradouro","Preenchido pelo CEP");campoDepois("perfilCidadeEM","perfilBairroEM","Bairro","Preenchido pelo CEP");
+  var cepEl=document.getElementById("perfilCepEM");if(cepEl&&!cepEl.dataset.auto){cepEl.dataset.auto="1";cepEl.addEventListener("blur",cep);cepEl.addEventListener("input",function(){if(String(this.value).replace(/\D/g,"").length===8)cep()})}
+  ["perfilLogradouroEM","perfilBairroEM","perfilCidadeEM","perfilUfEM"].forEach(function(id){var x=document.getElementById(id);if(x){x.readOnly=true;x.title="Preenchido automaticamente pelo CEP"}});
+ }
+}
+if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",montar);else montar();setTimeout(montar,500);
+})();
+</script></body></html>
