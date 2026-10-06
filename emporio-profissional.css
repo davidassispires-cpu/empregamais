@@ -437,3 +437,29 @@ html body #pagina-home #listaVagas article.em-lista-final .em-lista-ver{width:10
 html body #pagina-home #listaVagas article.em-lista-final .em-lista-data{grid-column:3!important;grid-row:5!important;justify-self:center!important;align-self:start!important;width:100%!important;max-width:none!important;margin:5px 0 0!important;text-align:center!important}
 @media(max-width:1050px){html body #pagina-home #listaVagas article.em-lista-final{grid-template-columns:42px minmax(0,1fr) 150px!important;min-height:205px!important}}
 @media(max-width:650px){html body #pagina-home #listaVagas article.em-lista-final{grid-template-columns:42px minmax(0,1fr) 115px!important;min-height:215px!important}html body #pagina-home #listaVagas article.em-lista-final .em-lista-cab,html body #pagina-home #listaVagas article.em-lista-final .em-lista-titulo{grid-column:2/4!important}html body #pagina-home #listaVagas article.em-lista-final .em-lista-meta{grid-column:1/4!important}html body #pagina-home #listaVagas article.em-lista-final .em-lista-resumo{grid-column:1/3!important}}
+
+
+/* Vagas recentes v3: logo maior nas prévias. */
+html body #pagina-home #listaVagas article.em-lista-final{
+  grid-template-columns:58px minmax(0,1fr) 165px!important;
+  column-gap:12px!important;
+}
+html body #pagina-home #listaVagas article.em-lista-final .em-lista-logo{
+  width:58px!important;
+  height:58px!important;
+  min-width:58px!important;
+  min-height:58px!important;
+  grid-column:1!important;
+  grid-row:1/4!important;
+}
+html body #pagina-home #listaVagas article.em-lista-final .em-lista-logo :is(img,.logo-empresa,.logo-placeholder){
+  width:100%!important;
+  height:100%!important;
+  max-width:100%!important;
+  max-height:100%!important;
+  object-fit:contain!important;
+}
+@media(max-width:650px){
+ html body #pagina-home #listaVagas article.em-lista-final{grid-template-columns:50px minmax(0,1fr) 115px!important}
+ html body #pagina-home #listaVagas article.em-lista-final .em-lista-logo{width:50px!important;height:50px!important;min-width:50px!important;min-height:50px!important}
+}
