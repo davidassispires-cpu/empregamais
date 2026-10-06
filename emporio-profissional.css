@@ -1,6 +1,6 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
 :root{--azul:#165ec9;--azulEscuro:#12365d;--laranja:#f27932;--fundo:#f5f7fb;--texto:#172c45;--borda:#e2e8f0}
-html body,html body button,html body input,html body select,html body textarea{font-family:Montserrat,Arial,sans-serif!important}
+html body,html body button,html body input,html body select,html body textarea{font-family:Inter,Arial,sans-serif!important}
 html body{background:#f5f7fb!important;color:#172c45!important}
 html body header{background:#fff!important;border-bottom:1px solid #e4eaf2!important;box-shadow:0 3px 20px #172c4508!important}
 html body button{transition:background .18s,box-shadow .18s,transform .18s}
@@ -85,10 +85,10 @@ html body #pagina-home #listaVagas .em-lista-acoes{grid-column:1!important;grid-
 
 html body #pagina-home #listaVagas .em-lista-resumo{min-height:0!important}
 
-html body,html body *{font-family:Montserrat,Arial,sans-serif!important}
+html body,html body *{font-family:Inter,Arial,sans-serif!important}
 
 /* Prioridade global para superar a tipografia das folhas legadas. */
-html body :is(#em-inter-global#em-tipografia#em-site#em-font-priority#em-theme,*){font-family:Montserrat,Arial,sans-serif!important}
+html body :is(#em-inter-global#em-tipografia#em-site#em-font-priority#em-theme,*){font-family:Inter,Arial,sans-serif!important}
 
 /* Organização aprovada na prévia. */
 html body #pagina-home #listaVagas>article.em-lista-final{grid-template-columns:minmax(0,1fr) auto!important;gap:8px 20px!important;padding:20px!important}
@@ -214,7 +214,7 @@ html body #pagina-home #filtrosLateral label,html body #pagina-home #filtrosLate
 
 html body :is(#em-type-a#em-type-b#em-type-c#em-type-d,#pagina-home) #filtrosLateral :is(label,.campo,.limpar-link){font-size:13px!important;font-weight:500!important;line-height:1.4!important}
 
-/* Montserrat com mais corpo, mantendo os tamanhos. */
+/* Inter com mais corpo, mantendo os tamanhos. */
 html body{font-weight:500!important}
 html body :is(#em-weight-a#em-weight-b#em-weight-c#em-weight-d,*) :is(p,input,select,textarea){font-weight:500!important}
 html body #pagina-home #listaVagas .em-lista-resumo{font-weight:500!important}
@@ -258,3 +258,6 @@ html body :is(#em-type-a#em-type-b#em-type-c#em-type-d,#pagina-home) #filtrosLat
 #centralPlanosEmpresaV82 .central-beneficios-v82{padding:18px}
 #centralPlanosEmpresaV82 .central-uso-item-v82 strong{font-size:18px}
 }
+
+/* Tipografia única do portal — Inter */
+:root body, :root body * {font-family:'Inter',Arial,sans-serif!important;}
