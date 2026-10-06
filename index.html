@@ -40744,4 +40744,28 @@ window.abrirPerfilEmpresaPainelEM=abrirPerfil;
 #btnLoginEmpresaProfissionalEM[aria-busy="true"]{display:flex!important;align-items:center!important;justify-content:center!important;gap:9px!important;cursor:wait!important;opacity:.9!important}
 .login-spinner-em{width:17px;height:17px;border:2px solid rgba(255,255,255,.45);border-top-color:#fff;border-radius:50%;animation:emLoginSpin .7s linear infinite}
 @keyframes emLoginSpin{to{transform:rotate(360deg)}}
-</style></body></html>
+</style><script id="em-sidebar-perfil-empresarial-v83">
+(function(){
+if(window.__EM_SIDEBAR_PERFIL_V83)return;window.__EM_SIDEBAR_PERFIL_V83=true;
+function ajustar(){
+ var painel=document.getElementById("pagina-painel-empresa");if(!painel)return;
+ var els=painel.querySelectorAll("button,a");
+ for(var i=0;i<els.length;i++){
+  var t=(els[i].textContent||"").replace(/\s+/g," ").trim().toLowerCase();
+  if(t==="perfil da empresa"||t.indexOf("perfil da empresa")===0){
+   els[i].innerHTML=els[i].innerHTML.replace(/Perfil da empresa/gi,"Perfil empresarial");
+   els[i].setAttribute("onclick","abrirPerfilEmpresaPainelEM(); return false;");
+   els[i].dataset.perfilEmpresarial="1";
+  }
+ }
+}
+if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",ajustar);else ajustar();
+document.addEventListener("click",function(e){
+ var el=e.target.closest&&e.target.closest("#pagina-painel-empresa [data-perfil-empresarial='1']");
+ if(!el)return;e.preventDefault();e.stopImmediatePropagation();
+ if(typeof abrirPerfilEmpresaPainelEM==="function")abrirPerfilEmpresaPainelEM();
+},true);
+var mo=new MutationObserver(ajustar);setTimeout(function(){var p=document.getElementById("pagina-painel-empresa");if(p)mo.observe(p,{childList:true,subtree:true})},300);
+setTimeout(ajustar,500);setTimeout(ajustar,1200);
+})();
+</script></body></html>
