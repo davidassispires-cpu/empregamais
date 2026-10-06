@@ -1004,7 +1004,13 @@ sairAdminRealEM(ev);
 function alternarSenhaPortalEmpresaEM(id,b){var c=document.getElementById(id);if(!c)return;var mostrar=c.type==="password";c.type=mostrar?"text":"password";b.setAttribute("aria-label",mostrar?"Ocultar senha":"Mostrar senha");b.setAttribute("aria-pressed",String(mostrar));b.innerHTML='<svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12Z"/><circle cx="12" cy="12" r="3"/>'+(mostrar?'<path d="m3 3 18 18"/>':'')+'</svg>';}
 function abrirCadastroEmpresaProfissionalEM(){var m=document.getElementById("cadastroEmpresaModalEM");if(m){m.classList.add("ativo");m.setAttribute("aria-hidden","false");document.body.style.overflow="hidden";}}
 function fecharCadastroEmpresaProfissionalEM(){var m=document.getElementById("cadastroEmpresaModalEM");if(m){m.classList.remove("ativo");m.setAttribute("aria-hidden","true");document.body.style.overflow="";}}
+function estadoLoginEmpresaProfissionalEM(ativo){
+var b=document.getElementById("btnLoginEmpresaProfissionalEM");if(!b)return;
+if(ativo){if(!b.dataset.textoOriginal)b.dataset.textoOriginal=b.textContent||"Entrar no painel da empresa";b.disabled=true;b.setAttribute("aria-busy","true");b.innerHTML='<span class="login-spinner-em" aria-hidden="true"></span><span>Entrando...</span>';}
+else{b.disabled=false;b.removeAttribute("aria-busy");b.textContent=b.dataset.textoOriginal||"Entrar no painel da empresa";}
+}
 function loginEmpresaProfissionalEM(e){
+estadoLoginEmpresaProfissionalEM(true);
 if(e&&typeof e.preventDefault==="function")e.preventDefault();
 if(e&&typeof e.stopPropagation==="function")e.stopPropagation();
 var campoAcesso=document.getElementById("loginEmpresaIdentificadorEM");
@@ -1012,7 +1018,7 @@ var campoSenha=document.getElementById("loginEmpresaSenhaEM");
 var acesso=String(campoAcesso?campoAcesso.value:"").trim();
 var senha=String(campoSenha?campoSenha.value:"");
 if(!acesso||!senha){
-alert("Informe o CNPJ ou e-mail corporativo e a senha.");
+estadoLoginEmpresaProfissionalEM(false);alert("Informe o CNPJ ou e-mail corporativo e a senha.");
 return false;
 }
 var numeros=acesso.replace(/\D/g,"");
@@ -1031,21 +1037,21 @@ break;
 }
 }
 if(!empresa){
-alert("E-mail corporativo ou senha incorretos.");
+estadoLoginEmpresaProfissionalEM(false);alert("E-mail corporativo ou senha incorretos.");
 return false;
 }
 entrarComoEmpresa(empresa);
-irPara("painel-empresa");
+setTimeout(function(){irPara("painel-empresa");},180);
 return false;
 }
 if(numeros.length!==14){
-alert("Informe um CNPJ v\u00E1lido ou o e-mail corporativo.");
+estadoLoginEmpresaProfissionalEM(false);alert("Informe um CNPJ v\u00E1lido ou o e-mail corporativo.");
 return false;
 }
 var campoCnpjOriginal=document.getElementById("loginEmpresaCnpj");
 var campoSenhaOriginal=document.getElementById("loginEmpresaSenha");
 if(!campoCnpjOriginal||!campoSenhaOriginal||typeof loginEmpresa!=="function"){
-alert("N\u00E3o foi poss\u00EDvel iniciar o login da empresa.");
+estadoLoginEmpresaProfissionalEM(false);alert("N\u00E3o foi poss\u00EDvel iniciar o login da empresa.");
 return false;
 }
 campoCnpjOriginal.value=numeros;
@@ -1054,7 +1060,7 @@ var eventoSeguro={
 preventDefault:function(){},
 stopPropagation:function(){}
 };
-loginEmpresa(eventoSeguro);
+setTimeout(function(){loginEmpresa(eventoSeguro);},180);
 return false;
 }
 function cadastrarEmpresaProfissionalEM(e){
