@@ -363,3 +363,9 @@ html body #pagina-home #listaVagas article.em-lista-final .em-lista-acoes{grid-c
 html body #pagina-home #listaVagas article.em-lista-final .em-lista-data{grid-column:3!important}
 @media(max-width:650px){html body #pagina-home #listaVagas article.em-lista-final{grid-template-columns:42px minmax(0,1fr) 110px!important;column-gap:10px!important}html body #pagina-home #listaVagas article.em-lista-final .em-lista-logo{width:42px!important;height:42px!important;grid-row:1/3!important}html body #pagina-home #listaVagas article.em-lista-final .em-lista-titulo{grid-column:2/-1!important}html body #pagina-home #listaVagas article.em-lista-final .em-lista-meta{grid-column:1/-1!important}html body #pagina-home #listaVagas article.em-lista-final .em-lista-resumo{grid-column:1/3!important}}
 @media(max-width:400px){html body #pagina-home #listaVagas article.em-lista-final .em-lista-resumo{grid-column:1/-1!important}html body #pagina-home #listaVagas article.em-lista-final .em-lista-acoes,html body #pagina-home #listaVagas article.em-lista-final .em-lista-data{grid-column:3!important}}
+
+/* Títulos das vagas sempre em maiúsculas. */
+html body #pagina-home #listaVagas article.em-lista-final .em-lista-titulo,
+html body #pagina-home #listaDestaques .destaque-zero-m6 .dz-titulo,
+html body #pagina-vaga #detalheCargoCab,
+html body #pagina-vaga .vaga-titulo{ text-transform:uppercase!important; }
