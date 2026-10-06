@@ -25317,6 +25317,12 @@ if(!destaque){
     '<span>Publicada em<br/><b></b></span>';
   dataLista.querySelector("b").textContent=formatarData(vaga.dataPublicacao);
   footerLista.appendChild(dataLista);
+  var candLista=document.createElement("div");
+  candLista.className="em-lista-candidaturas";
+  var totalCandLista=typeof contarCandidaturasVaga==="function"?contarCandidaturasVaga(vaga.id):0;
+  candLista.innerHTML='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg><span></span>';
+  candLista.querySelector("span").textContent=totalCandLista+" "+(totalCandLista===1?"candidatura":"candidaturas");
+  footerLista.appendChild(candLista);
   var acoesLista=document.createElement("div");
   acoesLista.className="em-lista-acoes";
   var favLista=document.createElement("button");
@@ -40849,4 +40855,14 @@ function montar(){
 }
 if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",montar);else montar();setTimeout(montar,500);
 })();
-</script></body></html>
+</script><style id="em-vagas-montserrat-candidaturas-v1">
+html body #pagina-home #listaVagas article.em-lista-final,
+html body #pagina-home #listaVagas article.em-lista-final *{font-family:Montserrat,Arial,sans-serif!important}
+html body #pagina-home #listaVagas article.em-lista-final .em-lista-titulo{font-size:18px!important;line-height:1.22!important;font-weight:800!important;letter-spacing:-.2px!important;color:#092b57!important}
+html body #pagina-home #listaVagas article.em-lista-final .em-lista-empresa{font-weight:500!important;color:#50677c!important}
+html body #pagina-home #listaVagas article.em-lista-final .em-lista-resumo{font-weight:400!important;color:#50677c!important;line-height:1.55!important}
+html body #pagina-home #listaVagas article.em-lista-final .em-lista-footer{display:flex!important;align-items:center!important;gap:14px!important}
+html body #pagina-home #listaVagas article.em-lista-final .em-lista-candidaturas{display:inline-flex!important;align-items:center!important;gap:5px!important;color:#657d94!important;font-size:10px!important;font-weight:500!important;white-space:nowrap!important}
+html body #pagina-home #listaVagas article.em-lista-final .em-lista-candidaturas svg{width:14px!important;height:14px!important;fill:none!important;stroke:currentColor!important;stroke-width:1.7!important;stroke-linecap:round!important;stroke-linejoin:round!important}
+html body #pagina-home #listaVagas article.em-lista-final .em-lista-acoes{margin-left:auto!important}
+</style></body></html>
