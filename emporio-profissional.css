@@ -38,3 +38,8 @@ html body footer h3{color:#fff!important}
 html body footer button{color:#dbe5f5!important}
 @media(max-width:900px){html body #pagina-home #listaVagas{grid-template-columns:1fr!important}html body #pagina-home>section:not(.hero){margin:28px 20px!important}html body #pagina-home .hero{padding:40px 20px 30px!important}html body #pagina-home .hero h1{letter-spacing:-1px!important}html body #pagina-home .hero-search-tabs-em{display:flex!important;overflow:auto!important;gap:4px!important}html body #pagina-home .hero-search-tabs-em button{white-space:nowrap!important;padding:10px!important}}
 @media(prefers-reduced-motion:reduce){html body button,html body #listaVagas>div{transition:none!important;transform:none!important}}
+
+html body #pagina-home .hero-trust-em{background:#ffffff0b!important;border:1px solid #ffffff20!important;box-shadow:none!important}
+html body #pagina-home .hero-trust-em,html body #pagina-home .hero-trust-em *{color:#e7efff!important}
+html body #pagina-home #listaVagas>article{border:1px solid #e0e7f0!important;border-radius:16px!important;background:#fff!important;box-shadow:0 4px 16px #16345806!important;min-width:0!important;width:100%!important;margin:0!important;transition:box-shadow .2s,transform .2s}
+html body #pagina-home #listaVagas>article:hover{box-shadow:0 10px 28px #16345812!important;transform:translateY(-3px)}
