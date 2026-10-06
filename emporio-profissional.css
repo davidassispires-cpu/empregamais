@@ -1244,3 +1244,43 @@ body *::before,body *::after{
 input,select,textarea,button{
   font-family:"Inter","Segoe UI",Arial,sans-serif!important;
 }
+
+
+/* Vagas recentes v25 — rodape final estável */
+html body #pagina-home #listaVagas article.em-lista-final{
+  position:relative!important;
+  padding-bottom:78px!important;
+}
+html body #pagina-home #listaVagas article.em-lista-final .em-lista-footer,
+html body #pagina-home #listaVagas article.em-lista-final .em-lista-acoes{
+  position:static!important;display:block!important;margin:0!important;padding:0!important;
+}
+html body #pagina-home #listaVagas article.em-lista-final :is(.em-lista-pouca-concorrencia,.em-pouca-concorrencia){
+  position:absolute!important;left:18px!important;right:auto!important;bottom:39px!important;
+  margin:0!important;transform:none!important;z-index:4!important;white-space:nowrap!important;
+}
+html body #pagina-home #listaVagas article.em-lista-final .em-lista-candidaturas{
+  position:absolute!important;left:18px!important;right:auto!important;bottom:14px!important;
+  margin:0!important;transform:none!important;z-index:4!important;white-space:nowrap!important;
+}
+html body #pagina-home #listaVagas article.em-lista-final .em-lista-data{
+  position:absolute!important;left:auto!important;right:190px!important;bottom:12px!important;
+  width:88px!important;max-width:88px!important;margin:0!important;transform:none!important;
+  z-index:4!important;text-align:right!important;white-space:normal!important;line-height:1.15!important;
+}
+html body #pagina-home #listaVagas article.em-lista-final .em-lista-ver{
+  position:absolute!important;left:auto!important;right:18px!important;bottom:10px!important;
+  width:160px!important;height:38px!important;margin:0!important;transform:none!important;z-index:5!important;
+}
+html body #pagina-home #listaVagas article.em-lista-final .em-lista-fav{display:none!important}
+html body #pagina-home #listaVagas article.em-lista-final .em-lista-titulo{
+  font-family:"Montserrat","Inter","Segoe UI",Arial,sans-serif!important;
+  font-size:18px!important;font-weight:800!important;line-height:1.16!important;letter-spacing:-.02em!important;
+}
+@media(max-width:650px){
+ html body #pagina-home #listaVagas article.em-lista-final{padding-bottom:126px!important}
+ html body #pagina-home #listaVagas article.em-lista-final :is(.em-lista-pouca-concorrencia,.em-pouca-concorrencia){left:15px!important;bottom:91px!important}
+ html body #pagina-home #listaVagas article.em-lista-final .em-lista-candidaturas{left:15px!important;bottom:68px!important}
+ html body #pagina-home #listaVagas article.em-lista-final .em-lista-data{right:15px!important;bottom:67px!important;width:100px!important;max-width:100px!important}
+ html body #pagina-home #listaVagas article.em-lista-final .em-lista-ver{left:15px!important;right:15px!important;bottom:12px!important;width:auto!important}
+}
