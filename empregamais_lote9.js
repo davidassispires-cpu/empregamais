@@ -133,18 +133,25 @@ if(!btn||btn.closest(".header-v98-area"))return;
 var wrap=document.createElement("span");wrap.className="header-v98-area";
 btn.parentNode.insertBefore(wrap,btn);wrap.appendChild(btn);
 var m=document.createElement("div");m.className="header-v98-menu";
+m.classList.add("em-account-menu");m.classList.add(type==="cand"?"em-candidate-menu":"em-company-menu");
+var icons={user:'<circle cx="12" cy="7" r="4"/><path d="M4 21v-2a8 8 0 0 1 16 0v2"/>',file:'<path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M8 13h8M8 17h6"/>',heart:'<path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1.1-1.1a5.5 5.5 0 0 0-7.8 7.8L12 21l8.8-8.6a5.5 5.5 0 0 0 0-7.8z"/>',building:'<rect x="4" y="3" width="16" height="18" rx="2"/><path d="M9 21v-4h6v4M8 7h2M14 7h2M8 11h2M14 11h2"/>',plus:'<path d="M12 5v14M5 12h14"/>',briefcase:'<rect x="3" y="7" width="18" height="14" rx="2"/><path d="M8 7V3h8v4M3 12a24 24 0 0 0 18 0M12 11v4"/>',users:'<circle cx="9" cy="7" r="3"/><path d="M2 21v-3a7 7 0 0 1 14 0v3M17 4a3 3 0 0 1 0 6M22 21v-3a7 7 0 0 0-4-6"/>',card:'<rect x="2" y="4" width="20" height="16" rx="3"/><path d="M2 9h20M6 15h4"/>',help:'<circle cx="12" cy="12" r="10"/><path d="M9 9a3 3 0 0 1 6 0c0 2-3 2-3 4M12 17h.01"/>'};
+function icon(name){return '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'+icons[name]+'</svg>'}
+var title=document.createElement("div");title.className="em-account-heading";title.textContent=type==="cand"?"ÁREA DO CANDIDATO":"ÁREA DA EMPRESA";m.appendChild(title);
 var itens=type==="cand"?
-[["login-candidato","↪ Entrar na minha conta"],["curriculo","▤ Cadastrar currículo"],["candidaturas","☷ Minhas candidaturas"],["vagas-salvas","♡ Vagas salvas"],["como-funciona","? Como funciona"]]:
-[["login-empresa","↪ Entrar na minha conta"],["cadastro-empresa","▦ Cadastrar empresa"],["publicar-vaga","＋ Publicar vaga"],["painel-recrutador","☷ Minhas vagas"],["planos","◇ Planos"],["como-funciona","? Como funciona"]];
-itens.forEach(function(x,k){if(k===itens.length-1){var sp=document.createElement("div");sp.className="header-v98-sep";m.appendChild(sp)}var b=document.createElement("button");b.type="button";b.textContent=x[1];b.onclick=function(e){e.stopPropagation();wrap.classList.remove("open");go(x[0])};m.appendChild(b)});
+[["login-candidato","Entrar na minha conta","Acesse seu perfil e suas candidaturas","user"],["curriculo","Cadastrar currículo","Crie ou atualize seu currículo","file"],["candidaturas","Minhas candidaturas","Acompanhe seus processos seletivos","file"],["vagas-salvas","Vagas salvas","Veja suas oportunidades favoritas","heart"],["contato","Ajuda para candidatos","Dúvidas e suporte","help"]]:
+[["login-empresa","Entrar na minha conta","Acesse seu painel de recrutamento","building"],["cadastro-empresa","Cadastrar empresa","Crie o perfil da sua empresa","building"],["publicar","Publicar vaga","Encontre os profissionais certos","plus"],["painel-empresa","Minhas vagas","Acompanhe e gerencie suas vagas","briefcase"],["candidatos-empresa","Candidaturas","Organize seus processos seletivos","users"],["planos","Planos e pagamentos","Conheça os recursos para sua empresa","card"],["contato","Ajuda para empresas","Dúvidas e suporte","help"]];
+itens.forEach(function(x,k){if(k===2||k===itens.length-1){var sp=document.createElement("div");sp.className="header-v98-sep";m.appendChild(sp)}var b=document.createElement("button");b.type="button";if(k===0)b.className="em-account-primary";b.innerHTML='<span class="em-account-icon">'+icon(x[3])+'</span><span class="em-account-copy"><strong>'+x[1]+'</strong><small>'+x[2]+'</small></span><svg class="em-account-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="m9 5 7 7-7 7"/></svg>';b.onclick=function(e){e.stopPropagation();wrap.classList.remove("open");btn.setAttribute("aria-expanded","false");go(x[0])};m.appendChild(b)});
+btn.removeAttribute("onclick");btn.setAttribute("aria-haspopup","true");btn.setAttribute("aria-expanded","false");btn.innerHTML=icon(type==="cand"?"user":"building")+'<span>'+(type==="cand"?"Área do candidato":"Área da empresa")+'</span><svg class="em-trigger-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>';
+wrap.addEventListener("keydown",function(e){if(e.key==="Escape"){wrap.classList.remove("open");btn.setAttribute("aria-expanded","false");btn.focus()}});
+wrap.addEventListener("focusout",function(e){if(!wrap.contains(e.relatedTarget)){wrap.classList.remove("open");btn.setAttribute("aria-expanded","false")}});
 wrap.appendChild(m);
 btn.addEventListener("click",function(e){e.preventDefault();e.stopPropagation();document.querySelectorAll(".header-v98-area").forEach(function(w){if(w!==wrap)w.classList.remove("open")});wrap.classList.toggle("open")});
 }
 function instalar(){
 var cand=findButton(["candidato"]);
 var emp=findButton(["empresa"]);
-if(cand){cand.textContent="👤 Área do candidato ▾";menu(cand,"cand")}
-if(emp){emp.textContent="▦ Área da empresa ▾";menu(emp,"emp")}
+if(cand){menu(cand,"cand")}
+if(emp){menu(emp,"emp")}
 }
 document.addEventListener("click",function(){document.querySelectorAll(".header-v98-area").forEach(function(w){w.classList.remove("open")})});
 if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",instalar);else instalar();
