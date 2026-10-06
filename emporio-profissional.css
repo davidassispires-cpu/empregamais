@@ -211,3 +211,5 @@ html body #pagina-home #listaVagas .em-lista-titulo{font-size:21px!important;fon
 html body #pagina-home #listaVagas .em-lista-resumo{font-size:14px!important;font-weight:400!important;color:#484e57!important;line-height:21px!important;max-height:42px!important}
 html body #pagina-home #listaVagas .em-lista-data,html body #pagina-home #listaVagas .em-lista-data span,html body #pagina-home #listaVagas .em-lista-data b{font-size:11px!important;font-weight:400!important}
 html body #pagina-home #filtrosLateral label,html body #pagina-home #filtrosLateral .campo,html body #pagina-home #filtrosLateral .limpar-link,html body #pagina-home #listaVagas .em-lista-ver{font-size:13px!important;font-weight:500!important}
+
+html body :is(#em-type-a#em-type-b#em-type-c#em-type-d,#pagina-home) #filtrosLateral :is(label,.campo,.limpar-link){font-size:13px!important;font-weight:500!important;line-height:1.4!important}
