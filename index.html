@@ -17304,6 +17304,28 @@ return;
 }
 if(
 pagina ===
+"perfil-empresa"
+){
+if(
+!empresaEstaLogada()
+){
+mostrarPagina(
+"login-empresa"
+);
+return;
+}
+mostrarPagina(
+"perfil-empresa"
+);
+setTimeout(function(){
+try{if(typeof preencherDadosEmpresaEM==="function")preencherDadosEmpresaEM();}catch(e){}
+try{if(typeof preencherPerfilEmpresaEM==="function")preencherPerfilEmpresaEM();}catch(e){}
+try{if(typeof preencherFormularioEmpresaEM==="function")preencherFormularioEmpresaEM();}catch(e){}
+},30);
+return;
+}
+if(
+pagina ===
 "verificacao-empresa"
 ){
 if(
