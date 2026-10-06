@@ -1037,3 +1037,45 @@ html body #pagina-home #listaVagas article.em-lista-final .em-lista-ver{display:
  html body #pagina-home #listaVagas article.em-lista-final .em-lista-data{grid-column:1!important;grid-row:2!important;justify-self:start!important;text-align:left!important}
  html body #pagina-home #listaVagas article.em-lista-final .em-lista-acoes{grid-column:2!important;grid-row:2!important;width:150px!important}
 }
+
+/* Recent jobs footer v22: low competition stacked above applications; date + CTA isolated right */
+html body #pagina-home #listaVagas article.em-lista-final .em-lista-acoes{
+  display:grid!important;
+  grid-template-columns:minmax(110px,1fr) auto auto!important;
+  grid-template-rows:auto auto!important;
+  column-gap:12px!important;
+  row-gap:3px!important;
+  align-items:end!important;
+  min-height:52px!important;
+  padding-top:8px!important;
+}
+html body #pagina-home #listaVagas article.em-lista-final .em-pouca-concorrencia{
+  grid-column:1!important;grid-row:1!important;
+  justify-self:start!important;align-self:end!important;
+  position:static!important;margin:0!important;
+}
+html body #pagina-home #listaVagas article.em-lista-final .em-lista-candidaturas{
+  grid-column:1!important;grid-row:2!important;
+  justify-self:start!important;align-self:start!important;
+  position:static!important;margin:0!important;white-space:nowrap!important;
+}
+html body #pagina-home #listaVagas article.em-lista-final .em-lista-data{
+  grid-column:2!important;grid-row:1 / span 2!important;
+  position:static!important;margin:0!important;
+  align-self:center!important;justify-self:end!important;
+  white-space:nowrap!important;text-align:right!important;
+}
+html body #pagina-home #listaVagas article.em-lista-final .em-lista-ver{
+  grid-column:3!important;grid-row:1 / span 2!important;
+  position:static!important;margin:0!important;
+  align-self:center!important;justify-self:end!important;
+}
+html body #pagina-home #listaVagas article.em-lista-final .em-lista-fav{display:none!important}
+@media(max-width:720px){
+ html body #pagina-home #listaVagas article.em-lista-final .em-lista-acoes{
+  grid-template-columns:1fr auto!important;
+  grid-template-rows:auto auto auto!important;
+ }
+ html body #pagina-home #listaVagas article.em-lista-final .em-lista-data{grid-column:2!important;grid-row:1 / span 2!important}
+ html body #pagina-home #listaVagas article.em-lista-final .em-lista-ver{grid-column:1 / -1!important;grid-row:3!important;width:100%!important}
+}
