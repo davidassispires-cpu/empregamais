@@ -188,3 +188,20 @@ html body #cvModalV86 .cv86-modal-box{position:relative!important;width:100%!imp
 html body #cvModalV86 .cv86-modal-close{position:absolute!important;top:10px!important;right:14px!important;width:32px!important;height:32px!important;font-size:24px!important;border:0!important;background:transparent!important;cursor:pointer!important}
 html body .rodape .rodape-grid h3{font-size:17px!important;line-height:1.4!important;margin:0 0 12px!important}
 @media(max-width:650px){html body #cvModalV86.cv86-modal{padding:12px!important}html body #cvModalV86 .cv86-modal-box{padding:40px 20px 24px!important}}
+
+/* Filtro com hierarquia clara e campos compactos. */
+html body #pagina-home #filtrosLateral{background:#fff!important;border:1px solid #e2e7ef!important;border-radius:16px!important;padding:20px!important;box-shadow:0 6px 24px rgba(24,49,78,.05)!important;overflow:hidden!important}
+html body #pagina-home #filtrosLateral::before,html body #pagina-home #filtrosLateral::after,html body #pagina-home #filtrosLateral label::before,html body #pagina-home #filtrosLateral label::after,html body #pagina-home #filtrosLateral h3::before,html body #pagina-home #filtrosLateral h3::after{content:none!important;display:none!important}
+html body #pagina-home #filtrosLateral .filtros-cab{display:flex!important;align-items:center!important;justify-content:space-between!important;gap:10px!important;background:#fff!important;margin:0 0 20px!important;padding:0 0 16px!important;border:0!important;border-bottom:1px solid #e9edf3!important;border-radius:0!important}
+html body #pagina-home #filtrosLateral h3{font-size:18px!important;font-weight:700!important;line-height:1.4!important;color:#173b64!important;margin:0!important;padding:0!important;letter-spacing:-.3px!important}
+html body #pagina-home #filtrosLateral .limpar-link{font-size:11px!important;font-weight:600!important;color:#64748b!important;background:#f4f6f9!important;border:1px solid #e6eaf0!important;border-radius:7px!important;padding:6px 9px!important;cursor:pointer!important}
+html body #pagina-home #filtrosLateral .limpar-link:hover{background:#edf3fb!important;color:#173b64!important}
+html body #pagina-home #filtrosLateral .grupo{margin:0 0 16px!important;padding:0!important}
+html body #pagina-home #filtrosLateral .grupo:last-child{margin-bottom:0!important}
+html body #pagina-home #filtrosLateral label{display:block!important;padding:0!important;margin:0 0 7px!important;font-size:12px!important;line-height:1.4!important;font-weight:600!important;color:#526176!important}
+html body #pagina-home #filtrosLateral .campo{width:100%!important;box-sizing:border-box!important;min-height:42px!important;height:42px!important;border:1px solid #e0e6ee!important;border-radius:9px!important;background:#f8fafc!important;color:#243b55!important;font-size:13px!important;font-weight:400!important;padding:0 12px!important;box-shadow:none!important;transition:border-color .18s,box-shadow .18s!important}
+html body #pagina-home #filtrosLateral .campo::placeholder{color:#94a0b0!important}
+html body #pagina-home #filtrosLateral .campo:hover{border-color:#b9c9dc!important}
+html body #pagina-home #filtrosLateral .campo:focus{outline:2px solid transparent!important;border-color:#5087bc!important;background:#fff!important;box-shadow:0 0 0 3px rgba(80,135,188,.12)!important}
+html body #pagina-home #filtrosLateral select.campo{appearance:none!important;padding-right:32px!important;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='none' stroke='%2364758b' stroke-width='1.7' viewBox='0 0 24 24'%3E%3Cpath d='m7 10 5 5 5-5'/%3E%3C/svg%3E")!important;background-repeat:no-repeat!important;background-position:right 10px center!important}
+@media(max-width:900px) and (min-width:651px){html body #pagina-home #filtrosLateral{display:grid!important;grid-template-columns:1fr 1fr!important;gap:0 16px!important}html body #pagina-home #filtrosLateral .filtros-cab{grid-column:1/-1!important}}
