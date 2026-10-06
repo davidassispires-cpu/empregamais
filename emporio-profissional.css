@@ -350,3 +350,16 @@ html body #pagina-home #listaVagas article.em-lista-final .em-lista-data{grid-co
 html body #pagina-home #listaVagas article.em-lista-final .em-lista-data :is(span,b){font-size:9px!important}
 @media(max-width:650px){html body #pagina-home #listaVagas article.em-lista-final{grid-template-columns:minmax(0,1fr) 115px!important;padding:15px!important;gap:5px 10px!important}html body #pagina-home #listaVagas article.em-lista-final .em-lista-titulo{grid-column:1/-1!important;padding-right:30px!important;font-size:17px!important}html body #pagina-home #listaVagas article.em-lista-final .em-lista-data span{justify-content:center!important;gap:2px!important}}
 @media(max-width:400px){html body #pagina-home #listaVagas article.em-lista-final .em-lista-resumo{grid-column:1/-1!important;grid-row:4!important}html body #pagina-home #listaVagas article.em-lista-final .em-lista-acoes{grid-column:2!important;grid-row:5!important}html body #pagina-home #listaVagas article.em-lista-final .em-lista-data{grid-column:2!important;grid-row:6!important}}
+
+/* Logos visíveis nas prévias, preservando o card compacto. */
+html body #pagina-home #listaVagas article.em-lista-final{grid-template-columns:52px minmax(0,1fr) 135px!important;column-gap:14px!important}
+html body #pagina-home #listaVagas article.em-lista-final .em-lista-logo{display:flex!important;grid-column:1!important;grid-row:1/4!important;width:52px!important;height:52px!important;align-self:start!important}
+html body #pagina-home #listaVagas article.em-lista-final .em-lista-logo :is(img,.logo-empresa,.logo-placeholder){display:flex!important;visibility:visible!important;opacity:1!important;align-items:center!important;justify-content:center!important}
+html body #pagina-home #listaVagas article.em-lista-final .em-lista-cab{grid-column:2!important}
+html body #pagina-home #listaVagas article.em-lista-final .em-lista-titulo{grid-column:2!important}
+html body #pagina-home #listaVagas article.em-lista-final .em-lista-meta{grid-column:2/-1!important}
+html body #pagina-home #listaVagas article.em-lista-final .em-lista-resumo{grid-column:2!important}
+html body #pagina-home #listaVagas article.em-lista-final .em-lista-acoes{grid-column:3!important}
+html body #pagina-home #listaVagas article.em-lista-final .em-lista-data{grid-column:3!important}
+@media(max-width:650px){html body #pagina-home #listaVagas article.em-lista-final{grid-template-columns:42px minmax(0,1fr) 110px!important;column-gap:10px!important}html body #pagina-home #listaVagas article.em-lista-final .em-lista-logo{width:42px!important;height:42px!important;grid-row:1/3!important}html body #pagina-home #listaVagas article.em-lista-final .em-lista-titulo{grid-column:2/-1!important}html body #pagina-home #listaVagas article.em-lista-final .em-lista-meta{grid-column:1/-1!important}html body #pagina-home #listaVagas article.em-lista-final .em-lista-resumo{grid-column:1/3!important}}
+@media(max-width:400px){html body #pagina-home #listaVagas article.em-lista-final .em-lista-resumo{grid-column:1/-1!important}html body #pagina-home #listaVagas article.em-lista-final .em-lista-acoes,html body #pagina-home #listaVagas article.em-lista-final .em-lista-data{grid-column:3!important}}
