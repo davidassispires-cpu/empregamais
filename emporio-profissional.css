@@ -1234,3 +1234,13 @@ html body #pagina-home #listaVagas article.em-lista-final .em-lista-ver{
  html body #pagina-home #listaVagas article.em-lista-final .em-lista-data{right:15px!important;bottom:66px!important}
  html body #pagina-home #listaVagas article.em-lista-final .em-lista-ver{left:15px!important;right:15px!important;bottom:12px!important;width:auto!important}
 }
+
+
+/* Tipografia global v20 — Inter em todo o portal */
+html,body,body *,
+body *::before,body *::after{
+  font-family:"Inter","Segoe UI",Arial,sans-serif!important;
+}
+input,select,textarea,button{
+  font-family:"Inter","Segoe UI",Arial,sans-serif!important;
+}
