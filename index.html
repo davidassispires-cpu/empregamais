@@ -40741,4 +40741,23 @@ window.abrirPerfilEmpresaPainelEM=abrirPerfil;
 #btnLoginEmpresaProfissionalEM[aria-busy="true"]{display:flex!important;align-items:center!important;justify-content:center!important;gap:9px!important;cursor:wait!important;opacity:.9!important}
 .login-spinner-em{width:17px;height:17px;border:2px solid rgba(255,255,255,.45);border-top-color:#fff;border-radius:50%;animation:emLoginSpin .7s linear infinite}
 @keyframes emLoginSpin{to{transform:rotate(360deg)}}
-</style><script id="em-restaura-sessao-empresa-v82">(function(){try{if(localStorage.getItem("empregaMaisPapel")==="empresa"){["empresaNome","empresaCnpj","empresaEmail"].forEach(function(k){var v=localStorage.getItem(k);if(v&&!sessionStorage.getItem(k))sessionStorage.setItem(k,v)});sessionStorage.setItem("empregaMaisPapel","empresa")}}catch(e){}})();</script></body></html>
+</style><script id="em-restaura-sessao-empresa-v82">(function(){try{if(localStorage.getItem("empregaMaisPapel")==="empresa"){["empresaNome","empresaCnpj","empresaEmail"].forEach(function(k){var v=localStorage.getItem(k);if(v&&!sessionStorage.getItem(k))sessionStorage.setItem(k,v)});sessionStorage.setItem("empregaMaisPapel","empresa")}}catch(e){}})();</script><script id="em-voltar-visao-geral-v83">
+(function(){
+function voltar(){
+ try{if(typeof window.irPara==="function")window.irPara("painel-empresa");}catch(e){}
+ setTimeout(function(){
+  var pg=document.getElementById("pagina-painel-empresa");
+  if(pg){pg.classList.remove("em-pr-subtela-v3");pg.classList.add("ativa");}
+  try{if(typeof window.voltarPainelRecrutadorV3==="function")window.voltarPainelRecrutadorV3();}catch(e){}
+  try{if(typeof window.atualizarPainelRecrutadorModernoV1==="function")window.atualizarPainelRecrutadorModernoV1();}catch(e){}
+  window.scrollTo(0,0);
+ },40);
+}
+document.addEventListener("click",function(e){
+ var b=e.target.closest("#pagina-perfil-empresa .empresa-perfil-voltar-em");
+ if(!b)return;
+ e.preventDefault();e.stopImmediatePropagation();voltar();
+},true);
+window.voltarVisaoGeralEmpresaEM=voltar;
+})();
+</script></body></html>
