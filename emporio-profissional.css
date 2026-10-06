@@ -954,3 +954,9 @@ html body #pagina-home #listaVagas article.em-lista-final .em-lista-logo{
 @media(max-width:650px){
  html body #pagina-home #listaVagas article.em-lista-final .em-lista-logo{top:3px!important}
 }
+
+
+/* Vagas recentes v18: logos somente nas vagas em destaque. */
+html body #pagina-home #listaVagas article.em-lista-final .em-lista-logo{
+  display:none!important;
+}
