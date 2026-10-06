@@ -82,3 +82,5 @@ html body #pagina-home #listaVagas .em-lista-salario{grid-column:1!important;gri
 html body #pagina-home #listaVagas .em-lista-resumo{grid-row:5!important}
 html body #pagina-home #listaVagas .em-lista-data{grid-column:1!important;grid-row:6!important;justify-self:start!important}
 html body #pagina-home #listaVagas .em-lista-acoes{grid-column:1!important;grid-row:7!important;justify-self:start!important}}
+
+html body #pagina-home #listaVagas .em-lista-resumo{min-height:0!important}
