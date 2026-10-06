@@ -40760,4 +40760,56 @@ document.addEventListener("click",function(e){
 },true);
 window.voltarVisaoGeralEmpresaEM=voltar;
 })();
+</script><style id="em-perfil-central-v90">
+#pagina-perfil-empresa{background:#f4f8fc!important}
+#pagina-perfil-empresa .empresa-perfil-admin-em{max-width:1180px!important;padding:30px 24px 70px!important}
+#pagina-perfil-empresa .empresa-perfil-head-em{padding:24px 26px!important;background:linear-gradient(135deg,#0b3d69,#0875d1)!important;border-radius:18px!important;color:#fff!important;box-shadow:0 12px 30px rgba(12,76,132,.14)!important}
+#pagina-perfil-empresa .empresa-perfil-head-em h2{color:#fff!important;font-size:28px!important;margin:0 0 6px!important}
+#pagina-perfil-empresa .empresa-perfil-head-em p{color:#dbeeff!important;margin:0!important}
+#pagina-perfil-empresa .empresa-perfil-preview-em{background:#fff!important;color:#0868bd!important;border:0!important}
+#pagina-perfil-empresa .empresa-perfil-tabs-em{margin-top:18px!important}
+#pagina-perfil-empresa #emV67Progresso{padding:20px 22px!important;border-radius:15px!important;border:1px solid #dbe7f1!important;background:#fff!important}
+#pagina-perfil-empresa #emV67Progresso .em-v67-progresso-top strong{font-size:17px!important}
+#pagina-perfil-empresa .em-v67-bar{height:10px!important;border-radius:20px!important;background:#e5edf5!important;overflow:hidden!important}
+#pagina-perfil-empresa .em-v67-bar i{height:100%!important;background:linear-gradient(90deg,#0875d1,#21a366)!important;border-radius:20px!important}
+#pagina-perfil-empresa #emV80Nav{position:sticky;top:74px;z-index:8;display:grid!important;grid-template-columns:repeat(6,1fr)!important;gap:6px!important;padding:7px!important}
+#pagina-perfil-empresa #emV80Nav button{text-align:center!important;padding:12px 6px!important}
+#pagina-perfil-empresa #formPerfilPublicoEM{padding:24px!important;border-radius:16px!important;border:1px solid #dbe7f1!important;box-shadow:0 7px 22px rgba(24,63,91,.05)!important}
+#pagina-perfil-empresa #formPerfilPublicoEM .empresa-perfil-grid-em{grid-template-columns:1fr 1fr!important;gap:18px!important}
+#pagina-perfil-empresa .empresa-perfil-campo-em label{font-weight:700!important;color:#173d5d!important;margin-bottom:7px!important}
+#pagina-perfil-empresa .empresa-perfil-campo-em input,#pagina-perfil-empresa .empresa-perfil-campo-em textarea,#pagina-perfil-empresa .empresa-perfil-campo-em select{border:1px solid #cbdbe8!important;border-radius:10px!important;background:#fff!important;min-height:46px!important}
+#pagina-perfil-empresa .empresa-perfil-campo-em textarea{min-height:120px!important}
+#pagina-perfil-empresa .em-v81-status{width:100%!important;margin:16px 0!important;border-left:4px solid #f3a51f!important}
+#pagina-perfil-empresa .em-v90-selo{display:flex;align-items:center;gap:12px;margin-top:12px;padding:13px 15px;border-radius:11px;background:#f5f8fb;color:#657d91;font-size:12px}
+#pagina-perfil-empresa .em-v90-selo i{width:34px;height:34px;border-radius:50%;display:grid;place-items:center;background:#e7eef5;color:#7990a2;font-style:normal;font-size:17px}
+#pagina-perfil-empresa .em-v90-selo.aprovado{background:#eaf8f0;color:#167a49}.em-v90-selo.aprovado i{background:#d5f1e1;color:#15945a}
+#pagina-perfil-empresa .empresa-perfil-previa-em .selo-verificada,#pagina-perfil-empresa .empresa-perfil-previa-em [class*="verificada"]{display:none!important}
+#pagina-perfil-empresa.em-verificada .empresa-perfil-previa-em .selo-verificada,#pagina-perfil-empresa.em-verificada .empresa-perfil-previa-em [class*="verificada"]{display:inline-flex!important}
+@media(max-width:850px){#pagina-perfil-empresa #emV80Nav{grid-template-columns:repeat(2,1fr)!important;position:static}#pagina-perfil-empresa #formPerfilPublicoEM .empresa-perfil-grid-em{grid-template-columns:1fr!important}}
+</style>
+<script id="em-perfil-central-v90-js">
+(function(){
+if(window.__EM_V90)return;window.__EM_V90=true;
+function status(){
+ var p=document.getElementById('pagina-perfil-empresa');if(!p)return;
+ var st='';try{st=localStorage.getItem('empregaMaisVerificacaoStatus')||''}catch(e){}
+ p.classList.toggle('em-verificada',st==='aprovada'||st==='verificada');
+ var box=document.getElementById('emV90Selo');if(!box){
+  var alvo=document.getElementById('emV81Status');if(alvo){box=document.createElement('div');box.id='emV90Selo';box.className='em-v90-selo';alvo.appendChild(box)}
+ }
+ if(box){
+  if(st==='aprovada'||st==='verificada'){box.className='em-v90-selo aprovado';box.innerHTML='<i>✓</i><span><strong>Empresa verificada</strong><br>Cadastro aprovado. O selo está liberado no perfil e nas áreas elegíveis.</span>'}
+  else if(st==='em_analise'){box.className='em-v90-selo';box.innerHTML='<i>◷</i><span><strong>Verificação em análise</strong><br>Seu cadastro foi enviado. O selo será liberado somente após a aprovação.</span>'}
+  else{box.className='em-v90-selo';box.innerHTML='<i>✓</i><span><strong>Selo de empresa verificada</strong><br>Complete 100% do Perfil Empresarial e envie para análise para solicitar o selo.</span>'}
+ }
+ document.querySelectorAll('.empresa-perfil-previa-em').forEach(function(x){if(!(st==='aprovada'||st==='verificada'))x.querySelectorAll('span,small,b,strong').forEach(function(n){if(/verificada/i.test(n.textContent||''))n.style.display='none'})});
+}
+function renomear(){
+ var h=document.querySelector('#pagina-perfil-empresa .empresa-perfil-head-em h2');if(h)h.textContent='Perfil Empresarial';
+ var p=document.querySelector('#pagina-perfil-empresa .empresa-perfil-head-em p');if(p)p.textContent='Complete as informações da sua empresa, acompanhe o progresso e solicite a verificação do perfil.';
+ var back=document.querySelector('#pagina-perfil-empresa .empresa-perfil-voltar-em');if(back){back.textContent='← Voltar à Visão geral';back.onclick=function(){irPara('painel-empresa');setTimeout(function(){try{renderizarPainelEmpresa()}catch(e){}},30)}}
+ status();
+}
+if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',renomear);else renomear();window.addEventListener('pageshow',renomear);setTimeout(renomear,500);
+})();
 </script></body></html>
