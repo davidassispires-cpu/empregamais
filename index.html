@@ -40590,4 +40590,56 @@ html body #contaEmpresaTopo #menuContaEmpresa>button.sair .menu-icone-v52{backgr
 html body #contaEmpresaTopo #menuContaEmpresa>button.sair .menu-item-texto-v143 strong,html body #contaEmpresaTopo #menuContaEmpresa>button.sair .menu-item-texto-v143 small{color:#e4342c!important}
 html body #contaEmpresaTopo #menuContaEmpresa>button.sair:after{content:"›";font-size:28px;line-height:1;color:#ef332d;margin-left:auto}
 @media(max-width:520px){html body #contaEmpresaTopo #menuContaEmpresa{left:12px!important;right:12px!important;width:auto!important;max-width:none!important}html body #contaEmpresaTopo .menu-empresa-identidade-v140{min-height:132px!important;padding:22px 18px!important}html body #contaEmpresaTopo .menu-empresa-identidade-texto-v140 strong{font-size:17px!important}}
-</style></body></html>
+</style><style id="em-perfil-etapas-v80">
+#pagina-perfil-empresa .em-v80-nav{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 16px;padding:8px;background:#fff;border:1px solid #dce6ef;border-radius:14px;box-shadow:0 5px 18px rgba(23,62,89,.04)}
+#pagina-perfil-empresa .em-v80-nav button{border:0;background:transparent;color:#60798c;padding:10px 13px;border-radius:9px;font:700 12px Inter,Arial;cursor:pointer}
+#pagina-perfil-empresa .em-v80-nav button.ativo{background:#eaf4ff;color:#0871d1}
+#pagina-perfil-empresa .em-v80-etapa-head{grid-column:1/-1;padding:4px 0 12px;border-bottom:1px solid #e8eef3;margin-bottom:2px}
+#pagina-perfil-empresa .em-v80-etapa-head strong{display:block;color:#123b62;font-size:18px}
+#pagina-perfil-empresa .em-v80-etapa-head span{display:block;margin-top:4px;color:#7890a2;font-size:12px}
+#pagina-perfil-empresa .em-v80-hidden{display:none!important}
+#pagina-perfil-empresa .em-v80-acoes{display:flex;justify-content:space-between;gap:10px;margin-top:15px}
+#pagina-perfil-empresa .em-v80-acoes button{min-height:42px;padding:0 17px;border-radius:9px;border:1px solid #bcd2e5;background:#fff;color:#155f9d;font-weight:700;cursor:pointer}
+#pagina-perfil-empresa .em-v80-acoes button.em-v80-next{margin-left:auto;background:#0874d1;border-color:#0874d1;color:#fff}
+</style>
+<script id="em-perfil-etapas-v80-js">
+(function(){
+if(window.__EM_V80)return;window.__EM_V80=true;
+var etapas=[
+{n:"Identidade",ids:["perfilNomeEM","perfilSegmentoEM","perfilPorteEM","perfilFundacaoEM","perfilSloganEM"],d:"Nome, segmento, porte e apresentação principal da empresa."},
+{n:"Sobre",ids:["perfilSobreEM","perfilMissaoEM","perfilVisaoEM","perfilValoresEM","perfilCulturaEM","perfilCarreiraEM","perfilAmbienteEM"],d:"História, propósito, cultura e ambiente de trabalho."},
+{n:"Localização",ids:["perfilCidadeEM","perfilUfEM","perfilModalidadesEM","perfilAreasEM"],d:"Onde a empresa atua e quais modelos de trabalho oferece."},
+{n:"Contato",ids:["perfilSiteEM","perfilLinkedinEM","perfilInstagramEM","perfilFacebookEM","perfilVideoEM"],d:"Canais oficiais e presença digital da empresa."},
+{n:"Benefícios",ids:["perfilBeneficiosEM"],d:"Benefícios e diferenciais oferecidos aos profissionais."},
+{n:"Verificação",ids:[],d:"Revise os dados públicos e os dados confidenciais da conta antes de concluir."}
+],atual=0;
+function campo(id){var x=document.getElementById(id);return x&&x.closest(".empresa-perfil-campo-em")}
+function mostrar(i){
+ atual=Math.max(0,Math.min(etapas.length-1,i));
+ var f=document.getElementById("formPerfilPublicoEM");if(!f)return;
+ f.querySelectorAll(".empresa-perfil-campo-em").forEach(function(x){x.classList.add("em-v80-hidden")});
+ etapas[atual].ids.forEach(function(id){var x=campo(id);if(x)x.classList.remove("em-v80-hidden")});
+ var h=document.getElementById("emV80Head");if(h)h.innerHTML="<strong>"+etapas[atual].n+"</strong><span>"+etapas[atual].d+"</span>";
+ document.querySelectorAll("#emV80Nav button").forEach(function(b,k){b.classList.toggle("ativo",k===atual)});
+ var ant=document.getElementById("emV80Ant"),prox=document.getElementById("emV80Prox");
+ if(ant)ant.style.visibility=atual?"visible":"hidden";
+ if(prox)prox.textContent=atual===etapas.length-1?"Revisar dados":"Próxima etapa";
+ if(atual===etapas.length-1){
+   f.querySelectorAll(".empresa-perfil-aviso-em,.empresa-perfil-acoes-em").forEach(function(x){x.classList.remove("em-v80-hidden")});
+ }else f.querySelectorAll(".empresa-perfil-aviso-em,.empresa-perfil-acoes-em").forEach(function(x){x.classList.add("em-v80-hidden")});
+}
+function montar(){
+ var f=document.getElementById("formPerfilPublicoEM");if(!f||document.getElementById("emV80Nav"))return;
+ f.querySelectorAll("[style*='grid-column']").forEach(function(x){if(!x.classList.contains("empresa-perfil-campo-em"))x.style.display="none"});
+ var nav=document.createElement("div");nav.id="emV80Nav";nav.className="em-v80-nav";
+ etapas.forEach(function(e,i){var b=document.createElement("button");b.type="button";b.textContent=(i+1)+". "+e.n;b.onclick=function(){mostrar(i)};nav.appendChild(b)});
+ f.parentNode.insertBefore(nav,f);
+ var grid=f.querySelector(".empresa-perfil-grid-em");if(grid){var h=document.createElement("div");h.id="emV80Head";h.className="em-v80-etapa-head";grid.insertBefore(h,grid.firstChild)}
+ var a=document.createElement("div");a.className="em-v80-acoes";a.innerHTML='<button id="emV80Ant" type="button">← Anterior</button><button id="emV80Prox" class="em-v80-next" type="button">Próxima etapa →</button>';f.appendChild(a);
+ document.getElementById("emV80Ant").onclick=function(){mostrar(atual-1)};
+ document.getElementById("emV80Prox").onclick=function(){if(atual<etapas.length-1)mostrar(atual+1);else{var t=document.getElementById("tabDadosContaEM");if(t)t.click()}};
+ mostrar(0);
+}
+if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",montar);else montar();setTimeout(montar,500);
+})();
+</script></body></html>
