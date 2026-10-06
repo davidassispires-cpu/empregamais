@@ -25254,6 +25254,15 @@ if(!destaque){
       irPara("empresa-publica",empresaObjLista.cnpj);
     };
   }
+  var avaliacaoLista = typeof avaliacoesProcessoEmpresaEM === "function" && !vagaEhConfidencialEM(vaga) ? avaliacoesProcessoEmpresaEM(vaga) : null;
+  if(avaliacaoLista && avaliacaoLista.qtd > 0){
+    var notaEmpresaLista=document.createElement("span");
+    notaEmpresaLista.className="em-lista-nota-empresa";
+    notaEmpresaLista.textContent="★ " + avaliacaoLista.media.toFixed(1).replace(".",",") + " (" + avaliacaoLista.qtd + ")";
+    notaEmpresaLista.title=avaliacaoLista.qtd + (avaliacaoLista.qtd===1 ? " avaliação verificada" : " avaliações verificadas");
+    notaEmpresaLista.setAttribute("aria-label","Nota da empresa: " + avaliacaoLista.media.toFixed(1).replace(".",",") + " de 5. " + notaEmpresaLista.title);
+    empresaLista.appendChild(notaEmpresaLista);
+  }
   cabLista.appendChild(empresaLista);
   var ehUrgenteLista=
     vaga.contratacaoUrgente===true ||
@@ -41030,4 +41039,8 @@ function montar(){var vagasSecao=document.getElementById('vagas');if(!vagasSecao
 function iniciar(){montar();var lista=document.getElementById('listaVagas');if(lista)new MutationObserver(montar).observe(lista,{childList:true});}
 if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',iniciar);else iniciar();
 })();
-</script><style id="em-card-borda-azul-v42">html body #pagina-home #listaVagas article.em-lista-final{border:1px solid #173f70!important}html body #pagina-home #listaVagas article.em-lista-final:hover{border-color:#0b2d57!important}</style></body></html>
+</script><style id="em-card-borda-azul-v42">html body #pagina-home #listaVagas article.em-lista-final{border:1px solid #173f70!important}html body #pagina-home #listaVagas article.em-lista-final:hover{border-color:#0b2d57!important}</style><style id="em-empresa-azul-nota-v43">
+html body #pagina-home #listaVagas .em-lista-empresa>span:first-child{color:#173f70!important}
+html body #pagina-home #listaVagas .em-lista-empresa .em-lista-nota-empresa{display:inline-flex!important;align-items:center;font-size:11px!important;font-weight:700!important;color:#805c12!important;white-space:nowrap;text-transform:none!important;letter-spacing:0!important}
+</style>
+</body></html>
