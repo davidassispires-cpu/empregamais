@@ -136,3 +136,18 @@ html body #pagina-cadastro-empresa .form-card form>button[type=submit]:hover{bac
  html body #pagina-cadastro-empresa .reg-section{padding:18px 14px}
  html body #pagina-cadastro-empresa .reg-fields{grid-template-columns:1fr}
 }
+
+/* Cadastro progressivo: somente uma etapa visível. */
+#formCadastroEmpresaInicial [hidden]{display:none!important}
+.reg-progress{display:flex;list-style:none;margin:0;padding:0;gap:12px}
+.reg-progress li{flex:1;display:flex;align-items:center;gap:8px;padding:12px 9px;border-radius:12px;background:#edf2f8;color:#67768c;font-size:13px;border:1px solid #e0e7f0}
+.reg-progress li span{display:grid;place-items:center;width:27px;height:27px;border-radius:50%;background:#dce5f0;font-weight:700;flex-shrink:0}
+.reg-progress li.active{background:#e7f0ff;border-color:#91b9f5;color:#174d95}
+.reg-progress li.active span{background:#2563b8;color:white}
+.reg-progress li.complete{background:#eef8f4;color:#217456}
+.reg-step-status{margin:0!important;font-size:12px!important;color:#718096!important}
+.reg-step-actions{display:flex;justify-content:flex-end;gap:12px;align-items:center}
+#formCadastroEmpresaInicial .reg-step-actions button{width:auto!important;min-width:135px;margin:0!important}
+#formCadastroEmpresaInicial .reg-step-back{background:#fff!important;color:#34506e!important;border:1px solid #d4dfeb!important;margin-right:auto!important}
+#formCadastroEmpresaInicial .reg-section h2:focus{outline:2px solid #98bdfa;outline-offset:4px}
+@media(max-width:480px){.reg-progress{gap:5px}.reg-progress li{flex-direction:column;font-size:11px;padding:8px 4px}.reg-step-actions{flex-wrap:wrap}#formCadastroEmpresaInicial .reg-step-actions button{min-width:110px}}
