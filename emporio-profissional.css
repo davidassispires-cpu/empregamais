@@ -1000,3 +1000,11 @@ html body #pagina-home #listaVagas article.em-lista-final .em-lista-data{
  html body #pagina-home #listaVagas article.em-lista-final .em-lista-data{grid-column:2!important}
  html body #pagina-home #listaVagas article.em-lista-final .em-lista-ver{grid-column:1/-1!important}
 }
+
+/* Cards de vagas: nomes das empresas sempre em maiúsculas. */
+html body #pagina-home #listaVagas article.em-lista-final .em-lista-empresa,
+html body #pagina-home #listaDestaques .destaque-zero-m6 .dz-empresa,
+html body #pagina-busca .em-lista-empresa,
+html body #pagina-vagas .em-lista-empresa,
+html body .em-lista-final .em-lista-empresa,
+html body .destaque-zero-m6 .dz-empresa{text-transform:uppercase!important;}
