@@ -1,0 +1,40 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;650;700;800&display=swap');
+:root{--azul:#165ec9;--azulEscuro:#12365d;--laranja:#f27932;--fundo:#f5f7fb;--texto:#172c45;--borda:#e2e8f0}
+html body,html body button,html body input,html body select,html body textarea{font-family:Montserrat,Arial,sans-serif!important}
+html body{background:#f5f7fb!important;color:#172c45!important}
+html body header{background:#fff!important;border-bottom:1px solid #e4eaf2!important;box-shadow:0 3px 20px #172c4508!important}
+html body button{transition:background .18s,box-shadow .18s,transform .18s}
+html body button:focus-visible,html body input:focus-visible,html body select:focus-visible{outline:3px solid #f27932!important;outline-offset:3px}
+html body #pagina-home .hero{background:linear-gradient(115deg,#102d53,#165ec9)!important;padding:64px 32px 40px!important;border-radius:0 0 36px 36px!important;position:relative;overflow:hidden}
+html body #pagina-home .hero-inner{max-width:1180px!important;margin:auto!important;padding:0!important;position:relative}
+html body #pagina-home .hero-copy-em{max-width:760px!important}
+html body #pagina-home .hero-kicker-em{color:#ffc79f!important;font-weight:700!important;font-size:12px!important;letter-spacing:2px!important}
+html body #pagina-home .hero h1{font-size:clamp(32px,4vw,54px)!important;font-weight:800!important;line-height:1.14!important;letter-spacing:-1.6px!important;color:white!important;margin:18px 0!important;max-width:780px!important}
+html body #pagina-home .hero h1 span{color:#ffbe8e!important;font-weight:800!important}
+html body #pagina-home .hero-copy-em p{color:#dce8fb!important;font-size:16px!important;line-height:1.8!important;max-width:690px!important}
+html body #pagina-home .hero-search-shell-em{margin-top:32px!important;border:1px solid #ffffff40!important;border-radius:18px!important;background:#fff!important;box-shadow:0 16px 45px #06152a30!important;overflow:visible!important}
+html body #pagina-home .hero-search-tabs-em{padding:8px 16px!important;border-bottom:1px solid #e7edf5!important}
+html body #pagina-home .hero-search-tabs-em button{font-size:13px!important;font-weight:600!important;padding:12px 16px!important;border-radius:9px!important}
+html body #pagina-home .hero-search-tabs-em button.ativo{background:#eaf1ff!important;color:#165ec9!important}
+html body #pagina-home .hero-field-em{border:1px solid #dfe7f0!important;border-radius:10px!important;background:#f8fafd!important;min-width:0!important}
+html body #pagina-home .hero-field-em label{font-size:11px!important;font-weight:700!important;color:#52637a!important}
+html body #pagina-home .hero-field-em input{font-size:14px!important;color:#172c45!important}
+html body #pagina-home .hero-search-shell-em button[class*="buscar"],html body #pagina-home .hero-search-shell-em button[class*="search-btn"]{background:#e96a25!important;color:#fff!important;border-radius:10px!important;font-weight:700!important;box-shadow:none!important}
+html body #pagina-home .hero-search-shell-em button[class*="buscar"]:hover{background:#cb5314!important}
+html body #pagina-home .hero [class*="trust"],html body #pagina-home .hero [class*="benefit"],html body #pagina-home .hero [class*="proof"]{color:#e2ecff!important}
+html body #pagina-home>section:not(.hero){max-width:1180px!important;margin:40px auto!important}
+html body #pagina-home h2{font-weight:750!important;color:#173454!important;letter-spacing:-.6px!important}
+html body #pagina-home #listaVagas{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:18px!important;min-width:0!important}
+html body #pagina-home #listaVagas>div{border:1px solid #e0e7f0!important;border-radius:16px!important;background:white!important;box-shadow:0 4px 16px #16345806!important;min-width:0!important;width:auto!important;margin:0!important;transition:box-shadow .2s,transform .2s}
+html body #pagina-home #listaVagas>div:hover{box-shadow:0 10px 28px #16345812!important;transform:translateY(-3px)}
+html body #pagina-home #listaVagas h3{font-size:17px!important;line-height:1.45!important;font-weight:700!important;color:#163458!important}
+html body #pagina-home #listaDestaques>div{border-radius:16px!important;border:1px solid #dce5f2!important;box-shadow:0 6px 20px #1634580a!important}
+html body #pagina-home #listaDestaques h3{font-size:17px!important;line-height:1.4!important}
+html body #filtrosLateral{border:1px solid #e1e8f1!important;border-radius:16px!important;background:#fff!important;padding:22px!important}
+html body input.campo,html body select.campo,html body textarea.campo{border:1px solid #d8e2ed!important;border-radius:10px!important;background:#fff!important;padding:12px!important}
+html body .filtro-pill{border-radius:9px!important;background:#fff!important;border:1px solid #dce5ef!important;font-size:12px!important;font-weight:600!important}
+html body footer{background:#102d53!important;color:#dbe5f5!important;padding-top:40px!important}
+html body footer h3{color:#fff!important}
+html body footer button{color:#dbe5f5!important}
+@media(max-width:900px){html body #pagina-home #listaVagas{grid-template-columns:1fr!important}html body #pagina-home>section:not(.hero){margin:28px 20px!important}html body #pagina-home .hero{padding:40px 20px 30px!important}html body #pagina-home .hero h1{letter-spacing:-1px!important}html body #pagina-home .hero-search-tabs-em{display:flex!important;overflow:auto!important;gap:4px!important}html body #pagina-home .hero-search-tabs-em button{white-space:nowrap!important;padding:10px!important}}
+@media(prefers-reduced-motion:reduce){html body button,html body #listaVagas>div{transition:none!important;transform:none!important}}
