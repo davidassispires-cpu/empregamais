@@ -220,3 +220,5 @@ html body :is(#em-weight-a#em-weight-b#em-weight-c#em-weight-d,*) :is(p,input,se
 html body #pagina-home #listaVagas .em-lista-resumo{font-weight:500!important}
 html body :is(#em-weight-a#em-weight-b#em-weight-c#em-weight-d,*) :is(button,label){font-weight:600!important}
 html body #pagina-home #listaVagas .em-lista-titulo{font-weight:700!important}
+
+html body :is(#em-type-a#em-type-b#em-type-c#em-type-d,#pagina-home) #filtrosLateral :is(label,.campo,.limpar-link){font-weight:600!important}
