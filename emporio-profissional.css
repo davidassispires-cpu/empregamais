@@ -261,3 +261,38 @@ html body :is(#em-type-a#em-type-b#em-type-c#em-type-d,#pagina-home) #filtrosLat
 
 /* Tipografia única do portal — Inter */
 :root body, :root body * {font-family:'Inter',Arial,sans-serif!important;}
+
+/* Vagas em destaque: referência aprovada, grade larga e responsiva. */
+html body #pagina-home #listaDestaques{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:22px!important;width:100%!important;max-width:none!important;overflow:visible!important;padding:4px 0 24px!important}
+html body #pagina-home #listaDestaques>.destaque-zero-m6{width:100%!important;min-width:0!important;max-width:none!important;height:auto!important;min-height:0!important;max-height:none!important;padding:0!important;border:1px solid #dce7f4!important;border-radius:18px!important;background:#fff!important;box-shadow:0 7px 24px rgba(24,62,106,.045)!important;transition:transform .2s ease,box-shadow .2s ease!important}
+html body #pagina-home #listaDestaques>.destaque-zero-m6:hover{transform:translateY(-5px)!important;box-shadow:0 15px 34px rgba(24,62,106,.12)!important}
+html body #pagina-home #listaDestaques .destaque-zero-m6 *{font-family:Montserrat,Arial,sans-serif!important;box-sizing:border-box!important}
+html body #pagina-home #listaDestaques .destaque-zero-m6 .dz-cab{height:auto!important;min-height:158px!important;max-height:none!important;flex:0 0 auto!important;padding:66px 24px 18px!important;grid-template-columns:78px minmax(0,1fr)!important;gap:18px!important;background:#fff!important}
+html body #pagina-home #listaDestaques .dz-cab:before{display:none!important}
+html body #pagina-home #listaDestaques .destaque-zero-m6 .dz-logo{width:78px!important;height:78px!important;border-radius:13px!important;overflow:hidden!important;position:static!important;background:#edf5ff!important;border:1px solid #e3edfa!important;box-shadow:none!important}
+html body #pagina-home #listaDestaques .destaque-zero-m6 .dz-logo .logo-placeholder{background:#edf5ff!important;color:#1664d9!important;font-size:28px!important}
+html body #pagina-home #listaDestaques .destaque-zero-m6 .dz-cab-texto{padding:0!important;overflow:visible!important}
+html body #pagina-home #listaDestaques .destaque-zero-m6 .dz-empresa{font-size:13px!important;font-weight:500!important;color:#60738e!important;margin-bottom:7px!important;text-decoration:none!important}
+html body #pagina-home #listaDestaques .destaque-zero-m6 .dz-titulo{position:static!important;font-size:22px!important;font-weight:750!important;line-height:1.28!important;text-transform:none!important;color:#092d58!important;white-space:normal!important;word-break:normal!important;overflow-wrap:normal!important;overflow:visible!important;max-height:none!important;display:block!important;margin:0!important}
+html body #pagina-home #listaDestaques .destaque-zero-m6 .dz-selo{position:absolute!important;top:20px!important;left:24px!important;right:auto!important;width:auto!important;height:30px!important;padding:0 11px!important;border:0!important;border-radius:9px!important;background:#fff0d8!important;color:#b86405!important;box-shadow:none!important;gap:7px!important}
+html body #pagina-home #listaDestaques .dz-selo svg{width:17px!important;height:17px!important;fill:#fa9b21!important;stroke:none!important}
+html body #pagina-home #listaDestaques .dz-selo strong{font-size:11px!important;text-transform:none!important;letter-spacing:0!important}
+html body #pagina-home #listaDestaques .dz-verificada{left:auto!important;right:24px!important;top:20px!important}
+html body #pagina-home #listaDestaques .destaque-zero-m6 .dz-corpo{padding:0 24px 22px!important;display:grid!important;grid-template-columns:minmax(0,1fr) minmax(130px,.8fr)!important;gap:16px!important;align-content:start!important;flex:1!important}
+html body #pagina-home #listaDestaques .dz-area{grid-column:1/-1!important;justify-self:start!important;min-height:30px!important;height:auto!important;padding:6px 11px!important;margin:0!important;width:auto!important;border:0!important;border-radius:20px!important;background:#eaf4ff!important;color:#125aaa!important;justify-content:flex-start!important}
+html body #pagina-home #listaDestaques .dz-area strong{font-size:12px!important}
+html body #pagina-home #listaDestaques .dz-infos{grid-column:1/-1!important;display:flex!important;flex-wrap:wrap!important;gap:12px 18px!important;padding:4px 0!important;margin:0!important;border:0!important}
+html body #pagina-home #listaDestaques .dz-info{width:auto!important;flex:0 1 auto!important;padding:0!important;border:0!important;gap:7px!important;font-size:12px!important;line-height:1.5!important;color:#536b89!important;text-transform:none!important}
+html body #pagina-home #listaDestaques .dz-info svg{width:18px!important;height:18px!important;stroke:#1664b8!important}
+html body #pagina-home #listaDestaques .dz-resumo{grid-column:1/-1!important;margin:0!important;padding:0 0 18px!important;color:#60738e!important;font-size:13px!important;line-height:1.65!important;display:-webkit-box!important;-webkit-line-clamp:2!important;-webkit-box-orient:vertical!important;overflow:hidden!important;height:62px!important;min-height:0!important;max-height:62px!important;border-bottom:1px solid #e5edf6!important}
+html body #pagina-home #listaDestaques .dz-salario{grid-column:1!important;align-self:center!important;background:none!important;border:0!important;padding:0!important;margin:0!important;min-height:48px!important;height:auto!important;box-shadow:none!important}
+html body #pagina-home #listaDestaques .dz-money{display:none!important}
+html body #pagina-home #listaDestaques .dz-salario small{font-size:11px!important;color:#7a8ca3!important;margin-bottom:5px!important}
+html body #pagina-home #listaDestaques .dz-salario strong{color:#059669!important;font-size:23px!important;line-height:1.25!important}
+html body #pagina-home #listaDestaques .dz-botao{grid-column:2!important;width:100%!important;margin:0!important;height:47px!important;align-self:center!important;background:#1463e7!important;border-radius:10px!important;box-shadow:0 4px 10px rgba(20,99,231,.12)!important;color:#fff!important;font-size:13px!important}
+html body #pagina-home #listaDestaques .dz-botao:hover{background:#0c50c5!important}
+html body #pagina-home #listaDestaques .dz-botao:focus-visible{outline:3px solid #93baf8!important;outline-offset:3px!important}
+html body #pagina-home #listaDestaques .dz-urgente{grid-column:1/-1!important}
+@media(max-width:760px){html body #pagina-home #listaDestaques{grid-template-columns:1fr!important;gap:16px!important}html body #pagina-home #listaDestaques .destaque-zero-m6 .dz-titulo{font-size:20px!important}}
+@media(max-width:400px){html body #pagina-home #listaDestaques .destaque-zero-m6 .dz-cab{padding-left:16px!important;padding-right:16px!important;grid-template-columns:60px minmax(0,1fr)!important;gap:12px!important}html body #pagina-home #listaDestaques .destaque-zero-m6 .dz-logo{width:60px!important;height:60px!important}html body #pagina-home #listaDestaques .destaque-zero-m6 .dz-corpo{padding-left:16px!important;padding-right:16px!important;grid-template-columns:1fr!important}html body #pagina-home #listaDestaques .dz-botao{grid-column:1!important}html body #pagina-home #listaDestaques .dz-salario strong{font-size:21px!important}}
+@media(prefers-reduced-motion:reduce){html body #pagina-home #listaDestaques>.destaque-zero-m6{transition:none!important}html body #pagina-home #listaDestaques>.destaque-zero-m6:hover{transform:none!important}}
