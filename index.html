@@ -25263,6 +25263,12 @@ if(!destaque){
     notaEmpresaLista.setAttribute("aria-label","Nota da empresa: " + avaliacaoLista.media.toFixed(1).replace(".",",") + " de 5. " + notaEmpresaLista.title);
     empresaLista.appendChild(notaEmpresaLista);
   }
+  // Demonstração temporária autorizada: remover este bloco após aprovação visual.
+  var atividadeDemoLista=document.createElement("span");
+  atividadeDemoLista.className="em-recrutamento-demo";
+  atividadeDemoLista.title="Demonstração visual: atividade ainda não validada";
+  atividadeDemoLista.innerHTML='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 12h4l3-7 4 14 3-7h4"/></svg><span>Recrutamento ativo</span>';
+  empresaLista.appendChild(atividadeDemoLista);
   cabLista.appendChild(empresaLista);
   var ehUrgenteLista=
     vaga.contratacaoUrgente===true ||
@@ -25337,10 +25343,13 @@ if(!destaque){
   candLista.innerHTML='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg><span></span>';
   candLista.querySelector("span").textContent=totalCandLista+" "+(totalCandLista===1?"candidatura":"candidaturas");
   footerLista.appendChild(candLista);
-  if(totalCandLista<15){
+  {
     var chanceLista=document.createElement("span");
     chanceLista.className="em-lista-pouca-concorrencia";
     chanceLista.innerHTML='<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="4" y="14" width="3" height="6" rx=".7"/><rect x="10.5" y="9" width="3" height="11" rx=".7"/><rect x="17" y="4" width="3" height="16" rx=".7"/></svg><span>Pouca concorrência</span>';
+    var nivelConcorrenciaLista=totalCandLista<15?"baixa":totalCandLista<50?"moderada":"alta";
+    chanceLista.setAttribute("data-nivel",nivelConcorrenciaLista);
+    chanceLista.querySelector("span").textContent=totalCandLista<15?"Pouca concorrência":totalCandLista<50?"Concorrência moderada":"Alta concorrência";
     footerLista.appendChild(chanceLista);
   }
   var indicadoresLista=document.createElement("div");
@@ -41042,5 +41051,11 @@ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',
 </script><style id="em-card-borda-azul-v42">html body #pagina-home #listaVagas article.em-lista-final{border:1px solid #173f70!important}html body #pagina-home #listaVagas article.em-lista-final:hover{border-color:#0b2d57!important}</style><style id="em-empresa-azul-nota-v43">
 html body #pagina-home #listaVagas .em-lista-empresa>span:first-child{color:#173f70!important}
 html body #pagina-home #listaVagas .em-lista-empresa .em-lista-nota-empresa{display:inline-flex!important;align-items:center;font-size:11px!important;font-weight:700!important;color:#805c12!important;white-space:nowrap;text-transform:none!important;letter-spacing:0!important}
+</style>
+<style id="em-selos-concorrencia-atividade-v44">
+html body #pagina-home #listaVagas .em-lista-pouca-concorrencia[data-nivel="moderada"]{background:#eaf2ff!important;color:#215aa0!important;border-color:#cadcf6!important}
+html body #pagina-home #listaVagas .em-lista-pouca-concorrencia[data-nivel="alta"]{background:#fff1e3!important;color:#a65313!important;border-color:#f4d5b5!important}
+html body #pagina-home #listaVagas .em-recrutamento-demo{display:inline-flex!important;align-items:center;gap:4px;padding:3px 7px;border-radius:6px;background:#f1ebff!important;color:#7043a6!important;font-size:10px!important;font-weight:700!important;line-height:1.2;text-transform:none!important;letter-spacing:0!important;white-space:nowrap}
+html body #pagina-home #listaVagas .em-recrutamento-demo svg{width:13px;height:13px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
 </style>
 </body></html>
