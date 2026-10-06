@@ -222,3 +222,39 @@ html body :is(#em-weight-a#em-weight-b#em-weight-c#em-weight-d,*) :is(button,lab
 html body #pagina-home #listaVagas .em-lista-titulo{font-weight:700!important}
 
 html body :is(#em-type-a#em-type-b#em-type-c#em-type-d,#pagina-home) #filtrosLateral :is(label,.campo,.limpar-link){font-weight:600!important}
+
+/* A central de planos ocupa a área de conteúdo sem indicadores do painel. */
+#pagina-painel-empresa #painelReferenciaRecrutadorEM .recrutador-main-ref-em:has(> #centralPlanosEmpresaV82.ativa)>:not(#centralPlanosEmpresaV82){display:none!important}
+#pagina-painel-empresa #painelReferenciaRecrutadorEM #centralPlanosEmpresaV82.ativa{display:block!important;width:100%!important;max-width:1180px!important;margin:0 auto!important}
+#centralPlanosEmpresaV82 .central-planos-top-v82{align-items:center;gap:20px;margin-bottom:24px}
+#centralPlanosEmpresaV82 .central-planos-top-v82 h2{font-size:28px;line-height:1.3}
+#centralPlanosEmpresaV82 .central-planos-top-v82 small,
+#centralPlanosEmpresaV82 .central-plano-ident-v82 span,
+#centralPlanosEmpresaV82 .central-uso-item-v82 small{font-size:11px;line-height:1.5}
+#centralPlanosEmpresaV82 .central-planos-top-v82 p,
+#centralPlanosEmpresaV82 .central-section-title-v82 p,
+#centralPlanosEmpresaV82 .central-maximo-v82 p{font-size:14px;line-height:1.6}
+#centralPlanosEmpresaV82 .central-planos-voltar-v82{padding:11px 16px;font-size:13px;flex-shrink:0}
+#centralPlanosEmpresaV82 .central-plano-atual-v82{padding:26px}
+#centralPlanosEmpresaV82 .central-plano-ident-v82 h3{font-size:24px}
+#centralPlanosEmpresaV82 .central-plano-datas-v82,
+#centralPlanosEmpresaV82 .central-plano-datas-v82 strong{font-size:13px;line-height:1.7}
+#centralPlanosEmpresaV82 .central-plano-ativo-v82{font-size:11px}
+#centralPlanosEmpresaV82 .central-uso-v82{gap:14px;margin-top:24px}
+#centralPlanosEmpresaV82 .central-uso-item-v82{padding:16px}
+#centralPlanosEmpresaV82 .central-uso-item-v82 strong{font-size:22px;line-height:1.5}
+#centralPlanosEmpresaV82 .central-uso-item-v82 em{font-size:12px}
+#centralPlanosEmpresaV82 .central-beneficios-v82{margin-top:24px;padding:26px}
+#centralPlanosEmpresaV82 .central-section-title-v82 h3{font-size:20px}
+#centralPlanosEmpresaV82 .central-beneficios-grid-v82{gap:12px}
+#centralPlanosEmpresaV82 .central-beneficio-v82{padding:14px;font-size:13px;line-height:1.6;gap:12px}
+#centralPlanosEmpresaV82 .central-beneficio-v82 b{font-size:12px;width:24px;height:24px;flex-basis:24px}
+#centralPlanosEmpresaV82 .central-maximo-v82 strong{font-size:16px}
+#centralPlanosEmpresaV82 .central-aviso-valores-v82{font-size:12px;line-height:1.6}
+@media(max-width:760px){
+#centralPlanosEmpresaV82 .central-planos-top-v82{align-items:flex-start}
+#centralPlanosEmpresaV82 .central-planos-top-v82 h2{font-size:24px}
+#centralPlanosEmpresaV82 .central-plano-atual-v82,
+#centralPlanosEmpresaV82 .central-beneficios-v82{padding:18px}
+#centralPlanosEmpresaV82 .central-uso-item-v82 strong{font-size:18px}
+}
