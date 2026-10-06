@@ -38,22 +38,22 @@ if(sessionStorage.getItem("empregaMaisPapel")==="empresa") sessionStorage.remove
 }catch(e){}
 }
 function getEmpresa(){
-return authReq("/rest/v1/empresas?select=*&amp;limit=1",{method:"GET"}).then(function(a){return Array.isArray(a)&amp;&amp;a.length?a[0]:null;});
+return authReq("/rest/v1/empresas?select=*&limit=1",{method:"GET"}).then(function(a){return Array.isArray(a)&&a.length?a[0]:null;});
 }
 function userValid(){
 if(!token()) return Promise.resolve(false);
-return authReq("/auth/v1/user",{method:"GET"}).then(function(u){return !!(u&amp;&amp;u.id);}).catch(function(){return false;});
+return authReq("/auth/v1/user",{method:"GET"}).then(function(u){return !!(u&&u.id);}).catch(function(){return false;});
 }
 function companySessionValid(){
 return userValid().then(function(ok){
 if(!ok) return false;
-return getEmpresa().then(function(e){return !!(e&amp;&amp;e.id);}).catch(function(){return false;});
+return getEmpresa().then(function(e){return !!(e&&e.id);}).catch(function(){return false;});
 });
 }
 function localCompany(cnpj,senha){
 try{
 var arr=JSON.parse(localStorage.getItem("empresasEmpregaMais")||"[]");
-return arr.find(function(x){return nums(x.cnpj)===cnpj &amp;&amp; String(x.senha||"")===String(senha||"");})||null;
+return arr.find(function(x){return nums(x.cnpj)===cnpj && String(x.senha||"")===String(senha||"");})||null;
 }catch(e){return null;}
 }
 function safePayload(local,userId,cnpj){
@@ -89,13 +89,13 @@ return authReq("/rest/v1/empresas",{
 method:"POST",
 headers:{"Prefer":"return=representation"},
 body:JSON.stringify(payload)
-}).then(function(a){return Array.isArray(a)&amp;&amp;a.length?a[0]:null;});
+}).then(function(a){return Array.isArray(a)&&a.length?a[0]:null;});
 }
 function enterFromRemote(e){
 if(!e||!e.id) throw new Error("Empresa n\u00E3o encontrada no Supabase.");
 try{
 var plano=String(e.plano_id||e.plano||"basico").toLowerCase().trim();
-if(["basico","trimestral","semestral","anual"].indexOf(plano)&lt;0)plano="basico";
+if(["basico","trimestral","semestral","anual"].indexOf(plano)<0)plano="basico";
 e.plano=plano;
 e.planoId=plano;
 e.plano_id=plano;
@@ -190,7 +190,7 @@ return false;
 var oldIrPara=window.irPara;
 window.irPara=function(page){
 var p=String(page||"");
-var protectedPage=["painel-empresa","perfil-empresa","verificacao-empresa","publicar-vaga"].indexOf(p)&gt;=0;
+var protectedPage=["painel-empresa","perfil-empresa","verificacao-empresa","publicar-vaga"].indexOf(p)>=0;
 if(!protectedPage) return oldIrPara.apply(this,arguments);
 var args=arguments, self=this;
 companySessionValid().then(function(ok){
@@ -237,7 +237,7 @@ body:JSON.stringify(payload)
 var txt=await r.text(), data=null;
 try{data=txt?JSON.parse(txt):null;}catch(e){data=txt;}
 if(!r.ok){
-var msg=(data&amp;&amp;(data.message||data.msg||data.error_description))||String(data||("HTTP "+r.status));
+var msg=(data&&(data.message||data.msg||data.error_description))||String(data||("HTTP "+r.status));
 throw new Error(msg);
 }
 return data;
@@ -271,7 +271,7 @@ document.addEventListener("submit",function(e){
 var f=e.target;
 if(!f) return;
 var id=String(f.id||"").toLowerCase();
-if(id.indexOf("verific")&gt;=0){
+if(id.indexOf("verific")>=0){
 e.preventDefault();
 e.stopImmediatePropagation();
 window.enviarVerificacaoEmpresa(e);
@@ -323,7 +323,7 @@ var txt=await r.text();
 var data=null;
 try{data=txt?JSON.parse(txt):null;}catch(e){data=txt;}
 if(!r.ok){
-var msg=(data&amp;&amp;data.message)||String(data||("HTTP "+r.status));
+var msg=(data&&data.message)||String(data||("HTTP "+r.status));
 throw new Error(msg);
 }
 return data;
@@ -364,7 +364,7 @@ opt=opt||{};
 opt.headers=Object.assign({"apikey":K,"Content-Type":"application/json"},opt.headers||{});
 var r=await fetch(U+path,opt), txt=await r.text(), d=null;
 try{d=txt?JSON.parse(txt):null;}catch(e){d=txt;}
-if(!r.ok) throw new Error((d&amp;&amp;(d.message||d.msg||d.error_description))||String(d||("HTTP "+r.status)));
+if(!r.ok) throw new Error((d&&(d.message||d.msg||d.error_description))||String(d||("HTTP "+r.status)));
 return d;
 }
 function rpc(name,body){
@@ -405,8 +405,8 @@ alert("N\u00E3o foi poss\u00EDvel entrar como administrador: "+e.message);
 return false;
 };
 function esc(x){
-return String(x==null?"":x).replace(/[&amp;&lt;&gt;"']/g,function(c){
-return {"&amp;":"&amp;amp;","&lt;":"&amp;lt;","&gt;":"&amp;gt;",'"':"&amp;quot;","'":"&amp;#39;"}[c];
+return String(x==null?"":x).replace(/[&<>"']/g,function(c){
+return {"&":"&amp;","<":"<",">":">",'"':"&quot;","'":"&#39;"}[c];
 });
 }
 window.carregarVerificacoesAdminSupabaseEM=function(){
@@ -424,30 +424,30 @@ alvo.style.marginTop="24px";
 painel.appendChild(alvo);
 }
 var pendentes=lista.filter(function(x){return x.status==="em_analise";});
-var html='&lt;div style="background:#fff;border:1px solid #e5e7eb;border-radius:16px;padding:20px;"&gt;'+
-'&lt;h3 style="margin:0 0 16px;"&gt;Verifica\u00E7\u00F5es de empresas&lt;/h3&gt;';
+var html='<div style="background:#fff;border:1px solid #e5e7eb;border-radius:16px;padding:20px;">'+
+'<h3 style="margin:0 0 16px;">Verifica\u00E7\u00F5es de empresas</h3>';
 if(!pendentes.length){
-html+='&lt;p style="margin:0;color:#6b7280;"&gt;Nenhuma solicita\u00E7\u00E3o aguardando an\u00E1lise.&lt;/p&gt;';
+html+='<p style="margin:0;color:#6b7280;">Nenhuma solicita\u00E7\u00E3o aguardando an\u00E1lise.</p>';
 }else{
 pendentes.forEach(function(x){
-html+='&lt;div style="border:1px solid #e5e7eb;border-radius:12px;padding:16px;margin-bottom:12px;"&gt;'+
-'&lt;strong&gt;'+esc(x.nome_fantasia||x.razao_social||"Empresa")+'&lt;/strong&gt;'+
-'&lt;div style="margin-top:8px;font-size:14px;line-height:1.6;"&gt;'+
-'&lt;b&gt;Raz\u00E3o social:&lt;/b&gt; '+esc(x.razao_social)+'&lt;br/&gt;'+
-'&lt;b&gt;CNPJ:&lt;/b&gt; '+esc(x.cnpj)+'&lt;br/&gt;'+
-'&lt;b&gt;E-mail:&lt;/b&gt; '+esc(x.email_corporativo)+'&lt;br/&gt;'+
-'&lt;b&gt;Site:&lt;/b&gt; '+esc(x.site)+'&lt;br/&gt;'+
-'&lt;b&gt;Matriz:&lt;/b&gt; '+esc(x.matriz)+'&lt;br/&gt;'+
-'&lt;b&gt;Setor:&lt;/b&gt; '+esc(x.setor)+'&lt;br/&gt;'+
-'&lt;b&gt;Comprova\u00E7\u00E3o:&lt;/b&gt; '+esc(x.comprovacao)+
-'&lt;/div&gt;'+
-'&lt;div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:14px;"&gt;'+
-'&lt;button type="button" onclick="aprovarVerificacaoAdminSupabaseEM(\''+esc(x.verificacao_id)+'\')" style="padding:9px 14px;border:0;border-radius:8px;cursor:pointer;"&gt;Aprovar&lt;/button&gt;'+
-'&lt;button type="button" onclick="rejeitarVerificacaoAdminSupabaseEM(\''+esc(x.verificacao_id)+'\')" style="padding:9px 14px;border:1px solid #d1d5db;border-radius:8px;cursor:pointer;background:#fff;"&gt;Rejeitar&lt;/button&gt;'+
-'&lt;/div&gt;&lt;/div&gt;';
+html+='<div style="border:1px solid #e5e7eb;border-radius:12px;padding:16px;margin-bottom:12px;">'+
+'<strong>'+esc(x.nome_fantasia||x.razao_social||"Empresa")+'</strong>'+
+'<div style="margin-top:8px;font-size:14px;line-height:1.6;">'+
+'<b>Raz\u00E3o social:</b> '+esc(x.razao_social)+'<br/>'+
+'<b>CNPJ:</b> '+esc(x.cnpj)+'<br/>'+
+'<b>E-mail:</b> '+esc(x.email_corporativo)+'<br/>'+
+'<b>Site:</b> '+esc(x.site)+'<br/>'+
+'<b>Matriz:</b> '+esc(x.matriz)+'<br/>'+
+'<b>Setor:</b> '+esc(x.setor)+'<br/>'+
+'<b>Comprova\u00E7\u00E3o:</b> '+esc(x.comprovacao)+
+'</div>'+
+'<div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:14px;">'+
+'<button type="button" onclick="aprovarVerificacaoAdminSupabaseEM(\''+esc(x.verificacao_id)+'\')" style="padding:9px 14px;border:0;border-radius:8px;cursor:pointer;">Aprovar</button>'+
+'<button type="button" onclick="rejeitarVerificacaoAdminSupabaseEM(\''+esc(x.verificacao_id)+'\')" style="padding:9px 14px;border:1px solid #d1d5db;border-radius:8px;cursor:pointer;background:#fff;">Rejeitar</button>'+
+'</div></div>';
 });
 }
-html+='&lt;/div&gt;';
+html+='</div>';
 alvo.innerHTML=html;
 }).catch(function(e){
 console.error("Listagem Admin Supabase:",e);
@@ -473,7 +473,7 @@ return window.carregarVerificacoesAdminSupabaseEM();
 var oldIr=window.irPara;
 window.irPara=function(page){
 var r=oldIr.apply(this,arguments);
-if(String(page)==="admin" &amp;&amp; tok()){
+if(String(page)==="admin" && tok()){
 setTimeout(window.carregarVerificacoesAdminSupabaseEM,120);
 }
 return r;
@@ -492,7 +492,7 @@ var sels = tipo==="email" ? [
 "#adminSenha","#loginAdminSenha","#senhaAdmin",
 "input[name='adminSenha']","input[type='password']"
 ];
-for(var i=0;i&lt;sels.length;i++){
+for(var i=0;i<sels.length;i++){
 var e=document.querySelector(sels[i]);
 if(e) return e;
 }
@@ -548,7 +548,7 @@ body:"{}"
 .then(async function(r){
 var txt=await r.text(), d=null;
 try{d=txt?JSON.parse(txt):null;}catch(e){d=txt;}
-if(!r.ok) throw new Error((d&amp;&amp;d.message)||String(d||"Usu\u00E1rio sem permiss\u00E3o administrativa."));
+if(!r.ok) throw new Error((d&&d.message)||String(d||"Usu\u00E1rio sem permiss\u00E3o administrativa."));
 localStorage.setItem("empregaMaisPapel","admin"); sessionStorage.setItem("empregaMaisPapel","admin");
 if(typeof irPara==="function") irPara("admin");
 setTimeout(function(){
@@ -570,17 +570,17 @@ var f=ev.target;
 if(!f) return;
 var txt=((f.id||"")+" "+(f.className||"")+" "+(f.getAttribute("action")||"")).toLowerCase();
 var dentroAdmin=!!f.closest("#pagina-login-admin,#login-admin,.login-admin,[data-pagina='login-admin']");
-if(txt.indexOf("admin")&gt;=0 || dentroAdmin){
+if(txt.indexOf("admin")>=0 || dentroAdmin){
 autenticarAdminFinalEM(ev);
 }
 },true);
 document.addEventListener("click",function(ev){
-var b=ev.target &amp;&amp; ev.target.closest ? ev.target.closest("button,input[type='submit'],a") : null;
+var b=ev.target && ev.target.closest ? ev.target.closest("button,input[type='submit'],a") : null;
 if(!b) return;
 var txt=((b.id||"")+" "+(b.className||"")+" "+(b.getAttribute("onclick")||"")+" "+(b.textContent||"")).toLowerCase();
 var dentroAdmin=!!b.closest("#pagina-login-admin,#login-admin,.login-admin,[data-pagina='login-admin']");
-if((dentroAdmin &amp;&amp; (txt.indexOf("entr")&gt;=0 || txt.indexOf("login")&gt;=0)) ||
-txt.indexOf("loginadmin")&gt;=0 || txt.indexOf("entraradmin")&gt;=0){
+if((dentroAdmin && (txt.indexOf("entr")>=0 || txt.indexOf("login")>=0)) ||
+txt.indexOf("loginadmin")>=0 || txt.indexOf("entraradmin")>=0){
 autenticarAdminFinalEM(ev);
 }
 },true);
