@@ -1201,3 +1201,36 @@ html body #pagina-home #listaVagas article.em-lista-final .em-lista-titulo{
  html body #pagina-home #listaVagas article.em-lista-final .em-lista-data{right:15px!important;bottom:62px!important}
  html body #pagina-home #listaVagas article.em-lista-final .em-lista-ver{left:15px!important;right:15px!important;bottom:12px!important;width:auto!important}
 }
+
+
+/* Vagas recentes v25 — rodape: concorrencia/candidaturas esquerda; data + CTA no extremo direito. Escolaridade oculta. */
+html body #pagina-home #listaVagas article.em-lista-final{
+  padding-bottom:72px!important;
+}
+html body #pagina-home #listaVagas article.em-lista-final .em-lista-meta-item:has(svg path[d*="M3 9l9-5 9 5"]){
+  display:none!important;
+}
+html body #pagina-home #listaVagas article.em-lista-final :is(.em-lista-pouca-concorrencia,.em-pouca-concorrencia){
+  left:18px!important;bottom:38px!important;
+}
+html body #pagina-home #listaVagas article.em-lista-final .em-lista-candidaturas{
+  left:18px!important;bottom:15px!important;
+}
+html body #pagina-home #listaVagas article.em-lista-final .em-lista-data{
+  right:200px!important;
+  bottom:15px!important;
+  max-width:none!important;
+  font-size:10px!important;
+}
+html body #pagina-home #listaVagas article.em-lista-final .em-lista-ver{
+  right:12px!important;
+  bottom:10px!important;
+  width:176px!important;
+}
+@media(max-width:650px){
+ html body #pagina-home #listaVagas article.em-lista-final{padding-bottom:116px!important}
+ html body #pagina-home #listaVagas article.em-lista-final :is(.em-lista-pouca-concorrencia,.em-pouca-concorrencia){left:15px!important;bottom:86px!important}
+ html body #pagina-home #listaVagas article.em-lista-final .em-lista-candidaturas{left:15px!important;bottom:64px!important}
+ html body #pagina-home #listaVagas article.em-lista-final .em-lista-data{right:15px!important;bottom:66px!important}
+ html body #pagina-home #listaVagas article.em-lista-final .em-lista-ver{left:15px!important;right:15px!important;bottom:12px!important;width:auto!important}
+}
