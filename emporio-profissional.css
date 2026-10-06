@@ -213,3 +213,10 @@ html body #pagina-home #listaVagas .em-lista-data,html body #pagina-home #listaV
 html body #pagina-home #filtrosLateral label,html body #pagina-home #filtrosLateral .campo,html body #pagina-home #filtrosLateral .limpar-link,html body #pagina-home #listaVagas .em-lista-ver{font-size:13px!important;font-weight:500!important}
 
 html body :is(#em-type-a#em-type-b#em-type-c#em-type-d,#pagina-home) #filtrosLateral :is(label,.campo,.limpar-link){font-size:13px!important;font-weight:500!important;line-height:1.4!important}
+
+/* Montserrat com mais corpo, mantendo os tamanhos. */
+html body{font-weight:500!important}
+html body :is(#em-weight-a#em-weight-b#em-weight-c#em-weight-d,*) :is(p,input,select,textarea){font-weight:500!important}
+html body #pagina-home #listaVagas .em-lista-resumo{font-weight:500!important}
+html body :is(#em-weight-a#em-weight-b#em-weight-c#em-weight-d,*) :is(button,label){font-weight:600!important}
+html body #pagina-home #listaVagas .em-lista-titulo{font-weight:700!important}
