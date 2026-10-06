@@ -625,3 +625,34 @@ html body #pagina-home #listaVagas article.em-lista-final .em-lista-data{
  html body #pagina-home #listaVagas article.em-lista-final .em-lista-logo{width:68px!important;height:68px!important;min-width:68px!important;min-height:68px!important;right:12px!important}
  html body #pagina-home #listaVagas article.em-lista-final .em-lista-resumo{width:calc(100% + 74px)!important;max-width:calc(100% + 74px)!important}
 }
+
+
+/* Vagas recentes v7: cargo mais destacado e publicação em uma única linha. */
+html body #pagina-home #listaVagas article.em-lista-final .em-lista-titulo{
+  font-size:17px!important;
+  line-height:1.25!important;
+}
+html body #pagina-home #listaVagas article.em-lista-final .em-lista-data{
+  max-width:none!important;
+  white-space:nowrap!important;
+  font-size:10px!important;
+}
+html body #pagina-home #listaVagas article.em-lista-final .em-lista-data span{
+  display:inline-flex!important;
+  align-items:center!important;
+  gap:2px!important;
+  white-space:nowrap!important;
+  font-size:10px!important;
+}
+html body #pagina-home #listaVagas article.em-lista-final .em-lista-data b{
+  display:inline!important;
+  white-space:nowrap!important;
+  font-size:10px!important;
+  margin-left:2px!important;
+}
+@media(max-width:650px){
+ html body #pagina-home #listaVagas article.em-lista-final .em-lista-titulo{font-size:16px!important}
+ html body #pagina-home #listaVagas article.em-lista-final .em-lista-data,
+ html body #pagina-home #listaVagas article.em-lista-final .em-lista-data span,
+ html body #pagina-home #listaVagas article.em-lista-final .em-lista-data b{font-size:9px!important}
+}
