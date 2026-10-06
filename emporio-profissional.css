@@ -584,3 +584,44 @@ html body #pagina-home #listaVagas article.em-lista-final .em-lista-data{
  html body #pagina-home #listaVagas article.em-lista-final .em-lista-ver{width:135px!important;flex-basis:135px!important}
  html body #pagina-home #listaVagas article.em-lista-final .em-lista-data{grid-column:2!important}
 }
+
+
+/* Vagas recentes v6: logo maior em overlay, sem consumir espaço do conteúdo. */
+html body #pagina-home #listaVagas article.em-lista-final{
+  grid-template-columns:minmax(0,1fr)!important;
+  padding-right:112px!important;
+}
+html body #pagina-home #listaVagas article.em-lista-final .em-lista-logo{
+  position:absolute!important;
+  top:15px!important;
+  right:14px!important;
+  width:86px!important;
+  height:86px!important;
+  min-width:86px!important;
+  min-height:86px!important;
+  margin:0!important;
+  z-index:2!important;
+}
+html body #pagina-home #listaVagas article.em-lista-final .em-lista-cab,
+html body #pagina-home #listaVagas article.em-lista-final .em-lista-titulo,
+html body #pagina-home #listaVagas article.em-lista-final .em-lista-meta,
+html body #pagina-home #listaVagas article.em-lista-final .em-lista-resumo,
+html body #pagina-home #listaVagas article.em-lista-final .em-lista-acoes{
+  grid-column:1!important;
+}
+html body #pagina-home #listaVagas article.em-lista-final .em-lista-resumo{
+  width:calc(100% + 98px)!important;
+  max-width:calc(100% + 98px)!important;
+}
+html body #pagina-home #listaVagas article.em-lista-final .em-lista-data{
+  position:absolute!important;
+  right:14px!important;
+  bottom:18px!important;
+  width:auto!important;
+  max-width:92px!important;
+}
+@media(max-width:650px){
+ html body #pagina-home #listaVagas article.em-lista-final{padding-right:88px!important}
+ html body #pagina-home #listaVagas article.em-lista-final .em-lista-logo{width:68px!important;height:68px!important;min-width:68px!important;min-height:68px!important;right:12px!important}
+ html body #pagina-home #listaVagas article.em-lista-final .em-lista-resumo{width:calc(100% + 74px)!important;max-width:calc(100% + 74px)!important}
+}
