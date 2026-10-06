@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
 :root{--azul:#165ec9;--azulEscuro:#12365d;--laranja:#f27932;--fundo:#f5f7fb;--texto:#172c45;--borda:#e2e8f0}
-html body,html body button,html body input,html body select,html body textarea{font-family:Inter,Arial,sans-serif!important}
+html body,html body button,html body input,html body select,html body textarea{font-family:Montserrat,Arial,sans-serif!important}
 html body{background:#f5f7fb!important;color:#172c45!important}
 html body header{background:#fff!important;border-bottom:1px solid #e4eaf2!important;box-shadow:0 3px 20px #172c4508!important}
 html body button{transition:background .18s,box-shadow .18s,transform .18s}
@@ -85,10 +85,10 @@ html body #pagina-home #listaVagas .em-lista-acoes{grid-column:1!important;grid-
 
 html body #pagina-home #listaVagas .em-lista-resumo{min-height:0!important}
 
-html body,html body *{font-family:Inter,Arial,sans-serif!important}
+html body,html body *{font-family:Montserrat,Arial,sans-serif!important}
 
 /* Prioridade global para superar a tipografia das folhas legadas. */
-html body :is(#em-inter-global#em-tipografia#em-site#em-font-priority#em-theme,*){font-family:Inter,Arial,sans-serif!important}
+html body :is(#em-inter-global#em-tipografia#em-site#em-font-priority#em-theme,*){font-family:Montserrat,Arial,sans-serif!important}
 
 /* Organização aprovada na prévia. */
 html body #pagina-home #listaVagas>article.em-lista-final{grid-template-columns:minmax(0,1fr) auto!important;gap:8px 20px!important;padding:20px!important}
@@ -199,7 +199,7 @@ html body #pagina-home #filtrosLateral .limpar-link:hover{background:#edf3fb!imp
 html body #pagina-home #filtrosLateral .grupo{margin:0 0 16px!important;padding:0!important}
 html body #pagina-home #filtrosLateral .grupo:last-child{margin-bottom:0!important}
 html body #pagina-home #filtrosLateral label{display:block!important;padding:0!important;margin:0 0 7px!important;font-size:12px!important;line-height:1.4!important;font-weight:600!important;color:#526176!important}
-html body #pagina-home #filtrosLateral .campo{width:100%!important;box-sizing:border-box!important;min-height:42px!important;height:42px!important;border:1px solid #e0e6ee!important;border-radius:9px!important;background:#f8fafc!important;color:#243b55!important;font-size:13px!important;font-weight:400!important;padding:0 12px!important;box-shadow:none!important;transition:border-color .18s,box-shadow .18s!important}
+html body #pagina-home #filtrosLateral .campo{width:100%!important;box-sizing:border-box!important;min-height:42px!important;height:42px!important;border:1px solid #e0e6ee!important;border-radius:9px!important;background:#f8fafc!important;color:#243b55!important;font-size:13px!important;font-weight:500!important;padding:0 12px!important;box-shadow:none!important;transition:border-color .18s,box-shadow .18s!important}
 html body #pagina-home #filtrosLateral .campo::placeholder{color:#94a0b0!important}
 html body #pagina-home #filtrosLateral .campo:hover{border-color:#b9c9dc!important}
 html body #pagina-home #filtrosLateral .campo:focus{outline:2px solid transparent!important;border-color:#5087bc!important;background:#fff!important;box-shadow:0 0 0 3px rgba(80,135,188,.12)!important}
@@ -208,8 +208,8 @@ html body #pagina-home #filtrosLateral select.campo{appearance:none!important;pa
 
 /* Hierarquia tipográfica aprovada. */
 html body #pagina-home #listaVagas .em-lista-titulo{font-size:21px!important;font-weight:600!important;color:#173b64!important}
-html body #pagina-home #listaVagas .em-lista-resumo{font-size:14px!important;font-weight:400!important;color:#484e57!important;line-height:21px!important;max-height:42px!important}
-html body #pagina-home #listaVagas .em-lista-data,html body #pagina-home #listaVagas .em-lista-data span,html body #pagina-home #listaVagas .em-lista-data b{font-size:11px!important;font-weight:400!important}
+html body #pagina-home #listaVagas .em-lista-resumo{font-size:14px!important;font-weight:500!important;color:#484e57!important;line-height:21px!important;max-height:42px!important}
+html body #pagina-home #listaVagas .em-lista-data,html body #pagina-home #listaVagas .em-lista-data span,html body #pagina-home #listaVagas .em-lista-data b{font-size:11px!important;font-weight:500!important}
 html body #pagina-home #filtrosLateral label,html body #pagina-home #filtrosLateral .campo,html body #pagina-home #filtrosLateral .limpar-link,html body #pagina-home #listaVagas .em-lista-ver{font-size:13px!important;font-weight:500!important}
 
 html body :is(#em-type-a#em-type-b#em-type-c#em-type-d,#pagina-home) #filtrosLateral :is(label,.campo,.limpar-link){font-size:13px!important;font-weight:500!important;line-height:1.4!important}
@@ -260,7 +260,7 @@ html body :is(#em-type-a#em-type-b#em-type-c#em-type-d,#pagina-home) #filtrosLat
 }
 
 /* Tipografia única do portal — Inter */
-:root body, :root body * {font-family:'Inter',Arial,sans-serif!important;}
+:root body, :root body * {font-family:Montserrat,Arial,sans-serif!important;}
 
 /* Vagas em destaque: referência aprovada, grade larga e responsiva. */
 html body #pagina-home #listaDestaques{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:22px!important;width:100%!important;max-width:none!important;overflow:visible!important;padding:4px 0 24px!important}
@@ -1041,7 +1041,7 @@ html body #pagina-home #listaVagas article.em-lista-final .em-lista-titulo,
 html body #pagina-home #listaDestaques .dz-titulo,
 html body .em-lista-titulo,
 html body .dz-titulo{
-  font-family:"Montserrat","Inter","Segoe UI",Arial,sans-serif!important;
+  font-family:Montserrat,Arial,sans-serif!important;
   font-size:18px!important;
   font-weight:800!important;
   line-height:1.16!important;
@@ -1059,12 +1059,12 @@ html body .dz-titulo{
 }
 
 /* Tipografia geral do portal permanece Inter; títulos de vagas acima são Montserrat. */
-html,body,body *,body *::before,body *::after{font-family:"Inter","Segoe UI",Arial,sans-serif!important}
-input,select,textarea,button{font-family:"Inter","Segoe UI",Arial,sans-serif!important}
+html,body,body *,body *::before,body *::after{font-family:Montserrat,Arial,sans-serif!important}
+input,select,textarea,button{font-family:Montserrat,Arial,sans-serif!important}
 html body #pagina-home #listaVagas article.em-lista-final .em-lista-titulo,
 html body #pagina-home #listaDestaques .dz-titulo,
 html body .em-lista-titulo,
-html body .dz-titulo{font-family:"Montserrat","Inter","Segoe UI",Arial,sans-serif!important}
+html body .dz-titulo{font-family:Montserrat,Arial,sans-serif!important}
 
 /* Cards recentes v20 — rodapé final sem sobreposição. */
 html body #pagina-home #listaVagas article.em-lista-final .em-lista-footer{
@@ -1103,7 +1103,7 @@ html body #pagina-home #listaVagas article.em-lista-final .em-lista-fav{display:
  html body #pagina-home #listaVagas article.em-lista-final .em-lista-ver{width:100%!important}
 }
 /* Vagas recentes v22: titulo maior e rodape sem sobreposicao */
-html body #pagina-home #listaVagas article.em-lista-final .em-lista-titulo{font-family:'Montserrat',Arial,sans-serif!important;font-size:19px!important;font-weight:700!important;line-height:1.18!important;letter-spacing:-.25px!important}
+html body #pagina-home #listaVagas article.em-lista-final .em-lista-titulo{font-family:Montserrat,Arial,sans-serif!important;font-size:19px!important;font-weight:700!important;line-height:1.18!important;letter-spacing:-.25px!important}
 html body #pagina-home #listaVagas article.em-lista-final .em-lista-acoes{position:relative!important;display:grid!important;grid-template-columns:minmax(105px,1fr) auto 164px!important;grid-template-rows:auto auto!important;align-items:end!important;column-gap:12px!important;row-gap:3px!important;min-height:55px!important;padding-top:8px!important}
 html body #pagina-home #listaVagas article.em-lista-final .em-lista-candidaturas{grid-column:1!important;grid-row:2!important;margin:0!important;white-space:nowrap!important}
 html body #pagina-home #listaVagas article.em-lista-final .em-pouca-concorrencia{grid-column:1!important;grid-row:1!important;position:static!important;transform:none!important;margin:0!important;justify-self:start!important;white-space:nowrap!important}
@@ -1207,7 +1207,7 @@ html body #pagina-home #listaVagas article.em-lista-final .em-lista-empresa{
   text-transform:uppercase!important;
 }
 html body #pagina-home #listaVagas article.em-lista-final .em-lista-titulo{
-  font-family:"Montserrat","Inter","Segoe UI",Arial,sans-serif!important;
+  font-family:Montserrat,Arial,sans-serif!important;
   font-size:19px!important;
   font-weight:800!important;
   line-height:1.18!important;
@@ -1260,7 +1260,7 @@ html body #pagina-home #listaVagas article.em-lista-final .em-lista-empresa{
   color:#526984!important;font-size:11px!important;font-weight:700!important;letter-spacing:.02em!important;text-transform:uppercase!important;
 }
 html body #pagina-home #listaVagas article.em-lista-final .em-lista-titulo{
-  margin:0 0 10px!important;color:#002b61!important;font-family:"Montserrat","Inter",Arial,sans-serif!important;
+  margin:0 0 10px!important;color:#002b61!important;font-family:Montserrat,Arial,sans-serif!important;
   font-size:19px!important;font-weight:800!important;line-height:1.18!important;letter-spacing:-.3px!important;
 }
 html body #pagina-home #listaVagas article.em-lista-final .em-lista-meta{
