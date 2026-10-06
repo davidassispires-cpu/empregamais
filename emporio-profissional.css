@@ -86,3 +86,6 @@ html body #pagina-home #listaVagas .em-lista-acoes{grid-column:1!important;grid-
 html body #pagina-home #listaVagas .em-lista-resumo{min-height:0!important}
 
 html body,html body *{font-family:Inter,Arial,sans-serif!important}
+
+/* Prioridade global para superar a tipografia das folhas legadas. */
+html body :is(#em-inter-global#em-tipografia#em-site#em-font-priority#em-theme,*){font-family:Inter,Arial,sans-serif!important}
