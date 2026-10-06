@@ -16011,7 +16011,7 @@ Sair
 Carregando vagas...
 </p><div class='ordenacao'><span>Ordenar:</span><select id='ordenacaoVagas' onchange='renderizarVagas()'><option value='recentes'>Mais recentes</option><option value='maiorSalario'>Maior salário</option><option value='menorSalario'>Menor salário</option><option value='cargo'>Cargo A-Z</option></select></div></div><div class='lista-vagas' id='listaVagas'></div><div class='paginacao-vagas-em' id='paginacaoVagasEM'></div><div class='sem-vaga' id='semVaga'>
 Nenhuma vaga encontrada.
-</div></div><aside class='filtros-lateral' id='filtrosLateral'><div class='filtros-cab'><h3>Filtrar vagas</h3><button class='limpar-link' onclick='limparFiltros()' type='button'>
+</div></div><aside class='filtros-lateral' id='filtrosLateral'><div class='filtros-cab'><h3>Filtrar vagas</h3><button class='limpar-link' onclick='document.querySelectorAll(&quot;#filtrosLateral input,#filtrosLateral select&quot;).forEach(function(campo){campo.value=&quot;&quot;});filtrarVagas()' type='button'>
 Limpar
 </button></div><div class='grupo'><label for='filtroPalavra'>
 Palavra-chave
