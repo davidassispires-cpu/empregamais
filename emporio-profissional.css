@@ -205,3 +205,9 @@ html body #pagina-home #filtrosLateral .campo:hover{border-color:#b9c9dc!importa
 html body #pagina-home #filtrosLateral .campo:focus{outline:2px solid transparent!important;border-color:#5087bc!important;background:#fff!important;box-shadow:0 0 0 3px rgba(80,135,188,.12)!important}
 html body #pagina-home #filtrosLateral select.campo{appearance:none!important;padding-right:32px!important;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='none' stroke='%2364758b' stroke-width='1.7' viewBox='0 0 24 24'%3E%3Cpath d='m7 10 5 5 5-5'/%3E%3C/svg%3E")!important;background-repeat:no-repeat!important;background-position:right 10px center!important}
 @media(max-width:900px) and (min-width:651px){html body #pagina-home #filtrosLateral{display:grid!important;grid-template-columns:1fr 1fr!important;gap:0 16px!important}html body #pagina-home #filtrosLateral .filtros-cab{grid-column:1/-1!important}}
+
+/* Hierarquia tipográfica aprovada. */
+html body #pagina-home #listaVagas .em-lista-titulo{font-size:21px!important;font-weight:600!important;color:#173b64!important}
+html body #pagina-home #listaVagas .em-lista-resumo{font-size:14px!important;font-weight:400!important;color:#484e57!important;line-height:21px!important;max-height:42px!important}
+html body #pagina-home #listaVagas .em-lista-data,html body #pagina-home #listaVagas .em-lista-data span,html body #pagina-home #listaVagas .em-lista-data b{font-size:11px!important;font-weight:400!important}
+html body #pagina-home #filtrosLateral label,html body #pagina-home #filtrosLateral .campo,html body #pagina-home #filtrosLateral .limpar-link,html body #pagina-home #listaVagas .em-lista-ver{font-size:13px!important;font-weight:500!important}
