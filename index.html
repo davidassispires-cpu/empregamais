@@ -40708,4 +40708,32 @@ function montarVerif(){
 function montar(){montarPerfil();montarVerif()}
 if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',montar);else montar();setTimeout(montar,500);
 })();
+</script><script id="em-perfil-route-hardfix-v82">
+(function(){
+if(window.__EM_V82)return;window.__EM_V82=true;
+function abrirPerfil(){
+ if(typeof empresaEstaLogada==="function"&&!empresaEstaLogada()){if(typeof irPara==="function")irPara("login-empresa");return}
+ try{
+  document.querySelectorAll(".pagina").forEach(function(p){p.style.display="none";p.classList.remove("ativa")});
+  var alvo=document.getElementById("pagina-perfil-empresa");
+  if(!alvo)return;
+  alvo.style.setProperty("display","block","important");alvo.classList.add("ativa");
+  window.scrollTo(0,0);
+  history.pushState({pagina:"perfil-empresa"},"","?pagina=perfil-empresa");
+  setTimeout(function(){
+   try{if(typeof carregarDadosPerfilEmpresaEM==="function")carregarDadosPerfilEmpresaEM()}catch(e){}
+   try{if(typeof preencherDadosPerfilEmpresaEM==="function")preencherDadosPerfilEmpresaEM()}catch(e){}
+  },20);
+ }catch(e){console.error("Perfil empresa:",e)}
+}
+document.addEventListener("click",function(e){
+ var el=e.target.closest("button,a");if(!el)return;
+ var txt=(el.textContent||"").trim().toLowerCase();
+ var oc=el.getAttribute("onclick")||"";
+ if(txt.indexOf("perfil da empresa")>=0||txt.indexOf("perfil empresarial")>=0||oc.indexOf("perfil-empresa")>=0){
+  e.preventDefault();e.stopImmediatePropagation();abrirPerfil();
+ }
+},true);
+window.abrirPerfilEmpresaPainelEM=abrirPerfil;
+})();
 </script></body></html>
