@@ -16015,7 +16015,7 @@ html body>header.topo #acoesPublicas .menu-empresa-v19 .header-v98-area>button.m
 html body>header.topo #acoesPublicas .header-v98-area>button.btn-candidato-v19>span{display:inline!important;font-size:13px!important;font-weight:600!important}
 html body>header.topo #acoesPublicas .em-candidate-menu .em-account-icon{color:#df7628!important}
 html body>header.topo #acoesPublicas .em-candidate-menu>button.em-account-primary{background:#fff4e9!important}
-</style><style id="em-account-adjacent">html body>header.topo #acoesPublicas{display:flex!important;align-items:center!important;gap:8px!important}html body>header.topo #acoesPublicas .menu-empresa-v19{display:inline-flex!important;align-items:center!important;margin:0!important;padding:0!important}html body>header.topo #menuPublico{margin-right:auto!important}@media(max-width:650px){html body>header.topo #acoesPublicas{flex-wrap:wrap!important;justify-content:center!important}html body>header.topo #acoesPublicas .header-v98-area>button{padding:0 10px!important}}</style><link rel='stylesheet' href='empresa-login.css?v=20261006-1'/><link rel='stylesheet' href='candidato-login.css?v=20261006-1'/><script src='candidato-login.js?v=20261006-1' defer></script></head><body><header class='topo'><div class='topo-inner'><button class='marca' onclick='irPara(&quot;home&quot;)' type='button'><span class='marca-icone'>E+</span><span class='marca-nome'>
+</style><style id="em-account-adjacent">html body>header.topo #acoesPublicas{display:flex!important;align-items:center!important;gap:8px!important}html body>header.topo #acoesPublicas .menu-empresa-v19{display:inline-flex!important;align-items:center!important;margin:0!important;padding:0!important}html body>header.topo #menuPublico{margin-right:auto!important}@media(max-width:650px){html body>header.topo #acoesPublicas{flex-wrap:wrap!important;justify-content:center!important}html body>header.topo #acoesPublicas .header-v98-area>button{padding:0 10px!important}}</style><link rel='stylesheet' href='empresa-login.css?v=20261006-registration'/><link rel='stylesheet' href='candidato-login.css?v=20261006-1'/><script src='candidato-login.js?v=20261006-1' defer></script></head><body><header class='topo'><div class='topo-inner'><button class='marca' onclick='irPara(&quot;home&quot;)' type='button'><span class='marca-icone'>E+</span><span class='marca-nome'>
 Emprega<span>Mais</span></span></button><nav class='menu-principal menu-v19' id='menuPublico'><button class='menu-link' onclick='irPara(&quot;home&quot;);rolarVagas();' type='button'>Buscar vagas</button><button class='menu-link' onclick='irPara(&quot;como-funciona&quot;)' type='button'>Como funciona</button></nav><div class='acoes-topo'><div class='acoes-publicas-v19' id='acoesPublicas'><div class='menu-empresa-v19'><button class='menu-link menu-empresa-btn-v19' type='button'>Para empresas <span>&#8964;</span></button></div><button class='btn btn-claro btn-candidato-v19' onclick='irPara(&quot;login-candidato&quot;)' type='button'>Área do candidato <span>&#8964;</span></button><button class='btn btn-empresa btn-publicar-v19' onclick='abrirPublicacao()' type='button'>+ Publicar vaga</button></div><div class='conta-topo' id='contaCandidatoTopo'><button class='btn-conta' onclick='alternarContaMenu(&quot;menuContaCandidato&quot;)' type='button'><span class='avatar' id='avatarCandidato'>C</span><span class='conta-nome' id='nomeCandidatoTopo'>
 Candidato
 </span><span>&#8964;</span></button><div class='conta-menu' id='menuContaCandidato'><button onclick='irPara(&quot;painel-candidato&quot;)' type='button'>
@@ -16268,19 +16268,7 @@ Cadastro da empresa
 O acesso ao painel será realizado pelo CNPJ.
 </p></div></section><div class='container-menor login-container'><div class='form-card'><span class='login-tipo empresa'>
 Empresa contratante
-</span><form onsubmit='cadastrarEmpresa(event)'><div class='grupo'><label for='cadEmpresaNome'>
-Nome da empresa
-</label><input class='campo' id='cadEmpresaNome' required='required' type='text'/></div><div class='grupo'><label for='cadEmpresaCnpj'>
-CNPJ
-</label><input class='campo' id='cadEmpresaCnpj' required='required' type='text'/></div><div class='grupo'><label for='cadEmpresaEmail'>
-E-mail para contato
-</label><input class='campo' id='cadEmpresaEmail' required='required' type='email'/></div><div class='grupo'><label for='cadEmpresaSobre'>
-Sobre a empresa
-</label><textarea class='campo' id='cadEmpresaSobre' placeholder='Apresente brevemente sua empresa.'></textarea></div><div class='grupo'><label for='cadEmpresaSenha'>
-Crie uma senha
-</label><input class='campo' id='cadEmpresaSenha' minlength='4' required='required' type='password'/></div><button class='btn btn-empresa btn-total btn-grande' type='submit'>
-Cadastrar empresa
-</button></form></div></div></div><div class='pagina' id='pagina-painel-empresa'></div><div class='pagina' id='pagina-candidatos-empresa'><section class='page-header empresa-header'><div class='page-header-inner'><button class='voltar' onclick='irPara(&quot;painel-empresa&quot;)' type='button'>
+</span><form id='formCadastroEmpresaInicial' onsubmit='cadastrarEmpresa(event)'><section class='reg-section reg-blue'><div class='reg-section-head'><span class='reg-icon'><svg aria-hidden='true' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='1.7' stroke-linecap='round' stroke-linejoin='round'><path d='M4 21V3h12v18M16 9h4v12M8 7h4M8 11h4M8 15h4M8 19h4'/></svg></span><div><h2>Dados da empresa</h2><p>Identifique a empresa e sua área de atuação.</p></div></div><div class='reg-fields'><div class='grupo'><label for='cadEmpresaNome'>Nome fantasia *</label><input class='campo' id='cadEmpresaNome' type='text' required autocomplete='organization'/></div><div class='grupo'><label for='cadEmpresaRazao'>Razão social *</label><input class='campo' id='cadEmpresaRazao' type='text' required /></div><div class='grupo'><label for='cadEmpresaCnpj'>CNPJ *</label><input class='campo' id='cadEmpresaCnpj' type='text' required maxlength='18' placeholder='00.000.000/0000-00'/></div><div class='grupo'><label for='cadEmpresaSetor'>Setor de atuação *</label><input class='campo' id='cadEmpresaSetor' type='text' required placeholder='Ex.: Comércio, indústria ou serviços'/></div><div class='grupo'><label for='cadEmpresaPorte'>Número de funcionários *</label><select class='campo' id='cadEmpresaPorte' required><option value=''>Selecione o porte</option><option>1 a 9</option><option>10 a 49</option><option>50 a 99</option><option>100 a 499</option><option>500 ou mais</option></select></div><div class='grupo reg-city'><div><label for='cadEmpresaCidade'>Cidade *</label><input class='campo' id='cadEmpresaCidade' required autocomplete='address-level2'/></div><div><label for='cadEmpresaUf'>UF *</label><select class='campo' id='cadEmpresaUf' required><option value=''>UF</option><option>AC</option><option>AL</option><option>AP</option><option>AM</option><option>BA</option><option>CE</option><option>DF</option><option>ES</option><option>GO</option><option>MA</option><option>MT</option><option>MS</option><option>MG</option><option>PA</option><option>PB</option><option>PR</option><option>PE</option><option>PI</option><option>RJ</option><option>RN</option><option>RS</option><option>RO</option><option>RR</option><option>SC</option><option>SP</option><option>SE</option><option>TO</option></select></div></div><div class='grupo reg-full'><label for='cadEmpresaSobre'>Sobre a empresa <span class='reg-optional'>(opcional)</span></label><textarea class='campo' id='cadEmpresaSobre' placeholder='Conte brevemente o que sua empresa faz.'></textarea></div></div></section><section class='reg-section reg-orange'><div class='reg-section-head'><span class='reg-icon'><svg aria-hidden='true' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='1.7' stroke-linecap='round' stroke-linejoin='round'><path d='M12 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8M4 21v-2a8 8 0 0 1 16 0v2'/></svg></span><div><h2>Responsável e contato</h2><p>Informe quem vai gerenciar as oportunidades.</p></div></div><div class='reg-fields'><div class='grupo'><label for='cadEmpresaResponsavel'>Nome do responsável *</label><input class='campo' id='cadEmpresaResponsavel' type='text' required autocomplete='name'/></div><div class='grupo'><label for='cadEmpresaCargo'>Cargo / função *</label><input class='campo' id='cadEmpresaCargo' type='text' required autocomplete='organization-title'/></div><div class='grupo'><label for='cadEmpresaEmail'>E-mail corporativo *</label><input class='campo' id='cadEmpresaEmail' type='email' required autocomplete='email' placeholder='rh@suaempresa.com.br'/></div><div class='grupo'><label for='cadEmpresaTelefone'>Celular / WhatsApp *</label><input class='campo' id='cadEmpresaTelefone' type='tel' required autocomplete='tel' placeholder='(00) 00000-0000'/></div></div></section><section class='reg-section reg-purple'><div class='reg-section-head'><span class='reg-icon'><svg aria-hidden='true' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='1.7' stroke-linecap='round' stroke-linejoin='round'><path d='M7 10V7a5 5 0 0 1 10 0v3M5 10h14v11H5zM12 14v3'/></svg></span><div><h2>Acesso à conta</h2><p>Use seu CNPJ ou e-mail para entrar no painel.</p></div></div><div class='reg-fields'><div class='grupo'><label for='cadEmpresaSenha'>Crie uma senha *</label><input class='campo' id='cadEmpresaSenha' type='password' required minlength='6' autocomplete='new-password' placeholder='Mínimo de 6 caracteres'/></div><div class='grupo'><label for='cadEmpresaConfirmar'>Confirme a senha *</label><input class='campo' id='cadEmpresaConfirmar' type='password' required minlength='6' autocomplete='new-password'/></div></div></section><div class='reg-next'><span class='reg-icon'><svg aria-hidden='true' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='1.7' stroke-linecap='round' stroke-linejoin='round'><path d='M12 3 20 6v6c0 5-4 8-8 9-4-1-8-4-8-9V6l8-3Zm-4 9 3 3 5-6'/></svg></span><div><strong>Próxima etapa: perfil verificado</strong><p>Depois do cadastro, complemente os dados e envie os documentos para solicitar a análise de verificação.</p></div></div><button class='btn btn-empresa btn-total btn-grande' type='submit'>Criar conta empresarial</button></form></div></div></div><div class='pagina' id='pagina-painel-empresa'></div><div class='pagina' id='pagina-candidatos-empresa'><section class='page-header empresa-header'><div class='page-header-inner'><button class='voltar' onclick='irPara(&quot;painel-empresa&quot;)' type='button'>
 &#8592; Voltar ao painel
 </button><h1>
 Candidatos recebidos
@@ -17688,6 +17676,12 @@ return carregarArray(
 }
 function cadastrarEmpresa(event){
 event.preventDefault();
+var formCadastro=document.getElementById('formCadastroEmpresaInicial');
+if(formCadastro&&!formCadastro.reportValidity())return;
+var senhaInicial=document.getElementById('cadEmpresaSenha');
+var confirmarInicial=document.getElementById('cadEmpresaConfirmar');
+if(confirmarInicial&&senhaInicial.value!==confirmarInicial.value){confirmarInicial.setCustomValidity('As senhas precisam ser iguais.');confirmarInicial.reportValidity();confirmarInicial.setCustomValidity('');return;}
+
 var lista =
 empresasCadastradas();
 var cnpj =
@@ -17761,9 +17755,10 @@ document
 )
 .value
 };
-lista.push(
-empresa
-);
+var extras={cadEmpresaRazao:'razaoSocial',cadEmpresaSetor:'setor',cadEmpresaPorte:'funcionarios',cadEmpresaCidade:'cidade',cadEmpresaUf:'uf',cadEmpresaResponsavel:'responsavel',cadEmpresaCargo:'cargoResponsavel',cadEmpresaTelefone:'telefone'};
+Object.keys(extras).forEach(function(id){var el=document.getElementById(id);if(el)empresa[extras[id]]=String(el.value||'').trim();});
+empresa.nome=String(empresa.nome||'').trim();empresa.nomeFantasia=empresa.nome;empresa.razao_social=empresa.razaoSocial;empresa.nome_fantasia=empresa.nome;empresa.email=String(empresa.email||'').trim().toLowerCase();
+lista.push(empresa);
 salvarArray(
 "empresasEmpregaMais",
 lista
@@ -31057,16 +31052,16 @@ info.innerHTML=
 '<div class="cadastro-empresa-brand-em"><i>E+</i><span>EmpregaMais Empresas</span></div>'+
 '<h2>Encontre talentos para fazer sua empresa crescer.</h2>'+
 '<p class="lead-em">Crie sua conta empresarial e tenha um ambiente organizado para divulgar oportunidades e gerenciar suas vagas.</p>'+
-'<div class="cadastro-beneficio-em"><b>01</b><div><strong>Comece gratuitamente</strong><span>Plano B\u00E1sico com at\u00E9 10 vagas durante 30 dias.</span></div></div>'+
-'<div class="cadastro-beneficio-em"><b>02</b><div><strong>Solicite a verifica\u00E7\u00E3o</strong><span>Empresas do plano B\u00E1sico tamb\u00E9m podem solicitar o selo de verifica\u00E7\u00E3o.</span></div></div>'+
-'<div class="cadastro-beneficio-em"><b>03</b><div><strong>Painel empresarial</strong><span>Publique, acompanhe, edite e encerre suas oportunidades.</span></div></div>'+
+'<div class="cadastro-beneficio-em"><b><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg></b><div><strong>Comece gratuitamente</strong><span>Crie sua conta e conheça os recursos do portal.</span></div></div>'+
+'<div class="cadastro-beneficio-em"><b><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 20 6v6c0 5-4 8-8 9-4-1-8-4-8-9V6l8-3Zm-4 9 3 3 5-6"/></svg></b><div><strong>Solicite a verifica\u00E7\u00E3o</strong><span>Complemente os dados e envie documentos para análise.</span></div></div>'+
+'<div class="cadastro-beneficio-em"><b><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 4h18v16H3zM3 9h18M9 9v11"/></svg></b><div><strong>Painel empresarial</strong><span>Publique, acompanhe, edite e encerre suas oportunidades.</span></div></div>'+
 '</div>';
 var ladoForm=document.createElement("div");
 ladoForm.className="cadastro-empresa-form-em";
 ladoForm.innerHTML=
 '<span class="cadastro-empresa-kicker-em">CONTA EMPRESARIAL</span>'+
 '<h1>Cadastre sua empresa</h1>'+
-'<p class="sub-em">Informe os dados b\u00E1sicos para criar o acesso ao painel empresarial.</p>';
+'<p class="sub-em">Preencha os dados da empresa e do responsável para começar.</p>';
 var parent=formCard.parentElement;
 parent.insertBefore(shell,formCard);
 shell.appendChild(info);
