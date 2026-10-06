@@ -89,3 +89,28 @@ html body,html body *{font-family:Inter,Arial,sans-serif!important}
 
 /* Prioridade global para superar a tipografia das folhas legadas. */
 html body :is(#em-inter-global#em-tipografia#em-site#em-font-priority#em-theme,*){font-family:Inter,Arial,sans-serif!important}
+
+/* Organização aprovada na prévia. */
+html body #pagina-home #listaVagas>article.em-lista-final{grid-template-columns:minmax(0,1fr) auto!important;gap:8px 20px!important;padding:20px!important}
+html body #pagina-home #listaVagas .em-lista-footer{display:contents!important}
+html body #pagina-home #listaVagas .em-lista-cab{grid-column:1!important;grid-row:1!important}
+html body #pagina-home #listaVagas .em-lista-titulo{grid-column:1!important;grid-row:2!important;font-size:20px!important;line-height:1.35!important}
+html body #pagina-home #listaVagas .em-lista-data{grid-column:2!important;grid-row:1!important;font-size:11px!important}
+html body #pagina-home #listaVagas .em-lista-acoes{grid-column:2!important;grid-row:2!important}
+html body #pagina-home #listaVagas .em-lista-meta{grid-column:1/-1!important;grid-row:3!important;gap:8px!important}
+html body #pagina-home #listaVagas .em-lista-meta-item{display:inline-flex!important;align-items:center!important;gap:8px!important;background:#f0f5fc!important;border-radius:7px!important;padding:8px 12px!important;font-size:12px!important}
+html body #pagina-home #listaVagas .em-lista-meta-item b{text-transform:none!important;font-weight:500!important}
+html body #pagina-home #listaVagas .em-lista-salario{display:inline-flex!important;justify-content:flex-start!important;gap:8px!important;padding:8px 12px!important;width:auto!important}
+html body #pagina-home #listaVagas .em-lista-salario small{display:none!important}
+html body #pagina-home #listaVagas .em-lista-salario strong{font-size:13px!important}
+html body #pagina-home #listaVagas .em-lista-resumo{font-size:14px!important;line-height:1.6!important;max-height:45px!important;margin-top:6px!important}
+html body #pagina-home #listaVagas .em-lista-ver{background:#0864d9!important;border-radius:8px!important;height:40px!important;padding:0 18px!important}
+html body #pagina-home #listaVagas .em-lista-fav{height:40px!important;width:40px!important;border:1px solid #d7e2ef!important;border-radius:8px!important}
+html body #pagina-home #filtrosLateral .grupo{margin-bottom:18px!important}
+html body #pagina-home #filtrosLateral label{font-size:13px!important;font-weight:500!important;color:#183250!important}
+html body #pagina-home #filtrosLateral .campo{min-height:44px!important;font-size:13px!important;background:#fbfdff!important}
+@media(max-width:650px){html body #pagina-home #listaVagas>article.em-lista-final{grid-template-columns:minmax(0,1fr)!important}
+html body #pagina-home #listaVagas .em-lista-meta{grid-column:1!important;grid-row:3!important}
+html body #pagina-home #listaVagas .em-lista-resumo{grid-row:4!important}
+html body #pagina-home #listaVagas .em-lista-data{grid-column:1!important;grid-row:5!important}
+html body #pagina-home #listaVagas .em-lista-acoes{grid-column:1!important;grid-row:6!important}}
