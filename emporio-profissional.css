@@ -842,3 +842,47 @@ html body #pagina-home #listaVagas article.em-lista-final .em-lista-logo :is(.lo
  html body #pagina-home #listaVagas article.em-lista-final .em-lista-logo{top:0!important;right:2px!important;width:92px!important;height:86px!important;min-width:92px!important;min-height:86px!important}
  html body #pagina-home #listaVagas article.em-lista-final .em-lista-logo img{transform:scale(1.24)!important}
 }
+
+
+/* Vagas recentes v14: área visual da marca conforme marcação do usuário. */
+html body #pagina-home #listaVagas article.em-lista-final .em-lista-logo{
+  top:-18px!important;
+  right:-2px!important;
+  width:132px!important;
+  height:126px!important;
+  min-width:132px!important;
+  min-height:126px!important;
+  pointer-events:none!important;
+}
+html body #pagina-home #listaVagas article.em-lista-final .em-lista-logo>img{
+  position:absolute!important;
+  inset:0!important;
+  width:132px!important;
+  height:126px!important;
+  min-width:132px!important;
+  min-height:126px!important;
+  max-width:none!important;
+  max-height:none!important;
+  padding:0!important;
+  margin:0!important;
+  object-fit:contain!important;
+  transform:scale(1.75)!important;
+  transform-origin:center center!important;
+}
+html body #pagina-home #listaVagas article.em-lista-final .em-lista-logo>.logo-placeholder,
+html body #pagina-home #listaVagas article.em-lista-final .em-lista-logo>.logo-empresa:not(img){
+  position:absolute!important;
+  inset:0!important;
+  width:132px!important;
+  height:126px!important;
+  max-width:none!important;
+  max-height:none!important;
+  padding:0!important;
+  margin:0!important;
+  transform:none!important;
+  font-size:38px!important;
+}
+@media(max-width:650px){
+ html body #pagina-home #listaVagas article.em-lista-final .em-lista-logo{top:-10px!important;right:0!important;width:100px!important;height:96px!important;min-width:100px!important;min-height:96px!important}
+ html body #pagina-home #listaVagas article.em-lista-final .em-lista-logo>img{width:100px!important;height:96px!important;min-width:100px!important;min-height:96px!important;transform:scale(1.5)!important}
+}
