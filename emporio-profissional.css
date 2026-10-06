@@ -945,3 +945,12 @@ html body #pagina-home #listaVagas article.em-lista-final .em-lista-logo>.logo-e
  html body #pagina-home #listaVagas article.em-lista-final .em-lista-logo{top:13px!important;right:7px!important;width:76px!important;height:68px!important;min-width:76px!important;min-height:68px!important}
  html body #pagina-home #listaVagas article.em-lista-final .em-lista-logo>img{width:76px!important;height:68px!important;min-width:76px!important;min-height:68px!important;transform:scale(1.14)!important}
 }
+
+
+/* Vagas recentes v17: topo da logo alinhado à linha do nome da empresa. */
+html body #pagina-home #listaVagas article.em-lista-final .em-lista-logo{
+  top:2px!important;
+}
+@media(max-width:650px){
+ html body #pagina-home #listaVagas article.em-lista-final .em-lista-logo{top:3px!important}
+}
