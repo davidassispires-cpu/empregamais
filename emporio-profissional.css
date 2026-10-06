@@ -960,3 +960,43 @@ html body #pagina-home #listaVagas article.em-lista-final .em-lista-logo{
 html body #pagina-home #listaVagas article.em-lista-final .em-lista-logo{
   display:none!important;
 }
+
+/* Vagas recentes v20: rodape alinhado e favorito somente dentro da vaga. */
+html body #pagina-home #listaVagas article.em-lista-final .em-lista-acoes{
+  display:grid!important;
+  grid-template-columns:minmax(105px,1fr) minmax(150px,165px) minmax(82px,100px)!important;
+  align-items:end!important;
+  gap:10px!important;
+  width:100%!important;
+}
+html body #pagina-home #listaVagas article.em-lista-final .em-lista-fav{
+  display:none!important;
+}
+html body #pagina-home #listaVagas article.em-lista-final .em-lista-candidaturas{
+  grid-column:1!important;
+  align-self:end!important;
+  margin:0!important;
+  white-space:nowrap!important;
+}
+html body #pagina-home #listaVagas article.em-lista-final .em-lista-ver{
+  grid-column:2!important;
+  width:100%!important;
+  margin:0!important;
+  align-self:end!important;
+}
+html body #pagina-home #listaVagas article.em-lista-final .em-lista-data{
+  grid-column:3!important;
+  position:static!important;
+  margin:0!important;
+  align-self:end!important;
+  justify-self:end!important;
+  text-align:right!important;
+  white-space:normal!important;
+  line-height:1.2!important;
+}
+@media(max-width:650px){
+ html body #pagina-home #listaVagas article.em-lista-final .em-lista-acoes{grid-template-columns:1fr 1fr!important}
+ html body #pagina-home #listaVagas article.em-lista-final .em-lista-candidaturas{grid-column:1!important}
+ html body #pagina-home #listaVagas article.em-lista-final .em-lista-data{grid-column:2!important}
+ html body #pagina-home #listaVagas article.em-lista-final .em-lista-ver{grid-column:1/-1!important}
+}
