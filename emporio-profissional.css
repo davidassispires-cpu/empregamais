@@ -744,3 +744,26 @@ html body #pagina-home #listaVagas article.em-lista-final .em-lista-logo :is(img
  html body #pagina-home #listaVagas article.em-lista-final .em-lista-logo{top:4px!important;right:8px!important;width:88px!important;height:88px!important;min-width:88px!important;min-height:88px!important}
  html body #pagina-home #listaVagas article.em-lista-final .em-lista-logo :is(img,.logo-empresa,.logo-placeholder){width:80px!important;height:80px!important;max-width:80px!important;max-height:80px!important}
 }
+
+
+/* Vagas recentes v11: logo realmente maior e encostada no topo direito. */
+html body #pagina-home #listaVagas article.em-lista-final .em-lista-logo{
+  top:-8px!important;
+  right:4px!important;
+  width:138px!important;
+  height:138px!important;
+  min-width:138px!important;
+  min-height:138px!important;
+  transform:none!important;
+}
+html body #pagina-home #listaVagas article.em-lista-final .em-lista-logo :is(img,.logo-empresa,.logo-placeholder){
+  width:128px!important;
+  height:128px!important;
+  max-width:128px!important;
+  max-height:128px!important;
+  transform:none!important;
+}
+@media(max-width:650px){
+ html body #pagina-home #listaVagas article.em-lista-final .em-lista-logo{top:-4px!important;right:4px!important;width:104px!important;height:104px!important;min-width:104px!important;min-height:104px!important}
+ html body #pagina-home #listaVagas article.em-lista-final .em-lista-logo :is(img,.logo-empresa,.logo-placeholder){width:96px!important;height:96px!important;max-width:96px!important;max-height:96px!important}
+}
