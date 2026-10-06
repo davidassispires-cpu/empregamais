@@ -154,6 +154,16 @@ if(typeof window.irPara==="function") window.irPara("painel-empresa");
 function fail(msg,e){
 console.error("EmpregaMais/Supabase:",e||msg);
 clearToken(); clearLegacySession();
+var detalhe=String(e&&e.message||"");
+if(/invalid login credentials|invalid_credentials/i.test(detalhe)){
+msg="CNPJ ou senha incorretos. Confira a senha da sua conta empresarial.";
+}else if(/email not confirmed/i.test(detalhe)){
+msg="Confirme o e-mail da sua conta antes de entrar.";
+}else if(/failed to fetch|networkerror/i.test(detalhe)){
+msg="Não foi possível conectar ao serviço de login. Tente novamente.";
+}else if(detalhe){
+msg=msg+"\nDetalhe: "+detalhe;
+}
 alert(msg);
 }
 window.loginEmpresa=function(ev){
