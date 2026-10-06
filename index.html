@@ -15980,6 +15980,27 @@ body>header.topo .conta-menu{right:0!important;top:51px!important;z-index:5200!i
  body>header.topo .marca-nome{font-size:15px!important}
  body>header.topo #acoesPublicas .btn{padding:0 7px!important;font-size:10px!important}
 }
+</style><style id="em-account-menus-professional">
+html body header .header-v98-area{position:relative!important;display:inline-flex!important}
+html body header .header-v98-area>button{display:inline-flex!important;align-items:center!important;gap:9px!important;border:1px solid #d7e4f4!important;border-radius:10px!important;background:#fff!important;color:#174875!important;padding:11px 14px!important;height:44px!important}
+html body header .header-v98-area>button>span{display:inline!important}
+html body header .header-v98-area>button>svg{width:20px!important;height:20px!important;flex-shrink:0!important}
+html body header .header-v98-area>button>.em-trigger-chevron{width:15px!important;height:15px!important}
+html body header .header-v98-area.open>button{background:#edf5ff!important;color:#0864d9!important;border-color:#94bff0!important}
+html body header .header-v98-area.open .em-trigger-chevron{transform:rotate(180deg)}
+html body header .header-v98-area .em-account-menu{width:350px!important;max-width:calc(100vw - 24px)!important;padding:12px!important;border-radius:15px!important;border:1px solid #dee7f2!important;box-shadow:0 18px 48px rgba(20,46,79,.16)!important;top:calc(100% + 8px)!important;max-height:calc(100vh - 95px)!important;overflow:auto!important;background:#fff!important}
+html body header .em-account-heading{font-size:11px!important;font-weight:700!important;letter-spacing:1.2px!important;color:#67809e!important;padding:10px 12px 16px!important}
+html body header .em-account-menu>button{display:flex!important;gap:13px!important;align-items:center!important;padding:13px 12px!important;border:0!important;border-radius:10px!important;min-height:65px!important;width:100%!important;background:#fff!important;color:#17365a!important;white-space:normal!important;text-align:left!important}
+html body header .em-account-menu>button:hover,html body header .em-account-menu>button:focus-visible{background:#f1f6fc!important}
+html body header .em-account-menu>button.em-account-primary{background:#edf5ff!important}
+html body header .em-account-icon{display:flex!important;color:#0871e1!important;flex:0 0 25px!important}
+html body header .em-account-icon svg{width:25px!important;height:25px!important}
+html body header .em-account-copy{display:flex!important;flex-direction:column!important;gap:5px!important;min-width:0!important;flex:1!important}
+html body header .em-account-copy strong{font-size:14px!important;line-height:1.4!important;font-weight:650!important;color:#17365a!important}
+html body header .em-account-copy small{font-size:11px!important;line-height:1.5!important;font-weight:400!important;color:#6a7f99!important}
+html body header .em-account-arrow{width:15px!important;height:15px!important;flex:0 0 15px!important;color:#537399!important}
+html body header .em-account-menu .header-v98-sep{height:1px!important;background:#e8edf4!important;margin:8px 12px!important}
+@media(max-width:900px){html body header .header-v98-area .em-account-menu{position:fixed!important;top:74px!important;left:12px!important;right:12px!important;width:auto!important;max-height:calc(100dvh - 90px)!important}}
 </style></head><body><header class='topo'><div class='topo-inner'><button class='marca' onclick='irPara(&quot;home&quot;)' type='button'><span class='marca-icone'>E+</span><span class='marca-nome'>
 Emprega<span>Mais</span></span></button><nav class='menu-principal menu-v19' id='menuPublico'><button class='menu-link' onclick='irPara(&quot;home&quot;);rolarVagas();' type='button'>Buscar vagas</button><button class='menu-link menu-senior-v18' onclick='irPara(&quot;senior&quot;)' type='button'>EmpregaMais Sênior</button><button class='menu-link' onclick='irPara(&quot;curriculo&quot;)' type='button'>Cadastrar currículo</button><button class='menu-link' onclick='irPara(&quot;como-funciona&quot;)' type='button'>Como funciona</button><div class='menu-empresa-v19'><button class='menu-link menu-empresa-btn-v19' type='button'>Para empresas <span>&#8964;</span></button><div class='menu-empresa-drop-v19'><button onclick='irPara(&quot;para-empresas&quot;)' type='button'><b>Para empresas</b><small>Conheça as soluções do EmpregaMais</small></button><button onclick='abrirPublicacao()' type='button'><b>Publicar vaga</b><small>Cadastre uma nova oportunidade</small></button><button onclick='irPara(&quot;login-empresa&quot;)' type='button'><b>Painel do recrutador</b><small>Acesse sua conta empresarial</small></button><button onclick='irPara(&quot;planos&quot;)' type='button'><b>Planos para empresas</b><small>Compare recursos e benefícios</small></button></div></div></nav><div class='acoes-topo'><div class='acoes-publicas-v19' id='acoesPublicas'><button class='btn btn-claro btn-candidato-v19' onclick='irPara(&quot;login-candidato&quot;)' type='button'>Área do candidato <span>&#8964;</span></button><button class='btn btn-empresa btn-publicar-v19' onclick='abrirPublicacao()' type='button'>+ Publicar vaga</button></div><div class='conta-topo' id='contaCandidatoTopo'><button class='btn-conta' onclick='alternarContaMenu(&quot;menuContaCandidato&quot;)' type='button'><span class='avatar' id='avatarCandidato'>C</span><span class='conta-nome' id='nomeCandidatoTopo'>
 Candidato
@@ -35924,7 +35945,7 @@ window.EmpregaMaisCandidaturaV94={abrir:abrir,verificar:verificar,travar:travar}
 window.addEventListener("load",function(){setTimeout(travar,1200)});
 document.addEventListener("click",function(){setTimeout(function(){vaga=window.vagaAtual||vaga;travar()},500)},false)
 })();
-//</script><script src='empregamais_lote9.js?v=3'></script><script src='empregamais_lote14.js?v=1'></script><script type='text/javascript'>//
+//</script><script src='empregamais_lote9.js?v=20261006-menus'></script><script src='empregamais_lote14.js?v=1'></script><script type='text/javascript'>//
 (function(){
 var BENEFICIOS_V128=[
 ["vale_alimentacao","🍎","Vale-alimentação"],
