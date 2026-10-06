@@ -145,6 +145,7 @@ vaga.expiraEm=base.toISOString();
 return vaga;
 };
 function inserirResumoGratisV9(){
+if(document.getElementById("emRecruiterPanel"))return;
 if(window.empresaAssinanteV9())return;
 var p=document.getElementById("pagina-painel-empresa");
 if(!p)return;
@@ -176,6 +177,7 @@ if(wrap.firstChild)acoes.insertBefore(wrap.firstChild,acoes.firstChild);
 }
 }
 function atualizarPainelV9(){
+if(document.getElementById("emRecruiterPanel"))return;
 setTimeout(function(){inserirResumoGratisV9();injetarUrgenteNasVagasV9();},80);
 }
 document.addEventListener("DOMContentLoaded",atualizarPainelV9);
