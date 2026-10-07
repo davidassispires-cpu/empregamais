@@ -1828,3 +1828,20 @@ html body #pagina-vaga#pagina-vaga#pagina-vaga .aplicar-lateral>:not(.aplicar-bl
 html body #pagina-vaga#pagina-vaga#pagina-vaga .em-detail-company-name{display:block!important;background:#fff!important;border:1px solid #dce6f1!important;border-radius:10px!important;padding:16px!important;margin:0!important}
 html body #pagina-vaga#pagina-vaga#pagina-vaga .em-detail-company-name>span{display:block!important;font-size:11px!important;font-weight:600!important;color:#667c95!important;margin-bottom:6px!important}
 html body #pagina-vaga#pagina-vaga#pagina-vaga .em-detail-company-name>strong{display:block!important;font-family:Montserrat,Arial,sans-serif!important;font-size:13px!important;line-height:1.5!important;font-weight:700!important;color:#23496e!important;overflow-wrap:break-word!important}
+
+/* Cores discretas por área e interação suave. */
+html body #pagina-home #areasDestaqueHome #areasTrackRefV1 .home-area-ref-card-v1{--area-color:#1671cc;--area-bg:#eaf3ff;background:#fff!important;border:1px solid #dce6f1!important;box-shadow:0 3px 10px rgba(25,59,93,.035)!important;transition:transform .2s ease,border-color .2s ease,box-shadow .2s ease!important}
+html body #pagina-home #areasDestaqueHome #areasTrackRefV1 .home-area-ref-card-v1:nth-child(1){--area-color:#1671cc;--area-bg:#eaf3ff}
+html body #pagina-home #areasDestaqueHome #areasTrackRefV1 .home-area-ref-card-v1:nth-child(2){--area-color:#7851ba;--area-bg:#f2ecfc}
+html body #pagina-home #areasDestaqueHome #areasTrackRefV1 .home-area-ref-card-v1:nth-child(3){--area-color:#16845f;--area-bg:#e9f7ef}
+html body #pagina-home #areasDestaqueHome #areasTrackRefV1 .home-area-ref-card-v1:nth-child(4){--area-color:#bd6a15;--area-bg:#fff2e3}
+html body #pagina-home #areasDestaqueHome #areasTrackRefV1 .home-area-ref-card-v1:nth-child(5){--area-color:#087f91;--area-bg:#e5f6f8}
+html body #pagina-home #areasDestaqueHome #areasTrackRefV1 .home-area-ref-card-v1:nth-child(6){--area-color:#5064ba;--area-bg:#edf0fc}
+html body #pagina-home #areasDestaqueHome #areasTrackRefV1 .home-area-ref-card-v1:nth-child(7){--area-color:#24784c;--area-bg:#eaf5ed}
+html body #pagina-home #areasDestaqueHome #areasTrackRefV1 .home-area-ref-card-v1:nth-child(8){--area-color:#b4467f;--area-bg:#fcecf4}
+html body #pagina-home #areasDestaqueHome #areasTrackRefV1 .home-area-ref-card-v1>i{background:var(--area-bg)!important;color:var(--area-color)!important;border:0!important}
+html body #pagina-home #areasDestaqueHome #areasTrackRefV1 .home-area-ref-card-v1>i svg{width:24px!important;height:24px!important;stroke:currentColor!important;stroke-width:1.8!important}
+html body #pagina-home #areasDestaqueHome #areasTrackRefV1 .home-area-ref-card-v1>b{margin-left:auto!important;color:var(--area-color)!important;transition:transform .2s ease!important}
+html body #pagina-home #areasDestaqueHome #areasTrackRefV1 .home-area-ref-card-v1:focus-visible{outline:3px solid var(--area-color)!important;outline-offset:3px!important}
+@media(hover:hover) and (pointer:fine){html body #pagina-home #areasDestaqueHome #areasTrackRefV1 .home-area-ref-card-v1:hover{transform:translateY(-3px)!important;border-color:var(--area-color)!important;box-shadow:0 9px 22px rgba(25,59,93,.1)!important}html body #pagina-home #areasDestaqueHome #areasTrackRefV1 .home-area-ref-card-v1:hover>b{transform:translateX(3px)!important}}
+@media(prefers-reduced-motion:reduce){html body #pagina-home #areasDestaqueHome #areasTrackRefV1 .home-area-ref-card-v1,html body #pagina-home #areasDestaqueHome #areasTrackRefV1 .home-area-ref-card-v1>b{transition:none!important;transform:none!important}}
