@@ -1949,3 +1949,16 @@ html body #pagina-home #listaDestaques#listaDestaques#listaDestaques .em-feature
 html body #pagina-home #listaDestaques#listaDestaques#listaDestaques .em-featured-reference .em-featured-badges{display:flex!important;position:static!important;flex-wrap:wrap!important;gap:6px!important;margin:0 0 16px!important}
 html body #pagina-home #listaDestaques#listaDestaques#listaDestaques .em-featured-reference .em-featured-badge{font-size:9px!important;position:static!important;border-radius:30px!important;padding:6px 9px!important}
 @media(max-width:760px){html body #pagina-home #listaDestaques#listaDestaques#listaDestaques .em-featured-reference .dz-titulo{font-size:23px!important}html body #pagina-home #listaDestaques#listaDestaques#listaDestaques .em-featured-reference .dz-empresa{font-size:12px!important}html body #pagina-home #listaDestaques#listaDestaques#listaDestaques .em-featured-reference .dz-info{font-size:13px!important}html body #pagina-home #listaDestaques#listaDestaques#listaDestaques .em-featured-reference .dz-salario strong{font-size:18px!important}}
+
+/* Compact reference rhythm: remove inherited vertical expansion. */
+html body #pagina-home #listaDestaques#listaDestaques#listaDestaques .em-featured-reference{padding:16px!important;height:auto!important;min-height:0!important;max-height:none!important;justify-content:flex-start!important}
+html body #pagina-home #listaDestaques#listaDestaques#listaDestaques .em-featured-reference .em-featured-badges{margin-bottom:10px!important;min-height:0!important}
+html body #pagina-home #listaDestaques#listaDestaques#listaDestaques .em-featured-reference .em-featured-badge{padding:5px 8px!important}
+html body #pagina-home #listaDestaques#listaDestaques#listaDestaques .em-featured-reference .dz-cab{gap:10px 10px!important;margin-bottom:10px!important;min-height:0!important;flex:0 0 auto!important;align-content:start!important}
+html body #pagina-home #listaDestaques#listaDestaques#listaDestaques .em-featured-reference .dz-titulo{line-height:1.2!important}
+html body #pagina-home #listaDestaques#listaDestaques#listaDestaques .em-featured-reference .dz-corpo{gap:10px 8px!important;flex:0 0 auto!important;align-content:start!important;grid-auto-rows:auto!important}
+html body #pagina-home #listaDestaques#listaDestaques#listaDestaques .em-featured-reference .dz-infos{gap:5px!important;min-height:0!important;height:auto!important;justify-content:flex-start!important}
+html body #pagina-home #listaDestaques#listaDestaques#listaDestaques .em-featured-reference .dz-info{height:auto!important;min-height:0!important;line-height:1.4!important;margin:0!important}
+html body #pagina-home #listaDestaques#listaDestaques#listaDestaques .em-featured-reference .dz-resumo{min-height:0!important;height:auto!important;line-height:1.5!important;margin:0!important}
+html body #pagina-home #listaDestaques#listaDestaques#listaDestaques .em-featured-reference .dz-salario{margin:0!important;min-height:0!important}
+html body #pagina-home #listaDestaques#listaDestaques#listaDestaques .em-featured-reference .dz-botao{height:36px!important}
