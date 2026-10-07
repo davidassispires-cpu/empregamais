@@ -1862,3 +1862,14 @@ html body :is(#pagina-login-candidato,#pagina-curriculo,#pagina-painel-candidato
 html body #pagina-login-candidato :is(.login-senha-link,.login-ajuda button){color:#7953b2!important;border-color:#7953b2!important}
 html body #pagina-login-candidato .campo:focus{outline-color:#7953b2!important}
 html body #pagina-como-funciona #comoFuncionaV106#comoFuncionaV106[data-publico="empresa"]{--cf-accent:#1268d4;--cf-soft:#eaf3ff}
+
+/* Destaques em uma única faixa: quatro no desktop, swipe no celular. */
+html body #pagina-home #listaDestaques#listaDestaques#listaDestaques{display:flex!important;flex-direction:row!important;flex-wrap:nowrap!important;gap:16px!important;overflow-x:auto!important;overflow-y:hidden!important;scroll-snap-type:x mandatory!important;scroll-padding:0!important;width:100%!important;max-width:100%!important;padding:8px 0 18px!important;scrollbar-width:none!important}
+html body #pagina-home #listaDestaques#listaDestaques#listaDestaques::-webkit-scrollbar{display:none}
+html body #pagina-home #listaDestaques#listaDestaques#listaDestaques>*{flex:0 0 calc((100% - 48px)/4)!important;width:calc((100% - 48px)/4)!important;min-width:0!important;max-width:none!important;scroll-snap-align:start!important;box-sizing:border-box!important}
+html body #pagina-home .destaques-carrossel-em{min-width:0!important;max-width:100%!important}
+html body #pagina-home #listaDestaques#listaDestaques#listaDestaques .dz-cab{padding:48px 14px 12px!important;gap:10px!important;grid-template-columns:40px minmax(0,1fr)!important;min-height:0!important}
+html body #pagina-home #listaDestaques#listaDestaques#listaDestaques .dz-logo{width:40px!important;height:40px!important}
+html body #pagina-home #listaDestaques#listaDestaques#listaDestaques .dz-titulo{font-size:16px!important;line-height:1.3!important}
+html body #pagina-home #listaDestaques#listaDestaques#listaDestaques .dz-empresa{font-size:11px!important;overflow-wrap:break-word!important}
+@media(max-width:760px){html body #pagina-home #listaDestaques#listaDestaques#listaDestaques{gap:12px!important}html body #pagina-home #listaDestaques#listaDestaques#listaDestaques>*{flex-basis:88%!important;width:88%!important}html body #pagina-home .destaques-seta-em{display:none!important}}
