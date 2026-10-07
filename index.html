@@ -41062,7 +41062,7 @@ function montar(){
  var sincronizadores=[];
  painel.querySelectorAll(':scope > .grupo').forEach(function(grupo){
   var campo=grupo.querySelector('select,input');var titulo=grupo.querySelector('label');if(!campo||!titulo)return;
-  var bloco=document.createElement('details');bloco.className='em-filtro-bloco';bloco.open=true;
+  var bloco=document.createElement('details');bloco.className='em-filtro-bloco';bloco.open=false;
   var resumo=document.createElement('summary');resumo.textContent=titulo.textContent.trim();
   var conteudo=document.createElement('div');conteudo.className='em-filtro-conteudo';
   bloco.append(resumo,conteudo);grupo.replaceWith(bloco);conteudo.appendChild(campo);
@@ -41097,4 +41097,27 @@ function montar(){
  sincronizar();
 }
 if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',montar);else montar();
+})();</script><style id="em-filtros-altura-v2">@media(min-width:761px){
+html body #pagina-home #filtrosLateral#filtrosLateral.em-filtros-blocos{
+ align-self:start!important;box-sizing:border-box!important;min-height:0!important;height:auto!important;
+ max-height:var(--em-altura-filtros,none)!important;overflow-y:auto!important;overflow-x:hidden!important;
+ scrollbar-width:thin;scrollbar-gutter:stable;
+}
+}</style><script id="em-filtros-altura-v2-js">(function(){
+function iniciar(){
+ var painel=document.getElementById('filtrosLateral'),lista=document.getElementById('listaVagas');
+ if(!painel||!lista)return;
+ function ajustar(){
+  if(window.innerWidth<=760){painel.style.removeProperty('--em-altura-filtros');return;}
+  var fim=lista.getBoundingClientRect().bottom,inicio=painel.getBoundingClientRect().top;
+  var altura=Math.floor(fim-inicio);
+  if(lista.getBoundingClientRect().height>0&&altura>0)painel.style.setProperty('--em-altura-filtros',altura+'px');
+ }
+ if(typeof ResizeObserver==='function'){
+  var observer=new ResizeObserver(ajustar);observer.observe(lista);
+  var perto=document.getElementById('emPerto');if(perto)observer.observe(perto);
+ }
+ window.addEventListener('resize',ajustar);requestAnimationFrame(ajustar);
+}
+if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',iniciar);else iniciar();
 })();</script></body></html>
