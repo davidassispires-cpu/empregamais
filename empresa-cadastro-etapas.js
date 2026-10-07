@@ -8,7 +8,7 @@ function init(){
  const submit=form.querySelector('[type="submit"]'),notice=form.querySelector('.reg-next');
  let current=0;
  const progress=document.createElement('ol');progress.className='reg-progress';progress.setAttribute('aria-label','Etapas do cadastro');
- ['Empresa','Responsável','Acesso'].forEach((title,i)=>{const li=document.createElement('li');li.innerHTML='<span>'+(i+1)+'</span><strong>'+title+'</strong>';progress.appendChild(li);});
+ ['Empresa','Endereço','Responsável'].forEach((title,i)=>{const li=document.createElement('li');li.innerHTML='<span>'+(i+1)+'</span><strong>'+title+'</strong>';progress.appendChild(li);});
  form.prepend(progress);
  const status=document.createElement('p');status.className='reg-step-status';status.setAttribute('aria-live','polite');progress.after(status);
  const actions=document.createElement('div');actions.className='reg-step-actions';
