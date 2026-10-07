@@ -25058,6 +25058,17 @@ return "Sal\u00E1rio: A combinar";
 return "Sal\u00E1rio: R$ " +
 formatado;
 }
+function logoPreviaDestaqueEM(vaga){
+ var empresa=typeof empresaDaVagaEM==="function"?empresaDaVagaEM(vaga):null;
+ var url=vaga.logo||vaga.logoEmpresa||(empresa&&empresa.logo)||"";
+ var wrap=document.createElement("span");wrap.className="em-logo-destaque-previa";
+ if(url){var img=document.createElement("img");img.src=url;img.alt="Logo de "+(vaga.empresa||"empresa");img.loading="lazy";img.onerror=function(){img.remove();wrap.textContent=String(vaga.empresa||"E").charAt(0).toUpperCase();};wrap.appendChild(img);}
+ else wrap.textContent=String(vaga.empresa||"E").charAt(0).toUpperCase();
+ return wrap;
+}
+function exibirLogoDestaqueEM(vaga){
+ return !vagaEhConfidencialEM(vaga)&&(vaga.destaque===true||String(vaga.destaque).toLowerCase()==="true"||String(vaga.destaque)==="1"||vaga.emDestaque===true||vaga.destacada===true);
+}
 function criarCardVaga(
 vaga,
 destaque
@@ -25083,7 +25094,7 @@ if(destaque){
   }
   var logoWrap=document.createElement("div");
   logoWrap.className="dz-logo";
-  var logoNovo=criarLogo(vaga);
+  var logoNovo=logoPreviaDestaqueEM(vaga);
   logoWrap.appendChild(logoNovo);
   var cabTexto=document.createElement("div");
   cabTexto.className="dz-cab-texto";
@@ -25099,7 +25110,7 @@ if(destaque){
   selo.className="dz-selo";
   selo.innerHTML='<svg aria-hidden="true" viewBox="0 0 24 24"><path d="m12 3 2.8 5.7 6.3.9-4.6 4.5 1.1 6.3-5.6-3-5.6 3 1.1-6.3L3 9.6l6.2-.9Z"/></svg><strong>Em destaque</strong>';
   cab.appendChild(selo);
-  cab.appendChild(logoWrap);
+  if(!vagaEhConfidencialEM(vaga))cab.appendChild(logoWrap);
   cab.appendChild(cabTexto);
   cardNovo.appendChild(cab);
   var corpo=document.createElement("div");
@@ -25236,6 +25247,7 @@ if(!destaque){
 
   var cabLista=document.createElement("div");
   cabLista.className="em-lista-cab";
+  if(exibirLogoDestaqueEM(vaga))cabLista.appendChild(logoPreviaDestaqueEM(vaga));
   var empresaLista=document.createElement("div");
   empresaLista.className="em-lista-empresa";
   var nomeEmpresaLista=document.createElement("span");
@@ -41268,4 +41280,9 @@ window.addEventListener("storage",init);
 if(typeof irPara==="function"){var original=irPara;window.irPara=function(){var r=original.apply(this,arguments);setTimeout(init,100);return r;};}
 document.addEventListener("click",function(ev){if(ev.target.closest("button,a"))setTimeout(refresh,300);});
 })();
-</script></body></html>
+</script><style id="em-logos-destaques-v1">html body #pagina-home #listaVagas#listaVagas article.em-lista-final .em-lista-cab{align-items:center!important}
+html body #pagina-home #listaVagas#listaVagas article.em-lista-final .em-logo-destaque-previa{display:inline-flex!important;align-items:center!important;justify-content:center!important;flex:0 0 38px!important;width:38px!important;height:38px!important;background:#fff!important;border:1px solid #dbe4ef!important;border-radius:7px!important;overflow:hidden!important;color:#173f70!important;font-size:18px!important;font-weight:700!important}
+html body #pagina-home #listaDestaques#listaDestaques .dz-logo{display:flex!important;visibility:visible!important;opacity:1!important}
+html body #pagina-home #listaDestaques#listaDestaques .em-logo-destaque-previa{display:flex!important;align-items:center!important;justify-content:center!important;width:100%!important;height:100%!important;background:#fff!important;color:#173f70!important;border-radius:8px!important;overflow:hidden!important;font-size:26px!important;font-weight:700!important}
+html body #pagina-home :is(#listaVagas#listaVagas,#listaDestaques#listaDestaques) .em-logo-destaque-previa>img{display:block!important;visibility:visible!important;opacity:1!important;width:100%!important;height:100%!important;max-width:100%!important;max-height:100%!important;object-fit:contain!important;padding:4px!important;box-sizing:border-box!important;border:0!important;border-radius:0!important;margin:0!important}
+@media(max-width:760px){html body #pagina-home #listaVagas#listaVagas article.em-lista-final .em-logo-destaque-previa{width:32px!important;height:32px!important;flex-basis:32px!important}}</style></body></html>
