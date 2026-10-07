@@ -1606,3 +1606,22 @@ html body #pagina-home #listaVagas#listaVagas article.em-lista-final .em-lista-d
 
 /* Remove o banner EmpregaMais Sênior da página inicial em todos os tamanhos. */
 html body #pagina-home section.senior-home-v18{display:none!important}
+
+/* Acesso público em botões preenchidos com identidade de cada público. */
+html body header.topo #acoesPublicas .header-v98-area[data-publico]>button{
+ display:inline-flex!important;align-items:center!important;justify-content:center!important;
+ gap:8px!important;height:40px!important;min-height:40px!important;
+ padding:0 15px!important;border:0!important;border-radius:7px!important;
+ color:#fff!important;font:700 13px Montserrat,Arial,sans-serif!important;
+ white-space:nowrap!important;box-shadow:none!important;
+}
+html body header.topo #acoesPublicas .header-v98-area[data-publico="cand"]>button{background:#1268d4!important}
+html body header.topo #acoesPublicas .header-v98-area[data-publico="emp"]>button{background:#b9500d!important}
+html body header.topo #acoesPublicas .header-v98-area[data-publico="cand"]>button:hover{background:#0c55b1!important}
+html body header.topo #acoesPublicas .header-v98-area[data-publico="emp"]>button:hover{background:#9f4309!important}
+html body header.topo #acoesPublicas .header-v98-area[data-publico]>button :is(span,svg){color:#fff!important}
+html body header.topo #acoesPublicas .header-v98-area[data-publico]>button .em-trigger-chevron{width:14px!important;height:14px!important;stroke:currentColor!important}
+html body header.topo #acoesPublicas .header-v98-area[data-publico]>button:focus-visible{outline:2px solid #14365d!important;outline-offset:3px!important}
+html body header.topo #acoesPublicas>.header-v98-area[data-publico="cand"]{order:1!important}
+html body header.topo #acoesPublicas>.menu-empresa-v19{order:2!important}
+@media(max-width:480px){html body header.topo #acoesPublicas .header-v98-area[data-publico]>button{padding:0 10px!important;gap:5px!important;font-size:11px!important;height:38px!important;min-height:38px!important}}
