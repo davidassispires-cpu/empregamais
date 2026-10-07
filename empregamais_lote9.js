@@ -589,6 +589,13 @@ function enhance(){
   var copy=document.createElement("button");copy.type="button";copy.className="em-detail-share";copy.title="Copiar link da vaga";copy.setAttribute("aria-label",copy.title);copy.innerHTML='<svg viewBox="0 0 24 24"><path d="m10 14 4-4M8 16l-2 2a4 4 0 0 1-6-6l4-4a4 4 0 0 1 6 0M16 8l2-2a4 4 0 0 1 6 6l-4 4a4 4 0 0 1-6 0" transform="translate(2 0) scale(.85)"/></svg>';copy.onclick=function(){navigator.clipboard.writeText(location.href).then(function(){if(typeof mostrarToast==="function")mostrarToast("Link da vaga copiado.");}).catch(function(){if(typeof mostrarToast==="function")mostrarToast("Copie o endereço da vaga na barra do navegador.");});};
   shares.append(wa,copy);
  }
+ var icons=[
+  '<path d="M20 10c0 5-8 11-8 11S4 15 4 10a8 8 0 1 1 16 0Z"/><circle cx="12" cy="10" r="2.5"/>',
+  '<rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2M3 12h18M10 12v3h4v-3"/>',
+  '<rect x="3" y="3" width="18" height="14" rx="2"/><path d="M8 21h8M12 17v4"/>',
+  '<rect x="2" y="5" width="20" height="14" rx="2"/><circle cx="12" cy="12" r="3"/><path d="M6 9h.01M18 15h.01"/>'
+ ];
+ ["local","contrato","modalidade","salario"].forEach(function(kind,i){var icon=page.querySelector(".em-info-"+kind+"-v1 .em-info-icon-v1");if(icon&&!icon.querySelector("svg"))icon.innerHTML='<svg viewBox="0 0 24 24" aria-hidden="true">'+icons[i]+'</svg>';});
  // Prefer the identity of the registered employer over a stale imported logo.
  var u=new URL(location.href),v=typeof vagaPorIdEM==="function"?vagaPorIdEM(u.searchParams.get("id")):null;
  var e=v&&typeof empresaDaVagaEM==="function"?empresaDaVagaEM(v):null;
