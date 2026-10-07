@@ -1643,18 +1643,18 @@ html body header.topo #acoesPublicas#acoesPublicas .header-v98-area:has(.em-comp
 html body header.topo #acoesPublicas#acoesPublicas .btn-candidato-v19,
 html body header.topo #acoesPublicas#acoesPublicas .header-v98-area[data-publico="cand"]>button,
 html body header.topo #acoesPublicas#acoesPublicas .header-v98-area:has(.em-candidate-menu)>button{
- background:#c4520b!important;background-image:none!important;color:#fff!important;
- border:1px solid #c4520b!important;border-radius:7px!important;
+ background:#7953b2!important;background-image:none!important;color:#fff!important;
+ border:1px solid #7953b2!important;border-radius:7px!important;
 }
 html body header.topo #acoesPublicas#acoesPublicas .btn-candidato-v19 :is(span,svg),
 html body header.topo #acoesPublicas#acoesPublicas .header-v98-area:has(.em-candidate-menu)>button :is(span,svg){color:#fff!important}
 html body header.topo #acoesPublicas#acoesPublicas .btn-candidato-v19:hover,
 html body header.topo #acoesPublicas#acoesPublicas .header-v98-area:has(.em-candidate-menu)>button:hover{
- background:#a94408!important;color:#fff!important;border-color:#a94408!important;
+ background:#634291!important;color:#fff!important;border-color:#634291!important;
 }
 
 /* Página Como funciona: duas jornadas completas. */
-html body #pagina-como-funciona #comoFuncionaV106#comoFuncionaV106{--cf-accent:#bd4d0b;--cf-soft:#fff3e8;--cf-dark:#113b65;display:block!important;width:100%!important;margin:0!important;background:#f5f8fc!important;color:#173957!important;padding:0 0 56px!important}
+html body #pagina-como-funciona #comoFuncionaV106#comoFuncionaV106{--cf-accent:#7953b2;--cf-soft:#f3eef9;--cf-dark:#113b65;display:block!important;width:100%!important;margin:0!important;background:#f5f8fc!important;color:#173957!important;padding:0 0 56px!important}
 html body #pagina-como-funciona #comoFuncionaV106#comoFuncionaV106[data-publico="empresa"]{--cf-accent:#1267c2;--cf-soft:#eaf3ff;--cf-dark:#103e70}
 #comoFuncionaV106#comoFuncionaV106 *{box-sizing:border-box}
 #comoFuncionaV106#comoFuncionaV106 .cf106-hero{padding:64px 28px 78px!important;background:linear-gradient(120deg,#103c66,#1764a0)!important;color:#fff!important;text-align:left!important;border-radius:0!important;min-height:0!important}
@@ -1845,3 +1845,20 @@ html body #pagina-home #areasDestaqueHome #areasTrackRefV1 .home-area-ref-card-v
 html body #pagina-home #areasDestaqueHome #areasTrackRefV1 .home-area-ref-card-v1:focus-visible{outline:3px solid var(--area-color)!important;outline-offset:3px!important}
 @media(hover:hover) and (pointer:fine){html body #pagina-home #areasDestaqueHome #areasTrackRefV1 .home-area-ref-card-v1:hover{transform:translateY(-3px)!important;border-color:var(--area-color)!important;box-shadow:0 9px 22px rgba(25,59,93,.1)!important}html body #pagina-home #areasDestaqueHome #areasTrackRefV1 .home-area-ref-card-v1:hover>b{transform:translateX(3px)!important}}
 @media(prefers-reduced-motion:reduce){html body #pagina-home #areasDestaqueHome #areasTrackRefV1 .home-area-ref-card-v1,html body #pagina-home #areasDestaqueHome #areasTrackRefV1 .home-area-ref-card-v1>b{transition:none!important;transform:none!important}}
+
+/* Identidade por público: empresa azul; candidato roxo. */
+:root{--candidato:#7953b2;--candidato-hover:#634291;--candidato-suave:#f3eef9;--empresa:#1268d4}
+html body header.topo .em-candidate-menu{border-color:#dfd2ee!important}
+html body header.topo .em-candidate-menu .em-account-icon{background:#f3eef9!important;color:#7953b2!important}
+html body header.topo .em-candidate-menu .em-account-primary{background:#7953b2!important;border-color:#7953b2!important;color:white!important}
+html body header.topo .em-candidate-menu .em-account-primary :is(strong,small,svg){color:white!important}
+html body header.topo .em-candidate-menu .em-account-primary .em-account-icon{background:#ffffff24!important;color:white!important}
+html body header.topo .em-candidate-menu>button:not(.em-account-primary):hover{background:#f3eef9!important}
+html body header.topo .em-candidate-menu .em-account-arrow{color:#7953b2!important}
+html body header.topo #menuContaCandidato .menu-icone-v52,html body header.topo #contaCandidatoTopo .avatar{background:#f3eef9!important;color:#7953b2!important}
+html body :is(#pagina-login-candidato,#pagina-curriculo,#pagina-painel-candidato,#pagina-perfil,#pagina-candidaturas,#pagina-salvas){--azul:#7953b2;--azulEscuro:#634291;--azulClaro:#f3eef9;--laranja:#7953b2;--laranjaClaro:#f3eef9}
+html body :is(#pagina-login-candidato,#pagina-curriculo,#pagina-painel-candidato,#pagina-perfil,#pagina-candidaturas,#pagina-salvas) :is(.btn-azul,button[type=submit]){background:#7953b2!important;border-color:#7953b2!important;color:white!important}
+html body :is(#pagina-login-candidato,#pagina-curriculo,#pagina-painel-candidato) :is(.btn-azul,button[type=submit]):hover{background:#634291!important}
+html body #pagina-login-candidato :is(.login-senha-link,.login-ajuda button){color:#7953b2!important;border-color:#7953b2!important}
+html body #pagina-login-candidato .campo:focus{outline-color:#7953b2!important}
+html body #pagina-como-funciona #comoFuncionaV106#comoFuncionaV106[data-publico="empresa"]{--cf-accent:#1268d4;--cf-soft:#eaf3ff}
