@@ -1638,3 +1638,17 @@ html body header.topo #acoesPublicas#acoesPublicas .menu-empresa-btn-v19 :is(spa
 html body header.topo #acoesPublicas#acoesPublicas .header-v98-area:has(.em-company-menu)>button :is(span,svg){color:#fff!important}
 html body header.topo #acoesPublicas#acoesPublicas .menu-empresa-btn-v19:hover,
 html body header.topo #acoesPublicas#acoesPublicas .header-v98-area:has(.em-company-menu)>button:hover{background:#0c55b1!important;color:#fff!important;border-color:#0c55b1!important}
+
+/* Botão de candidatos acompanha o laranja do menu. */
+html body header.topo #acoesPublicas#acoesPublicas .btn-candidato-v19,
+html body header.topo #acoesPublicas#acoesPublicas .header-v98-area[data-publico="cand"]>button,
+html body header.topo #acoesPublicas#acoesPublicas .header-v98-area:has(.em-candidate-menu)>button{
+ background:#c4520b!important;background-image:none!important;color:#fff!important;
+ border:1px solid #c4520b!important;border-radius:7px!important;
+}
+html body header.topo #acoesPublicas#acoesPublicas .btn-candidato-v19 :is(span,svg),
+html body header.topo #acoesPublicas#acoesPublicas .header-v98-area:has(.em-candidate-menu)>button :is(span,svg){color:#fff!important}
+html body header.topo #acoesPublicas#acoesPublicas .btn-candidato-v19:hover,
+html body header.topo #acoesPublicas#acoesPublicas .header-v98-area:has(.em-candidate-menu)>button:hover{
+ background:#a94408!important;color:#fff!important;border-color:#a94408!important;
+}
