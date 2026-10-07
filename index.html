@@ -25263,12 +25263,6 @@ if(!destaque){
     notaEmpresaLista.setAttribute("aria-label","Nota da empresa: " + avaliacaoLista.media.toFixed(1).replace(".",",") + " de 5. " + notaEmpresaLista.title);
     empresaLista.appendChild(notaEmpresaLista);
   }
-  // Demonstração temporária autorizada: remover este bloco após aprovação visual.
-  var atividadeDemoLista=document.createElement("span");
-  atividadeDemoLista.className="em-recrutamento-demo";
-  atividadeDemoLista.title="Demonstração visual: atividade ainda não validada";
-  atividadeDemoLista.innerHTML='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 12h4l3-7 4 14 3-7h4"/></svg><span>Recrutamento ativo</span>';
-  empresaLista.appendChild(atividadeDemoLista);
   cabLista.appendChild(empresaLista);
   var ehUrgenteLista=
     vaga.contratacaoUrgente===true ||
@@ -25283,10 +25277,6 @@ if(!destaque){
       '<strong>CONTRATAÇÃO URGENTE</strong>';
     cabLista.appendChild(urgenteLista);
   }
-  var logoLista=document.createElement("div");
-  logoLista.className="em-lista-logo";
-  logoLista.appendChild(criarLogo(vaga));
-  cardLista.appendChild(logoLista);
   cardLista.appendChild(cabLista);
 
   var tituloLista=document.createElement("h3");
@@ -25337,25 +25327,8 @@ if(!destaque){
     '<svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M8 3v4M16 3v4M3 10h18"/></svg>'+
     '<span>Publicada em <b></b></span>';
   dataLista.querySelector("b").textContent=formatarData(vaga.dataPublicacao);
-  var candLista=document.createElement("div");
-  candLista.className="em-lista-candidaturas";
-  var totalCandLista=typeof contarCandidaturasVaga==="function"?contarCandidaturasVaga(vaga.id):0;
-  candLista.innerHTML='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg><span></span>';
-  candLista.querySelector("span").textContent=totalCandLista+" "+(totalCandLista===1?"candidatura":"candidaturas");
-  footerLista.appendChild(candLista);
-  {
-    var chanceLista=document.createElement("span");
-    chanceLista.className="em-lista-pouca-concorrencia";
-    chanceLista.innerHTML='<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="4" y="14" width="3" height="6" rx=".7"/><rect x="10.5" y="9" width="3" height="11" rx=".7"/><rect x="17" y="4" width="3" height="16" rx=".7"/></svg><span>Pouca concorrência</span>';
-    var nivelConcorrenciaLista=totalCandLista<15?"baixa":totalCandLista<50?"moderada":"alta";
-    chanceLista.setAttribute("data-nivel",nivelConcorrenciaLista);
-    chanceLista.querySelector("span").textContent=totalCandLista<15?"Pouca concorrência":totalCandLista<50?"Concorrência moderada":"Alta concorrência";
-    footerLista.appendChild(chanceLista);
-  }
   var indicadoresLista=document.createElement("div");
   indicadoresLista.className="em-lista-indicadores";
-  if(chanceLista)indicadoresLista.appendChild(chanceLista);
-  indicadoresLista.appendChild(candLista);
   if(String(vaga.tipoContato||"").trim().toLowerCase()==="email"){
     var rapidaLista=document.createElement("span");
     rapidaLista.className="em-lista-rapida";
@@ -25385,6 +25358,11 @@ if(!destaque){
   verLista.innerHTML='<span>Candidatar-se</span><b aria-hidden="true">→</b>';
   verLista.onclick=function(){irPara("vaga",vaga.id);};
   cardLista.appendChild(favLista);
+  var atividadeDemoLista=document.createElement("span");
+  atividadeDemoLista.className="em-recrutamento-demo";
+  atividadeDemoLista.title="Demonstração visual: atividade ainda não validada";
+  atividadeDemoLista.innerHTML='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 12h4l3-7 4 14 3-7h4"/></svg><span>Recrutamento ativo</span>';
+  acoesLista.appendChild(atividadeDemoLista);
   acoesLista.appendChild(verLista);
   footerLista.appendChild(dataLista);
   footerLista.appendChild(acoesLista);
