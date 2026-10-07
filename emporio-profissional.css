@@ -1625,3 +1625,16 @@ html body header.topo #acoesPublicas .header-v98-area[data-publico]>button:focus
 html body header.topo #acoesPublicas>.header-v98-area[data-publico="cand"]{order:1!important}
 html body header.topo #acoesPublicas>.menu-empresa-v19{order:2!important}
 @media(max-width:480px){html body header.topo #acoesPublicas .header-v98-area[data-publico]>button{padding:0 10px!important;gap:5px!important;font-size:11px!important;height:38px!important;min-height:38px!important}}
+
+/* Botão público da empresa: azul e branco, inclusive antes da montagem do menu. */
+html body header.topo #acoesPublicas#acoesPublicas .menu-empresa-btn-v19,
+html body header.topo #acoesPublicas#acoesPublicas .header-v98-area[data-publico="emp"]>button,
+html body header.topo #acoesPublicas#acoesPublicas .header-v98-area:has(.em-company-menu)>button{
+ background:#1268d4!important;background-image:none!important;color:#fff!important;
+ border:1px solid #1268d4!important;border-radius:7px!important;
+ min-height:40px!important;padding:0 15px!important;font-weight:700!important;
+}
+html body header.topo #acoesPublicas#acoesPublicas .menu-empresa-btn-v19 :is(span,svg),
+html body header.topo #acoesPublicas#acoesPublicas .header-v98-area:has(.em-company-menu)>button :is(span,svg){color:#fff!important}
+html body header.topo #acoesPublicas#acoesPublicas .menu-empresa-btn-v19:hover,
+html body header.topo #acoesPublicas#acoesPublicas .header-v98-area:has(.em-company-menu)>button:hover{background:#0c55b1!important;color:#fff!important;border-color:#0c55b1!important}
