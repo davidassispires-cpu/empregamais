@@ -36003,6 +36003,22 @@ btn.disabled=false;btn.textContent="Enviar candidatura";
 });
 });
 }
+function mostrarCandidaturaEnviada(v){
+var old=document.getElementById("emCandidaturaSucesso");if(old)old.remove();
+var dialog=document.createElement("dialog");
+dialog.id="emCandidaturaSucesso";
+dialog.setAttribute("aria-label","Candidatura enviada");
+dialog.style.cssText="border:0;padding:0;border-radius:24px;width:min(480px,calc(100vw - 32px));max-height:calc(100dvh - 32px);overflow:auto;background:#fff;box-shadow:0 24px 90px #0f172a40";
+var host=document.createElement("div"),root=host.attachShadow({mode:"open"});
+root.innerHTML='<style>:host{display:block;font-family:Montserrat,Arial,sans-serif;color:#17324d}.card{padding:36px 28px;text-align:center;box-sizing:border-box}.icon{display:grid;place-items:center;width:76px;height:76px;margin:0 auto 22px;border-radius:50%;background:#e8f8ef;color:#16a36a;box-shadow:0 0 0 9px #f3fbf6}svg{width:36px;height:36px}h2{font-size:23px;margin:0 0 12px;font-weight:800;line-height:1.25}p{font-size:14px;line-height:1.65;color:#64748b;margin:0 0 20px}.vaga{padding:15px;border:1px solid #e3edf5;background:#f7faff;border-radius:12px;margin-bottom:24px}.vaga strong{display:block;font-size:13px;line-height:1.5;overflow-wrap:anywhere}.vaga span{display:block;margin-top:4px;font-size:12px;color:#64748b;overflow-wrap:anywhere}button{font:700 13px Montserrat,Arial,sans-serif;border:0;border-radius:12px;cursor:pointer;width:100%;padding:14px;line-height:1.4}button:focus-visible{outline:3px solid #93c5fd;outline-offset:3px}.primary{color:#fff;background:#1875d1}.secondary{margin-top:9px;color:#52677e;background:#f1f5f9}@media(max-width:480px){.card{padding:28px 20px}h2{font-size:21px}}</style><section class="card"><div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 4 4L19 6"/></svg></div><h2>Candidatura enviada!</h2><p>Sua candidatura foi registrada com sucesso. Acompanhe o andamento pela sua área de candidato.</p><div class="vaga"><strong></strong><span></span></div><button class="primary" type="button">Acompanhar candidaturas</button><button class="secondary" type="button">Continuar buscando vagas</button></section>';
+root.querySelector(".vaga strong").textContent=v&&(v.cargo||v.titulo)||"Vaga";
+root.querySelector(".vaga span").textContent=v&&v.empresa||"";
+function fechar(){dialog.close();dialog.remove();}
+root.querySelector(".primary").onclick=function(){fechar();irPara("candidaturas");};
+root.querySelector(".secondary").onclick=function(){fechar();irPara("home");};
+dialog.addEventListener("close",function(){dialog.remove();});
+dialog.appendChild(host);document.body.appendChild(dialog);dialog.showModal();
+}
 async function enviar(){
 erro("");var c=cand(), online=cv(), file=document.getElementById("cand94File").files[0];
 if(modo==="online"&&!online){erro("Você ainda não possui um currículo online salvo.");return}
@@ -36021,7 +36037,7 @@ if(!r||r.sucesso!==true){erro(r&&r.erro?r.erro:"Não foi possível enviar a cand
 try{
 var ls=JSON.parse(localStorage.getItem("candidaturasEmpregaMais")||"[]");ls.unshift({id:r.id,vagaId:idVaga(vaga),vaga:vaga.cargo||vaga.titulo||"",empresa:vaga.empresa||"",email:em(),candidatoEmail:em(),aderencia:r.aderencia||0,status:"Candidatura enviada",statusProcesso:"Candidatura enviada",visualizada:false,data:new Date().toISOString()});localStorage.setItem("candidaturasEmpregaMais",JSON.stringify(ls))
 }catch(x){}
-modal(false);travar();alert("Candidatura enviada com sucesso.")
+modal(false);travar();mostrarCandidaturaEnviada(vaga)
 }catch(x){erro("Não foi possível conectar ao servidor. Tente novamente.")}
 finally{btn.disabled=false;btn.textContent="Enviar candidatura"}
 }
@@ -41649,4 +41665,4 @@ if(info){info.textContent='';if(role){var p=document.createElement('div');p.text
 function start(){enhance();var host=document.getElementById('listaCandidatosEmpresa');if(host)new MutationObserver(function(){enhance()}).observe(host,{childList:true,subtree:true});}
 if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',start);else start();
 })();
-</script></body></html>
+</script><style>#emCandidaturaSucesso::backdrop{background:rgba(15,23,42,.55);backdrop-filter:blur(4px)}</style></body></html>
