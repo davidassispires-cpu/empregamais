@@ -33,10 +33,10 @@
     var digits=function(v){return String(v||'').replace(/\D/g,'');};
     var cnpj=digits(sessionStorage.getItem('empresaCnpj')||cached.cnpj);
     var email=norm(sessionStorage.getItem('empresaEmail')||cached.email||cached.email_corporativo);
-    var matches=function(e){return e&&((cnpj&&digits(e.cnpj)===cnpj)||(email&&norm(e.email||e.email_corporativo)===email));};
+    var matches=function(e){return e&&(cnpj?digits(e.cnpj)===cnpj:!!email&&norm(e.email||e.email_corporativo)===email);};
     if(!matches(current))current=null;
     if(!current){try{var list=JSON.parse(localStorage.getItem('empresasEmpregaMais')||'[]');current=Array.isArray(list)?list.find(matches):null;}catch(err){}}
-    var result=Object.assign({},cached,current||{});
+    var result=Object.assign({},current|| (matches(cached)?cached:{}));
     if(current){var key=typeof window.planoEfetivoEmpresaEM==='function'?window.planoEfetivoEmpresaEM(current):(current.plano_id||current.planoId||current.plano);if(key){result.plano_id=key;result.planoId=key;result.plano=key;}
       if(Object.prototype.hasOwnProperty.call(current,'plano_valido_ate')||Object.prototype.hasOwnProperty.call(current,'planoValidoAte')){result.plano_valido_ate=current.plano_valido_ate||current.planoValidoAte||'';result.planoValidoAte=result.plano_valido_ate;}}
     return result;
