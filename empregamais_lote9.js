@@ -536,3 +536,26 @@ setTimeout(restaurarHomeV109,30);
 });
 })();
 //
+/* WhatsApp sharing and blue metadata */
+(function(){
+function botaoCompartilharWhatsAppEM(vaga){
+ var a=document.createElement("a");a.className="em-whatsapp-share";
+ var url=new URL(window.location.pathname,window.location.origin);url.searchParams.set("pagina","vaga");url.searchParams.set("id",String(vaga.id));
+ a.href="https://wa.me/?text="+encodeURIComponent(String(vaga.cargo||"Vaga de emprego")+" — "+(vagaEhConfidencialEM(vaga)?"Empresa confidencial":String(vaga.empresa||""))+"\n"+url.href);
+ a.target="_blank";a.rel="noopener noreferrer";a.title="Compartilhar vaga no WhatsApp";a.setAttribute("aria-label","Compartilhar vaga no WhatsApp");
+ a.innerHTML='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 11.8a8.5 8.5 0 0 1-12.7 7.4L3 20.5l1.3-4.7A8.5 8.5 0 1 1 20.5 11.8Z"/><path d="M8.1 7.8c.4-.4.8-.2 1 .2l.9 1.8c.2.3.1.5-.2.8l-.6.6c.7 1.5 1.8 2.6 3.4 3.3l.7-.8c.2-.3.5-.3.8-.2l1.8.9c.4.2.5.6.2 1-.5.9-1.4 1.3-2.4 1-3.5-1-6-3.5-6.6-6.3-.2-.9.2-1.8 1-2.3Z"/></svg>';
+ a.addEventListener("click",function(e){e.stopPropagation();});return a;
+}
+
+function install(){
+var style=document.createElement("style");style.id="em-whatsapp-blue-chips";style.textContent="html body #pagina-home .em-apply-share{display:flex!important;align-items:center!important;gap:8px!important;min-width:0!important}\nhtml body #pagina-home #listaVagas#listaVagas .em-apply-share-recent{grid-column:4!important;grid-row:1!important;justify-self:end!important}\nhtml body #pagina-home #listaVagas#listaVagas .em-apply-share-recent .em-lista-ver{position:static!important;margin:0!important;min-width:0!important;width:auto!important;padding:9px 12px!important}\nhtml body #pagina-home #listaDestaques#listaDestaques .em-apply-share-featured{margin-top:auto!important;width:100%!important}\nhtml body #pagina-home #listaDestaques#listaDestaques .em-apply-share-featured .dz-botao{flex:1!important;min-width:0!important;width:auto!important;margin:0!important}\nhtml body #pagina-home :is(#listaVagas#listaVagas,#listaDestaques#listaDestaques) .em-whatsapp-share{display:inline-flex!important;align-items:center!important;justify-content:center!important;flex:0 0 34px!important;width:34px!important;height:34px!important;border:1px solid #079b64!important;border-radius:50%!important;background:#08a96c!important;color:white!important;text-decoration:none!important;padding:0!important;box-shadow:none!important}\nhtml body #pagina-home .em-whatsapp-share svg{width:20px!important;height:20px!important;fill:none!important;stroke:currentColor!important;stroke-width:1.6!important;stroke-linecap:round!important;stroke-linejoin:round!important}\nhtml body #pagina-home .em-whatsapp-share:hover{background:#078453!important}\nhtml body #pagina-home .em-whatsapp-share:focus-visible{outline:3px solid #86dcbc!important;outline-offset:3px!important}\n\n\n\n\n@media(max-width:760px){html body #pagina-home #listaVagas#listaVagas .em-apply-share-recent{grid-column:2!important;grid-row:2!important}}\n@media(min-width:761px) and (max-width:1100px){html body #pagina-home #listaVagas#listaVagas article.em-lista-final .em-lista-footer{grid-template-columns:auto minmax(0,1fr) auto!important}html body #pagina-home #listaVagas#listaVagas .em-lista-data{grid-column:1/3!important;grid-row:2!important}html body #pagina-home #listaVagas#listaVagas .em-apply-share-recent{grid-column:3!important;grid-row:2!important}}";document.head.appendChild(style);
+var original=window.criarCardVaga;if(typeof original!=="function")return;
+window.criarCardVaga=function(vaga,destaque){
+ var card=original.apply(this,arguments),button=card.querySelector(".em-lista-ver,.dz-botao");if(!button)return card;
+ var wrap=document.createElement("div");wrap.className="em-apply-share "+(destaque?"em-apply-share-featured":"em-apply-share-recent");
+ button.replaceWith(wrap);wrap.append(button,botaoCompartilharWhatsAppEM(vaga));return card;
+};
+if(typeof renderizarVagas==="function")renderizarVagas();
+}
+if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",install);else install();
+})();
