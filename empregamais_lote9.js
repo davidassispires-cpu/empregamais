@@ -130,7 +130,7 @@ return null;
 }
 function menu(btn,type){
 if(!btn||btn.closest(".header-v98-area"))return;
-var wrap=document.createElement("span");wrap.className="header-v98-area";
+var wrap=document.createElement("span");wrap.className="header-v98-area";wrap.dataset.publico=type;
 btn.parentNode.insertBefore(wrap,btn);wrap.appendChild(btn);
 var m=document.createElement("div");m.className="header-v98-menu";
 m.classList.add("em-account-menu");m.classList.add(type==="cand"?"em-candidate-menu":"em-company-menu");
@@ -142,7 +142,7 @@ var itens=type==="cand"?
 [["login-empresa","Entrar na minha conta","Acesse seu painel de recrutamento","building"],["cadastro-empresa","Cadastrar empresa","Crie o perfil da sua empresa","building"],["publicar","Publicar vaga","Encontre os profissionais certos","plus"],["painel-empresa","Minhas vagas","Acompanhe e gerencie suas vagas","briefcase"],["candidatos-empresa","Candidaturas","Organize seus processos seletivos","users"],["planos","Planos e pagamentos","Conheça os recursos para sua empresa","card"],["contato","Ajuda para empresas","Dúvidas e suporte","help"]];
 if(type==="cand")itens=itens.slice(0,2);
 itens.forEach(function(x,k){if(k===2||k===itens.length-1){var sp=document.createElement("div");sp.className="header-v98-sep";m.appendChild(sp)}var b=document.createElement("button");b.type="button";if(k===0)b.className="em-account-primary";b.innerHTML='<span class="em-account-icon">'+icon(x[3])+'</span><span class="em-account-copy"><strong>'+x[1]+'</strong><small>'+x[2]+'</small></span><svg class="em-account-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="m9 5 7 7-7 7"/></svg>';b.onclick=function(e){e.stopPropagation();wrap.classList.remove("open");btn.setAttribute("aria-expanded","false");go(x[0])};m.appendChild(b)});
-btn.removeAttribute("onclick");btn.setAttribute("aria-haspopup","true");btn.setAttribute("aria-expanded","false");btn.innerHTML=icon(type==="cand"?"user":"building")+'<span>'+(type==="cand"?"Área do candidato":"Área da empresa")+'</span><svg class="em-trigger-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>';
+btn.removeAttribute("onclick");btn.setAttribute("aria-haspopup","true");btn.setAttribute("aria-expanded","false");btn.innerHTML='<span>'+(type==="cand"?"Para candidatos":"Para empresas")+'</span><svg class="em-trigger-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>';
 wrap.addEventListener("keydown",function(e){if(e.key==="Escape"){wrap.classList.remove("open");btn.setAttribute("aria-expanded","false");btn.focus()}});
 wrap.addEventListener("focusout",function(e){if(!wrap.contains(e.relatedTarget)){wrap.classList.remove("open");btn.setAttribute("aria-expanded","false")}});
 wrap.appendChild(m);
