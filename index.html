@@ -17541,21 +17541,43 @@ irPara(
 "painel-candidato"
 );
 }
-function loginCandidato(event){
+async function loginCandidato(event){
  if(event)event.preventDefault();
  var email=String(document.getElementById("loginCandEmail").value||"").trim().toLowerCase();
  var senha=document.getElementById("loginCandSenha").value;
  var form=document.getElementById("loginCandEmail").closest("form"),error=form&&form.querySelector(".em-login-error");
  if(!error&&form){error=document.createElement("p");error.className="em-login-error";error.setAttribute("role","alert");error.style.cssText="color:#b42318;font-size:13px;margin:12px 0";form.appendChild(error);}
+ if(form&&form.dataset.emAuthPending==="1")return false;
  if(error)error.textContent="";
+ var button=form&&form.querySelector('button[type="submit"],input[type="submit"]');
+ var controller=new AbortController(),timer=setTimeout(function(){controller.abort();},20000);
+ if(form)form.dataset.emAuthPending="1";
+ if(button)button.disabled=true;
+ var base="https://mkezlcewyengejdmtppl.supabase.co",key="sb_publishable_8YnXpzGX8zj-tvzvcMYdyw_FVBhQutR";
  try{
- var lista=candidatosCadastrados()||[];
- var cadastro=lista.find(function(c){return String(c.email||"").trim().toLowerCase()===email;});
- if(!cadastro){if(error)error.textContent="Este cadastro não foi encontrado neste navegador. Tente acessar pelo navegador e dispositivo usados no cadastro. O cadastro de candidatos ainda não está conectado ao servidor.";return false;}
- var encontrado=String(cadastro.senha==null?"":cadastro.senha)===senha?cadastro:null;
- if(!encontrado){if(error)error.textContent="O cadastro foi localizado neste navegador, mas a senha não corresponde. Confira a senha usando o botão de visualizar.";return false;}
- entrarComoCandidato(encontrado);irPara("painel-candidato");return false;
+ var response=await fetch(base+"/auth/v1/token?grant_type=password",{method:"POST",headers:{"apikey":key,"Content-Type":"application/json"},body:JSON.stringify({email:email,password:senha}),signal:controller.signal});
+ var auth=await response.json();
+ if(!response.ok||!auth.access_token||!auth.user){
+ if(error)error.textContent=auth.error_code==="email_not_confirmed"?"Confirme seu e-mail antes de entrar.":response.status===429?"Muitas tentativas. Aguarde um pouco e tente novamente.":"E-mail ou senha incorretos. Confira os dados ou recupere sua senha.";
+ return false;
+ }
+ var profileResponse=await fetch(base+"/rest/v1/candidatos?select=nome,email,telefone,cidade,user_id&user_id=eq."+encodeURIComponent(auth.user.id)+"&limit=1",{headers:{"apikey":key,"Authorization":"Bearer "+auth.access_token},signal:controller.signal});
+ if(!profileResponse.ok)throw new Error("perfil");
+ var profiles=await profileResponse.json(),candidate=Array.isArray(profiles)&&profiles[0];
+ if(!candidate){if(error)error.textContent="Sua conta foi autenticada, mas o perfil de candidato não foi encontrado. Entre em contato com o suporte.";return false;}
+ entrarComoCandidato(candidate);
+ sessionStorage.setItem("empregaMaisSupabaseAccessToken",auth.access_token);
+ sessionStorage.setItem("empregaMaisSupabaseRefreshToken",auth.refresh_token||"");
+ sessionStorage.setItem("candidatoUserId",auth.user.id);
+ irPara("painel-candidato");
+ return false;
+ }catch(e){
+ if(error)error.textContent=e.name==="AbortError"?"O servidor demorou para responder. Tente novamente.":"Não foi possível acessar sua conta agora. Verifique a conexão e tente novamente.";
+ return false;
  }finally{
+ clearTimeout(timer);
+ if(form)delete form.dataset.emAuthPending;
+ if(button)button.disabled=false;
  if(window.EmpregaMaisLoadingV134)window.EmpregaMaisLoadingV134.finalizar();
  }
 }
