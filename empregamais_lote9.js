@@ -619,3 +619,19 @@ if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",
 window.addEventListener("load",schedule);window.addEventListener("popstate",schedule);
 var previous=window.irPara;if(typeof previous==="function")window.irPara=function(){var r=previous.apply(this,arguments);if(arguments[0]==="vaga")schedule();return r;};
 })();
+
+/* Circular navigation without duplicating job cards or their actions. */
+(function(){
+function init(){
+ var list=document.getElementById('listaDestaques');if(!list||list.dataset.circularFeatured)return;list.dataset.circularFeatured='true';
+ var reduced=window.matchMedia('(prefers-reduced-motion: reduce)');
+ function move(dir){var max=list.scrollWidth-list.clientWidth;if(max<=3)return;var step=window.innerWidth<=760?(list.firstElementChild.getBoundingClientRect().width+12):list.clientWidth+16;var target=dir>0?(list.scrollLeft>=max-3?0:Math.min(max,list.scrollLeft+step)):(list.scrollLeft<=3?max:Math.max(0,list.scrollLeft-step));list.scrollTo({left:target,behavior:reduced.matches?'auto':'smooth'});}
+ window.moverDestaquesEmpregaMais=move;
+ window.atualizarSetasDestaquesEmpregaMais=function(){var has=list.scrollWidth>list.clientWidth+3;['destaquesAnteriorEmpregaMais','destaquesProximoEmpregaMais'].forEach(function(id){var btn=document.getElementById(id);if(btn){btn.disabled=false;btn.style.display=has?'flex':'none';btn.textContent=id.indexOf('Anterior')>=0?'‹':'›';}});};
+ var x=0,start=0;
+ list.addEventListener('touchstart',function(e){if(e.touches.length===1){x=e.touches[0].clientX;start=list.scrollLeft;}},{passive:true});
+ list.addEventListener('touchend',function(e){if(!e.changedTouches.length)return;var delta=e.changedTouches[0].clientX-x,max=list.scrollWidth-list.clientWidth;if(max>3&&Math.abs(delta)>45){if(start>=max-3&&delta<0)list.scrollTo({left:0,behavior:reduced.matches?'auto':'smooth'});else if(start<=3&&delta>0)list.scrollTo({left:max,behavior:reduced.matches?'auto':'smooth'});}},{passive:true});
+ new MutationObserver(window.atualizarSetasDestaquesEmpregaMais).observe(list,{childList:true});window.atualizarSetasDestaquesEmpregaMais();
+}
+if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);else init();
+})();
