@@ -1566,3 +1566,29 @@ html body #pagina-home #listaVagas#listaVagas article.em-lista-final .em-lista-v
  html body #pagina-home #listaVagas#listaVagas article.em-lista-final .em-lista-acoes{justify-content:flex-end!important}
  html body #pagina-home #listaVagas#listaVagas article.em-lista-final .em-lista-ver{width:auto!important;min-width:145px!important;flex:1 1 145px!important;max-width:220px!important}
 }
+
+/* Rodapé: candidatura rápida e recrutamento à esquerda; data e ação à direita. */
+html body #pagina-home #listaVagas#listaVagas article.em-lista-final .em-lista-footer{
+ grid-template-columns:auto minmax(0,1fr) auto auto!important;
+ grid-template-rows:auto!important;gap:8px 12px!important;
+}
+html body #pagina-home #listaVagas#listaVagas article.em-lista-final .em-lista-acoes{display:contents!important}
+html body #pagina-home #listaVagas#listaVagas article.em-lista-final .em-lista-indicadores{grid-column:1!important;grid-row:1!important}
+html body #pagina-home #listaVagas#listaVagas article.em-lista-final .em-recrutamento-demo{
+ grid-column:2!important;grid-row:1!important;justify-self:start!important;align-self:center!important;
+}
+html body #pagina-home #listaVagas#listaVagas article.em-lista-final .em-lista-data{
+ grid-column:3!important;grid-row:1!important;align-self:center!important;margin:0!important;
+}
+html body #pagina-home #listaVagas#listaVagas article.em-lista-final .em-lista-ver{
+ grid-column:4!important;grid-row:1!important;justify-self:end!important;align-self:center!important;
+}
+@media(max-width:760px){
+ html body #pagina-home #listaVagas#listaVagas article.em-lista-final .em-lista-footer{
+  grid-template-columns:minmax(0,1fr) auto!important;grid-template-rows:auto auto!important;gap:10px 8px!important;
+ }
+ html body #pagina-home #listaVagas#listaVagas article.em-lista-final .em-recrutamento-demo{grid-column:2!important;grid-row:1!important}
+ html body #pagina-home #listaVagas#listaVagas article.em-lista-final .em-lista-data{grid-column:1!important;grid-row:2!important;justify-self:start!important;white-space:normal!important;text-align:left!important}
+ html body #pagina-home #listaVagas#listaVagas article.em-lista-final .em-lista-data span{white-space:normal!important}
+ html body #pagina-home #listaVagas#listaVagas article.em-lista-final .em-lista-ver{grid-column:2!important;grid-row:2!important;min-width:0!important;width:145px!important;max-width:100%!important}
+}
