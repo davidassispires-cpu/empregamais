@@ -563,3 +563,43 @@ if(typeof renderizarVagas==="function")renderizarVagas();
 }
 if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",install);else install();
 })();
+
+/* Job detail presentation */
+(function(){
+function enhance(){
+ var page=document.getElementById("pagina-vaga");if(!page)return;
+ var title=page.querySelector("#detalheCargoCab");if(!title)return;
+ var apply=page.querySelector(".aplicar-bloco-principal h3");if(apply)apply.textContent="Candidate-se à vaga";
+ var box=page.querySelector(".conteudo-vaga-box");
+ if(box&&!box.querySelector(".em-detail-tabs")){
+  var blocks=Array.from(box.querySelectorAll(":scope>.bloco-detalhe")),nav=document.createElement("div");nav.className="em-detail-tabs";nav.setAttribute("role","tablist");nav.setAttribute("aria-label","Informações da vaga");
+  blocks.forEach(function(block,i){
+   var btn=document.createElement("button");btn.type="button";btn.textContent=["Descrição","Requisitos","Benefícios"][i]||"Informações";btn.id="em-detail-tab-"+i;block.id="em-detail-panel-"+i;block.setAttribute("role","tabpanel");block.setAttribute("aria-labelledby",btn.id);btn.setAttribute("role","tab");btn.setAttribute("aria-controls",block.id);
+   function select(){blocks.forEach(function(b,k){b.classList.toggle("em-detail-tab-hidden",k!==i);var t=nav.children[k];t.setAttribute("aria-selected",String(k===i));t.tabIndex=k===i?0:-1;});}
+   btn.onclick=select;btn.onkeydown=function(e){var k=e.key;if(k!=="ArrowRight"&&k!=="ArrowLeft")return;e.preventDefault();var n=(i+(k==="ArrowRight"?1:-1)+blocks.length)%blocks.length;nav.children[n].click();nav.children[n].focus();};
+   nav.appendChild(btn);
+  });box.prepend(nav);if(nav.firstElementChild)nav.firstElementChild.click();
+ }
+ var date=page.querySelector(".em-detail-date");if(!date){date=document.createElement("div");date.className="em-detail-date";page.querySelector(".em-vaga-ref-main-v1").appendChild(date);}
+ var published=page.querySelector("#detalhePublicacao");date.textContent=published&&published.textContent.trim()!=="-"?"Publicada em "+published.textContent.trim():"";
+ var shares=page.querySelector(".compartilhar-vaga-botoes-em");
+ if(shares&&!shares.querySelector(".em-detail-share")){
+  var wa=document.createElement("button");wa.type="button";wa.className="em-detail-share em-whatsapp-share";wa.title="Compartilhar vaga no WhatsApp";wa.setAttribute("aria-label",wa.title);wa.innerHTML='<svg viewBox="0 0 24 24"><path d="M20.5 11.8a8.5 8.5 0 0 1-12.7 7.4L3 20.5l1.3-4.7A8.5 8.5 0 1 1 20.5 11.8Z"/><path d="m8 8 2 3-1 1c1 2 2 3 4 4l1-1 3 1c-1 3-4 2-6 0-3-2-5-6-3-8Z"/></svg>';
+  wa.onclick=function(){var u=new URL(location.href),v=typeof vagaPorIdEM==="function"?vagaPorIdEM(u.searchParams.get("id")):null;var cargo=v&&(v.cargo||v.titulo)||title.textContent;var local=page.querySelector("#detalheCidade").textContent;var home=new URL(location.pathname,location.origin);var text="Olá! Confira esta vaga no *Mais Empregos* 👋\n\n💼 *"+cargo+"*\n📍 *Local: "+local+"*\n\nConfira os detalhes e candidate-se 👇\n"+u.href+"\n\nPara mais vagas, acesse 👇\n"+home.href+"\n\nSucesso na sua busca! 🍀";window.open("https://wa.me/?text="+encodeURIComponent(text),"_blank","noopener,noreferrer");};
+  var copy=document.createElement("button");copy.type="button";copy.className="em-detail-share";copy.title="Copiar link da vaga";copy.setAttribute("aria-label",copy.title);copy.innerHTML='<svg viewBox="0 0 24 24"><path d="m10 14 4-4M8 16l-2 2a4 4 0 0 1-6-6l4-4a4 4 0 0 1 6 0M16 8l2-2a4 4 0 0 1 6 6l-4 4a4 4 0 0 1-6 0" transform="translate(2 0) scale(.85)"/></svg>';copy.onclick=function(){navigator.clipboard.writeText(location.href).then(function(){if(typeof mostrarToast==="function")mostrarToast("Link da vaga copiado.");}).catch(function(){if(typeof mostrarToast==="function")mostrarToast("Copie o endereço da vaga na barra do navegador.");});};
+  shares.append(wa,copy);
+ }
+ // Prefer the identity of the registered employer over a stale imported logo.
+ var u=new URL(location.href),v=typeof vagaPorIdEM==="function"?vagaPorIdEM(u.searchParams.get("id")):null;
+ var e=v&&typeof empresaDaVagaEM==="function"?empresaDaVagaEM(v):null;
+ var logo=page.querySelector("#logoDetalhe");
+ if(e&&logo&&!(typeof vagaEhConfidencialEM==="function"&&vagaEhConfidencialEM(v))){
+  if(e.logo){logo.src=e.logo;logo.alt="Logo de "+(e.nomeFantasia||e.nome||"empresa");}
+  else{logo.removeAttribute("src");logo.style.setProperty("display","none","important");}
+ }
+}
+function schedule(){enhance();setTimeout(enhance,200);setTimeout(enhance,700);}
+if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",schedule);else schedule();
+window.addEventListener("load",schedule);window.addEventListener("popstate",schedule);
+var previous=window.irPara;if(typeof previous==="function")window.irPara=function(){var r=previous.apply(this,arguments);if(arguments[0]==="vaga")schedule();return r;};
+})();
