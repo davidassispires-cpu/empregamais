@@ -641,7 +641,7 @@ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',
 function install(){
  var previous=window.criarCardVaga;if(typeof previous!=='function')return;
  function enhance(card,v){
-  var cab=card.querySelector('.dz-cab');if(!cab)return card;
+  var cab=card.querySelector('.dz-cab');if(!cab||card.querySelector('.em-featured-badges'))return card;
   var title=card.querySelector('.dz-titulo');if(title)cab.appendChild(title);
   var badges=document.createElement('div');badges.className='em-featured-badges';
   function badge(type,label,path){var el=document.createElement('span');el.className='em-featured-badge '+type;el.innerHTML='<svg viewBox="0 0 24 24" aria-hidden="true">'+path+'</svg>';var text=document.createElement('strong');text.textContent=label;el.appendChild(text);badges.appendChild(el);}
