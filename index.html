@@ -26311,6 +26311,21 @@ diasVaga:45
 };
 return planos[plano] || planos.essencial;
 }
+function planoEfetivoEmpresaEM(empresa){
+ if(!empresa)return "basico";
+ var norm=function(v){return String(v==null?"":v).normalize("NFD").replace(/[\u0300-\u036f]/g,"").trim().toLowerCase();};
+ var raw=[empresa.plano_id,empresa.planoId,empresa.plano,empresa.tipoPlano,empresa.plano_nome,empresa.planoNome].map(norm).filter(Boolean);
+ var free=function(v){return /^(basico|basic|essencial|gratuito|gratis|free|plano gratuito|plano basico|plano essencial)$/.test(v);};
+ if(raw.some(free))return "basico";
+ var end=empresa.planoValidoAte||empresa.planoFim||empresa.validadePlano||empresa.planoTesteAte;
+ if(end&&Number.isFinite(Date.parse(end))&&Date.parse(end)<Date.now())return "basico";
+ if(/^(inativa|bloqueada|suspensa|cancelada)$/i.test(String(empresa.status||"")))return "basico";
+ for(var i=0;i<raw.length;i++){
+ var value=raw[i].replace(/^plano\s+/,"");
+ if(["mensal","trimestral","semestral","anual","profissional","premium","pro","enterprise","start"].indexOf(value)>=0)return value;
+ }
+ return "basico";
+}
 function planoEmpresaAtual(){
 var empresa =
 obterEmpresaAtual();
@@ -26320,7 +26335,7 @@ return configuracaoPlanoEmpresa(
 );
 }
 return configuracaoPlanoEmpresa(
-empresa.plano || "essencial"
+planoEfetivoEmpresaEM(empresa)
 );
 }
 function inicioMesAtual(){
@@ -31067,8 +31082,7 @@ var pagina=document.getElementById("pagina-publicar");
 if(!pagina)return;
 var chave="basico";
 try{
-chave=localStorage.getItem("planoEmpresaEmpregaMais") ||
-sessionStorage.getItem("planoEscolhidoEmpregaMais") || "basico";
+chave=planoEfetivoEmpresaEM(typeof obterEmpresaAtual==="function"?obterEmpresaAtual():null);
 }catch(e){}
 chave=String(chave).toLowerCase();
 var plano=PLANOS_EMPREGAMAIS_2026[chave] || PLANOS_EMPREGAMAIS_2026.basico;
@@ -33391,22 +33405,7 @@ function planoPermiteConfidencialEM(){
 var chave="";
 try{
 var empresa=typeof obterEmpresaAtual==="function" ? obterEmpresaAtual() : null;
-chave=String(
-(empresa && (
-empresa.plano_id ||
-empresa.planoId ||
-empresa.plano ||
-empresa.plano_nome ||
-empresa.planoNome
-)) ||
-localStorage.getItem("planoEmpresaEmpregaMais") ||
-sessionStorage.getItem("planoEscolhidoEmpregaMais") ||
-""
-).toLowerCase().trim();
-if(chave.indexOf("anual")>=0)chave="anual";
-else if(chave.indexOf("semestral")>=0)chave="semestral";
-else if(chave.indexOf("trimestral")>=0)chave="trimestral";
-else if(chave==="gratuito"||chave==="gratis"||chave==="basic")chave="basico";
+chave=planoEfetivoEmpresaEM(empresa);
 }catch(e){}
 return chave==="trimestral" || chave==="semestral" || chave==="anual";
 }
@@ -34543,14 +34542,7 @@ return (cnpj&&ec===cnpj)||(email&&ee===email);
 })||{};
 }catch(e){return {};}
 }
-function planoAtualRecrutadorEM(emp){
-return String(
-emp.plano||
-localStorage.getItem("planoEmpresaEmpregaMais")||
-sessionStorage.getItem("planoEscolhidoEmpregaMais")||
-"basico"
-).toLowerCase();
-}
+function planoAtualRecrutadorEM(emp){return planoEfetivoEmpresaEM(emp);}
 function planoPagoRecrutadorEM(plano){
 return ["trimestral","semestral","anual"].indexOf(plano)>=0;
 }
@@ -39551,7 +39543,7 @@ function moverAreasRefV1(dir){
  function num(v){return String(v||'').replace(/\D/g,'');}
  function planoAtual(){
   var e=null;try{if(typeof obterEmpresaAtual==='function')e=obterEmpresaAtual();}catch(x){}
-  var id=norm(e&&(e.plano||e.planoId||e.tipoPlano)||'essencial');
+  var id=planoEfetivoEmpresaEM(e);
   var mapa={
    essencial:{nome:'Essencial',d:0,u:0},basico:{nome:'Gratuito',d:0,u:0},gratuito:{nome:'Gratuito',d:0,u:0},
    profissional:{nome:'Profissional',d:3,u:3},trimestral:{nome:'Trimestral',d:3,u:3},
@@ -40348,7 +40340,7 @@ document.addEventListener('click',function(){setTimeout(bind,80)},true);
 if(window.__EM_V73)return;window.__EM_V73=true;
 function norm(v){return String(v==null?'':v).trim().toLowerCase()}
 function paga(e){
- var p=norm(e&&(e.plano||e.planoNome||e.plano_nome||e.planoId||e.plano_id));
+ var p=planoEfetivoEmpresaEM(e);
  return p.indexOf('trimestral')>=0||p.indexOf('semestral')>=0||p.indexOf('anual')>=0||p.indexOf('pago')>=0||p.indexOf('premium')>=0||p.indexOf('pro')>=0;
 }
 function verificada(e){
@@ -41211,12 +41203,7 @@ var DOMAIN="maisempregos.com.br";
 function slug(v){return String(v||"").normalize("NFD").replace(/[\u0300-\u036f]/g,"").toLowerCase().replace(/[^a-z0-9]+/g,"").slice(0,48)||"empresa";}
 function nome(e){return e.nomeFantasia||e.nome||e.razaoSocial||"Empresa";}
 function eligible(e){
- if(!e)return false;
- if(/^(inativa|bloqueada|suspensa|cancelada)$/i.test(String(e.status||"")))return false;
- var p=String(e.planoId||e.plano_id||e.plano||"").toLowerCase();
- var fim=e.planoValidoAte||e.planoFim||e.validadePlano;
- if(fim&&Number.isFinite(Date.parse(fim))&&Date.parse(fim)<Date.now())return false;
- return ["mensal","trimestral","semestral","anual","pro","enterprise","start"].indexOf(p)>=0;
+ return ["mensal","trimestral","semestral","anual","profissional","premium","pro","enterprise","start"].indexOf(planoEfetivoEmpresaEM(e))>=0;
 }
 function catalog(){
  var list=typeof empresasCadastradas==="function"?empresasCadastradas():[];
