@@ -41191,6 +41191,8 @@ html body #pagina-cadastro-empresa#pagina-cadastro-empresa .reg-step-actions but
 </style><style id="em-company-links-v1-css">.em-company-link{box-sizing:border-box;max-width:1160px;margin:20px auto;padding:24px;border:1px solid #d6e4f3;border-radius:14px;background:#f4f8ff;color:#173e68;font-family:Montserrat,sans-serif}.em-company-link h3{margin:0 0 12px;font-size:18px}.em-company-link strong{display:block;overflow-wrap:anywhere;color:#1267c2;font-size:20px}.em-company-link p{font-size:13px;line-height:1.6}.em-company-link input{box-sizing:border-box;width:100%;padding:12px;border:1px solid #c7d8ec;border-radius:8px;background:white;color:#29425f}.em-company-link>div{display:flex;gap:12px;flex-wrap:wrap;margin-top:14px}.em-company-link a,.em-company-link button{display:inline-flex;align-items:center;padding:11px 16px;border:0;border-radius:8px;background:#1267c2;color:white;font:600 13px Montserrat,sans-serif;text-decoration:none;cursor:pointer}@media(max-width:700px){.em-company-link{margin:16px 12px;padding:18px}.em-company-link strong{font-size:16px}}</style><style id="em-link-explanation-css">
 .em-company-link .em-link-heading{display:flex;align-items:center;justify-content:space-between;gap:16px;margin:0 0 10px}
 .em-company-link .em-link-heading h3{margin:0}
+.em-company-link .em-link-call{margin:0;padding:0;background:transparent;color:#173e68;font:700 18px/1.45 Inter,sans-serif;text-align:left;border:0;border-radius:0;cursor:pointer}
+.em-company-link .em-link-help{flex-shrink:0}
 .em-company-link .em-link-help{background:#fff;color:#1267c2;border:1px solid #c7d8ec;padding:8px 13px}
 #em-link-explanation{box-sizing:border-box;width:calc(100% - 32px);max-width:540px;max-height:85vh;overflow:auto;padding:26px;border:1px solid #d6e4f3;border-radius:18px;background:#fff;color:#29425f;font:14px/1.65 Montserrat,sans-serif;box-shadow:0 24px 80px #173e6833}
 #em-link-explanation::backdrop{background:#102b4b99}
@@ -41253,10 +41255,11 @@ function explainLink(){
 function card(e,id){
  var box=document.createElement("section");box.id=id;box.className="em-company-link";box.dataset.empresaAbaEm="empresa";
  var head=document.createElement("div");head.className="em-link-heading";
- var title=document.createElement("h3");title.textContent="Página exclusiva da empresa";
+ var title=document.createElement("button");title.type="button";title.className="em-link-call";title.textContent="Quer ter um link exclusivo das vagas da sua empresa?";title.setAttribute("aria-haspopup","dialog");title.onclick=explainLink;
  var help=document.createElement("button");help.type="button";help.className="em-link-help";help.textContent="Entenda";help.setAttribute("aria-haspopup","dialog");help.onclick=explainLink;
  head.append(title,help);box.appendChild(head);
- var invitation=document.createElement("p");invitation.textContent="Quer um link exclusivo com as vagas da sua empresa? Este benefício está incluído na sua assinatura ativa.";box.appendChild(invitation);
+ var invitation=document.createElement("p");invitation.textContent="Reúna suas oportunidades em uma página personalizada. Benefício exclusivo para empresas com assinatura ativa.";box.appendChild(invitation);
+ if(!eligible(e))return box;
  var future=document.createElement("strong");future.textContent=e.linkEmpresaSlug+"."+DOMAIN;box.appendChild(future);
  var note=document.createElement("p");note.textContent="Endereço previsto — disponível após a contratação e configuração do domínio. Use o link de teste abaixo por enquanto.";box.appendChild(note);
  var input=document.createElement("input");input.readOnly=true;input.value=testLink(e);input.setAttribute("aria-label","Link de teste da empresa");box.appendChild(input);
@@ -41269,11 +41272,12 @@ function refresh(){
  var list=catalog(),e=typeof obterEmpresaAtual==="function"?obterEmpresaAtual():null;
  ["pagina-painel-empresa","pagina-perfil-empresa"].forEach(function(id){
   var page=document.getElementById(id);if(!page)return;
-  if(id==="pagina-painel-empresa"&&document.getElementById("emRecruiterPanel"))return;
+  
   var boxId=id+"-link-exclusivo",old=document.getElementById(boxId);
-  if(!eligible(e)){if(old)old.remove();return;}
-  if(old&&old.dataset.slug===e.linkEmpresaSlug)return;
-  if(old)old.remove();var box=card(e,boxId);box.dataset.slug=e.linkEmpresaSlug;
+  if(!e){if(old)old.remove();return;}
+  var cardKey=eligible(e)?e.linkEmpresaSlug:"convite";
+  if(old&&old.dataset.slug===cardKey)return;
+  if(old)old.remove();var box=card(e,boxId);box.dataset.slug=cardKey;
   var host=page.querySelector(".container-dashboard")||page.querySelector(".container")||page;
   host.appendChild(box);
  });
