@@ -17550,8 +17550,10 @@ function loginCandidato(event){
  if(error)error.textContent="";
  try{
  var lista=candidatosCadastrados()||[];
- var encontrado=lista.find(function(c){return String(c.email||"").trim().toLowerCase()===email&&c.senha===senha;});
- if(!encontrado){if(error)error.textContent="E-mail ou senha incorretos. Confira os dados ou use a opção de recuperação de senha.";return false;}
+ var cadastro=lista.find(function(c){return String(c.email||"").trim().toLowerCase()===email;});
+ if(!cadastro){if(error)error.textContent="Este cadastro não foi encontrado neste navegador. Tente acessar pelo navegador e dispositivo usados no cadastro. O cadastro de candidatos ainda não está conectado ao servidor.";return false;}
+ var encontrado=String(cadastro.senha==null?"":cadastro.senha)===senha?cadastro:null;
+ if(!encontrado){if(error)error.textContent="O cadastro foi localizado neste navegador, mas a senha não corresponde. Confira a senha usando o botão de visualizar.";return false;}
  entrarComoCandidato(encontrado);irPara("painel-candidato");return false;
  }finally{
  if(window.EmpregaMaisLoadingV134)window.EmpregaMaisLoadingV134.finalizar();
