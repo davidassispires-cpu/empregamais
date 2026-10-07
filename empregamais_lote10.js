@@ -139,9 +139,9 @@
 
   function yes(v){return v===true||v===1||['true','1','sim'].indexOf(norm(v))>=0;}
   function deadline(v){var raw=v.expiraEm;if(!raw)return NaN;return new Date(/^\d{4}-\d{2}-\d{2}$/.test(raw)?raw+'T23:59:59':raw).getTime();}
-  function remaining(v,now){if(norm(v.status)==='pausada')return Math.max(0,Number(v.prazoRestanteMs)||0);var end=deadline(v);if(!isFinite(end)){var start=new Date(v.dataPublicacao||v.criadoEm).getTime();end=start+Number(v.planoDias||30)*86400000;}return Math.max(0,end-now);}
+  function remaining(v,now){var n=invoke('prazoRestanteVaga45EM',[v,now]);return typeof n==='number'?n:NaN;}
   function lifecycle(v,op,now){
-    var next=Object.assign({},v),status=jobStatus(v);
+    var next=Object.assign({},v),status=jobStatus(v),balance=remaining(v,now);if(isFinite(balance)){next.planoDias=45;if(status==='paused')next.prazoRestanteMs=balance;else next.expiraEm=new Date(now+balance).toISOString();}
     if(status==='closed')throw Error('Uma vaga encerrada não pode ser reaberta ou alterada.');
     if(op==='pause'){if(status!=='active')throw Error('Somente vagas ativas podem ser pausadas.');var left=remaining(v,now);if(!left)throw Error('O prazo desta vaga já terminou.');next.status='pausada';next.prazoRestanteMs=left;next.pausadaEm=new Date(now).toISOString();next.statusAntesPausa=v.status;}
     if(op==='resume'){if(status!=='paused')throw Error('Esta vaga não está pausada.');var rest=remaining(v,now);if(!rest)throw Error('Esta vaga não possui prazo restante.');next.status=next.statusAntesPausa||'ativa';next.expiraEm=new Date(now+rest).toISOString();next.retomadaEm=new Date(now).toISOString();next.pausadaEm='';next.prazoRestanteMs=null;}
