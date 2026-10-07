@@ -37,83 +37,9 @@ window.corrigirBotoesV95=corrigirBotoesV95;
 ;
 //
 (function(){
-function abrirRapidoV96(v){
-v=v||window.vagaAtual;
-if(!v)return;
-var email=String(
-sessionStorage.getItem("candidatoEmail") ||
-localStorage.getItem("candidatoEmail") || ""
-).trim().toLowerCase();
-if(!email){
-if(typeof irPara==="function")irPara("login-candidato");
-else alert("Entre na sua conta de candidato para se candidatar.");
-return;
-}
-var modal=document.getElementById("modalCandidaturaV94");
-if(!modal)return;
-var titulo=document.getElementById("cand94Vaga");
-if(titulo)titulo.textContent=(v.cargo||v.titulo||"Vaga")+" • "+(v.empresa||"");
-var status=document.getElementById("cand94OnlineStatus");
-var curriculo=null;
-try{
-if(typeof carregarCurriculoOnlineEM==="function")curriculo=carregarCurriculoOnlineEM();
-if(!curriculo){
-var ks=[
-"curriculoOnlineEmpregaMais_"+email,
-"curriculoOnlineEmpregaMais",
-"curriculoEmpregaMais_"+email,
-"curriculoEmpregaMais"
-];
-for(var i=0;i<ks.length;i++){
-var raw=localStorage.getItem(ks[i]);
-if(raw){try{curriculo=JSON.parse(raw);break}catch(e){}}
-}
-}
-}catch(e){}
-if(status)status.textContent=curriculo
-?"Seu currículo online está pronto para ser utilizado."
-:"Você ainda não possui um currículo online salvo. Você pode criar um ou enviar um arquivo.";
-var online=document.getElementById("cand94Online");
-var arquivo=document.getElementById("cand94Arquivo");
-var areaOnline=document.getElementById("cand94AreaOnline");
-var areaArquivo=document.getElementById("cand94AreaArquivo");
-if(curriculo){
-if(online)online.classList.add("ativa");
-if(arquivo)arquivo.classList.remove("ativa");
-if(areaOnline)areaOnline.style.display="block";
-if(areaArquivo)areaArquivo.style.display="none";
-}else{
-if(online)online.classList.remove("ativa");
-if(arquivo)arquivo.classList.add("ativa");
-if(areaOnline)areaOnline.style.display="none";
-if(areaArquivo)areaArquivo.style.display="block";
-}
-modal.classList.add("aberto");
-modal.setAttribute("aria-hidden","false");
-if(window.EmpregaMaisCandidaturaV94 &&
-typeof window.EmpregaMaisCandidaturaV94.verificar==="function"){
-window.EmpregaMaisCandidaturaV94.verificar(v).then(function(ja){
-if(!ja)return;
-modal.classList.remove("aberto");
-modal.setAttribute("aria-hidden","true");
-if(typeof window.EmpregaMaisCandidaturaV94.travar==="function"){
-window.EmpregaMaisCandidaturaV94.travar();
-}
-alert("Você já se candidatou a esta oportunidade.");
-}).catch(function(){});
-}
-}
-window.abrirContatoExternoVaga=abrirRapidoV96;
-function instalar(){
-if(window.EmpregaMaisCandidaturaV94){
-window.EmpregaMaisCandidaturaV94.abrir=abrirRapidoV96;
-window.EmpregaMaisCandidaturaV94.abrirRapido=abrirRapidoV96;
-}
-}
-instalar();
-window.addEventListener("load",instalar);
-setTimeout(instalar,50);
-setTimeout(instalar,500);
+window.abrirContatoExternoVaga=function(v){
+if(window.EmpregaMaisCandidaturaV94)window.EmpregaMaisCandidaturaV94.abrir(v||window.vagaAtual);
+};
 })();
 //
 ;
