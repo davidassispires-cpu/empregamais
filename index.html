@@ -41084,7 +41084,7 @@ function montar(){
  var sincronizadores=[];
  painel.querySelectorAll(':scope > .grupo').forEach(function(grupo){
   var campo=grupo.querySelector('select,input');var titulo=grupo.querySelector('label');if(!campo||!titulo)return;
-  var bloco=document.createElement('details');bloco.className='em-filtro-bloco';bloco.open=false;
+  var bloco=document.createElement('details');bloco.className='em-filtro-bloco';bloco.open=true;
   var resumo=document.createElement('summary');resumo.textContent=titulo.textContent.trim();
   var conteudo=document.createElement('div');conteudo.className='em-filtro-conteudo';
   bloco.append(resumo,conteudo);grupo.replaceWith(bloco);conteudo.appendChild(campo);
@@ -41307,4 +41307,19 @@ html body header #menuContaEmpresa#menuContaEmpresa .menu-icone-v52 svg{width:17
 html body header #menuContaEmpresa#menuContaEmpresa .menu-item-texto-v143 strong{font-size:12px!important;line-height:1.4!important}
 html body header #menuContaEmpresa#menuContaEmpresa .menu-item-texto-v143 small{font-size:10px!important;line-height:1.4!important;margin-top:2px!important}
 html body header #menuContaEmpresa#menuContaEmpresa>button.sair{margin-top:5px!important;background:#fff2f2!important}
-@media(max-width:400px){html body header #menuContaEmpresa#menuContaEmpresa{width:min(286px,calc(100vw - 24px))!important}}</style></body></html>
+@media(max-width:400px){html body header #menuContaEmpresa#menuContaEmpresa{width:min(286px,calc(100vw - 24px))!important}}</style><style id="em-filtros-reference-clean-v3">
+html body #pagina-home #filtrosLateral#filtrosLateral.em-filtros-blocos{background:#fff!important;padding:22px 24px!important;border:0!important;border-radius:0!important;box-shadow:none!important}
+html body #pagina-home #filtrosLateral#filtrosLateral.em-filtros-blocos .filtros-cab{border:0!important;border-bottom:1px solid #dce2ed!important;border-radius:0!important;padding:0 0 16px!important;margin:0 0 22px!important;background:transparent!important}
+html body #pagina-home #filtrosLateral#filtrosLateral.em-filtros-blocos .em-filtro-bloco{border:0!important;border-radius:0!important;background:transparent!important;box-shadow:none!important;margin:0 0 24px!important;overflow:visible!important}
+html body #pagina-home #filtrosLateral#filtrosLateral.em-filtros-blocos .em-filtro-bloco>summary{padding:0 0 10px!important;color:#10213c!important;font-family:Inter,Arial,sans-serif!important;font-size:14px!important;font-weight:500!important;line-height:1.5!important}
+html body #pagina-home #filtrosLateral#filtrosLateral.em-filtros-blocos .em-filtro-bloco>summary::after{width:6px!important;height:6px!important;border-width:1.5px!important;border-color:#10213c!important}
+html body #pagina-home #filtrosLateral#filtrosLateral.em-filtros-blocos .em-filtro-conteudo{padding:0!important}
+html body #pagina-home #filtrosLateral#filtrosLateral.em-filtros-blocos .em-filtro-opcoes{gap:6px!important;max-height:245px!important}
+html body #pagina-home #filtrosLateral#filtrosLateral.em-filtros-blocos .em-filtro-opcao{padding:0!important;gap:8px!important;align-items:center!important}
+html body #pagina-home #filtrosLateral#filtrosLateral.em-filtros-blocos .em-filtro-opcao>span{font-family:Inter,Arial,sans-serif!important;font-size:14px!important;font-weight:400!important;line-height:1.55!important;color:#64748b!important}
+html body #pagina-home #filtrosLateral#filtrosLateral.em-filtros-blocos .em-filtro-opcao>input{appearance:none!important;-webkit-appearance:none!important;border:1px solid #7953b2!important;border-radius:5px!important;background:white!important;width:16px!important;height:16px!important;min-width:16px!important;min-height:16px!important;flex:0 0 16px!important;margin:0!important;cursor:pointer!important}
+html body #pagina-home #filtrosLateral#filtrosLateral.em-filtros-blocos .em-filtro-opcao>input:checked{background:#7953b2!important;box-shadow:inset 0 0 0 3px white!important}
+html body #pagina-home #filtrosLateral#filtrosLateral.em-filtros-blocos .em-filtro-opcao>input:focus-visible{outline:2px solid #7953b2!important;outline-offset:3px!important}
+html body #pagina-home #filtrosLateral#filtrosLateral.em-filtros-blocos .em-filtro-opcao:has(input:checked)>span{color:#634291!important;font-weight:500!important}
+html body #pagina-home #filtrosLateral#filtrosLateral.em-filtros-blocos .campo:not(.em-filtro-nativo){background:white!important;border:1px solid #dce2ed!important;border-radius:7px!important;font-family:Inter,Arial,sans-serif!important;font-weight:400!important;height:38px!important;min-height:38px!important}
+</style></body></html>
