@@ -214,6 +214,7 @@
       localStorage.setItem(draftKey,JSON.stringify({id:id,empresaCnpj:company().cnpj,fields:editableJobFields.reduce(function(obj,k){obj[k]=next[k];return obj;},{}),savedAt:new Date().toISOString()}));
       if(typeof window.apiEmpregaMaisPost!=='function'||typeof window.apiEmpregaMaisGet!=='function')throw Error('A conexão com o banco está indisponível. A edição foi mantida como rascunho; nada foi confirmado.');
       d.dataset.saving='1';saveButton.disabled=true;saveButton.textContent='Confirmando no banco...';d.querySelector('#settings-feedback').textContent='Aguarde a confirmação da gravação.';
+      var empresaAtual=company(),cnpjAtual=String(empresaAtual.cnpj||sessionStorage.getItem('empresaCnpj')||'').replace(/\D/g,'');if(cnpjAtual.length!==14)throw Error('Não foi possível identificar o CNPJ da empresa logada. Entre novamente na conta da empresa.');next.empresaCnpj=cnpjAtual;next.cnpj=cnpjAtual;
       var response=await window.apiEmpregaMaisPost({acao:'editar',id:id,vagaId:id,operacao:modalOp,vaga:next});
       if(!response||response.sucesso!==true)throw Error((response&&response.erro)||'O banco não confirmou a edição. O rascunho foi preservado para tentar novamente.');
       var result=await window.apiEmpregaMaisGet('listar');
