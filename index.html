@@ -35984,15 +35984,24 @@ return fetch(API+"?acao=jaCandidatou&vagaId="+encodeURIComponent(id)+"&email="+e
 function travar(){
 if(!vaga)return; verificar(vaga).then(function(ja){if(!ja)return;document.querySelectorAll("[data-candidatar-v94],#btnCandidatar,#btnCandidatarMobile,#btnCandidatarFinalEM,#btnCandidatarDetalhe").forEach(function(b){b.disabled=true;b.classList.add("cand94-ja");b.textContent="✓ Você já se candidatou a esta vaga"})})
 }
+var aberturaSeq=0;
 function abrir(v){
 vaga=v||window.vagaAtual;if(!vaga)return;
 if(!em()){if(typeof irPara==="function")irPara("login-candidato");else alert("Entre na sua conta de candidato para se candidatar.");return}
-verificar(vaga).then(function(ja){
-if(ja){alert("Você já se candidatou a esta oportunidade.");travar();return}
+var seq=++aberturaSeq, atual=vaga, email=em(),btn=document.getElementById("cand94Enviar");
+erro("");
 document.getElementById("cand94Vaga").textContent=(vaga.cargo||vaga.titulo||"Vaga")+" • "+(vaga.empresa||"");
 var c=cv();document.getElementById("cand94OnlineStatus").textContent=c?"Seu currículo online está pronto para ser utilizado.":"Você ainda não possui um currículo online salvo. Você pode criar um ou enviar um arquivo.";
-setModo(c?"online":"arquivo");modal(true)
-})
+setModo(c?"online":"arquivo");
+btn.disabled=true;btn.textContent="Verificando candidatura...";
+modal(true);
+requestAnimationFrame(function(){
+verificar(atual).then(function(ja){
+if(seq!==aberturaSeq||em()!==email||!document.getElementById("modalCandidaturaV94").classList.contains("aberto"))return;
+if(ja){erro("Você já se candidatou a esta oportunidade.");btn.textContent="Candidatura já enviada";return;}
+btn.disabled=false;btn.textContent="Enviar candidatura";
+});
+});
 }
 async function enviar(){
 erro("");var c=cand(), online=cv(), file=document.getElementById("cand94File").files[0];
@@ -36035,7 +36044,7 @@ window.EmpregaMaisCandidaturaV94={abrir:abrir,verificar:verificar,travar:travar}
 window.addEventListener("load",function(){setTimeout(travar,1200)});
 document.addEventListener("click",function(){setTimeout(function(){vaga=window.vagaAtual||vaga;travar()},500)},false)
 })();
-//</script><script src='empregamais_lote9.js?v=20261007-candidate-signup-v12'></script><script src='empregamais_lote14.js?v=1'></script><script type='text/javascript'>//
+//</script><script src='empregamais_lote9.js?v=20261007-instant-application-v13'></script><script src='empregamais_lote14.js?v=1'></script><script type='text/javascript'>//
 (function(){
 var BENEFICIOS_V128=[
 ["vale_alimentacao","🍎","Vale-alimentação"],
