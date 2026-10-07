@@ -211,7 +211,7 @@ new MutationObserver(limparV99).observe(document.documentElement,{childList:true
 (function(){
 var PAGE="cadastro-curriculo";
 function logado(){
-return !!String(sessionStorage.getItem("candidatoEmail")||localStorage.getItem("candidatoEmail")||"").trim();
+return typeof window.candidatoEstaLogado==="function" && window.candidatoEstaLogado();
 }
 function abrir(){
 if(logado()){
@@ -237,9 +237,11 @@ function cadastroLocal(d){
 var a=[];try{a=JSON.parse(localStorage.getItem("candidatosEmpregaMais")||"[]")}catch(e){}
 if(a.some(function(c){return String(c.email||"").toLowerCase()===d.email.toLowerCase()}))return {ok:false,erro:"Já existe um cadastro com este e-mail."};
 d.id="cand_"+Date.now();d.criadoEm=new Date().toISOString();d.status="ativo";a.push(d);
+try{
 localStorage.setItem("candidatosEmpregaMais",JSON.stringify(a));
-sessionStorage.setItem("candidatoEmail",d.email);sessionStorage.setItem("candidatoNome",d.nome);
-localStorage.setItem("candidatoEmail",d.email);localStorage.setItem("candidatoNome",d.nome);
+if(typeof window.entrarComoCandidato!=="function")throw new Error("Sessão indisponível");
+window.entrarComoCandidato(d);
+}catch(e){return {ok:false,erro:"Não foi possível concluir o cadastro neste navegador. Permita o armazenamento do site e tente novamente."};}
 return {ok:true};
 }
 document.addEventListener("click",function(e){
@@ -369,8 +371,7 @@ f.parentNode.insertBefore(p,f);
 }
 }
 function abrirPaginaCadastroV103(){
-var email=String(sessionStorage.getItem("candidatoEmail")||localStorage.getItem("candidatoEmail")||"").trim();
-if(email){
+if(typeof window.candidatoEstaLogado==="function" && window.candidatoEstaLogado()){
 if(typeof window.irPara==="function")window.irPara("curriculo");
 return;
 }
