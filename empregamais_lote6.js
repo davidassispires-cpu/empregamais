@@ -203,7 +203,7 @@ document.addEventListener("submit",function(ev){
 var form=ev.target;
 if(!form || (typeof form.checkValidity==="function" && !form.checkValidity()))return;
 /* O formulário de vagas possui fluxo próprio (V221). Não abrir o loader global aqui. */
-if(form.id==="formVaga")return;
+if(form.id==="formVaga" || form.closest("#pagina-login-candidato"))return;
 var el=form.querySelector("button[type='submit'],input[type='submit']");
 if(el && !el.classList.contains("em-processando-v134"))iniciar(el,true);
 },true);
@@ -267,6 +267,7 @@ el.setAttribute("data-sem-loading","1");
 document.addEventListener("submit",function(ev){
 var form=ev.target;
 if(!form || (typeof form.checkValidity==="function" && !form.checkValidity()))return;
+if(form.closest("#pagina-login-candidato"))return;
 var submit=(ev.submitter)||form.querySelector("button[type='submit'],input[type='submit']");
 if(submit)submit.setAttribute("data-sem-loading","1");
 var m=mensagemPorFormulario(form,submit);
