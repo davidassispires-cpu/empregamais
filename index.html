@@ -26056,8 +26056,10 @@ card.getAttribute(
 ) ||
 0;
 var mostrar =
+(!window.emBuscaCargoAplicado || titulo.indexOf(window.emBuscaCargoAplicado)!==-1) &&
 (
 !palavra ||
+card.textContent.toLowerCase().indexOf(palavra)!==-1 ||
 titulo.indexOf(
 palavra
 ) !== -1 ||
@@ -41118,6 +41120,46 @@ function iniciar(){
   var perto=document.getElementById('emPerto');if(perto)observer.observe(perto);
  }
  window.addEventListener('resize',ajustar);requestAnimationFrame(ajustar);
+}
+if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',iniciar);else iniciar();
+})();</script><style id="em-busca-horizontal-v1">html body #pagina-home .hero-search-tabs-em{display:none!important}
+html body #pagina-home #emBuscaHorizontal{display:grid!important;grid-template-columns:minmax(0,1fr) minmax(0,1fr) minmax(0,1fr) 140px!important;gap:14px!important;align-items:center!important;padding:0!important;background:transparent!important;border:0!important;overflow:visible!important}
+html body #pagina-home .hero-search-shell-em{overflow:visible!important}
+html body #pagina-home #emBuscaHorizontal .em-busca-campo{position:relative!important;min-width:0!important;background:#fff!important;border:1px solid #cbdcf1!important;border-radius:8px!important;box-sizing:border-box!important}
+html body #pagina-home #emBuscaHorizontal .em-busca-campo:focus-within{border-color:#1476ed!important;box-shadow:0 0 0 2px rgba(20,118,237,.1)!important}
+html body #pagina-home #emBuscaHorizontal .em-busca-campo.preenchido{background:#edf5ff!important;border-color:#1476ed!important}
+html body #pagina-home #emBuscaHorizontal label{position:absolute!important;width:1px!important;height:1px!important;overflow:hidden!important;clip-path:inset(50%)!important}
+html body #pagina-home #emBuscaHorizontal input{display:block!important;box-sizing:border-box!important;width:100%!important;height:48px!important;margin:0!important;padding:0 14px!important;border:0!important;border-radius:8px!important;background:transparent!important;color:#163d68!important;font-size:14px!important;font-weight:500!important;outline:none!important;min-width:0!important}
+html body #pagina-home #emBuscaHorizontal #cidadePrincipal{padding-right:38px!important}
+html body #pagina-home #emBuscaHorizontal .em-busca-limpar{position:absolute!important;right:8px!important;top:9px!important;width:30px!important;height:30px!important;display:flex!important;align-items:center!important;justify-content:center!important;border:0!important;background:transparent!important;color:#1769c0!important;font-size:22px!important;padding:0!important;cursor:pointer!important}
+html body #pagina-home #emBuscaHorizontal .em-busca-limpar[hidden]{display:none!important}
+html body #pagina-home #emBuscaHorizontal .em-busca-enviar{height:48px!important;width:100%!important;border:0!important;border-radius:8px!important;background:#1268e8!important;color:#fff!important;font-size:14px!important;font-weight:700!important;cursor:pointer!important;margin:0!important;padding:0 18px!important}
+html body #pagina-home #emBuscaHorizontal .em-busca-enviar:hover{background:#0758cf!important}
+@media(max-width:760px){html body #pagina-home #emBuscaHorizontal{grid-template-columns:minmax(0,1fr) minmax(0,1fr)!important;gap:10px!important}html body #pagina-home #emBuscaHorizontal input{font-size:12px!important;padding-left:10px!important;padding-right:10px!important}}
+</style><script id="em-busca-horizontal-v1-js">(function(){
+function iniciar(){
+ var grid=document.querySelector('#pagina-home .hero-search-grid-em'),cargo=document.getElementById('buscaPrincipal'),cidade=document.getElementById('cidadePrincipal');
+ if(!grid||!cargo||!cidade)return;
+ grid.id='emBuscaHorizontal';grid.replaceChildren();
+ function campo(input,nome){var box=document.createElement('div');box.className='em-busca-campo';var label=document.createElement('label');label.htmlFor=input.id;label.textContent=nome;input.placeholder=nome;box.append(label,input);grid.appendChild(box);return box;}
+ campo(cargo,'Cargo ou função');var boxCidade=campo(cidade,'Cidade/UF');
+ var limpar=document.createElement('button');limpar.type='button';limpar.className='em-busca-limpar';limpar.textContent='×';limpar.setAttribute('aria-label','Limpar cidade');boxCidade.appendChild(limpar);
+ function estadoCidade(){limpar.hidden=!cidade.value;boxCidade.classList.toggle('preenchido',!!cidade.value);}
+ cidade.addEventListener('input',estadoCidade);limpar.onclick=function(){cidade.value='';estadoCidade();cidade.focus();};estadoCidade();
+ var palavra=document.createElement('input');palavra.id='emBuscaPalavra';palavra.type='text';campo(palavra,'Palavra-chave');
+ var btn=document.createElement('button');btn.type='button';btn.className='em-busca-enviar';btn.textContent='Buscar';grid.appendChild(btn);
+ var sugestoes=document.createElement('datalist');sugestoes.id='emSugestoesCargos';cargo.setAttribute('list',sugestoes.id);cargo.after(sugestoes);
+ function atualizarSugestoes(){var vagas=typeof todasAsVagasPublicas==='function'?todasAsVagasPublicas():[];var nomes=Array.from(new Set(vagas.map(function(v){return String(v.cargo||'').trim();}).filter(Boolean))).sort(function(a,b){return a.localeCompare(b,'pt-BR');});sugestoes.replaceChildren();nomes.forEach(function(nome){var opt=document.createElement('option');opt.value=nome;sugestoes.appendChild(opt);});}
+ atualizarSugestoes();cargo.addEventListener('focus',atualizarSugestoes);
+ window.emBuscarHero=function(){
+  window.emBuscaCargoAplicado=cargo.value.trim().toLowerCase();
+  document.getElementById('filtroPalavra').value=palavra.value.trim();
+  document.getElementById('filtroCidade').value=cidade.value.trim().split('/')[0].trim();
+  filtrarVagas();if(typeof rolarVagas==='function')rolarVagas();
+ };
+ btn.onclick=window.emBuscarHero;
+ grid.addEventListener('keydown',function(e){if(e.key==='Enter'&&e.target.tagName==='INPUT'){e.preventDefault();window.emBuscarHero();}});
+ var painel=document.getElementById('filtrosLateral');if(painel)painel.addEventListener('click',function(e){if(e.target.closest('.limpar-link')){window.emBuscaCargoAplicado='';cargo.value='';cidade.value='';palavra.value='';estadoCidade();}},true);
 }
 if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',iniciar);else iniciar();
 })();</script></body></html>
