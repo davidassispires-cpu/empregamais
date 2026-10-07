@@ -1520,3 +1520,49 @@ html body #pagina-home #listaVagas article.em-lista-final .em-lista-ver{
  html body #pagina-home #listaVagas article.em-lista-final .em-lista-data{grid-column:2!important;grid-row:1 / 3!important}
  html body #pagina-home #listaVagas article.em-lista-final .em-lista-ver{grid-column:1 / 3!important;grid-row:3!important;width:100%!important}
 }
+
+/* Layout da listagem sem coluna de logo; regras separadas para celular. */
+html body #pagina-home #listaVagas#listaVagas article.em-lista-final{
+ grid-template-columns:minmax(0,1fr) 32px!important;
+ grid-template-rows:auto auto auto auto auto!important;
+ column-gap:12px!important;padding:16px 18px!important;
+}
+html body #pagina-home #listaVagas#listaVagas article.em-lista-final .em-lista-logo{display:none!important}
+html body #pagina-home #listaVagas#listaVagas article.em-lista-final .em-lista-cab{grid-column:1!important;grid-row:1!important;min-width:0!important}
+html body #pagina-home #listaVagas#listaVagas article.em-lista-final .em-lista-titulo{grid-column:1!important;grid-row:2!important;padding-right:0!important}
+html body #pagina-home #listaVagas#listaVagas article.em-lista-final .em-lista-meta{grid-column:1 / -1!important;grid-row:3!important;margin-top:0!important}
+html body #pagina-home #listaVagas#listaVagas article.em-lista-final .em-lista-resumo{grid-column:1 / -1!important;grid-row:4!important;margin-bottom:10px!important}
+html body #pagina-home #listaVagas#listaVagas article.em-lista-final .em-lista-fav{grid-column:2!important;grid-row:1 / 3!important;align-self:start!important;justify-self:end!important}
+html body #pagina-home #listaVagas#listaVagas article.em-lista-final .em-lista-footer{
+ display:grid!important;grid-column:1 / -1!important;grid-row:5!important;
+ grid-template-columns:minmax(0,1fr) auto auto!important;grid-template-rows:auto!important;
+ align-items:center!important;gap:8px 16px!important;
+ width:100%!important;margin:0!important;padding:0!important;border:0!important;background:transparent!important;
+}
+html body #pagina-home #listaVagas#listaVagas article.em-lista-final .em-lista-indicadores{
+ grid-column:1!important;grid-row:1!important;min-width:0!important;margin:0!important;
+}
+html body #pagina-home #listaVagas#listaVagas article.em-lista-final .em-lista-data{
+ grid-column:2!important;grid-row:1!important;align-self:center!important;justify-self:end!important;
+ margin:0!important;min-width:0!important;width:auto!important;
+}
+html body #pagina-home #listaVagas#listaVagas article.em-lista-final .em-lista-acoes{
+ grid-column:3!important;grid-row:1!important;display:flex!important;align-items:center!important;
+ justify-content:flex-end!important;flex-wrap:wrap!important;gap:8px!important;
+ width:auto!important;min-width:0!important;margin:0!important;align-self:center!important;
+}
+html body #pagina-home #listaVagas#listaVagas article.em-lista-final .em-lista-ver{
+ width:165px!important;height:38px!important;flex:0 0 165px!important;
+}
+@media(max-width:1100px){
+ html body #pagina-home #listaVagas#listaVagas article.em-lista-final .em-lista-footer{grid-template-columns:minmax(0,1fr) auto!important}
+ html body #pagina-home #listaVagas#listaVagas article.em-lista-final .em-lista-data{grid-column:2!important;grid-row:1!important}
+ html body #pagina-home #listaVagas#listaVagas article.em-lista-final .em-lista-acoes{grid-column:1 / -1!important;grid-row:2!important}
+}
+@media(max-width:760px){
+ html body #pagina-home #listaVagas#listaVagas article.em-lista-final{padding:14px!important;column-gap:8px!important}
+ html body #pagina-home #listaVagas#listaVagas article.em-lista-final .em-lista-titulo{font-size:19px!important}
+ html body #pagina-home #listaVagas#listaVagas article.em-lista-final .em-lista-footer{gap:10px 8px!important}
+ html body #pagina-home #listaVagas#listaVagas article.em-lista-final .em-lista-acoes{justify-content:flex-end!important}
+ html body #pagina-home #listaVagas#listaVagas article.em-lista-final .em-lista-ver{width:auto!important;min-width:145px!important;flex:1 1 145px!important;max-width:220px!important}
+}
