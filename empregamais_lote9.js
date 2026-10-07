@@ -557,7 +557,7 @@ var original=window.criarCardVaga;if(typeof original!=="function")return;
 window.criarCardVaga=function(vaga,destaque){
  var card=original.apply(this,arguments),button=card.querySelector(".em-lista-ver,.dz-botao");if(!button)return card;
  var wrap=document.createElement("div");wrap.className="em-apply-share "+(destaque?"em-apply-share-featured":"em-apply-share-recent");
- button.replaceWith(wrap);wrap.append(button,botaoCompartilharWhatsAppEM(vaga));return card;
+ button.replaceWith(wrap);wrap.append(botaoCompartilharWhatsAppEM(vaga),button);return card;
 };
 if(typeof renderizarVagas==="function")renderizarVagas();
 }
