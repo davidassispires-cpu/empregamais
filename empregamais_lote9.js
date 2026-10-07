@@ -596,6 +596,15 @@ function enhance(){
   '<rect x="2" y="5" width="20" height="14" rx="2"/><circle cx="12" cy="12" r="3"/><path d="M6 9h.01M18 15h.01"/>'
  ];
  ["local","contrato","modalidade","salario"].forEach(function(kind,i){var icon=page.querySelector(".em-info-"+kind+"-v1 .em-info-icon-v1");if(icon&&!icon.querySelector("svg"))icon.innerHTML='<svg viewBox="0 0 24 24" aria-hidden="true">'+icons[i]+'</svg>';});
+ if(shares){
+  shares.querySelectorAll(".em-detail-share").forEach(function(btn,i){if(!btn.querySelector(".em-share-label")){var label=document.createElement("span");label.className="em-share-label";label.textContent=i===0?"WhatsApp":"Copiar link";btn.appendChild(label);}});
+  if(!shares.querySelector(".em-email-share")){var email=document.createElement("button");email.type="button";email.className="em-detail-share em-email-share";email.title="Compartilhar por e-mail";email.setAttribute("aria-label",email.title);email.innerHTML='<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 6 9 7 9-7"/></svg><span class="em-share-label">E-mail</span>';email.onclick=function(){location.href="mailto:?subject="+encodeURIComponent("Vaga: "+title.textContent)+"&body="+encodeURIComponent("Confira esta oportunidade: "+title.textContent+"\n"+location.href);};shares.appendChild(email);}
+ }
+ var sidebar=page.querySelector(".aplicar-lateral");
+ if(sidebar){var company=sidebar.querySelector(".em-detail-company-name");if(!company){company=document.createElement("section");company.className="em-detail-company-name";var label=document.createElement("span");label.textContent="Empresa";var name=document.createElement("strong");company.append(label,name);sidebar.appendChild(company);}
+ var header=page.querySelector("#detalheEmpresaCab");var nameText=header?Array.from(header.childNodes).filter(function(n){return n.nodeType===3;}).map(function(n){return n.textContent;}).join(" ").trim():"";
+ company.querySelector("strong").textContent=nameText||"Empresa confidencial";
+ }
  // Prefer the identity of the registered employer over a stale imported logo.
  var u=new URL(location.href),v=typeof vagaPorIdEM==="function"?vagaPorIdEM(u.searchParams.get("id")):null;
  var e=v&&typeof empresaDaVagaEM==="function"?empresaDaVagaEM(v):null;
