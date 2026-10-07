@@ -41430,6 +41430,9 @@ window.prepararDuplicacaoVagaEM=function(draft){
 #pagina-candidatos-empresa .page-header h1{font-size:32px!important;font-weight:750!important;color:#16365e!important}
 #pagina-candidatos-empresa .page-header .voltar{display:none!important}
 #pagina-candidatos-empresa .em-gc27-head{background:#e8f4ff!important;border:1px solid #c7def5!important;border-radius:10px!important;padding:18px!important;box-shadow:none!important}
+#pagina-candidatos-empresa .em-gc27-head{display:flex!important;flex-direction:row-reverse!important;align-items:center!important;gap:16px!important;justify-content:space-between!important}
+#pagina-candidatos-empresa .em-gc27-jobicon svg{width:32px;height:32px}
+#pagina-candidatos-empresa .em-gc27-stagebox{display:none!important}
 #pagina-candidatos-empresa .em-gc27-job{display:flex!important;align-items:center!important;gap:18px!important}
 #pagina-candidatos-empresa .em-gc27-jobicon{width:58px!important;height:58px!important;border-radius:10px!important;background:#d7ebff!important;color:#1268d4!important;display:grid!important;place-items:center!important;font-size:26px!important}
 #pagina-candidatos-empresa .em-gc27-title{font-size:20px!important;text-transform:uppercase!important;font-weight:750!important}
@@ -41465,7 +41468,7 @@ window.prepararDuplicacaoVagaEM=function(draft){
 .gc-ref-favorite.selected{color:#7953B2}.em-gc27-card{position:relative}
 .gc-ref-distance{display:inline-flex;background:#efe7fa;color:#7953B2;border-radius:20px;padding:4px 9px;font-size:10px;margin-top:6px}
 @media(max-width:850px){#pagina-candidatos-empresa .em-gc27-stats{grid-template-columns:repeat(4,minmax(0,1fr))!important}#pagina-candidatos-empresa .em-gc27-tools{grid-template-columns:1fr 1fr!important}}
-@media(max-width:650px){#gc27Lista{grid-template-columns:1fr!important}#pagina-candidatos-empresa .page-header-inner,#pagina-candidatos-empresa .container-dashboard{padding-left:14px!important;padding-right:14px!important}#pagina-candidatos-empresa .page-header h1{font-size:25px!important}#pagina-candidatos-empresa .em-gc27-title{font-size:16px!important}#pagina-candidatos-empresa .em-gc27-job{align-items:flex-start!important}#pagina-candidatos-empresa .em-gc27-top{flex-wrap:wrap!important}#pagina-candidatos-empresa .em-gc27-stat{padding:8px!important}#pagina-candidatos-empresa .em-gc27-stats{gap:6px!important}}
+@media(max-width:650px){#pagina-candidatos-empresa .em-gc27-head{flex-direction:column-reverse!important;align-items:stretch!important}#gc27Lista{grid-template-columns:1fr!important}#pagina-candidatos-empresa .page-header-inner,#pagina-candidatos-empresa .container-dashboard{padding-left:14px!important;padding-right:14px!important}#pagina-candidatos-empresa .page-header h1{font-size:25px!important}#pagina-candidatos-empresa .em-gc27-title{font-size:16px!important}#pagina-candidatos-empresa .em-gc27-job{align-items:flex-start!important}#pagina-candidatos-empresa .em-gc27-top{flex-wrap:wrap!important}#pagina-candidatos-empresa .em-gc27-stat{padding:8px!important}#pagina-candidatos-empresa .em-gc27-stats{gap:6px!important}}
 </style><script id="em-candidaturas-reference-js">
 (function(){
 var cityFilter='';
@@ -41478,6 +41481,7 @@ if(sub&&sub.textContent.trim()!=='Organize os currículos e acompanhe cada etapa
 var icon=host.querySelector('.em-gc27-jobicon');if(icon&&!icon.dataset.ref){icon.dataset.ref='1';icon.innerHTML=svg('job');}
 var apps=typeof carregarCandidaturas==='function'?carregarCandidaturas():[];
 var job=sessionStorage.getItem('vagaCandidatosSelecionada');
+var jobs=typeof vagasDaEmpresa==='function'?vagasDaEmpresa():[];var currentJob=jobs.find(function(v){return String(v.id)===String(job)});var meta=host.querySelector('.em-gc27-meta');if(meta&&currentJob&&!meta.dataset.ref){meta.dataset.ref='1';var location=meta.querySelector('span');if(location)location.textContent=[currentJob.cidade,currentJob.uf||currentJob.estado].filter(Boolean).join(' • ');var idLine=document.createElement('div');idLine.textContent='ID da vaga: '+currentJob.id;idLine.style.cssText='font-size:11px;color:#647b99;margin-top:6px';meta.parentNode.appendChild(idLine);}
 var scoped=apps.filter(function(c){return String(c.vagaId||c.vaga_id||c.idVaga)===String(job)});
 var toolbar=host.querySelector('.em-gc27-tools');
 if(toolbar&&!toolbar.querySelector('#gcRefLocal')){
@@ -41485,7 +41489,7 @@ var select=document.createElement('select');select.id='gcRefLocal';select.classN
 var cities=Array.from(new Set(scoped.map(function(c){return c.cidade||c.localidade||''}).filter(Boolean))).sort();
 var opt=document.createElement('option');opt.value='';opt.textContent='Todas as localidades';select.appendChild(opt);
 cities.forEach(function(city){var o=document.createElement('option');o.value=city;o.textContent=city;select.appendChild(o)});select.value=cityFilter;
-select.onchange=function(){cityFilter=select.value;enhance()};toolbar.insertBefore(select,toolbar.children[1]);
+select.onchange=function(){cityFilter=select.value;enhance()};toolbar.insertBefore(select,toolbar.children[1]);var order=toolbar.querySelector('#gc27Ordem');if(order)toolbar.appendChild(order);
 }
 host.querySelectorAll('.em-gc27-card').forEach(function(card){
 var stage=card.querySelector('[data-gc27-stage]');if(!stage)return;var c=scoped.find(function(x){return String(x.id)===stage.dataset.gc27Stage});if(!c)return;
