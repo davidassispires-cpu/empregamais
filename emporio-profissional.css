@@ -1592,3 +1592,14 @@ html body #pagina-home #listaVagas#listaVagas article.em-lista-final .em-lista-v
  html body #pagina-home #listaVagas#listaVagas article.em-lista-final .em-lista-data span{white-space:normal!important}
  html body #pagina-home #listaVagas#listaVagas article.em-lista-final .em-lista-ver{grid-column:2!important;grid-row:2!important;min-width:0!important;width:145px!important;max-width:100%!important}
 }
+
+/* Centraliza a data na mesma linha dos selos, sem a altura legada de 40px. */
+html body #pagina-home #listaVagas#listaVagas article.em-lista-final .em-lista-data{
+ display:flex!important;align-items:center!important;align-self:center!important;
+ min-height:0!important;height:auto!important;margin:0!important;padding:0!important;
+ position:static!important;inset:auto!important;transform:none!important;
+}
+html body #pagina-home #listaVagas#listaVagas article.em-lista-final .em-lista-data span{
+ display:block!important;line-height:1.2!important;margin:0!important;padding:0!important;
+ position:static!important;transform:none!important;
+}
