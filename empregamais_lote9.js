@@ -635,3 +635,22 @@ function init(){
 }
 if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);else init();
 })();
+
+/* Featured cards follow the approved visual reference. */
+(function(){
+function install(){
+ var previous=window.criarCardVaga;if(typeof previous!=='function')return;
+ function enhance(card,v){
+  var cab=card.querySelector('.dz-cab');if(!cab)return card;
+  var title=card.querySelector('.dz-titulo');if(title)cab.appendChild(title);
+  var badges=document.createElement('div');badges.className='em-featured-badges';
+  function badge(type,label,path){var el=document.createElement('span');el.className='em-featured-badge '+type;el.innerHTML='<svg viewBox="0 0 24 24" aria-hidden="true">'+path+'</svg>';var text=document.createElement('strong');text.textContent=label;el.appendChild(text);badges.appendChild(el);}
+  badge('featured','EM DESTAQUE','<path d="m12 3 2.8 5.7 6.2.9-4.5 4.4 1.1 6.2-5.6-3-5.6 3 1.1-6.2L3 9.6l6.2-.9Z"/>');
+  if(v&&(v.urgente===true||v.urgente===1||v.urgente==='true'||v.contratacaoUrgente===true))badge('urgent','CONTRATAÇÃO URGENTE','<path d="m13 2-9 12h7l-1 8 10-12h-7Z"/>');
+  card.prepend(badges);return card;
+ }
+ window.criarCardVaga=function(v,d){var card=previous.apply(this,arguments);return d?enhance(card,v):card;};
+ if(typeof window.renderizarVagas==='function')window.renderizarVagas();
+}
+if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',install);else install();
+})();
