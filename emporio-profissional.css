@@ -1603,3 +1603,6 @@ html body #pagina-home #listaVagas#listaVagas article.em-lista-final .em-lista-d
  display:block!important;line-height:1.2!important;margin:0!important;padding:0!important;
  position:static!important;transform:none!important;
 }
+
+/* Remove o banner EmpregaMais Sênior da página inicial em todos os tamanhos. */
+html body #pagina-home section.senior-home-v18{display:none!important}
