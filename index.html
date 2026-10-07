@@ -41188,7 +41188,21 @@ html body #pagina-cadastro-empresa#pagina-cadastro-empresa .reg-step-actions but
 html body #pagina-cadastro-empresa#pagina-cadastro-empresa .reg-step-actions button[hidden]{display:none!important}
 @media(max-width:900px){html body #pagina-cadastro-empresa#pagina-cadastro-empresa #cadastroEmpresaShellCorrigidoEM{grid-template-columns:260px minmax(0,1fr)!important}html body #pagina-cadastro-empresa#pagina-cadastro-empresa .cadastro-empresa-form-em{padding:24px!important}}
 @media(max-width:700px){html body #pagina-cadastro-empresa#pagina-cadastro-empresa #cadastroEmpresaShellCorrigidoEM{grid-template-columns:1fr!important;width:calc(100% - 24px)!important;margin:16px auto!important}html body #pagina-cadastro-empresa#pagina-cadastro-empresa .cadastro-empresa-info-em{padding:22px!important}html body #pagina-cadastro-empresa#pagina-cadastro-empresa .cadastro-empresa-info-em h2{font-size:23px!important}html body #pagina-cadastro-empresa#pagina-cadastro-empresa .cadastro-beneficio-em{display:none!important}html body #pagina-cadastro-empresa#pagina-cadastro-empresa .reg-fields{grid-template-columns:1fr!important}html body #pagina-cadastro-empresa#pagina-cadastro-empresa .reg-progress li{flex-direction:column!important;text-align:center!important;font-size:11px!important}html body #pagina-cadastro-empresa#pagina-cadastro-empresa .cadastro-empresa-form-em{padding:20px!important}}
-</style><style id="em-company-links-v1-css">.em-company-link{box-sizing:border-box;max-width:1160px;margin:20px auto;padding:24px;border:1px solid #d6e4f3;border-radius:14px;background:#f4f8ff;color:#173e68;font-family:Montserrat,sans-serif}.em-company-link h3{margin:0 0 12px;font-size:18px}.em-company-link strong{display:block;overflow-wrap:anywhere;color:#1267c2;font-size:20px}.em-company-link p{font-size:13px;line-height:1.6}.em-company-link input{box-sizing:border-box;width:100%;padding:12px;border:1px solid #c7d8ec;border-radius:8px;background:white;color:#29425f}.em-company-link>div{display:flex;gap:12px;flex-wrap:wrap;margin-top:14px}.em-company-link a,.em-company-link button{display:inline-flex;align-items:center;padding:11px 16px;border:0;border-radius:8px;background:#1267c2;color:white;font:600 13px Montserrat,sans-serif;text-decoration:none;cursor:pointer}@media(max-width:700px){.em-company-link{margin:16px 12px;padding:18px}.em-company-link strong{font-size:16px}}</style><script id="em-company-links-v1-js">
+</style><style id="em-company-links-v1-css">.em-company-link{box-sizing:border-box;max-width:1160px;margin:20px auto;padding:24px;border:1px solid #d6e4f3;border-radius:14px;background:#f4f8ff;color:#173e68;font-family:Montserrat,sans-serif}.em-company-link h3{margin:0 0 12px;font-size:18px}.em-company-link strong{display:block;overflow-wrap:anywhere;color:#1267c2;font-size:20px}.em-company-link p{font-size:13px;line-height:1.6}.em-company-link input{box-sizing:border-box;width:100%;padding:12px;border:1px solid #c7d8ec;border-radius:8px;background:white;color:#29425f}.em-company-link>div{display:flex;gap:12px;flex-wrap:wrap;margin-top:14px}.em-company-link a,.em-company-link button{display:inline-flex;align-items:center;padding:11px 16px;border:0;border-radius:8px;background:#1267c2;color:white;font:600 13px Montserrat,sans-serif;text-decoration:none;cursor:pointer}@media(max-width:700px){.em-company-link{margin:16px 12px;padding:18px}.em-company-link strong{font-size:16px}}</style><style id="em-link-explanation-css">
+.em-company-link .em-link-heading{display:flex;align-items:center;justify-content:space-between;gap:16px;margin:0 0 10px}
+.em-company-link .em-link-heading h3{margin:0}
+.em-company-link .em-link-help{background:#fff;color:#1267c2;border:1px solid #c7d8ec;padding:8px 13px}
+#em-link-explanation{box-sizing:border-box;width:calc(100% - 32px);max-width:540px;max-height:85vh;overflow:auto;padding:26px;border:1px solid #d6e4f3;border-radius:18px;background:#fff;color:#29425f;font:14px/1.65 Montserrat,sans-serif;box-shadow:0 24px 80px #173e6833}
+#em-link-explanation::backdrop{background:#102b4b99}
+#em-link-explanation .em-link-modal-head{display:flex;align-items:center;justify-content:space-between;gap:12px;color:#1267c2;font-size:11px;font-weight:700}
+#em-link-explanation h2{font-family:Inter,sans-serif;font-size:23px;line-height:1.3;color:#173e68;margin:14px 0}
+#em-link-explanation button{cursor:pointer;font-family:inherit}
+#em-link-explanation [aria-label]{border:0;background:#edf4ff;color:#29425f;border-radius:8px;width:36px;height:36px;font-size:24px}
+#em-link-explanation .em-link-example{padding:16px;background:#f4f8ff;border:1px solid #d6e4f3;border-radius:10px}
+#em-link-explanation .em-link-example small{display:block}
+#em-link-explanation .em-link-example strong{display:block;color:#1267c2;overflow-wrap:anywhere}
+#em-link-explanation .em-link-modal-ok{display:block;width:100%;border:0;border-radius:8px;background:#1267c2;color:white;font-weight:600;padding:12px}
+</style><script id="em-company-links-v1-js">
 (function(){
 "use strict";
 var DOMAIN="maisempregos.com.br";
@@ -41225,9 +41239,24 @@ async function copy(e,btn){
  try{await navigator.clipboard.writeText(value);btn.textContent="Link copiado";setTimeout(function(){btn.textContent="Copiar link de teste";},1800);}
  catch(err){var input=btn.parentElement.querySelector("input");input.focus();input.select();toast("Selecione e copie o endereço do campo.");}
 }
+function explainLink(){
+ var dialog=document.getElementById("em-link-explanation");
+ if(!dialog){
+ dialog=document.createElement("dialog");dialog.id="em-link-explanation";dialog.setAttribute("aria-labelledby","em-link-explanation-title");
+ dialog.innerHTML='<div class="em-link-modal-head"><span>BENEFÍCIO DA ASSINATURA</span><button type="button" aria-label="Fechar explicação" data-close>×</button></div><h2 id="em-link-explanation-title">As vagas da sua empresa em um só link</h2><p>Com uma assinatura ativa, sua empresa pode reunir suas oportunidades em uma página exclusiva e compartilhar o link no WhatsApp, nas redes sociais e no site da empresa.</p><div class="em-link-example"><small>Exemplo de endereço personalizado</small><strong>suaempresa.maisempregos.com.br</strong></div><p>O endereço personalizado depende da configuração do domínio. Enquanto isso, use o link de teste disponível no card para visualizar e compartilhar a página.</p><p><b>Recurso exclusivo dos planos pagos, disponível enquanto a assinatura estiver ativa.</b></p><button type="button" class="em-link-modal-ok" data-close>Entendi</button>';
+ document.body.appendChild(dialog);
+ dialog.querySelectorAll("[data-close]").forEach(function(btn){btn.onclick=function(){dialog.close();};});
+ dialog.addEventListener("click",function(ev){if(ev.target===dialog){var r=dialog.getBoundingClientRect();if(ev.clientX<r.left||ev.clientX>r.right||ev.clientY<r.top||ev.clientY>r.bottom)dialog.close();}});
+ }
+ dialog.showModal();
+}
 function card(e,id){
  var box=document.createElement("section");box.id=id;box.className="em-company-link";box.dataset.empresaAbaEm="empresa";
- var title=document.createElement("h3");title.textContent="Página exclusiva da empresa";box.appendChild(title);
+ var head=document.createElement("div");head.className="em-link-heading";
+ var title=document.createElement("h3");title.textContent="Página exclusiva da empresa";
+ var help=document.createElement("button");help.type="button";help.className="em-link-help";help.textContent="Entenda";help.setAttribute("aria-haspopup","dialog");help.onclick=explainLink;
+ head.append(title,help);box.appendChild(head);
+ var invitation=document.createElement("p");invitation.textContent="Quer um link exclusivo com as vagas da sua empresa? Este benefício está incluído na sua assinatura ativa.";box.appendChild(invitation);
  var future=document.createElement("strong");future.textContent=e.linkEmpresaSlug+"."+DOMAIN;box.appendChild(future);
  var note=document.createElement("p");note.textContent="Endereço previsto — disponível após a contratação e configuração do domínio. Use o link de teste abaixo por enquanto.";box.appendChild(note);
  var input=document.createElement("input");input.readOnly=true;input.value=testLink(e);input.setAttribute("aria-label","Link de teste da empresa");box.appendChild(input);
