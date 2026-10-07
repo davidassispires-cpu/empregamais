@@ -41184,4 +41184,88 @@ html body #pagina-cadastro-empresa#pagina-cadastro-empresa .reg-step-actions but
 html body #pagina-cadastro-empresa#pagina-cadastro-empresa .reg-step-actions button[hidden]{display:none!important}
 @media(max-width:900px){html body #pagina-cadastro-empresa#pagina-cadastro-empresa #cadastroEmpresaShellCorrigidoEM{grid-template-columns:260px minmax(0,1fr)!important}html body #pagina-cadastro-empresa#pagina-cadastro-empresa .cadastro-empresa-form-em{padding:24px!important}}
 @media(max-width:700px){html body #pagina-cadastro-empresa#pagina-cadastro-empresa #cadastroEmpresaShellCorrigidoEM{grid-template-columns:1fr!important;width:calc(100% - 24px)!important;margin:16px auto!important}html body #pagina-cadastro-empresa#pagina-cadastro-empresa .cadastro-empresa-info-em{padding:22px!important}html body #pagina-cadastro-empresa#pagina-cadastro-empresa .cadastro-empresa-info-em h2{font-size:23px!important}html body #pagina-cadastro-empresa#pagina-cadastro-empresa .cadastro-beneficio-em{display:none!important}html body #pagina-cadastro-empresa#pagina-cadastro-empresa .reg-fields{grid-template-columns:1fr!important}html body #pagina-cadastro-empresa#pagina-cadastro-empresa .reg-progress li{flex-direction:column!important;text-align:center!important;font-size:11px!important}html body #pagina-cadastro-empresa#pagina-cadastro-empresa .cadastro-empresa-form-em{padding:20px!important}}
-</style></body></html>
+</style><style id="em-company-links-v1-css">.em-company-link{box-sizing:border-box;max-width:1160px;margin:20px auto;padding:24px;border:1px solid #d6e4f3;border-radius:14px;background:#f4f8ff;color:#173e68;font-family:Montserrat,sans-serif}.em-company-link h3{margin:0 0 12px;font-size:18px}.em-company-link strong{display:block;overflow-wrap:anywhere;color:#1267c2;font-size:20px}.em-company-link p{font-size:13px;line-height:1.6}.em-company-link input{box-sizing:border-box;width:100%;padding:12px;border:1px solid #c7d8ec;border-radius:8px;background:white;color:#29425f}.em-company-link>div{display:flex;gap:12px;flex-wrap:wrap;margin-top:14px}.em-company-link a,.em-company-link button{display:inline-flex;align-items:center;padding:11px 16px;border:0;border-radius:8px;background:#1267c2;color:white;font:600 13px Montserrat,sans-serif;text-decoration:none;cursor:pointer}@media(max-width:700px){.em-company-link{margin:16px 12px;padding:18px}.em-company-link strong{font-size:16px}}</style><script id="em-company-links-v1-js">
+(function(){
+"use strict";
+var DOMAIN="maisempregos.com.br";
+function slug(v){return String(v||"").normalize("NFD").replace(/[\u0300-\u036f]/g,"").toLowerCase().replace(/[^a-z0-9]+/g,"-").replace(/^-+|-+$/g,"").slice(0,48)||"empresa";}
+function nome(e){return e.nomeFantasia||e.nome||e.razaoSocial||"Empresa";}
+function eligible(e){
+ if(!e)return false;
+ if(/^(inativa|bloqueada|suspensa|cancelada)$/i.test(String(e.status||"")))return false;
+ var p=String(e.planoId||e.plano_id||e.plano||"").toLowerCase();
+ var fim=e.planoValidoAte||e.planoFim||e.validadePlano;
+ if(fim&&Number.isFinite(Date.parse(fim))&&Date.parse(fim)<Date.now())return false;
+ return ["mensal","trimestral","semestral","anual","pro","enterprise","start"].indexOf(p)>=0;
+}
+function catalog(){
+ var list=typeof empresasCadastradas==="function"?empresasCadastradas():[];
+ var used=new Set(["www","admin","api","app","mail","suporte","candidato","empresa"]);
+ list.forEach(function(e){if(e.linkEmpresaSlug)used.add(e.linkEmpresaSlug);});
+ var changed=false;
+ list.slice().sort(function(a,b){return String(a.cnpj||a.id||nome(a)).localeCompare(String(b.cnpj||b.id||nome(b)));}).forEach(function(e){
+  if(!eligible(e)||e.linkEmpresaSlug)return;
+  var base=slug(nome(e)),key=base,n=2;
+  while(used.has(key))key=base+"-"+n++;
+  used.add(key);e.linkEmpresaSlug=key;e.linkEmpresaDominioPrevisto=DOMAIN;changed=true;
+ });
+ if(changed&&typeof salvarArray==="function")salvarArray("empresasEmpregaMais",list);
+ return list;
+}
+function testLink(e){var u=new URL(location.pathname,location.origin);u.searchParams.set("pagina","empresa-publica");u.searchParams.set("empresa",e.linkEmpresaSlug);return u.href;}
+function toast(s){if(typeof mostrarToast==="function")mostrarToast(s);}
+async function copy(e,btn){
+ var value=testLink(e);
+ try{await navigator.clipboard.writeText(value);btn.textContent="Link copiado";setTimeout(function(){btn.textContent="Copiar link de teste";},1800);}
+ catch(err){var input=btn.parentElement.querySelector("input");input.focus();input.select();toast("Selecione e copie o endereço do campo.");}
+}
+function card(e,id){
+ var box=document.createElement("section");box.id=id;box.className="em-company-link";box.dataset.empresaAbaEm="empresa";
+ var title=document.createElement("h3");title.textContent="Página exclusiva da empresa";box.appendChild(title);
+ var future=document.createElement("strong");future.textContent=e.linkEmpresaSlug+"."+DOMAIN;box.appendChild(future);
+ var note=document.createElement("p");note.textContent="Endereço previsto — disponível após a contratação e configuração do domínio. Use o link de teste abaixo por enquanto.";box.appendChild(note);
+ var input=document.createElement("input");input.readOnly=true;input.value=testLink(e);input.setAttribute("aria-label","Link de teste da empresa");box.appendChild(input);
+ var actions=document.createElement("div");
+ var open=document.createElement("a");open.href=testLink(e);open.textContent="Ver página da empresa";
+ var btn=document.createElement("button");btn.type="button";btn.textContent="Copiar link de teste";btn.onclick=function(){copy(e,btn);};
+ actions.append(open,btn);box.appendChild(actions);return box;
+}
+function refresh(){
+ var list=catalog(),e=typeof obterEmpresaAtual==="function"?obterEmpresaAtual():null;
+ ["pagina-painel-empresa","pagina-perfil-empresa"].forEach(function(id){
+  var page=document.getElementById(id);if(!page)return;
+  var boxId=id+"-link-exclusivo",old=document.getElementById(boxId);
+  if(!eligible(e)){if(old)old.remove();return;}
+  if(old&&old.dataset.slug===e.linkEmpresaSlug)return;
+  if(old)old.remove();var box=card(e,boxId);box.dataset.slug=e.linkEmpresaSlug;
+  var host=page.querySelector(".container-dashboard")||page.querySelector(".container")||page;
+  host.appendChild(box);
+ });
+}
+function resolve(){
+ var u=new URL(location.href),key=u.searchParams.get("empresa");
+ if(!key&&location.hostname.endsWith("."+DOMAIN))key=location.hostname.slice(0,-DOMAIN.length-1);
+ if(!key)return;
+ var e=catalog().find(function(x){return x.linkEmpresaSlug===key&&eligible(x);});
+ if(!e){
+  if(typeof mostrarPagina==="function")mostrarPagina("empresa-publica");
+  var page=document.getElementById("pagina-empresa-publica");
+  if(page){var old=document.getElementById("em-link-unavailable");if(!old){old=document.createElement("p");old.id="em-link-unavailable";old.className="em-company-link";page.prepend(old);}old.textContent="Página não disponível. Esta empresa pode não estar cadastrada neste navegador ou o plano pode estar inativo.";}
+  return;
+ }
+ var missing=document.getElementById("em-link-unavailable");if(missing)missing.remove();
+ // Reuse the public renderer; verification badges remain controlled by existing checks.
+ if(typeof abrirPerfilEmpresaPublicaBaseEM==="function")abrirPerfilEmpresaPublicaBaseEM(e.cnpj);
+ else if(typeof abrirPerfilEmpresaPublica==="function")abrirPerfilEmpresaPublica(e.cnpj);
+ var page=document.getElementById("pagina-empresa-publica"),old=document.getElementById("em-public-company-link");
+ if(old)old.remove();if(page)page.appendChild(card(e,"em-public-company-link"));
+}
+window.emLinkEmpresa={slug:slug,elegivel:eligible,catalogo:catalog,url:testLink,dominioPrevisto:DOMAIN};
+function init(){refresh();resolve();}
+if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",init);else init();
+window.addEventListener("load",init);window.addEventListener("popstate",init);
+window.addEventListener("storage",init);
+if(typeof irPara==="function"){var original=irPara;window.irPara=function(){var r=original.apply(this,arguments);setTimeout(init,100);return r;};}
+document.addEventListener("click",function(ev){if(ev.target.closest("button,a"))setTimeout(refresh,300);});
+})();
+</script></body></html>
