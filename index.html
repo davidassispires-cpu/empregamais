@@ -41254,22 +41254,55 @@ function explainLink(){
 }
 function card(e,id){
  var box=document.createElement("section");box.id=id;box.className="em-company-link";box.dataset.empresaAbaEm="empresa";
+ if(!eligible(e)){
  var head=document.createElement("div");head.className="em-link-heading";
  var title=document.createElement("button");title.type="button";title.className="em-link-call";title.textContent="Quer ter um link exclusivo das vagas da sua empresa?";title.setAttribute("aria-haspopup","dialog");title.onclick=explainLink;
  var help=document.createElement("button");help.type="button";help.className="em-link-help";help.textContent="Entenda";help.setAttribute("aria-haspopup","dialog");help.onclick=explainLink;
  head.append(title,help);box.appendChild(head);
  var invitation=document.createElement("p");invitation.textContent="Reúna suas oportunidades em uma página personalizada. Benefício exclusivo para empresas com assinatura ativa.";box.appendChild(invitation);
- if(!eligible(e))return box;
+ return box;
+ }
+ var title=document.createElement("h3");title.textContent="Seu link exclusivo";box.appendChild(title);
  var future=document.createElement("strong");future.textContent=e.linkEmpresaSlug+"."+DOMAIN;box.appendChild(future);
  var note=document.createElement("p");note.textContent="Endereço previsto — disponível após a contratação e configuração do domínio. Use o link de teste abaixo por enquanto.";box.appendChild(note);
  var input=document.createElement("input");input.readOnly=true;input.value=testLink(e);input.setAttribute("aria-label","Link de teste da empresa");box.appendChild(input);
  var actions=document.createElement("div");
  var open=document.createElement("a");open.href=testLink(e);open.textContent="Ver página da empresa";
  var btn=document.createElement("button");btn.type="button";btn.textContent="Copiar link de teste";btn.onclick=function(){copy(e,btn);};
- actions.append(open,btn);box.appendChild(actions);return box;
+ actions.append(open,btn);
+ if(id!=="em-public-company-link"){
+ var configure=document.createElement("button");configure.type="button";configure.textContent="Configurar meu link";
+ configure.onclick=function(){
+ var editor=box.querySelector(".em-link-editor");if(editor){editor.querySelector("input").focus();return;}
+ editor=document.createElement("form");editor.className="em-link-editor";
+ var label=document.createElement("label");label.textContent="Nome do seu link (letras e números, sem espaços)";
+ var field=document.createElement("input");field.value=e.linkEmpresaSlug||"";field.required=true;field.maxLength=48;field.pattern="[a-z0-9]+";field.setAttribute("aria-label","Nome do link exclusivo");
+ var save=document.createElement("button");save.type="submit";save.textContent="Salvar link";
+ var status=document.createElement("p");status.setAttribute("role","status");
+ editor.append(label,field,save,status);box.appendChild(editor);field.focus();
+ editor.onsubmit=function(ev){
+ ev.preventDefault();
+ var value=field.value.trim().toLowerCase(),list=catalog();
+ if(!/^[a-z0-9]{1,48}$/.test(value)){status.textContent="Use somente letras minúsculas e números, sem espaços.";return;}
+ var record=list.find(function(x){return (e.cnpj&&x.cnpj===e.cnpj)||(e.id&&x.id===e.id);});
+ if(!record||!eligible(record)){status.textContent="É necessário ter uma assinatura ativa para configurar o link.";return;}
+ if(["www","admin","api","app","mail","suporte","candidato","empresa"].indexOf(value)>=0||list.some(function(x){return x!==record&&(x.linkEmpresaSlug===value||(x.linkEmpresaSlugsAnteriores||[]).indexOf(value)>=0);})){status.textContent="Este nome já está em uso. Escolha outro.";return;}
+ if(typeof salvarArray!=="function"){status.textContent="Não foi possível salvar. Tente novamente.";return;}
+ var previous=record.linkEmpresaSlug;
+ if(previous&&previous!==value)record.linkEmpresaSlugsAnteriores=Array.from(new Set((record.linkEmpresaSlugsAnteriores||[]).concat(previous)));
+ record.linkEmpresaSlug=value;record.linkEmpresaDominioPrevisto=DOMAIN;
+ try{salvarArray("empresasEmpregaMais",list);}catch(err){status.textContent="Não foi possível salvar o link.";return;}
+ e.linkEmpresaSlug=value;future.textContent=value+"."+DOMAIN;input.value=testLink(e);open.href=testLink(e);
+ status.textContent="Link salvo. O endereço personalizado depende da configuração do domínio; o link de teste já pode ser usado.";
+ };
+ };
+ actions.appendChild(configure);
+ }
+ box.appendChild(actions);return box;
 }
 function refresh(){
  var list=catalog(),e=typeof obterEmpresaAtual==="function"?obterEmpresaAtual():null;
+ if(e)e=list.find(function(x){return (e.cnpj&&x.cnpj===e.cnpj)||(e.id&&x.id===e.id);})||e;
  ["pagina-painel-empresa","pagina-perfil-empresa"].forEach(function(id){
   var page=document.getElementById(id);if(!page)return;
   
