@@ -25142,12 +25142,14 @@ if(destaque){
     corpo.appendChild(seloUrgenteNovo);
   }
   function dzUf(v){
-    var valor=String((v&&v.uf)||(v&&v.estado)||"").trim();
-    if(!valor)return "";
+    var valor=String((v&&v.uf)||(v&&v.estado)||(v&&v.siglaEstado)||"").trim();
+    var mapa={"acre":"AC","alagoas":"AL","amapa":"AP","amazonas":"AM","bahia":"BA","ceara":"CE","distrito federal":"DF","espirito santo":"ES","goias":"GO","maranhao":"MA","mato grosso":"MT","mato grosso do sul":"MS","minas gerais":"MG","para":"PA","paraiba":"PB","parana":"PR","pernambuco":"PE","piaui":"PI","rio de janeiro":"RJ","rio grande do norte":"RN","rio grande do sul":"RS","rondonia":"RO","roraima":"RR","santa catarina":"SC","sao paulo":"SP","sergipe":"SE","tocantins":"TO"};
+    function chave(texto){return String(texto||"").toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g,"").trim();}
     if(valor.length===2)return valor.toUpperCase();
-    var chave=valor.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g,"");
-    var mapa={"minas gerais":"MG","sao paulo":"SP","rio de janeiro":"RJ","espirito santo":"ES","bahia":"BA","parana":"PR","santa catarina":"SC","rio grande do sul":"RS","goias":"GO","distrito federal":"DF"};
-    return mapa[chave]||valor.toUpperCase();
+    if(mapa[chave(valor)])return mapa[chave(valor)];
+    var cidade=chave(v&&v.cidade);
+    var legado={"belo horizonte":"MG","betim":"MG","contagem":"MG","ibirite":"MG","nova lima":"MG","ribeirao das neves":"MG","sabara":"MG","santa luzia":"MG","sao paulo":"SP"};
+    return legado[cidade]||"";
   }
   function dzLinha(svg,texto){
     var linha=document.createElement("div");
