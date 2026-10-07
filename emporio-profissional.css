@@ -1882,3 +1882,20 @@ html body #pagina-home :is(#listaVagas#listaVagas#listaVagas,#listaDestaques#lis
 html body #pagina-home #listaDestaques#listaDestaques#listaDestaques .em-apply-share-featured{width:100%!important}
 html body #pagina-home #listaDestaques#listaDestaques#listaDestaques .em-apply-share-featured>.dz-botao{flex:1 1 auto!important}
 }
+
+/* Cards de destaque legíveis nas quatro colunas. */
+html body #pagina-home #listaDestaques#listaDestaques#listaDestaques .dz-cab{grid-template-columns:56px minmax(0,1fr)!important;gap:10px!important;align-items:center!important}
+html body #pagina-home #listaDestaques#listaDestaques#listaDestaques .dz-logo{width:56px!important;height:56px!important;min-width:56px!important;border-radius:10px!important}
+html body #pagina-home #listaDestaques#listaDestaques#listaDestaques .dz-cab-texto{min-width:0!important}
+html body #pagina-home #listaDestaques#listaDestaques#listaDestaques .dz-titulo{font-size:15px!important;line-height:1.35!important;overflow-wrap:break-word!important}
+html body #pagina-home #listaDestaques#listaDestaques#listaDestaques .dz-corpo{display:grid!important;grid-template-columns:minmax(0,1fr) minmax(0,1fr)!important;padding:0 14px 14px!important;gap:12px 8px!important;min-width:0!important}
+html body #pagina-home #listaDestaques#listaDestaques#listaDestaques .dz-infos{display:grid!important;grid-template-columns:minmax(0,1fr) minmax(0,1fr)!important;gap:8px!important;width:100%!important;min-width:0!important}
+html body #pagina-home #listaDestaques#listaDestaques#listaDestaques .dz-info{display:flex!important;align-items:center!important;width:auto!important;min-width:0!important;border:0!important;padding:0!important;gap:5px!important;font-size:10px!important;line-height:1.4!important;white-space:normal!important;overflow-wrap:break-word!important}
+html body #pagina-home #listaDestaques#listaDestaques#listaDestaques .dz-info:first-child{grid-column:1 / -1!important}
+html body #pagina-home #listaDestaques#listaDestaques#listaDestaques .dz-info>*{min-width:0!important;white-space:normal!important;overflow-wrap:break-word!important}
+html body #pagina-home #listaDestaques#listaDestaques#listaDestaques .dz-info svg{flex:0 0 16px!important;width:16px!important;height:16px!important}
+html body #pagina-home #listaDestaques#listaDestaques#listaDestaques .dz-salario{grid-column:1!important;min-width:0!important;width:auto!important;padding:0!important;margin:0!important;min-height:0!important;align-self:center!important}
+html body #pagina-home #listaDestaques#listaDestaques#listaDestaques .dz-salario strong{font-size:14px!important;line-height:1.35!important;white-space:normal!important;overflow-wrap:break-word!important}
+html body #pagina-home #listaDestaques#listaDestaques#listaDestaques .dz-botao{grid-column:2!important;min-width:0!important;width:100%!important;height:40px!important;padding:8px 5px!important;font-size:10px!important;gap:5px!important;position:static!important;margin:0!important}
+html body #pagina-home #listaDestaques#listaDestaques#listaDestaques .em-apply-share-featured{grid-column:2!important;min-width:0!important;width:100%!important}
+html body #pagina-home #listaDestaques#listaDestaques#listaDestaques .em-apply-share-featured>.em-whatsapp-share{display:none!important}
