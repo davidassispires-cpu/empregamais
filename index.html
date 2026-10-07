@@ -39384,7 +39384,9 @@ var companyIds=new Set(vs.map(function(v){return String(v.id);}));
 var total=cs.filter(function(c){return companyIds.has(jid(c));}).length;
 var active=vs.filter(vagaRecebendoCandidaturas),page=1,size=6;
 function icon(type){return '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'+(type==="users"?'<circle cx="9" cy="7" r="3"/><path d="M3 21v-3a6 6 0 0 1 12 0v3M16 4a3 3 0 0 1 0 6M17 14a5 5 0 0 1 4 5v2"/>':'<rect x="3" y="7" width="18" height="14" rx="3"/><path d="M8 7V4h8v3M3 12h18M10 12v3h4v-3"/>')+'</svg>';}
-host.innerHTML='<div class="em-jh em-jh-reference"><div class="em-jh-intro"><div><h1>Candidaturas por vaga</h1><p>Escolha uma vaga para gerenciar os candidatos e as etapas da seleção.</p></div><div class="em-jh-metrics"><div><span class="em-jh-icon">'+icon("briefcase")+'</span><div><small>Vagas ativas</small><strong>'+active.length+'</strong></div></div><div><span class="em-jh-icon">'+icon("users")+'</span><div><small>Candidaturas recebidas</small><strong>'+total+'</strong></div></div></div></div><div class="em-jh-toolbar"><span class="em-jh-search-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="10" cy="10" r="6"/><path d="m15 15 6 6"/></svg></span><label>Buscar vaga<input type="search" id="emJhText" placeholder="Digite o nome da vaga..." list="emJhOptions"/><datalist id="emJhOptions">'+active.map(function(v){return '<option value="'+E(v.cargo||v.titulo||"Vaga")+'"></option>';}).join('')+'</datalist></label><label>Status da vaga<select id="emJhSearch"><option value="">Todas as vagas ativas</option>'+active.map(function(v){return '<option value="'+E(v.id)+'">'+E(v.cargo||v.titulo||"Vaga")+'</option>';}).join('')+'</select></label><span class="em-jh-order">↕ Vagas com candidaturas primeiro</span></div><div class="em-jh-grid" id="emJhGrid"></div><div class="em-jh-pages" id="emJhPages"></div></div>';
+function filterValue(v,key){return String(key==="cidade"?(v.cidade||""):(v.area||v.areaAtuacao||v.areaProfissional||"")).trim();}
+function filterOptions(key){var values=new Map();active.forEach(function(v){var label=filterValue(v,key);if(label&&!values.has(N(label)))values.set(N(label),label);});return Array.from(values.entries()).sort(function(a,b){return a[1].localeCompare(b[1],"pt-BR");}).map(function(item){return '<option value="'+E(item[0])+'">'+E(item[1])+'</option>';}).join("");}
+host.innerHTML='<div class="em-jh em-jh-reference"><div class="em-jh-intro"><div><h1>Candidaturas por vaga</h1><p>Escolha uma vaga para gerenciar os candidatos e as etapas da seleção.</p></div><div class="em-jh-metrics"><div><span class="em-jh-icon">'+icon("briefcase")+'</span><div><small>Vagas ativas</small><strong>'+active.length+'</strong></div></div><div><span class="em-jh-icon">'+icon("users")+'</span><div><small>Candidaturas recebidas</small><strong>'+total+'</strong></div></div></div></div><div class="em-jh-toolbar"><span class="em-jh-search-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="10" cy="10" r="6"/><path d="m15 15 6 6"/></svg></span><label>Buscar vaga<input type="search" id="emJhText" placeholder="Digite o nome da vaga..." list="emJhOptions"/><datalist id="emJhOptions">'+active.map(function(v){return '<option value="'+E(v.cargo||v.titulo||"Vaga")+'"></option>';}).join('')+'</datalist></label><label>Cidade<select id="emJhSearch"><option value="">Todas as cidades</option>'+filterOptions("cidade")+'</select></label><label>Área<select id="emJhArea"><option value="">Todas as áreas</option>'+filterOptions("area")+'</select></label><span class="em-jh-order">↕ Vagas com candidaturas primeiro</span></div><div class="em-jh-grid" id="emJhGrid"></div><div class="em-jh-pages" id="emJhPages"></div></div>';
 function vagaRecebendoCandidaturas(v){
 var status=String(v.status||"ativa").toLowerCase(),aprovacao=String(v.aprovacao||"aprovada").toLowerCase();
 if(/encerrad|inativ|fechad|pausad|paused|excluid/.test(status)||aprovacao!=="aprovada")return false;
@@ -39395,8 +39397,9 @@ return true;
 }
 function draw(){
 var q=document.getElementById("emJhSearch").value;
+var area=document.getElementById("emJhArea").value;
 var text=N(document.getElementById("emJhText").value);
-var list=active.filter(function(v){return(!q||String(v.id)===q)&&(!text||N((v.cargo||v.titulo||"")+" "+(v.cidade||"")).indexOf(text)>=0);});
+var list=active.filter(function(v){return(!q||N(filterValue(v,"cidade"))===q)&&(!area||N(filterValue(v,"area"))===area)&&(!text||N((v.cargo||v.titulo||"")+" "+(v.cidade||"")).indexOf(text)>=0);});
 function count(v){return cs.filter(function(c){return jid(c)===String(v.id);}).length;}
 list.sort(function(a,b){return count(b)-count(a)||String(a.cargo||a.titulo||"").localeCompare(String(b.cargo||b.titulo||""),"pt-BR");});
 var pages=Math.max(1,Math.ceil(list.length/size));page=Math.min(page,pages);
@@ -39415,7 +39418,7 @@ window.renderizarCandidatosEmpresa();
 window.scrollTo({top:0,behavior:"smooth"});
 };});
 }
-document.getElementById("emJhSearch").addEventListener("change",function(){page=1;draw();});document.getElementById("emJhText").addEventListener("input",function(){page=1;draw();});draw();return;
+document.getElementById("emJhArea").addEventListener("change",function(){page=1;draw();});document.getElementById("emJhSearch").addEventListener("change",function(){page=1;draw();});document.getElementById("emJhText").addEventListener("input",function(){page=1;draw();});draw();return;
 }
   var v=vaga(id);if(!v){host.innerHTML='<div class="em-gc27-empty">Vaga não encontrada.</div>';return}
   var all=daVaga(id),gs=['Todos','Em avaliação','Em contato','Entrevista','Aprovados','Contratados','Reprovados'],ct={};gs.forEach(function(x){ct[x]=0});ct.Todos=all.length;all.forEach(function(c){ct[grupo(c.status)]++});var views=Number(v.visualizacoes||v.views||0)||0;
