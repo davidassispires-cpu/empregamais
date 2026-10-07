@@ -24151,6 +24151,7 @@ return;
 }
 vagaAtual =
 vaga;
+if(window.EmpregaMaisCandidaturaV94)window.EmpregaMaisCandidaturaV94.travar();
 var vagaConfidencialAtualEM =
 typeof vagaEhConfidencialEM==="function" &&
 vagaEhConfidencialEM(vaga);
@@ -35979,10 +35980,24 @@ document.getElementById("cand94AreaOnline").style.display=m==="online"?"block":"
 function idVaga(v){return String(v&&(v.id||v.vagaId||v.ID)||"")}
 function verificar(v){
 var id=idVaga(v);if(!id||!em())return Promise.resolve(false);
-return fetch(API+"?acao=jaCandidatou&vagaId="+encodeURIComponent(id)+"&email="+encodeURIComponent(em())).then(function(r){return r.json()}).then(function(r){return !!(r&&r.jaCandidatou)}).catch(function(){return false})
+return fetch(API+"?acao=jaCandidatou&vagaId="+encodeURIComponent(id)+"&email="+encodeURIComponent(em())).then(function(r){return r.json()}).then(function(r){return !!(r&&(r.jaCandidatou===true||r.jaCandidatou==="true"))}).catch(function(){return false})
 }
+var verificacaoSeq=0;
 function travar(){
-if(!vaga)return; verificar(vaga).then(function(ja){if(!ja)return;document.querySelectorAll("[data-candidatar-v94],#btnCandidatar,#btnCandidatarMobile,#btnCandidatarFinalEM,#btnCandidatarDetalhe").forEach(function(b){b.disabled=true;b.classList.add("cand94-ja");b.textContent="✓ Você já se candidatou a esta vaga"})})
+var atual=window.vagaAtual||vaga,id=idVaga(atual),email=em(),seq=++verificacaoSeq;
+var pagina=document.getElementById("pagina-vaga");if(!pagina)return;
+var botoes=pagina.querySelectorAll("[data-candidatar-v94],#btnCandidatar,#btnCandidatarMobile,#btnCandidatarFinalEM,#btnCandidatarDetalhe");
+botoes.forEach(function(b){
+if(b.classList.contains("cand94-ja")){b.disabled=false;b.classList.remove("cand94-ja");b.textContent=b.dataset.cand94Original||"Candidatar-se";}
+});
+if(!id||!email)return;
+verificar(atual).then(function(ja){
+if(seq!==verificacaoSeq||email!==em()||idVaga(window.vagaAtual||vaga)!==id||!pagina.classList.contains("ativa"))return;
+botoes.forEach(function(b){
+if(ja){if(!b.classList.contains("cand94-ja"))b.dataset.cand94Original=b.textContent;b.disabled=true;b.classList.add("cand94-ja");b.textContent="✓ Você já se candidatou a esta vaga";}
+else if(b.classList.contains("cand94-ja")){b.disabled=false;b.classList.remove("cand94-ja");b.textContent=b.dataset.cand94Original||"Candidatar-se";}
+});
+});
 }
 var aberturaSeq=0;
 function abrir(v){
