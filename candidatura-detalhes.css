@@ -172,3 +172,7 @@ html body #emCandidateDetails.em-candidate-reference-v55 .em-wide-workflow .em-g
 html body #emCandidateDetails.em-candidate-reference-v55 .em-wide-workflow .em-gc27-stage:hover{box-shadow:0 3px 10px #17324e0c!important;transform:translateY(-1px)}
 html body #emCandidateDetails.em-candidate-reference-v55 .em-wide-workflow .em-gc27-stage:focus-visible{outline:2px solid #0876ef!important;outline-offset:3px!important;box-shadow:0 0 0 4px #0876ef12!important}
 @media(prefers-reduced-motion:reduce){html body #emCandidateDetails.em-candidate-reference-v55 .em-wide-workflow .em-gc27-stage{transition:none!important;transform:none!important}}
+
+#pagina-candidatos-empresa #listaCandidatosEmpresa #gc27Adherence{border:1px solid #0876ef!important;color:#1268d4!important;background-color:#f7fbff!important;border-radius:8px!important;font-weight:600!important;cursor:pointer!important;transition:box-shadow .18s,border-color .18s}
+#pagina-candidatos-empresa #listaCandidatosEmpresa #gc27Adherence:focus-visible{outline:2px solid #0876ef;outline-offset:2px;box-shadow:0 0 0 3px #0876ef15}
+#pagina-candidatos-empresa #listaCandidatosEmpresa #gc27Adherence:disabled{opacity:.6;cursor:not-allowed!important}
