@@ -312,8 +312,7 @@ function companyHero(e){
     if(!form.dataset.addressPreviewBound){
       form.dataset.addressPreviewBound='1';
       form.addEventListener('input',update);form.addEventListener('change',update);form.addEventListener('reset',function(){setTimeout(update,0)});
-      var status=document.getElementById('cepStatusEM');if(status)new MutationObserver(update).observe(status,{childList:true,subtree:true,characterData:true});
-      ['cidadeVaga','estadoVaga'].forEach(function(id){var el=document.getElementById(id);if(el)new MutationObserver(update).observe(el,{childList:true,subtree:true})});
+      var cep=document.getElementById('cepVaga');if(cep)cep.addEventListener('blur',function(){setTimeout(update,400);setTimeout(update,1200)});
     }
     update();
   }
@@ -434,7 +433,7 @@ function companyHero(e){
     syncIcon();
     if(!box.dataset.brandBound){box.dataset.brandBound='1';button.addEventListener('click',function(ev){if(!publishLogoAllowed(company())){ev.preventDefault();ev.stopImmediatePropagation()}},true);
       upload.addEventListener('change',function(){if(!publishLogoAllowed(company())){upload.value='';return}box.dataset.brandSignature='';box.dataset.brandSelected=upload.files&&upload.files.length?'1':'';if(box.dataset.brandSelected)note.textContent=upload.files[0].name;else setupPublishBranding(page)});
-      new MutationObserver(function(){var has=publishLogoAllowed(company())&&!!preview.getAttribute('src');preview.style.display=has?'block':'none';var svg=box.querySelector('.publish-logo-placeholder svg');if(svg)svg.style.display=has?'none':'block'}).observe(preview,{attributes:true,attributeFilter:['src']});
+      preview.addEventListener('load',syncIcon);
       form.addEventListener('reset',function(){box.dataset.brandSignature='';box.dataset.brandSelected='';setTimeout(function(){setupPublishBranding(page)},0)});
     }
   }
@@ -447,6 +446,9 @@ function companyHero(e){
 
   function mountPublish() {
     var page=document.getElementById('pagina-publicar');if(!page||!host)return;
+    var publishOwner=String(company().cnpj||company().email||'');
+    if(page.dataset.publishMountedOwner===publishOwner&&page.parentNode===host&&page.querySelector('.publish-brand-actions')&&page.classList.contains('ativa'))return;
+    page.dataset.publishMountedOwner=publishOwner;
     if(!document.getElementById('em-publish-profile-design')){var link=document.createElement('link');link.id='em-publish-profile-design';link.rel='stylesheet';link.href='publicacao-painel.css?v=20261008-address-services-v241';document.head.appendChild(link);}
     var shell=page.querySelector('.em-job-shell');if(shell&&!shell.querySelector('.em-publish-heading')){var heading=document.createElement('div');heading.className='em-publish-heading';heading.innerHTML='<small>RECRUTAMENTO E SELEÇÃO</small><h1>Publicar vaga</h1><p>Preencha as etapas e revise os dados antes de enviar sua oportunidade.</p>';shell.prepend(heading);}
     page.slot='recruiter-publish';if(!page.classList.contains('ativa'))page.classList.add('ativa');
