@@ -42061,4 +42061,13 @@ var seen=false;try{seen=sessionStorage.getItem("emNearAttentionSeen")==="1";}cat
 }
 if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",install);else install();
 window.addEventListener("load",install);var observer=new MutationObserver(function(){if(document.getElementById("emPerto")){install();observer.disconnect();}});observer.observe(document.body,{childList:true,subtree:true});
+})();</script><script id="em-authenticated-login-route-guard">(function(){
+function destination(page){var role=typeof papelAtual==="function"?papelAtual():"";if(page==="login-empresa"&&role==="empresa")return "painel-empresa";if(page==="login-candidato"&&role==="candidato")return "painel-candidato";if(page==="login-admin"&&role==="admin")return "painel-admin";return page;}
+var route=window.irPara,open=window.abrirRota,show=window.mostrarPagina;
+if(typeof route==="function")window.irPara=function(page,id){return route.call(this,destination(page),id);};
+if(typeof open==="function")window.abrirRota=function(page,id){var target=destination(page);if(target!==page){var url=new URL(location.href);url.searchParams.set("pagina",target);url.searchParams.delete("id");history.replaceState(history.state,"",url.pathname+url.search+url.hash);}return open.call(this,target,id);};
+var redirecting=false;if(typeof show==="function")window.mostrarPagina=function(page){var target=destination(page);if(target!==page&&!redirecting){redirecting=true;try{return window.irPara(target);}finally{redirecting=false;}}return show.call(this,page);};
+function current(){var page=new URLSearchParams(location.search).get("pagina");var active=document.querySelector(".pagina.ativa");if(active&&/^pagina-login-/.test(active.id))page=active.id.replace("pagina-","");var target=destination(page);if(target!==page)window.abrirRota(page);}
+if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",current);else current();
+window.addEventListener("load",current);
 })();</script></body></html>
