@@ -75,3 +75,10 @@
 #pagina-publicar.em-publish-in-panel .publish-draft-status{font:12px Montserrat,sans-serif;color:#24774b;padding:12px 20px;background:#edf8f1;border-radius:8px}
 @media(max-width:700px){#pagina-publicar.em-publish-in-panel #formVaga .em-job-card-head{padding:18px 18px 18px 78px!important;min-height:106px!important}#pagina-publicar.em-publish-in-panel .publish-section-icon{left:18px;top:18px;width:44px;height:44px}#pagina-publicar.em-publish-in-panel .publish-step-badge{position:static;display:inline-block;margin-top:8px}#pagina-publicar.em-publish-in-panel .publish-mode-options{gap:8px}#pagina-publicar.em-publish-in-panel .publish-mode-options button{padding:12px 8px;gap:6px;font-size:11px}}
 @media(max-width:480px){#pagina-publicar.em-publish-in-panel .publish-mode-options{grid-template-columns:1fr}#pagina-publicar.em-publish-in-panel .publish-logo-upload{gap:12px}#pagina-publicar.em-publish-in-panel .publish-logo-placeholder{width:70px;height:70px}}
+
+/* Reserva fixa para os ícones, acima dos estilos legados dos campos. */
+#pagina-publicar.em-publish-in-panel #formVaga .em-field .publish-input-wrap{position:relative!important;display:block!important;width:100%!important;margin:0!important;padding:0!important;min-height:46px!important}
+#pagina-publicar.em-publish-in-panel #formVaga .em-field .publish-input-wrap > input:not([type=checkbox]):not([type=radio]),
+#pagina-publicar.em-publish-in-panel #formVaga .em-field .publish-input-wrap > select{display:block!important;margin:0!important;height:46px!important;min-height:46px!important;padding:11px 12px 11px 44px!important;border-color:#ccd5e2!important;background:#fefeff!important}
+#pagina-publicar.em-publish-in-panel #formVaga .em-field .publish-input-wrap > .publish-field-icon{position:absolute!important;left:14px!important;top:23px!important;transform:translateY(-50%)!important;width:18px!important;height:18px!important;margin:0!important;padding:0!important;z-index:1;pointer-events:none!important}
+#pagina-publicar.em-publish-in-panel #formVaga .em-field .publish-field-icon > svg{display:block!important;width:18px!important;height:18px!important;margin:0!important;flex-shrink:0}
