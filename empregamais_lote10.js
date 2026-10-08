@@ -267,7 +267,7 @@ function companyHero(e){
         else{control=document.createElement('input');control.id=row[0];control.type='text'}
         var field=document.createElement('div');field.className='em-field publish-address-field';
         var label=document.createElement('label');label.htmlFor=row[0];label.textContent=row[1];field.appendChild(label);field.appendChild(control);control.placeholder=row[2];
-        if(row[0]==='cepVaga'){field.classList.add('full');control.inputMode='numeric';control.autocomplete='postal-code';control.maxLength=9;var status=document.getElementById('cepStatusEM');if(!status){status=document.createElement('small');status.id='cepStatusEM'}status.setAttribute('role','status');status.setAttribute('aria-live','polite');field.appendChild(status)}
+        if(row[0]==='cepVaga'){field.classList.add('publish-cep-field');control.inputMode='numeric';control.autocomplete='postal-code';control.maxLength=9;var status=document.getElementById('cepStatusEM');if(!status){status=document.createElement('small');status.id='cepStatusEM'}status.setAttribute('role','status');status.setAttribute('aria-live','polite');field.appendChild(status)}
         location.appendChild(field);
       });
       detail.prepend(location);
@@ -276,7 +276,9 @@ function companyHero(e){
       if(!detail.querySelector('.publish-address-visibility')){
         var visibility=document.createElement('div');visibility.className='em-field full publish-address-visibility';
         visibility.innerHTML='<label>Como o endereço será exibido na vaga?</label><div class="publish-address-options" role="radiogroup" aria-label="Exibição do endereço"><label><input type="radio" name="exibicaoEnderecoVaga" value="empresa"><span>'+icon('company')+'<b>Endereço da empresa</b><small>Exibe o endereço cadastrado no Perfil Empresarial.</small></span></label><label><input type="radio" name="exibicaoEnderecoVaga" value="trabalho"><span>'+icon('pin')+'<b>Local de trabalho</b><small>Exibe o endereço informado acima.</small></span></label><label><input type="radio" name="exibicaoEnderecoVaga" value="cidade" checked><span>'+icon('eye')+'<b>Não exibir endereço</b><small>Mostra somente cidade e estado.</small></span></label></div>';
-        detail.appendChild(visibility);
+        var cepField=detail.querySelector('.publish-cep-field');
+        var addressRow=document.createElement('div');addressRow.className='publish-address-row';
+        detail.insertBefore(addressRow,cepField);addressRow.appendChild(cepField);addressRow.appendChild(visibility);
       }
     }
 
@@ -288,6 +290,7 @@ function companyHero(e){
     form.querySelectorAll('input,select,textarea').forEach(function(control){
       if(control.type==='hidden'||control.type==='file'||control.id==='modalidadeVaga'||/^horario/.test(control.id))return;
       var name=fieldIcons[control.id]||'text';
+      if(control.closest('.publish-address-options'))return;
       if(control.type==='checkbox'||control.type==='radio'){
         var label=control.closest('label')||Array.from(form.querySelectorAll('label[for]')).find(function(l){return l.htmlFor===control.id});
         if(label&&!label.querySelector('.publish-choice-icon')){var choice=document.createElement('span');choice.className='publish-choice-icon';choice.innerHTML=icon(control.type==='checkbox'?'check':control.value==='email'?'mail':control.value==='whatsapp'?'phone':control.value==='link'?'link':'eye');label.prepend(choice)}
@@ -309,7 +312,7 @@ function companyHero(e){
   }
   function mountPublish() {
     var page=document.getElementById('pagina-publicar');if(!page||!host)return;
-    if(!document.getElementById('em-publish-profile-design')){var link=document.createElement('link');link.id='em-publish-profile-design';link.rel='stylesheet';link.href='publicacao-painel.css?v=20261008-service-buttons-v63';document.head.appendChild(link);}
+    if(!document.getElementById('em-publish-profile-design')){var link=document.createElement('link');link.id='em-publish-profile-design';link.rel='stylesheet';link.href='publicacao-painel.css?v=20261008-address-inline-v238';document.head.appendChild(link);}
     var shell=page.querySelector('.em-job-shell');if(shell&&!shell.querySelector('.em-publish-heading')){var heading=document.createElement('div');heading.className='em-publish-heading';heading.innerHTML='<small>RECRUTAMENTO E SELEÇÃO</small><h1>Publicar vaga</h1><p>Preencha as etapas e revise os dados antes de enviar sua oportunidade.</p>';shell.prepend(heading);}
     page.slot='recruiter-publish';if(!page.classList.contains('ativa'))page.classList.add('ativa');
     page.classList.add('em-publish-in-panel');page.style.setProperty('display','block','important');
