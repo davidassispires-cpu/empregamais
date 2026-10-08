@@ -33,3 +33,7 @@
 #pagina-publicar.em-publish-in-panel #formVaga .em-review-box{border:1px solid #e3edf7!important;border-radius:9px!important;padding:18px!important;box-shadow:none!important}
 @media(max-width:760px){#pagina-publicar.em-publish-in-panel #emJobProgress{grid-template-columns:1fr 1fr!important}#pagina-publicar.em-publish-in-panel #emJobProgress .em-job-step{font-size:11px!important}#pagina-publicar.em-publish-in-panel #formVaga .em-job-card-head,#pagina-publicar.em-publish-in-panel #formVaga .em-job-body{padding:18px!important}#pagina-publicar.em-publish-in-panel .em-publish-heading h1{font-size:24px!important}}
 @media(max-width:480px){#pagina-publicar.em-publish-in-panel #formVaga .em-grid{grid-template-columns:1fr!important}#pagina-publicar.em-publish-in-panel #formVaga .em-field.full{grid-column:1/-1!important}#pagina-publicar.em-publish-in-panel #formVaga .em-job-actions{padding:15px 18px!important}}
+/* Remove somente os complementos antigos do formulário integrado. */
+#pagina-publicar.em-publish-in-panel .banner-lateral-v211,#pagina-publicar.em-publish-in-panel #formVaga .publicar-etapas-em{display:none!important}
+#pagina-publicar.em-publish-in-panel .layout-publicacao-v211{display:block!important;grid-template-columns:1fr!important;margin:0!important;padding:0!important;width:100%!important;max-width:none!important}
+#pagina-publicar.em-publish-in-panel .coluna-form-v211{width:100%!important;max-width:none!important;margin:0!important;padding:0!important}
