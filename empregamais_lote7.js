@@ -177,7 +177,7 @@ document.addEventListener('DOMContentLoaded',function(){setTimeout(aplicarV30,25
 (function(){
 
 document.addEventListener('DOMContentLoaded',function(){
-setTimeout(aplicarCabecalhoPremiumV73,300);
+if(typeof aplicarCabecalhoPremiumV73==="function")setTimeout(aplicarCabecalhoPremiumV73,300);
 });
 })();
 //
