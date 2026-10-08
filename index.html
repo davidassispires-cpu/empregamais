@@ -17674,7 +17674,7 @@ async function loginCandidato(event){
  if(error)error.textContent=auth.error_code==="email_not_confirmed"?"Confirme seu e-mail antes de entrar.":response.status===429?"Muitas tentativas. Aguarde um pouco e tente novamente.":"E-mail ou senha incorretos. Confira os dados ou recupere sua senha.";
  return false;
  }
- var profileResponse=await fetch(base+"/rest/v1/candidatos?select=nome,email,telefone,cidade,user_id&user_id=eq."+encodeURIComponent(auth.user.id)+"&limit=1",{headers:{"apikey":key,"Authorization":"Bearer "+auth.access_token},signal:controller.signal});
+ var profileResponse=await fetch(base+"/rest/v1/candidatos?select=*&user_id=eq."+encodeURIComponent(auth.user.id)+"&limit=1",{headers:{"apikey":key,"Authorization":"Bearer "+auth.access_token},signal:controller.signal});
  if(!profileResponse.ok)throw new Error("perfil");
  var profiles=await profileResponse.json(),candidate=Array.isArray(profiles)&&profiles[0];
  if(!candidate){if(error)error.textContent="Sua conta foi autenticada, mas o perfil de candidato não foi encontrado. Entre em contato com o suporte.";return false;}
@@ -17682,6 +17682,7 @@ async function loginCandidato(event){
  sessionStorage.setItem("empregaMaisSupabaseAccessToken",auth.access_token);
  sessionStorage.setItem("empregaMaisSupabaseRefreshToken",auth.refresh_token||"");
  sessionStorage.setItem("candidatoUserId",auth.user.id);
+ if(window.EmpregaMaisPerfilCloud)await window.EmpregaMaisPerfilCloud.hydrate(candidate);
  irPara("painel-candidato");
  return false;
  }catch(e){
@@ -42001,4 +42002,36 @@ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',
 #emCandidateDetails .em-wide-footer button{background:#fff!important;color:#4d607b!important;border:1px solid #d4dfe9!important;border-radius:8px!important;font:500 12px Inter,Arial,sans-serif!important;padding:10px 24px!important}
 @media(max-height:720px) and (min-width:901px){#emCandidateDetails .em-candidate-modal-head{padding:16px 24px!important}#emCandidateDetails .em-candidate-modal-body{padding:16px 24px!important}#emCandidateDetails .em-wide-block{padding:15px!important}}
 @media(max-width:900px){#emCandidateDetails .em-wide-overview{grid-template-columns:1fr}#emCandidateDetails .em-candidate-modal-head>div{padding-left:0}#emCandidateDetails .em-wide-avatar{display:none}}
-</style></body></html>
+</style><script id="em-candidate-cloud-persistence">
+(function(){
+"use strict";
+var BASE="https://mkezlcewyengejdmtppl.supabase.co",KEY="sb_publishable_8YnXpzGX8zj-tvzvcMYdyw_FVBhQutR";
+var set=Storage.prototype.setItem,remove=Storage.prototype.removeItem,paused=false,dirty={},timer=null,chain=Promise.resolve();
+function email(){return String(sessionStorage.getItem("candidatoEmail")||"").trim().toLowerCase();}
+function read(key,fallback){try{return JSON.parse(localStorage.getItem(key)||"null")??fallback;}catch(e){return fallback;}}
+function clean(value){if(Array.isArray(value))return value.map(clean);if(value&&typeof value==="object"){var out={};Object.keys(value).forEach(function(k){if(!/^(senha|password|access_token|refresh_token)$/i.test(k))out[k]=clean(value[k]);});return out;}return value;}
+function status(message,error){var node=document.getElementById("emProfileCloudStatus");if(!node){node=document.createElement("div");node.id="emProfileCloudStatus";node.setAttribute("role","status");node.style.cssText="position:fixed;bottom:18px;left:50%;transform:translateX(-50%);z-index:100000;background:#fff;border:1px solid #dae4ef;border-radius:10px;padding:11px 18px;box-shadow:0 6px 24px #10253b22;font:500 12px Montserrat,Arial,sans-serif;max-width:90vw";document.body.appendChild(node);}node.textContent=message;node.style.color=error?"#b42318":"#285d8d";node.hidden=false;if(!error)setTimeout(function(){if(node.textContent===message)node.hidden=true;},3000);}
+async function request(path,options){options=options||{};var token=sessionStorage.getItem("empregaMaisSupabaseAccessToken");if(!token)throw new Error("Entre novamente na conta para salvar no servidor.");var headers=Object.assign({"apikey":KEY,"Authorization":"Bearer "+token,"Content-Type":"application/json"},options.headers||{});var res=await fetch(BASE+path,Object.assign({},options,{headers:headers}));if(res.status===401&&!options.retried){var refresh=sessionStorage.getItem("empregaMaisSupabaseRefreshToken");if(refresh){var auth=await fetch(BASE+"/auth/v1/token?grant_type=refresh_token",{method:"POST",headers:{"apikey":KEY,"Content-Type":"application/json"},body:JSON.stringify({refresh_token:refresh})});var data=await auth.json();if(auth.ok&&data.access_token){sessionStorage.setItem("empregaMaisSupabaseAccessToken",data.access_token);sessionStorage.setItem("empregaMaisSupabaseRefreshToken",data.refresh_token||refresh);return request(path,Object.assign({},options,{retried:true}));}}}if(!res.ok)throw new Error("Não foi possível sincronizar seus dados. Tente novamente.");var text=await res.text();return text?JSON.parse(text):null;}
+function candidate(){return (read("candidatosEmpregaMais",[])||[]).find(function(c){return String(c.email||"").toLowerCase()===email();})||{};}
+function value(field){if(field==="perfil"){var c=clean(candidate());delete c.id;delete c.user_id;return {perfil:c,nome:c.nome||sessionStorage.getItem("candidatoNome")||"",telefone:c.telefone||"",cidade:c.cidade||c.cidadeProfissional||"",perfil_atualizado_em:new Date().toISOString()};}if(field==="curriculo_online")return {curriculo_online:clean(read("empregaMaisCurriculoOnline:"+email(),null))};if(field==="curriculo_arquivo")return {curriculo_arquivo:clean(read("curriculoEmpregaMais_"+email(),null))};return {vagas_salvas:read("favoritosEmpregaMais_"+email(),[])};}
+function field(key){if(key==="candidatosEmpregaMais")return "perfil";if(key==="empregaMaisCurriculoOnline:"+email())return "curriculo_online";if(key==="curriculoEmpregaMais_"+email())return "curriculo_arquivo";if(key==="favoritosEmpregaMais_"+email())return "vagas_salvas";return null;}
+function schedule(key){if(paused||sessionStorage.getItem("empregaMaisPapel")!=="candidato"||!sessionStorage.getItem("candidatoUserId"))return;var f=field(key);if(!f)return;dirty[f]=true;clearTimeout(timer);status("Salvando na sua conta…");timer=setTimeout(function(){flush().catch(function(){});},300);}
+function flush(){clearTimeout(timer);var fields=Object.keys(dirty);if(!fields.length)return chain;var uid=sessionStorage.getItem("candidatoUserId"),payload={};fields.forEach(function(f){Object.assign(payload,value(f));delete dirty[f];});chain=chain.catch(function(){}).then(async function(){try{var rows=await request("/rest/v1/candidatos?user_id=eq."+encodeURIComponent(uid),{method:"PATCH",headers:{"Prefer":"return=representation"},body:JSON.stringify(payload)});if(!Array.isArray(rows)||rows.length!==1)throw new Error("Seu perfil não foi atualizado no servidor.");status("Dados salvos na sua conta.");return rows[0];}catch(e){fields.forEach(function(f){dirty[f]=true;});status(e.message+" Os dados deste navegador foram preservados.",true);throw e;}});return chain;}
+Storage.prototype.setItem=function(key,value){set.call(this,key,value);if(this===localStorage)schedule(String(key));};
+Storage.prototype.removeItem=function(key){remove.call(this,key);if(this===localStorage)schedule(String(key));};
+window.EmpregaMaisPerfilCloud={flush:flush,hydrate:async function(row){
+var e=email(),local=candidate(),cloud=row.perfil||{},migration={},profile=Object.assign({},cloud,{nome:row.nome||cloud.nome,email:row.email||e,telefone:row.telefone||cloud.telefone,cidade:row.cidade||cloud.cidade,user_id:row.user_id});
+if(!Object.keys(cloud).length&&Object.keys(local).length){profile=Object.assign({},clean(local),profile);migration.perfil=clean(profile);}
+var list=read("candidatosEmpregaMais",[]).filter(function(c){return String(c.email||"").toLowerCase()!==e;});list.push(profile);
+paused=true;try{set.call(localStorage,"candidatosEmpregaMais",JSON.stringify(list));
+[["curriculo_online","empregaMaisCurriculoOnline:"+e,null],["curriculo_arquivo","curriculoEmpregaMais_"+e,null],["vagas_salvas","favoritosEmpregaMais_"+e,[]]].forEach(function(item){var remote=row[item[0]],old=read(item[1],item[2]);var empty=remote==null||(Array.isArray(remote)&&!remote.length)||(typeof remote==="object"&&!Object.keys(remote).length);if(empty&&old&&(Array.isArray(old)?old.length:Object.keys(old).length)){migration[item[0]]=clean(old);}else if(remote!=null)set.call(localStorage,item[1],JSON.stringify(remote));});
+["Nome","Telefone","Cep","Latitude","Longitude"].forEach(function(name){sessionStorage.setItem("candidato"+name,profile[name.charAt(0).toLowerCase()+name.slice(1)]||"");});
+}finally{paused=false;}
+if(Object.keys(migration).length){await request("/rest/v1/candidatos?user_id=eq."+encodeURIComponent(row.user_id),{method:"PATCH",headers:{"Prefer":"return=representation"},body:JSON.stringify(migration)});}
+return profile;
+}};
+window.addEventListener("online",function(){if(Object.keys(dirty).length)flush().catch(function(){});});
+document.addEventListener("DOMContentLoaded",async function(){if(sessionStorage.getItem("empregaMaisPapel")!=="candidato"||!sessionStorage.getItem("candidatoUserId"))return;try{var rows=await request("/rest/v1/candidatos?select=*&user_id=eq."+encodeURIComponent(sessionStorage.getItem("candidatoUserId"))+"&limit=1");if(rows&&rows[0]){await window.EmpregaMaisPerfilCloud.hydrate(rows[0]);if(typeof preencherPerfilCandidato==="function")preencherPerfilCandidato();if(typeof renderizarPainelCandidato==="function")renderizarPainelCandidato();}}catch(e){status(e.message,true);}});
+if(typeof mostrarPopupPerfilAtualizadoEM==="function"){var popup=mostrarPopupPerfilAtualizadoEM;window.mostrarPopupPerfilAtualizadoEM=function(){setTimeout(function(){flush().then(function(){popup();}).catch(function(){});},0);};}
+})();
+</script></body></html>
