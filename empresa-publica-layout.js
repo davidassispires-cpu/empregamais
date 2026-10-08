@@ -13,7 +13,11 @@ var grid=el('div','ep-reference-grid'),about=host.querySelector('.empresa-public
 var follow=el('button','ep-reference-follow','Seguir empresa');follow.type='button';follow.setAttribute('aria-pressed','false');top.appendChild(follow);
 follow.onclick=function(){var e=company(),key='emEmpresaSeguida:'+String(e.cnpj||e.id||e.linkEmpresaSlug||document.getElementById('empresaPublicaNome').textContent);try{var next=localStorage.getItem(key)!=='1';if(next)localStorage.setItem(key,'1');else localStorage.removeItem(key);follow.textContent=next?'✓ Seguindo':'＋ Seguir empresa';follow.setAttribute('aria-pressed',String(next))}catch(err){follow.textContent='Não foi possível salvar';}};
 }
-var e=company(),cover=host.querySelector('.ep-reference-cover'),saved=e.perfilPublico||e.perfil||{},image=e.capa||e.capaPerfil||e.imagemCapa||saved.capa||'';
+var e=company(),cover=host.querySelector('.ep-reference-cover'),saved=e.perfilPublico||e.perfil||{};
+try{if(typeof saved==='string')saved=JSON.parse(saved);if(!Object.keys(saved).length){var extra=typeof e.comprovacaoVerificacao==='string'?JSON.parse(e.comprovacaoVerificacao||'{}'):e.comprovacaoVerificacao||{};saved=extra.perfilPublico||JSON.parse(localStorage.getItem('perfilPublicoEmpresaEmpregaMais_'+String(e.cnpj||'').replace(/\\D/g,''))||'{}')}}catch(err){saved={}}
+var image=e.capa||e.capaPerfil||e.imagemCapa||saved.capa||'';
+[['empresaPublicaSobre',saved.sobre],['empresaPublicaFuncionarios',e.funcionarios||e.porte||saved.porte],['empresaPublicaSetor',e.setor||e.segmento||saved.segmento]].forEach(function(row){var node=document.getElementById(row[0]);if(row[1]&&node&&node.textContent!==String(row[1]))node.textContent=row[1]});
+var logo=document.getElementById('empresaPublicaLogo');if(logo&&saved.logo&&!logo.getAttribute('src')){logo.src=saved.logo;logo.style.display='block';}
 var safe=/^(https?:|data:image\/)/i.test(image)?image:'';
 if(cover.dataset.image!==safe){cover.dataset.image=safe;cover.style.backgroundImage=safe?'url("'+safe.replace(/["\\\n\r]/g,'')+'")':'';}
 var follow=host.querySelector('.ep-reference-follow'),key='emEmpresaSeguida:'+String(e.cnpj||e.id||e.linkEmpresaSlug||document.getElementById('empresaPublicaNome').textContent);try{var yes=localStorage.getItem(key)==='1';var text=yes?'✓ Seguindo':'＋ Seguir empresa';if(follow.textContent!==text)follow.textContent=text;follow.setAttribute('aria-pressed',String(yes))}catch(err){}
