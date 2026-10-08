@@ -95,3 +95,9 @@
 #pagina-publicar.em-publish-in-panel #formVaga .publish-address-field.full{grid-column:1/-1!important}
 #pagina-publicar.em-publish-in-panel #formVaga .em-field > select{margin:0!important}
 #pagina-publicar.em-publish-in-panel #formVaga .publish-address-field input{margin:0!important}
+
+/* Ícones consistentes em todas as etapas, incluindo textos longos e opções. */
+#pagina-publicar.em-publish-in-panel #formVaga .em-field .publish-input-wrap > textarea{display:block!important;width:100%!important;box-sizing:border-box!important;margin:0!important;padding:11px 12px 11px 44px!important;min-height:120px!important}
+#pagina-publicar.em-publish-in-panel #formVaga .publish-textarea-wrap > .publish-field-icon{top:23px!important}
+#pagina-publicar.em-publish-in-panel #formVaga .publish-choice-icon{display:inline-flex!important;vertical-align:middle!important;align-items:center;justify-content:center;width:18px;height:18px;margin-right:7px;color:#7b889e;pointer-events:none;flex-shrink:0}
+#pagina-publicar.em-publish-in-panel #formVaga .publish-choice-icon svg{display:block!important;width:18px!important;height:18px!important}
