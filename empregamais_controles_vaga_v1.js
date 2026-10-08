@@ -8,7 +8,7 @@ if(window.__EM_SELECTS_VAGA_V5)return;
 window.__EM_SELECTS_VAGA_V5=true;
 
 var FORM_ID="formVaga";
-var IGNORAR=["planoSaudeCusteioV181","planoSaudeDependentesV181","estadoVaga","cidadeVaga"];
+var IGNORAR=["modalidadeVaga","planoSaudeCusteioV181","planoSaudeDependentesV181","estadoVaga","cidadeVaga"];
 var wrappers=new WeakMap();
 
 var css=document.createElement("style");
