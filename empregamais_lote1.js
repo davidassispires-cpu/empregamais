@@ -416,7 +416,7 @@ return false;
 };
 function esc(x){
 return String(x==null?"":x).replace(/[&<>"']/g,function(c){
-return {"&":"&amp;","<":"<",">":">",'"':"&quot;","'":"&#39;"}[c];
+return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c];
 });
 }
 window.carregarVerificacoesAdminSupabaseEM=function(){

@@ -28,7 +28,7 @@ window.addEventListener("load",function(){setTimeout(init,500)});
 (function(){
 function q(id){return document.getElementById(id)}
 function txt(id){var e=q(id);return e?String(e.value||"").trim():""}
-function esc(v){return String(v||"").replace(/&amp;/g,"&amp;amp;").replace(/</g,"&amp;lt;").replace(/>/g,"&amp;gt;")}
+function esc(v){return String(v||"").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;")}
 function nome(){
 try{
 var em=String(sessionStorage.getItem("candidatoEmail")||localStorage.getItem("candidatoEmail")||"").toLowerCase(),ls=JSON.parse(localStorage.getItem("candidatosEmpregaMais")||"[]"),c=ls.find(function(x){return String(x.email||"").toLowerCase()===em});
@@ -215,7 +215,7 @@ window.addEventListener("load",function(){setTimeout(initV90,900)});
 //
 (function(){
 var empresas=[], candidatos=[], vagas=[];
-function esc(v){return String(v==null?"":v).replace(/[&amp;<>"']/g,function(c){return{"&amp;":"&amp;amp;","<":"&amp;lt;",">":"&amp;gt;",'"':"&amp;quot;","'":"&amp;#39;"}[c]})}
+function esc(v){return String(v==null?"":v).replace(/[&<>"']/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c];})}
 function norm(v){return String(v||"").trim().toLowerCase()}
 function arr(k){try{var a=JSON.parse(localStorage.getItem(k)||"[]");return Array.isArray(a)?a:[]}catch(e){return[]}}
 function planoEmpresa(e){return e.plano_nome||e.planoNome||e.plano_id||e.plano||"Básico"}

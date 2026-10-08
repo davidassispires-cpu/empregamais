@@ -96,7 +96,7 @@ var lateral=document.querySelector('#pagina-vaga .aplicar-bloco-principal');
 if(lateral){
 var old=document.getElementById('resumoVagaV27');if(old)old.remove();
 var r=document.createElement('div');r.id='resumoVagaV27';r.className='resumo-vaga-v27';
-function esc(x){return String(x==null?'-':x).replace(/[&amp;<>"']/g,function(m){return {'&amp;':'&amp;amp;','<':'&amp;lt;','>':'&amp;gt;','"':'&amp;quot;',"'":'&amp;#39;'}[m];});}
+function esc(x){return String(x==null?'-':x).replace(/[&<>"']/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c];});}
 var loc=((v.cidade||'')+((v.uf||v.estado)?' - '+(v.uf||v.estado):'')).toUpperCase();
 r.innerHTML='<h3>Resumo da vaga</h3>'+
 '<div class="resumo-linha-v27"><span>Empresa</span><strong>'+esc(v.empresa||'-')+'</strong></div>'+

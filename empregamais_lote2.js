@@ -391,9 +391,7 @@ setTimeout(abrirPainelAdminEM,300);
 //
 (function(){
 function esc(v){
-return String(v==null?"":v).replace(/[&amp;&lt;&gt;"']/g,function(c){
-return {"&amp;":"&amp;amp;","&lt;":"&amp;lt;","&gt;":"&amp;gt;",'"':"&quot;","'":"&amp;#39;"}[c];
-});
+return String(v==null?"":v).replace(/[&<>"']/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c];});
 }
 function linha(rotulo,valor){
 return "<div style='padding:11px 0;border-bottom:1px solid #eef1f5'&gt;"+
@@ -822,9 +820,7 @@ try{d=txt?JSON.parse(txt):null;}catch(e){d=txt;}
 if(!r.ok) throw new Error((d&&d.message)||String(d||("HTTP "+r.status)));
 return d;
 }
-function esc(v){return String(v==null?"":v).replace(/[&amp;&lt;&gt;"']/g,function(c){
-return {"&amp;":"&amp;amp;","&lt;":"&amp;lt;","&gt;":"&amp;gt;",'"':"&quot;","'":"&amp;#39;"}[c];
-});}
+function esc(v){return String(v==null?"":v).replace(/[&<>"']/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c];});}
 function data(v){if(!v)return "-";try{return new Date(v).toLocaleDateString("pt-BR");}catch(e){return "-";}}
 function els(){
 return {

@@ -894,9 +894,7 @@ window.fecharLoadingSalvamentoV148=fecharLoadingV148;
 if(window.__EmpregaMaisV149Localizacao)return;
 window.__EmpregaMaisV149Localizacao=true;
 function escV149(v){
-return String(v==null?"":v).replace(/[&amp;<>"']/g,function(c){
-return {"&amp;":"&amp;amp;","<":"&amp;lt;",">":"&amp;gt;",'"':"&amp;quot;","'":"&amp;#39;"}[c];
-});
+return String(v==null?"":v).replace(/[&<>"']/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c];});
 }
 function campoV149(ids){
 for(var i=0;i<ids.length;i++){
