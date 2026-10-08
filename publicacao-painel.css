@@ -265,3 +265,6 @@
 #pagina-publicar.em-publish-in-panel #formVaga .publish-extra-footer{margin-top:auto!important;padding-top:18px!important;border-top:1px solid #e8eef5!important}
 #pagina-publicar.em-publish-in-panel #formVaga .publish-extra-price{font-weight:700!important;font-size:24px!important;margin-bottom:16px!important}
 #pagina-publicar.em-publish-in-panel #formVaga .publish-extra-button{font-weight:600!important}
+
+/* Modalidade: cards controlam o select usado no envio do formulário. */
+#pagina-publicar #formVaga .publish-mode-field:has(.publish-mode-options) #modalidadeVaga{display:none!important;position:absolute!important;width:1px!important;height:1px!important;min-height:0!important;margin:0!important;padding:0!important;border:0!important;opacity:0!important;pointer-events:none!important;clip-path:inset(50%)!important}
