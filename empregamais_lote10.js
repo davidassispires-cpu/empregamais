@@ -474,19 +474,19 @@ function companyHero(e){
     document.head.appendChild(style);
     function enhance(){
       var modal=document.getElementById('emCandidateDetails');if(!modal)return;
-      modal.querySelectorAll('.em-wide-contact-actions button,.em-wide-contact-actions a').forEach(function(button){if(/^ligar$/i.test(button.textContent.trim())||(button.getAttribute('href')||'').indexOf('tel:')===0)button.remove()});
+      modal.querySelectorAll('.em-wide-contact-actions button,.em-wide-contact-actions a').forEach(function(button){if(button.hasAttribute('data-gc27-tel')||/^ligar$/i.test(button.textContent.trim())||(button.getAttribute('href')||'').indexOf('tel:')===0)button.remove()});
       var section=modal.querySelector('.em-candidate-message'),area=section&&section.querySelector('textarea');if(!area||section.dataset.templatesReady)return;section.dataset.templatesReady='1';
       var name=(modal.querySelector('.em-candidate-modal-head h2')||{}).textContent||'';
       var heading=(modal.querySelector('.em-candidate-modal-head p')||{}).textContent||'';
       var job=heading.split('•')[0].trim()||'esta oportunidade',e=company(),business=e.nomeFantasia||e.nome_fantasia||e.nome||e.razaoSocial||e.razao_social||'nossa empresa';
-      var greeting='Olá'+(name?', '+name:'')+'!\\n\\n';
+      var greeting='Olá'+(name?', '+name:'')+'!\n\n';
       var templates=[
         ['received','Candidatura recebida',greeting+'Recebemos sua candidatura para a vaga de '+job+'. Agradecemos seu interesse em fazer parte da '+business+'.'],
         ['analysis','Currículo em análise',greeting+'Seu currículo está em análise para a vaga de '+job+'. Caso avance para a próxima etapa, entraremos em contato. Obrigado pelo interesse em fazer parte da '+business+'!'],
-        ['track','Acompanhar candidatura',greeting+'Agradecemos seu interesse em fazer parte da '+business+' e sua candidatura à vaga de '+job+'.\\n\\nPara acompanhar as atualizações do processo seletivo, acesse sua conta no EmpregaMais e consulte a área Minhas candidaturas.\\n\\nMantenha seus contatos e seu currículo atualizados para que possamos entrar em contato.\\n\\nDesejamos sucesso em sua trajetória profissional!'],
-        ['interview','Convite para entrevista',greeting+'Gostaríamos de convidar você para uma entrevista para a vaga de '+job+' na '+business+'. Você tem disponibilidade em [data], às [horário]?\\n\\nFormato ou local: [informar].'],
-        ['rejected','Não selecionado nesta etapa',greeting+'Agradecemos sua participação no processo para a vaga de '+job+' e seu interesse em fazer parte da '+business+'. Neste momento, seguimos com outro perfil.\\n\\nDesejamos sucesso na sua trajetória profissional!'],
-        ['thanks','Não selecionado — agradecimento',greeting+'Agradecemos por se candidatar à vaga de '+job+' e pelo interesse em fazer parte da '+business+'.\\n\\nNeste momento, seu perfil não atende a todos os requisitos definidos para esta oportunidade, por isso sua candidatura não seguirá para a próxima etapa.\\n\\nContinue acompanhando as vagas da '+business+' no EmpregaMais. Novas oportunidades podem combinar com seu perfil.\\n\\nAgradecemos sua participação e desejamos muito sucesso!'],
+        ['track','Acompanhar candidatura',greeting+'Agradecemos seu interesse em fazer parte da '+business+' e sua candidatura à vaga de '+job+'.\n\nPara acompanhar as atualizações do processo seletivo, acesse sua conta no EmpregaMais e consulte a área Minhas candidaturas.\n\nMantenha seus contatos e seu currículo atualizados para que possamos entrar em contato.\n\nDesejamos sucesso em sua trajetória profissional!'],
+        ['interview','Convite para entrevista',greeting+'Gostaríamos de convidar você para uma entrevista para a vaga de '+job+' na '+business+'. Você tem disponibilidade em [data], às [horário]?\n\nFormato ou local: [informar].'],
+        ['rejected','Não selecionado nesta etapa',greeting+'Agradecemos sua participação no processo para a vaga de '+job+' e seu interesse em fazer parte da '+business+'. Neste momento, seguimos com outro perfil.\n\nDesejamos sucesso na sua trajetória profissional!'],
+        ['thanks','Não selecionado — agradecimento',greeting+'Agradecemos por se candidatar à vaga de '+job+' e pelo interesse em fazer parte da '+business+'.\n\nNeste momento, seu perfil não atende a todos os requisitos definidos para esta oportunidade, por isso sua candidatura não seguirá para a próxima etapa.\n\nContinue acompanhando as vagas da '+business+' no EmpregaMais. Novas oportunidades podem combinar com seu perfil.\n\nAgradecemos sua participação e desejamos muito sucesso!'],
         ['custom','Escrever outra mensagem','']
       ];
       var label=document.createElement('label');label.className='em-message-template-label';label.textContent='Modelo da mensagem';label.htmlFor='emCandidateMessageTemplate';
