@@ -16097,7 +16097,14 @@ html body>header.topo #acoesPublicas .em-candidate-menu>button.em-account-primar
 .em-candidate-message button:disabled{opacity:.4;cursor:default}
 @media(max-width:600px){.em-candidate-modal-body,.em-candidate-modal-head{padding:16px}.em-candidate-dialog .em-gc27-docs{grid-template-columns:1fr}.em-candidate-dialog .em-gc27-stagebox{flex-direction:column;align-items:stretch}.em-candidate-dialog .em-gc27-stage{max-width:100%}}
 </style>
-</head><body><header class='topo'><div class='topo-inner'><button class='marca' onclick='irPara(&quot;home&quot;)' type='button'><span class='marca-icone'>E+</span><span class='marca-nome'>
+<style id="em-candidate-popup-compat">
+#listaCandidatosEmpresa .em-gc27-card [data-gc27-expand]{display:none!important}
+#listaCandidatosEmpresa .em-gc27-card .em-v36-toggle{background:#0876ef!important;color:#fff!important;border:1px solid #0876ef!important;border-radius:8px!important;padding:10px 16px!important}
+#emCandidateDetails .em-v36-toggle,#emCandidateDetails [data-gc27-expand]{display:none!important}
+#emCandidateDetails .em-gc27-docs{display:grid!important}
+#emCandidateDetails .em-gc27-actions{display:flex!important}
+#emCandidateDetails .em-gc27-stagebox{display:flex!important}
+</style></head><body><header class='topo'><div class='topo-inner'><button class='marca' onclick='irPara(&quot;home&quot;)' type='button'><span class='marca-icone'>E+</span><span class='marca-nome'>
 Emprega<span>Mais</span></span></button><nav class='menu-principal menu-v19' id='menuPublico'><button class='menu-link' onclick='irPara(&quot;home&quot;);rolarVagas();' type='button'>Buscar vagas</button><button class='menu-link' onclick='irPara(&quot;como-funciona&quot;)' type='button'>Como funciona</button></nav><div class='acoes-topo'><div class='acoes-publicas-v19' id='acoesPublicas'><div class='menu-empresa-v19'><button class='menu-link menu-empresa-btn-v19' type='button'>Para empresas <span>&#8964;</span></button></div><button class='btn btn-claro btn-candidato-v19' onclick='irPara(&quot;login-candidato&quot;)' type='button'>Área do candidato <span>&#8964;</span></button><button class='btn btn-empresa btn-publicar-v19' onclick='abrirPublicacao()' type='button'>+ Publicar vaga</button></div><div class='conta-topo' id='contaCandidatoTopo'><button class='btn-conta' onclick='alternarContaMenu(&quot;menuContaCandidato&quot;)' type='button'><span class='avatar' id='avatarCandidato'>C</span><span class='conta-nome' id='nomeCandidatoTopo'>
 Candidato
 </span><span>&#8964;</span></button><div class='conta-menu' id='menuContaCandidato'><button onclick='irPara(&quot;painel-candidato&quot;)' type='button'>
@@ -39945,7 +39952,7 @@ document.getElementById("emJhClear").addEventListener("click",function(){["emJhT
       btn.type='button';
       btn.className='em-v36-toggle';
       btn.setAttribute('aria-expanded','false');
-      btn.innerHTML='<span>☷</span><span class="em-v36-label">Ver detalhes da candidatura</span><span class="em-v36-arrow">⌄</span>';
+      btn.innerHTML='<span class="em-v36-label">Ver candidatura</span><span class="em-v36-arrow">→</span>';
 
       main.appendChild(btn);
     });
@@ -39957,10 +39964,7 @@ document.getElementById("emJhClear").addEventListener("click",function(){["emJhT
     ev.preventDefault();
     var card=btn.closest('.em-gc27-card');
     if(!card)return;
-    var aberto=card.classList.toggle('em-v36-open');
-    btn.setAttribute('aria-expanded',aberto?'true':'false');
-    var label=btn.querySelector('.em-v36-label');
-    if(label)label.textContent=aberto?'Ocultar detalhes':'Ver detalhes da candidatura';
+    var openButton=card.querySelector('[data-gc27-expand]');if(openButton)openButton.click();
   },false);
   var observer=new MutationObserver(function(muts){
     var precisa=false;
