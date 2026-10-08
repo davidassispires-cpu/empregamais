@@ -513,15 +513,35 @@ function installCandidateInbox(){
  });
 }
 if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',installCandidateInbox);else installCandidateInbox();
+
+  function moveCandidateMessagesToTab(modal,section){
+    var panels=modal.querySelector('.em-wide-panels'),tabs=modal.querySelector('.em-wide-tabs');
+    if(!panels||!tabs||!section||section.dataset.messageTabReady)return;
+    section.dataset.messageTabReady='1';
+    var pane=panels.querySelector('[data-detail-panel="messages"]');
+    if(!pane){pane=document.createElement('section');pane.dataset.detailPanel='messages';pane.hidden=true;panels.appendChild(pane)}
+    pane.className='em-dedicated-messages';pane.appendChild(section);
+    var keys=['overview','resume','messages','notes','history'];
+    tabs.querySelectorAll('button').forEach(function(button,index){
+      var key=keys[index];if(!key)return;
+      button.onclick=function(){
+        tabs.querySelectorAll('button').forEach(function(tab){tab.classList.toggle('active',tab===button)});
+        panels.querySelectorAll('[data-detail-panel]').forEach(function(item){item.hidden=item.dataset.detailPanel!==key});
+        if(key==='messages'){var select=section.querySelector('.em-message-template-select');if(select)select.focus({preventScroll:true})}
+      };
+    });
+    var active=tabs.querySelector('button.active');pane.hidden=!active||active.textContent.trim()!=='Mensagens';
+  }
   function installCandidateMessageTemplates(){
     if(window.emCandidateTemplatesInstalled)return;window.emCandidateTemplatesInstalled=true;
     var style=document.createElement('style');style.id='em-candidate-message-templates';
     style.textContent='#emCandidateDetails .em-wide-contact-actions{display:grid!important;grid-template-columns:1fr 1fr!important;gap:10px!important}#emCandidateDetails .em-wide-block{box-shadow:0 3px 14px #18324f06!important}#emCandidateDetails .em-candidate-message h3{font:700 16px Inter,Arial,sans-serif!important;margin-bottom:12px!important}#emCandidateDetails .em-message-template-label{display:block;margin:0 0 7px;font:600 12px Inter,Arial,sans-serif;color:#40516b}#emCandidateDetails .em-message-template-select{display:block!important;width:100%!important;height:42px!important;box-sizing:border-box!important;padding:0 10px!important;margin:0 0 12px!important;border:1px solid #cddded!important;border-radius:8px!important;background:#f7faff!important;color:#20334e!important;font:500 13px Inter,Arial,sans-serif!important}#emCandidateDetails .em-candidate-message textarea{font:400 13px/1.6 Inter,Arial,sans-serif!important;min-height:175px!important;max-height:260px!important;resize:vertical!important}#emCandidateDetails .em-candidate-message>div{display:flex!important;gap:8px!important;flex-wrap:wrap!important;margin-top:12px!important}#emCandidateDetails .em-candidate-message [data-msg-wa]{background:#16a05b!important;color:white!important;border:1px solid #16a05b!important;border-radius:8px!important;padding:10px 12px!important;font:600 12px Inter,Arial,sans-serif!important}#emCandidateDetails .em-candidate-message [data-msg-mail]{background:white!important;color:#1269cc!important;border:1px solid #cddded!important;border-radius:8px!important;padding:10px 12px!important;font:600 12px Inter,Arial,sans-serif!important}#emCandidateDetails .em-candidate-message button:disabled{opacity:.45!important;cursor:not-allowed!important}#emCandidateDetails .em-candidate-message small{font-size:11px!important;line-height:1.5!important}';
+    style.textContent+="#emCandidateDetails .em-dedicated-messages{width:100%;max-width:780px;margin:0 auto;box-sizing:border-box;padding:24px;border:1px solid #dce6f2;border-radius:12px;background:#fff}#emCandidateDetails .em-dedicated-messages[hidden]{display:none!important}#emCandidateDetails .em-dedicated-messages .em-candidate-message{margin:0!important;padding:0!important;border:0!important;background:transparent!important}#emCandidateDetails .em-dedicated-messages .em-candidate-message h3{font-size:20px!important;margin:0 0 18px!important}#emCandidateDetails .em-dedicated-messages .em-candidate-message textarea{height:220px!important;max-height:320px!important;min-height:160px!important}@media(max-width:600px){#emCandidateDetails .em-dedicated-messages{padding:16px}}";
     document.head.appendChild(style);
     function enhance(){
       var modal=document.getElementById('emCandidateDetails');if(!modal)return;
       modal.querySelectorAll('.em-wide-contact-actions button,.em-wide-contact-actions a').forEach(function(button){if(button.hasAttribute('data-gc27-tel')||/^ligar$/i.test(button.textContent.trim())||(button.getAttribute('href')||'').indexOf('tel:')===0)button.remove()});
-      var section=modal.querySelector('.em-candidate-message'),area=section&&section.querySelector('textarea');if(!area)return;if(section.dataset.templatesReady){bindInternalCandidateMessage(modal,section,area);return}section.dataset.templatesReady='1';
+      var section=modal.querySelector('.em-candidate-message'),area=section&&section.querySelector('textarea');if(!area)return;moveCandidateMessagesToTab(modal,section);if(section.dataset.templatesReady){bindInternalCandidateMessage(modal,section,area);return}section.dataset.templatesReady='1';
       var name=(modal.querySelector('.em-candidate-modal-head h2')||{}).textContent||'';
       var heading=(modal.querySelector('.em-candidate-modal-head p')||{}).textContent||'';
       var job=heading.split('•')[0].trim()||'esta oportunidade',e=company(),business=e.nomeFantasia||e.nome_fantasia||e.nome||e.razaoSocial||e.razao_social||'nossa empresa';
