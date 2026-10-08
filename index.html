@@ -16197,7 +16197,7 @@ Completar meu perfil
 A aderência é uma estimativa baseada nas informações cadastradas e não representa decisão ou garantia de contratação pela empresa.
 </small></div><div class='seguranca-transparencia-vaga-em'><div class='seguranca-transparencia-titulo-em'><span class='seguranca-transparencia-icone-em'>&#10003;</span><div><strong>Segurança e transparência</strong><small>Informações para uma candidatura mais segura</small></div></div><div class='seguranca-transparencia-itens-em'><div><span>&#10003;</span><p>Candidatura gratuita</p></div><div><span>&#10003;</span><p>O EmpregaMais não cobra candidatos</p></div><div class='oculto' id='segurancaEmpresaVerificadaEM'><span>&#10003;</span><p>Empresa verificada pelo EmpregaMais</p></div></div></div><div class='candidatura-final-fixa-em candidatura-antes-datas-em'><h3>Interessado nesta oportunidade?</h3><p>Candidate-se agora utilizando a forma de candidatura disponibilizada pela empresa.</p><button class='btn btn-total btn-grande' id='btnCandidatarFinalEM' onclick='document.getElementById(&quot;btnCandidatar&quot;).click()' type='button'>
 Candidatar-se
-</button></div><div class='vaga-rodape-info vaga-rodape-info-com-denuncia'><div class='vaga-rodape-info-item'><strong>Vaga anunciada:</strong><span id='detalhePublicacao'>-</span></div><div class='vaga-rodape-info-item'><strong>Vaga encerra:</strong><span id='detalheValidade'>-</span></div><div class='vaga-rodape-info-item'><strong>Candidaturas:</strong><span id='detalheTotalCandidaturas'>0</span></div><div class='vaga-rodape-denuncia'><button class='btn-denunciar-rodape' onclick='abrirDenunciaVagaEstavel()' type='button'>
+</button></div><div class='vaga-rodape-info vaga-rodape-info-com-denuncia'><div class='vaga-rodape-info-item'><strong>Vaga anunciada:</strong><span id='detalhePublicacao'>-</span></div><div class='vaga-rodape-info-item'><strong>Vaga encerra:</strong><span id='detalheValidade'>-</span></div><div class='vaga-rodape-info-item'><strong>Candidaturas:</strong><span id='detalheTotalCandidaturas'>0</span></div><div class='vaga-rodape-denuncia'><button class='btn-denunciar-rodape' onclick='abrirPopupDenunciaEmpregaMais((window.vagaAtual||{}).id||new URLSearchParams(location.search).get(&quot;id&quot;))' type='button'>
 Denunciar vaga
 </button></div></div></main><aside class='aplicar-lateral'><div class='aplicar-bloco-principal'><h3>Gostou desta vaga?</h3><p id='detalheInstrucaoCandidatura'>
 Use o botão abaixo para seguir a forma de candidatura escolhida pela empresa.
@@ -17202,6 +17202,8 @@ function abrirRota(
 pagina,
 id
 ){
+if(pagina==="candidatos-vaga"){if(id)sessionStorage.setItem("vagaCandidatosSelecionada",String(id));pagina="candidatos-empresa";}
+
 if(pagina === "inicio"){
 pagina = "home";
 }
@@ -23276,8 +23278,8 @@ i<candidaturas.length;
 i++
 ){
 if(
-candidaturas[i].id ===
-id
+String(candidaturas[i].id) ===
+String(id)
 ){
 candidaturas[i].status =
 novoStatus;
@@ -30349,7 +30351,7 @@ arquivo.files && arquivo.files[0] ? arquivo.files[0].name : "";
 });
 }
 if(enviar){
-enviar.addEventListener("click",function(){
+enviar.addEventListener("click",async function(){
 var motivo=document.getElementById("motivoDenunciaEmpregaMais").value;
 var relato=document.getElementById("descricaoDenunciaEmpregaMais").value.trim();
 if(!motivo){
@@ -30360,11 +30362,11 @@ if(!relato){
 mostrarModalSite("Descreva o ocorrido","Informe o que aconteceu para que a den\u00FAncia possa ser analisada.","Fechar");
 return;
 }
-try{
-if(typeof registrarDenunciaVaga==="function"){
-registrarDenunciaVaga(vagaDenunciaEmpregaMaisId,motivo,relato);
+if(typeof registrarDenunciaVaga!=="function"){
+mostrarModalSite("Envio indisponível","Não foi possível enviar a denúncia. O formulário foi mantido para você tentar novamente.","Fechar");return;
 }
-}catch(e){console.error(e);}
+try{await Promise.resolve(registrarDenunciaVaga(vagaDenunciaEmpregaMaisId,motivo,relato));}
+catch(e){console.error(e);mostrarModalSite("Denúncia não enviada","Não foi possível concluir o envio. Tente novamente.","Fechar");return;}
 fecharPopupDenunciaEmpregaMais();
 mostrarModalSite("Den\u00FAncia enviada","Recebemos sua den\u00FAncia. Obrigado por ajudar a manter o EmpregaMais mais seguro.","Fechar");
 });
@@ -33939,9 +33941,9 @@ var busca=document.getElementById("buscaAdmin");
 if(busca)busca.value="";
 renderizarAdminVagas();
 }
-var renderizarAdminVagasAntesEmpresasEM=renderizarAdminVagas;
+var renderizarAdminVagasAntesEmpresasEM=typeof renderizarAdminVagas==="function"?renderizarAdminVagas:null;
 renderizarAdminVagas=function(){
-renderizarAdminVagasAntesEmpresasEM();
+if(renderizarAdminVagasAntesEmpresasEM)renderizarAdminVagasAntesEmpresasEM();
 if(empresaAdminSelecionadaEM){
 var lista=document.getElementById("listaAdminVagas");
 if(lista){
@@ -35403,7 +35405,7 @@ salvarEmpresaRemotaEM(emp).catch(function(){});
 irPara("painel-empresa");
 });
 };
-var salvarEmpresasIntegradoBaseEM=salvarEmpresasCadastradas;
+var salvarEmpresasIntegradoBaseEM=typeof salvarEmpresasCadastradas==='function'?salvarEmpresasCadastradas:function(lista){salvarArray('empresasEmpregaMais',lista);};
 salvarEmpresasCadastradas=function(lista){
 salvarEmpresasIntegradoBaseEM(lista);
 (lista||[]).forEach(function(emp){salvarEmpresaRemotaEM(emp).catch(function(e){console.warn(e);});});
@@ -35636,7 +35638,7 @@ setTimeout(enviarEmpresaLogadaServidorForcadoEM,ms);
 }
 return r;
 };
-//</script><div aria-hidden='true' id='modalDenunciaEmpregaMais'><div aria-labelledby='tituloDenunciaEmpregaMais' aria-modal='true' class='denuncia-box-em' role='dialog'><button aria-label='Fechar' class='denuncia-fechar-em' id='fecharDenunciaEmpregaMais' type='button'>&#215;</button><h2 id='tituloDenunciaEmpregaMais'>Por que você deseja denunciar esta vaga?</h2><select id='motivoDenunciaEmpregaMais'><option value=''>Selecione o motivo da denúncia</option><option>Conteúdo discriminatório</option><option>Informações incorretas</option><option>Condições abusivas</option><option>Tentativa de golpe ou fraude</option><option>Vaga repetida</option><option>Vaga falsa ou suspeita</option><option>Outro motivo</option></select><p class='denuncia-ajuda-em'>Explique o que aconteceu. Se possível, informe detalhes como mensagens recebidas, pedidos de pagamento, links suspeitos ou qualquer outra informação relevante.</p><textarea id='descricaoDenunciaEmpregaMais' maxlength='3000' placeholder='Descreva o ocorrido'></textarea><div class='denuncia-contador-em' id='contadorDenunciaEmpregaMais'>Caracteres: 0 de 3.000</div><label class='denuncia-arquivo-em'><span>&#65291;</span><span>Adicionar arquivo</span><input accept='.jpg,.jpeg,.png,.pdf' id='arquivoDenunciaEmpregaMais' type='file'/></label><p class='denuncia-arquivo-info-em'>Insira evidências para melhor atuarmos na apuração do ocorrido.</p><div class='denuncia-nome-arquivo-em' id='nomeArquivoDenunciaEmpregaMais'></div><div class='denuncia-acoes-em'><button class='denuncia-cancelar-em' id='cancelarDenunciaEmpregaMais' type='button'>Cancelar</button><button class='denuncia-enviar-em' id='enviarDenunciaEmpregaMais' type='button'>DENUNCIAR VAGA</button></div></div></div><div aria-hidden='true' class='popup-perfil-em' id='popupPerfilAtualizadoEM'><div aria-labelledby='popupPerfilTituloEM' aria-modal='true' class='popup-perfil-card-em' role='dialog'><div class='popup-perfil-icone-em'>&#10003;</div><h3 id='popupPerfilTituloEM'>Perfil atualizado!</h3><p>Suas informações foram salvas com sucesso e já estão atualizadas no seu perfil.</p><button class='popup-perfil-ok-em' onclick='fecharPopupPerfilAtualizadoEM()' type='button'>Continuar</button></div></div><script src='empregamais_lote1.js?v=1'></script><script src='empregamais_lote2.js?v=1'></script><script src='empregamais_lote4.js?v=20261006-login'></script><div class='pagina' id='pagina-perfil-empresa'><div class='empresa-perfil-admin-em'><button class='empresa-perfil-voltar-em' onclick='irPara(&quot;painel-empresa&quot;)' type='button'>&#8592; Voltar ao Meu Painel</button><div class='empresa-perfil-head-em'><div><h2>Dados da Empresa</h2><p>Gerencie as informacoes da conta e o perfil que sera exibido aos candidatos.</p></div><button class='empresa-perfil-preview-em' onclick='visualizarPerfilPublicoEmpresaEM()' type='button'>Visualizar perfil publico</button></div><div class='empresa-perfil-tabs-em'><button class='ativo' id='tabPerfilPublicoEM' onclick='abaDadosEmpresaEM(&quot;publico&quot;)' type='button'>Dados exibidos aos candidatos</button><button id='tabDadosContaEM' onclick='abaDadosEmpresaEM(&quot;conta&quot;)' type='button'>Dados confidenciais da empresa</button></div><section class='empresa-perfil-card-em' id='formPerfilPublicoEM'><div class='empresa-perfil-aviso-em publico'><strong>Informações publicas.</strong> Estes dados poderao ser vistos pelos candidatos na pagina da empresa.</div><div class='empresa-perfil-grid-em'><div class='empresa-perfil-campo-em'><label>Nome fantasia</label><input id='perfilNomeEM' type='text'/></div><div class='empresa-perfil-campo-em'><label>Segmento de atuacao</label><input id='perfilSegmentoEM' placeholder='Ex.: Varejo, Tecnologia, Logistica' type='text'/></div><div class='empresa-perfil-campo-em'><label>Cidade</label><input id='perfilCidadeEM' type='text'/></div><div class='empresa-perfil-campo-em'><label>Estado (UF)</label><input id='perfilUfEM' maxlength='2' type='text'/></div><div class='empresa-perfil-campo-em'><label>Porte / numero aproximado de colaboradores</label><input id='perfilPorteEM' placeholder='Ex.: 51 a 200 colaboradores' type='text'/></div><div class='empresa-perfil-campo-em'><label>Ano de fundacao</label><input id='perfilFundacaoEM' max='2100' min='1800' type='number'/></div><div class='empresa-perfil-campo-em full'><label>Slogan / frase da empresa</label><input id='perfilSloganEM' placeholder='Ex.: Pessoas que transformam o futuro.' type='text'/></div><div class='empresa-perfil-campo-em full'><label>Sobre a empresa</label><textarea id='perfilSobreEM' placeholder='Conte aos candidatos quem e a empresa, sua historia, sua atuacao e o que ela faz.'></textarea></div><div class='empresa-perfil-campo-em full'><label>Missao</label><textarea id='perfilMissaoEM' placeholder='Qual e o proposito da empresa?'></textarea></div><div class='empresa-perfil-campo-em full'><label>Visao</label><textarea id='perfilVisaoEM' placeholder='Onde a empresa deseja chegar?'></textarea></div><div class='empresa-perfil-campo-em full'><label>Valores</label><textarea id='perfilValoresEM' placeholder='Ex.: respeito, transparencia, inovacao e colaboracao.'></textarea></div><div class='empresa-perfil-campo-em full'><label>Cultura e ambiente de trabalho</label><textarea id='perfilCulturaEM' placeholder='Conte como e trabalhar na empresa.'></textarea></div><div class='empresa-perfil-campo-em full'><label>Beneficios oferecidos</label><textarea id='perfilBeneficiosEM' placeholder='Ex.: vale-refeicao, plano de saude, seguro de vida, vale-transporte...'></textarea></div><div class='empresa-perfil-campo-em full'><label>Carreira e desenvolvimento</label><textarea id='perfilCarreiraEM' placeholder='Treinamentos, oportunidades de crescimento, plano de carreira e desenvolvimento profissional.'></textarea></div><div class='empresa-perfil-campo-em full'><label>Ambiente e jeito de trabalhar</label><textarea id='perfilAmbienteEM' placeholder='Descreva o dia a dia, equipes, modelo de gestao e ambiente de trabalho.'></textarea></div><div class='empresa-perfil-campo-em'><label>Modalidades de trabalho</label><input id='perfilModalidadesEM' placeholder='Presencial, Hibrido, Remoto' type='text'/></div><div class='empresa-perfil-campo-em'><label>Areas que mais contratam</label><input id='perfilAreasEM' placeholder='Ex.: Comercial, Logistica, Tecnologia' type='text'/></div><div class='empresa-perfil-campo-em'><label>Site oficial</label><input id='perfilSiteEM' placeholder='https://' type='url'/></div><div class='empresa-perfil-campo-em'><label>LinkedIn</label><input id='perfilLinkedinEM' placeholder='https://' type='url'/></div><div class='empresa-perfil-campo-em'><label>Instagram</label><input id='perfilInstagramEM' placeholder='@empresa' type='text'/></div><div class='empresa-perfil-campo-em'><label>Facebook</label><input id='perfilFacebookEM' placeholder='https://' type='url'/></div><div class='empresa-perfil-campo-em'><label>Canal / video institucional</label><input id='perfilVideoEM' placeholder='https://' type='url'/></div><div class='empresa-perfil-campo-em'><label>E-mail publico para contato</label><input id='perfilEmailPublicoEM' placeholder='Ex.: talentos@empresa.com.br' type='email'/></div><div class='empresa-perfil-campo-em'><label>URL da logo</label><input id='perfilLogoEM' placeholder='https://' type='url'/><small>A logo sera exibida na pagina publica da empresa.</small></div><div class='empresa-perfil-campo-em'><label>URL da imagem de capa</label><input id='perfilCapaEM' placeholder='https://' type='url'/></div></div><div class='empresa-perfil-acoes-em'><button class='empresa-perfil-salvar-em' onclick='salvarPerfilPublicoEmpresaEM()' type='button'>Salvar e publicar perfil</button></div></section><section class='empresa-perfil-card-em' id='formDadosContaEM' style='display:none'><div class='empresa-perfil-aviso-em privado'><strong>Informações privadas.</strong> Estes dados sao administrativos e nao aparecem no perfil publico da empresa.</div><div class='empresa-perfil-grid-em'><div class='empresa-perfil-campo-em'><label>Razao social</label><input id='contaRazaoEM' type='text'/></div><div class='empresa-perfil-campo-em'><label>CNPJ</label><input id='contaCnpjEM' readonly='readonly' type='text'/></div><div class='empresa-perfil-campo-em'><label>Responsavel pela conta</label><input id='contaResponsavelEM' type='text'/></div><div class='empresa-perfil-campo-em'><label>E-mail corporativo / login</label><input id='contaEmailEM' type='email'/></div><div class='empresa-perfil-campo-em'><label>Telefone administrativo</label><input id='contaTelefoneEM' type='text'/></div><div class='empresa-perfil-campo-em'><label>CEP administrativo</label><input id='contaCepEM' maxlength='9' type='text'/></div><div class='empresa-perfil-campo-em'><label>Cidade administrativa</label><input id='contaCidadeEM' type='text'/></div><div class='empresa-perfil-campo-em'><label>Estado (UF)</label><input id='contaUfEM' maxlength='2' type='text'/></div></div><div class='empresa-perfil-acoes-em'><button class='empresa-perfil-salvar-em' onclick='salvarDadosContaEmpresaEM()' type='button'>Salvar dados da conta</button></div></section></div></div><div class='empresa-perfil-publico-page-em' id='pagina-perfil-publico-empresa-em'><div class='empresa-publica-wrap-em' id='conteudoPerfilPublicoEmpresaEM'></div></div><script src='empregamais_lote11.js?v=1'></script><div class='em-modal-fundo-v9' id='modalUrgenteV9'><div class='em-modal-v9'><h3>Contratação Urgente</h3><p>Adicione o selo de Contratação Urgente a esta oportunidade. O selo permanece ativo ate a vaga expirar ou ser encerrada.</p><div class='em-modal-preco-v9'><strong>R$ 9,90</strong><small>Pagamento unico por vaga. Nao ha renovacao automatica.</small></div><div class='em-modal-acoes-v9'><button class='em-modal-cancelar-v9' onclick='fecharUrgenteV9()' type='button'>Cancelar</button><button class='em-modal-confirmar-v9' onclick='iniciarPagamentoUrgenteV9()' type='button'>Continuar para pagamento</button></div></div></div><script src='empregamais_lote12.js?v=20261006-recruiter'></script><div class='em-previa-modal-v10' id='modalPreviaUrgenteV10'><div class='em-previa-box-v10'><div class='em-previa-top-v10'><strong>Previa da vaga para o candidato</strong><button class='em-previa-fechar-v10' onclick='fecharPreviaUrgenteV10()' type='button'>&#215;</button></div><div id='conteudoPreviaUrgenteV10'></div></div></div><script type='text/javascript'>//
+//</script><div aria-hidden='true' id='modalDenunciaEmpregaMais'><div aria-labelledby='tituloDenunciaEmpregaMais' aria-modal='true' class='denuncia-box-em' role='dialog'><button aria-label='Fechar' class='denuncia-fechar-em' id='fecharDenunciaEmpregaMais' type='button'>&#215;</button><h2 id='tituloDenunciaEmpregaMais'>Por que você deseja denunciar esta vaga?</h2><select id='motivoDenunciaEmpregaMais'><option value=''>Selecione o motivo da denúncia</option><option>Conteúdo discriminatório</option><option>Informações incorretas</option><option>Condições abusivas</option><option>Tentativa de golpe ou fraude</option><option>Vaga repetida</option><option>Vaga falsa ou suspeita</option><option>Outro motivo</option></select><p class='denuncia-ajuda-em'>Explique o que aconteceu. Se possível, informe detalhes como mensagens recebidas, pedidos de pagamento, links suspeitos ou qualquer outra informação relevante.</p><textarea id='descricaoDenunciaEmpregaMais' maxlength='3000' placeholder='Descreva o ocorrido'></textarea><div class='denuncia-contador-em' id='contadorDenunciaEmpregaMais'>Caracteres: 0 de 3.000</div><label class='denuncia-arquivo-em'><span>&#65291;</span><span>Adicionar arquivo</span><input accept='.jpg,.jpeg,.png,.pdf' id='arquivoDenunciaEmpregaMais' type='file'/></label><p class='denuncia-arquivo-info-em'>Insira evidências para melhor atuarmos na apuração do ocorrido.</p><div class='denuncia-nome-arquivo-em' id='nomeArquivoDenunciaEmpregaMais'></div><div class='denuncia-acoes-em'><button class='denuncia-cancelar-em' id='cancelarDenunciaEmpregaMais' type='button'>Cancelar</button><button class='denuncia-enviar-em' id='enviarDenunciaEmpregaMais' type='button'>DENUNCIAR VAGA</button></div></div></div><div aria-hidden='true' class='popup-perfil-em' id='popupPerfilAtualizadoEM'><div aria-labelledby='popupPerfilTituloEM' aria-modal='true' class='popup-perfil-card-em' role='dialog'><div class='popup-perfil-icone-em'>&#10003;</div><h3 id='popupPerfilTituloEM'>Perfil atualizado!</h3><p>Suas informações foram salvas com sucesso e já estão atualizadas no seu perfil.</p><button class='popup-perfil-ok-em' onclick='fecharPopupPerfilAtualizadoEM()' type='button'>Continuar</button></div></div><script src='empregamais_lote1.js?v=1'></script><script src='empregamais_lote2.js?v=20261008-audit-v60'></script><script src='empregamais_lote4.js?v=20261006-login'></script><div class='pagina' id='pagina-perfil-empresa'><div class='empresa-perfil-admin-em'><button class='empresa-perfil-voltar-em' onclick='irPara(&quot;painel-empresa&quot;)' type='button'>&#8592; Voltar ao Meu Painel</button><div class='empresa-perfil-head-em'><div><h2>Dados da Empresa</h2><p>Gerencie as informacoes da conta e o perfil que sera exibido aos candidatos.</p></div><button class='empresa-perfil-preview-em' onclick='visualizarPerfilPublicoEmpresaEM()' type='button'>Visualizar perfil publico</button></div><div class='empresa-perfil-tabs-em'><button class='ativo' id='tabPerfilPublicoEM' onclick='abaDadosEmpresaEM(&quot;publico&quot;)' type='button'>Dados exibidos aos candidatos</button><button id='tabDadosContaEM' onclick='abaDadosEmpresaEM(&quot;conta&quot;)' type='button'>Dados confidenciais da empresa</button></div><section class='empresa-perfil-card-em' id='formPerfilPublicoEM'><div class='empresa-perfil-aviso-em publico'><strong>Informações publicas.</strong> Estes dados poderao ser vistos pelos candidatos na pagina da empresa.</div><div class='empresa-perfil-grid-em'><div class='empresa-perfil-campo-em'><label>Nome fantasia</label><input id='perfilNomeEM' type='text'/></div><div class='empresa-perfil-campo-em'><label>Segmento de atuacao</label><input id='perfilSegmentoEM' placeholder='Ex.: Varejo, Tecnologia, Logistica' type='text'/></div><div class='empresa-perfil-campo-em'><label>Cidade</label><input id='perfilCidadeEM' type='text'/></div><div class='empresa-perfil-campo-em'><label>Estado (UF)</label><input id='perfilUfEM' maxlength='2' type='text'/></div><div class='empresa-perfil-campo-em'><label>Porte / numero aproximado de colaboradores</label><input id='perfilPorteEM' placeholder='Ex.: 51 a 200 colaboradores' type='text'/></div><div class='empresa-perfil-campo-em'><label>Ano de fundacao</label><input id='perfilFundacaoEM' max='2100' min='1800' type='number'/></div><div class='empresa-perfil-campo-em full'><label>Slogan / frase da empresa</label><input id='perfilSloganEM' placeholder='Ex.: Pessoas que transformam o futuro.' type='text'/></div><div class='empresa-perfil-campo-em full'><label>Sobre a empresa</label><textarea id='perfilSobreEM' placeholder='Conte aos candidatos quem e a empresa, sua historia, sua atuacao e o que ela faz.'></textarea></div><div class='empresa-perfil-campo-em full'><label>Missao</label><textarea id='perfilMissaoEM' placeholder='Qual e o proposito da empresa?'></textarea></div><div class='empresa-perfil-campo-em full'><label>Visao</label><textarea id='perfilVisaoEM' placeholder='Onde a empresa deseja chegar?'></textarea></div><div class='empresa-perfil-campo-em full'><label>Valores</label><textarea id='perfilValoresEM' placeholder='Ex.: respeito, transparencia, inovacao e colaboracao.'></textarea></div><div class='empresa-perfil-campo-em full'><label>Cultura e ambiente de trabalho</label><textarea id='perfilCulturaEM' placeholder='Conte como e trabalhar na empresa.'></textarea></div><div class='empresa-perfil-campo-em full'><label>Beneficios oferecidos</label><textarea id='perfilBeneficiosEM' placeholder='Ex.: vale-refeicao, plano de saude, seguro de vida, vale-transporte...'></textarea></div><div class='empresa-perfil-campo-em full'><label>Carreira e desenvolvimento</label><textarea id='perfilCarreiraEM' placeholder='Treinamentos, oportunidades de crescimento, plano de carreira e desenvolvimento profissional.'></textarea></div><div class='empresa-perfil-campo-em full'><label>Ambiente e jeito de trabalhar</label><textarea id='perfilAmbienteEM' placeholder='Descreva o dia a dia, equipes, modelo de gestao e ambiente de trabalho.'></textarea></div><div class='empresa-perfil-campo-em'><label>Modalidades de trabalho</label><input id='perfilModalidadesEM' placeholder='Presencial, Hibrido, Remoto' type='text'/></div><div class='empresa-perfil-campo-em'><label>Areas que mais contratam</label><input id='perfilAreasEM' placeholder='Ex.: Comercial, Logistica, Tecnologia' type='text'/></div><div class='empresa-perfil-campo-em'><label>Site oficial</label><input id='perfilSiteEM' placeholder='https://' type='url'/></div><div class='empresa-perfil-campo-em'><label>LinkedIn</label><input id='perfilLinkedinEM' placeholder='https://' type='url'/></div><div class='empresa-perfil-campo-em'><label>Instagram</label><input id='perfilInstagramEM' placeholder='@empresa' type='text'/></div><div class='empresa-perfil-campo-em'><label>Facebook</label><input id='perfilFacebookEM' placeholder='https://' type='url'/></div><div class='empresa-perfil-campo-em'><label>Canal / video institucional</label><input id='perfilVideoEM' placeholder='https://' type='url'/></div><div class='empresa-perfil-campo-em'><label>E-mail publico para contato</label><input id='perfilEmailPublicoEM' placeholder='Ex.: talentos@empresa.com.br' type='email'/></div><div class='empresa-perfil-campo-em'><label>URL da logo</label><input id='perfilLogoEM' placeholder='https://' type='url'/><small>A logo sera exibida na pagina publica da empresa.</small></div><div class='empresa-perfil-campo-em'><label>URL da imagem de capa</label><input id='perfilCapaEM' placeholder='https://' type='url'/></div></div><div class='empresa-perfil-acoes-em'><button class='empresa-perfil-salvar-em' onclick='salvarPerfilPublicoEmpresaEM()' type='button'>Salvar e publicar perfil</button></div></section><section class='empresa-perfil-card-em' id='formDadosContaEM' style='display:none'><div class='empresa-perfil-aviso-em privado'><strong>Informações privadas.</strong> Estes dados sao administrativos e nao aparecem no perfil publico da empresa.</div><div class='empresa-perfil-grid-em'><div class='empresa-perfil-campo-em'><label>Razao social</label><input id='contaRazaoEM' type='text'/></div><div class='empresa-perfil-campo-em'><label>CNPJ</label><input id='contaCnpjEM' readonly='readonly' type='text'/></div><div class='empresa-perfil-campo-em'><label>Responsavel pela conta</label><input id='contaResponsavelEM' type='text'/></div><div class='empresa-perfil-campo-em'><label>E-mail corporativo / login</label><input id='contaEmailEM' type='email'/></div><div class='empresa-perfil-campo-em'><label>Telefone administrativo</label><input id='contaTelefoneEM' type='text'/></div><div class='empresa-perfil-campo-em'><label>CEP administrativo</label><input id='contaCepEM' maxlength='9' type='text'/></div><div class='empresa-perfil-campo-em'><label>Cidade administrativa</label><input id='contaCidadeEM' type='text'/></div><div class='empresa-perfil-campo-em'><label>Estado (UF)</label><input id='contaUfEM' maxlength='2' type='text'/></div></div><div class='empresa-perfil-acoes-em'><button class='empresa-perfil-salvar-em' onclick='salvarDadosContaEmpresaEM()' type='button'>Salvar dados da conta</button></div></section></div></div><div class='empresa-perfil-publico-page-em' id='pagina-perfil-publico-empresa-em'><div class='empresa-publica-wrap-em' id='conteudoPerfilPublicoEmpresaEM'></div></div><script src='empregamais_lote11.js?v=1'></script><div class='em-modal-fundo-v9' id='modalUrgenteV9'><div class='em-modal-v9'><h3>Contratação Urgente</h3><p>Adicione o selo de Contratação Urgente a esta oportunidade. O selo permanece ativo ate a vaga expirar ou ser encerrada.</p><div class='em-modal-preco-v9'><strong>R$ 9,90</strong><small>Pagamento unico por vaga. Nao ha renovacao automatica.</small></div><div class='em-modal-acoes-v9'><button class='em-modal-cancelar-v9' onclick='fecharUrgenteV9()' type='button'>Cancelar</button><button class='em-modal-confirmar-v9' onclick='iniciarPagamentoUrgenteV9()' type='button'>Continuar para pagamento</button></div></div></div><script src='empregamais_lote12.js?v=20261006-recruiter'></script><div class='em-previa-modal-v10' id='modalPreviaUrgenteV10'><div class='em-previa-box-v10'><div class='em-previa-top-v10'><strong>Previa da vaga para o candidato</strong><button class='em-previa-fechar-v10' onclick='fecharPreviaUrgenteV10()' type='button'>&#215;</button></div><div id='conteudoPreviaUrgenteV10'></div></div></div><script type='text/javascript'>//
 (function(){
 var idPreviaUrgenteV10=null;
 function escV10(v){return String(v==null?"":v).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");}
@@ -35663,7 +35665,7 @@ document.getElementById("modalPreviaUrgenteV10").style.display="flex";
 window.fecharPreviaUrgenteV10=function(){var m=document.getElementById("modalPreviaUrgenteV10");if(m)m.style.display="none";};
 window.comprarDaPreviaUrgenteV10=function(){var id=idPreviaUrgenteV10;fecharPreviaUrgenteV10();if(id&&typeof abrirContratacaoUrgenteV9==="function")abrirContratacaoUrgenteV9(id);};
 })();
-//</script><div class='pagina' id='pagina-detalhes-plano-v16'><main class='det-plano-v16'><button class='det-voltar-v16' id='detVoltarV16' type='button'>&#8592; Voltar aos planos</button><section class='det-hero-v16'><div><span>PLANO EMPRESARIAL</span><h1 id='detNomeV16'>Plano</h1><p id='detTextoV16'></p></div><div class='det-preco-v16'><small id='detPeriodoV16'></small><strong id='detPrecoV16'></strong><button id='detEscolherV16' type='button'>Escolher este plano</button></div></section><section class='det-metricas-v16'><article><small>PUBLICACOES</small><strong id='detVagasV16'></strong><p id='detVagasObsV16'></p></article><article><small>VAGAS EM DESTAQUE</small><strong id='detDestaquesV16'></strong><p>Limite de oportunidades destacadas simultaneamente.</p></article><article><small>CONTRATAÃ&#8225;ÃO URGENTE</small><strong id='detUrgentesV16'></strong><p>Selos incluidos por mes. As cotas nao acumulam.</p></article><article><small>CONFIDENCIAL</small><strong id='detConfV16'></strong><p id='detConfObsV16'></p></article></section><section class='det-corpo-v16'><div><h2>Todos os beneficios</h2><div class='det-beneficios-v16' id='detBeneficiosV16'></div></div><aside><h3>Resumo</h3><div id='detResumoV16'></div><button id='detEscolher2V16' type='button'>Escolher plano</button></aside></section><section class='det-entenda-v16'><h2>Entenda os principais recursos</h2><div><article><strong>Vagas publicadas</strong><p>Quantidade de oportunidades que a empresa pode divulgar conforme o limite e a vigencia do plano.</p></article><article><strong>Vagas em destaque</strong><p>Oportunidades com maior destaque visual no portal, respeitando o limite simultaneo do plano.</p></article><article><strong>Contratação Urgente</strong><p>Selo visual que identifica vagas com processo seletivo prioritario. Selos incluidos renovam mensalmente e nao acumulam.</p></article><article><strong>Publicação Confidencial</strong><p>Permite anunciar sem revelar publicamente a identidade da empresa. A identificacao permanece disponivel internamente ao EmpregaMais.</p></article><article><strong>Empresa Verificada</strong><p>Nos planos pagos, o selo publico pode ser liberado depois da validacao cadastral.</p></article><article><strong>Pagina Exclusiva da Empresa</strong><p>Pagina publica para apresentar empresa, cultura, beneficios e oportunidades abertas.</p></article></div></section></main></div><script src='empregamais_lote5.js?v=1'></script><script type='text/javascript'>//
+//</script><div class='pagina' id='pagina-detalhes-plano-v16'><main class='det-plano-v16'><button class='det-voltar-v16' id='detVoltarV16' type='button'>&#8592; Voltar aos planos</button><section class='det-hero-v16'><div><span>PLANO EMPRESARIAL</span><h1 id='detNomeV16'>Plano</h1><p id='detTextoV16'></p></div><div class='det-preco-v16'><small id='detPeriodoV16'></small><strong id='detPrecoV16'></strong><button id='detEscolherV16' type='button'>Escolher este plano</button></div></section><section class='det-metricas-v16'><article><small>PUBLICACOES</small><strong id='detVagasV16'></strong><p id='detVagasObsV16'></p></article><article><small>VAGAS EM DESTAQUE</small><strong id='detDestaquesV16'></strong><p>Limite de oportunidades destacadas simultaneamente.</p></article><article><small>CONTRATAÃ&#8225;ÃO URGENTE</small><strong id='detUrgentesV16'></strong><p>Selos incluidos por mes. As cotas nao acumulam.</p></article><article><small>CONFIDENCIAL</small><strong id='detConfV16'></strong><p id='detConfObsV16'></p></article></section><section class='det-corpo-v16'><div><h2>Todos os beneficios</h2><div class='det-beneficios-v16' id='detBeneficiosV16'></div></div><aside><h3>Resumo</h3><div id='detResumoV16'></div><button id='detEscolher2V16' type='button'>Escolher plano</button></aside></section><section class='det-entenda-v16'><h2>Entenda os principais recursos</h2><div><article><strong>Vagas publicadas</strong><p>Quantidade de oportunidades que a empresa pode divulgar conforme o limite e a vigencia do plano.</p></article><article><strong>Vagas em destaque</strong><p>Oportunidades com maior destaque visual no portal, respeitando o limite simultaneo do plano.</p></article><article><strong>Contratação Urgente</strong><p>Selo visual que identifica vagas com processo seletivo prioritario. Selos incluidos renovam mensalmente e nao acumulam.</p></article><article><strong>Publicação Confidencial</strong><p>Permite anunciar sem revelar publicamente a identidade da empresa. A identificacao permanece disponivel internamente ao EmpregaMais.</p></article><article><strong>Empresa Verificada</strong><p>Nos planos pagos, o selo publico pode ser liberado depois da validacao cadastral.</p></article><article><strong>Pagina Exclusiva da Empresa</strong><p>Pagina publica para apresentar empresa, cultura, beneficios e oportunidades abertas.</p></article></div></section></main></div><script src='empregamais_lote5.js?v=20261008-audit-v60'></script><script type='text/javascript'>//
 (function(){
 var DB="EmpregaMaisMidiasV31", STORE="imagens";
 function chave(){
@@ -35793,291 +35795,20 @@ setTimeout(aplicarPublico,250);setTimeout(aplicarPublico,700);
 }
 },true);
 })();
-//</script><script src='empregamais_lote3.js?v=2'></script><script src='empregamais_lote7.js?v=3'></script><script type='text/javascript'>//
+//</script><script src='empregamais_lote3.js?v=2'></script><script src='empregamais_lote7.js?v=20261008-audit-v60'></script><script type='text/javascript'>//
 (function(){
-function esc(v){return String(v||&quot;&quot;).replace(/&amp;/g,&quot;&amp;amp;&quot;).replace(/&lt;/g,&quot;&amp;lt;&quot;).replace(/&gt;/g,&quot;&amp;gt;&quot;).replace(/&quot;/g,&quot;&amp;quot;&quot;);}
-function email(){try{return String(sessionStorage.getItem(&quot;candidatoEmail&quot;)||localStorage.getItem(&quot;candidatoEmail&quot;)||&quot;&quot;).trim().toLowerCase();}catch(e){return&quot;&quot;;}}
-function key(){return&quot;empregaMaisCurriculoOnline:&quot;+email();}
-function exp(d){d=d||{};var x=document.createElement(&quot;div&quot;);x.className=&quot;curriculo-item-v84 experiencia-v84&quot;;x.innerHTML=&#39;&lt;button class=&quot;curriculo-remover-v84&quot; type=&quot;button&quot;&gt;Remover&lt;/button&gt;&lt;label&gt;Empresa&lt;input class=&quot;e1&quot; type=&quot;text&quot; value=&quot;&#39;+esc(d.empresa)+&#39;&quot;/&gt;&lt;/label&gt;&lt;label&gt;Cargo&lt;input class=&quot;e2&quot; type=&quot;text&quot; value=&quot;&#39;+esc(d.cargo)+&#39;&quot;/&gt;&lt;/label&gt;&lt;label&gt;Início&lt;input class=&quot;e3&quot; type=&quot;month&quot; value=&quot;&#39;+esc(d.inicio)+&#39;&quot;/&gt;&lt;/label&gt;&lt;label&gt;Término&lt;input class=&quot;e4&quot; type=&quot;month&quot; value=&quot;&#39;+esc(d.fim)+&#39;&quot;/&gt;&lt;/label&gt;&lt;label class=&quot;full&quot;&gt;Atividades&lt;textarea class=&quot;e5&quot;&gt;&#39;+esc(d.atividades)+&#39;&lt;/textarea&gt;&lt;/label&gt;&#39;;x.querySelector(&quot;button&quot;).onclick=function(){x.remove()};return x;}
-function form(d){d=d||{};var x=document.createElement(&quot;div&quot;);x.className=&quot;curriculo-item-v84 formacao-v84&quot;;x.innerHTML=&#39;&lt;button class=&quot;curriculo-remover-v84&quot; type=&quot;button&quot;&gt;Remover&lt;/button&gt;&lt;label&gt;Instituição&lt;input class=&quot;f1&quot; type=&quot;text&quot; value=&quot;&#39;+esc(d.instituicao)+&#39;&quot;/&gt;&lt;/label&gt;&lt;label&gt;Curso&lt;input class=&quot;f2&quot; type=&quot;text&quot; value=&quot;&#39;+esc(d.curso)+&#39;&quot;/&gt;&lt;/label&gt;&lt;label&gt;Nível&lt;input class=&quot;f3&quot; type=&quot;text&quot; value=&quot;&#39;+esc(d.nivel)+&#39;&quot;/&gt;&lt;/label&gt;&lt;label&gt;Situação / conclusão&lt;input class=&quot;f4&quot; type=&quot;text&quot; value=&quot;&#39;+esc(d.status)+&#39;&quot;/&gt;&lt;/label&gt;&#39;;x.querySelector(&quot;button&quot;).onclick=function(){x.remove()};return x;}
-function val(id){var e=document.getElementById(id);return e?e.value:&quot;&quot;;}
-function ler(){return{resumo:val(&quot;cvResumoV84&quot;),objetivo:val(&quot;cvObjetivoV84&quot;),area:val(&quot;cvAreaV84&quot;),cursos:val(&quot;cvCursosV84&quot;),habilidades:val(&quot;cvHabilidadesV84&quot;),idiomas:val(&quot;cvIdiomasV84&quot;),complementares:val(&quot;cvComplementaresV84&quot;),experiencias:[].map.call(document.querySelectorAll(&quot;.experiencia-v84&quot;),function(x){return{empresa:x.querySelector(&quot;.e1&quot;).value,cargo:x.querySelector(&quot;.e2&quot;).value,inicio:x.querySelector(&quot;.e3&quot;).value,fim:x.querySelector(&quot;.e4&quot;).value,atividades:x.querySelector(&quot;.e5&quot;).value}}),formacoes:[].map.call(document.querySelectorAll(&quot;.formacao-v84&quot;),function(x){return{instituicao:x.querySelector(&quot;.f1&quot;).value,curso:x.querySelector(&quot;.f2&quot;).value,nivel:x.querySelector(&quot;.f3&quot;).value,status:x.querySelector(&quot;.f4&quot;).value}}),atualizadoEm:new Date().toISOString()};}
-function carregar(){var d={};try{d=JSON.parse(localStorage.getItem(key())||&quot;{}&quot;)}catch(e){};[&quot;Resumo&quot;,&quot;Objetivo&quot;,&quot;Area&quot;,&quot;Cursos&quot;,&quot;Habilidades&quot;,&quot;Idiomas&quot;,&quot;Complementares&quot;].forEach(function(k){var el=document.getElementById(&quot;cv&quot;+k+&quot;V84&quot;);if(el)el.value=d[k.toLowerCase()]||&quot;&quot;});var a=document.getElementById(&quot;cvExperienciasV84&quot;),b=document.getElementById(&quot;cvFormacoesV84&quot;);if(!a||!b)return;a.innerHTML=&quot;&quot;;b.innerHTML=&quot;&quot;;(d.experiencias||[]).forEach(function(z){a.appendChild(exp(z))});(d.formacoes||[]).forEach(function(z){b.appendChild(form(z))});if(!a.children.length)a.appendChild(exp());if(!b.children.length)b.appendChild(form());}
-function salvar(){if(!email()){alert(&quot;Entre na sua conta de candidato para salvar o currículo.&quot;);return}localStorage.setItem(key(),JSON.stringify(ler()));document.getElementById(&quot;cvStatusV84&quot;).textContent=&quot;&#10003; Currículo salvo com sucesso neste dispositivo.&quot;;}
-function visualizar(){var d=ler(),w=window.open(&quot;&quot;,&quot;_blank&quot;);if(!w)return;w.document.write(&quot;&lt;!doctype html&gt;&lt;html&gt;&lt;head&gt;&lt;meta charset=&#39;utf-8&#39;&gt;&lt;title&gt;Meu currículo&lt;/title&gt;&lt;style&gt;body{font-family:Arial;max-width:760px;margin:40px auto;padding:0 25px;color:#26384d;line-height:1.5}h1,h2{color:#17365f}h2{font-size:16px;border-bottom:1px solid #ddd;padding-bottom:6px;margin-top:25px}h3{font-size:13px;margin-bottom:2px}p{font-size:12px;white-space:pre-line}&lt;/style&gt;
-&lt;style type=&#39;text/css&#39;&gt;
-#pagina-vaga.vaga-confidencial-em #logoDetalhe,
-#pagina-vaga.vaga-confidencial-em #detalheLogoEmpresa,
-#pagina-vaga.vaga-confidencial-em #empresaLateralVerificada,
-#pagina-vaga.vaga-confidencial-em #btnConhecerEmpresa,
-#pagina-vaga.vaga-confidencial-em .empresa-verificada-mini,
-#pagina-vaga.vaga-confidencial-em .empresa-verificada-v30,
-#pagina-vaga.vaga-confidencial-em .selo-verificado-card-em,
-#pagina-vaga.vaga-confidencial-em .selo-verificacao,
-#pagina-vaga.vaga-confidencial-em .empresa-publica-status-cadastro-em{
-display:none !important;
-}
-#pagina-vaga.vaga-confidencial-em #detalheEmpresaCab{
-display:inline-flex !important;
-align-items:center !important;
-color:var(--cinza) !important;
-cursor:default !important;
-text-decoration:none !important;
-}
-#pagina-vaga.vaga-confidencial-em #detalheEmpresaCab:before{
-content:&quot;🔒&quot;;
-margin-right:6px;
-font-size:12px;
-}
-&lt;/style&gt;
-&lt;style type=&#39;text/css&#39;&gt;
-#pagina-publicar #localizacaoPrivacidadeV149{display:none!important}
-#pagina-publicar .privacidade-opcoes-v130{
-grid-template-columns:repeat(3,minmax(0,1fr))!important;
-gap:9px!important;
-}
-#pagina-publicar .privacidade-opcao-v130 label{
-height:100%!important;
-min-height:72px!important;
-box-sizing:border-box!important;
-}
-#pagina-publicar .endereco-preview-v150{
-margin-top:10px;
-padding:10px 12px;
-border:1px solid #dce6ef;
-border-radius:9px;
-background:#f8fbfe;
-color:#60758a;
-font-size:10px;
-line-height:1.45;
-}
-#pagina-publicar .endereco-preview-v150 strong{color:#174b73}
-@media(max-width:760px){
-#pagina-publicar .privacidade-opcoes-v130{grid-template-columns:1fr!important}
-}
-&lt;/style&gt;
-&lt;style type=&#39;text/css&#39;&gt;
-#pagina-publicar .localizacao-reordenada-v151{
-display:flex!important;
-flex-direction:column!important;
-}
-#pagina-publicar .privacidade-opcao-v130{
-position:relative!important;
-}
-#pagina-publicar .privacidade-opcao-v130 input[type=&quot;radio&quot;]{
-position:absolute!important;
-left:12px!important;
-top:15px!important;
-width:16px!important;
-height:16px!important;
-min-width:16px!important;
-max-width:16px!important;
-min-height:16px!important;
-max-height:16px!important;
-margin:0!important;
-padding:0!important;
-border:1.5px solid #9db0c2!important;
-border-radius:50%!important;
-background:#fff!important;
-appearance:none!important;
--webkit-appearance:none!important;
-opacity:1!important;
-transform:none!important;
-box-shadow:none!important;
-cursor:pointer!important;
-z-index:3!important;
-}
-#pagina-publicar .privacidade-opcao-v130 input[type=&quot;radio&quot;]:checked{
-border:5px solid #1683d8!important;
-background:#fff!important;
-}
-#pagina-publicar .privacidade-opcao-v130 label{
-padding-left:38px!important;
-}
-#pagina-publicar .privacidade-opcao-v130:has(input[type=&quot;radio&quot;]:checked) label{
-border-color:#1683d8!important;
-background:#eef7ff!important;
-box-shadow:0 0 0 1px rgba(22,131,216,.08)!important;
-}
-#pagina-publicar .cep-auto-v151 select{
-background-color:#f8fbfe!important;
-}
-@media(max-width:760px){
-#pagina-publicar .privacidade-opcao-v130 input[type=&quot;radio&quot;]{
-left:12px!important;
-top:15px!important;
-}
-}
-&lt;/style&gt;
-&lt;style type=&#39;text/css&#39;&gt;
-#pagina-publicar .privacidade-opcao-v130 input[type=&quot;radio&quot;]{
-position:absolute!important;
-width:1px!important;
-height:1px!important;
-min-width:1px!important;
-min-height:1px!important;
-max-width:1px!important;
-max-height:1px!important;
-opacity:0!important;
-overflow:hidden!important;
-clip:rect(0 0 0 0)!important;
-clip-path:inset(50%)!important;
-pointer-events:none!important;
-appearance:none!important;
--webkit-appearance:none!important;
-border:0!important;
-margin:0!important;
-padding:0!important;
-box-shadow:none!important;
-transform:none!important;
-}
-#pagina-publicar .privacidade-opcao-v130 label{
-position:relative!important;
-padding-left:42px!important;
-cursor:pointer!important;
-}
-#pagina-publicar .privacidade-opcao-v130 label:before{
-content:&quot;&quot;!important;
-position:absolute!important;
-left:13px!important;
-top:15px!important;
-width:18px!important;
-height:18px!important;
-box-sizing:border-box!important;
-border:1.5px solid #9eb0c1!important;
-border-radius:5px!important;
-background:#fff!important;
-box-shadow:none!important;
-}
-#pagina-publicar .privacidade-opcao-v130 label:after{
-content:&quot;&quot;!important;
-position:absolute!important;
-left:18px!important;
-top:17px!important;
-width:6px!important;
-height:10px!important;
-border:solid transparent!important;
-border-width:0 2px 2px 0!important;
-transform:rotate(45deg)!important;
-opacity:0!important;
-}
-#pagina-publicar .privacidade-opcao-v130 input[type=&quot;radio&quot;]:checked + label:before{
-background:#1683d8!important;
-border-color:#1683d8!important;
-}
-#pagina-publicar .privacidade-opcao-v130 input[type=&quot;radio&quot;]:checked + label:after{
-border-color:#fff!important;
-border-width:0 2px 2px 0!important;
-opacity:1!important;
-}
-#pagina-publicar .privacidade-opcao-v130:has(input[type=&quot;radio&quot;]:checked) label{
-border-color:#1683d8!important;
-background:#eef7ff!important;
-box-shadow:0 0 0 1px rgba(22,131,216,.08)!important;
-}
-&lt;/style&gt;
-&lt;style type=&#39;text/css&#39;&gt;
-#pagina-publicar .endereco-grid-v153{
-display:grid!important;
-grid-template-columns:1.8fr 1fr!important;
-gap:10px!important;
-margin-top:10px!important;
-}
-#pagina-publicar .endereco-grid-v153 .campo-endereco-v153{
-min-width:0!important;
-}
-#pagina-publicar .endereco-grid-v153 label{
-display:block!important;
-margin:0 0 6px!important;
-color:#17324d!important;
-font-size:10px!important;
-font-weight:800!important;
-}
-#pagina-publicar .endereco-grid-v153 select,
-#pagina-publicar .endereco-grid-v153 input{
-width:100%!important;
-box-sizing:border-box!important;
-}
-#pagina-publicar .endereco-grid-v153 .cidade-v153{
-grid-column:1/2!important;
-}
-#pagina-publicar .endereco-grid-v153 .estado-v153{
-grid-column:2/3!important;
-}
-#pagina-publicar .endereco-grid-v153 .cidade-v153 select,
-#pagina-publicar .endereco-grid-v153 .estado-v153 select{
-background-color:#f8fbfe!important;
-}
-#pagina-publicar .endereco-auto-aviso-v153{
-grid-column:1/-1!important;
-margin:-2px 0 2px!important;
-color:#70869b!important;
-font-size:9px!important;
-line-height:1.4!important;
-}
-@media(max-width:720px){
-#pagina-publicar .endereco-grid-v153{
-grid-template-columns:1fr!important;
-}
-#pagina-publicar .endereco-grid-v153 .cidade-v153,
-#pagina-publicar .endereco-grid-v153 .estado-v153{
-grid-column:auto!important;
-}
-}
-&lt;/style&gt;
-&lt;style type=&#39;text/css&#39;&gt;
-#pagina-publicar #enderecoGridV153{
-display:grid!important;
-grid-template-columns:minmax(0,1.65fr) minmax(220px,1fr)!important;
-column-gap:12px!important;
-row-gap:10px!important;
-align-items:start!important;
-}
-#pagina-publicar #enderecoGridV153 .rua-v153{
-grid-column:1!important;
-grid-row:1!important;
-}
-#pagina-publicar #enderecoGridV153 .bairro-v153{
-grid-column:2!important;
-grid-row:1!important;
-}
-#pagina-publicar #enderecoGridV153 .cidade-v153{
-grid-column:1!important;
-grid-row:2!important;
-}
-#pagina-publicar #enderecoGridV153 .estado-v153{
-grid-column:2!important;
-grid-row:2!important;
-}
-#pagina-publicar #enderecoGridV153 .endereco-auto-aviso-v153{
-display:none!important;
-}
-#pagina-publicar #enderecoGridV153 .campo-endereco-v153{
-width:100%!important;
-min-width:0!important;
-}
-#pagina-publicar #enderecoGridV153 input,
-#pagina-publicar #enderecoGridV153 select{
-width:100%!important;
-max-width:none!important;
-box-sizing:border-box!important;
-}
-@media(max-width:720px){
-#pagina-publicar #enderecoGridV153{
-grid-template-columns:1fr!important;
-}
-#pagina-publicar #enderecoGridV153 .rua-v153,
-#pagina-publicar #enderecoGridV153 .bairro-v153,
-#pagina-publicar #enderecoGridV153 .cidade-v153,
-#pagina-publicar #enderecoGridV153 .estado-v153{
-grid-column:1!important;
-grid-row:auto!important;
-}
-}
-&lt;/style&gt;
-&lt;/head&gt;&lt;body&gt;&lt;h1&gt;&quot;+esc(d.objetivo||&quot;Currículo profissional&quot;)+&quot;&lt;/h1&gt;&lt;p&gt;&quot;+esc(d.area)+&quot;&lt;/p&gt;&lt;h2&gt;Resumo profissional&lt;/h2&gt;&lt;p&gt;&quot;+esc(d.resumo)+&quot;&lt;/p&gt;&lt;h2&gt;Experiência&lt;/h2&gt;&quot;+d.experiencias.map(function(x){return&quot;&lt;h3&gt;&quot;+esc(x.cargo)+&quot; &#8212; &quot;+esc(x.empresa)+&quot;&lt;/h3&gt;&lt;p&gt;&quot;+esc(x.inicio)+&quot; a &quot;+esc(x.fim||&quot;Atual&quot;)+&quot;&lt;br/&gt;&quot;+esc(x.atividades)+&quot;&lt;/p&gt;&quot;}).join(&quot;&quot;)+&quot;&lt;h2&gt;Formação&lt;/h2&gt;&quot;+d.formacoes.map(function(x){return&quot;&lt;h3&gt;&quot;+esc(x.curso)+&quot;&lt;/h3&gt;&lt;p&gt;&quot;+esc(x.instituicao)+&quot; &#183; &quot;+esc(x.nivel)+&quot; &#183; &quot;+esc(x.status)+&quot;&lt;/p&gt;&quot;}).join(&quot;&quot;)+&quot;&lt;h2&gt;Cursos e certificações&lt;/h2&gt;&lt;p&gt;&quot;+esc(d.cursos)+&quot;&lt;/p&gt;&lt;h2&gt;Habilidades&lt;/h2&gt;&lt;p&gt;&quot;+esc(d.habilidades)+&quot;&lt;/p&gt;&lt;h2&gt;Idiomas&lt;/h2&gt;&lt;p&gt;&quot;+esc(d.idiomas)+&quot;&lt;/p&gt;&lt;h2&gt;Informações complementares&lt;/h2&gt;&lt;p&gt;&quot;+esc(d.complementares)+&quot;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;&quot;);w.document.close();}
-function init(){if(!document.getElementById(&quot;curriculoOnlineV84&quot;))return;document.getElementById(&quot;cvAddExperienciaV84&quot;).onclick=function(){document.getElementById(&quot;cvExperienciasV84&quot;).appendChild(exp())};document.getElementById(&quot;cvAddFormacaoV84&quot;).onclick=function(){document.getElementById(&quot;cvFormacoesV84&quot;).appendChild(form())};document.getElementById(&quot;cvSalvarV84&quot;).onclick=salvar;document.getElementById(&quot;cvVisualizarV84&quot;).onclick=visualizar;carregar();}
-window.EmpregaMaisCurriculoOnlineV84={ler:ler,salvar:salvar,carregar:carregar};window.addEventListener(&quot;load&quot;,function(){setTimeout(init,400)});
+function esc(v){return String(v||"").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");}
+function email(){try{return String(sessionStorage.getItem("candidatoEmail")||localStorage.getItem("candidatoEmail")||"").trim().toLowerCase();}catch(e){return"";}}
+function key(){return"empregaMaisCurriculoOnline:"+email();}
+function exp(d){d=d||{};var x=document.createElement("div");x.className="curriculo-item-v84 experiencia-v84";x.innerHTML='<button class="curriculo-remover-v84" type="button">Remover</button><label>Empresa<input class="e1" type="text" value="'+esc(d.empresa)+'"/></label><label>Cargo<input class="e2" type="text" value="'+esc(d.cargo)+'"/></label><label>Início<input class="e3" type="month" value="'+esc(d.inicio)+'"/></label><label>Término<input class="e4" type="month" value="'+esc(d.fim)+'"/></label><label class="full">Atividades<textarea class="e5">'+esc(d.atividades)+'</textarea></label>';x.querySelector("button").onclick=function(){x.remove()};return x;}
+function form(d){d=d||{};var x=document.createElement("div");x.className="curriculo-item-v84 formacao-v84";x.innerHTML='<button class="curriculo-remover-v84" type="button">Remover</button><label>Instituição<input class="f1" type="text" value="'+esc(d.instituicao)+'"/></label><label>Curso<input class="f2" type="text" value="'+esc(d.curso)+'"/></label><label>Nível<input class="f3" type="text" value="'+esc(d.nivel)+'"/></label><label>Situação / conclusão<input class="f4" type="text" value="'+esc(d.status)+'"/></label>';x.querySelector("button").onclick=function(){x.remove()};return x;}
+function val(id){var e=document.getElementById(id);return e?e.value:"";}
+function ler(){return{resumo:val("cvResumoV84"),objetivo:val("cvObjetivoV84"),area:val("cvAreaV84"),cursos:val("cvCursosV84"),habilidades:val("cvHabilidadesV84"),idiomas:val("cvIdiomasV84"),complementares:val("cvComplementaresV84"),experiencias:[].map.call(document.querySelectorAll(".experiencia-v84"),function(x){return{empresa:x.querySelector(".e1").value,cargo:x.querySelector(".e2").value,inicio:x.querySelector(".e3").value,fim:x.querySelector(".e4").value,atividades:x.querySelector(".e5").value}}),formacoes:[].map.call(document.querySelectorAll(".formacao-v84"),function(x){return{instituicao:x.querySelector(".f1").value,curso:x.querySelector(".f2").value,nivel:x.querySelector(".f3").value,status:x.querySelector(".f4").value}}),atualizadoEm:new Date().toISOString()};}
+function carregar(){var d={};try{d=JSON.parse(localStorage.getItem(key())||"{}")}catch(e){};["Resumo","Objetivo","Area","Cursos","Habilidades","Idiomas","Complementares"].forEach(function(k){var el=document.getElementById("cv"+k+"V84");if(el)el.value=d[k.toLowerCase()]||""});var a=document.getElementById("cvExperienciasV84"),b=document.getElementById("cvFormacoesV84");if(!a||!b)return;a.innerHTML="";b.innerHTML="";(d.experiencias||[]).forEach(function(z){a.appendChild(exp(z))});(d.formacoes||[]).forEach(function(z){b.appendChild(form(z))});if(!a.children.length)a.appendChild(exp());if(!b.children.length)b.appendChild(form());}
+function salvar(){if(!email()){alert("Entre na sua conta de candidato para salvar o currículo.");return}localStorage.setItem(key(),JSON.stringify(ler()));document.getElementById("cvStatusV84").textContent="✓ Currículo salvo com sucesso neste dispositivo.";}
+function visualizar(){var d=ler(),w=window.open("","_blank");if(!w)return;var content="<!doctype html><html lang='pt-BR'><head><meta charset='utf-8'><title>Meu currículo</title><style>body{font-family:Arial;max-width:760px;margin:40px auto;padding:0 25px;color:#26384d;line-height:1.5}h1,h2{color:#17365f}h2{font-size:16px;border-bottom:1px solid #ddd;padding-bottom:6px;margin-top:25px}h3{font-size:13px;margin-bottom:2px}p{font-size:12px;white-space:pre-line}</style></head><body><h1>"+esc(d.objetivo||"Currículo profissional")+"</h1><p>"+esc(d.area)+"</p><h2>Resumo profissional</h2><p>"+esc(d.resumo)+"</p><h2>Experiência</h2>"+d.experiencias.map(function(x){return"<h3>"+esc(x.cargo)+" — "+esc(x.empresa)+"</h3><p>"+esc(x.inicio)+" a "+esc(x.fim||"Atual")+"<br/>"+esc(x.atividades)+"</p>"}).join("")+"<h2>Formação</h2>"+d.formacoes.map(function(x){return"<h3>"+esc(x.curso)+"</h3><p>"+esc(x.instituicao)+" · "+esc(x.nivel)+" · "+esc(x.status)+"</p>"}).join("")+"<h2>Cursos e certificações</h2><p>"+esc(d.cursos)+"</p><h2>Habilidades</h2><p>"+esc(d.habilidades)+"</p><h2>Idiomas</h2><p>"+esc(d.idiomas)+"</p><h2>Informações complementares</h2><p>"+esc(d.complementares)+"</p></body></html>";w.document.write(content);w.document.close();}
+function init(){if(!document.getElementById("curriculoOnlineV84"))return;document.getElementById("cvAddExperienciaV84").onclick=function(){document.getElementById("cvExperienciasV84").appendChild(exp())};document.getElementById("cvAddFormacaoV84").onclick=function(){document.getElementById("cvFormacoesV84").appendChild(form())};document.getElementById("cvSalvarV84").onclick=salvar;document.getElementById("cvVisualizarV84").onclick=visualizar;carregar();}
+window.EmpregaMaisCurriculoOnlineV84={ler:ler,salvar:salvar,carregar:carregar};window.addEventListener("load",function(){setTimeout(init,400)});
 })();
 //</script><script src='empregamais_lote8.js?v=cloud-cv-20261008'></script><div aria-hidden='true' id='modalCandidaturaV94'><div aria-labelledby='cand94Titulo' aria-modal='true' class='cand94-box' role='dialog'><div class='cand94-top'><div><h2 id='cand94Titulo'>Candidatar-se à vaga</h2><p id='cand94Vaga'>Escolha qual currículo deseja utilizar.</p></div><button aria-label='Fechar' class='cand94-fechar' id='cand94Fechar' type='button'>&#215;</button></div><div class='cand94-opcoes'><button class='cand94-opcao ativa' id='cand94Online' type='button'><b>Usar meu currículo online</b><span>Utiliza o currículo profissional cadastrado no EmpregaMais.</span></button><button class='cand94-opcao' id='cand94Arquivo' type='button'><b>Enviar currículo do dispositivo</b><span>Selecione seu currículo em PDF, DOC ou DOCX.</span></button></div><div class='cand94-area' id='cand94AreaOnline'><label>Currículo online EmpregaMais</label><div class='cand94-info' id='cand94OnlineStatus'>Verificando seu currículo...</div></div><div class='cand94-area' id='cand94AreaArquivo' style='display:none'><label for='cand94File'>Selecionar arquivo</label><input accept='.pdf,.doc,.docx,application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document' id='cand94File' type='file'/><div class='cand94-info'>Formatos aceitos: PDF, DOC e DOCX. O currículo será enviado junto com sua candidatura.</div></div><div class='cand94-erro' id='cand94Erro'></div><div class='cand94-acoes'><button class='cand94-btn cand94-cancelar' id='cand94Cancelar' type='button'>Cancelar</button><button class='cand94-btn cand94-enviar' id='cand94Enviar' type='button'>Enviar candidatura</button></div></div></div><script type='text/javascript'>//
 (function(){
@@ -36204,7 +35935,7 @@ window.EmpregaMaisCandidaturaV94={abrir:abrir,verificar:verificar,travar:travar}
 window.addEventListener("load",function(){setTimeout(travar,1200)});
 document.addEventListener("click",function(){setTimeout(function(){vaga=window.vagaAtual||vaga;travar()},500)},false)
 })();
-//</script><script src='empregamais_lote9.js?v=20261007-instant-application-v13'></script><script src='empregamais_lote14.js?v=1'></script><script type='text/javascript'>//
+//</script><script src='empregamais_lote9.js?v=20261007-instant-application-v13'></script><script src='empregamais_lote14.js?v=20261008-audit-v60'></script><script type='text/javascript'>//
 (function(){
 var BENEFICIOS_V128=[
 ["vale_alimentacao","🍎","Vale-alimentação"],
@@ -39397,7 +39128,40 @@ function moverAreasRefV1(dir){
  function start(n){if(montar())return;if(n<30)setTimeout(()=>start(n+1),150)}
  if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",()=>setTimeout(()=>start(0),1100),{once:true});else setTimeout(()=>start(0),1100);
 })();
-//]]></script><script id='em-recrutador-auto-sync-v1' type='text/javascript'>\n//<![CDATA[\n(function(){\n  if(window.__EM_RECRUTADOR_AUTO_SYNC_V1)return;\n  window.__EM_RECRUTADOR_AUTO_SYNC_V1=true;var sincronizando=false;\n  var intervalo=10000;function painelRecrutadorAberto(){\n    var pagina=document.getElementById('pagina-painel-empresa');\n    var painel=document.getElementById('emPainelRecrutadorNovoV1');\n    return !!(pagina && painel && pagina.classList.contains('ativa'));\n  }function atualizarAutomaticamente(){\n    if(!painelRecrutadorAberto() || sincronizando)return;\n    if(typeof window.sincronizarVagasGoogleSheets!=='function')return;sincronizando=true;\n    Promise.resolve(window.sincronizarVagasGoogleSheets())\n      .then(function(){\n        try{\n          if(typeof window.atualizarPainelRecrutadorModernoV1==='function'){\n            window.atualizarPainelRecrutadorModernoV1();\n          }\n        }catch(e){}\n      })\n      .catch(function(err){\n        console.warn('EmpregaMais: sincronização automática do recrutador não concluída.',err);\n      })\n      .finally(function(){\n        sincronizando=false;\n      });\n  }setInterval(atualizarAutomaticamente,intervalo);window.addEventListener('focus',function(){\n    setTimeout(atualizarAutomaticamente,300);\n  });document.addEventListener('visibilitychange',function(){\n    if(!document.hidden)setTimeout(atualizarAutomaticamente,300);\n  });\n})();\n//]]>\n</script>
+//]]></script><script id='em-recrutador-auto-sync-v1' type='text/javascript'>
+//<![CDATA[
+(function(){
+  if(window.__EM_RECRUTADOR_AUTO_SYNC_V1)return;
+  window.__EM_RECRUTADOR_AUTO_SYNC_V1=true;var sincronizando=false;
+  var intervalo=10000;function painelRecrutadorAberto(){
+    var pagina=document.getElementById('pagina-painel-empresa');
+    var painel=document.getElementById('emPainelRecrutadorNovoV1');
+    return !!(pagina && painel && pagina.classList.contains('ativa'));
+  }function atualizarAutomaticamente(){
+    if(!painelRecrutadorAberto() || sincronizando)return;
+    if(typeof window.sincronizarVagasGoogleSheets!=='function')return;sincronizando=true;
+    Promise.resolve(window.sincronizarVagasGoogleSheets())
+      .then(function(){
+        try{
+          if(typeof window.atualizarPainelRecrutadorModernoV1==='function'){
+            window.atualizarPainelRecrutadorModernoV1();
+          }
+        }catch(e){}
+      })
+      .catch(function(err){
+        console.warn('EmpregaMais: sincronização automática do recrutador não concluída.',err);
+      })
+      .finally(function(){
+        sincronizando=false;
+      });
+  }setInterval(atualizarAutomaticamente,intervalo);window.addEventListener('focus',function(){
+    setTimeout(atualizarAutomaticamente,300);
+  });document.addEventListener('visibilitychange',function(){
+    if(!document.hidden)setTimeout(atualizarAutomaticamente,300);
+  });
+})();
+//]]>
+</script>
 
 <script id='em-pr-vagas-layout-foto-v11-js' type='text/javascript'>
 //<![CDATA[
@@ -39671,28 +39435,28 @@ modal.showModal();};});host.querySelectorAll('[data-gc27-stage]').forEach(functi
 //]]></script><style id='em-v30-cards-compactos'>.em-gc27-card .em-v29-extra{display:none!important;border-top:1px solid #e6eef6!important;background:#fbfdff!important;padding:16px 20px 18px!important}.em-gc27-card.em-v30-detalhes-abertos .em-v29-extra{display:block!important}.em-v30-detalhes-wrap{display:flex;justify-content:flex-end;align-items:center;padding:10px 20px 14px;border-top:1px solid #edf2f7;background:#fff}.em-v30-detalhes-btn{min-height:40px;border:1px solid #c9dbea;border-radius:999px;background:#fff;color:#0b5f9f;font-size:12px;font-weight:800;padding:0 17px;cursor:pointer;display:inline-flex;align-items:center;gap:8px;transition:.18s ease;box-shadow:0 2px 8px rgba(17,72,112,.05)}.em-v30-detalhes-btn:hover{background:#f5f9fd;border-color:#8bb8d8;transform:translateY(-1px);box-shadow:0 5px 14px rgba(17,72,112,.09)}.em-v30-detalhes-btn .em-v30-chevron{font-size:15px;line-height:1;transition:transform .18s ease}.em-gc27-card.em-v30-detalhes-abertos .em-v30-detalhes-btn .em-v30-chevron{transform:rotate(180deg)}.em-gc27-card.em-v30-detalhes-abertos .em-v30-detalhes-wrap{background:#fbfdff}@media(max-width:560px){.em-v30-detalhes-wrap{padding:10px 14px 14px}.em-v30-detalhes-btn{width:100%;justify-content:center}}</style><script id='em-v30-cards-compactos-js'>
 (function(){
  function aplicar(){
-  var root=document.getElementById(&#39;gc27Lista&#39;)||document;
-  root.querySelectorAll(&#39;.em-gc27-card&#39;).forEach(function(card){
-   if(card.dataset.v30Compacto===&#39;1&#39;)return;
-   var extra=card.querySelector(&#39;.em-v29-extra&#39;);
+  var root=document.getElementById('gc27Lista')||document;
+  root.querySelectorAll('.em-gc27-card').forEach(function(card){
+   if(card.dataset.v30Compacto==='1')return;
+   var extra=card.querySelector('.em-v29-extra');
    if(!extra)return;
-   card.dataset.v30Compacto=&#39;1&#39;;
-   var wrap=document.createElement(&#39;div&#39;);
-   wrap.className=&#39;em-v30-detalhes-wrap&#39;;
-   wrap.innerHTML=&#39;<button aria-expanded='false' class='em-v30-detalhes-btn' type='button'><span>Informações detalhadas do candidato</span><span class='em-v30-chevron'>&#8964;</span></button>&#39;;
+   card.dataset.v30Compacto='1';
+   var wrap=document.createElement('div');
+   wrap.className='em-v30-detalhes-wrap';
+   wrap.innerHTML="<button aria-expanded='false' class='em-v30-detalhes-btn' type='button'><span>Informações detalhadas do candidato</span><span class='em-v30-chevron'>⌄</span></button>";
    card.insertBefore(wrap,extra);
-   var btn=wrap.querySelector(&#39;.em-v30-detalhes-btn&#39;);
-   btn.addEventListener(&#39;click&#39;,function(ev){
+   var btn=wrap.querySelector('.em-v30-detalhes-btn');
+   btn.addEventListener('click',function(ev){
     ev.preventDefault();ev.stopPropagation();
-    var aberto=card.classList.toggle(&#39;em-v30-detalhes-abertos&#39;);
-    btn.setAttribute(&#39;aria-expanded&#39;,aberto?&#39;true&#39;:&#39;false&#39;);
-    btn.querySelector(&#39;span:first-child&#39;).textContent=aberto?&#39;Ocultar informações detalhadas&#39;:&#39;Informações detalhadas do candidato&#39;;
+    var aberto=card.classList.toggle('em-v30-detalhes-abertos');
+    btn.setAttribute('aria-expanded',aberto?'true':'false');
+    btn.querySelector('span:first-child').textContent=aberto?'Ocultar informações detalhadas':'Informações detalhadas do candidato';
    });
   });
  }
  var obs=new MutationObserver(function(){aplicar()});
  function iniciar(){aplicar();obs.observe(document.body,{childList:true,subtree:true})}
- if(document.readyState===&#39;loading&#39;)document.addEventListener(&#39;DOMContentLoaded&#39;,iniciar);else iniciar();
+ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',iniciar);else iniciar();
  window.setInterval(aplicar,1200);
 })();
 </script><style type='text/css'>#adminBeneficiosPlanosV31{display:none;padding:26px;background:#f6f8fc;border-radius:22px;margin-top:18px}.abp-head{display:flex;justify-content:space-between;gap:20px;align-items:center;margin-bottom:20px}.abp-head h2{margin:4px 0 6px;font-size:26px;color:#102a43}.abp-head p{margin:0;color:#65758b}.abp-kicker{font-size:11px;font-weight:800;letter-spacing:.12em;color:#1769c2}.abp-refresh{border:1px solid #dbe5f1;background:#fff;color:#164d88;border-radius:999px;padding:11px 17px;font-weight:700;cursor:pointer}.abp-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:18px}.abp-stat{background:#fff;border:1px solid #e3eaf3;border-radius:16px;padding:16px;box-shadow:0 8px 24px rgba(30,60,90,.05)}.abp-stat small{display:block;color:#75859a;font-size:11px;font-weight:800;text-transform:uppercase}.abp-stat strong{display:block;color:#102a43;font-size:25px;margin-top:5px}.abp-toolbar{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:16px}.abp-toolbar input,.abp-toolbar select,.abp-form select,.abp-form input,.abp-form textarea{border:1px solid #dbe5f1;background:#fff;border-radius:12px;padding:12px 13px;font:inherit;color:#243b53}.abp-toolbar input{flex:1;min-width:230px}.abp-grid{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(330px,.7fr);gap:16px}.abp-list,.abp-editor{background:#fff;border:1px solid #e3eaf3;border-radius:18px;padding:16px;box-shadow:0 8px 24px rgba(30,60,90,.05)}.abp-card{display:flex;align-items:center;gap:12px;border:1px solid #e6edf5;border-radius:14px;padding:13px;margin-bottom:10px;cursor:pointer;transition:.18s}.abp-card:hover,.abp-card.ativo{border-color:#78aee7;background:#f7fbff}.abp-avatar{width:42px;height:42px;border-radius:13px;background:#eaf3ff;color:#1769c2;display:grid;place-items:center;font-weight:800}.abp-main{min-width:0;flex:1}.abp-main strong,.abp-main small{display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.abp-main strong{color:#17324d}.abp-main small{color:#7b8794;margin-top:3px}.abp-pill{font-size:11px;font-weight:800;border-radius:999px;padding:6px 9px;background:#eef5ff;color:#1769c2}.abp-editor h3{margin:0 0 4px;color:#102a43}.abp-editor .muted{color:#7b8794;font-size:13px;margin-bottom:14px}.abp-form{display:grid;gap:11px}.abp-form label{font-size:12px;font-weight:800;color:#486581}.abp-form textarea{min-height:74px;resize:vertical}.abp-checks{display:grid;grid-template-columns:1fr 1fr;gap:8px}.abp-check{display:flex;gap:8px;align-items:center;border:1px solid #e5ecf4;border-radius:11px;padding:9px;font-size:12px}.abp-actions{display:flex;gap:9px;margin-top:5px}.abp-primary{border:0;border-radius:999px;padding:12px 17px;background:#1266b4;color:#fff;font-weight:800;cursor:pointer}.abp-secondary{border:1px solid #d8e2ee;border-radius:999px;padding:12px 17px;background:#fff;color:#345;cursor:pointer}.abp-history{margin-top:16px;border-top:1px solid #edf1f5;padding-top:14px}.abp-history h4{margin:0 0 9px;color:#334e68}.abp-hitem{font-size:12px;color:#627d98;padding:8px 0;border-bottom:1px dashed #edf1f5}.abp-empty{text-align:center;color:#829ab1;padding:35px 12px}.admin-beneficios-nav-v31{position:relative}.admin-beneficios-nav-v31:before{content:&#39;&#9733;&#39;;margin-right:8px}@media(max-width:900px){.abp-grid{grid-template-columns:1fr}.abp-stats{grid-template-columns:1fr 1fr}.abp-head{align-items:flex-start;flex-direction:column}}@media(max-width:520px){.abp-stats{grid-template-columns:1fr}.abp-checks{grid-template-columns:1fr}}</style><script type='text/javascript'>
@@ -42141,7 +41905,7 @@ var seen=false;try{seen=sessionStorage.getItem("emNearAttentionSeen")==="1";}cat
 if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",install);else install();
 window.addEventListener("load",install);var observer=new MutationObserver(function(){if(document.getElementById("emPerto")){install();observer.disconnect();}});observer.observe(document.body,{childList:true,subtree:true});
 })();</script><script id="em-authenticated-login-route-guard">(function(){
-function destination(page){var role=typeof papelAtual==="function"?papelAtual():"";if(page==="login-empresa"&&role==="empresa")return "painel-empresa";if(page==="login-candidato"&&role==="candidato")return "painel-candidato";if(page==="login-admin"&&role==="admin")return "painel-admin";return page;}
+function destination(page){var role=typeof papelAtual==="function"?papelAtual():"";if(["painel-empresa","candidatos-empresa","perfil-empresa","verificacao-empresa","candidatos-vaga"].indexOf(page)>=0&&typeof empresaEstaLogada==="function"&&!empresaEstaLogada())return "login-empresa";if(page==="login-empresa"&&role==="empresa")return "painel-empresa";if(page==="login-candidato"&&role==="candidato")return "painel-candidato";if(page==="login-admin"&&role==="admin")return "painel-admin";return page;}
 var route=window.irPara,open=window.abrirRota,show=window.mostrarPagina;
 if(typeof route==="function")window.irPara=function(page,id){return route.call(this,destination(page),id);};
 if(typeof open==="function")window.abrirRota=function(page,id){var target=destination(page);if(target!==page){var url=new URL(location.href);url.searchParams.set("pagina",target);url.searchParams.delete("id");history.replaceState(history.state,"",url.pathname+url.search+url.hash);}return open.call(this,target,id);};
