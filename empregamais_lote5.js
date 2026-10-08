@@ -238,7 +238,7 @@ return;
 if(rodape && rodape.parentNode){
 try{
 var pos=rodape.compareDocumentPosition(pg);
-if(pos &amp; Node.DOCUMENT_POSITION_FOLLOWING){
+if(pos & Node.DOCUMENT_POSITION_FOLLOWING){
 rodape.parentNode.insertBefore(pg,rodape);
 }
 }catch(e){}
