@@ -87,3 +87,11 @@
 #pagina-publicar.em-publish-in-panel #formVaga #modalidadeVaga.publish-mode-original{display:none!important}
 #pagina-publicar.em-publish-in-panel #formVaga .publish-mode-options{grid-template-columns:repeat(3,minmax(0,1fr))!important}
 @media(max-width:480px){#pagina-publicar.em-publish-in-panel #formVaga .publish-mode-options button{padding:10px 6px;gap:5px;font-size:10px}#pagina-publicar.em-publish-in-panel #formVaga .publish-mode-options svg{width:16px;height:16px;flex-shrink:0}#pagina-publicar.em-publish-in-panel #formVaga .publish-mode-options i{width:12px;height:12px}}
+
+/* Localização começa pelo CEP; horários específicos não são solicitados. */
+#pagina-publicar.em-publish-in-panel #formVaga .em-field:has(#horarioEntradaV183),
+#pagina-publicar.em-publish-in-panel #formVaga .em-field:has(#horarioSaidaV183),
+#pagina-publicar.em-publish-in-panel #formVaga .em-field:has(#horarioObsV183){display:none!important}
+#pagina-publicar.em-publish-in-panel #formVaga .publish-address-field.full{grid-column:1/-1!important}
+#pagina-publicar.em-publish-in-panel #formVaga .em-field > select{margin:0!important}
+#pagina-publicar.em-publish-in-panel #formVaga .publish-address-field input{margin:0!important}

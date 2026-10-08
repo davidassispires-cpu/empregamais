@@ -1089,12 +1089,13 @@ if(window.__EmpregaMaisV151CepPrimeiro)return;
 window.__EmpregaMaisV151CepPrimeiro=true;
 function grupoDo(el){
 if(!el)return null;
-return el.closest(".grupo") ||
+return el.closest(".em-field") || el.closest(".grupo") ||
 el.closest(".campo-grupo") ||
 el.closest(".form-grupo") ||
 el.parentElement;
 }
 function reorganizarV151(){
+if(document.querySelector("#pagina-publicar.em-publish-in-panel"))return;
 var cep=document.getElementById("cepVaga");
 var cidade=document.getElementById("cidadeVaga");
 var estado=document.getElementById("estadoVaga");
@@ -1176,7 +1177,7 @@ if(window.__EmpregaMaisV153EnderecoUnificado)return;
 window.__EmpregaMaisV153EnderecoUnificado=true;
 function grupoCampoV153(el){
 if(!el)return null;
-return el.closest(".grupo") ||
+return el.closest(".em-field") || el.closest(".grupo") ||
 el.closest(".campo-grupo") ||
 el.closest(".form-grupo") ||
 el.parentElement;
@@ -1192,6 +1193,7 @@ cel.appendChild(el);
 return cel;
 }
 function unificarEnderecoV153(){
+if(document.querySelector("#pagina-publicar.em-publish-in-panel"))return;
 var cep=document.getElementById("cepVaga");
 var rua=document.getElementById("ruaVagaV130");
 var bairro=document.getElementById("bairroVagaV130");

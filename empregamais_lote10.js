@@ -190,6 +190,24 @@ function companyHero(e){
   }
   function enhancePublish(page){
     var form=page.querySelector('#formVaga');if(!form)return;
+    var detail=form.querySelector('.em-job-card[data-panel="2"] .em-grid');
+    if(detail&&!detail.dataset.publishAddress){
+      detail.dataset.publishAddress='1';
+      var location=document.createDocumentFragment(),old=[];
+      [['cepVaga','CEP','00000-000'],['estadoVaga','Estado','UF'],['cidadeVaga','Cidade','Preenchida pelo CEP'],['ruaVagaV130','Rua / Logradouro','Preenchido pelo CEP'],['bairroVagaV130','Bairro','Preenchido pelo CEP']].forEach(function(row){
+        var control=document.getElementById(row[0]);
+        if(control){var previous=control.closest('.em-field');if(previous&&old.indexOf(previous)<0)old.push(previous)}
+        else{control=document.createElement('input');control.id=row[0];control.type='text'}
+        var field=document.createElement('div');field.className='em-field publish-address-field';
+        var label=document.createElement('label');label.htmlFor=row[0];label.textContent=row[1];field.appendChild(label);field.appendChild(control);control.placeholder=row[2];
+        if(row[0]==='cepVaga'){field.classList.add('full');control.inputMode='numeric';control.autocomplete='postal-code';control.maxLength=9;var status=document.getElementById('cepStatusEM');if(!status){status=document.createElement('small');status.id='cepStatusEM'}status.setAttribute('role','status');status.setAttribute('aria-live','polite');field.appendChild(status)}
+        location.appendChild(field);
+      });
+      detail.prepend(location);
+      old.forEach(function(field){if(!field.querySelector('input,select,textarea,button'))field.remove()});
+      var notice=document.getElementById('avisoCepAutoV151');if(notice)notice.remove();
+    }
+
     page.querySelectorAll('.em-job-card-head').forEach(function(head,i){if(head.querySelector('.publish-section-icon'))return;var badge=document.createElement('span');badge.className='publish-step-badge';badge.textContent='ETAPA '+(i+1)+' DE 4';head.appendChild(badge);var pic=document.createElement('span');pic.className='publish-section-icon';pic.innerHTML=icon(i===0?'briefcase':i===1?'pin':i===2?'company':'check');head.prepend(pic)});
     [['empresaVaga','company'],['cargoVaga','briefcase'],['areaVaga','company'],['contratoVaga','card'],['cidadeVaga','pin'],['salarioVaga','card']].forEach(function(pair){var input=document.getElementById(pair[0]);if(!input||input.closest('.publish-input-wrap'))return;var wrap=document.createElement('div');wrap.className='publish-input-wrap';input.parentNode.insertBefore(wrap,input);var pic=document.createElement('span');pic.className='publish-field-icon';pic.innerHTML=icon(pair[1]);wrap.appendChild(pic);wrap.appendChild(input)});
     var upload=document.getElementById('logoVaga');if(upload&&!page.querySelector('.publish-logo-upload')){var field=upload.closest('.em-field');if(field){var box=document.createElement('div');box.className='publish-logo-upload';box.innerHTML='<div class="publish-logo-placeholder">'+icon('company')+'</div><div><strong>Logo da empresa</strong><p>Adicione sua logo para personalizar a oportunidade.</p><label class="publish-upload-button" for="logoVaga">'+icon('plus')+' Enviar logo</label><small class="publish-file-name" aria-live="polite"></small></div>';field.prepend(box);var preview=document.getElementById('previewLogo');if(preview)box.querySelector('.publish-logo-placeholder').appendChild(preview);upload.addEventListener('change',function(){box.querySelector('.publish-file-name').textContent=upload.files&&upload.files[0]?upload.files[0].name:''})}}
@@ -200,7 +218,7 @@ function companyHero(e){
   }
   function mountPublish() {
     var page=document.getElementById('pagina-publicar');if(!page||!host)return;
-    if(!document.getElementById('em-publish-profile-design')){var link=document.createElement('link');link.id='em-publish-profile-design';link.rel='stylesheet';link.href='publicacao-painel.css?v=20261008-profile-design-v57';document.head.appendChild(link);}
+    if(!document.getElementById('em-publish-profile-design')){var link=document.createElement('link');link.id='em-publish-profile-design';link.rel='stylesheet';link.href='publicacao-painel.css?v=20261008-cep-layout-v58';document.head.appendChild(link);}
     var shell=page.querySelector('.em-job-shell');if(shell&&!shell.querySelector('.em-publish-heading')){var heading=document.createElement('div');heading.className='em-publish-heading';heading.innerHTML='<small>RECRUTAMENTO E SELEÇÃO</small><h1>Publicar vaga</h1><p>Preencha as etapas e revise os dados antes de enviar sua oportunidade.</p>';shell.prepend(heading);}
     page.slot='recruiter-publish';if(!page.classList.contains('ativa'))page.classList.add('ativa');
     page.classList.add('em-publish-in-panel');page.style.setProperty('display','block','important');
