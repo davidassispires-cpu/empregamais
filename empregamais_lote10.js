@@ -188,6 +188,12 @@ function companyHero(e){
     invoke('renderizarCandidatosEmpresa');
   }
   window.abrirCandidaturasPainelEM=openCandidates;
+  window.abrirVisaoGeralRecrutadorEM=function(){
+    view='overview';sessionStorage.removeItem('vagaCandidatosSelecionada');
+    var url=new URL(location.href);url.searchParams.set('abaPainel','overview');url.searchParams.delete('vaga');
+    history.replaceState(history.state,'',url.toString());rememberPanelState();
+    invoke('irPara',['painel-empresa']);mount();window.scrollTo({top:0,behavior:'smooth'});
+  };
 
   function yes(v){return v===true||v===1||['true','1','sim'].indexOf(norm(v))>=0;}
   function deadline(v){var raw=v.expiraEm;if(!raw)return NaN;return new Date(/^\d{4}-\d{2}-\d{2}$/.test(raw)?raw+'T23:59:59':raw).getTime();}
