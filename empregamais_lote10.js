@@ -306,7 +306,7 @@ function companyHero(e){
       var checked=visibility.querySelector('input[name="enderecoVisibilidadeRadioV130"]:checked'),mode=checked?checked.value:value(['enderecoVisibilidadeV130'])||'cidade';
       var state=value(['estadoVaga']);var map={'Minas Gerais':'MG','São Paulo':'SP','Rio de Janeiro':'RJ','Espírito Santo':'ES'};
       state=map[state]||state;if(state.length===2)state=state.toUpperCase();
-      preview.querySelector('[data-preview-address]').textContent=addressPreviewText(mode,{city:value(['cidadeVaga']),state:state,district:value(['bairroVagaV130','bairroVaga','bairroLocalVaga']),street:value(['ruaVagaV130','ruaVaga','logradouroVaga','enderecoVaga']),number:value(['numeroVagaV130','numeroVaga','numeroEnderecoVaga','numeroEndereco'])});
+      var output=addressPreviewText(mode,{city:value(['cidadeVaga']),state:state,district:value(['bairroVagaV130','bairroVaga','bairroLocalVaga']),street:value(['ruaVagaV130','ruaVaga','logradouroVaga','enderecoVaga']),number:value(['numeroVagaV130','numeroVaga','numeroEnderecoVaga','numeroEndereco'])});var outputNode=preview.querySelector('[data-preview-address]');if(outputNode.textContent!==output)outputNode.textContent=output;
     }
     window.atualizarPreviewEnderecoV150=update;
     if(!form.dataset.addressPreviewBound){
@@ -406,6 +406,13 @@ function companyHero(e){
     var form=page.querySelector('#formVaga'),upload=form&&form.querySelector('#logoVaga'),box=form&&form.querySelector('.publish-logo-upload'),name=form&&form.querySelector('#empresaVaga');
     if(!box||!upload||!name)return;
     var e=company(),allowed=publishLogoAllowed(e),owner=String(e.cnpj||e.email||''),title=e.nome_fantasia||e.nomeFantasia||e.nome||e.razaoSocial||sessionStorage.getItem('empresaNome')||'Sua empresa';
+    var savedSource=allowed?savedPublishLogo(e):'',signature=JSON.stringify([owner,title,allowed,savedSource]);
+    if(box.dataset.brandSignature===signature&&box.querySelector('.publish-brand-actions')&&document.getElementById('previewLogo')?.tagName==='IMG'){
+      if(name.value!==title)name.value=title;
+      if(upload.disabled===allowed)upload.disabled=!allowed;
+      return;
+    }
+    box.dataset.brandSignature=signature;
     name.value=title;name.readOnly=true;name.setAttribute('aria-readonly','true');
     var field=name.closest('.em-field');if(field)field.style.setProperty('display','none','important');
     if(!document.getElementById('em-publish-brand-style')){var style=document.createElement('style');style.id='em-publish-brand-style';style.textContent='#pagina-publicar .publish-logo-upload{align-items:center!important;gap:16px!important}#pagina-publicar .publish-brand-actions{display:flex;align-items:center;gap:18px;flex-wrap:wrap}#pagina-publicar.em-publish-logo-free .preview-ref-v20g .logo-v20g{display:none!important}#pagina-publicar .publish-brand-actions .publish-brand-name{margin:0!important}#pagina-publicar .publish-brand-name{display:block!important;font:700 20px/1.4 Inter,Arial,sans-serif!important;color:#163954!important;margin:0 0 6px!important;overflow-wrap:anywhere}#pagina-publicar .publish-logo-placeholder{position:relative;flex-shrink:0;overflow:hidden}#pagina-publicar .publish-logo-placeholder svg{width:28px;height:28px}#pagina-publicar .publish-logo-placeholder #previewLogo{width:100%!important;height:100%!important;max-height:none!important;object-fit:contain!important;margin:0!important;border:0!important;background:#fff!important}#pagina-publicar .publish-upload-button[aria-disabled=true]{opacity:.55;cursor:default}#pagina-publicar .publish-logo-upload .publish-file-name{display:block;margin-top:8px;line-height:1.6}';document.head.appendChild(style)}
@@ -416,19 +423,19 @@ function companyHero(e){
     if(preview&&preview.tagName!=='IMG'){var image=document.createElement('img');image.id='previewLogo';preview.replaceWith(image);preview=image}
     preview.alt='Logo de '+title;
     if(box.dataset.brandOwner!==owner){upload.value='';box.dataset.brandOwner=owner;box.dataset.brandSelected='';}
-    if(!box.dataset.brandSelected){var saved=allowed?savedPublishLogo(e):'';if(typeof logoAtual!=='undefined')logoAtual=saved;if(saved){preview.src=saved;preview.style.display='block'}else{preview.removeAttribute('src');preview.style.display='none'}}
+    if(!box.dataset.brandSelected){var saved=allowed?savedPublishLogo(e):'';if(typeof logoAtual!=='undefined')logoAtual=saved;if(saved){if(preview.getAttribute('src')!==saved)preview.src=saved;preview.style.display='block'}else{preview.removeAttribute('src');preview.style.display='none'}}
     if(!allowed){if(typeof logoAtual!=='undefined')logoAtual='';upload.value='';preview.removeAttribute('src');preview.style.display='none';box.dataset.brandSelected=''}
     upload.disabled=!allowed;
     var button=box.querySelector('.publish-upload-button');button.setAttribute('aria-disabled',String(!allowed));button.innerHTML=icon('plus')+' '+(allowed&&preview.getAttribute('src')?'Trocar logo':'Enviar logo');
     var description=box.querySelector('p');if(description)description.textContent=allowed?'Sua identidade visual será exibida na vaga.':'A exibição da logo nas vagas está disponível com assinatura ativa.';
     var note=box.querySelector('.publish-file-name');note.textContent=allowed?(preview.getAttribute('src')?'Logo carregada do perfil da empresa.':'Selecione uma logo ou cadastre-a no Perfil Empresarial.'):'O nome da empresa será exibido normalmente.';
     form.querySelectorAll('.aviso-plano-logo-em').forEach(function(node){node.remove()});
-    function syncIcon(){var has=allowed&&!!preview.getAttribute('src');preview.style.display=has?'block':'none';var svg=box.querySelector('.publish-logo-placeholder svg');if(svg)svg.style.display=has?'none':'block'}
+    function syncIcon(){var has=allowed&&!!preview.getAttribute('src');if(preview.style.display!==(has?'block':'none'))preview.style.display=has?'block':'none';var svg=box.querySelector('.publish-logo-placeholder svg');if(svg&&svg.style.display!==(has?'none':'block'))svg.style.display=has?'none':'block'}
     syncIcon();
     if(!box.dataset.brandBound){box.dataset.brandBound='1';button.addEventListener('click',function(ev){if(!publishLogoAllowed(company())){ev.preventDefault();ev.stopImmediatePropagation()}},true);
-      upload.addEventListener('change',function(){if(!publishLogoAllowed(company())){upload.value='';return}box.dataset.brandSelected=upload.files&&upload.files.length?'1':'';if(box.dataset.brandSelected)note.textContent=upload.files[0].name;else setupPublishBranding(page)});
+      upload.addEventListener('change',function(){if(!publishLogoAllowed(company())){upload.value='';return}box.dataset.brandSignature='';box.dataset.brandSelected=upload.files&&upload.files.length?'1':'';if(box.dataset.brandSelected)note.textContent=upload.files[0].name;else setupPublishBranding(page)});
       new MutationObserver(function(){var has=publishLogoAllowed(company())&&!!preview.getAttribute('src');preview.style.display=has?'block':'none';var svg=box.querySelector('.publish-logo-placeholder svg');if(svg)svg.style.display=has?'none':'block'}).observe(preview,{attributes:true,attributeFilter:['src']});
-      form.addEventListener('reset',function(){box.dataset.brandSelected='';setTimeout(function(){setupPublishBranding(page)},0)});
+      form.addEventListener('reset',function(){box.dataset.brandSignature='';box.dataset.brandSelected='';setTimeout(function(){setupPublishBranding(page)},0)});
     }
   }
   window.EMCompanyPublishBranding={preparePayload:function(v){
