@@ -37,3 +37,41 @@
 #pagina-publicar.em-publish-in-panel .banner-lateral-v211,#pagina-publicar.em-publish-in-panel #formVaga .publicar-etapas-em{display:none!important}
 #pagina-publicar.em-publish-in-panel .layout-publicacao-v211{display:block!important;grid-template-columns:1fr!important;margin:0!important;padding:0!important;width:100%!important;max-width:none!important}
 #pagina-publicar.em-publish-in-panel .coluna-form-v211{width:100%!important;max-width:none!important;margin:0!important;padding:0!important}
+/* Design da referência aprovada: ícones, upload compacto e seleção em cards. */
+#pagina-publicar.em-publish-in-panel #formVaga .em-job-card-head{position:relative;padding-left:102px!important;min-height:104px!important;padding-right:155px!important}
+#pagina-publicar.em-publish-in-panel .publish-section-icon{position:absolute;left:24px;top:23px;width:58px;height:58px;border-radius:12px;background:#e5f1ff;display:grid;place-items:center;color:#153e70}
+#pagina-publicar.em-publish-in-panel .publish-section-icon svg{width:29px;height:29px}
+#pagina-publicar.em-publish-in-panel .publish-step-badge{position:absolute;right:24px;top:30px;padding:7px 11px;border-radius:20px;background:#fff0e2;color:#cb601c;font:700 10px Montserrat,sans-serif}
+#pagina-publicar.em-publish-in-panel #formVaga .em-job-card{box-shadow:0 7px 25px #17365508!important;border-color:#e5ecf4!important}
+#pagina-publicar.em-publish-in-panel .publish-input-wrap{position:relative}
+#pagina-publicar.em-publish-in-panel .publish-field-icon{position:absolute;left:13px;top:50%;transform:translateY(-50%);color:#7b889e;pointer-events:none;display:flex}
+#pagina-publicar.em-publish-in-panel .publish-field-icon svg{width:18px;height:18px}
+#pagina-publicar.em-publish-in-panel #formVaga .publish-input-wrap input,#pagina-publicar.em-publish-in-panel #formVaga .publish-input-wrap select{padding-left:42px!important;border-color:#ccd5e2!important;background:#fefeff!important}
+#pagina-publicar.em-publish-in-panel .publish-logo-upload{display:flex;align-items:center;gap:20px;margin-bottom:8px}
+#pagina-publicar.em-publish-in-panel .publish-logo-placeholder{width:94px;height:94px;flex-shrink:0;background:#e7f2ff;border-radius:12px;display:grid;place-items:center;color:#3668a4;overflow:hidden}
+#pagina-publicar.em-publish-in-panel .publish-logo-placeholder>svg{width:42px;height:42px}
+#pagina-publicar.em-publish-in-panel .publish-logo-placeholder:has(img)>svg{display:none}
+#pagina-publicar.em-publish-in-panel #previewLogo img{max-width:78px!important;max-height:78px!important;object-fit:contain}
+#pagina-publicar.em-publish-in-panel .publish-logo-upload strong{font:700 14px Inter,sans-serif;color:#18324f}
+#pagina-publicar.em-publish-in-panel .publish-logo-upload p{font:12px/1.6 Montserrat,sans-serif;color:#7d8ca1;margin:5px 0 10px}
+#pagina-publicar.em-publish-in-panel #formVaga label.publish-upload-button{display:inline-flex!important;align-items:center;gap:8px;border:1px solid #0874eb;border-radius:7px;padding:8px 12px;cursor:pointer;color:#0874eb!important;background:#fff}
+#pagina-publicar.em-publish-in-panel .publish-upload-button svg{width:17px;height:17px}
+#pagina-publicar.em-publish-in-panel .publish-file-name{display:block;color:#718198;font-size:10px}
+#pagina-publicar.em-publish-in-panel .em-field:has(.publish-logo-upload)>label{display:none!important}
+#pagina-publicar.em-publish-in-panel #formVaga #logoVaga{position:absolute!important;width:1px!important;height:1px!important;opacity:0!important;padding:0!important;border:0!important}
+#pagina-publicar.em-publish-in-panel .publish-logo-upload:focus-within .publish-upload-button{outline:2px solid #94c6ff;outline-offset:2px}
+#pagina-publicar.em-publish-in-panel .publish-mode-field{grid-column:1/-1!important}
+#pagina-publicar.em-publish-in-panel #formVaga .publish-mode-original{display:none!important}
+#pagina-publicar.em-publish-in-panel .publish-mode-options{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+#pagina-publicar.em-publish-in-panel .publish-mode-options button{display:flex;align-items:center;gap:12px;border:1px solid #d4deeb;background:#fff;border-radius:9px;padding:14px;color:#243c5b;font:600 12px Montserrat,sans-serif;cursor:pointer;min-width:0}
+#pagina-publicar.em-publish-in-panel .publish-mode-options svg{width:22px;height:22px;color:#718198}
+#pagina-publicar.em-publish-in-panel .publish-mode-options i{margin-left:auto;width:16px;height:16px;border:2px solid #a9b4c4;border-radius:50%;flex-shrink:0}
+#pagina-publicar.em-publish-in-panel .publish-mode-options button.selected{background:#f1f7ff;border-color:#0874eb;box-shadow:0 0 0 1px #0874eb}
+#pagina-publicar.em-publish-in-panel .publish-mode-options button.selected svg{color:#0874eb}
+#pagina-publicar.em-publish-in-panel .publish-mode-options button.selected i{border:4px solid #0874eb;background:#fff}
+#pagina-publicar.em-publish-in-panel .publish-mode-options button:focus-visible{outline:2px solid #94c6ff;outline-offset:3px}
+#pagina-publicar.em-publish-in-panel #formVaga .publish-draft{display:inline-flex;align-items:center;gap:8px;margin-left:auto!important}
+#pagina-publicar.em-publish-in-panel .publish-draft svg{width:17px;height:17px}
+#pagina-publicar.em-publish-in-panel .publish-draft-status{font:12px Montserrat,sans-serif;color:#24774b;padding:12px 20px;background:#edf8f1;border-radius:8px}
+@media(max-width:700px){#pagina-publicar.em-publish-in-panel #formVaga .em-job-card-head{padding:18px 18px 18px 78px!important;min-height:106px!important}#pagina-publicar.em-publish-in-panel .publish-section-icon{left:18px;top:18px;width:44px;height:44px}#pagina-publicar.em-publish-in-panel .publish-step-badge{position:static;display:inline-block;margin-top:8px}#pagina-publicar.em-publish-in-panel .publish-mode-options{gap:8px}#pagina-publicar.em-publish-in-panel .publish-mode-options button{padding:12px 8px;gap:6px;font-size:11px}}
+@media(max-width:480px){#pagina-publicar.em-publish-in-panel .publish-mode-options{grid-template-columns:1fr}#pagina-publicar.em-publish-in-panel .publish-logo-upload{gap:12px}#pagina-publicar.em-publish-in-panel .publish-logo-placeholder{width:70px;height:70px}}
