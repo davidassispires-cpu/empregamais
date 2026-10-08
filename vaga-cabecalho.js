@@ -6,6 +6,16 @@
  function truth(v){return ['true','1','sim','confidencial'].includes(String(v||'').trim().toLowerCase());}
  function icon(name){var p={star:'<path d="m12 3 2.8 5.7 6.3.9-4.6 4.4 1.1 6.3-5.6-3-5.6 3 1.1-6.3L3 9.6l6.2-.9Z"/>',pin:'<path d="M20 10c0 6-8 11-8 11S4 16 4 10a8 8 0 1 1 16 0Z"/><circle cx="12" cy="10" r="2.5"/>',case:'<rect x="3" y="7" width="18" height="14" rx="2"/><path d="M8 7V3h8v4M3 12h18M10 12v3h4v-3"/>',screen:'<rect x="3" y="3" width="18" height="13" rx="2"/><path d="M12 16v5M8 21h8"/>',money:'<rect x="2" y="5" width="20" height="14" rx="2"/><circle cx="12" cy="12" r="3"/><path d="M5 9h1m12 6h1"/>',gift:'<rect x="3" y="8" width="18" height="4" rx="1"/><path d="M5 12v9h14v-9M12 8v13M12 8H8a3 3 0 1 1 3-3l1 3Zm0 0h4a3 3 0 1 0-3-3l-1 3Z"/>'};return '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'+p[name]+'</svg>';}
  function data(){var v=window.vagaAtual;try{if(!v&&typeof window.localizarVaga==='function')v=window.localizarVaga(new URLSearchParams(location.search).get('id'));}catch(e){}return v||{};}
+ function locationLabel(v,fallback){
+  var states={'acre':'AC','alagoas':'AL','amapa':'AP','amazonas':'AM','bahia':'BA','ceara':'CE','distrito federal':'DF','espirito santo':'ES','goias':'GO','maranhao':'MA','mato grosso':'MT','mato grosso do sul':'MS','minas gerais':'MG','para':'PA','paraiba':'PB','parana':'PR','pernambuco':'PE','piaui':'PI','rio de janeiro':'RJ','rio grande do norte':'RN','rio grande do sul':'RS','rondonia':'RO','roraima':'RR','santa catarina':'SC','sao paulo':'SP','sergipe':'SE','tocantins':'TO'};
+  function key(t){return String(t||'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').trim().toLowerCase();}
+  var city=String(v.cidade||v.localizacao||fallback||'').trim(),suffix=city.match(/\s*(?:[·•,\/|–-]|\s)\s*([A-Za-z]{2})$/),raw=String(v.uf||v.estado||v.siglaEstado||'').trim(),uf=states[key(raw)]||(/^[a-z]{2}$/i.test(raw)&&Object.values(states).includes(raw.toUpperCase())?raw.toUpperCase():'');
+  if(suffix&&Object.values(states).includes(suffix[1].toUpperCase())){uf=uf||suffix[1].toUpperCase();city=city.slice(0,suffix.index).trim();}
+  var legacy={'sao paulo':'SP','belo horizonte':'MG','betim':'MG','contagem':'MG','ibirite':'MG','nova lima':'MG','ribeirao das neves':'MG','sabara':'MG','santa luzia':'MG'};
+  uf=uf||legacy[key(city)]||'';
+  if(city===city.toUpperCase())city=city.toLocaleLowerCase('pt-BR').replace(/(^|[\s-])([a-zà-ÿ])/g,function(_,space,c){return space+c.toLocaleUpperCase('pt-BR');}).replace(/\b(Da|De|Do|Das|Dos|E)\b/g,function(w){return w.toLowerCase();});
+  return city+(uf?' · '+uf:'');
+ }
  function render(){
   queued=false;var hero=document.getElementById('emVagaHeroV88');if(!hero||!text('detalheCargoCab'))return;
   var v=data(),confidential=truth(v.confidencial)||document.getElementById('pagina-vaga').classList.contains('vaga-confidencial-em'),oldLogo=document.getElementById('logoDetalhe'),company=confidential?'Empresa confidencial':v.empresa||text('detalheEmpresaCab')||'Empresa';
@@ -13,7 +23,7 @@
   var benefits=Array.from(document.querySelectorAll('#emHeroBeneficiosListaV88 span')).flatMap(function(e){return e.textContent.trim().split(/\s+e\s+(?=assistência|vale|auxílio|plano|seguro)/i);}).filter(Boolean);
   var highlight=document.getElementById('emHeroDestaqueV88'),featured=highlight&&!highlight.hasAttribute('hidden');
   var salary=text('detalheSalario');if(typeof window.formatarSalarioExibicao==='function')salary=window.formatarSalarioExibicao(v.salario||salary);if(/combinar/i.test(salary)||!salary||salary==='-')salary='A combinar';else if(!/^R\$/i.test(salary))salary='R$ '+salary;
-  var city=text('detalheCidade'),uf=v.uf||v.estado;if(uf&&city.toLowerCase().indexOf(String(uf).toLowerCase())<0)city+=' • '+uf;
+  var city=locationLabel(v,text('detalheCidade'));
   var model={id:v.id,company:company,title:text('detalheCargoCab'),logo:logo,area:area,pcd:pcd,date:date,featured:featured,benefits:benefits,city:city,contract:text('detalheContrato'),mode:text('detalheModalidade'),salary:salary,confidential:confidential};
   var key=JSON.stringify(model);if(signature===key&&document.getElementById('emJobHeaderReference'))return;signature=key;
   var root=document.getElementById('emJobHeaderReference');if(!root){root=document.createElement('div');root.id='emJobHeaderReference';hero.appendChild(root);}hero.classList.add('em-header-reference');
