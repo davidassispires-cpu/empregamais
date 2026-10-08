@@ -117,3 +117,10 @@
 #pagina-publicar.em-publish-in-panel #formVaga .em-review-section{color:#314b65!important;font:12px/1.8 Montserrat,sans-serif!important}
 #pagina-publicar.em-publish-in-panel #formVaga .em-review-section strong{color:#18324f!important}
 @media(max-width:760px){#pagina-publicar.em-publish-in-panel #emJobProgress{grid-template-columns:repeat(2,minmax(0,1fr))!important}#pagina-publicar.em-publish-in-panel #formVaga .publish-contact-options{grid-template-columns:1fr}}
+
+/* Navegação de retorno visível no início e no rodapé de cada etapa. */
+#pagina-publicar.em-publish-in-panel #formVaga .em-job-actions{display:flex!important;visibility:visible!important}
+#pagina-publicar.em-publish-in-panel #formVaga button.publish-back-button{display:inline-flex!important;align-items:center!important;visibility:visible!important;opacity:1!important;position:static!important;order:-1!important;margin:0 auto 0 0!important}
+#pagina-publicar.em-publish-in-panel #formVaga button.publish-step-back{display:inline-flex!important;align-items:center!important;visibility:visible!important;opacity:1!important;margin:12px 0 0!important;padding:6px 0!important;border:0!important;background:transparent!important;color:#1769aa!important;font:600 12px Montserrat,sans-serif!important;cursor:pointer!important;box-shadow:none!important}
+#pagina-publicar.em-publish-in-panel #formVaga button.publish-step-back:hover{color:#084d8c!important;text-decoration:underline}
+#pagina-publicar.em-publish-in-panel #formVaga button.publish-step-back:focus-visible{outline:2px solid #94c6ff!important;outline-offset:4px!important}
