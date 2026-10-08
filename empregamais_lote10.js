@@ -330,7 +330,7 @@ function companyHero(e){
   }
   function mountPublish() {
     var page=document.getElementById('pagina-publicar');if(!page||!host)return;
-    if(!document.getElementById('em-publish-profile-design')){var link=document.createElement('link');link.id='em-publish-profile-design';link.rel='stylesheet';link.href='publicacao-painel.css?v=20261008-address-privacy-v240';document.head.appendChild(link);}
+    if(!document.getElementById('em-publish-profile-design')){var link=document.createElement('link');link.id='em-publish-profile-design';link.rel='stylesheet';link.href='publicacao-painel.css?v=20261008-address-services-v241';document.head.appendChild(link);}
     var shell=page.querySelector('.em-job-shell');if(shell&&!shell.querySelector('.em-publish-heading')){var heading=document.createElement('div');heading.className='em-publish-heading';heading.innerHTML='<small>RECRUTAMENTO E SELEÇÃO</small><h1>Publicar vaga</h1><p>Preencha as etapas e revise os dados antes de enviar sua oportunidade.</p>';shell.prepend(heading);}
     page.slot='recruiter-publish';if(!page.classList.contains('ativa'))page.classList.add('ativa');
     page.classList.add('em-publish-in-panel');page.style.setProperty('display','block','important');
