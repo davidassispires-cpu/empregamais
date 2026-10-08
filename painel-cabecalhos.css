@@ -1,0 +1,9 @@
+#pagina-candidatos-empresa.em-candidates-in-panel{padding:0!important;margin:0!important;max-width:none!important;width:100%!important;background:transparent!important}
+#pagina-candidatos-empresa.em-candidates-in-panel>.page-header{display:none!important}
+#pagina-candidatos-empresa.em-candidates-in-panel .container-dashboard,#pagina-candidatos-empresa.em-candidates-in-panel .container,#pagina-candidatos-empresa.em-candidates-in-panel .container-menor{padding:0!important;margin:0!important;max-width:none!important;width:100%!important}
+#pagina-candidatos-empresa.em-candidates-in-panel .em-jh-reference{padding:0!important;margin:0!important;border:0!important;background:transparent!important;border-radius:0!important;box-shadow:none!important}
+#pagina-candidatos-empresa.em-candidates-in-panel .em-jh-reference .em-jh-intro{padding:0!important;margin:0 0 20px!important;border:0!important;border-radius:0!important;background:transparent!important;box-shadow:none!important;align-items:flex-start!important}
+#pagina-candidatos-empresa.em-candidates-in-panel .em-jh-intro>div:first-child:before{content:'ACOMPANHE SEUS CANDIDATOS';display:block;font:700 10px Montserrat,Arial,sans-serif;letter-spacing:1.2px;color:#2870b8}
+#pagina-candidatos-empresa.em-candidates-in-panel .em-jh-reference .em-jh-intro h1{font:750 28px Inter,Arial,sans-serif!important;color:#18324f!important;margin:8px 0!important;letter-spacing:normal!important}
+#pagina-candidatos-empresa.em-candidates-in-panel .em-jh-reference .em-jh-intro p{font:13px/1.65 Montserrat,Arial,sans-serif!important;color:#6a7d92!important;margin:0!important}
+@media(max-width:700px){#pagina-candidatos-empresa.em-candidates-in-panel .em-jh-reference .em-jh-intro h1{font-size:24px!important}}
