@@ -273,6 +273,11 @@ function companyHero(e){
       detail.prepend(location);
       old.forEach(function(field){if(!field.querySelector('input,select,textarea,button'))field.remove()});
       var notice=document.getElementById('avisoCepAutoV151');if(notice)notice.remove();
+      if(!detail.querySelector('.publish-address-visibility')){
+        var visibility=document.createElement('div');visibility.className='em-field full publish-address-visibility';
+        visibility.innerHTML='<label>Como o endereço será exibido na vaga?</label><div class="publish-address-options" role="radiogroup" aria-label="Exibição do endereço"><label><input type="radio" name="exibicaoEnderecoVaga" value="empresa"><span>'+icon('company')+'<b>Endereço da empresa</b><small>Exibe o endereço cadastrado no Perfil Empresarial.</small></span></label><label><input type="radio" name="exibicaoEnderecoVaga" value="trabalho"><span>'+icon('pin')+'<b>Local de trabalho</b><small>Exibe o endereço informado acima.</small></span></label><label><input type="radio" name="exibicaoEnderecoVaga" value="cidade" checked><span>'+icon('eye')+'<b>Não exibir endereço</b><small>Mostra somente cidade e estado.</small></span></label></div>';
+        detail.appendChild(visibility);
+      }
     }
 
     page.querySelectorAll('.em-job-card-head').forEach(function(head,i){if(head.querySelector('.publish-section-icon'))return;var badge=document.createElement('span');badge.className='publish-step-badge';badge.textContent='ETAPA '+(i+1)+' DE 5';head.appendChild(badge);var pic=document.createElement('span');pic.className='publish-section-icon';pic.innerHTML=icon(i===0?'briefcase':i===1?'pin':i===2?'company':i===3?'mail':'check');head.prepend(pic)});
