@@ -387,6 +387,57 @@ function companyHero(e){
     if(!form.dataset.professionalDraft){form.dataset.professionalDraft='1';try{var draft=JSON.parse(localStorage.getItem(draftKey)||'null'),title=document.getElementById('cargoVaga');if(draft&&title&&!title.value){Object.keys(draft).forEach(function(id){var field=document.getElementById(id);if(!field||!form.contains(field)||field.type==='file')return;if(field.type==='checkbox'||field.type==='radio')field.checked=!!draft[id];else field.value=draft[id]});if(mode)mode.dispatchEvent(new Event('change',{bubbles:true}))}}catch(err){}}
     page.querySelectorAll('.em-job-actions').forEach(function(actions){if(actions.querySelector('.publish-draft'))return;var save=document.createElement('button');save.type='button';save.className='em-btn em-btn-back publish-draft';save.innerHTML=icon('card')+' Salvar rascunho';save.onclick=function(){var draft={};form.querySelectorAll('input[id],select[id],textarea[id]').forEach(function(f){if(f.type==='file'||f.type==='password'||f.type==='hidden')return;draft[f.id]=f.type==='checkbox'||f.type==='radio'?f.checked:f.value});try{localStorage.setItem(draftKey,JSON.stringify(draft));var msg=form.querySelector('.publish-draft-status');if(!msg){msg=document.createElement('p');msg.className='publish-draft-status';msg.setAttribute('role','status');form.appendChild(msg)}msg.textContent='Rascunho salvo neste navegador.'}catch(err){invoke('mostrarToast',['Não foi possível salvar o rascunho.'])}};actions.insertBefore(save,actions.lastElementChild)});
   }
+
+  function publishLogoAllowed(e){
+    var key=typeof window.planoEfetivoEmpresaEM==='function'?window.planoEfetivoEmpresaEM(e):(e.plano_id||e.planoId||e.plano);
+    var end=e.plano_valido_ate||e.planoValidoAte||e.planoFim||e.validadePlano;
+    return !e.suspensa_admin&&!/^(inativa|bloqueada|suspensa|cancelada)$/i.test(String(e.status||''))&&(!end||!Number.isFinite(Date.parse(end))||Date.parse(end)>Date.now())&&['mensal','trimestral','semestral','anual','profissional','premium','pro','enterprise','start'].indexOf(String(key||'').toLowerCase())>=0;
+  }
+  function savedPublishLogo(e){
+    var extra={},p=e.perfilPublico||{};
+    try{extra=JSON.parse(e.comprovacaoVerificacao||'{}')}catch(err){}
+    p=extra.perfilPublico||p;
+    if(typeof p==='string')try{p=JSON.parse(p)}catch(err){p={}}
+    if(!Object.keys(p||{}).length)try{p=JSON.parse(localStorage.getItem('perfilPublicoEmpresaEmpregaMais_'+String(e.cnpj||'').replace(/\D/g,''))||'{}')}catch(err){}
+    var list=[p&&p.logo,e.logo,e.logo_url,e.logoUrl,e.logoURL,e.logotipo];
+    return list.find(function(v){return typeof v==='string'&&/^(https?:\/\/|data:image\/|blob:)/i.test(v)})||'';
+  }
+  function setupPublishBranding(page){
+    var form=page.querySelector('#formVaga'),upload=form&&form.querySelector('#logoVaga'),box=form&&form.querySelector('.publish-logo-upload'),name=form&&form.querySelector('#empresaVaga');
+    if(!box||!upload||!name)return;
+    var e=company(),allowed=publishLogoAllowed(e),owner=String(e.cnpj||e.email||''),title=e.nome_fantasia||e.nomeFantasia||e.nome||e.razaoSocial||sessionStorage.getItem('empresaNome')||'Sua empresa';
+    name.value=title;name.readOnly=true;name.setAttribute('aria-readonly','true');
+    var field=name.closest('.em-field');if(field)field.style.setProperty('display','none','important');
+    if(!document.getElementById('em-publish-brand-style')){var style=document.createElement('style');style.id='em-publish-brand-style';style.textContent='#pagina-publicar .publish-logo-upload{align-items:center!important;gap:16px!important}#pagina-publicar .publish-brand-name{display:block!important;font:700 20px/1.4 Inter,Arial,sans-serif!important;color:#163954!important;margin:0 0 6px!important;overflow-wrap:anywhere}#pagina-publicar .publish-logo-placeholder{position:relative;flex-shrink:0;overflow:hidden}#pagina-publicar .publish-logo-placeholder svg{width:28px;height:28px}#pagina-publicar .publish-logo-placeholder #previewLogo{width:100%!important;height:100%!important;max-height:none!important;object-fit:contain!important;margin:0!important;border:0!important;background:#fff!important}#pagina-publicar .publish-upload-button[aria-disabled=true]{opacity:.55;cursor:default}#pagina-publicar .publish-logo-upload .publish-file-name{display:block;margin-top:8px;line-height:1.6}';document.head.appendChild(style)}
+    var caption=box.querySelector('.publish-brand-name');
+    if(!caption){caption=document.createElement('strong');caption.className='publish-brand-name';var content=box.querySelector('.publish-upload-button').parentNode;content.prepend(caption);var oldTitle=Array.from(content.children).find(function(node){return node.tagName==='STRONG'&&node!==caption});if(oldTitle)oldTitle.remove()}
+    caption.textContent=title;
+    var preview=document.getElementById('previewLogo');
+    if(preview&&preview.tagName!=='IMG'){var image=document.createElement('img');image.id='previewLogo';preview.replaceWith(image);preview=image}
+    preview.alt='Logo de '+title;
+    if(box.dataset.brandOwner!==owner){upload.value='';box.dataset.brandOwner=owner;box.dataset.brandSelected='';}
+    if(!box.dataset.brandSelected){var saved=allowed?savedPublishLogo(e):'';if(typeof logoAtual!=='undefined')logoAtual=saved;if(saved){preview.src=saved;preview.style.display='block'}else{preview.removeAttribute('src');preview.style.display='none'}}
+    if(!allowed){if(typeof logoAtual!=='undefined')logoAtual='';upload.value='';preview.removeAttribute('src');preview.style.display='none';box.dataset.brandSelected=''}
+    upload.disabled=!allowed;
+    var button=box.querySelector('.publish-upload-button');button.setAttribute('aria-disabled',String(!allowed));button.innerHTML=icon('plus')+' '+(allowed&&preview.getAttribute('src')?'Trocar logo':'Enviar logo');
+    var description=caption.parentNode.querySelector('p');if(description)description.textContent=allowed?'Sua identidade visual será exibida na vaga.':'A exibição da logo nas vagas está disponível com assinatura ativa.';
+    var note=box.querySelector('.publish-file-name');note.textContent=allowed?(preview.getAttribute('src')?'Logo carregada do perfil da empresa.':'Selecione uma logo ou cadastre-a no Perfil Empresarial.'):'O nome da empresa será exibido normalmente.';
+    form.querySelectorAll('.aviso-plano-logo-em').forEach(function(node){node.remove()});
+    function syncIcon(){var has=allowed&&!!preview.getAttribute('src');preview.style.display=has?'block':'none';var svg=box.querySelector('.publish-logo-placeholder svg');if(svg)svg.style.display=has?'none':'block'}
+    syncIcon();
+    if(!box.dataset.brandBound){box.dataset.brandBound='1';button.addEventListener('click',function(ev){if(!publishLogoAllowed(company())){ev.preventDefault();ev.stopImmediatePropagation()}},true);
+      upload.addEventListener('change',function(){if(!publishLogoAllowed(company())){upload.value='';return}box.dataset.brandSelected=upload.files&&upload.files.length?'1':'';if(box.dataset.brandSelected)note.textContent=upload.files[0].name;else setupPublishBranding(page)});
+      new MutationObserver(function(){var has=publishLogoAllowed(company())&&!!preview.getAttribute('src');preview.style.display=has?'block':'none';var svg=box.querySelector('.publish-logo-placeholder svg');if(svg)svg.style.display=has?'none':'block'}).observe(preview,{attributes:true,attributeFilter:['src']});
+      form.addEventListener('reset',function(){box.dataset.brandSelected='';setTimeout(function(){setupPublishBranding(page)},0)});
+    }
+  }
+  window.EMCompanyPublishBranding={preparePayload:function(v){
+    var e=company(),allowed=publishLogoAllowed(e);
+    v.empresa=e.nome_fantasia||e.nomeFantasia||e.nome||e.razaoSocial||v.empresa;
+    v.logo=allowed?((typeof logoAtual!=='undefined'&&logoAtual)||savedPublishLogo(e)):'';
+    return v;
+  }};
+
   function mountPublish() {
     var page=document.getElementById('pagina-publicar');if(!page||!host)return;
     if(!document.getElementById('em-publish-profile-design')){var link=document.createElement('link');link.id='em-publish-profile-design';link.rel='stylesheet';link.href='publicacao-painel.css?v=20261008-address-services-v241';document.head.appendChild(link);}
@@ -396,7 +447,7 @@ function companyHero(e){
     if(page.parentNode!==host)host.appendChild(page);
     enhancePublish(page);if(window.EMPaidRecruiting)window.EMPaidRecruiting.setupPublish(page);
     var key=String(company().cnpj||company().email||'');
-    if(page.dataset.panelCompany!==key){page.dataset.panelCompany=key;invoke('preencherDadosPublicacao');}
+    if(page.dataset.panelCompany!==key){page.dataset.panelCompany=key;invoke('preencherDadosPublicacao');}setupPublishBranding(page);
   }
   window.abrirPublicarVagaPainelEM=openPublish;
   function openProfile() {
