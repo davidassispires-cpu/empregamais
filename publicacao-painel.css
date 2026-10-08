@@ -1,0 +1,35 @@
+/* O formulário de vagas acompanha o padrão visual do Perfil Empresarial. */
+#pagina-publicar.em-publish-in-panel{font:13px Montserrat,Arial,sans-serif!important;color:#18324f!important}
+#pagina-publicar.em-publish-in-panel .em-job-shell{width:100%!important;max-width:1100px!important;margin:0 auto!important;padding:0!important}
+#pagina-publicar.em-publish-in-panel .em-publish-heading{margin-bottom:20px}
+#pagina-publicar.em-publish-in-panel .em-publish-heading small{font:700 10px Montserrat,Arial,sans-serif;letter-spacing:1.2px;color:#2870b8}
+#pagina-publicar.em-publish-in-panel .em-publish-heading h1{font:750 28px Inter,Arial,sans-serif!important;color:#18324f!important;margin:8px 0!important}
+#pagina-publicar.em-publish-in-panel .em-publish-heading p{font:13px/1.65 Montserrat,Arial,sans-serif!important;color:#6a7d92!important;margin:0!important}
+#pagina-publicar.em-publish-in-panel .em-job-top{border:1px solid #dce7f1!important;border-radius:12px!important;padding:7px!important;margin:0 0 16px!important;background:#fff!important;box-shadow:none!important}
+#pagina-publicar.em-publish-in-panel #emJobProgress{display:grid!important;grid-template-columns:repeat(4,minmax(0,1fr))!important;gap:6px!important}
+#pagina-publicar.em-publish-in-panel #emJobProgress .em-job-step{display:flex!important;align-items:center!important;gap:9px!important;padding:11px 9px!important;border-radius:8px!important;text-align:left!important;color:#315372!important;font:600 12px Montserrat,Arial,sans-serif!important}
+#pagina-publicar.em-publish-in-panel #emJobProgress .em-job-step:before{display:none!important}
+#pagina-publicar.em-publish-in-panel #emJobProgress .em-job-num{width:25px!important;height:25px!important;flex:0 0 25px!important;margin:0!important;background:#edf2f7!important;color:#6a7c91!important;font-size:11px!important}
+#pagina-publicar.em-publish-in-panel #emJobProgress .em-job-step.active{background:#edf5ff!important;color:#0870df!important}
+#pagina-publicar.em-publish-in-panel #emJobProgress .em-job-step.active .em-job-num{background:#0870df!important;color:#fff!important}
+#pagina-publicar.em-publish-in-panel #emJobProgress .em-job-step.done .em-job-num{background:#edf5ff!important;color:#0870df!important}
+#pagina-publicar.em-publish-in-panel #formVaga{margin:0!important;padding:0!important;background:transparent!important;box-shadow:none!important;border:0!important;width:100%!important;max-width:none!important}
+#pagina-publicar.em-publish-in-panel #formVaga .em-job-card{border:1px solid #dce7f1!important;border-radius:12px!important;background:#fff!important;box-shadow:0 5px 18px #18324f05!important;padding:0!important;overflow:hidden!important}
+#pagina-publicar.em-publish-in-panel #formVaga .em-job-card-head{padding:24px 24px 17px!important;border-bottom:1px solid #e8eef5!important;background:#fff!important}
+#pagina-publicar.em-publish-in-panel #formVaga .em-job-card-head h2{font:700 20px Inter,Arial,sans-serif!important;color:#18324f!important;margin:0 0 7px!important}
+#pagina-publicar.em-publish-in-panel #formVaga .em-job-card-head p{font:13px/1.65 Montserrat,Arial,sans-serif!important;color:#6a7d92!important;margin:0!important}
+#pagina-publicar.em-publish-in-panel #formVaga .em-job-body{padding:24px!important}
+#pagina-publicar.em-publish-in-panel #formVaga .em-grid{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:18px!important}
+#pagina-publicar.em-publish-in-panel #formVaga .em-field{min-width:0!important}
+#pagina-publicar.em-publish-in-panel #formVaga .em-field label{font:600 12px/1.6 Montserrat,Arial,sans-serif!important;color:#18324f!important;margin:0 0 7px!important}
+#pagina-publicar.em-publish-in-panel #formVaga .em-field input:not([type=checkbox]):not([type=radio]),#pagina-publicar.em-publish-in-panel #formVaga .em-field select,#pagina-publicar.em-publish-in-panel #formVaga .em-field textarea{width:100%!important;box-sizing:border-box!important;border:1px solid #d4dfeb!important;border-radius:8px!important;background:#fff!important;padding:11px 12px!important;font:13px/1.6 Inter,Arial,sans-serif!important;color:#213e5b!important;box-shadow:none!important;min-height:0!important}
+#pagina-publicar.em-publish-in-panel #formVaga .em-field textarea{min-height:100px!important;resize:vertical!important}
+#pagina-publicar.em-publish-in-panel #formVaga input::placeholder,#pagina-publicar.em-publish-in-panel #formVaga textarea::placeholder{color:#94a3b3!important}
+#pagina-publicar.em-publish-in-panel #formVaga .em-field input:focus,#pagina-publicar.em-publish-in-panel #formVaga .em-field select:focus,#pagina-publicar.em-publish-in-panel #formVaga .em-field textarea:focus{outline:2px solid #94c6ff!important;outline-offset:1px!important}
+#pagina-publicar.em-publish-in-panel #formVaga .em-job-actions{padding:17px 24px!important;border-top:1px solid #e6edf5!important;background:#fff!important;gap:12px!important;flex-wrap:wrap!important}
+#pagina-publicar.em-publish-in-panel #formVaga .em-btn{font:600 12px Montserrat,Arial,sans-serif!important;border-radius:8px!important;padding:11px 15px!important;min-height:0!important;box-shadow:none!important}
+#pagina-publicar.em-publish-in-panel #formVaga .em-btn-back{border:1px solid #d8e3ef!important;background:#fff!important;color:#315372!important}
+#pagina-publicar.em-publish-in-panel #formVaga .em-btn-next,#pagina-publicar.em-publish-in-panel #formVaga .em-btn-publish{background:#0874eb!important;border:1px solid #0874eb!important;color:#fff!important}
+#pagina-publicar.em-publish-in-panel #formVaga .em-review-box{border:1px solid #e3edf7!important;border-radius:9px!important;padding:18px!important;box-shadow:none!important}
+@media(max-width:760px){#pagina-publicar.em-publish-in-panel #emJobProgress{grid-template-columns:1fr 1fr!important}#pagina-publicar.em-publish-in-panel #emJobProgress .em-job-step{font-size:11px!important}#pagina-publicar.em-publish-in-panel #formVaga .em-job-card-head,#pagina-publicar.em-publish-in-panel #formVaga .em-job-body{padding:18px!important}#pagina-publicar.em-publish-in-panel .em-publish-heading h1{font-size:24px!important}}
+@media(max-width:480px){#pagina-publicar.em-publish-in-panel #formVaga .em-grid{grid-template-columns:1fr!important}#pagina-publicar.em-publish-in-panel #formVaga .em-field.full{grid-column:1/-1!important}#pagina-publicar.em-publish-in-panel #formVaga .em-job-actions{padding:15px 18px!important}}
