@@ -152,3 +152,23 @@ html body #emCandidateDetails.em-candidate-reference-v55 .em-candidate-modal-bod
  #emCandidateDetails.em-candidate-reference-v55 .em-message-workspace .em-internal-message-actions>small{font-size:9px!important;margin-top:2px!important}
 }
 @media(max-width:760px){#emCandidateDetails.em-candidate-reference-v55 .em-dedicated-messages .em-candidate-message>.em-message-workspace{grid-template-columns:1fr!important;gap:14px!important}#emCandidateDetails.em-candidate-reference-v55 .em-message-workspace>.em-message-editor{padding:15px!important}}
+/* Refined process-stage control, with stable heading order. */
+#emCandidateDetails.em-candidate-reference-v55 .em-wide-workflow>h3{order:0!important}
+#emCandidateDetails.em-candidate-reference-v55 .em-wide-workflow>.em-gc27-stagebox{order:1!important}
+#emCandidateDetails.em-candidate-reference-v55 .em-wide-workflow>.em-wide-hint{order:2!important}
+#emCandidateDetails.em-candidate-reference-v55 .em-wide-workflow>.em-detail-save{order:3!important}
+#emCandidateDetails.em-candidate-reference-v55 .em-wide-workflow>.em-detail-feedback{order:4!important}
+#emCandidateDetails.em-candidate-reference-v55 .em-wide-workflow>.em-detail-note{order:5!important}
+html body #emCandidateDetails.em-candidate-reference-v55 .em-wide-workflow .em-gc27-stage{
+ appearance:none!important;-webkit-appearance:none!important;box-sizing:border-box!important;
+ min-height:46px!important;height:46px!important;padding:0 36px 0 42px!important;
+ border-radius:10px!important;font:600 13px/1.4 Inter,Arial,sans-serif!important;
+ background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 24 24' fill='none' stroke='%2387795c' stroke-width='1.7' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='12' cy='12' r='9'/%3E%3Cpath d='M12 7v5l3 2'/%3E%3C/svg%3E"),url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%2387795c' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m7 10 5 5 5-5'/%3E%3C/svg%3E")!important;
+ background-repeat:no-repeat!important;background-position:13px center,right 12px center!important;
+ background-size:20px 20px,16px 16px!important;cursor:pointer!important;
+ transition:border-color .18s,box-shadow .18s,transform .18s!important;
+}
+html body #emCandidateDetails.em-candidate-reference-v55 .em-wide-workflow .em-gc27-stage[data-stage-color="Em avaliação"]{background-color:#fff9e9!important;border-color:#ead49b!important;color:#9d690c!important}
+html body #emCandidateDetails.em-candidate-reference-v55 .em-wide-workflow .em-gc27-stage:hover{box-shadow:0 3px 10px #17324e0c!important;transform:translateY(-1px)}
+html body #emCandidateDetails.em-candidate-reference-v55 .em-wide-workflow .em-gc27-stage:focus-visible{outline:2px solid #0876ef!important;outline-offset:3px!important;box-shadow:0 0 0 4px #0876ef12!important}
+@media(prefers-reduced-motion:reduce){html body #emCandidateDetails.em-candidate-reference-v55 .em-wide-workflow .em-gc27-stage{transition:none!important;transform:none!important}}
