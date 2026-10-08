@@ -1,0 +1,17 @@
+html body #pagina-vaga#pagina-vaga{background:#f3f6fa!important;padding-top:0!important}
+html body #pagina-vaga#pagina-vaga>.page-header{width:100%!important;max-width:none!important;margin:0 0 28px!important;padding:0!important;background:#1b4f87!important;border:0!important;border-radius:0!important}
+#emPortalVagaBanner{max-width:1160px!important;margin:0 auto!important;padding:18px 0 20px!important;color:#fff!important;font-family:Montserrat,Arial,sans-serif!important}
+#emPortalVagaBanner nav{display:flex!important;align-items:center!important;gap:9px!important;flex-wrap:wrap!important;font-size:11px!important;line-height:1.6!important;background:transparent!important;padding:0!important;box-shadow:none!important}
+#emPortalVagaBanner a{color:#fff!important;text-decoration:none!important}#emPortalVagaBanner a:hover{text-decoration:underline!important}
+#emPortalVagaBanner p{margin:7px 0 0!important;color:#fff!important;font:750 25px/1.3 Inter,Arial,sans-serif!important}
+html body #pagina-vaga#pagina-vaga>.page-header> :not(#emPortalVagaBanner){display:none!important}
+html body #pagina-vaga #emVagaHeroV88#emVagaHeroV88.em-header-reference{background:#fff!important;padding-top:20px!important;border-radius:10px!important}
+html body #pagina-vaga #emVagaHeroV88#emVagaHeroV88.em-header-reference:before{display:none!important;content:none!important}
+html body #pagina-vaga#pagina-vaga .em-detail-tabs{display:flex!important;align-items:center!important;gap:16px!important;padding:12px 20px 0!important;background:#fff!important;border-bottom:1px solid #dce7f2!important;border-radius:10px 10px 0 0!important;overflow-x:auto!important}
+html body #pagina-vaga#pagina-vaga .em-detail-tabs [role=tab]{display:inline-flex!important;align-items:center!important;justify-content:center!important;gap:8px!important;background:transparent!important;border:0!important;border-bottom:3px solid transparent!important;border-radius:0!important;box-shadow:none!important;color:#526780!important;padding:9px 0 13px!important;font:600 12px/1.5 Montserrat,Arial,sans-serif!important;white-space:nowrap!important}
+html body #pagina-vaga#pagina-vaga .em-detail-tabs [role=tab][aria-selected=true]{color:#0875ee!important;border-bottom-color:#0875ee!important}
+#pagina-vaga .em-portal-tab-icon{width:19px!important;height:19px!important;display:block!important;flex-shrink:0!important}
+#pagina-vaga .em-detail-tabs [role=tab]:focus-visible{outline:2px solid #0875ee!important;outline-offset:2px!important}
+#pagina-vaga .em-portal-free{display:block!important;text-align:center!important;font:500 11px/1.5 Montserrat,Arial,sans-serif!important;color:#71849e!important;margin:7px 0 0!important}
+@media(max-width:1200px){#emPortalVagaBanner{padding-left:24px!important;padding-right:24px!important}}
+@media(max-width:600px){#emPortalVagaBanner p{font-size:22px!important}#emPortalVagaBanner{padding:15px 18px 18px!important}html body #pagina-vaga#pagina-vaga .em-detail-tabs{gap:14px!important;padding-left:15px!important;padding-right:15px!important}html body #pagina-vaga#pagina-vaga .em-detail-tabs [role=tab]{font-size:11px!important;gap:5px!important}}
