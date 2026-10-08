@@ -1,6 +1,6 @@
 #pagina-vaga #emVagaHeroV88.em-header-reference{padding:20px!important;background:#fff!important;border:1px solid #d6e8fa!important;border-radius:16px!important;box-shadow:0 4px 16px #14548b08!important;overflow:visible!important}
 #pagina-vaga #emVagaHeroV88.em-header-reference:before,#pagina-vaga #emVagaHeroV88.em-header-reference:after{display:none!important;content:none!important}
-#pagina-vaga #emVagaHeroV88.em-header-reference> :not(#emJobHeaderReference){display:none!important}
+#pagina-vaga #emVagaHeroV88#emVagaHeroV88.em-header-reference> :not(#emJobHeaderReference){display:none!important}
 #pagina-vaga #emJobHeaderReference{display:block!important;position:relative!important;font-family:Montserrat,Arial,sans-serif!important;color:#17385c!important}
 #emJobHeaderReference *{box-sizing:border-box!important}
 #emJobHeaderReference .jh-top{display:grid!important;grid-template-columns:72px minmax(0,1fr) auto!important;align-items:start!important;gap:16px!important;padding-bottom:20px!important;border-bottom:1px solid #dfebf7!important}
