@@ -189,8 +189,55 @@ function companyHero(e){
     invoke('irPara',['painel-empresa']);mount();
     window.scrollTo({top:0,behavior:'smooth'});
   }
+  function setupPublishContact(form){
+    if(form.querySelector('.publish-contact-step'))return;
+    var review=form.querySelector('[data-panel="4"]');if(!review)return;
+    review.dataset.panel='5';
+    var back=review.querySelector('.em-btn-back');if(back)back.onclick=function(){window.emShowJobStep(4)};
+    var step=document.createElement('section');step.className='em-job-card publish-contact-step';step.dataset.panel='4';step.style.setProperty('display','none','important');
+    step.innerHTML='<div class="em-job-card-head"><h2>Receber candidaturas</h2><p>Escolha como os candidatos enviarão seus currículos.</p></div><div class="em-job-body"><div class="publish-contact-options"></div><div class="em-grid publish-contact-fields"></div><p class="publish-contact-help" role="status"></p></div><div class="em-job-actions"><button type="button" class="em-btn em-btn-back">← Voltar</button><button type="button" class="em-btn em-btn-next">Revisar vaga →</button></div>';
+    form.insertBefore(step,review);step.querySelector('.em-btn-back').onclick=function(){window.emShowJobStep(3)};
+    var choices=[['email','tipoContatoEmail','E-mail','Currículos enviados ao e-mail da empresa.','emailCandidaturaVaga','E-mail para receber currículos','mail'],['whatsapp','opcaoContatoWhatsapp','WhatsApp','Candidatos entram em contato pelo WhatsApp.','whatsappCandidaturaVaga','WhatsApp com DDI e DDD','phone'],['link','opcaoContatoLink','Site','Candidatos se inscrevem no site informado.','linkCandidaturaVaga','Link para candidatura','link']];
+    choices.forEach(function(row){
+      var radio=document.getElementById(row[1]);radio.name='tipoContatoVaga';
+      var label=document.createElement('label');label.className='publish-contact-choice';label.htmlFor=radio.id;
+      var pic=document.createElement('span');pic.className='publish-contact-symbol';pic.innerHTML=icon(row[6]);label.appendChild(pic);
+      var copy=document.createElement('span');copy.innerHTML='<strong>'+row[2]+'</strong><small>'+row[3]+'</small>';label.appendChild(copy);label.appendChild(radio);step.querySelector('.publish-contact-options').appendChild(label);
+      var control=document.getElementById(row[4]),box=document.getElementById(row[0]==='email'?'campoContatoEmail':row[0]==='whatsapp'?'campoContatoWhatsapp':'campoContatoLink');
+      box.className='em-field full publish-contact-destination';box.dataset.contact=row[0];box.replaceChildren();var title=document.createElement('label');title.htmlFor=control.id;title.textContent=row[5];box.appendChild(title);box.appendChild(control);step.querySelector('.publish-contact-fields').appendChild(box);
+      control.placeholder=row[0]==='email'?'curriculos@empresa.com.br':row[0]==='whatsapp'?'+55 (31) 99999-9999':'https://empresa.com.br/carreiras';if(row[0]==='link')control.type='url';if(row[0]==='whatsapp'){control.type='tel';control.inputMode='tel'}
+    });
+    var saved=company(),mail=document.getElementById('emailCandidaturaVaga');if(!mail.value)mail.value=saved.emailCurriculos||saved.email_curriculos||saved.emailRecebimentoCurriculos||saved.emailCorporativo||saved.email_corporativo||saved.email||'';
+    if(!choices.some(function(row){return document.getElementById(row[1]).checked}))document.getElementById('tipoContatoEmail').checked=true;
+    function sync(){
+      var chosen=form.querySelector('input[name="tipoContatoVaga"]:checked'),type=chosen?chosen.value:'email';
+      choices.forEach(function(row){var r=document.getElementById(row[1]);r.closest('label').classList.toggle('selected',r.checked);var box=step.querySelector('[data-contact="'+row[0]+'"]');box.style.setProperty('display',row[0]===type?'block':'none','important');document.getElementById(row[4]).required=row[0]===type});
+      step.querySelector('.publish-contact-help').textContent=type==='email'?'Usamos o e-mail informado no cadastro. Confira o endereço ou ajuste o destino para esta vaga.':type==='whatsapp'?'Informe o número que receberá as candidaturas, incluindo DDI e DDD.':'Informe o endereço completo da página onde o candidato deverá se inscrever.';
+    }
+    step.addEventListener('change',sync);window.atualizarTipoContatoVaga=sync;sync();
+    function validContact(){sync();var chosen=form.querySelector('input[name="tipoContatoVaga"]:checked'),type=chosen?chosen.value:'email',control=document.getElementById(type==='email'?'emailCandidaturaVaga':type==='whatsapp'?'whatsappCandidaturaVaga':'linkCandidaturaVaga');control.setCustomValidity('');if(type==='whatsapp'&&control.value.replace(/\D/g,'').length<10)control.setCustomValidity('Informe um WhatsApp válido com DDI e DDD.');if(type==='link'&&!/^https?:\/\//i.test(control.value))control.setCustomValidity('Informe um link completo começando com https://.');if(!control.checkValidity()){control.reportValidity();return false}return true}
+    var progress=document.getElementById('emJobProgress');progress.innerHTML=['Informações da vaga','Detalhes','Descrição','Candidaturas','Revisar e publicar'].map(function(title,i){return '<div class="em-job-step" data-step="'+(i+1)+'"><span class="em-job-num">'+(i+1)+'</span><span>'+title+'</span></div>'}).join('');
+    var next3=document.getElementById('emNextStep3V203');if(next3)next3.textContent='Próximo →';
+    window.emBuildJobReview=function(){
+      function value(id){var field=document.getElementById(id);return field?String(field.value||'').trim():''}
+      function line(title,text){return '<div><b>'+title+':</b> '+esc(text||'Não informado')+'</div>'}
+      var content='<div class="em-review-section"><strong>Informações da vaga</strong>'+line('Cargo',value('cargoVaga'))+line('Empresa',value('empresaVaga'))+line('Área',value('areaVaga'))+line('Contrato',value('contratoVaga'))+line('Modalidade',value('modalidadeVaga'))+'</div><div class="em-review-section"><strong>Localização e condições</strong>'+line('Localização',[value('cidadeVaga'),value('estadoVaga')].filter(Boolean).join(' - '))+line('Salário',value('salarioVaga')||'A combinar')+line('Escolaridade',value('escolaridadeVaga'))+line('Experiência',value('experienciaVaga'))+line('Jornada',value('jornadaVaga'))+'</div>';
+      [['descricaoVaga','Descrição'],['requisitosVaga','Requisitos'],['beneficiosVaga','Benefícios']].forEach(function(row){var text=value(row[0]);if(text)content+='<div class="em-review-section"><strong>'+row[1]+'</strong><p>'+esc(text.slice(0,240))+(text.length>240?'…':'')+'</p></div>'});
+      document.getElementById('emReviewContent').innerHTML=content;
+      document.getElementById('emPreviewCard').innerHTML='<div class="em-preview-title">'+esc(value('cargoVaga'))+'</div><div class="em-preview-company">'+esc(value('empresaVaga'))+'</div><div>'+esc([value('cidadeVaga'),value('estadoVaga')].filter(Boolean).join(' - '))+'</div><div class="em-preview-tags"><span>'+esc(value('contratoVaga'))+'</span><span>'+esc(value('modalidadeVaga'))+'</span></div><strong>Sobre a vaga</strong><p>'+esc(value('descricaoVaga').slice(0,220))+(value('descricaoVaga').length>220?'…':'')+'</p>';
+    };
+    window.emShowJobStep=function(n){
+      form.querySelectorAll('.em-job-card[data-panel]').forEach(function(card){var active=Number(card.dataset.panel)===Number(n);card.classList.toggle('active',active);card.style.setProperty('display',active?'block':'none','important')});
+      progress.querySelectorAll('[data-step]').forEach(function(item){var i=Number(item.dataset.step);item.classList.toggle('active',i===Number(n));item.classList.toggle('done',i<Number(n))});
+      if(Number(n)===4)sync();if(Number(n)===5&&typeof window.emBuildJobReview==='function'){window.emBuildJobReview();var summary=document.getElementById('emReviewContent');var entry=document.createElement('div');entry.className='em-review-section';var selected=form.querySelector('input[name="tipoContatoVaga"]:checked'),row=choices.find(function(x){return x[0]===(selected?selected.value:'email')});entry.innerHTML='<strong>Recebimento de candidaturas</strong><div>'+row[2]+': '+esc(document.getElementById(row[4]).value)+'</div>';summary.appendChild(entry)}
+      progress.scrollIntoView({behavior:'smooth',block:'start'});
+    };
+    window.emNextJob=function(n){var card=form.querySelector('[data-panel="'+n+'"]');if(Number(n)===4&&!validContact())return;var required=card.querySelectorAll('[required]');for(var i=0;i<required.length;i++){if(!required[i].checkValidity()){required[i].reportValidity();return}}window.emShowJobStep(Number(n)+1)};
+    window.addEventListener('click',function(event){var button=event.target.closest&&event.target.closest('#formVaga .em-btn-next');if(!button)return;event.preventDefault();event.stopImmediatePropagation();window.emNextJob(Number(button.closest('[data-panel]').dataset.panel))},true);
+    form.addEventListener('submit',function(event){if(!validContact()){event.preventDefault();event.stopImmediatePropagation();window.emShowJobStep(4)}},true);
+  }
   function enhancePublish(page){
-    var form=page.querySelector('#formVaga');if(!form)return;
+    var form=page.querySelector('#formVaga');if(!form)return;setupPublishContact(form);
     var detail=form.querySelector('.em-job-card[data-panel="2"] .em-grid');
     if(detail&&!detail.dataset.publishAddress){
       detail.dataset.publishAddress='1';
@@ -209,7 +256,7 @@ function companyHero(e){
       var notice=document.getElementById('avisoCepAutoV151');if(notice)notice.remove();
     }
 
-    page.querySelectorAll('.em-job-card-head').forEach(function(head,i){if(head.querySelector('.publish-section-icon'))return;var badge=document.createElement('span');badge.className='publish-step-badge';badge.textContent='ETAPA '+(i+1)+' DE 4';head.appendChild(badge);var pic=document.createElement('span');pic.className='publish-section-icon';pic.innerHTML=icon(i===0?'briefcase':i===1?'pin':i===2?'company':'check');head.prepend(pic)});
+    page.querySelectorAll('.em-job-card-head').forEach(function(head,i){if(head.querySelector('.publish-section-icon'))return;var badge=document.createElement('span');badge.className='publish-step-badge';badge.textContent='ETAPA '+(i+1)+' DE 5';head.appendChild(badge);var pic=document.createElement('span');pic.className='publish-section-icon';pic.innerHTML=icon(i===0?'briefcase':i===1?'pin':i===2?'company':i===3?'mail':'check');head.prepend(pic)});
     [['empresaVaga','company'],['cargoVaga','briefcase'],['areaVaga','company'],['contratoVaga','card'],['cidadeVaga','pin'],['salarioVaga','card']].forEach(function(pair){var input=document.getElementById(pair[0]);if(!input||input.closest('.publish-input-wrap'))return;var wrap=document.createElement('div');wrap.className='publish-input-wrap';input.parentNode.insertBefore(wrap,input);var pic=document.createElement('span');pic.className='publish-field-icon';pic.innerHTML=icon(pair[1]);wrap.appendChild(pic);wrap.appendChild(input)});
     var upload=document.getElementById('logoVaga');if(upload&&!page.querySelector('.publish-logo-upload')){var field=upload.closest('.em-field');if(field){var box=document.createElement('div');box.className='publish-logo-upload';box.innerHTML='<div class="publish-logo-placeholder">'+icon('company')+'</div><div><strong>Logo da empresa</strong><p>Adicione sua logo para personalizar a oportunidade.</p><label class="publish-upload-button" for="logoVaga">'+icon('plus')+' Enviar logo</label><small class="publish-file-name" aria-live="polite"></small></div>';field.prepend(box);var preview=document.getElementById('previewLogo');if(preview)box.querySelector('.publish-logo-placeholder').appendChild(preview);upload.addEventListener('change',function(){box.querySelector('.publish-file-name').textContent=upload.files&&upload.files[0]?upload.files[0].name:''})}}
     var mode=document.getElementById('modalidadeVaga');if(mode&&!page.querySelector('.publish-mode-options')){var field=mode.closest('.em-field');if(field){field.classList.add('publish-mode-field');var options=document.createElement('div');options.className='publish-mode-options';options.setAttribute('role','group');options.setAttribute('aria-label','Modalidade de trabalho');['Presencial','Híbrido','Remoto'].forEach(function(label,i){var b=document.createElement('button');b.type='button';b.dataset.mode=label;b.innerHTML=icon(i===0?'pin':i===1?'home':'company')+'<span>'+label+'</span><i aria-hidden="true"></i>';b.onclick=function(){mode.value=label;mode.dispatchEvent(new Event('change',{bubbles:true}));sync()};options.appendChild(b)});function sync(){options.querySelectorAll('button').forEach(function(b){var active=b.dataset.mode===mode.value;b.classList.toggle('selected',active);b.setAttribute('aria-pressed',String(active))})}mode.after(options);mode.addEventListener('change',sync);sync();mode.classList.add('publish-mode-original')}}
@@ -232,7 +279,7 @@ function companyHero(e){
   }
   function mountPublish() {
     var page=document.getElementById('pagina-publicar');if(!page||!host)return;
-    if(!document.getElementById('em-publish-profile-design')){var link=document.createElement('link');link.id='em-publish-profile-design';link.rel='stylesheet';link.href='publicacao-painel.css?v=20261008-all-field-icons-v59';document.head.appendChild(link);}
+    if(!document.getElementById('em-publish-profile-design')){var link=document.createElement('link');link.id='em-publish-profile-design';link.rel='stylesheet';link.href='publicacao-painel.css?v=20261008-contact-step-v60';document.head.appendChild(link);}
     var shell=page.querySelector('.em-job-shell');if(shell&&!shell.querySelector('.em-publish-heading')){var heading=document.createElement('div');heading.className='em-publish-heading';heading.innerHTML='<small>RECRUTAMENTO E SELEÇÃO</small><h1>Publicar vaga</h1><p>Preencha as etapas e revise os dados antes de enviar sua oportunidade.</p>';shell.prepend(heading);}
     page.slot='recruiter-publish';if(!page.classList.contains('ativa'))page.classList.add('ativa');
     page.classList.add('em-publish-in-panel');page.style.setProperty('display','block','important');

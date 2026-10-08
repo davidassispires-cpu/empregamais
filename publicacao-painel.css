@@ -101,3 +101,19 @@
 #pagina-publicar.em-publish-in-panel #formVaga .publish-textarea-wrap > .publish-field-icon{top:23px!important}
 #pagina-publicar.em-publish-in-panel #formVaga .publish-choice-icon{display:inline-flex!important;vertical-align:middle!important;align-items:center;justify-content:center;width:18px;height:18px;margin-right:7px;color:#7b889e;pointer-events:none;flex-shrink:0}
 #pagina-publicar.em-publish-in-panel #formVaga .publish-choice-icon svg{display:block!important;width:18px!important;height:18px!important}
+
+/* Etapa exclusiva para o destino dos currículos. */
+#pagina-publicar.em-publish-in-panel #emJobProgress{grid-template-columns:repeat(5,minmax(0,1fr))!important}
+#pagina-publicar.em-publish-in-panel #formVaga .publish-contact-options{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin-bottom:24px}
+#pagina-publicar.em-publish-in-panel #formVaga label.publish-contact-choice{display:flex!important;align-items:center!important;gap:12px!important;padding:18px!important;margin:0!important;border:1px solid #d4dfeb!important;border-radius:10px!important;background:#fff!important;cursor:pointer;min-width:0}
+#pagina-publicar.em-publish-in-panel #formVaga .publish-contact-choice.selected{background:#f1f7ff!important;border-color:#0874eb!important;box-shadow:0 0 0 1px #0874eb}
+#pagina-publicar.em-publish-in-panel #formVaga .publish-contact-symbol{display:flex;color:#0874eb;flex-shrink:0}
+#pagina-publicar.em-publish-in-panel #formVaga .publish-contact-symbol svg{width:24px;height:24px}
+#pagina-publicar.em-publish-in-panel #formVaga .publish-contact-choice strong{display:block;font:700 14px Inter,sans-serif;color:#18324f}
+#pagina-publicar.em-publish-in-panel #formVaga .publish-contact-choice small{display:block;margin-top:5px;font:11px/1.6 Montserrat,sans-serif;color:#718198}
+#pagina-publicar.em-publish-in-panel #formVaga .publish-contact-choice input{margin-left:auto!important;accent-color:#0874eb;flex-shrink:0}
+#pagina-publicar.em-publish-in-panel #formVaga .publish-contact-help{font:12px/1.7 Montserrat,sans-serif;color:#60758d;background:#f3f7fc;padding:12px 16px;border-radius:8px}
+#pagina-publicar.em-publish-in-panel #formVaga .publish-contact-choice .publish-choice-icon{display:none!important}
+#pagina-publicar.em-publish-in-panel #formVaga .em-review-section{color:#314b65!important;font:12px/1.8 Montserrat,sans-serif!important}
+#pagina-publicar.em-publish-in-panel #formVaga .em-review-section strong{color:#18324f!important}
+@media(max-width:760px){#pagina-publicar.em-publish-in-panel #emJobProgress{grid-template-columns:repeat(2,minmax(0,1fr))!important}#pagina-publicar.em-publish-in-panel #formVaga .publish-contact-options{grid-template-columns:1fr}}
