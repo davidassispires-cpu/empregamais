@@ -35,3 +35,6 @@
 html body #pagina-vaga#pagina-vaga#pagina-vaga #btnCandidatar#btnCandidatar,html body #pagina-vaga#pagina-vaga#pagina-vaga #btnCandidatarMobile,html body #pagina-vaga#pagina-vaga#pagina-vaga .btn-candidatura-verde-em{background:linear-gradient(135deg,#0ab76b,#00874e)!important;color:#fff!important;border:1px solid #079451!important;border-radius:10px!important;box-shadow:0 5px 14px #07945126!important;transition:background .2s,box-shadow .2s,transform .2s!important}
 html body #pagina-vaga#pagina-vaga#pagina-vaga #btnCandidatar#btnCandidatar:hover,html body #pagina-vaga#pagina-vaga#pagina-vaga .btn-candidatura-verde-em:hover{background:linear-gradient(135deg,#079e5d,#006f40)!important;box-shadow:0 7px 18px #07945133!important;transform:translateY(-1px)!important}
 html body #pagina-vaga#pagina-vaga#pagina-vaga #btnCandidatar#btnCandidatar:disabled{opacity:.65!important;transform:none!important}
+
+#emJobHeaderReference .jh-verified{gap:5px!important;padding:4px 8px!important;background:#e9f8ef!important;border:1px solid #c8ead5!important;color:#168347!important;font-size:10px!important;line-height:1.5!important;white-space:nowrap!important;overflow:visible!important}
+#emJobHeaderReference .jh-verified svg{width:17px!important;height:17px!important;flex:0 0 17px!important;overflow:visible!important;color:#168347!important}
