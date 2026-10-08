@@ -532,16 +532,31 @@ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',
     });
     var active=tabs.querySelector('button.active');pane.hidden=!active||active.textContent.trim()!=='Mensagens';
   }
+
+function arrangeCandidateMessageComposer(section){
+ if(section.querySelector('.em-message-workspace'))return;
+ var area=section.querySelector('textarea'),bar=section.querySelector('.em-internal-message-actions');if(!area||!bar)return;
+ var workspace=document.createElement('div');workspace.className='em-message-workspace';
+ area.before(workspace);workspace.appendChild(area);workspace.appendChild(bar);
+ var portal=bar.querySelector('.em-internal-send'),save=bar.querySelector('button:not(.em-internal-send)'),mail=section.querySelector('[data-msg-mail]'),wa=section.querySelector('[data-msg-wa]');
+ var title=document.createElement('strong');title.className='em-message-channel-title';title.textContent='Enviar mensagem';bar.prepend(title);
+ if(portal){portal.textContent='Enviar no portal';bar.appendChild(portal)}
+ if(mail){mail.textContent='E-mail';bar.appendChild(mail)}
+ if(wa){wa.textContent='WhatsApp';bar.appendChild(wa)}
+ if(save)bar.appendChild(save);
+ var hint=section.querySelector('small');if(hint)hint.textContent='Portal: entrega na conta do candidato. E-mail e WhatsApp: abre o canal para revisar e enviar.';
+}
   function installCandidateMessageTemplates(){
     if(window.emCandidateTemplatesInstalled)return;window.emCandidateTemplatesInstalled=true;
     var style=document.createElement('style');style.id='em-candidate-message-templates';
     style.textContent='#emCandidateDetails .em-wide-contact-actions{display:grid!important;grid-template-columns:1fr 1fr!important;gap:10px!important}#emCandidateDetails .em-wide-block{box-shadow:0 3px 14px #18324f06!important}#emCandidateDetails .em-candidate-message h3{font:700 16px Inter,Arial,sans-serif!important;margin-bottom:12px!important}#emCandidateDetails .em-message-template-label{display:block;margin:0 0 7px;font:600 12px Inter,Arial,sans-serif;color:#40516b}#emCandidateDetails .em-message-template-select{display:block!important;width:100%!important;height:42px!important;box-sizing:border-box!important;padding:0 10px!important;margin:0 0 12px!important;border:1px solid #cddded!important;border-radius:8px!important;background:#f7faff!important;color:#20334e!important;font:500 13px Inter,Arial,sans-serif!important}#emCandidateDetails .em-candidate-message textarea{font:400 13px/1.6 Inter,Arial,sans-serif!important;min-height:175px!important;max-height:260px!important;resize:vertical!important}#emCandidateDetails .em-candidate-message>div{display:flex!important;gap:8px!important;flex-wrap:wrap!important;margin-top:12px!important}#emCandidateDetails .em-candidate-message [data-msg-wa]{background:#16a05b!important;color:white!important;border:1px solid #16a05b!important;border-radius:8px!important;padding:10px 12px!important;font:600 12px Inter,Arial,sans-serif!important}#emCandidateDetails .em-candidate-message [data-msg-mail]{background:white!important;color:#1269cc!important;border:1px solid #cddded!important;border-radius:8px!important;padding:10px 12px!important;font:600 12px Inter,Arial,sans-serif!important}#emCandidateDetails .em-candidate-message button:disabled{opacity:.45!important;cursor:not-allowed!important}#emCandidateDetails .em-candidate-message small{font-size:11px!important;line-height:1.5!important}';
     style.textContent+="#emCandidateDetails .em-dedicated-messages{width:100%;max-width:780px;margin:0 auto;box-sizing:border-box;padding:24px;border:1px solid #dce6f2;border-radius:12px;background:#fff}#emCandidateDetails .em-dedicated-messages[hidden]{display:none!important}#emCandidateDetails .em-dedicated-messages .em-candidate-message{margin:0!important;padding:0!important;border:0!important;background:transparent!important}#emCandidateDetails .em-dedicated-messages .em-candidate-message h3{font-size:20px!important;margin:0 0 18px!important}#emCandidateDetails .em-dedicated-messages .em-candidate-message textarea{height:220px!important;max-height:320px!important;min-height:160px!important}@media(max-width:600px){#emCandidateDetails .em-dedicated-messages{padding:16px}}";
+    style.textContent+="#emCandidateDetails .em-dedicated-messages{max-width:none!important;width:100%!important;padding:22px!important}#emCandidateDetails .em-message-workspace{display:grid!important;grid-template-columns:minmax(0,1fr) 210px!important;gap:20px!important;align-items:start!important}#emCandidateDetails .em-message-workspace textarea{box-sizing:border-box!important;width:100%!important;height:270px!important;max-height:350px!important;min-height:200px!important;margin:0!important;padding:16px!important;font:400 14px/1.65 Inter,Arial,sans-serif!important}#emCandidateDetails .em-message-workspace .em-internal-message-actions{margin:0!important;gap:10px!important}#emCandidateDetails .em-message-channel-title{font:600 13px/1.5 Inter,Arial,sans-serif;color:#526781;margin-bottom:3px}#emCandidateDetails .em-message-workspace .em-internal-message-actions [data-msg-wa]{background:#16a05b!important;border-color:#16a05b!important;color:white!important}#emCandidateDetails .em-message-workspace .em-internal-message-actions [data-msg-mail]{background:#fff!important;color:#1269cc!important}#emCandidateDetails .em-message-workspace .em-internal-message-actions button:not(.em-internal-send):not([data-msg-wa]):not([data-msg-mail]){margin-top:10px!important;background:#f5f8fc!important;color:#60758c!important}#emCandidateDetails .em-dedicated-messages .em-candidate-message>div:empty{display:none!important}#emCandidateDetails .em-dedicated-messages .em-candidate-message small{font-size:12px!important}@media(max-width:700px){#emCandidateDetails .em-message-workspace{grid-template-columns:1fr!important}#emCandidateDetails .em-message-workspace .em-internal-message-actions{display:grid!important;grid-template-columns:1fr 1fr!important}#emCandidateDetails .em-message-channel-title{grid-column:1/-1}#emCandidateDetails .em-message-workspace textarea{height:220px!important}}";
     document.head.appendChild(style);
     function enhance(){
       var modal=document.getElementById('emCandidateDetails');if(!modal)return;
       modal.querySelectorAll('.em-wide-contact-actions button,.em-wide-contact-actions a').forEach(function(button){if(button.hasAttribute('data-gc27-tel')||/^ligar$/i.test(button.textContent.trim())||(button.getAttribute('href')||'').indexOf('tel:')===0)button.remove()});
-      var section=modal.querySelector('.em-candidate-message'),area=section&&section.querySelector('textarea');if(!area)return;moveCandidateMessagesToTab(modal,section);if(section.dataset.templatesReady){bindInternalCandidateMessage(modal,section,area);return}section.dataset.templatesReady='1';
+      var section=modal.querySelector('.em-candidate-message'),area=section&&section.querySelector('textarea');if(!area)return;moveCandidateMessagesToTab(modal,section);if(section.dataset.templatesReady){bindInternalCandidateMessage(modal,section,area);arrangeCandidateMessageComposer(section);return}section.dataset.templatesReady='1';
       var name=(modal.querySelector('.em-candidate-modal-head h2')||{}).textContent||'';
       var heading=(modal.querySelector('.em-candidate-modal-head p')||{}).textContent||'';
       var job=heading.split('•')[0].trim()||'esta oportunidade',e=company(),business=e.nomeFantasia||e.nome_fantasia||e.nome||e.razaoSocial||e.razao_social||'nossa empresa';
@@ -564,7 +579,8 @@ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',
       var wa=section.querySelector('[data-msg-wa]'),mail=section.querySelector('[data-msg-mail]');
       if(wa)wa.textContent='Continuar no WhatsApp';if(mail)mail.textContent='Continuar no e-mail';
       bindInternalCandidateMessage(modal,section,area);
-      var hint=section.querySelector('small');if(hint)hint.textContent='WhatsApp e e-mail são canais opcionais, enviados separadamente.';
+      arrangeCandidateMessageComposer(section);
+      var hint=section.querySelector('small');if(hint)hint.textContent='Portal: entrega na conta do candidato. E-mail e WhatsApp: abre o canal para revisar e enviar.';
     }
     function schedule(){setTimeout(enhance,0);setTimeout(enhance,180)}
     // Only direct dialog additions are observed; template writes never retrigger this observer.
