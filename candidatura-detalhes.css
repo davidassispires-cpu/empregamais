@@ -1,0 +1,54 @@
+/* Approved candidate overview reference. Scoped to avoid the legacy dashboard rules. */
+html body #emCandidateDetails.em-candidate-reference-v55{width:min(1080px,96vw)!important;max-height:94dvh!important;display:flex;flex-direction:column;border-radius:20px!important;font-family:Montserrat,Arial,sans-serif!important}
+html body #emCandidateDetails.em-candidate-reference-v55:not([open]){display:none!important}
+#emCandidateDetails.em-candidate-reference-v55 .em-candidate-modal-head{padding:26px 30px 20px!important;flex:none}
+#emCandidateDetails.em-candidate-reference-v55 .em-candidate-modal-head>div{padding-left:100px;min-height:105px}
+#emCandidateDetails.em-candidate-reference-v55 .em-wide-avatar{width:82px;height:82px;top:25px;font-size:30px;background:#deecff;border:0}
+#emCandidateDetails.em-candidate-reference-v55 .em-candidate-modal-head small{display:block;position:relative;left:-100px;color:#102744!important;letter-spacing:0;font-size:14px!important;margin-bottom:22px}
+#emCandidateDetails.em-candidate-reference-v55 .em-candidate-modal-head h2{font-size:28px!important;color:#102744!important}
+#emCandidateDetails.em-candidate-reference-v55 .em-candidate-modal-head p{font-size:14px!important;line-height:1.6}
+#emCandidateDetails.em-candidate-reference-v55 .em-detail-city{display:flex;align-items:center;gap:7px;margin-top:5px;color:#526781}
+#emCandidateDetails.em-candidate-reference-v55 .em-detail-city svg{color:#0876ef}
+#emCandidateDetails.em-candidate-reference-v55 .em-wide-favorite{border:1px solid #0876ef!important;color:#0876ef!important;outline:0!important;background:#fff!important;font-size:13px!important;border-radius:8px!important;padding:10px 14px!important;align-self:flex-start;margin-top:12px}
+#emCandidateDetails.em-candidate-reference-v55 .em-wide-tabs{margin:0 30px;gap:30px;flex:none}
+#emCandidateDetails.em-candidate-reference-v55 .em-wide-tabs button{font:500 13px Montserrat,Arial,sans-serif!important;padding:14px 4px!important;border-radius:0!important}
+#emCandidateDetails.em-candidate-reference-v55 .em-candidate-modal-body{padding:22px 30px 16px!important;overflow:auto;min-height:0;flex:1}
+#emCandidateDetails.em-candidate-reference-v55 .em-wide-overview{grid-template-columns:1fr 1.16fr 1fr;gap:12px;align-items:stretch}
+#emCandidateDetails.em-candidate-reference-v55 .em-wide-block{padding:20px!important;border-radius:12px;border:1px solid #e0e8f2;background:#fff;box-shadow:none!important}
+#emCandidateDetails.em-candidate-reference-v55 .em-wide-block h3{font:700 16px/1.4 Montserrat,Arial,sans-serif!important;color:#102744!important;margin:0 0 20px!important}
+#emCandidateDetails.em-candidate-reference-v55 .em-wide-block p{font:400 12px/1.6 Montserrat,Arial,sans-serif!important}
+#emCandidateDetails.em-candidate-reference-v55 .em-wide-block:first-child>p{display:flex;gap:12px;align-items:center;margin:24px 0!important;overflow-wrap:anywhere}
+#emCandidateDetails.em-candidate-reference-v55 .em-wide-block:first-child>p svg{color:#0876ef}
+#emCandidateDetails.em-candidate-reference-v55 .em-wide-contact-actions{display:grid!important;grid-template-columns:1fr 1fr!important;margin-top:42px;gap:8px!important}
+#emCandidateDetails.em-candidate-reference-v55 .em-wide-contact-actions button{width:100%!important;min-width:0!important;min-height:44px!important;padding:8px!important;justify-content:center;font-size:12px!important}
+#emCandidateDetails.em-candidate-reference-v55 .em-detail-send,#emCandidateDetails.em-candidate-reference-v55 .em-detail-save{display:flex!important;align-items:center;justify-content:center;gap:8px;width:100%!important;min-height:44px!important;border:0!important;border-radius:7px!important;background:#0876ef!important;color:#fff!important;font:600 12px Montserrat,Arial,sans-serif!important;padding:10px!important;cursor:pointer}
+#emCandidateDetails.em-candidate-reference-v55 .em-detail-send{margin-top:16px;background:#bedaff!important;color:#0876ef!important}
+#emCandidateDetails.em-candidate-reference-v55 h4{font-size:13px;line-height:1.5;color:#102744;margin:0}
+#emCandidateDetails.em-candidate-reference-v55 h4 small{display:block;font-weight:400;color:#617594;margin-bottom:8px}
+#emCandidateDetails.em-candidate-reference-v55 h4 svg{vertical-align:middle;margin-right:8px}
+#emCandidateDetails.em-candidate-reference-v55 .em-detail-summary p{margin:5px 0 18px!important}
+#emCandidateDetails.em-candidate-reference-v55 .em-detail-summary svg{vertical-align:middle;margin-right:8px}
+#emCandidateDetails.em-candidate-reference-v55 small{font-size:11px;line-height:1.5;color:#617594}
+#emCandidateDetails.em-candidate-reference-v55 .em-gc27-tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+#emCandidateDetails.em-candidate-reference-v55 .em-gc27-tag{font-size:10px!important;background:#e8f2ff!important;color:#173451!important;padding:6px 10px!important;border-radius:20px!important}
+#emCandidateDetails.em-candidate-reference-v55 .em-wide-match{display:block!important;padding:14px!important;background:#eaf3ff!important;margin-top:18px}
+#emCandidateDetails.em-candidate-reference-v55 .em-wide-match[hidden]{display:none!important}
+#emCandidateDetails.em-candidate-reference-v55 .em-wide-match>span{font-weight:600!important;color:#102744!important}
+#emCandidateDetails.em-candidate-reference-v55 .em-detail-meter{display:flex;align-items:center;gap:12px;margin:10px 0}
+#emCandidateDetails.em-candidate-reference-v55 .em-detail-meter i{flex:1;height:10px;border-radius:10px;background:#d8e2ee;overflow:hidden}
+#emCandidateDetails.em-candidate-reference-v55 .em-detail-meter b{display:block;height:100%;background:#0876ef;border-radius:10px}
+#emCandidateDetails.em-candidate-reference-v55 .em-detail-criteria{display:inline!important;width:auto!important;border:0!important;padding:0!important;background:transparent!important;color:#0876ef!important;font-size:11px!important;cursor:pointer}
+#emCandidateDetails.em-candidate-reference-v55 .em-wide-match>small{display:block;margin-top:5px;font-size:9px}
+#emCandidateDetails.em-candidate-reference-v55 .em-wide-document-actions{margin-top:14px;gap:8px}
+#emCandidateDetails.em-candidate-reference-v55 .em-wide-workflow .em-gc27-stagebox strong{font:400 12px Montserrat,Arial,sans-serif!important;color:#617594!important}
+#emCandidateDetails.em-candidate-reference-v55 .em-wide-hint{font-size:11px!important;margin:9px 0 14px!important}
+#emCandidateDetails.em-candidate-reference-v55 .em-detail-feedback{font-size:10px!important;min-height:16px;margin:5px 0!important}
+#emCandidateDetails.em-candidate-reference-v55 .em-detail-note{border-top:1px solid #dce5ef;margin-top:18px;padding-top:20px}
+#emCandidateDetails.em-candidate-reference-v55 .em-detail-note>div{background:#f1f4f8;border-radius:8px;padding:12px;margin-top:8px}
+#emCandidateDetails.em-candidate-reference-v55 .em-detail-note p{margin:0 0 8px!important;color:#102744!important}
+#emCandidateDetails.em-candidate-reference-v55 .em-wide-footer{gap:24px;padding:18px 30px!important;flex:none}
+#emCandidateDetails.em-candidate-reference-v55 .em-wide-footer small{font-size:11px!important;gap:12px;flex:1}
+#emCandidateDetails.em-candidate-reference-v55 .em-wide-footer b{display:block;font-size:13px;color:#102744;margin-top:4px}
+#emCandidateDetails.em-candidate-reference-v55 .em-wide-footer button{color:#0876ef!important;border-color:#0876ef!important}
+#emCandidateDetails.em-candidate-reference-v55 .em-paid-block{grid-column:1/-1}
+@media(max-width:900px){#emCandidateDetails.em-candidate-reference-v55 .em-wide-overview{grid-template-columns:1fr}#emCandidateDetails.em-candidate-reference-v55 .em-wide-contact-actions{margin-top:18px}#emCandidateDetails.em-candidate-reference-v55 .em-candidate-modal-head>div{padding-left:0}#emCandidateDetails.em-candidate-reference-v55 .em-candidate-modal-head small{left:0}#emCandidateDetails.em-candidate-reference-v55 .em-wide-footer{flex-wrap:wrap;gap:12px}#emCandidateDetails.em-candidate-reference-v55 .em-wide-tabs{gap:12px;flex-wrap:nowrap;overflow:auto}#emCandidateDetails.em-candidate-reference-v55 .em-wide-tabs button{white-space:nowrap}#emCandidateDetails.em-candidate-reference-v55 .em-candidate-modal-head{padding:20px!important}#emCandidateDetails.em-candidate-reference-v55 .em-candidate-modal-body{padding:16px!important}}
