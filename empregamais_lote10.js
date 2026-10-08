@@ -306,12 +306,12 @@ function companyHero(e){
       var checked=visibility.querySelector('input[name="enderecoVisibilidadeRadioV130"]:checked'),mode=checked?checked.value:value(['enderecoVisibilidadeV130'])||'cidade';
       var state=value(['estadoVaga']);var map={'Minas Gerais':'MG','São Paulo':'SP','Rio de Janeiro':'RJ','Espírito Santo':'ES'};
       state=map[state]||state;if(state.length===2)state=state.toUpperCase();
-      preview.querySelector('[data-preview-address]').textContent=addressPreviewText(mode,{city:value(['cidadeVaga']),state:state,district:value(['bairroVagaV130','bairroVaga','bairroLocalVaga']),street:value(['ruaVagaV130','ruaVaga','logradouroVaga','enderecoVaga']),number:value(['numeroVagaV130','numeroVaga','numeroEnderecoVaga','numeroEndereco'])});
+      var output=addressPreviewText(mode,{city:value(['cidadeVaga']),state:state,district:value(['bairroVagaV130','bairroVaga','bairroLocalVaga']),street:value(['ruaVagaV130','ruaVaga','logradouroVaga','enderecoVaga']),number:value(['numeroVagaV130','numeroVaga','numeroEnderecoVaga','numeroEndereco'])});var outputNode=preview.querySelector('[data-preview-address]');if(outputNode.textContent!==output)outputNode.textContent=output;
     }
     window.atualizarPreviewEnderecoV150=update;
     if(!form.dataset.addressPreviewBound){
       form.dataset.addressPreviewBound='1';
-      form.addEventListener('input',update);form.addEventListener('change',update);form.addEventListener('reset',function(){setTimeout(update,0)});
+      function addressChanged(ev){if(/^(cepVaga|cidadeVaga|estadoVaga|ruaVaga|logradouroVaga|enderecoVaga|bairroVaga|numeroVaga|numeroEndereco|enderecoVisibilidade|publishAddress_)/.test(ev.target.id||''))update()}form.addEventListener('input',addressChanged);form.addEventListener('change',addressChanged);form.addEventListener('reset',function(){setTimeout(update,0)});
       var status=document.getElementById('cepStatusEM');if(status)new MutationObserver(update).observe(status,{childList:true,subtree:true,characterData:true});
       ['cidadeVaga','estadoVaga'].forEach(function(id){var el=document.getElementById(id);if(el)new MutationObserver(update).observe(el,{childList:true,subtree:true})});
     }
