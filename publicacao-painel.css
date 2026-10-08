@@ -249,3 +249,19 @@
 #pagina-publicar.em-publish-in-panel #formVaga #cepStatusEM{display:block!important;margin-top:6px!important;line-height:1.5!important;overflow-wrap:anywhere}
 @media(max-width:760px){#pagina-publicar.em-publish-in-panel #formVaga .publish-address-row{grid-template-columns:1fr!important}#pagina-publicar.em-publish-in-panel #formVaga .publish-cep-field{max-width:220px!important}}
 @media(max-width:480px){#pagina-publicar.em-publish-in-panel #formVaga .publish-address-options{grid-template-columns:1fr!important}}
+
+/* Benefícios claros e hierarquia uniforme em cada serviço. */
+#pagina-publicar.em-publish-in-panel #formVaga .publish-extras-heading h3{font-size:23px!important;letter-spacing:-.4px!important}
+#pagina-publicar.em-publish-in-panel #formVaga .publish-extra-card{padding:22px!important;min-height:0!important;gap:0!important;border-color:#dce6f2!important;box-shadow:0 4px 16px #183b6406!important}
+#pagina-publicar.em-publish-in-panel #formVaga .publish-extra-top{display:flex!important;align-items:center!important;justify-content:space-between!important;margin-bottom:16px!important}
+#pagina-publicar.em-publish-in-panel #formVaga .publish-extra-top .publish-extra-icon{margin:0!important;width:40px!important;height:40px!important}
+#pagina-publicar.em-publish-in-panel #formVaga .publish-extra-top .publish-extra-duration{margin:0!important;font-size:11px!important;padding:6px 10px!important}
+#pagina-publicar.em-publish-in-panel #formVaga .publish-extra-card>strong{font:700 17px/1.4 Inter,sans-serif!important}
+#pagina-publicar.em-publish-in-panel #formVaga .publish-extra-card>p{flex:none!important;min-height:38px!important;margin:8px 0 16px!important;font-size:12px!important;line-height:1.6!important}
+#pagina-publicar.em-publish-in-panel #formVaga .publish-extra-benefits{display:grid!important;gap:12px!important;padding:16px 0!important;margin:0!important;list-style:none!important;border-top:1px solid #e8eef5!important}
+#pagina-publicar.em-publish-in-panel #formVaga .publish-extra-benefits li{display:flex!important;align-items:flex-start!important;gap:8px!important;font:500 12px/1.6 Montserrat,sans-serif!important;color:#38516d!important;margin:0!important;padding:0!important}
+#pagina-publicar.em-publish-in-panel #formVaga .publish-extra-benefits svg{width:16px!important;height:16px!important;flex:0 0 16px!important;color:#0874eb!important;margin-top:2px!important}
+#pagina-publicar.em-publish-in-panel #formVaga .publish-extra-use{font:500 11px/1.7 Montserrat,sans-serif!important;color:#576e89!important;background:#f4f7fb!important;border-radius:8px!important;padding:12px!important;margin:0 0 20px!important}
+#pagina-publicar.em-publish-in-panel #formVaga .publish-extra-footer{margin-top:auto!important;padding-top:18px!important;border-top:1px solid #e8eef5!important}
+#pagina-publicar.em-publish-in-panel #formVaga .publish-extra-price{font-weight:700!important;font-size:24px!important;margin-bottom:16px!important}
+#pagina-publicar.em-publish-in-panel #formVaga .publish-extra-button{font-weight:600!important}
