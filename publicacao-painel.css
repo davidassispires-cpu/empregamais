@@ -194,3 +194,26 @@
 #pagina-publicar.em-publish-in-panel #formVaga .publish-extras-total>strong{border-left:1px solid #d5e1ef;padding-left:22px}
 #pagina-publicar.em-publish-in-panel #formVaga .publish-extras-total strong small{display:block;font:11px Montserrat,sans-serif;color:#718198;margin-bottom:4px}
 @media(max-width:760px){#pagina-publicar.em-publish-in-panel #formVaga .publish-extras-heading h3{font-size:21px!important}}
+
+
+/* v236 - Serviços opcionais conforme referência aprovada 08/10/2026 */
+#pagina-publicar.em-publish-in-panel #formVaga .publish-extras{margin-top:30px!important;padding:28px 0 0!important;border-top:1px solid #e3eaf4!important}
+#pagina-publicar.em-publish-in-panel #formVaga .publish-extras-heading h3{margin:0 0 5px!important;font:800 27px/1.15 Inter,sans-serif!important;letter-spacing:-.65px!important;color:#0d1d43!important}
+#pagina-publicar.em-publish-in-panel #formVaga .publish-extras-heading p{margin:0 0 22px!important;font:500 13px/1.55 Montserrat,sans-serif!important;color:#63759b!important}
+#pagina-publicar.em-publish-in-panel #formVaga .publish-extras-grid{grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:14px!important}
+#pagina-publicar.em-publish-in-panel #formVaga .publish-extra-card{padding:20px 20px 18px!important;border-radius:14px!important;min-height:315px!important}
+#pagina-publicar.em-publish-in-panel #formVaga .publish-extra-card.selected{background:#f6faff!important}
+#pagina-publicar.em-publish-in-panel #formVaga .publish-extra-icon{width:45px!important;height:45px!important;border-radius:11px!important;margin-bottom:10px!important}
+#pagina-publicar.em-publish-in-panel #formVaga .publish-extra-icon svg{width:25px!important;height:25px!important}
+#pagina-publicar.em-publish-in-panel #formVaga .publish-extra-card>strong{font:800 17px/1.25 Inter,sans-serif!important;color:#0d1d43!important}
+#pagina-publicar.em-publish-in-panel #formVaga .publish-extra-duration{margin-top:8px!important;padding:4px 9px!important;font:700 10px Montserrat,sans-serif!important}
+#pagina-publicar.em-publish-in-panel #formVaga .publish-extra-card>p{margin:10px 0 14px!important;font:500 12px/1.5 Montserrat,sans-serif!important;color:#5f7195!important;min-height:37px}
+#pagina-publicar.em-publish-in-panel #formVaga .publish-extra-price{margin:0 0 14px!important;font:800 23px/1 Inter,sans-serif!important;color:#0d1d43!important}
+#pagina-publicar.em-publish-in-panel #formVaga .publish-extra-price small{font:500 11px Montserrat,sans-serif!important;color:#6d7da0!important}
+#pagina-publicar.em-publish-in-panel #formVaga .publish-extra-select{margin-top:auto!important}
+#pagina-publicar.em-publish-in-panel #formVaga button.publish-extra-button{min-height:44px!important;border-radius:9px!important;font:700 12px Montserrat,sans-serif!important}
+#pagina-publicar.em-publish-in-panel #formVaga .publish-extras-total{margin-top:16px!important;padding:13px 18px!important;border-radius:11px!important;background:#f3f8ff!important}
+#pagina-publicar.em-publish-in-panel #formVaga .publish-extras-total>span{font:700 12px Montserrat,sans-serif!important;color:#0d1d43!important}
+#pagina-publicar.em-publish-in-panel #formVaga .publish-extras-total>strong{font:800 20px Inter,sans-serif!important;color:#0d1d43!important}
+#pagina-publicar.em-publish-in-panel #formVaga .publish-extras-note{margin:10px 0 0!important;font:500 10.5px/1.55 Montserrat,sans-serif!important;color:#71809d!important}
+@media(max-width:900px){#pagina-publicar.em-publish-in-panel #formVaga .publish-extras-grid{grid-template-columns:1fr!important}#pagina-publicar.em-publish-in-panel #formVaga .publish-extra-card{min-height:0!important}}
