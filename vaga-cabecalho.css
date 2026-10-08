@@ -58,3 +58,8 @@ html body #pagina-vaga#pagina-vaga#pagina-vaga #btnCandidatar#btnCandidatar:disa
 #emGriffPublic h2{font:750 20px/1.4 Inter,Arial,sans-serif!important;margin-top:28px!important}#emGriffPublic h3{font:750 17px/1.4 Inter,Arial,sans-serif!important;margin:0 0 12px!important}
 #emGriffPublic .gp-job>a{display:inline-flex!important;margin-top:14px!important;background:#0875ee!important;color:white!important;border-radius:8px!important;padding:10px 16px!important;text-decoration:none!important}
 @media(max-width:600px){#emGriffPublic{padding:16px!important}#emGriffPublic .gp-hero{padding:20px!important}#emGriffPublic .gp-jobs{grid-template-columns:1fr!important}}
+/* Full-width, soft blue top accent; override legacy decorative widths. */
+html body #pagina-vaga #emVagaHeroV88#emVagaHeroV88.em-header-reference:before{left:0!important;right:0!important;top:0!important;bottom:auto!important;width:100%!important;max-width:none!important;min-width:0!important;height:6px!important;max-height:6px!important;margin:0!important;padding:0!important;transform:none!important;opacity:1!important;background:linear-gradient(90deg,#b8d9fa,#d3e8fc)!important;border:0!important;border-radius:15px 15px 0 0!important;box-sizing:border-box!important}
+html body #pagina-vaga #emVagaHeroV88#emVagaHeroV88.em-header-reference{border-color:#d6e8fa!important;background:linear-gradient(180deg,#f1f8ff,#fff 190px)!important}
+#emJobHeaderReference .jh-top{border-bottom-color:#dfedfa!important}
+#emJobHeaderReference .jh-tile{border-color:#dceafa!important}
