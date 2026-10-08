@@ -63,3 +63,8 @@ html body #pagina-vaga #emVagaHeroV88#emVagaHeroV88.em-header-reference:before{l
 html body #pagina-vaga #emVagaHeroV88#emVagaHeroV88.em-header-reference{border-color:#d6e8fa!important;background:linear-gradient(180deg,#f1f8ff,#fff 190px)!important}
 #emJobHeaderReference .jh-top{border-bottom-color:#dfedfa!important}
 #emJobHeaderReference .jh-tile{border-color:#dceafa!important}
+/* Keep soft blue fills with clearly visible blue outlines. */
+html body #pagina-vaga #emVagaHeroV88#emVagaHeroV88.em-header-reference{border-color:#a9cbed!important}
+#emJobHeaderReference .jh-tile,#emJobHeaderReference .jh-benefits{border-color:#b0cfee!important}
+#emJobHeaderReference .jh-top{border-bottom-color:#b9d4ee!important}
+#emJobHeaderReference .jh-logo{border-color:#aecff0!important}
