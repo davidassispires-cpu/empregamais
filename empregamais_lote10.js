@@ -229,15 +229,33 @@ function companyHero(e){
     window.emShowJobStep=function(n){
       form.querySelectorAll('.em-job-card[data-panel]').forEach(function(card){var active=Number(card.dataset.panel)===Number(n);card.classList.toggle('active',active);card.style.setProperty('display',active?'block':'none','important')});
       progress.querySelectorAll('[data-step]').forEach(function(item){var i=Number(item.dataset.step);item.classList.toggle('active',i===Number(n));item.classList.toggle('done',i<Number(n))});
-      if(Number(n)===4)sync();if(Number(n)===5&&typeof window.emBuildJobReview==='function'){window.emBuildJobReview();var summary=document.getElementById('emReviewContent');var entry=document.createElement('div');entry.className='em-review-section';var selected=form.querySelector('input[name="tipoContatoVaga"]:checked'),row=choices.find(function(x){return x[0]===(selected?selected.value:'email')});entry.innerHTML='<strong>Recebimento de candidaturas</strong><div>'+row[2]+': '+esc(document.getElementById(row[4]).value)+'</div>';summary.appendChild(entry)}
+      if(Number(n)===4)sync();if(Number(n)===5&&typeof window.emBuildJobReview==='function'){window.emBuildJobReview();var summary=document.getElementById('emReviewContent');var entry=document.createElement('div');entry.className='em-review-section';var selected=form.querySelector('input[name="tipoContatoVaga"]:checked'),row=choices.find(function(x){return x[0]===(selected?selected.value:'email')});entry.innerHTML='<strong>Recebimento de candidaturas</strong><div>'+row[2]+': '+esc(document.getElementById(row[4]).value)+'</div>';summary.appendChild(entry);if(window.emPublishExtrasSummary)summary.insertAdjacentHTML('beforeend',window.emPublishExtrasSummary())}
       progress.scrollIntoView({behavior:'smooth',block:'start'});
     };
     window.emNextJob=function(n){var card=form.querySelector('[data-panel="'+n+'"]');if(Number(n)===4&&!validContact())return;var required=card.querySelectorAll('[required]');for(var i=0;i<required.length;i++){if(!required[i].checkValidity()){required[i].reportValidity();return}}window.emShowJobStep(Number(n)+1)};
     window.addEventListener('click',function(event){var button=event.target.closest&&event.target.closest('#formVaga .em-btn-next');if(!button)return;event.preventDefault();event.stopImmediatePropagation();window.emNextJob(Number(button.closest('[data-panel]').dataset.panel))},true);
     form.addEventListener('submit',function(event){if(!validContact()){event.preventDefault();event.stopImmediatePropagation();window.emShowJobStep(4)}},true);
   }
+  function setupPublishExtras(page,form){
+    var cfg=window.EmpregaMaisPlanoEmpresaV127&&window.EmpregaMaisPlanoEmpresaV127.configuracao?window.EmpregaMaisPlanoEmpresaV127.configuracao():null;
+    var plan=norm(company().plano_id||company().plano||'basico'),free=cfg?!cfg.pago:['basico','gratis','gratuito','free',''].indexOf(plan)>=0;
+    page.classList.toggle('publish-free-extras',free);
+    var legacy=document.getElementById('vagaConfidencialEM');if(legacy&&legacy.closest('.em-review-box'))legacy.closest('.em-review-box').classList.add('publish-legacy-extras');
+    if(form.querySelector('.publish-extras'))return;
+    var target=form.querySelector('.publish-contact-step .em-job-body');if(!target)return;
+    var section=document.createElement('section');section.className='publish-extras';
+    section.innerHTML='<div class="publish-extras-heading"><span>RECURSOS OPCIONAIS</span><h3>Personalize a publicação da sua vaga</h3><p>No plano gratuito, adicione apenas os serviços que precisar. Cada recurso custa R$ 9,90 por vaga.</p></div><div class="publish-extras-grid"></div><div class="publish-extras-total" role="status" aria-live="polite"></div><p class="publish-extras-note">Você pode publicar gratuitamente sem selecionar serviços. A ativação dos recursos pagos depende da confirmação do pagamento.</p>';
+    [['destaque','Destacar vaga','crown','Dê mais visibilidade à oportunidade com o selo de destaque e presença na área de vagas em destaque.'],['urgencia','Vaga urgente','clock','Sinalize que a contratação é urgente com um selo visível para chamar a atenção dos candidatos.'],['confidencial','Vaga confidencial','shield','Oculte o nome da empresa na publicação, preservando sua identidade durante o recrutamento.']].forEach(function(row){
+      var card=document.createElement('label');card.className='publish-extra-card';card.htmlFor='publishExtra_'+row[0];
+      card.innerHTML='<span class="publish-extra-icon">'+icon(row[2])+'</span><strong>'+row[1]+'</strong><p>'+row[3]+'</p><div class="publish-extra-price">R$ 9,90 <small>/ vaga</small></div><div class="publish-extra-select"><input type="checkbox" id="publishExtra_'+row[0]+'" value="'+row[0]+'"><span>Adicionar serviço</span></div>';
+      section.querySelector('.publish-extras-grid').appendChild(card);
+    });target.appendChild(section);
+    function total(){var amount=0;section.querySelectorAll('.publish-extra-card').forEach(function(card){var checked=card.querySelector('input').checked;card.classList.toggle('selected',checked);card.querySelector('.publish-extra-select span').textContent=checked?'Serviço selecionado':'Adicionar serviço';if(checked)amount+=990});section.querySelector('.publish-extras-total').innerHTML='<span>Total dos serviços opcionais</span><strong>'+new Intl.NumberFormat('pt-BR',{style:'currency',currency:'BRL'}).format(amount/100)+'</strong>';return amount}
+    section.addEventListener('change',total);total();
+    window.emPublishExtrasSummary=function(){total();var selected=Array.from(section.querySelectorAll('input:checked')).map(function(input){return input.closest('.publish-extra-card').querySelector('strong').textContent});return free&&selected.length?'<div class="em-review-section"><strong>Serviços opcionais selecionados</strong><div>'+esc(selected.join(' · '))+'</div><div>Total: '+new Intl.NumberFormat('pt-BR',{style:'currency',currency:'BRL'}).format(selected.length*9.9)+'</div><small>Ativação após confirmação de pagamento.</small></div>':''};
+  }
   function enhancePublish(page){
-    var form=page.querySelector('#formVaga');if(!form)return;setupPublishContact(form);
+    var form=page.querySelector('#formVaga');if(!form)return;setupPublishContact(form);setupPublishExtras(page,form);
     var detail=form.querySelector('.em-job-card[data-panel="2"] .em-grid');
     if(detail&&!detail.dataset.publishAddress){
       detail.dataset.publishAddress='1';
@@ -285,7 +303,7 @@ function companyHero(e){
   }
   function mountPublish() {
     var page=document.getElementById('pagina-publicar');if(!page||!host)return;
-    if(!document.getElementById('em-publish-profile-design')){var link=document.createElement('link');link.id='em-publish-profile-design';link.rel='stylesheet';link.href='publicacao-painel.css?v=20261008-back-navigation-v61';document.head.appendChild(link);}
+    if(!document.getElementById('em-publish-profile-design')){var link=document.createElement('link');link.id='em-publish-profile-design';link.rel='stylesheet';link.href='publicacao-painel.css?v=20261008-optional-extras-v62';document.head.appendChild(link);}
     var shell=page.querySelector('.em-job-shell');if(shell&&!shell.querySelector('.em-publish-heading')){var heading=document.createElement('div');heading.className='em-publish-heading';heading.innerHTML='<small>RECRUTAMENTO E SELEÇÃO</small><h1>Publicar vaga</h1><p>Preencha as etapas e revise os dados antes de enviar sua oportunidade.</p>';shell.prepend(heading);}
     page.slot='recruiter-publish';if(!page.classList.contains('ativa'))page.classList.add('ativa');
     page.classList.add('em-publish-in-panel');page.style.setProperty('display','block','important');
