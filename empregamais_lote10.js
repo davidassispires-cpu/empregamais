@@ -540,19 +540,28 @@ function arrangeCandidateMessageComposer(section){
  var editor=document.createElement('div');editor.className='em-message-editor';
  var heading=section.querySelector('h3'),label=section.querySelector('.em-message-template-label'),select=section.querySelector('.em-message-template-select');
  section.prepend(workspace);workspace.append(editor,bar);
- if(heading)editor.appendChild(heading);
- var intro=document.createElement('p');intro.className='em-message-intro';intro.textContent='Escolha um modelo, personalize o texto e selecione como enviar.';editor.appendChild(intro);
+ if(heading){heading.textContent='Escreva sua mensagem';editor.appendChild(heading);}
+ var modal=section.closest('#emCandidateDetails'),recipient=document.createElement('div');recipient.className='em-message-recipient';
+ var name=modal&&modal.querySelector('.em-candidate-modal-head h2');
+ var recipientLabel=document.createElement('small');recipientLabel.textContent='DESTINATÁRIO';
+ var recipientName=document.createElement('strong');recipientName.textContent=name?name.textContent:'Candidato';recipient.append(recipientLabel,recipientName);bar.appendChild(recipient);
+ var intro=document.createElement('p');intro.className='em-message-intro';intro.textContent='Use uma mensagem pronta ou escreva um texto personalizado.';editor.appendChild(intro);
  if(label)editor.appendChild(label);if(select)editor.appendChild(select);editor.appendChild(area);
- var editable=document.createElement('p');editable.className='em-message-edit-hint';editable.textContent='Você pode editar a mensagem antes de enviar.';editor.appendChild(editable);
+ var editable=document.createElement('p');editable.className='em-message-edit-hint';editable.textContent='Revise o texto antes de enviar.';editor.appendChild(editable);
+ var counter=document.createElement('span');counter.className='em-message-counter';counter.setAttribute('aria-label','Quantidade de caracteres');editable.appendChild(counter);
+ function countMessage(){counter.textContent=area.value.length.toLocaleString('pt-BR')+' / '+(area.maxLength>0?area.maxLength:10000).toLocaleString('pt-BR')+' caracteres';}
+ area.addEventListener('input',countMessage);if(select)select.addEventListener('change',function(){setTimeout(countMessage,0)});countMessage();
+ var countTimer=setInterval(function(){if(!section.isConnected){clearInterval(countTimer);return;}countMessage();},1000);
+
  var portal=bar.querySelector('.em-internal-send'),save=bar.querySelector('button:not(.em-internal-send)'),mail=section.querySelector('[data-msg-mail]'),wa=section.querySelector('[data-msg-wa]');
- var title=document.createElement('strong');title.className='em-message-channel-title';title.textContent='Como deseja enviar?';bar.prepend(title);
+ var title=document.createElement('strong');title.className='em-message-channel-title';title.textContent='Escolha o canal de envio';bar.prepend(title);
  function buttonContent(button,text,svg){if(button)button.innerHTML=svg+'<span>'+text+'</span>'}
  var chat='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M5 4h14a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2h-8l-6 4v-4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2Z"/></svg>';
  var disk='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M4 3h13l4 4v14H3V3h1ZM7 3v6h10V3M7 21v-8h10v8"/></svg>';
  var whatsapp='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.6a9 9 0 0 1-13.4 7.9L3 21l1.5-4.5A9 9 0 1 1 21 11.6Z"/><path d="m8 7 2 3-1 1c1 2 2 3 4 4l1-1 3 2c-1 3-4 2-7-1S6 8 8 7Z"/></svg>';
  buttonContent(portal,'Enviar no portal',chat);buttonContent(mail,'Enviar por e-mail',icon('mail'));buttonContent(wa,'Enviar pelo WhatsApp',whatsapp);buttonContent(save,'Salvar rascunho',disk);
  [portal,mail,wa,save].forEach(function(button){if(button)bar.appendChild(button)});
- var hint=section.querySelector('small');if(hint){bar.appendChild(hint);hint.textContent='No portal, a mensagem aparece na conta do candidato. E-mail e WhatsApp abrem o canal escolhido.'}
+ var hint=Array.from(section.querySelectorAll('small')).find(function(node){return !node.closest('.em-message-recipient')});if(hint){bar.appendChild(hint);hint.textContent='No portal, a mensagem aparece na conta do candidato. E-mail e WhatsApp abrem o canal escolhido.'}
 }
   function installCandidateMessageTemplates(){
     if(window.emCandidateTemplatesInstalled)return;window.emCandidateTemplatesInstalled=true;
