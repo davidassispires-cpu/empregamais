@@ -281,6 +281,43 @@ function companyHero(e){
     section.addEventListener('change',total);total();
     window.emPublishExtrasSummary=function(){total();var selected=Array.from(section.querySelectorAll('input:checked')).map(function(input){return input.closest('.publish-extra-card').querySelector('strong').textContent});return free&&selected.length?'<div class="em-review-section"><strong>Serviços opcionais selecionados</strong><div>'+esc(selected.join(' · '))+'</div><div>Total: '+new Intl.NumberFormat('pt-BR',{style:'currency',currency:'BRL'}).format(selected.length*9.9)+'</div><small>Ativação após confirmação de pagamento.</small></div>':''};
   }
+
+  function addressPreviewText(mode,address){
+    var city=[address.city,address.state].filter(Boolean).join(' / ');
+    if(!address.city)return 'Preencha o CEP ou informe a cidade para visualizar.';
+    if(mode==='cidade')return city;
+    if(mode==='bairro')return [address.district,city].filter(Boolean).join(' – ');
+    var street=[address.street,address.number].filter(Boolean).join(', ');
+    return [street,address.district,city].filter(Boolean).join(' – ');
+  }
+  function setupAddressPreview(form){
+    var visibility=form.querySelector('.publish-address-visibility');if(!visibility)return;
+    form.querySelectorAll('.endereco-preview-v150').forEach(function(node){node.remove()});
+    var preview=visibility.querySelector('#publishAddressPreview');
+    if(!preview){
+      preview=document.createElement('div');preview.id='publishAddressPreview';
+      preview.setAttribute('role','status');preview.setAttribute('aria-live','polite');preview.setAttribute('aria-atomic','true');
+      preview.style.cssText='display:flex;align-items:flex-start;gap:10px;margin-top:12px;padding:13px 15px;border:1px solid #d9e8f8;border-radius:10px;background:#f3f8ff;color:#193d61;line-height:1.6;font-size:14px;min-width:0;';
+      preview.innerHTML='<span style="display:block;width:19px;flex:0 0 19px;color:#0874eb">'+icon('pin')+'</span><div style="min-width:0;overflow-wrap:anywhere"><strong style="display:block;font-size:12px;font-weight:700;color:#55718d;margin-bottom:3px">O candidato verá:</strong><span data-preview-address></span></div>';
+      visibility.appendChild(preview);
+    }
+    function value(ids){for(var i=0;i<ids.length;i++){var el=document.getElementById(ids[i]);if(!el)continue;var v=String(el.value||'').trim();if(!v||/^selecione/i.test(v))continue;if(el.tagName==='SELECT'){var option=el.options[el.selectedIndex];if(!option||!option.value)continue;if(ids[i]==='cidadeVaga')v=option.textContent.trim()}return v}return ''}
+    function update(){
+      var checked=visibility.querySelector('input[name="enderecoVisibilidadeRadioV130"]:checked'),mode=checked?checked.value:value(['enderecoVisibilidadeV130'])||'cidade';
+      var state=value(['estadoVaga']);var map={'Minas Gerais':'MG','São Paulo':'SP','Rio de Janeiro':'RJ','Espírito Santo':'ES'};
+      state=map[state]||state;if(state.length===2)state=state.toUpperCase();
+      preview.querySelector('[data-preview-address]').textContent=addressPreviewText(mode,{city:value(['cidadeVaga']),state:state,district:value(['bairroVagaV130','bairroVaga','bairroLocalVaga']),street:value(['ruaVagaV130','ruaVaga','logradouroVaga','enderecoVaga']),number:value(['numeroVagaV130','numeroVaga','numeroEnderecoVaga','numeroEndereco'])});
+    }
+    window.atualizarPreviewEnderecoV150=update;
+    if(!form.dataset.addressPreviewBound){
+      form.dataset.addressPreviewBound='1';
+      form.addEventListener('input',update);form.addEventListener('change',update);form.addEventListener('reset',function(){setTimeout(update,0)});
+      var status=document.getElementById('cepStatusEM');if(status)new MutationObserver(update).observe(status,{childList:true,subtree:true,characterData:true});
+      ['cidadeVaga','estadoVaga'].forEach(function(id){var el=document.getElementById(id);if(el)new MutationObserver(update).observe(el,{childList:true,subtree:true})});
+    }
+    update();
+  }
+
   function enhancePublish(page){
     var form=page.querySelector('#formVaga');if(!form)return;setupPublishContact(form);setupPublishExtras(page,form);
     var detail=form.querySelector('.em-job-card[data-panel="2"] .em-grid');
@@ -321,6 +358,7 @@ function companyHero(e){
       }
     }
 
+    setupAddressPreview(form);
     page.querySelectorAll('.em-job-card-head').forEach(function(head,i){if(head.querySelector('.publish-section-icon'))return;var badge=document.createElement('span');badge.className='publish-step-badge';badge.textContent='ETAPA '+(i+1)+' DE 5';head.appendChild(badge);var pic=document.createElement('span');pic.className='publish-section-icon';pic.innerHTML=icon(i===0?'briefcase':i===1?'pin':i===2?'company':i===3?'mail':'check');head.prepend(pic)});
     [['empresaVaga','company'],['cargoVaga','briefcase'],['areaVaga','company'],['contratoVaga','card'],['cidadeVaga','pin'],['salarioVaga','card']].forEach(function(pair){var input=document.getElementById(pair[0]);if(!input||input.closest('.publish-input-wrap'))return;var wrap=document.createElement('div');wrap.className='publish-input-wrap';input.parentNode.insertBefore(wrap,input);var pic=document.createElement('span');pic.className='publish-field-icon';pic.innerHTML=icon(pair[1]);wrap.appendChild(pic);wrap.appendChild(input)});
     var upload=document.getElementById('logoVaga');if(upload&&!page.querySelector('.publish-logo-upload')){var field=upload.closest('.em-field');if(field){var box=document.createElement('div');box.className='publish-logo-upload';box.innerHTML='<div class="publish-logo-placeholder">'+icon('company')+'</div><div><strong>Logo da empresa</strong><p>Adicione sua logo para personalizar a oportunidade.</p><label class="publish-upload-button" for="logoVaga">'+icon('plus')+' Enviar logo</label><small class="publish-file-name" aria-live="polite"></small></div>';field.prepend(box);var preview=document.getElementById('previewLogo');if(preview)box.querySelector('.publish-logo-placeholder').appendChild(preview);upload.addEventListener('change',function(){box.querySelector('.publish-file-name').textContent=upload.files&&upload.files[0]?upload.files[0].name:''})}}
