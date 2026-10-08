@@ -280,7 +280,20 @@ function companyHero(e){
       var notice=document.getElementById('avisoCepAutoV151');if(notice)notice.remove();
       if(!detail.querySelector('.publish-address-visibility')){
         var visibility=document.createElement('div');visibility.className='em-field full publish-address-visibility';
-        visibility.innerHTML='<label>Como o endereço será exibido na vaga?</label><div class="publish-address-options" role="radiogroup" aria-label="Exibição do endereço"><label><input type="radio" name="exibicaoEnderecoVaga" value="empresa"><span>'+icon('company')+'<b>Endereço da empresa</b><small>Exibe o endereço cadastrado no Perfil Empresarial.</small></span></label><label><input type="radio" name="exibicaoEnderecoVaga" value="trabalho"><span>'+icon('pin')+'<b>Local de trabalho</b><small>Exibe o endereço informado acima.</small></span></label><label><input type="radio" name="exibicaoEnderecoVaga" value="cidade" checked><span>'+icon('eye')+'<b>Não exibir endereço</b><small>Mostra somente cidade e estado.</small></span></label></div>';
+        var addressMode=document.getElementById('enderecoVisibilidadeV130');
+        if(!addressMode){addressMode=document.createElement('input');addressMode.type='hidden';addressMode.id='enderecoVisibilidadeV130';addressMode.value='cidade';form.appendChild(addressMode)}
+        var previousMode=addressMode.value;
+        form.querySelectorAll('input[name="enderecoVisibilidadeRadioV130"]').forEach(function(input){input.remove()});
+        visibility.innerHTML='<label>O que será mostrado na vaga?</label><div class="publish-address-options" role="radiogroup" aria-label="Informações de localização exibidas na vaga"></div>';
+        [['completo','Endereço completo','home','Rua, bairro, cidade e estado.'],['bairro','Bairro e cidade','pin','Bairro, cidade e estado.'],['cidade','Somente cidade','eye','Cidade e estado.']].forEach(function(row){
+          var label=document.createElement('label');
+          label.innerHTML='<input id="publishAddress_'+row[0]+'" type="radio" name="enderecoVisibilidadeRadioV130" value="'+row[0]+'"><span>'+icon(row[2])+'<b>'+row[1]+'</b><small>'+row[3]+'</small></span>';
+          var input=label.querySelector('input');input.checked=row[0]===previousMode;
+          input.addEventListener('change',function(){if(input.checked){addressMode.value=input.value;if(typeof window.atualizarPreviewEnderecoV150==='function')window.atualizarPreviewEnderecoV150()}});
+          visibility.querySelector('.publish-address-options').appendChild(label);
+        });
+        if(!visibility.querySelector('input:checked'))visibility.querySelector('input[value="cidade"]').checked=true;
+        addressMode.value=visibility.querySelector('input:checked').value;
         var cepField=detail.querySelector('.publish-cep-field');
         var addressRow=document.createElement('div');addressRow.className='publish-address-row';
         detail.insertBefore(addressRow,cepField);addressRow.appendChild(cepField);addressRow.appendChild(visibility);
@@ -317,7 +330,7 @@ function companyHero(e){
   }
   function mountPublish() {
     var page=document.getElementById('pagina-publicar');if(!page||!host)return;
-    if(!document.getElementById('em-publish-profile-design')){var link=document.createElement('link');link.id='em-publish-profile-design';link.rel='stylesheet';link.href='publicacao-painel.css?v=20261008-service-benefits-v239';document.head.appendChild(link);}
+    if(!document.getElementById('em-publish-profile-design')){var link=document.createElement('link');link.id='em-publish-profile-design';link.rel='stylesheet';link.href='publicacao-painel.css?v=20261008-address-privacy-v240';document.head.appendChild(link);}
     var shell=page.querySelector('.em-job-shell');if(shell&&!shell.querySelector('.em-publish-heading')){var heading=document.createElement('div');heading.className='em-publish-heading';heading.innerHTML='<small>RECRUTAMENTO E SELEÇÃO</small><h1>Publicar vaga</h1><p>Preencha as etapas e revise os dados antes de enviar sua oportunidade.</p>';shell.prepend(heading);}
     page.slot='recruiter-publish';if(!page.classList.contains('ativa'))page.classList.add('ativa');
     page.classList.add('em-publish-in-panel');page.style.setProperty('display','block','important');
