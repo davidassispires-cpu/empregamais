@@ -42252,48 +42252,6 @@ document.addEventListener("DOMContentLoaded",update);window.addEventListener("lo
 <style id="em-applications-sync-style-v48">#emApplicationsSync{display:flex;justify-content:flex-end;align-items:center;flex-wrap:wrap;gap:10px;margin:0 0 12px;font:500 12px Inter,Arial,sans-serif;color:#64748b}#emApplicationsSync button{width:auto!important;min-height:34px!important;border:1px solid #d5e2ef!important;background:#fff!important;border-radius:7px!important;padding:7px 12px!important;color:#1769bd!important;cursor:pointer}#emApplicationsSync button:disabled{opacity:.6;cursor:wait}#emApplicationsSync.error span{color:#a66013}</style>
 
 <style id="em-company-profile-v50">#pagina-perfil-empresa.em-profile-v50>*:not(#emCompanyProfileV50){display:none!important}#emCompanyProfileV50{display:block!important}</style>
-<script id="em-company-profile-script-v50">
-(function(){
- var root,companyKey='',busy=false;
- function esc(x){return String(x==null?'':x).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]})}
- function current(){try{return obterEmpresaAtual()||{}}catch(e){return {}}}
- function saved(e){try{var x=JSON.parse(e.comprovacaoVerificacao||'{}');return x.tipo==='perfil_verificacao'?x:{}}catch(x){return {}}}
- function mount(){
- var page=document.getElementById('pagina-perfil-empresa');if(!page||!page.classList.contains('ativa'))return;
- var e=current();if(!e.cnpj)return;if(!page.classList.contains('em-profile-v50'))page.classList.add('em-profile-v50');
- var host=document.getElementById('emCompanyProfileV50');if(!host){host=document.createElement('div');host.id='emCompanyProfileV50';page.appendChild(host);root=host.attachShadow({mode:'open'})}
- root=host.shadowRoot;if(companyKey===String(e.cnpj)&&root.children.length)return;companyKey=String(e.cnpj);paint(e);
- }
- function paint(e){
- var extra=saved(e),st=String(e.verificacaoStatus||e.statusVerificacao||'nao_verificada'),verified=typeof empresaEstaVerificada==='function'?empresaEstaVerificada(e):e.verificada===true;
- var pending=/analise|pendente/.test(st),rejected=/rejeit|recus/.test(st),label=verified?'Empresa verificada':pending?'Em análise':rejected?'Ajustes necessários':'Verificação não solicitada';
- function field(id,label,value,type){return '<label>'+label+'<input id="'+id+'" type="'+(type||'text')+'" value="'+esc(value)+'"/></label>'}
- function data(label,value){return '<div><small>'+label+'</small><strong>'+esc(value||'Não informado no cadastro')+'</strong></div>'}
- root.innerHTML='<style>:host{display:block;max-width:1100px;margin:auto;font:14px Inter,Arial,sans-serif;color:#18324f}*{box-sizing:border-box}.head,.box{background:#fff;border:1px solid #dce6ef;border-radius:12px;padding:22px;margin-bottom:16px}.head{background:#f3f8ff}h1{font-size:26px;margin:14px 0 8px}h2{font-size:18px;margin:0 0 8px}p{color:#65768c;line-height:1.6;margin:0 0 16px}.badge{display:inline-block;padding:7px 12px;border-radius:20px;background:'+(verified?'#e9f8ee':pending?'#fff3df':'#e8f0ff')+';color:'+(verified?'#178348':pending?'#956015':'#1769bd')+';font-weight:600}.grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}small{display:block;color:#718198;margin-bottom:6px}.grid strong{font-weight:600;overflow-wrap:anywhere}label{display:block;font-weight:600;color:#344b64}input,textarea{display:block;width:100%;margin-top:7px;padding:11px;border:1px solid #cedbe8;border-radius:7px;font:14px Inter,Arial,sans-serif;color:#18324f;background:#fff}textarea{min-height:85px;resize:vertical}.full{grid-column:1/-1}.check{display:flex;gap:9px;align-items:flex-start;font-size:13px;line-height:1.5;margin-top:18px}.check input{width:auto;margin-top:3px}.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px}button{font:600 13px Inter,Arial,sans-serif;border:1px solid #d4e0ed;border-radius:7px;padding:11px 16px;color:#1769bd;background:#fff;cursor:pointer}.primary{background:#086be6;border-color:#086be6;color:#fff}button:disabled{opacity:.6;cursor:default}.message{margin-top:14px;line-height:1.5}input:focus,textarea:focus{outline:2px solid #90bfff;outline-offset:1px}@media(max-width:650px){.grid{grid-template-columns:1fr}.head,.box{padding:16px}}</style>'+
- '<div class="head"><button type="button" id="back">← Voltar ao painel</button><h1>Perfil Empresarial</h1><p>Seus dados cadastrais já estão aqui. Complete apenas as informações necessárias para solicitar a verificação.</p><span class="badge">'+label+'</span>'+(rejected?'<p style="margin-top:12px">'+esc(e.verificacaoMotivo||'Revise as informações e envie novamente.')+'</p>':'')+'</div>'+
- '<section class="box"><h2>Dados do cadastro</h2><p>Informações aproveitadas do cadastro da empresa.</p><div class="grid">'+data('Nome fantasia',e.nomeFantasia||e.nome)+data('Razão social',e.razaoSocial)+data('CNPJ',e.cnpj)+data('E-mail da empresa',e.emailCorporativo||e.email)+data('Telefone',e.telefoneEmpresa||e.telefone)+data('Localidade',[e.cidade||e.matriz,e.uf||e.estado].filter(Boolean).join(' / '))+data('Segmento',e.segmento||e.setor||e.area)+data('Site',e.site)+'</div></section>'+
- '<form class="box" id="verification"><h2>Responsável e verificação</h2><p>Esses dados são destinados à análise da solicitação.</p><div class="grid">'+field('name','Nome do responsável',e.responsavelNome||extra.nome||'')+field('role','Cargo ou vínculo com a empresa',e.responsavelCargo||extra.cargo||'')+field('email','E-mail de contato',e.responsavelEmail||extra.email||e.emailCorporativo||e.email||'','email')+field('phone','Telefone de contato',e.responsavelTelefone||extra.telefone||e.telefoneEmpresa||e.telefone||'','tel')+
- '<label class="full">Comprovação do vínculo, quando necessária<textarea id="proof" placeholder="Informe como comprovar seu vínculo com a empresa ou forneça o endereço do comprovante.">'+esc(extra.comprovacao||(e.comprovacaoVerificacao&&!extra.tipo?e.comprovacaoVerificacao:''))+'</textarea></label></div><label class="check"><input id="confirm" type="checkbox"/>Confirmo que os contatos informados estão corretos e que tenho autorização para representar a empresa.</label><div class="actions"><button type="button" id="save">Salvar informações</button><button class="primary" type="submit" '+(verified||pending?'disabled':'')+'>'+(verified?'Verificação aprovada':pending?'Solicitação em análise':'Solicitar verificação')+'</button></div><div class="message" role="status" aria-live="polite"></div></form>';
- root.querySelector('#back').onclick=function(){if(typeof abrirVisaoGeralRecrutadorEM==='function')abrirVisaoGeralRecrutadorEM();else irPara('painel-empresa')};
- root.querySelector('#save').onclick=function(){save(false)};root.querySelector('form').onsubmit=function(ev){ev.preventDefault();save(true)};
- async function save(request){
-  if(busy)return;var form=root.querySelector('form'),msg=root.querySelector('.message'),v=function(id){return root.querySelector('#'+id).value.trim()};
-  if(!form.reportValidity())return;if(request&&(!v('name')||!v('role')||!v('email')||!v('phone')||!root.querySelector('#confirm').checked)){msg.textContent='Preencha os dados do responsável e confirme as informações de contato.';return}
-  var next=Object.assign({},current()),extra={tipo:'perfil_verificacao',nome:v('name'),cargo:v('role'),email:v('email'),telefone:v('phone'),comprovacao:v('proof'),contatosDeclaradosCorretos:root.querySelector('#confirm').checked};
-  next.responsavelNome=extra.nome;next.responsavelCargo=extra.cargo;next.responsavelEmail=extra.email;next.responsavelTelefone=extra.telefone;next.comprovacaoVerificacao=JSON.stringify(extra);
-  if(request){next.verificacaoStatus='em_analise';next.statusVerificacao='em_analise';next.verificacaoPendente=true;next.verificada=false;next.verificacaoEnviadaEm=new Date().toISOString()}
-  busy=true;form.querySelectorAll('button').forEach(function(b){b.disabled=true});msg.textContent=request?'Enviando solicitação…':'Salvando…';
-  try{var r=await salvarEmpresaRemotaEM(next);if(!r||r.sucesso!==true)throw Error(r&&r.erro||'Não foi possível salvar.');
-   var updated=Object.assign({},next,r.empresa||{});if(typeof mesclarEmpresasRemotasEM==='function')mesclarEmpresasRemotasEM([updated]);
-   paint(updated);root.querySelector('.message').textContent=request?'Solicitação enviada. O selo será exibido somente após a aprovação da análise.':'Informações salvas.';
-  }catch(err){msg.textContent=err.message||'Falha ao salvar. Tente novamente.';form.querySelector('#save').disabled=false;form.querySelector('.primary').disabled=verified||pending}
-  finally{busy=false}
- }
- }
- window.montarFormularioPerfilEmpresarialEM=mount;
- function init(){var page=document.getElementById('pagina-perfil-empresa');if(!page)return;new MutationObserver(mount).observe(page,{attributes:true,attributeFilter:['class']});mount()}
- if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init,{once:true});else init();
-})();
-</script>
+<script src="empresa-perfil-profissional.js?v=20261008-profile-wizard-v52"></script>
 
 </body></html>
