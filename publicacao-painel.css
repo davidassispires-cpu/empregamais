@@ -274,3 +274,21 @@
 #pagina-publicar #formVaga .em-field:has(.publish-mode-options) .em-benefit-select-v10-btn{display:none!important}
 
 #pagina-publicar #formVaga .em-field:has(.publish-mode-options) .em-select-v4{display:none!important}
+
+/* Recebimento de candidaturas: referência aprovada com identidade WhatsApp. */
+#pagina-publicar.em-publish-in-panel #formVaga label.publish-contact-choice{position:relative!important;flex-direction:column!important;text-align:center!important;align-items:center!important;gap:18px!important;padding:30px 22px 22px!important;border-radius:16px!important;box-shadow:0 5px 18px #18324f08!important}
+#pagina-publicar.em-publish-in-panel #formVaga .publish-contact-symbol{display:grid!important;place-items:center!important;width:66px!important;height:66px!important;border-radius:18px!important;background:#eef5ff!important}
+#pagina-publicar.em-publish-in-panel #formVaga .publish-contact-symbol svg{width:34px!important;height:34px!important}
+#pagina-publicar.em-publish-in-panel #formVaga .publish-contact-choice>span:nth-child(2){flex:1!important}
+#pagina-publicar.em-publish-in-panel #formVaga .publish-contact-choice strong{font-size:20px!important;line-height:1.4!important}
+#pagina-publicar.em-publish-in-panel #formVaga .publish-contact-choice small{font-size:14px!important;line-height:1.6!important;margin-top:9px!important}
+#pagina-publicar.em-publish-in-panel #formVaga .publish-contact-choice input{position:absolute!important;top:16px!important;right:16px!important;width:19px!important;height:19px!important;margin:0!important;min-height:0!important}
+#pagina-publicar.em-publish-in-panel #formVaga .publish-contact-action{display:flex!important;align-items:center!important;justify-content:center!important;gap:9px!important;width:100%!important;min-height:48px!important;padding:10px 8px!important;box-sizing:border-box!important;border:1px solid #d4dfeb!important;border-radius:9px!important;color:#18324f!important;background:#fff!important;font:600 14px/1.4 Inter,sans-serif!important}
+#pagina-publicar.em-publish-in-panel #formVaga .publish-contact-action svg{width:21px!important;height:21px!important;flex-shrink:0!important}
+#pagina-publicar.em-publish-in-panel #formVaga .publish-contact-choice[data-contact="whatsapp"] .publish-contact-symbol{background:#e8f8ee!important;color:#16a45a!important}
+#pagina-publicar.em-publish-in-panel #formVaga .publish-contact-choice[data-contact="whatsapp"].selected{background:#f2fbf5!important;border-color:#20b565!important;box-shadow:0 0 0 1px #20b565!important}
+#pagina-publicar.em-publish-in-panel #formVaga .publish-contact-choice[data-contact="whatsapp"] input{accent-color:#20b565!important}
+#pagina-publicar.em-publish-in-panel #formVaga .publish-contact-choice[data-contact="whatsapp"] .publish-contact-action{background:#20b565!important;border-color:#20b565!important;color:#fff!important}
+#pagina-publicar.em-publish-in-panel #formVaga .publish-contact-choice:focus-within{outline:3px solid #a8ccef!important;outline-offset:3px!important}
+#pagina-publicar.em-publish-in-panel #formVaga .publish-contact-help{font-size:14px!important}
+@media(max-width:900px){#pagina-publicar.em-publish-in-panel #formVaga .publish-contact-options{grid-template-columns:1fr!important}}
