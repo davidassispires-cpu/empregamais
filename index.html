@@ -42036,4 +42036,29 @@ window.addEventListener("online",function(){if(Object.keys(dirty).length)flush()
 document.addEventListener("DOMContentLoaded",async function(){if(sessionStorage.getItem("empregaMaisPapel")!=="candidato"||!sessionStorage.getItem("candidatoUserId"))return;try{var rows=await request("/rest/v1/candidatos?select=*&user_id=eq."+encodeURIComponent(sessionStorage.getItem("candidatoUserId"))+"&limit=1");if(rows&&rows[0]){await window.EmpregaMaisPerfilCloud.hydrate(rows[0]);if(typeof preencherPerfilCandidato==="function")preencherPerfilCandidato();if(typeof renderizarPainelCandidato==="function")renderizarPainelCandidato();}}catch(e){status(e.message,true);}});
 if(typeof mostrarPopupPerfilAtualizadoEM==="function"){var popup=mostrarPopupPerfilAtualizadoEM;window.mostrarPopupPerfilAtualizadoEM=function(){setTimeout(function(){flush().then(function(){popup();}).catch(function(){});},0);};}
 })();
-</script></body></html>
+</script><style id="em-near-location-attention">#emPerto .em-near-head{display:flex!important;align-items:center;gap:14px;margin-bottom:18px;padding:16px;border:1px solid #cfe2f6;border-radius:12px;background:#f1f7ff}
+#emPerto .em-near-icon{display:grid;place-items:center;width:42px;height:42px;flex:0 0 42px;border-radius:12px;background:#e0edff;color:#1670cc}
+#emPerto .em-near-icon svg{width:24px;height:24px}
+#emPerto .em-near-copy{flex:1;min-width:0}
+#emPerto .em-near-copy h3{margin:0 0 5px!important;color:#153e6a!important;font:700 17px/1.3 Inter,Arial,sans-serif!important}
+#emPerto .em-near-copy p{margin:0!important;color:#5a718b!important;font:400 12px/1.5 Montserrat,Arial,sans-serif!important}
+#emPerto .em-near-actions{display:flex;gap:9px;flex-shrink:0}
+#emPerto .em-near-actions button{display:inline-flex!important;align-items:center;justify-content:center;height:40px!important;padding:0 14px!important;margin:0!important;border-radius:8px!important;font:600 11px Montserrat,Arial,sans-serif!important;cursor:pointer}
+#emPerto .em-near-actions #emPertoLocal{background:#126bd1!important;color:#fff!important;border:1px solid #126bd1!important}
+#emPerto #emNearCepAction{background:#fff!important;color:#1768bb!important;border:1px solid #adcdef!important}
+#emPerto.em-near-attention .em-near-head{animation:emNearReveal .4s ease-out both}
+#emPerto.em-near-attention #emPertoLocal{animation:emNearPulse 1.2s ease-out 2}
+@keyframes emNearReveal{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+@keyframes emNearPulse{0%,100%{box-shadow:0 0 0 0 #1976df00}35%{box-shadow:0 0 0 7px #1976df25}}
+@media(max-width:760px){#emPerto .em-near-head{flex-wrap:wrap;padding:14px;gap:10px}#emPerto .em-near-copy{flex-basis:calc(100% - 56px)}#emPerto .em-near-copy h3{font-size:16px!important}#emPerto .em-near-actions{width:100%;flex-direction:column}#emPerto .em-near-actions button{width:100%!important}}
+@media(prefers-reduced-motion:reduce){#emPerto.em-near-attention .em-near-head,#emPerto.em-near-attention #emPertoLocal{animation:none!important}}</style><script id="em-near-location-attention-js">(function(){
+function install(){var box=document.getElementById("emPerto");if(!box||box.dataset.attentionReady)return;box.dataset.attentionReady="1";
+var title=box.querySelector("h3"),description=box.querySelector("p"),head=document.createElement("div");head.className="em-near-head";var copy=document.createElement("div");copy.className="em-near-copy";var icon=document.createElement("span");icon.className="em-near-icon";icon.innerHTML='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12S4 16 4 10a8 8 0 1 1 16 0Z"/><circle cx="12" cy="10" r="2.5"/></svg>';box.prepend(head);head.appendChild(icon);head.appendChild(copy);if(title)copy.appendChild(title);if(description){description.textContent="Use sua localização ou informe seu CEP para encontrar oportunidades na sua região.";copy.appendChild(description);}
+var actions=document.createElement("div");actions.className="em-near-actions";head.appendChild(actions);var local=document.getElementById("emPertoLocal");if(local)actions.appendChild(local);var cepButton=document.createElement("button");cepButton.id="emNearCepAction";cepButton.type="button";cepButton.textContent="Informar CEP";actions.appendChild(cepButton);cepButton.onclick=function(){var input=document.getElementById("emPertoCep");if(input){input.scrollIntoView({block:"center",behavior:window.matchMedia("(prefers-reduced-motion: reduce)").matches?"auto":"smooth"});input.focus({preventScroll:true});}};
+function active(){var selected=box.classList.contains("em-perto-active");if(title)title.textContent=selected?"Buscando vagas perto de você":"Encontre vagas perto de você";cepButton.textContent=selected?"Alterar localização":"Informar CEP";if(selected)box.classList.remove("em-near-attention");}
+new MutationObserver(active).observe(box,{attributes:true,attributeFilter:["class"]});active();
+var seen=false;try{seen=sessionStorage.getItem("emNearAttentionSeen")==="1";}catch(e){}if(!seen){var observer=new IntersectionObserver(function(entries){if(entries.some(function(entry){return entry.isIntersecting;})){box.classList.add("em-near-attention");try{sessionStorage.setItem("emNearAttentionSeen","1");}catch(e){}observer.disconnect();}},{threshold:.35});observer.observe(box);}
+}
+if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",install);else install();
+window.addEventListener("load",install);var observer=new MutationObserver(function(){if(document.getElementById("emPerto")){install();observer.disconnect();}});observer.observe(document.body,{childList:true,subtree:true});
+})();</script></body></html>
