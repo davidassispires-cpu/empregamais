@@ -272,3 +272,5 @@
 /* Modalidade: ocultar o menu duplicado e preservar somente os três cards. */
 #pagina-publicar #formVaga:has(.publish-mode-options) select#modalidadeVaga,#pagina-publicar #formVaga .em-field:has(.publish-mode-options) select{display:none!important;position:absolute!important;width:1px!important;height:1px!important;min-height:0!important;margin:0!important;padding:0!important;opacity:0!important;pointer-events:none!important}
 #pagina-publicar #formVaga .em-field:has(.publish-mode-options) .em-benefit-select-v10-btn{display:none!important}
+
+#pagina-publicar #formVaga .em-field:has(.publish-mode-options) .em-select-v4{display:none!important}
