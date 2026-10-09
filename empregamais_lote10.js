@@ -206,8 +206,9 @@ function companyHero(e){
   }
   function openPublish() {
     if(typeof window.empresaEstaLogada==='function'&&!window.empresaEstaLogada()){invoke('irPara',['login-empresa']);return;}
-    view='publish';rememberPanelState();
-    invoke('irPara',['painel-empresa']);mount();
+    var panel=document.getElementById('pagina-painel-empresa');
+    if(!panel||!panel.classList.contains('ativa'))invoke('irPara',['painel-empresa']);
+    view='publish';rememberPanelState();mount();
     window.scrollTo({top:0,behavior:'smooth'});
   }
   function setupPublishContact(form){
