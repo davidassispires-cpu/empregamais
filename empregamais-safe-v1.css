@@ -617,3 +617,28 @@ body.empresa-premium-v44 .plano-premium-v44{min-height:96px!important;margin:0 0
     min-width:0!important;
   }
 }
+
+
+/* EmpregaMais: CTA Premium compacto da aderência à vaga */
+#pagina-vaga .premium-lock-aderencia-v78{
+  display:grid!important;grid-template-columns:54px minmax(0,1fr) auto!important;align-items:center!important;gap:16px!important;
+  min-height:88px!important;padding:16px 20px!important;border:1px solid #ead79e!important;border-radius:14px!important;
+  background:linear-gradient(135deg,#fffdf7 0%,#fff 72%)!important;text-align:left!important;box-shadow:0 5px 16px rgba(23,32,51,.035)!important;
+}
+#pagina-vaga .premium-lock-aderencia-v78 .premium-lock-icon-v78{
+  width:46px!important;height:46px!important;margin:0!important;border-radius:50%!important;background:#f8edcb!important;font-size:21px!important;
+}
+#pagina-vaga .premium-lock-aderencia-v78 strong{font-size:13px!important;line-height:1.35!important;color:#172033!important;}
+#pagina-vaga .premium-lock-aderencia-v78 p{margin:4px 0 0!important;max-width:560px!important;font-size:10px!important;line-height:1.45!important;color:#667085!important;}
+#pagina-vaga .premium-lock-aderencia-v78 button{
+  min-height:40px!important;margin:0!important;padding:0 17px!important;border:0!important;border-radius:10px!important;background:#172033!important;color:#fff!important;
+  font-size:10px!important;font-weight:800!important;white-space:nowrap!important;box-shadow:0 5px 12px rgba(23,32,51,.12)!important;transition:transform .18s ease,box-shadow .18s ease,background .18s ease!important;
+}
+#pagina-vaga .premium-lock-aderencia-v78 button::before{content:'♛';margin-right:7px;color:#f3c64d;font-size:13px;}
+#pagina-vaga .premium-lock-aderencia-v78 button::after{content:'  →';margin-left:5px;}
+#pagina-vaga .premium-lock-aderencia-v78 button:hover{transform:translateY(-1px)!important;background:#10192a!important;box-shadow:0 7px 16px rgba(23,32,51,.16)!important;}
+@media(max-width:700px){
+ #pagina-vaga .premium-lock-aderencia-v78{grid-template-columns:42px minmax(0,1fr)!important;gap:11px!important;padding:14px!important;}
+ #pagina-vaga .premium-lock-aderencia-v78 .premium-lock-icon-v78{width:40px!important;height:40px!important;font-size:18px!important;}
+ #pagina-vaga .premium-lock-aderencia-v78 button{grid-column:1/-1!important;width:100%!important;margin-top:2px!important;}
+}
