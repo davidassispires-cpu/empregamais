@@ -43,13 +43,13 @@ html body #pagina-vaga#pagina-vaga #emJobInformation{display:block!important;pos
 html body #pagina-vaga#pagina-vaga #emJobInformation>div{display:grid!important;grid-template-columns:minmax(0,1fr)!important;align-items:center!important;gap:5px!important;position:relative!important;min-height:64px!important;box-sizing:border-box!important;margin:0!important;padding:14px 0!important;border-bottom:1px solid #e5eaf0!important;text-align:left!important}
 html body #pagina-vaga#pagina-vaga #emJobInformation>div:first-child{padding-top:0!important;min-height:50px!important}
 html body #pagina-vaga#pagina-vaga #emJobInformation>div:last-child{border-bottom:0!important;padding-bottom:0!important}
-html body #pagina-vaga#pagina-vaga #emJobInformation dt{display:flex!important;align-items:center!important;gap:8px!important;min-width:0!important;margin:0!important;padding:0!important;font:inherit!important;color:#687486!important;text-align:left!important;overflow-wrap:anywhere!important}
+html body #pagina-vaga#pagina-vaga #emJobInformation dt{display:flex!important;align-items:center!important;justify-content:center!important;gap:8px!important;min-width:0!important;margin:0!important;padding:0!important;font:inherit!important;color:#687486!important;text-align:left!important;overflow-wrap:anywhere!important}
 html body #pagina-vaga#pagina-vaga #emJobInformation dd{min-width:0!important;margin:0!important;padding:0!important;color:#20252d!important;font:600 12px/1.6 Montserrat,Arial,sans-serif!important;text-align:left!important;overflow-wrap:anywhere!important;white-space:normal!important}
 html body #pagina-vaga#pagina-vaga #emJobInformation .em-condition-icon{display:block!important;position:static!important;inset:auto!important;transform:none!important;width:20px!important;height:20px!important;flex:0 0 20px!important;color:#7b8797!important}
 html body #pagina-vaga#pagina-vaga #btnCandidatar{background:#249d47!important;border-color:#249d47!important;color:#fff!important}
 @media(max-width:1100px){
  html body #pagina-vaga#pagina-vaga #emJobInformation>div{grid-template-columns:minmax(0,1fr)!important;gap:5px!important}
- html body #pagina-vaga#pagina-vaga #emJobInformation dd{padding-left:28px!important}
+ html body #pagina-vaga#pagina-vaga #emJobInformation dd{padding-left:0!important;text-align:center!important}
 }
 @media(max-width:900px){
  html body #pagina-vaga#pagina-vaga .conteudo-vaga-box.em-job-panel{grid-template-columns:minmax(0,1fr)!important;padding:24px!important}
@@ -62,7 +62,7 @@ html body #pagina-vaga#pagina-vaga #btnCandidatar{background:#249d47!important;b
  html body #pagina-vaga#pagina-vaga .em-job-panel h2{font-size:19px!important}
 }
 html body #pagina-vaga#pagina-vaga .em-job-information{display:block!important;position:static!important;box-sizing:border-box!important;width:100%!important;min-width:0!important;margin:18px 0 0!important;padding:22px 20px!important;background:#fff!important;border:1px solid #dde4ec!important;border-radius:10px!important;box-shadow:none!important}
-html body #pagina-vaga#pagina-vaga .em-job-information h2{margin:0 0 18px!important;padding:0!important;font:700 18px/1.4 Inter,Arial,sans-serif!important;color:#14243c!important;text-align:left!important;background:transparent!important;border:0!important}
+html body #pagina-vaga#pagina-vaga .em-job-information h2{margin:0 0 18px!important;padding:0!important;font:700 18px/1.4 Inter,Arial,sans-serif!important;color:#14243c!important;text-align:center!important;background:transparent!important;border:0!important}
 html body #pagina-vaga#pagina-vaga .em-job-information h2::before,html body #pagina-vaga#pagina-vaga .em-job-information h2::after{content:none!important}
 html body #pagina-vaga#pagina-vaga #emJobInformation dd{padding-left:28px!important}
 @media(max-width:800px){
