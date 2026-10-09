@@ -38,8 +38,9 @@ if(sessionStorage.getItem("empregaMaisPapel")==="empresa") sessionStorage.remove
 }catch(e){}
 }
 var empresaRequestInFlight=null;
+var EMPRESA_PREVIEW_SOLICITADO=(function(){try{return new URLSearchParams(location.search).get("preview")==="empresa";}catch(e){return false;}})();
 function empresaPreviewAtivo(){
-try{return new URLSearchParams(location.search).get("preview")==="empresa";}catch(e){return false;}
+try{return EMPRESA_PREVIEW_SOLICITADO||sessionStorage.getItem("empregaMaisPreviewEmpresa")==="1";}catch(e){return EMPRESA_PREVIEW_SOLICITADO;}
 }
 function empresaPreviewDados(){
 var e=null;
@@ -62,7 +63,10 @@ function ativarEmpresaPreview(){
 if(!empresaPreviewAtivo()) return;
 var e=empresaPreviewDados();
 try{
+sessionStorage.setItem("empregaMaisPreviewEmpresa","1");
 sessionStorage.setItem("empregaMaisPapel","empresa");
+sessionStorage.setItem("empresaLogadaEmpregaMais","1");
+sessionStorage.setItem("empresaAtualEmpregaMais",JSON.stringify(e));
 sessionStorage.setItem("empresaNome",e.nome_fantasia||e.nome||"Empresa de demonstração");
 sessionStorage.setItem("empregaMaisEmpresaRemotaV49",JSON.stringify(e));
 }catch(x){}
@@ -258,7 +262,12 @@ oldIrPara.call(self,"login-empresa");
 return false;
 };
 window.addEventListener("load",function(){
-if(empresaPreviewAtivo()) ativarEmpresaPreview();
+if(empresaPreviewAtivo()){
+ativarEmpresaPreview();
+var e=empresaPreviewDados();
+if(typeof window.entrarComoEmpresa==="function"){try{window.entrarComoEmpresa(e);}catch(x){}}
+setTimeout(function(){try{oldIrPara.call(window,"painel-empresa");}catch(x){}},80);
+}
 companySessionValid().then(function(ok){
 if(!ok) clearLegacySession();
 });
