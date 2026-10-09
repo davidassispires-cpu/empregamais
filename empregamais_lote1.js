@@ -217,6 +217,11 @@ alert(msg);
 }
 window.loginEmpresa=function(ev){
 if(ev) ev.preventDefault();
+if(empresaPreviewAtivo()){
+ativarEmpresaPreview();
+enterFromRemote(empresaPreviewDados());
+return false;
+}
 clearToken(); clearLegacySession();
 var cnpj=nums(document.getElementById("loginEmpresaCnpj").value);
 var senha=String(document.getElementById("loginEmpresaSenha").value||"");
