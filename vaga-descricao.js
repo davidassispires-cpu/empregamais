@@ -27,7 +27,7 @@
   page.querySelectorAll('.em-description-icon,.em-job-description-footer').forEach(function(el){el.remove();});
   var infoSection=page.querySelector('.em-job-information');
   if(!infoSection){infoSection=document.createElement('section');infoSection.className='bloco-detalhe em-job-information';infoSection.innerHTML='<h2>'+icon('briefcase','em-info-icon')+'Informações da vaga</h2><dl id="emJobInformation"></dl>';}
-  var sidebar=page.querySelector('.aplicar-lateral'),company=sidebar&&sidebar.querySelector('.empresa-lateral');
+  var sidebar=page.querySelector('.aplicar-lateral'),company=sidebar&&(sidebar.querySelector('.em-detail-company-name')||sidebar.querySelector('.empresa-lateral'));
 
   var layout=page.querySelector('.detalhe-layout'),main=layout&&layout.querySelector(':scope > main');
   var mobile=window.matchMedia('(max-width:800px)').matches;
