@@ -22,14 +22,15 @@
  }
  function render(){
   queued=false;var page=document.getElementById('pagina-vaga'),box=page&&page.querySelector('.conteudo-vaga-box');if(!box)return;
-  var v=window.vagaAtual||{},hero=page.querySelector('.jh-tiles .jh-tile .jh-value');
-  var description=document.getElementById('detalheDescricao'),heading=description&&description.parentElement.querySelector('h2');
-  if(heading&&!heading.querySelector('.em-description-icon'))heading.insertAdjacentHTML('afterbegin',icon('document','em-description-icon'));
-  var infoSection=page.querySelector('.em-job-information'),footer=page.querySelector('.em-job-description-footer');
+  var v=window.vagaAtual||{};
+  var reading=box.querySelector('.em-job-reading');
+  if(!reading){reading=document.createElement('div');reading.className='em-job-reading';box.prepend(reading);}
+  ['detalheDescricao','detalheRequisitos','detalheBeneficios'].forEach(function(id){var raw=document.getElementById(id),section=raw&&raw.closest('.bloco-detalhe');if(section&&section.parentElement!==reading)reading.appendChild(section);});
+  box.classList.add('em-job-panel');
+  page.querySelectorAll('.em-description-icon,.em-job-description-footer').forEach(function(el){el.remove();});
+  var infoSection=page.querySelector('.em-job-information');
   if(!infoSection){infoSection=document.createElement('section');infoSection.className='bloco-detalhe em-job-information';infoSection.innerHTML='<h2>'+icon('briefcase','em-info-icon')+'Informações da vaga</h2><dl id="emJobInformation"></dl>';}
   if(infoSection.parentElement!==box)box.appendChild(infoSection);
-  if(!footer){footer=document.createElement('div');footer.className='em-job-description-footer';footer.innerHTML='<small>Candidatura gratuita</small><button class="btn" type="button">Candidatar-se</button>';footer.querySelector('button').onclick=function(){var b=document.getElementById('btnCandidatar');if(b)b.click();};}
-  if(footer.parentElement!==box)box.appendChild(footer);
   var benefits=Array.from(page.querySelectorAll('#detalheBeneficiosTags span')).map(function(el){return el.textContent.trim();});
   var source={description:text('detalheDescricao'),requirements:text('detalheRequisitos'),benefits:benefits,benefitText:text('detalheBeneficios'),rows:[
    ['Área de atuação',v.area],['Escolaridade',v.escolaridade],['Experiência',v.experiencia],['Jornada',v.jornada],['Horário',v.horario],

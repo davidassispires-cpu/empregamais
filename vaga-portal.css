@@ -16,48 +16,53 @@ html body #pagina-vaga#pagina-vaga .em-detail-tabs [role=tab][aria-selected=true
 @media(max-width:1200px){#emPortalVagaBanner{padding-left:24px!important;padding-right:24px!important}}
 @media(max-width:600px){#emPortalVagaBanner p{font-size:22px!important}#emPortalVagaBanner{padding:15px 18px 18px!important}html body #pagina-vaga#pagina-vaga .em-detail-tabs{gap:14px!important;padding-left:15px!important;padding-right:15px!important}html body #pagina-vaga#pagina-vaga .em-detail-tabs [role=tab]{font-size:11px!important;gap:5px!important}}
 
-/* Layout único da descrição: texto e informações cadastradas. */
+/* Painel integrado: uma única grade, sem ação de candidatura duplicada. */
 html body #pagina-vaga#pagina-vaga .em-detail-tabs,
 html body #pagina-vaga#pagina-vaga .em-job-description-footer,
 html body #pagina-vaga#pagina-vaga #resumoVagaV27,
 html body #pagina-vaga#pagina-vaga :is(#detalheDescricao,#detalheRequisitos,#detalheBeneficios,#detalheBeneficiosTags){display:none!important}
-html body #pagina-vaga#pagina-vaga .conteudo-vaga-box{display:grid!important;grid-template-columns:minmax(0,1.85fr) minmax(280px,1fr)!important;gap:0 32px!important;align-items:start!important;padding:32px!important;background:#fff!important;border:1px solid #c7dcf2!important;border-radius:14px!important;box-shadow:none!important;overflow:visible!important}
-html body #pagina-vaga#pagina-vaga .conteudo-vaga-box>.bloco-detalhe{display:block!important;grid-column:1!important;min-width:0!important;background:transparent!important;border:0!important;border-radius:0!important;box-shadow:none!important;margin:0!important;padding:0 0 28px!important;scroll-margin-top:90px!important}
-html body #pagina-vaga#pagina-vaga .conteudo-vaga-box h2{position:static!important;transform:none!important;float:none!important;text-align:left!important;text-indent:0!important;font:750 21px/1.35 Inter,Arial,sans-serif!important;color:#10284f!important;margin:0 0 12px!important;letter-spacing:-.3px!important}
-html body #pagina-vaga#pagina-vaga .conteudo-vaga-box h2::before,
-html body #pagina-vaga#pagina-vaga .conteudo-vaga-box h2::after{display:none!important;content:none!important}
-html body #pagina-vaga#pagina-vaga .em-job-text{font:500 14px/1.75 Montserrat,Arial,sans-serif!important;color:#171717!important;text-align:left!important;overflow-wrap:anywhere!important;min-width:0!important}
-html body #pagina-vaga#pagina-vaga .em-job-text p{font:inherit!important;color:inherit!important;line-height:inherit!important;margin:0 0 10px!important;white-space:normal!important}
-html body #pagina-vaga#pagina-vaga .em-job-text ul{display:block!important;list-style:none!important;padding:0!important;margin:0!important}
-html body #pagina-vaga#pagina-vaga .em-job-text li{display:block!important;font:inherit!important;color:inherit!important;padding:0!important;margin:5px 0!important}
-html body #pagina-vaga#pagina-vaga .em-job-text li::before,
+html body #pagina-vaga#pagina-vaga .conteudo-vaga-box.em-job-panel{display:grid!important;grid-template-columns:minmax(0,1.6fr) minmax(250px,1fr)!important;gap:0!important;align-items:stretch!important;box-sizing:border-box!important;width:100%!important;min-width:0!important;margin:18px 0 0!important;padding:28px!important;background:#fff!important;border:1px solid #dde4ec!important;border-radius:10px!important;box-shadow:none!important;overflow:visible!important}
+html body #pagina-vaga#pagina-vaga .em-job-reading{display:block!important;min-width:0!important;margin:0!important;padding:0 28px 0 0!important}
+html body #pagina-vaga#pagina-vaga .em-job-reading>.bloco-detalhe{display:block!important;min-width:0!important;margin:0!important;padding:24px 0!important;background:transparent!important;border:0!important;border-bottom:1px solid #e5eaf0!important;border-radius:0!important;box-shadow:none!important;scroll-margin-top:90px!important}
+html body #pagina-vaga#pagina-vaga .em-job-reading>.bloco-detalhe:first-child{padding-top:0!important}
+html body #pagina-vaga#pagina-vaga .em-job-reading>.bloco-detalhe:last-child{padding-bottom:0!important;border-bottom:0!important}
+html body #pagina-vaga#pagina-vaga .em-job-panel h2{display:block!important;position:static!important;inset:auto!important;transform:none!important;float:none!important;min-height:0!important;padding:0!important;margin:0 0 18px!important;text-align:left!important;text-indent:0!important;font:700 20px/1.4 Inter,Arial,sans-serif!important;color:#14243c!important;letter-spacing:-.35px!important;background:transparent!important;border:0!important}
+html body #pagina-vaga#pagina-vaga .em-job-panel h2::before,
+html body #pagina-vaga#pagina-vaga .em-job-panel h2::after{content:none!important;display:none!important}
+html body #pagina-vaga#pagina-vaga .em-job-text{display:block!important;min-width:0!important;font:500 13px/1.85 Montserrat,Arial,sans-serif!important;color:#20252d!important;text-align:left!important;overflow-wrap:anywhere!important}
+html body #pagina-vaga#pagina-vaga .em-job-text p{font:inherit!important;color:inherit!important;line-height:inherit!important;margin:0 0 12px!important;white-space:normal!important}
+html body #pagina-vaga#pagina-vaga .em-job-text p:last-child{margin-bottom:0!important}
+html body #pagina-vaga#pagina-vaga .em-job-text ul{display:block!important;list-style:none!important;margin:0!important;padding:0!important}
+html body #pagina-vaga#pagina-vaga .em-job-text li{display:block!important;font:inherit!important;color:inherit!important;position:relative!important;padding:0 0 0 14px!important;margin:8px 0!important}
+html body #pagina-vaga#pagina-vaga .em-job-text li:first-child{margin-top:0!important}
+html body #pagina-vaga#pagina-vaga .em-job-text li:last-child{margin-bottom:0!important}
+html body #pagina-vaga#pagina-vaga .em-job-text li::before{content:''!important;display:block!important;position:absolute!important;left:0!important;top:.83em!important;width:4px!important;height:4px!important;background:#8a96a6!important;border:0!important;border-radius:50%!important;transform:none!important}
 html body #pagina-vaga#pagina-vaga .em-job-text li::after{content:none!important;display:none!important}
-html body #pagina-vaga#pagina-vaga .conteudo-vaga-box>.em-job-information{grid-column:2!important;grid-row:1 / span 3!important;align-self:start!important;position:static!important;inset:auto!important;transform:none!important;float:none!important;box-sizing:border-box!important;width:100%!important;min-width:0!important;max-width:100%!important;margin:0!important;padding:0!important;overflow:hidden!important;background:#fff!important;border:1px solid #d6e4f2!important;border-radius:12px!important}
-html body #pagina-vaga#pagina-vaga .conteudo-vaga-box>.em-job-information>h2{display:flex!important;align-items:center!important;justify-content:flex-start!important;gap:12px!important;box-sizing:border-box!important;width:100%!important;min-height:0!important;padding:20px!important;margin:0!important;background:#f1f7fd!important;border-bottom:1px solid #dce8f4!important;font-size:19px!important;white-space:normal!important}
-html body #pagina-vaga#pagina-vaga .em-job-information .em-info-icon{width:26px!important;height:30px!important;flex:0 0 26px!important;color:#10284f!important}
-html body #pagina-vaga#pagina-vaga #emJobInformation{position:static!important;transform:none!important;box-sizing:border-box!important;width:100%!important;display:block!important;margin:0!important;padding:8px 20px!important;font:500 13px/1.65 Montserrat,Arial,sans-serif!important}
-html body #pagina-vaga#pagina-vaga #emJobInformation>div{display:grid!important;grid-template-columns:minmax(0,1fr)!important;align-items:start!important;gap:4px!important;padding:20px 0 20px 42px!important;position:relative!important;margin:0!important;border-bottom:1px solid #dce8f4!important;text-align:left!important}
-html body #pagina-vaga#pagina-vaga #emJobInformation>div:last-child{border-bottom:0!important}
-html body #pagina-vaga#pagina-vaga #emJobInformation dt{color:#626975!important;font-weight:500!important;min-width:0!important;text-align:left!important}
-html body #pagina-vaga#pagina-vaga #emJobInformation dd{color:#171717!important;font-weight:600!important;margin:0!important;min-width:0!important;text-align:left!important;overflow-wrap:anywhere!important;white-space:normal!important}
+html body #pagina-vaga#pagina-vaga .conteudo-vaga-box.em-job-panel>.em-job-information{display:block!important;grid-column:2!important;grid-row:1!important;align-self:stretch!important;position:static!important;inset:auto!important;transform:none!important;float:none!important;box-sizing:border-box!important;width:100%!important;min-width:0!important;max-width:100%!important;margin:0!important;padding:0 0 0 28px!important;background:transparent!important;border:0!important;border-left:1px solid #e5eaf0!important;border-radius:0!important;box-shadow:none!important;overflow:visible!important}
+html body #pagina-vaga#pagina-vaga .em-job-information .em-info-icon{display:none!important}
+html body #pagina-vaga#pagina-vaga #emJobInformation{display:block!important;position:static!important;transform:none!important;box-sizing:border-box!important;width:100%!important;margin:0!important;padding:0!important;font:500 12px/1.6 Montserrat,Arial,sans-serif!important}
+html body #pagina-vaga#pagina-vaga #emJobInformation>div{display:grid!important;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr)!important;align-items:center!important;gap:12px!important;position:relative!important;min-height:64px!important;box-sizing:border-box!important;margin:0!important;padding:14px 0!important;border-bottom:1px solid #e5eaf0!important;text-align:left!important}
+html body #pagina-vaga#pagina-vaga #emJobInformation>div:first-child{padding-top:0!important;min-height:50px!important}
+html body #pagina-vaga#pagina-vaga #emJobInformation>div:last-child{border-bottom:0!important;padding-bottom:0!important}
+html body #pagina-vaga#pagina-vaga #emJobInformation dt{display:flex!important;align-items:center!important;gap:8px!important;min-width:0!important;margin:0!important;padding:0!important;font:inherit!important;color:#687486!important;text-align:left!important;overflow-wrap:anywhere!important}
+html body #pagina-vaga#pagina-vaga #emJobInformation dd{min-width:0!important;margin:0!important;padding:0!important;color:#20252d!important;font:600 12px/1.6 Montserrat,Arial,sans-serif!important;text-align:left!important;overflow-wrap:anywhere!important;white-space:normal!important}
+html body #pagina-vaga#pagina-vaga #emJobInformation .em-condition-icon{display:block!important;position:static!important;inset:auto!important;transform:none!important;width:20px!important;height:20px!important;flex:0 0 20px!important;color:#7b8797!important}
 html body #pagina-vaga#pagina-vaga #btnCandidatar{background:#249d47!important;border-color:#249d47!important;color:#fff!important}
-/* Typographie, pictogrammes et séparateurs de la référence. */
-html body #pagina-vaga#pagina-vaga .conteudo-vaga-box>.bloco-detalhe:has(#detalheDescricao){border-bottom:1px solid #dce8f4!important;margin-bottom:28px!important}
-html body #pagina-vaga#pagina-vaga .conteudo-vaga-box>.bloco-detalhe:has(#detalheDescricao)>h2{display:flex!important;align-items:center!important;gap:14px!important;margin-bottom:20px!important}
-html body #pagina-vaga#pagina-vaga .em-description-icon{display:block!important;width:28px!important;height:32px!important;flex:0 0 28px!important}
-html body #pagina-vaga#pagina-vaga #emJobInformation .em-condition-icon{position:absolute!important;left:0!important;top:50%!important;transform:translateY(-50%)!important;width:26px!important;height:26px!important;color:#66707e!important}
-html body #pagina-vaga#pagina-vaga #emJobInformation dt{line-height:1.5!important}
-html body #pagina-vaga#pagina-vaga #emJobInformation dd{font-size:14px!important;line-height:1.5!important}
-html body #pagina-vaga#pagina-vaga .em-job-text li{margin:9px 0!important}
+@media(max-width:1100px){
+ html body #pagina-vaga#pagina-vaga .conteudo-vaga-box.em-job-panel{grid-template-columns:minmax(0,1.5fr) minmax(210px,1fr)!important;padding:24px!important}
+ html body #pagina-vaga#pagina-vaga .em-job-reading{padding-right:24px!important}
+ html body #pagina-vaga#pagina-vaga .conteudo-vaga-box.em-job-panel>.em-job-information{padding-left:24px!important}
+ html body #pagina-vaga#pagina-vaga #emJobInformation>div{grid-template-columns:minmax(0,1fr)!important;gap:5px!important}
+ html body #pagina-vaga#pagina-vaga #emJobInformation dd{padding-left:28px!important}
+}
 @media(max-width:900px){
- html body #pagina-vaga#pagina-vaga .conteudo-vaga-box{grid-template-columns:minmax(0,1fr)!important;padding:20px!important;gap:0!important}
- html body #pagina-vaga#pagina-vaga .conteudo-vaga-box>.em-job-information{grid-column:1!important;grid-row:1!important;margin-bottom:24px!important}
- html body #pagina-vaga#pagina-vaga .conteudo-vaga-box>.bloco-detalhe:not(.em-job-information){grid-column:1!important;grid-row:auto!important}
+ html body #pagina-vaga#pagina-vaga .conteudo-vaga-box.em-job-panel{grid-template-columns:minmax(0,1fr)!important;padding:24px!important}
+ html body #pagina-vaga#pagina-vaga .em-job-reading{padding:0!important}
+ html body #pagina-vaga#pagina-vaga .conteudo-vaga-box.em-job-panel>.em-job-information{grid-column:1!important;grid-row:2!important;margin:24px 0 0!important;padding:24px 0 0!important;border-left:0!important;border-top:1px solid #e5eaf0!important}
+ html body #pagina-vaga#pagina-vaga #emJobInformation>div{grid-template-columns:minmax(0,1fr) minmax(0,1.1fr)!important;gap:12px!important}
+ html body #pagina-vaga#pagina-vaga #emJobInformation dd{padding-left:0!important}
 }
 @media(max-width:600px){
- html body #pagina-vaga#pagina-vaga .conteudo-vaga-box{padding:18px!important}
- html body #pagina-vaga#pagina-vaga .conteudo-vaga-box h2{font-size:20px!important}
- html body #pagina-vaga#pagina-vaga .em-job-text{font-size:13px!important}
- html body #pagina-vaga#pagina-vaga .conteudo-vaga-box>.em-job-information>h2{padding:16px!important;font-size:18px!important}
- html body #pagina-vaga#pagina-vaga #emJobInformation{padding:4px 16px!important}
+ html body #pagina-vaga#pagina-vaga .conteudo-vaga-box.em-job-panel{padding:20px!important}
+ html body #pagina-vaga#pagina-vaga .em-job-panel h2{font-size:19px!important}
 }
