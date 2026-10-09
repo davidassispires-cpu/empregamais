@@ -27,7 +27,12 @@
   page.querySelectorAll('.em-description-icon,.em-job-description-footer').forEach(function(el){el.remove();});
   var infoSection=page.querySelector('.em-job-information');
   if(!infoSection){infoSection=document.createElement('section');infoSection.className='bloco-detalhe em-job-information';infoSection.innerHTML='<h2>'+icon('briefcase','em-info-icon')+'Informações da vaga</h2><dl id="emJobInformation"></dl>';}
-  if(infoSection.parentElement!==box)box.appendChild(infoSection);
+  var sidebar=page.querySelector('.aplicar-lateral'),company=sidebar&&sidebar.querySelector('.empresa-lateral');
+
+  var layout=page.querySelector('.detalhe-layout'),main=layout&&layout.querySelector(':scope > main');
+  var mobile=window.matchMedia('(max-width:800px)').matches;
+  if(mobile&&main&&infoSection.nextElementSibling!==box)box.before(infoSection);
+  else if(!mobile&&company&&company.nextElementSibling!==infoSection)company.after(infoSection);
   var benefits=Array.from(page.querySelectorAll('#detalheBeneficiosTags span')).map(function(el){return el.textContent.trim();});
   var source={description:text('detalheDescricao'),requirements:text('detalheRequisitos'),benefits:benefits,benefitText:text('detalheBeneficios'),rows:[
    ['Área de atuação',v.area],['Escolaridade',v.escolaridade],['Experiência',v.experiencia],['Jornada',v.jornada],['Horário',v.horario],
@@ -41,6 +46,6 @@
   var info=document.getElementById('emJobInformation');if(info)info.innerHTML=source.rows.filter(function(row){return row[1]!=null&&String(row[1]).trim()&&String(row[1]).trim()!=='-';}).map(function(row){return '<div><dt>'+icon(row[0],'em-condition-icon')+'<span>'+esc(row[0])+'</span></dt><dd>'+esc(row[1])+'</dd></div>';}).join('');
  }
  function schedule(){if(!queued){queued=true;requestAnimationFrame(render);}}
- function init(){render();var p=document.getElementById('pagina-vaga');if(p)new MutationObserver(function(records){if(records.some(function(r){var el=r.target.nodeType===1?r.target:r.target.parentElement;return el&&!el.closest('.em-job-text,#emJobInformation');}))schedule();}).observe(p,{subtree:true,childList:true,characterData:true});window.addEventListener('popstate',schedule);}
+ function init(){render();var p=document.getElementById('pagina-vaga');if(p)new MutationObserver(function(records){if(records.some(function(r){var el=r.target.nodeType===1?r.target:r.target.parentElement;return el&&!el.closest('.em-job-text,#emJobInformation');}))schedule();}).observe(p,{subtree:true,childList:true,characterData:true});window.addEventListener('popstate',schedule);window.matchMedia('(max-width:800px)').addEventListener('change',schedule);}
  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init,{once:true});else init();
 })();
