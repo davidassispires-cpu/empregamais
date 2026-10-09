@@ -599,3 +599,21 @@ body.empresa-premium-v44 .plano-premium-v44{min-height:96px!important;margin:0 0
   #pagina-vaga .aplicar-lateral #btnSalvarDetalhe{position:fixed!important;}
   #pagina-vaga .vaga-cabecalho-top{padding-right:165px!important;}
 }
+
+
+/* EmpregaMais: listagem de vagas com conteúdo à esquerda e filtros à direita */
+@media (min-width:901px){
+  #pagina-home #vagas .vagas-area{
+    grid-template-columns:minmax(0,1fr) 250px!important;
+  }
+  #pagina-home #vagas .vagas-area > #filtrosLateral{
+    grid-column:2!important;
+    grid-row:1!important;
+    order:2!important;
+  }
+  #pagina-home #vagas .vagas-area > :not(#filtrosLateral){
+    grid-column:1!important;
+    order:1!important;
+    min-width:0!important;
+  }
+}
