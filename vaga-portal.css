@@ -104,3 +104,14 @@ html body #pagina-vaga#pagina-vaga .em-detail-tabs{display:none!important}
     background:transparent!important
   }
 }
+
+/* v75 — corrige proporção e leitura do documento da vaga */
+@media(min-width:901px){
+ html body #pagina-vaga#pagina-vaga .conteudo-vaga-box{grid-template-columns:minmax(0,1.7fr) minmax(300px,.9fr)!important;column-gap:32px!important}
+ html body #pagina-vaga#pagina-vaga .conteudo-vaga-box>.bloco-detalhe:not(.em-job-information){padding:16px 0!important}
+ html body #pagina-vaga#pagina-vaga .conteudo-vaga-box>.bloco-detalhe:first-child{padding-top:0!important}
+ html body #pagina-vaga#pagina-vaga .conteudo-vaga-box h2{font-size:20px!important;margin-bottom:12px!important}
+ html body #pagina-vaga#pagina-vaga .em-job-text{font-size:13.5px!important;line-height:1.72!important}
+ html body #pagina-vaga#pagina-vaga .em-job-text p{margin-bottom:8px!important}
+ html body #pagina-vaga#pagina-vaga .em-job-text li{margin:4px 0!important}
+}
