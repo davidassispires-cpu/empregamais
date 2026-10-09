@@ -29,8 +29,8 @@ html body #pagina-vaga#pagina-vaga .em-job-reading>.bloco-detalhe:last-child{pad
 html body #pagina-vaga#pagina-vaga .em-job-panel h2{display:block!important;position:static!important;inset:auto!important;transform:none!important;float:none!important;min-height:0!important;padding:0!important;margin:0 0 18px!important;text-align:left!important;text-indent:0!important;font:700 20px/1.4 Inter,Arial,sans-serif!important;color:#14243c!important;letter-spacing:-.35px!important;background:transparent!important;border:0!important}
 html body #pagina-vaga#pagina-vaga .em-job-panel h2::before,
 html body #pagina-vaga#pagina-vaga .em-job-panel h2::after{content:none!important;display:none!important}
-html body #pagina-vaga#pagina-vaga .em-job-text{display:block!important;min-width:0!important;font:500 13px/1.85 Montserrat,Arial,sans-serif!important;color:#20252d!important;text-align:left!important;overflow-wrap:anywhere!important}
-html body #pagina-vaga#pagina-vaga .em-job-text p{font:inherit!important;color:inherit!important;line-height:inherit!important;margin:0 0 12px!important;white-space:pre-line!important}
+html body #pagina-vaga#pagina-vaga .em-job-text{display:block!important;min-width:0!important;width:100%!important;max-width:none!important;font:500 13px/1.85 Montserrat,Arial,sans-serif!important;color:#20252d!important;text-align:left!important;overflow-wrap:anywhere!important}
+html body #pagina-vaga#pagina-vaga .em-job-text p{width:100%!important;max-width:none!important;font:inherit!important;color:inherit!important;line-height:inherit!important;margin:0 0 12px!important;white-space:normal!important}
 html body #pagina-vaga#pagina-vaga .em-job-text p:last-child{margin-bottom:0!important}
 html body #pagina-vaga#pagina-vaga .em-job-text ul{display:block!important;list-style:none!important;margin:0!important;padding:0!important}
 html body #pagina-vaga#pagina-vaga .em-job-text li{display:block!important;font:inherit!important;color:inherit!important;position:relative!important;padding:0!important;margin:8px 0!important}
