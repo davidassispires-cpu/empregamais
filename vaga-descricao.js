@@ -13,12 +13,9 @@
  function icon(key,cls){return '<svg class="'+cls+'" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'+(icons[key]||icons.document)+'</svg>';}
  function esc(value){return String(value==null?'':value).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];});}
  function text(id){var el=document.getElementById(id);return el?el.textContent.trim():'';}
- function content(value,list){
-  var lines=String(value||'').split(/\r?\n/).map(function(x){return x.trim();}).filter(Boolean);
-  if(!lines.length)return '<p>Não informado.</p>';
-  var result='',items=[];
-  function flush(){if(items.length){result+='<ul>'+items.map(function(x){return '<li>'+esc(x)+'</li>';}).join('')+'</ul>';items=[];}}
-  lines.forEach(function(line){var bullet=/^(?:[-*•✓]\s+|\d+[.)]\s+)/.test(line);if(bullet||list)items.push(line.replace(/^(?:[-*•✓]\s+|\d+[.)]\s+)/,''));else{flush();result+='<p>'+esc(line)+'</p>';}});flush();return result;
+ function content(value){
+  var original=String(value||'').trim();
+  return '<p>'+esc(original||'Não informado.')+'</p>';
  }
  function render(){
   queued=false;var page=document.getElementById('pagina-vaga'),box=page&&page.querySelector('.conteudo-vaga-box');if(!box)return;
