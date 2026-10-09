@@ -163,3 +163,31 @@ html body #pagina-vaga#pagina-vaga .em-detail-tabs{display:none!important}
  html body #pagina-vaga#pagina-vaga .em-job-text li{padding-left:0!important}
  html body #pagina-vaga#pagina-vaga .em-job-text li::marker{content:''!important}
 }
+
+/* v77 — corrige corte e alinhamento do painel de informações */
+@media(min-width:901px){
+ html body #pagina-vaga#pagina-vaga .conteudo-vaga-box{overflow:visible!important}
+ html body #pagina-vaga#pagina-vaga .conteudo-vaga-box>.em-job-information{
+  box-sizing:border-box!important;width:100%!important;min-width:0!important;
+  overflow:hidden!important;margin:0!important;align-self:start!important
+ }
+ html body #pagina-vaga#pagina-vaga .conteudo-vaga-box>.em-job-information h2{
+  box-sizing:border-box!important;width:100%!important;min-width:0!important;
+  justify-content:flex-start!important;text-align:left!important;padding:18px 20px!important;
+  white-space:normal!important;overflow:visible!important
+ }
+ html body #pagina-vaga#pagina-vaga .conteudo-vaga-box>.em-job-information h2:before{
+  flex:0 0 30px!important;margin:0!important
+ }
+ html body #pagina-vaga#pagina-vaga .conteudo-vaga-box>.em-job-information #emJobInformation{
+  box-sizing:border-box!important;width:100%!important;padding:10px 20px 16px!important
+ }
+ html body #pagina-vaga#pagina-vaga .conteudo-vaga-box>.em-job-information #emJobInformation>div{
+  box-sizing:border-box!important;width:100%!important;grid-template-columns:150px minmax(0,1fr)!important;
+  text-align:left!important
+ }
+ html body #pagina-vaga#pagina-vaga .conteudo-vaga-box>.em-job-information dt,
+ html body #pagina-vaga#pagina-vaga .conteudo-vaga-box>.em-job-information dd{
+  text-align:left!important;min-width:0!important
+ }
+}
