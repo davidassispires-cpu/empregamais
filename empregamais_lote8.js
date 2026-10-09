@@ -414,3 +414,29 @@ window.carregarCurriculoOnlineEM=get;
 if(typeof window.preencherPerfilCandidato==="function"){var previous=window.preencherPerfilCandidato;window.preencherPerfilCandidato=function(){var result=previous.apply(this,arguments);restore();return result;};}
 window.addEventListener("load",function(){setTimeout(install,1100);});
 })();
+
+;
+// Premium adherence teaser V95
+(function(){
+function isPremium(){try{return !!(window.EmpregaMaisPremiumCandidatoV92&&window.EmpregaMaisPremiumCandidatoV92.ehPremium());}catch(e){return false;}}
+function openPremium(){if(typeof window.irPara==="function")window.irPara("premium-candidato");}
+function render(){
+ var page=document.getElementById("pagina-vaga"),box=document.getElementById("aderenciaVagaEM");
+ if(!page||!box||isPremium())return;
+ box.className="aderencia-vaga-em ad95-card";
+ box.innerHTML="<div class='ad95-intro'><span class='ad95-icon'>✦</span><div><div class='ad95-title'><strong>Aderência à vaga</strong><span>PREMIUM</span></div><p>Veja o quanto o seu perfil combina com cada oportunidade.</p></div></div>"+
+ "<div class='ad95-example' aria-label='Exemplo de aderência'><div class='ad95-ring'><b>92%</b><small>aderência</small></div><div class='ad95-bars'><span><i style='width:100%'></i><b>Experiência</b></span><span><i style='width:90%'></i><b>Formação</b></span><span><i style='width:82%'></i><b>Habilidades</b></span></div></div>"+
+ "<div class='ad95-action'><div><strong>Candidate-se a vagas com maior aderência</strong><p>Compare oportunidades e foque nas que mais combinam com o seu perfil.</p></div><button type='button' id='ad95Premium'>Conhecer o Premium <span>→</span></button></div>";
+ var btn=document.getElementById("ad95Premium");if(btn)btn.onclick=openPremium;
+}
+var st=document.createElement("style");st.id="ad95Style";st.textContent=
+"#pagina-vaga .ad95-card{padding:14px 16px!important;border:1px solid #efd27d!important;border-radius:14px!important;background:linear-gradient(110deg,#fffdf7,#fffaf0)!important;display:grid!important;grid-template-columns:minmax(190px,.9fr) minmax(230px,1fr) minmax(250px,1.05fr)!important;gap:16px!important;align-items:center!important}"+
+".ad95-intro{display:flex;align-items:center;gap:11px;min-width:0}.ad95-icon{width:42px;height:42px;border-radius:50%;display:grid;place-items:center;flex:none;background:#fff0bd;color:#b77900;font-size:20px}.ad95-title{display:flex;align-items:center;gap:7px}.ad95-title strong{font-size:14px;color:#132238}.ad95-title span{padding:3px 7px;border-radius:999px;background:#ffe28a;color:#805b00;font-size:7px;font-weight:800;letter-spacing:.05em}.ad95-intro p,.ad95-action p{margin:4px 0 0;color:#65748a;font-size:9px;line-height:1.45}"+
+".ad95-example{display:flex;align-items:center;gap:14px;padding:9px 13px;border:1px solid #e6ebf0;border-radius:12px;background:#fff;box-shadow:0 5px 14px rgba(15,23,42,.04)}.ad95-ring{width:64px;height:64px;border-radius:50%;display:flex;flex-direction:column;align-items:center;justify-content:center;flex:none;background:conic-gradient(#18a957 0 92%,#e8edf1 92% 100%);position:relative}.ad95-ring:before{content:'';position:absolute;inset:7px;border-radius:50%;background:#fff}.ad95-ring b,.ad95-ring small{position:relative;z-index:1}.ad95-ring b{font-size:17px;color:#132238}.ad95-ring small{font-size:7px;color:#65748a}.ad95-bars{display:grid;gap:6px;flex:1}.ad95-bars span{height:13px;position:relative;border-radius:999px;background:#edf1f4;overflow:hidden}.ad95-bars i{position:absolute;inset:0 auto 0 0;background:#23a95b;border-radius:999px}.ad95-bars b{position:absolute;left:7px;top:1px;font-size:7px;color:#132238;mix-blend-mode:multiply}"+
+".ad95-action{display:flex;align-items:center;justify-content:space-between;gap:12px;padding-left:15px;border-left:1px solid #eadfbf}.ad95-action strong{display:block;color:#132238;font-size:11px;line-height:1.3}.ad95-action button{flex:none;border:0;border-radius:10px;padding:11px 13px;background:#101d38;color:#fff;font:700 9px Montserrat,Arial,sans-serif;cursor:pointer;box-shadow:0 5px 12px rgba(16,29,56,.16)}.ad95-action button span{margin-left:5px;font-size:13px}"+
+"@media(max-width:820px){#pagina-vaga .ad95-card{grid-template-columns:1fr!important}.ad95-action{padding:12px 0 0;border-left:0;border-top:1px solid #eadfbf}.ad95-example{max-width:100%}}@media(max-width:480px){.ad95-action{align-items:flex-start;flex-direction:column}.ad95-action button{width:100%}.ad95-ring{width:58px;height:58px}}";
+if(!document.getElementById(st.id))document.head.appendChild(st);
+window.addEventListener("load",function(){setTimeout(render,1300);setTimeout(render,2600)});
+document.addEventListener("click",function(){setTimeout(render,180)},true);
+window.renderAderenciaPremiumTeaserV95=render;
+})();
