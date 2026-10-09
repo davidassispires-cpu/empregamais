@@ -37,8 +37,11 @@ try{
 if(sessionStorage.getItem("empregaMaisPapel")==="empresa") sessionStorage.removeItem("empregaMaisPapel");
 }catch(e){}
 }
+var empresaRequestInFlight=null;
 function getEmpresa(){
-return authReq("/rest/v1/empresas?select=*&limit=1",{method:"GET"}).then(function(a){return Array.isArray(a)&&a.length?a[0]:null;});
+if(empresaRequestInFlight) return empresaRequestInFlight;
+empresaRequestInFlight=authReq("/rest/v1/empresas?select=*&limit=1",{method:"GET"}).then(function(a){return Array.isArray(a)&&a.length?a[0]:null;}).finally(function(){empresaRequestInFlight=null;});
+return empresaRequestInFlight;
 }
 function userValid(){
 if(!token()) return Promise.resolve(false);
