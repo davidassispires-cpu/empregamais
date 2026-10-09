@@ -79,6 +79,6 @@ html body #pagina-vaga#pagina-vaga#pagina-vaga #btnCandidatar#btnCandidatar::bef
 html body #pagina-vaga#pagina-vaga#pagina-vaga #btnCandidatar#btnCandidatar:hover{background:#128c40!important;box-shadow:none!important;transform:none!important}
 html body #pagina-vaga#pagina-vaga#pagina-vaga #btnCandidatar#btnCandidatar:focus-visible{outline:3px solid #a6dfb9!important;outline-offset:3px!important}
 html body #pagina-vaga#pagina-vaga#pagina-vaga #btnCandidatar#btnCandidatar:disabled{opacity:.65!important;cursor:not-allowed!important}
-html body #pagina-vaga#pagina-vaga#pagina-vaga .em-job-information{margin:0!important}
+html body #pagina-vaga#pagina-vaga#pagina-vaga .em-job-information{margin:18px 0 0!important}
 @media(max-width:800px){html body #pagina-vaga#pagina-vaga#pagina-vaga main>.em-job-information{margin:18px 0 0!important}}
 @media(max-width:600px){#emPortalVagaBanner p{gap:12px!important;font-size:22px!important}#emPortalVagaBanner .em-banner-icon{width:44px!important;height:44px!important;flex-basis:44px!important}}
