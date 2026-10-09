@@ -20,7 +20,7 @@ html body #pagina-vaga#pagina-vaga .em-detail-tabs [role=tab][aria-selected=true
 html body #pagina-vaga#pagina-vaga .detalhe-layout>main{display:contents!important}
 html body #pagina-vaga#pagina-vaga .detalhe-layout>main>*{grid-column:1 / -1!important;min-width:0!important}
 html body #pagina-vaga#pagina-vaga .detalhe-layout>main>#emVagaHeroV88{grid-column:1!important;grid-row:1!important}
-html body #pagina-vaga#pagina-vaga .detalhe-layout>.aplicar-lateral{grid-column:2!important;grid-row:1!important;align-self:start!important;position:static!important}
+html body #pagina-vaga#pagina-vaga#pagina-vaga .detalhe-layout>.aplicar-lateral{grid-column:2!important;grid-row:1!important;align-self:start!important;position:static!important}
 html body #pagina-vaga#pagina-vaga .detalhe-layout>main>.em-job-panel{grid-column:1 / -1!important;grid-row:2!important}
 /* Painel integrado: uma única grade, sem ação de candidatura duplicada. */
 html body #pagina-vaga#pagina-vaga .em-detail-tabs,
@@ -62,7 +62,7 @@ html body #pagina-vaga#pagina-vaga #btnCandidatar{background:#249d47!important;b
 @media(max-width:900px){
  html body #pagina-vaga#pagina-vaga .detalhe-layout{grid-template-columns:minmax(0,1fr)!important}
  html body #pagina-vaga#pagina-vaga .detalhe-layout>main{display:block!important}
- html body #pagina-vaga#pagina-vaga .detalhe-layout>.aplicar-lateral{grid-column:1!important;grid-row:auto!important}
+ html body #pagina-vaga#pagina-vaga#pagina-vaga .detalhe-layout>.aplicar-lateral{grid-column:1!important;grid-row:auto!important}
 
  html body #pagina-vaga#pagina-vaga .conteudo-vaga-box.em-job-panel{grid-template-columns:minmax(0,1fr)!important;padding:24px!important}
  html body #pagina-vaga#pagina-vaga .em-job-reading{padding:0!important}
