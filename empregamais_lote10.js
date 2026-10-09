@@ -213,11 +213,11 @@ function companyHero(e){
   function setupPublishContact(form){
     if(form.querySelector('.publish-contact-step'))return;
     var review=form.querySelector('[data-panel="4"]');if(!review)return;
-    review.dataset.panel='5';
-    var back=review.querySelector('.em-btn-back');if(back)back.onclick=function(){window.emShowJobStep(4)};
-    var step=document.createElement('section');step.className='em-job-card publish-contact-step';step.dataset.panel='4';step.style.setProperty('display','none','important');
+    review.dataset.panel='6';
+    var back=review.querySelector('.em-btn-back');if(back)back.onclick=function(){window.emShowJobStep(5)};
+    var step=document.createElement('section');step.className='em-job-card publish-contact-step';step.dataset.panel='5';step.style.setProperty('display','none','important');
     step.innerHTML='<div class="em-job-card-head"><h2>Receber candidaturas</h2><p>Escolha como os candidatos enviarão seus currículos.</p></div><div class="em-job-body"><div class="publish-contact-options"></div><div class="em-grid publish-contact-fields"></div><p class="publish-contact-help" role="status"></p></div><div class="em-job-actions"><button type="button" class="em-btn em-btn-back">← Voltar</button><button type="button" class="em-btn em-btn-next">Revisar vaga →</button></div>';
-    form.insertBefore(step,review);step.querySelector('.em-btn-back').onclick=function(){window.emShowJobStep(3)};
+    form.insertBefore(step,review);step.querySelector('.em-btn-back').onclick=function(){window.emShowJobStep(4)};
     var choices=[['email','tipoContatoEmail','E-mail','Currículos enviados ao e-mail da empresa.','emailCandidaturaVaga','E-mail para receber currículos','mail'],['whatsapp','opcaoContatoWhatsapp','WhatsApp','Candidatos entram em contato pelo WhatsApp.','whatsappCandidaturaVaga','WhatsApp com DDI e DDD','phone'],['link','opcaoContatoLink','Site','Candidatos se inscrevem no site informado.','linkCandidaturaVaga','Link para candidatura','link']];
     choices.forEach(function(row){
       var radio=document.getElementById(row[1]);radio.name='tipoContatoVaga';
@@ -237,7 +237,7 @@ function companyHero(e){
     }
     step.addEventListener('change',sync);window.atualizarTipoContatoVaga=sync;sync();
     function validContact(){sync();var chosen=form.querySelector('input[name="tipoContatoVaga"]:checked'),type=chosen?chosen.value:'email',control=document.getElementById(type==='email'?'emailCandidaturaVaga':type==='whatsapp'?'whatsappCandidaturaVaga':'linkCandidaturaVaga');control.setCustomValidity('');if(type==='whatsapp'&&control.value.replace(/\D/g,'').length<10)control.setCustomValidity('Informe um WhatsApp válido com DDI e DDD.');if(type==='link'&&!/^https?:\/\//i.test(control.value))control.setCustomValidity('Informe um link completo começando com https://.');if(!control.checkValidity()){control.reportValidity();return false}return true}
-    var progress=document.getElementById('emJobProgress');progress.innerHTML=['Informações da vaga','Detalhes','Descrição','Candidaturas','Revisar e publicar'].map(function(title,i){return '<div class="em-job-step" data-step="'+(i+1)+'"><span class="em-job-num">'+(i+1)+'</span><span>'+title+'</span></div>'}).join('');
+    var progress=document.getElementById('emJobProgress');progress.innerHTML=['Informações da vaga','Detalhes','Descrição','Processo seletivo','Candidaturas','Revisar e publicar'].map(function(title,i){return '<div class="em-job-step" data-step="'+(i+1)+'"><span class="em-job-num">'+(i+1)+'</span><span>'+title+'</span></div>'}).join('');
     var next3=document.getElementById('emNextStep3V203');if(next3)next3.textContent='Próximo →';
     window.emBuildJobReview=function(){
       function value(id){var field=document.getElementById(id);return field?String(field.value||'').trim():''}
@@ -250,12 +250,38 @@ function companyHero(e){
     window.emShowJobStep=function(n){
       form.querySelectorAll('.em-job-card[data-panel]').forEach(function(card){var active=Number(card.dataset.panel)===Number(n);card.classList.toggle('active',active);card.style.setProperty('display',active?'block':'none','important')});
       progress.querySelectorAll('[data-step]').forEach(function(item){var i=Number(item.dataset.step);item.classList.toggle('active',i===Number(n));item.classList.toggle('done',i<Number(n))});
-      if(Number(n)===4)sync();if(Number(n)===5&&typeof window.emBuildJobReview==='function'){window.emBuildJobReview();var summary=document.getElementById('emReviewContent');var entry=document.createElement('div');entry.className='em-review-section';var selected=form.querySelector('input[name="tipoContatoVaga"]:checked'),row=choices.find(function(x){return x[0]===(selected?selected.value:'email')});entry.innerHTML='<strong>Recebimento de candidaturas</strong><div>'+row[2]+': '+esc(document.getElementById(row[4]).value)+'</div>';summary.appendChild(entry);if(window.emPublishExtrasSummary)summary.insertAdjacentHTML('beforeend',window.emPublishExtrasSummary())}
+      if(Number(n)===5)sync();if(Number(n)===6&&typeof window.emBuildJobReview==='function'){window.emBuildJobReview();var summary=document.getElementById('emReviewContent');var entry=document.createElement('div');entry.className='em-review-section';var selected=form.querySelector('input[name="tipoContatoVaga"]:checked'),row=choices.find(function(x){return x[0]===(selected?selected.value:'email')});entry.innerHTML='<strong>Recebimento de candidaturas</strong><div>'+row[2]+': '+esc(document.getElementById(row[4]).value)+'</div>';summary.appendChild(entry);if(window.emPublishExtrasSummary)summary.insertAdjacentHTML('beforeend',window.emPublishExtrasSummary())}
       progress.scrollIntoView({behavior:'smooth',block:'start'});
     };
-    window.emNextJob=function(n){var card=form.querySelector('[data-panel="'+n+'"]');if(Number(n)===4&&!validContact())return;var required=card.querySelectorAll('[required]');for(var i=0;i<required.length;i++){if(!required[i].checkValidity()){required[i].reportValidity();return}}window.emShowJobStep(Number(n)+1)};
+    window.emNextJob=function(n){var card=form.querySelector('[data-panel="'+n+'"]');if(Number(n)===5&&!validContact())return;var required=card.querySelectorAll('[required]');for(var i=0;i<required.length;i++){if(!required[i].checkValidity()){required[i].reportValidity();return}}window.emShowJobStep(Number(n)+1)};
     window.addEventListener('click',function(event){var button=event.target.closest&&event.target.closest('#formVaga .em-btn-next');if(!button)return;event.preventDefault();event.stopImmediatePropagation();window.emNextJob(Number(button.closest('[data-panel]').dataset.panel))},true);
-    form.addEventListener('submit',function(event){if(!validContact()){event.preventDefault();event.stopImmediatePropagation();window.emShowJobStep(4)}},true);
+    form.addEventListener('submit',function(event){if(!validContact()){event.preventDefault();event.stopImmediatePropagation();window.emShowJobStep(5)}},true);
+  }
+  function setupPublishProcess(form){
+    if(form.querySelector('.publish-process-step'))return;
+    var contact=form.querySelector('.publish-contact-step');if(!contact)return;
+    var step=document.createElement('section');step.className='em-job-card publish-process-step';step.dataset.panel='4';step.style.setProperty('display','none','important');
+    var defaults=['Candidatura','Triagem','Entrevista com RH','Entrevista com gestor(a)','Proposta salarial','Contratação'];
+    step.innerHTML='<div class="em-job-card-head"><h2>Processo seletivo</h2><p>Defina as etapas desta vaga. O candidato poderá acompanhar o andamento da candidatura.</p></div><div class="em-job-body"><div class="publish-process-note"><strong>Comece com um modelo pronto ou personalize do seu jeito</strong><span>Você pode adicionar, remover, renomear e reorganizar as etapas.</span></div><div class="publish-process-modes"><button type="button" class="publish-process-mode selected" data-mode="padrao"><b>Usar modelo padrão</b><small>Etapas mais comuns de recrutamento</small></button><button type="button" class="publish-process-mode" data-mode="personalizado"><b>Personalizar etapas</b><small>Crie e organize seu próprio processo</small></button></div><div class="publish-process-editor"><div class="publish-process-title"><strong>Etapas do processo</strong><button type="button" class="publish-process-add">+ Adicionar etapa</button></div><div class="publish-process-list"></div></div><input type="hidden" id="processoSeletivoVaga" name="processoSeletivo" value=""></div><div class="em-job-actions"><button type="button" class="em-btn em-btn-back">← Voltar</button><button type="button" class="em-btn em-btn-next">Próximo →</button></div>';
+    form.insertBefore(step,contact);
+    var list=step.querySelector('.publish-process-list'),hidden=step.querySelector('#processoSeletivoVaga'),mode='padrao',stages=defaults.slice();
+    function save(){hidden.value=JSON.stringify({modo:mode,etapas:stages});}
+    function render(){
+      list.innerHTML='';
+      stages.forEach(function(name,i){var row=document.createElement('div');row.className='publish-process-row';row.draggable=mode==='personalizado';row.dataset.index=i;
+        row.innerHTML='<span class="publish-process-drag">⋮⋮</span><span class="publish-process-num">'+(i+1)+'</span><input type="text" value="'+esc(name)+'" '+(mode==='padrao'?'readonly':'')+' aria-label="Nome da etapa"><button type="button" class="publish-process-remove" title="Remover etapa" '+(mode==='padrao'||stages.length<=2?'disabled':'')+'>×</button>';
+        row.querySelector('input').oninput=function(){stages[i]=this.value;save()};
+        row.querySelector('.publish-process-remove').onclick=function(){stages.splice(i,1);render()};
+        row.ondragstart=function(e){e.dataTransfer.setData('text/plain',String(i));};
+        row.ondragover=function(e){if(mode==='personalizado')e.preventDefault()};
+        row.ondrop=function(e){e.preventDefault();var from=Number(e.dataTransfer.getData('text/plain')),to=i;if(from!==to){var item=stages.splice(from,1)[0];stages.splice(to,0,item);render()}};
+        list.appendChild(row);
+      });save();
+    }
+    step.querySelectorAll('.publish-process-mode').forEach(function(btn){btn.onclick=function(){mode=this.dataset.mode;step.querySelectorAll('.publish-process-mode').forEach(function(b){b.classList.toggle('selected',b===btn)});if(mode==='padrao')stages=defaults.slice();render()}});
+    step.querySelector('.publish-process-add').onclick=function(){if(mode!=='personalizado'){mode='personalizado';step.querySelectorAll('.publish-process-mode').forEach(function(b){b.classList.toggle('selected',b.dataset.mode==='personalizado')})}stages.push('Nova etapa');render();var inputs=list.querySelectorAll('input');inputs[inputs.length-1].focus();inputs[inputs.length-1].select()};
+    step.querySelector('.em-btn-back').onclick=function(){window.emShowJobStep(3)};
+    render();
   }
   function setupPublishExtras(page,form){
     var cfg=window.EmpregaMaisPlanoEmpresaV127&&window.EmpregaMaisPlanoEmpresaV127.configuracao?window.EmpregaMaisPlanoEmpresaV127.configuracao():null;
@@ -282,7 +308,7 @@ function companyHero(e){
     window.emPublishExtrasSummary=function(){total();var selected=Array.from(section.querySelectorAll('input:checked')).map(function(input){return input.closest('.publish-extra-card').querySelector('strong').textContent});return free&&selected.length?'<div class="em-review-section"><strong>Serviços opcionais selecionados</strong><div>'+esc(selected.join(' · '))+'</div><div>Total: '+new Intl.NumberFormat('pt-BR',{style:'currency',currency:'BRL'}).format(selected.length*9.9)+'</div><small>Ativação após confirmação de pagamento.</small></div>':''};
   }
   function enhancePublish(page){
-    var form=page.querySelector('#formVaga');if(!form)return;setupPublishContact(form);setupPublishExtras(page,form);
+    var form=page.querySelector('#formVaga');if(!form)return;setupPublishContact(form);setupPublishProcess(form);setupPublishExtras(page,form);
     var detail=form.querySelector('.em-job-card[data-panel="2"] .em-grid');
     if(detail&&!detail.dataset.publishAddress){
       detail.dataset.publishAddress='1';
