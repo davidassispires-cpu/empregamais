@@ -21,8 +21,7 @@
   var benefits=Array.from(page.querySelectorAll('#detalheBeneficiosTags span')).map(function(el){return el.textContent.trim();});
   var source={description:text('detalheDescricao'),requirements:text('detalheRequisitos'),benefits:benefits,benefitText:text('detalheBeneficios'),rows:[
    ['Área de atuação',v.area],['Escolaridade',v.escolaridade],['Experiência',v.experiencia],['Jornada',v.jornada],['Horário',v.horario],
-   ['Modalidade',v.modalidade||text('detalheModalidade')],['Contrato',v.contrato||text('detalheContrato')],
-   ['Localização',hero?hero.textContent.trim():text('detalheCidade')],['Salário',text('detalheSalario')],['PcD',v.pcd],
+   ['PcD',v.pcd],
    ['Profissionais 50+',v.senior50===true||String(v.senior50).toLowerCase()==='true'?'Oportunidade aberta também para profissionais 50+':'']
   ]};
   var next=JSON.stringify(source);if(next===signature)return;signature=next;
