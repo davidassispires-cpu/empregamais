@@ -14,7 +14,7 @@
   queued=false;var page=document.getElementById('pagina-vaga'),box=page&&page.querySelector('.conteudo-vaga-box');if(!box)return;
   var v=window.vagaAtual||{},hero=page.querySelector('.jh-tiles .jh-tile .jh-value');
   var infoSection=page.querySelector('.em-job-information'),footer=page.querySelector('.em-job-description-footer');
-  if(!infoSection){infoSection=document.createElement('section');infoSection.className='bloco-detalhe em-job-information';infoSection.innerHTML='<h2>Informações da vaga</h2><dl id="emJobInformation"></dl>';}
+  if(!infoSection){infoSection=document.createElement('section');infoSection.className='bloco-detalhe em-job-information';infoSection.innerHTML='<h2><svg class="em-info-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M14 2H5v20h14V7Z"/><path d="M14 2v5h5M8 12h8M8 16h6"/></svg>Informações da vaga</h2><dl id="emJobInformation"></dl>';}
   if(infoSection.parentElement!==box)box.appendChild(infoSection);
   if(!footer){footer=document.createElement('div');footer.className='em-job-description-footer';footer.innerHTML='<small>Candidatura gratuita</small><button class="btn" type="button">Candidatar-se</button>';footer.querySelector('button').onclick=function(){var b=document.getElementById('btnCandidatar');if(b)b.click();};}
   if(footer.parentElement!==box)box.appendChild(footer);
