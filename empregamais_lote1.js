@@ -44,11 +44,16 @@ function userValid(){
 if(!token()) return Promise.resolve(false);
 return authReq("/auth/v1/user",{method:"GET"}).then(function(u){return !!(u&&u.id);}).catch(function(){return false;});
 }
+var companySessionCheckInFlight=null;
 function companySessionValid(){
-return userValid().then(function(ok){
+if(companySessionCheckInFlight) return companySessionCheckInFlight;
+companySessionCheckInFlight=userValid().then(function(ok){
 if(!ok) return false;
-return getEmpresa().then(function(e){return !!(e&&e.id);}).catch(function(){return false;});
-});
+return authReq("/rest/v1/empresas?select=id&limit=1",{method:"GET"})
+.then(function(a){return !!(Array.isArray(a)&&a.length&&a[0]&&a[0].id);})
+.catch(function(){return false;});
+}).finally(function(){companySessionCheckInFlight=null;});
+return companySessionCheckInFlight;
 }
 function localCompany(cnpj,senha){
 try{
