@@ -499,13 +499,13 @@ function enhance(){
  var apply=page.querySelector(".aplicar-bloco-principal h3");if(apply)apply.textContent="Candidate-se à vaga";
  var box=page.querySelector(".conteudo-vaga-box");
  if(box&&!box.querySelector(".em-detail-tabs")){
-  var blocks=Array.from(box.querySelectorAll(":scope>.bloco-detalhe")),nav=document.createElement("div");nav.className="em-detail-tabs";nav.setAttribute("role","tablist");nav.setAttribute("aria-label","Informações da vaga");
+  var blocks=Array.from(box.querySelectorAll(":scope>.bloco-detalhe")),nav=document.createElement("div");nav.className="em-detail-tabs";nav.setAttribute("role","navigation");nav.setAttribute("aria-label","Informações da vaga");
   blocks.forEach(function(block,i){
-   var btn=document.createElement("button");btn.type="button";btn.textContent=["Descrição","Requisitos","Benefícios"][i]||"Informações";btn.id="em-detail-tab-"+i;block.id="em-detail-panel-"+i;block.setAttribute("role","tabpanel");block.setAttribute("aria-labelledby",btn.id);btn.setAttribute("role","tab");btn.setAttribute("aria-controls",block.id);
-   function select(){blocks.forEach(function(b,k){b.classList.toggle("em-detail-tab-hidden",k!==i);var t=nav.children[k];t.setAttribute("aria-selected",String(k===i));t.tabIndex=k===i?0:-1;});}
+   var btn=document.createElement("button");btn.type="button";btn.textContent=["Descrição","Requisitos","Benefícios","Informações da vaga"][i]||"Informações";btn.id="em-detail-tab-"+i;block.id="em-detail-panel-"+i;block.setAttribute("role","region");block.setAttribute("aria-labelledby",btn.id);btn.setAttribute("role","button");btn.setAttribute("aria-controls",block.id);
+   function select(){blocks.forEach(function(b,k){b.classList.remove("em-detail-tab-hidden");var t=nav.children[k];if(k===i)t.setAttribute("aria-current","location");else t.removeAttribute("aria-current");t.tabIndex=0;});block.scrollIntoView({behavior:window.matchMedia("(prefers-reduced-motion: reduce)").matches?"auto":"smooth",block:"start"});}
    btn.onclick=select;btn.onkeydown=function(e){var k=e.key;if(k!=="ArrowRight"&&k!=="ArrowLeft")return;e.preventDefault();var n=(i+(k==="ArrowRight"?1:-1)+blocks.length)%blocks.length;nav.children[n].click();nav.children[n].focus();};
    nav.appendChild(btn);
-  });box.prepend(nav);if(nav.firstElementChild)nav.firstElementChild.click();
+  });box.prepend(nav);if(nav.firstElementChild)nav.firstElementChild.setAttribute("aria-current","location");
  }
  var date=page.querySelector(".em-detail-date");if(!date){date=document.createElement("div");date.className="em-detail-date";page.querySelector(".em-vaga-ref-main-v1").appendChild(date);}
  var published=page.querySelector("#detalhePublicacao");date.textContent=published&&published.textContent.trim()!=="-"?"Publicada em "+published.textContent.trim():"";

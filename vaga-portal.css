@@ -15,3 +15,26 @@ html body #pagina-vaga#pagina-vaga .em-detail-tabs [role=tab][aria-selected=true
 #pagina-vaga .em-portal-free{display:block!important;text-align:center!important;font:500 11px/1.5 Montserrat,Arial,sans-serif!important;color:#71849e!important;margin:7px 0 0!important}
 @media(max-width:1200px){#emPortalVagaBanner{padding-left:24px!important;padding-right:24px!important}}
 @media(max-width:600px){#emPortalVagaBanner p{font-size:22px!important}#emPortalVagaBanner{padding:15px 18px 18px!important}html body #pagina-vaga#pagina-vaga .em-detail-tabs{gap:14px!important;padding-left:15px!important;padding-right:15px!important}html body #pagina-vaga#pagina-vaga .em-detail-tabs [role=tab]{font-size:11px!important;gap:5px!important}}
+
+/* One document, with section links and values from the registered job. */
+html body #pagina-vaga#pagina-vaga .conteudo-vaga-box{display:block!important;background:#fff!important;border:1px solid #c7dcf2!important;border-radius:10px!important;padding:0 26px!important;overflow:hidden!important;box-shadow:none!important}
+html body #pagina-vaga#pagina-vaga .conteudo-vaga-box>.bloco-detalhe{display:block!important;background:transparent!important;border:0!important;border-bottom:1px solid #dce7f2!important;border-radius:0!important;box-shadow:none!important;margin:0!important;padding:26px 0!important;scroll-margin-top:90px!important}
+html body #pagina-vaga#pagina-vaga .conteudo-vaga-box h2{font:750 22px/1.35 Inter,Arial,sans-serif!important;color:#10284f!important;margin:0 0 16px!important;letter-spacing:-.3px!important}
+html body #pagina-vaga#pagina-vaga .conteudo-vaga-box h2:before{display:none!important;content:none!important}
+html body #pagina-vaga#pagina-vaga .em-detail-tabs{padding:16px 0 0!important;gap:22px!important;border-radius:0!important;margin:0!important;justify-content:flex-start!important}
+html body #pagina-vaga#pagina-vaga .em-detail-tabs button{display:inline-flex!important;align-items:center!important;gap:8px!important;flex-shrink:0!important;width:auto!important;padding:12px 0 16px!important;border:0!important;border-bottom:3px solid transparent!important;border-radius:0!important;background:transparent!important;box-shadow:none!important;color:#344d73!important;font:600 13px/1.4 Montserrat,Arial,sans-serif!important;white-space:nowrap!important;cursor:pointer!important}
+html body #pagina-vaga#pagina-vaga .em-detail-tabs button[aria-current]{color:#0875ee!important;border-bottom-color:#0875ee!important}
+html body #pagina-vaga#pagina-vaga .em-detail-tabs button:focus-visible{outline:2px solid #0875ee!important;outline-offset:2px!important}
+html body #pagina-vaga#pagina-vaga :is(#detalheDescricao,#detalheRequisitos,#detalheBeneficios,#detalheBeneficiosTags){display:none!important}
+html body #pagina-vaga#pagina-vaga .em-job-text{font:500 14px/1.85 Montserrat,Arial,sans-serif!important;color:#273c59!important;overflow-wrap:anywhere!important}
+html body #pagina-vaga#pagina-vaga .em-job-text p{font:inherit!important;color:inherit!important;line-height:inherit!important;margin:0 0 12px!important;white-space:pre-wrap!important}
+html body #pagina-vaga#pagina-vaga .em-job-text ul{display:block!important;margin:0!important;padding-left:23px!important;list-style:disc!important}
+html body #pagina-vaga#pagina-vaga .em-job-text li{display:list-item!important;margin:5px 0!important;padding-left:3px!important;font:inherit!important;color:inherit!important}
+html body #pagina-vaga#pagina-vaga .em-job-text li::marker{color:#1675e8!important}
+#emJobInformation{margin:0!important;display:block!important;font:500 13px/1.65 Montserrat,Arial,sans-serif!important;color:#273c59!important}
+#emJobInformation>div{display:grid!important;grid-template-columns:155px minmax(0,1fr)!important;gap:14px!important;margin:6px 0!important}
+#emJobInformation dt{font-weight:700!important}#emJobInformation dd{margin:0!important;overflow-wrap:anywhere!important;white-space:pre-wrap!important}
+html body #pagina-vaga#pagina-vaga .em-job-description-footer{display:flex!important;align-items:center!important;justify-content:space-between!important;gap:16px!important;padding:18px 0!important}
+.em-job-description-footer small{font:500 12px Montserrat,Arial,sans-serif;color:#71849e}
+html body #pagina-vaga#pagina-vaga .em-job-description-footer button{width:auto!important;background:#249d47!important;color:#fff!important;border:0!important;border-radius:7px!important;padding:13px 22px!important;font:700 13px Inter,Arial,sans-serif!important;text-transform:uppercase!important;cursor:pointer!important}
+@media(max-width:600px){html body #pagina-vaga#pagina-vaga .conteudo-vaga-box{padding:0 18px!important}html body #pagina-vaga#pagina-vaga .conteudo-vaga-box>.bloco-detalhe{padding:22px 0!important}html body #pagina-vaga#pagina-vaga .conteudo-vaga-box h2{font-size:20px!important}#emJobInformation>div{grid-template-columns:115px minmax(0,1fr)!important;gap:10px!important}html body #pagina-vaga#pagina-vaga .em-job-description-footer{flex-wrap:wrap!important}html body #pagina-vaga#pagina-vaga .em-job-text{font-size:13px!important}}
