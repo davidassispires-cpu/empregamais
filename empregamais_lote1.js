@@ -38,7 +38,43 @@ if(sessionStorage.getItem("empregaMaisPapel")==="empresa") sessionStorage.remove
 }catch(e){}
 }
 var empresaRequestInFlight=null;
+function empresaPreviewAtivo(){
+try{return new URLSearchParams(location.search).get("preview")==="empresa";}catch(e){return false;}
+}
+function empresaPreviewDados(){
+var e=null;
+try{e=JSON.parse(sessionStorage.getItem("empregaMaisEmpresaRemotaV49")||"null");}catch(x){}
+if(!e){try{var a=JSON.parse(localStorage.getItem("empresasEmpregaMais")||"[]");if(Array.isArray(a)&&a.length)e=a[0];}catch(x){}}
+e=e||{};
+return Object.assign({
+id:"preview-empresa",
+nome:"Empresa de demonstração",
+nome_fantasia:"Empresa de demonstração",
+razao_social:"Empresa de demonstração",
+cnpj:"",
+email:"",
+plano:"basico",
+verificada:false,
+preview:true
+},e,{preview:true});
+}
+function ativarEmpresaPreview(){
+if(!empresaPreviewAtivo()) return;
+var e=empresaPreviewDados();
+try{
+sessionStorage.setItem("empregaMaisPapel","empresa");
+sessionStorage.setItem("empresaNome",e.nome_fantasia||e.nome||"Empresa de demonstração");
+sessionStorage.setItem("empregaMaisEmpresaRemotaV49",JSON.stringify(e));
+}catch(x){}
+if(document.getElementById("em-preview-banner")) return;
+var b=document.createElement("div");
+b.id="em-preview-banner";
+b.textContent="MODO DE PRÉ-VISUALIZAÇÃO — alterações no Supabase ficam desativadas enquanto o serviço estiver bloqueado.";
+b.style.cssText="position:fixed;left:0;right:0;bottom:0;z-index:2147483647;background:#fff7ed;color:#9a3412;border-top:1px solid #fdba74;padding:9px 14px;text-align:center;font:600 12px/1.35 Montserrat,Arial,sans-serif;box-shadow:0 -4px 18px rgba(0,0,0,.08)";
+document.body.appendChild(b);
+}
 function getEmpresa(){
+if(empresaPreviewAtivo()) return Promise.resolve(empresaPreviewDados());
 if(empresaRequestInFlight) return empresaRequestInFlight;
 empresaRequestInFlight=authReq("/rest/v1/empresas?select=*&limit=1",{method:"GET"}).then(function(a){return Array.isArray(a)&&a.length?a[0]:null;}).finally(function(){empresaRequestInFlight=null;});
 return empresaRequestInFlight;
@@ -49,6 +85,7 @@ return authReq("/auth/v1/user",{method:"GET"}).then(function(u){return !!(u&&u.i
 }
 var companySessionCheckInFlight=null;
 function companySessionValid(){
+if(empresaPreviewAtivo()) return Promise.resolve(true);
 if(companySessionCheckInFlight) return companySessionCheckInFlight;
 companySessionCheckInFlight=userValid().then(function(ok){
 if(!ok) return false;
@@ -221,6 +258,7 @@ oldIrPara.call(self,"login-empresa");
 return false;
 };
 window.addEventListener("load",function(){
+if(empresaPreviewAtivo()) ativarEmpresaPreview();
 companySessionValid().then(function(ok){
 if(!ok) clearLegacySession();
 });
