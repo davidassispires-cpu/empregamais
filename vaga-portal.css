@@ -48,3 +48,59 @@ html body #pagina-vaga#pagina-vaga .aplicar-lateral #emJobInformation>div{grid-t
 html body #pagina-vaga#pagina-vaga #resumoVagaV27{display:none!important}
 html body #pagina-vaga#pagina-vaga #btnCandidatar{background:#249d47!important;border-color:#249d47!important;color:#fff!important}
 @media(max-width:900px){html body #pagina-vaga#pagina-vaga .aplicar-lateral #emJobInformation>div{grid-template-columns:135px minmax(0,1fr)!important}}
+
+
+/* v74 — informações da vaga integradas ao card principal */
+html body #pagina-vaga#pagina-vaga .em-detail-tabs{display:none!important}
+@media(min-width:901px){
+  html body #pagina-vaga#pagina-vaga .conteudo-vaga-box{
+    display:grid!important;
+    grid-template-columns:minmax(0,1.55fr) minmax(280px,.85fr)!important;
+    column-gap:30px!important;
+    align-items:start!important;
+    padding:24px 26px 0!important
+  }
+  html body #pagina-vaga#pagina-vaga .conteudo-vaga-box>.bloco-detalhe:not(.em-job-information){
+    grid-column:1!important
+  }
+  html body #pagina-vaga#pagina-vaga .conteudo-vaga-box>.em-job-information{
+    display:block!important;
+    grid-column:2!important;
+    grid-row:1 / span 3!important;
+    margin:0!important;
+    padding:18px 20px!important;
+    border:1px solid #d6e4f2!important;
+    border-radius:10px!important;
+    background:#f8fbff!important;
+    box-shadow:none!important;
+    align-self:start!important
+  }
+  html body #pagina-vaga#pagina-vaga .conteudo-vaga-box>.em-job-information h2{
+    font-size:18px!important;
+    margin:0 0 14px!important
+  }
+  html body #pagina-vaga#pagina-vaga .conteudo-vaga-box>.em-job-information #emJobInformation>div{
+    grid-template-columns:120px minmax(0,1fr)!important;
+    gap:10px!important;
+    padding:9px 0!important;
+    margin:0!important;
+    border-bottom:1px solid #e1ebf5!important
+  }
+  html body #pagina-vaga#pagina-vaga .conteudo-vaga-box>.em-job-information #emJobInformation>div:last-child{border-bottom:0!important}
+  html body #pagina-vaga#pagina-vaga .em-job-description-footer{
+    grid-column:1 / -1!important;
+    border-top:1px solid #dce7f2!important;
+    margin-top:6px!important
+  }
+}
+@media(max-width:900px){
+  html body #pagina-vaga#pagina-vaga .conteudo-vaga-box>.em-job-information{
+    display:block!important;
+    margin:0!important;
+    padding:22px 0!important;
+    border:0!important;
+    border-bottom:1px solid #dce7f2!important;
+    border-radius:0!important;
+    background:transparent!important
+  }
+}
