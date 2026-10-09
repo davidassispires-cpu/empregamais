@@ -52,9 +52,9 @@ html body #pagina-home #listaVagas{grid-template-columns:minmax(0,1fr)!important
 html body #pagina-home #listaVagas>article,html body #pagina-home #listaVagas>div{width:100%!important;max-width:none!important}
 @media(max-width:900px){html body #pagina-home>section#vagas{width:calc(100% - 32px)!important;margin:28px 16px!important}html body #pagina-home #vagas .vagas-area{grid-template-columns:minmax(0,1fr)!important}}
 
-html body #pagina-home #vagas .vagas-area{grid-template-columns:280px minmax(0,1fr)!important}
-html body #pagina-home #vagas .vagas-area>div{grid-column:2!important;grid-row:1!important}
-html body #pagina-home #vagas #filtrosLateral{grid-column:1!important;grid-row:1!important;width:100%!important}
+html body #pagina-home #vagas .vagas-area{grid-template-columns:minmax(0,1fr) 280px!important}
+html body #pagina-home #vagas .vagas-area>div{grid-column:1!important;grid-row:1!important}
+html body #pagina-home #vagas #filtrosLateral{grid-column:2!important;grid-row:1!important;width:100%!important}
 @media(max-width:900px){html body #pagina-home #vagas .vagas-area{grid-template-columns:minmax(0,1fr)!important}html body #pagina-home #vagas .vagas-area>div{grid-column:1!important;grid-row:auto!important}html body #pagina-home #vagas #filtrosLateral{grid-column:1!important;grid-row:auto!important}}
 
 /* Cards compactos: ações no topo, salário junto aos dados e prévia em duas linhas. */
