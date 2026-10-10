@@ -176,3 +176,25 @@ html body #emCandidateDetails.em-candidate-reference-v55 .em-wide-workflow .em-g
 #pagina-candidatos-empresa #listaCandidatosEmpresa #gc27Adherence{border:1px solid #0876ef!important;color:#1268d4!important;background-color:#f7fbff!important;border-radius:8px!important;font-weight:600!important;cursor:pointer!important;transition:box-shadow .18s,border-color .18s}
 #pagina-candidatos-empresa #listaCandidatosEmpresa #gc27Adherence:focus-visible{outline:2px solid #0876ef;outline-offset:2px;box-shadow:0 0 0 3px #0876ef15}
 #pagina-candidatos-empresa #listaCandidatosEmpresa #gc27Adherence:disabled{opacity:.6;cursor:not-allowed!important}
+
+
+/* v56 — candidatura mais sofisticada, fiel ao mockup aprovado */
+html body #emCandidateDetails.em-candidate-reference-v55{width:min(1160px,97vw)!important;border-radius:22px!important;box-shadow:0 28px 80px rgba(16,39,68,.18)!important}
+#emCandidateDetails.em-candidate-reference-v55 .em-candidate-modal-head{padding:24px 30px 18px!important}
+#emCandidateDetails.em-candidate-reference-v55 .em-wide-avatar{background:linear-gradient(145deg,#2d8cff,#1475e8)!important;color:#fff!important;box-shadow:0 8px 22px rgba(8,118,239,.18)}
+#emCandidateDetails.em-candidate-reference-v55 .em-wide-tabs{border-bottom:1px solid #dfe8f3!important;gap:38px!important}
+#emCandidateDetails.em-candidate-reference-v55 .em-wide-tabs button{color:#536984!important;font-weight:600!important}
+#emCandidateDetails.em-candidate-reference-v55 .em-wide-tabs button[aria-selected="true"],#emCandidateDetails.em-candidate-reference-v55 .em-wide-tabs button.active{color:#0876ef!important;background:#f1f7ff!important;border-radius:10px 10px 0 0!important}
+#emCandidateDetails.em-candidate-reference-v55 .em-candidate-modal-body{background:#fbfdff!important}
+#emCandidateDetails.em-candidate-reference-v55 .em-wide-overview{grid-template-columns:1.05fr 1.22fr 1.05fr!important;gap:16px!important}
+#emCandidateDetails.em-candidate-reference-v55 .em-wide-block{border:1px solid #dce6f1!important;border-radius:14px!important;box-shadow:0 5px 18px rgba(16,39,68,.035)!important}
+#emCandidateDetails.em-candidate-reference-v55 .em-wide-block h3{font-size:19px!important;letter-spacing:-.2px}
+#emCandidateDetails.em-candidate-reference-v55 .em-wide-block:first-child>p svg,#emCandidateDetails.em-candidate-reference-v55 .em-detail-summary svg{padding:8px!important;background:#f1f7ff!important;border-radius:9px!important;box-sizing:content-box!important}
+#emCandidateDetails.em-candidate-reference-v55 .em-gc27-tag{font-size:11px!important;background:#edf5ff!important;color:#1268d4!important;padding:7px 11px!important}
+#emCandidateDetails.em-candidate-reference-v55 .em-detail-send{background:#0876ef!important;color:#fff!important;box-shadow:0 6px 15px rgba(8,118,239,.14)}
+#emCandidateDetails.em-candidate-reference-v55 .em-wide-contact-actions .em-wide-action{border-radius:9px!important}
+#emCandidateDetails.em-candidate-reference-v55 .em-wide-document{background:#f7fbff!important;border-radius:9px!important}
+#emCandidateDetails.em-candidate-reference-v55 .em-detail-save{border-radius:9px!important;box-shadow:0 6px 15px rgba(8,118,239,.12)}
+#emCandidateDetails.em-candidate-reference-v55 .em-detail-note>div{background:#f5f8fc!important;border:1px solid #e8eef5!important;border-radius:10px!important}
+#emCandidateDetails.em-candidate-reference-v55 .em-wide-footer{background:#fff!important;border-top:1px solid #dfe8f3!important}
+@media(max-width:900px){#emCandidateDetails.em-candidate-reference-v55 .em-wide-overview{grid-template-columns:1fr!important}}
