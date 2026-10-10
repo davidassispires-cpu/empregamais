@@ -609,8 +609,14 @@ function montar(){
  wrap.querySelector('.bp-cep-v202').appendChild(cep);wrap.querySelector('.bp-dist-v202').appendChild(sel);
  if(localizar){localizar.className='bp-localizar-v202';localizar.innerHTML='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3"/><circle cx="12" cy="12" r="7"/></svg><span>Usar minha localização</span>';wrap.querySelector('.bp-local-v202').appendChild(localizar);}
  buscar.className='bp-buscar-v202';buscar.innerHTML='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20 10c0 5-8 11-8 11S4 15 4 10a8 8 0 1 1 16 0Z"/><circle cx="12" cy="10" r="2.5"/></svg><span>Buscar perto de mim</span>';wrap.querySelector('.bp-busca-v202').appendChild(buscar);
- original.style.display='none!important';original.setAttribute('hidden','hidden');
- Array.from(page.querySelectorAll('section,div')).forEach(function(el){if(el!==wrap&&!wrap.contains(el)&&/Encontre vagas perto de você/i.test(el.textContent||'')&&el.querySelector('button')){el.style.display='none';}});
+ /* Não ocultar o contêiner original: ele pode conter a lista de vagas.
+    Apenas os controles movidos deixam de ocupar sua posição anterior. */
+ var cabecalhos=Array.from(page.querySelectorAll('section,div')).filter(function(el){
+   return el!==wrap&&!wrap.contains(el)&&el!==original&&/Encontre vagas perto de você/i.test(el.textContent||'')&&el.querySelector('button');
+ });
+ cabecalhos.forEach(function(el){
+   if(!el.querySelector('[class*="vaga"],[id*="vaga"],article')) el.style.display='none';
+ });
 }
 document.addEventListener('DOMContentLoaded',function(){setTimeout(montar,250);setTimeout(montar,900)});window.addEventListener('load',function(){setTimeout(montar,400)});new MutationObserver(function(){setTimeout(montar,80)}).observe(document.documentElement,{childList:true,subtree:true});
 })();
