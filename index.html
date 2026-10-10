@@ -25478,7 +25478,13 @@ if(!destaque){
   verLista.type="button";
   verLista.className="em-lista-ver";
   verLista.innerHTML='<span>Candidatar-se</span><b aria-hidden="true">→</b>';
-  verLista.onclick=function(){irPara("vaga",vaga.id);};
+  verLista.setAttribute("data-vaga-id",String(vaga.id||""));
+  verLista.onclick=function(e){
+    if(e){e.preventDefault();e.stopPropagation();}
+    var id=String(vaga.id||"").trim();
+    if(!id)return;
+    window.location.href=window.location.pathname+"?pagina=vaga&id="+encodeURIComponent(id);
+  };
   cardLista.appendChild(favLista);
   acoesLista.appendChild(verLista);
   footerLista.appendChild(dataLista);
