@@ -581,3 +581,34 @@ function install(){
 }
 if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',install);else install();
 })();
+
+;
+/* Corrige CTA Candidatar-se nos cards da lista V203 */
+(function(){
+if(window.__EmpregaMaisCardCandidatarV203)return;window.__EmpregaMaisCardCandidatarV203=true;
+function vagaIdDoCard(card){
+ var el=card.querySelector('[data-vaga-id],[data-id-vaga],[data-id]');
+ var id=el&&(el.getAttribute('data-vaga-id')||el.getAttribute('data-id-vaga')||el.getAttribute('data-id'));
+ if(id)return id;
+ var href=Array.from(card.querySelectorAll('a[href]')).map(function(a){return a.getAttribute('href')||''}).find(function(h){return /pagina=vaga/i.test(h)&&/[?&]id=/.test(h)});
+ if(href){try{return new URL(href,location.href).searchParams.get('id')}catch(e){}}
+ var onclick=Array.from(card.querySelectorAll('[onclick]')).map(function(x){return x.getAttribute('onclick')||''}).find(function(s){return /abrirVaga/.test(s)});
+ var m=onclick&&onclick.match(/abrirVaga\s*\(\s*['"]([^'"]+)/);return m?m[1]:'';
+}
+function abrir(id){
+ if(!id)return false;
+ if(typeof window.abrirVaga==='function'){window.abrirVaga(id);return true}
+ if(typeof window.irPara==='function'){try{window.irPara('vaga',id);return true}catch(e){}}
+ location.href='?pagina=vaga&id='+encodeURIComponent(id);return true;
+}
+document.addEventListener('click',function(e){
+ var b=e.target.closest&&e.target.closest('button,a');if(!b)return;
+ var t=String(b.textContent||'').replace(/\s+/g,' ').trim().toLowerCase();
+ if(t.indexOf('candidatar-se')!==0)return;
+ if(b.closest('#pagina-vaga'))return;
+ var card=b.closest('[class*="vaga"],article,.card');if(!card)return;
+ var id=vagaIdDoCard(card);if(!id)return;
+ e.preventDefault();e.stopPropagation();if(e.stopImmediatePropagation)e.stopImmediatePropagation();
+ abrir(id);
+},true);
+})();
