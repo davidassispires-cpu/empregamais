@@ -95,3 +95,21 @@ html body #pagina-vaga #emVagaHeroV88#emVagaHeroV88.em-header-reference{border-c
 #emJobHeaderReference .jh-vt-items>span{gap:14px!important;padding:9px 0!important}
 #emJobHeaderReference .jh-vt-items strong{font-size:12px!important}
 #emJobHeaderReference .jh-vt-items small{font-size:10.5px!important}
+
+/* Painel verificado compacto */
+#emJobHeaderReference .jh-verified-tip{width:330px!important;max-width:min(330px,86vw)!important}
+#emJobHeaderReference .jh-vt-head{gap:9px!important;padding:11px 13px!important}
+#emJobHeaderReference .jh-vt-head .jh-vt-seal{flex-basis:32px!important;width:32px!important;height:32px!important}
+#emJobHeaderReference .jh-vt-head .jh-vt-seal svg{width:32px!important;height:32px!important}
+#emJobHeaderReference .jh-vt-head strong{font-size:14px!important}
+#emJobHeaderReference .jh-vt-head small{font-size:9px!important}
+#emJobHeaderReference .jh-vt-intro{padding:11px 13px!important;font-size:9.5px!important;line-height:1.45!important}
+#emJobHeaderReference .jh-vt-items{padding:6px 13px!important}
+#emJobHeaderReference .jh-vt-items>span{gap:10px!important;padding:6px 0!important}
+#emJobHeaderReference .jh-vt-items b.jh-vt-card{flex-basis:38px!important;width:38px!important;height:38px!important;border-radius:8px!important}
+#emJobHeaderReference .jh-vt-items b.jh-vt-card svg{width:28px!important;height:28px!important}
+#emJobHeaderReference .jh-vt-items strong{font-size:10.5px!important}
+#emJobHeaderReference .jh-vt-items small{font-size:9px!important;line-height:1.25!important}
+#emJobHeaderReference .jh-vt-safe{margin:2px 10px 8px!important;padding:8px 9px!important;font-size:8.5px!important}
+#emJobHeaderReference .jh-vt-foot{padding:7px 13px!important;font-size:8px!important}
+#emJobHeaderReference .jh-vt-foot strong{font-size:8px!important}
