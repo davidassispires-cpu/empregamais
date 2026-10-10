@@ -88,3 +88,10 @@ html body #pagina-vaga #emVagaHeroV88#emVagaHeroV88.em-header-reference{border-c
 #emJobHeaderReference .jh-vt-foot{display:block!important;padding:10px 18px!important;border-top:1px solid #e4ebf2!important;color:#8490a3!important;text-align:right!important;font:500 9px/1.4 Montserrat,Arial,sans-serif!important}
 #emJobHeaderReference .jh-vt-foot strong{display:inline!important;margin:0!important;color:#0875ee!important;font:700 9px/1.4 Montserrat,Arial,sans-serif!important}
 @media(max-width:600px){#emJobHeaderReference .jh-verified-tip{position:fixed!important;top:50%!important;left:50%!important;transform:translate(-50%,-50%)!important;width:calc(100vw - 28px)!important;max-width:390px!important;max-height:86vh!important;overflow:auto!important;z-index:9999!important}}
+
+/* Ícones SVG individuais do painel de verificação */
+#emJobHeaderReference .jh-vt-items b.jh-vt-card{display:grid!important;place-items:center!important;flex:0 0 48px!important;width:48px!important;height:48px!important;border-radius:10px!important;background:linear-gradient(135deg,#edf9f1,#e2f5e9)!important;color:#0875ee!important}
+#emJobHeaderReference .jh-vt-items b.jh-vt-card svg{display:block!important;width:35px!important;height:35px!important;overflow:visible!important}
+#emJobHeaderReference .jh-vt-items>span{gap:14px!important;padding:9px 0!important}
+#emJobHeaderReference .jh-vt-items strong{font-size:12px!important}
+#emJobHeaderReference .jh-vt-items small{font-size:10.5px!important}
