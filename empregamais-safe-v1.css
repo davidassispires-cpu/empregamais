@@ -680,3 +680,21 @@ body.empresa-premium-v44 .plano-premium-v44{min-height:96px!important;margin:0 0
 #pagina-vaga .premium-cta-aderencia-v78 button::before,#pagina-vaga .premium-cta-aderencia-v78 button::after{content:none!important}
 @media(max-width:900px){#pagina-vaga .premium-lock-aderencia-v78{grid-template-columns:1fr!important}#pagina-vaga .premium-cta-aderencia-v78{padding:14px 0 0!important;border-left:0!important;border-top:1px solid #ead9a5!important}}
 @media(max-width:520px){#pagina-vaga .premium-preview-aderencia-v78{grid-template-columns:72px minmax(0,1fr)!important;padding:11px!important;gap:12px!important}#pagina-vaga .premium-score-v78{width:68px!important;height:68px!important}#pagina-vaga .premium-score-v78 span{font-size:18px!important}}
+
+/* Ajuste fino do banner Premium: alinhamento horizontal */
+#pagina-vaga .premium-lock-aderencia-v78{grid-template-columns:minmax(220px,.95fr) minmax(300px,1.3fr) minmax(205px,.82fr)!important;gap:20px!important;min-height:126px!important;padding:16px 20px!important;overflow:hidden!important}
+#pagina-vaga .premium-intro-aderencia-v78{align-self:stretch!important;padding:0 18px 0 0!important;border-right:1px solid #ead9a5!important}
+#pagina-vaga .premium-intro-aderencia-v78>div:last-child{min-width:0!important}
+#pagina-vaga .premium-intro-aderencia-v78 strong{font-size:14px!important;line-height:1.25!important;white-space:normal!important}
+#pagina-vaga .premium-intro-aderencia-v78 p{font-size:10.5px!important;line-height:1.4!important}
+#pagina-vaga .premium-preview-aderencia-v78{width:100%!important;box-sizing:border-box!important;grid-template-columns:78px minmax(0,1fr)!important;gap:14px!important;padding:10px 14px!important}
+#pagina-vaga .premium-score-v78{width:70px!important;height:70px!important}
+#pagina-vaga .premium-score-v78:after{inset:8px!important}
+#pagina-vaga .premium-score-v78 span{font-size:19px!important}
+#pagina-vaga .premium-bars-v78{gap:6px!important}
+#pagina-vaga .premium-cta-aderencia-v78{align-self:stretch!important;display:flex!important;flex-direction:column!important;justify-content:center!important;padding-left:20px!important}
+#pagina-vaga .premium-crown-v78{font-size:20px!important}
+#pagina-vaga .premium-cta-aderencia-v78>strong{font-size:14px!important}
+#pagina-vaga .premium-cta-aderencia-v78 p{font-size:10.5px!important}
+#pagina-vaga .premium-cta-aderencia-v78 button{align-self:flex-start!important;min-height:40px!important;margin-top:9px!important;font-size:10.5px!important;white-space:nowrap!important}
+@media(max-width:900px){#pagina-vaga .premium-intro-aderencia-v78{padding:0 0 14px!important;border-right:0!important;border-bottom:1px solid #ead9a5!important}#pagina-vaga .premium-cta-aderencia-v78{padding:14px 0 0!important}}
