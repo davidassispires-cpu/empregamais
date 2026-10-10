@@ -408,7 +408,8 @@ function manterAderenciaPremiumV78(){
 if(candidatoPremiumAtivoV78())return;
 var box=document.querySelector("#pagina-vaga .aderencia-vaga-em");
 if(!box)return;
-if(!box.querySelector(".premium-lock-aderencia-v78"))bloquearAderenciaV78();
+var banner=box.querySelector(".premium-lock-aderencia-v78");
+if(!banner||!banner.querySelector(".premium-preview-aderencia-v78")||!banner.querySelector(".premium-cta-aderencia-v78"))bloquearAderenciaV78();
 }
 window.addEventListener("load",function(){
 bloquearAderenciaV78();
@@ -416,6 +417,7 @@ setTimeout(bloquearAderenciaV78,80);
 setTimeout(bloquearAderenciaV78,250);
 var page=document.getElementById("pagina-vaga");
 if(page)new MutationObserver(function(){manterAderenciaPremiumV78();}).observe(page,{childList:true,subtree:true});
+setInterval(manterAderenciaPremiumV78,500);
 });
 })();
 //
