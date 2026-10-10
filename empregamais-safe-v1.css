@@ -673,3 +673,21 @@ body.empresa-premium-v44 .plano-premium-v44{min-height:96px!important;margin:0 0
 #pagina-vaga .em-meta-profissional-vaga>button svg,#pagina-vaga .em-meta-profissional-vaga>a svg{width:20px!important;height:20px!important}
 #pagina-vaga .em-meta-profissional-vaga>button:hover,#pagina-vaga .em-meta-profissional-vaga>a:hover{background:#fff2f2!important;border-radius:8px!important}
 @media(max-width:800px){#pagina-vaga .vaga-rodape-info-com-denuncia.em-meta-profissional-vaga{grid-template-columns:1fr!important;padding:10px 16px!important}#pagina-vaga .em-meta-profissional-vaga>div{padding:10px 0!important;border-right:0!important;border-bottom:1px solid #e6edf4!important}#pagina-vaga .em-meta-profissional-vaga>button,#pagina-vaga .em-meta-profissional-vaga>a{margin:8px 0 0!important;justify-content:flex-start!important}}
+
+/* Busca por proximidade V201 — modelo horizontal compacto */
+#pagina-home .busca-proxima-v201{display:grid!important;grid-template-columns:minmax(330px,1.35fr) minmax(210px,.8fr) 150px auto!important;align-items:end!important;gap:16px!important;width:100%!important;padding:18px 20px!important;border:1px solid #bcd8f7!important;border-radius:14px!important;background:linear-gradient(90deg,#f8fbff,#f3f8ff)!important;box-sizing:border-box!important}
+#pagina-home .bp-intro-v201{display:flex!important;align-items:center!important;gap:14px!important;min-width:0!important;align-self:center!important}
+#pagina-home .bp-pin-v201{display:grid!important;place-items:center!important;flex:0 0 48px!important;width:48px!important;height:48px!important;border-radius:12px!important;background:#e4f0ff!important;color:#0878e8!important}
+#pagina-home .bp-pin-v201 svg{width:26px!important;height:26px!important}
+#pagina-home .bp-intro-v201 strong{display:block!important;color:#102b57!important;font-size:17px!important;line-height:1.25!important;font-weight:800!important}
+#pagina-home .bp-intro-v201 p{margin:4px 0 0!important;color:#687b96!important;font-size:10.5px!important;line-height:1.45!important}
+#pagina-home .bp-campo-v201{min-width:0!important}
+#pagina-home .bp-campo-v201 label{display:block!important;margin:0 0 6px!important;color:#344b68!important;font-size:10.5px!important;font-weight:750!important}
+#pagina-home .bp-campo-v201 input,#pagina-home .bp-campo-v201 select{display:block!important;width:100%!important;height:42px!important;min-height:42px!important;margin:0!important;padding:0 12px!important;border:1px solid #b9d0eb!important;border-radius:9px!important;background:#fff!important;color:#344054!important;font:500 12px Montserrat,Arial,sans-serif!important;box-sizing:border-box!important;box-shadow:none!important}
+#pagina-home .bp-acoes-v201{display:flex!important;align-items:center!important;gap:8px!important}
+#pagina-home .bp-acoes-v201 button{display:inline-flex!important;align-items:center!important;justify-content:center!important;gap:7px!important;height:42px!important;min-height:42px!important;margin:0!important;padding:0 14px!important;border-radius:9px!important;font:750 10.5px Montserrat,Arial,sans-serif!important;white-space:nowrap!important;box-shadow:none!important}
+#pagina-home .bp-acoes-v201 button svg{width:17px!important;height:17px!important}
+#pagina-home .bp-localizar-v201{border:1px solid #0b73df!important;background:#fff!important;color:#0968c9!important}
+#pagina-home .bp-buscar-v201{border:1px solid #0878e8!important;background:linear-gradient(135deg,#0878e8,#1267d8)!important;color:#fff!important;box-shadow:0 5px 13px rgba(8,120,232,.16)!important}
+@media(max-width:1100px){#pagina-home .busca-proxima-v201{grid-template-columns:1fr 1fr 150px!important}#pagina-home .bp-intro-v201{grid-column:1/-1!important}#pagina-home .bp-acoes-v201{justify-content:flex-end!important}}
+@media(max-width:720px){#pagina-home .busca-proxima-v201{grid-template-columns:1fr!important;padding:16px!important;gap:12px!important}#pagina-home .bp-intro-v201,#pagina-home .bp-campo-v201,#pagina-home .bp-acoes-v201{grid-column:1!important}#pagina-home .bp-acoes-v201{display:grid!important;grid-template-columns:1fr 1fr!important}#pagina-home .bp-acoes-v201 button{width:100%!important;padding:0 9px!important}}
