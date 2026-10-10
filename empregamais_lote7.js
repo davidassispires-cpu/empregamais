@@ -394,6 +394,7 @@ function bloquearAderenciaV78(){
 if(candidatoPremiumAtivoV78())return false;
 var box=document.querySelector("#pagina-vaga .aderencia-vaga-em");
 if(!box)return false;
+box.style.cssText="display:block!important;width:100%!important;min-width:0!important;max-width:none!important;height:auto!important;min-height:0!important;padding:0!important;margin:0!important;border:0!important;background:transparent!important;overflow:visible!important;position:relative!important;";
 box.innerHTML='<div id="premiumAderenciaFinalV78"><div class="paf-intro"><div class="paf-lock">🔒</div><div><strong>Aderência à vaga é um recurso Premium</strong><p>Descubra o quanto esta oportunidade combina com o seu perfil e veja os critérios de compatibilidade.</p></div></div><div class="paf-preview"><div class="paf-score"><b>92%</b><small>Aderência</small></div><div class="paf-bars"><div><span>Experiência <b>100%</b></span><i><em style="width:100%"></em></i></div><div><span>Formação <b>90%</b></span><i><em style="width:90%"></em></i></div><div><span>Habilidades <b>82%</b></span><i><em style="width:82%"></em></i></div></div></div><div class="paf-cta"><span>♛</span><strong>Assine o Premium</strong><p>Veja sua aderência nas vagas e aumente suas chances.</p><button id="premiumConhecerBtnV78" type="button">Conhecer o Premium →</button></div></div>';
 var pb=document.getElementById("premiumConhecerBtnV78");if(pb)pb.onclick=function(){irPara("premium-candidato");};
 return true;
