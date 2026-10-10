@@ -612,3 +612,28 @@ document.addEventListener('click',function(e){
  abrir(id);
 },true);
 })();
+
+;
+/* Rodapé profissional dos cards de vaga V204 */
+(function(){
+if(window.__EmpregaMaisCardFooterV204)return;window.__EmpregaMaisCardFooterV204=true;
+var ico={bolt:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M13 2 5 14h6l-1 8 9-13h-6V2Z"/></svg>',pulse:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 12h4l2-5 4 10 2-5h6"/></svg>',cal:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M8 3v4M16 3v4M3 10h18"/></svg>',doc:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M14 2H6a2 2 0 0 0-2 2v16h16V8Z"/><path d="M14 2v6h6M8 13h8M8 17h5"/></svg>'};
+function aplicar(){
+ var page=document.getElementById('pagina-vagas')||document.getElementById('pagina-inicial');if(!page)return;
+ page.querySelectorAll('.vaga-card,.card-vaga,[class*="vaga-card"]').forEach(function(card){
+   var cand=Array.from(card.querySelectorAll('button,a')).find(function(x){return /^candidatar-se/i.test(String(x.textContent||'').trim())});if(!cand)return;
+   var footer=cand.parentElement;if(!footer||footer.classList.contains('em-footer-vaga-v204'))return;
+   var txt=String(footer.textContent||'');
+   if(!/Candidatura rápida|Recrutamento ativo|Publicada em/i.test(txt))return;
+   footer.classList.add('em-footer-vaga-v204');
+   Array.from(footer.querySelectorAll('*')).forEach(function(el){
+     var t=String(el.textContent||'').trim();
+     if(t==='Candidatura rápida'&&!el.querySelector('svg')){el.classList.add('em-pill-v204','rapida');el.insertAdjacentHTML('afterbegin',ico.bolt);}
+     if(t==='Recrutamento ativo'&&!el.querySelector('svg')){el.classList.add('em-pill-v204','ativo');el.insertAdjacentHTML('afterbegin',ico.pulse);}
+     if(/^Publicada em/i.test(t)&&!el.querySelector('svg')){el.classList.add('em-data-v204');el.insertAdjacentHTML('afterbegin',ico.cal);}
+   });
+   cand.classList.add('em-candidatar-v204');if(!cand.querySelector('.em-doc-v204'))cand.insertAdjacentHTML('afterbegin','<span class="em-doc-v204">'+ico.doc+'</span>');
+ });
+}
+document.addEventListener('DOMContentLoaded',function(){setTimeout(aplicar,500)});window.addEventListener('load',function(){setTimeout(aplicar,700);setTimeout(aplicar,1600)});new MutationObserver(function(){setTimeout(aplicar,80)}).observe(document.documentElement,{childList:true,subtree:true});
+})();
