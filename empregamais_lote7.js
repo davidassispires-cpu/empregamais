@@ -585,33 +585,32 @@ ev.preventDefault();ev.stopPropagation();ev.stopImmediatePropagation();abrir();
 
 //
 ;
-/* Busca por proximidade compacta V201 */
+/* Busca por proximidade — faixa única V202 */
 (function(){
-if(window.__EmpregaMaisBuscaProximaV201)return;window.__EmpregaMaisBuscaProximaV201=true;
+if(window.__EmpregaMaisBuscaProximaV202)return;window.__EmpregaMaisBuscaProximaV202=true;
 function montar(){
- var page=document.getElementById('pagina-home')||document;
+ var page=document.getElementById('pagina-home');if(!page)return;
  var cep=Array.from(page.querySelectorAll('input')).find(function(x){return /cep/i.test((x.placeholder||'')+' '+(x.id||'')+' '+(x.name||''));});
  if(!cep)return;
- var raiz=cep.closest('section,form,.card,.box,[class*="local"],[class*="dist"]')||cep.parentElement;
- for(var n=0;n<4&&raiz&&String(raiz.textContent||'').toLowerCase().indexOf('dist')<0;n++)raiz=raiz.parentElement;
- if(!raiz||raiz.querySelector('.busca-proxima-v201'))return;
- var sel=Array.from(raiz.querySelectorAll('select')).find(function(x){return /km|dist/i.test(x.textContent+' '+x.id+' '+x.name);});
- var botoes=Array.from(raiz.querySelectorAll('button'));
- var buscar=botoes.find(function(b){return /buscar perto|perto de mim/i.test(b.textContent);});
- var localizar=botoes.find(function(b){return b!==buscar&&/localiza|minha localização|usar localização/i.test(b.textContent+' '+b.getAttribute('aria-label'));});
- if(!localizar)localizar=botoes.find(function(b){return b!==buscar&&b.offsetParent!==null;});
+ var original=cep.closest('section,form,.card,.box,[class*="local"],[class*="dist"]')||cep.parentElement;
+ for(var n=0;n<5&&original&&String(original.textContent||'').toLowerCase().indexOf('dist')<0;n++)original=original.parentElement;
+ if(!original)return;
+ var sel=Array.from(original.querySelectorAll('select')).find(function(x){return /km|dist/i.test((x.textContent||'')+' '+x.id+' '+x.name);});
+ var botoes=Array.from(original.querySelectorAll('button'));
+ var buscar=botoes.find(function(b){return /buscar perto|perto de mim/i.test(b.textContent||'');});
+ var localizar=botoes.find(function(b){return b!==buscar&&/localiza|minha localização|usar localização/i.test((b.textContent||'')+' '+(b.getAttribute('aria-label')||''));});
  if(!buscar||!sel)return;
- var wrap=document.createElement('div');wrap.className='busca-proxima-v201';
- wrap.innerHTML='<div class="bp-intro-v201"><span class="bp-pin-v201"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20 10c0 5-8 11-8 11S4 15 4 10a8 8 0 1 1 16 0Z"/><circle cx="12" cy="10" r="2.5"/></svg></span><div><strong>Encontre vagas perto de você</strong><p>Informe seu CEP ou ative sua localização para encontrar oportunidades na sua região.</p></div></div><div class="bp-campo-v201 bp-cep-v201"><label>CEP</label></div><div class="bp-campo-v201 bp-dist-v201"><label>Distância</label></div><div class="bp-acoes-v201"></div>';
- raiz.parentNode.insertBefore(wrap,raiz);
- wrap.querySelector('.bp-cep-v201').appendChild(cep);
- wrap.querySelector('.bp-dist-v201').appendChild(sel);
- var acoes=wrap.querySelector('.bp-acoes-v201');
- if(localizar){localizar.classList.add('bp-localizar-v201');localizar.innerHTML='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20 10c0 5-8 11-8 11S4 15 4 10a8 8 0 1 1 16 0Z"/><circle cx="12" cy="10" r="2.5"/></svg><span>Ativar localização</span>';acoes.appendChild(localizar);}
- buscar.classList.add('bp-buscar-v201');buscar.innerHTML='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20 10c0 5-8 11-8 11S4 15 4 10a8 8 0 1 1 16 0Z"/><circle cx="12" cy="10" r="2.5"/></svg><span>Buscar perto de mim</span>';acoes.appendChild(buscar);
- raiz.style.display='none';
+ var antigo=page.querySelector('.busca-proxima-v201,.busca-proxima-v202');
+ if(antigo&&!antigo.contains(cep))antigo.remove();
+ if(page.querySelector('.busca-proxima-v202'))return;
+ var wrap=document.createElement('div');wrap.className='busca-proxima-v202';
+ wrap.innerHTML='<div class="bp-titulo-v202"><span class="bp-pin-v202"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20 10c0 5-8 11-8 11S4 15 4 10a8 8 0 1 1 16 0Z"/><circle cx="12" cy="10" r="2.5"/></svg></span><strong>Vagas perto de você</strong></div><div class="bp-local-v202"></div><div class="bp-campo-v202 bp-cep-v202"><label>CEP</label></div><div class="bp-campo-v202 bp-dist-v202"><label>Distância</label></div><div class="bp-busca-v202"></div>';
+ original.parentNode.insertBefore(wrap,original);
+ wrap.querySelector('.bp-cep-v202').appendChild(cep);wrap.querySelector('.bp-dist-v202').appendChild(sel);
+ if(localizar){localizar.className='bp-localizar-v202';localizar.innerHTML='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3"/><circle cx="12" cy="12" r="7"/></svg><span>Usar minha localização</span>';wrap.querySelector('.bp-local-v202').appendChild(localizar);}
+ buscar.className='bp-buscar-v202';buscar.innerHTML='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20 10c0 5-8 11-8 11S4 15 4 10a8 8 0 1 1 16 0Z"/><circle cx="12" cy="10" r="2.5"/></svg><span>Buscar perto de mim</span>';wrap.querySelector('.bp-busca-v202').appendChild(buscar);
+ original.style.display='none!important';original.setAttribute('hidden','hidden');
+ Array.from(page.querySelectorAll('section,div')).forEach(function(el){if(el!==wrap&&!wrap.contains(el)&&/Encontre vagas perto de você/i.test(el.textContent||'')&&el.querySelector('button')){el.style.display='none';}});
 }
-document.addEventListener('DOMContentLoaded',function(){setTimeout(montar,300);setTimeout(montar,1000);});
-window.addEventListener('load',function(){setTimeout(montar,500);setTimeout(montar,1600);});
-new MutationObserver(function(){setTimeout(montar,60);}).observe(document.documentElement,{childList:true,subtree:true});
+document.addEventListener('DOMContentLoaded',function(){setTimeout(montar,250);setTimeout(montar,900)});window.addEventListener('load',function(){setTimeout(montar,400)});new MutationObserver(function(){setTimeout(montar,80)}).observe(document.documentElement,{childList:true,subtree:true});
 })();
