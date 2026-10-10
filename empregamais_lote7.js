@@ -411,8 +411,8 @@ function manterAderenciaPremiumV78(){
 if(candidatoPremiumAtivoV78())return;
 var box=document.querySelector("#pagina-vaga .aderencia-vaga-em");
 if(!box)return;
-var banner=box.querySelector(".premium-lock-aderencia-v78");
-if(!banner||!banner.querySelector(".premium-preview-aderencia-v78")||!banner.querySelector(".premium-cta-aderencia-v78"))bloquearAderenciaV78();
+var banner=document.getElementById("premiumAderenciaFinalV78");
+if(!banner||!box.contains(banner))bloquearAderenciaV78();
 }
 window.addEventListener("load",function(){
 bloquearAderenciaV78();
