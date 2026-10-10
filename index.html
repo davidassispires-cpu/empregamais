@@ -17562,16 +17562,26 @@ var params =
 new URLSearchParams(
 window.location.search
 );
-abrirRota(
-params.get(
-"pagina"
-) ||
-"home",
-params.get(
-"id"
-) ||
-""
-);
+var paginaRota=params.get("pagina")||"home";
+var idRota=params.get("id")||"";
+if(paginaRota==="vaga" && idRota){
+  var tentativasRotaVaga=0;
+  (function abrirVagaQuandoDadosProntos(){
+    var vagaRota=typeof localizarVaga==="function"?localizarVaga(idRota):null;
+    if(vagaRota){
+      abrirRota("vaga",idRota);
+      return;
+    }
+    tentativasRotaVaga++;
+    if(tentativasRotaVaga<30){
+      setTimeout(abrirVagaQuandoDadosProntos,200);
+      return;
+    }
+    abrirRota("vaga",idRota);
+  })();
+  return;
+}
+abrirRota(paginaRota,idRota);
 }
 window.addEventListener(
 "popstate",
