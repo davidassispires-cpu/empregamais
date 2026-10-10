@@ -637,3 +637,28 @@ function aplicar(){
 }
 document.addEventListener('DOMContentLoaded',function(){setTimeout(aplicar,500)});window.addEventListener('load',function(){setTimeout(aplicar,700);setTimeout(aplicar,1600)});new MutationObserver(function(){setTimeout(aplicar,80)}).observe(document.documentElement,{childList:true,subtree:true});
 })();
+
+;/* Mobile: garante abertura da vaga pelo CTA Candidatar-se V205 */
+(function(){
+if(window.__EmpregaMaisMobileCandidatarV205)return;window.__EmpregaMaisMobileCandidatarV205=true;
+function idCard(card){
+ if(!card)return '';
+ var el=card.querySelector('[data-vaga-id],[data-id-vaga],[data-id]');
+ var id=el&&(el.getAttribute('data-vaga-id')||el.getAttribute('data-id-vaga')||el.getAttribute('data-id'));
+ if(id)return id;
+ var nodes=Array.from(card.querySelectorAll('a[href*="pagina=vaga"]'));
+ for(var i=0;i<nodes.length;i++){try{var x=new URL(nodes[i].getAttribute('href'),location.href).searchParams.get('id');if(x)return x;}catch(e){}}
+ var oc=Array.from(card.querySelectorAll('[onclick]')).map(function(n){return n.getAttribute('onclick')||'';}).find(function(s){return /abrirVaga/.test(s);});
+ var m=oc&&oc.match(/abrirVaga\s*\(\s*['"]([^'"]+)/);return m?m[1]:'';
+}
+function go(e){
+ var b=e.target&&e.target.closest?e.target.closest('button,a'):null;if(!b)return;
+ if(!/^candidatar-se/i.test(String(b.textContent||'').replace(/\s+/g,' ').trim()))return;
+ if(b.closest('#pagina-vaga'))return;
+ var card=b.closest('.vaga-card,.card-vaga,[class*="vaga-card"],article,.card');
+ var id=idCard(card);if(!id)return;
+ e.preventDefault();e.stopPropagation();
+ location.assign(location.pathname+'?pagina=vaga&id='+encodeURIComponent(id));
+}
+document.addEventListener('pointerup',go,true);
+})();
