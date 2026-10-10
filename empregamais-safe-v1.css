@@ -708,3 +708,18 @@ body.empresa-premium-v44 .plano-premium-v44{min-height:96px!important;margin:0 0
 #pagina-home .bp-campo-v202 input,#pagina-home .bp-campo-v202 select{display:block!important;width:100%!important;height:42px!important;min-height:42px!important;margin:0!important;padding:0 12px!important;border:1px solid #b9d0eb!important;border-radius:9px!important;background:#fff!important;color:#344054!important;font:500 12px Montserrat,Arial,sans-serif!important;box-sizing:border-box!important;box-shadow:none!important}
 @media(max-width:1050px){#pagina-home .busca-proxima-v202{grid-template-columns:1fr 1fr!important}#pagina-home .bp-titulo-v202{grid-column:1/-1!important}#pagina-home .bp-busca-v202{width:100%!important}}
 @media(max-width:650px){#pagina-home .busca-proxima-v202{grid-template-columns:1fr!important;padding:15px!important;gap:11px!important}#pagina-home .bp-titulo-v202,#pagina-home .bp-local-v202,#pagina-home .bp-campo-v202,#pagina-home .bp-busca-v202{grid-column:1!important}#pagina-home .bp-titulo-v202 strong{font-size:16px!important;white-space:normal!important}}
+
+/* Rodapé dos cards de vagas V204 — referência aprovada */
+.vaga-card .em-footer-vaga-v204,.card-vaga .em-footer-vaga-v204,[class*="vaga-card"] .em-footer-vaga-v204{display:flex!important;align-items:center!important;gap:10px!important;padding-top:12px!important;border-top:1px solid #e6edf5!important}
+.em-footer-vaga-v204 .em-pill-v204{display:inline-flex!important;align-items:center!important;gap:6px!important;padding:7px 10px!important;border-radius:8px!important;font-size:10.5px!important;font-weight:650!important;line-height:1!important;white-space:nowrap!important}
+.em-footer-vaga-v204 .em-pill-v204 svg{width:15px!important;height:15px!important;flex:none!important}
+.em-footer-vaga-v204 .em-pill-v204.rapida{background:#edf5ff!important;color:#0871db!important}
+.em-footer-vaga-v204 .em-pill-v204.ativo{background:#f5edff!important;color:#7d35c8!important}
+.em-footer-vaga-v204 .em-data-v204{display:inline-flex!important;align-items:center!important;gap:6px!important;margin-left:auto!important;color:#667995!important;font-size:9.5px!important;white-space:nowrap!important}
+.em-footer-vaga-v204 .em-data-v204 svg{width:16px!important;height:16px!important}
+.em-footer-vaga-v204 .em-data-v204:after{content:"";display:block;width:1px;height:25px;margin-left:8px;background:#dce5ef}
+.em-footer-vaga-v204 .em-candidatar-v204{display:inline-flex!important;align-items:center!important;justify-content:center!important;gap:8px!important;min-width:168px!important;height:42px!important;min-height:42px!important;padding:0 16px!important;border:0!important;border-radius:9px!important;background:linear-gradient(135deg,#0878e8,#1267d8)!important;color:#fff!important;font-size:11px!important;font-weight:800!important;box-shadow:0 5px 13px rgba(8,120,232,.15)!important}
+.em-footer-vaga-v204 .em-candidatar-v204 .em-doc-v204{display:inline-flex!important}
+.em-footer-vaga-v204 .em-candidatar-v204 .em-doc-v204 svg{width:18px!important;height:18px!important}
+.em-footer-vaga-v204 .em-candidatar-v204:hover{transform:translateY(-1px)!important;box-shadow:0 7px 16px rgba(8,120,232,.2)!important}
+@media(max-width:760px){.vaga-card .em-footer-vaga-v204,.card-vaga .em-footer-vaga-v204,[class*="vaga-card"] .em-footer-vaga-v204{flex-wrap:wrap!important}.em-footer-vaga-v204 .em-data-v204{order:3;margin-left:0!important}.em-footer-vaga-v204 .em-candidatar-v204{order:4;width:100%!important}.em-footer-vaga-v204 .em-data-v204:after{display:none!important}}
