@@ -643,3 +643,18 @@ body.empresa-premium-v44 .plano-premium-v44{min-height:96px!important;margin:0 0
 
 /* Remove CTA duplicado ao final da página da vaga */
 #pagina-vaga .candidatura-final-fixa-em{display:none!important}
+
+/* Segurança e transparência — faixa compacta */
+#pagina-vaga .seguranca-transparencia-vaga-em{display:grid!important;grid-template-columns:minmax(330px,1.55fr) repeat(3,minmax(145px,.75fr))!important;align-items:center!important;gap:0!important;min-height:92px!important;padding:16px 22px!important;border:1px solid #d7e7dc!important;border-radius:16px!important;background:linear-gradient(90deg,#fbfffc,#f8fcfa)!important;box-shadow:none!important;overflow:hidden!important}
+#pagina-vaga .seguranca-transparencia-vaga-em>*{margin:0!important;min-width:0!important}
+#pagina-vaga .seguranca-transparencia-vaga-em>div:first-child{grid-column:1!important;grid-row:1!important;padding-right:22px!important;border-right:1px solid #dce7e0!important}
+#pagina-vaga .seguranca-transparencia-vaga-em>div:first-child>div:first-child,#pagina-vaga .seguranca-transparencia-vaga-em>div:first-child>span:first-child{width:46px!important;height:46px!important}
+#pagina-vaga .seguranca-transparencia-vaga-em>div:not(:first-child){padding:4px 20px!important;border-left:1px solid #dce7e0!important}
+#pagina-vaga .seguranca-transparencia-vaga-em hr{display:none!important}
+#pagina-vaga .seguranca-transparencia-vaga-em h3,#pagina-vaga .seguranca-transparencia-vaga-em strong{font-size:14px!important;line-height:1.3!important;color:#10233f!important}
+#pagina-vaga .seguranca-transparencia-vaga-em p{margin-top:4px!important;font-size:11px!important;line-height:1.4!important;color:#738198!important}
+#pagina-vaga .seguranca-transparencia-vaga-em .seguranca-itens-em{display:contents!important}
+#pagina-vaga .seguranca-transparencia-vaga-em .seguranca-item-em{display:flex!important;align-items:center!important;gap:9px!important;padding:4px 18px!important;border-left:1px solid #dce7e0!important;font-size:11.5px!important;line-height:1.35!important;color:#253655!important}
+#pagina-vaga .seguranca-transparencia-vaga-em .seguranca-item-em:before{display:grid!important;place-items:center!important;flex:0 0 30px!important;width:30px!important;height:30px!important;border-radius:50%!important;background:#e9f8ee!important;color:#18a653!important;font-size:14px!important}
+@media(min-width:801px){#pagina-vaga .seguranca-transparencia-vaga-em .seguranca-item-em:nth-child(3){display:flex!important}#pagina-vaga .seguranca-transparencia-vaga-em .seguranca-item-em:nth-child(3):after{content:"Ambiente seguro"!important}}
+@media(max-width:800px){#pagina-vaga .seguranca-transparencia-vaga-em{grid-template-columns:1fr!important;padding:16px 18px!important}#pagina-vaga .seguranca-transparencia-vaga-em>div:first-child{padding:0 0 12px!important;border-right:0!important;border-bottom:1px solid #dce7e0!important}#pagina-vaga .seguranca-transparencia-vaga-em .seguranca-itens-em{display:grid!important;grid-template-columns:1fr!important}#pagina-vaga .seguranca-transparencia-vaga-em .seguranca-item-em{padding:10px 0!important;border-left:0!important;border-bottom:1px solid #edf3ef!important}}
