@@ -723,3 +723,34 @@ body.empresa-premium-v44 .plano-premium-v44{min-height:96px!important;margin:0 0
 .em-footer-vaga-v204 .em-candidatar-v204 .em-doc-v204 svg{width:18px!important;height:18px!important}
 .em-footer-vaga-v204 .em-candidatar-v204:hover{transform:translateY(-1px)!important;box-shadow:0 7px 16px rgba(8,120,232,.2)!important}
 @media(max-width:760px){.vaga-card .em-footer-vaga-v204,.card-vaga .em-footer-vaga-v204,[class*="vaga-card"] .em-footer-vaga-v204{flex-wrap:wrap!important}.em-footer-vaga-v204 .em-data-v204{order:3;margin-left:0!important}.em-footer-vaga-v204 .em-candidatar-v204{order:4;width:100%!important}.em-footer-vaga-v204 .em-data-v204:after{display:none!important}}
+
+
+/* Mobile cards profissionais V206 — referência aprovada 10/10 */
+@media(max-width:760px){
+ #pagina-vagas,#pagina-inicial,#pagina-home{background:#f6f9fc!important}
+ #pagina-vagas .vaga-card,#pagina-vagas .card-vaga,#pagina-vagas [class*="vaga-card"],
+ #pagina-inicial .vaga-card,#pagina-inicial .card-vaga,#pagina-inicial [class*="vaga-card"]{
+   border:1px solid #e2eaf3!important;border-radius:16px!important;background:#fff!important;
+   box-shadow:0 5px 18px rgba(22,49,82,.07)!important;padding:20px 18px!important;margin:0 12px 16px!important;
+ }
+ .vaga-card h2,.vaga-card h3,.card-vaga h2,.card-vaga h3,[class*="vaga-card"] h2,[class*="vaga-card"] h3{
+   color:#102f55!important;font-weight:800!important;letter-spacing:-.35px!important;line-height:1.18!important;
+ }
+ .vaga-card p,.card-vaga p,[class*="vaga-card"] p{line-height:1.55!important}
+ .vaga-card [class*="salario"],.card-vaga [class*="salario"],[class*="vaga-card"] [class*="salario"]{font-weight:800!important}
+ .vaga-card .em-footer-vaga-v204,.card-vaga .em-footer-vaga-v204,[class*="vaga-card"] .em-footer-vaga-v204{
+   display:grid!important;grid-template-columns:1fr 1fr!important;gap:9px 8px!important;padding-top:14px!important;margin-top:14px!important;
+ }
+ .em-footer-vaga-v204 .em-pill-v204{font-size:12px!important;padding:7px 9px!important;border-radius:999px!important;justify-content:center!important}
+ .em-footer-vaga-v204 .em-data-v204{grid-column:1!important;grid-row:2!important;margin:0!important;font-size:11px!important;align-self:center!important}
+ .em-footer-vaga-v204 .em-data-v204:after{display:none!important}
+ .em-footer-vaga-v204 .em-candidatar-v204{grid-column:2!important;grid-row:2!important;width:100%!important;min-width:0!important;height:48px!important;
+   border-radius:11px!important;font-size:15px!important;box-shadow:0 6px 14px rgba(8,120,232,.18)!important;
+ }
+ .em-footer-vaga-v204 .em-candidatar-v204 .em-doc-v204{display:none!important}
+}
+@media(max-width:390px){
+ .vaga-card .em-footer-vaga-v204,.card-vaga .em-footer-vaga-v204,[class*="vaga-card"] .em-footer-vaga-v204{grid-template-columns:1fr!important}
+ .em-footer-vaga-v204 .em-pill-v204{justify-self:start!important}
+ .em-footer-vaga-v204 .em-data-v204,.em-footer-vaga-v204 .em-candidatar-v204{grid-column:1!important;grid-row:auto!important}
+}
