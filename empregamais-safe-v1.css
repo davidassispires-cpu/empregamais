@@ -640,3 +640,6 @@ body.empresa-premium-v44 .plano-premium-v44{min-height:96px!important;margin:0 0
 #premiumAderenciaFinalV78 .paf-cta button{display:inline-flex!important;align-items:center!important;justify-content:center!important;min-height:40px!important;margin:10px 0 0!important;padding:0 16px!important;border:0!important;border-radius:9px!important;background:#10233f!important;color:#fff!important;font-size:10.5px!important;font-weight:750!important;white-space:nowrap!important;cursor:pointer!important;grid-column:auto!important;width:auto!important}
 #premiumAderenciaFinalV78 .paf-cta button:before,#premiumAderenciaFinalV78 .paf-cta button:after{content:none!important}
 @media(max-width:800px){#pagina-vaga #premiumAderenciaFinalV78{grid-template-columns:1fr!important}#premiumAderenciaFinalV78 .paf-intro{padding:0 0 14px!important;border-right:0!important;border-bottom:1px solid #ead9a5!important}#premiumAderenciaFinalV78 .paf-cta{padding-top:14px!important;border-top:1px solid #ead9a5!important}}
+
+/* Remove CTA duplicado ao final da página da vaga */
+#pagina-vaga .candidatura-final-fixa-em{display:none!important}
