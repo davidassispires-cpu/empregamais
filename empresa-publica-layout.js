@@ -96,7 +96,7 @@ function configure(){
  var rows=node('dl','em-history-metrics');
  var count=host.querySelectorAll('.gp-job').length;
  if(!host.querySelector('.gp-vacancies')){
-  var jobs=host.querySelector('.empresa-publica-vagas');count=jobs?jobs.querySelectorAll('.vaga-card').length:null;
+  var jobs=host.querySelector('.empresa-publica-vagas'),cards=jobs?jobs.querySelectorAll('.vaga-card'):[];count=cards.length?cards.length:null;
  }
  [['◷','Tempo no site','Não disponível'],['▣','Vagas disponíveis',count===null?'Não disponível':String(count)],['◎','Currículos visualizados','Não disponível']].forEach(function(row){
   var line=node('div'),term=node('dt'),icon=node('span','em-history-icon',row[0]);icon.setAttribute('aria-hidden','true');term.append(icon,node('span','',row[1]));line.append(term,node('dd','',row[2]));rows.appendChild(line);
