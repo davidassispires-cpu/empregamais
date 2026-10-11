@@ -243,7 +243,7 @@ html body #pagina-home#pagina-home #listaVagas#listaVagas#listaVagas .em-lista-t
   var section=list.parentElement;while(section.parentElement&&section.parentElement!==home)section=section.parentElement;
   home.querySelectorAll('#empresasContratandoFaixaEM,.senior-home-v18').forEach(function(banner){if(banner.parentElement===home)home.appendChild(banner)});
   var button=document.createElement('button');button.id='emHomeFiltersToggle';button.type='button';button.textContent='Filtrar vagas';button.setAttribute('aria-controls','filtrosLateral');button.setAttribute('aria-expanded','false');
-  filters.parentElement.insertBefore(button,filters);button.onclick=function(){var open=filters.classList.toggle('em-filters-open');button.setAttribute('aria-expanded',String(open));button.textContent=open?'Fechar filtros':'Filtrar vagas';};
+  var anchor=document.createComment('Posição dos filtros no desktop');filters.before(anchor);list.before(button);var mobile=window.matchMedia('(max-width:768px)');function positionFilters(){if(mobile.matches)button.after(filters);else anchor.after(filters);}positionFilters();mobile.addEventListener('change',positionFilters);button.onclick=function(){var open=filters.classList.toggle('em-filters-open');button.setAttribute('aria-expanded',String(open));button.textContent=open?'Fechar filtros':'Filtrar vagas';};
  }
  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init,{once:true});else init();
 })();
