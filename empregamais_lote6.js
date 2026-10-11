@@ -1276,3 +1276,49 @@ window.unificarEnderecoV153=unificarEnderecoV153;
  }
  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',setupCepTimeout,{once:true});else setupCepTimeout();
 })();
+
+(function(){
+ var sequence=0,validCache=new Map();
+ function coordinates(v){var a=v.latitude,b=v.longitude;if(a==null||b==null||String(a).trim()===''||String(b).trim()==='')return null;a=Number(a);b=Number(b);return Number.isFinite(a)&&Number.isFinite(b)&&Math.abs(a)<=90&&Math.abs(b)<=180?{latitude:a,longitude:b}:null;}
+ function distance(a,b){var p=Math.PI/180,x=(b.latitude-a.latitude)*p,y=(b.longitude-a.longitude)*p,h=Math.sin(x/2)**2+Math.cos(a.latitude*p)*Math.cos(b.latitude*p)*Math.sin(y/2)**2;return 6371*2*Math.atan2(Math.sqrt(h),Math.sqrt(Math.max(0,1-h)));}
+ function setup(){
+  var form=document.getElementById('emPertoForm'),button=document.getElementById('emPertoBuscar'),status=document.getElementById('emPertoStatus');if(!form||!button)return;
+  var label='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 10c0 5-8 12-8 12S4 15 4 10a8 8 0 1 1 16 0Z"/><circle cx="12" cy="10" r="2.5"/></svg>Buscar perto de mim';
+  function show(text){status.textContent=text;}
+  async function search(origin){
+   var token=++sequence,timer,expired=false,requests=new Map();
+   button.disabled=true;button.textContent='Calculando distâncias…';show('Localizando seu CEP…');
+   async function geo(v){
+    var point=coordinates(v);if(point)return point;
+    var cep=String(v.cep||'').replace(/\D/g,'');if(cep.length!==8)return null;
+    if(validCache.has(cep))return validCache.get(cep);
+    if(!requests.has(cep))requests.set(cep,window.localizarCepEM(cep).then(function(p){if(p)validCache.set(cep,p);return p;}));
+    return requests.get(cep);
+   }
+   async function work(){
+    if(!origin){var cep=document.getElementById('emPertoCep').value.replace(/\D/g,'');if(cep.length!==8)throw Error('Digite um CEP com 8 números.');origin=await geo({cep:cep});}
+    if(!origin)throw Error('O serviço de CEP não retornou coordenadas. Tente novamente ou use sua localização.');
+    var jobs=typeof window.todasAsVagasPublicas==='function'?window.todasAsVagasPublicas():[],next=0,missing=0,distances={};
+    async function worker(){while(!expired&&token===sequence&&next<jobs.length){var v=jobs[next++];if(/remot/i.test(v.modalidade||''))continue;var p=await geo(v);if(expired||token!==sequence)return;if(p)distances[String(v.id)]=distance(origin,p);else missing++;}}
+    show('Calculando a distância das vagas…');await Promise.all([worker(),worker(),worker(),worker()]);
+    if(expired||token!==sequence)return;
+    var state=window.emProximidade;if(!state)throw Error('Recarregue a página para ativar o filtro.');
+    state.origem=origin;state.distancias=distances;state.raio=Number(document.getElementById('emPertoRaio').value)||Infinity;state.ativa=true;
+    document.getElementById('emPerto').classList.add('em-perto-active');document.getElementById('ordenacaoVagas').value='proximas';
+    window.renderizarVagas();show('Distâncias aproximadas em linha reta.'+(missing?' '+missing+' vaga(s) sem coordenadas não entram no filtro.':''));
+   }
+   try{
+    await Promise.race([work(),new Promise(function(resolve,reject){timer=setTimeout(function(){expired=true;reject(Error('A busca demorou mais de 20 segundos. Tente novamente ou use sua localização.'));},20000);})]);
+   }catch(error){if(token===sequence)show(error.message||'Não foi possível calcular. Tente novamente.');}
+   finally{clearTimeout(timer);if(token===sequence){button.disabled=false;button.innerHTML=label;button.classList.remove('em-processando-v134');delete button.dataset.emHtmlOriginalV134;delete button.dataset.emDisabledOriginalV134;}}
+  }
+  form.onsubmit=function(event){event.preventDefault();search(null);};
+  var local=document.getElementById('emPertoLocal');if(local)local.onclick=function(){
+   if(!navigator.geolocation){show('Digite seu CEP: localização indisponível.');return;}
+   show('Aguardando permissão para usar sua localização…');
+   navigator.geolocation.getCurrentPosition(function(p){document.getElementById('emPertoCep').value='';search({latitude:p.coords.latitude,longitude:p.coords.longitude});},function(){show('Não foi possível acessar sua localização. Digite seu CEP.');},{timeout:10000,maximumAge:60000});
+  };
+  var clear=document.getElementById('emPertoLimpar'),originalClear=clear&&clear.onclick;if(clear)clear.onclick=function(){sequence++;button.disabled=false;button.innerHTML=label;if(originalClear)originalClear.apply(this,arguments);};
+ }
+ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',setup,{once:true});else setup();
+})();
