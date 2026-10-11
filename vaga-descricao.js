@@ -63,7 +63,8 @@
   var old=details.querySelector('p');if(old)old.remove();
   var body=document.createElement('div');body.className='je-safety-guidance';
   body.innerHTML='<ul><li>Não compre cursos com promessa de contratação.</li><li>Não inclua números de documentos no currículo.</li><li>Desconfie de pedidos de depósitos, transferências, PIX ou compra de materiais.</li><li>Fique atento a atividades, contatos ou pedidos suspeitos.</li></ul><div class="je-safety-note"><span aria-hidden="true">ⓘ</span><p>Mesmo após este alerta, qualquer compartilhamento de dados pessoais ou pagamento realizado será de responsabilidade exclusiva do candidato.</p></div>';
-  details.appendChild(body);
+  details.appendChild(body);details.open=true;
+  var hint=text.querySelector('span');function syncHint(){if(hint)hint.textContent='Clique para ver orientações de segurança '+(details.open?'⌃':'⌄');}details.addEventListener('toggle',syncHint);syncHint();
  }
  function start(){
   var style=document.createElement('style');style.id='em-safety-reference';
