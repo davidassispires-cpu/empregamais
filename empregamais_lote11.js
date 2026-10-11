@@ -251,3 +251,11 @@ html body #pagina-home#pagina-home #listaVagas#listaVagas#listaVagas .em-lista-t
  }
  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init,{once:true});else init();
 })();
+
+/* Mantém o filtro de proximidade imediatamente antes das vagas recentes. */
+(function(){
+ function position(){var box=document.getElementById('emPerto'),list=document.getElementById('listaVagas');if(!box||!list)return false;if(list.previousElementSibling!==box)list.before(box);return true;}
+ function init(){position();var parent=document.getElementById('listaVagas');if(parent)new MutationObserver(position).observe(parent.parentElement,{childList:true});}
+ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init,{once:true});else init();
+ window.addEventListener('load',position);
+})();
