@@ -707,7 +707,7 @@ document.addEventListener('pointerup',go,true);
   var jobs=typeof window.todasAsVagasPublicas==='function'?window.todasAsVagasPublicas():[];
   document.querySelectorAll('#listaVagas .vaga-card').forEach(function(card){
    var id=card.getAttribute('data-vaga-id')||card.getAttribute('data-id'),v=jobs.find(function(x){return String(x.id)===String(id);});if(!v)return;
-   var target=card.querySelector('.em-lista-status');if(!target){var quick=Array.from(card.querySelectorAll('span')).find(function(x){return x.textContent.trim()==='Candidatura rápida';});if(quick)target=quick.parentNode.parentNode;}
+   var target=card.querySelector('.em-lista-indicadores,.em-lista-status');if(!target){var quick=Array.from(card.querySelectorAll('span')).find(function(x){return x.textContent.trim()==='Candidatura rápida';});if(quick)target=quick.parentNode.parentNode;}
    if(!target||target===card)return;
    var date=new Date(v.dataPublicacao||v.publicadaEm||v.created_at||''),age=(Date.now()-date.getTime())/3600000,html='';
    if(age>=0&&age<=48)html+=badge('new','Nova vaga','Publicada nas últimas 48 horas');
