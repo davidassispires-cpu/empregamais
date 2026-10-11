@@ -75,7 +75,8 @@
  function mount(id,parent,before){var el=document.getElementById(id);if(!el&&parent){el=document.createElement('section');el.id=id;el.className='em-personal-recs';parent.insertBefore(el,before||null);}return el;}
  function render(){
   var ctx=context(),home=document.getElementById('vagas'),dashboard=document.querySelector('#pagina-painel-candidato .container-dashboard');
-  var sections=[mount('emPersonalHome',home&&home.parentNode,home),mount('emPersonalDashboard',dashboard,dashboard&&dashboard.querySelector('.painel-candidato-grid'))];
+  var previousHome=document.getElementById('emPersonalHome');if(previousHome)previousHome.remove();
+  var sections=[null,mount('emPersonalDashboard',dashboard,dashboard&&dashboard.querySelector('.painel-candidato-grid'))];
   var seen=new Set(),jobs=(typeof window.todasAsVagasPublicas==='function'?window.todasAsVagasPublicas():[]).filter(function(v){if(v.id==null||seen.has(String(v.id)))return false;seen.add(String(v.id));return true;}).map(function(v){return {v:v,match:rank(v,ctx)};}).filter(function(x){return x.match.score>0;}).sort(function(a,b){return b.match.score-a.match.score||String(b.v.dataPublicacao||'').localeCompare(String(a.v.dataPublicacao||''));}).slice(0,4);
   sections.forEach(function(section,index){
    if(!section)return;
