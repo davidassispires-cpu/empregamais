@@ -38,3 +38,85 @@
  window.addEventListener('storage',paintBookmarks);
  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init,{once:true});else init();
 })();
+
+(function(){
+ 'use strict';
+ function norm(v){return String(v||'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase().trim();}
+ function esc(v){return String(v||'').replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];});}
+ function read(k,f){try{return JSON.parse(localStorage.getItem(k)||'null')||f;}catch(e){return f;}}
+ function words(v){return norm(Array.isArray(v)?v.join(' '):v).split(/[^a-z0-9]+/).filter(function(w){return w.length>2&&!/^(para|com|dos|das|uma|por|que|de|em|na|no)$/.test(w);});}
+ function overlap(a,b){var x=words(a),y=new Set(words(b));return x.length?x.filter(function(w){return y.has(w);}).length/x.length:0;}
+ function context(){
+  var logged=typeof window.candidatoEstaLogado==='function'&&window.candidatoEstaLogado();
+  if(logged){
+   var c=typeof window.obterCandidatoAtual==='function'?window.obterCandidatoAtual()||{}:{},email=norm(sessionStorage.getItem('candidatoEmail')),cv=read('empregaMaisCurriculoOnline:'+email,{});
+   return {logged:true,refs:[{area:c.areaProfissional||cv.area,cargo:c.cargoDesejado||cv.objetivo,cidade:c.cidadeProfissional||c.cidade||cv.cidade,modalidade:c.modalidadePreferida||cv.modalidade,skills:c.habilidadesProfissionais||cv.habilidades||cv.competencias,experiencia:c.experienciaProfissional||(cv.experiencias||[]).map(function(x){return x.cargo||'';}).join(' ')}]};
+  }
+  var history=read('emViewedJobsV1',[]),jobs=typeof window.todasAsVagasPublicas==='function'?window.todasAsVagasPublicas():[];
+  return {logged:false,refs:(Array.isArray(history)?history:[]).slice(0,5).map(function(h){return jobs.find(function(v){return String(v.id)===String(h.id);});}).filter(Boolean)};
+ }
+ function rank(v,ctx){
+  var best={score:0,reasons:[]};ctx.refs.forEach(function(p){
+   var score=0,reasons=[],role=overlap(p.cargo,v.cargo||v.titulo);
+   if(role>=.5){score+=50*role;reasons.push(ctx.logged?'Cargo do seu interesse':'Cargo semelhante ao que você viu');}
+   if(norm(p.area)&&norm(p.area)===norm(v.area)){score+=35;reasons.push(ctx.logged?'Na sua área de interesse':'Área de uma vaga que você viu');}
+   var skill=overlap(p.skills,v.competencias||v.habilidades||v.requisitos);if(skill>0){score+=Math.min(25,25*skill);reasons.push('Competências em comum');}
+   if(overlap(p.experiencia,v.cargo||v.titulo)>=.5){score+=20;reasons.push('Cargo presente na sua experiência');}
+   if(norm(p.cidade)&&norm(p.cidade)===norm(v.cidade)){score+=12;reasons.push(ctx.logged?'Na sua cidade':'Na cidade de uma vaga que você viu');}
+   if(ctx.logged&&norm(p.modalidade)&&norm(p.modalidade)===norm(v.modalidade)){score+=8;reasons.push('Sua modalidade preferida');}
+   if(score>best.score)best={score:score,reasons:reasons};
+  });
+  var near=window.emProximidade,d=near&&near.distancias&&near.distancias[String(v.id)];
+  if(ctx.logged&&near&&near.ativa&&Number.isFinite(d)&&d<=near.raio){best.score+=15;best.reasons.unshift('A '+d.toFixed(1).replace('.',',')+' km de você');}
+  return best;
+ }
+ window.emRankPersonalJob=rank;
+ var hashes={};
+ function mount(id,parent,before){var el=document.getElementById(id);if(!el&&parent){el=document.createElement('section');el.id=id;el.className='em-personal-recs';parent.insertBefore(el,before||null);}return el;}
+ function render(){
+  var ctx=context(),home=document.getElementById('vagas'),dashboard=document.querySelector('#pagina-painel-candidato .container-dashboard');
+  var sections=[mount('emPersonalHome',home&&home.parentNode,home),mount('emPersonalDashboard',dashboard,dashboard&&dashboard.querySelector('.painel-candidato-grid'))];
+  var seen=new Set(),jobs=(typeof window.todasAsVagasPublicas==='function'?window.todasAsVagasPublicas():[]).filter(function(v){if(v.id==null||seen.has(String(v.id)))return false;seen.add(String(v.id));return true;}).map(function(v){return {v:v,match:rank(v,ctx)};}).filter(function(x){return x.match.score>0;}).sort(function(a,b){return b.match.score-a.match.score||String(b.v.dataPublicacao||'').localeCompare(String(a.v.dataPublicacao||''));}).slice(0,4);
+  sections.forEach(function(section,index){
+   if(!section)return;
+   var hidden=index===1?!ctx.logged:!ctx.logged&&!ctx.refs.length;section.hidden=hidden;if(hidden)return;
+   var title=ctx.logged?'Vagas recomendadas para você':'Relacionadas às vagas que você viu';
+   var subtitle=ctx.logged?'Sugestões com base nas informações do seu perfil.':'Sugestões com base nas suas visitas recentes neste navegador.';
+   var html='<div class="em-personal-head"><div><h2>'+title+'</h2><p>'+subtitle+'</p></div>'+(ctx.logged?'<a href="?pagina=perfil">Ajustar meu perfil →</a>':'')+'</div>';
+   if(!jobs.length)html+='<p class="em-personal-empty">'+(ctx.logged?'Ainda não encontramos vagas compatíveis. Complete seu perfil e confira as oportunidades disponíveis.':'Ainda não encontramos outras vagas relacionadas às suas visitas.')+'</p>';
+   else html+='<div class="em-personal-grid">'+jobs.map(function(x){
+    var v=x.v,conf=typeof window.vagaEhConfidencialEM==='function'?window.vagaEhConfidencialEM(v):v.confidencial===true;
+    return '<article><h3>'+esc(v.cargo||v.titulo||'Vaga')+'</h3><p>'+esc(conf?'Empresa confidencial':v.empresa||'Empresa')+'</p><small>'+esc(v.cidade||'Local não informado')+' · '+esc(v.modalidade||'Modalidade não informada')+'</small><div class="em-personal-reasons">'+x.match.reasons.slice(0,2).map(function(r){return '<span>'+esc(r)+'</span>';}).join('')+'</div><a href="?pagina=vaga&amp;id='+encodeURIComponent(v.id)+'">Ver vaga →</a></article>';
+   }).join('')+'</div>';
+   if(hashes[section.id]!==html){section.innerHTML=html;hashes[section.id]=html;}
+  });
+ }
+ var queued=false;function schedule(){if(queued)return;queued=true;setTimeout(function(){queued=false;render();},100);}
+ function start(){
+  var style=document.createElement('style');style.textContent=`
+.em-personal-recs{box-sizing:border-box;background:#fff;border:1px solid #e1e7ef;border-radius:12px;padding:20px;margin:18px 0;color:#183553;font-family:Montserrat,Arial,sans-serif}
+#emPersonalHome{max-width:1180px;width:calc(100% - 32px);margin:20px auto}
+.em-personal-recs[hidden]{display:none!important}
+.em-personal-head{display:flex;justify-content:space-between;align-items:center;gap:16px;margin-bottom:16px}
+.em-personal-head h2{font-size:22px;line-height:1.3;margin:0 0 5px;color:#183553}
+.em-personal-head p,.em-personal-empty{font-size:12px;line-height:1.6;color:#728296;margin:0}
+.em-personal-head>a{font-size:12px;white-space:nowrap;color:#7540ae;text-decoration:none}
+.em-personal-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+.em-personal-grid article{display:flex;flex-direction:column;min-width:0;padding:16px;border:1px solid #e2e9f1;border-radius:9px;background:#fff}
+.em-personal-grid h3{font-size:14px;line-height:1.4;margin:0 0 7px;color:#173b60;overflow-wrap:anywhere}
+.em-personal-grid p{font-size:11px;line-height:1.5;margin:0 0 8px;color:#5f7287}
+.em-personal-grid small{font-size:10px;line-height:1.5;color:#7b8b9d}
+.em-personal-reasons{display:flex;flex-wrap:wrap;gap:5px;margin:12px 0}
+.em-personal-reasons span{font-size:10px;line-height:1.5;padding:4px 7px;border-radius:5px;color:#673498;background:#f4eefb}
+.em-personal-grid article>a{margin-top:auto;align-self:flex-start;font-size:12px;font-weight:600;text-decoration:none;color:#1768b4;padding:6px 0}
+.em-personal-recs a:focus-visible{outline:2px solid #7540ae;outline-offset:3px}
+@media(max-width:1000px){.em-personal-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:560px){.em-personal-recs{padding:16px}.em-personal-head{align-items:flex-start;flex-direction:column;gap:8px}.em-personal-head h2{font-size:19px}.em-personal-grid{grid-template-columns:1fr}}
+`;document.head.appendChild(style);
+  ['pagina-home','pagina-painel-candidato'].forEach(function(id){var p=document.getElementById(id);if(p)new MutationObserver(schedule).observe(p,{attributes:true,attributeFilter:['class']});});
+  ['listaVagas','emRecentHeaderHistory'].forEach(function(id){var el=document.getElementById(id);if(el)new MutationObserver(schedule).observe(el,{childList:true,subtree:true});});
+  window.addEventListener('storage',schedule);window.addEventListener('popstate',schedule);window.addEventListener('load',schedule);document.addEventListener('submit',function(){setTimeout(schedule,700);},true);
+  render();
+ }
+ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',start,{once:true});else start();
+})();
