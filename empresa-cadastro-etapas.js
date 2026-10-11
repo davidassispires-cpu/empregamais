@@ -64,7 +64,9 @@ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',
 #pagina-login-empresa .company-solid-sidebar li{font-size:13px;line-height:1.6;color:#e0efff;padding-left:17px;position:relative}
 #pagina-login-empresa .company-solid-sidebar li:before{content:'✓';position:absolute;left:0;color:#9fcef9}
 #pagina-login-empresa .portal-empresa-card-em{box-sizing:border-box!important;min-width:0!important;padding:30px 28px!important;background:#fff!important;border:0!important;border-radius:0!important;box-shadow:none!important}
-#pagina-login-empresa .portal-cadastro-card-em{position:relative!important}
+#pagina-login-empresa .portal-cadastro-card-em{position:relative!important;display:block!important;flex-direction:column!important;align-items:stretch!important;justify-content:flex-start!important}
+#pagina-login-empresa .portal-cadastro-card-em>h2{display:block!important;width:100%!important;max-width:none!important;flex:none!important;text-align:left!important}
+#pagina-login-empresa #formCadastroEmpresaProfissionalEM{display:block!important;width:100%!important;max-width:none!important;margin:0!important;padding:0!important;flex:none!important}
 #pagina-login-empresa .portal-cadastro-card-em:before{content:'';position:absolute;left:0;top:30px;bottom:30px;width:1px;background:#e2eaf2}
 #pagina-login-empresa .portal-empresa-card-em h2{color:#153f6c!important;font-size:23px!important;line-height:1.3!important;margin:0 0 22px!important}
 #pagina-login-empresa .portal-card-icone-em,#pagina-login-empresa .portal-card-kicker-em,#pagina-login-empresa .portal-card-desc-em{display:none!important}
