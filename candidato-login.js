@@ -169,3 +169,75 @@ body.candidate-solid-active .topo .menu-empresa-btn-v19{background:#c8e6ff!impor
  }
  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',setupAreas);else setupAreas();
 })();
+
+(function(){
+ const HISTORY_KEY='emViewedJobsV1',VISIT_KEY='emLastVisitV1',SESSION_KEY='emVisitBaselineV1';
+ function read(key,fallback){try{const v=JSON.parse(localStorage.getItem(key));return v===null?fallback:v;}catch(e){return fallback;}}
+ function save(key,value){try{localStorage.setItem(key,JSON.stringify(value));}catch(e){}}
+ function publicationTime(v){const raw=v.dataPublicacao||v.criadoEm||v.dataCriacao||'';const n=new Date(raw).getTime();return Number.isFinite(n)?n:0;}
+ function upsertHistory(list,id,time){return [{id:String(id),viewedAt:time}].concat(list.filter(x=>x&&String(x.id)!==String(id))).slice(0,12);}
+ let baseline=0;
+ try{const stored=sessionStorage.getItem(SESSION_KEY);baseline=stored===null?Number(read(VISIT_KEY,0)):Number(stored);if(!Number.isFinite(baseline)||baseline<0)baseline=0;sessionStorage.setItem(SESSION_KEY,String(baseline));}catch(e){baseline=Number(read(VISIT_KEY,0))||0;}
+ save(VISIT_KEY,Date.now());
+ window.addEventListener('pagehide',()=>save(VISIT_KEY,Date.now()));
+ document.addEventListener('visibilitychange',()=>{if(document.visibilityState==='hidden')save(VISIT_KEY,Date.now());});
+ let refreshUI=function(){};
+ function publicJobs(){try{return typeof window.todasAsVagasPublicas==='function'?(window.todasAsVagasPublicas()||[]):[];}catch(e){return [];}}
+ function remember(id){if(id===undefined||id===null||id==='')return;const job=publicJobs().find(v=>String(v.id)===String(id));if(!job)return;const list=read(HISTORY_KEY,[]);const safe=Array.isArray(list)?list:[];save(HISTORY_KEY,upsertHistory(safe,id,Date.now()));refreshUI();}
+ function setup(){
+  const list=document.getElementById('listaVagas');if(!list||document.getElementById('emVisitorTools'))return;
+  const root=document.createElement('section');root.id='emVisitorTools';root.setAttribute('aria-label','Sua busca por vagas');
+  const recent=document.createElement('section');recent.className='em-visitor-recent';recent.hidden=true;
+  const recentHead=document.createElement('div');recentHead.className='em-visitor-head';const recentTitle=document.createElement('h3');recentTitle.textContent='Vagas vistas recentemente';
+  const clear=document.createElement('button');clear.type='button';clear.className='em-visitor-link';clear.textContent='Limpar histórico';recentHead.append(recentTitle,clear);
+  const recentGrid=document.createElement('div');recentGrid.className='em-visitor-grid';recent.append(recentHead,recentGrid);
+  const news=document.createElement('section');news.className='em-visitor-news';news.hidden=true;
+  const newsHead=document.createElement('div');newsHead.className='em-visitor-head';const newsText=document.createElement('p');
+  const toggle=document.createElement('button');toggle.type='button';toggle.className='em-visitor-link';toggle.textContent='Ver novas vagas';toggle.setAttribute('aria-expanded','false');toggle.setAttribute('aria-controls','emNewVisitJobs');
+  newsHead.append(newsText,toggle);const newsGrid=document.createElement('div');newsGrid.id='emNewVisitJobs';newsGrid.className='em-visitor-grid em-visitor-news-grid';newsGrid.hidden=true;news.append(newsHead,newsGrid);root.append(news,recent);list.before(root);
+  let expanded=false;
+  function link(job){
+   const a=document.createElement('a');a.className='em-visitor-job';a.href='?pagina=vaga&id='+encodeURIComponent(job.id);
+   const title=document.createElement('strong');title.textContent=job.cargo||job.titulo||'Ver oportunidade';
+   const meta=document.createElement('span');let confidential=false;try{confidential=typeof window.vagaEhConfidencialEM==='function'&&window.vagaEhConfidencialEM(job);}catch(e){}
+   meta.textContent=[confidential?'Empresa confidencial':(job.empresa||job.nomeEmpresa||''),job.cidade||job.localizacao||''].filter(Boolean).join(' · ');
+   a.append(title,meta);a.addEventListener('click',e=>{if(e.ctrlKey||e.metaKey||e.shiftKey||e.altKey||e.button!==0)return;if(typeof window.irPara==='function'){e.preventDefault();remember(job.id);window.irPara('vaga',job.id);}});return a;
+  }
+  let signature='';
+  function render(force){
+   const jobs=publicJobs(),byId=new Map(jobs.map(v=>[String(v.id),v]));
+   const history=read(HISTORY_KEY,[]),viewed=(Array.isArray(history)?history:[]).map(x=>byId.get(String(x.id))).filter(Boolean).slice(0,3);
+   const now=Date.now(),fresh=baseline>0?jobs.filter(v=>publicationTime(v)>baseline&&publicationTime(v)<=now).sort((a,b)=>publicationTime(b)-publicationTime(a)):[];
+   const sig=JSON.stringify([viewed.map(v=>[v.id,v.cargo,v.titulo,v.empresa,v.cidade]),fresh.map(v=>[v.id,v.cargo,v.titulo]),expanded]);
+   if(!force&&sig===signature)return;signature=sig;
+   recent.hidden=viewed.length===0;recentGrid.replaceChildren(...viewed.map(link));
+   news.hidden=fresh.length===0;newsText.textContent=fresh.length===1?'1 nova vaga desde sua última visita':fresh.length+' novas vagas desde sua última visita';
+   toggle.textContent=expanded?'Ocultar novas vagas':'Ver novas vagas';toggle.setAttribute('aria-expanded',String(expanded));newsGrid.hidden=!expanded;newsGrid.replaceChildren(...(expanded?fresh.map(link):[]));
+   root.hidden=viewed.length===0&&fresh.length===0;
+  }
+  refreshUI=()=>render(false);clear.addEventListener('click',()=>{save(HISTORY_KEY,[]);render(true);});toggle.addEventListener('click',()=>{expanded=!expanded;render(true);});
+  const original=window.abrirVaga;if(typeof original==='function')window.abrirVaga=function(id){const result=original.apply(this,arguments);remember(id);return result;};
+  function trackRoute(){const p=new URLSearchParams(location.search);if(p.get('pagina')==='vaga'&&p.get('id')){const history=read(HISTORY_KEY,[]);if(!Array.isArray(history)||!history[0]||String(history[0].id)!==p.get('id'))remember(p.get('id'));}render(false);}
+  let pending=false;new MutationObserver(()=>{if(pending)return;pending=true;setTimeout(()=>{pending=false;trackRoute();},80);}).observe(list,{childList:true,subtree:true});
+  window.addEventListener('popstate',trackRoute);window.addEventListener('load',trackRoute);window.addEventListener('storage',()=>render(true));trackRoute();
+  const style=document.createElement('style');style.textContent=`
+#emVisitorTools{margin:0 0 18px!important;display:grid;gap:14px;min-width:0}
+#emVisitorTools .em-visitor-recent{border:1px solid #e1e8f1;border-radius:10px;background:#fff;padding:16px}
+#emVisitorTools .em-visitor-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:0 0 12px}
+#emVisitorTools h3{margin:0;font-size:14px;color:#183b5f;line-height:1.4;font-weight:700}
+#emVisitorTools .em-visitor-link{border:0;background:transparent;padding:3px 0;color:#1768b4;font-size:11px;cursor:pointer;white-space:nowrap}
+#emVisitorTools .em-visitor-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+#emVisitorTools .em-visitor-job{display:block;text-decoration:none;border:1px solid #e3ebf4;border-radius:8px;padding:12px;background:#fff;min-width:0}
+#emVisitorTools .em-visitor-job:hover{border-color:#9fc3e6;background:#f8fbff}
+#emVisitorTools .em-visitor-job strong{display:block;font-size:12px;font-weight:600;line-height:1.4;color:#23445f;margin:0 0 5px;overflow-wrap:anywhere}
+#emVisitorTools .em-visitor-job span{display:block;font-size:10px;line-height:1.5;color:#7b8c9c;overflow-wrap:anywhere}
+#emVisitorTools .em-visitor-news{background:#edf6ff;border:1px solid #d6e8fb;border-radius:9px;padding:12px 16px}
+#emVisitorTools .em-visitor-news .em-visitor-head{margin-bottom:0}
+#emVisitorTools .em-visitor-news p{margin:0;font-size:12px;line-height:1.5;color:#245b90;font-weight:600}
+#emVisitorTools .em-visitor-news-grid{margin-top:12px}
+#emVisitorTools[hidden],#emVisitorTools [hidden]{display:none!important}
+@media(max-width:700px){#emVisitorTools .em-visitor-grid{grid-template-columns:1fr}#emVisitorTools .em-visitor-head{align-items:flex-start}#emVisitorTools .em-visitor-recent{padding:14px}#emVisitorTools .em-visitor-news .em-visitor-head{flex-wrap:wrap}}
+`;document.head.append(style);
+ }
+ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',setup);else setup();
+})();
