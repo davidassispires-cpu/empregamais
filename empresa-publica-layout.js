@@ -125,3 +125,81 @@ html body #pagina-empresa-publica .em-history-icon{display:grid;place-items:cent
 }
 if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',start,{once:true});else start();
 })();
+
+/* Public company vacancies: compact cards and local filters. */
+(function(){
+'use strict';
+var queued=false;
+function el(tag,cls,text){var n=document.createElement(tag);n.className=cls||'';if(text!==undefined)n.textContent=text;return n;}
+function norm(v){return String(v||'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase();}
+function date(v){var raw=v.dataPublicacao||v.publicadaEm||v.criado_em||v.created_at||'',m=String(raw).match(/^(\d{2})\/(\d{2})\/(\d{4})/);return (m?new Date(+m[3],+m[2]-1,+m[1]):new Date(raw)).getTime()||0;}
+function setup(){
+ var page=document.getElementById('pagina-empresa-publica');if(!page)return;
+ var host=page.querySelector('#emGriffPublic')||page.querySelector('.empresa-publica');if(!host)return;
+ var section=host.querySelector('.gp-vacancies,.empresa-publica-vagas');if(!section)return;
+ var grid=section.querySelector('.gp-jobs')||section.querySelector('#empresaPublicaListaVagas');
+ if(!grid){var first=section.querySelector('.vaga-card');if(first)grid=first.parentElement;}
+ if(!grid||section.querySelector('.em-company-filters'))return;
+ var cards=Array.from(grid.children).filter(function(c){return c.matches('.gp-job,.vaga-card');});
+ var all=[];try{all=typeof todasAsVagasPublicas==='function'?todasAsVagasPublicas():[];}catch(e){}
+ var entries=cards.map(function(card,index){
+  var a=card.querySelector('a[href*="id="]'),id=card.dataset.vagaId||card.dataset.id;
+  if(a){try{id=new URL(a.href,location.href).searchParams.get('id')||id;}catch(e){}}
+  var v=all.find(function(x){return String(x.id)===String(id);})||{};
+  var title=card.querySelector('h3,h2');if(title&&v.cargo||title&&v.titulo)title.textContent=v.cargo||v.titulo;
+  if(card.classList.contains('gp-job')){
+   var ps=card.querySelectorAll('p');if(ps[0])ps[0].classList.add('em-company-city');
+   if(ps[1]){ps[1].className='em-company-tags';ps[1].replaceChildren();[v.modalidade,v.contrato].filter(Boolean).forEach(function(t){ps[1].appendChild(el('span','',t));});}
+   var salary=el('p','em-company-salary','Salário: '+(v.salario?String(v.salario):'Não informado'));if(ps[0])ps[0].after(salary);else card.appendChild(salary);
+  }
+  card.classList.add('em-company-vacancy-card');
+  return {card:card,v:v,index:index};
+ });
+ grid.classList.add('em-company-job-grid');
+ var form=el('form','em-company-filters'),fields=el('div','em-company-filter-fields');
+ var search=el('input');search.type='search';search.placeholder='Digite o cargo';
+ function field(label,input){var wrap=el('label','em-company-filter-field');wrap.append(el('span','',label),input);fields.appendChild(wrap);}
+ field('Buscar cargo',search);
+ function select(label,key,placeholder){var select=el('select');var option=el('option','',placeholder);option.value='';select.appendChild(option);Array.from(new Set(entries.map(function(e){return e.v[key];}).filter(Boolean))).sort().forEach(function(value){var option=el('option','',value);option.value=value;select.appendChild(option);});field(label,select);return select;}
+ var city=select('Cidade','cidade','Todas as cidades'),mode=select('Modalidade','modalidade','Todas'),contract=select('Tipo de contrato','contrato','Todos');
+ var submit=el('button','em-company-filter-submit','Filtrar vagas');submit.type='submit';fields.appendChild(submit);
+ var clear=el('button','em-company-filter-clear','Limpar filtros');clear.type='button';form.append(fields,clear);grid.before(form);
+ var toolbar=el('div','em-company-result-toolbar'),count=el('p');count.setAttribute('role','status');count.setAttribute('aria-live','polite');
+ var sortLabel=el('label','','Ordenar por: '),sort=el('select');[['new','Mais recentes'],['old','Mais antigas'],['title','Cargo A–Z']].forEach(function(r){var o=el('option','',r[1]);o.value=r[0];sort.appendChild(o);});sortLabel.appendChild(sort);toolbar.append(count,sortLabel);grid.before(toolbar);
+ var empty=el('p','em-company-filter-empty','Nenhuma vaga encontrada para esses filtros.');empty.hidden=true;grid.after(empty);
+ function apply(){
+  var list=entries.slice().sort(function(a,b){return sort.value==='title'?String(a.v.cargo||a.v.titulo||a.card.textContent).localeCompare(String(b.v.cargo||b.v.titulo||b.card.textContent),'pt-BR'):sort.value==='old'?date(a.v)-date(b.v)||a.index-b.index:date(b.v)-date(a.v)||a.index-b.index;});
+  var total=0;list.forEach(function(e){var yes=(!search.value||norm(e.v.cargo||e.v.titulo||e.card.textContent).includes(norm(search.value)))&&(!city.value||e.v.cidade===city.value)&&(!mode.value||e.v.modalidade===mode.value)&&(!contract.value||e.v.contrato===contract.value);e.card.hidden=!yes;if(yes)total++;grid.appendChild(e.card);});
+  count.textContent=total+' '+(total===1?'vaga encontrada':'vagas encontradas');empty.hidden=total!==0;
+ }
+ form.onsubmit=function(event){event.preventDefault();apply();};clear.onclick=function(){form.reset();sort.value='new';apply();};sort.onchange=apply;apply();
+}
+function schedule(){if(queued)return;queued=true;requestAnimationFrame(function(){queued=false;setup();});}
+function start(){
+ var style=el('style');style.textContent=`
+html body #pagina-empresa-publica .em-company-filters{background:white;border:1px solid #d1e2f5;border-radius:10px;padding:18px;margin:18px 0 16px}
+html body #pagina-empresa-publica .em-company-filter-fields{display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr auto;gap:12px;align-items:end}
+html body #pagina-empresa-publica .em-company-filter-field{display:flex;flex-direction:column;gap:7px;min-width:0;font:600 12px Inter,Arial,sans-serif;color:#17324e}
+html body #pagina-empresa-publica .em-company-filters input,html body #pagina-empresa-publica .em-company-filters select,html body #pagina-empresa-publica .em-company-result-toolbar select{box-sizing:border-box;width:100%;height:40px;border:1px solid #cbdcf0;border-radius:6px;background:#fff;padding:0 10px;color:#41556c;font:400 13px Inter,Arial,sans-serif}
+html body #pagina-empresa-publica .em-company-filter-submit{height:40px;border:0;border-radius:6px;background:#0875ee;color:white;padding:0 18px;font:600 13px Inter,Arial,sans-serif;cursor:pointer}
+html body #pagina-empresa-publica .em-company-filter-clear{display:block;margin:10px 0 0 auto;border:0;background:transparent;padding:0;color:#0875ee;font:400 12px Inter,Arial,sans-serif;text-decoration:underline;cursor:pointer}
+html body #pagina-empresa-publica .em-company-result-toolbar{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:0 0 14px;font:400 12px Inter,Arial,sans-serif;color:#526b87}
+html body #pagina-empresa-publica .em-company-result-toolbar p{margin:0!important}
+html body #pagina-empresa-publica .em-company-result-toolbar label{display:flex;align-items:center;gap:8px;white-space:nowrap}
+html body #pagina-empresa-publica .em-company-result-toolbar select{width:150px;height:34px}
+html body #pagina-empresa-publica .em-company-job-grid{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:14px!important}
+html body #pagina-empresa-publica .em-company-vacancy-card{padding:18px!important;min-height:0!important;border:1px solid #d1e2f5!important;border-radius:10px!important;background:#fff!important;position:relative;box-sizing:border-box}
+html body #pagina-empresa-publica .em-company-vacancy-card[hidden],html body #pagina-empresa-publica .em-company-filter-empty[hidden]{display:none!important}
+html body #pagina-empresa-publica .gp-job.em-company-vacancy-card h3{font:700 16px/1.4 Inter,Arial,sans-serif!important;text-transform:none!important;margin:0 0 9px!important;color:#17324e!important}
+html body #pagina-empresa-publica .gp-job .em-company-city{font:400 12px/1.5 Inter,Arial,sans-serif!important;margin:0 0 7px!important;color:#526b87!important}
+html body #pagina-empresa-publica .gp-job .em-company-salary{font:600 13px/1.5 Inter,Arial,sans-serif!important;color:#17324e!important;margin:0 0 10px!important}
+html body #pagina-empresa-publica .gp-job .em-company-tags{display:flex;flex-wrap:wrap;gap:6px;margin:0 120px 0 0!important;min-height:32px;align-items:center}
+html body #pagina-empresa-publica .em-company-tags span{background:#eef5ff;border-radius:20px;padding:5px 10px;color:#1768b4;font:400 11px Inter,Arial,sans-serif}
+html body #pagina-empresa-publica .gp-job.em-company-vacancy-card>a{position:absolute;right:18px;bottom:18px;padding:9px 12px!important;border-radius:6px!important;background:#0875ee;color:#fff;font:600 12px Inter,Arial,sans-serif!important;text-decoration:none}
+html body #pagina-empresa-publica .em-company-filter-empty{color:#526b87;font:400 13px/1.6 Inter,Arial,sans-serif;background:white;border:1px solid #dce5ef;padding:18px;border-radius:8px}
+@media(max-width:900px){html body #pagina-empresa-publica .em-company-filter-fields{grid-template-columns:repeat(2,minmax(0,1fr))}html body #pagina-empresa-publica .em-company-filter-submit{grid-column:1/-1}}
+@media(max-width:600px){html body #pagina-empresa-publica .em-company-job-grid{grid-template-columns:1fr!important}html body #pagina-empresa-publica .em-company-result-toolbar{align-items:flex-start;flex-direction:column}html body #pagina-empresa-publica .em-company-filter-fields{grid-template-columns:1fr}}
+`;document.head.appendChild(style);setup();var page=document.getElementById('pagina-empresa-publica');if(page)new MutationObserver(schedule).observe(page,{childList:true,subtree:true});window.addEventListener('load',schedule);window.addEventListener('popstate',schedule);
+}
+if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',start,{once:true});else start();
+})();
