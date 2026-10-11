@@ -120,3 +120,19 @@
  }
  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',start,{once:true});else start();
 })();
+
+(function(){
+ var pending=false;
+ function paint(){
+  document.querySelectorAll('.favorito,.em-lista-fav,#btnSalvarDetalhe').forEach(function(button){
+   var text=button.textContent||'',filled=text.indexOf('♥')>=0||text.indexOf('❤')>=0;
+   if(!/[♥♡❤]/.test(text))return;
+   var label=text.replace(/[♥♡❤]/g,'').trim(),svg='<svg class="em-save-marker" viewBox="0 0 24 24" width="19" height="19" fill="'+(filled?'currentColor':'none')+'" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M6 21V4a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v17l-6-4Z"/></svg>';
+   button.innerHTML=svg+(label?' <span>'+label+'</span>':'');
+   button.setAttribute('aria-label',filled?'Remover vaga salva':'Salvar vaga');button.setAttribute('aria-pressed',String(filled));button.title=filled?'Vaga salva — clique para remover':'Salvar vaga';
+  });
+ }
+ function schedule(){if(pending)return;pending=true;requestAnimationFrame(function(){pending=false;paint();});}
+ function start(){var style=document.createElement('style');style.textContent='.em-save-marker{vertical-align:middle;flex-shrink:0;pointer-events:none}.favorito .em-save-marker,.em-lista-fav .em-save-marker{width:19px!important;height:19px!important}';document.head.appendChild(style);paint();new MutationObserver(schedule).observe(document.body,{childList:true,subtree:true,characterData:true});}
+ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',start,{once:true});else start();
+})();
