@@ -287,3 +287,41 @@ body.candidate-solid-active .topo .menu-empresa-btn-v19{background:#c8e6ff!impor
  }
  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',arrangeHeader);else arrangeHeader();
 })();
+
+(function(){
+ function polishRecentPanel(){
+  const band=document.querySelector('#vagas .em-recentes-blue-band'),title=band&&band.querySelector('.em-recentes-centered'),history=document.getElementById('emRecentHeaderHistory');if(!band||!title)return;
+  const left=band.querySelector('.em-recent-header-main');
+  [left,title].concat(Array.from(title.querySelectorAll('h2,p,span'))).filter(Boolean).forEach(node=>{node.style.setProperty('text-align','left','important');node.style.setProperty('margin-left','0','important');node.style.setProperty('margin-right','0','important');});
+  title.style.setProperty('display','block','important');title.style.setProperty('align-items','flex-start','important');
+  const h2=title.querySelector('h2');if(h2){h2.style.setProperty('width','100%','important');h2.style.setProperty('font-size','27px','important');}
+  if(history){const heading=history.querySelector('h3');if(heading&&!heading.querySelector('svg')){const clock=document.createElementNS('http://www.w3.org/2000/svg','svg');clock.setAttribute('viewBox','0 0 24 24');clock.setAttribute('aria-hidden','true');clock.innerHTML='<circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="M12 6v6l4 2" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>';heading.prepend(clock);}const clear=history.querySelector('.em-visitor-link');if(clear){clear.textContent='Limpar';clear.setAttribute('aria-label','Limpar histórico de vagas vistas');}}
+  const style=document.createElement('style');style.textContent=`
+#pagina-home #vagas#vagas#vagas#vagas .em-recent-split-header{background:#f5f9fe!important;background-image:none!important;border:1px solid #e4ecf5!important;border-radius:12px!important;padding:24px!important;gap:24px!important;align-items:center!important;overflow:hidden!important}
+#pagina-home #vagas#vagas#vagas#vagas .em-recent-split-header:before,#pagina-home #vagas#vagas#vagas#vagas .em-recent-split-header:after{display:none!important}
+#pagina-home #vagas#vagas#vagas#vagas .em-recent-split-header.em-header-has-history{grid-template-columns:minmax(0,1fr) 360px!important}
+#pagina-home #vagas#vagas#vagas#vagas .em-recentes-kicker{font-size:10px!important;font-weight:600!important;letter-spacing:1.1px!important;color:#1768b4!important;display:block!important;margin:0 0 9px!important}
+#pagina-home #vagas#vagas#vagas#vagas .em-recentes-centered h2{color:#15334f!important;line-height:1.25!important;font-weight:700!important;margin:0 0 10px!important}
+#pagina-home #vagas#vagas#vagas#vagas .em-recentes-centered p{font-size:13px!important;line-height:1.6!important;color:#728397!important;margin:0!important}
+#pagina-home #vagas#vagas#vagas#vagas .em-recent-header-main .em-recentes-centered{margin-bottom:22px!important;border:0!important}
+#pagina-home #vagas#vagas#vagas#vagas .em-recent-header-main .filtros-chips-home{border:0!important;padding:0!important;margin:0!important;gap:8px!important}
+#pagina-home #vagas#vagas#vagas#vagas .filtro-chip-home{min-height:36px!important;padding:8px 13px!important;border-radius:8px!important;background:#fff!important;border:1px solid #d7e2ef!important;color:#264764!important;font-size:11px!important;font-weight:500!important;box-shadow:none!important}
+#pagina-home #vagas#vagas#vagas#vagas .filtro-chip-home.ativo{background:#1768b4!important;border-color:#1768b4!important;color:#fff!important;font-weight:600!important}
+#emRecentHeaderHistory#emRecentHeaderHistory#emRecentHeaderHistory{padding:16px!important;border:1px solid #e0e8f2!important;border-radius:10px!important;background:#fff!important}
+#emRecentHeaderHistory#emRecentHeaderHistory .em-visitor-head{margin:0 0 12px!important;align-items:center!important;gap:12px!important}
+#emRecentHeaderHistory#emRecentHeaderHistory h3{display:flex!important;align-items:center!important;gap:8px!important;font-size:12px!important;line-height:1.4!important;color:#173b60!important;font-weight:600!important;margin:0!important}
+#emRecentHeaderHistory#emRecentHeaderHistory h3 svg{width:21px;height:21px;flex-shrink:0}
+#emRecentHeaderHistory#emRecentHeaderHistory .em-visitor-link{font-size:11px!important}
+#emRecentHeaderHistory#emRecentHeaderHistory .em-visitor-grid{gap:0!important}
+#emRecentHeaderHistory#emRecentHeaderHistory .em-visitor-job{position:relative!important;border:0!important;border-bottom:1px solid #edf1f6!important;border-radius:0!important;background:#fff!important;padding:10px 20px 10px 0!important}
+#emRecentHeaderHistory#emRecentHeaderHistory .em-visitor-job:last-child{border-bottom:0!important;padding-bottom:0!important}
+#emRecentHeaderHistory#emRecentHeaderHistory .em-visitor-job:after{content:'›';position:absolute;right:0;top:50%;transform:translateY(-50%);font-size:22px;color:#5a7896}
+#emRecentHeaderHistory#emRecentHeaderHistory .em-visitor-job strong{font-size:12px!important;line-height:1.4!important;font-weight:600!important;margin:0 0 4px!important}
+#emRecentHeaderHistory#emRecentHeaderHistory .em-visitor-job span{font-size:10px!important;line-height:1.4!important;color:#8493a3!important}
+#emRecentHeaderHistory#emRecentHeaderHistory .em-visitor-job:hover strong{color:#1768b4!important}
+@media(max-width:1000px){#pagina-home #vagas#vagas#vagas#vagas .em-recent-split-header.em-header-has-history{grid-template-columns:minmax(0,1fr) 310px!important;gap:18px!important}}
+@media(max-width:700px){#pagina-home #vagas#vagas#vagas#vagas .em-recent-split-header.em-header-has-history{grid-template-columns:1fr!important}#pagina-home #vagas#vagas#vagas#vagas .em-recent-split-header{padding:18px 16px!important}#pagina-home #vagas#vagas#vagas#vagas .em-recentes-centered h2{font-size:24px!important}}
+`;document.head.append(style);
+ }
+ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',polishRecentPanel);else polishRecentPanel();
+})();
