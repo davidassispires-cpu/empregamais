@@ -254,8 +254,8 @@ html body #pagina-home#pagina-home #listaVagas#listaVagas#listaVagas .em-lista-t
 
 /* Mantém o filtro de proximidade imediatamente antes das vagas recentes. */
 (function(){
- function position(){var box=document.getElementById('emPerto'),list=document.getElementById('listaVagas');if(!box||!list)return false;if(list.previousElementSibling!==box)list.before(box);return true;}
- function init(){position();var parent=document.getElementById('listaVagas');if(parent)new MutationObserver(position).observe(parent.parentElement,{childList:true});}
+ var retainedBox=null;function position(){var list=document.getElementById('listaVagas'),box=document.getElementById('emPerto')||retainedBox;if(!box||!list)return false;retainedBox=box;box.hidden=false;box.classList.remove('oculto');box.style.setProperty('display','block','important');box.style.setProperty('width','100%','important');box.style.setProperty('grid-column','1 / -1','important');if(list.firstElementChild!==box)list.prepend(box);return true;}
+ function init(){position();var parent=document.getElementById('listaVagas');if(parent)new MutationObserver(position).observe(parent,{childList:true});}
  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init,{once:true});else init();
  window.addEventListener('load',position);
 })();
