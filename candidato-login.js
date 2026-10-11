@@ -383,3 +383,62 @@ body.candidate-solid-active .topo .menu-empresa-btn-v19{background:#c8e6ff!impor
  }
  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',compactHistory,{once:true});else compactHistory();
 })();
+
+(function(){
+ function setupProfessionalFilters(){
+  var panel=document.getElementById('filtrosLateral');if(!panel||panel.dataset.professionalForm)return;panel.dataset.professionalForm='true';
+  var ids=['filtroPalavra','filtroCidade','filtroSalario','filtroArea','filtroContrato','filtroPcd','filtroModalidade'],fields={};
+  ids.forEach(function(id){var old=document.getElementById(id);if(old){var field=old.cloneNode(true);field.removeAttribute('oninput');field.removeAttribute('onchange');field.value=old.value;field.removeAttribute('style');fields[id]=field;}});
+  if(ids.some(function(id){return !fields[id];}))return;
+  panel.replaceChildren();
+  var head=document.createElement('div');head.className='em-filter-heading';head.innerHTML='<h3>Filtrar vagas</h3><button class="limpar-link" type="button">Limpar</button>';panel.appendChild(head);
+  var form=document.createElement('form');form.id='emProfessionalFiltersForm';form.dataset.semLoading='1';panel.appendChild(form);
+  function group(label,field){var box=document.createElement('div');box.className='em-filter-group';var l=document.createElement('label');l.htmlFor=field.id;l.textContent=label;box.append(l,field);form.appendChild(box);return box;}
+  fields.filtroPalavra.placeholder='Ex.: Assistente administrativo';group('Cargo ou empresa',fields.filtroPalavra);
+  fields.filtroCidade.placeholder='Cidade';group('Localização',fields.filtroCidade);
+  var cep=document.createElement('input');cep.id='emFilterCep';cep.className='campo';cep.placeholder='CEP para buscar por distância';cep.inputMode='numeric';cep.maxLength=9;group('CEP',cep);cep.oninput=function(){this.value=window.mascaraCepEM?window.mascaraCepEM(this.value):this.value;};
+  var radius=document.createElement('select');radius.id='emFilterDistance';radius.className='campo';radius.innerHTML='<option value="5">Até 5 km</option><option value="10" selected>Até 10 km</option><option value="25">Até 25 km</option><option value="50">Até 50 km</option><option value="0">Qualquer distância</option>';group('Distância',radius);
+  group('Salário mínimo',fields.filtroSalario);
+  var areaBox=group('Área profissional',fields.filtroArea),areaSearch=document.createElement('input');areaSearch.type='search';areaSearch.placeholder='Buscar área';areaSearch.setAttribute('aria-label','Buscar área profissional');areaSearch.className='campo';areaBox.insertBefore(areaSearch,fields.filtroArea);
+  var areaOptions=Array.from(fields.filtroArea.options).map(function(o){return {value:o.value,text:o.textContent};});
+  areaSearch.oninput=function(){var current=fields.filtroArea.value,q=this.value.toLocaleLowerCase('pt-BR');fields.filtroArea.replaceChildren();areaOptions.filter(function(o){return !o.value||o.value===current||o.text.toLocaleLowerCase('pt-BR').includes(q);}).forEach(function(o){var option=new Option(o.text,o.value);fields.filtroArea.add(option);});fields.filtroArea.value=current;};
+  var mode=group('Modalidade',fields.filtroModalidade);fields.filtroModalidade.hidden=true;var chips=document.createElement('div');chips.className='em-filter-modes';['Presencial','Híbrido','Remoto'].forEach(function(value){var button=document.createElement('button');button.type='button';button.textContent=value;button.setAttribute('aria-pressed',String(fields.filtroModalidade.value===value));button.onclick=function(){fields.filtroModalidade.value=fields.filtroModalidade.value===value?'':value;syncModes();};chips.appendChild(button);});mode.appendChild(chips);
+  function syncModes(){chips.querySelectorAll('button').forEach(function(btn){btn.setAttribute('aria-pressed',String(btn.textContent===fields.filtroModalidade.value));});}
+  group('Tipo de contrato',fields.filtroContrato);
+  group('Vagas para PcD',fields.filtroPcd);
+  var salaryOnly=document.createElement('label');salaryOnly.className='em-filter-checkbox';salaryOnly.innerHTML='<input type="checkbox" id="emFilterSalaryKnown"><span>Somente vagas com salário informado</span>';form.appendChild(salaryOnly);
+  var submit=document.createElement('button');submit.type='submit';submit.className='em-filter-apply';submit.textContent='Aplicar filtros';submit.dataset.semLoading='1';form.appendChild(submit);
+  var feedback=document.createElement('p');feedback.className='em-filter-feedback';feedback.setAttribute('role','status');feedback.textContent='Escolha os filtros e clique em aplicar.';form.appendChild(feedback);
+  var original=window.filtrarVagas;
+  if(typeof original==='function')window.filtrarVagas=function(){
+   var result=original.apply(this,arguments);syncModes();
+   if(document.getElementById('emFilterSalaryKnown').checked)document.querySelectorAll('#listaVagas .vaga-card').forEach(function(card){if(!(Number(card.getAttribute('data-salario'))>0))card.style.display='none';});
+   return result;
+  };
+  form.onsubmit=function(event){event.preventDefault();window.filtrarVagas();var value=cep.value.replace(/\D/g,'');
+   if(value){if(value.length!==8){feedback.textContent='Digite um CEP com 8 números.';return;}document.getElementById('emPertoCep').value=cep.value;document.getElementById('emPertoRaio').value=radius.value;document.getElementById('emPertoForm').requestSubmit();feedback.textContent='Filtros aplicados. Consulte o resultado da distância acima das vagas.';}
+   else feedback.textContent='Filtros aplicados.';
+  };
+  head.querySelector('button').onclick=function(){ids.forEach(function(id){fields[id].value='';});areaSearch.value='';areaSearch.oninput();cep.value='';radius.value='10';document.getElementById('emFilterSalaryKnown').checked=false;var clear=document.getElementById('emPertoLimpar');if(clear)clear.click();syncModes();window.filtrarVagas();feedback.textContent='Filtros removidos.';};
+  var style=document.createElement('style');style.textContent=`
+html body #pagina-home#pagina-home #filtrosLateral#filtrosLateral{padding:20px!important;background:#fff!important;border:1px solid #dce5ef!important;border-radius:12px!important;overflow:visible!important;max-height:none!important}
+#filtrosLateral#filtrosLateral .em-filter-heading{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:20px}
+#filtrosLateral#filtrosLateral .em-filter-heading h3{margin:0;font-size:20px;color:#173553}
+#filtrosLateral#filtrosLateral .limpar-link{font-size:12px;border:0;background:none;color:#0875ee;cursor:pointer}
+#filtrosLateral#filtrosLateral .em-filter-group{margin:0 0 16px!important;padding:0!important}
+#filtrosLateral#filtrosLateral .em-filter-group>label{display:block!important;font-size:12px!important;font-weight:600!important;color:#193653!important;margin:0 0 7px!important}
+#filtrosLateral#filtrosLateral .campo{box-sizing:border-box!important;display:block!important;position:static!important;opacity:1!important;width:100%!important;height:40px!important;min-height:40px!important;max-height:none!important;margin:0!important;padding:0 10px!important;background:#fff!important;border:1px solid #d4dfeb!important;border-radius:7px!important;font-size:12px!important;color:#304c69!important;appearance:auto!important}
+#filtrosLateral#filtrosLateral .campo[hidden]{display:none!important}
+#filtrosLateral#filtrosLateral input[type=search]{margin-bottom:7px!important}
+#filtrosLateral#filtrosLateral .em-filter-modes{display:flex;gap:5px}
+#filtrosLateral#filtrosLateral .em-filter-modes button{flex:1;padding:10px 4px;border:1px solid #d4dfeb;border-radius:6px;background:#fff;color:#304c69;font-size:11px;cursor:pointer}
+#filtrosLateral#filtrosLateral .em-filter-modes button[aria-pressed=true]{border-color:#0875ee;background:#edf6ff;color:#0875ee}
+#filtrosLateral#filtrosLateral .em-filter-checkbox{display:flex;align-items:flex-start;gap:8px;font-size:11px;color:#304c69;margin:18px 0}
+#filtrosLateral#filtrosLateral .em-filter-checkbox input{appearance:auto!important;position:static!important;opacity:1!important;width:16px!important;height:16px!important;min-height:0!important;margin:0!important;accent-color:#0875ee}
+#filtrosLateral#filtrosLateral .em-filter-apply{display:block;width:100%;min-height:42px;border:0;border-radius:7px;background:#0875ee;color:#fff;font-size:13px;font-weight:600;cursor:pointer}
+#filtrosLateral#filtrosLateral .em-filter-feedback{font-size:10px;line-height:1.5;color:#728398;margin:10px 0 0}
+#filtrosLateral#filtrosLateral :is(input,select,button):focus-visible{outline:2px solid #0875ee;outline-offset:2px}
+`;document.head.appendChild(style);
+ }
+ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',setupProfessionalFilters,{once:true});else setupProfessionalFilters();
+})();
