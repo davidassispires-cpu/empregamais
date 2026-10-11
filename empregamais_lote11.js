@@ -205,3 +205,45 @@ return old.apply(this,arguments);
 }
 })();
 //
+/* Home compacta: apresentação, cards e filtros responsivos. */
+(function(){
+ function init(){
+  var home=document.getElementById('pagina-home'),list=document.getElementById('listaVagas'),filters=document.getElementById('filtrosLateral');if(!home||!list||!filters||document.getElementById('emHomeProfessional'))return;
+  var style=document.createElement('style');style.id='emHomeProfessional';style.textContent=`
+html body #pagina-home#pagina-home{background:#f6f7fb!important}
+html body #pagina-home#pagina-home :is(h1,h2,h3,p,button,input,select,article,span){font-family:Inter,Arial,sans-serif!important;font-style:normal!important}
+html body #pagina-home#pagina-home #emHeroFloripa.hero{padding:28px 24px!important;min-height:0!important}
+html body #pagina-home#pagina-home #emHeroFloripa .hero-premium-inner-em{gap:28px!important}
+html body #pagina-home#pagina-home #emHeroFloripa h1{font-size:32px!important;margin-bottom:10px!important;line-height:1.2!important}
+html body #pagina-home#pagina-home #emHeroFloripa .hero-copy-em p{font-size:14px!important;line-height:1.5!important}
+html body #pagina-home#pagina-home #emHeroFloripa .hero-kicker-em{margin-bottom:8px!important}
+html body #pagina-home#pagina-home #emHeroFloripa .hero-search-shell-em{padding:16px!important;border-radius:12px!important}
+html body #pagina-home#pagina-home #emHeroFloripa .em-hero-chips{margin:10px 0!important}
+html body #pagina-home#pagina-home #emHeroFloripa #emHeroRefBusca button{background:#7041c6!important}
+html body #pagina-home#pagina-home #listaVagas#listaVagas#listaVagas article.vaga-card.em-lista-final{background:#fff!important;border:1px solid #e2e5ec!important;border-radius:10px!important;box-shadow:none!important;padding:16px 18px!important}
+html body #pagina-home#pagina-home #listaVagas#listaVagas#listaVagas .em-lista-titulo{font-size:20px!important;line-height:1.3!important;color:#24334b!important}
+html body #pagina-home#pagina-home #listaVagas .em-lista-meta{flex-wrap:wrap!important;gap:8px 14px!important}
+html body #pagina-home#pagina-home #listaVagas .em-lista-meta-item{border:0!important}
+html body #pagina-home#pagina-home #listaVagas .em-lista-ver{background:#7041c6!important;border-color:#7041c6!important;color:#fff!important}
+html body #pagina-home#pagina-home #listaVagas :is(.em-selo-nova-v31,.em-lista-destaque){font-size:10px!important;box-shadow:none!important}
+html body #pagina-home#pagina-home #filtrosLateral{background:#fff!important;border:1px solid #e2e5ec!important;border-radius:12px!important;box-shadow:none!important;padding:18px!important}
+html body #pagina-home#pagina-home #filtrosLateral :is(input,select){border:1px solid #dce1e9!important;border-radius:7px!important;box-shadow:none!important;min-height:40px!important}
+#emHomeFiltersToggle{display:none}
+@media(min-width:769px){html body #pagina-home#pagina-home #filtrosLateral{display:block!important}}
+@media(max-width:768px){
+html body #pagina-home#pagina-home #emHeroFloripa.hero{padding:20px 16px!important}
+html body #pagina-home#pagina-home #emHeroFloripa .hero-premium-inner-em{gap:16px!important}
+html body #pagina-home#pagina-home #emHeroFloripa h1{font-size:27px!important}
+html body #pagina-home#pagina-home #emHeroFloripa .em-hero-chips{display:none!important}
+#emHomeFiltersToggle{display:block!important;width:100%;padding:12px 16px;margin:0 0 12px;border:1px solid #d8ccea;border-radius:8px;background:#fff;color:#7041c6;font-weight:600;cursor:pointer}
+html body #pagina-home#pagina-home #filtrosLateral{display:none!important;width:100%!important;box-sizing:border-box!important;position:static!important;margin-bottom:16px!important}
+html body #pagina-home#pagina-home #filtrosLateral.em-filters-open{display:block!important}
+html body #pagina-home#pagina-home #listaVagas#listaVagas#listaVagas .em-lista-titulo{font-size:18px!important}
+}`;document.head.appendChild(style);
+  var section=list.parentElement;while(section.parentElement&&section.parentElement!==home)section=section.parentElement;
+  home.querySelectorAll('#empresasContratandoFaixaEM,.senior-home-v18').forEach(function(banner){if(banner.parentElement===home)home.appendChild(banner)});
+  var button=document.createElement('button');button.id='emHomeFiltersToggle';button.type='button';button.textContent='Filtrar vagas';button.setAttribute('aria-controls','filtrosLateral');button.setAttribute('aria-expanded','false');
+  filters.parentElement.insertBefore(button,filters);button.onclick=function(){var open=filters.classList.toggle('em-filters-open');button.setAttribute('aria-expanded',String(open));button.textContent=open?'Fechar filtros':'Filtrar vagas';};
+ }
+ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init,{once:true});else init();
+})();
