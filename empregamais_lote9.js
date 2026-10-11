@@ -596,6 +596,7 @@ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',
 (function(){
 if(window.__EmpregaMaisCardCandidatarV203)return;window.__EmpregaMaisCardCandidatarV203=true;
 function vagaIdDoCard(card){
+ var own=card.getAttribute('data-vaga-id')||card.getAttribute('data-id-vaga')||card.getAttribute('data-id');if(own)return own;
  var el=card.querySelector('[data-vaga-id],[data-id-vaga],[data-id]');
  var id=el&&(el.getAttribute('data-vaga-id')||el.getAttribute('data-id-vaga')||el.getAttribute('data-id'));
  if(id)return id;
@@ -652,6 +653,7 @@ document.addEventListener('DOMContentLoaded',function(){setTimeout(aplicar,500)}
 if(window.__EmpregaMaisMobileCandidatarV205)return;window.__EmpregaMaisMobileCandidatarV205=true;
 function idCard(card){
  if(!card)return '';
+ var own=card.getAttribute('data-vaga-id')||card.getAttribute('data-id-vaga')||card.getAttribute('data-id');if(own)return own;
  var el=card.querySelector('[data-vaga-id],[data-id-vaga],[data-id]');
  var id=el&&(el.getAttribute('data-vaga-id')||el.getAttribute('data-id-vaga')||el.getAttribute('data-id'));
  if(id)return id;
@@ -670,4 +672,29 @@ function go(e){
  location.assign(location.pathname+'?pagina=vaga&id='+encodeURIComponent(id));
 }
 document.addEventListener('pointerup',go,true);
+})();
+
+(function(){
+ function initFeaturedLinks(){
+  var original=window.criarCardVaga;
+  if(typeof original==='function'&&!original.emJobIdLinked){
+   var linked=function(vaga){var card=original.apply(this,arguments);if(card&&vaga&&vaga.id!=null)card.setAttribute('data-vaga-id',String(vaga.id));return card;};
+   linked.emJobIdLinked=true;window.criarCardVaga=linked;
+  }
+  window.addEventListener('click',function(event){
+   var button=event.target.closest&&event.target.closest('.dz-botao');if(!button)return;
+   var card=button.closest('.destaque-zero-m6,.em-featured-reference');if(!card)return;
+   var id=card.getAttribute('data-vaga-id')||card.getAttribute('data-id');
+   if(!id&&typeof window.todasAsVagasPublicas==='function'){
+    var matches=window.todasAsVagasPublicas().filter(function(v){return String(v.cargo||'')===card.getAttribute('data-titulo')&&String(v.empresa||'')===card.getAttribute('data-empresa')&&String(v.cidade||'')===card.getAttribute('data-cidade');});
+    if(matches.length===1)id=matches[0].id;
+   }
+   if(id==null||id==='')return;
+   event.preventDefault();event.stopImmediatePropagation();
+   location.assign(location.pathname+'?pagina=vaga&id='+encodeURIComponent(id));
+  },true);
+  var home=document.getElementById('pagina-home');
+  if(home&&home.classList.contains('ativa')&&typeof window.renderizarVagas==='function')window.renderizarVagas();
+ }
+ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',initFeaturedLinks,{once:true});else initFeaturedLinks();
 })();
