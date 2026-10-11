@@ -331,7 +331,7 @@ body.candidate-solid-active .topo .menu-empresa-btn-v19{background:#c8e6ff!impor
   const band=document.querySelector('#vagas .em-recentes-blue-band'),left=band&&band.querySelector('.em-recent-header-main');if(!left)return;
   const old=left.querySelector('.em-recentes-centered');
   const title=document.createElement('header');title.className='em-recent-title-final';
-  title.innerHTML='<span>OPORTUNIDADES PARA SUA CARREIRA</span><h2>Vagas mais recentes</h2><p>Encontre oportunidades de acordo com seu perfil.</p>';
+  title.innerHTML='<h2>Vagas recentes</h2>';title.querySelector('h2').style.setProperty('text-align','left','important');
   if(old)old.replaceWith(title);else left.prepend(title);
   const history=document.getElementById('emRecentHeaderHistory');
   const style=document.createElement('style');style.id='em-recent-reference-final';style.textContent=`
@@ -359,4 +359,13 @@ body.candidate-solid-active .topo .menu-empresa-btn-v19{background:#c8e6ff!impor
 `;document.head.append(style);
  }
  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',finalizeRecentDesign);else finalizeRecentDesign();
+})();
+
+(function(){
+ function alignTitles(){
+  document.querySelectorAll('#emDestV14 .copy,#emDestV14 h2,#emDestV14 p,#emDestV14 .eyebrow,#vagas .em-recent-title-final,#vagas .em-recent-title-final h2').forEach(function(el){el.style.setProperty('text-align','left','important');el.style.setProperty('justify-content','flex-start','important');});
+  var style=document.createElement('style');style.textContent='#pagina-home #emDestV14#emDestV14 .copy,#pagina-home #emDestV14#emDestV14 h2,#pagina-home #emDestV14#emDestV14 p{text-align:left!important;margin-left:0!important}#pagina-home #vagas#vagas#vagas#vagas#vagas .em-recent-title-final{margin-bottom:16px!important}#pagina-home #vagas#vagas#vagas#vagas#vagas .em-recent-title-final h2{text-align:left!important;margin:0!important}';document.head.appendChild(style);
+ }
+ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',alignTitles,{once:true});else alignTitles();
+ window.addEventListener('load',alignTitles,{once:true});
 })();
