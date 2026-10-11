@@ -203,7 +203,7 @@ document.addEventListener("submit",function(ev){
 var form=ev.target;
 if(!form || (typeof form.checkValidity==="function" && !form.checkValidity()))return;
 /* O formulário de vagas possui fluxo próprio (V221). Não abrir o loader global aqui. */
-if(form.id==="formVaga" || form.matches(".emi-form") || form.closest("#pagina-login-candidato"))return;
+if(form.id==="formVaga" || form.id==="emPertoForm" || form.matches(".emi-form") || form.closest("#pagina-login-candidato"))return;
 var el=form.querySelector("button[type='submit'],input[type='submit']");
 if(el && !el.classList.contains("em-processando-v134"))iniciar(el,true);
 },true);
@@ -267,7 +267,7 @@ el.setAttribute("data-sem-loading","1");
 document.addEventListener("submit",function(ev){
 var form=ev.target;
 if(!form || (typeof form.checkValidity==="function" && !form.checkValidity()))return;
-if(form.matches(".emi-form") || form.closest("#pagina-login-candidato"))return;
+if(form.id==="emPertoForm" || form.matches(".emi-form") || form.closest("#pagina-login-candidato"))return;
 var submit=(ev.submitter)||form.querySelector("button[type='submit'],input[type='submit']");
 if(submit)submit.setAttribute("data-sem-loading","1");
 var m=mensagemPorFormulario(form,submit);
@@ -1254,3 +1254,25 @@ setTimeout(unificarEnderecoV153,180);
 window.unificarEnderecoV153=unificarEnderecoV153;
 })();
 //
+(function(){
+ function setupCepTimeout(){
+  window.localizarCepEM=async function(value){
+   var cep=String(value||'').replace(/\D/g,'');if(cep.length!==8)return null;
+   var controller=new AbortController(),timer;
+   try{
+    var request=(async function(){
+     var response=await fetch('https://brasilapi.com.br/api/cep/v2/'+cep,{signal:controller.signal});
+     if(!response.ok)return null;
+     var data=await response.json(),coordinates=data&&data.location&&data.location.coordinates;
+     if(!coordinates||coordinates.latitude==null||coordinates.longitude==null)return null;
+     var latitude=parseFloat(coordinates.latitude),longitude=parseFloat(coordinates.longitude);
+     if(!Number.isFinite(latitude)||!Number.isFinite(longitude)||Math.abs(latitude)>90||Math.abs(longitude)>180)return null;
+     return {cep:cep,latitude:latitude,longitude:longitude,cidade:data.city||'',uf:data.state||'',rua:data.street||data.address||'',bairro:data.neighborhood||''};
+    })();
+    var deadline=new Promise(function(resolve){timer=setTimeout(function(){controller.abort();resolve(null);},8000);});
+    return await Promise.race([request,deadline]);
+   }catch(error){return null;}finally{clearTimeout(timer);}
+  };
+ }
+ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',setupCepTimeout,{once:true});else setupCepTimeout();
+})();
