@@ -698,3 +698,40 @@ document.addEventListener('pointerup',go,true);
  }
  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',initFeaturedLinks,{once:true});else initFeaturedLinks();
 })();
+
+(function(){
+ var pending=false;
+ var paths={new:'<path d="m13 2-9 12h7l-1 8 10-12h-7l0-8Z"/>',active:'<path d="M3 12h4l3-7 4 14 3-7h4"/>',low:'<path d="M5 5v14h14M8 9l4 4 4-5M16 8v4"/>',quick:'<path d="m13 2-9 12h7l-1 8 10-12h-7l0-8Z"/>'};
+ function badge(kind,label,hint){return '<span class="em-status-badge em-status-'+kind+'" title="'+hint+'"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'+paths[kind]+'</svg><span>'+label+'</span></span>';}
+ function paint(){
+  var jobs=typeof window.todasAsVagasPublicas==='function'?window.todasAsVagasPublicas():[];
+  document.querySelectorAll('#listaVagas .vaga-card').forEach(function(card){
+   var id=card.getAttribute('data-vaga-id')||card.getAttribute('data-id'),v=jobs.find(function(x){return String(x.id)===String(id);});if(!v)return;
+   var target=card.querySelector('.em-lista-status');if(!target){var quick=Array.from(card.querySelectorAll('span')).find(function(x){return x.textContent.trim()==='Candidatura rápida';});if(quick)target=quick.parentNode.parentNode;}
+   if(!target||target===card)return;
+   var date=new Date(v.dataPublicacao||v.publicadaEm||v.created_at||''),age=(Date.now()-date.getTime())/3600000,html='';
+   if(age>=0&&age<=48)html+=badge('new','Nova vaga','Publicada nas últimas 48 horas');
+   var activity=v.recrutadorAtivo||v.recrutador_ativo;
+   if(activity===true)html+=badge('active','Recrutador ativo','Atividade de recrutamento confirmada');
+   var total=v.totalCandidaturas!=null?v.totalCandidaturas:v.candidaturas_count;
+   if(age>24&&total!=null&&Number.isFinite(Number(total))&&Number(total)>=0&&Number(total)<15)html+=badge('low','Baixa concorrência','Menos de 15 candidaturas recebidas; publicada há mais de 24 horas');
+   if(!html)html=badge('quick','Candidatura rápida','Candidate-se pelo portal');
+   if(target.dataset.emBadgeMarkup!==html){target.classList.add('em-status-badges');target.innerHTML=html;target.dataset.emBadgeMarkup=html;}
+  });
+ }
+ function schedule(){if(pending)return;pending=true;requestAnimationFrame(function(){pending=false;paint();});}
+ function start(){
+  var style=document.createElement('style');style.id='em-job-status-badges';
+  style.textContent=`
+html body #pagina-home #listaVagas#listaVagas#listaVagas .em-status-badges{display:flex!important;align-items:center!important;flex-wrap:wrap!important;gap:6px!important;margin:0!important;padding:0!important}
+html body #pagina-home #listaVagas#listaVagas#listaVagas .em-status-badge{display:inline-flex!important;align-items:center!important;gap:5px!important;border:1px solid transparent!important;border-radius:6px!important;padding:4px 8px!important;font:600 10px/1.4 Montserrat,Arial,sans-serif!important;white-space:nowrap!important;box-shadow:none!important}
+html body #pagina-home #listaVagas#listaVagas#listaVagas .em-status-badge svg{display:block!important;width:13px!important;height:13px!important;flex:0 0 13px!important;fill:none!important;stroke:currentColor!important}
+html body #pagina-home #listaVagas#listaVagas#listaVagas .em-status-badge>span{font:inherit!important;color:inherit!important;padding:0!important;background:none!important;border:0!important}
+html body #pagina-home #listaVagas#listaVagas#listaVagas .em-status-new{color:#1768b4!important;background:#eef6ff!important;border-color:#d2e6fb!important}
+html body #pagina-home #listaVagas#listaVagas#listaVagas .em-status-active{color:#16804a!important;background:#effaf3!important;border-color:#d1eddc!important}
+html body #pagina-home #listaVagas#listaVagas#listaVagas .em-status-low{color:#ac6810!important;background:#fff8ec!important;border-color:#f4e1ba!important}
+html body #pagina-home #listaVagas#listaVagas#listaVagas .em-status-quick{color:#1768b4!important;background:#eef6ff!important;border-color:#d2e6fb!important}
+`;document.head.appendChild(style);paint();var list=document.getElementById('listaVagas');if(list)new MutationObserver(schedule).observe(list,{childList:true,subtree:true});window.addEventListener('storage',schedule);window.addEventListener('load',schedule);
+ }
+ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',start,{once:true});else start();
+})();
