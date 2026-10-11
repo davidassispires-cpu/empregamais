@@ -53,7 +53,10 @@
 (function(){
  function updateSafety(){
   var root=document.getElementById('emJobEnd'),safe=root&&root.querySelector('.je-safe'),details=safe&&safe.querySelector('details');
-  if(!details||safe.dataset.referenceSafety)return;
+  if(!details)return;
+  var jobKey=new URLSearchParams(location.search).get('id')||'';
+  if(safe.dataset.safetyJob!==jobKey){safe.dataset.safetyJob=jobKey;details.open=false;}
+  if(safe.dataset.referenceSafety)return;
   safe.dataset.referenceSafety='true';
   var alert=safe.querySelector('.je-alert'),summary=details.querySelector('summary');
   summary.prepend(alert);
@@ -63,8 +66,8 @@
   var old=details.querySelector('p');if(old)old.remove();
   var body=document.createElement('div');body.className='je-safety-guidance';
   body.innerHTML='<ul><li>Não compre cursos com promessa de contratação.</li><li>Não inclua números de documentos no currículo.</li><li>Desconfie de pedidos de depósitos, transferências, PIX ou compra de materiais.</li><li>Fique atento a atividades, contatos ou pedidos suspeitos.</li></ul><div class="je-safety-note"><span aria-hidden="true">ⓘ</span><p>Mesmo após este alerta, qualquer compartilhamento de dados pessoais ou pagamento realizado será de responsabilidade exclusiva do candidato.</p></div>';
-  details.appendChild(body);details.open=true;
-  var hint=text.querySelector('span');function syncHint(){if(hint)hint.textContent='Clique para ver orientações de segurança '+(details.open?'⌃':'⌄');}details.addEventListener('toggle',syncHint);syncHint();
+  details.appendChild(body);details.open=false;
+  var hint=text.querySelector('span');function syncHint(){if(hint)hint.textContent=details.open?'Clique para fechar orientações de segurança ⌃':'Clique para ver orientações de segurança ⌄';}details.addEventListener('toggle',syncHint);syncHint();
  }
  function start(){
   var style=document.createElement('style');style.id='em-safety-reference';
@@ -85,9 +88,31 @@
 #emJobEnd#emJobEnd .je-safety-note>span{color:#7539de;font-size:15px;line-height:1.5}
 #emJobEnd#emJobEnd .je-safety-note p{margin:0;font-size:12px;line-height:1.6;color:inherit}
 #emJobEnd#emJobEnd summary:focus-visible{outline:2px solid #7539de;outline-offset:-2px}
-@media(max-width:650px){#emJobEnd#emJobEnd .je-safe summary{padding:15px;min-height:78px}#emJobEnd#emJobEnd .je-report{position:static;margin:0 15px 14px 71px}#emJobEnd#emJobEnd .je-safety-guidance{padding:14px 15px 16px}#emJobEnd#emJobEnd .je-safety-heading{font-size:13px}}
+#emJobEnd#emJobEnd .je-safe details:not([open]) .je-safety-guidance{display:none!important}
+#emJobEnd#emJobEnd .je-safe summary{cursor:pointer;list-style:none}
+#emJobEnd#emJobEnd .je-safe summary::-webkit-details-marker{display:none}
+#emJobEnd#emJobEnd .je-safe summary .je-alert{flex:0 0 42px;width:42px;height:42px}
+#emJobEnd#emJobEnd .je-report{display:inline-flex;align-items:center;justify-content:center;gap:7px;min-height:40px;box-sizing:border-box;white-space:normal}
+@media(max-width:650px){
+#emJobEnd#emJobEnd{min-width:0;width:100%;box-sizing:border-box}
+#emJobEnd#emJobEnd .je-safe{display:flex;flex-direction:column;align-items:stretch;gap:0;padding:0;width:100%;box-sizing:border-box}
+#emJobEnd#emJobEnd .je-safe details{min-width:0;width:100%}
+#emJobEnd#emJobEnd .je-safe summary{padding:16px;min-height:0;gap:12px;align-items:flex-start;border-radius:16px}
+#emJobEnd#emJobEnd .je-safety-heading{font-size:13px;line-height:1.5;overflow-wrap:anywhere;flex:1;min-width:0}
+#emJobEnd#emJobEnd .je-safety-heading>span{font-size:11px;line-height:1.5;margin-top:5px}
+#emJobEnd#emJobEnd .je-report{position:static;margin:0 16px 16px;width:calc(100% - 32px);min-height:42px;max-width:none;flex-shrink:0}
+#emJobEnd#emJobEnd .je-safety-guidance{padding:16px;font-size:12px;overflow-wrap:anywhere}
+#emJobEnd#emJobEnd .je-safety-note{padding:12px;min-width:0}
+#emJobEnd#emJobEnd .je-safety-note p{min-width:0;overflow-wrap:anywhere}
+#emJobEnd#emJobEnd .je-tools{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px;padding:12px;box-sizing:border-box;width:100%}
+#emJobEnd#emJobEnd .je-tools button{box-sizing:border-box;width:100%;min-width:0;min-height:44px;height:auto;padding:10px;font-size:11px;line-height:1.4;white-space:normal;overflow-wrap:anywhere;border-radius:9px}
+#emJobEnd#emJobEnd .je-tools button svg{flex-shrink:0;width:17px;height:17px}
+#emJobEnd#emJobEnd .je-views{grid-column:1/-1;margin:0;text-align:center}
+}
+@media(max-width:380px){#emJobEnd#emJobEnd .je-tools{grid-template-columns:1fr}}
 `;document.head.appendChild(style);updateSafety();
   var page=document.getElementById('pagina-vaga');if(page)new MutationObserver(updateSafety).observe(page,{childList:true,subtree:true});
+  window.addEventListener('popstate',updateSafety);
  }
  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',start,{once:true});else start();
 })();
