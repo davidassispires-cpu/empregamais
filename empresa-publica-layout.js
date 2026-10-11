@@ -71,3 +71,57 @@ html body #pagina-empresa-publica .em-company-job-count{font-size:19px!important
  }
  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',start,{once:true});else start();
 })();
+
+/* Company history sidebar: real available indicators, no example metrics. */
+(function(){
+'use strict';
+var queued=false;
+function node(tag,cls,text){var n=document.createElement(tag);n.className=cls||'';if(text!==undefined)n.textContent=text;return n;}
+function configure(){
+ var page=document.getElementById('pagina-empresa-publica');if(!page)return;
+ var host=page.querySelector('#emGriffPublic')||page.querySelector('.empresa-publica');if(!host)return;
+ var summary=host.querySelector('.gp-summary,.ep-reference-summary');if(!summary)return;
+ var column=summary.parentElement;
+ if(!column.classList.contains('em-company-sidebar')){
+  column=node('div','em-company-sidebar');summary.before(column);column.appendChild(summary);
+ }
+ var card=column.querySelector('.em-company-history');if(card)return;
+ card=node('section','em-company-history');card.setAttribute('aria-label','Histórico da empresa');
+ card.appendChild(node('h2','','Histórico da empresa'));
+ card.appendChild(node('p','em-history-label','Grau de engajamento'));
+ var gauge=node('div','em-history-gauge');gauge.setAttribute('aria-hidden','true');
+ [24,38,52,66,80].forEach(function(height){var bar=node('span');bar.style.height=height+'%';gauge.appendChild(bar);});card.appendChild(gauge);
+ card.appendChild(node('p','em-history-status','Engajamento ainda não disponível'));
+ card.appendChild(node('p','em-history-description','O indicador será exibido quando houver dados de atividade da empresa.'));
+ var rows=node('dl','em-history-metrics');
+ var count=host.querySelectorAll('.gp-job').length;
+ if(!host.querySelector('.gp-vacancies')){
+  var jobs=host.querySelector('.empresa-publica-vagas');count=jobs?jobs.querySelectorAll('.vaga-card').length:null;
+ }
+ [['◷','Tempo no site','Não disponível'],['▣','Vagas disponíveis',count===null?'Não disponível':String(count)],['◎','Currículos visualizados','Não disponível']].forEach(function(row){
+  var line=node('div'),term=node('dt'),icon=node('span','em-history-icon',row[0]);icon.setAttribute('aria-hidden','true');term.append(icon,node('span','',row[1]));line.append(term,node('dd','',row[2]));rows.appendChild(line);
+ });
+ card.appendChild(rows);column.prepend(card);
+}
+function schedule(){if(queued)return;queued=true;requestAnimationFrame(function(){queued=false;configure();});}
+function start(){
+ var style=node('style');style.textContent=`
+html body #pagina-empresa-publica .em-company-sidebar{display:flex;flex-direction:column;gap:16px;min-width:0;align-self:start}
+html body #pagina-empresa-publica .em-company-sidebar>.gp-summary,html body #pagina-empresa-publica .em-company-sidebar>.ep-reference-summary{width:100%;box-sizing:border-box}
+html body #pagina-empresa-publica .em-company-history{background:#fff;border:1px solid #dce5ef;border-radius:12px;padding:22px;box-shadow:0 3px 12px #17324e06;box-sizing:border-box}
+html body #pagina-empresa-publica .em-company-history h2{font:700 18px/1.4 Inter,Arial,sans-serif!important;color:#17324e!important;margin:0 0 16px!important;text-align:left!important}
+html body #pagina-empresa-publica .em-history-label{font:600 12px/1.5 Inter,Arial,sans-serif;color:#526b87;margin:0 0 12px}
+html body #pagina-empresa-publica .em-history-gauge{height:74px;display:flex;align-items:flex-end;gap:5px;margin-bottom:15px}
+html body #pagina-empresa-publica .em-history-gauge span{flex:1;border-radius:4px;background:linear-gradient(130deg,#d9eaff,#abcdf6);clip-path:polygon(0 15%,100% 0,100% 100%,0 100%)}
+html body #pagina-empresa-publica .em-history-status{font:700 13px/1.5 Inter,Arial,sans-serif;color:#1768b4;margin:0 0 5px}
+html body #pagina-empresa-publica .em-history-description{font:400 12px/1.6 Inter,Arial,sans-serif;color:#728397;margin:0}
+html body #pagina-empresa-publica .em-history-metrics{border-top:1px solid #e4ebf4;padding-top:15px;margin:17px 0 0}
+html body #pagina-empresa-publica .em-history-metrics>div{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:8px 0}
+html body #pagina-empresa-publica .em-history-metrics dt{display:flex;align-items:center;gap:8px;font:500 12px/1.5 Inter,Arial,sans-serif;color:#526b87}
+html body #pagina-empresa-publica .em-history-metrics dd{font:600 12px/1.5 Inter,Arial,sans-serif;color:#17324e;margin:0;text-align:right}
+html body #pagina-empresa-publica .em-history-icon{display:grid;place-items:center;flex:0 0 28px;width:28px;height:28px;background:#eef5fd;border-radius:50%;color:#42678f;font:18px Arial,sans-serif}
+@media(max-width:760px){html body #pagina-empresa-publica .em-company-history{padding:20px}}
+`;document.head.appendChild(style);configure();var page=document.getElementById('pagina-empresa-publica');if(page)new MutationObserver(schedule).observe(page,{childList:true,subtree:true});window.addEventListener('load',schedule);window.addEventListener('popstate',schedule);
+}
+if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',start,{once:true});else start();
+})();
