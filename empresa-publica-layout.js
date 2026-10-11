@@ -38,8 +38,9 @@ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',
   var countNode=nav.querySelector('span'),count=countNode?countNode.textContent.trim():'';
   var reviews=document.createElement('section');reviews.className='em-company-tab-panel';reviews.innerHTML='<h2>Avaliações da empresa</h2><p>Avaliações ainda não disponíveis.</p>';
   var hires=document.createElement('section');hires.className='em-company-tab-panel';hires.innerHTML='<h2>Contratações</h2><p>Indicadores de contratações ainda não disponíveis.</p>';
-  host.append(reviews,hires);
-  var panels=[about,reviews,jobs,hires],labels=['Sobre a empresa','Avaliações','Vagas disponíveis','Contratações'];
+  var salaries=document.createElement("section");salaries.className="em-company-tab-panel em-company-announced-pay";
+  host.append(reviews,hires,salaries);
+  var panels=[about,reviews,jobs,hires,salaries],labels=['Sobre a empresa','Avaliações','Vagas disponíveis','Contratações','Salários'];
   nav.replaceChildren();nav.setAttribute('role','tablist');
   function select(index){
    panels.forEach(function(panel,i){if(panel){panel.hidden=i!==index;panel.classList.add('em-company-switch-panel');}});
@@ -50,7 +51,7 @@ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',
    var panel=panels[i];if(panel){if(!panel.id)panel.id='emCompanyPanel-'+i;panel.setAttribute('role','tabpanel');panel.setAttribute('aria-labelledby',button.id);button.setAttribute('aria-controls',panel.id);}
    if(i===2&&count){var number=document.createElement('span');number.className='em-company-job-count';number.textContent=count;button.appendChild(number);}
    button.onclick=function(){select(i);};
-   button.onkeydown=function(event){var next=event.key==='ArrowRight'?(i+1)%4:event.key==='ArrowLeft'?(i+3)%4:event.key==='Home'?0:event.key==='End'?3:null;if(next!=null){event.preventDefault();select(next);nav.children[next].focus();}};
+   button.onkeydown=function(event){var next=event.key==='ArrowRight'?(i+1)%panels.length:event.key==='ArrowLeft'?(i+panels.length-1)%panels.length:event.key==='Home'?0:event.key==='End'?panels.length-1:null;if(next!=null){event.preventDefault();select(next);nav.children[next].focus();}};
    nav.appendChild(button);
   });select(0);
  }
@@ -330,5 +331,48 @@ html body #pagina-empresa-publica .em-hiring-status{margin:16px 0!important}
 .em-hire-confirm-card{border-top:1px solid #e4ebf4;padding:16px 0}.em-hire-confirm-card button{margin-right:10px;margin-bottom:8px}
 @media(max-width:760px){.em-hiring-metrics,.em-hiring-layout{grid-template-columns:1fr}.em-hiring-card{padding:18px}.em-hiring-chart{gap:7px}}
 `;document.head.appendChild(style);setupPublic();setupCandidate();new MutationObserver(schedule).observe(document.documentElement,{childList:true,subtree:true,attributes:true,attributeFilter:['class']});window.addEventListener('load',schedule);window.addEventListener('popstate',schedule);}
+if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',start,{once:true});else start();
+})();
+
+/* Salaries are the company's published offers, never employee reports or estimates. */
+(function(){
+'use strict';
+var queued=false;
+function el(tag,cls,text){var n=document.createElement(tag);n.className=cls||'';if(text!==undefined)n.textContent=text;return n;}
+function norm(v){return String(v||'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase();}
+function setup(){
+ var page=document.getElementById('pagina-empresa-publica');if(!page)return;
+ var host=page.querySelector('#emGriffPublic')||page.querySelector('.empresa-publica');if(!host)return;
+ var panel=host.querySelector('.em-company-announced-pay'),jobs=host.querySelector('.gp-vacancies,.empresa-publica-vagas');if(!panel||!jobs)return;
+ var all=[];try{all=typeof todasAsVagasPublicas==='function'?todasAsVagasPublicas():[];}catch(e){}
+ var ids=Array.from(jobs.querySelectorAll('.gp-job,.vaga-card')).map(function(card){var a=card.querySelector('a[href*="id="]');try{return a?new URL(a.href,location.href).searchParams.get('id'):card.dataset.vagaId||card.dataset.id;}catch(e){return null;}}).filter(Boolean);
+ var entries=all.filter(function(v){var pay=String(v.salario==null?'':v.salario).trim();return ids.includes(String(v.id))&&!['true','1','sim'].includes(String(v.confidencial).toLowerCase())&&/\d/.test(pay)&&/[1-9]/.test(pay)&&!/(combinar|nao informado|não informado|a definir)/i.test(pay);});
+ var signature=JSON.stringify(entries.map(function(v){return [v.id,v.cargo,v.titulo,v.salario,v.cidade,v.uf,v.estado,v.modalidade,v.contrato];}));if(panel.dataset.paySignature===signature)return;panel.dataset.paySignature=signature;
+ panel.replaceChildren();panel.append(el('h2','','Salários anunciados'),el('p','','Consulte os salários informados por esta empresa nas vagas publicadas no +Empregos.'));
+ panel.appendChild(el('p','em-pay-note','Valores anunciados nas vagas ativas. Comissões e benefícios dependem das condições descritas em cada anúncio.'));
+ if(!entries.length){panel.appendChild(el('p','em-pay-empty','Esta empresa ainda não possui vagas ativas com salário informado.'));return;}
+ var filters=el('div','em-pay-filters'),searchLabel=el('label','','Buscar cargo'),search=el('input');search.type='search';search.placeholder='Digite o cargo';searchLabel.appendChild(search);
+ var cityLabel=el('label','','Localização'),city=el('select');var option=el('option','','Todas as localizações');option.value='';city.appendChild(option);
+ function location(v){return [v.cidade,v.uf||v.estado].filter(Boolean).join(' / ')||'Não informada';}
+ Array.from(new Set(entries.map(location))).sort().forEach(function(value){var o=el('option','',value);o.value=value;city.appendChild(o);});cityLabel.appendChild(city);filters.append(searchLabel,cityLabel);panel.appendChild(filters);
+ var count=el('p','em-pay-count');count.setAttribute('role','status');count.setAttribute('aria-live','polite');panel.appendChild(count);
+ var wrap=el('div','em-pay-table-wrap'),table=el('table','em-pay-table'),caption=el('caption','','Salários das vagas ativas desta empresa');table.appendChild(caption);
+ var head=el('thead'),hr=el('tr');['Cargo','Salário anunciado','Localização','Vaga'].forEach(function(title){var th=el('th','',title);th.scope='col';hr.appendChild(th);});head.appendChild(hr);table.appendChild(head);var body=el('tbody');table.appendChild(body);wrap.appendChild(table);panel.appendChild(wrap);
+ var empty=el('p','em-pay-empty','Nenhum salário anunciado encontrado para esses filtros.');empty.hidden=true;panel.appendChild(empty);
+ function render(){var rows=entries.filter(function(v){return (!search.value||norm(v.cargo||v.titulo).includes(norm(search.value)))&&(!city.value||location(v)===city.value);});body.replaceChildren();rows.forEach(function(v){var row=el('tr'),cargo=el('td','',v.cargo||v.titulo||'Vaga'),pay=el('td','em-pay-value',String(v.salario));row.append(cargo,pay,el('td','',location(v)));var action=el('td'),link=el('a','','Ver vaga →');link.href='?pagina=vaga&id='+encodeURIComponent(v.id);link.setAttribute('aria-label','Ver vaga: '+(v.cargo||v.titulo||'Vaga'));action.appendChild(link);row.appendChild(action);body.appendChild(row);});count.textContent=rows.length+' '+(rows.length===1?'vaga com salário informado':'vagas com salário informado');empty.hidden=rows.length>0;wrap.hidden=!rows.length;}
+ search.addEventListener('input',render);city.addEventListener('change',render);render();
+}
+function schedule(){if(queued)return;queued=true;requestAnimationFrame(function(){queued=false;setup();});}
+function start(){var style=el('style');style.textContent=`
+#pagina-empresa-publica .em-company-announced-pay .em-pay-note{margin:18px 0!important;padding:13px 16px;background:#eef6ff;border-radius:8px;color:#42678f}
+.em-pay-filters{display:grid;grid-template-columns:2fr 1fr;gap:16px;margin:20px 0}
+.em-pay-filters label{display:flex;flex-direction:column;gap:8px;font:600 12px Inter,Arial,sans-serif;color:#173b60}
+.em-pay-filters input,.em-pay-filters select{box-sizing:border-box;width:100%;min-height:42px;padding:10px 12px;border:1px solid #cbdcf0;border-radius:6px;background:white;color:#173b60;font:400 13px Inter,Arial,sans-serif}
+#pagina-empresa-publica .em-pay-count{margin:12px 0!important}
+.em-pay-table-wrap{overflow-x:auto}.em-pay-table{width:100%;border-collapse:collapse;text-align:left;font:400 13px Inter,Arial,sans-serif;color:#526b87}
+.em-pay-table caption{text-align:left;font-size:12px;padding:10px 0;color:#728397}.em-pay-table th{background:#f4f8fc;color:#173b60;font-weight:600}.em-pay-table td,.em-pay-table th{padding:18px 16px;border-bottom:1px solid #e4ebf4}.em-pay-table td:first-child{font-weight:600;color:#173b60}.em-pay-value{font-weight:700;color:#1768b4}.em-pay-table a{color:#0875ee;white-space:nowrap;text-decoration:none;font-weight:600}
+#pagina-empresa-publica .em-pay-empty{padding:25px 0!important}.em-pay-table-wrap[hidden],.em-pay-empty[hidden]{display:none!important}
+@media(max-width:600px){.em-pay-filters{grid-template-columns:1fr}.em-pay-table td,.em-pay-table th{padding:14px 10px}.em-pay-table{min-width:540px}}
+`;document.head.appendChild(style);setup();var page=document.getElementById('pagina-empresa-publica');if(page)new MutationObserver(schedule).observe(page,{childList:true,subtree:true});window.addEventListener('load',schedule);window.addEventListener('popstate',schedule);window.addEventListener('storage',schedule);}
 if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',start,{once:true});else start();
 })();
