@@ -295,7 +295,7 @@ body.candidate-solid-active .topo .menu-empresa-btn-v19{background:#c8e6ff!impor
   [left,title].concat(Array.from(title.querySelectorAll('h2,p,span'))).filter(Boolean).forEach(node=>{node.style.setProperty('text-align','left','important');node.style.setProperty('margin-left','0','important');node.style.setProperty('margin-right','0','important');});
   title.style.setProperty('display','block','important');title.style.setProperty('align-items','flex-start','important');
   const h2=title.querySelector('h2');if(h2){h2.style.setProperty('width','100%','important');h2.style.setProperty('font-size','27px','important');}
-  if(history){const heading=history.querySelector('h3');if(heading&&!heading.querySelector('svg')){const clock=document.createElementNS('http://www.w3.org/2000/svg','svg');clock.setAttribute('viewBox','0 0 24 24');clock.setAttribute('aria-hidden','true');clock.innerHTML='<circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="M12 6v6l4 2" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>';heading.prepend(clock);}const clear=history.querySelector('.em-visitor-link');if(clear){clear.textContent='Limpar';clear.setAttribute('aria-label','Limpar histórico de vagas vistas');}}
+  if(history){const heading=history.querySelector('h3');if(heading&&!heading.querySelector('svg')){const clock=document.createElementNS('http://www.w3.org/2000/svg','svg');clock.setAttribute('viewBox','0 0 24 24');clock.setAttribute('aria-hidden','true');clock.innerHTML='<circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="M12 6v6l4 2" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>';heading.prepend(clock);}const clear=history.querySelector('.em-visitor-link');if(clear){clear.textContent='Limpar histórico';clear.setAttribute('aria-label','Limpar histórico de vagas vistas');}}
   const style=document.createElement('style');style.textContent=`
 #pagina-home #vagas#vagas#vagas#vagas .em-recent-split-header{background:#f5f9fe!important;background-image:none!important;border:1px solid #e4ecf5!important;border-radius:12px!important;padding:24px!important;gap:24px!important;align-items:center!important;overflow:hidden!important}
 #pagina-home #vagas#vagas#vagas#vagas .em-recent-split-header:before,#pagina-home #vagas#vagas#vagas#vagas .em-recent-split-header:after{display:none!important}
@@ -331,9 +331,12 @@ body.candidate-solid-active .topo .menu-empresa-btn-v19{background:#c8e6ff!impor
   const band=document.querySelector('#vagas .em-recentes-blue-band'),left=band&&band.querySelector('.em-recent-header-main');if(!left)return;
   const old=left.querySelector('.em-recentes-centered');
   const title=document.createElement('header');title.className='em-recent-title-final';
-  title.innerHTML='<h2>Vagas recentes</h2>';title.querySelector('h2').style.setProperty('text-align','left','important');
+  title.innerHTML='<h2>Vagas recentes</h2><p>Confira as últimas oportunidades publicadas</p>';
+  const filters=left.querySelector('.filtros-chips-home');
+  if(filters){const buttons=Array.from(filters.querySelectorAll('button'));['Todas','Presencial','Híbrido','Remoto','Mais filtros'].forEach(label=>{const button=buttons.find(b=>b.textContent.trim()===label);if(button)filters.appendChild(button);});buttons.filter(b=>['CLT','Estágio'].includes(b.textContent.trim())).forEach(b=>b.remove());const more=filters.querySelector('.filtro-chip-mais');if(more)more.innerHTML='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18"/><circle cx="8" cy="6" r="2"/><circle cx="16" cy="12" r="2"/><circle cx="8" cy="18" r="2"/></svg><span>Mais filtros</span>';}title.querySelector('h2').style.setProperty('text-align','left','important');
   if(old)old.replaceWith(title);else left.prepend(title);
   const history=document.getElementById('emRecentHeaderHistory');
+  if(history){const heading=history.querySelector('h3');if(heading){Array.from(heading.childNodes).filter(n=>n.nodeType===3).forEach(n=>n.textContent='Vistas recentemente');}}
   const style=document.createElement('style');style.id='em-recent-reference-final';style.textContent=`
 #pagina-home #vagas#vagas#vagas#vagas#vagas .em-recent-split-header{background:#f5f9fe!important;background-image:none!important;display:grid!important;align-items:center!important;padding:18px 22px!important;gap:20px!important;min-height:0!important;border:1px solid #e0e8f2!important;border-radius:12px!important}
 #pagina-home #vagas#vagas#vagas#vagas#vagas .em-recent-split-header.em-header-has-history{grid-template-columns:minmax(0,1.8fr) minmax(340px,1fr)!important}
@@ -379,6 +382,23 @@ body.candidate-solid-active .topo .menu-empresa-btn-v19{background:#c8e6ff!impor
 #emRecentHeaderHistory#emRecentHeaderHistory#emRecentHeaderHistory#emRecentHeaderHistory .em-visitor-job:last-child{padding-bottom:0!important}
 #emRecentHeaderHistory#emRecentHeaderHistory#emRecentHeaderHistory#emRecentHeaderHistory .em-visitor-job strong{margin-bottom:2px!important}
 #pagina-home #vagas#vagas#vagas#vagas#vagas#vagas .em-recent-split-header{min-height:0!important;padding-top:14px!important;padding-bottom:14px!important}
+
+#pagina-home #vagas#vagas#vagas#vagas#vagas#vagas .em-recent-split-header{background:#fff!important;border-color:#e1e7ef!important;box-shadow:0 3px 16px #17324e06!important;padding:22px 24px!important;gap:26px!important}
+#pagina-home #vagas#vagas#vagas#vagas#vagas#vagas .em-recent-split-header.em-header-has-history{grid-template-columns:minmax(0,1.55fr) minmax(340px,1fr)!important}
+#pagina-home #vagas#vagas#vagas#vagas#vagas#vagas .em-recent-title-final{margin-bottom:20px!important;background:transparent!important}
+#pagina-home #vagas#vagas#vagas#vagas#vagas#vagas .em-recent-title-final h2{font-size:27px!important;margin:0 0 7px!important;background:transparent!important}
+#pagina-home #vagas#vagas#vagas#vagas#vagas#vagas .em-recent-title-final p{font-size:13px!important;color:#71839a!important}
+#pagina-home #vagas#vagas#vagas#vagas#vagas#vagas .filtro-chip-home{display:inline-flex!important;align-items:center!important;justify-content:center!important;gap:7px!important;height:38px!important;padding:0 16px!important;background:#fff!important;color:#25435f!important;border-color:#dce5ef!important}
+#pagina-home #vagas#vagas#vagas#vagas#vagas#vagas .filtro-chip-home.ativo{background:#0875ee!important;border-color:#0875ee!important;color:white!important}
+#pagina-home #vagas#vagas#vagas#vagas#vagas#vagas .filtro-chip-mais svg{width:17px;height:17px;fill:white;stroke:currentColor;stroke-width:1.7}
+#pagina-home #vagas#vagas#vagas#vagas#vagas#vagas .filtro-chip-home:focus-visible{outline:2px solid #0875ee!important;outline-offset:3px!important}
+#emRecentHeaderHistory#emRecentHeaderHistory#emRecentHeaderHistory#emRecentHeaderHistory#emRecentHeaderHistory{padding:0!important;border:0!important;background:transparent!important;border-radius:0!important;box-shadow:none!important}
+#emRecentHeaderHistory#emRecentHeaderHistory#emRecentHeaderHistory#emRecentHeaderHistory .em-visitor-head{margin-bottom:8px!important;flex-wrap:wrap!important;gap:8px!important}
+#emRecentHeaderHistory#emRecentHeaderHistory#emRecentHeaderHistory#emRecentHeaderHistory h3{font-size:13px!important;white-space:normal!important}
+#emRecentHeaderHistory#emRecentHeaderHistory#emRecentHeaderHistory#emRecentHeaderHistory .em-visitor-link{font-size:11px!important;white-space:nowrap!important}
+#emRecentHeaderHistory#emRecentHeaderHistory#emRecentHeaderHistory#emRecentHeaderHistory .em-visitor-job strong{font-size:13px!important}
+@media(max-width:900px){#pagina-home #vagas#vagas#vagas#vagas#vagas#vagas .em-recent-split-header.em-header-has-history{grid-template-columns:1fr!important}#pagina-home #vagas#vagas#vagas#vagas#vagas#vagas .em-recent-header-main{border-right:0!important;padding-right:0!important}#emRecentHeaderHistory#emRecentHeaderHistory#emRecentHeaderHistory#emRecentHeaderHistory#emRecentHeaderHistory{border-top:1px solid #e4ebf3!important;padding-top:18px!important}}
+@media(max-width:560px){#pagina-home #vagas#vagas#vagas#vagas#vagas#vagas .em-recent-split-header{padding:18px 16px!important;gap:18px!important}#pagina-home #vagas#vagas#vagas#vagas#vagas#vagas .em-recent-title-final h2{font-size:24px!important}#pagina-home #vagas#vagas#vagas#vagas#vagas#vagas .filtro-chip-home{padding:0 12px!important}}
 `;document.head.appendChild(style);
  }
  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',compactHistory,{once:true});else compactHistory();
