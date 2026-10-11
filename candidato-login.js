@@ -213,7 +213,7 @@ body.candidate-solid-active .topo .menu-empresa-btn-v19{background:#c8e6ff!impor
    recent.hidden=viewed.length===0;recentGrid.replaceChildren(...viewed.map(link));
    news.hidden=fresh.length===0;newsText.textContent=fresh.length===1?'1 nova vaga desde sua última visita':fresh.length+' novas vagas desde sua última visita';
    toggle.textContent=expanded?'Ocultar novas vagas':'Ver novas vagas';toggle.setAttribute('aria-expanded',String(expanded));newsGrid.hidden=!expanded;newsGrid.replaceChildren(...(expanded?fresh.map(link):[]));
-   root.hidden=viewed.length===0&&fresh.length===0;
+   root.hidden=news.hidden&&(!root.contains(recent)||recent.hidden);
   }
   refreshUI=()=>render(false);clear.addEventListener('click',()=>{save(HISTORY_KEY,[]);render(true);});toggle.addEventListener('click',()=>{expanded=!expanded;render(true);});
   const original=window.abrirVaga;if(typeof original==='function')window.abrirVaga=function(id){const result=original.apply(this,arguments);remember(id);return result;};
@@ -254,4 +254,36 @@ body.candidate-solid-active .topo .menu-empresa-btn-v19{background:#c8e6ff!impor
 `;document.head.appendChild(style);
  }
  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',alignRecentHeader);else alignRecentHeader();
+})();
+
+(function(){
+ function arrangeHeader(){
+  const band=document.querySelector('#vagas .em-recentes-blue-band'),history=document.querySelector('#emVisitorTools .em-visitor-recent');if(!band||!history)return;
+  const title=band.querySelector('.em-recentes-centered'),filters=band.querySelector('.filtros-chips-home');if(!title||!filters)return;
+  const left=document.createElement('div');left.className='em-recent-header-main';band.insertBefore(left,band.firstChild);left.append(title,filters);
+  history.id='emRecentHeaderHistory';band.appendChild(history);band.classList.add('em-recent-split-header');
+  function sync(){band.classList.toggle('em-header-has-history',!history.hidden);const root=document.getElementById('emVisitorTools');if(root){const news=root.querySelector('.em-visitor-news');root.hidden=!news||news.hidden;}}
+  new MutationObserver(sync).observe(history,{attributes:true,attributeFilter:['hidden']});sync();
+  const style=document.createElement('style');style.textContent=`
+#pagina-home #vagas#vagas#vagas .em-recent-split-header{display:grid!important;grid-template-columns:minmax(0,1fr)!important;gap:24px!important;align-items:start!important;padding:20px 16px!important}
+#pagina-home #vagas#vagas#vagas .em-recent-split-header.em-header-has-history{grid-template-columns:minmax(0,1fr) 300px!important}
+#pagina-home #vagas#vagas#vagas .em-recent-header-main{min-width:0!important;text-align:left!important}
+#pagina-home #vagas#vagas#vagas .em-recent-header-main .em-recentes-centered{display:block!important;text-align:left!important;margin:0 0 18px!important;padding:0!important;max-width:none!important}
+#pagina-home #vagas#vagas#vagas .em-recent-header-main .em-recentes-centered h2{font-size:26px!important;line-height:1.25!important}
+#pagina-home #vagas#vagas#vagas .em-recent-header-main .filtros-chips-home{justify-content:flex-start!important;flex-wrap:wrap!important;gap:8px!important}
+#emRecentHeaderHistory{box-sizing:border-box;width:100%;min-width:0;border:1px solid #dbe7f2;border-radius:10px;background:#fff;padding:12px}
+#emRecentHeaderHistory .em-visitor-head{display:flex;align-items:center;justify-content:space-between;gap:8px;margin:0 0 10px}
+#emRecentHeaderHistory h3{font-size:12px;line-height:1.4;font-weight:700;color:#173b60;margin:0}
+#emRecentHeaderHistory .em-visitor-link{border:0;background:transparent;color:#1768b4;font-size:10px;padding:0;cursor:pointer;white-space:nowrap}
+#emRecentHeaderHistory .em-visitor-grid{display:grid;grid-template-columns:1fr;gap:6px}
+#emRecentHeaderHistory .em-visitor-job{display:block;min-width:0;border:1px solid #e5edf5;border-radius:6px;padding:7px 9px;background:#fff;text-decoration:none}
+#emRecentHeaderHistory .em-visitor-job strong{display:block;font-size:11px;line-height:1.4;font-weight:600;color:#234663;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;margin:0 0 2px}
+#emRecentHeaderHistory .em-visitor-job span{display:block;font-size:9px;line-height:1.4;color:#8293a3;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+#emRecentHeaderHistory .em-visitor-job:hover{border-color:#accce9;background:#f7fbff}
+#emRecentHeaderHistory[hidden]{display:none!important}
+@media(max-width:900px){#pagina-home #vagas#vagas#vagas .em-recent-split-header.em-header-has-history{grid-template-columns:minmax(0,1fr) 260px!important;gap:16px!important}}
+@media(max-width:700px){#pagina-home #vagas#vagas#vagas .em-recent-split-header.em-header-has-history{grid-template-columns:1fr!important}#pagina-home #vagas#vagas#vagas .em-recent-split-header{gap:16px!important;padding:18px 14px!important}#emRecentHeaderHistory .em-visitor-grid{grid-template-columns:1fr!important}}
+`;document.head.appendChild(style);
+ }
+ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',arrangeHeader);else arrangeHeader();
 })();
