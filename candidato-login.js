@@ -114,3 +114,58 @@ body.candidate-solid-active .topo .menu-empresa-btn-v19{background:#c8e6ff!impor
   }
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',setup);else setup();
 })();
+
+(function(){
+ function setupAreas(){
+  const section=document.getElementById('areasDestaqueHome'),track=document.getElementById('areasTrackRefV1');if(!section||!track)return;
+  const header=section.querySelector('.home-areas-ref-head-v1'),title=header.querySelector('h2'),description=header.querySelector('p'),arrows=header.querySelector('.home-areas-ref-arrows-v1'),kicker=header.querySelector('.home-areas-ref-kicker-v1');
+  title.textContent='Vagas por área';description.textContent='Explore oportunidades na sua área de atuação.';if(kicker)kicker.remove();if(arrows)arrows.remove();
+  const more=document.createElement('button');more.type='button';more.className='areas-professional-more';more.textContent='Ver todas as áreas →';more.setAttribute('aria-expanded','false');more.setAttribute('aria-controls','areasTrackRefV1');header.append(more);
+  let expanded=false;
+  more.addEventListener('click',()=>{expanded=!expanded;section.classList.toggle('areas-professional-expanded',expanded);more.setAttribute('aria-expanded',String(expanded));more.textContent=expanded?'Mostrar menos ↑':'Ver todas as áreas →';});
+  const stableOrder=new WeakMap();let serial=0;
+  function update(){
+   observer.disconnect();
+   const cards=Array.from(track.querySelectorAll('.home-area-ref-card-v1'));
+   cards.forEach(card=>{
+    if(!stableOrder.has(card))stableOrder.set(card,serial++);
+    const small=card.querySelector('small');if(!small)return;
+    const raw=small.textContent.trim(),match=raw.match(/^(\d+)\s+vaga/i),empty=/sem vagas|nenhuma vaga/i.test(raw);
+    const count=match?Number(match[1]):empty?0:null;
+    card.dataset.areaAvailableCount=count===null?'':String(count);
+    card.classList.toggle('areas-professional-empty',count===0);
+    const text=count===null?raw:count===0?'Nenhuma vaga aberta':count+' vaga'+(count===1?' disponível':'s disponíveis');
+    if(small.textContent!==text)small.textContent=text;
+   });
+   const sorted=cards.slice().sort((a,b)=>Number(b.dataset.areaAvailableCount||0)-Number(a.dataset.areaAvailableCount||0)||stableOrder.get(a)-stableOrder.get(b));
+   if(sorted.some((card,i)=>card!==cards[i]))sorted.forEach(card=>track.appendChild(card));
+   more.hidden=cards.length<=4;
+   observer.observe(track,{childList:true,subtree:true,characterData:true});
+  }
+  const observer=new MutationObserver(update);update();
+  const style=document.createElement('style');style.textContent=`
+#areasDestaqueHome{background:#fff!important;border-top:1px solid #eef1f5!important;padding:30px 24px 34px!important;margin:0!important}
+#areasDestaqueHome .home-areas-ref-inner-v1{max-width:1180px!important;margin:0 auto!important}
+#areasDestaqueHome .home-areas-ref-head-v1{display:flex!important;align-items:center!important;justify-content:space-between!important;gap:20px!important;margin-bottom:20px!important}
+#areasDestaqueHome h2{margin:0 0 6px!important;font-size:25px!important;font-weight:700!important;line-height:1.25!important;color:#15334f!important}
+#areasDestaqueHome .home-areas-ref-head-v1 p{margin:0!important;font-size:13px!important;line-height:1.5!important;color:#738395!important}
+#areasDestaqueHome .areas-professional-more{padding:8px 0!important;border:0!important;background:transparent!important;color:#1768b4!important;white-space:nowrap;font-size:13px!important;font-weight:600!important;cursor:pointer}
+#areasDestaqueHome .home-areas-ref-track-v1{display:grid!important;grid-template-columns:repeat(4,minmax(0,1fr))!important;gap:16px!important;overflow:visible!important;padding:0!important}
+#areasDestaqueHome:not(.areas-professional-expanded) .home-area-ref-card-v1:nth-child(n+5){display:none!important}
+#areasDestaqueHome .home-area-ref-card-v1{box-sizing:border-box!important;display:grid!important;grid-template-columns:42px minmax(0,1fr) 16px!important;gap:12px!important;min-width:0!important;width:100%!important;min-height:88px!important;margin:0!important;padding:16px!important;border:1px solid #e0e7ee!important;border-radius:10px!important;background:#fff!important;box-shadow:0 2px 6px #20344d05!important;transform:none!important;text-align:left!important;align-items:center!important}
+#areasDestaqueHome .home-area-ref-card-v1 i{width:42px!important;height:42px!important;border-radius:9px!important;background:#edf5ff!important;color:#1768b4!important;display:flex!important;align-items:center!important;justify-content:center!important}
+#areasDestaqueHome .home-area-ref-card-v1 i svg{width:22px!important;height:22px!important}
+#areasDestaqueHome .home-area-ref-card-v1 strong{font-size:14px!important;line-height:1.35!important;font-weight:600!important;margin:0 0 4px!important;color:#18354f!important}
+#areasDestaqueHome .home-area-ref-card-v1 small{font-size:11px!important;line-height:1.45!important;color:#718294!important}
+#areasDestaqueHome .home-area-ref-card-v1 b{font-size:18px!important;color:#1768b4!important}
+#areasDestaqueHome .home-area-ref-card-v1:hover{border-color:#a9cae9!important;box-shadow:0 3px 9px #1768b40a!important}
+#areasDestaqueHome .areas-professional-empty i{background:#f3f5f7!important;color:#98a1ac!important}
+#areasDestaqueHome .areas-professional-empty strong,#areasDestaqueHome .areas-professional-empty b{color:#84909c!important}
+#areasDestaqueHome .areas-professional-empty small{color:#939eaa!important}
+#areasDestaqueHome .areas-professional-more[hidden]{display:none!important}
+@media(max-width:1000px){#areasDestaqueHome .home-areas-ref-track-v1{grid-template-columns:repeat(2,minmax(0,1fr))!important}}
+@media(max-width:600px){#areasDestaqueHome{padding:24px 16px!important}#areasDestaqueHome h2{font-size:22px!important}#areasDestaqueHome .home-areas-ref-head-v1{align-items:flex-start!important;flex-direction:column!important;gap:8px!important;margin-bottom:16px!important}#areasDestaqueHome .home-areas-ref-track-v1{gap:10px!important}#areasDestaqueHome .home-area-ref-card-v1{padding:12px!important;grid-template-columns:34px minmax(0,1fr)!important;gap:9px!important;min-height:82px!important}#areasDestaqueHome .home-area-ref-card-v1 i{width:34px!important;height:34px!important}#areasDestaqueHome .home-area-ref-card-v1 b{display:none!important}#areasDestaqueHome .home-area-ref-card-v1 strong{font-size:12px!important}#areasDestaqueHome .home-area-ref-card-v1 small{font-size:10px!important}}
+`;style.textContent=style.textContent.replace(/#areasDestaqueHome/g,'#areasDestaqueHome#areasDestaqueHome#areasDestaqueHome');document.head.append(style);
+ }
+ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',setupAreas);else setupAreas();
+})();
