@@ -206,7 +206,7 @@ body.candidate-solid-active .topo .menu-empresa-btn-v19{background:#c8e6ff!impor
   let signature='';
   function render(force){
    const jobs=publicJobs(),byId=new Map(jobs.map(v=>[String(v.id),v]));
-   const history=read(HISTORY_KEY,[]),viewed=(Array.isArray(history)?history:[]).map(x=>byId.get(String(x.id))).filter(Boolean).slice(0,3);
+   const history=read(HISTORY_KEY,[]),viewed=(Array.isArray(history)?history:[]).map(x=>byId.get(String(x.id))).filter(Boolean).slice(0,2);
    const now=Date.now(),fresh=baseline>0?jobs.filter(v=>publicationTime(v)>baseline&&publicationTime(v)<=now).sort((a,b)=>publicationTime(b)-publicationTime(a)):[];
    const sig=JSON.stringify([viewed.map(v=>[v.id,v.cargo,v.titulo,v.empresa,v.cidade]),fresh.map(v=>[v.id,v.cargo,v.titulo]),expanded]);
    if(!force&&sig===signature)return;signature=sig;
@@ -368,4 +368,18 @@ body.candidate-solid-active .topo .menu-empresa-btn-v19{background:#c8e6ff!impor
  }
  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',alignTitles,{once:true});else alignTitles();
  window.addEventListener('load',alignTitles,{once:true});
+})();
+
+(function(){
+ function compactHistory(){
+  var style=document.createElement('style');style.id='em-history-two-compact';style.textContent=`
+#emRecentHeaderHistory#emRecentHeaderHistory#emRecentHeaderHistory#emRecentHeaderHistory#emRecentHeaderHistory{padding:10px 14px!important;min-height:0!important;height:auto!important}
+#emRecentHeaderHistory#emRecentHeaderHistory#emRecentHeaderHistory#emRecentHeaderHistory .em-visitor-head{margin-bottom:6px!important}
+#emRecentHeaderHistory#emRecentHeaderHistory#emRecentHeaderHistory#emRecentHeaderHistory .em-visitor-job{padding:7px 20px 7px 0!important}
+#emRecentHeaderHistory#emRecentHeaderHistory#emRecentHeaderHistory#emRecentHeaderHistory .em-visitor-job:last-child{padding-bottom:0!important}
+#emRecentHeaderHistory#emRecentHeaderHistory#emRecentHeaderHistory#emRecentHeaderHistory .em-visitor-job strong{margin-bottom:2px!important}
+#pagina-home #vagas#vagas#vagas#vagas#vagas#vagas .em-recent-split-header{min-height:0!important;padding-top:14px!important;padding-bottom:14px!important}
+`;document.head.appendChild(style);
+ }
+ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',compactHistory,{once:true});else compactHistory();
 })();
