@@ -275,3 +275,60 @@ html body #pagina-empresa-publica .em-review-form>.em-review-button{justify-self
 }
 if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',start,{once:true});else start();
 })();
+
+/* Confirmed hires: public aggregates and candidate confirmation. */
+(function(){
+'use strict';
+var queued=false,BASE='https://mkezlcewyengejdmtppl.supabase.co',KEY='sb_publishable_8YnXpzGX8zj-tvzvcMYdyw_FVBhQutR';
+function el(t,c,s){var n=document.createElement(t);n.className=c||'';if(s!==undefined)n.textContent=s;return n;}
+async function rpc(name,body,secure){var token=sessionStorage.getItem('empregaMaisSupabaseAccessToken');if(secure&&!token)throw Error('Entre na sua conta de candidato.');var ctrl=new AbortController(),timer=setTimeout(function(){ctrl.abort();},12000);try{var r=await fetch(BASE+'/rest/v1/rpc/'+name,{method:'POST',headers:{apikey:KEY,Authorization:'Bearer '+(secure?token:KEY),'Content-Type':'application/json'},body:JSON.stringify(body||{}),signal:ctrl.signal});var data=await r.json().catch(function(){return null;});if(!r.ok)throw Error(/exceed_egress_quota|restricted|spend caps/i.test(data&&data.message||'')?'Indicadores temporariamente indisponíveis. O serviço de dados atingiu o limite de uso.':r.status===401?'Sua sessão expirou. Entre novamente.':'Não foi possível acessar os dados agora. Tente novamente.');return data;}catch(e){if(e.name==='AbortError')throw Error('A conexão demorou. Tente novamente.');throw e;}finally{clearTimeout(timer);}}
+function companyCnpj(host){if(host.id==='emGriffPublic')return '66909443000108';var q=new URLSearchParams(location.search);if(q.get('cnpj'))return q.get('cnpj');var name=(document.getElementById('empresaPublicaNome')||{}).textContent,list=[];try{list=window.emLinkEmpresa?window.emLinkEmpresa.catalogo():typeof empresasCadastradas==='function'?empresasCadastradas():[];}catch(e){}var company=list.find(function(e){return q.get('empresa')&&e.linkEmpresaSlug===q.get('empresa')||[e.nome,e.nomeFantasia,e.nome_fantasia].includes(name);});return company&&company.cnpj||'';}
+function setupPublic(){
+ var page=document.getElementById('pagina-empresa-publica');if(!page)return;var host=page.querySelector('#emGriffPublic')||page.querySelector('.empresa-publica');if(!host)return;var panel=host.querySelector('#emCompanyPanel-3');if(!panel||panel.dataset.hiringDashboard)return;panel.dataset.hiringDashboard='1';panel.classList.add('em-hiring-dashboard');panel.replaceChildren();
+ panel.append(el('h2','','Contratações'),el('p','em-hiring-subtitle','Resultados confirmados de processos seletivos realizados pelo portal.'));
+ var metrics=el('div','em-hiring-metrics'),values=[];
+ [['Contratações confirmadas','Desde o início no portal'],['Nos últimos 90 dias','Confirmadas pela empresa e pelo candidato'],['Última contratação','Confirmação registrada no portal']].forEach(function(row){var card=el('div','em-hiring-card'),value=el('strong','','—');values.push(value);card.append(el('span','',row[0]),value,el('small','',row[1]));metrics.appendChild(card);});panel.appendChild(metrics);
+ var layout=el('div','em-hiring-layout'),chartCard=el('section','em-hiring-card'),areasCard=el('section','em-hiring-card');chartCard.appendChild(el('h3','','Contratações por mês'));areasCard.appendChild(el('h3','','Áreas mais contratadas'));var chart=el('div','em-hiring-chart'),areas=el('div','em-hiring-areas');chartCard.appendChild(chart);areasCard.appendChild(areas);layout.append(chartCard,areasCard);panel.appendChild(layout);
+ var status=el('p','em-hiring-status','Carregando indicadores…');status.setAttribute('role','status');panel.appendChild(status);
+ panel.appendChild(el('p','em-hiring-note','Exibimos apenas contratações confirmadas pela empresa e pelo candidato. Os dados pessoais não são publicados.'));
+ var refresh=el('button','em-review-button','Atualizar indicadores');refresh.type='button';panel.appendChild(refresh);
+ async function load(){refresh.disabled=true;status.textContent='Carregando indicadores…';try{var data=await rpc('em_hiring_summary',{p_cnpj:companyCnpj(host)},false);if(!panel.isConnected)return;values[0].textContent=data.total;values[1].textContent=data.recent;values[2].textContent=data.last?new Date(data.last).toLocaleDateString('pt-BR',{month:'long',year:'numeric',timeZone:'America/Sao_Paulo'}):'—';chart.replaceChildren();areas.replaceChildren();var max=Math.max.apply(null,data.months.map(function(m){return m.total;}).concat([1]));data.months.forEach(function(m){var col=el('div','em-hiring-month'),value=el('span','',String(m.total)),bar=el('div','em-hiring-bar');bar.style.height=(m.total/max*125)+'px';var date=new Date(m.month+'-15T12:00:00Z'),label=el('span','',date.toLocaleDateString('pt-BR',{month:'short',year:'2-digit',timeZone:'America/Sao_Paulo'}));col.append(value,bar,label);chart.appendChild(col);});if(!data.areas.length)areas.appendChild(el('p','','Ainda não há áreas com contratações confirmadas.'));data.areas.forEach(function(a){var row=el('div','em-hiring-area'),line=el('div'),track=el('div','em-hiring-track'),fill=el('span');fill.style.width=(100*a.total/Math.max(1,data.total))+'%';track.appendChild(fill);line.append(el('span','',a.area),el('strong','',String(a.total)));row.append(line,track);areas.appendChild(row);});status.textContent=data.total?'Indicadores atualizados.':'Ainda não há contratações confirmadas pelo portal.';}catch(e){values.forEach(function(v){v.textContent='—';});chart.replaceChildren();areas.replaceChildren();chart.appendChild(el('p','','Gráfico indisponível no momento.'));areas.appendChild(el('p','','Dados indisponíveis no momento.'));status.textContent=e.message;}finally{refresh.disabled=false;}}
+ refresh.onclick=load;load();
+}
+function setupCandidate(){
+ ['pagina-painel-candidato','pagina-candidaturas'].forEach(function(id){var page=document.getElementById(id);if(!page||!page.classList.contains('ativa')||page.querySelector('.em-hire-confirmations'))return;var box=el('section','em-hire-confirmations');box.appendChild(el('h2','','Confirmações de contratação'));box.appendChild(el('p','','Confirme apenas contratações que realmente aconteceram. Sua resposta alimenta os indicadores públicos sem divulgar seus dados.'));var status=el('p');status.setAttribute('role','status');var list=el('div'),refresh=el('button','em-review-button','Verificar contratações');refresh.type='button';box.append(status,list,refresh);page.prepend(box);
+ async function load(){refresh.disabled=true;status.textContent='Verificando…';try{var rows=await rpc('em_pending_hires',{},true);list.replaceChildren();status.textContent=rows.length?'Você tem contratações para confirmar.':'Nenhuma contratação pendente de confirmação.';rows.forEach(function(row){var card=el('article','em-hire-confirm-card');card.append(el('strong','',row.cargo),el('p','',row.empresa));[['Sim, fui contratado',true],['Não fui contratado',false]].forEach(function(answer){var b=el('button','em-review-button',answer[0]);b.type='button';b.onclick=async function(){card.querySelectorAll('button').forEach(function(x){x.disabled=true;});try{await rpc('em_confirm_hire',{p_application:row.id,p_confirm:answer[1]},true);await load();}catch(e){status.textContent=e.message;card.querySelectorAll('button').forEach(function(x){x.disabled=false;});}};card.appendChild(b);});list.appendChild(card);});}catch(e){status.textContent=e.message;}finally{refresh.disabled=false;}}
+ refresh.onclick=load;
+ });
+}
+function schedule(){if(queued)return;queued=true;requestAnimationFrame(function(){queued=false;setupPublic();setupCandidate();});}
+function start(){var style=el('style');style.textContent=`
+html body #pagina-empresa-publica .em-hiring-dashboard{background:transparent!important;border:0!important;padding:0!important}
+html body #pagina-empresa-publica .em-hiring-dashboard>h2{font-size:24px!important;margin-bottom:8px!important}
+html body #pagina-empresa-publica .em-hiring-subtitle{margin-bottom:20px!important}
+.em-hiring-metrics{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin:20px 0}
+.em-hiring-card{background:white;border:1px solid #d1e2f5;border-radius:10px;padding:22px;min-width:0;box-sizing:border-box}
+.em-hiring-metrics .em-hiring-card{display:flex;flex-direction:column;gap:10px}
+.em-hiring-metrics span{font:600 13px Inter,Arial,sans-serif;color:#17324e}
+.em-hiring-metrics strong{font:700 28px/1.3 Inter,Arial,sans-serif;color:#0875ee;overflow-wrap:anywhere}
+.em-hiring-metrics small{font:400 12px/1.5 Inter,Arial,sans-serif;color:#728397}
+.em-hiring-layout{display:grid;grid-template-columns:minmax(0,1.6fr) minmax(0,1fr);gap:18px}
+html body #pagina-empresa-publica .em-hiring-card h3{font:700 17px Inter,Arial,sans-serif!important;margin:0 0 22px!important;color:#17324e!important}
+.em-hiring-chart{display:flex;align-items:flex-end;gap:14px;min-height:180px;border-bottom:1px solid #d1e2f5;padding:0 8px}
+.em-hiring-month{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;gap:8px;min-width:0;font:500 11px Inter,Arial,sans-serif;color:#526b87}
+.em-hiring-bar{width:70%;min-height:2px;background:linear-gradient(#0875ee,#168fff);border-radius:3px 3px 0 0}
+.em-hiring-month>span:first-child{color:#17324e;font-weight:700}
+.em-hiring-month>span:last-child{padding-bottom:9px;text-align:center}
+.em-hiring-area{margin-bottom:20px}
+.em-hiring-area>div:first-child{display:flex;justify-content:space-between;gap:12px;font:500 13px Inter,Arial,sans-serif;color:#17324e}
+.em-hiring-track{height:7px;border-radius:8px;background:#e6edf5;margin-top:10px;overflow:hidden}
+.em-hiring-track span{display:block;height:100%;background:#0875ee;border-radius:8px}
+html body #pagina-empresa-publica .em-hiring-note{padding:15px 18px;background:#eaf4ff;border:1px solid #d1e2f5;border-radius:8px;margin:20px 0 14px!important;color:#42678f!important}
+html body #pagina-empresa-publica .em-hiring-status{margin:16px 0!important}
+.em-hire-confirmations{margin:18px 0;padding:22px;border:1px solid #d1e2f5;border-radius:10px;background:white;color:#17324e}
+.em-hire-confirmations h2{font-size:18px}.em-hire-confirmations p{font-size:13px;line-height:1.6}
+.em-hire-confirm-card{border-top:1px solid #e4ebf4;padding:16px 0}.em-hire-confirm-card button{margin-right:10px;margin-bottom:8px}
+@media(max-width:760px){.em-hiring-metrics,.em-hiring-layout{grid-template-columns:1fr}.em-hiring-card{padding:18px}.em-hiring-chart{gap:7px}}
+`;document.head.appendChild(style);setupPublic();setupCandidate();new MutationObserver(schedule).observe(document.documentElement,{childList:true,subtree:true,attributes:true,attributeFilter:['class']});window.addEventListener('load',schedule);window.addEventListener('popstate',schedule);}
+if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',start,{once:true});else start();
+})();
