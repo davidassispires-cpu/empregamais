@@ -203,3 +203,75 @@ html body #pagina-empresa-publica .em-company-filter-empty{color:#526b87;font:40
 }
 if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',start,{once:true});else start();
 })();
+
+/* Verified interview experience reviews. */
+(function(){
+'use strict';
+var queued=false;
+var BASE='https://mkezlcewyengejdmtppl.supabase.co',KEY='sb_publishable_8YnXpzGX8zj-tvzvcMYdyw_FVBhQutR';
+var questions=[['comunicacao','Como foi a comunicação durante o processo seletivo?','Comunicação'],['clareza','As etapas e as orientações da entrevista foram claras?','Clareza das etapas'],['organizacao','Como foi a organização e o cumprimento dos horários?','Organização'],['respeito','Você foi tratado com respeito durante a entrevista?','Respeito'],['feedback','Como foi o retorno sobre o andamento ou resultado do processo?','Retorno do processo']];
+function el(tag,cls,text){var n=document.createElement(tag);n.className=cls||'';if(text!==undefined)n.textContent=text;return n;}
+async function rpc(name,body,secure){
+ var token=sessionStorage.getItem('empregaMaisSupabaseAccessToken');if(secure&&!token)throw Error('Entre na sua conta de candidato para verificar sua entrevista.');
+ var ctrl=new AbortController(),timer=setTimeout(function(){ctrl.abort();},12000);
+ try{var r=await fetch(BASE+'/rest/v1/rpc/'+name,{method:'POST',headers:{apikey:KEY,Authorization:'Bearer '+(secure?token:KEY),'Content-Type':'application/json'},body:JSON.stringify(body),signal:ctrl.signal});var data=await r.json().catch(function(){return null;});if(!r.ok)throw Error(r.status===401?'Sua sessão expirou. Entre novamente.':data&&data.message||'Não foi possível carregar os dados.');return data;}catch(e){if(e.name==='AbortError')throw Error('A conexão demorou. Tente novamente.');throw e;}finally{clearTimeout(timer);}
+}
+function company(host){
+ if(host.id==='emGriffPublic')return {cnpj:'66909443000108',nome:(host.querySelector('.gp-name h1')||{}).textContent||'esta empresa'};
+ var q=new URLSearchParams(location.search),name=(document.getElementById('empresaPublicaNome')||{}).textContent||'',list=[];try{list=window.emLinkEmpresa?window.emLinkEmpresa.catalogo():typeof empresasCadastradas==='function'?empresasCadastradas():[];}catch(e){}
+ return list.find(function(e){return (q.get('cnpj')&&String(e.cnpj).replace(/\D/g,'')===q.get('cnpj').replace(/\D/g,''))||(q.get('empresa')&&e.linkEmpresaSlug===q.get('empresa'))||[e.nome,e.nomeFantasia,e.nome_fantasia].includes(name);})||{cnpj:q.get('cnpj')||'',nome:name};
+}
+function setup(){
+ var page=document.getElementById('pagina-empresa-publica');if(!page)return;var host=page.querySelector('#emGriffPublic')||page.querySelector('.empresa-publica');if(!host)return;
+ var panel=host.querySelector('#emCompanyPanel-1');if(!panel||panel.dataset.processReviews)return;panel.dataset.processReviews='1';
+ var companyData=company(host),cnpj=String(companyData.cnpj||'').replace(/\D/g,'');
+ panel.replaceChildren();panel.classList.add('em-process-reviews');
+ panel.appendChild(el('h2','','Avaliações do processo seletivo'));
+ panel.appendChild(el('p','em-review-intro','Experiências de candidatos que participaram de entrevistas concluídas registradas no portal.'));
+ var summary=el('div','em-review-summary'),summaryStatus=el('p','','Carregando avaliações…');summary.appendChild(summaryStatus);panel.appendChild(summary);
+ async function loadSummary(){summaryStatus.textContent='Carregando avaliações…';try{var data=await rpc('em_process_review_summary',{p_cnpj:cnpj},false);if(!panel.isConnected)return;summary.replaceChildren();if(!data||!data.total){summary.appendChild(el('p','','Ainda não há avaliações verificadas deste processo seletivo.'));return;}var overall=el('div','em-review-overall');overall.append(el('strong','',Number(data.nota).toLocaleString('pt-BR',{maximumFractionDigits:1})),el('span','em-review-stars','★★★★★'),el('span','',data.total+' '+(data.total===1?'avaliação verificada':'avaliações verificadas')));summary.appendChild(overall);var metrics=el('div','em-review-score-grid');questions.forEach(function(q){var row=el('div');row.append(el('strong','',data[q[0]]==null?'—':Number(data[q[0]]).toLocaleString('pt-BR',{maximumFractionDigits:1})),el('span','',q[2]));metrics.appendChild(row);});summary.appendChild(metrics);}catch(e){summaryStatus.textContent=e.message;var retry=el('button','em-review-button','Tentar novamente');retry.type='button';retry.onclick=function(){retry.remove();loadSummary();};summary.appendChild(retry);}}
+ var prompt=el('div','em-review-invite');prompt.appendChild(el('h3','','Você participou de uma entrevista nesta empresa?'));prompt.appendChild(el('p','','Avalie sua experiência no processo seletivo.'));
+ var stars=el('span','em-review-stars','☆☆☆☆☆');stars.setAttribute('aria-hidden','true');prompt.appendChild(stars);
+ var button=el('button','em-review-button','Avaliar entrevista');button.type='button';prompt.appendChild(button);prompt.appendChild(el('p','em-review-rule','Somente participantes de entrevistas concluídas podem avaliar. Uma avaliação por entrevista.'));
+ var status=el('p','em-review-status');status.setAttribute('role','status');prompt.appendChild(status);panel.appendChild(prompt);
+ var form=el('form','em-review-form');form.hidden=true;
+ var interviewLabel=el('label','','Entrevista realizada'),interview=el('select');interview.required=true;interviewLabel.appendChild(interview);form.appendChild(interviewLabel);
+ questions.forEach(function(q){var label=el('label','',q[1]),select=el('select');select.name=q[0];select.required=q[0]!=='feedback';[['','Selecione uma nota'],['1','1 — Muito ruim'],['2','2 — Ruim'],['3','3 — Regular'],['4','4 — Bom'],['5','5 — Excelente']].forEach(function(r){var o=el('option','',r[1]);o.value=r[0];select.appendChild(o);});if(q[0]==='feedback'){var o=el('option','','Ainda não recebi retorno / Não se aplica');o.value='';select.appendChild(o);}label.appendChild(select);form.appendChild(label);});
+ form.appendChild(el('p','em-review-rule','As perguntas tratam apenas do processo seletivo. Não avaliam salário, benefícios, rotina de trabalho ou desempenho da empresa.'));
+ var submit=el('button','em-review-button','Enviar avaliação');submit.type='submit';form.appendChild(submit);prompt.appendChild(form);
+ button.onclick=async function(){button.disabled=true;status.textContent='Verificando participação…';try{var list=await rpc('em_process_review_options',{p_cnpj:cnpj},true);if(!panel.isConnected)return;interview.replaceChildren();if(!list||!list.length){form.hidden=true;status.textContent='Não encontramos entrevistas concluídas pendentes de avaliação nesta empresa. A empresa precisa registrar a conclusão da entrevista.';return;}list.forEach(function(i){var o=el('option','',(i.job_title||'Entrevista')+' — '+new Date(i.scheduled_at).toLocaleDateString('pt-BR'));o.value=i.id;interview.appendChild(o);});form.hidden=false;status.textContent='Participação verificada. Avalie sua experiência abaixo.';}catch(e){form.hidden=true;status.textContent=e.message;}finally{button.disabled=false;}};
+ form.onsubmit=async function(event){event.preventDefault();if(submit.disabled)return;submit.disabled=true;status.textContent='Enviando avaliação…';try{var scores={};questions.forEach(function(q){var value=form.elements[q[0]].value;scores[q[0]]=value?Number(value):null;});await rpc('em_submit_process_review',{p_interview:interview.value,p_scores:scores},true);form.hidden=true;form.reset();status.textContent='Avaliação enviada. Obrigado por compartilhar sua experiência.';loadSummary();}catch(e){status.textContent=e.message;}finally{submit.disabled=false;}};
+ loadSummary();
+}
+function schedule(){if(queued)return;queued=true;requestAnimationFrame(function(){queued=false;setup();});}
+function start(){
+ var style=el('style');style.textContent=`
+html body #pagina-empresa-publica .em-process-reviews{padding:24px!important}
+html body #pagina-empresa-publica .em-review-intro{margin-bottom:20px!important}
+html body #pagina-empresa-publica .em-review-summary{padding:18px 0;border-bottom:1px solid #e4ebf4;margin-bottom:22px}
+html body #pagina-empresa-publica .em-review-overall{display:flex;align-items:center;flex-wrap:wrap;gap:12px}
+html body #pagina-empresa-publica .em-review-overall>strong{font:700 32px Inter,Arial,sans-serif;color:#17324e}
+html body #pagina-empresa-publica .em-review-overall>span:last-child{font:400 12px Inter,Arial,sans-serif;color:#728397}
+html body #pagina-empresa-publica .em-review-stars{font:28px/1.4 Arial,sans-serif;color:#e7a800;letter-spacing:3px}
+html body #pagina-empresa-publica .em-review-score-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;margin-top:22px}
+html body #pagina-empresa-publica .em-review-score-grid>div{display:flex;flex-direction:column;gap:5px}
+html body #pagina-empresa-publica .em-review-score-grid strong{font:700 20px Inter,Arial,sans-serif;color:#1768b4}
+html body #pagina-empresa-publica .em-review-score-grid span{font:400 12px Inter,Arial,sans-serif;color:#526b87}
+html body #pagina-empresa-publica .em-review-invite{background:#f3f8ff;border:1px solid #d1e2f5;border-radius:10px;padding:22px}
+html body #pagina-empresa-publica .em-review-invite h3{font:700 17px/1.5 Inter,Arial,sans-serif!important;color:#17324e!important;margin:0 0 7px!important}
+html body #pagina-empresa-publica .em-review-invite>.em-review-stars{display:block;margin:12px 0}
+html body #pagina-empresa-publica .em-review-button{background:#0875ee;color:white;border:0;border-radius:6px;font:600 13px Inter,Arial,sans-serif;padding:11px 18px;cursor:pointer}
+html body #pagina-empresa-publica .em-review-button:disabled{opacity:.6;cursor:wait}
+html body #pagina-empresa-publica .em-review-rule{font-size:12px!important;line-height:1.6!important;margin:12px 0!important}
+html body #pagina-empresa-publica .em-review-status{margin:12px 0!important;color:#17324e!important}
+html body #pagina-empresa-publica .em-review-form{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;margin-top:18px;border-top:1px solid #d1e2f5;padding-top:18px}
+html body #pagina-empresa-publica .em-review-form[hidden]{display:none!important}
+html body #pagina-empresa-publica .em-review-form label{display:flex;flex-direction:column;gap:8px;font:600 12px/1.5 Inter,Arial,sans-serif;color:#17324e}
+html body #pagina-empresa-publica .em-review-form select{width:100%;min-height:40px;border:1px solid #cbdcf0;border-radius:6px;padding:8px;background:white;color:#41556c;font:400 13px Inter,Arial,sans-serif}
+html body #pagina-empresa-publica .em-review-form>label:first-child,html body #pagina-empresa-publica .em-review-form>.em-review-rule{grid-column:1/-1}
+html body #pagina-empresa-publica .em-review-form>.em-review-button{justify-self:start}
+@media(max-width:600px){html body #pagina-empresa-publica .em-review-form{grid-template-columns:1fr}html body #pagina-empresa-publica .em-review-score-grid{grid-template-columns:repeat(2,minmax(0,1fr))}html body #pagina-empresa-publica .em-review-invite{padding:16px}}
+`;document.head.appendChild(style);setup();var page=document.getElementById('pagina-empresa-publica');if(page)new MutationObserver(schedule).observe(page,{childList:true,subtree:true});window.addEventListener('load',schedule);window.addEventListener('popstate',schedule);
+}
+if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',start,{once:true});else start();
+})();
