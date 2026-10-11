@@ -39,10 +39,11 @@ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',
   const progress=document.createElement('ol');progress.className='company-blue-progress';progress.setAttribute('aria-label','Etapas do cadastro');titles.forEach((t,i)=>{const li=document.createElement('li');li.textContent=(i+1)+'. '+t;progress.append(li);});form.prepend(progress);
   groups.forEach((ids,i)=>{const section=document.createElement('section');section.className='company-blue-fields';section.setAttribute('aria-label',titles[i]);ids.forEach(id=>section.append(document.getElementById(id).closest('.grupo')));grid.append(section);sections.push(section);});
   const terms=form.querySelector('.cadastro-modal-termos-em'),actions=form.querySelector('.cadastro-modal-acoes-em'),submit=actions.querySelector('.portal-btn-principal-em');actions.querySelector('.cadastro-modal-cancelar-em').remove();
+  actions.className='company-blue-actions';actions.hidden=false;
   const back=document.createElement('button');back.type='button';back.className='company-blue-back';back.textContent='Voltar';
   const next=document.createElement('button');next.type='button';next.className='portal-btn-principal-em';next.textContent='Continuar →';actions.prepend(back,next);
   let step=0;
-  function show(i){step=i;sections.forEach((s,n)=>s.hidden=n!==i);Array.from(progress.children).forEach((li,n)=>{li.classList.toggle('active',n===i);if(n===i)li.setAttribute('aria-current','step');else li.removeAttribute('aria-current');});back.hidden=i===0;next.hidden=i===2;submit.hidden=i!==2;terms.hidden=i!==2;}
+  function show(i){step=i;sections.forEach((s,n)=>s.hidden=n!==i);Array.from(progress.children).forEach((li,n)=>{li.classList.toggle('active',n===i);if(n===i)li.setAttribute('aria-current','step');else li.removeAttribute('aria-current');});back.hidden=i===0;next.hidden=i===2;submit.hidden=i!==2;terms.hidden=i!==2;actions.hidden=false;actions.style.setProperty('display','flex','important');back.style.setProperty('display',i===0?'none':'inline-flex','important');next.style.setProperty('display',i===2?'none':'inline-flex','important');submit.style.setProperty('display',i===2?'inline-flex':'none','important');}
   function valid(i){const fields=Array.from(sections[i].querySelectorAll('input,select,textarea'));if(i===0){const c=document.getElementById('cadEmpresaCnpjEM');c.setCustomValidity(c.value.replace(/\D/g,'').length===14?'':'Informe um CNPJ com 14 números.');}if(i===2){const c=document.getElementById('cadEmpresaCpfEM');c.setCustomValidity(c.value.replace(/\D/g,'').length===11?'':'Informe um CPF com 11 números.');const p=document.getElementById('cadEmpresaConfirmarSenhaEM');p.setCustomValidity(p.value===document.getElementById('cadEmpresaSenhaEM').value?'':'As senhas precisam ser iguais.');fields.push(terms.querySelector('input'));}for(const f of fields){if(!f.checkValidity()){show(i);f.reportValidity();return false;}}return true;}
   next.addEventListener('click',()=>{if(valid(step))show(step+1);});back.addEventListener('click',()=>show(step-1));
   form.addEventListener('input',e=>{if(e.target.setCustomValidity)e.target.setCustomValidity('');});
@@ -90,8 +91,8 @@ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',
 #pagina-login-empresa .company-blue-progress{list-style:none;display:flex;gap:6px;padding:0;margin:0 0 20px}
 #pagina-login-empresa .company-blue-progress li{flex:1;padding:8px 5px;text-align:center;font-size:10px;color:#6b859b;background:#f1f5f9;border-radius:6px}
 #pagina-login-empresa .company-blue-progress li.active{background:#ddecfc;color:#1768b4;font-weight:700}
-#pagina-login-empresa .cadastro-modal-acoes-em{display:flex!important;gap:12px!important;margin:20px 0 0!important;padding:0!important;border:0!important}
-#pagina-login-empresa .cadastro-modal-acoes-em .portal-btn-principal-em{flex:1!important}
+#pagina-login-empresa .company-blue-actions{display:flex!important;visibility:visible!important;opacity:1!important;position:static!important;width:100%!important;align-items:center!important;gap:12px!important;margin:20px 0 0!important;padding:0!important;border:0!important}
+#pagina-login-empresa .company-blue-actions .portal-btn-principal-em{flex:1!important}
 #pagina-login-empresa .company-blue-back{border:1px solid #cbddea;background:#fff;color:#1768b4;border-radius:7px;padding:10px 14px;font-size:12px;cursor:pointer}
 #pagina-login-empresa .cadastro-modal-termos-em{display:flex!important;gap:9px!important;margin-top:16px!important;font-size:11px!important}
 #pagina-login-empresa [hidden]{display:none!important}
