@@ -241,3 +241,17 @@ body.candidate-solid-active .topo .menu-empresa-btn-v19{background:#c8e6ff!impor
  }
  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',setup);else setup();
 })();
+
+(function(){
+ function alignRecentHeader(){
+  const style=document.createElement('style');style.id='em-recent-header-left';
+  style.textContent=`
+#pagina-home #vagas#vagas#vagas .em-recentes-blue-band{padding-left:16px!important;padding-right:16px!important;text-align:left!important}
+#pagina-home #vagas#vagas#vagas .em-recentes-centered{display:block!important;position:static!important;transform:none!important;text-align:left!important;align-items:flex-start!important;justify-content:flex-start!important;width:100%!important;max-width:none!important;margin:0 0 16px!important;padding:0!important}
+#pagina-home #vagas#vagas#vagas .em-recentes-centered h2,#pagina-home #vagas#vagas#vagas .em-recentes-centered p,#pagina-home #vagas#vagas#vagas .em-recentes-kicker{text-align:left!important;margin-left:0!important;margin-right:0!important}
+#pagina-home #vagas#vagas#vagas .em-recentes-blue-band .filtros-chips-home{display:flex!important;justify-content:flex-start!important;align-items:center!important;text-align:left!important;margin-left:0!important;margin-right:0!important;padding-left:0!important;padding-right:0!important}
+@media(max-width:600px){#pagina-home #vagas#vagas#vagas .em-recentes-blue-band{padding-left:14px!important;padding-right:14px!important}}
+`;document.head.appendChild(style);
+ }
+ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',alignRecentHeader);else alignRecentHeader();
+})();
