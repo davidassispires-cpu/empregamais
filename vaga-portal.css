@@ -85,3 +85,13 @@ html body #pagina-vaga#pagina-vaga#pagina-vaga .em-job-information{margin:18px 0
 
 html body #pagina-vaga#pagina-vaga#pagina-vaga #emJobInformation#emJobInformation dt,html body #pagina-vaga#pagina-vaga#pagina-vaga #emJobInformation#emJobInformation dd{width:100%!important;box-sizing:border-box!important;text-align:center!important;padding-left:0!important;padding-right:0!important}
 html body #pagina-vaga#pagina-vaga#pagina-vaga #emJobInformation#emJobInformation dt>span{text-align:center!important}
+
+/* Cabeçalho compacto da página de vaga. */
+html body #pagina-vaga#pagina-vaga#pagina-vaga #emPortalVagaBanner#emPortalVagaBanner{padding-top:16px!important;padding-bottom:16px!important}
+html body #pagina-vaga#pagina-vaga#pagina-vaga #emPortalVagaBanner#emPortalVagaBanner nav{font:400 12px/1.5 Montserrat,Arial,sans-serif!important;color:#bbcee4!important;gap:8px!important}
+html body #pagina-vaga#pagina-vaga#pagina-vaga #emPortalVagaBanner#emPortalVagaBanner nav a{color:#d2e0ef!important;font-weight:500!important}
+html body #pagina-vaga#pagina-vaga#pagina-vaga #emPortalVagaBanner#emPortalVagaBanner .em-portal-crumb{text-transform:none!important;overflow-wrap:anywhere!important}
+html body #pagina-vaga#pagina-vaga#pagina-vaga #emPortalVagaBanner#emPortalVagaBanner p{gap:12px!important;margin:9px 0 0!important;font:600 28px/1.2 Montserrat,Arial,sans-serif!important;letter-spacing:-.4px!important}
+html body #pagina-vaga#pagina-vaga#pagina-vaga #emPortalVagaBanner#emPortalVagaBanner .em-banner-icon{width:24px!important;height:28px!important;flex:0 0 24px!important;padding:0!important;border:0!important}
+html body #pagina-vaga#pagina-vaga#pagina-vaga #emPortalVagaBanner#emPortalVagaBanner .em-banner-icon svg{width:24px!important;height:24px!important}
+@media(max-width:600px){html body #pagina-vaga#pagina-vaga#pagina-vaga #emPortalVagaBanner#emPortalVagaBanner{padding:14px 18px!important}html body #pagina-vaga#pagina-vaga#pagina-vaga #emPortalVagaBanner#emPortalVagaBanner p{font-size:23px!important;gap:10px!important}html body #pagina-vaga#pagina-vaga#pagina-vaga #emPortalVagaBanner#emPortalVagaBanner nav{font-size:11px!important}}
