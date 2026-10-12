@@ -636,3 +636,26 @@ html body #emInterviewHelp .em-help-close{right:16px;top:14px}
 @media(min-width:761px) and (max-height:700px){html body #emInterviewHelp{padding:22px 28px 16px}html body #emInterviewHelp .em-help-hero{grid-template-columns:minmax(0,1fr) 250px}html body #emInterviewHelp h2{font-size:28px}html body #emInterviewHelp h3{font-size:19px}html body #emInterviewHelp .em-help-eyebrow{margin-bottom:10px}html body #emInterviewHelp .em-help-steps{margin:18px 0 14px}html body #emInterviewHelp .em-help-steps li{padding:14px}html body #emInterviewHelp .em-help-steps li>svg{width:32px;height:32px;margin-bottom:8px}}
 @media(max-width:760px){html body #emInterviewHelp{width:calc(100vw - 24px);padding:24px 18px 18px}html body #emInterviewHelp .em-help-hero{grid-template-columns:1fr}html body #emInterviewHelp .em-help-illustration{display:none}html body #emInterviewHelp h2{font-size:25px}html body #emInterviewHelp h3{font-size:18px}html body #emInterviewHelp .em-help-hero p{font-size:14px}html body #emInterviewHelp .em-help-steps{grid-template-columns:1fr;gap:10px}html body #emInterviewHelp .em-help-steps li{padding:14px 14px 14px 62px;text-align:left}html body #emInterviewHelp .em-help-steps li>svg{display:none}html body #emInterviewHelp .em-help-number{top:14px;left:14px}html body #emInterviewHelp .em-help-benefits{grid-template-columns:1fr;gap:10px}html body #emInterviewHelp .em-help-benefits span+span{border:0}html body #emInterviewHelp .em-help-benefits span{justify-content:flex-start;padding-left:8px}}
 `;document.head.appendChild(s);})();
+
+/* Center and compact the interview explanation dialog. */
+(function(){var s=document.createElement('style');s.id='em-interview-help-centered';s.textContent=`
+html body #emInterviewHelp#emInterviewHelp{position:fixed!important;inset:0!important;margin:auto!important;width:min(860px,calc(100vw - 40px))!important;height:fit-content!important;max-height:calc(100dvh - 32px)!important;padding:24px 26px 16px!important;box-sizing:border-box!important}
+html body #emInterviewHelp#emInterviewHelp .em-help-hero{grid-template-columns:minmax(0,1fr) 205px;gap:22px;align-items:center}
+html body #emInterviewHelp#emInterviewHelp .em-help-eyebrow{gap:12px;font-size:11px;margin-bottom:12px}
+html body #emInterviewHelp#emInterviewHelp .em-help-eyebrow>span{width:42px;height:42px;border-radius:10px}
+html body #emInterviewHelp#emInterviewHelp h2{font-size:26px;line-height:1.25;margin-bottom:8px;letter-spacing:-.6px}
+html body #emInterviewHelp#emInterviewHelp h3{font-size:18px;line-height:1.35;margin-bottom:10px}
+html body #emInterviewHelp#emInterviewHelp .em-help-hero p{font-size:13px;line-height:1.5}
+html body #emInterviewHelp#emInterviewHelp .em-help-steps{gap:12px;margin:18px 0 12px}
+html body #emInterviewHelp#emInterviewHelp .em-help-steps li{padding:14px 12px 12px}
+html body #emInterviewHelp#emInterviewHelp .em-help-steps li>svg{width:29px;height:29px;margin-bottom:8px}
+html body #emInterviewHelp#emInterviewHelp .em-help-number{width:28px;height:28px;left:12px;top:12px;font-size:12px}
+html body #emInterviewHelp#emInterviewHelp .em-help-steps strong{font-size:16px;margin-bottom:6px}
+html body #emInterviewHelp#emInterviewHelp .em-help-steps p{font-size:12px;line-height:1.45}
+html body #emInterviewHelp#emInterviewHelp .em-help-benefits{padding:12px 8px;margin-bottom:12px}
+html body #emInterviewHelp#emInterviewHelp .em-help-benefits span{font-size:12px;gap:7px}
+html body #emInterviewHelp#emInterviewHelp .em-help-benefits svg{width:17px;height:17px}
+html body #emInterviewHelp#emInterviewHelp .em-help-schedule{min-height:42px;padding:9px 14px;font-size:14px;width:min(420px,100%);margin:0 auto}
+html body #emInterviewHelp#emInterviewHelp .em-help-back{margin-top:9px;font-size:12px}
+@media(max-width:760px){html body #emInterviewHelp#emInterviewHelp{width:calc(100vw - 24px)!important;padding:22px 18px 16px!important}html body #emInterviewHelp#emInterviewHelp .em-help-hero{grid-template-columns:1fr}html body #emInterviewHelp#emInterviewHelp h2{font-size:23px}html body #emInterviewHelp#emInterviewHelp .em-help-steps li{padding:12px 12px 12px 54px}html body #emInterviewHelp#emInterviewHelp .em-help-number{left:12px;top:12px}}
+`;document.head.appendChild(s);})();
