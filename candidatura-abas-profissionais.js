@@ -195,7 +195,7 @@ function moveContact(){
  if(phone){
   phone.className='em-phone-card';
   var label=document.createElement('span');label.className='em-phone-label';label.textContent='Telefone';
-  var value=phone.querySelector('span');if(value)phone.insertBefore(label,value);else phone.appendChild(label);
+  var value=phone.querySelector('span');if(value){if(value.textContent.trim()==='Telefone não informado')value.textContent='Não informado';phone.insertBefore(label,value);}else phone.appendChild(label);
   row.appendChild(phone);
  }
  identity.appendChild(row);
