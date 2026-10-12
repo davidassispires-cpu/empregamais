@@ -453,3 +453,43 @@ var queued=false;
 new MutationObserver(function(){if(queued)return;queued=true;requestAnimationFrame(function(){queued=false;removeHistoryTab();});}).observe(document.body,{childList:true,subtree:true});
 removeHistoryTab();
 })();
+
+/* Isolate candidate tab panels from legacy display overrides. */
+(function(){
+'use strict';
+var keys={'Visão geral':'overview','Currículo':'resume','Mensagens':'messages','Anotações':'notes'};
+var style=document.createElement('style');style.id='em-candidate-isolated-tabs';
+style.textContent='html body #emCandidateDetails#emCandidateDetails .em-wide-panels>[data-detail-panel][hidden]{display:none!important}html body #emCandidateDetails#emCandidateDetails .em-wide-panels>[data-detail-panel]:not([hidden]):not([data-detail-panel="overview"]){display:block!important}';
+document.head.appendChild(style);
+function activate(modal,key,focus){
+var panels=modal.querySelector('.em-wide-panels'),tabs=modal.querySelector('.em-wide-tabs');
+if(!panels||!tabs||!panels.querySelector('[data-detail-panel="'+key+'"]'))return;
+modal.dataset.activeCandidateTab=key;
+panels.querySelectorAll(':scope>[data-detail-panel]').forEach(function(panel){
+var selected=panel.dataset.detailPanel===key;
+panel.hidden=!selected;
+panel.style.setProperty('display',selected?(key==='overview'?'grid':'block'):'none','important');
+panel.setAttribute('aria-hidden',String(!selected));
+});
+tabs.querySelectorAll('button').forEach(function(button){
+var buttonKey=keys[button.textContent.trim()];if(!buttonKey)return;
+var selected=buttonKey===key;button.classList.toggle('active',selected);button.setAttribute('aria-selected',String(selected));
+});
+if(focus&&key==='messages'){var input=panels.querySelector('[data-detail-panel="messages"] textarea');if(input)input.focus();}
+}
+document.addEventListener('click',function(event){
+var button=event.target.closest('button');if(!button)return;
+var tabs=button.closest('#emCandidateDetails .em-wide-tabs');if(!tabs)return;
+var key=keys[button.textContent.trim()];if(!key)return;
+event.preventDefault();event.stopImmediatePropagation();
+activate(tabs.closest('#emCandidateDetails'),key,true);
+},true);
+function sync(){
+var modal=document.getElementById('emCandidateDetails');if(!modal)return;
+var active=modal.querySelector('.em-wide-tabs button.active');
+activate(modal,modal.dataset.activeCandidateTab||(active&&keys[active.textContent.trim()])||'overview',false);
+}
+var queued=false;
+new MutationObserver(function(){if(queued)return;queued=true;requestAnimationFrame(function(){queued=false;sync();});}).observe(document.body,{childList:true,subtree:true});
+sync();
+})();
