@@ -434,3 +434,22 @@ Q .em-candidate-modal-head{min-height:94px!important}
 }
 `.replace(/Q(?=[\s.{[:>])/g,q);document.head.appendChild(s);
 })();
+
+/* Remove only the History navigation item; retain candidature records. */
+(function(){
+'use strict';
+function removeHistoryTab(){
+var modal=document.getElementById('emCandidateDetails');if(!modal)return;
+var tabs=modal.querySelector('.em-wide-tabs');if(!tabs)return;
+Array.from(tabs.querySelectorAll('button')).forEach(function(button){
+if(button.textContent.trim()!=='Histórico')return;
+if(button.classList.contains('active')){
+var overview=tabs.querySelector('button');if(overview&&overview!==button)overview.click();
+}
+button.remove();
+});
+}
+var queued=false;
+new MutationObserver(function(){if(queued)return;queued=true;requestAnimationFrame(function(){queued=false;removeHistoryTab();});}).observe(document.body,{childList:true,subtree:true});
+removeHistoryTab();
+})();
