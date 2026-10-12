@@ -27,6 +27,21 @@ ${scope} .gc-ref-stage-wrap select[data-stage-color="Em contato"]{background:#f0
 @media(max-width:1150px){${scope} .em-gc27-main{grid-template-columns:1fr!important}${scope} .gc-ref-application-group{justify-self:end!important}${scope} .gc-ref-adherence{gap:9px!important;padding:10px!important}${scope} .em-match-ring{width:64px;height:64px}${scope} .em-match-ring b{width:48px;height:48px;font-size:20px}${scope} .em-match-label{font-size:12px}}
 @media(max-width:600px){${scope}{padding:15px!important;gap:14px!important}${scope} .em-gc27-main{grid-template-columns:1fr!important}${scope} .gc-ref-actions{grid-template-columns:1fr!important;gap:12px!important}${scope} .gc-ref-stage-wrap{grid-column:auto!important}${scope} .gc-ref-adherence{min-height:86px!important}${scope} .em-card-footer>*{flex:1!important;padding:0 8px!important}${scope} .em-card-footer .gc-ref-cv svg{display:none!important}}
 `;
+css+=`#pagina-candidatos-empresa #listaCandidatosEmpresa #gc27Lista{grid-template-columns:minmax(0,1fr)!important;gap:12px!important}
+@media(min-width:1001px){
+${scope}{grid-template-columns:minmax(190px,1fr) 180px 180px 260px!important;grid-template-rows:auto auto!important;column-gap:18px!important;row-gap:8px!important;padding:16px 18px!important}
+${scope} .em-gc27-main,${scope} .gc-ref-actions,${scope} .gc-ref-application-group{display:contents!important}
+${scope} .em-gc27-person{grid-column:1!important;grid-row:1/3!important}
+${scope} .gc-ref-adherence{grid-column:2!important;grid-row:1/3!important;min-height:80px!important;padding:9px 10px!important;gap:9px!important}
+${scope} .em-match-ring{width:58px;height:58px}${scope} .em-match-ring b{width:43px;height:43px;font-size:20px}${scope} .em-match-label{font-size:12px}
+${scope} .gc-ref-stage-wrap{grid-column:3!important;grid-row:1/3!important;gap:7px!important}
+${scope} .gc-ref-favorite{grid-column:4!important;grid-row:1!important;justify-self:end!important;width:auto!important;min-height:32px!important;height:32px!important}
+${scope} .em-card-footer{grid-column:4!important;grid-row:2!important;gap:8px!important}
+${scope} .em-card-footer .gc-ref-cv,${scope} .em-card-footer .em-v36-toggle{font-size:11px!important;height:34px!important;min-height:34px!important;padding:0 10px!important}
+${scope} .em-card-footer .em-v36-toggle span{font-size:11px!important}
+}
+@media(min-width:601px) and (max-width:1000px){${scope}{grid-template-columns:1fr!important}${scope} .em-gc27-main{grid-template-columns:minmax(0,1fr) auto!important}${scope} .gc-ref-actions{grid-template-columns:1fr 1fr!important}${scope} .gc-ref-adherence{min-height:80px!important}}
+`;
 var style=document.createElement('style');style.id='em-candidate-compact-v1';style.textContent=css;document.head.appendChild(style);
 function upgrade(){document.querySelectorAll('#listaCandidatosEmpresa .em-gc27-card:not(.em-compact-v1)').forEach(function(card){
 var actions=card.querySelector('.gc-ref-actions'),match=card.querySelector('.gc-ref-adherence'),cv=card.querySelector('.gc-ref-cv'),open=card.querySelector('.em-v36-toggle');if(!actions||!match||!cv||!open)return;
