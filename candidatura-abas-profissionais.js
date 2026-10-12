@@ -145,3 +145,34 @@ function refine(){
 }
 new MutationObserver(refine).observe(document.body,{childList:true,subtree:true});refine();
 })();
+
+
+(function(){
+'use strict';
+var style=document.createElement('style');style.id='em-reference-final-correction';style.textContent="\n/* Final reference alignment: reserve footer space, with no panel scaling. */\nhtml body #emCandidateDetails.em-candidate-reference-v55.em-overview-compact .em-wide-overview{grid-template-columns:1fr 1fr!important;align-items:stretch!important}\nhtml body #emCandidateDetails.em-candidate-reference-v55 .em-wide-overview h3{font-size:20px!important;font-weight:700!important;color:#102744!important}\nhtml body #emCandidateDetails.em-candidate-reference-v55 .em-summary-fact p,html body #emCandidateDetails.em-candidate-reference-v55 .em-summary-fact h4{font-weight:600!important;color:#102744!important;line-height:1.35!important}\nhtml body #emCandidateDetails.em-candidate-reference-v55 .em-summary-fact small{margin-bottom:3px!important}\nhtml body #emCandidateDetails.em-candidate-reference-v55 .em-summary-fact svg{width:19px!important;height:19px!important;margin-right:8px!important}\nhtml body #emCandidateDetails.em-candidate-reference-v55 .em-summary-facts{gap:9px 18px!important}\nhtml body #emCandidateDetails.em-candidate-reference-v55 .em-summary-skills{padding-top:7px!important}\nhtml body #emCandidateDetails.em-candidate-reference-v55 .em-summary-skills>small{margin-bottom:5px!important}\nhtml body #emCandidateDetails.em-candidate-reference-v55 .em-wide-document{font-weight:600!important}\nhtml body #emCandidateDetails.em-candidate-reference-v55 .em-detail-note p{font-weight:600!important}\nhtml body #emCandidateDetails.em-candidate-reference-v55 .em-wide-workflow .em-gc27-stage{background-image:url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='18' height='18' viewBox='0 0 18 18'%3E%3Ccircle cx='9' cy='9' r='6' fill='%230876ef'/%3E%3C/svg%3E\"),url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23526781' stroke-width='1.8'%3E%3Cpath d='m7 10 5 5 5-5'/%3E%3C/svg%3E\")!important;background-position:12px center,right 12px center!important;background-size:18px 18px,16px 16px!important;padding-left:38px!important}\nhtml body #emCandidateDetails.em-candidate-reference-v55 .em-wide-footer{flex-shrink:0!important;min-height:60px!important;box-sizing:border-box!important}\n@media(min-width:761px){\nhtml body #emCandidateDetails.em-candidate-reference-v55.em-overview-compact{height:auto!important;max-height:calc(100dvh - 24px)!important;display:flex!important;inset:12px 0 auto!important}\nhtml body #emCandidateDetails.em-candidate-reference-v55.em-overview-compact .em-candidate-modal-body{flex:1 1 auto!important;min-height:0!important;padding:8px 24px!important;overflow:visible!important}\nhtml body #emCandidateDetails.em-candidate-reference-v55.em-overview-compact .em-candidate-modal-head{padding:10px 24px!important}\nhtml body #emCandidateDetails.em-candidate-reference-v55.em-overview-compact .em-candidate-modal-head>div:first-child{min-height:76px!important}\nhtml body #emCandidateDetails.em-candidate-reference-v55.em-overview-compact .em-candidate-modal-head h2{font-size:28px!important}\nhtml body #emCandidateDetails.em-candidate-reference-v55.em-overview-compact .em-wide-tabs button{font-size:14px!important;padding:9px 6px!important}\nhtml body #emCandidateDetails.em-candidate-reference-v55.em-overview-compact .em-wide-footer{padding:8px 24px!important}\nhtml body #emCandidateDetails.em-candidate-reference-v55.em-overview-compact .em-wide-block{padding:12px 16px!important}\nhtml body #emCandidateDetails.em-candidate-reference-v55.em-overview-compact .em-compact-summary{gap:7px!important}\n}\n@media(min-width:761px) and (max-height:680px){\nhtml body #emCandidateDetails.em-candidate-reference-v55.em-overview-compact .em-candidate-modal-head small{margin-bottom:5px!important}\nhtml body #emCandidateDetails.em-candidate-reference-v55.em-overview-compact .em-wide-overview h3{margin:0 0 4px!important}\nhtml body #emCandidateDetails.em-candidate-reference-v55.em-overview-compact .em-wide-block{padding:10px 14px!important}\nhtml body #emCandidateDetails.em-candidate-reference-v55.em-overview-compact .em-summary-facts{gap:7px 16px!important}\nhtml body #emCandidateDetails.em-candidate-reference-v55.em-overview-compact .em-summary-skills{padding-top:6px!important}\nhtml body #emCandidateDetails.em-candidate-reference-v55.em-overview-compact .em-wide-workflow .em-detail-note{padding-top:6px!important;margin-top:6px!important}\nhtml body #emCandidateDetails.em-candidate-reference-v55.em-overview-compact .em-detail-note>div{padding:7px 9px!important}\nhtml body #emCandidateDetails.em-candidate-reference-v55.em-overview-compact .em-wide-document-actions{padding-top:6px!important}\n}\n";document.head.appendChild(style);
+function icon(kind){
+ var el=document.createElementNS('http://www.w3.org/2000/svg','svg');el.setAttribute('viewBox','0 0 24 24');el.setAttribute('fill','none');el.setAttribute('stroke','currentColor');el.setAttribute('stroke-width','1.7');el.setAttribute('aria-hidden','true');
+ el.innerHTML=kind==='clock'?'<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/>':'<path d="m2 9 10-5 10 5-10 5-10-5Z"/><path d="M6 11v6c4 3 8 3 12 0v-6M22 9v7"/>';return el;
+}
+function correct(){
+ var modal=document.getElementById('emCandidateDetails');if(!modal)return;
+ var facts=modal.querySelector('.em-summary-facts');
+ if(facts&&!facts.dataset.referenceValues){
+  facts.dataset.referenceValues='true';
+  Array.from(facts.querySelectorAll('.em-summary-fact')).forEach(function(field){
+   var label=field.querySelector('small'),value=field.querySelector('p');
+   if(!label||!value)return;
+   var text=value.textContent.trim();
+   if(label.textContent==='Tempo de experiência'){
+    if(text==='Tempo de experiência não informado'){value.textContent='Não informado';}
+    value.prepend(icon('clock'));
+   }else if(label.textContent==='Escolaridade'){
+    var old=value.querySelector('svg');if(old)old.remove();
+    if(text==='Escolaridade não informada')value.textContent='Não informada';
+    value.prepend(icon('education'));
+   }
+  });
+ }
+}
+new MutationObserver(correct).observe(document.body,{childList:true,subtree:true});correct();
+})();
