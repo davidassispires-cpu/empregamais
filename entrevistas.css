@@ -25,3 +25,34 @@ html body .emi-schedule-popup .emi-schedule-footer button[type=submit]{backgroun
 html body .emi-schedule-popup :focus-visible{outline:2px solid #86bfff;outline-offset:2px}
 @media(max-width:520px){html body .emi-schedule-popup header{padding:18px 16px;gap:10px;grid-template-columns:40px minmax(0,1fr) 32px}html body .emi-schedule-popup h2{font-size:20px}html body .emi-schedule-popup .emi-schedule-icon{width:40px;height:40px}html body .emi-schedule-popup .emi-form{padding:16px 16px 0!important}html body .emi-schedule-popup .emi-schedule-timing{grid-template-columns:1fr 1fr}html body .emi-schedule-popup .emi-schedule-timing label:last-child{grid-column:1/-1}html body .emi-schedule-popup .emi-schedule-footer{margin:0 -16px;padding:14px 16px}html body .emi-schedule-popup .emi-schedule-footer button{flex:1;white-space:normal}}
 .emi-agenda-toolbar{display:flex;align-items:center;gap:12px;flex-wrap:wrap;justify-content:space-between;margin-bottom:16px}.emi-agenda-toolbar h3{margin:0;flex:1}.emi-agenda-toolbar select{width:auto;min-width:190px}.emi-agenda-empty{padding:24px;border:1px dashed #cbddef;border-radius:10px;background:#f8fbff;color:#617594}
+
+/* Agenda de entrevistas: apresentação compacta e responsiva. */
+#emInterviewAgenda{box-sizing:border-box;width:100%;max-width:960px;margin:0 auto;padding:24px;border:1px solid #e0e8f3;border-radius:16px;background:#fff;color:#173354}
+#emInterviewAgenda .emi-agenda-toolbar{gap:10px;padding-bottom:18px;margin-bottom:16px;border-bottom:1px solid #e9eef5}
+#emInterviewAgenda .emi-agenda-toolbar h3{font-size:19px;line-height:1.4;letter-spacing:-.3px;color:#163554}
+#emInterviewAgenda .emi-agenda-toolbar select{font-size:13px;min-height:42px;border-color:#d5e0ed;border-radius:9px}
+#emInterviewAgenda>p{margin:6px 0;font-size:13px;line-height:1.6;color:#63758b;white-space:normal}
+#emInterviewAgenda>p[role=status]{display:inline-flex;align-items:center;margin:12px 0 4px;padding:5px 10px;border-radius:6px;background:#f0f5fb;color:#365677;font-size:12px;font-weight:600}
+#emInterviewAgenda .emi-card{display:grid;grid-template-columns:minmax(0,1fr) auto;column-gap:20px;row-gap:5px;padding:20px 22px;margin:14px 0 0;border:1px solid #dce6f2;border-left:4px solid #1769bd;border-radius:12px;background:#fff;box-shadow:0 3px 12px #17335406;min-width:0}
+#emInterviewAgenda .emi-card h4{grid-column:1;grid-row:1;font-size:17px;line-height:1.4;margin:0;color:#163554;overflow-wrap:anywhere}
+#emInterviewAgenda .emi-card>p{grid-column:1;margin:0;font-size:13px;line-height:1.65;color:#61758c;white-space:normal;overflow-wrap:anywhere}
+#emInterviewAgenda .emi-card>p strong{font-size:15px;color:#1769bd;font-weight:700}
+#emInterviewAgenda .emi-card>.emi-badge{grid-column:2;grid-row:1;align-self:start;justify-self:end;font-size:12px;font-weight:600;line-height:1.4;padding:6px 11px;border-radius:7px;background:#edf5ff;color:#1769bd}
+#emInterviewAgenda .emi-card>.emi-reminder-due{grid-column:1/-1;margin:2px 0}
+#emInterviewAgenda .emi-card .emi-actions{grid-column:1/-1;display:flex;justify-content:flex-end;align-items:center;gap:10px;border-top:1px solid #e9eef5;margin:10px 0 0;padding-top:14px}
+#emInterviewAgenda button{min-height:42px;font:600 13px/1.4 Inter,Arial,sans-serif;transition:background .15s,border-color .15s}
+#emInterviewAgenda .emi-actions button[data-edit]{background:#1769bd!important;color:#fff!important;border-color:#1769bd!important}
+#emInterviewAgenda .emi-actions button[data-cancel],#emInterviewAgenda .emi-actions button[data-action=cancel]{background:#fff!important;color:#b33939!important;border-color:#ecd5d5!important}
+#emInterviewAgenda button:hover{filter:brightness(.97)}
+#emInterviewAgenda :focus-visible{outline:3px solid #a1c8f4;outline-offset:3px}
+#emInterviewAgenda .emi-agenda-empty{margin-top:16px;font-size:14px;line-height:1.7}
+@media(max-width:650px){
+#emInterviewAgenda{padding:16px;border-radius:12px}
+#emInterviewAgenda .emi-agenda-toolbar h3{flex-basis:100%;font-size:18px}
+#emInterviewAgenda .emi-agenda-toolbar select{flex:1;min-width:0;max-width:100%}
+#emInterviewAgenda .emi-card{padding:16px 14px;column-gap:10px}
+#emInterviewAgenda .emi-card h4{font-size:16px}
+#emInterviewAgenda .emi-card>.emi-badge{font-size:11px;padding:5px 8px}
+#emInterviewAgenda .emi-card .emi-actions{justify-content:stretch;gap:8px}
+#emInterviewAgenda .emi-actions button{flex:1 1 140px;white-space:normal}
+}
