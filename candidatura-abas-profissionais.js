@@ -540,3 +540,27 @@ m.querySelectorAll('.em-detail-note').forEach(function(note){note.remove();});
 }
 var queued=false;new MutationObserver(function(){if(queued)return;queued=true;requestAnimationFrame(function(){queued=false;compact();});}).observe(document.body,{childList:true,subtree:true});compact();
 })();
+
+/* Professional contact actions and stronger scheduling/favorite emphasis. */
+(function(){
+var s=document.createElement('style');s.id='em-candidate-actions-emphasis';
+var q='html body #emCandidateDetails.em-candidate-reference-v55.em-name-contact.em-actions-polished.em-image-approved.em-final-compact';
+s.textContent=`
+Q .em-name-contact-row{gap:10px!important}
+Q .em-name-contact-row .em-wide-contact-actions button{min-height:38px!important;height:38px!important;padding:8px 14px!important;border-radius:9px!important;border:1px solid #bed3f4!important;background:#edf4ff!important;color:#125cc8!important;font:600 13px/1.4 Inter,Arial,sans-serif!important;box-shadow:0 2px 5px rgba(16,37,76,.05)!important;transition:background .15s,box-shadow .15s,border-color .15s!important}
+Q .em-name-contact-row .em-wide-contact-actions button.em-contact-whatsapp,Q .em-name-contact-row .em-wide-contact-actions button[data-gc27-wa]{background:#eaf7ef!important;color:#167346!important;border-color:#b6ddc6!important}
+Q .em-name-contact-row .em-wide-contact-actions button:hover:not(:disabled){background:#deebff!important;border-color:#83aff0!important;box-shadow:0 3px 8px rgba(18,101,245,.1)!important}
+Q .em-name-contact-row .em-wide-contact-actions button[data-gc27-wa]:hover:not(:disabled){background:#daf1e3!important;border-color:#87c6a4!important}
+Q .em-name-contact-row .em-wide-contact-actions button:disabled{opacity:1!important;color:#7b8fae!important;background:#f4f7fb!important;border-color:#dce5f1!important;box-shadow:none!important;cursor:default!important}
+Q .em-name-contact-row .em-phone-card{min-height:38px!important;padding:8px 14px!important;border:1px solid #cbd7e8!important;border-radius:9px!important;background:#f0f4f9!important;color:#294363!important;font:600 13px/1.4 Inter,Arial,sans-serif!important;box-shadow:0 2px 5px rgba(16,37,76,.04)!important;user-select:text!important}
+Q .em-name-contact-row svg{width:17px!important;height:17px!important}
+Q .em-candidate-modal-head .em-interview-cta{min-height:44px!important;padding:11px 20px!important;border-radius:10px!important;background:#1265f5!important;border:1px solid #0756da!important;color:#fff!important;font:650 14px/1.4 Inter,Arial,sans-serif!important;box-shadow:0 4px 10px rgba(18,101,245,.22)!important;gap:10px!important;transition:background .15s,box-shadow .15s!important}
+Q .em-candidate-modal-head .em-interview-cta:hover{background:#0756da!important;box-shadow:0 5px 14px rgba(18,101,245,.28)!important}
+Q .em-candidate-modal-head .em-interview-cta svg{width:19px!important;height:19px!important}
+Q .em-candidate-modal-head .em-wide-favorite{display:inline-flex!important;align-items:center!important;justify-content:center!important;gap:6px!important;min-height:30px!important;padding:5px 11px!important;border:1px solid #e7d396!important;border-radius:8px!important;background:#fff9e9!important;color:#806015!important;font:600 12px/1.4 Inter,Arial,sans-serif!important;box-shadow:0 2px 4px rgba(128,96,21,.04)!important;top:12px!important;right:58px!important;cursor:pointer!important}
+Q .em-candidate-modal-head .em-wide-favorite:hover{background:#fff0c4!important;border-color:#d3b65d!important}
+Q .em-candidate-modal-head .em-wide-favorite[aria-pressed="true"]{background:#ffedb5!important;border-color:#d1a83a!important;color:#71500a!important}
+Q :is(.em-interview-cta,.em-wide-favorite,.em-wide-contact-actions button):focus-visible{outline:3px solid #a7c9ff!important;outline-offset:3px!important}
+@media(max-width:760px){Q .em-name-contact-row{gap:7px!important}Q .em-name-contact-row .em-wide-contact-actions button,Q .em-name-contact-row .em-phone-card{padding:7px 10px!important;font-size:12px!important}Q .em-candidate-modal-head .em-wide-favorite{top:8px!important;right:50px!important;min-height:27px!important;font-size:11px!important;padding:4px 8px!important}Q .em-candidate-modal-head h2{padding-right:110px!important}}
+`.replace(/Q(?=[\s.{[:>])/g,q);document.head.appendChild(s);
+})();
