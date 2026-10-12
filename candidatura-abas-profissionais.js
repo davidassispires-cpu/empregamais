@@ -358,7 +358,7 @@ function decorate(){var m=document.getElementById('emCandidateDetails');if(!m||!
 m.querySelectorAll('.em-wide-block h3,.em-summary-skills>small,.em-detail-note>small').forEach(function(n){if(n.querySelector('.em-image-icon'))return;var kind=n.closest('.em-detail-note')?'note':n.closest('.em-summary-skills')?'star':n.closest('.em-wide-workflow')?'process':'file';n.prepend(svg(kind));});
 var workflow=m.querySelector('.em-wide-workflow');if(workflow&&!workflow.querySelector('.em-image-process-caption')){var caption=document.createElement('p');caption.className='em-image-process-caption';caption.textContent='Selecione a etapa da candidatura';var title=workflow.querySelector('h3');if(title)title.after(caption);}
 m.querySelectorAll('.em-stage-card').forEach(function(b){if(b.dataset.imageDecorated)return;var info=stageInfo[b.dataset.stage],label=b.querySelector('.em-stage-label'),icon=b.querySelector('.em-stage-icon');if(!info||!label||!icon)return;b.dataset.imageDecorated='true';icon.replaceChildren(svg(info[0]));var text=document.createElement('small');text.className='em-stage-description';text.textContent=info[1];label.appendChild(text);});
-var actions=m.querySelector('.em-wide-contact-actions'),phone=m.querySelector('.em-phone-card');if(actions&&phone&&!actions.querySelector('[data-image-call]')){var value=phone.querySelector('span:not(.em-phone-label)'),number=value?value.textContent.replace(/[^0-9+]/g,''):'';var b=document.createElement('button');b.type='button';b.dataset.imageCall='true';b.appendChild(svg('phone'));b.appendChild(document.createTextNode('Ligar'));b.disabled=!number;b.onclick=function(){if(number)location.href='tel:'+number;};actions.appendChild(b);}
+var actions=m.querySelector('.em-wide-contact-actions'),phone=m.querySelector('.em-phone-card');if(false /* Phone is displayed as contact text, without a call button. */){var value=phone.querySelector('span:not(.em-phone-label)'),number=value?value.textContent.replace(/[^0-9+]/g,''):'';var b=document.createElement('button');b.type='button';b.dataset.imageCall='true';b.appendChild(svg('phone'));b.appendChild(document.createTextNode('Ligar'));b.disabled=!number;b.onclick=function(){if(number)location.href='tel:'+number;};actions.appendChild(b);}
 }
 var queued=false;function schedule(){if(queued)return;queued=true;requestAnimationFrame(function(){queued=false;decorate();});}new MutationObserver(schedule).observe(document.body,{childList:true,subtree:true});decorate();
 })();
@@ -492,4 +492,51 @@ activate(modal,modal.dataset.activeCandidateTab||(active&&keys[active.textConten
 var queued=false;
 new MutationObserver(function(){if(queued)return;queued=true;requestAnimationFrame(function(){queued=false;sync();});}).observe(document.body,{childList:true,subtree:true});
 sync();
+})();
+
+/* Compact wide dialog with the candidate phone beside WhatsApp. */
+(function(){
+'use strict';
+var q='html body #emCandidateDetails.em-candidate-reference-v55.em-name-contact.em-actions-polished.em-image-approved.em-final-compact';
+var s=document.createElement('style');s.id='em-candidate-final-compact';
+s.textContent=`
+Q{width:min(1320px,calc(100vw - 32px))!important;max-width:1320px!important}
+Q .em-detail-note,Q [data-image-call],Q .em-wide-contact-actions [data-gc27-tel]{display:none!important}
+Q .em-name-contact-row{display:flex!important;flex-wrap:nowrap!important;gap:10px!important;align-items:center!important;margin-top:7px!important}
+Q .em-name-contact-row .em-wide-contact-actions{display:flex!important;flex-wrap:nowrap!important;width:auto!important;gap:8px!important;flex:0 0 auto!important}
+Q .em-name-contact-row .em-wide-contact-actions button{width:auto!important;flex:0 0 auto!important;min-width:0!important}
+Q .em-name-contact-row .em-phone-card{display:inline-flex!important;align-items:center!important;gap:7px!important;background:#f7faff!important;border:1px solid #dce6f1!important;border-radius:7px!important;min-height:34px!important;padding:6px 10px!important;margin:0!important;font:500 13px/1.4 Inter,Arial,sans-serif!important;color:#526b90!important;white-space:nowrap!important}
+Q .em-phone-card .em-phone-label{display:none!important}
+Q .em-phone-card svg{width:16px!important;height:16px!important;color:#1265f5!important}
+@media(min-width:761px){
+Q[open]{height:auto!important;max-height:calc(100dvh - 20px)!important}
+Q .em-candidate-modal-head{padding:14px 22px 8px!important;min-height:100px!important;gap:12px!important}
+Q .em-candidate-modal-head>div:first-child{padding-left:78px!important;min-height:78px!important}
+Q .em-wide-avatar{width:62px!important;height:62px!important;font-size:24px!important}
+Q .em-candidate-modal-head h2{font-size:25px!important;margin-bottom:2px!important}
+Q .em-candidate-modal-head p{font-size:13px!important;line-height:1.35!important}
+Q .em-detail-city{font-size:12px!important;margin-top:3px!important}
+Q .em-candidate-modal-head .em-interview-cta{align-self:center!important;margin:20px 0 0!important;min-height:38px!important;font-size:13px!important}
+Q .em-wide-tabs{min-height:40px!important;padding:0 22px!important}
+Q .em-wide-tabs button{min-height:40px!important;padding:9px 4px!important}
+Q>.em-candidate-modal-body{height:auto!important;flex:0 0 auto!important;padding:12px 22px!important;overflow:visible!important;max-height:none!important}
+Q .em-wide-overview{grid-template-columns:minmax(0,1fr) minmax(0,1.15fr)!important;gap:22px!important}
+Q .em-wide-overview>.em-wide-workflow{padding-left:22px!important}
+Q .em-summary-facts{display:grid!important;grid-template-columns:1fr 1fr!important;gap:0 14px!important}
+Q .em-summary-fact:first-child{grid-column:1/-1!important}
+Q .em-summary-fact{padding:8px 0!important}
+Q .em-summary-skills{padding:9px 0!important}
+Q .em-stage-cards .em-stage-card{min-height:64px!important;padding:8px 10px!important}
+Q .em-wide-workflow .em-wide-hint{margin:6px 0!important}
+Q .em-detail-save{display:flex!important;width:auto!important;float:none!important;min-height:34px!important;margin:4px 0 0 auto!important;padding:7px 18px!important}
+Q .em-wide-footer{min-height:46px!important;padding:9px 22px!important}
+}
+@media(max-width:760px){Q .em-name-contact-row{flex-wrap:wrap!important}Q .em-name-contact-row .em-phone-card{font-size:12px!important}Q .em-candidate-modal-head{min-height:0!important}Q .em-candidate-modal-head>div:first-child{min-height:0!important}Q .em-detail-save{width:auto!important}}
+`.replace(/Q(?=[\s.{[:>])/g,q);document.head.appendChild(s);
+function compact(){
+var m=document.getElementById('emCandidateDetails');if(!m)return;m.classList.add('em-final-compact');
+m.querySelectorAll('[data-image-call]').forEach(function(button){button.remove();});
+m.querySelectorAll('.em-detail-note').forEach(function(note){note.remove();});
+}
+var queued=false;new MutationObserver(function(){if(queued)return;queued=true;requestAnimationFrame(function(){queued=false;compact();});}).observe(document.body,{childList:true,subtree:true});compact();
 })();
