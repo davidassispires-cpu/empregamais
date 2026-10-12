@@ -42,9 +42,15 @@
   function installDemoData() {
     if(!demoMode||window.__emRealCandidatesDemo)return;
     window.__emRealCandidatesDemo=true;
-    function memoryStorage(){var values=new Map();return {getItem:function(k){return values.has(String(k))?values.get(String(k)):null},setItem:function(k,v){values.set(String(k),String(v))},removeItem:function(k){values.delete(String(k))},clear:function(){values.clear()},key:function(i){return Array.from(values.keys())[i]||null},get length(){return values.size}};}
-    Object.defineProperty(window,'localStorage',{value:memoryStorage(),configurable:true});
-    Object.defineProperty(window,'sessionStorage',{value:memoryStorage(),configurable:true});
+    var demoBacking=window.localStorage;
+    function memoryStorage(namespace){
+      var storageKey='emDemoStorageV2:'+namespace,values=new Map();
+      try{var saved=JSON.parse(demoBacking.getItem(storageKey)||'[]');if(Array.isArray(saved))values=new Map(saved);}catch(ignore){}
+      function persist(){try{demoBacking.setItem(storageKey,JSON.stringify(Array.from(values.entries())));}catch(ignore){}}
+      return {getItem:function(k){return values.has(String(k))?values.get(String(k)):null},setItem:function(k,v){values.set(String(k),String(v));persist();},removeItem:function(k){values.delete(String(k));persist();},clear:function(){values.clear();persist();},key:function(i){return Array.from(values.keys())[i]||null},get length(){return values.size}};
+    }
+    Object.defineProperty(window,'localStorage',{value:memoryStorage('local'),configurable:true});
+    Object.defineProperty(window,'sessionStorage',{value:memoryStorage('session'),configurable:true});
     var demoCompany={nome:'Empresa Demonstração',nomeFantasia:'Empresa Demonstração',cnpj:'00000000000100',email:'empresa@example.com',cidade:'Belo Horizonte',uf:'MG',plano:'basico'};
     window.__emDemoCompany=demoCompany;
     sessionStorage.setItem('empregaMaisPapel','empresa');sessionStorage.setItem('empresaNome',demoCompany.nome);sessionStorage.setItem('empresaCnpj',demoCompany.cnpj);sessionStorage.setItem('empresaEmail',demoCompany.email);
