@@ -1,3 +1,15 @@
+/* Public aggregates: reuse results across DOM rebuilds; never cache private RPCs. */
+(function(){
+ var cache=new Map();
+ window.emCachedPublicSummary=function(name,body,load){
+  var key=JSON.stringify([name,body]),entry=cache.get(key),now=Date.now();
+  if(entry&&entry.pending)return entry.pending;
+  if(entry&&now-entry.at<(entry.error?30000:120000))return entry.error?Promise.reject(entry.error):Promise.resolve(entry.value);
+  var pending=Promise.resolve().then(load).then(function(value){if(cache.get(key)&&cache.get(key).pending===pending)cache.set(key,{at:Date.now(),value:value});return value;}).catch(function(error){if(cache.get(key)&&cache.get(key).pending===pending)cache.set(key,{at:Date.now(),error:error});throw error;});
+  cache.set(key,{pending:pending});return pending;
+ };
+ window.emInvalidatePublicSummaries=function(){cache.clear();};
+})();
 (function(){
 'use strict';
 var page,scheduled=false;
@@ -212,10 +224,14 @@ var queued=false;
 var BASE='https://mkezlcewyengejdmtppl.supabase.co',KEY='sb_publishable_8YnXpzGX8zj-tvzvcMYdyw_FVBhQutR';
 var questions=[['comunicacao','Como foi a comunicação durante o processo seletivo?','Comunicação'],['clareza','As etapas e as orientações da entrevista foram claras?','Clareza das etapas'],['organizacao','Como foi a organização e o cumprimento dos horários?','Organização'],['respeito','Você foi tratado com respeito durante a entrevista?','Respeito'],['feedback','Como foi o retorno sobre o andamento ou resultado do processo?','Retorno do processo']];
 function el(tag,cls,text){var n=document.createElement(tag);n.className=cls||'';if(text!==undefined)n.textContent=text;return n;}
-async function rpc(name,body,secure){
+async function rpcRaw(name,body,secure){
  var token=sessionStorage.getItem('empregaMaisSupabaseAccessToken');if(secure&&!token)throw Error('Entre na sua conta de candidato para verificar sua entrevista.');
  var ctrl=new AbortController(),timer=setTimeout(function(){ctrl.abort();},12000);
  try{var r=await fetch(BASE+'/rest/v1/rpc/'+name,{method:'POST',headers:{apikey:KEY,Authorization:'Bearer '+(secure?token:KEY),'Content-Type':'application/json'},body:JSON.stringify(body),signal:ctrl.signal});var data=await r.json().catch(function(){return null;});if(!r.ok){var message=data&&data.message||'';if(/exceed_egress_quota|restricted|spend caps/i.test(message))throw Error('Avaliações temporariamente indisponíveis. O serviço de dados do site atingiu o limite de uso. Tente novamente após a normalização.');throw Error(r.status===401?'Sua sessão expirou. Entre novamente.':'Não foi possível acessar as avaliações agora. Tente novamente mais tarde.');}return data;}catch(e){if(e.name==='AbortError')throw Error('A conexão demorou. Tente novamente.');throw e;}finally{clearTimeout(timer);}
+}
+function rpc(name,body,secure){
+ if(!secure&&['em_process_review_summary','em_hiring_summary'].includes(name))return window.emCachedPublicSummary(name,body,function(){return rpcRaw(name,body,secure);});
+ return rpcRaw(name,body,secure).then(function(data){if(secure)window.emInvalidatePublicSummaries();return data;});
 }
 function company(host){
  if(host.id==='emGriffPublic')return {cnpj:'66909443000108',nome:(host.querySelector('.gp-name h1')||{}).textContent||'esta empresa'};
@@ -282,7 +298,11 @@ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',
 'use strict';
 var queued=false,BASE='https://mkezlcewyengejdmtppl.supabase.co',KEY='sb_publishable_8YnXpzGX8zj-tvzvcMYdyw_FVBhQutR';
 function el(t,c,s){var n=document.createElement(t);n.className=c||'';if(s!==undefined)n.textContent=s;return n;}
-async function rpc(name,body,secure){var token=sessionStorage.getItem('empregaMaisSupabaseAccessToken');if(secure&&!token)throw Error('Entre na sua conta de candidato.');var ctrl=new AbortController(),timer=setTimeout(function(){ctrl.abort();},12000);try{var r=await fetch(BASE+'/rest/v1/rpc/'+name,{method:'POST',headers:{apikey:KEY,Authorization:'Bearer '+(secure?token:KEY),'Content-Type':'application/json'},body:JSON.stringify(body||{}),signal:ctrl.signal});var data=await r.json().catch(function(){return null;});if(!r.ok)throw Error(/exceed_egress_quota|restricted|spend caps/i.test(data&&data.message||'')?'Indicadores temporariamente indisponíveis. O serviço de dados atingiu o limite de uso.':r.status===401?'Sua sessão expirou. Entre novamente.':'Não foi possível acessar os dados agora. Tente novamente.');return data;}catch(e){if(e.name==='AbortError')throw Error('A conexão demorou. Tente novamente.');throw e;}finally{clearTimeout(timer);}}
+async function rpcRaw(name,body,secure){var token=sessionStorage.getItem('empregaMaisSupabaseAccessToken');if(secure&&!token)throw Error('Entre na sua conta de candidato.');var ctrl=new AbortController(),timer=setTimeout(function(){ctrl.abort();},12000);try{var r=await fetch(BASE+'/rest/v1/rpc/'+name,{method:'POST',headers:{apikey:KEY,Authorization:'Bearer '+(secure?token:KEY),'Content-Type':'application/json'},body:JSON.stringify(body||{}),signal:ctrl.signal});var data=await r.json().catch(function(){return null;});if(!r.ok)throw Error(/exceed_egress_quota|restricted|spend caps/i.test(data&&data.message||'')?'Indicadores temporariamente indisponíveis. O serviço de dados atingiu o limite de uso.':r.status===401?'Sua sessão expirou. Entre novamente.':'Não foi possível acessar os dados agora. Tente novamente.');return data;}catch(e){if(e.name==='AbortError')throw Error('A conexão demorou. Tente novamente.');throw e;}finally{clearTimeout(timer);}}
+function rpc(name,body,secure){
+ if(!secure&&['em_process_review_summary','em_hiring_summary'].includes(name))return window.emCachedPublicSummary(name,body,function(){return rpcRaw(name,body,secure);});
+ return rpcRaw(name,body,secure).then(function(data){if(secure)window.emInvalidatePublicSummaries();return data;});
+}
 function companyCnpj(host){if(host.id==='emGriffPublic')return '66909443000108';var q=new URLSearchParams(location.search);if(q.get('cnpj'))return q.get('cnpj');var name=(document.getElementById('empresaPublicaNome')||{}).textContent,list=[];try{list=window.emLinkEmpresa?window.emLinkEmpresa.catalogo():typeof empresasCadastradas==='function'?empresasCadastradas():[];}catch(e){}var company=list.find(function(e){return q.get('empresa')&&e.linkEmpresaSlug===q.get('empresa')||[e.nome,e.nomeFantasia,e.nome_fantasia].includes(name);});return company&&company.cnpj||'';}
 function setupPublic(){
  var page=document.getElementById('pagina-empresa-publica');if(!page)return;var host=page.querySelector('#emGriffPublic')||page.querySelector('.empresa-publica');if(!host)return;var panel=host.querySelector('#emCompanyPanel-3');if(!panel||panel.dataset.hiringDashboard)return;panel.dataset.hiringDashboard='1';panel.classList.add('em-hiring-dashboard');panel.replaceChildren();
