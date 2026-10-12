@@ -3,7 +3,7 @@
  var base='https://mkezlcewyengejdmtppl.supabase.co/rest/v1/';
  var key='sb_publishable_8YnXpzGX8zj-tvzvcMYdyw_FVBhQutR';
  var fields=['status','favoritoRecrutador','observacaoRecrutador','statusAtualizadoEm','contratadoEm'];
- var remote={},owner='',pending={},busy=false,ready=false,timer,lastPull=0;
+ var remote={},owner='',pending={},busy=false,ready=false,timer,lastPull=0,lastAttempt=0,failures=0;
  var feedback='';
  function token(){return sessionStorage.getItem('empregaMaisSupabaseAccessToken')||'';}
  function cnpj(){var current=typeof window.obterEmpresaAtual==='function'?window.obterEmpresaAtual():null;return String(sessionStorage.getItem('empresaCnpj')||localStorage.getItem('empresaCnpj')||current&&current.cnpj||'').replace(/\D/g,'');}
@@ -28,7 +28,7 @@
   bar.firstChild.textContent=text;bar.lastChild.disabled=busy;
  }
  function switchOwner(){
-  var next=cnpj();if(owner===next)return;owner=next;remote={};pending={};ready=false;lastPull=0;
+  var next=cnpj();if(owner===next)return;owner=next;remote={};pending={};ready=false;lastPull=0;lastAttempt=0;failures=0;
   if(owner){try{pending=JSON.parse(localStorage.getItem(queueKey())||'{}');}catch(e){pending={};}}
  }
  function merge(rows){
@@ -37,24 +37,26 @@
   originalSave(all);
  }
  async function sync(force){
-  switchOwner();if(busy||!owner||!token())return;
-  if(!force&&ready&&!Object.keys(pending).length&&Date.now()-lastPull<30000){show(feedback);return;}
-  var requestOwner=owner,access=token();busy=true;show('Sincronizando etapas, anotações e favoritos…');
+  switchOwner();if(busy||!owner||!token()||navigator.onLine===false)return;
+  if(!force&&(document.hidden||Date.now()-lastAttempt<Math.min(300000,30000*Math.pow(2,failures))))return;
+  if(!force&&ready&&!Object.keys(pending).length&&Date.now()-lastPull<120000){show(feedback);return;}
+  var requestOwner=owner,access=token();busy=true;lastAttempt=Date.now();show('Sincronizando etapas, anotações e favoritos…');
   try{
    if(!ready){var initial=await api('rpc/em_sync_recruiter_state',{method:'POST',body:JSON.stringify({p_company_cnpj:owner,p_changes:[]})});
     if(owner!==requestOwner||cnpj()!==requestOwner||token()!==access)return;merge(initial);ready=true;
     var jobs=ownedJobs();originalLoad().forEach(function(c){var id=String(c.id);if(remote[id]||pending[id]||!jobs.has(job(c)))return;
      if(c.observacaoRecrutador||c.favoritoRecrutador||c.statusAtualizadoEm){var state={};fields.forEach(function(f){if(c[f]!==undefined)state[f]=c[f];});pending[id]={application_ref:id,job_ref:job(c),state:state};}
     });remember();
+    if(!Object.keys(pending).length){lastPull=Date.now();failures=0;show('Etapas, anotações e favoritos sincronizados.');if(!document.getElementById('emCandidateDetails')&&typeof window.renderizarCandidatosEmpresa==='function')window.renderizarCandidatosEmpresa();return;}
    }
    var batch=Object.keys(pending).slice(0,100).map(function(id){return JSON.parse(JSON.stringify(pending[id]));});
    var rows=await api('rpc/em_sync_recruiter_state',{method:'POST',body:JSON.stringify({p_company_cnpj:requestOwner,p_changes:batch})});
    if(cnpj()!==requestOwner||token()!==access)return;
    batch.forEach(function(sent){var current=pending[sent.application_ref];if(!current)return;Object.keys(sent.state).forEach(function(f){if(JSON.stringify(current.state[f])===JSON.stringify(sent.state[f]))delete current.state[f];});if(!Object.keys(current.state).length)delete pending[sent.application_ref];});
-   remember();merge(rows);lastPull=Date.now();show(Object.keys(pending).length?'Há alterações aguardando sincronização.':'Etapas, anotações e favoritos sincronizados.');
+   remember();merge(rows);lastPull=Date.now();failures=0;show(Object.keys(pending).length?'Há alterações aguardando sincronização.':'Etapas, anotações e favoritos sincronizados.');
    if(!document.getElementById('emCandidateDetails')&&typeof window.renderizarCandidatosEmpresa==='function')window.renderizarCandidatosEmpresa();
-  }catch(e){show('Salvo neste navegador. Sincronização pendente: '+(e.name==='AbortError'?'conexão demorou a responder.':e.message));}
-  finally{busy=false;show(feedback);if(Object.keys(pending).length&&ready)timer=setTimeout(function(){sync(true);},10000);}
+  }catch(e){failures++;show('Salvo neste navegador. Sincronização pendente: '+(e.name==='AbortError'?'conexão demorou a responder.':e.message));}
+  finally{busy=false;show(feedback);if(Object.keys(pending).length&&ready)timer=setTimeout(function(){sync(true);},Math.min(300000,10000*Math.pow(2,failures)));}
  }
  var originalLoad,originalSave;
  function install(){
@@ -70,7 +72,7 @@
    var result=originalSave.apply(this,arguments);if(owner&&Object.keys(pending).length){remember();show('Salvo neste navegador. Sincronizando…');clearTimeout(timer);timer=setTimeout(function(){sync(true);},300);}return result;
   };
   window.sincronizarEstadoCandidaturasEM=sync;
-  setInterval(function(){var page=document.getElementById('pagina-candidatos-empresa');if(page&&page.classList.contains('ativa')&&!document.hidden)sync(false);},5000);
+  setInterval(function(){var page=document.getElementById('pagina-candidatos-empresa');if(page&&page.classList.contains('ativa')&&!document.hidden)sync(false);},30000);
   window.addEventListener('online',function(){sync(true);});window.addEventListener('focus',function(){sync(false);});
  }
  window.registrarDenunciaVaga=async function(id,motivo,relato){
