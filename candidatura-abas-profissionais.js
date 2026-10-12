@@ -564,3 +564,44 @@ Q :is(.em-interview-cta,.em-wide-favorite,.em-wide-contact-actions button):focus
 @media(max-width:760px){Q .em-name-contact-row{gap:7px!important}Q .em-name-contact-row .em-wide-contact-actions button,Q .em-name-contact-row .em-phone-card{padding:7px 10px!important;font-size:12px!important}Q .em-candidate-modal-head .em-wide-favorite{top:8px!important;right:50px!important;min-height:27px!important;font-size:11px!important;padding:4px 8px!important}Q .em-candidate-modal-head h2{padding-right:110px!important}}
 `.replace(/Q(?=[\s.{[:>])/g,q);document.head.appendChild(s);
 })();
+
+/* Explain portal interviews without changing the scheduling flow. */
+(function(){
+'use strict';
+var style=document.createElement('style');style.id='em-interview-help-style';
+style.textContent=`
+html body #emCandidateDetails .em-interview-help-link{position:absolute;right:24px;bottom:4px;padding:3px 0;border:0;background:transparent;color:#125cc8;font:500 12px/1.4 Inter,Arial,sans-serif;text-decoration:underline;text-underline-offset:3px;cursor:pointer}
+html body #emInterviewHelp{width:min(520px,calc(100vw - 32px));max-height:calc(100dvh - 32px);overflow:auto;padding:28px;border:1px solid #dce6f2;border-radius:16px;background:white;color:#10254c;box-shadow:0 20px 60px #10254c30;font:400 14px/1.6 Inter,Arial,sans-serif;box-sizing:border-box}
+html body #emInterviewHelp::backdrop{background:#142b4670}
+html body #emInterviewHelp h2{margin:0 24px 12px 0;font:700 23px/1.3 Inter,Arial,sans-serif;letter-spacing:-.4px;color:#10254c}
+html body #emInterviewHelp p{margin:0 0 18px;color:#526b90}
+html body #emInterviewHelp ol{list-style:none;padding:0;margin:20px 0;display:grid;gap:10px;counter-reset:steps}
+html body #emInterviewHelp li{counter-increment:steps;position:relative;padding:12px 12px 12px 50px;border:1px solid #e1e9f4;border-radius:10px;background:#f6f9fe;color:#526b90}
+html body #emInterviewHelp li::before{content:counter(steps);position:absolute;left:12px;top:13px;width:26px;height:26px;display:grid;place-items:center;border-radius:8px;background:#dfedff;color:#1265f5;font-weight:700}
+html body #emInterviewHelp strong{color:#10254c}
+html body #emInterviewHelp .em-help-close{position:absolute;right:16px;top:14px;background:transparent;border:0;color:#526b90;padding:4px;cursor:pointer}
+html body #emInterviewHelp .em-help-close svg{width:20px;height:20px}
+html body #emInterviewHelp .em-help-schedule{width:100%;min-height:44px;border:1px solid #1265f5;border-radius:9px;background:#1265f5;color:#fff;font:600 14px/1.4 Inter,Arial,sans-serif;padding:11px 16px;cursor:pointer}
+html body #emInterviewHelp .em-help-schedule:hover{background:#0756da}
+html body #emInterviewHelp button:focus-visible,html body #emCandidateDetails .em-interview-help-link:focus-visible{outline:3px solid #a7c9ff;outline-offset:3px}
+@media(max-width:760px){html body #emCandidateDetails .em-interview-help-link{position:static;display:block;width:100%;text-align:center;padding:5px 0}html body #emInterviewHelp{padding:22px}}
+`;document.head.appendChild(style);
+function openHelp(cta){
+var existing=document.getElementById('emInterviewHelp');if(existing){existing.close();existing.remove();}
+var dialog=document.createElement('dialog');dialog.id='emInterviewHelp';dialog.setAttribute('aria-labelledby','emInterviewHelpTitle');
+dialog.innerHTML='<button class="em-help-close" type="button" aria-label="Fechar explicação"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18"/></svg></button><h2 id="emInterviewHelpTitle">Chega de organizar entrevistas pelo WhatsApp.</h2><p>Ganhe tempo e conduza suas entrevistas diretamente pelo +Empregos. Agende o horário e encontre o candidato em uma sala de videochamada dentro do portal.</p><ol><li><strong>Agende.</strong> Escolha a data e o horário da entrevista online pelo portal.</li><li><strong>Confirme.</strong> O candidato recebe o convite na área dele e confirma a presença.</li><li><strong>Converse.</strong> Empresa e candidato acessam a sala pelo portal no horário combinado.</li></ol><p>Tudo em um só lugar, com mais organização para o seu processo seletivo.</p><button type="button" class="em-help-schedule">Agendar minha entrevista</button>';
+document.body.appendChild(dialog);
+dialog.querySelector('.em-help-close').onclick=function(){dialog.close();};
+dialog.querySelector('.em-help-schedule').onclick=function(){dialog.close();if(cta.isConnected)cta.click();};
+dialog.addEventListener('click',function(e){if(e.target===dialog)dialog.close();});
+dialog.addEventListener('close',function(){dialog.remove();});
+dialog.showModal();
+}
+function attach(){
+var modal=document.getElementById('emCandidateDetails');if(!modal)return;
+var head=modal.querySelector('.em-candidate-modal-head'),cta=modal.querySelector('.em-interview-cta');
+if(!head||!cta||head.querySelector('.em-interview-help-link'))return;
+var link=document.createElement('button');link.type='button';link.className='em-interview-help-link';link.textContent='Como funciona?';link.setAttribute('aria-haspopup','dialog');link.onclick=function(){openHelp(cta);};head.appendChild(link);
+}
+var queued=false;new MutationObserver(function(){if(queued)return;queued=true;requestAnimationFrame(function(){queued=false;attach();});}).observe(document.body,{childList:true,subtree:true});attach();
+})();
