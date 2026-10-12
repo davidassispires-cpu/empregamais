@@ -29,10 +29,22 @@ ${scope} .gc-ref-stage-wrap select[data-stage-color="Em contato"]{background:#f0
 @container(max-width:800px){${scope} .em-candidate-row{grid-template-columns:minmax(0,1fr) minmax(0,1fr)!important;gap:14px!important}${scope} .em-row-controls{grid-column:2!important;grid-row:1!important}${scope} .gc-ref-adherence{grid-column:1!important;grid-row:2!important}${scope} .gc-ref-stage-wrap{grid-column:2!important;grid-row:2!important}}
 @media(max-width:600px){${scope}{padding:14px!important}${scope} .em-candidate-row{grid-template-columns:1fr!important;gap:12px!important}${scope} .em-candidate-row>*{grid-column:1!important;grid-row:auto!important}${scope} .em-row-controls{grid-row:4!important}${scope} .gc-ref-adherence{justify-content:flex-start!important}${scope} .em-gc27-name{font-size:16px!important}}
 `;
+css+=`${scope} .gc-ref-adherence{display:flex!important;flex-direction:column!important;align-items:flex-start!important;justify-content:center!important;gap:6px!important;min-height:80px!important;padding:0 18px!important;border-left:1px solid #e4eaf2!important;border-radius:0!important;background:#fff!important}
+${scope} .em-match-overline{font-size:9px;font-weight:650;letter-spacing:1.4px;color:#758199;line-height:1.3}
+${scope} .em-match-score{font-size:29px;font-weight:750;color:#102744;line-height:1.05;letter-spacing:-1px}${scope} .em-match-score small{font-size:17px!important;font-weight:650!important;color:#102744!important}
+${scope} .em-match-ticks{display:grid;grid-template-columns:repeat(20,minmax(0,1fr));gap:3px;width:100%;max-width:180px;height:12px}${scope} .em-match-ticks i{display:block;background:#e1e6ee;border-radius:2px}${scope} .em-match-ticks i.filled{background:#0876ef}
+${scope} .em-match-caption{font-size:10px;color:#7c8ba2;line-height:1.3}
+${scope} .gc-ref-stage-wrap{border-left:1px solid #e4eaf2!important;padding-left:18px!important}${scope} .em-row-controls{border-left:1px solid #e4eaf2!important;padding-left:18px!important}
+@media(max-width:600px){${scope} .gc-ref-adherence,${scope} .gc-ref-stage-wrap,${scope} .em-row-controls{border-left:0!important;padding-left:0!important}${scope} .gc-ref-adherence{padding:10px 0!important}}
+`;
 var style=document.createElement('style');style.id='em-candidate-compact-v1';style.textContent=css;document.head.appendChild(style);
 function upgrade(){document.querySelectorAll('#listaCandidatosEmpresa .em-gc27-card:not(.em-compact-v1)').forEach(function(card){
 var actions=card.querySelector('.gc-ref-actions'),match=card.querySelector('.gc-ref-adherence'),cv=card.querySelector('.gc-ref-cv'),open=card.querySelector('.em-v36-toggle');if(!actions||!match||!cv||!open)return;
-var value=match.querySelector('strong'),text=value?value.textContent.trim():'—',score=Number.parseFloat(text),ring=document.createElement('span');ring.className='em-match-ring';ring.style.setProperty('--match',Number.isFinite(score)?Math.max(0,Math.min(100,score)):0);var percent=document.createElement('b');percent.textContent=text;ring.appendChild(percent);var label=document.createElement('span');label.className='em-match-label';label.textContent='Aderência à vaga';match.replaceChildren(ring,label);
+var value=match.querySelector('strong'),text=value?value.textContent.trim():'—',score=Number.parseFloat(text);
+var overline=document.createElement('span');overline.className='em-match-overline';overline.textContent='ADERÊNCIA À VAGA';
+var number=document.createElement('span');number.className='em-match-score';number.textContent=Number.isFinite(score)?String(score):'—';if(Number.isFinite(score)){var symbol=document.createElement('small');symbol.textContent='%';number.appendChild(symbol);}
+var ticks=document.createElement('span');ticks.className='em-match-ticks';ticks.setAttribute('aria-hidden','true');for(var t=0;t<20;t++){var tick=document.createElement('i');if(Number.isFinite(score)&&t<Math.round(Math.max(0,Math.min(100,score))/5))tick.className='filled';ticks.appendChild(tick);}
+var caption=document.createElement('span');caption.className='em-match-caption';caption.textContent='Compatibilidade do perfil';match.replaceChildren(overline,number,ticks,caption);
 var footer=document.createElement('div');footer.className='em-card-footer';footer.append(cv,open);card.appendChild(footer);
 var favorite=card.querySelector('.gc-ref-favorite span');if(favorite&&!card.querySelector('.gc-ref-favorite.selected'))favorite.textContent='Favoritar candidato';
 var name=card.querySelector('.em-gc27-name');if(name)name.textContent=name.textContent.toLocaleLowerCase('pt-BR').replace(/(^|\s)\S/g,function(c){return c.toLocaleUpperCase('pt-BR')});
