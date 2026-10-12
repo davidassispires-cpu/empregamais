@@ -362,3 +362,75 @@ var actions=m.querySelector('.em-wide-contact-actions'),phone=m.querySelector('.
 }
 var queued=false;function schedule(){if(queued)return;queued=true;requestAnimationFrame(function(){queued=false;decorate();});}new MutationObserver(schedule).observe(document.body,{childList:true,subtree:true});decorate();
 })();
+
+/* Single horizontal candidate card: compact overview without clipping content. */
+(function(){
+var q='html body #emCandidateDetails.em-candidate-reference-v55.em-name-contact.em-actions-polished.em-image-approved';
+var s=document.createElement('style');s.id='em-candidate-horizontal-card';
+s.textContent=`
+@media(min-width:761px){
+Q{width:min(1200px,calc(100vw - 40px))!important;max-width:1200px!important}
+Q[open]{height:auto!important;max-height:calc(100dvh - 24px)!important}
+Q .em-candidate-modal-head{padding:18px 24px 10px!important;min-height:110px!important;gap:14px!important}
+Q .em-candidate-modal-head>div:first-child{padding-left:92px!important;min-height:88px!important}
+Q .em-wide-avatar{width:74px!important;height:74px!important;font-size:26px!important;border-radius:12px!important}
+Q .em-candidate-modal-head h2{font-size:26px!important}
+Q .em-candidate-modal-head p{font-size:14px!important}
+Q .em-detail-city{font-size:13px!important;margin-top:3px!important}
+Q .em-name-contact-row{margin-top:8px!important}
+Q .em-name-contact-row .em-wide-contact-actions button{height:34px!important;min-height:34px!important;font-size:13px!important;padding:6px 11px!important}
+Q .em-candidate-modal-head .em-interview-cta{min-height:40px!important;padding:9px 14px!important;font-size:13px!important;margin-bottom:4px!important}
+Q .em-wide-tabs{padding:0 24px!important;min-height:42px!important;gap:24px!important}
+Q .em-wide-tabs button{min-height:42px!important;padding:10px 4px!important;font-size:13px!important}
+Q>.em-candidate-modal-body{flex:0 1 auto!important;height:auto!important;min-height:0!important;max-height:none!important;padding:14px 24px!important;overflow:auto!important;scrollbar-width:none!important}
+Q>.em-candidate-modal-body::-webkit-scrollbar{width:0;height:0}
+Q .em-wide-overview{grid-template-columns:minmax(0,1fr) minmax(0,1.16fr)!important;gap:24px!important;align-items:start!important}
+Q .em-wide-overview>.em-wide-block{border:0!important;border-radius:0!important;padding:0!important;background:transparent!important}
+Q .em-wide-overview>.em-wide-workflow{border-left:1px solid #e1e9f4!important;padding-left:24px!important}
+Q .em-wide-panels .em-wide-block h3{font-size:17px!important;margin-bottom:10px!important;gap:9px!important}
+Q .em-summary-fact{padding:9px 0!important}
+Q .em-summary-fact small{font-size:13px!important;margin-bottom:3px!important}
+Q .em-summary-fact h4,Q .em-summary-fact p{font-size:13px!important;line-height:1.45!important}
+Q .em-summary-skills{padding:10px 0!important}
+Q .em-summary-skills>small{font-size:13px!important;margin-bottom:8px!important}
+Q .em-gc27-tag{font-size:12px!important;padding:5px 9px!important}
+Q .em-wide-document-actions{padding-top:10px!important}
+Q .em-wide-document{min-height:40px!important;padding:8px 12px!important;font-size:13px!important}
+Q .em-image-process-caption{font-size:13px!important;margin-bottom:8px!important}
+Q .em-stage-cards{gap:8px!important;margin-bottom:8px!important}
+Q .em-stage-cards .em-stage-card{min-height:70px!important;padding:9px 10px!important;gap:8px!important}
+Q .em-stage-card .em-stage-icon{width:32px!important;height:32px!important;flex-basis:32px!important}
+Q .em-stage-card .em-stage-label{font-size:12px!important;padding-right:12px!important}
+Q .em-stage-description{font-size:11px!important;line-height:1.4!important;margin-top:3px!important}
+Q .em-stage-card:after{width:14px!important;height:14px!important;right:8px!important;top:11px!important}
+Q .em-stage-help{display:none!important}
+Q .em-wide-workflow .em-wide-hint{display:inline-block!important;margin:8px 0!important;font-size:11px!important}
+Q .em-detail-save{display:inline-flex!important;float:right!important;min-height:34px!important;padding:7px 12px!important;font-size:12px!important;margin:2px 0 10px!important}
+Q .em-detail-feedback{clear:both!important;font-size:12px!important;margin:4px 0!important}
+Q .em-wide-workflow .em-detail-note{clear:both!important;padding:10px 12px!important}
+Q .em-detail-note>small{font-size:13px!important;margin-bottom:6px!important;gap:8px!important}
+Q .em-detail-note>div{padding-left:30px!important}
+Q .em-detail-note p{font-size:12px!important;line-height:1.4!important}
+Q .em-wide-footer{padding:10px 24px!important;min-height:48px!important}
+Q .em-wide-footer small,Q .em-wide-footer b{font-size:11px!important}
+Q .em-wide-footer button{min-height:32px!important;padding:6px 16px!important;font-size:12px!important}
+Q .em-wide-panels>[data-detail-panel]:not([data-detail-panel="overview"]){min-height:220px!important;padding:18px!important}
+}
+@media(min-width:761px) and (max-height:700px){
+Q .em-summary-facts{display:grid!important;grid-template-columns:1fr 1fr!important;gap:0 16px!important}
+Q .em-summary-fact:first-child{grid-column:1/-1!important}
+Q .em-stage-cards .em-stage-card{min-height:62px!important;padding:8px 9px!important}
+Q .em-stage-description{line-height:1.3!important}
+Q .em-wide-workflow .em-detail-note{padding:8px 10px!important}
+Q .em-candidate-modal-head{padding-top:14px!important;min-height:104px!important}
+}
+@media(min-width:761px) and (max-height:550px){
+Q .em-stage-description{display:none!important}
+Q .em-stage-cards .em-stage-card{min-height:44px!important;align-items:center!important}
+Q .em-wide-workflow .em-detail-note{display:none!important}
+Q .em-candidate-modal-head>div:first-child{min-height:80px!important}
+Q .em-wide-avatar{height:60px!important;width:60px!important}
+Q .em-candidate-modal-head{min-height:94px!important}
+}
+`.replace(/Q(?=[\s.{[:>])/g,q);document.head.appendChild(s);
+})();
