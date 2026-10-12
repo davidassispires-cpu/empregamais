@@ -31,3 +31,78 @@ var resume=panels.querySelector('[data-detail-panel="resume"]');if(resume&&!resu
 }
 new MutationObserver(upgrade).observe(document.body,{childList:true,subtree:true});upgrade();
 })();
+
+
+/* Contact details belong beside the candidate identity; keep the overview compact. */
+(function(){
+var css=document.createElement('style');css.id='em-candidate-contact-header';
+css.textContent=`
+html body #emCandidateDetails.em-candidate-reference-v55 .em-candidate-modal-head{display:flex!important;align-items:flex-start!important;gap:16px!important;padding:16px 24px!important}
+html body #emCandidateDetails.em-candidate-reference-v55 .em-candidate-modal-head>div:first-child{flex:1!important;min-height:100px!important;padding-left:84px!important}
+html body #emCandidateDetails.em-candidate-reference-v55 .em-candidate-modal-head small{left:-84px!important;margin-bottom:12px!important}
+html body #emCandidateDetails.em-candidate-reference-v55 .em-wide-avatar{width:66px!important;height:66px!important;top:42px!important}
+html body #emCandidateDetails.em-candidate-reference-v55 .em-header-contact{flex:0 1 330px!important;min-width:0!important;padding:24px 0 0!important;min-height:0!important}
+html body #emCandidateDetails.em-candidate-reference-v55 .em-header-contact p{display:flex;align-items:center;gap:8px;margin:0 0 5px!important;font-size:14px!important;line-height:1.4!important;color:#20354f!important;overflow-wrap:anywhere}
+html body #emCandidateDetails.em-candidate-reference-v55 .em-header-contact svg{width:16px;height:16px;flex-shrink:0;color:#0876ef}
+html body #emCandidateDetails.em-candidate-reference-v55 .em-header-contact .em-wide-contact-actions{display:flex!important;margin:8px 0 0!important;padding:0!important;gap:6px!important}
+html body #emCandidateDetails.em-candidate-reference-v55 .em-header-contact .em-wide-contact-actions button{height:auto!important;min-height:30px!important;padding:5px 9px!important;font-size:13px!important;flex:1}
+html body #emCandidateDetails.em-candidate-reference-v55 .em-detail-city{display:none!important}
+html body #emCandidateDetails.em-candidate-reference-v55 .em-wide-overview{grid-template-columns:minmax(0,1.2fr) minmax(0,1fr)!important;gap:16px!important}
+html body #emCandidateDetails.em-candidate-reference-v55 .em-wide-overview .em-wide-block{min-height:0!important;padding:14px 16px!important}
+html body #emCandidateDetails.em-candidate-reference-v55 .em-compact-summary{display:grid!important;grid-template-columns:1fr 1fr!important;gap:10px 16px!important;align-content:start!important}
+html body #emCandidateDetails.em-candidate-reference-v55 .em-compact-summary>h3,html body #emCandidateDetails.em-candidate-reference-v55 .em-compact-summary>.em-wide-document-actions{grid-column:1/-1!important}
+html body #emCandidateDetails.em-candidate-reference-v55 .em-wide-overview h3{margin:0 0 10px!important}
+html body #emCandidateDetails.em-candidate-reference-v55 .em-compact-summary h4{margin:0!important}
+html body #emCandidateDetails.em-candidate-reference-v55 .em-compact-summary h4 small{margin:0 0 4px!important}
+html body #emCandidateDetails.em-candidate-reference-v55 .em-compact-summary .em-detail-summary p{margin:0 0 8px!important}
+html body #emCandidateDetails.em-candidate-reference-v55 .em-compact-summary .em-detail-summary svg{padding:0!important;width:16px!important;height:16px!important}
+html body #emCandidateDetails.em-candidate-reference-v55 .em-compact-summary .em-gc27-tags{margin:0!important;align-content:start}
+html body #emCandidateDetails.em-candidate-reference-v55 .em-compact-summary .em-gc27-tag{padding:4px 8px!important}
+html body #emCandidateDetails.em-candidate-reference-v55 .em-compact-summary .em-wide-match{margin:0!important;padding:8px!important}
+html body #emCandidateDetails.em-candidate-reference-v55 .em-compact-summary .em-detail-meter{margin:4px 0!important}
+html body #emCandidateDetails.em-candidate-reference-v55 .em-compact-summary .em-wide-document-actions{margin:0!important;padding:0!important}
+html body #emCandidateDetails.em-candidate-reference-v55 .em-compact-summary .em-wide-document-actions>small{margin:0!important}
+html body #emCandidateDetails.em-candidate-reference-v55 .em-wide-workflow .em-wide-hint{margin:5px 0 8px!important}
+html body #emCandidateDetails.em-candidate-reference-v55 .em-wide-workflow .em-detail-note{margin:10px 0 0!important;padding-top:10px!important}
+html body #emCandidateDetails.em-candidate-reference-v55 .em-detail-note p{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+html body #emCandidateDetails.em-candidate-reference-v55 .em-wide-tabs button{flex:1 1 auto!important;white-space:nowrap!important}
+html body #emCandidateDetails.em-candidate-reference-v55.em-overview-compact .em-candidate-modal-body{flex:0 0 auto!important;overflow:visible!important}
+html body #emCandidateDetails.em-candidate-reference-v55.em-overview-compact{height:auto!important;max-height:none!important}
+html body #emCandidateDetails.em-candidate-reference-v55.em-overview-compact .em-wide-panels>section{min-height:0!important}
+@media(max-width:760px){
+html body #emCandidateDetails.em-candidate-reference-v55 .em-candidate-modal-head{flex-wrap:wrap!important;padding:12px 16px!important}
+html body #emCandidateDetails.em-candidate-reference-v55 .em-header-contact{flex:1 1 100%!important;order:4;padding:0!important}
+html body #emCandidateDetails.em-candidate-reference-v55 .em-header-contact p{display:inline-flex;margin-right:12px!important}
+html body #emCandidateDetails.em-candidate-reference-v55 .em-wide-overview{grid-template-columns:1fr!important}
+html body #emCandidateDetails.em-candidate-reference-v55 .em-wide-tabs{flex-wrap:wrap!important;overflow:visible!important}
+html body #emCandidateDetails.em-candidate-reference-v55 .em-wide-tabs button{white-space:normal!important}
+html body #emCandidateDetails.em-candidate-reference-v55 .em-candidate-modal-head>div:first-child{padding-left:0!important;min-height:0!important}
+html body #emCandidateDetails.em-candidate-reference-v55 .em-candidate-modal-head small{left:0!important}
+html body #emCandidateDetails.em-candidate-reference-v55 .em-wide-avatar{display:none!important}
+html body #emCandidateDetails.em-candidate-reference-v55 .em-wide-footer{padding:10px 16px!important;gap:8px!important}
+}
+`;
+document.head.appendChild(css);
+function compact(){
+ var modal=document.getElementById('emCandidateDetails');if(!modal)return;
+ var overview=modal.querySelector('[data-detail-panel="overview"]'),head=modal.querySelector('.em-candidate-modal-head');
+ if(!overview||!head)return;
+ if(!modal.dataset.contactInHeader){
+  var contact=overview.querySelector('.em-wide-block');
+  if(contact&&contact.querySelector('h3')&&contact.querySelector('h3').textContent.trim()==='Contato'){
+   modal.dataset.contactInHeader='true';
+   var info=document.createElement('div');info.className='em-header-contact';info.setAttribute('aria-label','Contato do candidato');
+   Array.from(contact.querySelectorAll(':scope>p')).forEach(function(p){info.appendChild(p)});
+   var actions=contact.querySelector('.em-wide-contact-actions');if(actions)info.appendChild(actions);
+   head.insertBefore(info,head.querySelector('.em-wide-favorite')||head.querySelector('[data-close]'));
+   contact.remove();
+   var summary=overview.querySelector('.em-wide-block:not(.em-wide-workflow)');if(summary)summary.classList.add('em-compact-summary');
+  }
+ }
+ var interview=modal.querySelector('.em-wide-tabs button:last-child');
+ if(interview&&interview.textContent.trim()==='Entrevistas'){interview.textContent='Agendar entrevista online';interview.setAttribute('aria-label','Agendar entrevista online');}
+ var compactOverview=!overview.hidden;
+ if(modal.classList.contains('em-overview-compact')!==compactOverview)modal.classList.toggle('em-overview-compact',compactOverview);
+}
+new MutationObserver(compact).observe(document.body,{childList:true,subtree:true,attributes:true,attributeFilter:['hidden']});compact();
+})();
