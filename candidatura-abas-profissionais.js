@@ -202,3 +202,30 @@ function moveContact(){
 }
 new MutationObserver(moveContact).observe(document.body,{childList:true,subtree:true});moveContact();
 })();
+
+/* Approved contact and tab button design; keep existing click handlers. */
+(function(){
+'use strict';
+var scope='html body #emCandidateDetails.em-candidate-reference-v55.em-name-contact.em-actions-polished';
+var style=document.createElement('style');style.textContent=`
+${scope} .em-name-contact-row{gap:10px!important;align-items:center!important}
+${scope} .em-name-contact-row .em-wide-contact-actions{gap:10px!important}
+${scope} .em-name-contact-row .em-wide-contact-actions button{height:42px!important;min-height:42px!important;padding:9px 15px!important;border-radius:8px!important;font-size:14px!important;background:white!important;border:1px solid #92bfff!important;color:#086be6!important;box-shadow:none!important}
+${scope} .em-name-contact-row .em-wide-contact-actions button.em-contact-whatsapp{border-color:#73c79c!important;color:#14834b!important}
+${scope} .em-name-contact-row .em-wide-contact-actions button:disabled{opacity:.45!important;cursor:not-allowed!important}
+${scope} .em-name-contact-row svg{width:19px!important;height:19px!important}
+${scope} .em-phone-card{min-height:42px!important;padding:9px 13px!important;border-radius:8px!important;background:#f7faff!important;color:#425775!important}
+${scope} .em-phone-card .em-phone-label{font-size:13px!important;padding-right:10px!important;border-right:1px solid #cfdeef!important;margin-right:3px!important}
+${scope} .em-wide-tabs{display:flex!important;align-items:center!important;flex-wrap:nowrap!important;gap:12px!important;border-bottom:1px solid #d4e2f2!important;padding:0!important;margin-bottom:20px!important;background:white!important}
+${scope} .em-wide-tabs button{display:inline-flex!important;align-items:center!important;justify-content:center!important;gap:8px!important;flex:1 1 auto!important;padding:15px 6px!important;min-height:48px!important;border:0!important;border-bottom:3px solid transparent!important;border-radius:0!important;background:transparent!important;box-shadow:none!important;color:#526781!important;font-size:14px!important;font-weight:600!important;white-space:nowrap!important}
+${scope} .em-wide-tabs button.active{color:#086be6!important;border-bottom-color:#086be6!important}
+${scope} .em-wide-tabs button svg{width:20px!important;height:20px!important;flex-shrink:0!important}
+${scope} .em-wide-tabs button.em-interview-cta{flex:0 0 auto!important;margin-left:12px!important;padding:11px 16px!important;min-height:44px!important;border:1px solid #086be6!important;border-radius:8px!important;background:#086be6!important;color:white!important;white-space:normal!important;text-align:center!important}
+${scope} button:focus-visible{outline:3px solid #9cc8ff!important;outline-offset:2px!important}
+@media(max-width:1050px){${scope} .em-wide-tabs{flex-wrap:wrap!important;gap:0 8px!important}${scope} .em-wide-tabs button.em-interview-cta{margin:8px 0 10px!important;flex:1 1 100%!important}}
+@media(max-width:600px){${scope} .em-wide-tabs button:not(.em-interview-cta){flex:1 1 28%!important;font-size:13px!important;padding:12px 6px!important}${scope} .em-phone-card{flex:1 1 100%!important}${scope} .em-name-contact-row .em-wide-contact-actions{width:100%!important}}
+`;document.head.appendChild(style);
+var paths={'Visão geral':'M4 21v-3a8 8 0 0 1 16 0v3M12 3a4 4 0 1 0 0 8 4 4 0 0 0 0-8','Currículo':'M5 3h10l4 4v14H5ZM14 3v5h5M8 12h8M8 16h6','Mensagens':'M4 4h16v13H9l-5 4ZM8 10h1M12 10h1M16 10h1','Anotações':'M8 4H5v17h14V4h-3M8 3h8v4H8ZM8 11h8M8 15h6','Histórico':'M12 8v5l3 2M12 3a9 9 0 1 0 0 18 9 9 0 0 0 0-18'};
+function refine(){var modal=document.getElementById('emCandidateDetails');if(!modal)return;modal.classList.add('em-actions-polished');modal.querySelectorAll('.em-wide-tabs button').forEach(function(button){var label=button.textContent.trim();if(!paths[label]||button.querySelector('svg'))return;var icon=document.createElementNS('http://www.w3.org/2000/svg','svg');icon.setAttribute('viewBox','0 0 24 24');icon.setAttribute('fill','none');icon.setAttribute('stroke','currentColor');icon.setAttribute('stroke-width','1.8');icon.setAttribute('stroke-linecap','round');icon.setAttribute('stroke-linejoin','round');icon.setAttribute('aria-hidden','true');var path=document.createElementNS('http://www.w3.org/2000/svg','path');path.setAttribute('d',paths[label]);icon.appendChild(path);button.prepend(icon);});modal.querySelectorAll('.em-name-contact-row .em-wide-contact-actions button').forEach(function(button){if(/whatsapp/i.test(button.textContent))button.classList.add('em-contact-whatsapp');});}
+new MutationObserver(refine).observe(document.body,{childList:true,subtree:true});refine();
+})();
