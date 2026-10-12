@@ -198,3 +198,15 @@ html body #emCandidateDetails.em-candidate-reference-v55{width:min(1160px,97vw)!
 #emCandidateDetails.em-candidate-reference-v55 .em-detail-note>div{background:#f5f8fc!important;border:1px solid #e8eef5!important;border-radius:10px!important}
 #emCandidateDetails.em-candidate-reference-v55 .em-wide-footer{background:#fff!important;border-top:1px solid #dfe8f3!important}
 @media(max-width:900px){#emCandidateDetails.em-candidate-reference-v55 .em-wide-overview{grid-template-columns:1fr!important}}
+
+/* Keep the overview readable at every viewport height. */
+html body #emCandidateDetails.em-candidate-reference-v55 .em-wide-overview .em-wide-block{min-width:0!important}
+html body #emCandidateDetails.em-candidate-reference-v55 .em-wide-overview h3{font-size:18px!important;line-height:1.4!important}
+html body #emCandidateDetails.em-candidate-reference-v55 .em-wide-overview p,html body #emCandidateDetails.em-candidate-reference-v55 .em-wide-overview h4{font-size:16px!important;line-height:1.6!important;overflow-wrap:anywhere}
+html body #emCandidateDetails.em-candidate-reference-v55 .em-wide-overview small,html body #emCandidateDetails.em-candidate-reference-v55 .em-wide-overview .em-wide-hint,html body #emCandidateDetails.em-candidate-reference-v55 .em-wide-overview .em-detail-feedback,html body #emCandidateDetails.em-candidate-reference-v55 .em-wide-overview .em-gc27-stagebox strong,html body #emCandidateDetails.em-candidate-reference-v55 .em-wide-footer small{font-size:14px!important;line-height:1.5!important;color:#526781!important}
+html body #emCandidateDetails.em-candidate-reference-v55 .em-wide-overview .em-gc27-tag{font-size:14px!important;line-height:1.5!important}
+html body #emCandidateDetails.em-candidate-reference-v55 .em-wide-overview button,html body #emCandidateDetails.em-candidate-reference-v55 .em-wide-footer button{font-size:15px!important;font-weight:600!important;line-height:1.4!important;min-height:44px!important;height:auto!important;white-space:normal!important}
+html body #emCandidateDetails.em-candidate-reference-v55 .em-wide-overview .em-gc27-stage{font-size:16px!important;line-height:1.4!important;min-height:46px!important}
+html body #emCandidateDetails.em-candidate-reference-v55 .em-wide-footer b{font-size:16px!important;line-height:1.5!important}
+html body #emCandidateDetails.em-candidate-reference-v55 .em-wide-overview .em-detail-summary p{margin:8px 0 16px!important}
+html body #emCandidateDetails.em-candidate-reference-v55 .em-wide-overview .em-wide-block:first-child>p svg{flex-shrink:0}
