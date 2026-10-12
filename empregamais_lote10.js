@@ -508,13 +508,32 @@ function companyHero(e){
     try{var savedDraft=JSON.parse(localStorage.getItem('emJobEditDraft:'+String(id))||'null');if(savedDraft&&savedDraft.fields){editableJobFields.forEach(function(k){var input=d.querySelector('#setting-'+k);if(input&&savedDraft.fields[k]!=null)input.value=savedDraft.fields[k];});fields.hidden=false;summary.hidden=true;feedback.textContent='Edição anterior recuperada como rascunho. Salve para confirmar no banco.';}}catch(err){}
     d.setAttribute('aria-labelledby','settings-title');root.appendChild(d);d.addEventListener('cancel',function(ev){ev.preventDefault();closeSettings();});d.addEventListener('click',function(ev){if(ev.target===d)closeSettings();});d.showModal();
   }
+  // Hosted test checkout; secret keys are read only inside the Edge Function.
+  var paymentTestEndpoint='https://mkezlcewyengejdmtppl.supabase.co/functions/v1/mercado-pago-test';
+  async function paymentTestRequest(payload){
+    var token=sessionStorage.getItem('empregaMaisSupabaseAccessToken');
+    if(!token)throw Error('Entre na conta da empresa para testar. O painel demonstrativo não realiza pagamentos.');
+    var response=await fetch(paymentTestEndpoint,{method:'POST',headers:{'Content-Type':'application/json',apikey:'sb_publishable_8YnXpzGX8zj-tvzvcMYdyw_FVBhQutR',Authorization:'Bearer '+token},body:JSON.stringify(payload),signal:AbortSignal.timeout(25000)});
+    var data=await response.json();
+    if(!response.ok){if(String(data.message||'').indexOf('exceed_egress_quota')>=0)throw Error('O Supabase está com a cota de tráfego excedida. O pagamento de teste ficará disponível quando o serviço for restabelecido.');throw Error(data.error||'Não foi possível abrir o pagamento de teste.');}
+    return data;
+  }
+  window.iniciarCheckoutServicoEM=async function(order){
+    if(demoMode)throw Error('Entre na conta da empresa para testar uma vaga real. A prévia demonstrativa não realiza pagamentos.');
+    var paymentWindow=window.open('about:blank','_blank');if(paymentWindow)paymentWindow.opener=null;var result;try{result=await paymentTestRequest({vagaId:order.vagaId,servico:order.servico});}catch(e){if(paymentWindow)paymentWindow.close();throw e;}
+    var url=new URL(result.checkoutUrl);
+    if(result.mode!=='test'||url.protocol!=='https:'||['www.mercadopago.com.br','www.mercadopago.com'].indexOf(url.hostname)<0)throw Error('Endereço de pagamento inválido.');
+    sessionStorage.setItem('emPaymentTestOrder',result.orderId);
+    if(paymentWindow)paymentWindow.location.href=url.href;else window.location.assign(url.href);
+    return result;
+  };
   function openServicePayment(key){
     var services={destaque:['Vaga em destaque',7],urgente:['Vaga urgente',7],confidencial:['Vaga confidencial',30]},service=services[key],id=modalJobId,v=jobs().find(function(x){return String(x.id)===String(id);});if(!service||!v)return;
     var checkout=typeof window.iniciarCheckoutServicoEM==='function'?window.iniciarCheckoutServicoEM:null;
     var d=document.createElement('dialog');d.className='settings-dialog service-payment-dialog';d.setAttribute('aria-label','Pagamento do serviço');
-    d.innerHTML='<h2>Pagamento do serviço</h2><div class="service-payment-summary"><strong>'+esc(service[0])+'</strong><p>'+esc(v.cargo||v.titulo||'Vaga')+'</p><p>'+service[1]+' dias · contratação por vaga</p><div class="service-payment-total"><span>Total</span><b>R$ 9,90</b></div></div><p class="service-payment-note">O recurso será ativado somente após a confirmação do pagamento. Sem renovação automática.</p><p class="service-payment-note" role="status">'+(checkout?'':'O pagamento ainda não está disponível. A integração com o provedor precisa ser conectada.')+'</p><div class="service-payment-actions"><button type="button" class="secondary" data-payment-back>Voltar</button><button type="button" class="primary" data-payment-go '+(checkout?'':'disabled')+'>Pagar R$ 9,90</button></div>';
+    d.innerHTML='<h2>Pagamento de teste</h2><div class="service-payment-summary"><strong>'+esc(service[0])+'</strong><p>'+esc(v.cargo||v.titulo||'Vaga')+'</p><p>'+service[1]+' dias · contratação por vaga</p><div class="service-payment-total"><span>Total</span><b>R$ 9,90</b></div></div><p class="service-payment-note">Modo de teste: use a conta compradora e o cartão de teste do Mercado Pago. Este teste não ativa serviços nas vagas.</p><p class="service-payment-note" role="status">'+(checkout?'':'O pagamento ainda não está disponível. A integração com o provedor precisa ser conectada.')+'</p><div class="service-payment-actions"><button type="button" class="secondary" data-payment-back>Voltar</button><button type="button" class="primary" data-payment-go '+(checkout?'':'disabled')+'>Testar R$ 9,90</button></div>';
     root.appendChild(d);function back(){d.close();d.remove();}d.querySelector('[data-payment-back]').onclick=back;d.addEventListener('cancel',function(e){e.preventDefault();back();});
-    d.querySelector('[data-payment-go]').onclick=async function(){if(!checkout)return;var b=this;b.disabled=true;var status=d.querySelector('[role="status"]');status.textContent='Abrindo pagamento…';try{await checkout({vagaId:id,servico:key});}catch(e){status.textContent='Não foi possível abrir o pagamento. Tente novamente.';b.disabled=false;}};d.showModal();
+    d.querySelector('[data-payment-go]').onclick=async function(){if(!checkout)return;var b=this;b.disabled=true;var status=d.querySelector('[role="status"]');status.textContent='Abrindo pagamento…';try{await checkout({vagaId:id,servico:key});status.textContent='Checkout de teste aberto em outra aba. Após concluir, clique em Verificar pagamento.';b.textContent='Verificar pagamento';b.disabled=false;b.onclick=async function(){b.disabled=true;try{var result=await paymentTestRequest({action:'status',orderId:sessionStorage.getItem('emPaymentTestOrder')});status.textContent=result.message;if(result.status!=='approved_test')b.disabled=false;}catch(e){status.textContent=e.message||'Não foi possível verificar o pagamento.';b.disabled=false;}};}catch(e){status.textContent=e.message||'Não foi possível abrir o pagamento. Tente novamente.';b.disabled=false;}};d.showModal();
   }
   async function saveSettings(){
     var d=root.getElementById('job-settings-dialog'),id=modalJobId;if(d.dataset.saving==='1')return;var saveButton=d.querySelector('[data-action="settings-save"]');
