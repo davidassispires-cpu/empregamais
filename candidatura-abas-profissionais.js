@@ -176,3 +176,29 @@ function correct(){
 }
 new MutationObserver(correct).observe(document.body,{childList:true,subtree:true});correct();
 })();
+
+
+(function(){
+'use strict';
+var style=document.createElement('style');style.id='em-contact-below-name';style.textContent="\n/* Contact actions directly below the candidate name and application title. */\nhtml body #emCandidateDetails.em-candidate-reference-v55.em-name-contact .em-candidate-modal-head{gap:14px!important}\nhtml body #emCandidateDetails.em-candidate-reference-v55.em-name-contact .em-header-contact{display:flex!important;flex-direction:column!important;gap:6px!important;flex:0 1 280px!important;padding:24px 0 0!important;min-height:0!important}\nhtml body #emCandidateDetails.em-candidate-reference-v55.em-name-contact .em-header-contact>p{margin:0!important;line-height:1.4!important}\nhtml body #emCandidateDetails.em-candidate-reference-v55.em-name-contact .em-name-contact-row{display:flex!important;gap:8px!important;align-items:stretch!important;flex-wrap:wrap!important;margin-top:9px!important;padding:0!important}\nhtml body #emCandidateDetails.em-candidate-reference-v55.em-name-contact .em-name-contact-row .em-wide-contact-actions{display:flex!important;gap:8px!important;padding:0!important;margin:0!important;flex:0 0 auto!important}\nhtml body #emCandidateDetails.em-candidate-reference-v55.em-name-contact .em-name-contact-row .em-wide-contact-actions button{width:auto!important;min-width:90px!important;height:36px!important;min-height:36px!important;padding:6px 12px!important;font:600 14px/1.4 Inter,Arial,sans-serif!important;border-radius:8px!important;display:inline-flex!important;align-items:center!important;justify-content:center!important;gap:6px!important}\nhtml body #emCandidateDetails.em-candidate-reference-v55.em-name-contact .em-name-contact-row svg{width:16px!important;height:16px!important;flex-shrink:0!important}\nhtml body #emCandidateDetails.em-candidate-reference-v55.em-name-contact .em-phone-card{display:flex!important;align-items:center!important;gap:7px!important;min-height:36px!important;box-sizing:border-box!important;border:1px solid #dce6f1!important;border-radius:8px!important;padding:6px 10px!important;background:#f7faff!important;color:#20354f!important;font-size:14px!important;line-height:1.4!important;margin:0!important}\nhtml body #emCandidateDetails.em-candidate-reference-v55.em-name-contact .em-phone-card svg{color:#0876ef!important}\nhtml body #emCandidateDetails.em-candidate-reference-v55.em-name-contact .em-phone-card .em-phone-label{color:#617594!important;font-size:12px!important;margin-right:2px!important}\n@media(max-width:760px){\nhtml body #emCandidateDetails.em-candidate-reference-v55.em-name-contact .em-header-contact{padding:0!important;flex:1 1 100%!important;gap:4px!important}\nhtml body #emCandidateDetails.em-candidate-reference-v55.em-name-contact .em-name-contact-row{gap:6px!important}\nhtml body #emCandidateDetails.em-candidate-reference-v55.em-name-contact .em-name-contact-row .em-wide-contact-actions{flex:1 1 auto!important}\nhtml body #emCandidateDetails.em-candidate-reference-v55.em-name-contact .em-name-contact-row .em-wide-contact-actions button{flex:1!important}\n}\n";document.head.appendChild(style);
+function moveContact(){
+ var modal=document.getElementById('emCandidateDetails');if(!modal||modal.dataset.nameContact)return;
+ var head=modal.querySelector('.em-candidate-modal-head'),contact=modal.querySelector('.em-header-contact');
+ if(!head||!contact)return;
+ var identity=head.querySelector('div'),actions=contact.querySelector('.em-wide-contact-actions');
+ if(!identity||!actions)return;
+ modal.dataset.nameContact='true';modal.classList.add('em-name-contact');
+ var row=document.createElement('div');row.className='em-name-contact-row';row.setAttribute('aria-label','Ações de contato e telefone');
+ row.appendChild(actions);
+ var phone=Array.from(contact.querySelectorAll(':scope>p')).find(function(p){return p.querySelector('svg path[d^="M20 16"]')});
+ if(!phone)phone=contact.querySelectorAll(':scope>p')[1];
+ if(phone){
+  phone.className='em-phone-card';
+  var label=document.createElement('span');label.className='em-phone-label';label.textContent='Telefone';
+  var value=phone.querySelector('span');if(value)phone.insertBefore(label,value);else phone.appendChild(label);
+  row.appendChild(phone);
+ }
+ identity.appendChild(row);
+}
+new MutationObserver(moveContact).observe(document.body,{childList:true,subtree:true});moveContact();
+})();
