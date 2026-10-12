@@ -235,3 +235,44 @@ new MutationObserver(refine).observe(document.body,{childList:true,subtree:true}
 
 /* Keep workflow cards inside the scrolling body; native select is replaced by cards. */
 (function(){'use strict';var s=document.createElement('style');s.id='em-candidate-scroll-repair';s.textContent="\nhtml body #emCandidateDetails.em-candidate-reference-v55.em-name-contact.em-actions-polished[open]{display:flex!important;flex-direction:column!important;overflow:hidden!important;min-height:0!important;height:calc(100dvh - 32px)!important;max-height:calc(100dvh - 32px)!important;box-sizing:border-box!important}\nhtml body #emCandidateDetails.em-candidate-reference-v55.em-name-contact.em-actions-polished>.em-candidate-modal-head,html body #emCandidateDetails.em-candidate-reference-v55.em-name-contact.em-actions-polished>.em-wide-tabs,html body #emCandidateDetails.em-candidate-reference-v55.em-name-contact.em-actions-polished>.em-wide-footer{flex:0 0 auto!important;position:relative!important}\nhtml body #emCandidateDetails.em-candidate-reference-v55.em-name-contact.em-actions-polished>.em-candidate-modal-body{display:block!important;flex:1 1 0!important;min-height:0!important;height:0!important;max-height:none!important;overflow:auto!important;overflow-x:hidden!important;position:relative!important;isolation:isolate;box-sizing:border-box!important}\nhtml body #emCandidateDetails.em-candidate-reference-v55.em-name-contact.em-actions-polished .em-wide-panels{min-height:0!important;max-height:none!important;height:auto!important;overflow:visible!important}\nhtml body #emCandidateDetails.em-candidate-reference-v55.em-name-contact.em-actions-polished .em-wide-overview{height:auto!important;min-height:0!important;align-items:start!important}\nhtml body #emCandidateDetails.em-candidate-reference-v55.em-name-contact.em-actions-polished .em-wide-workflow{min-height:0!important;height:auto!important;overflow:visible!important;box-sizing:border-box!important}\nhtml body #emCandidateDetails.em-candidate-reference-v55.em-name-contact.em-actions-polished .em-wide-workflow select.em-stage-native{display:none!important}\nhtml body #emCandidateDetails.em-candidate-reference-v55.em-name-contact.em-actions-polished .em-stage-cards{position:relative!important;min-height:0!important;height:auto!important;overflow:visible!important}\nhtml body #emCandidateDetails.em-candidate-reference-v55.em-name-contact.em-actions-polished>.em-wide-footer{z-index:1!important;min-height:0!important;background:white!important}\n@media(max-width:700px){html body #emCandidateDetails.em-candidate-reference-v55.em-name-contact.em-actions-polished[open]{height:calc(100dvh - 16px)!important;max-height:calc(100dvh - 16px)!important}}\n";document.head.appendChild(s);})();
+
+/* Unified candidate dialog presentation. Styles only; preserve tab and scheduling handlers. */
+(function(){
+  if(document.getElementById('em-candidate-unified-panels'))return;
+  var s=document.createElement('style');s.id='em-candidate-unified-panels';
+  var q='html body #emCandidateDetails.em-candidate-reference-v55.em-name-contact.em-actions-polished';
+  s.textContent=`
+Q{--em-ink:#10254c;--em-muted:#526b90;--em-blue:#1265f5;--em-line:#e1e9f4;--em-soft:#f6f9fe}
+Q .em-wide-panels, Q .em-wide-panels :is(p,span,small,label,li,a,input,textarea,button,h3,h4){font-family:Inter,Arial,sans-serif!important;font-style:normal!important;box-sizing:border-box}
+Q .em-candidate-modal-body{background:var(--em-soft)!important;padding:22px!important}
+Q .em-wide-panels>[data-detail-panel]:not([data-detail-panel="overview"]){border:1px solid var(--em-line)!important;border-radius:16px!important;background:#fff!important;padding:24px!important;min-height:260px!important;color:var(--em-muted)!important;font-size:14px!important;line-height:1.65!important;box-shadow:0 3px 12px rgba(16,37,76,.025)!important}
+Q .em-wide-panels [hidden]{display:none!important}
+Q .em-wide-panels h3{color:var(--em-ink)!important;font-size:18px!important;font-weight:700!important;line-height:1.4!important;letter-spacing:-.3px!important;margin:0 0 18px!important}
+Q .em-wide-panels h4{color:var(--em-ink)!important;font-size:15px!important;font-weight:600!important;line-height:1.5!important}
+Q .em-wide-panels p{font-size:14px!important;line-height:1.65!important;color:var(--em-muted)!important;overflow-wrap:anywhere}
+Q .em-wide-panels small{font-size:12px!important;line-height:1.5!important;color:var(--em-muted)!important}
+Q .em-wide-panels label{display:block;font-size:13px!important;font-weight:600!important;color:var(--em-ink)!important;margin-bottom:8px}
+Q .em-wide-panels textarea{width:100%!important;min-height:140px!important;height:160px!important;max-height:35dvh!important;resize:vertical!important;border:1px solid #d5e0ef!important;border-radius:12px!important;padding:14px 16px!important;background:#fbfcff!important;color:var(--em-ink)!important;font-size:14px!important;line-height:1.6!important;box-shadow:none!important}
+Q .em-wide-panels textarea::placeholder{color:#778aa7!important}
+Q .em-wide-panels :is(textarea,input,button,a):focus-visible{outline:3px solid #b8d3ff!important;outline-offset:3px!important}
+Q .em-wide-panels>[data-detail-panel]:not([data-detail-panel="overview"]) button{min-height:42px!important;padding:10px 18px!important;border:1px solid #d4e2f7!important;border-radius:10px!important;background:#f1f6ff!important;color:#125cc8!important;font-size:14px!important;font-weight:600!important;line-height:1.4!important;cursor:pointer;transition:background .15s,border-color .15s}
+Q .em-wide-panels>[data-detail-panel]:not([data-detail-panel="overview"]) button:hover:not(:disabled){background:#e6efff!important;border-color:#a7c6fb!important}
+Q .em-wide-panels>[data-detail-panel]:not([data-detail-panel="overview"]) button:disabled{opacity:.55!important;cursor:default}
+Q [data-detail-panel="notes"] [data-gc27-save],Q [data-detail-panel="messages"] button[type="submit"]{background:var(--em-blue)!important;border-color:var(--em-blue)!important;color:white!important;margin-top:14px!important}
+Q [data-detail-panel="notes"] [data-gc27-save]:hover:not(:disabled),Q [data-detail-panel="messages"] button[type="submit"]:hover:not(:disabled){background:#0756d9!important;border-color:#0756d9!important}
+Q [data-detail-panel="resume"]>button{display:flex!important;align-items:center!important;gap:10px!important;width:100%!important;text-align:left!important;margin:12px 0!important;padding:16px 18px!important;min-height:58px!important}
+Q [data-detail-panel="resume"]>p{padding:18px!important;border:1px dashed #cfdded!important;border-radius:12px!important;background:var(--em-soft)!important}
+Q [data-detail-panel="messages"] .em-candidate-message{border:0!important;padding:0!important;background:transparent!important;margin:0!important}
+Q [data-detail-panel="messages"] .em-candidate-message>p{margin:0 0 18px!important}
+Q [data-detail-panel="messages"] :is(.em-message-list,.em-messages-list){border:1px solid var(--em-line)!important;border-radius:12px!important;background:var(--em-soft)!important;padding:16px!important;margin-bottom:18px!important}
+Q [data-detail-panel="history"]>p{position:relative!important;margin:0 0 0 7px!important;padding:12px 16px 22px 22px!important;border-left:2px solid #d6e5fc!important;background:transparent!important}
+Q [data-detail-panel="history"]>p::before{content:'';position:absolute;left:-6px;top:18px;width:10px;height:10px;border-radius:50%;background:var(--em-blue);box-shadow:0 0 0 4px #eef5ff}
+Q [data-detail-panel="history"]>p:last-child{padding-bottom:12px!important}
+Q .em-wide-footer{padding:14px 22px!important;border-top:1px solid var(--em-line)!important;gap:12px!important}
+Q .em-wide-footer button{border-radius:10px!important;font-family:Inter,Arial,sans-serif!important;font-size:13px!important;min-height:38px!important}
+Q .em-wide-tabs{padding-left:22px!important;padding-right:22px!important;overflow-x:auto!important;flex-wrap:nowrap!important}
+Q .em-wide-tabs button{white-space:nowrap!important;flex-shrink:0!important}
+@media(max-width:700px){Q .em-candidate-modal-body{padding:14px!important}Q .em-wide-panels>[data-detail-panel]:not([data-detail-panel="overview"]){padding:18px!important;min-height:220px!important}Q .em-wide-tabs{padding-left:14px!important;padding-right:14px!important}Q .em-wide-footer{padding:12px 14px!important}}
+`.replace(/Q(?=[\s.{>])/g,q);
+  document.head.appendChild(s);
+})();
