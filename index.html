@@ -35425,8 +35425,8 @@ return r;
 window.addEventListener("load",function(){setTimeout(sincronizarEmpresasGoogleSheetsEM,350);});
 setInterval(function(){
 var p=sessionStorage.getItem("empregaMaisPapel")||"";
-if(p==="empresa"||p==="admin")sincronizarEmpresasGoogleSheetsEM();
-},30000);
+if(!document.hidden && navigator.onLine!==false && (p==="empresa"||p==="admin"))sincronizarEmpresasGoogleSheetsEM();
+},120000);
 var irParaIntegracaoEmpresasBaseEM=irPara;
 irPara=function(){
 var r=irParaIntegracaoEmpresasBaseEM.apply(this,arguments);
@@ -39126,12 +39126,12 @@ function moverAreasRefV1(dir){
 (function(){
   if(window.__EM_RECRUTADOR_AUTO_SYNC_V1)return;
   window.__EM_RECRUTADOR_AUTO_SYNC_V1=true;var sincronizando=false;
-  var intervalo=10000;function painelRecrutadorAberto(){
+  var intervalo=120000;function painelRecrutadorAberto(){
     var pagina=document.getElementById('pagina-painel-empresa');
     var painel=document.getElementById('emPainelRecrutadorNovoV1');
     return !!(pagina && painel && pagina.classList.contains('ativa'));
   }function atualizarAutomaticamente(){
-    if(!painelRecrutadorAberto() || sincronizando)return;
+    if(document.hidden || navigator.onLine===false || !painelRecrutadorAberto() || sincronizando)return;
     if(typeof window.sincronizarVagasGoogleSheets!=='function')return;sincronizando=true;
     Promise.resolve(window.sincronizarVagasGoogleSheets())
       .then(function(){
@@ -41982,7 +41982,7 @@ document.addEventListener("DOMContentLoaded",update);window.addEventListener("lo
  function redraw(){if(active()&&!document.getElementById('emCandidateDetails')&&typeof renderizarCandidatosEmpresa==='function')renderizarCandidatosEmpresa();else statusUI()}
  async function sync(force){
   var list=ids(),key=list.slice().sort().join('|');if(!list.length)return;
-  if(pending)return pending;if(!force&&owner===key&&Date.now()-last<30000){statusUI();return}
+  if(pending)return pending;if(!force&&owner===key&&Date.now()-last<120000){statusUI();return}
   failed=false;message='Buscando candidaturas…';
   pending=(async function(){
    var results=[],errors=0,cursor=0;
@@ -42014,9 +42014,9 @@ document.addEventListener("DOMContentLoaded",update);window.addEventListener("lo
   var original=window.renderizarCandidatosEmpresa;if(typeof original!=='function')return;
   window.renderizarCandidatosEmpresa=function(){var r=original.apply(this,arguments);statusUI();sync(false);return r};
   if(active())sync(true);
-  setInterval(function(){if(active()&&!document.hidden)sync(false)},30000);
-  window.addEventListener('focus',function(){if(active())sync(true)});
-  document.addEventListener('visibilitychange',function(){if(active()&&!document.hidden)sync(true)});
+  setInterval(function(){if(active()&&!document.hidden)sync(false)},120000);
+  window.addEventListener('focus',function(){if(active())sync(false)});
+  document.addEventListener('visibilitychange',function(){if(active()&&!document.hidden)sync(false)});
  }
  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init,{once:true});else init();
 })();
@@ -42026,7 +42026,7 @@ document.addEventListener("DOMContentLoaded",update);window.addEventListener("lo
 <style id="em-company-profile-v50">#pagina-perfil-empresa.em-profile-v50>*:not(#emCompanyProfileV50){display:none!important}#emCompanyProfileV50{display:block!important}</style>
 <script src="empresa-perfil-profissional.js?v=05a222ebfb1c"></script>
 
-<link rel='stylesheet' href='candidatura-detalhes.css?v=9b6ca680bcda'/><link rel='stylesheet' href='empresa-publica-layout.css?v=3fa2f4afee8a'/><script src='empresa-publica-layout.js?v=bd3134741671'></script><script src="recruiter-sync-and-reports.js?v=17ea1bdbbf33"></script><link rel="stylesheet" href="vagas-recomendadas.css?v=1b999ba5b659"><script src="vagas-recomendadas.js?v=afd8d6c30e6c"></script><link rel="stylesheet" href="vaga-cabecalho.css?v=fbf5a71c8609"><script src="vaga-cabecalho.js?v=0a0b1c0fd8a9"></script><script src="emporio-griff-publica.js?v=30c0bdd43fd9"></script><link rel="stylesheet" href="vaga-portal.css?v=18777098144f"><script src="vaga-portal.js?v=40e63f68f9cf"></script><script src="vaga-descricao.js?v=61bd3874412c"></script><link rel="stylesheet" href="entrevistas.css?v=7f0984193f9a"><script src="entrevistas.js?v=217bafb03bc3"></script><style id="em-hero-floripa-layout-css">
+<link rel='stylesheet' href='candidatura-detalhes.css?v=9b6ca680bcda'/><link rel='stylesheet' href='empresa-publica-layout.css?v=3fa2f4afee8a'/><script src='empresa-publica-layout.js?v=egress-20261012'></script><script src="recruiter-sync-and-reports.js?v=egress-20261012"></script><link rel="stylesheet" href="vagas-recomendadas.css?v=1b999ba5b659"><script src="vagas-recomendadas.js?v=afd8d6c30e6c"></script><link rel="stylesheet" href="vaga-cabecalho.css?v=fbf5a71c8609"><script src="vaga-cabecalho.js?v=0a0b1c0fd8a9"></script><script src="emporio-griff-publica.js?v=30c0bdd43fd9"></script><link rel="stylesheet" href="vaga-portal.css?v=18777098144f"><script src="vaga-portal.js?v=40e63f68f9cf"></script><script src="vaga-descricao.js?v=61bd3874412c"></script><link rel="stylesheet" href="entrevistas.css?v=7f0984193f9a"><script src="entrevistas.js?v=217bafb03bc3"></script><style id="em-hero-floripa-layout-css">
 html body #pagina-home #emHeroFloripa.hero.hero-premium-em{padding:58px 24px!important;background:linear-gradient(115deg,#064881 0%,#0b61b3 62%,#1976d2 100%)!important;color:#fff!important;min-height:0!important;overflow:hidden!important;position:relative!important}
 html body #pagina-home #emHeroFloripa:before,html body #pagina-home #emHeroFloripa:after{display:none!important}
 html body #pagina-home #emHeroFloripa .hero-premium-inner-em{display:grid!important;grid-template-columns:minmax(0,.86fr) minmax(0,1fr)!important;align-items:center!important;gap:64px!important;max-width:1180px!important;width:100%!important;margin:0 auto!important;padding:0!important;text-align:left!important}
@@ -42259,7 +42259,7 @@ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',
 @media(max-width:900px){#comoFuncionaV106#comoFuncionaV106#comoFuncionaV106[data-publico="candidato"] .cf120-hero-grid{grid-template-columns:1fr!important;gap:24px!important}#comoFuncionaV106#comoFuncionaV106#comoFuncionaV106[data-publico="candidato"] .cf106-journey{grid-template-columns:repeat(2,1fr)!important}#comoFuncionaV106#comoFuncionaV106#comoFuncionaV106[data-publico="candidato"] .cf106-hero h1{font-size:32px!important}}
 @media(max-width:650px){#comoFuncionaV106#comoFuncionaV106#comoFuncionaV106[data-publico="candidato"] .cf106-hero{width:calc(100% - 28px)!important;padding:28px 22px!important;margin-top:14px!important}#comoFuncionaV106#comoFuncionaV106#comoFuncionaV106[data-publico="candidato"] .cf106-content{width:calc(100% - 28px)!important}#comoFuncionaV106#comoFuncionaV106#comoFuncionaV106[data-publico="candidato"] .cf106-hero h1{font-size:29px!important}#comoFuncionaV106#comoFuncionaV106#comoFuncionaV106[data-publico="candidato"] .cf106-intro h2{font-size:23px!important}#comoFuncionaV106#comoFuncionaV106#comoFuncionaV106[data-publico="candidato"] .cf-candidate-trust,#comoFuncionaV106#comoFuncionaV106#comoFuncionaV106[data-publico="candidato"] .cf106-journey,#comoFuncionaV106#comoFuncionaV106#comoFuncionaV106[data-publico="candidato"] .cf-candidate-channels,#comoFuncionaV106#comoFuncionaV106#comoFuncionaV106[data-publico="candidato"] .cf-candidate-prep{grid-template-columns:1fr!important}#comoFuncionaV106#comoFuncionaV106#comoFuncionaV106[data-publico="candidato"] .cf-candidate-trust{gap:10px;margin-bottom:30px}#comoFuncionaV106#comoFuncionaV106#comoFuncionaV106[data-publico="candidato"] .cf-candidate-section{margin-top:32px}#comoFuncionaV106#comoFuncionaV106#comoFuncionaV106[data-publico="candidato"] .cf106-cta{display:block!important}#comoFuncionaV106#comoFuncionaV106#comoFuncionaV106[data-publico="candidato"] .cf106-actions{margin-top:16px!important}#comoFuncionaV106#comoFuncionaV106#comoFuncionaV106[data-publico="candidato"] .cf-candidate-safety{align-items:flex-start;padding:18px}#comoFuncionaV106#comoFuncionaV106#comoFuncionaV106[data-publico="candidato"] .cf120-hero-actions{flex-wrap:wrap!important}}
 </style>
-<script src="vagas-atualizacao.js?v=c4c3c4ecfd6b"></script>
+<script src="vagas-atualizacao.js?v=egress-20261012"></script>
 <script src="candidatos-cards-compactos.js?v=20261012-7"></script>
 <script src="candidatura-quadro-estavel.js?v=20261012-1"></script>
 <script src="candidatura-abas-profissionais.js?v=a7d306bfb352"></script>
