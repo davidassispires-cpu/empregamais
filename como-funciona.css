@@ -140,14 +140,20 @@
 
 /* Company carousel: faithful, responsive recreation of the approved previews. */
 @font-face {font-family:'CF Montserrat';src:url('assets/fonts/cf-montserrat.woff') format('woff');font-style:normal;font-weight:400 800;font-display:swap;}
-#pagina-como-funciona #comoFuncionaV106[data-publico="empresa"],#pagina-como-funciona #comoFuncionaV106[data-publico="empresa"] :is(*,h1,h2,h3,p,button,a,summary) {font-family:'CF Montserrat',Montserrat,Arial,sans-serif!important;}
+/* Important declarations in this layer take precedence over the old global font rules. */
+@layer cf-company-type {
+ #pagina-como-funciona #comoFuncionaV106[data-publico="empresa"],#pagina-como-funciona #comoFuncionaV106[data-publico="empresa"] :is(*,h1,h2,h3,p,button,a,summary) {font-family:'CF Montserrat',Montserrat,Arial,sans-serif!important;}
+ #comoFuncionaV106 .cf-company-wordmark,#comoFuncionaV106 .cf-company-wordmark>b {font-weight:800!important;}
+ #comoFuncionaV106 .cf-company-visual strong,#comoFuncionaV106 .cf-company-cta {font-weight:700!important;}
+ #comoFuncionaV106 .cf-company-app-title>strong,#comoFuncionaV106 .cf-company-interview-heading strong,#comoFuncionaV106 .cf-company-notice>strong {font-weight:800!important;}
+}
 #pagina-como-funciona #comoFuncionaV106[data-publico="empresa"] {--guide-accent:#0969d6;--guide-deep:#102844;--guide-ink:#0c2346;--guide-body:#516783;--guide-soft:#f1f7fd;--guide-line:#dce7f3;background:#f6f9fd;}
 #comoFuncionaV106[data-publico="empresa"] .cf-guide-shell {width:min(1360px,calc(100% - 48px));}
 #comoFuncionaV106[data-publico="empresa"] .cf-guide-hero {display:none;}
 #comoFuncionaV106[data-publico="empresa"] .cf-guide-process {margin-top:0;}
 #comoFuncionaV106[data-publico="empresa"] .cf-guide-carousel {border:1px solid #e1eaf4;border-radius:20px;background:#f1f7fd;box-shadow:0 10px 36px #15396008;overflow:visible;}
 #comoFuncionaV106[data-publico="empresa"] .cf-guide-carousel-head,#comoFuncionaV106[data-publico="empresa"] .cf-guide-progress {display:none;}
-#comoFuncionaV106[data-publico="empresa"] .cf-guide-stage {grid-template-columns:minmax(0,.68fr) minmax(0,1.32fr);gap:28px;min-height:586px;padding:38px 30px 30px;background:radial-gradient(ellipse at 90% 15%,#e6f2ff80,transparent 55%),#f2f7fc;border-radius:20px 20px 0 0;}
+#comoFuncionaV106[data-publico="empresa"] .cf-guide-stage {grid-template-columns:minmax(0,.68fr) minmax(0,1.32fr);gap:28px;min-height:644px;padding:38px 30px 30px;background:radial-gradient(ellipse at 90% 15%,#e6f2ff80,transparent 55%),#f2f7fc;border-radius:20px 20px 0 0;}
 #comoFuncionaV106 .cf-company-slide-copy {min-width:0;text-align:left;align-self:stretch;display:flex;flex-direction:column;justify-content:center;align-items:flex-start;padding:0 0 6px;animation:cfGuideStageEnter .35s ease-out;}
 #comoFuncionaV106 .cf-company-slide-brand {display:flex;flex-direction:column;gap:3px;margin-bottom:38px;}
 #comoFuncionaV106 .cf-company-wordmark {display:inline-flex;align-items:center;white-space:nowrap;font-size:27px;font-weight:800;line-height:1.2;letter-spacing:-1px;color:#0b2349;}
@@ -162,7 +168,7 @@
 #comoFuncionaV106 .cf-company-slide-copy>small {margin-top:15px;display:block;color:#7185a2;font-size:11px;line-height:1.6;}
 #comoFuncionaV106 .cf-company-visual {min-width:0;position:relative;align-self:center;padding:0 0 16px;animation:cfGuideStageEnter .35s ease-out;}
 #comoFuncionaV106 .cf-company-visual>div {position:relative;}
-#comoFuncionaV106 .cf-company-app {display:grid;grid-template-columns:116px minmax(0,1fr);min-height:496px;overflow:hidden;border:1px solid #d8e5f3;border-radius:18px;background:#fff;box-shadow:0 12px 28px #12345610;color:#0c2346;}
+#comoFuncionaV106 .cf-company-app {display:grid;grid-template-columns:116px minmax(0,1fr);min-height:560px;overflow:hidden;border:1px solid #d8e5f3;border-radius:18px;background:#fff;box-shadow:0 12px 28px #12345610;color:#0c2346;}
 #comoFuncionaV106 .cf-company-sidebar {background:#102c43;color:#bdd0e0;padding:20px 7px;}
 #comoFuncionaV106 .cf-company-sidebar-brand {display:flex;justify-content:center;margin-bottom:30px;}
 #comoFuncionaV106 .cf-company-sidebar-brand .cf-company-wordmark {font-size:15px;color:#fff;letter-spacing:-.65px;}
@@ -313,8 +319,8 @@
 #comoFuncionaV106[data-publico="empresa"] .cf-guide-card {padding:25px 23px;gap:12px;box-shadow:0 5px 16px #14355403;}
 #comoFuncionaV106[data-publico="empresa"] .cf-guide-step {padding:22px 18px;gap:10px;}
 @media(min-width:1450px){
- #comoFuncionaV106[data-publico="empresa"] .cf-guide-stage {padding:42px 38px 30px;min-height:635px;gap:32px;}
- #comoFuncionaV106 .cf-company-app {min-height:530px;}
+ #comoFuncionaV106[data-publico="empresa"] .cf-guide-stage {padding:42px 38px 30px;min-height:652px;gap:32px;}
+ #comoFuncionaV106 .cf-company-app {min-height:560px;}
  #comoFuncionaV106 .cf-company-app-body {padding:23px;}
  #comoFuncionaV106 .cf-company-app-title>strong {font-size:28px;}
  #comoFuncionaV106 .cf-company-channel {min-height:94px;}
@@ -355,7 +361,7 @@
  #comoFuncionaV106 .cf-company-service {padding:10px;}
  #comoFuncionaV106 .cf-company-service>strong {font-size:10px;}
 }
-@media(max-width:850px){
+@media(max-width:1100px){
  #comoFuncionaV106[data-publico="empresa"] .cf-guide-shell {width:calc(100% - 32px);}
  #comoFuncionaV106[data-publico="empresa"] .cf-guide-stage {grid-template-columns:1fr;gap:30px;padding:28px 26px 18px;min-height:0;}
  #comoFuncionaV106 .cf-company-slide-copy {align-items:center;text-align:center;max-width:600px;margin:0 auto;}
