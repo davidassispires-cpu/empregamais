@@ -137,3 +137,331 @@
 @media(max-width:360px){#comoFuncionaV106 .cf-guide-tab {font-size:12px!important;}#comoFuncionaV106 .cf-guide-grid.four {grid-template-columns:1fr;}#comoFuncionaV106 .cf-guide-hero h1 {font-size:25px!important;}}
 @keyframes cfGuideStageEnter {from{opacity:0;transform:translateX(10px);}to{opacity:1;transform:translateX(0);}}
 @media(prefers-reduced-motion:reduce){#comoFuncionaV106 .cf-guide-step {transition:none;}#comoFuncionaV106 .cf-guide-stage-copy,#comoFuncionaV106 .cf-guide-graphic {animation:none;}}
+
+/* Company carousel: faithful, responsive recreation of the approved previews. */
+@font-face {font-family:'CF Montserrat';src:url('assets/fonts/cf-montserrat.woff') format('woff');font-style:normal;font-weight:400 800;font-display:swap;}
+#pagina-como-funciona #comoFuncionaV106[data-publico="empresa"],#pagina-como-funciona #comoFuncionaV106[data-publico="empresa"] :is(*,h1,h2,h3,p,button,a,summary) {font-family:'CF Montserrat',Montserrat,Arial,sans-serif!important;}
+#pagina-como-funciona #comoFuncionaV106[data-publico="empresa"] {--guide-accent:#0969d6;--guide-deep:#102844;--guide-ink:#0c2346;--guide-body:#516783;--guide-soft:#f1f7fd;--guide-line:#dce7f3;background:#f6f9fd;}
+#comoFuncionaV106[data-publico="empresa"] .cf-guide-shell {width:min(1360px,calc(100% - 48px));}
+#comoFuncionaV106[data-publico="empresa"] .cf-guide-hero {display:none;}
+#comoFuncionaV106[data-publico="empresa"] .cf-guide-process {margin-top:0;}
+#comoFuncionaV106[data-publico="empresa"] .cf-guide-carousel {border:1px solid #e1eaf4;border-radius:20px;background:#f1f7fd;box-shadow:0 10px 36px #15396008;overflow:visible;}
+#comoFuncionaV106[data-publico="empresa"] .cf-guide-carousel-head,#comoFuncionaV106[data-publico="empresa"] .cf-guide-progress {display:none;}
+#comoFuncionaV106[data-publico="empresa"] .cf-guide-stage {grid-template-columns:minmax(0,.68fr) minmax(0,1.32fr);gap:28px;min-height:586px;padding:38px 30px 30px;background:radial-gradient(ellipse at 90% 15%,#e6f2ff80,transparent 55%),#f2f7fc;border-radius:20px 20px 0 0;}
+#comoFuncionaV106 .cf-company-slide-copy {min-width:0;text-align:left;align-self:stretch;display:flex;flex-direction:column;justify-content:center;align-items:flex-start;padding:0 0 6px;animation:cfGuideStageEnter .35s ease-out;}
+#comoFuncionaV106 .cf-company-slide-brand {display:flex;flex-direction:column;gap:3px;margin-bottom:38px;}
+#comoFuncionaV106 .cf-company-wordmark {display:inline-flex;align-items:center;white-space:nowrap;font-size:27px;font-weight:800;line-height:1.2;letter-spacing:-1px;color:#0b2349;}
+#comoFuncionaV106 .cf-company-wordmark>b {font-size:38px;font-weight:800;line-height:.9;color:#0671ec;margin-right:3px;}
+#comoFuncionaV106 .cf-company-slide-brand>span:last-child {font-size:10px;font-weight:700;letter-spacing:2.8px;color:#607697;margin:5px 0 0 4px;}
+#comoFuncionaV106 .cf-company-slide-copy h1 {font-size:clamp(30px,3.05vw,44px)!important;line-height:1.15!important;font-weight:800!important;letter-spacing:-1.2px;color:#071e44!important;margin-bottom:22px;}
+#comoFuncionaV106 .cf-company-slide-copy h1>span {display:block;}
+#comoFuncionaV106 .cf-company-accent {color:#0969d6;}
+#comoFuncionaV106 .cf-company-slide-copy>p {font-size:18px!important;line-height:1.65!important;color:#516783!important;max-width:390px;margin-bottom:28px;}
+#comoFuncionaV106 .cf-company-cta {font-size:16px!important;min-height:52px;padding:14px 24px;gap:20px;border-radius:11px;background:#086be0;box-shadow:0 5px 12px #0969d617;}
+#comoFuncionaV106 .cf-company-cta .cf-guide-icon {width:22px;height:22px;}
+#comoFuncionaV106 .cf-company-slide-copy>small {margin-top:15px;display:block;color:#7185a2;font-size:11px;line-height:1.6;}
+#comoFuncionaV106 .cf-company-visual {min-width:0;position:relative;align-self:center;padding:0 0 16px;animation:cfGuideStageEnter .35s ease-out;}
+#comoFuncionaV106 .cf-company-visual>div {position:relative;}
+#comoFuncionaV106 .cf-company-app {display:grid;grid-template-columns:116px minmax(0,1fr);min-height:496px;overflow:hidden;border:1px solid #d8e5f3;border-radius:18px;background:#fff;box-shadow:0 12px 28px #12345610;color:#0c2346;}
+#comoFuncionaV106 .cf-company-sidebar {background:#102c43;color:#bdd0e0;padding:20px 7px;}
+#comoFuncionaV106 .cf-company-sidebar-brand {display:flex;justify-content:center;margin-bottom:30px;}
+#comoFuncionaV106 .cf-company-sidebar-brand .cf-company-wordmark {font-size:15px;color:#fff;letter-spacing:-.65px;}
+#comoFuncionaV106 .cf-company-sidebar-brand .cf-company-wordmark>b {font-size:23px;}
+#comoFuncionaV106 .cf-company-sidebar-items {display:grid;gap:8px;}
+#comoFuncionaV106 .cf-company-sidebar-item {display:flex;align-items:center;gap:9px;padding:12px 7px;border-radius:9px;font-size:10px;font-weight:500;line-height:1.4;min-height:44px;}
+#comoFuncionaV106 .cf-company-sidebar-item .cf-guide-icon {width:18px;height:18px;}
+#comoFuncionaV106 .cf-company-sidebar-item.selected {background:#096ee2;color:#fff;}
+#comoFuncionaV106 .cf-company-app-main {min-width:0;display:flex;flex-direction:column;}
+#comoFuncionaV106 .cf-company-app-bar {display:flex;justify-content:flex-end;align-items:center;gap:18px;padding:13px 20px;border-bottom:1px solid #edf2f8;min-height:48px;color:#263e5e;}
+#comoFuncionaV106 .cf-company-app-bar>.cf-guide-icon {width:19px;height:19px;}
+#comoFuncionaV106 .cf-company-company-chip {display:inline-flex;align-items:center;gap:9px;font-size:10px;font-weight:600;}
+#comoFuncionaV106 .cf-company-company-chip .cf-guide-icon {width:24px;height:24px;padding:3px;background:#f1f5f9;border-radius:100%;}
+#comoFuncionaV106 .cf-company-app-body {padding:20px;min-width:0;flex:1;}
+#comoFuncionaV106 .cf-company-app-title {display:flex;align-items:center;flex-wrap:wrap;gap:13px;margin-bottom:17px;}
+#comoFuncionaV106 .cf-company-app-title>strong {font-size:25px;font-weight:800;line-height:1.25;letter-spacing:-.6px;}
+#comoFuncionaV106 .cf-company-free {display:inline-flex;align-items:center;padding:5px 13px;border-radius:20px;background:#b1f0cb;color:#095931;font-size:12px;font-weight:700;}
+#comoFuncionaV106 .cf-company-tile-icon {display:flex;align-items:center;justify-content:center;flex-shrink:0;width:46px;height:46px;border-radius:11px;background:#eaf4ff;color:#0969d6;}
+#comoFuncionaV106 .cf-company-tile-icon .cf-guide-icon {width:28px;height:28px;}
+#comoFuncionaV106 .cf-company-vacancy {display:flex;align-items:center;gap:12px;padding:14px;border:1px solid #e0eaf6;border-radius:12px;background:#f6faff;margin-bottom:19px;}
+#comoFuncionaV106 .cf-company-vacancy>div {min-width:0;}
+#comoFuncionaV106 .cf-company-vacancy strong {display:block;font-size:14px;line-height:1.4;font-weight:700;}
+#comoFuncionaV106 .cf-company-vacancy>div>span {display:block;font-size:11px;color:#637996;margin-top:3px;}
+#comoFuncionaV106 .cf-company-skeleton {display:grid;gap:7px;}
+#comoFuncionaV106 .cf-company-skeleton i {display:block;height:7px;background:#dce5ef;border-radius:4px;}
+#comoFuncionaV106 .cf-company-skeleton i:last-child {width:76%;}
+#comoFuncionaV106 .cf-company-vacancy>.cf-company-skeleton {width:60px;margin-left:auto;flex-shrink:0;}
+#comoFuncionaV106 .cf-company-label {display:block;font-size:18px;font-weight:800;line-height:1.35;letter-spacing:-.3px;margin-bottom:12px;}
+#comoFuncionaV106 .cf-company-channels {display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:9px;margin-bottom:16px;}
+#comoFuncionaV106 .cf-company-channel {display:flex;flex-direction:column;align-items:center;justify-content:center;gap:11px;text-align:center;min-height:86px;padding:12px 6px;border:1px solid #dce7f3;border-radius:11px;background:#fff;}
+#comoFuncionaV106 .cf-company-channel .cf-guide-icon {width:29px;height:29px;color:#086ee1;}
+#comoFuncionaV106 .cf-company-channel strong {font-size:13px;line-height:1.35;font-weight:700;}
+#comoFuncionaV106 .cf-company-plan {display:flex;align-items:center;gap:12px;padding:12px;border:1px solid #e2ecf7;border-radius:11px;background:#f3f8fd;margin-bottom:16px;}
+#comoFuncionaV106 .cf-company-plan .cf-company-tile-icon {width:39px;height:39px;}
+#comoFuncionaV106 .cf-company-plan .cf-company-tile-icon .cf-guide-icon {width:25px;height:25px;}
+#comoFuncionaV106 .cf-company-plan>div {min-width:0;}
+#comoFuncionaV106 .cf-company-plan strong {display:block;font-size:14px;line-height:1.4;font-weight:700;}
+#comoFuncionaV106 .cf-company-plan>div>span {display:block;font-size:10px;color:#6a7f98;line-height:1.5;}
+#comoFuncionaV106 .cf-company-plan>.cf-guide-icon {margin-left:auto;width:17px;height:17px;}
+#comoFuncionaV106 .cf-company-demo-button {display:flex;align-items:center;justify-content:center;gap:17px;min-height:42px;padding:10px 15px;border-radius:9px;background:#086de3;color:#fff;font-size:13px;font-weight:700;line-height:1.4;}
+#comoFuncionaV106 .cf-company-demo-button .cf-guide-icon {width:19px;height:19px;}
+#comoFuncionaV106 .cf-company-app-publish .cf-company-demo-button {width:72%;}
+#comoFuncionaV106 .cf-company-floating {position:absolute;z-index:1;display:flex;align-items:center;gap:14px;padding:17px;border:1px solid #dfe9f4;border-radius:15px;background:#fff;box-shadow:0 10px 28px #15365114;}
+#comoFuncionaV106 .cf-company-floating strong {display:block;font-size:14px;font-weight:700;line-height:1.4;}
+#comoFuncionaV106 .cf-company-floating>div>span {display:flex;align-items:center;gap:8px;font-size:11px;line-height:1.5;color:#7385a0;margin-top:4px;}
+#comoFuncionaV106 .cf-company-pdf {right:-8px;bottom:-12px;}
+#comoFuncionaV106 .cf-company-pdf-icon {position:relative;display:flex;align-items:center;justify-content:center;width:45px;height:55px;border-radius:10px;background:#fff3f3;color:#e2393c;}
+#comoFuncionaV106 .cf-company-pdf-icon .cf-guide-icon {width:32px;height:39px;}
+#comoFuncionaV106 .cf-company-pdf-icon b {position:absolute;bottom:10px;left:9px;padding:0 3px;border-radius:2px;background:#e2393c;color:#fff;font-size:9px;line-height:14px;}
+#comoFuncionaV106 .cf-company-pdf>div>span {padding:5px 10px;border-radius:6px;background:#e7f5ff;color:#0667da;font-weight:700;}
+#comoFuncionaV106 .cf-company-pdf>div>span .cf-guide-icon {width:15px;height:15px;}
+#comoFuncionaV106 .cf-company-app-review {grid-template-columns:57px minmax(0,1fr);}
+#comoFuncionaV106 .cf-company-app-review .cf-company-sidebar {padding:22px 5px;}
+#comoFuncionaV106 .cf-company-app-review .cf-company-sidebar-brand .cf-company-wordmark {font-size:0;}
+#comoFuncionaV106 .cf-company-app-review .cf-company-sidebar-brand .cf-company-wordmark>b {font-size:32px;}
+#comoFuncionaV106 .cf-company-app-review .cf-company-sidebar-item {justify-content:center;min-height:50px;}
+#comoFuncionaV106 .cf-company-app-review .cf-company-sidebar-item>span {display:none;}
+#comoFuncionaV106 .cf-company-app-review .cf-company-sidebar-item .cf-guide-icon {width:21px;height:21px;}
+#comoFuncionaV106 .cf-company-app-review .cf-company-app-body {display:flex;flex-direction:column;justify-content:center;padding:26px 20px;}
+#comoFuncionaV106 .cf-company-app-review .cf-company-app-title {margin-bottom:20px;}
+#comoFuncionaV106 .cf-company-filters {display:flex;align-items:center;gap:8px;margin-bottom:17px;}
+#comoFuncionaV106 .cf-company-filters>span {display:flex;align-items:center;justify-content:center;min-height:36px;padding:8px 13px;border:1px solid #dce6f2;border-radius:8px;background:#fff;color:#2c4566;font-size:11px;font-weight:600;line-height:1.4;}
+#comoFuncionaV106 .cf-company-filters>span.selected {background:#096de0;border-color:#096de0;color:#fff;}
+#comoFuncionaV106 .cf-company-filters>.cf-company-vacancy-filter {margin-left:auto;gap:12px;font-weight:500;}
+#comoFuncionaV106 .cf-company-vacancy-filter .cf-guide-icon {width:15px;height:15px;transform:rotate(90deg);}
+#comoFuncionaV106 .cf-company-cv-table {border:1px solid #dce7f3;border-radius:11px;overflow:hidden;}
+#comoFuncionaV106 .cf-company-cv-head,#comoFuncionaV106 .cf-company-cv-row {display:grid;grid-template-columns:minmax(0,1.35fr) minmax(0,.9fr) minmax(0,.95fr) 25px 48px;align-items:center;gap:10px;padding:15px 13px;}
+#comoFuncionaV106 .cf-company-cv-head {background:#f4f8fc;color:#526785;min-height:41px;padding-top:10px;padding-bottom:10px;font-size:10px;font-weight:600;}
+#comoFuncionaV106 .cf-company-cv-row {border-top:1px solid #e6edf5;min-height:77px;}
+#comoFuncionaV106 .cf-company-cv-name {display:flex;align-items:center;gap:9px;min-width:0;}
+#comoFuncionaV106 .cf-company-cv-name>.cf-guide-icon {width:26px;height:31px;color:#0b70e4;}
+#comoFuncionaV106 .cf-company-cv-name>strong {font-size:13px;line-height:1.4;font-weight:700;white-space:nowrap;}
+#comoFuncionaV106 .cf-company-match {min-width:0;}
+#comoFuncionaV106 .cf-company-match>strong {font-size:13px;line-height:1.4;font-weight:700;}
+#comoFuncionaV106 .cf-company-match>span {display:block;height:6px;margin-top:4px;background:#e7eef5;border-radius:5px;overflow:hidden;}
+#comoFuncionaV106 .cf-company-match i {display:block;height:100%;background:#39be83;border-radius:5px;}
+#comoFuncionaV106 .cf-company-status {justify-self:start;white-space:nowrap;padding:6px 9px;border-radius:20px;font-size:10px;font-weight:700;line-height:1.4;}
+#comoFuncionaV106 .cf-company-status.analysis {background:#e2efff;color:#184b94;}
+#comoFuncionaV106 .cf-company-status.interview {background:#fff2cf;color:#715019;}
+#comoFuncionaV106 .cf-company-status.selected {background:#ddf7e9;color:#16724c;}
+#comoFuncionaV106 .cf-company-favorite {color:#8598b0;}
+#comoFuncionaV106 .cf-company-favorite.active {color:#f5b300;}
+#comoFuncionaV106 .cf-company-favorite.active .cf-guide-icon {fill:#f5b300;}
+#comoFuncionaV106 .cf-company-favorite .cf-guide-icon {width:23px;height:23px;}
+#comoFuncionaV106 .cf-company-download {display:flex;align-items:center;justify-content:center;gap:4px;padding:6px 5px;border:1px solid #dce6f2;border-radius:6px;font-size:9px;font-weight:700;color:#203f70;}
+#comoFuncionaV106 .cf-company-download .cf-guide-icon {width:14px;height:14px;}
+#comoFuncionaV106 .cf-company-workflow {margin-top:17px;padding:13px;border:1px solid #e0eaf5;border-radius:11px;background:#f3f8fd;}
+#comoFuncionaV106 .cf-company-workflow-title {display:block;font-size:12px;color:#526785;line-height:1.4;margin-bottom:9px;}
+#comoFuncionaV106 .cf-company-workflow>div {display:grid;grid-template-columns:minmax(0,1fr) 12px minmax(0,1fr) 12px minmax(0,1fr);gap:7px;align-items:center;}
+#comoFuncionaV106 .cf-company-workflow-step {display:flex;align-items:center;justify-content:center;gap:7px;min-height:48px;padding:8px 5px;background:#fff;border:1px solid #dfe7f1;border-radius:8px;}
+#comoFuncionaV106 .cf-company-workflow-step>span {display:flex;align-items:center;justify-content:center;width:28px;height:28px;border-radius:50%;background:#e2eeff;color:#086bd6;flex-shrink:0;}
+#comoFuncionaV106 .cf-company-workflow-step.interview>span {background:#fff0c9;color:#615024;}
+#comoFuncionaV106 .cf-company-workflow-step.selected>span {background:#d9f5e6;color:#0b8155;}
+#comoFuncionaV106 .cf-company-workflow-step .cf-guide-icon {width:16px;height:16px;}
+#comoFuncionaV106 .cf-company-workflow-step strong {font-size:9px;font-weight:700;line-height:1.4;}
+#comoFuncionaV106 .cf-company-workflow-arrow .cf-guide-icon {width:12px;height:12px;}
+#comoFuncionaV106 .cf-company-favorite-note {right:-4px;top:-19px;padding:12px 16px;border-color:#f5d78b;}
+#comoFuncionaV106 .cf-company-favorite-note>.cf-guide-icon {width:30px;height:30px;color:#f4b400;fill:#f4b400;}
+#comoFuncionaV106 .cf-company-favorite-note strong {font-size:12px;}
+#comoFuncionaV106 .cf-company-favorite-note>div>span {font-size:10px;}
+#comoFuncionaV106 .cf-company-app-manage {grid-template-columns:75px minmax(0,1fr);}
+#comoFuncionaV106 .cf-company-app-manage .cf-company-sidebar-brand {display:none;}
+#comoFuncionaV106 .cf-company-app-manage .cf-company-sidebar-item {flex-direction:column;gap:6px;font-size:9px;min-height:62px;padding:11px 2px;}
+#comoFuncionaV106 .cf-company-app-manage .cf-company-sidebar-item .cf-guide-icon {width:23px;height:23px;}
+#comoFuncionaV106 .cf-company-app-manage .cf-company-app-bar {justify-content:space-between;min-height:52px;}
+#comoFuncionaV106 .cf-company-app-manage .cf-company-app-bar .cf-company-wordmark {font-size:17px;}
+#comoFuncionaV106 .cf-company-app-manage .cf-company-app-bar .cf-company-wordmark>b {font-size:25px;}
+#comoFuncionaV106 .cf-company-agenda {display:grid;grid-template-columns:minmax(0,1.65fr) minmax(0,1fr);gap:12px;align-items:stretch;margin-bottom:14px;}
+#comoFuncionaV106 .cf-company-interview {padding:15px;border:1px solid #dfe9f4;border-radius:12px;box-shadow:0 4px 9px #15365105;}
+#comoFuncionaV106 .cf-company-interview-heading {display:flex;align-items:center;gap:11px;}
+#comoFuncionaV106 .cf-company-interview-heading strong {display:block;font-size:17px;font-weight:800;line-height:1.4;letter-spacing:-.3px;}
+#comoFuncionaV106 .cf-company-interview-heading>div>span {display:block;font-size:12px;color:#5a7190;margin-top:2px;}
+#comoFuncionaV106 .cf-company-interview-heading .cf-company-tile-icon {width:42px;height:49px;}
+#comoFuncionaV106 .cf-company-participants {display:flex;align-items:center;gap:6px;flex-wrap:wrap;margin:12px 0 16px;}
+#comoFuncionaV106 .cf-company-participants>span {display:flex;align-items:center;justify-content:center;gap:5px;padding:6px 7px;border-radius:6px;background:#f0f4f9;color:#486080;font-size:10px;}
+#comoFuncionaV106 .cf-company-participants .cf-guide-icon {width:15px;height:15px;}
+#comoFuncionaV106 .cf-company-reminders {padding-top:12px;border-top:1px solid #e5edf5;}
+#comoFuncionaV106 .cf-company-reminders>strong {display:block;font-size:11px;font-weight:700;line-height:1.5;margin-bottom:9px;}
+#comoFuncionaV106 .cf-company-reminders>div {display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:7px;}
+#comoFuncionaV106 .cf-company-reminders>div>span {display:flex;align-items:center;justify-content:center;padding:8px 3px;min-height:34px;border:1px solid #d7e4f2;border-radius:7px;color:#304e74;background:#fff;font-size:11px;line-height:1.4;white-space:nowrap;}
+#comoFuncionaV106 .cf-company-reminders>div>span.selected {background:#096de0;border-color:#096de0;color:#fff;}
+#comoFuncionaV106 .cf-company-interview .cf-company-demo-button {margin-top:13px;font-size:11px;min-height:36px;}
+#comoFuncionaV106 .cf-company-notice {display:flex;flex-direction:column;align-items:flex-start;justify-content:center;padding:16px;border:1px solid #e0eee8;border-radius:12px;background:#effaf6;}
+#comoFuncionaV106 .cf-company-notice .cf-company-tile-icon {width:41px;height:44px;background:#dbf6e7;color:#058660;margin-bottom:15px;}
+#comoFuncionaV106 .cf-company-notice>strong {font-size:16px;font-weight:800;line-height:1.3;letter-spacing:-.3px;}
+#comoFuncionaV106 .cf-company-notice>p {font-size:11px!important;line-height:1.6!important;color:#527087;margin:8px 0 0;}
+#comoFuncionaV106 .cf-company-portal-open {display:flex;align-items:center;gap:5px;padding-top:12px;margin-top:12px;border-top:1px solid #d6eadf;width:100%;font-size:9px;font-weight:500;line-height:1.5;color:#26725c;}
+#comoFuncionaV106 .cf-company-portal-open i {width:6px;height:6px;border-radius:50%;background:#36bd82;flex-shrink:0;}
+#comoFuncionaV106 .cf-company-services {display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;align-items:stretch;}
+#comoFuncionaV106 .cf-company-service {display:grid;grid-template-columns:1fr 15px;align-content:start;align-items:center;gap:10px;padding:13px;border:1px solid #dfe9f4;border-radius:11px;background:#fff;min-width:0;}
+#comoFuncionaV106 .cf-company-service .cf-company-tile-icon {width:39px;height:39px;}
+#comoFuncionaV106 .cf-company-service .cf-company-tile-icon .cf-guide-icon {width:25px;height:25px;}
+#comoFuncionaV106 .cf-company-service>.cf-guide-icon {width:14px;height:14px;}
+#comoFuncionaV106 .cf-company-service>strong {grid-column:1/-1;min-height:32px;font-size:12px;font-weight:700;line-height:1.4;}
+#comoFuncionaV106 .cf-company-service>.cf-company-skeleton {grid-column:1/-1;gap:6px;}
+#comoFuncionaV106 .cf-company-service .cf-company-skeleton i {height:6px;}
+#comoFuncionaV106 .cf-guide-dots {display:none;}
+#comoFuncionaV106[data-publico="empresa"] .cf-guide-controls {position:relative;background:#f2f7fc;border-radius:0 0 20px 20px;padding:7px 20px 19px;gap:20px;min-height:64px;flex-wrap:nowrap;}
+#comoFuncionaV106[data-publico="empresa"] .cf-guide-controls .cf-guide-direction,#comoFuncionaV106[data-publico="empresa"] .cf-guide-counter {display:none;}
+#comoFuncionaV106[data-publico="empresa"] .cf-guide-controls>.cf-guide-control {border-radius:50%;min-width:39px;min-height:39px;width:39px;height:39px;padding:9px;border-color:#dce8f5;box-shadow:0 4px 8px #24496307;}
+#comoFuncionaV106[data-publico="empresa"] .cf-guide-dots {display:flex;align-items:center;gap:0;}
+#comoFuncionaV106 .cf-guide-dot {display:block;position:relative;width:32px;height:39px;padding:0;min-height:0;min-width:0;border:0;border-radius:6px;background:transparent;}
+#comoFuncionaV106 .cf-guide-dot::after {content:'';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:10px;height:10px;border-radius:50%;background:#bdcede;}
+#comoFuncionaV106 .cf-guide-dot[aria-pressed="true"]::after {background:#0a6fe4;}
+#comoFuncionaV106[data-publico="empresa"] #cfGuidePause {position:absolute;right:19px;top:7px;background:transparent;box-shadow:none;}
+#comoFuncionaV106[data-publico="empresa"] #cfGuidePause>span {display:none;}
+#comoFuncionaV106[data-publico="empresa"] .cf-guide-steps {margin-top:18px;}
+#comoFuncionaV106[data-publico="empresa"] .cf-guide-card {padding:25px 23px;gap:12px;box-shadow:0 5px 16px #14355403;}
+#comoFuncionaV106[data-publico="empresa"] .cf-guide-step {padding:22px 18px;gap:10px;}
+@media(min-width:1450px){
+ #comoFuncionaV106[data-publico="empresa"] .cf-guide-stage {padding:42px 38px 30px;min-height:635px;gap:32px;}
+ #comoFuncionaV106 .cf-company-app {min-height:530px;}
+ #comoFuncionaV106 .cf-company-app-body {padding:23px;}
+ #comoFuncionaV106 .cf-company-app-title>strong {font-size:28px;}
+ #comoFuncionaV106 .cf-company-channel {min-height:94px;}
+ #comoFuncionaV106 .cf-company-channel strong {font-size:13px;}
+ #comoFuncionaV106 .cf-company-cv-row {min-height:83px;}
+ #comoFuncionaV106 .cf-company-cv-name>strong {font-size:13px;}
+ #comoFuncionaV106 .cf-company-status {font-size:11px;}
+ #comoFuncionaV106 .cf-company-service>strong {font-size:13px;}
+}
+@media(max-width:1100px){
+ #comoFuncionaV106[data-publico="empresa"] .cf-guide-stage {grid-template-columns:minmax(0,.65fr) minmax(0,1.35fr);gap:20px;padding:32px 24px 24px;min-height:540px;}
+ #comoFuncionaV106 .cf-company-slide-copy h1 {font-size:30px!important;letter-spacing:-.8px;}
+ #comoFuncionaV106 .cf-company-slide-copy>p {font-size:16px!important;}
+ #comoFuncionaV106 .cf-company-app {grid-template-columns:54px minmax(0,1fr);}
+ #comoFuncionaV106 .cf-company-sidebar {padding:17px 5px;}
+ #comoFuncionaV106 .cf-company-sidebar-brand .cf-company-wordmark {font-size:0;}
+ #comoFuncionaV106 .cf-company-sidebar-brand .cf-company-wordmark>b {font-size:30px;}
+ #comoFuncionaV106 .cf-company-sidebar-item {justify-content:center;}
+ #comoFuncionaV106 .cf-company-sidebar-item>span {display:none;}
+ #comoFuncionaV106 .cf-company-app-body {padding:17px 13px;}
+ #comoFuncionaV106 .cf-company-app-title>strong {font-size:22px;}
+ #comoFuncionaV106 .cf-company-vacancy>.cf-company-skeleton {display:none;}
+ #comoFuncionaV106 .cf-company-cv-head,#comoFuncionaV106 .cf-company-cv-row {grid-template-columns:minmax(0,1.2fr) minmax(0,.7fr) minmax(0,.85fr) 19px 40px;gap:6px;padding-left:9px;padding-right:9px;}
+ #comoFuncionaV106 .cf-company-cv-name {gap:5px;}
+ #comoFuncionaV106 .cf-company-cv-name>strong {font-size:10px;}
+ #comoFuncionaV106 .cf-company-cv-name>.cf-guide-icon {width:19px;height:25px;}
+ #comoFuncionaV106 .cf-company-status {font-size:8px;padding:5px 6px;}
+ #comoFuncionaV106 .cf-company-favorite .cf-guide-icon {width:19px;height:19px;}
+ #comoFuncionaV106 .cf-company-workflow-step {flex-direction:column;gap:4px;}
+ #comoFuncionaV106 .cf-company-agenda {grid-template-columns:minmax(0,1.4fr) minmax(0,1fr);gap:9px;}
+ #comoFuncionaV106 .cf-company-interview {padding:12px;}
+ #comoFuncionaV106 .cf-company-interview-heading {gap:7px;}
+ #comoFuncionaV106 .cf-company-interview-heading strong {font-size:14px;}
+ #comoFuncionaV106 .cf-company-interview-heading .cf-company-tile-icon {width:32px;height:39px;}
+ #comoFuncionaV106 .cf-company-interview-heading .cf-guide-icon {width:24px;height:24px;}
+ #comoFuncionaV106 .cf-company-notice {padding:12px;}
+ #comoFuncionaV106 .cf-company-notice>strong {font-size:14px;}
+ #comoFuncionaV106 .cf-company-service {padding:10px;}
+ #comoFuncionaV106 .cf-company-service>strong {font-size:10px;}
+}
+@media(max-width:850px){
+ #comoFuncionaV106[data-publico="empresa"] .cf-guide-shell {width:calc(100% - 32px);}
+ #comoFuncionaV106[data-publico="empresa"] .cf-guide-stage {grid-template-columns:1fr;gap:30px;padding:28px 26px 18px;min-height:0;}
+ #comoFuncionaV106 .cf-company-slide-copy {align-items:center;text-align:center;max-width:600px;margin:0 auto;}
+ #comoFuncionaV106 .cf-company-slide-brand {align-items:center;margin-bottom:20px;}
+ #comoFuncionaV106 .cf-company-slide-copy h1 {font-size:38px!important;}
+ #comoFuncionaV106 .cf-company-slide-copy>p {max-width:480px;margin-bottom:20px;}
+ #comoFuncionaV106 .cf-company-slide-copy>small {margin-top:11px;}
+ #comoFuncionaV106 .cf-company-visual {width:100%;max-width:680px;margin:0 auto;}
+ #comoFuncionaV106 .cf-company-app {grid-template-columns:74px minmax(0,1fr);min-height:0;}
+ #comoFuncionaV106 .cf-company-app-body {padding:22px;}
+ #comoFuncionaV106 .cf-company-app-title>strong {font-size:26px;}
+ #comoFuncionaV106 .cf-company-app-review .cf-company-app-body {padding:30px 20px 22px;}
+ #comoFuncionaV106 .cf-company-cv-name>strong {font-size:12px;}
+ #comoFuncionaV106 .cf-company-cv-name>.cf-guide-icon {width:25px;height:30px;}
+ #comoFuncionaV106 .cf-company-status {font-size:10px;padding:6px 8px;}
+ #comoFuncionaV106 .cf-company-channel strong {font-size:12px;}
+ #comoFuncionaV106 .cf-company-service>strong {font-size:12px;}
+}
+@media(max-width:650px){
+ #comoFuncionaV106[data-publico="empresa"] .cf-guide-shell {width:calc(100% - 28px);}
+ #comoFuncionaV106[data-publico="empresa"] .cf-guide-carousel {border-radius:15px;}
+ #comoFuncionaV106[data-publico="empresa"] .cf-guide-stage {gap:25px;padding:25px 15px 14px;border-radius:15px 15px 0 0;}
+ #comoFuncionaV106 .cf-company-slide-brand .cf-company-wordmark {font-size:25px;}
+ #comoFuncionaV106 .cf-company-slide-copy h1 {font-size:31px!important;line-height:1.18!important;letter-spacing:-.7px;}
+ #comoFuncionaV106 .cf-company-slide-copy>p {font-size:15px!important;max-width:320px;}
+ #comoFuncionaV106 .cf-company-cta {font-size:14px!important;min-height:47px;padding:12px 20px;}
+ #comoFuncionaV106 .cf-company-slide-copy>small {font-size:10px;}
+ #comoFuncionaV106 .cf-company-app,#comoFuncionaV106 .cf-company-app-review,#comoFuncionaV106 .cf-company-app-manage {grid-template-columns:minmax(0,1fr);border-radius:12px;}
+ #comoFuncionaV106 .cf-company-sidebar {display:none;}
+ #comoFuncionaV106 .cf-company-app-body {padding:17px 12px;}
+ #comoFuncionaV106 .cf-company-app-bar {padding:10px 13px;min-height:43px;}
+ #comoFuncionaV106 .cf-company-app-title {gap:9px;margin-bottom:14px;}
+ #comoFuncionaV106 .cf-company-app-title>strong {font-size:22px;}
+ #comoFuncionaV106 .cf-company-free {font-size:10px;padding:4px 10px;}
+ #comoFuncionaV106 .cf-company-vacancy {padding:10px;gap:9px;margin-bottom:17px;}
+ #comoFuncionaV106 .cf-company-vacancy strong {font-size:12px;}
+ #comoFuncionaV106 .cf-company-vacancy .cf-company-tile-icon {width:36px;height:39px;}
+ #comoFuncionaV106 .cf-company-vacancy .cf-guide-icon {width:25px;height:25px;}
+ #comoFuncionaV106 .cf-company-label {font-size:17px;}
+ #comoFuncionaV106 .cf-company-channels {gap:6px;}
+ #comoFuncionaV106 .cf-company-channel {min-height:87px;padding:10px 3px;gap:9px;}
+ #comoFuncionaV106 .cf-company-channel strong {font-size:10px;}
+ #comoFuncionaV106 .cf-company-channel .cf-guide-icon {width:26px;height:26px;}
+ #comoFuncionaV106 .cf-company-plan {gap:8px;padding:10px;}
+ #comoFuncionaV106 .cf-company-plan strong {font-size:12px;}
+ #comoFuncionaV106 .cf-company-plan>div>span {font-size:10px;}
+ #comoFuncionaV106 .cf-company-app-publish .cf-company-demo-button {width:100%;font-size:12px;}
+ #comoFuncionaV106 .cf-company-pdf {position:relative;right:auto;bottom:auto;margin:-4px 8px 0 auto;width:max-content;max-width:calc(100% - 16px);padding:12px 14px;gap:11px;border-radius:11px;}
+ #comoFuncionaV106 .cf-company-floating strong {font-size:12px;}
+ #comoFuncionaV106 .cf-company-pdf-icon {width:35px;height:43px;}
+ #comoFuncionaV106 .cf-company-pdf-icon .cf-guide-icon {width:27px;height:33px;}
+ #comoFuncionaV106 .cf-company-pdf-icon b {left:6px;bottom:7px;}
+ #comoFuncionaV106 .cf-company-app-review .cf-company-app-body {padding:17px 11px;}
+ #comoFuncionaV106 .cf-company-app-review .cf-company-app-title {margin-bottom:14px;}
+ #comoFuncionaV106 .cf-company-app-review .cf-company-app-title>strong {font-size:19px;}
+ #comoFuncionaV106 .cf-company-filters {gap:6px;flex-wrap:wrap;margin-bottom:13px;}
+ #comoFuncionaV106 .cf-company-filters>span {padding:7px 10px;font-size:10px;min-height:32px;}
+ #comoFuncionaV106 .cf-company-filters>.cf-company-vacancy-filter {gap:4px;font-size:9px;padding:7px;}
+ #comoFuncionaV106 .cf-company-cv-head {display:none;}
+ #comoFuncionaV106 .cf-company-cv-row {grid-template-columns:minmax(0,1fr) 52px 30px;grid-template-rows:1fr 1fr;gap:6px 8px;padding:12px 10px;min-height:88px;}
+ #comoFuncionaV106 .cf-company-cv-row:first-of-type {border-top:0;}
+ #comoFuncionaV106 .cf-company-cv-name {grid-column:1;grid-row:1;gap:6px;}
+ #comoFuncionaV106 .cf-company-cv-name>strong {font-size:12px;}
+ #comoFuncionaV106 .cf-company-cv-name>.cf-guide-icon {width:22px;height:25px;}
+ #comoFuncionaV106 .cf-company-match {grid-column:2;grid-row:1;}
+ #comoFuncionaV106 .cf-company-match>strong {font-size:13px;}
+ #comoFuncionaV106 .cf-company-status {grid-column:1;grid-row:2;font-size:10px;padding:5px 9px;}
+ #comoFuncionaV106 .cf-company-favorite {grid-column:3;grid-row:1;justify-self:center;}
+ #comoFuncionaV106 .cf-company-download {grid-column:2/4;grid-row:2;justify-self:end;padding:5px 8px;font-size:10px;}
+ #comoFuncionaV106 .cf-company-workflow {padding:11px 8px;margin-top:13px;}
+ #comoFuncionaV106 .cf-company-workflow-title {font-size:11px;}
+ #comoFuncionaV106 .cf-company-workflow>div {grid-template-columns:repeat(3,minmax(0,1fr));gap:6px;}
+ #comoFuncionaV106 .cf-company-workflow-arrow {display:none;}
+ #comoFuncionaV106 .cf-company-workflow-step {min-height:65px;padding:8px 3px;}
+ #comoFuncionaV106 .cf-company-workflow-step strong {font-size:9px;}
+ #comoFuncionaV106 .cf-company-favorite-note {position:relative;top:auto;right:auto;margin:-3px 8px 0 auto;max-width:calc(100% - 16px);width:max-content;padding:11px 13px;border-radius:11px;}
+ #comoFuncionaV106 .cf-company-favorite-note>.cf-guide-icon {width:25px;height:25px;}
+ #comoFuncionaV106 .cf-company-app-manage .cf-company-app-bar {min-height:45px;}
+ #comoFuncionaV106 .cf-company-app-manage .cf-company-app-title>strong {font-size:22px;}
+ #comoFuncionaV106 .cf-company-agenda {grid-template-columns:1fr;gap:11px;}
+ #comoFuncionaV106 .cf-company-interview {padding:14px;}
+ #comoFuncionaV106 .cf-company-interview-heading strong {font-size:17px;}
+ #comoFuncionaV106 .cf-company-interview-heading .cf-company-tile-icon {width:44px;height:48px;}
+ #comoFuncionaV106 .cf-company-participants>span {font-size:11px;padding:7px 9px;}
+ #comoFuncionaV106 .cf-company-reminders>strong {font-size:12px;}
+ #comoFuncionaV106 .cf-company-reminders>div>span {font-size:12px;min-height:35px;}
+ #comoFuncionaV106 .cf-company-interview .cf-company-demo-button {font-size:12px;min-height:39px;}
+ #comoFuncionaV106 .cf-company-notice {display:grid;grid-template-columns:37px minmax(0,1fr);gap:4px 10px;padding:13px;align-items:center;}
+ #comoFuncionaV106 .cf-company-notice .cf-company-tile-icon {grid-row:1/3;width:37px;height:43px;margin:0;}
+ #comoFuncionaV106 .cf-company-notice>strong {font-size:14px;}
+ #comoFuncionaV106 .cf-company-notice>strong br {display:none;}
+ #comoFuncionaV106 .cf-company-notice>p {grid-column:2;font-size:10px!important;margin:0;}
+ #comoFuncionaV106 .cf-company-portal-open {grid-column:1/-1;margin-top:6px;padding-top:8px;font-size:10px;}
+ #comoFuncionaV106 .cf-company-services {gap:6px;}
+ #comoFuncionaV106 .cf-company-service {grid-template-columns:1fr;padding:10px 7px;gap:8px;text-align:center;justify-items:center;}
+ #comoFuncionaV106 .cf-company-service>.cf-guide-icon,#comoFuncionaV106 .cf-company-service>.cf-company-skeleton {display:none;}
+ #comoFuncionaV106 .cf-company-service .cf-company-tile-icon {width:35px;height:37px;}
+ #comoFuncionaV106 .cf-company-service>strong {font-size:10px;min-height:28px;}
+ #comoFuncionaV106[data-publico="empresa"] .cf-guide-controls {padding:7px 45px 17px;gap:8px;border-radius:0 0 15px 15px;}
+ #comoFuncionaV106[data-publico="empresa"] #cfGuidePause {right:10px;}
+ #comoFuncionaV106[data-publico="empresa"] .cf-guide-card {padding:23px 20px;}
+ #comoFuncionaV106[data-publico="empresa"] .cf-guide-step {padding:16px 32px 16px 16px;}
+}
+@media(max-width:360px){
+ #comoFuncionaV106 .cf-company-slide-copy h1 {font-size:27px!important;}
+ #comoFuncionaV106[data-publico="empresa"] .cf-guide-stage {padding-left:10px;padding-right:10px;}
+ #comoFuncionaV106 .cf-company-filters>.cf-company-vacancy-filter {width:100%;margin-left:0;}
+}
+@media(prefers-reduced-motion:reduce){#comoFuncionaV106 .cf-company-slide-copy,#comoFuncionaV106 .cf-company-visual {animation:none;}}
