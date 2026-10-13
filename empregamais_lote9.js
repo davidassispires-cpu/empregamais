@@ -85,7 +85,20 @@ wrap.addEventListener("focusin",ajustarSessaoEmpresa);
 btn.addEventListener("click",ajustarSessaoEmpresa,true);
 btn.addEventListener("click",function(e){e.preventDefault();e.stopPropagation();document.querySelectorAll(".header-v98-area").forEach(function(w){if(w!==wrap)w.classList.remove("open")});wrap.classList.toggle("open");btn.setAttribute("aria-expanded",String(wrap.classList.contains("open")));document.querySelectorAll(".header-v98-area").forEach(function(w){var trigger=w.querySelector(":scope > button");if(trigger)trigger.setAttribute("aria-expanded",String(w.classList.contains("open")))})});
 }
+function instalarMenuMobile(){
+ var header=document.querySelector('body>header.topo'),toggle=document.getElementById('emHeaderMenuToggle');
+ if(!header||!toggle||toggle.dataset.ready)return;
+ toggle.dataset.ready='1';
+ function close(){header.classList.remove('em-mobile-menu-open');toggle.setAttribute('aria-expanded','false');
+ header.querySelectorAll('.header-v98-area.open').forEach(function(w){w.classList.remove('open');var b=w.querySelector(':scope > button');if(b)b.setAttribute('aria-expanded','false');});}
+ toggle.addEventListener('click',function(e){e.stopPropagation();var open=header.classList.toggle('em-mobile-menu-open');toggle.setAttribute('aria-expanded',String(open));if(!open)close();});
+ document.addEventListener('click',function(e){if(!header.contains(e.target)||e.target.closest('.header-v98-menu button,.conta-menu button,.btn-publicar-v19,.marca'))close();});
+ header.addEventListener('keydown',function(e){if(e.key==='Escape'){close();toggle.focus();}});
+ window.matchMedia('(max-width:900px)').addEventListener('change',close);
+ window.addEventListener('popstate',close);
+}
 function instalar(){
+instalarMenuMobile();
 var cand=findButton(["candidato"]);
 var emp=findButton(["empresa"]);
 if(cand){menu(cand,"cand")}
