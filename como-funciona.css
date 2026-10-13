@@ -144,7 +144,8 @@
 @layer cf-company-type {
  #pagina-como-funciona #comoFuncionaV106[data-publico="empresa"],#pagina-como-funciona #comoFuncionaV106[data-publico="empresa"] :is(*,h1,h2,h3,p,button,a,summary) {font-family:'CF Montserrat',Montserrat,Arial,sans-serif!important;}
  #comoFuncionaV106 .cf-company-wordmark,#comoFuncionaV106 .cf-company-wordmark>b {font-weight:800!important;}
- #comoFuncionaV106 .cf-company-visual strong,#comoFuncionaV106 .cf-company-cta {font-weight:700!important;}
+ #comoFuncionaV106 .cf-company-slide-copy h1,#comoFuncionaV106 .cf-company-slide-copy h1 span {font-weight:800!important;}
+ #comoFuncionaV106 .cf-company-visual strong,#comoFuncionaV106 .cf-company-cta,#comoFuncionaV106 .cf-company-demo-button {font-weight:700!important;}
  #comoFuncionaV106 .cf-company-app-title>strong,#comoFuncionaV106 .cf-company-interview-heading strong,#comoFuncionaV106 .cf-company-notice>strong {font-weight:800!important;}
 }
 #pagina-como-funciona #comoFuncionaV106[data-publico="empresa"] {--guide-accent:#0969d6;--guide-deep:#102844;--guide-ink:#0c2346;--guide-body:#516783;--guide-soft:#f1f7fd;--guide-line:#dce7f3;background:#f6f9fd;}

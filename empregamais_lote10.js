@@ -52,7 +52,7 @@
     Object.defineProperty(window,'localStorage',{value:memoryStorage('local'),configurable:true});
     Object.defineProperty(window,'sessionStorage',{value:memoryStorage('session'),configurable:true});
     var demoCompany={nome:'Empresa Demonstração',nomeFantasia:'Empresa Demonstração',cnpj:'00000000000100',email:'empresa@example.com',cidade:'Belo Horizonte',uf:'MG',plano:'basico'};
-    var demoPlan=window.EMPlanos.get(new URLSearchParams(location.search).get('plano'));if(demoPlan.pago)demoCompany.plano=demoPlan.id;
+    var demoPlan=window.EMPlanos.get(new URLSearchParams(location.search).get('plano'));if(demoPlan.pago){demoCompany.plano=demoPlan.id;demoCompany.plano_inicio=new Date().toISOString();demoCompany.plano_valido_ate=window.EMPlanos.addMonths(demoCompany.plano_inicio,demoPlan.meses).toISOString();}
     window.__emDemoCompany=demoCompany;
     sessionStorage.setItem('empregaMaisPapel','empresa');sessionStorage.setItem('empresaNome',demoCompany.nome);sessionStorage.setItem('empresaCnpj',demoCompany.cnpj);sessionStorage.setItem('empresaEmail',demoCompany.email);
     localStorage.setItem('empresasEmpregaMais',JSON.stringify([demoCompany]));sessionStorage.setItem('empresaLogada',JSON.stringify(demoCompany));
