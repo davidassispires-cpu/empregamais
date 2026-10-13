@@ -41688,6 +41688,7 @@ document.addEventListener("DOMContentLoaded",update);window.addEventListener("lo
 <style id="em-candidate-close-v46">html body #emCandidateDetails .em-candidate-modal-head>button[data-close]{display:inline-flex!important;align-items:center!important;justify-content:center!important;align-self:flex-start!important;flex:0 0 44px!important;width:44px!important;min-width:44px!important;max-width:44px!important;height:44px!important;min-height:44px!important;padding:0!important;margin:0!important;border:1px solid #dce5ef!important;border-radius:10px!important;background:#f5f8fc!important;color:#415773!important;cursor:pointer!important;box-sizing:border-box!important}html body #emCandidateDetails .em-candidate-modal-head>button[data-close] svg{display:block!important;width:24px!important;height:24px!important;flex:none!important}html body #emCandidateDetails .em-candidate-modal-head>button[data-close]:hover{background:#e8f0fa!important;color:#1268d4!important}html body #emCandidateDetails .em-candidate-modal-head>button[data-close]:focus-visible{outline:2px solid #1268d4!important;outline-offset:3px!important}</style>
 <script id="em-recruiter-applications-sync-v48">
 (function(){
+ if(new URLSearchParams(location.search).get('pagina')==='demo-recrutador')return;
  var pending=null,last=0,owner='',message='',failed=false;
  function jobs(){try{return typeof vagasDaEmpresa==='function'?(vagasDaEmpresa()||[]):[]}catch(e){return[]}}
  function ids(){return jobs().map(function(v){return String(v.id||'')}).filter(Boolean)}
