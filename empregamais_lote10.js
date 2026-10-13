@@ -4,9 +4,9 @@
 
   var demoMode=new URLSearchParams(location.search).get('pagina')==='demo-recrutador';
   var demoJobs=[
-   {id:'demo-1',cargo:'Assistente Administrativo',empresa:'Empresa Demonstração',cidade:'Belo Horizonte',area:'Administrativo',modalidade:'Presencial',contrato:'CLT',salario:'R$ 2.500,00',status:'ativa',aprovacao:'aprovada',dataPublicacao:new Date().toISOString(),visualizacoes:248,requisitos:'Organização e atendimento',beneficios:'Vale-transporte',descricao:'Oportunidade fictícia para conhecer o painel.'},
-   {id:'demo-2',cargo:'Analista de Recursos Humanos',empresa:'Empresa Demonstração',cidade:'Contagem',area:'Recursos Humanos',modalidade:'Híbrido',contrato:'CLT',salario:'R$ 3.800,00',status:'ativa',aprovacao:'aprovada',dataPublicacao:new Date().toISOString(),visualizacoes:176},
-   {id:'demo-3',cargo:'Auxiliar de Atendimento',empresa:'Empresa Demonstração',cidade:'Belo Horizonte',status:'pausada',aprovacao:'aprovada',visualizacoes:92}
+   {id:'demo-1',cargo:'Assistente Administrativo',empresa:'Empresa Demonstração',cidade:'Belo Horizonte',uf:'MG',area:'Administrativo',modalidade:'Presencial',contrato:'CLT',salario:'R$ 2.500,00',status:'ativa',aprovacao:'aprovada',dataPublicacao:new Date().toISOString(),visualizacoes:248,requisitos:'Organização e atendimento',beneficios:'Vale-transporte',descricao:'Oportunidade fictícia para conhecer o painel.'},
+   {id:'demo-2',cargo:'Analista de Recursos Humanos',empresa:'Empresa Demonstração',cidade:'Contagem',uf:'MG',area:'Recursos Humanos',modalidade:'Híbrido',contrato:'CLT',salario:'R$ 3.800,00',status:'ativa',aprovacao:'aprovada',dataPublicacao:new Date().toISOString(),visualizacoes:176},
+   {id:'demo-3',cargo:'Auxiliar de Atendimento',empresa:'Empresa Demonstração',cidade:'Belo Horizonte',uf:'MG',status:'pausada',aprovacao:'aprovada',visualizacoes:92}
   ];
   var demoCandidates=['Ana Exemplo','Bruno Exemplo','Carla Exemplo','Diego Exemplo','Elisa Exemplo','Felipe Exemplo'].map(function(name,i){return {id:'demo-c'+i,vagaId:i%2?'demo-2':'demo-1',candidato:name,nome:name,cidade:'Belo Horizonte',status:['Em avaliação','Em contato','Entrevista agendada'][i%3],data:new Date(Date.now()-i*86400000).toISOString()};});
   function demoNotice(text){var el=root&&root.getElementById('demoNotice');if(el)el.textContent=text||'Prévia: alterações somente nesta sessão, sem envio ao servidor.';}
