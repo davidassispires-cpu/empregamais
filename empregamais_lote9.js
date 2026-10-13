@@ -380,17 +380,75 @@ function montar(){
 var pg=document.getElementById("pagina-como-funciona");if(!pg||document.getElementById("comoFuncionaV106"))return;
 var x=document.createElement("div");x.id="comoFuncionaV106";
 x.dataset.publico="candidato";
-x.innerHTML=`<header class="cf106-hero"><div class="cf120-hero-grid"><div><span class="cf106-kicker">CONHEÇA O EMPREGAMAIS</span><h1 id="cf120HeroTitle">Como enviar seu currículo para as vagas</h1><p id="cf120HeroText">Encontre oportunidades no Mais Empregos e saiba como se candidatar pelo canal indicado em cada anúncio.</p><div class="cf120-hero-actions"><button class="cf106-btn primary" id="cf120HeroPrimary" type="button">Cadastrar currículo</button><button class="cf106-btn secondary" id="cf120HeroSecondary" type="button">Explorar vagas</button></div></div><aside class="cf120-overview"><span>DA BUSCA AO PRÓXIMO PASSO</span><h2 id="cf120OverviewTitle">Sua carreira, mais organizada.</h2><div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="3"/><path d="m7 12 3 3 7-7"/></svg><span id="cf120OverviewOne">Currículo e perfil profissional</span></div><div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="3"/><path d="m7 12 3 3 7-7"/></svg><span id="cf120OverviewTwo">Busca com filtros e localização</span></div><div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="3"/><path d="m7 12 3 3 7-7"/></svg><span id="cf120OverviewThree">Candidaturas em um só lugar</span></div></aside></div></header>
+x.innerHTML=`<div class="me-wrap" id="me-apresentacao" data-cf-candidate-hero="">
+      <section class="me-hero" aria-labelledby="me-hero-title">
+        <div class="me-portrait">
+          <div class="me-photo-halo" aria-hidden="true"></div>
+          <div class="me-photo"><img src="assets/candidato-ia-mais-empregos.webp" alt="Pessoa fictícia criada por IA para a área de candidatos do Mais Empregos" width="1254" height="1254" decoding="async"></div>
+          <div class="me-photo-label"><svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class="me-svg-icon"><path d="M10.5 22H6a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.706.706l3.588 3.588A2.4 2.4 0 0 1 20 8v6"></path><path d="M14 2v5a1 1 0 0 0 1 1h5"></path><path d="m14 20 2 2 4-4"></path></svg> Seu próximo passo começa aqui</div>
+        </div>
+        <div>
+          <p class="me-eyebrow">COMO FUNCIONA · PARA CANDIDATOS</p>
+          <h1 id="me-hero-title">Seu próximo emprego<br> <em>começa aqui.</em></h1>
+          <p class="me-intro">Encontre oportunidades no +Empregos e saiba como enviar seu currículo para cada vaga.</p>
+          <div class="me-benefits">
+            <div class="me-benefit">
+              <span class="me-iconbox"><svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class="me-svg-icon"><path d="M3.85 8.62a4 4 0 0 1 4.78-4.77 4 4 0 0 1 6.74 0 4 4 0 0 1 4.78 4.78 4 4 0 0 1 0 6.74 4 4 0 0 1-4.77 4.78 4 4 0 0 1-6.75 0 4 4 0 0 1-4.78-4.77 4 4 0 0 1 0-6.76Z"></path><path d="m9 12 2 2 4-4"></path></svg></span>
+              <div><h3>Grátis para se candidatar</h3><p>Cadastre seu currículo e participe das seleções.</p></div>
+            </div>
+            <div class="me-benefit">
+              <span class="me-iconbox"><svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class="me-svg-icon"><path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"></path><circle cx="12" cy="10" r="3"></circle></svg></span>
+              <div><h3>Vagas perto de você</h3><p>Busque por cargo, cidade e modalidade de trabalho.</p></div>
+            </div>
+            <div class="me-benefit">
+              <span class="me-iconbox"><svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class="me-svg-icon"><path d="M14.536 21.686a.5.5 0 0 0 .937-.024l6.5-19a.496.496 0 0 0-.635-.635l-19 6.5a.5.5 0 0 0-.024.937l7.93 3.18a2 2 0 0 1 1.112 1.11z"></path><path d="m21.854 2.147-10.94 10.939"></path></svg></span>
+              <div><h3>Orientação em cada oportunidade</h3><p>Siga o canal de candidatura informado pela empresa.</p></div>
+            </div>
+          </div>
+          <div class="me-actions">
+            <a class="me-button cursor-interaction" href="?pagina=cadastro-curriculo" data-cf-candidate-action="register">Cadastrar currículo grátis <svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class="me-svg-icon"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg></a>
+            <a class="me-button me-button-secondary cursor-interaction" href="./" data-cf-candidate-action="jobs">Buscar vagas <svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class="me-svg-icon"><path d="m21 21-4.34-4.34"></path><circle cx="11" cy="11" r="8"></circle></svg></a>
+          </div>
+        </div>
+      </section>
+    </div><header class="cf106-hero" hidden><div class="cf120-hero-grid"><div><span class="cf106-kicker">CONHEÇA O EMPREGAMAIS</span><h1 id="cf120HeroTitle">Como enviar seu currículo para as vagas</h1><p id="cf120HeroText">Encontre oportunidades no Mais Empregos e saiba como se candidatar pelo canal indicado em cada anúncio.</p><div class="cf120-hero-actions"><button class="cf106-btn primary" id="cf120HeroPrimary" type="button">Cadastrar currículo</button><button class="cf106-btn secondary" id="cf120HeroSecondary" type="button">Explorar vagas</button></div></div><aside class="cf120-overview"><span>DA BUSCA AO PRÓXIMO PASSO</span><h2 id="cf120OverviewTitle">Sua carreira, mais organizada.</h2><div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="3"/><path d="m7 12 3 3 7-7"/></svg><span id="cf120OverviewOne">Currículo e perfil profissional</span></div><div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="3"/><path d="m7 12 3 3 7-7"/></svg><span id="cf120OverviewTwo">Busca com filtros e localização</span></div><div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="3"/><path d="m7 12 3 3 7-7"/></svg><span id="cf120OverviewThree">Candidaturas em um só lugar</span></div></aside></div></header>
 <div class="cf106-tabs-wrap"><div class="cf106-tabs" role="tablist" aria-label="Como funciona para cada público"><button type="button" role="tab" aria-selected="true" aria-controls="cf120Candidato" id="cf120TabCandidato" class="cf106-tab cand ativo" data-cf106="candidato">Para candidatos</button><button type="button" role="tab" aria-selected="false" aria-controls="cf120Empresa" id="cf120TabEmpresa" class="cf106-tab emp" data-cf106="empresa" tabindex="-1">Para empresas</button></div></div>
 <div class="cf106-content">
-<section class="cf106-panel candidato ativo" role="tabpanel" id="cf120Candidato" aria-labelledby="cf120TabCandidato">
-<div class="cf-candidate-trust"><article><b>Candidatura gratuita</b><span>Sem taxas para participar</span></article><article><b>Orientações em cada vaga</b><span>Siga o canal indicado pela empresa</span></article><article><b>Currículo organizado</b><span>Mantenha seus dados atualizados</span></article></div>
-<div class="cf106-intro"><small>DA BUSCA À CANDIDATURA</small><h2>Candidate-se em quatro etapas</h2><p>Veja como encontrar uma oportunidade e enviar seu currículo.</p></div>
-<div class="cf106-journey"><article class="cf106-card"><div class="cf106-num">01</div><h3>Encontre uma vaga</h3><p>Busque pelo cargo, cidade ou palavra-chave e use os filtros para encontrar oportunidades.</p></article><article class="cf106-card"><div class="cf106-num">02</div><h3>Leia o anúncio</h3><p>Confira atividades, requisitos, benefícios e localização antes de se candidatar.</p></article><article class="cf106-card"><div class="cf106-num">03</div><h3>Confira as instruções</h3><p>Identifique a forma de candidatura escolhida pela empresa no anúncio da vaga.</p></article><article class="cf106-card"><div class="cf106-num">04</div><h3>Envie sua candidatura</h3><p>Use o botão da vaga e siga as orientações para enviar seu currículo pelo canal indicado.</p></article></div>
-<section class="cf-candidate-section"><div class="cf106-intro"><small>FORMAS DE CANDIDATURA</small><h2>Como a empresa pode receber seu currículo</h2><p>O canal de envio varia conforme a oportunidade. Confira sempre o anúncio.</p></div><div class="cf-candidate-channels"><article class="cf106-card"><div class="cf106-num">✉</div><h3>Por e-mail</h3><p>Envie o currículo para o endereço informado. Identifique a vaga no assunto e escreva uma apresentação breve.</p></article><article class="cf106-card"><div class="cf106-num">↗</div><h3>Por um link externo</h3><p>Acesse o endereço indicado pela empresa e siga as instruções da página de candidatura.</p></article><article class="cf106-card"><div class="cf106-num">☏</div><h3>Pelo WhatsApp</h3><p>Use o contato informado no anúncio. Apresente-se, mencione a vaga e envie o currículo conforme solicitado.</p></article><article class="cf106-card"><div class="cf106-num">✓</div><h3>Pelo Mais Empregos</h3><p>Quando a vaga receber candidaturas pelo portal, acesse sua conta, confira seu currículo e conclua o envio.</p></article></div></section>
-<section class="cf-candidate-section"><div class="cf106-intro"><small>ANTES DE ENVIAR</small><h2>Prepare uma candidatura clara e profissional</h2><p>Informações atualizadas e uma mensagem objetiva ajudam na apresentação.</p></div><div class="cf-candidate-prep"><article class="cf106-card"><h3>Checklist do seu currículo</h3><ul><li>Nome, telefone e e-mail atualizados.</li><li>Objetivo profissional alinhado à vaga.</li><li>Experiências e principais atividades.</li><li>Formação, cursos e habilidades relevantes.</li><li>Arquivo legível, com nome fácil de identificar.</li><li>Revise a escrita antes de enviar.</li></ul></article><article class="cf106-card"><h3>Exemplo de mensagem de apresentação</h3><p>Personalize o texto com seus dados e a oportunidade escolhida.</p><blockquote>Olá! Meu nome é [seu nome] e tenho interesse na vaga de [cargo], anunciada no Mais Empregos.<br><br>Tenho experiência em [área ou atividade] e encaminho meu currículo para avaliação.<br><br>Agradeço pela atenção e fico à disposição para conversar.</blockquote></article></div></section>
-<aside class="cf-candidate-safety"><span aria-hidden="true">!</span><div><h3>Não realize pagamentos para participar de processos seletivos</h3><p>As candidaturas são gratuitas. Se houver cobrança, desconfie e confira as informações da empresa antes de continuar.</p></div></aside>
-<div class="cf106-cta"><div><h3>Pronto para dar o próximo passo?</h3><p>Prepare seu currículo e encontre oportunidades que combinem com você.</p></div><div class="cf106-actions"><button type="button" class="cf106-btn primary" onclick="irPara('home');setTimeout(rolarVagas,150)">Ver vagas disponíveis</button><button type="button" class="cf106-btn secondary" onclick="irPara('curriculo')">Cadastrar currículo</button></div></div></section>
+<section class="cf106-panel candidato ativo" role="tabpanel" id="cf120Candidato" aria-labelledby="cf120TabCandidato"><section class="me-section me-soft-section" id="me-passos" aria-labelledby="me-steps-title">
+      <div class="me-wrap">
+        <div class="me-section-title"><h2 id="me-steps-title">Da busca à candidatura, passo a passo</h2><p>Comece pelo seu cadastro e siga as orientações da vaga.</p></div>
+        <div class="me-steps" role="group" aria-label="Passos da candidatura">
+          <button class="me-step cursor-interaction" type="button" data-me-step="0" aria-pressed="true" aria-controls="me-step-content"><span class="me-step-number">1</span><span>Crie sua<br> conta grátis</span></button>
+          <button class="me-step cursor-interaction" type="button" data-me-step="1" aria-pressed="false" aria-controls="me-step-content"><span class="me-step-number">2</span><span>Complete<br> seu currículo</span></button>
+          <button class="me-step cursor-interaction" type="button" data-me-step="2" aria-pressed="false" aria-controls="me-step-content"><span class="me-step-number">3</span><span>Encontre<br> uma vaga</span></button>
+          <button class="me-step cursor-interaction" type="button" data-me-step="3" aria-pressed="false" aria-controls="me-step-content"><span class="me-step-number">4</span><span>Envie sua<br> candidatura</span></button>
+        </div>
+        <div class="me-step-detail" id="me-step-content" aria-live="polite"><svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class="me-svg-icon"><circle cx="12" cy="12" r="10"></circle><path d="M12 16v-4"></path><path d="M12 8h.01"></path></svg><p id="me-step-text">Informe seus dados para criar sua conta e acessar a área do candidato.</p></div>
+      </div>
+    </section><section class="me-section" id="me-areas" aria-labelledby="me-areas-title">
+      <div class="me-wrap">
+        <div class="me-section-title"><h2 id="me-areas-title">Encontre oportunidades na sua área</h2><p>Escolha uma área para direcionar sua busca.</p></div>
+        <div class="me-areas" role="group" aria-label="Áreas de atuação">
+          <button class="me-area cursor-interaction" type="button" data-cf-candidate-action="area" data-cf-area="" data-cf-keyword="atendimento"><svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class="me-svg-icon"><path d="M3 11h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-5Zm0 0a9 9 0 1 1 18 0m0 0v5a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3Z"></path><path d="M21 16v2a4 4 0 0 1-4 4h-5"></path></svg><span>Atendimento ao cliente</span></button>
+          <button class="me-area cursor-interaction" type="button" data-cf-candidate-action="area" data-cf-area="Comercial, Vendas" data-cf-keyword=""><svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class="me-svg-icon"><path d="M16 10a4 4 0 0 1-8 0"></path><path d="M3.103 6.034h17.794"></path><path d="M3.4 5.467a2 2 0 0 0-.4 1.2V20a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6.667a2 2 0 0 0-.4-1.2l-2-2.667A2 2 0 0 0 17 2H7a2 2 0 0 0-1.6.8z"></path></svg><span>Comercial e vendas</span></button>
+          <button class="me-area cursor-interaction" type="button" data-cf-candidate-action="area" data-cf-area="Logística" data-cf-keyword=""><svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class="me-svg-icon"><path d="M14 18V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v11a1 1 0 0 0 1 1h2"></path><path d="M15 18H9"></path><path d="M19 18h2a1 1 0 0 0 1-1v-3.65a1 1 0 0 0-.22-.624l-3.48-4.35A1 1 0 0 0 17.52 8H14"></path><circle cx="17" cy="18" r="2"></circle><circle cx="7" cy="18" r="2"></circle></svg><span>Logística e transporte</span></button>
+          <button class="me-area cursor-interaction" type="button" data-cf-candidate-action="area" data-cf-area="Industrial, Produção, Fábrica" data-cf-keyword=""><svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class="me-svg-icon"><path d="M12 16h.01"></path><path d="M16 16h.01"></path><path d="M3 19a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V8.5a.5.5 0 0 0-.769-.422l-4.462 2.844A.5.5 0 0 1 15 10.5v-2a.5.5 0 0 0-.769-.422L9.77 10.922A.5.5 0 0 1 9 10.5V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2z"></path><path d="M8 16h.01"></path></svg><span>Produção e indústria</span></button>
+          <button class="me-area cursor-interaction" type="button" data-cf-candidate-action="area" data-cf-area="Administração" data-cf-keyword=""><svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class="me-svg-icon"><rect width="16" height="20" x="4" y="2" rx="2"></rect><line x1="8" x2="16" y1="6" y2="6"></line><line x1="16" x2="16" y1="14" y2="18"></line><path d="M16 10h.01"></path><path d="M12 10h.01"></path><path d="M8 10h.01"></path><path d="M12 14h.01"></path><path d="M8 14h.01"></path><path d="M12 18h.01"></path><path d="M8 18h.01"></path></svg><span>Administrativo</span></button>
+          <button class="me-area cursor-interaction" type="button" data-cf-candidate-action="area" data-cf-area="Informática, TI, Telecomunicações" data-cf-keyword=""><svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class="me-svg-icon"><rect width="20" height="14" x="2" y="3" rx="2"></rect><line x1="8" x2="16" y1="21" y2="21"></line><line x1="12" x2="12" y1="17" y2="21"></line></svg><span>Tecnologia da informação</span></button>
+          <button class="me-area cursor-interaction" type="button" data-cf-candidate-action="area" data-cf-area="Contábil, Finanças, Economia" data-cf-keyword=""><svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class="me-svg-icon"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path><path d="M16 3.128a4 4 0 0 1 0 7.744"></path><path d="M22 21v-2a4 4 0 0 0-3-3.87"></path><circle cx="9" cy="7" r="4"></circle></svg><span>Financeiro e contábil</span></button>
+          <button class="me-area cursor-interaction" type="button" data-cf-candidate-action="area" data-cf-area="Marketing" data-cf-keyword=""><svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class="me-svg-icon"><path d="M11 6a13 13 0 0 0 8.4-2.8A1 1 0 0 1 21 4v12a1 1 0 0 1-1.6.8A13 13 0 0 0 11 14H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2z"></path><path d="M6 14a12 12 0 0 0 2.4 7.2 2 2 0 0 0 3.2-2.4A8 8 0 0 1 10 14"></path><path d="M8 6v8"></path></svg><span>Marketing e comunicação</span></button>
+        </div>
+        </div>
+    </section><section class="me-section me-soft-section" aria-labelledby="me-faq-title">
+      <div class="me-wrap">
+        <div class="me-section-title"><h2 id="me-faq-title">Dúvidas frequentes</h2></div>
+        <div class="me-faq-wrap">
+          <details class="me-faq"><summary class="cursor-interaction">Preciso pagar para me candidatar?<svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class="me-svg-icon"><path d="m6 9 6 6 6-6"></path></svg></summary><p>O cadastro de currículo e a candidatura às vagas são gratuitos.</p></details>
+          <details class="me-faq"><summary class="cursor-interaction">Como envio meu currículo para uma vaga?<svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class="me-svg-icon"><path d="m6 9 6 6 6-6"></path></svg></summary><p>Abra o anúncio, leia os requisitos e clique em Candidatar-se. Siga o canal indicado pela empresa: portal, e-mail, WhatsApp ou site externo.</p></details>
+          <details class="me-faq"><summary class="cursor-interaction">Onde acompanho minha candidatura?<svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class="me-svg-icon"><path d="m6 9 6 6 6-6"></path></svg></summary><p>As candidaturas realizadas pelo portal ficam na área do candidato. Quando o envio ocorre por e-mail, WhatsApp ou site externo, acompanhe diretamente pelo canal informado pela empresa.</p></details>
+        </div>
+      </div>
+    </section><div class="me-wrap"><div class="me-footer-cta"><div><h2>Pronto para dar o próximo passo?</h2><p>Comece pelo seu currículo no +Empregos.</p></div><a class="me-button cursor-interaction" href="?pagina=cadastro-curriculo" data-cf-candidate-action="register">Cadastrar currículo grátis <svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class="me-svg-icon"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg></a></div></div></section>
 <section class="cf106-panel empresa" role="tabpanel" id="cf120Empresa" aria-labelledby="cf120TabEmpresa" hidden>
 <div class="cf-company-trust"><article><b>Publicação gratuita</b><span>Dentro das condições do plano</span></article><article><b>Painel empresarial</b><span>Vagas e candidaturas organizadas</span></article><article><b>Perfil da empresa</b><span>Sua marca no portal</span></article></div><div class="cf106-intro"><small>PARA EMPRESAS E RECRUTADORES</small><h2>Como anunciar no Mais Empregos</h2><p>Apresente sua oportunidade e gerencie a seleção pelo painel empresarial.</p></div>
 <div class="cf106-journey"><article class="cf106-card"><div class="cf106-num">01</div><h3>Crie seu acesso</h3><p>Cadastre a empresa e o responsável para acessar sua conta.</p></article><article class="cf106-card"><div class="cf106-num">02</div><h3>Descreva a oportunidade</h3><p>Informe função, requisitos, localização e forma de candidatura.</p></article><article class="cf106-card"><div class="cf106-num">03</div><h3>Confira a modalidade</h3><p>Consulte os limites gratuitos e as opções de destaque disponíveis.</p></article><article class="cf106-card"><div class="cf106-num">04</div><h3>Acompanhe a seleção</h3><p>Gerencie vagas, currículos e etapas na área da empresa.</p></article></div>
@@ -404,12 +462,7 @@ x.innerHTML=`<header class="cf106-hero"><div class="cf120-hero-grid"><div><span 
 <section class="cf106-faq"><div class="cf106-faq-head"><h2>Perguntas frequentes</h2><p>Entenda os recursos e os próximos passos para o seu perfil.</p></div><div class="cf106-faq-list" id="cf106Faq"></div></section></div>`;
 pg.replaceChildren(x);
 var faqs={
-candidato:[
-["Preciso pagar para me candidatar?","Não. Criar currículo, pesquisar oportunidades e enviar candidaturas pelo EmpregaMais é gratuito para candidatos."],
-["Posso atualizar meu currículo?","Sim. Você pode manter suas informações profissionais atualizadas pela sua área de candidato."],
-["Como acompanho minhas candidaturas?","As candidaturas realizadas pelo portal podem ser consultadas na área do candidato, conforme as informações disponibilizadas no processo."],
-["Posso me candidatar mais de uma vez à mesma vaga?","Não. Cada candidato pode registrar apenas uma candidatura para a mesma oportunidade."]
-],
+candidato:[],
 empresa:[
 ["Posso publicar gratuitamente?","O portal oferece um plano gratuito. Consulte na página de planos os limites e condições atuais para sua empresa."],
 ["Como escolho uma opção de destaque?","Acesse a página de planos e compare os recursos disponíveis antes de escolher. Os benefícios e condições são apresentados pelo Mais Empregos."],
@@ -436,6 +489,8 @@ x.querySelectorAll(".cf106-panel").forEach(function(panel){panel.hidden=!panel.c
 x.querySelector(".cf106-panel."+tipo).classList.add("ativo");
 x.querySelectorAll(".cf106-tab").forEach(function(tab){var selected=tab===b;tab.setAttribute("aria-selected",String(selected));tab.tabIndex=selected?0:-1;});
 var empresa=tipo==="empresa";
+x.querySelector("[data-cf-candidate-hero]").hidden=empresa;
+x.querySelector(".cf106-hero").hidden=!empresa;
 document.getElementById("cf120HeroTitle").textContent=empresa?"Publique sua vaga e encontre novos talentos.":"Como enviar seu currículo para as vagas";
 document.getElementById("cf120HeroText").textContent=empresa?"Anuncie no Mais Empregos, escolha os recursos disponíveis para sua conta e acompanhe as candidaturas pelo painel da empresa.":"Encontre oportunidades no Mais Empregos e saiba como se candidatar pelo canal indicado em cada anúncio.";
 document.getElementById("cf120OverviewTitle").textContent=empresa?"Sua seleção, mais organizada.":"Sua carreira, mais organizada.";
@@ -449,6 +504,43 @@ faq(tipo);
 x.querySelector(".cf106-tabs").addEventListener("keydown",function(e){if(!["ArrowLeft","ArrowRight","Home","End"].includes(e.key))return;e.preventDefault();var tabs=Array.from(x.querySelectorAll(".cf106-tab"));var i=tabs.indexOf(document.activeElement);var target=e.key==="Home"?0:e.key==="End"?tabs.length-1:(i+(e.key==="ArrowRight"?1:-1)+tabs.length)%tabs.length;tabs[target].click();tabs[target].focus();});
 document.getElementById("cf120HeroPrimary").onclick=function(){irPara(x.dataset.publico==="empresa"?"cadastro-empresa":"curriculo");};
 document.getElementById("cf120HeroSecondary").onclick=function(){if(x.dataset.publico==="empresa")irPara("login-empresa");else{irPara("home");setTimeout(rolarVagas,150);}};
+
+// Candidate actions use the existing registration and vacancy-search routes.
+var candidateInstructions=[
+"Informe seus dados para criar sua conta e acessar a área do candidato.",
+"Preencha suas experiências, formação e contatos. Mantenha seu currículo atualizado.",
+"Busque por cargo e cidade e confira os requisitos e as condições de cada oportunidade.",
+"Clique em Candidatar-se e siga o canal indicado: portal, e-mail, WhatsApp ou site externo."
+];
+var candidateSteps=Array.from(x.querySelectorAll("[data-me-step]"));
+candidateSteps.forEach(function(button){button.addEventListener("click",function(){
+var index=Number(button.getAttribute("data-me-step"));
+candidateSteps.forEach(function(step,position){step.setAttribute("aria-pressed",String(position===index));});
+x.querySelector("#me-step-text").textContent=candidateInstructions[index];
+});});
+function openCandidateJobs(area,keyword){
+irPara("home");
+setTimeout(function(){
+if(typeof window.limparFiltrosRecentesEM==="function")window.limparFiltrosRecentesEM();
+else ["filtroPalavra","filtroCidade","filtroSalario","filtroArea","filtroContrato","filtroPcd","filtroModalidade"].forEach(function(id){var field=document.getElementById(id);if(field)field.value="";});
+var areaField=document.getElementById("filtroArea");
+var wordField=document.getElementById("filtroPalavra");
+var option=areaField&&Array.from(areaField.options).find(function(item){return item.value===area;});
+if(areaField)areaField.value=option?option.value:"";
+if(wordField)wordField.value=keyword||(!option&&area?area:"");
+if(typeof window.filtrarVagas==="function")window.filtrarVagas();
+if(typeof window.rolarVagas==="function")window.rolarVagas();
+},150);
+}
+x.addEventListener("click",function(event){
+var action=event.target.closest("[data-cf-candidate-action]");
+if(!action||!x.contains(action))return;
+event.preventDefault();
+var type=action.getAttribute("data-cf-candidate-action");
+if(type==="register")irPara("cadastro-curriculo");
+else openCandidateJobs(type==="area"?action.getAttribute("data-cf-area"):"",type==="area"?action.getAttribute("data-cf-keyword"):"");
+});
+
 faq("candidato");
 }
 if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",montar);else montar();
@@ -748,3 +840,4 @@ html body #pagina-home #listaVagas#listaVagas#listaVagas .em-status-quick{color:
  }
  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',start,{once:true});else start();
 })();
+
