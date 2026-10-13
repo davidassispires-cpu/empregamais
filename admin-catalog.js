@@ -1,0 +1,78 @@
+// Snapshot of the shared plan catalog; checked by tests/admin-panel.test.cjs.
+window.EMAdminCatalog = {
+  "basico": {
+    "id": "basico",
+    "nome": "Grátis",
+    "preco": 0,
+    "meses": 0,
+    "dias": 30,
+    "vagas": 3,
+    "destaques": 0,
+    "urgentes": 0,
+    "confidenciais": 0,
+    "pago": false,
+    "logo": false,
+    "whatsapp": false,
+    "link": false
+  },
+  "mensal": {
+    "id": "mensal",
+    "nome": "Mensal",
+    "preco": 49.9,
+    "meses": 1,
+    "dias": 30,
+    "vagas": 8,
+    "destaques": 0,
+    "urgentes": 0,
+    "confidenciais": 0,
+    "pago": true,
+    "logo": true,
+    "whatsapp": true,
+    "link": true
+  },
+  "trimestral": {
+    "id": "trimestral",
+    "nome": "Trimestral",
+    "preco": 129.9,
+    "meses": 3,
+    "dias": 90,
+    "vagas": 30,
+    "destaques": 2,
+    "urgentes": 2,
+    "confidenciais": 1,
+    "pago": true,
+    "logo": true,
+    "whatsapp": true,
+    "link": true
+  },
+  "semestral": {
+    "id": "semestral",
+    "nome": "Semestral",
+    "preco": 239.9,
+    "meses": 6,
+    "dias": 180,
+    "vagas": 70,
+    "destaques": 4,
+    "urgentes": 4,
+    "confidenciais": 2,
+    "pago": true,
+    "logo": true,
+    "whatsapp": true,
+    "link": true
+  },
+  "anual": {
+    "id": "anual",
+    "nome": "Anual",
+    "preco": 399.9,
+    "meses": 12,
+    "dias": 365,
+    "vagas": 150,
+    "destaques": 6,
+    "urgentes": 6,
+    "confidenciais": 3,
+    "pago": true,
+    "logo": true,
+    "whatsapp": true,
+    "link": true
+  }
+};
