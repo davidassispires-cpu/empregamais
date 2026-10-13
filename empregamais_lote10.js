@@ -191,10 +191,10 @@
   var recruiterHeaderObserver;
   function updateRecruiterHeaderHeight(){
     var header=document.querySelector('body>header.topo');
-    if(host)host.style.setProperty('--recruiter-header-height',(header?Math.ceil(header.getBoundingClientRect().height):0)+'px');
+    var value=(header?Math.ceil(header.getBoundingClientRect().height):0)+'px';if(host&&host.style.getPropertyValue('--recruiter-header-height')!==value)host.style.setProperty('--recruiter-header-height',value);
   }
   function paidShellStyle(e){
-    if(host)host.dataset.paid=String(!!window.EMPlanos.get(window.EMPlanos.companyKey(e)).pago);
+    var paid=String(!!window.EMPlanos.get(window.EMPlanos.companyKey(e)).pago);if(host&&host.dataset.paid!==paid)host.dataset.paid=paid;
     if(!document.getElementById('em-recruiter-paid-shell')){
       var style=document.createElement('style');style.id='em-recruiter-paid-shell';
       style.textContent='body:has(:is(#pagina-painel-empresa.ativa,#pagina-demo-recrutador.ativa) #emRecruiterPanel[data-paid="true"])>header.topo{position:sticky!important;top:0!important;z-index:110!important}body:has(:is(#pagina-painel-empresa.ativa,#pagina-demo-recrutador.ativa) #emRecruiterPanel[data-paid="true"]) .rodape{display:none!important}';
