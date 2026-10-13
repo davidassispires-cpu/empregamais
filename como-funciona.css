@@ -42,6 +42,9 @@
 #comoFuncionaV106 .cf-guide-stage-copy,#comoFuncionaV106 .cf-guide-graphic {animation:cfGuideStageEnter .35s ease-out;}
 #comoFuncionaV106 .cf-guide-stage-copy h3 {font-size:28px!important;font-weight:800!important;line-height:1.25!important;letter-spacing:-.65px;margin-bottom:12px;color:var(--guide-ink);}
 #comoFuncionaV106 .cf-guide-stage-copy p {font-size:16px!important;color:var(--guide-body);line-height:1.65!important;}
+#comoFuncionaV106 .cf-guide-stage-highlights {list-style:none;margin:16px 0 0;padding:0;display:grid;gap:10px;text-align:left;}
+#comoFuncionaV106 .cf-guide-stage-highlights li {display:flex;align-items:flex-start;gap:10px;padding:10px 12px;border:1px solid var(--guide-line);border-radius:8px;background:#fff;color:var(--guide-body);font-size:14px!important;line-height:1.6!important;}
+#comoFuncionaV106 .cf-guide-stage-highlights .cf-guide-icon {width:18px;height:18px;color:var(--guide-accent);margin-top:2px;}
 #comoFuncionaV106 .cf-guide-stage-meta {display:inline-flex;align-items:center;justify-content:center;gap:8px;background:var(--guide-soft);color:var(--guide-accent);border:1px solid var(--guide-line);border-radius:6px;padding:6px 10px;font-size:12px!important;font-weight:700;letter-spacing:.6px;margin-bottom:14px;}
 #comoFuncionaV106 .cf-guide-graphic {min-width:0;width:100%;color:var(--guide-accent);}
 #comoFuncionaV106 .cf-guide-graphic>svg {display:block;width:100%;height:auto;max-width:530px;margin:0 auto;filter:drop-shadow(0 8px 14px #20354e0b);}
@@ -117,6 +120,7 @@
   #comoFuncionaV106 .cf-guide-grid,#comoFuncionaV106 .cf-guide-grid.two {grid-template-columns:1fr;gap:12px;}
   #comoFuncionaV106 .cf-guide-grid.four {grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;}
   #comoFuncionaV106 .cf-guide-grid.four .cf-guide-card {padding:16px 12px;}
+  #comoFuncionaV106 .cf-guide-steps {grid-auto-rows:1fr;}
   #comoFuncionaV106 .cf-guide-step {display:grid;grid-template-columns:44px minmax(0,1fr);align-items:center;gap:5px 12px;text-align:left;padding:16px 32px 16px 16px;}
   #comoFuncionaV106 .cf-guide-step .cf-guide-icon-box {grid-row:1/3;width:44px;height:44px;}
   #comoFuncionaV106 .cf-guide-step-title,#comoFuncionaV106 .cf-guide-step-desc {grid-column:2;}
