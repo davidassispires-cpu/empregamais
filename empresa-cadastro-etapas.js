@@ -32,7 +32,7 @@ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',
   const login=layout.querySelector('.portal-login-card-em'),card=layout.querySelector('.portal-cadastro-card-em');
   const sidebar=document.createElement('aside');sidebar.className='company-solid-sidebar';sidebar.innerHTML='<h1>Área da<br>empresa</h1><svg aria-hidden="true" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 44V5h24v39M32 19h8v25M4 44h40M15 13h10M15 22h10M15 31h10"/></svg><ul><li>Publique suas vagas</li><li>Gerencie candidaturas</li><li>Atualize o perfil da empresa</li></ul>';layout.prepend(sidebar);
   login.querySelector('h2').textContent='Acesse sua conta';
-  card.replaceChildren();const heading=document.createElement('h2');heading.textContent='Cadastre sua empresa';card.append(heading,form);
+  card.replaceChildren();const heading=document.createElement('h2');heading.textContent='Cadastre sua empresa grátis';card.append(heading,form);
   const grid=form.querySelector('.cadastro-modal-grid-em'),sections=[];
   const groups=[['cadEmpresaNomeEM','cadEmpresaCnpjEM','cadEmpresaSetorEM','cadEmpresaFuncionariosEM','cadEmpresaSobreEM'],['cadEmpresaTelefoneEM','cadEmpresaTelefoneFixoEM','cadEmpresaCepEM','cadEmpresaCidadeEM','cadEmpresaUfEM'],['cadEmpresaResponsavelEM','cadEmpresaCpfEM','cadEmpresaCargoEM','cadEmpresaEmailEM','cadEmpresaSenhaEM','cadEmpresaConfirmarSenhaEM']];
   const titles=['Empresa','Contato e endereço','Responsável'];
@@ -107,3 +107,4 @@ body.company-solid-active .topo .marca-icone{background:#fff!important;color:#17
  }
  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',setupBlue);else setupBlue();
 })();
+

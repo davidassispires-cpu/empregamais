@@ -459,16 +459,7 @@ new MutationObserver(function(){prepararV81();}).observe(alvo,{childList:true,su
 ;
 //
 (function(){
-var PLANOS={
-basico:{nome:"Plano Gratuito",preco:"R$ 0,00",periodo:"uso gratuito",vagas:3,destaques:0,urgentes:0,
-beneficios:["Painel do recrutador","3 publicações por mês","Recebimento de candidaturas","Gestão básica de candidatos","Estatísticas básicas"]},
-trimestral:{nome:"Plano Trimestral",preco:"R$ 79,90",periodo:"3 meses",vagas:50,destaques:10,urgentes:5,
-beneficios:["Painel completo do recrutador","50 vagas durante a vigência","Até 10 vagas em destaque simultaneamente","5 selos Contratação Urgente por mês","Publicação Confidencial incluída","Empresa Verificada após validação","Página Exclusiva da Empresa","Perfil institucional, cultura e benefícios","Gestão completa de candidatos","Estatísticas completas"]},
-semestral:{nome:"Plano Semestral",preco:"R$ 139,90",periodo:"6 meses",vagas:100,destaques:20,urgentes:7,
-beneficios:["Painel completo do recrutador","100 vagas durante a vigência","Até 20 vagas em destaque simultaneamente","7 selos Contratação Urgente por mês","Publicação Confidencial incluída","Empresa Verificada após validação","Página Exclusiva da Empresa","Perfil institucional, cultura e benefícios","Gestão completa de candidatos","Estatísticas completas","Suporte prioritário"]},
-anual:{nome:"Plano Anual",preco:"R$ 239,90",periodo:"12 meses",vagas:300,destaques:40,urgentes:10,
-beneficios:["Painel completo do recrutador","300 vagas durante a vigência","Até 40 vagas em destaque simultaneamente","10 selos Contratação Urgente por mês","Publicação Confidencial incluída","Empresa Verificada após validação","Página Exclusiva da Empresa","Perfil institucional, cultura e benefícios","Gestão completa de candidatos","Estatísticas completas","Suporte prioritário"]}
-};
+var PLANOS=window.EMPlanos.table(function(p){return Object.assign({},p,{nome:'Plano '+p.nome,preco:window.EMPlanos.money(p.preco),periodo:window.EMPlanos.period(p.id),beneficios:[window.EMPlanos.quotaText(p.id)].concat(window.EMPlanos.resources(p.id,[]).map(function(x){return x[1];}))});});
 function chaveAtual(){
 try{
 var r=typeof resumoPlanoEmpresaV9==="function"?resumoPlanoEmpresaV9():null;
@@ -502,7 +493,7 @@ try{return (vagasDaEmpresa()||[]).filter(function(v){return v.contratacaoUrgente
 function ganhos(de,para){
 var a=PLANOS[de],b=PLANOS[para],g=[];
 if(b.vagas>a.vagas)g.push((b.vagas-a.vagas)+" vagas adicionais de capacidade");
-if(b.destaques>a.destaques)g.push("Até "+b.destaques+" vagas em destaque simultaneamente");
+if(b.destaques>a.destaques)g.push("Até "+b.destaques+" ativações de Destaque por mês");
 if(b.urgentes>a.urgentes)g.push(b.urgentes+" selos de Contratação Urgente por mês");
 if(de==="trimestral"&&para==="semestral")g.push("Mais 3 meses de vigência");
 if(de==="trimestral"&&para==="anual")g.push("Mais 9 meses de vigência");
@@ -586,3 +577,4 @@ ev.preventDefault();ev.stopPropagation();ev.stopImmediatePropagation();abrir();
 //
 ;
 /* Filtro de proximidade usa o formulário único em emPerto. */
+

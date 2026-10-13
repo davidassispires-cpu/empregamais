@@ -2,28 +2,7 @@
 
 //
 (function(){
-var PLANOS_V127={
-basico:{
-id:"basico",nome:"Básico",pago:false,
-logo:false,whatsapp:false,link:false,
-vagas:3,destaques:0,urgentes:0,dias:15
-},
-trimestral:{
-id:"trimestral",nome:"Trimestral",pago:true,
-logo:true,whatsapp:true,link:true,
-vagas:50,destaques:10,urgentes:5,dias:90
-},
-semestral:{
-id:"semestral",nome:"Semestral",pago:true,
-logo:true,whatsapp:true,link:true,
-vagas:100,destaques:20,urgentes:7,dias:180
-},
-anual:{
-id:"anual",nome:"Anual",pago:true,
-logo:true,whatsapp:true,link:true,
-vagas:300,destaques:40,urgentes:10,dias:365
-}
-};
+var PLANOS_V127=window.EMPlanos.table(function(p){return window.EMPlanos.configuration(p.id);});
 function norm(v){
 v=String(v||"").trim().toLowerCase();
 if(v==="gratis"||v==="gratuito"||v==="free"||v==="basic"||v==="essencial")return "basico";
@@ -57,31 +36,12 @@ if((c&&ec===c)||(m&&em===m))return lista[i];
 }catch(x){}
 return {};
 }
-function chavePlano(){
-var e=empresaAtual();
-var p=norm(e.plano_id||e.planoId||e.plano||e.plano_nome||e.planoNome||"");
-if(PLANOS_V127[p])return p;
-try{
-if(typeof window.planoAtivoEmpresaV38==="function"){
-p=norm(window.planoAtivoEmpresaV38());
-if(PLANOS_V127[p])return p;
-}
-}catch(x){}
-return "basico";
-}
+function chavePlano(){return window.EMPlanos.companyKey(empresaAtual());}
+
 function cfg(){
 return PLANOS_V127[chavePlano()]||PLANOS_V127.basico;
 }
-window.configuracaoPlanoEmpresa=function(plano){
-var p=norm(plano),c=PLANOS_V127[p]||PLANOS_V127.basico;
-return {
-id:c.id,nome:c.nome,preco:0,
-vagasMes:c.vagas,destaquesMes:c.destaques,
-urgentesMes:c.urgentes,diasVaga:c.dias,
-logo:c.logo,
-candidatura:c.pago?["email","whatsapp","link"]:["email"]
-};
-};
+window.configuracaoPlanoEmpresa=function(plano){return window.EMPlanos.configuration(plano);};
 window.planoEmpresaAtual=function(){
 return window.configuracaoPlanoEmpresa(chavePlano());
 };
@@ -312,3 +272,4 @@ window.addEventListener("load",function(){setTimeout(instalar,1300);setTimeout(i
 var obs=new MutationObserver(function(){if(document.getElementById("painelReferenciaRecrutadorEM"))setTimeout(instalar,80);});
 obs.observe(document.documentElement,{childList:true,subtree:true});
 })();
+

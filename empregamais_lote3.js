@@ -377,12 +377,7 @@ setTimeout(atualizarV36,800);
 ;
 //
 (function(){
-var PLANOS_V38={
-basico:{nome:"Gratuito",urgentes:0,pagina:false,confidencial:false},
-trimestral:{nome:"Trimestral",urgentes:5,pagina:true,confidencial:true},
-semestral:{nome:"Semestral",urgentes:7,pagina:true,confidencial:true},
-anual:{nome:"Anual",urgentes:10,pagina:true,confidencial:true}
-};
+var PLANOS_V38=window.EMPlanos.table(function(p){return {nome:p.nome,urgentes:p.urgentes,pagina:p.pago,confidencial:p.confidenciais>0};});
 function normV38(v){return String(v||"").trim().toLowerCase();}
 function cnpjV38(v){return String(v||"").replace(/\D/g,"");}
 function emailV38(v){return String(v||"").trim().toLowerCase();}
@@ -405,16 +400,7 @@ if((c&&cnpjV38(l[i].cnpj)===c)||(m&&emailV38(l[i].email)===m))return l[i];
 }
 return {};
 }
-function planoAtivoV38(emp){
-emp=emp||empresaAtualV38();
-var p=normV38(emp.plano||emp.planoId||"basico");
-if(!PLANOS_V38[p])p="basico";
-if(p!=="basico"&&emp.planoValidoAte){
-var fim=new Date(emp.planoValidoAte);
-if(!isNaN(fim.getTime())&&fim.getTime()<Date.now())return "basico";
-}
-return p;
-}
+function planoAtivoV38(emp){return window.EMPlanos.companyKey(emp||empresaAtualV38());}
 function salvarLocalV38(emp){
 var l=listaEmpresasV38(),c=cnpjV38(emp.cnpj),m=emailV38(emp.email),achou=false;
 for(var i=0;i<l.length;i++){
