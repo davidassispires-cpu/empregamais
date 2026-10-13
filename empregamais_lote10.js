@@ -718,7 +718,7 @@ function companyHero(e){
       latest[pos]=Object.assign({},next,remote);window.salvarVagasPortal(latest);
       var confirmed=(invoke('carregarVagasPortal')||[]).find(function(job){return String(job.id)===id;});
       if(!confirmed||keys.some(function(k){return String(confirmed[k]==null?'':confirmed[k])!==String(latest[pos][k]==null?'':latest[pos][k]);}))throw Error('Não foi possível confirmar a atualização no navegador.');
-      localStorage.removeItem(draftKey);await window.EMPlanos.refreshBalance(true);closeSettings();render();invoke('mostrarToast',['Alterações confirmadas no banco.']);
+      localStorage.removeItem(draftKey);await window.EMPlanos.refreshBalance(true);var returnToManagement=!d.querySelector('#settings-fields').hidden,returnButton=modalReturn;closeSettings();render();if(returnToManagement){await openSettings(id,returnButton);var management=root.getElementById('job-settings-dialog');if(management)management.querySelector('#settings-feedback').textContent='Alterações salvas. Informações da vaga atualizadas.';}invoke('mostrarToast',['Alterações confirmadas no banco.']);
     }catch(err){d.querySelector('#settings-feedback').textContent=err.message;}finally{delete d.dataset.saving;if(saveButton){saveButton.disabled=false;saveButton.textContent='Salvar alterações';}}
   }
 
