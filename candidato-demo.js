@@ -38,6 +38,9 @@
     window.candidatoEstaLogado=function(){return true;};window.empresaEstaLogada=function(){return false;};
     window.carregarVagasPortal=function(){return jobs;};window.salvarVagasPortal=function(list){jobs=list;};window.vagasPadrao=[];
     window.sincronizarVagasGoogleSheets=function(){return Promise.resolve(jobs);};
+    var previewApplications=window.EmpregaMaisEtapasCandidatura.demo();
+    var viewedExample=previewApplications.find(function(a){return a.email===profile.email&&a.id==='demo-c0';})||previewApplications.find(function(a){return a.email===profile.email;});
+    if(viewedExample&&!viewedExample.visualizadoEm){viewedExample.visualizada=true;viewedExample.visualizadoEm=new Date(Date.now()-30*60000).toISOString();window.EmpregaMaisEtapasCandidatura.salvarDemo(previewApplications);}
     window.carregarCandidaturas=function(){return window.EmpregaMaisEtapasCandidatura.demo();};window.salvarCandidaturas=window.EmpregaMaisEtapasCandidatura.salvarDemo;
     window.apiEmpregaMaisGet=function(){return Promise.resolve({sucesso:true,demo:true,vagas:jobs,candidaturas:window.carregarCandidaturas()});};window.apiEmpregaMaisPost=function(){status('Alteração simulada na demonstração do candidato.');return Promise.resolve({sucesso:true,demo:true});};
     if(window.EmpregaMaisPerfilCloud){window.EmpregaMaisPerfilCloud.refresh=function(){return Promise.resolve(profile);};window.EmpregaMaisPerfilCloud.hydrate=function(){return Promise.resolve(profile);};window.EmpregaMaisPerfilCloud.flush=function(){status('Perfil salvo apenas na demonstração.');return Promise.resolve(profile);};}
