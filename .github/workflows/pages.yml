@@ -12,6 +12,7 @@ concurrency:
   cancel-in-progress: true
 jobs:
   deploy:
+    timeout-minutes: 25
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
@@ -27,14 +28,18 @@ jobs:
           import os, pathlib, re
           page = pathlib.Path('index.html')
           html = page.read_text()
-          for asset in ('processo-seletivo-etapas.js', 'candidato-demo.js', 'vagas-recomendadas.js', 'candidato-candidaturas.js', 'candidato-candidaturas-sync.js', 'recruiter-sync-and-reports.js', 'candidato-preparacao.js', 'candidato-preparacao.css'):
+          for asset in ('site-fonts.css', 'processo-seletivo-etapas.js', 'candidato-demo.js', 'vagas-recomendadas.js', 'candidato-candidaturas.js', 'candidato-candidaturas-sync.js', 'recruiter-sync-and-reports.js', 'candidato-preparacao.js', 'candidato-preparacao.css'):
               html = re.sub(re.escape(asset) + r'\?v=[^\"\']+', asset + '?v=' + os.environ['DEPLOY_SHA'], html)
           page.write_text(html)
           PYTHON
       - uses: actions/upload-pages-artifact@v3
         with:
+          name: github-pages-${{ github.run_id }}-${{ github.run_attempt }}
           path: .
       - name: Deploy
         id: deployment
         uses: actions/deploy-pages@v4
+        with:
+          artifact_name: github-pages-${{ github.run_id }}-${{ github.run_attempt }}
+          timeout: 1200000
 
