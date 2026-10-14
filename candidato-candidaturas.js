@@ -250,6 +250,32 @@
   html body .cp-process-modal .cp-interview-buttons button{width:auto!important;min-height:0!important;height:auto!important;padding:9px 12px!important;border-radius:6px!important;font:650 11px/1.4 Inter,Arial,sans-serif!important}
   html body .cp-process-modal .cp-message-preview button{width:auto!important;margin:10px 0 0!important;padding:4px 0!important;font:700 12px/1.4 Inter,Arial,sans-serif!important;background:transparent!important;color:#0f766e!important}
   @media(max-width:700px){html body .cp-process-modal .cp-process-modal-header{padding:16px 18px 8px!important}html body .cp-process-modal .cp-process-modal-header h2{font-size:20px!important}html body .cp-process-modal .cp-process-body{padding:0 18px 18px!important}html body .cp-process-modal .cp-process-tabs{gap:4px!important}html body .cp-process-modal .cp-process-tabs button{font-size:10px!important;padding:12px 3px!important}html body .cp-process-modal .cp-process-support{grid-template-columns:1fr!important}html body .cp-process-modal .cp-process-steps li:nth-child(3):after{display:none}html body .cp-process-modal .cp-process-support>section{padding-left:78px!important}.cp-support-icon{left:14px!important;width:46px!important;height:46px!important}}
+
+  /* Mesmo quadro em todas as abas; apoios compactos no computador. */
+  @media(min-width:701px){
+   html body dialog.cp-process-modal[open]{display:flex!important;flex-direction:column!important;height:min(570px,calc(100dvh - 40px))!important;max-height:calc(100dvh - 40px)!important;overflow:hidden!important}
+   html body .cp-process-modal .cp-process-modal-header{flex:0 0 auto!important;padding:17px 24px 7px!important}
+   html body .cp-process-modal .cp-process-modal-header h2{font-size:23px!important;margin:5px 0!important}
+   html body .cp-process-modal .cp-process-body{flex:1 1 auto!important;min-height:0!important;display:flex!important;flex-direction:column!important;padding:0 24px 16px!important;overflow:hidden!important}
+   html body .cp-process-modal .cp-process-tabs{flex:0 0 auto!important;margin-bottom:12px!important}
+   html body .cp-process-modal .cp-process-tabs button{padding:12px 10px!important}
+   html body .cp-process-modal .cp-process-tab-content{flex:1 1 auto!important;min-height:0!important;overflow:auto!important;scrollbar-width:thin}
+   html body .cp-process-modal .cp-process-note{padding:9px 13px!important;margin-bottom:12px!important}
+   html body .cp-process-modal .cp-process-tab-content h4{margin-bottom:12px!important;font-size:15px!important}
+   html body .cp-process-modal .cp-process-support{margin-top:12px!important;gap:12px!important}
+   html body .cp-process-modal .cp-process-support>section{padding:13px 14px 12px 70px!important}
+   html body .cp-process-modal .cp-support-icon{left:14px!important;top:15px!important;width:42px!important;height:42px!important}
+   html body .cp-process-modal .cp-support-icon svg{width:25px!important;height:25px!important}
+   html body .cp-process-modal .cp-process-support h4{font-size:12px!important;margin-bottom:5px!important}
+   html body .cp-process-modal .cp-interview-preview>strong{font-size:17px!important}
+   html body .cp-process-modal .cp-process-support p{font-size:11px!important;line-height:1.4!important;margin:4px 0!important}
+   html body .cp-process-modal .cp-interview-buttons{margin:8px 0 5px!important;gap:6px!important}
+   html body .cp-process-modal .cp-interview-buttons button{padding:7px 9px!important;font-size:10px!important}
+   html body .cp-process-modal .cp-process-support small{font-size:10px!important;line-height:1.35!important}
+   html body .cp-process-modal .cp-message-preview button{margin-top:7px!important;font-size:11px!important}
+  }
+  @media(min-width:701px) and (max-height:650px){html body .cp-process-modal .cp-process-note p{display:none!important}html body .cp-process-modal .cp-process-steps li>span{width:28px!important;height:28px!important}html body .cp-process-modal .cp-process-steps li:not(:last-child):after{top:13px!important}html body .cp-process-modal .cp-process-steps li{gap:4px!important}html body .cp-process-modal .cp-process-support{margin-top:8px!important}}
+  @media(max-width:700px){html body dialog.cp-process-modal[open]{height:calc(100dvh - 32px)!important;display:flex!important;flex-direction:column!important;overflow:hidden!important}html body .cp-process-modal .cp-process-modal-header{flex:none!important}html body .cp-process-modal .cp-process-body{flex:1!important;min-height:0!important;display:flex!important;flex-direction:column!important;overflow:hidden!important}html body .cp-process-modal .cp-process-tabs{flex:none!important}html body .cp-process-modal .cp-process-tab-content{flex:1!important;min-height:0!important;overflow:auto!important}}
   @media(prefers-reduced-motion:reduce){#pagina-painel-candidato .cp-profile .cp-stage-card{transition:none}}
   `;document.head.appendChild(style);
   window.addEventListener('popstate',refresh);window.addEventListener('storage',refresh);document.addEventListener('empregamais:candidato-sincronizado',refresh);document.addEventListener('empregamais:candidaturas-sincronizadas',refresh);refresh();
