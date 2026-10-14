@@ -645,6 +645,12 @@ window.renderAderenciaPremiumTeaserV96=render;
 #pagina-curriculo .cv-purple-hero h2{font-size:32px!important;margin-bottom:8px!important}#pagina-curriculo .cv-purple-hero .cv85-hero-copy p{font-size:13px!important}
 @media(max-width:950px){#cvResumeWizard.cv-wizard>.cv-context-guide{grid-template-columns:minmax(160px,.8fr) minmax(0,1.3fr)!important}#cvResumeWizard .cv-guide-tip{grid-column:1/-1;grid-row:3;padding:10px!important}#cvResumeWizard .curriculo-grid-v84{grid-template-columns:repeat(2,minmax(0,1fr))!important}}
 @media(max-width:600px){#cvResumeWizard.cv-wizard>.cv-context-guide{grid-template-columns:1fr!important;padding:16px!important;gap:8px!important}#cvResumeWizard .cv-context-guide>small{grid-column:1;grid-row:1}#cvResumeWizard .cv-context-guide h2{grid-column:1;grid-row:2}#cvResumeWizard .cv-context-guide>p{grid-column:1;grid-row:3;border:0;padding:0}#cvResumeWizard .cv-guide-tip{grid-column:1;grid-row:4}#cvResumeWizard .curriculo-grid-v84{grid-template-columns:1fr!important}#cvResumeWizard label:has(#cvRuaAligned),#cvResumeWizard label:has(#cvComplementoAligned){grid-column:auto!important}#cvResumeWizard.cv-wizard>.cv86-editor{height:650px!important}#cvResumeWizard #curriculoOnlineV84{padding:16px!important}#pagina-curriculo .cv-purple-hero{grid-template-columns:1fr!important}}
+
+/* Etapa inteira visível; apenas a página rola. */
+#cvResumeWizard.cv-wizard,#cvResumeWizard.cv-wizard>.cv86-editor,#cvResumeWizard #curriculoOnlineV84{height:auto!important;min-height:0!important;max-height:none!important;overflow:visible!important}
+#cvResumeWizard .cv-fields-frame{flex:none!important;height:auto!important;min-height:0!important;overflow:visible!important;padding:0!important}
+#cvResumeWizard .cv-fields-viewport{height:auto!important;max-height:none!important;overflow:visible!important;padding:0!important}
+#cvResumeWizard .cv-scroll-arrow,#cvResumeWizard .cv-fields-frame:before,#cvResumeWizard .cv-fields-frame:after{display:none!important}
 `;document.head.appendChild(style);
  window.addEventListener('load',function(){setTimeout(setup,1200)},{once:true});
 })();
