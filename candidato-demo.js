@@ -29,19 +29,33 @@
   }
   seed('curriculoEmpregaMais_'+profile.email,{nome:'Curriculo-Demonstracao.pdf',data:date,dados:sampleResume()});
   var realFetch=window.fetch;
-  window.fetch=function(input,options){var url=String(input&&input.url||input);if(/supabase\.co|script\.google\.com/.test(url)){var data=/\/candidatos\?/.test(url)?[Object.assign({user_id:'demo-candidato',perfil:profile},profile)]:/\/auth\/v1\/user/.test(url)?{id:'demo-candidato'}:{sucesso:true,demo:true,vagas:jobs,candidaturas:window.EmpregaMaisEtapasCandidatura.demo()};return Promise.resolve(new Response(JSON.stringify(data),{status:200,headers:{'Content-Type':'application/json'}}));}return realFetch.call(this,input,options);};
+  window.fetch=function(input,options){var url=String(input&&input.url||input);if(/supabase\.co|script\.google\.com/.test(url)){var data=/\/candidatos\?/.test(url)?[Object.assign({user_id:'demo-candidato',perfil:profile},profile)]:/\/auth\/v1\/user/.test(url)?{id:'demo-candidato'}:{sucesso:true,demo:true,vagas:jobs,candidaturas:demoApplications()};return Promise.resolve(new Response(JSON.stringify(data),{status:200,headers:{'Content-Type':'application/json'}}));}return realFetch.call(this,input,options);};
   function status(message){var el=document.getElementById('emCandidateDemoNotice');if(el)el.textContent=message||'Demonstração do candidato · Dados fictícios. Alterações somente nesta prévia.';}
+  function demoApplications(){
+    var workflow=window.EmpregaMaisEtapasCandidatura;
+    if(workflow&&typeof workflow.demo==='function')return workflow.demo();
+    try{var rows=JSON.parse(localStorage.getItem('candidaturasEmpregaMais')||'[]');if(Array.isArray(rows))return rows;}catch(ignore){}
+    return [];
+  }
+  function saveDemoApplications(rows){
+    var workflow=window.EmpregaMaisEtapasCandidatura;
+    if(workflow&&typeof workflow.salvarDemo==='function')workflow.salvarDemo(rows);
+    else localStorage.setItem('candidaturasEmpregaMais',JSON.stringify(rows));
+  }
   function boot(){
-    if(ready)return;ready=true;
-    profile=JSON.parse(localStorage.getItem('candidatosEmpregaMais'))[0];
+    if(ready)return;
+    var savedProfiles;try{savedProfiles=JSON.parse(localStorage.getItem('candidatosEmpregaMais')||'[]');}catch(ignore){}
+    var savedProfile=Array.isArray(savedProfiles)&&savedProfiles.find(function(item){return item&&item.email==='ana@example.com';});
+    if(savedProfile)profile=Object.assign({},profile,savedProfile);
+    else localStorage.setItem('candidatosEmpregaMais',JSON.stringify([profile]));
     sessionStorage.setItem('empregaMaisPapel','candidato');sessionStorage.setItem('candidatoNome',profile.nome);sessionStorage.setItem('candidatoEmail',profile.email);sessionStorage.setItem('candidatoTelefone',profile.telefone);sessionStorage.setItem('candidatoCep',profile.cep);
     window.candidatoEstaLogado=function(){return true;};window.empresaEstaLogada=function(){return false;};
     window.carregarVagasPortal=function(){return jobs;};window.salvarVagasPortal=function(list){jobs=list;};window.vagasPadrao=[];
     window.sincronizarVagasGoogleSheets=function(){return Promise.resolve(jobs);};
-    var previewApplications=window.EmpregaMaisEtapasCandidatura.demo();
+    var previewApplications=demoApplications();
     var viewedExample=previewApplications.find(function(a){return a.email===profile.email&&a.id==='demo-c0';})||previewApplications.find(function(a){return a.email===profile.email;});
-    if(viewedExample&&!viewedExample.visualizadoEm){viewedExample.visualizada=true;viewedExample.visualizadoEm=new Date(Date.now()-30*60000).toISOString();window.EmpregaMaisEtapasCandidatura.salvarDemo(previewApplications);}
-    window.carregarCandidaturas=function(){return window.EmpregaMaisEtapasCandidatura.demo();};window.salvarCandidaturas=window.EmpregaMaisEtapasCandidatura.salvarDemo;
+    if(viewedExample&&!viewedExample.visualizadoEm){viewedExample.visualizada=true;viewedExample.visualizadoEm=new Date(Date.now()-30*60000).toISOString();saveDemoApplications(previewApplications);}
+    window.carregarCandidaturas=function(){return demoApplications();};window.salvarCandidaturas=saveDemoApplications;
     window.apiEmpregaMaisGet=function(){return Promise.resolve({sucesso:true,demo:true,vagas:jobs,candidaturas:window.carregarCandidaturas()});};window.apiEmpregaMaisPost=function(){status('Alteração simulada na demonstração do candidato.');return Promise.resolve({sucesso:true,demo:true});};
     if(window.EmpregaMaisPerfilCloud){window.EmpregaMaisPerfilCloud.refresh=function(){return Promise.resolve(profile);};window.EmpregaMaisPerfilCloud.hydrate=function(){return Promise.resolve(profile);};window.EmpregaMaisPerfilCloud.flush=function(){status('Perfil salvo apenas na demonstração.');return Promise.resolve(profile);};}
     var originalOpen=window.abrirRota,allowed=['painel-candidato','perfil','curriculo','candidaturas','salvas','premium-candidato','home','vaga','candidatura'];
@@ -54,6 +68,7 @@
     window.addEventListener('popstate',function(){var p=new URLSearchParams(location.search);open(p.get('abaCandidato')||'painel-candidato',p.get('id'),false);});
     open(new URLSearchParams(location.search).get('abaCandidato')||'painel-candidato',new URLSearchParams(location.search).get('id'),false);
     function demoWidgets(){document.querySelectorAll('#pagina-painel-candidato,#pagina-candidaturas').forEach(function(root){root.querySelectorAll('.emi-candidate,.em-hire-confirmations,.em-candidate-inbox').forEach(function(box){box.style.setProperty('display','none','important');});});}
+    ready=true;
     demoWidgets();
     if(window.MutationObserver)document.querySelectorAll('#pagina-painel-candidato,#pagina-candidaturas').forEach(function(root){new MutationObserver(demoWidgets).observe(root,{childList:true,subtree:true});});
   }

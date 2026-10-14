@@ -4,9 +4,9 @@ const source=fs.readFileSync(require.resolve('../candidato-demo.js'),'utf8');
 function createContext(search){
  const nativeLocal=new Map([['real-account','untouched']]),nativeSession=new Map([['empregaMaisPapel','empresa']]);
  const wrap=map=>({getItem:k=>map.get(k)||null,setItem:(k,v)=>map.set(k,String(v)),removeItem:k=>map.delete(k)});
- const listeners={},calls=[],notice={textContent:''},page={querySelector(){return {}},insertBefore(){}};
+ const listeners={},calls=[],notice={textContent:''},page={querySelector(){return {}},insertBefore(){},classList:{contains(){return true;},add(){}}};
  const originalFetch=()=>{calls.push('real-fetch');return Promise.resolve(new Response('{}'))};
- const ctx={location:{search,href:'https://example.com/'+search,pathname:'/',origin:'https://example.com'},localStorage:wrap(nativeLocal),sessionStorage:wrap(nativeSession),fetch:originalFetch,URLSearchParams,URL,Response,Promise,Map,Date,JSON,Object,btoa:s=>Buffer.from(s,'binary').toString('base64'),setTimeout:fn=>fn(),history:{pushState(a,b,url){ctx.location.href=url},replaceState(a,b,url){ctx.location.href=url}},document:{getElementById(id){return id==='pagina-painel-candidato'?page:id==='emCandidateDemoNotice'?notice:null},createElement(){return {style:{}}},querySelectorAll(){return []},addEventListener(){}},addEventListener(type,fn){listeners[type]=fn},abrirRota(route,id){calls.push([route,id])},EmpregaMaisPerfilCloud:{refresh(){throw Error('Real profile refresh must not run')}}};
+ const ctx={location:{search,href:'https://example.com/'+search,pathname:'/',origin:'https://example.com'},localStorage:wrap(nativeLocal),sessionStorage:wrap(nativeSession),fetch:originalFetch,URLSearchParams,URL,Response,Promise,Map,Date,JSON,Object,btoa:s=>Buffer.from(s,'binary').toString('base64'),setTimeout:fn=>fn(),history:{pushState(a,b,url){ctx.location.href=url},replaceState(a,b,url){ctx.location.href=url}},document:{documentElement:{classList:{add(){}}},head:{appendChild(){}},getElementById(id){return id==='pagina-painel-candidato'?page:id==='emCandidateDemoNotice'?notice:null},createElement(){return {style:{}}},querySelectorAll(){return []},addEventListener(){}},addEventListener(type,fn){listeners[type]=fn},abrirRota(route,id){calls.push([route,id])},EmpregaMaisPerfilCloud:{refresh(){throw Error('Real profile refresh must not run')}}};
  ctx.window=ctx;vm.createContext(ctx);vm.runInContext(source,ctx);return {ctx,listeners,calls,nativeLocal,nativeSession,originalFetch};
 }
 for(const route of ['demo-recrutador','painel-empresa','painel-candidato','home']){
@@ -20,6 +20,7 @@ for(const route of ['demo-recrutador','painel-empresa','painel-candidato','home'
 const env=createContext('?pagina=demo-candidato');
 assert.equal(env.ctx.sessionStorage.getItem('empregaMaisPapel'),null,'No demo login during the application startup');
 assert.equal(env.nativeSession.get('empregaMaisPapel'),'empresa','The real session must be preserved');
+env.ctx.localStorage.setItem('candidatosEmpregaMais','[]');
 env.listeners.load();
 assert.equal(env.ctx.sessionStorage.getItem('empregaMaisPapel'),'candidato');
 assert.equal(env.calls[0][0],'painel-candidato','Reuse the existing candidate route');
