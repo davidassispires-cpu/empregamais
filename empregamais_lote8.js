@@ -835,6 +835,8 @@ SOFTWARE.
 
 #pagina-curriculo #cvResumeWizard .cv-multi-source{display:none!important}
 #pagina-curriculo #cvResumeWizard .cv-preference-multi{display:flex;flex-wrap:wrap;gap:8px;margin-top:7px}
+#pagina-curriculo #cvResumeWizard .cv-preferences-grid .cv-professional-field{margin-top:7px}
+#cvResumeWizard .cv-field-caption{display:block;font:inherit;line-height:inherit}
 #pagina-curriculo #cvResumeWizard .cv-preference-multi>label{display:flex;align-items:center;gap:7px;margin:0;padding:8px 10px;border:1px solid #ded3ec;border-radius:7px;background:#fff;color:#635172;font:500 12px/1.5 Montserrat,Arial,sans-serif!important;cursor:pointer}
 #pagina-curriculo #cvResumeWizard .cv-preference-multi>label.selected{background:#f2eafa;border-color:#a376cc;color:#7540ae}
 #pagina-curriculo #cvResumeWizard .cv-preference-multi input{width:15px!important;height:15px!important;min-height:0!important;padding:0!important;margin:0!important;accent-color:#7540ae}
