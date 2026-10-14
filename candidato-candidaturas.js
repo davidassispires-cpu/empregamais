@@ -59,7 +59,7 @@
   var content=document.createElement('div');content.className='cp-process-tab-content';
   var names=['Etapas do processo','Sobre a vaga','Mensagens'],icons=['flag','briefcase','message'];
   names.forEach(function(name,i){var tab=document.createElement('button');tab.type='button';tab.id='cpProcessTab'+i;tab.setAttribute('role','tab');tab.setAttribute('aria-controls','cpProcessPane'+i);tab.innerHTML=icon(icons[i])+name;nav.appendChild(tab);var pane=document.createElement('section');pane.id='cpProcessPane'+i;pane.setAttribute('role','tabpanel');pane.setAttribute('aria-labelledby',tab.id);pane.tabIndex=0;content.appendChild(pane);tab.onclick=function(){select(i);};tab.onkeydown=function(e){if(['ArrowRight','ArrowLeft','Home','End'].indexOf(e.key)<0)return;e.preventDefault();var n=e.key==='Home'?0:e.key==='End'?2:(i+(e.key==='ArrowRight'?1:2))%3;select(n);nav.children[n].focus();};});
-  function select(i){Array.from(nav.children).forEach(function(tab,n){tab.setAttribute('aria-selected',String(n===i));tab.tabIndex=n===i?0:-1;content.children[n].hidden=n!==i;});}
+  function select(i){Array.from(nav.children).forEach(function(tab,n){tab.setAttribute('aria-selected',String(n===i));tab.tabIndex=n===i?0:-1;content.children[n].hidden=n!==i;content.dataset.activeTab=String(i);});}
   var stages=content.children[0];stages.append(note,sections[0]);sections[0].querySelector('h4').textContent='Sua jornada nesta seleção';
   var support=document.createElement('div');support.className='cp-process-support';support.innerHTML='<section class="cp-interview-preview"><h4>Entrevista</h4><p role="status">Carregando agendamento…</p></section><section class="cp-message-preview"><h4>Mensagens da empresa</h4><p>Confira os contatos sobre esta candidatura na aba Mensagens.</p><button type="button">Ver mensagens '+icon('arrow')+'</button></section>';support.querySelector('button').onclick=function(){select(2);};stages.appendChild(support);var messageIcon=document.createElement('span');messageIcon.className='cp-support-icon';messageIcon.innerHTML=icon('message');support.querySelector('.cp-message-preview').prepend(messageIcon);
   content.children[1].appendChild(sections[1]);
@@ -276,6 +276,26 @@
   }
   @media(min-width:701px) and (max-height:650px){html body .cp-process-modal .cp-process-note p{display:none!important}html body .cp-process-modal .cp-process-steps li>span{width:28px!important;height:28px!important}html body .cp-process-modal .cp-process-steps li:not(:last-child):after{top:13px!important}html body .cp-process-modal .cp-process-steps li{gap:4px!important}html body .cp-process-modal .cp-process-support{margin-top:8px!important}}
   @media(max-width:700px){html body dialog.cp-process-modal[open]{height:calc(100dvh - 32px)!important;display:flex!important;flex-direction:column!important;overflow:hidden!important}html body .cp-process-modal .cp-process-modal-header{flex:none!important}html body .cp-process-modal .cp-process-body{flex:1!important;min-height:0!important;display:flex!important;flex-direction:column!important;overflow:hidden!important}html body .cp-process-modal .cp-process-tabs{flex:none!important}html body .cp-process-modal .cp-process-tab-content{flex:1!important;min-height:0!important;overflow:auto!important}}
+
+  @media(min-width:701px){
+   html body .cp-process-modal .cp-process-tab-content[data-active-tab="0"]{overflow:visible!important;flex:1 1 auto!important}
+   html body .cp-process-modal #cpProcessPane0{height:100%;display:flex;flex-direction:column;min-height:0;gap:0}
+   html body .cp-process-modal #cpProcessPane0[hidden]{display:none!important}
+   html body .cp-process-modal #cpProcessPane0>.cp-process-note{flex:none!important;margin-bottom:10px!important;padding:8px 12px!important}
+   html body .cp-process-modal #cpProcessPane0>section{flex:none!important}
+   html body .cp-process-modal #cpProcessPane0>section>h4{font-size:14px!important;margin:0 0 10px!important}
+   html body .cp-process-modal #cpProcessPane0>section>small{display:block;font-size:10px!important;margin-top:6px!important}
+   html body .cp-process-modal #cpProcessPane0 .cp-process-support{margin-top:10px!important;align-items:start!important}
+   html body .cp-process-modal #cpProcessPane0 .cp-process-support>section{padding:10px 12px 10px 62px!important}
+   html body .cp-process-modal #cpProcessPane0 .cp-support-icon{width:34px!important;height:34px!important;left:13px!important;top:12px!important}
+   html body .cp-process-modal #cpProcessPane0 .cp-support-icon svg{width:22px!important;height:22px!important}
+   html body .cp-process-modal #cpProcessPane0 .cp-interview-preview>strong{font-size:16px!important}
+   html body .cp-process-modal #cpProcessPane0 .cp-process-support p{font-size:10px!important;line-height:1.3!important;margin:3px 0!important}
+   html body .cp-process-modal #cpProcessPane0 .cp-interview-buttons{margin:6px 0!important;flex-wrap:nowrap!important}
+   html body .cp-process-modal #cpProcessPane0 .cp-interview-buttons button{padding:6px 8px!important;white-space:nowrap!important}
+   html body .cp-process-modal #cpProcessPane0 .cp-interview-feedback:empty{display:none!important}
+   html body .cp-process-modal #cpProcessPane0 .cp-process-support small{font-size:9px!important}
+  }
   @media(prefers-reduced-motion:reduce){#pagina-painel-candidato .cp-profile .cp-stage-card{transition:none}}
   `;document.head.appendChild(style);
   window.addEventListener('popstate',refresh);window.addEventListener('storage',refresh);document.addEventListener('empregamais:candidato-sincronizado',refresh);document.addEventListener('empregamais:candidaturas-sincronizadas',refresh);refresh();
