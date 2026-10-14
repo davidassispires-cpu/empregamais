@@ -6,13 +6,15 @@ const vm = require('node:vm');
 
 function controller(search = '') {
  const context = {window:{},document:{readyState:'loading',addEventListener(){}},location:{search},sessionStorage:{getItem(){return 'ana@example.com';}},URLSearchParams,URL};
+ vm.runInNewContext(fs.readFileSync(path.join(__dirname,'../processo-seletivo-etapas.js'),'utf8'),context);
  vm.runInNewContext(fs.readFileSync(path.join(__dirname,'../candidato-candidaturas.js'),'utf8'),context);
  return context.window.EmpregaMaisCandidaturasCandidato;
 }
 
 test('normalizes application stages and keeps rejection separate from selection', () => {
  const api=controller();
- for(const [status,stage] of [['Em análise','analise'],['Em avaliação','analise'],['Selecionada','selecionadas'],['Pré-selecionado','selecionadas'],['Finalista','finalistas'],['Etapa final','finalistas'],['Não selecionado','outras'],['Reprovado','outras'],['Contratado','outras'],['Entrevista agendada','outras'],['Aguardando análise','outras']]) {
+ assert.equal(api.classificar({}),'avaliacao');
+ for(const [status,stage] of [['Em análise','avaliacao'],['Em avaliação','avaliacao'],['Candidatura enviada','avaliacao'],['Currículo recebido','avaliacao'],['Selecionada','aprovadas'],['Pré-selecionado','aprovadas'],['Finalista','aprovadas'],['Etapa final','aprovadas'],['Não selecionado','reprovadas'],['Não aprovado','reprovadas'],['Reprovado','reprovadas'],['Contratado','contratadas'],['Entrevista agendada','entrevista'],['Em contato','contato'],['Aguardando análise','avaliacao']]) {
   assert.equal(api.classificar({status}),stage,status);
  }
 });
@@ -29,13 +31,13 @@ test('summary totals correspond to the rows shown by each filter', () => {
  const api=controller();
  const mine=[{status:'Em avaliação'},{status:'Selecionado'},{status:'Finalista'},{status:'Não selecionado'},{status:'Entrevista agendada'}];
  const totals=api.contar(mine);
- assert.deepEqual(JSON.parse(JSON.stringify(totals)),{todas:5,analise:1,selecionadas:1,finalistas:1});
- for(const key of ['todas','analise','selecionadas','finalistas'])assert.equal(mine.filter(item=>api.corresponde(item,key)).length,totals[key]);
+ assert.deepEqual(JSON.parse(JSON.stringify(totals)),{todas:5,avaliacao:1,contato:0,entrevista:1,aprovadas:2,contratadas:0,reprovadas:1});
+ for(const key of ['todas','avaliacao','contato','entrevista','aprovadas','contratadas','reprovadas'])assert.equal(mine.filter(item=>api.corresponde(item,key)).length,totals[key]);
 });
 
 test('supports direct filter URLs, empty stages and unknown filter values', () => {
  const selected=controller('?pagina=candidaturas&etapaCandidatura=selecionadas');
- assert.equal(selected.filtroAtual(),'selecionadas');
+ assert.equal(selected.filtroAtual(),'aprovadas');
  assert.equal(selected.corresponde({status:'Selecionado'}),true);
  assert.equal(selected.corresponde({status:'Não selecionado'}),false);
  assert.match(selected.mensagemVazia(),/nesta etapa/);

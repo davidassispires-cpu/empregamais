@@ -1,0 +1,74 @@
+'use strict';
+const test=require('node:test');
+const assert=require('node:assert/strict');
+const fs=require('node:fs');
+const vm=require('node:vm');
+const path=require('node:path');
+
+function environment({demo=false,fetcher}={}){
+ const session=new Map([['candidatoEmail','ana@example.com'],['candidatoUserId','candidate-1'],['empregaMaisSupabaseAccessToken','candidate-token'],['empregaMaisPapel','candidato']]);
+ let applications=[{id:'app-1',vagaId:'job-1',email:'ana@example.com',vaga:'Assistente Administrativo',empresa:'Empresa Exemplo',status:'Em avaliação',data:'2026-10-14'},{id:'app-other',vagaId:'job-1',email:'other@example.com',status:'Em contato'}];
+ const events=[],requests=[];
+ const context={location:{search:demo?'?pagina=demo-candidato':'?pagina=candidaturas'},sessionStorage:{getItem:key=>session.get(key)||null},navigator:{onLine:true},document:{readyState:'loading',hidden:false,addEventListener(){},getElementById(){return null;},dispatchEvent(event){events.push(event.type);}},URLSearchParams,AbortController,CustomEvent:class{constructor(type){this.type=type;}},Map,Date,Promise,setTimeout,clearTimeout,setInterval(){},addEventListener(){},carregarCandidaturas(){return applications;},salvarCandidaturas(rows){applications=rows;},fetch(url,options){requests.push({url,options});return fetcher?fetcher(url,options):Promise.resolve({ok:true,json:async()=>[{application_ref:'app-1',job_ref:'job-1',status:'Entrevista agendada',status_updated_at:'2026-10-14T10:00:00Z',job_title:'Assistente Administrativo',company_name:'Empresa',observacaoRecrutador:'PRIVATE NOTE'}]});}};
+ context.window=context;
+ vm.createContext(context);
+ for(const file of ['processo-seletivo-etapas.js','candidato-candidaturas-sync.js'])vm.runInContext(fs.readFileSync(path.join(__dirname,'..',file),'utf8'),context);
+ return {context,session,events,requests,applications:()=>applications};
+}
+
+test('reads the recruiter stage and updates only the matching candidate application',async()=>{
+ const env=environment();await env.context.EmpregaMaisCandidaturasCloud.sincronizar(true);
+ const [mine,other]=env.applications();
+ assert.equal(mine.status,'Entrevista agendada');
+ assert.equal(mine.statusProcesso,mine.status);
+ assert.equal(mine.statusAtualizadoEm,'2026-10-14T10:00:00Z');
+ assert.equal(mine.empresa,'Empresa Exemplo');
+ assert.equal(mine.data,'2026-10-14');
+ assert.equal(mine.observacaoRecrutador,undefined,'Do not import internal recruiter fields');
+ assert.equal(other.status,'Em contato');
+ assert.equal(env.context.EmpregaMaisEtapasCandidatura.classificar(mine),'entrevista');
+ assert(env.events.includes('empregamais:candidaturas-sincronizadas'));
+ assert.equal(env.requests[0].options.headers.Authorization,'Bearer candidate-token');
+});
+
+test('deduplicates overlapping refreshes and ignores responses after an account switch',async()=>{
+ let release;
+ const env=environment({fetcher:()=>new Promise(resolve=>{release=resolve;})});
+ const first=env.context.EmpregaMaisCandidaturasCloud.sincronizar(true);
+ const second=env.context.EmpregaMaisCandidaturasCloud.sincronizar(true);
+ assert.equal(env.requests.length,1);
+ env.session.set('candidatoEmail','other@example.com');
+ env.session.set('empregaMaisSupabaseAccessToken','other-token');
+ release({ok:true,json:async()=>[{application_ref:'app-1',job_ref:'job-1',status:'Aprovado'}]});
+ await Promise.all([first,second]);
+ assert.equal(env.applications()[0].status,'Em avaliação');
+ assert.equal(env.events.length,0);
+});
+
+test('preserves the last known status on failed requests and does not query without candidate auth',async()=>{
+ const env=environment({fetcher:async()=>({ok:false,status:503})});
+ await env.context.EmpregaMaisCandidaturasCloud.sincronizar(true);
+ assert.equal(env.applications()[0].status,'Em avaliação');
+ env.session.delete('empregaMaisSupabaseAccessToken');
+ await env.context.EmpregaMaisCandidaturasCloud.sincronizar(true);
+ env.session.set('empregaMaisSupabaseAccessToken','company-token');env.session.set('empregaMaisPapel','empresa');
+ await env.context.EmpregaMaisCandidaturasCloud.sincronizar(true);
+ assert.equal(env.requests.length,1);
+});
+
+test('the isolated demo refreshes without making a backend request',async()=>{
+ const env=environment({demo:true});let refreshed=0;
+ env.context.EmpregaMaisCandidaturasCandidato={atualizar(){refreshed++;}};
+ await env.context.EmpregaMaisCandidaturasCloud.sincronizar(true);
+ assert.equal(env.requests.length,0);
+ assert.equal(refreshed,1);
+ assert.equal(env.applications()[0].status,'Em avaliação');
+});
+
+test('new server records can be shown without a browser-local application or resume',async()=>{
+ const env=environment({fetcher:async()=>({ok:true,json:async()=>[{application_ref:'app-new',job_ref:'job-new',status:'Contratado',job_title:'Analista de RH',company_name:'Empresa',status_updated_at:'2026-10-14T10:00:00Z'}]})});
+ await env.context.EmpregaMaisCandidaturasCloud.sincronizar(true);
+ const row=env.applications().find(item=>item.id==='app-new');
+ assert.equal(row.vaga,'Analista de RH');assert.equal(row.email,'ana@example.com');
+ assert.equal(row.status,'Contratado');assert.equal(row.curriculoDados,undefined);
+});

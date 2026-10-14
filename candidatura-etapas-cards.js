@@ -1,6 +1,6 @@
 (function(){
 'use strict';
-const stages=[
+const visuals=[
 ['Em avaliação','evaluation','#ac710b','#fff6e2','M8 4H5v17h9M8 3h8v4H8ZM8 11h5M8 15h3M21 21l-4-4M16 11a4 4 0 1 0 0 8 4 4 0 0 0 0-8'],
 ['Em contato','contact','#086be6','#eaf4ff','M3 4h14v10H8l-5 4ZM10 17h6l5 4V10h-2M6 9h1M10 9h1M14 9h1'],
 ['Entrevista agendada','interview','#7436c5','#f4edff','M3 5h16v13H3ZM7 3v4M15 3v4M3 10h16M18 14a4 4 0 1 0 0 8 4 4 0 0 0 0-8M18 16v2l1 1'],
@@ -8,6 +8,7 @@ const stages=[
 ['Contratado','hired','#087e88','#eaf8fa','M8 7V4h8v3M3 7h18v14H3ZM8 13l3 3 5-5'],
 ['Reprovado','rejected','#c52e3f','#fff0f1','M12 3a9 9 0 1 0 0 18 9 9 0 0 0 0-18M8 8l8 8M16 8l-8 8']
 ];
+const stages=window.EmpregaMaisEtapasCandidatura.etapas.map(stage=>visuals.find(item=>item[0]===stage.label));
 const style=document.createElement('style');style.textContent=`
 html body #emCandidateDetails .em-stage-native{display:none!important}
 html body #emCandidateDetails .em-stage-cards{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:9px!important;margin:10px 0 12px!important;width:100%!important}

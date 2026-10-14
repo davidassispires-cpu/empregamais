@@ -6,10 +6,11 @@
  var remote={},owner='',pending={},busy=false,ready=false,timer,lastPull=0,lastAttempt=0,failures=0;
  var feedback='';
  function token(){return sessionStorage.getItem('empregaMaisSupabaseAccessToken')||'';}
- function cnpj(){var current=typeof window.obterEmpresaAtual==='function'?window.obterEmpresaAtual():null;return String(sessionStorage.getItem('empresaCnpj')||localStorage.getItem('empresaCnpj')||current&&current.cnpj||'').replace(/\D/g,'');}
+ function cnpj(){if(sessionStorage.getItem('empregaMaisPapel')==='candidato')return '';var current=typeof window.obterEmpresaAtual==='function'?window.obterEmpresaAtual():null;return String(sessionStorage.getItem('empresaCnpj')||localStorage.getItem('empresaCnpj')||current&&current.cnpj||'').replace(/\D/g,'');}
  function queueKey(){return 'emRecruiterPending:'+owner;}
  function remember(){localStorage.setItem(queueKey(),JSON.stringify(pending));}
  function job(c){return String(c.vagaId||c.vaga_id||c.idVaga||'');}
+ function recipient(c,change){change.candidate_email=String(c.email||c.candidatoEmail||c.candidato_email||'').trim().toLowerCase();change.job_title=String(c.vaga||c.cargo||'').slice(0,300);return change;}
  function ownedJobs(){try{return new Set((window.vagasDaEmpresa()||[]).map(function(v){return String(v.id);}));}catch(e){return new Set();}}
  async function api(path,options,allowPublic){
   var access=token();if(!access&&!allowPublic)throw Error('Entre novamente para sincronizar.');
@@ -32,7 +33,7 @@
   if(owner){try{pending=JSON.parse(localStorage.getItem(queueKey())||'{}');}catch(e){pending={};}}
  }
  function merge(rows){
-  remote={};(rows||[]).forEach(function(row){remote[row.application_ref]={job_ref:row.job_ref,state:row.state};});
+  remote={};(rows||[]).forEach(function(row){remote[row.application_ref]={job_ref:row.job_ref,state:row.state,candidate_uid:row.candidate_uid};});
   var all=originalLoad();all.forEach(function(c){var r=remote[String(c.id)];if(r&&r.job_ref===job(c))Object.assign(c,r.state,pending[String(c.id)]&&pending[String(c.id)].state||{});});
   originalSave(all);
  }
@@ -44,8 +45,10 @@
   try{
    if(!ready){var initial=await api('rpc/em_sync_recruiter_state',{method:'POST',body:JSON.stringify({p_company_cnpj:owner,p_changes:[]})});
     if(owner!==requestOwner||cnpj()!==requestOwner||token()!==access)return;merge(initial);ready=true;
-    var jobs=ownedJobs();originalLoad().forEach(function(c){var id=String(c.id);if(remote[id]||pending[id]||!jobs.has(job(c)))return;
-     if(c.observacaoRecrutador||c.favoritoRecrutador||c.statusAtualizadoEm){var state={};fields.forEach(function(f){if(c[f]!==undefined)state[f]=c[f];});pending[id]={application_ref:id,job_ref:job(c),state:state};}
+    var jobs=ownedJobs();originalLoad().forEach(function(c){var id=String(c.id);if(pending[id]||!jobs.has(job(c))||remote[id]&&remote[id].candidate_uid)return;
+     var state={};fields.forEach(function(f){if(c[f]!==undefined)state[f]=c[f];});
+     var stage=window.EmpregaMaisEtapasCandidatura.etapa(c);if(stage)state.status=stage.label;
+     if(state.status||c.observacaoRecrutador||c.favoritoRecrutador)pending[id]=recipient(c,{application_ref:id,job_ref:job(c),state:state});
     });remember();
     if(!Object.keys(pending).length){lastPull=Date.now();failures=0;show('Etapas, anotações e favoritos sincronizados.');if(!document.getElementById('emCandidateDetails')&&typeof window.renderizarCandidatosEmpresa==='function')window.renderizarCandidatosEmpresa();return;}
    }
@@ -67,7 +70,7 @@
    switchOwner();var before=new Map(originalLoad().map(function(c){return [String(c.id),c];})),jobs=ownedJobs();
    if(owner&&token())all.forEach(function(c){var id=String(c.id),old=before.get(id);if(!old||!jobs.has(job(c)))return;
     var patch={};fields.forEach(function(f){if(c[f]!==undefined&&JSON.stringify(c[f])!==JSON.stringify(old[f]))patch[f]=c[f];});
-    if(Object.keys(patch).length){var current=pending[id]||{application_ref:id,job_ref:job(c),state:{}};Object.assign(current.state,patch);pending[id]=current;}
+    if(Object.keys(patch).length){var current=pending[id]||{application_ref:id,job_ref:job(c),state:{}};Object.assign(current.state,patch);pending[id]=recipient(c,current);}
    });
    var result=originalSave.apply(this,arguments);if(owner&&Object.keys(pending).length){remember();show('Salvo neste navegador. Sincronizando…');clearTimeout(timer);timer=setTimeout(function(){sync(true);},300);}return result;
   };

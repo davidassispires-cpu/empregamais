@@ -12,9 +12,15 @@ revoke all on public.em_recruiter_state from anon,authenticated;
 grant select on public.em_recruiter_state to authenticated;
 create policy "company reads internal selection state" on public.em_recruiter_state for select to authenticated
  using(private.usuario_pertence_empresa(empresa_id));
-create function private.em_sync_recruiter_state(p_company_cnpj text,p_changes jsonb default '[]')
+-- Associate legacy application references with the candidate's authenticated account.
+-- Recruiter notes and favorites remain company-only.
+alter table public.em_recruiter_state add column if not exists candidate_uid uuid references auth.users(id) on delete set null;
+alter table public.em_recruiter_state add column if not exists job_title text not null default '' check(length(job_title)<=300);
+alter table public.em_recruiter_state add column if not exists status_updated_at timestamptz;
+create index if not exists em_recruiter_state_candidate on public.em_recruiter_state(candidate_uid,updated_at desc) where candidate_uid is not null;
+create or replace function private.em_sync_recruiter_state(p_company_cnpj text,p_changes jsonb default '[]')
 returns setof public.em_recruiter_state language plpgsql security definer set search_path='' as $$
-declare company uuid; change jsonb; patch jsonb;
+declare company uuid; change jsonb; patch jsonb; recipient uuid; candidate_email text; title text;
 begin
  if auth.uid() is null then raise exception 'Entre novamente na sua conta.'; end if;
  select id into company from public.empresas
@@ -30,23 +36,67 @@ begin
    (patch ? 'favoritoRecrutador' and jsonb_typeof(patch->'favoritoRecrutador')<>'boolean') or
    (patch ? 'observacaoRecrutador' and (jsonb_typeof(patch->'observacaoRecrutador')<>'string' or length(patch->>'observacaoRecrutador')>10000)) or
    octet_length(patch::text)>=20000 then raise exception 'Alteração inválida.'; end if;
-  insert into public.em_recruiter_state(empresa_id,application_ref,job_ref,state)
-  values(company,change->>'application_ref',change->>'job_ref',patch)
+  candidate_email=lower(trim(coalesce(change->>'candidate_email','')));
+  title=trim(coalesce(change->>'job_title',''));
+  if length(candidate_email)>320 or length(title)>300 then raise exception 'Dados da candidatura inválidos.'; end if;
+  recipient=null;
+  if candidate_email<>'' then
+   select u.id into recipient from auth.users u join public.candidatos c on c.user_id=u.id
+   where lower(u.email)=candidate_email limit 1;
+  end if;
+  insert into public.em_recruiter_state(empresa_id,application_ref,job_ref,state,candidate_uid,job_title,status_updated_at)
+  values(company,change->>'application_ref',change->>'job_ref',patch,recipient,title,case when patch ? 'status' then now() end)
   on conflict(empresa_id,application_ref) do update set
-  state=public.em_recruiter_state.state || excluded.state,updated_at=now()
-  where public.em_recruiter_state.job_ref=excluded.job_ref;
-  if not found then raise exception 'A candidatura pertence a outra vaga.'; end if;
+  state=public.em_recruiter_state.state || excluded.state,updated_at=now(),
+  candidate_uid=coalesce(public.em_recruiter_state.candidate_uid,excluded.candidate_uid),
+  job_title=coalesce(nullif(excluded.job_title,''),public.em_recruiter_state.job_title),
+  status_updated_at=case when patch ? 'status' and public.em_recruiter_state.state->>'status' is distinct from patch->>'status'
+   then now() else coalesce(public.em_recruiter_state.status_updated_at,excluded.status_updated_at) end
+  where public.em_recruiter_state.job_ref=excluded.job_ref and
+   (excluded.candidate_uid is null or public.em_recruiter_state.candidate_uid is null or public.em_recruiter_state.candidate_uid=excluded.candidate_uid);
+  if not found then raise exception 'A candidatura pertence a outra vaga ou candidato.'; end if;
  end loop;
  return query select * from public.em_recruiter_state where empresa_id=company;
 end $$;
 revoke all on function private.em_sync_recruiter_state(text,jsonb) from public,anon;
 grant execute on function private.em_sync_recruiter_state(text,jsonb) to authenticated;
-create function public.em_sync_recruiter_state(p_company_cnpj text,p_changes jsonb default '[]')
+create or replace function public.em_sync_recruiter_state(p_company_cnpj text,p_changes jsonb default '[]')
 returns setof public.em_recruiter_state language sql security invoker set search_path='' as $$
  select * from private.em_sync_recruiter_state(p_company_cnpj,p_changes);
 $$;
 revoke all on function public.em_sync_recruiter_state(text,jsonb) from public,anon;
 grant execute on function public.em_sync_recruiter_state(text,jsonb) to authenticated;
+
+-- The candidate endpoint exposes only their own public application stage.
+-- It deliberately never returns the internal state JSON, notes or favorites.
+create or replace function private.em_candidate_application_stages()
+returns table(application_ref text,job_ref text,status text,status_updated_at timestamptz,job_title text,company_name text)
+language plpgsql security definer set search_path='' as $$
+begin
+ if auth.uid() is null then raise exception 'Entre novamente na sua conta.' using errcode='42501'; end if;
+ return query
+ select c.id,c.vaga_id,coalesce(nullif(r.state->>'status',''),c.status),coalesce(r.status_updated_at,c.atualizado_em,c.criado_em),
+  coalesce(nullif(v.cargo,''),r.job_title,''),
+  case when coalesce(v.confidencial,false) then 'Empresa confidencial' else coalesce(nullif(v.empresa,''),'Empresa') end
+ from public.candidaturas c
+ left join public.vagas v on v.id::text=c.vaga_id and v.user_id=c.empresa_user_id
+ left join public.em_recruiter_state r on r.application_ref=c.id and r.job_ref=c.vaga_id and r.empresa_id=v.empresa_id and r.candidate_uid=c.candidato_user_id
+ where c.candidato_user_id=auth.uid()
+ union all
+ select r.application_ref,r.job_ref,r.state->>'status',coalesce(r.status_updated_at,r.updated_at),r.job_title,'Empresa'::text
+ from public.em_recruiter_state r
+ where r.candidate_uid=auth.uid() and r.state ? 'status' and not exists
+  (select 1 from public.candidaturas c where c.id=r.application_ref and c.vaga_id=r.job_ref and c.candidato_user_id=auth.uid());
+end $$;
+revoke all on function private.em_candidate_application_stages() from public,anon;
+grant execute on function private.em_candidate_application_stages() to authenticated;
+create or replace function public.em_candidate_application_stages()
+returns table(application_ref text,job_ref text,status text,status_updated_at timestamptz,job_title text,company_name text)
+language sql security invoker set search_path='' as $$
+ select * from private.em_candidate_application_stages();
+$$;
+revoke all on function public.em_candidate_application_stages() from public,anon;
+grant execute on function public.em_candidate_application_stages() to authenticated;
 
 -- Old portal job references remain reportable while the legacy feed is in use.
 alter table public.denuncias_vagas alter column vaga_id drop not null;
