@@ -177,6 +177,12 @@
   var objective=container.querySelector('.cp-profile-objective');if(objective){var modalities=Array.isArray(c.modalidadePreferida)?c.modalidadePreferida.join(' • '):c.modalidadePreferida||'Modalidade não informada';objective.querySelector('p').textContent=(c.areaProfissional||c.cargoDesejado||'Defina sua área de interesse')+' • '+modalities;objective.querySelector('small').textContent='Disponibilidade: '+(c.disponibilidadeInicio||c.disponibilidade||'não informada');}
   var city=container.querySelector('#cpSearchCity');if(!city.value)city.value=fields[2];
  }
+ function navigationArt(index){
+  // Preserve the approved artwork without approximating it with generic icons.
+  var left=[43,331,618,905,1194,1480,1768][index];
+  var mask=index===4?'<rect x="'+(left+170)+'" y="160" width="85" height="70" fill="#fff"/>':'';
+  return '<svg class="cp-nav-art cp-nav-art-'+index+'" viewBox="'+left+' 165 250 280" aria-hidden="true" focusable="false"><image href="assets/candidate-navigation/approved-cards.png" width="2048" height="683"/>'+mask+'</svg>';
+ }
  function setup(){
   page=document.getElementById('pagina-painel-candidato');if(!page)return;container=page.querySelector('.container-dashboard');if(!container)return;
   if(container.querySelector('.cp-layout')){var existingInbox=container.querySelector('.em-candidate-inbox');if(existingInbox&&existingInbox!==container.lastElementChild)container.appendChild(existingInbox);update();return}
@@ -184,7 +190,7 @@
   if(new URLSearchParams(location.search).get('pagina')==='demo-candidato')page.dataset.cpDemo='true';
   var nav=document.createElement('nav');nav.className='cp-navigation';nav.setAttribute('aria-label','Área do candidato');
   var routes=[['home','Minha área','painel-candidato'],['document','Candidaturas','candidaturas'],['search','Buscar vagas','home'],['document','Currículo','curriculo'],['chat','Mensagens','messages'],['bookmark','Vagas salvas','salvas'],['crown','Premium','premium-candidato']];
-  nav.innerHTML=routes.map(function(r,i){return '<button type="button" data-route="'+r[2]+'" '+(i===0?'aria-current="page"':'')+'>'+svg(r[0])+'<span>'+r[1]+'</span>'+(r[2]==='messages'?'<small class="cp-message-count" hidden></small>':'')+'</button>'}).join('');
+  nav.innerHTML=routes.map(function(r,i){return '<button type="button" data-route="'+r[2]+'" '+(i===0?'aria-current="page"':'')+'>'+navigationArt(i)+'<span>'+r[1]+'</span>'+(r[2]==='messages'?'<small class="cp-message-count" hidden></small>':'')+'</button>'}).join('');
   var toolbar=document.createElement('div');toolbar.className='cp-toolbar';toolbar.innerHTML='<strong>Emprega<span>Mais</span></strong><button type="button" class="cp-greeting" data-route="perfil">Minha conta</button>';
   var header=document.createElement('div');header.className='cp-header';header.append(toolbar,nav);page.prepend(header);
   candidateHeader=header;
@@ -401,6 +407,21 @@ html body.cp-shell-active #pagina-painel-candidato.cp-reference .cp-shortcuts h3
  style.textContent+=`
 html body.cp-shell-active.em-candidato-logado #pagina-painel-candidato.cp-reference.cp-tab-content :is(h1,h2,h3,h4,p,span,small,strong,a,button,dt,dd),html body.cp-shell-active.em-candidato-logado .cp-header :is(button,span,strong,small){font-family:Inter,Arial,sans-serif!important;letter-spacing:normal!important}
 html body.cp-shell-active.em-candidato-logado #pagina-painel-candidato.cp-reference.cp-tab-content .cp-next-interview button{white-space:nowrap!important;max-width:none!important;right:12px!important;font-size:10px!important;padding:8px 10px!important}
+`;
+
+ style.textContent+=`
+html body.cp-shell-active .cp-header .cp-navigation{display:grid!important;grid-template-columns:repeat(7,minmax(0,1fr))!important;gap:10px!important;max-width:1170px;margin:18px auto 14px!important;padding:5px!important;overflow:visible!important}
+html body.cp-shell-active .cp-header .cp-navigation button{min-width:0!important;min-height:0!important;padding:12px 8px 14px!important;gap:9px!important;border:1px solid #ded8ff!important;border-radius:16px!important;background:linear-gradient(180deg,#fff,#fcfbff)!important;color:#242044!important;box-shadow:0 4px 14px #6542a00b!important;font:650 13px/1.3 Inter,Arial,sans-serif!important;transition:transform .15s,box-shadow .15s!important}
+html body.cp-shell-active .cp-header .cp-navigation .cp-nav-art{display:block!important;width:100%!important;max-width:112px!important;height:auto!important;aspect-ratio:250/280;flex:none;overflow:hidden;border-radius:12px}
+html body.cp-shell-active .cp-header .cp-navigation button[aria-current=page]{background:linear-gradient(145deg,#7927ed,#48209e)!important;color:#fff!important;border-color:#ad82fa!important;box-shadow:0 0 0 3px #e3d4ff,0 6px 18px #6c35b622!important}
+html body.cp-shell-active .cp-header .cp-navigation button:hover{transform:translateY(-2px);border-color:#b08aee!important;box-shadow:0 6px 18px #6c35b619!important}
+html body.cp-shell-active .cp-header .cp-navigation button:focus-visible{outline:3px solid #9d71ed!important;outline-offset:4px!important}
+html body.cp-shell-active .cp-header .cp-navigation button>span{white-space:nowrap!important;font-size:13px!important;line-height:1.3!important}
+html body.cp-shell-active .cp-header .cp-navigation .cp-message-count{top:9px;right:9px;min-width:22px;height:22px;font:700 11px/22px Inter,Arial,sans-serif;background:#7826d9;color:#fff}
+@media(max-width:1200px){html body.cp-shell-active .cp-header .cp-navigation{margin-left:14px!important;margin-right:14px!important}}
+@media(max-width:850px){html body.cp-shell-active .cp-header .cp-navigation{display:flex!important;overflow-x:auto!important;gap:10px!important;padding:6px!important;scroll-snap-type:x proximity}html body.cp-shell-active .cp-header .cp-navigation button{flex:0 0 128px!important;scroll-snap-align:start}html body.cp-shell-active .cp-header .cp-navigation .cp-nav-art{max-width:88px!important}}
+@media(max-width:480px){html body.cp-shell-active .cp-header .cp-navigation button{flex-basis:112px!important;padding:10px 6px 12px!important}html body.cp-shell-active .cp-header .cp-navigation button>span{font-size:11px!important}html body.cp-shell-active .cp-header .cp-navigation .cp-nav-art{max-width:76px!important}}
+@media(prefers-reduced-motion:reduce){html body.cp-shell-active .cp-header .cp-navigation button{transition:none!important;transform:none!important}}
 `;
  document.head.appendChild(style);
  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',setup,{once:true});else setup();window.addEventListener('load',setup,{once:true});
