@@ -9,6 +9,7 @@
   return workflow.classificar(application);
  }
  function label(application){var stage=workflow.etapa(application);return stage?stage.label:String(application.status||application.statusProcesso||application.status_processo||'Em avaliação');}
+ function applicationDate(value){var text=String(value||'');if(/^\d{4}-\d{2}-\d{2}$/.test(text))return text.slice(8,10)+'/'+text.slice(5,7)+'/'+text.slice(0,4);var date=new Date(text);return isNaN(date.getTime())?'Data não informada':date.toLocaleDateString('pt-BR');}
  function matches(application,key){key=validStage(key==null?currentStage():key);return key==='todas'||classify(application)===key;}
  function applications(){try{var list=typeof window.carregarCandidaturas==='function'?window.carregarCandidaturas():[];return Array.isArray(list)?list.filter(belongs):[];}catch(ignore){return [];}}
  function counts(list){var result={todas:list.length,avaliacao:0,contato:0,entrevista:0,aprovadas:0,contratadas:0,reprovadas:0};list.forEach(function(application){var key=classify(application);if(key!=='outras')result[key]++;});return result;}
@@ -38,7 +39,7 @@
  function updateList(total){prepareList();var toolbar=document.getElementById('cpApplicationFilters');if(!toolbar)return;var key=currentStage(),totals=counts(applications());toolbar.querySelectorAll('[data-cp-filter]').forEach(function(button){button.setAttribute('aria-pressed',String(button.dataset.cpFilter===key));button.querySelector('[data-cp-filter-count]').textContent=String(totals[button.dataset.cpFilter]);button.setAttribute('aria-label',description(totals[button.dataset.cpFilter],button.dataset.cpFilter));});var result=document.getElementById('cpApplicationResult'),text=description(total,key);if(result.textContent!==text)result.textContent=text;if(window.EmpregaMaisCandidaturasCloud)window.EmpregaMaisCandidaturasCloud.atualizarIndicador();}
  function emptyMessage(){return currentStage()==='todas'?'Você ainda não enviou candidaturas.':'Você ainda não tem candidaturas nesta etapa. Clique em Todas para consultar os demais processos.';}
  function refresh(){var slot=document.querySelector('#pagina-painel-candidato .cp-metrics-slot');if(slot)renderSummary(slot);var page=document.getElementById('pagina-candidaturas');if(page&&page.classList.contains('ativa')&&typeof window.renderizarCandidaturas==='function')window.renderizarCandidaturas();}
- window.EmpregaMaisCandidaturasCandidato={pertence:belongs,classificar:classify,rotulo:label,corresponde:matches,contar:counts,filtroAtual:currentStage,prepararLista:prepareList,atualizarLista:updateList,mensagemVazia:emptyMessage,atualizarResumo:renderSummary,abrir:openStage,atualizar:refresh};
+ window.EmpregaMaisCandidaturasCandidato={pertence:belongs,classificar:classify,rotulo:label,data:applicationDate,corresponde:matches,contar:counts,filtroAtual:currentStage,prepararLista:prepareList,atualizarLista:updateList,mensagemVazia:emptyMessage,atualizarResumo:renderSummary,abrir:openStage,atualizar:refresh};
  function start(){
   var style=document.createElement('style');style.id='cp-application-stages-style';style.textContent=`
   #pagina-painel-candidato.cp-reference .cp-profile .cp-metrics-slot>.metricas[hidden]{display:none!important}

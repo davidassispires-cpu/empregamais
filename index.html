@@ -23988,8 +23988,8 @@ candidaturas[i].vaga
 escaparTexto(
 candidaturas[i].empresa
 ) +
-((candidaturas[i].data||candidaturas[i].dataCandidatura) ? "<br/>Enviada em " + formatarData(candidaturas[i].data||candidaturas[i].dataCandidatura) : "") +
-(candidaturas[i].statusAtualizadoEm ? "<span class='candidatura-atualizacao'>Atualizada em " + escaparTexto(formatarData(candidaturas[i].statusAtualizadoEm)) + "</span>" : "") +
+((candidaturas[i].data||candidaturas[i].dataCandidatura) ? "<br/>Enviada em " + (resumoCandidaturas ? resumoCandidaturas.data(candidaturas[i].data||candidaturas[i].dataCandidatura) : formatarData(candidaturas[i].data||candidaturas[i].dataCandidatura)) : "") +
+(candidaturas[i].statusAtualizadoEm ? "<span class='candidatura-atualizacao'>Atualizada em " + escaparTexto((resumoCandidaturas ? resumoCandidaturas.data(candidaturas[i].statusAtualizadoEm) : formatarData(candidaturas[i].statusAtualizadoEm))) + "</span>" : "") +
 "</p>" +
 "</div>" +
 "<span class='status-processo " +
@@ -41750,7 +41750,7 @@ document.addEventListener("DOMContentLoaded",update);window.addEventListener("lo
 <style id="em-company-profile-v50">#pagina-perfil-empresa.em-profile-v50>*:not(#emCompanyProfileV50){display:none!important}#emCompanyProfileV50{display:block!important}</style>
 <script src="empresa-perfil-profissional.js?v=05a222ebfb1c"></script>
 
-<link rel='stylesheet' href='candidatura-detalhes.css?v=9b6ca680bcda'/><link rel='stylesheet' href='empresa-publica-layout.css?v=3fa2f4afee8a'/><script src='empresa-publica-layout.js?v=egress-20261012'></script><script src="recruiter-sync-and-reports.js?v=20261014-candidate-stages-2"></script><link rel="stylesheet" href="vagas-recomendadas.css?v=1b999ba5b659"><script src="candidato-candidaturas.js?v=20261014-3"></script><script src="candidato-candidaturas-sync.js?v=20261014-1"></script>
+<link rel='stylesheet' href='candidatura-detalhes.css?v=9b6ca680bcda'/><link rel='stylesheet' href='empresa-publica-layout.css?v=3fa2f4afee8a'/><script src='empresa-publica-layout.js?v=egress-20261012'></script><script src="recruiter-sync-and-reports.js?v=20261014-candidate-stages-2"></script><link rel="stylesheet" href="vagas-recomendadas.css?v=1b999ba5b659"><script src="candidato-candidaturas.js?v=20261014-date-4"></script><script src="candidato-candidaturas-sync.js?v=20261014-1"></script>
 <script src="vagas-recomendadas.js?v=20261014-application-summary-1"></script><link rel="stylesheet" href="vaga-cabecalho.css?v=fbf5a71c8609"><script src="vaga-cabecalho.js?v=0a0b1c0fd8a9"></script><script src="emporio-griff-publica.js?v=30c0bdd43fd9"></script><link rel="stylesheet" href="vaga-portal.css?v=18777098144f"><script src="vaga-portal.js?v=666def68e997"></script><script src="vaga-descricao.js?v=61bd3874412c"></script><link rel="stylesheet" href="entrevistas.css?v=7f0984193f9a"><script src="entrevistas.js?v=217bafb03bc3"></script><style id="em-hero-floripa-layout-css">
 html body #pagina-home #emHeroFloripa.hero.hero-premium-em{padding:58px 24px!important;background:linear-gradient(115deg,#064881 0%,#0b61b3 62%,#1976d2 100%)!important;color:#fff!important;min-height:0!important;overflow:hidden!important;position:relative!important}
 html body #pagina-home #emHeroFloripa:before,html body #pagina-home #emHeroFloripa:after{display:none!important}

@@ -27,6 +27,13 @@ test('uses only the signed-in candidate records', () => {
  assert.equal(api.pertence({}),false);
 });
 
+test('shows calendar dates without timestamp fragments in application cards',()=>{
+ const api=controller();
+ assert.equal(api.data('2026-10-14'),'14/10/2026');
+ assert.match(api.data('2026-10-14T12:32:43.733Z'),/^\d{2}\/\d{2}\/\d{4}$/);
+ assert.equal(api.data('invalid'),'Data não informada');
+});
+
 test('summary totals correspond to the rows shown by each filter', () => {
  const api=controller();
  const mine=[{status:'Em avaliação'},{status:'Selecionado'},{status:'Finalista'},{status:'Não selecionado'},{status:'Entrevista agendada'}];
