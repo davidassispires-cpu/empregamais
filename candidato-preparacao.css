@@ -578,3 +578,52 @@ html body.cp-shell-active #pagina-candidaturas .cp-applications-hero-icon svg {c
  html body.cp-shell-active #cpCandidateHeader .cp-navigation button {transition:none!important}
  html body #pagina-painel-candidato#pagina-painel-candidato.cp-enhanced .cp-overview-card {transition:none!important}
 }
+
+/* Candidate dashboard: approved white navigation and purple actions. */
+html body.cp-shell-active #cpCandidateHeader .cp-navigation {
+ background:#fff!important;border-right:1px solid #edf0f6!important;
+}
+html body.cp-shell-active #cpCandidateHeader .cp-nav-label {color:#667594!important}
+html body.cp-shell-active #cpCandidateHeader .cp-navigation button {color:#1b2c51!important}
+html body.cp-shell-active #cpCandidateHeader .cp-navigation button .cp-nav-icon {color:#1b2c51!important}
+html body.cp-shell-active #cpCandidateHeader .cp-navigation button:hover {background:#f1f4fa!important}
+html body.cp-shell-active #cpCandidateHeader .cp-navigation button[aria-current=page] {
+ background:linear-gradient(135deg,#805bdd,#6946bd)!important;color:#fff!important;
+ box-shadow:0 4px 12px #7453c822!important;
+}
+html body.cp-shell-active #cpCandidateHeader .cp-navigation button[aria-current=page]:hover {
+ background:linear-gradient(135deg,#7450ce,#5f3cad)!important;
+}
+html body.cp-shell-active #cpCandidateHeader .cp-navigation button[aria-current=page] :is(svg,span) {color:#fff!important}
+html body.cp-shell-active #cpCandidateHeader .cp-message-count {background:#edf2fb!important;color:#1b2c51!important}
+html body #pagina-painel-candidato#pagina-painel-candidato.cp-enhanced {
+ --cp-pale-lilac:#eef2fa;--cp-border:#edf0f6;
+}
+html body #pagina-painel-candidato#pagina-painel-candidato.cp-enhanced :is(.cp-profile,.cp-overview-card,.cp-panel,#emPersonalDashboard,.cp-home-activity>section,.cp-shortcuts .painel-card) {
+ background:#fff!important;border:1px solid #fff!important;border-radius:14px!important;
+ box-shadow:0 6px 24px rgba(27,44,81,.045)!important;
+}
+html body #pagina-painel-candidato#pagina-painel-candidato.cp-enhanced .cp-overview-card:hover {
+ background:#fff!important;border-color:#fff!important;box-shadow:0 8px 26px rgba(27,44,81,.08)!important;
+}
+html body #pagina-painel-candidato#pagina-painel-candidato.cp-enhanced .cp-avatar {
+ border:4px solid #fff!important;background:#e4ecfb!important;color:#1b2c51!important;
+ box-shadow:0 3px 14px rgba(27,44,81,.06)!important;
+}
+html body #pagina-painel-candidato#pagina-painel-candidato.cp-enhanced :is(.cp-profile-skills span,.cp-status-chip) {
+ background:#eef2fa!important;color:#354768!important;
+}
+html body #pagina-painel-candidato#pagina-painel-candidato.cp-enhanced :is(.cp-feature-icon,.cp-overview-card:last-child .cp-overview-icon) {
+ background:#edf2fc!important;color:#3261d8!important;
+}
+html body #pagina-painel-candidato#pagina-painel-candidato.cp-enhanced :is(.cp-profile-identity>button,.cp-panel .cp-primary,.cp-next-interview .cp-primary,.em-personal-grid article>a) {
+ background:linear-gradient(135deg,#805bdd,#6946bd)!important;border:1px solid transparent!important;
+ color:#fff!important;border-radius:9px!important;padding:12px 18px!important;
+ box-shadow:0 4px 12px #7453c81f!important;font-weight:600!important;
+}
+html body #pagina-painel-candidato#pagina-painel-candidato.cp-enhanced :is(.cp-profile-identity>button,.cp-panel .cp-primary,.cp-next-interview .cp-primary,.em-personal-grid article>a):hover {
+ background:linear-gradient(135deg,#7450ce,#5f3cad)!important;
+}
+html body #pagina-painel-candidato#pagina-painel-candidato.cp-enhanced .cp-panel .cp-secondary {
+ border-color:#edf0f6!important;background:#f4f1fc!important;color:#6946bd!important;
+}
