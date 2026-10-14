@@ -398,6 +398,10 @@ html body.cp-shell-active #pagina-painel-candidato.cp-reference .cp-shortcuts h3
 @media(max-width:950px){html body.cp-shell-active #pagina-painel-candidato.cp-reference .cp-opportunities{grid-template-columns:1fr!important}}
 @media(max-width:650px){html body.cp-shell-active .cp-header .cp-navigation{margin:12px 14px!important}html body.cp-shell-active #pagina-painel-candidato.cp-reference .cp-next-interview{padding-right:125px!important}}
 `;
+ style.textContent+=`
+html body.cp-shell-active.em-candidato-logado #pagina-painel-candidato.cp-reference.cp-tab-content :is(h1,h2,h3,h4,p,span,small,strong,a,button,dt,dd),html body.cp-shell-active.em-candidato-logado .cp-header :is(button,span,strong,small){font-family:Inter,Arial,sans-serif!important;letter-spacing:normal!important}
+html body.cp-shell-active.em-candidato-logado #pagina-painel-candidato.cp-reference.cp-tab-content .cp-next-interview button{white-space:nowrap!important;max-width:none!important;right:12px!important;font-size:10px!important;padding:8px 10px!important}
+`;
  document.head.appendChild(style);
  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',setup,{once:true});else setup();window.addEventListener('load',setup,{once:true});
 })();
