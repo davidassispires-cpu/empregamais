@@ -484,7 +484,7 @@ window.renderAderenciaPremiumTeaserV96=render;
  function show(n){
   current=Math.max(0,Math.min(steps.length-1,n));var editor=ws.querySelector('.cv86-editor');if(editor)editor.scrollTop=0;steps.forEach(function(step,i){step.hidden=i!==current});ws.querySelectorAll('.cv-step-nav button').forEach(function(button,i){button.setAttribute('aria-current',i===current?'step':'false');button.classList.toggle('complete',i<current)});
   var g=guide[current];el('cvGuideTitle').textContent=g[1];el('cvGuideCopy').textContent=g[2];el('cvGuideExample').textContent=g[3];el('cvStepCounter').textContent='Etapa '+(current+1)+' de '+steps.length;el('cvWizardBack').disabled=current===0;el('cvWizardNext').hidden=current===steps.length-1;
-  var footer=cv.querySelector('.cv85-footer');if(footer)footer.hidden=current!==steps.length-1;if(current===steps.length-1)summary();
+  var footer=cv.querySelector('.cv85-footer');if(footer)footer.hidden=current!==steps.length-1;if(current===steps.length-1)summary();if(window.emResumeScrollReset)window.emResumeScrollReset();
  }
  function next(){var controls=steps[current].querySelectorAll('input,select,textarea');for(var i=0;i<controls.length;i++){if(!controls[i].checkValidity()){controls[i].reportValidity();return}}show(current+1)}
  window.emSyncResumeProfile=function(data){
@@ -547,6 +547,18 @@ window.renderAderenciaPremiumTeaserV96=render;
   if(!cep.value&&typeof window.obterCandidatoAtual==='function'){var existing=window.obterCandidatoAtual()||{};cep.value=existing.cep||'';}
   ['cvNomeV87','cvEmailV87','cvObjetivoV84','cvAreaV84'].forEach(function(id){if(el(id))el(id).required=true});
   var save=el('cvSalvarV84');save.addEventListener('click',function(event){var invalid=cv.querySelector(':invalid');if(invalid){event.preventDefault();event.stopImmediatePropagation();show(steps.findIndex(function(step){return step.contains(invalid)}));invalid.reportValidity()}},true);
+  var viewport=document.createElement('div');viewport.className='cv-fields-viewport';viewport.tabIndex=0;viewport.setAttribute('role','region');viewport.setAttribute('aria-label','Campos da etapa do currículo');
+  var frame=document.createElement('div');frame.className='cv-fields-frame';nav.after(frame);frame.appendChild(viewport);steps.forEach(function(step){viewport.appendChild(step)});
+  var up=document.createElement('button');up.type='button';up.className='cv-scroll-arrow cv-scroll-up';up.setAttribute('aria-label','Rolar campos para cima');up.innerHTML='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 15 6-6 6 6"/></svg>';
+  var down=document.createElement('button');down.type='button';down.className='cv-scroll-arrow cv-scroll-down';down.setAttribute('aria-label','Rolar campos para baixo');down.innerHTML='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>';
+  frame.append(up,down);
+  function arrows(){var max=viewport.scrollHeight-viewport.clientHeight;up.disabled=viewport.scrollTop<=1;down.disabled=viewport.scrollTop>=max-1;up.hidden=down.hidden=max<2;frame.classList.toggle('cv-more-above',!up.disabled);frame.classList.toggle('cv-more-below',!down.disabled)}
+  function scrollByDirection(direction){viewport.scrollBy({top:direction*Math.max(120,viewport.clientHeight*.65),behavior:window.matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth'})}
+  up.onclick=function(){scrollByDirection(-1)};down.onclick=function(){scrollByDirection(1)};viewport.addEventListener('scroll',arrows,{passive:true});
+  window.emResumeScrollReset=function(){viewport.scrollTop=0;requestAnimationFrame(arrows)};
+  if(typeof ResizeObserver!=='undefined'){var resize=new ResizeObserver(arrows);resize.observe(viewport);steps.forEach(function(step){resize.observe(step)})}
+  window.addEventListener('resize',arrows);cv.addEventListener('input',function(){requestAnimationFrame(arrows)});
+  var footer=cv.querySelector('.cv85-footer'),status=el('cvStatusV84');if(footer)controls.before(footer);if(status)controls.before(status);
   show(0);
  }
  var style=document.createElement('style');style.textContent=`
@@ -586,6 +598,28 @@ window.renderAderenciaPremiumTeaserV96=render;
 #cvResumeWizard .cv-step-nav{gap:10px!important;padding-bottom:24px!important}#cvResumeWizard .cv-step-nav button{border:0!important;background:transparent!important;padding:9px 6px!important;font-size:12px!important}#cvResumeWizard .cv-step-nav button[aria-current=step]{border-radius:25px!important;background:#f1e8fc!important}#cvResumeWizard .cv-step-nav span{width:30px!important;height:30px!important;flex-basis:30px!important}
 @media(max-width:760px){#pagina-curriculo .cv-purple-hero{grid-template-columns:minmax(0,1fr) 120px!important;padding:24px!important;gap:16px!important}#pagina-curriculo .cv-purple-hero .cv85-score{width:110px!important;height:110px!important}#pagina-curriculo .cv-purple-hero .cv85-hero-copy p{font-size:13px!important}#pagina-curriculo .cv-purple-hero .cv85-kicker{font-size:10px!important;letter-spacing:.5px!important;flex-wrap:wrap}}
 @media(max-width:480px){#pagina-curriculo .cv-purple-hero{grid-template-columns:1fr!important;padding:20px!important}#pagina-curriculo .cv-purple-hero .cv85-score{justify-self:start!important}#pagina-curriculo .cv-purple-hero h2{font-size:28px!important}}
+
+/* Cartes de même hauteur, champs seuls défilants, flèches accessibles. */
+#cvResumeWizard.cv-wizard{height:620px!important;min-height:0!important;align-items:stretch!important}
+#cvResumeWizard.cv-wizard>.cv86-editor{height:100%!important;overflow:hidden!important;padding:0!important}
+#cvResumeWizard #curriculoOnlineV84{height:100%!important;display:flex!important;flex-direction:column!important;box-sizing:border-box!important;min-height:0!important;padding:20px!important;overflow:hidden!important}
+#cvResumeWizard .cv-step-nav{flex:0 0 auto!important;margin:0 0 12px!important;padding-bottom:12px!important}
+#cvResumeWizard .cv-fields-frame{position:relative;flex:1 1 auto;min-height:0;padding:20px 0 28px;box-sizing:border-box;overflow:hidden}
+#cvResumeWizard .cv-fields-viewport{height:100%;overflow-y:auto;overflow-x:hidden;scrollbar-width:none;overscroll-behavior:contain;padding:0 4px;box-sizing:border-box;outline-offset:-2px}
+#cvResumeWizard .cv-fields-viewport::-webkit-scrollbar{display:none}
+#cvResumeWizard .cv-scroll-arrow{position:absolute;left:50%;transform:translateX(-50%);z-index:3;width:34px;height:34px;display:grid;place-items:center;border:0;border-radius:50%;background:#7540ae;color:white;cursor:pointer;padding:7px;box-shadow:0 3px 12px #51258a25}
+#cvResumeWizard .cv-scroll-arrow svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round}
+#cvResumeWizard .cv-scroll-up{top:0}#cvResumeWizard .cv-scroll-down{bottom:0}
+#cvResumeWizard .cv-scroll-arrow:disabled{background:#f1eafa;color:#a292b5;box-shadow:none;cursor:default}
+#cvResumeWizard .cv-fields-frame:before,#cvResumeWizard .cv-fields-frame:after{content:'';position:absolute;left:0;right:0;height:30px;pointer-events:none;z-index:2;opacity:0}
+#cvResumeWizard .cv-fields-frame:before{top:20px;background:linear-gradient(#fff,transparent)}#cvResumeWizard .cv-fields-frame:after{bottom:28px;background:linear-gradient(transparent,#fff)}#cvResumeWizard .cv-more-above:before,#cvResumeWizard .cv-more-below:after{opacity:1}
+#cvResumeWizard .cv-wizard-actions{flex:0 0 auto;margin-top:10px!important;background:#fff;padding-top:14px!important}
+#cvResumeWizard.cv-wizard>.cv-context-guide{height:100%!important;max-height:none!important;align-self:stretch!important;padding:22px!important;position:static!important;overflow:hidden!important}
+#cvResumeWizard .cv-context-guide h2{font-size:23px!important}.cv-context-guide p{font-size:13px!important;line-height:1.7!important}
+#cvResumeWizard .cv85-footer{flex:0 0 auto;margin:10px 0 0!important;padding:12px 0!important}#cvResumeWizard .cv85-footer>div:first-child{display:none!important}
+#cvResumeWizard .curriculo-status-v84{flex:0 0 auto;font-size:12px!important;margin:4px 0!important}
+#pagina-curriculo .cv-purple-hero{min-height:0!important;padding:20px 30px!important;margin-bottom:18px!important}#pagina-curriculo .cv-purple-hero h2{font-size:32px!important}#pagina-curriculo .cv-purple-hero .cv85-kicker{margin-top:12px!important}#pagina-curriculo .cv-purple-hero .cv85-score{width:110px!important;height:110px!important}
+@media(max-width:760px){#cvResumeWizard.cv-wizard{height:650px!important;grid-template-columns:1fr!important}#cvResumeWizard.cv-wizard>.cv86-editor{height:100%!important;overflow:hidden!important}#cvResumeWizard.cv-wizard>.cv-context-guide{display:none!important}#cvResumeWizard .cv-step-nav{gap:4px!important}#cvResumeWizard .cv-step-nav button{padding:4px!important;font-size:11px!important}#cvResumeWizard #curriculoOnlineV84{padding:16px!important}}
 `;document.head.appendChild(style);
  window.addEventListener('load',function(){setTimeout(setup,1200)},{once:true});
 })();
