@@ -32,7 +32,11 @@
   var list=document.getElementById('listaCandidaturas');if(!list)return;
   var toolbar=document.getElementById('cpApplicationFilters');if(toolbar)return;
   toolbar=document.createElement('section');toolbar.id='cpApplicationFilters';toolbar.className='cp-application-filters';toolbar.setAttribute('aria-label','Filtrar candidaturas por etapa');
-  var heading=document.createElement('div');heading.className='cp-applications-intro';heading.innerHTML='<span>SEU PRÓXIMO PASSO</span><h1>Minhas candidaturas</h1><p>Acompanhe cada processo seletivo, confira a etapa atual e veja as orientações da empresa.</p>';list.before(heading);
+  var oldHeader=document.querySelector('#pagina-candidaturas>.page-header');if(oldHeader)oldHeader.hidden=true;
+  var heading=document.createElement('section');heading.className='cp-applications-intro cp-applications-hero';heading.setAttribute('aria-label','Minhas candidaturas');
+  heading.innerHTML='<div class="cp-applications-hero-copy"><button type="button" class="cp-applications-back"><span aria-hidden="true">←</span> Voltar ao meu painel</button><div class="cp-applications-kicker">PROCESSOS SELETIVOS <span>ACOMPANHAMENTO</span></div><h1>Minhas candidaturas</h1><p>Acompanhe as etapas dos seus processos seletivos.<br>Confira atualizações, entrevistas e orientações das empresas em um só lugar.</p></div><div class="cp-applications-hero-icon" aria-hidden="true">'+icon('briefcase')+'</div>';
+  heading.querySelector('button').onclick=function(){window.irPara('painel-candidato');};list.before(heading);
+
   toolbar.innerHTML='<div class="cp-application-filter-buttons">'+stages.map(function(stage){return '<button type="button" data-cp-filter="'+stage.key+'" aria-controls="listaCandidaturas" aria-pressed="false"><strong data-cp-filter-count="'+stage.key+'">0</strong><span>'+(stage.filterLabel||stage.label)+'</span></button>';}).join('')+'</div><div class="cp-application-result-row"><p id="cpApplicationResult" role="status" aria-live="polite"></p><div class="cp-application-sync"><span id="cpApplicationSyncState" role="status" aria-live="polite"></span><button type="button" id="cpApplicationRefresh">Atualizar</button></div></div>';
   toolbar.addEventListener('click',function(event){var button=event.target.closest('[data-cp-filter]');if(button&&toolbar.contains(button))setStage(button.dataset.cpFilter,true);});
   toolbar.querySelector('#cpApplicationRefresh').onclick=function(){if(window.EmpregaMaisCandidaturasCloud)window.EmpregaMaisCandidaturasCloud.sincronizar(true);};list.before(toolbar);
@@ -122,6 +126,16 @@
 
   #pagina-candidaturas>.container-menor{width:calc(100% - 40px)!important;max-width:1100px!important;margin:0 auto!important;padding:30px 0 48px!important}
   .cp-applications-intro{margin:0 0 24px;font-family:Inter,Arial,sans-serif;color:#241b39}.cp-applications-intro>span{font-size:10px;font-weight:700;letter-spacing:.12em;color:#7951a3}.cp-applications-intro h1{font:750 28px/1.3 Inter,Arial,sans-serif;margin:7px 0 9px}.cp-applications-intro p{font-size:14px;color:#786a89;margin:0;line-height:1.6}
+  #pagina-candidaturas>.page-header[hidden]{display:none!important}
+  #pagina-candidaturas .cp-applications-hero{position:relative;isolation:isolate;display:grid;grid-template-columns:minmax(0,1fr) 150px;gap:24px;align-items:center;background:linear-gradient(110deg,#42216f,#7540ae 85%,#8755c5);border-radius:12px;padding:20px 28px;margin:0 0 18px;color:#fff;overflow:hidden;box-sizing:border-box;font-family:Montserrat,Arial,sans-serif}
+  .cp-applications-hero:after{content:'';position:absolute;z-index:-1;width:450px;height:450px;border:1px solid #ffffff22;border-radius:50%;right:-300px;bottom:-300px;box-shadow:0 0 0 60px #ffffff09}
+  .cp-applications-hero-copy{min-width:0}.cp-applications-back{display:inline-flex;gap:10px;align-items:center;border:1px solid #c8a4ed99;border-radius:7px;background:#ffffff08;color:#fff;padding:9px 15px;font:600 13px Montserrat,Arial,sans-serif;cursor:pointer}.cp-applications-back:focus-visible{outline:2px solid #fff;outline-offset:4px}
+  .cp-applications-kicker{font:600 12px Montserrat,Arial,sans-serif;color:#e8d7ff;letter-spacing:1.3px;margin:12px 0 10px;display:flex;align-items:center;gap:16px}.cp-applications-kicker span{font:700 11px Montserrat,Arial,sans-serif;color:#fff;background:#9867ce70;border-radius:20px;padding:7px 13px;letter-spacing:.5px}
+  #pagina-candidaturas .cp-applications-hero h1{font:750 32px/1.2 Montserrat,Arial,sans-serif;color:#fff;margin:0 0 8px;letter-spacing:-.8px}#pagina-candidaturas .cp-applications-hero p{font:400 13px/1.7 Montserrat,Arial,sans-serif;color:#f4ebff;margin:0;max-width:850px}
+  .cp-applications-hero-icon{display:grid;place-items:center;width:110px;height:110px;justify-self:center;border-radius:50%;background:#ffffff12;border:1px solid #ffffff30;color:#ebd9ff}.cp-applications-hero-icon svg{width:52px;height:52px}
+  @media(max-width:760px){.cp-applications-kicker{font-size:10px;letter-spacing:.5px;flex-wrap:wrap;gap:8px}}
+  @media(max-width:600px){#pagina-candidaturas .cp-applications-hero{grid-template-columns:1fr;gap:16px}.cp-applications-hero-icon{justify-self:start}}
+  @media(max-width:480px){#pagina-candidaturas .cp-applications-hero{padding:20px}#pagina-candidaturas .cp-applications-hero h1{font-size:28px}}
   #pagina-candidaturas .candidatura-item{padding:22px!important;border:1px solid #e3dbea!important;border-radius:14px!important;background:#fff!important;margin-bottom:16px!important;font-family:Inter,Arial,sans-serif}
   #pagina-candidaturas #listaCandidaturas{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px;align-items:start}
   #pagina-candidaturas #listaCandidaturas>.candidatura-item{min-width:0;margin:0!important}
