@@ -563,6 +563,12 @@ window.renderAderenciaPremiumTeaserV96=render;
   extraField(6,'cvCnhValidadeExtra','Validade da CNH','date','');
   var originalRestore=window.EmpregaMaisRestaurarCurriculo;if(originalRestore)originalRestore();
   if(!cep.value&&typeof window.obterCandidatoAtual==='function'){var existing=window.obterCandidatoAtual()||{};cep.value=existing.cep||'';}
+  var objective=el('cvObjetivoV84');if(objective){objective.maxLength=600;objective.placeholder='Ex.: Assistente administrativo, Auxiliar de escritório';var hint=objective.closest('label').querySelector('small');if(!hint){hint=document.createElement('small');objective.closest('label').appendChild(hint)}hint.textContent='Informe os cargos desejados. Use Enter ou vírgula para separar; ao sair do campo, o último cargo será confirmado.';
+    function normalizeRoles(raw){var seen=new Set();return String(raw||'').split(/[,;\n]+/).map(function(role){return role.trim().replace(/\s+/g,' ')}).filter(function(role){var key=role.toLocaleLowerCase('pt-BR');if(!role||seen.has(key))return false;seen.add(key);return true}).join(', ')}
+    objective.addEventListener('keydown',function(event){if(event.key==='Enter'&&!event.isComposing){event.preventDefault();this.value=normalizeRoles(this.value);if(this.value)this.value+=', ';this.dispatchEvent(new Event('input',{bubbles:true}))}});
+    objective.addEventListener('blur',function(){this.value=normalizeRoles(this.value);this.dispatchEvent(new Event('change',{bubbles:true}))});
+    objective.addEventListener('paste',function(){setTimeout(function(){objective.value=normalizeRoles(objective.value);objective.dispatchEvent(new Event('input',{bubbles:true}))},0)});
+  }
   var salary=el('cvSalarioV85');if(salary){salary.inputMode='decimal';salary.placeholder='R$ 0,00';
     function formatMoneyDigits(raw){var digits=String(raw||'').replace(/\D/g,'').slice(0,12);return digits?new Intl.NumberFormat('pt-BR',{style:'currency',currency:'BRL'}).format(Number(digits)/100):''}
     if(salary.value){var raw=salary.value.trim();salary.value=raw.includes(',')?formatMoneyDigits(raw):new Intl.NumberFormat('pt-BR',{style:'currency',currency:'BRL'}).format(Number(raw.replace(/[^0-9.]/g,''))||0)}
