@@ -41,10 +41,13 @@
     var originalOpen=window.abrirRota,allowed=['painel-candidato','perfil','curriculo','candidaturas','salvas','premium-candidato','home','vaga','candidatura'];
     function open(route,id,push){if(route==='demo-recrutador'){location.href=location.pathname+'?pagina=demo-recrutador&abaPainel=candidates';return;}if(allowed.indexOf(route)<0)route='painel-candidato';var url=new URL(location.href);url.searchParams.set('pagina','demo-candidato');url.searchParams.set('abaCandidato',route);if(id)url.searchParams.set('id',id);else url.searchParams.delete('id');history[push?'pushState':'replaceState']({},'',url.toString());originalOpen.call(window,route,id);url.searchParams.set('pagina','demo-candidato');history.replaceState({},'',url.toString());}
     window.irPara=function(route,id){open(route,id,true);};window.abrirRota=function(route,id){open(route==='demo-candidato'?new URLSearchParams(location.search).get('abaCandidato')||'painel-candidato':route,id,false);};
+    document.addEventListener('click',function(event){var link=event.target.closest('a[href]');if(!link)return;var url=new URL(link.href,location.href),route=url.searchParams.get('pagina');if(url.origin===location.origin&&url.pathname===location.pathname&&allowed.indexOf(route)>=0){event.preventDefault();event.stopImmediatePropagation();window.irPara(route,url.searchParams.get('id'));}},true);
     window.sairCandidato=function(){location.href=location.pathname+'?pagina=demo-recrutador';};
     window.addEventListener('popstate',function(){var p=new URLSearchParams(location.search);open(p.get('abaCandidato')||'painel-candidato',p.get('id'),false);});
     open(new URLSearchParams(location.search).get('abaCandidato')||'painel-candidato',new URLSearchParams(location.search).get('id'),false);
-    document.querySelectorAll('#pagina-painel-candidato .em-candidate-inbox,#pagina-candidaturas .em-candidate-inbox').forEach(function(box){box.hidden=true;});
+    function demoWidgets(){document.querySelectorAll('#pagina-painel-candidato,#pagina-candidaturas').forEach(function(root){root.querySelectorAll('.emi-candidate,.em-hire-confirmations,.em-candidate-inbox').forEach(function(box){box.style.setProperty('display','none','important');});});}
+    demoWidgets();
+    if(window.MutationObserver)document.querySelectorAll('#pagina-painel-candidato,#pagina-candidaturas').forEach(function(root){new MutationObserver(demoWidgets).observe(root,{childList:true,subtree:true});});
   }
   window.addEventListener('load',function(){setTimeout(boot,0);});
 })();
