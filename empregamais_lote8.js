@@ -682,6 +682,8 @@ window.renderAderenciaPremiumTeaserV96=render;
 #cvResumeWizard #cvExperienciasV84 .cv-role-duration{padding:13px 15px!important}#cvResumeWizard #cvExperienciasV84 .e-duration{font-size:19px!important;margin:8px 0!important}
 #cvResumeWizard .cv85-section{outline:none!important;box-shadow:none!important}
 @media(max-width:800px){#cvResumeWizard #cvExperienciasV84{grid-template-columns:1fr!important}}
+
+#cvResumeWizard label:has(#cvExperienciaAligned){display:none!important}
 `;document.head.appendChild(style);
  window.addEventListener('load',function(){setTimeout(setup,1200)},{once:true});
 })();
