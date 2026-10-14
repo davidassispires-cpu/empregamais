@@ -8,7 +8,7 @@
    {id:'demo-2',cargo:'Analista de Recursos Humanos',empresa:'Empresa Demonstração',cidade:'Contagem',uf:'MG',area:'Recursos Humanos',modalidade:'Híbrido',contrato:'CLT',salario:'R$ 3.800,00',status:'ativa',aprovacao:'aprovada',dataPublicacao:new Date().toISOString(),visualizacoes:176},
    {id:'demo-3',cargo:'Auxiliar de Atendimento',empresa:'Empresa Demonstração',cidade:'Belo Horizonte',uf:'MG',status:'pausada',aprovacao:'aprovada',visualizacoes:92}
   ];
-  var demoCandidates=['Ana Exemplo','Bruno Exemplo','Carla Exemplo','Diego Exemplo','Elisa Exemplo','Felipe Exemplo'].map(function(name,i){return {id:'demo-c'+i,vagaId:i%2?'demo-2':'demo-1',candidato:name,nome:name,cidade:'Belo Horizonte',status:['Em avaliação','Em contato','Entrevista agendada'][i%3],data:new Date(Date.now()-i*86400000).toISOString()};});
+  var demoCandidates=demoMode?window.EmpregaMaisEtapasCandidatura.demo():[];
   function demoNotice(text){var el=root&&root.getElementById('demoNotice');if(el)el.textContent=text||'Prévia: alterações somente nesta sessão, sem envio ao servidor.';}
 
   var lastPanelMarkup='';
@@ -62,13 +62,13 @@
       if(map[route]){if(id)sessionStorage.setItem('vagaCandidatosSelecionada',String(id));view=map[route];mount();}
     };
     window.empresaEstaLogada=function(){return true};window.obterEmpresaAtual=function(){return demoCompany};
-    demoCandidates.forEach(function(c,i){c.email='candidato'+(i+1)+'@example.com';c.competencias=['Atendimento','Organização','Excel'];c.aderencia=90-i*5;});
+    demoCandidates.forEach(function(c,i){c.email=c.email||'candidato'+(i+1)+'@example.com';c.competencias=['Atendimento','Organização','Excel'];c.aderencia=90-i*5;});window.EmpregaMaisEtapasCandidatura.salvarDemo(demoCandidates);
     window.vagasDaEmpresa=function(){return demoJobs;};
     window.carregarVagasPortal=function(){return demoJobs;};
     window.salvarVagasPortal=function(list){demoJobs=list;};
     window.sincronizarVagasGoogleSheets=function(){return Promise.resolve(demoJobs);};
-    window.carregarCandidaturas=function(){return demoCandidates;};
-    window.salvarCandidaturas=function(list){demoCandidates=list;};
+    window.carregarCandidaturas=function(){demoCandidates=window.EmpregaMaisEtapasCandidatura.demo();return demoCandidates;};
+    window.salvarCandidaturas=function(list){demoCandidates=list;window.EmpregaMaisEtapasCandidatura.salvarDemo(list);};
     window.empresaLogadaPainelEM=function(){return window.__emDemoCompany;};
     window.apiEmpregaMaisGet=function(){return Promise.resolve({sucesso:true,vagas:demoJobs,candidaturas:demoCandidates,empresas:[]});};
     window.apiEmpregaMaisPost=function(data){
@@ -97,7 +97,7 @@
     return result;
   }
   function jobs() { if(demoMode)return demoJobs; var a=invoke('vagasDaEmpresa');return Array.isArray(a)?a.filter(function(v){return norm(v.status)!=='excluida';}):[]; }
-  function applications(vagas) { if(demoMode)return demoCandidates.filter(function(c){return vagas.some(function(v){return v.id===c.vagaId;});}); var a=invoke('carregarCandidaturas') || [];var ids=new Set(vagas.map(function(v){return String(v.id);}));return a.filter(function(c){return ids.has(String(c.vagaId||c.vaga_id||c.idVaga||''));}); }
+  function applications(vagas) { if(demoMode)return window.EmpregaMaisEtapasCandidatura.demo().filter(function(c){return vagas.some(function(v){return v.id===c.vagaId;});}); var a=invoke('carregarCandidaturas') || [];var ids=new Set(vagas.map(function(v){return String(v.id);}));return a.filter(function(c){return ids.has(String(c.vagaId||c.vaga_id||c.idVaga||''));}); }
   function jobStatus(v) { if (['pausada','pausado','paused'].indexOf(norm(v.status))>=0)return 'paused';if (invoke('vagaExpirada',[v]))return 'closed';if (['encerrada','inativa','paused','fechada'].indexOf(norm(v.status))>=0)return 'closed';if (['pendente','em analise','em_analise','rejeitada'].indexOf(norm(v.aprovacao||v.status))>=0)return 'pending';return norm(v.aprovacao)==='aprovada'||norm(v.status)==='ativa'?'active':'pending'; }
   function date(c) { var raw=c.candidatadoEm||c.criadoEm||c.dataCriacao||c.created_at||c.data||c.dataPublicacao||c.publicadaEm;var d=new Date(raw || '');return isNaN(d.getTime())?null:d; }
   function dateBR(s) { if(!s)return 'Não informada';var d=new Date(s);return isNaN(d.getTime())?'Não informada':d.toLocaleDateString('pt-BR'); }
@@ -1020,4 +1020,3 @@ function arrangeCandidateMessageComposer(section){
  }
  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',start,{once:true});else start();
 })();
-

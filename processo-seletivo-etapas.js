@@ -25,3 +25,18 @@
  function filter(key){var aliases={analise:'avaliacao',selecionadas:'aprovadas',finalistas:'aprovadas'};key=aliases[key]||key;return key==='todas'||stages.some(function(item){return item.key===key;})?key:'todas';}
  window.EmpregaMaisEtapasCandidatura={etapas:stages,classificar:classify,etapa:stage,grupo:group,filtro:filter};
 })();
+
+(function(){
+ var workflow=window.EmpregaMaisEtapasCandidatura;
+ // Both demonstration panels use these fictional applications, outside real account storage.
+ var backing=window.localStorage,demoKey='emApplicationDemoV1';
+ function demoApplications(){
+  var saved;try{saved=JSON.parse(backing.getItem(demoKey)||'null');}catch(ignore){}
+  if(Array.isArray(saved)&&saved.length)return saved;
+  var date=new Date().toISOString(),rows=['Ana Exemplo','Bruno Exemplo','Carla Exemplo','Diego Exemplo','Elisa Exemplo','Felipe Exemplo'].map(function(name,i){return {id:'demo-c'+i,vagaId:i%2?'demo-2':'demo-1',vaga:i%2?'Analista de Recursos Humanos':'Assistente Administrativo',empresa:'Empresa Demonstração',nome:name,candidato:name,email:i===0?'ana@example.com':'candidato'+(i+1)+'@example.com',cidade:i%2?'Contagem':'Belo Horizonte',modalidade:i%2?'Híbrido':'Presencial',contrato:'CLT',status:workflow.etapas[i%3].label,data:new Date(Date.now()-i*86400000).toISOString()};});
+  rows.push({id:'demo-ana-rh',vagaId:'demo-2',vaga:'Analista de Recursos Humanos',empresa:'Empresa Demonstração',nome:'Ana Exemplo',candidato:'Ana Exemplo',email:'ana@example.com',cidade:'Contagem',modalidade:'Híbrido',contrato:'CLT',status:'Entrevista agendada',data:date});
+  saveDemo(rows);return rows;
+ }
+ function saveDemo(rows){try{backing.setItem(demoKey,JSON.stringify(rows));}catch(ignore){}document.dispatchEvent(new Event('empregamais:candidaturas-sincronizadas'));}
+ workflow.demo=demoApplications;workflow.salvarDemo=saveDemo;workflow.chaveDemo=demoKey;
+})();

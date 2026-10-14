@@ -25,7 +25,7 @@
   }
   seed('curriculoEmpregaMais_'+profile.email,{nome:'Curriculo-Demonstracao.pdf',data:date,dados:sampleResume()});
   var realFetch=window.fetch;
-  window.fetch=function(input,options){var url=String(input&&input.url||input);if(/supabase\.co|script\.google\.com/.test(url)){var data=/\/candidatos\?/.test(url)?[Object.assign({user_id:'demo-candidato',perfil:profile},profile)]:/\/auth\/v1\/user/.test(url)?{id:'demo-candidato'}:{sucesso:true,demo:true,vagas:jobs,candidaturas:JSON.parse(localStorage.getItem('candidaturasEmpregaMais')||'[]')};return Promise.resolve(new Response(JSON.stringify(data),{status:200,headers:{'Content-Type':'application/json'}}));}return realFetch.call(this,input,options);};
+  window.fetch=function(input,options){var url=String(input&&input.url||input);if(/supabase\.co|script\.google\.com/.test(url)){var data=/\/candidatos\?/.test(url)?[Object.assign({user_id:'demo-candidato',perfil:profile},profile)]:/\/auth\/v1\/user/.test(url)?{id:'demo-candidato'}:{sucesso:true,demo:true,vagas:jobs,candidaturas:window.EmpregaMaisEtapasCandidatura.demo()};return Promise.resolve(new Response(JSON.stringify(data),{status:200,headers:{'Content-Type':'application/json'}}));}return realFetch.call(this,input,options);};
   function status(message){var el=document.getElementById('emCandidateDemoNotice');if(el)el.textContent=message||'Demonstração do candidato · Dados fictícios. Alterações somente nesta prévia.';}
   function boot(){
     if(ready)return;ready=true;
@@ -34,7 +34,7 @@
     window.candidatoEstaLogado=function(){return true;};window.empresaEstaLogada=function(){return false;};
     window.carregarVagasPortal=function(){return jobs;};window.salvarVagasPortal=function(list){jobs=list;};window.vagasPadrao=[];
     window.sincronizarVagasGoogleSheets=function(){return Promise.resolve(jobs);};
-    window.carregarCandidaturas=function(){return JSON.parse(localStorage.getItem('candidaturasEmpregaMais')||'[]');};window.salvarCandidaturas=function(list){localStorage.setItem('candidaturasEmpregaMais',JSON.stringify(list));};
+    window.carregarCandidaturas=function(){return window.EmpregaMaisEtapasCandidatura.demo();};window.salvarCandidaturas=window.EmpregaMaisEtapasCandidatura.salvarDemo;
     window.apiEmpregaMaisGet=function(){return Promise.resolve({sucesso:true,demo:true,vagas:jobs,candidaturas:window.carregarCandidaturas()});};window.apiEmpregaMaisPost=function(){status('Alteração simulada na demonstração do candidato.');return Promise.resolve({sucesso:true,demo:true});};
     if(window.EmpregaMaisPerfilCloud){window.EmpregaMaisPerfilCloud.refresh=function(){return Promise.resolve(profile);};window.EmpregaMaisPerfilCloud.hydrate=function(){return Promise.resolve(profile);};window.EmpregaMaisPerfilCloud.flush=function(){status('Perfil salvo apenas na demonstração.');return Promise.resolve(profile);};}
     var page=document.getElementById('pagina-painel-candidato'),notice=document.createElement('section');notice.className='container-dashboard';notice.style.paddingBottom='0';notice.innerHTML='<div class="painel-card"><p id="emCandidateDemoNotice"></p><a href="?pagina=demo-recrutador&amp;abaPainel=candidates" style="display:inline-block;margin-top:8px">Abrir painel da empresa</a></div>';page.insertBefore(notice,page.querySelector('.container-dashboard'));status();
