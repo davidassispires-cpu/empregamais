@@ -539,11 +539,14 @@ SOFTWARE.
   var hero=cv.querySelector('.cv85-hero');if(hero){
     hero.classList.add('cv-purple-hero');destination.insertBefore(hero,ws);
     hero.querySelector('.cv85-kicker').innerHTML='CURRÍCULO PROFISSIONAL <span>GRATUITO</span>';
-    hero.querySelector('h2').textContent='Criar currículo online';
-    hero.querySelector('.cv85-hero-copy p').innerHTML='Preencha as etapas e revise seu currículo antes de salvar.<br>Suas informações ajudam a comparar seu perfil com os requisitos das vagas.';
-    hero.querySelector('.cv85-score>span').textContent='do perfil preenchido';
-    var back=document.createElement('button');back.type='button';back.className='cv-hero-back';back.innerHTML='<span aria-hidden="true">←</span> Voltar ao meu painel';back.onclick=function(){window.irPara('painel-candidato')};hero.querySelector('.cv85-hero-copy').prepend(back);
-    function syncRing(){var score=el('cvProgressoV85');if(score)hero.style.setProperty('--cv-progress',score.textContent.trim())}syncRing();new MutationObserver(syncRing).observe(el('cvProgressoV85'),{childList:true,characterData:true,subtree:true});
+    hero.querySelector('h2').innerHTML='Seu próximo passo<br>começa com um bom <span>currículo.</span>';
+    hero.querySelector('.cv85-hero-copy p').textContent='Destaque suas experiências e prepare-se para novas oportunidades.';
+    hero.querySelector('.cv85-score>span').textContent='concluído';
+    var progress=hero.querySelector('.cv85-score');progress.insertAdjacentHTML('afterbegin','<b class="cv-rail-label">Seu currículo</b><div class="cv-rail-track" role="progressbar" aria-label="Preenchimento do currículo" aria-valuemin="0" aria-valuemax="100"><i></i></div>');progress.insertAdjacentHTML('beforeend','<small class="cv-rail-hint">Preencha as etapas abaixo</small>');
+    var art=document.createElement('div');art.className='cv-hero-illustration';art.setAttribute('aria-hidden','true');art.innerHTML="<svg viewBox=\"0 0 440 260\" xmlns=\"http://www.w3.org/2000/svg\" aria-hidden=\"true\">\n<defs><linearGradient id=\"cvPaper\" x2=\"1\" y2=\"1\"><stop stop-color=\"white\"/><stop offset=\"1\" stop-color=\"#f5f0ff\"/></linearGradient><linearGradient id=\"cvTile\" x2=\"1\" y2=\"1\"><stop stop-color=\"#b89aef\"/><stop offset=\"1\" stop-color=\"#8054c8\"/></linearGradient><filter id=\"cvShadow\" x=\"-40%\" y=\"-30%\" width=\"180%\" height=\"180%\"><feDropShadow dx=\"0\" dy=\"6\" stdDeviation=\"7\" flood-color=\"#634b8e\" flood-opacity=\".18\"/></filter></defs>\n<path d=\"M30 240C-10 130 80 36 188 28S354 0 430 62\" fill=\"none\" stroke=\"#c4acf0\"/>\n<g opacity=\".7\"><path d=\"M48 228v-99m0 62C17 175 6 152 14 132c24 8 40 32 34 59m0-22c33-16 46-40 36-61-25 10-40 37-36 61m0-24C27 122 26 97 36 87c19 17 25 39 12 58\" fill=\"#bba6dc\" stroke=\"#ab92d0\" stroke-width=\"2\"/><path d=\"M26 212h49l-7 37H33Z\" fill=\"#faf7ff\"/></g>\n<g filter=\"url(#cvShadow)\"><path d=\"m55 229 94-12 62 14-91 17Z\" fill=\"#f8f5ff\"/><path d=\"m55 236 65 16 91-14v-7l-91 17-65-19Z\" fill=\"#cbbce5\"/></g>\n<g transform=\"translate(138 10) rotate(-5 120 120)\" filter=\"url(#cvShadow)\"><rect x=\"8\" y=\"8\" width=\"232\" height=\"253\" rx=\"11\" fill=\"#cdbce9\"/><rect width=\"232\" height=\"253\" rx=\"11\" fill=\"url(#cvPaper)\"/><circle cx=\"36\" cy=\"37\" r=\"19\" fill=\"#e7def7\"/><circle cx=\"36\" cy=\"31\" r=\"7\" fill=\"#b09acb\"/><path d=\"M23 49c0-14 26-14 26 0\" fill=\"#b09acb\"/><text x=\"65\" y=\"31\" font-size=\"12\" font-family=\"Montserrat,Arial\" font-weight=\"700\" fill=\"#2e204a\">Seu nome completo</text><text x=\"65\" y=\"47\" font-size=\"8\" font-family=\"Montserrat,Arial\" fill=\"#88759e\">Seu objetivo profissional</text><path d=\"M18 65h196\" stroke=\"#eee8f7\"/>\n<g fill=\"#6e4ea5\" font-family=\"Montserrat,Arial\" font-size=\"9\" font-weight=\"700\"><text x=\"22\" y=\"86\">Resumo profissional</text><text x=\"22\" y=\"136\">Experiência profissional</text><text x=\"22\" y=\"190\">Formação acadêmica</text></g><g stroke=\"#d9d1e7\" stroke-width=\"4\" stroke-linecap=\"round\"><path d=\"M24 99h174m-174 9h156m-156 9h130M31 151h160m-160 10h140m-140 10h150M31 205h149m-149 10h124\"/></g><g fill=\"#a18aca\"><circle cx=\"23\" cy=\"151\" r=\"2\"/><circle cx=\"23\" cy=\"171\" r=\"2\"/><circle cx=\"23\" cy=\"205\" r=\"2\"/><circle cx=\"23\" cy=\"215\" r=\"2\"/></g><rect x=\"22\" y=\"234\" width=\"75\" height=\"5\" rx=\"2\" fill=\"#e4dbf3\"/><rect x=\"116\" y=\"234\" width=\"89\" height=\"5\" rx=\"2\" fill=\"#b399e3\"/></g>\n<g transform=\"translate(343 56) rotate(8)\" filter=\"url(#cvShadow)\"><rect width=\"62\" height=\"62\" rx=\"16\" fill=\"url(#cvTile)\"/><circle cx=\"31\" cy=\"31\" r=\"20\" fill=\"#fff\"/><path d=\"m21 31 7 7 14-15\" fill=\"none\" stroke=\"#8259bd\" stroke-width=\"4\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></g>\n<g transform=\"translate(104 198) rotate(-8)\" filter=\"url(#cvShadow)\"><rect width=\"56\" height=\"52\" rx=\"13\" fill=\"#eee5fc\" stroke=\"#fff\"/><g stroke=\"#8764b8\" stroke-width=\"3\" fill=\"none\"><rect x=\"13\" y=\"19\" width=\"30\" height=\"22\" rx=\"3\"/><path d=\"M23 19v-6h10v6M13 27h30M26 26v6h5v-6\"/></g></g>\n<path d=\"m366 240 58-16 3 5-58 16-10-1Z\" fill=\"#aa95cc\"/><path d=\"m366 240 58-16\" stroke=\"#786393\" stroke-width=\"2\"/></svg>";hero.insertBefore(art,progress);
+    var chips=document.createElement('div');chips.className='cv-hero-step-chips';chips.setAttribute('aria-label','Etapas do currículo');chips.innerHTML='<span>Dados pessoais</span><span>Experiências</span><span>Formação</span>';hero.querySelector('.cv85-hero-copy').appendChild(chips);
+    var back=document.createElement('button');back.type='button';back.className='cv-hero-back';back.innerHTML='<span aria-hidden="true">←</span> Voltar ao painel';back.onclick=function(){window.irPara('painel-candidato')};hero.querySelector('.cv85-hero-copy').prepend(back);
+    function syncRing(){var score=el('cvProgressoV85');if(score){var percent=Math.max(0,Math.min(100,parseInt(score.textContent,10)||0));hero.style.setProperty('--cv-progress',percent+'%');var rail=hero.querySelector('.cv-rail-track');if(rail)rail.setAttribute('aria-valuenow',String(percent));}}syncRing();new MutationObserver(syncRing).observe(el('cvProgressoV85'),{childList:true,characterData:true,subtree:true});
     var oldHeader=page.querySelector('.page-header');if(oldHeader)oldHeader.hidden=true;
     ['.cv85-progress','.cv85-info'].forEach(function(selector){var old=cv.querySelector(selector);if(old)old.hidden=true});
   }
@@ -949,6 +952,51 @@ body.cp-shell-active #pagina-painel-candidato .em-candidate-inbox{color:#243247!
 body.cp-shell-active #pagina-painel-candidato .em-candidate-inbox h2{color:#243247!important}
 body.cp-shell-active #pagina-painel-candidato .em-candidate-inbox button{color:#0f766e!important;background:#e8f5f1!important;border-color:#bbdbd1!important}
 body.cp-shell-active #pagina-painel-candidato .em-inbox-entry{border-color:#d8e0e5!important}
+
+/* Approved compact illustrated resume header. */
+#pagina-curriculo .cv-purple-hero{
+ display:grid!important;grid-template-columns:minmax(0,1fr) 33%!important;gap:12px 16px!important;
+ padding:20px 24px 12px!important;min-height:0!important;border:1px solid #dfd2f5!important;
+ border-radius:16px!important;background:radial-gradient(ellipse at 84% 15%,#e4d5fa 0,transparent 58%),linear-gradient(115deg,#faf7ff,#eee6fb)!important;
+ box-shadow:0 5px 20px #6040830a!important;color:#24143f!important;overflow:hidden!important;
+}
+#pagina-curriculo .cv-purple-hero:after{width:420px;height:420px;right:-90px;bottom:25px;border-color:#c6aceb55;box-shadow:0 0 0 75px #c8b2e512;pointer-events:none}
+#pagina-curriculo .cv-purple-hero .cv85-hero-copy{grid-column:1;grid-row:1;z-index:1}
+#pagina-curriculo .cv-purple-hero .cv-hero-back{border:0!important;background:transparent!important;color:#7860a2!important;font-size:11px!important;padding:0!important;min-height:24px;margin:0!important}
+#pagina-curriculo .cv-purple-hero .cv85-kicker{color:#5e477e!important;font-size:10px!important;letter-spacing:.7px!important;margin:10px 0 8px!important;gap:10px}
+#pagina-curriculo .cv-purple-hero .cv85-kicker span{background:#ffffffaa!important;color:#8759ca!important;border:1px solid #c6a9ed!important;border-radius:7px!important;padding:4px 9px!important;font-size:9px!important}
+#pagina-curriculo .cv-purple-hero h2{font-size:clamp(23px,2.4vw,32px)!important;line-height:1.12!important;font-weight:750!important;color:#24143f!important;letter-spacing:-.7px!important;margin:0 0 9px!important}
+#pagina-curriculo .cv-purple-hero h2 span{color:#8954d0!important}
+#pagina-curriculo .cv-purple-hero .cv85-hero-copy p{font-size:12px!important;line-height:1.55!important;font-weight:500!important;color:#76638e!important;max-width:560px!important;margin:0!important}
+#pagina-curriculo .cv-purple-hero .cv-hero-step-chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:13px}
+#pagina-curriculo .cv-purple-hero .cv-hero-step-chips span{display:inline-flex;align-items:center;gap:6px;background:#fff5;border:1px solid #dccdf4;border-radius:18px;padding:5px 10px;font-size:10px;color:#70558e}
+#pagina-curriculo .cv-purple-hero .cv-hero-step-chips span:before{content:'○';display:grid;place-items:center;width:17px;height:17px;border-radius:50%;background:#e8dcf9;color:#9a75cb;font-size:10px}
+#pagina-curriculo .cv-purple-hero .cv-hero-illustration{grid-column:2;grid-row:1;align-self:stretch;display:flex;align-items:center;justify-content:center;min-width:0;max-height:216px;z-index:0}
+#pagina-curriculo .cv-purple-hero .cv-hero-illustration svg{display:block;width:100%!important;height:100%!important;max-height:216px;overflow:visible}
+#pagina-curriculo .cv-purple-hero .cv85-score{grid-column:1/-1;grid-row:2;display:flex!important;flex-direction:row!important;align-items:center!important;gap:7px!important;width:100%!important;height:auto!important;min-height:40px!important;padding:9px 14px!important;border:1px solid #e6dbf5!important;border-radius:11px!important;background:#ffffffba!important;justify-content:flex-start!important;justify-self:stretch!important;box-shadow:0 2px 7px #7453c807!important}
+#pagina-curriculo .cv-purple-hero .cv85-score .cv-rail-label{font-size:12px!important;font-weight:700!important;color:#302044!important;white-space:nowrap;margin-right:10px}
+#pagina-curriculo .cv-purple-hero .cv-rail-track{height:7px;border-radius:9px;background:#e5ddf1;flex:1;min-width:30px;overflow:hidden;margin-right:12px}
+#pagina-curriculo .cv-purple-hero .cv-rail-track i{display:block;height:100%;width:var(--cv-progress,0%);background:linear-gradient(90deg,#b395df,#8954d0);border-radius:inherit;transition:width .2s}
+#pagina-curriculo .cv-purple-hero .cv85-score strong{font-size:12px!important;color:#8050bc!important;white-space:nowrap}
+#pagina-curriculo .cv-purple-hero .cv85-score>span{font-size:11px!important;color:#463359!important;max-width:none!important}
+#pagina-curriculo .cv-purple-hero .cv-rail-hint{font-size:10px!important;color:#8a799d!important;border-left:1px solid #d7c6eb;margin-left:18px;padding-left:18px;white-space:nowrap}
+@media(max-width:760px){
+ #pagina-curriculo .cv-purple-hero{padding:18px 18px 12px!important;grid-template-columns:minmax(0,1fr) 29%!important}
+ #pagina-curriculo .cv-purple-hero h2{font-size:24px!important}
+ #pagina-curriculo .cv-purple-hero .cv-rail-hint{display:none}
+ #pagina-curriculo .cv-purple-hero .cv-hero-illustration{max-height:180px;align-self:center}
+}
+@media(max-width:540px){
+ #pagina-curriculo .cv-purple-hero{grid-template-columns:1fr!important;gap:14px!important;padding:18px 16px 12px!important}
+ #pagina-curriculo .cv-purple-hero .cv-hero-illustration{display:none}
+ #pagina-curriculo .cv-purple-hero h2{font-size:25px!important}
+ #pagina-curriculo .cv-purple-hero .cv-hero-step-chips{gap:5px}
+ #pagina-curriculo .cv-purple-hero .cv-hero-step-chips span{font-size:9px;padding:4px 7px}
+ #pagina-curriculo .cv-purple-hero .cv85-score{padding:9px 10px!important;gap:5px!important}
+ #pagina-curriculo .cv-purple-hero .cv85-score .cv-rail-label{font-size:10px!important;margin-right:3px}
+ #pagina-curriculo .cv-purple-hero .cv-rail-track{margin-right:3px}
+}
+@media(prefers-reduced-motion:reduce){#pagina-curriculo .cv-purple-hero .cv-rail-track i{transition:none}}
 `;document.head.appendChild(style);
  window.addEventListener('load',function(){setTimeout(setup,1200)},{once:true});
 })();
