@@ -157,6 +157,7 @@
   page=document.getElementById('pagina-painel-candidato');if(!page)return;container=page.querySelector('.container-dashboard');if(!container)return;
   if(container.querySelector('.cp-layout')){var existingInbox=container.querySelector('.em-candidate-inbox');if(existingInbox&&existingInbox!==container.lastElementChild)container.appendChild(existingInbox);update();return}
   page.classList.add('cp-reference');
+  if(new URLSearchParams(location.search).get('pagina')==='demo-candidato')page.dataset.cpDemo='true';
   var nav=document.createElement('nav');nav.className='cp-navigation';nav.setAttribute('aria-label','Área do candidato');
   var routes=[['home','Minha área','painel-candidato'],['case','Candidaturas','candidaturas'],['search','Buscar vagas','home'],['user','Currículo','curriculo'],['chat','Mensagens','messages'],['heart','Vagas salvas','salvas'],['star','Premium','premium-candidato']];
   nav.innerHTML=routes.map(function(r,i){return '<button type="button" data-route="'+r[2]+'" '+(i===0?'aria-current="page"':'')+'>'+svg(r[0])+'<span>'+r[1]+'</span></button>'}).join('');
@@ -174,10 +175,15 @@
   new MutationObserver(function(){if(page.classList.contains('ativa'))update()}).observe(page,{attributes:true,attributeFilter:['class']});
   window.addEventListener('storage',update);document.addEventListener('empregamais:candidato-sincronizado',update);
   if(typeof window.renderizarPainelCandidato==='function'){var original=window.renderizarPainelCandidato;window.renderizarPainelCandidato=function(){var result=original.apply(this,arguments);update();return result}}
+  function placeServiceSections(){page.querySelectorAll(':scope > .emi-candidate,:scope > .em-hire-confirmations,:scope > .em-candidate-inbox').forEach(function(section){container.appendChild(section)});}
+  placeServiceSections();
+  new MutationObserver(placeServiceSections).observe(page,{childList:true});
   var inbox=container.querySelector('.em-candidate-inbox');if(inbox)container.appendChild(inbox);
   update();
  }
  var style=document.createElement('style');style.id='cp-reference-design';style.textContent=`
+#pagina-painel-candidato[data-cp-demo=true] .emi-candidate,#pagina-painel-candidato[data-cp-demo=true] .em-hire-confirmations,#pagina-painel-candidato[data-cp-demo=true] .em-candidate-inbox{display:none!important}
+#pagina-painel-candidato.cp-reference .emi-candidate,#pagina-painel-candidato.cp-reference .em-hire-confirmations{margin:22px 0!important;border:1px solid #ded8e7!important;border-radius:12px!important;padding:20px!important;box-sizing:border-box!important}
 body:has(#pagina-painel-candidato.cp-reference.ativa)>header{display:none!important}
 #pagina-painel-candidato.cp-reference{background:#f7f6f9!important;padding:0!important;color:#241b39;font-family:Inter,Arial,sans-serif}
 #pagina-painel-candidato.cp-reference>.page-header,#pagina-painel-candidato.cp-reference .painel-candidato-abas-em{display:none!important}
