@@ -51,6 +51,13 @@
   var interviewText=when?'<p><strong>Data e horário:</strong> '+safe(new Date(when).toLocaleString('pt-BR'))+'</p><p>'+safe(interview.orientacoes||interview.instructions||'Confira o convite da entrevista para confirmar sua presença e acessar o link.')+'</p>':'<p>O convite com data, horário, formato e orientações aparecerá quando a empresa disponibilizar o agendamento.</p>';
   return '<div class="cp-process-note"><strong>'+safe(label(a))+'</strong><p>'+safe(hints[stage]||'Aguarde as próximas informações da empresa.')+'</p></div><div class="cp-process-grid"><section><h4>Etapas do processo</h4>'+timeline+(stage==='reprovadas'?'<p class="cp-process-ended">Processo encerrado para esta candidatura.</p>':'')+'<small>O fluxo pode variar conforme a empresa. Apenas a etapa atual foi confirmada.</small></section><section><h4>Sobre a oportunidade</h4><dl><dt>Empresa</dt><dd>'+safe(a.empresa||job.empresa||'Não informada')+'</dd><dt>Localização</dt><dd>'+safe(a.cidade||job.cidade||'Não informada')+'</dd><dt>Modalidade</dt><dd>'+safe(a.modalidade||job.modalidade||'Não informada')+'</dd><dt>Contrato</dt><dd>'+safe(a.contrato||job.contrato||'Não informado')+'</dd><dt>Salário anunciado</dt><dd>'+safe(job.salario||a.salario||'Não informado')+'</dd></dl></section><section><h4>Entrevista</h4>'+interviewText+'</section><section><h4>Retorno da empresa</h4><p>'+safe(a.feedbackCandidato||a.retornoCandidato||'Nenhum retorno adicional disponibilizado pela empresa.')+'</p><small>Confira também a aba Mensagens do painel.</small></section></div>';
  }
+ function fullJobDetails(a){
+  var v={};try{v=typeof window.localizarVaga==='function'?window.localizarVaga(a.vagaId||a.vaga_id)||{}:{};}catch(ignore){}
+  function value(key){var x=v[key]!=null&&v[key]!==''?v[key]:a[key];return Array.isArray(x)?x.join(', '):x;}
+  var rows=[['Empresa',v.confidencial?'Empresa confidencial':value('empresa')],['Localização',[value('cidade'),value('uf')].filter(Boolean).join(' – ')],['Salário',value('salario')||'Não informado'],['Modalidade',value('modalidade')],['Contrato',value('contrato')],['Área de atuação',value('area')],['Jornada',value('jornada')],['Horário',value('horario')],['Escolaridade',value('escolaridade')],['Experiência',value('experiencia')],['Vagas disponíveis',value('quantidade')||value('numeroVagas')],['Publicação',value('dataPublicacao')?applicationDate(value('dataPublicacao')):'']];
+  function text(key){var x=value(key);return x?'<p>'+safe(Array.isArray(x)?x.join('\n'):x)+'</p>':'<p class="cp-job-empty">Não informado pela empresa.</p>';}
+  return '<div class="cp-full-job"><aside class="cp-job-facts"><h3>'+icon('briefcase')+' Informações da vaga</h3><dl>'+rows.filter(function(r){return r[1]!=null&&r[1]!=='';}).map(function(r){return '<div><dt>'+safe(r[0])+'</dt><dd>'+safe(r[1])+'</dd></div>';}).join('')+'</dl></aside><div class="cp-job-description"><section><h3>Descrição da vaga</h3>'+text('descricao')+'</section><section><h3>Requisitos</h3>'+text('requisitos')+'</section><section><h3>Benefícios</h3>'+text('beneficios')+'</section></div></div>';
+ }
  var processGeneration=0;
  function buildProcessTabs(a){
   var body=processDialog.querySelector('.cp-process-body');body.innerHTML=publicDetails(a);
@@ -62,7 +69,7 @@
   function select(i){Array.from(nav.children).forEach(function(tab,n){tab.setAttribute('aria-selected',String(n===i));tab.tabIndex=n===i?0:-1;content.children[n].hidden=n!==i;content.dataset.activeTab=String(i);});}
   var stages=content.children[0];stages.append(note,sections[0]);sections[0].querySelector('h4').textContent='Sua jornada nesta seleção';
   var support=document.createElement('div');support.className='cp-process-support';support.innerHTML='<section class="cp-interview-preview"><h4>Entrevista</h4><p role="status">Carregando agendamento…</p></section><section class="cp-message-preview"><h4>Mensagens da empresa</h4><p>Confira os contatos sobre esta candidatura na aba Mensagens.</p><button type="button">Ver mensagens '+icon('arrow')+'</button></section>';support.querySelector('button').onclick=function(){select(2);};stages.appendChild(support);var messageIcon=document.createElement('span');messageIcon.className='cp-support-icon';messageIcon.innerHTML=icon('message');support.querySelector('.cp-message-preview').prepend(messageIcon);
-  content.children[1].appendChild(sections[1]);
+  content.children[1].innerHTML=fullJobDetails(a);
   content.children[2].innerHTML='<h3>Mensagens desta candidatura</h3><p class="cp-messages-state" role="status">Carregando mensagens…</p><div class="cp-process-messages"></div>';
   body.replaceChildren(nav,content);select(0);
   var generation=++processGeneration,job=String(a.vagaId||a.vaga_id||''),demo=new URLSearchParams(location.search).get('pagina')==='demo-candidato',api=window.EMInterviews;
@@ -119,7 +126,7 @@
  function updateList(total){prepareList();enhanceList();var toolbar=document.getElementById('cpApplicationFilters');if(!toolbar)return;var key=currentStage(),totals=counts(applications());toolbar.querySelectorAll('[data-cp-filter]').forEach(function(button){button.setAttribute('aria-pressed',String(button.dataset.cpFilter===key));button.querySelector('[data-cp-filter-count]').textContent=String(totals[button.dataset.cpFilter]);button.setAttribute('aria-label',description(totals[button.dataset.cpFilter],button.dataset.cpFilter));});var result=document.getElementById('cpApplicationResult'),text=description(total,key);if(result.textContent!==text)result.textContent=text;if(window.EmpregaMaisCandidaturasCloud)window.EmpregaMaisCandidaturasCloud.atualizarIndicador();}
  function emptyMessage(){return currentStage()==='todas'?'Você ainda não enviou candidaturas.':'Você ainda não tem candidaturas nesta etapa. Clique em Todas para consultar os demais processos.';}
  function refresh(){var slot=document.querySelector('#pagina-painel-candidato .cp-metrics-slot');if(slot)renderSummary(slot);var page=document.getElementById('pagina-candidaturas');if(page&&page.classList.contains('ativa')&&typeof window.renderizarCandidaturas==='function')window.renderizarCandidaturas();}
- window.EmpregaMaisCandidaturasCandidato={avisoVisualizacao:viewNotice,detalhesPublicos:publicDetails,pertence:belongs,classificar:classify,rotulo:label,data:applicationDate,corresponde:matches,contar:counts,filtroAtual:currentStage,prepararLista:prepareList,atualizarLista:updateList,mensagemVazia:emptyMessage,atualizarResumo:renderSummary,abrir:openStage,atualizar:refresh};
+ window.EmpregaMaisCandidaturasCandidato={dadosVaga:fullJobDetails,avisoVisualizacao:viewNotice,detalhesPublicos:publicDetails,pertence:belongs,classificar:classify,rotulo:label,data:applicationDate,corresponde:matches,contar:counts,filtroAtual:currentStage,prepararLista:prepareList,atualizarLista:updateList,mensagemVazia:emptyMessage,atualizarResumo:renderSummary,abrir:openStage,atualizar:refresh};
  function start(){
   var style=document.createElement('style');style.id='cp-application-stages-style';style.textContent=`
   #pagina-painel-candidato.cp-reference .cp-profile .cp-metrics-slot>.metricas[hidden]{display:none!important}
@@ -296,6 +303,20 @@
    html body .cp-process-modal #cpProcessPane0 .cp-interview-feedback:empty{display:none!important}
    html body .cp-process-modal #cpProcessPane0 .cp-process-support small{font-size:9px!important}
   }
+
+  html body .cp-process-modal .cp-full-job{display:grid;grid-template-columns:280px minmax(0,1fr);gap:18px;align-items:start;color:#243247}
+  html body .cp-process-modal .cp-full-job h3{display:flex;align-items:center;gap:8px;margin:0 0 13px;font:700 14px/1.4 Inter,Arial,sans-serif;color:#243247}
+  html body .cp-process-modal .cp-full-job h3 svg{width:20px;height:20px;color:#0f766e}
+  html body .cp-process-modal .cp-job-facts{padding:16px;background:#e8f5f1;border:1px solid #cce7df;border-radius:10px}
+  html body .cp-process-modal .cp-job-facts dl{display:grid;grid-template-columns:1fr;gap:10px;margin:0}
+  html body .cp-process-modal .cp-job-facts dl>div{display:grid;grid-template-columns:100px 1fr;gap:9px}
+  html body .cp-process-modal .cp-job-facts dt{font-size:11px;color:#526575}
+  html body .cp-process-modal .cp-job-facts dd{font-size:11px;line-height:1.5;font-weight:600;margin:0;overflow-wrap:anywhere}
+  html body .cp-process-modal .cp-job-description{display:grid;gap:12px}
+  html body .cp-process-modal .cp-job-description>section{padding:15px 17px;border:1px solid #d8e0e5;border-radius:10px;background:#fff}
+  html body .cp-process-modal .cp-job-description p{font:400 12px/1.7 Inter,Arial,sans-serif;margin:0;white-space:pre-wrap;overflow-wrap:anywhere}
+  html body .cp-process-modal .cp-job-description .cp-job-empty{color:#64748b;font-size:11px}
+  @media(max-width:700px){html body .cp-process-modal .cp-full-job{grid-template-columns:1fr}html body .cp-process-modal .cp-job-facts dl{grid-template-columns:1fr 1fr}html body .cp-process-modal .cp-job-facts dl>div{grid-template-columns:1fr;gap:2px}}
   @media(prefers-reduced-motion:reduce){#pagina-painel-candidato .cp-profile .cp-stage-card{transition:none}}
   `;document.head.appendChild(style);
   window.addEventListener('popstate',refresh);window.addEventListener('storage',refresh);document.addEventListener('empregamais:candidato-sincronizado',refresh);document.addEventListener('empregamais:candidaturas-sincronizadas',refresh);refresh();
