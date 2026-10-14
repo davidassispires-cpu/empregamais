@@ -369,3 +369,83 @@
  }
  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',start,{once:true});else start();
 })(typeof window!=='undefined'?window:globalThis);
+
+/* Candidate profile editor. Sensitive data never enters resume/localStorage. */
+(function(){
+ 'use strict';
+ var dialog,opener,demoPrivate={},photo='',busy=false;
+ var BASE='https://mkezlcewyengejdmtppl.supabase.co',KEY='sb_publishable_8YnXpzGX8zj-tvzvcMYdyw_FVBhQutR';
+ var choices={identidade_genero:['Mulher cisgênero','Homem cisgênero','Mulher transgênero','Homem transgênero','Não binário','Outra','Prefiro não responder'],orientacao_sexual:['Assexual','Bissexual','Heterossexual','Homossexual','Pansexual','Outra','Prefiro não responder'],cor_raca:['Branca','Preta','Parda','Amarela','Indígena','Prefiro não responder']};
+ function demo(){return new URLSearchParams(location.search).get('pagina')==='demo-candidato';}
+ function owner(){return demo()?'demo-candidato':sessionStorage.getItem('candidatoUserId')||'';}
+ function esc(s){return String(s||'').replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];});}
+ function current(){return window.obterCandidatoAtual&&window.obterCandidatoAtual()||{};}
+ function read(k,f){try{return JSON.parse(localStorage.getItem(k)||'null')||f;}catch(e){return f;}}
+ async function request(path,options){
+  var token=sessionStorage.getItem('empregaMaisSupabaseAccessToken');if(!token)throw Error('Entre novamente na sua conta para salvar o perfil.');
+  options=options||{};var res=await fetch(BASE+'/rest/v1/'+path,Object.assign({},options,{headers:Object.assign({apikey:KEY,Authorization:'Bearer '+token,'Content-Type':'application/json'},options.headers||{})}));
+  if(!res.ok)throw Error('Não foi possível salvar ou carregar os dados privados. Tente novamente.');
+  var text=await res.text();return text?JSON.parse(text):null;
+ }
+ function field(name,label,type,value,extra){return '<label>'+label+'<input name="'+name+'" type="'+(type||'text')+'" value="'+esc(value)+'" '+(extra||'')+'></label>';}
+ function select(name,label){return '<label>'+label+'<select name="'+name+'"><option value="">Selecione (opcional)</option>'+choices[name].map(function(x){return '<option>'+esc(x)+'</option>';}).join('')+'</select></label>';}
+ function status(text){dialog.querySelector('[role=status]').textContent=text;}
+ function age(value){if(!value)return '';var d=new Date(value+'T12:00:00'),now=new Date();var n=now.getFullYear()-d.getFullYear();if(now.getMonth()<d.getMonth()||(now.getMonth()===d.getMonth()&&now.getDate()<d.getDate()))n--;return n>=0?n+' anos':'';}
+ function styles(){if(document.getElementById('emCandidateProfileStyle'))return;var el=document.createElement('style');el.id='emCandidateProfileStyle';el.textContent=`
+ #emCandidateProfile{width:min(720px,calc(100vw - 32px));max-height:calc(100dvh - 32px);box-sizing:border-box;padding:0;border:1px solid #ddd3f3;border-radius:18px;background:#fff;color:#1b2c51;box-shadow:0 24px 80px #14244733;overflow:auto}
+ #emCandidateProfile::backdrop{background:#14244766}
+ #emCandidateProfile *{box-sizing:border-box;font-family:Montserrat,Arial,sans-serif!important}
+ #emCandidateProfile .ep-head{display:flex;justify-content:space-between;gap:16px;padding:24px 28px;border-bottom:1px solid #eee9f8}
+ #emCandidateProfile h2{font-size:23px!important;margin:0 0 6px;font-weight:700!important}#emCandidateProfile h3{font-size:16px!important;margin:0 0 12px;font-weight:650!important}
+ #emCandidateProfile p{font-size:12px!important;line-height:1.7;color:#667594!important;margin:0 0 14px}
+ #emCandidateProfile button{cursor:pointer;border-radius:9px;border:1px solid #ddd3f3;background:#fff;color:#6946bd;padding:11px 15px;font-size:12px!important;font-weight:600!important}
+ #emCandidateProfile button:disabled{opacity:.6;cursor:wait}#emCandidateProfile .ep-primary{background:linear-gradient(135deg,#805bdd,#6946bd);color:white;border-color:transparent}
+ #emCandidateProfile section{padding:24px 28px;border-bottom:1px solid #eee9f8}#emCandidateProfile .ep-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+ #emCandidateProfile label{display:grid;gap:8px;font-size:12px!important;color:#354768!important;font-weight:500!important}
+ #emCandidateProfile input,#emCandidateProfile select{width:100%;min-height:43px;padding:10px 12px;border:1px solid #ddd3f3;border-radius:8px;background:#fff;font-size:13px!important;color:#354768!important}
+ #emCandidateProfile input:disabled{background:#f5f6fb}#emCandidateProfile .ep-consent{display:flex;align-items:flex-start;gap:10px;margin:18px 0;line-height:1.6}
+ #emCandidateProfile .ep-consent input{width:18px;min-height:18px;height:18px;flex:0 0 18px;accent-color:#7453c8}
+ #emCandidateProfile .ep-footer{padding:20px 28px;display:flex;justify-content:flex-end;gap:10px;flex-wrap:wrap}#emCandidateProfile [role=status]{padding:0 28px;font-size:12px;line-height:1.6}
+ #emCandidateProfile .ep-photo{display:flex;gap:16px;align-items:center;margin-bottom:20px}#emCandidateProfile .ep-photo img{width:64px;height:64px;border-radius:50%;object-fit:cover}#emCandidateProfile input[type=file]{border:0;padding:0;font-size:11px!important}
+ #emCandidateProfile :focus-visible{outline:3px solid #b8a4f1;outline-offset:2px}#emCandidateProfile small{font-size:11px!important}
+ @media(max-width:540px){#emCandidateProfile .ep-grid{grid-template-columns:1fr}#emCandidateProfile section,#emCandidateProfile .ep-head{padding:20px}#emCandidateProfile .ep-photo{align-items:flex-start;flex-direction:column}}
+ `;document.head.appendChild(el);}
+ function refresh(){var p=current();if(window.EmpregaMaisAtualizarPainelCloud)window.EmpregaMaisAtualizarPainelCloud();document.dispatchEvent(new Event('empregamais:candidato-sincronizado'));document.querySelectorAll('.cp-name,.cp-greeting-name').forEach(function(n){n.textContent=p.nome||'';});document.querySelectorAll('.cp-location').forEach(function(n){n.textContent=[p.cidade,p.uf].filter(Boolean).join(' – ');});document.querySelectorAll('.cp-avatar,.cp-user-avatar').forEach(function(n){if(/^data:image\/(jpeg|png|webp);base64,/.test(p.fotoPerfil||'')){n.style.setProperty('background-image','url("'+p.fotoPerfil+'")','important');n.style.backgroundSize='cover';n.style.backgroundPosition='center';n.textContent='';}else{n.style.removeProperty('background-image');n.textContent=String(p.nome||'').split(/\s+/).filter(Boolean).slice(0,2).map(function(s){return s[0];}).join('').toUpperCase();}});}
+ async function open(){
+  if(dialog&&dialog.open)return;styles();opener=document.activeElement;var p=current(),uid=owner();photo=p.fotoPerfil||'';
+  dialog=document.createElement('dialog');dialog.id='emCandidateProfile';dialog.setAttribute('aria-labelledby','epTitle');
+  var today=new Date().toLocaleDateString('en-CA');
+  dialog.innerHTML='<div class="ep-head"><div><h2 id="epTitle">Meu perfil</h2><p>Atualize seus dados pessoais e suas preferências.</p></div><button type="button" data-close aria-label="Fechar">×</button></div><form><section><h3>Dados pessoais</h3><div class="ep-photo"><img alt="Foto do perfil" hidden><label>Foto de perfil (opcional)<input type="file" name="foto" accept="image/jpeg,image/png,image/webp"></label><button type="button" data-remove-photo>Remover foto</button></div><div class="ep-grid">'+field('nome','Nome completo','text',p.nome,'required maxlength="150" autocomplete="name"')+field('nome_social','Nome social (opcional)','text','','maxlength="120"')+field('data_nascimento','Data de nascimento (opcional)','date','','min="1900-01-01" max="'+today+'"')+'<label>Idade calculada<input name="idade" disabled></label>'+field('email','E-mail da conta','email',p.email||sessionStorage.getItem('candidatoEmail'),'disabled')+field('telefone','Celular / WhatsApp','tel',p.telefone,'maxlength="30" autocomplete="tel"')+field('cep','CEP','text',p.cep,'inputmode="numeric" maxlength="9" autocomplete="postal-code"')+field('cidade','Cidade','text',p.cidade,'required maxlength="120" autocomplete="address-level2"')+field('uf','Estado (UF)','text',p.uf,'required minlength="2" maxlength="2" pattern="[A-Za-z]{2}" autocomplete="address-level1"')+'</div><p>O e-mail identifica sua conta. A data de nascimento e o nome social ficam privados nesta seção.</p></section><section><h3>Diversidade · opcional</h3><p>Você pode deixar estes campos em branco sem impedir suas candidaturas. As respostas ficam privadas e não são usadas para calcular aderência, classificar ou eliminar candidatos.</p><details><summary>Por que pedimos essas informações?</summary><p>Este espaço permite registrar voluntariamente sua autodeclaração para iniciativas de diversidade e inclusão. Atualmente, as respostas ficam acessíveis somente a você e não são compartilhadas com empresas.</p></details><div class="ep-grid">'+select('identidade_genero','Identidade de gênero')+select('orientacao_sexual','Orientação sexual')+select('cor_raca','Cor ou raça')+'</div><label class="ep-consent"><input type="checkbox" name="consentimento"><span>Autorizo o EmpregaMais a armazenar minhas respostas opcionais de diversidade no meu perfil privado. Posso retirar esta autorização e excluir as respostas a qualquer momento.</span></label><button type="button" data-clear>Excluir respostas de diversidade</button></section><div role="status" aria-live="polite"></div><div class="ep-footer"><button type="button" data-resume>Editar currículo</button><button type="button" data-close>Cancelar</button><button class="ep-primary" type="submit">Salvar alterações</button></div></form>';
+  document.body.appendChild(dialog);dialog.showModal();var form=dialog.querySelector('form'),ready=false;
+  function close(){if(busy)return;dialog.close();dialog.remove();dialog=null;if(opener&&opener.isConnected)opener.focus();}
+  dialog.addEventListener('cancel',function(e){e.preventDefault();close();});dialog.querySelectorAll('[data-close]').forEach(function(b){b.onclick=close;});
+  dialog.querySelector('[data-resume]').onclick=function(){close();if(window.irPara)window.irPara('curriculo');};
+  function preview(){var img=dialog.querySelector('.ep-photo img');img.hidden=!photo;if(photo)img.src=photo;else img.removeAttribute('src');}preview();
+  dialog.querySelector('[data-remove-photo]').onclick=function(){photo='';form.elements.foto.value='';preview();};
+  form.elements.foto.onchange=async function(){var file=this.files[0];if(!file)return;if(!['image/jpeg','image/png','image/webp'].includes(file.type)||file.size>5*1024*1024){status('Escolha uma imagem JPG, PNG ou WebP de até 5 MB.');this.value='';return;}try{var bitmap=await createImageBitmap(file),canvas=document.createElement('canvas'),scale=Math.min(1,240/Math.max(bitmap.width,bitmap.height));canvas.width=Math.round(bitmap.width*scale);canvas.height=Math.round(bitmap.height*scale);canvas.getContext('2d').drawImage(bitmap,0,0,canvas.width,canvas.height);photo=canvas.toDataURL('image/jpeg',.8);bitmap.close();preview();}catch(e){status('Não foi possível abrir essa foto. Escolha outra imagem.');}};
+  form.elements.data_nascimento.onchange=function(){form.elements.idade.value=age(this.value);};
+  form.elements.consentimento.onchange=function(){if(!this.checked)Object.keys(choices).forEach(function(k){form.elements[k].value='';});};
+  form.elements.cep.onchange=async function(){var cep=this.value.replace(/\D/g,'');if(cep.length!==8)return;var original=this.value;try{var res=await fetch('https://viacep.com.br/ws/'+cep+'/json/'),data=await res.json();if(dialog&&form.elements.cep.value===original&&!data.erro){form.elements.cidade.value=data.localidade;form.elements.uf.value=data.uf;}}catch(e){if(dialog)status('Preencha cidade e estado manualmente.');}};
+  dialog.querySelector('[data-clear]').onclick=async function(){if(!ready||busy)return;Object.keys(choices).forEach(function(k){form.elements[k].value='';});form.elements.consentimento.checked=false;busy=true;try{if(demo())demoPrivate=Object.assign({},demoPrivate,{identidade_genero:'',orientacao_sexual:'',cor_raca:'',consentimento_em:null,consentimento_versao:null});else await request('candidato_dados_privados?user_id=eq.'+encodeURIComponent(uid),{method:'PATCH',body:JSON.stringify({identidade_genero:'',orientacao_sexual:'',cor_raca:'',consentimento_em:null,consentimento_versao:null,atualizado_em:new Date().toISOString()})});status('Respostas de diversidade excluídas.');}catch(e){status(e.message);}finally{busy=false;}};
+  form.onsubmit=async function(e){
+   e.preventDefault();if(!ready||busy)return;if(uid!==owner()){status('Sua conta mudou. Feche e abra novamente o perfil.');return;}
+   var f=form.elements,hasDiversity=Object.keys(choices).some(function(k){return !!f[k].value;});if(hasDiversity&&!f.consentimento.checked){status('Autorize o armazenamento das respostas de diversidade ou deixe os campos em branco.');f.consentimento.focus();return;}
+   var privateData={user_id:uid,nome_social:f.nome_social.value.trim(),data_nascimento:f.data_nascimento.value||null,consentimento_em:hasDiversity?new Date().toISOString():null,consentimento_versao:hasDiversity?'perfil-diversidade-v1':null,atualizado_em:new Date().toISOString()};Object.keys(choices).forEach(function(k){privateData[k]=f[k].value;});
+   busy=true;form.querySelector('[type=submit]').disabled=true;status('Salvando seu perfil…');
+   try{
+    if(demo())demoPrivate=privateData;else{var rows=await request('candidato_dados_privados?on_conflict=user_id',{method:'POST',headers:{Prefer:'resolution=merge-duplicates,return=representation'},body:JSON.stringify(privateData)});if(!rows||rows.length!==1)throw Error('Os dados privados não foram salvos.');}
+    if(uid!==owner())throw Error('Sua conta mudou durante o salvamento. Abra novamente o perfil.');
+    var email=sessionStorage.getItem('candidatoEmail'),list=read('candidatosEmpregaMais',[]),index=list.findIndex(function(c){return c.email===email;}),next=Object.assign({},current(),{nome:f.nome.value.trim(),telefone:f.telefone.value.trim(),cep:f.cep.value.replace(/\D/g,''),cidade:f.cidade.value.trim(),uf:f.uf.value.toUpperCase(),fotoPerfil:photo});
+    if(index<0)list.push(next);else list[index]=next;localStorage.setItem('candidatosEmpregaMais',JSON.stringify(list));sessionStorage.setItem('candidatoNome',next.nome);sessionStorage.setItem('candidatoTelefone',next.telefone);sessionStorage.setItem('candidatoCep',next.cep);
+    var cv=read('empregaMaisDadosCurriculoV87:'+email,{});Object.assign(cv,{cvNomeV87:next.nome,cvTelefoneV87:next.telefone,cvEmailV87:email,cvCidadePessoalV87:next.cidade});localStorage.setItem('empregaMaisDadosCurriculoV87:'+email,JSON.stringify(cv));
+    if(!demo()){if(!window.EmpregaMaisPerfilCloud)throw Error('Dados privados salvos; os dados pessoais aguardam sincronização.');await window.EmpregaMaisPerfilCloud.flush();}
+    refresh();status(demo()?'Perfil atualizado nesta demonstração. Diversidade permanece somente nesta sessão.':'Perfil e dados privados salvos na sua conta.');
+   }catch(error){status(error.message);}finally{busy=false;form.querySelector('[type=submit]').disabled=false;}
+  };
+  form.querySelector('[type=submit]').disabled=true;status('Carregando seus dados privados…');
+  try{if(!uid)throw Error('Entre na sua conta para editar o perfil.');var rows=demo()?[demoPrivate]:await request('candidato_dados_privados?select=*&user_id=eq.'+encodeURIComponent(uid)+'&limit=1');if(!dialog||uid!==owner())return;var data=rows&&rows[0]||{};['nome_social','data_nascimento'].concat(Object.keys(choices)).forEach(function(k){form.elements[k].value=data[k]||'';});form.elements.idade.value=age(data.data_nascimento);form.elements.consentimento.checked=!!data.consentimento_em;ready=true;form.querySelector('[type=submit]').disabled=false;status('');}catch(e){if(dialog)status(e.message);}
+ }
+ document.addEventListener('click',function(e){var b=e.target.closest&&e.target.closest('button,a');if(!b||b.closest('#emCandidateProfile'))return;var action=b.getAttribute('data-cp-action'),route=b.getAttribute('data-route'),inline=b.getAttribute('onclick')||'';if(action==='profile'||route==='perfil'||(/irPara\(['"]perfil['"]\)/.test(inline)&&b.closest('#pagina-painel-candidato'))){e.preventDefault();e.stopImmediatePropagation();open();}},true);
+ window.EmpregaMaisEditarPerfilCandidato=open;
+ document.addEventListener('empregamais:candidato-sincronizado',function(){var p=current();document.querySelectorAll('.cp-avatar,.cp-user-avatar').forEach(function(n){if(/^data:image\/(jpeg|png|webp);base64,/.test(p.fotoPerfil||'')){n.style.setProperty('background-image','url("'+p.fotoPerfil+'")','important');n.style.backgroundSize='cover';n.style.backgroundPosition='center';n.textContent='';}});});
+})();
