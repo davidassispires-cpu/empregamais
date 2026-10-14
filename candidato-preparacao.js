@@ -171,17 +171,21 @@
  function renderAlertCard(){
   var host=container.querySelector('.cp-alert-card'),items=alerts(),available=jobs(),newIds=new Set();
   items.forEach(function(a){var seen=new Set((a.vistas||[]).map(String));available.filter(function(j){return matchesAlert(j,a)&&!seen.has(String(j.id));}).forEach(function(j){newIds.add(String(j.id));});});
-  stableHTML(host,'<span class="cp-feature-icon">'+icon('bell')+'</span><h2>Vagas do seu interesse</h2><p>'+(items.length?'Você tem '+items.length+' alerta'+(items.length===1?'':'s')+' ativo'+(items.length===1?'':'s')+'.':'Escolha cargos, cidades e modalidades para acompanhar oportunidades.')+'</p>'+(newIds.size?'<strong class="cp-alert-new">'+newIds.size+' oportunidade'+(newIds.size===1?'':'s')+' para conferir</strong>':'')+'<button type="button" data-cp-action="alerts" class="cp-secondary">'+(items.length?'Gerenciar alertas':'Criar meu alerta')+' '+icon('arrow')+'</button><small>Atualizações aqui no painel.</small>');
+  var current=items[0]||{},p=profile(),modalities=current.modalidades||p.modalidadePreferida||[],interests=[current.cargo||p.cargoDesejado||p.areaProfissional,current.cidade||p.cidadeProfissional||p.cidade,Array.isArray(modalities)?modalities.join(' / '):modalities].filter(Boolean);
+  var chips=interests.length?'<div class="cp-alert-interests" aria-label="Preferências de oportunidades">'+interests.map(function(value){return '<span>'+escape(value)+'</span>';}).join('')+'</div>':'';
+  stableHTML(host,'<span class="cp-feature-icon">'+icon('bell')+'</span><h2>Vagas do seu interesse</h2><p>'+(items.length?'Você tem '+items.length+' alerta'+(items.length===1?'':'s')+' ativo'+(items.length===1?'':'s')+'.':'Receba oportunidades de acordo com seu perfil.')+'</p>'+chips+(newIds.size?'<strong class="cp-alert-new">'+newIds.size+' oportunidade'+(newIds.size===1?'':'s')+' para conferir</strong>':'')+'<button type="button" data-cp-action="alerts" class="cp-primary">'+(items.length?'Gerenciar alertas':'Configurar alertas')+'</button><small>Atualizações aqui no painel.</small>');
  }
  function renderPracticeCard(){
   var history=practice&&practice.history||[],last=history[0],info=extra.querySelector('.cp-practice-history');
-  var text=last?'Último treino: '+last.title+' · '+formatDate(last.at):'Perguntas por cargo e exercícios com explicações.';
+  var text=last?'Último treino: '+last.title+' · '+formatDate(last.at):'';info.hidden=!last;
   if(info.textContent!==text)info.textContent=text;
  }
  function enhanceMetrics(){
   var summary=container.querySelector('.cp-home-summary');if(!summary)return;
   var names=['Candidaturas','Entrevistas','Vagas salvas','Mensagens'],icons=['document','calendar','bookmark','message'],actions=['applications','interviews','saved','messages'];
   Array.from(summary.children).forEach(function(el,i){if(i>3||el.tagName==='BUTTON')return;var old=el.querySelector('strong'),number=old?old.textContent:'0',button=document.createElement('button');button.type='button';button.dataset.cpAction=actions[i];button.className='cp-overview-card';button.innerHTML='<span class="cp-overview-icon">'+icon(icons[i])+'</span><div><strong'+(i===3?' data-home-message-count':'')+'>'+escape(number)+'</strong><span>'+names[i]+'</span></div><span class="cp-overview-arrow">'+icon('arrow')+'</span>';el.replaceWith(button);});
+  var counter=summary.querySelector('[data-home-message-count]'),unread=Number(counter&&counter.textContent)||0,bell=document.querySelector('#cpCandidateHeader .cp-notifications');
+  if(bell){bell.querySelector('.cp-notification-dot').hidden=unread<1;bell.setAttribute('aria-label',unread>0?'Abrir mensagens: '+unread+' não lida'+(unread===1?'':'s'):'Abrir mensagens');}
  }
  function enhanceRecommendations(){
   var c=profile();container.querySelectorAll('.em-personal-grid [data-cp-job-id]').forEach(function(card){
@@ -200,7 +204,7 @@
  }
  function closeWorkspace(focus){
   if(!workspace)return;clearTimeout(draftTimer);saveCurrentAnswer();workspace.hidden=true;page.classList.remove('cp-tool-active');
-  if(focus!==false){var button=container.querySelector('.cp-preparation [data-cp-action]');if(button)button.focus();}
+  if(focus!==false){var button=container.querySelector('.cp-preparation [data-cp-action="interview"]');if(button)button.focus();}
  }
  function openWorkspace(title,body){
   if(global.irPara&&!page.classList.contains('ativa'))global.irPara('painel-candidato');
@@ -319,7 +323,7 @@
   else if(action==='interview-guide')showInterviewGuide();
   else if(action==='join'){var host=container.querySelector('.cp-next-interview'),next=host&&host.emInterview;if(canJoin(next)&&global.EMInterviews)global.EMInterviews.openRoom(next);else toolStatus('Confira a confirmação e o horário no agendamento.');}
   else if(action==='messages'){closeWorkspace(false);var button=document.querySelector('.cp-header [data-route="messages"]');if(button)button.click();}
-  else {closeWorkspace(false);if(action==='applications'||action==='interviews'){if(global.EmpregaMaisCandidaturasCandidato)global.EmpregaMaisCandidaturasCandidato.abrir(action==='interviews'?'entrevista':'todas');}else if(global.irPara)global.irPara({saved:'salvas',search:'home',profile:'perfil'}[action]||'painel-candidato');}
+  else {closeWorkspace(false);if(action==='applications'||action==='interviews'){if(global.EmpregaMaisCandidaturasCandidato)global.EmpregaMaisCandidaturasCandidato.abrir(action==='interviews'?'entrevista':'todas');}else if(global.irPara)global.irPara({saved:'salvas',search:'home',profile:'perfil',resume:'curriculo'}[action]||'painel-candidato');}
  }
  function mount(){
   page=document.getElementById('pagina-painel-candidato');container=page&&page.querySelector('.container-dashboard');
@@ -327,12 +331,9 @@
   if(!identity()){if(extra)extra.hidden=true;return;}
   if(owner!==identity()){if(workspace)closeWorkspace(false);owner=identity();loadPractice();}
   if(!page.classList.contains('cp-enhanced'))page.classList.add('cp-enhanced');
-  if(!document.getElementById('cpOpenSansFont')){
-   var font=document.createElement('link');font.id='cpOpenSansFont';font.rel='stylesheet';font.href='https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&display=swap';document.head.appendChild(font);
-  }
   if(!extra){
-   extra=document.createElement('div');extra.className='cp-value-sections';extra.innerHTML='<div class="cp-follow-grid"><section class="cp-latest cp-panel" aria-label="Últimas candidaturas"></section><section class="cp-alert-card cp-panel" aria-label="Alertas de vagas"></section></div><section class="cp-preparation cp-panel"><span class="cp-feature-icon">'+icon('briefcase')+'</span><div><span class="cp-kicker">SEU PRÓXIMO PASSO</span><h2>Prepare-se para a vaga</h2><p>Pratique suas respostas e fortaleça seus conhecimentos.</p><small class="cp-practice-history"></small></div><div class="cp-preparation-actions"><button type="button" class="cp-primary" data-cp-action="interview">'+icon('message')+' Simular entrevista</button><button type="button" class="cp-secondary" data-cp-action="tests">'+icon('book')+' Praticar testes</button></div></section>';
-   container.querySelector('.cp-layout').after(extra);
+   extra=document.createElement('div');extra.className='cp-value-sections';extra.innerHTML='<div class="cp-follow-grid"><section class="cp-latest cp-panel" aria-label="Últimas candidaturas"></section><section class="cp-alert-card cp-panel" aria-label="Alertas de vagas"></section></div><section class="cp-preparation" aria-labelledby="cpPreparationTitle"><h2 id="cpPreparationTitle">Prepare-se para sua próxima oportunidade</h2><div class="cp-preparation-grid"><article class="cp-preparation-card cp-panel"><span class="cp-feature-icon">'+icon('video')+'</span><div class="cp-preparation-copy"><h3>Simulador de entrevista</h3><p>Pratique suas respostas e ganhe confiança.</p><small class="cp-practice-history" hidden></small><button type="button" class="cp-text-button cp-practice-tests" data-cp-action="tests">Praticar testes →</button></div><button type="button" class="cp-text-button" data-cp-action="interview">Começar treino →</button></article><article class="cp-preparation-card cp-resume-card cp-panel"><span class="cp-feature-icon">'+icon('document')+'</span><div class="cp-preparation-copy"><h3>Meu currículo</h3><p>Mantenha suas experiências atualizadas.</p></div><button type="button" class="cp-text-button" data-cp-action="resume">Atualizar currículo →</button></article></div></section>';
+   var layout=container.querySelector('.cp-layout'),opportunities=layout.querySelector('.cp-opportunities');if(opportunities)opportunities.before(extra);else layout.appendChild(extra);
    var follow=extra.querySelector('.cp-follow-grid'),summary=container.querySelector('.cp-home-summary');
    if(summary)summary.after(follow);
    workspace=document.createElement('section');workspace.id='cpPreparationWorkspace';workspace.className='cp-workspace cp-panel';workspace.hidden=true;container.appendChild(workspace);
@@ -351,7 +352,7 @@
  function applyWorkspaceFont(scope){
   if(!scope)return;
   scope.querySelectorAll('h1,h2,h3,h4,p,span,small,strong,button,a,label,legend,input,textarea,dt,dd,li,summary').forEach(function(el){
-   if(el.style.getPropertyValue('font-family').indexOf('Open Sans')<0)el.style.setProperty('font-family','"Open Sans", Arial, sans-serif','important');
+   if(el.style.getPropertyValue('font-family').indexOf('Montserrat')<0)el.style.setProperty('font-family','Montserrat, Arial, sans-serif','important');
   });
  }
  function start(){

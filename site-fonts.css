@@ -1,0 +1,19 @@
+/* Montserrat is shared by every portal page and served from the project. */
+@font-face {
+  font-family: Montserrat;
+  src: url('assets/fonts/cf-montserrat.woff') format('woff');
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+}
+
+/* The first important layer wins over legacy rules, including injected CSS. */
+@layer site-typography {
+  html,
+  body,
+  body *:not(:is(.fa, .fas, .far, .fal, .fab, .material-icons, .material-symbols-outlined, .bi)),
+  input::placeholder,
+  textarea::placeholder {
+    font-family: Montserrat, Arial, sans-serif !important;
+  }
+}
