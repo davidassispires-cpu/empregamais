@@ -107,7 +107,20 @@
  if(typeof module!=='undefined'&&module.exports)module.exports=core;
  if(!global.document)return;
 
- var page,container,workspace,extra,practiceOwner='',practice=null,scheduled=false,owner='',draftTimer=null;
+ var page,container,workspace,extra,practiceOwner='',practice=null,scheduled=false,owner='',draftTimer=null,formHandlers={};
+ // Local wizard steps must not trigger the portal's legacy global submit loader.
+ // Delegation also preserves the controls when legacy formatting replaces a node.
+ function bindToolForm(form){
+  formHandlers[form.id]=form.onsubmit;
+  form.onsubmit=function(event){event.preventDefault();};
+  var button=form.querySelector('button[type="submit"]');
+  if(button){button.type='button';button.dataset.cpLocalSubmit=form.id;}
+ }
+ function submitToolForm(form){
+  if(!form||!formHandlers[form.id])return;
+  if(typeof form.checkValidity==='function'&&!form.checkValidity()){if(form.reportValidity)form.reportValidity();return;}
+  formHandlers[form.id].call(form,{currentTarget:form,preventDefault:function(){}});
+ }
  function identity(){return norm(sessionStorage.getItem('candidatoUserId')||sessionStorage.getItem('candidatoEmail'));}
  function demo(){return new URLSearchParams(location.search).get('pagina')==='demo-candidato';}
  function profile(){try{return global.obterCandidatoAtual?global.obterCandidatoAtual()||{}:{};}catch(ignore){return {};}}
@@ -206,7 +219,7 @@
   var value=existing||{cargo:job.cargo||c.cargoDesejado||'',cidade:job.cidade||c.cidadeProfissional||c.cidade||'',modalidades:job.modalidade?[job.modalidade]:Array.isArray(c.modalidadePreferida)?c.modalidadePreferida:[c.modalidadePreferida].filter(Boolean)};
   openWorkspace('Meus alertas de vagas','<p>Escolha as oportunidades que deseja acompanhar. Os alertas são atualizados quando você abre o painel e novas vagas são carregadas.</p><form id="cpAlertForm" class="cp-tool-form" data-edit-id="'+escape(editId||'')+'"><label>Cargo de interesse<input name="cargo" maxlength="100" value="'+escape(value.cargo)+'" placeholder="Ex.: Assistente Administrativo"></label><label>Cidades de interesse<input name="cidade" maxlength="160" value="'+escape(value.cidade)+'" placeholder="Ex.: Belo Horizonte, Contagem"></label><fieldset><legend>Modalidades — pode escolher mais de uma</legend><div class="cp-checkboxes">'+['Presencial','Híbrido','Remoto'].map(function(m){return '<label><input type="checkbox" name="modalidade" value="'+m+'" '+(list(value.modalidades).indexOf(norm(m))>=0?'checked':'')+'>'+m+'</label>';}).join('')+'</div></fieldset><button type="submit" class="cp-primary">'+(existing?'Salvar alterações':'Criar alerta')+'</button></form><h2>Alertas ativos</h2><div class="cp-alert-list">'+(items.length?items.map(function(a){var count=jobs().filter(function(j){return matchesAlert(j,a);}).length;return '<article><div><h3>'+escape(a.cargo||'Todos os cargos')+'</h3><p>'+escape(a.cidade||'Todas as cidades')+' · '+escape((a.modalidades||[]).join(', ')||'Todas as modalidades')+'</p><small>'+count+' vaga'+(count===1?'':'s')+' disponível'+(count===1?'':'s')+'</small></div><div class="cp-tool-actions"><button type="button" data-cp-alert-view="'+escape(a.id)+'">Ver vagas</button><button type="button" data-cp-alert-edit="'+escape(a.id)+'">Editar</button><button type="button" data-cp-alert-delete="'+escape(a.id)+'" class="cp-text-button">Excluir</button></div></article>';}).join(''):'<p class="cp-muted">Você ainda não criou alertas.</p>')+'</div>');
   workspace.querySelector('form').onsubmit=async function(event){
-   event.preventDefault();var form=event.currentTarget,button=form.querySelector('[type=submit]');if(button.disabled)return;
+   event.preventDefault();var form=event.currentTarget,button=form.querySelector('[data-cp-local-submit]');if(button.disabled)return;
    try{
     var value=validateAlert({cargo:form.elements.cargo.value,cidade:form.elements.cidade.value,modalidades:Array.from(form.querySelectorAll('[name=modalidade]:checked')).map(function(el){return el.value;})}),rows=alerts(),old=rows.find(function(a){return a.id===form.dataset.editId;});
     if(!old&&rows.length>=20)throw Error('Você pode manter até 20 alertas. Edite ou exclua um deles para criar outro.');
@@ -215,6 +228,7 @@
     button.disabled=true;toolStatus('Salvando seu alerta…');var notice=await saveAlerts(rows);if(identity()!==owner)return;openAlerts();toolStatus(notice);schedule();
    }catch(error){toolStatus(error.message+' Suas preferências locais foram preservadas.');}finally{button.disabled=false;}
   };
+  bindToolForm(workspace.querySelector('form'));
  }
  async function showAlertJobs(id){
   var item=alerts().find(function(a){return a.id===id;});if(!item)return;
@@ -236,6 +250,7 @@
   var draft=practice.interview,resumable=draft&&!draft.finishedAt,role=profile().cargoDesejado||'';
   openWorkspace('Simular entrevista','<div class="cp-tool-intro"><span class="cp-feature-icon">'+icon('message')+'</span><div><h2>Treine suas respostas com calma</h2><p>Seis perguntas por cargo, uma de cada vez.</p></div></div><p>Ao concluir, você recebe orientações automáticas de clareza e estrutura. Use experiências reais de trabalho, estudo ou projetos.</p><form id="cpInterviewSetup" class="cp-tool-form"><label>Cargo para o qual deseja se preparar<input name="cargo" required maxlength="100" value="'+escape(role)+'" placeholder="Ex.: Assistente Administrativo"></label><button type="submit" class="cp-primary">Começar simulação</button></form>'+(resumable?'<div class="cp-resume"><p>Você tem um treino em andamento para <strong>'+escape(draft.role)+'</strong>.</p><button type="button" data-cp-action="resume-interview">Retomar treino</button></div>':'')+'<p class="cp-muted">Suas respostas ficam neste navegador, vinculadas à sua conta. Você pode baixar um resumo ao terminar.</p>'+historyMarkup());
   workspace.querySelector('form').onsubmit=function(event){event.preventDefault();var role=event.currentTarget.elements.cargo.value.trim();if(!role){toolStatus('Informe o cargo que deseja praticar.');return;}practice.interview={role:role.slice(0,100),index:0,answers:[],startedAt:new Date().toISOString()};persistPractice();renderInterview();};
+  bindToolForm(workspace.querySelector('form'));
  }
  function historyMarkup(){return practice.history.length?'<section class="cp-practice-records"><h2>Meus últimos treinos</h2>'+practice.history.slice(0,5).map(function(h){return '<p><strong>'+escape(h.title)+'</strong> · '+formatDate(h.at)+(h.percent!=null?' · '+Number(h.percent)+'% de acertos':'')+'</p>';}).join('')+'</section>':'';}
  function feedbackMarkup(answer){var f=responseFeedback(answer);return '<div class="cp-response-feedback">'+(f.strengths.length?'<h4>Pontos observados</h4><ul>'+f.strengths.map(function(t){return '<li>'+escape(t)+'</li>';}).join('')+'</ul>':'')+'<h4>Para aprimorar</h4><ul>'+f.suggestions.map(function(t){return '<li>'+escape(t)+'</li>';}).join('')+'</ul></div>';}
@@ -248,6 +263,7 @@
    event.preventDefault();saveCurrentAnswer();if((draft.answers[draft.index]||'').trim().length<20){toolStatus('Desenvolva um pouco mais sua resposta antes de continuar.');return;}
    if(draft.index<questions.length-1){draft.index++;persistPractice();renderInterview();}else{draft.finishedAt=new Date().toISOString();practice.history.unshift({title:'Entrevista · '+draft.role,at:draft.finishedAt});practice.history=practice.history.slice(0,10);persistPractice();interviewSummary();schedule();}
   };
+  bindToolForm(workspace.querySelector('form'));
  }
  function interviewSummary(){
   var draft=practice.interview;if(!draft)return interviewSetup();var qs=interviewQuestions(draft.role);
@@ -268,6 +284,7 @@
   var q=exam.questions[draft.index],choice=draft.answers[draft.index],answered=Number.isInteger(choice);
   openWorkspace(exam.title,'<div class="cp-training-progress"><span>Praticar testes</span><strong>Questão '+(draft.index+1)+' de '+exam.questions.length+'</strong><progress max="'+exam.questions.length+'" value="'+(draft.index+1)+'" aria-label="Progresso do teste"></progress></div><form id="cpTestForm" class="cp-tool-form"><fieldset><legend class="cp-question-title">'+escape(q[0])+'</legend><div class="cp-test-options">'+q[1].map(function(option,i){return '<label class="'+(answered&&i===q[2]?'cp-correct-option':'')+'"><input type="radio" name="resposta" value="'+i+'" '+(choice===i?'checked':'')+' '+(answered?'disabled':'')+' required><span>'+escape(option)+'</span></label>';}).join('')+'</div></fieldset>'+(answered?'<div class="cp-test-explanation" role="status"><strong>'+(choice===q[2]?'Resposta correta!':'Confira a resposta correta')+'</strong><p>'+escape(q[3])+'</p></div><button type="button" class="cp-primary" data-cp-action="next-test">'+(draft.index===exam.questions.length-1?'Ver meu resultado':'Próxima questão')+' '+icon('arrow')+'</button>':'<button type="submit" class="cp-primary">Conferir resposta</button>')+'</form>');
   workspace.querySelector('form').onsubmit=function(event){event.preventDefault();var selected=event.currentTarget.querySelector('[name=resposta]:checked');if(!selected){toolStatus('Escolha uma resposta antes de conferir.');return;}draft.answers[draft.index]=Number(selected.value);persistPractice();renderTest();};
+  bindToolForm(workspace.querySelector('form'));
  }
  function nextTest(){
   var draft=practice.test,exam=draft&&tests[draft.topic];if(!exam||!Number.isInteger(draft.answers[draft.index]))return;
@@ -280,6 +297,7 @@
  }
  function click(event){
   var target=event.target.closest('button');if(!target||!page.contains(target))return;
+  if(target.dataset.cpLocalSubmit){event.preventDefault();event.stopPropagation();submitToolForm(target.closest('form'));return;}
   if(target.dataset.cpFit!=null){openCompatibility(target.dataset.cpFit);return;}
   if(target.dataset.cpAlertJob!=null){openAlerts(target.dataset.cpAlertJob);return;}
   if(target.dataset.cpAlertView){showAlertJobs(target.dataset.cpAlertView);return;}
@@ -319,6 +337,10 @@
    if(summary)summary.after(follow);
    workspace=document.createElement('section');workspace.id='cpPreparationWorkspace';workspace.className='cp-workspace cp-panel';workspace.hidden=true;container.appendChild(workspace);
    page.addEventListener('click',click);
+   page.addEventListener('keydown',function(event){
+    if(event.key!=='Enter'||!workspace.contains(event.target)||event.target.tagName==='TEXTAREA'||event.target.tagName==='BUTTON')return;
+    var form=event.target.closest('form');if(form&&formHandlers[form.id]){event.preventDefault();submitToolForm(form);}
+   });
    var header=document.querySelector('.cp-header');if(header)header.addEventListener('click',function(e){if(e.target.closest('[data-route]'))closeWorkspace(false);},true);
   }
   extra.hidden=false;
