@@ -33,3 +33,16 @@
       .cp-role,.cp-location,.cp-completion,.cp-overview-card div>span,
       .cp-avatar-box>small):not(:is(header *,nav *,footer *,aside *,button *,a *,[role="button"] *,[class*="badge"],[class*="status"],[class*="error"],[class*="success"])) {color:#667594!important}
 }
+
+/* Compact public footer only while a recruiter workspace is active. */
+@media(max-width:760px){
+ body:has(:is(#pagina-painel-empresa,#pagina-demo-recrutador).ativa)>footer.rodape{padding:18px 16px!important;margin-top:0!important}
+ body:has(:is(#pagina-painel-empresa,#pagina-demo-recrutador).ativa)>footer.rodape .rodape-grid{display:flex!important;justify-content:space-between!important;gap:12px!important;align-items:center!important}
+ body:has(:is(#pagina-painel-empresa,#pagina-demo-recrutador).ativa)>footer.rodape .rodape-grid>div:not(:first-child):not(:last-child),
+ body:has(:is(#pagina-painel-empresa,#pagina-demo-recrutador).ativa)>footer.rodape .rodape-grid p,
+ body:has(:is(#pagina-painel-empresa,#pagina-demo-recrutador).ativa)>footer.rodape .rodape-grid h3,
+ body:has(:is(#pagina-painel-empresa,#pagina-demo-recrutador).ativa)>footer.rodape .rodape-admin>button{display:none!important}
+ body:has(:is(#pagina-painel-empresa,#pagina-demo-recrutador).ativa)>footer.rodape .rodape-grid>div:last-child{display:flex!important;gap:12px!important}
+ body:has(:is(#pagina-painel-empresa,#pagina-demo-recrutador).ativa)>footer.rodape button{min-height:44px!important;margin:0!important}
+ body:has(:is(#pagina-painel-empresa,#pagina-demo-recrutador).ativa)>footer.rodape .rodape-admin{margin-top:10px!important;padding-top:10px!important}
+}
