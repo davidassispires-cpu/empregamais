@@ -641,7 +641,8 @@ SOFTWARE.
  }
 }row.querySelectorAll('.e3,.e4,.f5').forEach(function(input){var holder=document.createElement('span');holder.className='cv-date-control';input.parentNode.insertBefore(holder,input);holder.appendChild(input);var icon=document.createElementNS('http://www.w3.org/2000/svg','svg');icon.setAttribute('viewBox','0 0 24 24');icon.setAttribute('aria-hidden','true');icon.innerHTML='<rect x="3" y="5" width="18" height="16" rx="2"/><path d="M7 3v4M17 3v4M3 10h18M7 14h2M12 14h2M7 17h2"/>';holder.appendChild(icon)})})}
   polishRows();applyProfessionalFields();['cvExperienciasV84','cvFormacoesV84'].forEach(function(id){var box=el(id);if(box)new MutationObserver(function(records){if(records.some(function(record){return Array.from(record.addedNodes).some(function(node){return node.nodeType===1&&node.matches('.experiencia-v84,.formacao-v84')})})){polishRows();applyProfessionalFields()}}).observe(box,{childList:true})});
-  function placeHelper(field){
+  function placeHelper(field){helper.hidden=true;return;
+
    cv.querySelectorAll('.cv-needs-help').forEach(function(node){if(node!==field)node.classList.remove('cv-needs-help')});helper.classList.remove('cv-always-helper');helper.classList.add('cv-field-helper');if(field){activeField=field;field.classList.add('cv-needs-help');var label=field.closest('label');if(label&&label.nextElementSibling!==helper)label.after(helper)}else if(helper.parentNode!==cv)cv.appendChild(helper);
   }
   function updateHelper(){
@@ -856,6 +857,9 @@ SOFTWARE.
 #pagina-curriculo #cvResumeWizard .cv-helper-copy{font-size:11px!important;line-height:1.6!important;margin:5px 0 9px!important}
 #pagina-curriculo #cvResumeWizard .cv-helper-buttons button{font-size:10px!important;min-height:29px!important;padding:5px 9px!important;border-radius:5px!important}
 #pagina-curriculo #cvResumeWizard .cv-helper-card footer{display:none!important}#pagina-curriculo #cvResumeWizard .cv-helper-close{font-size:18px!important}
+
+#pagina-curriculo #cvResumeWizard .cv-professional-assistant{display:none!important}
+#pagina-curriculo #cvResumeWizard .cv-needs-help{box-shadow:none!important;border-color:#ded5e9!important}
 `;document.head.appendChild(style);
  window.addEventListener('load',function(){setTimeout(setup,1200)},{once:true});
 })();
