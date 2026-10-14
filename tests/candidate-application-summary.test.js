@@ -86,3 +86,14 @@ test('rejected applications show an explicit ending without marking future stage
  assert.match(html,/15\/10\/2026/);
  assert.doesNotMatch(html,/class="is-current"/);
 });
+
+test('view receipt is shown only for actual recorded views and keeps the timestamp',()=>{
+ const api=controller();
+ assert.equal(api.avisoVisualizacao({status:'Em avaliação'}),'');
+ assert.equal(api.avisoVisualizacao({visualizada:false}),'');
+ const html=api.avisoVisualizacao({visualizadoEm:'2026-10-14T11:15:00Z'});
+ assert.match(html,/Candidatura visualizada/);
+ assert.match(html,/14\/10\/2026/);
+ assert.match(api.avisoVisualizacao({visualizada:true}),/Vista pela empresa/);
+ assert.doesNotMatch(api.avisoVisualizacao({visualizada:true}),/Invalid Date/);
+});

@@ -2,7 +2,7 @@
  'use strict';
  var base='https://mkezlcewyengejdmtppl.supabase.co/rest/v1/';
  var key='sb_publishable_8YnXpzGX8zj-tvzvcMYdyw_FVBhQutR';
- var fields=['status','favoritoRecrutador','observacaoRecrutador','statusAtualizadoEm','contratadoEm'];
+ var fields=['visualizada','status','favoritoRecrutador','observacaoRecrutador','statusAtualizadoEm','contratadoEm'];
  var remote={},owner='',pending={},busy=false,ready=false,timer,lastPull=0,lastAttempt=0,failures=0;
  var feedback='';
  function token(){return sessionStorage.getItem('empregaMaisSupabaseAccessToken')||'';}
@@ -74,6 +74,14 @@
    });
    var result=originalSave.apply(this,arguments);if(owner&&Object.keys(pending).length){remember();show('Salvo neste navegador. Sincronizando…');clearTimeout(timer);timer=setTimeout(function(){sync(true);},300);}return result;
   };
+  function recordOpenedApplication(){
+   var modal=document.getElementById('emCandidateDetails');if(!modal||!modal.open||!cnpj()||!token()||new URLSearchParams(location.search).get('pagina')==='demo-recrutador')return;
+   var stage=modal.querySelector('[data-gc27-stage]');if(!stage)return;
+   var all=window.carregarCandidaturas(),id=String(stage.dataset.gc27Stage),c=all.find(function(x){return String(x.id)===id;});
+   if(!c||c.visualizada===true||!ownedJobs().has(job(c)))return;
+   c.visualizada=true;window.salvarCandidaturas(all);
+  }
+  if(window.MutationObserver)new MutationObserver(recordOpenedApplication).observe(document.body,{childList:true,subtree:true,attributes:true,attributeFilter:['open']});
   window.sincronizarEstadoCandidaturasEM=sync;
   setInterval(function(){var page=document.getElementById('pagina-candidatos-empresa');if(page&&page.classList.contains('ativa')&&!document.hidden)sync(false);},30000);
   window.addEventListener('online',function(){sync(true);});window.addEventListener('focus',function(){sync(false);});

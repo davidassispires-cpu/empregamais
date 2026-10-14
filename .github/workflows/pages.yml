@@ -27,7 +27,7 @@ jobs:
           import os, pathlib, re
           page = pathlib.Path('index.html')
           html = page.read_text()
-          for asset in ('candidato-demo.js', 'vagas-recomendadas.js', 'candidato-candidaturas.js'):
+          for asset in ('candidato-demo.js', 'vagas-recomendadas.js', 'candidato-candidaturas.js', 'candidato-candidaturas-sync.js', 'recruiter-sync-and-reports.js'):
               html = re.sub(re.escape(asset) + r'\?v=[^\"\']+', asset + '?v=' + os.environ['DEPLOY_SHA'], html)
           page.write_text(html)
           PYTHON
