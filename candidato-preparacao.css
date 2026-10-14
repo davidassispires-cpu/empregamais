@@ -649,3 +649,41 @@ html body.cp-shell-active #cpCandidateHeader .cp-nav-section-label:not(:first-ch
  border-top:0;border-left:1px solid #e4e8f2;margin:0 0 0 8px;padding-left:16px!important;
  }
 }
+
+/* Applications header follows the compact illustrated resume header. */
+html body.cp-shell-active #pagina-candidaturas .cp-applications-hero{
+ display:grid!important;grid-template-columns:minmax(0,1fr) 33%!important;gap:12px 16px!important;
+ padding:20px 24px 12px!important;min-height:0!important;border:1px solid #dfd2f5!important;border-radius:16px!important;
+ background:radial-gradient(ellipse at 84% 15%,#e4d5fa 0,transparent 58%),linear-gradient(115deg,#faf7ff,#eee6fb)!important;
+ box-shadow:0 5px 20px #6040830a!important;overflow:hidden!important;color:#24143f!important;
+}
+html body.cp-shell-active #pagina-candidaturas .cp-applications-hero:after{width:420px;height:420px;right:-90px;bottom:25px;border-color:#c6aceb55;box-shadow:0 0 0 75px #c8b2e512;pointer-events:none}
+html body.cp-shell-active #pagina-candidaturas .cp-applications-hero-copy{grid-column:1;grid-row:1;min-height:216px;display:flex;flex-direction:column;justify-content:center;min-width:0;z-index:1}
+html body.cp-shell-active #pagina-candidaturas .cp-applications-back{align-self:flex-start;border:0!important;background:transparent!important;color:#7860a2!important;font-size:11px!important;padding:0!important;min-height:24px;margin:0!important}
+html body.cp-shell-active #pagina-candidaturas .cp-applications-kicker{display:flex;align-items:center;flex-wrap:wrap;color:#5e477e!important;font-size:10px!important;font-weight:600;letter-spacing:.7px;margin:10px 0 8px!important;gap:10px}
+html body.cp-shell-active #pagina-candidaturas .cp-applications-kicker span{background:#ffffffaa!important;color:#8759ca!important;border:1px solid #c6a9ed!important;border-radius:7px;padding:4px 9px;font-size:9px!important}
+html body.cp-shell-active #pagina-candidaturas .cp-applications-hero h1{font-size:clamp(23px,2.4vw,32px)!important;line-height:1.12!important;font-weight:750!important;color:#24143f!important;letter-spacing:-.7px!important;margin:0 0 9px!important}
+html body.cp-shell-active #pagina-candidaturas .cp-applications-hero p{font-size:12px!important;line-height:1.55!important;font-weight:500!important;color:#76638e!important;max-width:560px!important;margin:0!important}
+html body.cp-shell-active #pagina-candidaturas .cp-applications-chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:13px}
+html body.cp-shell-active #pagina-candidaturas .cp-applications-chips span{display:inline-flex;align-items:center;gap:6px;background:#fff5!important;border:1px solid #dccdf4;border-radius:18px;padding:5px 10px;font-size:10px!important;color:#70558e!important}
+html body.cp-shell-active #pagina-candidaturas .cp-applications-chips span:before{content:'○';display:grid;place-items:center;width:17px;height:17px;border-radius:50%;background:#e8dcf9;color:#9a75cb;font-size:10px}
+html body.cp-shell-active #pagina-candidaturas .cp-applications-art{grid-column:2;grid-row:1;display:flex;align-items:center;justify-content:center;min-width:0;max-height:216px}
+html body.cp-shell-active #pagina-candidaturas .cp-applications-art svg{display:block;width:100%!important;height:100%!important;max-height:216px;overflow:visible}
+html body.cp-shell-active #pagina-candidaturas .cp-applications-rail{grid-column:1/-1;grid-row:2;display:flex;align-items:center;gap:18px;min-height:40px;padding:9px 14px;border:1px solid #e6dbf5;border-radius:11px;background:#ffffffba}
+html body.cp-shell-active #pagina-candidaturas .cp-applications-rail strong{color:#302044!important;font-size:12px!important;font-weight:700!important;white-space:nowrap}
+html body.cp-shell-active #pagina-candidaturas .cp-applications-rail span{color:#8a799d!important;font-size:10px!important;border-left:1px solid #d7c6eb;padding-left:18px}
+@media(max-width:760px){
+ html body.cp-shell-active #pagina-candidaturas .cp-applications-hero{padding:18px 18px 12px!important;grid-template-columns:minmax(0,1fr) 29%!important}
+ html body.cp-shell-active #pagina-candidaturas .cp-applications-hero h1{font-size:24px!important}
+ html body.cp-shell-active #pagina-candidaturas .cp-applications-art{max-height:180px;align-self:center}
+ html body.cp-shell-active #pagina-candidaturas .cp-applications-hero-copy{min-height:0}
+}
+@media(max-width:540px){
+ html body.cp-shell-active #pagina-candidaturas .cp-applications-hero{grid-template-columns:1fr!important;gap:14px!important;padding:18px 16px 12px!important}
+ html body.cp-shell-active #pagina-candidaturas .cp-applications-art{display:none}
+ html body.cp-shell-active #pagina-candidaturas .cp-applications-hero h1{font-size:25px!important}
+ html body.cp-shell-active #pagina-candidaturas .cp-applications-chips{gap:5px}
+ html body.cp-shell-active #pagina-candidaturas .cp-applications-chips span{font-size:9px!important;padding:4px 7px}
+ html body.cp-shell-active #pagina-candidaturas .cp-applications-rail{gap:9px;padding:9px 10px;flex-wrap:wrap}
+ html body.cp-shell-active #pagina-candidaturas .cp-applications-rail span{border:0;padding:0}
+}
