@@ -72,3 +72,22 @@ test('new server records can be shown without a browser-local application or res
  assert.equal(row.vaga,'Analista de RH');assert.equal(row.email,'ana@example.com');
  assert.equal(row.status,'Contratado');assert.equal(row.curriculoDados,undefined);
 });
+
+test('older queued recruiter changes acquire the candidate identity before being retried',async()=>{
+ const session=new Map([['empresaCnpj','12345678000199'],['empregaMaisSupabaseAccessToken','company-token'],['empregaMaisPapel','empresa']]);
+ const persisted=new Map([['emRecruiterPending:12345678000199',JSON.stringify({'app-1':{application_ref:'app-1',job_ref:'job-1',state:{status:'Em contato'}}})]]);
+ const listeners={},requests=[];
+ let applications=[{id:'app-1',vagaId:'job-1',candidatoEmail:'ana@example.com',vaga:'Assistente Administrativo',status:'Em avaliação'}];
+ const context={sessionStorage:{getItem:key=>session.get(key)||null},localStorage:{getItem:key=>persisted.get(key)||null,setItem:(key,value)=>persisted.set(key,value)},navigator:{onLine:true},document:{readyState:'loading',hidden:false,addEventListener:(type,fn)=>listeners[type]=fn,getElementById(){return null;},querySelector(){return null;}},AbortController,Map,Set,Date,Promise,setTimeout(){return 1;},clearTimeout(){},setInterval(){},addEventListener(){},vagasDaEmpresa(){return [{id:'job-1'}];},carregarCandidaturas(){return JSON.parse(JSON.stringify(applications));},salvarCandidaturas(rows){applications=rows;},fetch:async(url,options)=>{const body=JSON.parse(options.body);requests.push(body);return {ok:true,text:async()=>JSON.stringify(body.p_changes.map(change=>({application_ref:change.application_ref,job_ref:change.job_ref,state:change.state,candidate_uid:'candidate-1'})))};}};
+ context.window=context;vm.createContext(context);
+ for(const file of ['processo-seletivo-etapas.js','recruiter-sync-and-reports.js'])vm.runInContext(fs.readFileSync(path.join(__dirname,'..',file),'utf8'),context);
+ listeners.DOMContentLoaded();
+ await context.sincronizarEstadoCandidaturasEM(true);
+ const change=requests[1].p_changes[0];
+ assert.equal(change.candidate_email,'ana@example.com');
+ assert.equal(change.job_title,'Assistente Administrativo');
+ assert.equal(change.state.status,'Em contato','Do not overwrite an older pending change during association');
+ session.set('empregaMaisPapel','candidato');
+ await context.sincronizarEstadoCandidaturasEM(true);
+ assert.equal(requests.length,2,'Candidate sessions must not write recruiter state');
+});

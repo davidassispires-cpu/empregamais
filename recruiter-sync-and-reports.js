@@ -45,7 +45,7 @@
   try{
    if(!ready){var initial=await api('rpc/em_sync_recruiter_state',{method:'POST',body:JSON.stringify({p_company_cnpj:owner,p_changes:[]})});
     if(owner!==requestOwner||cnpj()!==requestOwner||token()!==access)return;merge(initial);ready=true;
-    var jobs=ownedJobs();originalLoad().forEach(function(c){var id=String(c.id);if(pending[id]||!jobs.has(job(c))||remote[id]&&remote[id].candidate_uid)return;
+    var jobs=ownedJobs();originalLoad().forEach(function(c){var id=String(c.id);if(!jobs.has(job(c)))return;if(pending[id]){recipient(c,pending[id]);return;}if(remote[id]&&remote[id].candidate_uid)return;
      var state={};fields.forEach(function(f){if(c[f]!==undefined)state[f]=c[f];});
      var stage=window.EmpregaMaisEtapasCandidatura.etapa(c);if(stage)state.status=stage.label;
      if(state.status||c.observacaoRecrutador||c.favoritoRecrutador)pending[id]=recipient(c,{application_ref:id,job_ref:job(c),state:state});
