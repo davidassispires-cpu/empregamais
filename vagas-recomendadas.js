@@ -141,9 +141,9 @@
 /* Painel do candidato: navegação horizontal e resumo pessoal. */
 (function(){
  'use strict';
- var page,container,signature='';
+ var page,container,signature='',candidateHeader,messageTab=false;
  function svg(name){var paths={home:'<path d="m3 10 9-7 9 7M5 9v12h14V9M9 21v-7h6v7"/>',case:'<rect x="3" y="7" width="18" height="14" rx="2"/><path d="M8 7V3h8v4M3 12h18"/>',search:'<circle cx="10" cy="10" r="7"/><path d="m15 15 6 6"/>',user:'<rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="12" cy="9" r="3"/><path d="M6 19c0-6 12-6 12 0"/>',chat:'<path d="M21 11a8 8 0 0 1-8 8H6l-4 3V11a9 9 0 0 1 19 0Z"/><path d="M7 10h10M7 14h7"/>',heart:'<path d="M20 4c-3-3-6-1-8 1-2-2-5-4-8-1-5 5 2 11 8 16 6-5 13-11 8-16Z"/>',star:'<path d="m12 2 3 6 7 1-5 5 1 7-6-3-6 3 1-7-5-5 7-1Z"/>'};return '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'+paths[name]+'</svg>'}
- function go(route){if(typeof window.irPara==='function')window.irPara(route)}
+ function go(route){if(route!=='painel-candidato')messageTab=false;if(typeof window.irPara==='function')window.irPara(route)}
  function profile(){try{return typeof window.obterCandidatoAtual==='function'?window.obterCandidatoAtual()||{}:{}}catch(e){return {}}}
  function update(){
   if(!container||!page.classList.contains('ativa'))return;
@@ -164,6 +164,31 @@
   nav.innerHTML=routes.map(function(r,i){return '<button type="button" data-route="'+r[2]+'" '+(i===0?'aria-current="page"':'')+'>'+svg(r[0])+'<span>'+r[1]+'</span></button>'}).join('');
   var toolbar=document.createElement('div');toolbar.className='cp-toolbar';toolbar.innerHTML='<strong>+Empregos</strong><button type="button" class="cp-greeting" data-route="perfil">Minha conta</button>';
   var header=document.createElement('div');header.className='cp-header';header.append(toolbar,nav);page.prepend(header);
+  candidateHeader=header;
+  // Keep one persistent shell while the existing SPA renders each section.
+  document.body.insertBefore(header,document.body.firstChild);
+  header.addEventListener('click',function(event){
+   var button=event.target.closest('[data-route]');if(!button)return;
+   messageTab=button.dataset.route==='messages';
+   go(messageTab?'painel-candidato':button.dataset.route);syncShell();
+  });
+  var empty=document.createElement('section');empty.className='cp-message-empty';empty.innerHTML='<h2>Mensagens</h2><p>Nenhuma mensagem recebida nesta demonstração.</p>';container.appendChild(empty);
+  function syncShell(){
+   var active=document.querySelector('.pagina.ativa'),route=active&&active.id.replace('pagina-','');
+   var logged=typeof window.candidatoEstaLogado==='function'&&window.candidatoEstaLogado();
+   var enabled=!!logged&&['painel-candidato','candidaturas','home','curriculo','perfil','salvas','premium-candidato','vaga','candidatura'].indexOf(route)>=0;
+   header.hidden=!enabled;document.body.classList.toggle('cp-shell-active',enabled);
+   document.querySelectorAll('.cp-tab-content').forEach(function(p){if(p!==active)p.classList.remove('cp-tab-content')});
+   if(!enabled)return;
+   active.classList.add('cp-tab-content');
+   if(route!=='painel-candidato')messageTab=false;
+   page.classList.toggle('cp-messages-active',messageTab);
+   nav.querySelectorAll('[data-route]').forEach(function(b){if(b.dataset.route===(messageTab?'messages':route))b.setAttribute('aria-current','page');else b.removeAttribute('aria-current')});
+  }
+  var shellPending=false;
+  new MutationObserver(function(records){if(shellPending||!records.some(function(r){return r.oldValue!==r.target.getAttribute('class')}))return;shellPending=true;requestAnimationFrame(function(){shellPending=false;syncShell()})}).observe(document.body,{subtree:true,attributes:true,attributeOldValue:true,attributeFilter:['class']});
+  window.addEventListener('popstate',function(){messageTab=false;syncShell()});
+  syncShell();
   var banner=container.querySelector('.premium-chamada-painel-v79');if(banner){banner.classList.add('cp-banner');banner.querySelector('strong').textContent='Encontre oportunidades que combinam com você';banner.querySelector('p').textContent='Complete seu perfil e conheça as ferramentas para organizar sua busca por emprego.';var close=document.createElement('button');close.type='button';close.className='cp-banner-close';close.setAttribute('aria-label','Fechar destaque');close.textContent='×';close.onclick=function(){banner.hidden=true};banner.appendChild(close)}
   var search=document.createElement('form');search.className='cp-search';search.innerHTML='<label for="cpSearchRole">O que?<input id="cpSearchRole" placeholder="Digite cargo ou área profissional" type="search"></label><label for="cpSearchCity">Onde?<input id="cpSearchCity" placeholder="Cidade" type="text"></label><button type="submit">Encontrar vagas</button>';
   search.onsubmit=function(event){event.preventDefault();go('home');[['filtroPalavra','cpSearchRole'],['filtroCidade','cpSearchCity']].forEach(function(pair){var target=document.getElementById(pair[0]);if(target)target.value=container.querySelector('#'+pair[1]).value});if(typeof window.filtrarVagas==='function')window.filtrarVagas();var list=document.getElementById('vagas');if(list)list.scrollIntoView({behavior:'smooth'})};
@@ -191,7 +216,7 @@ body:has(#pagina-painel-candidato.cp-reference.ativa)>header{display:none!import
 .cp-header{background:white;border-bottom:1px solid #e2ddec}
 .cp-toolbar{background:#51258a;color:#fff;display:flex;justify-content:space-between;align-items:center;padding:12px max(24px,calc((100% - 1170px)/2));gap:20px}
 .cp-toolbar strong{font:800 24px Inter,Arial,sans-serif}.cp-toolbar button{border:0;border-radius:24px;padding:9px 22px;background:#fff;color:#51258a;font:600 13px Inter,Arial,sans-serif;cursor:pointer}
-.cp-navigation{max-width:1170px;margin:auto;display:grid;grid-template-columns:repeat(7,minmax(0,1fr))}
+.cp-navigation{max-width:1170px;margin:18px auto 14px;gap:6px;display:grid;grid-template-columns:repeat(7,minmax(0,1fr))}
 .cp-navigation button{border:0;background:#fff;color:#51258a;padding:18px 8px 14px;display:flex;flex-direction:column;align-items:center;gap:8px;font:500 13px Inter,Arial,sans-serif;cursor:pointer;position:relative}
 .cp-navigation svg{width:29px;height:29px}.cp-navigation button[aria-current=page]{background:#51258a;color:#fff}.cp-navigation button[aria-current=page]:after{content:'';position:absolute;bottom:-1px;border-left:9px solid transparent;border-right:9px solid transparent;border-bottom:9px solid #fff}.cp-navigation button:hover{background:#f1eafa;color:#51258a}
 #pagina-painel-candidato.cp-reference .container-dashboard{max-width:1170px!important;width:calc(100% - 40px)!important;padding:24px 0!important;margin:auto!important}
@@ -208,6 +233,23 @@ body:has(#pagina-painel-candidato.cp-reference.ativa)>header{display:none!import
 #pagina-painel-candidato.cp-reference button:focus-visible,#pagina-painel-candidato.cp-reference a:focus-visible{outline:2px solid #7540ae!important;outline-offset:3px}
 @media(max-width:850px){.cp-layout{grid-template-columns:1fr;gap:18px}.cp-navigation{overflow-x:auto;display:flex}.cp-navigation button{flex:0 0 115px}#pagina-painel-candidato.cp-reference .cp-shortcuts{grid-template-columns:1fr 1fr!important}}
 @media(max-width:540px){#pagina-painel-candidato.cp-reference .container-dashboard{width:calc(100% - 28px)!important}.cp-search{flex-wrap:wrap;gap:14px;border-radius:12px}.cp-search label{flex:1 1 100%}.cp-search label+label{border-left:0;border-top:1px solid #eee7f5;padding:12px 0 0}.cp-search>button{width:100%}.cp-profile{padding:18px}.cp-profile-identity{gap:16px}.cp-profile .cp-name{font-size:19px!important}#pagina-painel-candidato.cp-reference .cp-shortcuts{grid-template-columns:1fr!important}#pagina-painel-candidato.cp-reference .cp-banner{padding:22px!important}.cp-toolbar{padding:12px 16px}}
+`;
+ style.textContent+=`
+.cp-header[hidden]{display:none!important}
+body.cp-shell-active>header.topo{display:none!important}
+body.cp-shell-active>.cp-header{display:block;background:#fff}
+body.cp-shell-active .cp-tab-content{min-height:65vh;background:#f7f6f9!important}
+body.cp-shell-active .cp-tab-content>.page-header{display:none!important}
+body.cp-shell-active #pagina-home.cp-tab-content> :not(#vagas){display:none!important}
+body.cp-shell-active #pagina-home.cp-tab-content #vagas{padding-top:24px!important}
+.cp-navigation button{border-radius:10px}
+.cp-navigation button:focus-visible{outline:3px solid #aa87dc;outline-offset:2px}
+.cp-message-empty{display:none;padding:24px;border:1px solid #ded8e7;border-radius:12px;background:#fff}
+#pagina-painel-candidato.cp-messages-active>.container-dashboard> :not(.em-candidate-inbox):not(.cp-message-empty){display:none!important}
+#pagina-painel-candidato.cp-messages-active>.container-dashboard>.em-candidate-inbox{display:block!important}
+#pagina-painel-candidato.cp-messages-active[data-cp-demo=true] .cp-message-empty{display:block!important}
+#pagina-painel-candidato.cp-messages-active>.container-dashboard:not(:has(.em-candidate-inbox))>.cp-message-empty{display:block!important}
+@media(max-width:850px){.cp-navigation{margin:14px 14px 12px;padding:3px;gap:6px}.cp-navigation button{flex:0 0 105px}}
 `;
  document.head.appendChild(style);
  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',setup,{once:true});else setup();window.addEventListener('load',setup,{once:true});
