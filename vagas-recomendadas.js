@@ -180,10 +180,7 @@
   var city=container.querySelector('#cpSearchCity');if(!city.value)city.value=fields[2];
  }
  function navigationArt(index){
-  // Preserve the approved artwork without approximating it with generic icons.
-  var left=[43,331,618,905,1194,1480,1768][index];
-  var mask=index===4?'<rect x="'+(left+170)+'" y="160" width="85" height="70" fill="#fff"/>':'';
-  return '<svg class="cp-nav-art cp-nav-art-'+index+'" viewBox="'+left+' 165 250 280" aria-hidden="true" focusable="false"><image href="assets/candidate-navigation/approved-cards.png" width="2048" height="683"/>'+mask+'</svg>';
+  return svg(['home','document','search','user','chat','bookmark','crown'][index]).replace('<svg ','<svg class="cp-nav-icon" ');
  }
  function setup(){
   page=document.getElementById('pagina-painel-candidato');if(!page)return;container=page.querySelector('.container-dashboard');if(!container)return;
@@ -192,9 +189,9 @@
   if(new URLSearchParams(location.search).get('pagina')==='demo-candidato')page.dataset.cpDemo='true';
   var nav=document.createElement('nav');nav.className='cp-navigation';nav.setAttribute('aria-label','Área do candidato');
   var routes=[['home','Minha área','painel-candidato'],['document','Candidaturas','candidaturas'],['search','Buscar vagas','home'],['document','Currículo','curriculo'],['chat','Mensagens','messages'],['bookmark','Vagas salvas','salvas'],['crown','Premium','premium-candidato']];
-  nav.innerHTML=routes.map(function(r,i){return '<button type="button" data-route="'+r[2]+'" '+(i===0?'aria-current="page"':'')+'>'+navigationArt(i)+'<span>'+r[1]+'</span>'+(r[2]==='messages'?'<small class="cp-message-count" hidden></small>':'')+'</button>'}).join('');
-  var toolbar=document.createElement('div');toolbar.className='cp-toolbar';toolbar.innerHTML='<strong>Emprega<span>Mais</span></strong><button type="button" class="cp-greeting" data-route="perfil">Minha conta</button>';
-  var header=document.createElement('div');header.className='cp-header';header.append(toolbar,nav);page.prepend(header);
+  nav.innerHTML='<div class="cp-nav-label">ÁREA DO CANDIDATO</div>'+routes.map(function(r,i){return '<button type="button" data-route="'+r[2]+'" '+(i===0?'aria-current="page"':'')+'>'+navigationArt(i)+'<span>'+r[1]+'</span>'+(r[2]==='messages'?'<small class="cp-message-count" hidden></small>':'')+'</button>'}).join('');
+  var toolbar=document.createElement('div');toolbar.className='cp-toolbar';toolbar.innerHTML='<strong>+Empregos</strong><span class="cp-toolbar-context">Portal do candidato</span><button type="button" class="cp-greeting" data-route="perfil">Minha conta</button>';
+  var header=document.createElement('div');header.id='cpCandidateHeader';header.className='cp-header';header.append(toolbar,nav);page.prepend(header);
   candidateHeader=header;
   // Keep one persistent shell while the existing SPA renders each section.
   document.body.insertBefore(header,document.body.firstChild);
@@ -226,7 +223,7 @@
   if(banner)banner.after(search);else container.prepend(search);
   var layout=document.createElement('div');layout.className='cp-layout';layout.innerHTML='<aside class="cp-profile"><div class="cp-profile-identity"><div class="cp-avatar-box"><div class="cp-avatar"></div><span class="cp-completion"></span><small>Perfil preenchido</small></div><div><h1 class="cp-name"></h1><p class="cp-role"></p><small class="cp-location"></small><button type="button" data-route="perfil">Editar meu perfil</button></div></div><div class="cp-profile-links"><button type="button" data-route="curriculo">Atualizar currículo</button><button type="button" data-route="premium-candidato">Conhecer Premium</button></div><div class="cp-metrics-slot"></div></aside><div class="cp-opportunities"><div class="cp-recommendations-slot"></div></div>';
   search.after(layout);layout.querySelector('.cp-profile-identity>div:last-child').insertAdjacentHTML('beforeend','<div class="cp-profile-skills"></div>');
-  var intro=document.createElement('div');intro.className='cp-home-intro';intro.innerHTML='<h1>Minha Área</h1><p>Seu perfil e oportunidades para o seu próximo passo</p>';layout.before(intro);
+  var intro=document.createElement('div');intro.className='cp-home-intro';intro.innerHTML='<h1>Meu painel</h1><p>Acompanhe suas candidaturas e encontre sua próxima oportunidade.</p>';layout.before(intro);
   var summary=document.createElement('section');summary.className='cp-home-summary';summary.setAttribute('aria-label','Resumo da sua busca');summary.innerHTML='<article>'+svg('document')+'<div><strong>0</strong><span>Candidaturas</span></div></article><article>'+svg('calendar')+'<div><strong>0</strong><span>Entrevistas</span></div></article><article>'+svg('bookmark')+'<div><strong>0</strong><span>Vagas salvas</span></div></article>';layout.querySelector('.cp-profile').after(summary);
   summary.insertAdjacentHTML('beforeend','<article>'+svg('chat')+'<div><strong data-home-message-count>0</strong><span>Mensagens</span></div></article>');
   var objective=document.createElement('section');objective.className='cp-profile-objective';objective.innerHTML='<h3>Seu objetivo profissional</h3><p></p><small></small>';layout.querySelector('.cp-profile-identity').appendChild(objective);var edit=layout.querySelector('.cp-profile-identity [data-route="perfil"]');layout.querySelector('.cp-profile-identity').appendChild(edit);

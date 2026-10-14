@@ -72,6 +72,9 @@
     demoWidgets();
     if(window.MutationObserver)document.querySelectorAll('#pagina-painel-candidato,#pagina-candidaturas').forEach(function(root){new MutationObserver(demoWidgets).observe(root,{childList:true,subtree:true});});
   }
+  // Open as soon as the DOM and page scripts are ready; images and remote fonts
+  // must not leave the demo showing only the public header and footer.
+  document.addEventListener('DOMContentLoaded',function(){setTimeout(boot,0);},{once:true});
   window.addEventListener('load',function(){setTimeout(boot,0);});
 })();
 

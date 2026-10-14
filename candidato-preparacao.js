@@ -147,7 +147,7 @@
  function statusLabel(a){var workflow=global.EmpregaMaisCandidaturasCandidato;return workflow?workflow.rotulo(a):String(a.status||a.statusProcesso||'Em avaliação');}
  function statusKey(a){var workflow=global.EmpregaMaisCandidaturasCandidato;return workflow?workflow.classificar(a):'avaliacao';}
  function renderLatest(){
-  var host=extra.querySelector('.cp-latest'),rows=applicationRows().slice().sort(function(a,b){return (Date.parse(b.statusAtualizadoEm||b.atualizadoEm||b.data)||0)-(Date.parse(a.statusAtualizadoEm||a.atualizadoEm||a.data)||0);}).slice(0,3);
+  var host=container.querySelector('.cp-latest'),rows=applicationRows().slice().sort(function(a,b){return (Date.parse(b.statusAtualizadoEm||b.atualizadoEm||b.data)||0)-(Date.parse(a.statusAtualizadoEm||a.atualizadoEm||a.data)||0);}).slice(0,3);
   var html='<div class="cp-section-head"><div><h2>Últimas candidaturas</h2><p>Acompanhe as atualizações dos seus processos.</p></div><button type="button" data-cp-action="applications" class="cp-text-button">Ver todas →</button></div>';
   html+=rows.length?'<div class="cp-latest-list">'+rows.map(function(a){
    var job=jobById(a.vagaId||a.vaga_id),title=a.vagaTitulo||a.tituloVaga||a.vaga||job.cargo||'Processo seletivo',at=a.statusAtualizadoEm||a.atualizadoEm||a.atualizado_em;
@@ -156,7 +156,7 @@
   stableHTML(host,html);
  }
  function renderAlertCard(){
-  var host=extra.querySelector('.cp-alert-card'),items=alerts(),available=jobs(),newIds=new Set();
+  var host=container.querySelector('.cp-alert-card'),items=alerts(),available=jobs(),newIds=new Set();
   items.forEach(function(a){var seen=new Set((a.vistas||[]).map(String));available.filter(function(j){return matchesAlert(j,a)&&!seen.has(String(j.id));}).forEach(function(j){newIds.add(String(j.id));});});
   stableHTML(host,'<span class="cp-feature-icon">'+icon('bell')+'</span><h2>Vagas do seu interesse</h2><p>'+(items.length?'Você tem '+items.length+' alerta'+(items.length===1?'':'s')+' ativo'+(items.length===1?'':'s')+'.':'Escolha cargos, cidades e modalidades para acompanhar oportunidades.')+'</p>'+(newIds.size?'<strong class="cp-alert-new">'+newIds.size+' oportunidade'+(newIds.size===1?'':'s')+' para conferir</strong>':'')+'<button type="button" data-cp-action="alerts" class="cp-secondary">'+(items.length?'Gerenciar alertas':'Criar meu alerta')+' '+icon('arrow')+'</button><small>Atualizações aqui no painel.</small>');
  }
@@ -309,9 +309,14 @@
   if(!identity()){if(extra)extra.hidden=true;return;}
   if(owner!==identity()){if(workspace)closeWorkspace(false);owner=identity();loadPractice();}
   if(!page.classList.contains('cp-enhanced'))page.classList.add('cp-enhanced');
+  if(!document.getElementById('cpOpenSansFont')){
+   var font=document.createElement('link');font.id='cpOpenSansFont';font.rel='stylesheet';font.href='https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&display=swap';document.head.appendChild(font);
+  }
   if(!extra){
    extra=document.createElement('div');extra.className='cp-value-sections';extra.innerHTML='<div class="cp-follow-grid"><section class="cp-latest cp-panel" aria-label="Últimas candidaturas"></section><section class="cp-alert-card cp-panel" aria-label="Alertas de vagas"></section></div><section class="cp-preparation cp-panel"><span class="cp-feature-icon">'+icon('briefcase')+'</span><div><span class="cp-kicker">SEU PRÓXIMO PASSO</span><h2>Prepare-se para a vaga</h2><p>Pratique suas respostas e fortaleça seus conhecimentos.</p><small class="cp-practice-history"></small></div><div class="cp-preparation-actions"><button type="button" class="cp-primary" data-cp-action="interview">'+icon('message')+' Simular entrevista</button><button type="button" class="cp-secondary" data-cp-action="tests">'+icon('book')+' Praticar testes</button></div></section>';
    container.querySelector('.cp-layout').after(extra);
+   var follow=extra.querySelector('.cp-follow-grid'),summary=container.querySelector('.cp-home-summary');
+   if(summary)summary.after(follow);
    workspace=document.createElement('section');workspace.id='cpPreparationWorkspace';workspace.className='cp-workspace cp-panel';workspace.hidden=true;container.appendChild(workspace);
    page.addEventListener('click',click);
    var header=document.querySelector('.cp-header');if(header)header.addEventListener('click',function(e){if(e.target.closest('[data-route]'))closeWorkspace(false);},true);

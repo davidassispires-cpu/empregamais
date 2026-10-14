@@ -6,7 +6,7 @@ function createContext(search){
  const wrap=map=>({getItem:k=>map.get(k)||null,setItem:(k,v)=>map.set(k,String(v)),removeItem:k=>map.delete(k)});
  const listeners={},calls=[],notice={textContent:''},page={querySelector(){return {}},insertBefore(){},classList:{contains(){return true;},add(){}}};
  const originalFetch=()=>{calls.push('real-fetch');return Promise.resolve(new Response('{}'))};
- const ctx={location:{search,href:'https://example.com/'+search,pathname:'/',origin:'https://example.com'},localStorage:wrap(nativeLocal),sessionStorage:wrap(nativeSession),fetch:originalFetch,URLSearchParams,URL,Response,Promise,Map,Date,JSON,Object,btoa:s=>Buffer.from(s,'binary').toString('base64'),setTimeout:fn=>fn(),history:{pushState(a,b,url){ctx.location.href=url},replaceState(a,b,url){ctx.location.href=url}},document:{documentElement:{classList:{add(){}}},head:{appendChild(){}},getElementById(id){return id==='pagina-painel-candidato'?page:id==='emCandidateDemoNotice'?notice:null},createElement(){return {style:{}}},querySelectorAll(){return []},addEventListener(){}},addEventListener(type,fn){listeners[type]=fn},abrirRota(route,id){calls.push([route,id])},EmpregaMaisPerfilCloud:{refresh(){throw Error('Real profile refresh must not run')}}};
+ const ctx={location:{search,href:'https://example.com/'+search,pathname:'/',origin:'https://example.com'},localStorage:wrap(nativeLocal),sessionStorage:wrap(nativeSession),fetch:originalFetch,URLSearchParams,URL,Response,Promise,Map,Date,JSON,Object,btoa:s=>Buffer.from(s,'binary').toString('base64'),setTimeout:fn=>fn(),history:{pushState(a,b,url){ctx.location.href=url},replaceState(a,b,url){ctx.location.href=url}},document:{documentElement:{classList:{add(){}}},head:{appendChild(){}},getElementById(id){return id==='pagina-painel-candidato'?page:id==='emCandidateDemoNotice'?notice:null},createElement(){return {style:{}}},querySelectorAll(){return []},addEventListener(type,fn){listeners["document:"+type]=fn;}},addEventListener(type,fn){listeners[type]=fn},abrirRota(route,id){calls.push([route,id])},EmpregaMaisPerfilCloud:{refresh(){throw Error('Real profile refresh must not run')}}};
  ctx.window=ctx;vm.createContext(ctx);vm.runInContext(source,ctx);return {ctx,listeners,calls,nativeLocal,nativeSession,originalFetch};
 }
 for(const route of ['demo-recrutador','painel-empresa','painel-candidato','home']){
@@ -17,6 +17,12 @@ for(const route of ['demo-recrutador','painel-empresa','painel-candidato','home'
  assert.equal(Object.keys(env.listeners).length,0,'Other pages must have no demo behavior');
  assert.equal(env.nativeLocal.size,1);
 }
+const early=createContext('?pagina=demo-candidato');
+early.listeners['document:DOMContentLoaded']();
+assert.equal(early.calls[0][0],'painel-candidato','Open before images and fonts finish loading');
+const earlyCalls=early.calls.length;
+early.listeners.load();
+assert.equal(early.calls.length,earlyCalls,'The load fallback must not open a second time');
 const env=createContext('?pagina=demo-candidato');
 assert.equal(env.ctx.sessionStorage.getItem('empregaMaisPapel'),null,'No demo login during the application startup');
 assert.equal(env.nativeSession.get('empregaMaisPapel'),'empresa','The real session must be preserved');
@@ -44,3 +50,4 @@ assert([...env.nativeLocal.keys()].every(k=>k==='real-account'||k.startsWith('em
  assert(!env.calls.includes('real-fetch'));
  console.log('PASS: existing company and production pages untouched; real session preserved; candidate demo uses existing routes, isolated sample data, resume and local backend responses.');
 })().catch(e=>{console.error(e);process.exitCode=1;});
+
