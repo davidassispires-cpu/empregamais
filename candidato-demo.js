@@ -74,3 +74,49 @@
   }
   window.addEventListener('load',function(){setTimeout(boot,0);});
 })();
+
+
+/* EmpregaMais: somente tons verdes viram azul no painel do candidato.
+   Preserva integralmente os elementos roxos e os SVGs roxos. */
+(function(){
+  'use strict';
+  if(new URLSearchParams(location.search).get('pagina')!=='demo-candidato')return;
+  var rootId='pagina-painel-candidato', azul='#173B70', azulClaro='#E5F0FC';
+  function verde(value){
+    var match=String(value||'').match(/^rgba?\\(\\s*(\\d+)[, ]+\\s*(\\d+)[, ]+\\s*(\\d+)/i);
+    if(!match)return false;
+    var r=+match[1]/255,g=+match[2]/255,b=+match[3]/255;
+    var max=Math.max(r,g,b),min=Math.min(r,g,b),delta=max-min;
+    if(delta<.09||max===0)return false;
+    var hue=0;
+    if(max===r)hue=((g-b)/delta)%6;
+    else if(max===g)hue=(b-r)/delta+2;
+    else hue=(r-g)/delta+4;
+    hue=(hue*60+360)%360;
+    return hue>=75&&hue<=170&&g>r*1.10;
+  }
+  function aplicar(){
+    var root=document.getElementById(rootId);
+    if(!root||root.hidden||getComputedStyle(root).display==='none')return;
+    root.querySelectorAll('*').forEach(function(el){
+      if(el.dataset.emGreenToBlue==='1')return;
+      var style=getComputedStyle(el),changed=false;
+      [['backgroundColor','background-color'],['color','color'],['borderTopColor','border-top-color'],['borderRightColor','border-right-color'],['borderBottomColor','border-bottom-color'],['borderLeftColor','border-left-color']].forEach(function(pair){
+        if(verde(style[pair[0]])){el.style.setProperty(pair[1],pair[1]==='background-color'&&style.backgroundColor.match(/rgba?\\(\\s*2[0-5]\\d[, ]+\\s*2[0-5]\\d/)?azulClaro:azul,'important');changed=true;}
+      });
+      if(el instanceof SVGElement){
+        ['fill','stroke'].forEach(function(prop){if(verde(style[prop])){el.style.setProperty(prop,azul,'important');changed=true;}});
+      }
+      if(changed)el.dataset.emGreenToBlue='1';
+    });
+  }
+  function iniciar(){
+    var root=document.getElementById(rootId);if(!root)return;
+    var scheduled=false;
+    function schedule(){if(scheduled)return;scheduled=true;requestAnimationFrame(function(){scheduled=false;aplicar();});}
+    new MutationObserver(schedule).observe(root,{childList:true,subtree:true});
+    schedule();
+    document.addEventListener('click',schedule,true);
+  }
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',iniciar);else iniciar();
+})();
