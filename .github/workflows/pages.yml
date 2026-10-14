@@ -19,6 +19,18 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: actions/configure-pages@v5
+      - name: Refresh candidate asset versions
+        env:
+          DEPLOY_SHA: ${{ github.sha }}
+        run: |
+          python - <<'PYTHON'
+          import os, pathlib, re
+          page = pathlib.Path('index.html')
+          html = page.read_text()
+          for asset in ('candidato-demo.js', 'vagas-recomendadas.js'):
+              html = re.sub(re.escape(asset) + r'\?v=[^\"\']+', asset + '?v=' + os.environ['DEPLOY_SHA'], html)
+          page.write_text(html)
+          PYTHON
       - uses: actions/upload-pages-artifact@v3
         with:
           path: .

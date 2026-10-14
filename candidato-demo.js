@@ -2,6 +2,10 @@
 (function(){
   'use strict';
   if(new URLSearchParams(location.search).get('pagina')!=='demo-candidato')return;
+  document.documentElement.classList.add('em-candidate-demo');
+  var demoStyle=document.createElement('style');
+  demoStyle.textContent='html.em-candidate-demo #pagina-candidaturas .emi-candidate,html.em-candidate-demo #pagina-candidaturas .em-hire-confirmations,html.em-candidate-demo #pagina-candidaturas .em-candidate-inbox,html.em-candidate-demo #pagina-painel-candidato .emi-candidate,html.em-candidate-demo #pagina-painel-candidato .em-hire-confirmations{display:none!important}';
+  document.head.appendChild(demoStyle);
   var backing=window.localStorage,prefix='emCandidatePreviewV1:',ready=false;
   function storage(name){
     var values=new Map();try{var saved=JSON.parse(backing.getItem(prefix+name)||'[]');if(Array.isArray(saved))values=new Map(saved);}catch(ignore){}
