@@ -899,6 +899,56 @@ SOFTWARE.
 #pagina-curriculo #cvResumeWizard .cv-step-nav button[aria-current=step] span,
 #pagina-curriculo #cvResumeWizard #cvWizardNext{background:#63339b!important;color:#fff!important;border-color:#63339b!important}
 #pagina-curriculo .cv-purple-hero .cv85-score{background:radial-gradient(circle at center,#6536a1 62%,transparent 63%),conic-gradient(#80e5d2 var(--cv-progress,0%),#ffffff22 0)!important}
+
+/* Identidade compartilhada por todas as abas da área do candidato. */
+body.cp-shell-active{--candidate-primary:#63339b;--candidate-accent:#0f766e;--candidate-soft:#e8f5f1;--candidate-ink:#243247}
+body.cp-shell-active .cp-tab-content{background:#f8fbfa!important;color:var(--candidate-ink)!important}
+body.cp-shell-active .cp-header .cp-navigation button:not([aria-current=page]){color:#243247!important;background:#fff!important}
+body.cp-shell-active .cp-header .cp-navigation button:not([aria-current=page]) svg{color:#0f766e!important}
+body.cp-shell-active .cp-header .cp-navigation button:not([aria-current=page]):hover{background:#e8f5f1!important;color:#0f766e!important}
+body.cp-shell-active .cp-header .cp-navigation button[aria-current=page]{background:#63339b!important;color:#fff!important}
+body.cp-shell-active #pagina-painel-candidato.cp-reference{background:#f8fbfa!important}
+body.cp-shell-active #pagina-painel-candidato.cp-reference .cp-avatar{background:linear-gradient(#e8f5f1,#e8f5f1) padding-box,conic-gradient(#0f766e var(--completion),#dcece6 0) border-box!important;color:#0f766e!important}
+body.cp-shell-active #pagina-painel-candidato.cp-reference .cp-completion{background:#0f766e!important;color:#fff!important}
+body.cp-shell-active #pagina-painel-candidato.cp-reference .cp-name,
+body.cp-shell-active #pagina-painel-candidato.cp-reference .cp-shortcuts h3,
+body.cp-shell-active #pagina-painel-candidato.cp-reference .em-personal-head h2,
+body.cp-shell-active #pagina-painel-candidato .cp-application-heading h2{color:#243247!important}
+body.cp-shell-active #pagina-painel-candidato.cp-reference .em-personal-grid h3,
+body.cp-shell-active #pagina-painel-candidato.cp-reference .em-personal-grid article>a{color:#0f766e!important}
+body.cp-shell-active #pagina-painel-candidato .cp-stage-card .cp-stage-icon,
+body.cp-shell-active #pagina-painel-candidato .cp-stage-card .cp-stage-arrow{color:#0f766e!important}
+body.cp-shell-active #pagina-painel-candidato .cp-stage-card strong{color:#243247!important}
+body.cp-shell-active #pagina-painel-candidato .cp-profile .cp-stage-card[data-cp-stage=todas],
+body.cp-shell-active #pagina-painel-candidato .cp-profile .cp-stage-card:hover{background:#e8f5f1!important;border-color:#bbdbd1!important}
+body.cp-shell-active #pagina-painel-candidato.cp-reference .cp-profile .metrica{background:#e8f5f1!important}
+body.cp-shell-active #pagina-painel-candidato.cp-reference .cp-profile .metrica strong{color:#0f766e!important}
+body.cp-shell-active #pagina-painel-candidato.cp-reference .cp-shortcuts .btn{background:#e8f5f1!important;color:#0f766e!important;border-color:#bbdbd1!important}
+body.cp-shell-active .cp-search label{color:#0f766e!important}
+body.cp-shell-active .cp-search>button{background:#63339b!important;color:#fff!important}
+body.cp-shell-active :is(#pagina-perfil,#pagina-candidatura) :is(input,select,textarea){background:#fff!important;color:#243247!important;border-color:#d8e0e5!important}
+body.cp-shell-active :is(#pagina-perfil,#pagina-candidatura) label{color:#243247!important}
+body.cp-shell-active #pagina-candidaturas .candidatura-item h3{color:#243247!important}
+body.cp-shell-active #pagina-candidaturas #cpApplicationFilters button[aria-pressed=true]{background:#63339b!important;border-color:#63339b!important;color:#fff!important}
+body.cp-shell-active #pagina-candidaturas #cpApplicationFilters button:not([aria-pressed=true]):hover{background:#e8f5f1!important;border-color:#bbdbd1!important;color:#0f766e!important}
+body.cp-shell-active #pagina-candidaturas .cp-applications-hero-icon{color:#80e5d2!important;background:#ffffff12!important}
+body.cp-shell-active .cp-process-modal .cp-process-note{background:#e8f5f1!important;border-color:#bbdbd1!important;color:#243247!important}
+body.cp-shell-active .cp-process-modal .cp-process-note strong{color:#0f766e!important}
+body.cp-shell-active .cp-process-modal .cp-process-grid h4{color:#243247!important}
+body.cp-shell-active .cp-process-modal .cp-process-steps li:not(.is-current)>span{background:#e8f5f1!important;color:#0f766e!important}
+body.cp-shell-active .cp-process-modal .cp-process-steps li.is-current>span{background:#63339b!important;color:#fff!important}
+body.cp-shell-active #pagina-premium-candidato .premium-beneficio-v78{background:#fff!important;border-color:#d8e0e5!important}
+body.cp-shell-active #pagina-premium-candidato .premium-icone-v78{background:#e8f5f1!important;color:#0f766e!important}
+body.cp-shell-active #pagina-premium-candidato .premium-gratis-aviso-v78{background:#e8f5f1!important;color:#0f766e!important}
+body.cp-shell-active #pagina-premium-candidato .premium-gratis-aviso-v78 :is(strong,small,span){color:#0f766e!important}
+body.cp-shell-active #pagina-painel-candidato :is(.emi-badge,.emi-local-reminders){background:#e8f5f1!important;color:#0f766e!important;border-color:#bbdbd1!important}
+body.cp-shell-active #pagina-painel-candidato .emi-candidate button{color:#0f766e!important;border-color:#bbdbd1!important}
+body.cp-shell-active #pagina-painel-candidato .emi-candidate button[data-action=join]{background:#63339b!important;color:#fff!important;border-color:#63339b!important}
+body.cp-shell-active #pagina-salvas .vaga-card{background:#fff!important;border-color:#d8e0e5!important}
+body.cp-shell-active #pagina-painel-candidato .em-candidate-inbox{color:#243247!important;border-color:#d8e0e5!important;background:#fff!important}
+body.cp-shell-active #pagina-painel-candidato .em-candidate-inbox h2{color:#243247!important}
+body.cp-shell-active #pagina-painel-candidato .em-candidate-inbox button{color:#0f766e!important;background:#e8f5f1!important;border-color:#bbdbd1!important}
+body.cp-shell-active #pagina-painel-candidato .em-inbox-entry{border-color:#d8e0e5!important}
 `;document.head.appendChild(style);
  window.addEventListener('load',function(){setTimeout(setup,1200)},{once:true});
 })();
