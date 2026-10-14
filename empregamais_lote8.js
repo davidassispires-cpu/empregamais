@@ -672,6 +672,16 @@ window.renderAderenciaPremiumTeaserV96=render;
 #cvResumeWizard .cv-current-role{display:flex!important;align-items:center;gap:9px;margin-top:10px;color:#7540ae;font:500 13px/1.5 Inter,Arial,sans-serif;cursor:pointer}
 #cvResumeWizard .cv-current-role input.e-current{width:17px!important;height:17px!important;min-height:0!important;padding:0!important;margin:0!important;accent-color:#7540ae}
 #cvResumeWizard input.e4:disabled{background:#f3eef9!important;color:#8c7c9c!important}
+
+/* Experiências compactas: dois formulários por linha. */
+#cvResumeWizard #cvExperienciasV84{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:20px!important;align-items:start!important}
+#cvResumeWizard #cvExperienciasV84 .experiencia-v84{width:100%!important;min-width:0!important;margin:0!important;padding:18px!important;box-sizing:border-box!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:14px!important;border:1px solid #e1d9eb!important;border-radius:12px!important;background:#faf9fc!important}
+#cvResumeWizard #cvExperienciasV84 .experiencia-v84>label:has(.e1),#cvResumeWizard #cvExperienciasV84 .experiencia-v84>label:has(.e2),#cvResumeWizard #cvExperienciasV84 .experiencia-v84>label:has(.e3),#cvResumeWizard #cvExperienciasV84 .experiencia-v84>label:has(.e4){grid-column:span 1!important;min-width:0!important}
+#cvResumeWizard #cvExperienciasV84 .experiencia-v84>.cv-activities-wide,#cvResumeWizard #cvExperienciasV84 .experiencia-v84>.cv-role-duration{grid-column:1/-1!important}
+#cvResumeWizard #cvExperienciasV84 textarea.e5{min-height:155px!important}
+#cvResumeWizard #cvExperienciasV84 .cv-role-duration{padding:13px 15px!important}#cvResumeWizard #cvExperienciasV84 .e-duration{font-size:19px!important;margin:8px 0!important}
+#cvResumeWizard .cv85-section{outline:none!important;box-shadow:none!important}
+@media(max-width:800px){#cvResumeWizard #cvExperienciasV84{grid-template-columns:1fr!important}}
 `;document.head.appendChild(style);
  window.addEventListener('load',function(){setTimeout(setup,1200)},{once:true});
 })();
