@@ -185,7 +185,7 @@
   var names=['Candidaturas','Entrevistas','Vagas salvas','Mensagens'],icons=['document','calendar','bookmark','message'],actions=['applications','interviews','saved','messages'];
   Array.from(summary.children).forEach(function(el,i){if(i>3||el.tagName==='BUTTON')return;var old=el.querySelector('strong'),number=old?old.textContent:'0',button=document.createElement('button');button.type='button';button.dataset.cpAction=actions[i];button.className='cp-overview-card';button.innerHTML='<span class="cp-overview-icon">'+icon(icons[i])+'</span><div><strong'+(i===3?' data-home-message-count':'')+'>'+escape(number)+'</strong><span>'+names[i]+'</span></div><span class="cp-overview-arrow">'+icon('arrow')+'</span>';el.replaceWith(button);});
   var counter=summary.querySelector('[data-home-message-count]'),unread=Number(counter&&counter.textContent)||0,bell=document.querySelector('#cpCandidateHeader .cp-notifications');
-  if(bell){bell.querySelector('.cp-notification-dot').hidden=unread<1;bell.setAttribute('aria-label',unread>0?'Abrir mensagens: '+unread+' não lida'+(unread===1?'':'s'):'Abrir mensagens');}
+  if(bell){bell.querySelector('.cp-notification-dot').hidden=unread<1;bell.setAttribute('aria-label',unread>0?'Abrir mensagens: '+unread+' recebida'+(unread===1?'':'s'):'Abrir mensagens');}
  }
  function enhanceRecommendations(){
   var c=profile();container.querySelectorAll('.em-personal-grid [data-cp-job-id]').forEach(function(card){
