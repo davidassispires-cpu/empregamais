@@ -599,7 +599,7 @@ SOFTWARE.
    function sync(){var selected=Array.from(box.querySelectorAll('input:checked')).map(function(input){return input.value}).filter(Boolean),text=selected.join(', ');var option=Array.from(select.options).find(function(option){return option.value===text});if(!option){option=new Option(text||'Sem preferência',text);select.appendChild(option)}select.value=text;box.querySelectorAll('label').forEach(function(label){label.classList.toggle('selected',label.querySelector('input').checked)});select.dispatchEvent(new Event('change',{bubbles:true}))}
    [{value:'',text:'Sem preferência'}].concat(original).forEach(function(option){var label=document.createElement('label');var input=document.createElement('input');input.type='checkbox';input.value=option.value;input.checked=option.value?values.includes(option.value):!values.length;var caption=document.createElement('span');caption.textContent=option.text;label.append(input,caption);box.appendChild(label);input.addEventListener('change',function(){if(!this.value&&this.checked)box.querySelectorAll('input').forEach(function(other){if(other!==input)other.checked=false});else if(this.value&&this.checked)box.querySelector('input[value=""]').checked=false;if(!box.querySelector('input:checked'))box.querySelector('input[value=""]').checked=true;sync()})});sync();
   });
-  var objective=el('cvObjetivoV84');if(objective){objective.maxLength=600;objective.placeholder='Ex.: Assistente administrativo, Auxiliar de escritório';var hint=objective.closest('label').querySelector('small');if(!hint){hint=document.createElement('small');objective.closest('label').appendChild(hint)}hint.textContent='Informe os cargos desejados. Use Enter ou vírgula para separar; ao sair do campo, o último cargo será confirmado.';
+  var objective=el('cvObjetivoV84');if(objective){objective.maxLength=600;objective.placeholder='Ex.: Assistente administrativo, Auxiliar de escritório';var hint=objective.closest('label').querySelector('small');if(!hint){hint=document.createElement('small');objective.closest('label').appendChild(hint)}hint.textContent='Informe um ou mais cargos desejados. Separe com vírgula ou Enter.';
     function normalizeRoles(raw){var seen=new Set();return String(raw||'').split(/[,;\n]+/).map(function(role){return role.trim().replace(/\s+/g,' ')}).filter(function(role){var key=role.toLocaleLowerCase('pt-BR');if(!role||seen.has(key))return false;seen.add(key);return true}).join(', ')}
     objective.addEventListener('keydown',function(event){if(event.key==='Enter'&&!event.isComposing){event.preventDefault();this.value=normalizeRoles(this.value);if(this.value)this.value+=', ';this.dispatchEvent(new Event('input',{bubbles:true}))}});
     objective.addEventListener('blur',function(){this.value=normalizeRoles(this.value);this.dispatchEvent(new Event('change',{bubbles:true}))});
@@ -741,6 +741,11 @@ SOFTWARE.
 #cvResumeWizard .cv-step-nav button{flex:1 0 auto!important;white-space:nowrap!important;gap:6px!important;padding:8px 5px!important;font-size:11px!important}
 #cvResumeWizard .cv-step-nav span{width:26px!important;height:26px!important;flex-basis:26px!important}
 #cvResumeWizard .curriculo-grid-v84{grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:15px 20px!important}
+#cvResumeWizard .curriculo-grid-v84.cv-objective-grid{grid-template-columns:minmax(0,2fr) minmax(0,1fr)!important;gap:28px!important}
+#cvResumeWizard .cv-objective-grid>.curriculo-campo-v84{min-width:0!important}
+#pagina-curriculo #cvResumeWizard .cv-objective-grid .cv-professional-field{margin-top:10px}
+#cvResumeWizard .cv-objective-roles>small{display:block!important;margin-top:10px!important;line-height:1.65!important}
+@media(max-width:760px){#cvResumeWizard .curriculo-grid-v84.cv-objective-grid{grid-template-columns:minmax(0,1fr)!important;gap:24px!important}}
 #cvResumeWizard .curriculo-full-v84{grid-column:1/-1!important}
 #cvResumeWizard label:has(#cvRuaAligned),#cvResumeWizard label:has(#cvComplementoAligned){grid-column:span 2!important}
 #cvResumeWizard label:has(#cvCidadePessoalV87){display:none!important}
