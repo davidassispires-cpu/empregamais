@@ -78,12 +78,12 @@ test('candidate process details escape content and exclude internal notes',()=>{
  assert.match(html,/&lt;script&gt;/);
  assert.doesNotMatch(html,/<script>|PRIVATE_RECRUITER_NOTE|PRIVATE_HISTORY/);
  assert.match(html,/Sem confirmação desta etapa/);
- assert.match(html,/data da mudança de etapa ainda não foi disponibilizada/);
+ assert.doesNotMatch(html,/Histórico da candidatura/);
 });
 test('rejected applications show an explicit ending without marking future stages complete',()=>{
  const html=controller().detalhesPublicos({status:'Reprovado',data:'2026-10-14',statusAtualizadoEm:'2026-10-15'});
  assert.match(html,/Processo encerrado para esta candidatura/);
- assert.match(html,/15\/10\/2026/);
+ assert.doesNotMatch(html,/Histórico da candidatura/);
  assert.doesNotMatch(html,/class="is-current"/);
 });
 
