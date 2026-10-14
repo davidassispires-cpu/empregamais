@@ -634,7 +634,14 @@ SOFTWARE.
  var level=row.querySelector('.f3');if(level)level.addEventListener('change',function(){if(['Ensino médio','Ensino fundamental'].includes(level.value)){courseSelect.value=level.value;choose()}});
  }
 }row.querySelectorAll('.e3,.e4,.f5').forEach(function(input){var holder=document.createElement('span');holder.className='cv-date-control';input.parentNode.insertBefore(holder,input);holder.appendChild(input);var icon=document.createElementNS('http://www.w3.org/2000/svg','svg');icon.setAttribute('viewBox','0 0 24 24');icon.setAttribute('aria-hidden','true');icon.innerHTML='<rect x="3" y="5" width="18" height="16" rx="2"/><path d="M7 3v4M17 3v4M3 10h18M7 14h2M12 14h2M7 17h2"/>';holder.appendChild(icon)})})}
-  polishRows();['cvExperienciasV84','cvFormacoesV84'].forEach(function(id){var box=el(id);if(box)new MutationObserver(function(records){if(records.some(function(record){return Array.from(record.addedNodes).some(function(node){return node.nodeType===1&&node.matches('.experiencia-v84,.formacao-v84')})}))polishRows()}).observe(box,{childList:true})});
+  polishRows();applyProfessionalFields();['cvExperienciasV84','cvFormacoesV84'].forEach(function(id){var box=el(id);if(box)new MutationObserver(function(records){if(records.some(function(record){return Array.from(record.addedNodes).some(function(node){return node.nodeType===1&&node.matches('.experiencia-v84,.formacao-v84')})})){polishRows();applyProfessionalFields()}}).observe(box,{childList:true})});
+  function applyProfessionalFields(){
+   var icons={calendar:'<rect x="3" y="5" width="18" height="16" rx="2"/><path d="M7 3v4M17 3v4M3 10h18"/>',building:'<path d="M4 21V3h11v18M15 9h5v12M2 21h20M7 7h2M7 11h2M7 15h2"/>',briefcase:'<rect x="3" y="7" width="18" height="14" rx="2"/><path d="M8 7V3h8v4M3 12h18"/>',user:'<circle cx="12" cy="8" r="4"/><path d="M4 21v-2a8 8 0 0 1 16 0v2"/>',mail:'<rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 6 9 7 9-7"/>',pin:'<path d="M20 10c0 6-8 11-8 11S4 16 4 10a8 8 0 1 1 16 0Z"/><circle cx="12" cy="10" r="2.5"/>',education:'<path d="m2 9 10-5 10 5-10 5-10-5M6 11v6c4 3 8 3 12 0v-6M22 9v8"/>',phone:'<path d="M5 3h4l2 5-3 2c2 4 3 5 6 6l2-3 5 2v4c0 3-6 3-12-3S2 3 5 3Z"/>'};
+   function makeIcon(name){var svg=document.createElementNS('http://www.w3.org/2000/svg','svg');svg.setAttribute('viewBox','0 0 24 24');svg.setAttribute('aria-hidden','true');svg.innerHTML=icons[name]||icons.briefcase;return svg}
+   cv.querySelectorAll('label').forEach(function(label){label.style.setProperty('font-family','Montserrat, Arial, sans-serif','important');label.style.setProperty('font-weight','650','important')});
+   cv.querySelectorAll('h3,.cv-entry-title').forEach(function(title){title.style.setProperty('font-family','Montserrat, Arial, sans-serif','important');title.style.setProperty('font-weight','750','important');if(title.classList.contains('cv-entry-title')&&!title.querySelector('svg'))title.prepend(makeIcon(title.closest('.formacao-v84')?'education':'briefcase'))});
+   cv.querySelectorAll('input:not([type=hidden]):not([type=checkbox]):not([type=radio]),select,textarea').forEach(function(input){input.style.setProperty('font-family','Montserrat, Arial, sans-serif','important');input.style.setProperty('font-weight','400','important');if(input.tagName==='TEXTAREA'||input.closest('.cv-date-control,.cv-professional-field'))return;var name=input.classList.contains('e1')||input.classList.contains('f1')?'building':input.classList.contains('f2')||input.classList.contains('f3')||input.classList.contains('cv-course-selector')?'education':/Email/.test(input.id)?'mail':/Telefone/.test(input.id)?'phone':/Cidade|Cep|Rua|Bairro|Estado|Uf/.test(input.id)?'pin':/Nome/.test(input.id)?'user':'briefcase';var wrap=document.createElement('span');wrap.className='cv-professional-field';input.parentNode.insertBefore(wrap,input);wrap.append(makeIcon(name),input)});
+  }
   show(0);
  }
  var style=document.createElement('style');style.textContent=`
@@ -796,6 +803,13 @@ SOFTWARE.
 #pagina-curriculo #cvResumeWizard .cv-entry-title{display:block!important;font-weight:750!important;color:#171d43!important}
 #pagina-curriculo #cvResumeWizard .cv85-section-head h3{font-weight:750!important;color:#171d43!important}
 #pagina-curriculo #cvResumeWizard .cv85-number{display:grid!important;place-items:center!important;border-radius:9px!important;background:#f1eafa!important;font-weight:700!important}
+
+#pagina-curriculo #cvResumeWizard .cv-professional-field{position:relative;display:block;width:100%;margin-top:6px}
+#pagina-curriculo #cvResumeWizard .cv-professional-field>svg{position:absolute;left:12px;top:50%;transform:translateY(-50%);width:18px;height:18px;fill:none;stroke:#8666a9;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round;pointer-events:none;z-index:1}
+#pagina-curriculo #cvResumeWizard .cv-professional-field>input,#pagina-curriculo #cvResumeWizard .cv-professional-field>select{padding-left:39px!important;margin-top:0!important}
+#pagina-curriculo #cvResumeWizard .cv-entry-title{display:flex!important;align-items:center;gap:10px;margin-bottom:7px;font-family:Montserrat,Arial,sans-serif!important;font-weight:750!important}
+#pagina-curriculo #cvResumeWizard .cv-entry-title svg{width:22px;height:22px;fill:none;stroke:#7540ae;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+#pagina-curriculo #cvResumeWizard .cv-date-control svg{display:block!important;width:19px!important;height:19px!important;stroke:#7540ae!important;stroke-width:1.8!important}
 `;document.head.appendChild(style);
  window.addEventListener('load',function(){setTimeout(setup,1200)},{once:true});
 })();
