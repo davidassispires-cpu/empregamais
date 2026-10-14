@@ -59,12 +59,14 @@
   }
   var balance=null,pending=null,lastToken='',lastAt=0;
   async function rpc(name,payload) {
+    if(root.EM_DEMO_PANEL)throw Error('A demonstração não realiza contratações nem acessa contas reais.');
     var token=root.sessionStorage&&root.sessionStorage.getItem('empregaMaisSupabaseAccessToken');
     if(!token)throw Error('Entre na conta da empresa para confirmar esta contratação.');
     var response=await root.fetch('https://mkezlcewyengejdmtppl.supabase.co/rest/v1/rpc/'+name,{method:'POST',headers:{'Content-Type':'application/json',apikey:'sb_publishable_8YnXpzGX8zj-tvzvcMYdyw_FVBhQutR',Authorization:'Bearer '+token},body:JSON.stringify(payload||{}),signal:AbortSignal.timeout(20000)});
     var data=await response.json();if(!response.ok)throw Error(data.message||'Não foi possível consultar o saldo da empresa.');return data;
   }
   async function refreshBalance(force) {
+    if(root.EM_DEMO_PANEL){balance=null;return null;}
     var token=root.sessionStorage&&root.sessionStorage.getItem('empregaMaisSupabaseAccessToken');if(!token){balance=null;lastToken='';return null;}
     if(token!==lastToken){balance=null;lastAt=0;lastToken=token;}
     if(!force&&balance&&Date.now()-lastAt<30000)return balance;if(pending)return pending;
