@@ -158,6 +158,29 @@
   .cp-process-body{padding-top:18px;color:#5f536d;font:400 13px/1.6 Inter,Arial,sans-serif}.cp-process-note{padding:16px 18px;border-radius:10px;background:#f7f2fc;border:1px solid #e7dcf3}.cp-process-note strong{color:#51258a}.cp-process-note p{margin:4px 0 0}
   .cp-process-grid{display:grid;grid-template-columns:1fr 1fr;gap:22px;margin-top:22px}.cp-process-grid section{min-width:0}.cp-process-grid h4{margin:0 0 14px;font-size:14px;color:#30213f}.cp-process-grid p{margin:0 0 10px;overflow-wrap:anywhere}.cp-process-grid small{font-size:11px;color:#8b7f96}.cp-process-steps{list-style:none;margin:0;padding:0}.cp-process-steps li{display:flex;gap:12px;padding:0 0 16px;position:relative}.cp-process-steps li>span{display:grid;place-items:center;flex:0 0 30px;height:30px;border-radius:50%;background:#f4f1f7;color:#9c90aa}.cp-process-steps svg{width:16px;height:16px}.cp-process-steps strong,.cp-process-steps small{display:block}.cp-process-steps strong{font-size:12px}.cp-process-steps .is-current>span{background:#62329b;color:#fff}.cp-process-steps .is-current strong{color:#62329b}.cp-process-grid dl{display:grid;grid-template-columns:auto 1fr;gap:10px 18px;margin:0}.cp-process-grid dt{color:#8b7f96}.cp-process-grid dd{margin:0;overflow-wrap:anywhere;font-weight:600}.cp-process-history{grid-column:1/-1;border-top:1px solid #eee8f4;padding-top:18px}.cp-process-history ul{list-style:none;padding:0;margin:0}.cp-process-history li{display:flex;justify-content:space-between;gap:15px;margin:0 0 12px}.cp-process-history li strong{font-size:12px}.cp-process-history li span{font-size:11px}.cp-process-ended{color:#9d4052}
   @media(max-width:600px){#pagina-candidaturas>.container-menor{width:calc(100% - 28px)!important;padding-top:22px!important}.cp-applications-intro h1{font-size:24px}.cp-process-grid{grid-template-columns:1fr}.cp-process-history{grid-column:auto}#pagina-candidaturas .candidatura-item{padding:17px!important}.cp-process-grid dl{grid-template-columns:1fr;gap:3px}.cp-process-grid dd{margin-bottom:9px}}
+
+  @media(min-width:900px){
+   dialog.cp-process-modal{width:min(1160px,calc(100vw - 48px));max-height:none;overflow:visible;border-radius:16px}
+   .cp-process-modal .cp-process-modal-header{position:static;padding:18px 24px 14px;align-items:center}
+   .cp-process-modal .cp-process-modal-header h2{font-size:21px;margin:5px 0}
+   .cp-process-modal .cp-process-body{padding:16px 24px;font-size:12px;line-height:1.5}
+   .cp-process-modal .cp-process-note{padding:10px 14px}
+   .cp-process-modal .cp-process-grid{grid-template-columns:1fr 1fr 1fr;gap:16px 22px;margin-top:16px}
+   .cp-process-modal .cp-process-grid>section:first-child{grid-column:1/-1;padding-bottom:12px;border-bottom:1px solid #eee8f4}
+   .cp-process-modal .cp-process-grid h4{margin-bottom:9px;font-size:13px}
+   .cp-process-modal .cp-process-steps{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:12px}
+   .cp-process-modal .cp-process-steps li{display:flex;flex-direction:column;gap:7px;padding:0;align-items:flex-start}
+   .cp-process-modal .cp-process-steps li>span{flex:0 0 28px;width:28px;height:28px}
+   .cp-process-modal .cp-process-steps strong{font-size:11px;line-height:1.4}
+   .cp-process-modal .cp-process-steps small{font-size:10px;line-height:1.4}
+   .cp-process-modal .cp-process-grid>section:first-child>small{display:block;margin-top:8px}
+   .cp-process-modal .cp-process-grid dl{gap:6px 12px;font-size:11px}
+   .cp-process-modal .cp-process-grid p{margin-bottom:7px}
+   .cp-process-modal .cp-process-history{padding-top:12px}
+   .cp-process-modal .cp-process-history ul{display:flex;gap:28px;flex-wrap:wrap}
+   .cp-process-modal .cp-process-history li{display:flex;flex-direction:column;gap:3px;margin-bottom:6px}
+   .cp-process-modal .cp-process-modal-footer{padding:10px 24px}
+  }
   @media(prefers-reduced-motion:reduce){#pagina-painel-candidato .cp-profile .cp-stage-card{transition:none}}
   `;document.head.appendChild(style);
   window.addEventListener('popstate',refresh);window.addEventListener('storage',refresh);document.addEventListener('empregamais:candidato-sincronizado',refresh);document.addEventListener('empregamais:candidaturas-sincronizadas',refresh);refresh();
