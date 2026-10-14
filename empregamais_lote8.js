@@ -475,7 +475,7 @@ window.renderAderenciaPremiumTeaserV96=render;
   var line=document.createElement('p');line.className='cv-summary-match';line.textContent=[value('cvAreaV84'),value('cvEscolaridadeAligned'),value('cvExperienciaAligned'),value('cvModalidadeV85'),value('cvCidadeV85'),value('cvEstadoAligned'),value('cvContratoAligned'),value('cvJornadaAligned')].filter(Boolean).join(' · ');target.appendChild(line);
  }
  function show(n){
-  current=Math.max(0,Math.min(steps.length-1,n));steps.forEach(function(step,i){step.hidden=i!==current});ws.querySelectorAll('.cv-step-nav button').forEach(function(button,i){button.setAttribute('aria-current',i===current?'step':'false');button.classList.toggle('complete',i<current)});
+  current=Math.max(0,Math.min(steps.length-1,n));var editor=ws.querySelector('.cv86-editor');if(editor)editor.scrollTop=0;steps.forEach(function(step,i){step.hidden=i!==current});ws.querySelectorAll('.cv-step-nav button').forEach(function(button,i){button.setAttribute('aria-current',i===current?'step':'false');button.classList.toggle('complete',i<current)});
   var g=guide[current];el('cvGuideTitle').textContent=g[1];el('cvGuideCopy').textContent=g[2];el('cvGuideExample').textContent=g[3];el('cvStepCounter').textContent='Etapa '+(current+1)+' de '+steps.length;el('cvWizardBack').disabled=current===0;el('cvWizardNext').hidden=current===steps.length-1;
   var footer=cv.querySelector('.cv85-footer');if(footer)footer.hidden=current!==steps.length-1;if(current===steps.length-1)summary();
  }
@@ -489,7 +489,7 @@ window.renderAderenciaPremiumTeaserV96=render;
  function setup(){
   cv=el('curriculoOnlineV84');var page=el('pagina-curriculo');if(!cv||!page||el('cvResumeWizard'))return;
   ws=el('cvWorkspaceV86');if(!ws){ws=document.createElement('div');ws.id='cvWorkspaceV86';cv.parentNode.insertBefore(ws,cv);ws.appendChild(cv)}ws.id='cvResumeWizard';ws.classList.add('cv-wizard');
-  var oldSide=ws.querySelector('.cv86-preview-col');if(oldSide){oldSide.hidden=true;oldSide.classList.add('cv-old-preview')}
+  var oldSide=ws.querySelector('.cv86-preview-col');if(oldSide){oldSide.hidden=true;oldSide.classList.add('cv-old-preview');var previewHolder=document.createElement('div');previewHolder.className='cv-hidden-preview-source';previewHolder.hidden=true;previewHolder.appendChild(oldSide);cv.appendChild(previewHolder)}
   var destination=page.querySelector('.container-menor');if(!destination)return;destination.prepend(ws);
   var oldUpload=destination.querySelector('.curriculo-box');if(oldUpload){var upload=document.createElement('details');upload.className='cv-attachment-option';var title=document.createElement('summary');title.textContent='Também deseja anexar um currículo em arquivo?';upload.append(title,oldUpload);destination.appendChild(upload)}
   var heading=page.querySelector('.page-header h1'),sub=page.querySelector('.page-header p');if(heading)heading.textContent='Criar currículo online';if(sub)sub.textContent='Preencha as etapas e revise seu currículo antes de salvar.';
@@ -521,6 +521,13 @@ window.renderAderenciaPremiumTeaserV96=render;
 @media(max-width:950px){#cvResumeWizard.cv-wizard{grid-template-columns:minmax(0,1fr) 270px!important;gap:16px!important}.cv-context-guide{padding:18px}}
 @media(max-width:760px){#cvResumeWizard.cv-wizard{grid-template-columns:1fr!important}.cv-context-guide{position:static}#cvResumeWizard .cv-step-nav{grid-template-columns:repeat(2,minmax(0,1fr))}#cvResumeWizard #curriculoOnlineV84{padding:18px!important}#cvResumeWizard .curriculo-grid-v84{grid-template-columns:1fr!important}}
 @media(max-width:450px){.cv-wizard-actions{flex-wrap:wrap}.cv-wizard-actions>span{width:100%}.cv-wizard-actions button{flex:1}}
+
+/* Duas colunas estáveis: a rolagem pertence ao editor. */
+#cvResumeWizard.cv-wizard>.cv-context-guide{grid-column:2!important;grid-row:1!important;position:static!important;align-self:start!important;max-height:100%;box-sizing:border-box}
+#cvResumeWizard.cv-wizard>.cv86-editor{grid-column:1!important;grid-row:1!important;height:100%!important;min-height:0!important;overflow-y:auto!important;overflow-x:hidden!important;overscroll-behavior:contain;scrollbar-gutter:stable;padding-right:6px;box-sizing:border-box}
+#cvResumeWizard.cv-wizard{height:calc(100dvh - 180px)!important;min-height:560px!important;align-items:start!important}
+#cvResumeWizard .cv-hidden-preview-source,#cvResumeWizard .cv-old-preview,#cvResumeWizard.cv-wizard>.cv86-preview-col{display:none!important}
+@media(max-width:760px){#cvResumeWizard.cv-wizard{height:auto!important;min-height:0!important}#cvResumeWizard.cv-wizard>.cv86-editor{height:auto!important;overflow:visible!important;padding-right:0}#cvResumeWizard.cv-wizard>.cv-context-guide{display:none!important}}
 `;document.head.appendChild(style);
  window.addEventListener('load',function(){setTimeout(setup,1200)},{once:true});
 })();
