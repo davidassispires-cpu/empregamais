@@ -492,6 +492,17 @@ window.renderAderenciaPremiumTeaserV96=render;
   var oldSide=ws.querySelector('.cv86-preview-col');if(oldSide){oldSide.hidden=true;oldSide.classList.add('cv-old-preview');var previewHolder=document.createElement('div');previewHolder.className='cv-hidden-preview-source';previewHolder.hidden=true;previewHolder.appendChild(oldSide);cv.appendChild(previewHolder)}
   var destination=page.querySelector('.container-menor');if(!destination)return;destination.prepend(ws);
   var oldUpload=destination.querySelector('.curriculo-box');if(oldUpload){var upload=document.createElement('details');upload.className='cv-attachment-option';var title=document.createElement('summary');title.textContent='Também deseja anexar um currículo em arquivo?';upload.append(title,oldUpload);destination.appendChild(upload)}
+  var hero=cv.querySelector('.cv85-hero');if(hero){
+    hero.classList.add('cv-purple-hero');destination.insertBefore(hero,ws);
+    hero.querySelector('.cv85-kicker').innerHTML='CURRÍCULO PROFISSIONAL <span>GRATUITO</span>';
+    hero.querySelector('h2').textContent='Criar currículo online';
+    hero.querySelector('.cv85-hero-copy p').innerHTML='Preencha as etapas e revise seu currículo antes de salvar.<br>Suas informações ajudam a comparar seu perfil com os requisitos das vagas.';
+    hero.querySelector('.cv85-score>span').textContent='do perfil preenchido';
+    var back=document.createElement('button');back.type='button';back.className='cv-hero-back';back.innerHTML='<span aria-hidden="true">←</span> Voltar ao meu painel';back.onclick=function(){window.irPara('painel-candidato')};hero.querySelector('.cv85-hero-copy').prepend(back);
+    function syncRing(){var score=el('cvProgressoV85');if(score)hero.style.setProperty('--cv-progress',score.textContent.trim())}syncRing();new MutationObserver(syncRing).observe(el('cvProgressoV85'),{childList:true,characterData:true,subtree:true});
+    var oldHeader=page.querySelector('.page-header');if(oldHeader)oldHeader.hidden=true;
+    ['.cv85-progress','.cv85-info'].forEach(function(selector){var old=cv.querySelector(selector);if(old)old.hidden=true});
+  }
   var heading=page.querySelector('.page-header h1'),sub=page.querySelector('.page-header p');if(heading)heading.textContent='Criar currículo online';if(sub)sub.textContent='Preencha as etapas e revise seu currículo antes de salvar.';
   steps=Array.from(cv.querySelectorAll(':scope > .cv85-section'));if(steps.length!==7)return;
   var review=document.createElement('section');review.className='cv85-section cv-review-step';review.innerHTML='<div class="cv85-section-head"><div class="cv85-number">08</div><div><span>REVISÃO</span><h3>Resumo do seu currículo</h3><p>Confira todas as informações antes de salvar.</p></div></div><div id="cvFinalSummary" class="cv86-paper"></div>';cv.insertBefore(review,cv.querySelector('.cv85-footer'));steps.push(review);
@@ -528,6 +539,22 @@ window.renderAderenciaPremiumTeaserV96=render;
 #cvResumeWizard.cv-wizard{height:calc(100dvh - 180px)!important;min-height:560px!important;align-items:start!important}
 #cvResumeWizard .cv-hidden-preview-source,#cvResumeWizard .cv-old-preview,#cvResumeWizard.cv-wizard>.cv86-preview-col{display:none!important}
 @media(max-width:760px){#cvResumeWizard.cv-wizard{height:auto!important;min-height:0!important}#cvResumeWizard.cv-wizard>.cv86-editor{height:auto!important;overflow:visible!important;padding-right:0}#cvResumeWizard.cv-wizard>.cv-context-guide{display:none!important}}
+
+/* En-tête roxo integrado: referência aprovada. */
+#pagina-curriculo>.page-header[hidden]{display:none!important}
+#pagina-curriculo .cv-purple-hero{position:relative;isolation:isolate;display:grid!important;grid-template-columns:minmax(0,1fr) 210px!important;gap:24px!important;align-items:center!important;background:linear-gradient(110deg,#42216f,#7540ae 85%,#8755c5)!important;border-radius:14px!important;border:0!important;padding:28px 38px!important;margin:0 0 24px!important;color:#fff!important;overflow:hidden!important;box-shadow:none!important;min-height:230px!important;box-sizing:border-box!important}
+#pagina-curriculo .cv-purple-hero:after{content:'';position:absolute;z-index:-1;width:450px;height:450px;border:1px solid #ffffff22;border-radius:50%;right:-300px;bottom:-300px;box-shadow:0 0 0 60px #ffffff09}
+#pagina-curriculo .cv-purple-hero .cv85-hero-copy{min-width:0!important}#pagina-curriculo .cv-purple-hero .cv85-kicker{font:600 12px Inter,Arial,sans-serif!important;color:#e8d7ff!important;letter-spacing:1.3px!important;margin:22px 0 10px!important;display:flex;align-items:center;gap:16px}
+#pagina-curriculo .cv-purple-hero .cv85-kicker span{font:700 11px Inter,Arial,sans-serif!important;border:0!important;color:white!important;background:#9867ce70!important;border-radius:20px!important;padding:7px 13px!important;letter-spacing:.5px!important}
+#pagina-curriculo .cv-purple-hero h2{font:750 clamp(26px,3vw,40px)/1.2 Inter,Arial,sans-serif!important;color:#fff!important;margin:0 0 14px!important;letter-spacing:-.8px!important}
+#pagina-curriculo .cv-purple-hero .cv85-hero-copy p{font:400 15px/1.7 Inter,Arial,sans-serif!important;color:#f4ebff!important;margin:0!important;max-width:850px!important}
+#pagina-curriculo .cv-purple-hero .cv-hero-back{display:inline-flex;gap:10px;align-items:center;border:1px solid #c8a4ed99;border-radius:7px;background:#ffffff08;color:white;padding:9px 15px;font:600 13px Inter,Arial,sans-serif;cursor:pointer}
+#pagina-curriculo .cv-purple-hero .cv85-score{width:142px!important;height:142px!important;border:0!important;border-radius:50%!important;display:flex!important;flex-direction:column!important;justify-content:center!important;align-items:center!important;gap:6px!important;text-align:center!important;justify-self:center!important;background:radial-gradient(circle at center,#6536a1 62%,transparent 63%),conic-gradient(#ebd9ff var(--cv-progress,0%),#ffffff22 0)!important;box-shadow:none!important;flex-shrink:0!important}
+#pagina-curriculo .cv-purple-hero .cv85-score strong{font:750 28px Inter,Arial,sans-serif!important;color:#fff!important}#pagina-curriculo .cv-purple-hero .cv85-score>span{font:400 12px/1.4 Inter,Arial,sans-serif!important;color:#f4ebff!important;max-width:95px!important}
+#cvResumeWizard #curriculoOnlineV84>.cv85-progress,#cvResumeWizard #curriculoOnlineV84>.cv85-info{display:none!important}
+#cvResumeWizard .cv-step-nav{gap:10px!important;padding-bottom:24px!important}#cvResumeWizard .cv-step-nav button{border:0!important;background:transparent!important;padding:9px 6px!important;font-size:12px!important}#cvResumeWizard .cv-step-nav button[aria-current=step]{border-radius:25px!important;background:#f1e8fc!important}#cvResumeWizard .cv-step-nav span{width:30px!important;height:30px!important;flex-basis:30px!important}
+@media(max-width:760px){#pagina-curriculo .cv-purple-hero{grid-template-columns:minmax(0,1fr) 120px!important;padding:24px!important;gap:16px!important}#pagina-curriculo .cv-purple-hero .cv85-score{width:110px!important;height:110px!important}#pagina-curriculo .cv-purple-hero .cv85-hero-copy p{font-size:13px!important}#pagina-curriculo .cv-purple-hero .cv85-kicker{font-size:10px!important;letter-spacing:.5px!important;flex-wrap:wrap}}
+@media(max-width:480px){#pagina-curriculo .cv-purple-hero{grid-template-columns:1fr!important;padding:20px!important}#pagina-curriculo .cv-purple-hero .cv85-score{justify-self:start!important}#pagina-curriculo .cv-purple-hero h2{font-size:28px!important}}
 `;document.head.appendChild(style);
  window.addEventListener('load',function(){setTimeout(setup,1200)},{once:true});
 })();
