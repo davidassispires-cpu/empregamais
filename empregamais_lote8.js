@@ -554,7 +554,7 @@ window.renderAderenciaPremiumTeaserV96=render;
   cep.addEventListener('blur',function(){if(cep.value.replace(/\D/g,'').length===8)lookup().catch(function(){})});
   addressGrid.addEventListener('input',function(event){if(event.target.id!=='cvCepAligned')compose()});
   window.emResolveResumeCep=async function(){await lookup();if(cep.value.replace(/\D/g,'')!==lookedUp)throw Error('Confirme o CEP antes de salvar.');compose()};
-  function extraField(stepIndex,id,title,type,placeholder,options){var grid=steps[stepIndex].querySelector('.curriculo-grid-v84');if(!grid){grid=document.createElement('div');grid.className='curriculo-grid-v84';steps[stepIndex].appendChild(grid)}var label=document.createElement('label');label.className='curriculo-campo-v84'+(type==='textarea'?' curriculo-full-v84':'');label.textContent=title+' (opcional)';var input=document.createElement(type==='select'?'select':type==='textarea'?'textarea':'input');input.id=id;if(type==='select'){input.appendChild(new Option('Selecione',''));options.forEach(function(option){input.appendChild(new Option(option,option))})}else{input.type=type==='textarea'?'text':type;input.placeholder=placeholder||'';if(type==='textarea'){input.rows=3;input.maxLength=1800}}label.appendChild(input);grid.appendChild(label)}
+  function extraField(stepIndex,id,title,type,placeholder,options){var grid=steps[stepIndex].querySelector('.curriculo-grid-v84');if(!grid){grid=document.createElement('div');grid.className='curriculo-grid-v84';steps[stepIndex].appendChild(grid)}var label=document.createElement('label');label.className='curriculo-campo-v84'+(type==='textarea'?' curriculo-full-v84':'');label.textContent=title+' (opcional)';var input=document.createElement(type==='select'?'select':type==='textarea'?'textarea':'input');input.id=id;if(type==='select'){input.appendChild(new Option('Selecione',''));options.forEach(function(option){input.appendChild(new Option(option,option))})}else{if(type!=='textarea')input.type=type;input.placeholder=placeholder||'';if(type==='textarea'){input.rows=3;input.maxLength=1800}}label.appendChild(input);grid.appendChild(label)}
   extraField(4,'cvFerramentasExtra','Ferramentas e sistemas com nível','textarea','Uma ferramenta por linha. Ex.: Excel — avançado; CRM — intermediário; ERP — básico.');
   extraField(4,'cvCertificacoesExtra','Certificações: instituição, conclusão e validade','textarea','Ex.: Nome da certificação — instituição — conclusão MM/AAAA — validade MM/AAAA ou sem validade.');
   extraField(4,'cvIdiomasExtra','Idiomas e nível de domínio','textarea','Ex.: Inglês — intermediário; Espanhol — básico.');
@@ -607,7 +607,7 @@ window.renderAderenciaPremiumTeaserV96=render;
  courseSelect.value=course.value&&window.emResumeCourses.includes(course.value)?course.value:course.value?'__manual__':'';manual.hidden=courseSelect.value!=='__manual__';
  var level=row.querySelector('.f3');if(level)level.addEventListener('change',function(){if(['Ensino médio','Ensino fundamental'].includes(level.value)){courseSelect.value=level.value;choose()}});
  }
-}row.querySelectorAll('.e3,.e4').forEach(function(input){var holder=document.createElement('span');holder.className='cv-date-control';input.parentNode.insertBefore(holder,input);holder.appendChild(input);var icon=document.createElementNS('http://www.w3.org/2000/svg','svg');icon.setAttribute('viewBox','0 0 24 24');icon.setAttribute('aria-hidden','true');icon.innerHTML='<rect x="3" y="5" width="18" height="16" rx="2"/><path d="M7 3v4M17 3v4M3 10h18M7 14h2M12 14h2M7 17h2"/>';holder.appendChild(icon)})})}
+}row.querySelectorAll('.e3,.e4,.f5').forEach(function(input){var holder=document.createElement('span');holder.className='cv-date-control';input.parentNode.insertBefore(holder,input);holder.appendChild(input);var icon=document.createElementNS('http://www.w3.org/2000/svg','svg');icon.setAttribute('viewBox','0 0 24 24');icon.setAttribute('aria-hidden','true');icon.innerHTML='<rect x="3" y="5" width="18" height="16" rx="2"/><path d="M7 3v4M17 3v4M3 10h18M7 14h2M12 14h2M7 17h2"/>';holder.appendChild(icon)})})}
   polishRows();['cvExperienciasV84','cvFormacoesV84'].forEach(function(id){var box=el(id);if(box)new MutationObserver(function(records){if(records.some(function(record){return Array.from(record.addedNodes).some(function(node){return node.nodeType===1&&node.matches('.experiencia-v84,.formacao-v84')})}))polishRows()}).observe(box,{childList:true})});
   show(0);
  }
@@ -763,6 +763,13 @@ window.renderAderenciaPremiumTeaserV96=render;
 #cvResumeWizard .formacao-v84 input,#cvResumeWizard .formacao-v84 select{height:44px!important;min-height:44px!important;margin-top:6px!important;box-sizing:border-box!important}
 #cvResumeWizard .formacao-v84 .cv-manual-course-card{border:1px solid #e3d7f0;background:#f6f0fd;border-radius:8px;padding:10px 12px;margin-top:10px;font-size:11px;color:#7540ae}
 #cvResumeWizard .cv-manual-course-card strong{display:inline;font-size:11px}#cvResumeWizard .cv-manual-course-card button{border:0;background:transparent;color:#7540ae;font:600 11px Montserrat,Arial,sans-serif;padding:4px 8px;cursor:pointer}#cvResumeWizard .cv-manual-course[hidden]{display:none!important}
+
+#pagina-curriculo #cvResumeWizard .cv85-section[hidden]{display:none!important}
+#pagina-curriculo #cvResumeWizard .cv85-section:not([hidden]){display:block!important}
+#pagina-curriculo #cvResumeWizard .cv85-footer[hidden]{display:none!important}
+#pagina-curriculo #cvResumeWizard .cv-entry-title{display:block!important;font-weight:750!important;color:#171d43!important}
+#pagina-curriculo #cvResumeWizard .cv85-section-head h3{font-weight:750!important;color:#171d43!important}
+#pagina-curriculo #cvResumeWizard .cv85-number{display:grid!important;place-items:center!important;border-radius:9px!important;background:#f1eafa!important;font-weight:700!important}
 `;document.head.appendChild(style);
  window.addEventListener('load',function(){setTimeout(setup,1200)},{once:true});
 })();
