@@ -345,8 +345,15 @@
   }
   extra.hidden=false;
   enhanceMetrics();renderLatest();renderAlertCard();renderPracticeCard();enhanceRecommendations();enhanceInterview();
+  applyWorkspaceFont(container);applyWorkspaceFont(document.getElementById('cpCandidateHeader'));
  }
  function schedule(){if(scheduled)return;scheduled=true;requestAnimationFrame(function(){scheduled=false;mount();});}
+ function applyWorkspaceFont(scope){
+  if(!scope)return;
+  scope.querySelectorAll('h1,h2,h3,h4,p,span,small,strong,button,a,label,legend,input,textarea,dt,dd,li,summary').forEach(function(el){
+   if(el.style.getPropertyValue('font-family').indexOf('Open Sans')<0)el.style.setProperty('font-family','"Open Sans", Arial, sans-serif','important');
+  });
+ }
  function start(){
   page=document.getElementById('pagina-painel-candidato');if(!page)return;
   var css=document.getElementById('cp-preparation-styles');if(css)document.head.appendChild(css);
