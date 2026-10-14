@@ -627,3 +627,25 @@ html body #pagina-painel-candidato#pagina-painel-candidato.cp-enhanced :is(.cp-p
 html body #pagina-painel-candidato#pagina-painel-candidato.cp-enhanced .cp-panel .cp-secondary {
  border-color:#edf0f6!important;background:#f4f1fc!important;color:#6946bd!important;
 }
+
+/* Candidate navigation groups. */
+html body.cp-shell-active #cpCandidateHeader .cp-nav-section-label {
+ color:#667594!important;font-size:10px!important;font-weight:650!important;
+ padding:8px 12px 10px;letter-spacing:.05em!important;
+}
+html body.cp-shell-active #cpCandidateHeader .cp-nav-section-label:not(:first-child) {
+ border-top:1px solid #edf0f6;margin-top:16px;padding-top:20px;
+}
+@media(min-width:1201px){
+ html body #pagina-painel-candidato#pagina-painel-candidato.cp-enhanced .cp-profile-identity {
+ grid-template-columns:100px minmax(0,1.2fr) minmax(210px,1fr)!important;
+ }
+}
+@media(max-width:850px){
+ html body.cp-shell-active #cpCandidateHeader .cp-nav-section-label {
+ display:flex;align-items:center;flex:0 0 auto;white-space:nowrap;padding:6px 10px!important;
+ }
+ html body.cp-shell-active #cpCandidateHeader .cp-nav-section-label:not(:first-child) {
+ border-top:0;border-left:1px solid #e4e8f2;margin:0 0 0 8px;padding-left:16px!important;
+ }
+}
