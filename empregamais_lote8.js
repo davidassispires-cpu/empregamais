@@ -864,6 +864,41 @@ SOFTWARE.
 
 #pagina-curriculo #cvResumeWizard .cv-professional-assistant{display:none!important}
 #pagina-curriculo #cvResumeWizard .cv-needs-help{box-shadow:none!important;border-color:#ded5e9!important}
+
+/* Paleta aprovada: roxo principal, teal nos apoios e grafite nos textos. */
+#pagina-curriculo #cvResumeWizard{color:#243247}
+#pagina-curriculo #cvResumeWizard .cv-professional-field>svg,
+#pagina-curriculo #cvResumeWizard .cv-entry-title svg,
+#pagina-curriculo #cvResumeWizard .cv-date-control svg{stroke:#0f766e!important}
+#pagina-curriculo #cvResumeWizard .cv85-number{background:#e8f5f1!important;color:#0f766e!important}
+#pagina-curriculo #cvResumeWizard .cv85-section-head h3,
+#pagina-curriculo #cvResumeWizard .cv-entry-title,
+#pagina-curriculo #cvResumeWizard .curriculo-campo-v84,
+#pagina-curriculo #cvResumeWizard .experiencia-v84>label,
+#pagina-curriculo #cvResumeWizard .formacao-v84>label{color:#243247!important}
+#pagina-curriculo #cvResumeWizard input,
+#pagina-curriculo #cvResumeWizard select,
+#pagina-curriculo #cvResumeWizard textarea{color:#243247!important;background:#fff!important;border-color:#d8e0e5!important}
+#pagina-curriculo #cvResumeWizard input:focus,
+#pagina-curriculo #cvResumeWizard select:focus,
+#pagina-curriculo #cvResumeWizard textarea:focus{border-color:#63339b!important;outline-color:#63339b}
+#pagina-curriculo #cvResumeWizard .cv-context-guide{background:#e8f5f1!important;border-color:#cce7df!important;color:#243247!important}
+#pagina-curriculo #cvResumeWizard .cv-context-guide>small,
+#pagina-curriculo #cvResumeWizard .cv-context-guide h2,
+#pagina-curriculo #cvResumeWizard .cv-guide-tip strong,
+#pagina-curriculo #cvResumeWizard .cv-guide-match strong{color:#0f766e!important}
+#pagina-curriculo #cvResumeWizard .cv-context-guide p{color:#243247!important}
+#pagina-curriculo #cvResumeWizard .cv-guide-tip{background:#f5fcf9!important;border-color:#cce7df!important}
+#pagina-curriculo #cvResumeWizard .cv-guide-match{border-color:#cce7df!important}
+#pagina-curriculo #cvResumeWizard .cv-school-tip,
+#pagina-curriculo #cvResumeWizard .cv-manual-course-card{background:#e8f5f1!important;border-color:#cce7df!important;color:#0f766e!important}
+#pagina-curriculo #cvResumeWizard .cv-manual-course-card button{color:#0f766e!important}
+#pagina-curriculo #cvResumeWizard .cv-step-nav button.complete:not([aria-current=step]){color:#0f766e!important;background:#e8f5f1!important;border-radius:25px!important}
+#pagina-curriculo #cvResumeWizard .cv-step-nav button.complete:not([aria-current=step]) span{background:#0f766e!important;color:#fff!important}
+#pagina-curriculo #cvResumeWizard .cv-step-nav button[aria-current=step]{color:#63339b!important;background:#f1e8fc!important}
+#pagina-curriculo #cvResumeWizard .cv-step-nav button[aria-current=step] span,
+#pagina-curriculo #cvResumeWizard #cvWizardNext{background:#63339b!important;color:#fff!important;border-color:#63339b!important}
+#pagina-curriculo .cv-purple-hero .cv85-score{background:radial-gradient(circle at center,#6536a1 62%,transparent 63%),conic-gradient(#80e5d2 var(--cv-progress,0%),#ffffff22 0)!important}
 `;document.head.appendChild(style);
  window.addEventListener('load',function(){setTimeout(setup,1200)},{once:true});
 })();
