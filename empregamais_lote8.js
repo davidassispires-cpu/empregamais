@@ -447,6 +447,13 @@ window.renderAderenciaPremiumTeaserV96=render;
 (function(){
  'use strict';
  var cv,ws,steps=[],current=0;
+ window.emLookupResumePostalCode=async function(code){
+  var providers=[['https://viacep.com.br/ws/'+code+'/json/',function(d){return {street:d.logradouro,neighborhood:d.bairro,city:d.localidade,state:d.uf}}],['https://brasilapi.com.br/api/cep/v2/'+code,function(d){return d}]];
+  var invalid=false;
+  for(var i=0;i<providers.length;i++){var controller=new AbortController(),timeout=setTimeout(function(){controller.abort()},7000);try{var response=await fetch(providers[i][0],{signal:controller.signal});if(response.status===404){invalid=true;continue}if(!response.ok)continue;var raw=await response.json();if(raw.erro){invalid=true;continue}var data=providers[i][1](raw);if(data.city&&data.state)return data;}catch(error){}finally{clearTimeout(timeout)}}
+  throw Error(invalid?'CEP não encontrado. Confira os 8 dígitos.':'Não foi possível consultar o CEP nos dois serviços. Confira sua conexão e tente novamente.');
+ };
+
  var guide=[
  ['Dados pessoais','Confira seus contatos','Use seu nome completo e um e-mail que você acompanha. Digite seu CEP para preencher o endereço, confira os dados e informe número e complemento.','O endereço completo permanece privado.'],
  ['Objetivo profissional','Diga qual oportunidade procura','Informe um cargo específico, escolha a mesma área usada nas vagas e escreva um resumo de 3 a 6 linhas.','Exemplo: Assistente administrativo com experiência em atendimento, planilhas e organização de documentos.'],
@@ -527,10 +534,10 @@ window.renderAderenciaPremiumTeaserV96=render;
    var code=cep.value.replace(/\D/g,'');if(code.length!==8)return Promise.reject(Error('Informe um CEP residencial com 8 dígitos.'));
    if(lookedUp===code)return Promise.resolve();if(pending&&pending.code===code)return pending.promise;
    var own=++requestId;cepStatus.textContent='Consultando CEP…';cep.setCustomValidity('');
-   var promise=(async function(){var controller=new AbortController(),timeout=setTimeout(function(){controller.abort()},12000);try{var response=await fetch('https://brasilapi.com.br/api/cep/v2/'+code,{signal:controller.signal});if(!response.ok)throw Error(response.status===404?'CEP não encontrado. Confira o número informado.':'Não foi possível consultar o CEP. Tente novamente.');var data=await response.json();if(own!==requestId||cep.value.replace(/\D/g,'')!==code)return;
+   var promise=(async function(){try{var data=await window.emLookupResumePostalCode(code);if(own!==requestId||cep.value.replace(/\D/g,'')!==code)return;
     el('cvRuaAligned').value=data.street||'';el('cvBairroAligned').value=data.neighborhood||'';el('cvCidadeAddress').value=data.city||'';el('cvUfAddress').value=data.state||'';
     var coordinates=data.location&&data.location.coordinates||{},lat=Number.parseFloat(coordinates.latitude),lng=Number.parseFloat(coordinates.longitude);el('cvLatitudeAligned').value=Number.isFinite(lat)?lat:'';el('cvLongitudeAligned').value=Number.isFinite(lng)?lng:'';compose();lookedUp=code;cepStatus.textContent='CEP localizado. Confira o endereço e informe o número.';cv.dispatchEvent(new Event('change',{bubbles:true}));
-   }catch(error){if(own!==requestId)return;cepStatus.textContent=error.name==='AbortError'?'A consulta demorou demais. Tente novamente.':error.message;throw Error(cepStatus.textContent)}finally{clearTimeout(timeout);if(own===requestId)pending=null}})();pending={code:code,promise:promise};return promise;
+   }catch(error){if(own!==requestId)return;cepStatus.textContent=error.name==='AbortError'?'A consulta demorou demais. Tente novamente.':error.message;throw Error(cepStatus.textContent)}finally{if(own===requestId)pending=null}})();pending={code:code,promise:promise};return promise;
   }
   cep.addEventListener('input',function(){clearTimeout(timer);++requestId;pending=null;lookedUp='';cep.setCustomValidity('');el('cvLatitudeAligned').value='';el('cvLongitudeAligned').value='';cep.value=cep.value.replace(/\D/g,'').slice(0,8).replace(/^(\d{5})(\d)/,'$1-$2');cepStatus.textContent='';if(cep.value.replace(/\D/g,'').length===8)timer=setTimeout(function(){lookup().catch(function(){})},300)});
   cep.addEventListener('blur',function(){if(cep.value.replace(/\D/g,'').length===8)lookup().catch(function(){})});
