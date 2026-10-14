@@ -318,3 +318,62 @@
 #pagina-publicar.em-publish-in-panel #formVaga .publish-extra-button>svg{display:none!important}
 #pagina-publicar.em-publish-in-panel #formVaga .selected button.publish-extra-button{color:#fff!important}
 @media(min-width:901px){#pagina-publicar.em-publish-in-panel #formVaga .publish-extra-footer{margin-top:auto!important}#pagina-publicar.em-publish-in-panel #formVaga .publish-extra-card{min-height:360px!important}}
+
+/* Formulário: referência aprovada em 14/10/2026. */
+#pagina-publicar.publish-reference{background:#f5f8fd!important;padding:24px!important;box-sizing:border-box!important}
+#pagina-publicar.publish-reference .em-job-shell{max-width:1100px!important}
+#pagina-publicar.publish-reference .em-publish-heading{position:relative;padding-right:180px;margin-bottom:22px}
+#pagina-publicar.publish-reference .em-publish-heading h1{color:#092147!important;font-size:32px!important;letter-spacing:-.8px}
+#pagina-publicar.publish-reference .em-publish-heading p{font:14px/1.6 Inter,Arial,sans-serif!important}
+#pagina-publicar.publish-reference .publish-save-indicator{position:absolute;right:0;top:32px;display:flex;align-items:center;gap:8px;color:#466286;font:13px Inter,Arial,sans-serif}
+#pagina-publicar.publish-reference .publish-save-indicator svg{width:22px;height:22px;padding:4px;border-radius:50%;background:#d8f5ee;color:#00968b;box-sizing:border-box}
+#pagina-publicar.publish-reference .em-job-top{padding:18px 12px!important;border-radius:12px!important;margin-bottom:18px!important}
+#pagina-publicar.publish-reference #emJobProgress{grid-template-columns:repeat(6,minmax(0,1fr))!important;gap:0!important}
+#pagina-publicar.publish-reference #emJobProgress .em-job-step{position:relative;padding:5px 9px!important;background:transparent!important;font:500 12px Inter,Arial,sans-serif!important;white-space:nowrap}
+#pagina-publicar.publish-reference #emJobProgress .em-job-step:not(:last-child):after{content:'';height:2px;background:#d5dfed;flex:1;min-width:8px;margin-left:4px}
+#pagina-publicar.publish-reference #emJobProgress .em-job-step.active:after,#pagina-publicar.publish-reference #emJobProgress .em-job-step.done:after{background:#0874ff}
+#pagina-publicar.publish-reference #emJobProgress .em-job-num{width:32px!important;height:32px!important;flex-basis:32px!important;font-size:13px!important;display:grid!important;place-items:center!important;border-radius:50%!important}
+#pagina-publicar.publish-reference #formVaga #avisoEdicaoVaga:not(:empty){border:1px solid #c5dfff!important;background:#eaf4ff!important;color:#0758bb!important;padding:13px 18px!important;margin-bottom:18px!important;border-radius:8px!important;font:13px/1.5 Inter,Arial,sans-serif!important}
+#pagina-publicar.publish-reference #formVaga .em-job-card-head{box-sizing:border-box!important;min-height:94px!important;padding:23px 160px 23px 102px!important}
+#pagina-publicar.publish-reference .publish-section-icon{width:56px;height:56px;top:20px}
+#pagina-publicar.publish-reference #formVaga .publish-step-badge{position:absolute!important;top:30px;background:#eff6ff;color:#0758bb;border-radius:8px;font:600 12px Inter,Arial,sans-serif}
+#pagina-publicar.publish-reference .publish-step-back{display:none!important}
+#pagina-publicar.publish-reference #formVaga .em-job-card-head h2{color:#092147!important}
+#pagina-publicar.publish-reference #formVaga [data-panel="1"] .em-job-body{display:grid!important;grid-template-columns:minmax(0,2fr) minmax(250px,1fr)!important;gap:22px!important;padding:24px!important;align-items:start}
+#pagina-publicar.publish-reference #formVaga .em-grid{gap:18px 22px!important;align-items:start!important}
+#pagina-publicar.publish-reference #formVaga .em-field label{font:600 13px/1.5 Inter,Arial,sans-serif!important;margin-bottom:6px!important;display:block}
+#pagina-publicar.publish-reference #formVaga .publish-field-icon{display:none!important}
+#pagina-publicar.publish-reference #formVaga .publish-input-wrap input,#pagina-publicar.publish-reference #formVaga .publish-input-wrap select,#pagina-publicar.publish-reference #formVaga .em-field input:not([type=file]):not([type=checkbox]):not([type=radio]),#pagina-publicar.publish-reference #formVaga .em-field select{padding:10px 12px!important;height:42px!important;min-height:42px!important;border-radius:6px!important;font:14px/1.4 Inter,Arial,sans-serif!important;background:#fff!important}
+#pagina-publicar.publish-reference .publish-title-hint{display:block;margin-top:5px;color:#6780a2;font:12px/1.5 Inter,Arial,sans-serif}
+#pagina-publicar.publish-reference #formVaga .em-field:has(.publish-logo-upload){padding:0!important;background:transparent!important;border:0!important;margin:0!important}
+#pagina-publicar.publish-reference #formVaga .publish-logo-upload{gap:16px!important;margin:0!important;padding:0!important;border:0!important;background:transparent!important}
+#pagina-publicar.publish-reference #formVaga .publish-logo-placeholder{width:64px!important;height:64px!important;border-radius:10px!important}
+#pagina-publicar.publish-reference #formVaga .publish-logo-placeholder>svg{width:32px!important;height:32px!important}
+#pagina-publicar.publish-reference #previewLogo img{max-width:56px!important;max-height:56px!important}
+#pagina-publicar.publish-reference #formVaga .publish-logo-upload p{margin:4px 0!important}
+#pagina-publicar.publish-reference #formVaga label.publish-upload-button{margin:0 0 0 auto!important;white-space:nowrap!important;border:1px solid #87b5ff!important;border-radius:6px!important;background:#fff!important;color:#0874ff!important;padding:10px 12px!important;font:600 12px Inter,Arial,sans-serif!important;display:inline-flex!important}
+#pagina-publicar.publish-reference #formVaga .publish-reference-mode .publish-mode-options,#pagina-publicar.publish-reference #formVaga .publish-reference-mode .em-select-v4,#pagina-publicar.publish-reference #formVaga .publish-reference-mode .em-benefit-select-v10-btn{display:none!important}
+#pagina-publicar.publish-reference #formVaga .publish-reference-mode select#modalidadeVaga{display:block!important;position:static!important;opacity:1!important;pointer-events:auto!important;clip-path:none!important;width:100%!important;margin:0!important;border:1px solid #ccd5e2!important}
+#pagina-publicar.publish-reference .publish-reference-aside{padding-left:22px;border-left:1px solid #e0e9f5;display:grid;gap:18px;align-self:stretch}
+#pagina-publicar.publish-reference .publish-reference-aside h3{font:700 17px/1.4 Inter,Arial,sans-serif!important;color:#092147!important;margin:0 0 18px!important}
+#pagina-publicar.publish-reference .publish-reference-tips{padding:20px 18px;border-radius:10px;background:#f0f7ff}
+#pagina-publicar.publish-reference .publish-reference-tips ol{list-style:none;counter-reset:tips;display:grid;gap:18px;padding:0;margin:0}
+#pagina-publicar.publish-reference .publish-reference-tips li{counter-increment:tips;display:flex;align-items:center;gap:12px;color:#49658b;font:13px/1.5 Inter,Arial,sans-serif}
+#pagina-publicar.publish-reference .publish-reference-tips li:before{content:counter(tips);display:grid;place-items:center;width:34px;height:34px;flex:0 0 34px;border-radius:50%;background:#dcecff;color:#0874ff;font-weight:600}
+#pagina-publicar.publish-reference .publish-reference-preview{border:1px solid #dce7f5;border-radius:10px;padding:20px 18px;background:#f9fbff;align-self:start}
+#pagina-publicar.publish-reference .publish-reference-preview-row{display:flex;gap:14px;align-items:flex-start}
+#pagina-publicar.publish-reference .publish-reference-preview-icon{display:grid;place-items:center;background:#eaf3ff;color:#6b97d2;border-radius:10px;width:60px;height:60px;flex:0 0 60px}
+#pagina-publicar.publish-reference .publish-reference-preview-icon svg{width:30px;height:30px}
+#pagina-publicar.publish-reference .publish-preview-title{font:600 14px/1.5 Inter,Arial,sans-serif;color:#092147;overflow-wrap:anywhere}
+#pagina-publicar.publish-reference .publish-preview-location{font:12px/1.5 Inter,Arial,sans-serif;color:#587199;margin:5px 0 9px}
+#pagina-publicar.publish-reference .publish-preview-chips{display:flex;flex-wrap:wrap;gap:6px}
+#pagina-publicar.publish-reference .publish-preview-chips span{padding:4px 10px;background:#eaf1fb;color:#49658b;border-radius:20px;font:11px/1.4 Inter,Arial,sans-serif}
+#pagina-publicar.publish-reference #formVaga .em-job-actions{display:flex!important;justify-content:flex-end!important;align-items:center!important;padding:16px 24px!important}
+#pagina-publicar.publish-reference #formVaga [data-panel="1"] .publish-back-button{display:none!important}
+#pagina-publicar.publish-reference .publish-required-note{margin-right:auto;color:#617899;font:12px Inter,Arial,sans-serif}
+#pagina-publicar.publish-reference #formVaga .em-btn{min-height:44px!important;padding:12px 22px!important;font:600 13px Inter,Arial,sans-serif!important;border-radius:7px!important}
+@media(max-width:1000px){#pagina-publicar.publish-reference #emJobProgress .em-job-step{font-size:11px!important;padding:4px!important;gap:5px!important}#pagina-publicar.publish-reference #emJobProgress .em-job-step:after{display:none}#pagina-publicar.publish-reference #formVaga [data-panel="1"] .em-job-body{grid-template-columns:minmax(0,1.6fr) minmax(220px,1fr)!important}}
+@media(max-width:760px){#pagina-publicar.publish-reference{padding:14px!important}#pagina-publicar.publish-reference .em-publish-heading{padding-right:0}#pagina-publicar.publish-reference .publish-save-indicator{position:static;margin-top:10px}#pagina-publicar.publish-reference #emJobProgress{grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:12px 5px!important}#pagina-publicar.publish-reference #formVaga [data-panel="1"] .em-job-body{grid-template-columns:1fr!important;padding:18px!important}#pagina-publicar.publish-reference .publish-reference-aside{border-left:0;padding-left:0;grid-template-columns:1fr 1fr}#pagina-publicar.publish-reference #formVaga .em-job-card-head{padding:20px 110px 20px 76px!important}#pagina-publicar.publish-reference .publish-section-icon{left:16px;width:44px;height:44px}#pagina-publicar.publish-reference #formVaga .publish-step-badge{position:absolute!important;right:14px;padding:6px;font-size:11px}#pagina-publicar.publish-reference #formVaga .em-job-card-head h2{font-size:18px!important}}
+@media(max-width:480px){#pagina-publicar.publish-reference .publish-reference-aside{grid-template-columns:1fr}#pagina-publicar.publish-reference #formVaga .em-grid{grid-template-columns:1fr!important}#pagina-publicar.publish-reference #formVaga .publish-logo-upload{flex-wrap:wrap}#pagina-publicar.publish-reference #formVaga label.publish-upload-button{margin-left:80px!important}#pagina-publicar.publish-reference .publish-required-note{width:100%}#pagina-publicar.publish-reference #formVaga .em-job-actions .em-btn{flex:1;padding:12px!important}#pagina-publicar.publish-reference #formVaga .em-job-card-head{padding-right:18px!important;padding-bottom:48px!important}#pagina-publicar.publish-reference #formVaga .publish-step-badge{position:absolute!important;top:auto;bottom:12px}}
+
+#pagina-publicar.publish-reference #formVaga .publish-reference-mode{grid-column:auto!important}
