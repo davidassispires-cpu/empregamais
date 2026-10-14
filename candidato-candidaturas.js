@@ -50,6 +50,7 @@
  function start(){
   var style=document.createElement('style');style.id='cp-application-stages-style';style.textContent=`
   #pagina-painel-candidato.cp-reference .cp-profile .cp-metrics-slot>.metricas[hidden]{display:none!important}
+  #pagina-painel-candidato #centralPremiumV93[hidden]{display:none!important}
   #pagina-painel-candidato .cp-application-summary{margin-top:18px;font-family:Montserrat,Arial,sans-serif}
   #pagina-painel-candidato .cp-application-heading{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:12px}
   #pagina-painel-candidato .cp-application-heading h2{margin:0!important;font:700 15px/1.4 Montserrat,Arial,sans-serif!important;color:#241b39!important}

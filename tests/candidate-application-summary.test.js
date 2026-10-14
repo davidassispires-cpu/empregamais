@@ -43,3 +43,21 @@ test('supports direct filter URLs, empty stages and unknown filter values', () =
  assert.equal(invalid.filtroAtual(),'todas');
  assert.equal(invalid.corresponde({status:'Entrevista agendada'}),true);
 });
+
+test('keeps the legacy Premium section hidden for Basic accounts and available for Premium', () => {
+ const source=fs.readFileSync(path.join(__dirname,'../empregamais_lote8.js'),'utf8');
+ const anchor=source.indexOf('window.EmpregaMaisCentralPremiumV93=');
+ const start=source.lastIndexOf('(function(){',anchor);
+ const end=source.indexOf('})();',anchor)+5;
+ const box={innerHTML:'',hidden:false};
+ let premium=false;
+ const context={window:{EmpregaMaisPremiumCandidatoV92:{ehPremium(){return premium;}},addEventListener(){}},document:{getElementById(){return box;},addEventListener(){}},sessionStorage:{getItem(){return 'ana@example.com';}},localStorage:{getItem(){return '[]';}},setTimeout(){}};
+ vm.runInNewContext(source.slice(start,end),context);
+ context.window.EmpregaMaisCentralPremiumV93.atualizar();
+ assert.equal(box.hidden,true);
+ assert.equal(box.innerHTML,'');
+ premium=true;
+ context.window.EmpregaMaisCentralPremiumV93.atualizar();
+ assert.equal(box.hidden,false);
+ assert.match(box.innerHTML,/PREMIUM ATIVO/);
+});

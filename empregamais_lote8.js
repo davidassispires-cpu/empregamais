@@ -373,6 +373,7 @@ render();
 }
 function render(){
 var box=document.getElementById("centralPremiumV93");if(!box)return;
+var premium=window.EmpregaMaisPremiumCandidatoV92&&window.EmpregaMaisPremiumCandidatoV92.ehPremium();box.hidden=!premium;if(!premium)return;
 var a=minhas(),vis=a.filter(visto).length,processo=a.filter(function(x){var s=norm(status(x));return s!=="candidatura enviada"&&s!=="enviada"}).length,entrev=a.filter(function(x){return norm(status(x)).includes("entrevista")}).length,max=a.reduce(function(m,x){return Math.max(m,aderencia(x))},0);
 box.innerHTML="<div class='cp93-head'><div><small>CENTRAL PREMIUM</small><h2>Inteligência da sua busca por emprego</h2><p>Acompanhe suas candidaturas e os recursos avançados da sua conta.</p></div><span class='cp93-pill'>★ PREMIUM ATIVO</span></div>"+
 "<div class='cp93-metrics'><div class='cp93-metric'><span>CANDIDATURAS</span><strong>"+a.length+"</strong><em>enviadas</em></div><div class='cp93-metric'><span>VISUALIZADAS</span><strong>"+vis+"</strong><em>pela empresa</em></div><div class='cp93-metric'><span>EM PROCESSO</span><strong>"+processo+"</strong><em>com atualização</em></div><div class='cp93-metric'><span>ENTREVISTAS</span><strong>"+entrev+"</strong><em>registradas</em></div><div class='cp93-metric'><span>MAIOR ADERÊNCIA</span><strong>"+(max?max+"%":"—")+"</strong><em>entre candidaturas</em></div></div>"+
