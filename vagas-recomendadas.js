@@ -147,6 +147,7 @@
  function profile(){try{return typeof window.obterCandidatoAtual==='function'?window.obterCandidatoAtual()||{}:{}}catch(e){return {}}}
  function update(){
   if(!container||!page.classList.contains('ativa'))return;
+  if(window.EmpregaMaisCandidaturasCandidato)window.EmpregaMaisCandidaturasCandidato.atualizarResumo(container.querySelector('.cp-metrics-slot'));
   var c=profile(),name=c.nome||sessionStorage.getItem('candidatoNome')||'Candidato',email=sessionStorage.getItem('candidatoEmail')||'',saved=false;try{saved=typeof window.curriculoCadastrado==='function'&&window.curriculoCadastrado()}catch(e){}
   var fields=[name,c.cargoDesejado||c.areaProfissional||'Seu próximo passo profissional',c.cidadeProfissional||c.cidade||'',c.uf||c.estado||'',c.telefone||'',c.escolaridadeProfissional||'',c.experienciaProfissional||'',c.habilidadesProfissionais||'',email,saved],next=JSON.stringify(fields);if(next===signature)return;signature=next;
   var score=Math.round([name!=='Candidato',!!email,!!c.telefone,!!(c.cidadeProfissional||c.cidade),!!(c.cargoDesejado||c.areaProfissional),!!c.escolaridadeProfissional,!!c.experienciaProfissional,!!c.habilidadesProfissionais,!!saved].filter(Boolean).length/9*100);
