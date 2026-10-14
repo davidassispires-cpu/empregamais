@@ -563,6 +563,11 @@ window.renderAderenciaPremiumTeaserV96=render;
   extraField(6,'cvCnhValidadeExtra','Validade da CNH','date','');
   var originalRestore=window.EmpregaMaisRestaurarCurriculo;if(originalRestore)originalRestore();
   if(!cep.value&&typeof window.obterCandidatoAtual==='function'){var existing=window.obterCandidatoAtual()||{};cep.value=existing.cep||'';}
+  var salary=el('cvSalarioV85');if(salary){salary.inputMode='decimal';salary.placeholder='R$ 0,00';
+    function formatMoneyDigits(raw){var digits=String(raw||'').replace(/\D/g,'').slice(0,12);return digits?new Intl.NumberFormat('pt-BR',{style:'currency',currency:'BRL'}).format(Number(digits)/100):''}
+    if(salary.value){var raw=salary.value.trim();salary.value=raw.includes(',')?formatMoneyDigits(raw):new Intl.NumberFormat('pt-BR',{style:'currency',currency:'BRL'}).format(Number(raw.replace(/[^0-9.]/g,''))||0)}
+    salary.addEventListener('input',function(){this.value=formatMoneyDigits(this.value)});salary.addEventListener('blur',function(){if(this.value)this.value=formatMoneyDigits(this.value)});
+  }
   ['cvNomeV87','cvEmailV87','cvObjetivoV84','cvAreaV84'].forEach(function(id){if(el(id))el(id).required=true});
   var save=el('cvSalvarV84');save.addEventListener('click',function(event){var invalid=cv.querySelector(':invalid');if(invalid){event.preventDefault();event.stopImmediatePropagation();show(steps.findIndex(function(step){return step.contains(invalid)}));invalid.reportValidity()}},true);
   var viewport=document.createElement('div');viewport.className='cv-fields-viewport';viewport.tabIndex=0;viewport.setAttribute('role','region');viewport.setAttribute('aria-label','Campos da etapa do currículo');
@@ -697,6 +702,15 @@ window.renderAderenciaPremiumTeaserV96=render;
 #cvResumeWizard label:has(#cvExperienciaAligned){display:none!important}
 
 #cvResumeWizard #cvExperienciasV84 .cv-results-extra{grid-column:1/-1!important}#cvResumeWizard .cv-results-extra textarea{min-height:95px!important}
+
+/* Campos alinhados e controles sem corte de texto. */
+#cvResumeWizard .curriculo-grid-v84{align-items:start!important}
+#cvResumeWizard .curriculo-campo-v84 .cv85-opcional{display:inline!important;font:400 10px/1.4 Inter,Arial,sans-serif!important;margin:0 0 0 5px!important;padding:0!important;vertical-align:baseline!important}
+#cvResumeWizard .curriculo-campo-v84 input,#cvResumeWizard .curriculo-campo-v84 select{height:44px!important;min-height:44px!important;line-height:20px!important;padding-top:11px!important;padding-bottom:11px!important}
+#cvResumeWizard .curriculo-campo-v84 select{padding-right:32px!important;text-overflow:clip!important}
+#cvResumeWizard .cv-wizard-actions button,#cvResumeWizard .curriculo-acoes-v84 button,#cvResumeWizard .cv85-section-action button{height:auto!important;min-height:42px!important;width:auto!important;max-width:none!important;overflow:visible!important;text-overflow:clip!important;white-space:normal!important;line-height:1.5!important;padding:10px 18px!important;box-sizing:border-box!important;flex-shrink:0!important}
+#cvResumeWizard .cv-step-nav button,#cvResumeWizard .cv-step-nav button strong{height:auto!important;overflow:visible!important;text-overflow:clip!important;line-height:1.5!important;max-width:none!important}
+#cvResumeWizard .cv-step-nav button strong{font-weight:600!important}
 `;document.head.appendChild(style);
  window.addEventListener('load',function(){setTimeout(setup,1200)},{once:true});
 })();
