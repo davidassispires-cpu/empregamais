@@ -83,7 +83,7 @@
   if(new URLSearchParams(location.search).get('pagina')!=='demo-candidato')return;
   var rootId='pagina-painel-candidato', azul='#173B70', azulClaro='#E5F0FC';
   function verde(value){
-    var match=String(value||'').match(/^rgba?\\(\\s*(\\d+)[, ]+\\s*(\\d+)[, ]+\\s*(\\d+)/i);
+    var match=String(value||'').match(/^rgba?\(\s*(\d+)[, ]+\s*(\d+)[, ]+\s*(\d+)/i);
     if(!match)return false;
     var r=+match[1]/255,g=+match[2]/255,b=+match[3]/255;
     var max=Math.max(r,g,b),min=Math.min(r,g,b),delta=max-min;
@@ -102,16 +102,16 @@
       if(el.dataset.emGreenToBlue==='1')return;
       var style=getComputedStyle(el),changed=false;
       [['backgroundColor','background-color'],['color','color'],['borderTopColor','border-top-color'],['borderRightColor','border-right-color'],['borderBottomColor','border-bottom-color'],['borderLeftColor','border-left-color']].forEach(function(pair){
-        if(verde(style[pair[0]])){el.style.setProperty(pair[1],pair[1]==='background-color'&&style.backgroundColor.match(/rgba?\\(\\s*2[0-5]\\d[, ]+\\s*2[0-5]\\d/)?azulClaro:azul,'important');changed=true;}
+        if(verde(style[pair[0]])){el.style.setProperty(pair[1],pair[1]==='background-color'&&style.backgroundColor.match(/rgba?\(\s*2[0-5]\d[, ]+\s*2[0-5]\d/)?azulClaro:azul,'important');changed=true;}
       });
-      if(el instanceof SVGElement){
+      if(typeof SVGElement!=='undefined'&&el instanceof SVGElement){
         ['fill','stroke'].forEach(function(prop){if(verde(style[prop])){el.style.setProperty(prop,azul,'important');changed=true;}});
       }
       if(changed)el.dataset.emGreenToBlue='1';
     });
   }
   function iniciar(){
-    var root=document.getElementById(rootId);if(!root)return;
+    var root=document.getElementById(rootId);if(!root||typeof MutationObserver!=='function')return;
     var scheduled=false;
     function schedule(){if(scheduled)return;scheduled=true;requestAnimationFrame(function(){scheduled=false;aplicar();});}
     new MutationObserver(schedule).observe(root,{childList:true,subtree:true});
@@ -120,3 +120,4 @@
   }
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',iniciar);else iniciar();
 })();
+

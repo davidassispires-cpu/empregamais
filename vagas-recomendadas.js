@@ -87,7 +87,7 @@
    if(!jobs.length)html+='<p class="em-personal-empty">'+(ctx.logged?'Ainda não encontramos vagas compatíveis. Complete seu perfil e confira as oportunidades disponíveis.':'Ainda não encontramos outras vagas relacionadas às suas visitas.')+'</p>';
    else html+='<div class="em-personal-grid">'+jobs.slice(0,2).map(function(x){
     var v=x.v,conf=typeof window.vagaEhConfidencialEM==='function'?window.vagaEhConfidencialEM(v):v.confidencial===true;
-    return '<article><span class="cp-job-symbol"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M5 21V3h12v18M17 10h3v11M3 21h19M8 7h2M12 7h2M8 11h2M12 11h2M8 15h2M12 15h2"/></svg></span><h3>'+esc(v.cargo||v.titulo||'Vaga')+'</h3><p>'+esc(conf?'Empresa confidencial':v.empresa||'Empresa')+'</p><small>'+esc(v.cidade||'Local não informado')+(v.uf?' • '+esc(v.uf):'')+'</small><strong class="cp-recommended-salary">'+esc(v.salario||'Salário a combinar')+'</strong><div class="em-personal-reasons">'+[v.contrato||'Contrato não informado',v.modalidade||'Modalidade não informada'].map(function(r){return '<span>'+esc(r)+'</span>';}).join('')+'</div><a href="?pagina=vaga&amp;id='+encodeURIComponent(v.id)+'">Ver vaga →</a></article>';
+    return '<article data-cp-job-id="'+esc(v.id)+'"><span class="cp-job-symbol"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M5 21V3h12v18M17 10h3v11M3 21h19M8 7h2M12 7h2M8 11h2M12 11h2M8 15h2M12 15h2"/></svg></span><h3>'+esc(v.cargo||v.titulo||'Vaga')+'</h3><p>'+esc(conf?'Empresa confidencial':v.empresa||'Empresa')+'</p><small>'+esc(v.cidade||'Local não informado')+(v.uf?' – '+esc(v.uf):'')+'</small><strong class="cp-recommended-salary">'+esc(v.salario||'Salário a combinar')+'</strong><div class="em-personal-reasons">'+[v.contrato||'Contrato não informado',v.modalidade||'Modalidade não informada'].map(function(r){return '<span>'+esc(r)+'</span>';}).join('')+'</div><a href="?pagina=vaga&amp;id='+encodeURIComponent(v.id)+'">Ver vaga →</a></article>';
    }).join('')+'</div>';
    if(hashes[section.id]!==html){section.innerHTML=html;hashes[section.id]=html;}
   });
@@ -154,15 +154,17 @@
   if(!demo&&(!api||!sessionStorage.getItem('empregaMaisSupabaseAccessToken'))){host.querySelector('.cp-next-interview p').textContent='Consulte seus agendamentos na aba Candidaturas.';host.querySelector('.cp-recent-message p').textContent='Consulte os contatos na aba Mensagens.';return;}
   activityOwner=uid;activityAt=Date.now();activityBusy=true;
   function paint(interviews,messages){if(uid!==(sessionStorage.getItem('candidatoUserId')||sessionStorage.getItem('candidatoEmail')||''))return;
-   var next=interviews.filter(function(x){return ['invited','confirmed','reschedule_requested'].indexOf(x.state)>=0&&Date.parse(x.scheduled_at)>=Date.now();}).sort(function(a,b){return Date.parse(a.scheduled_at)-Date.parse(b.scheduled_at);})[0];
+   var next=interviews.filter(function(x){return ['invited','confirmed','reschedule_requested'].indexOf(x.state)>=0&&Date.parse(x.scheduled_at)+(Number(x.duration_minutes)||30)*60000+3600000>=Date.now();}).sort(function(a,b){return Date.parse(a.scheduled_at)-Date.parse(b.scheduled_at);})[0];
    var interview=host.querySelector('.cp-next-interview'),message=host.querySelector('.cp-recent-message');
+   interview.emInterview=next||null;
    interview.innerHTML='<h3>'+svg('calendar')+' Próxima entrevista</h3>'+(next?'<strong>'+esc(new Date(next.scheduled_at).toLocaleString('pt-BR',{day:'2-digit',month:'short',hour:'2-digit',minute:'2-digit'}))+'</strong><p>'+esc(next.job_title)+'</p><small>'+esc(String(next.instructions||'').startsWith('[Presencial]')?'Presencial':'Online')+'</small><button type="button">Ver agendamento</button>':'<p>Você ainda não tem entrevistas futuras agendadas.</p>');
    if(next)interview.querySelector('button').onclick=function(){go('candidaturas');};
    var m=messages[0];message.innerHTML='<h3>'+svg('chat')+' Mensagem recente</h3>'+(m?'<strong>'+esc(m.company_name)+'</strong><p>'+esc(String(m.body).slice(0,130))+(String(m.body).length>130?'…':'')+'</p><button type="button">Ler mensagem →</button>':'<p>As mensagens das empresas aparecerão aqui.</p>');if(m)message.querySelector('button').onclick=function(){candidateHeader.querySelector('[data-route="messages"]').click();};
    var count=container.querySelector('[data-home-message-count]');if(count)count.textContent=String(messages.length);var badge=candidateHeader.querySelector('.cp-message-count');if(badge){badge.textContent=String(messages.length);badge.hidden=!messages.length;}
+   document.dispatchEvent(new Event('empregamais:atividade-candidato'));
   }
   if(demo){paint([{state:'invited',scheduled_at:new Date(new Date().getFullYear(),new Date().getMonth(),18,14,30).toISOString(),job_title:'Assistente Administrativo',instructions:'[Online externo] Demonstração'}],[{company_name:'Empresa Demonstração',body:'Confira as orientações para sua entrevista.'}]);activityBusy=false;return;}
-  Promise.all([api.api('em_interviews?select=state,scheduled_at,job_title,instructions&order=scheduled_at.asc&limit=100'),api.api('em_candidate_messages?select=company_name,body,sent_at&state=eq.sent&order=sent_at.desc&limit=100')]).then(function(rows){paint(rows[0],rows[1]);}).catch(function(){host.querySelector('.cp-next-interview').innerHTML='<h3>Próxima entrevista</h3><p>Não foi possível atualizar. Consulte Candidaturas.</p>';host.querySelector('.cp-recent-message').innerHTML='<h3>Mensagem recente</h3><p>Não foi possível atualizar. Consulte Mensagens.</p>';}).finally(function(){activityBusy=false;});
+  Promise.all([api.api('em_interviews?select=id,state,scheduled_at,duration_minutes,job_title,instructions&order=scheduled_at.asc&limit=100'),api.api('em_candidate_messages?select=company_name,body,sent_at&state=eq.sent&order=sent_at.desc&limit=100')]).then(function(rows){paint(rows[0],rows[1]);}).catch(function(){host.querySelector('.cp-next-interview').emInterview=null;host.querySelector('.cp-next-interview').innerHTML='<h3>Próxima entrevista</h3><p>Não foi possível atualizar. Consulte Candidaturas.</p>';host.querySelector('.cp-recent-message').innerHTML='<h3>Mensagem recente</h3><p>Não foi possível atualizar. Consulte Mensagens.</p>';}).finally(function(){activityBusy=false;});
  }
  function update(){
   if(!container||!page.classList.contains('ativa'))return;
@@ -426,3 +428,4 @@ html body.cp-shell-active .cp-header .cp-navigation .cp-message-count{top:9px;ri
  document.head.appendChild(style);
  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',setup,{once:true});else setup();window.addEventListener('load',setup,{once:true});
 })();
+
