@@ -47,7 +47,7 @@
   var stage=classify(a),job={};try{job=typeof window.localizarVaga==='function'?window.localizarVaga(a.vagaId||a.vaga_id)||{}:{}}catch(ignore){}
   var hints={avaliacao:'A empresa está avaliando sua candidatura. Aguarde uma atualização por aqui.',contato:'Sua candidatura está em contato. Confira as mensagens e orientações da empresa.',entrevista:'Sua candidatura está na etapa de entrevista. Confira abaixo se o convite já foi disponibilizado.',aprovadas:'Você foi aprovado nesta seleção. Aguarde as orientações da empresa sobre os próximos passos.',contratadas:'A empresa marcou sua candidatura como contratada.',reprovadas:'Sua participação neste processo foi encerrada. Você pode continuar buscando novas oportunidades.'};
   var steps=[{key:'enviada',label:'Candidatura enviada'}].concat(workflow.etapas.filter(function(x){return x.key!=='reprovadas'}));
-  var timeline='<ol class="cp-process-steps">'+steps.map(function(x){return '<li class="'+(x.key===stage?'is-current':'')+'"><span>'+icon(x.key===stage?'clock':x.key==='enviada'?'send':'flag')+'</span><div><strong>'+safe(x.label)+'</strong><small>'+(x.key==='enviada'?applicationDate(a.data||a.dataCandidatura):x.key===stage?'Etapa atual':'Sem confirmação desta etapa')+'</small></div></li>'}).join('')+'</ol>';
+  var timeline='<ol class="cp-process-steps">'+steps.map(function(x){return '<li class="'+(x.key===stage?'is-current':'')+'"><span>'+icon(x.key===stage?'clock':x.key==='enviada'?'send':'flag')+'</span><div><strong>'+safe(x.label)+'</strong><small>'+(x.key==='enviada'?applicationDate(a.data||a.dataCandidatura):x.key===stage?'Etapa atual':'Sem confirmação desta etapa')+'</small></div><p class="cp-step-context">'+safe(x.key==='enviada'?'Sua candidatura foi enviada para a empresa.':x.key===stage?hints[stage]||'Etapa atual confirmada pela empresa.':'Aguarde a confirmação da empresa para esta etapa.')+'</p></li>'}).join('')+'</ol>';
   var interview=a.entrevista||{},when=interview.data||interview.scheduled_at||a.dataEntrevista;
   var interviewText=when?'<p><strong>Data e horário:</strong> '+safe(new Date(when).toLocaleString('pt-BR'))+'</p><p>'+safe(interview.orientacoes||interview.instructions||'Confira o convite da entrevista para confirmar sua presença e acessar o link.')+'</p>':'<p>O convite com data, horário, formato e orientações aparecerá quando a empresa disponibilizar o agendamento.</p>';
   return '<div class="cp-process-note"><strong>'+safe(label(a))+'</strong><p>'+safe(hints[stage]||'Aguarde as próximas informações da empresa.')+'</p></div><div class="cp-process-grid"><section><h4>Etapas do processo</h4>'+timeline+(stage==='reprovadas'?'<p class="cp-process-ended">Processo encerrado para esta candidatura.</p>':'')+'<small>O fluxo pode variar conforme a empresa. Apenas a etapa atual foi confirmada.</small></section><section><h4>Sobre a oportunidade</h4><dl><dt>Empresa</dt><dd>'+safe(a.empresa||job.empresa||'Não informada')+'</dd><dt>Localização</dt><dd>'+safe(a.cidade||job.cidade||'Não informada')+'</dd><dt>Modalidade</dt><dd>'+safe(a.modalidade||job.modalidade||'Não informada')+'</dd><dt>Contrato</dt><dd>'+safe(a.contrato||job.contrato||'Não informado')+'</dd><dt>Salário anunciado</dt><dd>'+safe(job.salario||a.salario||'Não informado')+'</dd></dl></section><section><h4>Entrevista</h4>'+interviewText+'</section><section><h4>Retorno da empresa</h4><p>'+safe(a.feedbackCandidato||a.retornoCandidato||'Nenhum retorno adicional disponibilizado pela empresa.')+'</p><small>Confira também a aba Mensagens do painel.</small></section></div>';
@@ -116,7 +116,8 @@
   var list=document.getElementById('listaCandidaturas');if(!list)return;
   var rows=applications().filter(function(a){return matches(a)});
   list.querySelectorAll('.candidatura-item').forEach(function(card,i){
-   var a=rows[i];if(!a)return;card.dataset.cpApplicationStage=classify(a);var title=card.querySelector('.candidatura-top h3');if(title&&!title.querySelector('.cp-application-emblem')){var emblem=document.createElement('span');emblem.className='cp-application-emblem';emblem.setAttribute('aria-hidden','true');emblem.innerHTML=filterIcon(classify(a));title.prepend(emblem);}if(card.querySelector('.cp-process-details'))return;
+   var a=rows[i];if(!a)return;card.dataset.cpApplicationStage=classify(a);var title=card.querySelector('.candidatura-top h3');if(title&&!title.querySelector('.cp-application-emblem')){var emblem=document.createElement('span');emblem.className='cp-application-emblem';emblem.setAttribute('aria-hidden','true');emblem.innerHTML=icon('briefcase');title.prepend(emblem);}if(card.querySelector('.cp-process-details'))return;
+   var top=card.querySelector('.candidatura-top'),company=top.querySelector('p');if(company){company.textContent=a.empresa||'Empresa não informada';company.style.setProperty('color','#e1eff6','important');company.style.setProperty('font-size','12px','important');}var sent=document.createElement('div');sent.className='cp-application-date';sent.innerHTML=icon('calendar')+'<span>Enviada em '+safe(applicationDate(a.data||a.dataCandidatura))+'</span>';top.after(sent);
    var notice=viewNotice(a);if(notice){var holder=document.createElement('div');holder.innerHTML=notice;card.querySelector('.candidatura-top').after(holder.firstChild);}
    var details=document.createElement('div');details.className='cp-process-details';
    var button=document.createElement('button');button.type='button';button.className='cp-process-trigger';button.setAttribute('aria-haspopup','dialog');
@@ -531,6 +532,81 @@ html body .cp-process-modal .cp-interview-buttons [data-confirm]{background:#d64
 html body .cp-process-modal .cp-process-steps li>span{background:#edf5f9!important;color:#46788e!important;border-color:#d4e5ed!important}
 html body .cp-process-modal .cp-process-steps li.is-current>span{background:#15516b!important;color:#fff!important}
 @layer site-typography{html body .cp-process-modal .cp-process-modal-subtitle{color:#59778a!important}html body .cp-process-modal .cp-interview-buttons [data-confirm]{color:#fff!important}}
+
+.cp-application-date{display:flex;align-items:center;gap:10px;color:#365b72;font-size:12px;line-height:1.5}.cp-application-date svg{width:19px;height:19px;color:#15516b;flex:none}
+/* Selected reference 2: petroleum headers and a spacious vertical journey. */
+html body #pagina-candidaturas#pagina-candidaturas #listaCandidaturas{align-items:stretch!important}
+html body #pagina-candidaturas#pagina-candidaturas .candidatura-item{display:flex!important;flex-direction:column!important;padding:0 20px 18px!important;min-width:0!important;min-height:238px!important;border-radius:13px!important}
+html body #pagina-candidaturas#pagina-candidaturas .candidatura-top{margin:0 -20px 16px!important;padding:16px 20px!important;background:linear-gradient(110deg,#0b455d,#155c75)!important;align-items:center!important;gap:10px!important;min-height:88px!important}
+html body #pagina-candidaturas#pagina-candidaturas .candidatura-top>div{min-width:0;flex:1}
+html body #pagina-candidaturas#pagina-candidaturas .candidatura-top h3{color:#fff!important;font-size:17px!important;margin:0!important}
+html body #pagina-candidaturas#pagina-candidaturas .candidatura-top p{color:#e1eff6!important;margin:4px 0 0!important;font-size:12px!important}
+html body #pagina-candidaturas#pagina-candidaturas .cp-application-emblem{width:44px!important;height:44px!important;flex-basis:44px!important;border:1px solid #ffffff20!important;border-radius:50%!important;background:#ffffff14!important;color:#fff!important;--filter-paper:transparent;--filter-accent:#fff;--filter-soft:#ffffff18}
+html body #pagina-candidaturas#pagina-candidaturas .cp-process-details{margin-top:auto!important;padding-top:12px!important}
+html body #pagina-candidaturas#pagina-candidaturas .cp-process-trigger{width:100%!important;margin:0!important;background:linear-gradient(100deg,#cc4504,#df5407)!important;color:#fff!important;border-color:#d64a06!important;min-height:43px!important}
+html body #pagina-candidaturas#pagina-candidaturas .cp-process-trigger:hover{background:#b93d03!important}
+html body #pagina-candidaturas#pagina-candidaturas .cp-application-viewed{margin:10px 0 0!important}
+html body dialog.cp-process-modal.cp-process-modal[open]{display:flex!important;flex-direction:column!important;width:min(1440px,calc(100vw - 48px))!important;max-width:calc(100vw - 48px)!important;height:min(850px,calc(100dvh - 48px))!important;max-height:calc(100dvh - 48px)!important;overflow:hidden!important;border-radius:14px!important;padding:0!important}
+html body dialog.cp-process-modal.cp-process-modal .cp-process-modal-header{flex:none!important;padding:22px 28px!important;background:linear-gradient(110deg,#0b455d,#155c75)!important;color:#fff!important;align-items:center!important}
+html body dialog.cp-process-modal.cp-process-modal .cp-process-modal-header h2{font-size:25px!important;color:#fff!important;margin:7px 0 5px!important}
+html body dialog.cp-process-modal.cp-process-modal .cp-process-modal-header>div>span{color:#e4f2f8!important;letter-spacing:1px!important}
+html body dialog.cp-process-modal.cp-process-modal .cp-process-modal-subtitle{color:#d8ebf4!important;font-size:13px!important}
+html body dialog.cp-process-modal.cp-process-modal .cp-process-modal-close{background:#ffffff0d!important;color:#fff!important;border-color:#ffffff70!important;width:38px!important;height:38px!important;flex-basis:38px!important}
+html body dialog.cp-process-modal.cp-process-modal .cp-process-body{display:flex!important;flex-direction:column!important;flex:1!important;min-height:0!important;overflow:hidden!important;padding:0 24px 22px!important}
+html body dialog.cp-process-modal.cp-process-modal .cp-process-tabs{flex:none!important;display:flex!important;gap:24px!important;margin:0 0 18px!important;border-bottom:1px solid #dce8ef!important;overflow-x:auto!important}
+html body dialog.cp-process-modal.cp-process-modal .cp-process-tabs button{flex-shrink:0!important;font-size:13px!important;padding:16px 12px!important}
+html body dialog.cp-process-modal.cp-process-modal .cp-process-tabs button[aria-selected=true] svg{color:#d64a06!important}
+html body dialog.cp-process-modal.cp-process-modal .cp-process-tab-content{flex:1!important;min-height:0!important;overflow:auto!important;padding:0 4px 4px!important}
+html body dialog.cp-process-modal.cp-process-modal #cpProcessPane0{display:grid!important;grid-template-columns:minmax(0,1.45fr) minmax(0,1fr)!important;grid-template-rows:auto 1fr!important;gap:14px 24px!important;height:auto!important;min-height:100%!important;align-content:start!important}
+html body dialog.cp-process-modal.cp-process-modal #cpProcessPane0[hidden]{display:none!important}
+html body dialog.cp-process-modal.cp-process-modal #cpProcessPane0>.cp-process-note{grid-column:1/-1!important;margin:0!important;padding:10px 14px!important;border-radius:8px!important}
+html body dialog.cp-process-modal.cp-process-modal #cpProcessPane0>section{min-width:0!important;border:0!important;padding:0!important}
+html body dialog.cp-process-modal.cp-process-modal #cpProcessPane0>section>h4{font-size:16px!important;margin:0 0 18px!important}
+html body dialog.cp-process-modal.cp-process-modal .cp-process-steps{display:flex!important;flex-direction:column!important;gap:0!important;margin:0!important;padding:0!important}
+html body dialog.cp-process-modal.cp-process-modal .cp-process-steps li{display:grid!important;grid-template-columns:38px minmax(120px,.9fr) minmax(0,1.1fr)!important;gap:15px!important;align-items:center!important;text-align:left!important;padding:0 0 20px!important;min-height:65px!important}
+html body dialog.cp-process-modal.cp-process-modal .cp-process-steps li:not(:last-child):after{display:block!important;top:38px!important;left:18px!important;width:0!important;height:calc(100% - 38px)!important;border:0!important;border-left:1px dashed #b9d2df!important}
+html body dialog.cp-process-modal.cp-process-modal .cp-process-steps li>span{width:36px!important;height:36px!important;background:#f5fafc!important;border-color:#c5dce7!important;color:#15516b!important;box-shadow:none!important}
+html body dialog.cp-process-modal.cp-process-modal .cp-process-steps li:first-child>span{background:#15516b!important;color:#fff!important;border-color:#15516b!important}
+html body dialog.cp-process-modal.cp-process-modal .cp-process-steps li.is-current>span{background:#fff5eb!important;color:#d64a06!important;border:2px solid #d64a06!important}
+html body dialog.cp-process-modal.cp-process-modal .cp-process-steps strong{font-size:13px!important;line-height:1.4!important;color:#123d54!important}
+html body dialog.cp-process-modal.cp-process-modal .cp-process-steps small{font-size:11px!important;color:#58758a!important;line-height:1.5!important}
+html body dialog.cp-process-modal.cp-process-modal .cp-process-steps .is-current strong{color:#c74606!important}
+html body dialog.cp-process-modal.cp-process-modal .cp-step-context{display:block!important;background:#f0f6fa;border-radius:8px;padding:10px 12px;font-size:11px;line-height:1.5;color:#456579}
+html body dialog.cp-process-modal.cp-process-modal .is-current .cp-step-context{background:#fff3e8;color:#b64005}
+html body dialog.cp-process-modal.cp-process-modal #cpProcessPane0 .cp-process-support{display:flex!important;flex-direction:column!important;gap:16px!important;margin:0!important;padding-left:20px!important;border-left:1px solid #dfebf2!important;align-items:stretch!important}
+html body dialog.cp-process-modal.cp-process-modal #cpProcessPane0 .cp-process-support>section{width:100%!important;min-height:0!important;padding:18px 18px 18px 66px!important;border:1px solid #d1e3ed!important;border-radius:11px!important;overflow-wrap:anywhere!important}
+html body dialog.cp-process-modal.cp-process-modal #cpProcessPane0 .cp-process-support h4{font-size:13px!important;margin:0 0 10px!important}
+html body dialog.cp-process-modal.cp-process-modal #cpProcessPane0 .cp-process-support p{font-size:12px!important;line-height:1.55!important;margin:6px 0!important}
+html body dialog.cp-process-modal.cp-process-modal #cpProcessPane0 .cp-process-support small{font-size:10px!important;line-height:1.5!important}
+html body dialog.cp-process-modal.cp-process-modal #cpProcessPane0 .cp-interview-preview>strong{font-size:21px!important;line-height:1.4!important}
+html body dialog.cp-process-modal.cp-process-modal #cpProcessPane0 .cp-interview-buttons{flex-wrap:wrap!important;gap:8px!important;margin:12px 0!important}
+html body dialog.cp-process-modal.cp-process-modal #cpProcessPane0 .cp-interview-buttons button{font-size:11px!important;padding:10px 12px!important;white-space:normal!important}
+html body dialog.cp-process-modal.cp-process-modal #cpProcessPane0 .cp-support-icon{top:17px!important;left:16px!important;width:36px!important;height:36px!important}
+@layer site-typography{
+ html body #pagina-candidaturas#pagina-candidaturas .candidatura-top h3{color:#fff!important}
+ html body #pagina-candidaturas#pagina-candidaturas .candidatura-top p{color:#e1eff6!important}
+ html body #pagina-candidaturas#pagina-candidaturas .cp-process-trigger{color:#fff!important}
+ html body dialog.cp-process-modal.cp-process-modal .cp-process-modal-header h2{color:#fff!important}
+ html body dialog.cp-process-modal.cp-process-modal .cp-process-modal-header>div>span{color:#e4f2f8!important}
+ html body dialog.cp-process-modal.cp-process-modal .cp-process-modal-subtitle{color:#d8ebf4!important}
+}
+@media(max-width:1000px){
+ html body dialog.cp-process-modal.cp-process-modal .cp-process-steps li{grid-template-columns:38px minmax(0,1fr)!important}
+ html body dialog.cp-process-modal.cp-process-modal .cp-step-context{display:none!important}
+ html body dialog.cp-process-modal.cp-process-modal #cpProcessPane0{grid-template-columns:minmax(0,1fr) minmax(0,1fr)!important}
+}
+@media(max-width:700px){
+ html body dialog.cp-process-modal.cp-process-modal[open]{width:calc(100vw - 20px)!important;max-width:calc(100vw - 20px)!important;height:calc(100dvh - 24px)!important;max-height:calc(100dvh - 24px)!important;border-radius:12px!important}
+ html body dialog.cp-process-modal.cp-process-modal .cp-process-modal-header{padding:16px!important}
+ html body dialog.cp-process-modal.cp-process-modal .cp-process-modal-header h2{font-size:20px!important}
+ html body dialog.cp-process-modal.cp-process-modal .cp-process-modal-subtitle{font-size:11px!important}
+ html body dialog.cp-process-modal.cp-process-modal .cp-process-body{padding:0 12px 16px!important}
+ html body dialog.cp-process-modal.cp-process-modal .cp-process-tabs{gap:6px!important}
+ html body dialog.cp-process-modal.cp-process-modal .cp-process-tabs button{font-size:11px!important;padding:13px 7px!important}
+ html body dialog.cp-process-modal.cp-process-modal #cpProcessPane0{grid-template-columns:1fr!important;gap:18px!important}
+ html body dialog.cp-process-modal.cp-process-modal #cpProcessPane0 .cp-process-support{padding:0!important;border:0!important}
+ html body #pagina-candidaturas#pagina-candidaturas .candidatura-top{flex-wrap:wrap!important}
+}
 
 `;document.head.appendChild(style);
   window.addEventListener('popstate',refresh);window.addEventListener('storage',refresh);document.addEventListener('empregamais:candidato-sincronizado',refresh);document.addEventListener('empregamais:candidaturas-sincronizadas',refresh);refresh();
