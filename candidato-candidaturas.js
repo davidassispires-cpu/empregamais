@@ -403,7 +403,7 @@ html body #pagina-candidaturas#pagina-candidaturas .cp-applications-chips span,
 html body #cpApplicationFilters#cpApplicationFilters .cp-filter-label{
  font-family:Montserrat,Arial,sans-serif!important;
  font-size:10px!important;font-weight:600!important;line-height:1.4!important;
- letter-spacing:.7px!important;font-style:normal!important;
+ letter-spacing:.7px!important;font-style:normal!important;text-transform:uppercase!important;
 }
 @layer site-typography{
  #pagina-candidaturas#pagina-candidaturas .cp-applications-chips span,
