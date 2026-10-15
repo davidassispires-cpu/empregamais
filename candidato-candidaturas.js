@@ -35,7 +35,7 @@
   toolbar=document.createElement('section');toolbar.id='cpApplicationFilters';toolbar.className='cp-application-filters';toolbar.setAttribute('aria-label','Filtrar candidaturas por etapa');
   var oldHeader=document.querySelector('#pagina-candidaturas>.page-header');if(oldHeader)oldHeader.hidden=true;
   var heading=document.createElement('section');heading.className='cp-applications-intro cp-applications-hero';heading.setAttribute('aria-label','Minhas candidaturas');
-  heading.innerHTML="<div class=\"cp-applications-hero-copy\"><button type=\"button\" class=\"cp-applications-back\"><span aria-hidden=\"true\">←</span> Voltar ao painel</button><div class=\"cp-applications-kicker\">PROCESSOS SELETIVOS <span>ACOMPANHAMENTO</span></div><h1>Minhas candidaturas</h1><p>Acompanhe atualizações, entrevistas e orientações das empresas.</p><div class=\"cp-applications-chips\"><span><svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.7\" stroke-linecap=\"round\" aria-hidden=\"true\"><path d=\"M6 9a6 6 0 0 1 12 0v7l2 3H4l2-3ZM10 22h4\"/></svg>Atualizações</span><span><svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.7\" stroke-linecap=\"round\" aria-hidden=\"true\"><circle cx=\"9\" cy=\"7\" r=\"4\"/><path d=\"M2 22v-3a7 7 0 0 1 14 0v3ZM17 3a4 4 0 0 1 0 8m2 5a6 6 0 0 1 3 6\"/></svg>Entrevistas</span><span><svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.7\" stroke-linecap=\"round\" aria-hidden=\"true\"><path d=\"M21 15a4 4 0 0 1-4 4H9l-6 4V7a4 4 0 0 1 4-4h10a4 4 0 0 1 4 4Z\"/><path d=\"M7 11h.01m5 0h.01m5 0h.01\"/></svg>Mensagens</span></div></div><div class=\"cp-applications-art\" aria-hidden=\"true\"><svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 440 260\" aria-hidden=\"true\"><defs><linearGradient id=\"appPaper\" x2=\"1\" y2=\"1\"><stop stop-color=\"#fff\"/><stop offset=\"1\" stop-color=\"#f3f8fa\"/></linearGradient><linearGradient id=\"appTile\" x2=\"1\" y2=\"1\"><stop stop-color=\"#ffab68\"/><stop offset=\"1\" stop-color=\"#d64a06\"/></linearGradient><filter id=\"appShadow\" x=\"-40%\" y=\"-30%\" width=\"180%\" height=\"180%\"><feDropShadow dx=\"0\" dy=\"6\" stdDeviation=\"7\" flood-color=\"#285467\" flood-opacity=\".18\"/></filter></defs>\n<path d=\"M22 240C-10 120 65 35 190 27S360 0 434 60\" fill=\"none\" stroke=\"#bedce7\"/>\n\n<g transform=\"translate(132 13) rotate(-5 120 120)\" filter=\"url(#appShadow)\"><rect x=\"9\" y=\"7\" width=\"235\" height=\"245\" rx=\"12\" fill=\"#a9cdda\"/><rect width=\"235\" height=\"245\" rx=\"12\" fill=\"url(#appPaper)\"/><rect x=\"68\" y=\"-4\" width=\"100\" height=\"19\" rx=\"6\" fill=\"#39768a\"/><text x=\"22\" y=\"43\" font-family=\"Inter,Arial\" font-size=\"14\" font-weight=\"700\" fill=\"#123946\">Sua candidatura</text><text x=\"22\" y=\"59\" font-family=\"Inter,Arial\" font-size=\"8\" fill=\"#52727e\">Acompanhe o processo seletivo</text><path d=\"M21 74h192\" stroke=\"#d8e9ef\"/><path d=\"M32 96v103\" stroke=\"#bbd7e2\" stroke-width=\"3\"/>\n<g fill=\"#39768a\"><circle cx=\"32\" cy=\"98\" r=\"10\"/><circle cx=\"32\" cy=\"142\" r=\"10\"/><circle cx=\"32\" cy=\"186\" r=\"10\"/></g><g stroke=\"#fff\" fill=\"none\" stroke-width=\"2\" stroke-linecap=\"round\"><path d=\"m27 98 4 4 7-8\"/><circle cx=\"32\" cy=\"142\" r=\"4\"/><path d=\"M28 184h8m-8 4h6\"/></g>\n<g font-family=\"Inter,Arial\" font-size=\"10\" font-weight=\"700\" fill=\"#174e61\"><text x=\"53\" y=\"100\">Candidatura enviada</text><text x=\"53\" y=\"144\">Avaliação do perfil</text><text x=\"53\" y=\"188\">Entrevista</text></g><g stroke=\"#c6e0e9\" stroke-width=\"4\" stroke-linecap=\"round\"><path d=\"M55 111h132M55 155h114M55 199h126\"/></g><rect x=\"22\" y=\"220\" width=\"192\" height=\"9\" rx=\"4\" fill=\"#e1eef3\"/><rect x=\"22\" y=\"220\" width=\"68\" height=\"9\" rx=\"4\" fill=\"#79aabd\"/></g>\n<g transform=\"translate(345 49) rotate(8)\" filter=\"url(#appShadow)\"><rect width=\"64\" height=\"64\" rx=\"17\" fill=\"url(#appTile)\"/><g fill=\"none\" stroke=\"#fff\" stroke-width=\"3\"><rect x=\"16\" y=\"20\" width=\"32\" height=\"29\" rx=\"4\"/><path d=\"M23 15v10m18-10v10M16 30h32m-23 8h4m6 0h4\"/></g></g>\n<g transform=\"translate(99 199) rotate(-8)\" filter=\"url(#appShadow)\"><rect width=\"60\" height=\"50\" rx=\"13\" fill=\"#e8f2f6\" stroke=\"#fff\"/><path d=\"M15 13h29v21H29l-9 6v-6h-5Zm7 7h15m-15 7h11\" fill=\"none\" stroke=\"#39768a\" stroke-width=\"2.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></g><g transform=\"translate(322 190)\" filter=\"url(#appShadow)\"><rect x=\"7\" y=\"10\" width=\"86\" height=\"55\" rx=\"8\" fill=\"#245e73\"/><rect width=\"86\" height=\"55\" rx=\"8\" fill=\"url(#appTile)\" stroke=\"#82b4c5\"/><path d=\"M29 0v-12c0-6 28-6 28 0V0M0 22h86\" fill=\"none\" stroke=\"#174e61\" stroke-width=\"5\"/><rect x=\"35\" y=\"19\" width=\"16\" height=\"18\" rx=\"3\" fill=\"#aed2de\" stroke=\"#e7f3f7\"/></g></svg></div><div class=\"cp-applications-rail\"><strong>Seu próximo passo</strong><span>Confira as etapas de cada candidatura.</span></div>";
+  heading.innerHTML="<div class=\"cp-applications-hero-copy\"><button type=\"button\" class=\"cp-applications-back\"><span aria-hidden=\"true\">←</span> Voltar ao painel</button><div class=\"cp-applications-kicker\">PROCESSOS SELETIVOS <span>ACOMPANHAMENTO</span></div><h1>Minhas candidaturas</h1><p>Acompanhe atualizações, entrevistas e orientações das empresas.</p><div class=\"cp-applications-chips\"><span><svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.7\" stroke-linecap=\"round\" aria-hidden=\"true\"><path d=\"M6 9a6 6 0 0 1 12 0v7l2 3H4l2-3ZM10 22h4\"/></svg>Atualizações</span><span><svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.7\" stroke-linecap=\"round\" aria-hidden=\"true\"><circle cx=\"9\" cy=\"7\" r=\"4\"/><path d=\"M2 22v-3a7 7 0 0 1 14 0v3ZM17 3a4 4 0 0 1 0 8m2 5a6 6 0 0 1 3 6\"/></svg>Entrevistas</span><span><svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.7\" stroke-linecap=\"round\" aria-hidden=\"true\"><path d=\"M21 15a4 4 0 0 1-4 4H9l-6 4V7a4 4 0 0 1 4-4h10a4 4 0 0 1 4 4Z\"/><path d=\"M7 11h.01m5 0h.01m5 0h.01\"/></svg>Mensagens</span></div></div><div class=\"cp-applications-art\" aria-hidden=\"true\"><svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 440 260\" aria-hidden=\"true\"><defs><linearGradient id=\"appPaper\" x2=\"1\" y2=\"1\"><stop stop-color=\"#fff\"/><stop offset=\"1\" stop-color=\"#f3faf9\"/></linearGradient><linearGradient id=\"appTile\" x2=\"1\" y2=\"1\"><stop stop-color=\"#ffab68\"/><stop offset=\"1\" stop-color=\"#d64a06\"/></linearGradient><filter id=\"appShadow\" x=\"-40%\" y=\"-30%\" width=\"180%\" height=\"180%\"><feDropShadow dx=\"0\" dy=\"6\" stdDeviation=\"7\" flood-color=\"#2e615b\" flood-opacity=\".18\"/></filter></defs>\n<path d=\"M22 240C-10 120 65 35 190 27S360 0 434 60\" fill=\"none\" stroke=\"#c2e3df\"/>\n\n<g transform=\"translate(132 13) rotate(-5 120 120)\" filter=\"url(#appShadow)\"><rect x=\"9\" y=\"7\" width=\"235\" height=\"245\" rx=\"12\" fill=\"#abd8d2\"/><rect width=\"235\" height=\"245\" rx=\"12\" fill=\"url(#appPaper)\"/><rect x=\"68\" y=\"-4\" width=\"100\" height=\"19\" rx=\"6\" fill=\"#3e857c\"/><text x=\"22\" y=\"43\" font-family=\"Inter,Arial\" font-size=\"14\" font-weight=\"700\" fill=\"#295751\">Sua candidatura</text><text x=\"22\" y=\"59\" font-family=\"Inter,Arial\" font-size=\"8\" fill=\"#527e79\">Acompanhe o processo seletivo</text><path d=\"M21 74h192\" stroke=\"#daedeb\"/><path d=\"M32 96v103\" stroke=\"#bde0dc\" stroke-width=\"3\"/>\n<g fill=\"#3e857c\"><circle cx=\"32\" cy=\"98\" r=\"10\"/><circle cx=\"32\" cy=\"142\" r=\"10\"/><circle cx=\"32\" cy=\"186\" r=\"10\"/></g><g stroke=\"#fff\" fill=\"none\" stroke-width=\"2\" stroke-linecap=\"round\"><path d=\"m27 98 4 4 7-8\"/><circle cx=\"32\" cy=\"142\" r=\"4\"/><path d=\"M28 184h8m-8 4h6\"/></g>\n<g font-family=\"Inter,Arial\" font-size=\"10\" font-weight=\"700\" fill=\"#26524d\"><text x=\"53\" y=\"100\">Candidatura enviada</text><text x=\"53\" y=\"144\">Avaliação do perfil</text><text x=\"53\" y=\"188\">Entrevista</text></g><g stroke=\"#c9e6e2\" stroke-width=\"4\" stroke-linecap=\"round\"><path d=\"M55 111h132M55 155h114M55 199h126\"/></g><rect x=\"22\" y=\"220\" width=\"192\" height=\"9\" rx=\"4\" fill=\"#e2f2f0\"/><rect x=\"22\" y=\"220\" width=\"68\" height=\"9\" rx=\"4\" fill=\"#79bdb5\"/></g>\n<g transform=\"translate(345 49) rotate(8)\" filter=\"url(#appShadow)\"><rect width=\"64\" height=\"64\" rx=\"17\" fill=\"url(#appTile)\"/><g fill=\"none\" stroke=\"#fff\" stroke-width=\"3\"><rect x=\"16\" y=\"20\" width=\"32\" height=\"29\" rx=\"4\"/><path d=\"M23 15v10m18-10v10M16 30h32m-23 8h4m6 0h4\"/></g></g>\n<g transform=\"translate(99 199) rotate(-8)\" filter=\"url(#appShadow)\"><rect width=\"60\" height=\"50\" rx=\"13\" fill=\"#e9f5f3\" stroke=\"#fff\"/><path d=\"M15 13h29v21H29l-9 6v-6h-5Zm7 7h15m-15 7h11\" fill=\"none\" stroke=\"#3e857c\" stroke-width=\"2.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></g><g transform=\"translate(322 190)\" filter=\"url(#appShadow)\"><rect x=\"7\" y=\"10\" width=\"86\" height=\"55\" rx=\"8\" fill=\"#306760\"/><rect width=\"86\" height=\"55\" rx=\"8\" fill=\"url(#appTile)\" stroke=\"#83c4bd\"/><path d=\"M29 0v-12c0-6 28-6 28 0V0M0 22h86\" fill=\"none\" stroke=\"#26524d\" stroke-width=\"5\"/><rect x=\"35\" y=\"19\" width=\"16\" height=\"18\" rx=\"3\" fill=\"#b1dbd6\" stroke=\"#e9f5f3\"/></g></svg></div><div class=\"cp-applications-rail\"><strong>Seu próximo passo</strong><span>Confira as etapas de cada candidatura.</span></div>";
   heading.querySelector('button').onclick=function(){window.irPara('painel-candidato');};list.before(heading);
 
   toolbar.innerHTML='<div class="cp-application-filter-buttons">'+stages.map(function(stage){return '<button type="button" data-cp-filter="'+stage.key+'" aria-controls="listaCandidaturas" aria-pressed="false"><span class="cp-filter-icon">'+filterIcon(stage.key)+'</span><span class="cp-filter-copy"><strong data-cp-filter-count="'+stage.key+'">0</strong><span class="cp-filter-label">'+(stage.filterLabel||stage.label)+'</span></span></button>';}).join('')+'</div><div class="cp-application-result-row"><p id="cpApplicationResult" role="status" aria-live="polite"></p><div class="cp-application-sync"><span id="cpApplicationSyncState" role="status" aria-live="polite"></span><button type="button" id="cpApplicationRefresh">'+filterIcon('refresh')+'<span>Atualizar</span></button></div></div>';
@@ -117,7 +117,7 @@
   var rows=applications().filter(function(a){return matches(a)});
   list.querySelectorAll('.candidatura-item').forEach(function(card,i){
    var a=rows[i];if(!a)return;card.dataset.cpApplicationStage=classify(a);var title=card.querySelector('.candidatura-top h3');if(title&&!title.querySelector('.cp-application-emblem')){var emblem=document.createElement('span');emblem.className='cp-application-emblem';emblem.setAttribute('aria-hidden','true');emblem.innerHTML=icon('briefcase');title.prepend(emblem);}if(card.querySelector('.cp-process-details'))return;
-   var top=card.querySelector('.candidatura-top'),company=top.querySelector('p');if(company){company.textContent=a.empresa||'Empresa não informada';company.style.setProperty('color','#526f80','important');company.style.setProperty('font-size','12px','important');}var sent=document.createElement('div');sent.className='cp-application-date';sent.innerHTML=icon('calendar')+'<span>Enviada em '+safe(applicationDate(a.data||a.dataCandidatura))+'</span>';top.after(sent);
+   var top=card.querySelector('.candidatura-top'),company=top.querySelector('p');if(company){company.textContent=a.empresa||'Empresa não informada';company.style.setProperty('color','#52807b','important');company.style.setProperty('font-size','12px','important');}var sent=document.createElement('div');sent.className='cp-application-date';sent.innerHTML=icon('calendar')+'<span>Enviada em '+safe(applicationDate(a.data||a.dataCandidatura))+'</span>';top.after(sent);
    var notice=viewNotice(a);if(notice){var holder=document.createElement('div');holder.innerHTML=notice;sent.after(holder.firstChild);}
    var details=document.createElement('div');details.className='cp-process-details';
    var button=document.createElement('button');button.type='button';button.className='cp-process-trigger';button.setAttribute('aria-haspopup','dialog');
@@ -135,27 +135,27 @@
   #pagina-painel-candidato #centralPremiumV93[hidden]{display:none!important}
   #pagina-painel-candidato .cp-application-summary{margin-top:18px;font-family:Inter,Arial,sans-serif}
   #pagina-painel-candidato .cp-application-heading{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:12px}
-  #pagina-painel-candidato .cp-application-heading h2{margin:0!important;font:700 15px/1.4 Inter,Arial,sans-serif!important;color:#28586e!important}
+  #pagina-painel-candidato .cp-application-heading h2{margin:0!important;font:700 15px/1.4 Inter,Arial,sans-serif!important;color:#306660!important}
   #pagina-painel-candidato .cp-profile .cp-application-all{display:inline-flex!important;align-items:center;gap:5px;padding:4px 0!important;font:600 11px/1.5 Inter,Arial,sans-serif!important}
   #pagina-painel-candidato .cp-application-all svg{width:14px;height:14px}
   #pagina-painel-candidato .cp-application-stages{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
-  #pagina-painel-candidato .cp-profile .cp-stage-card{display:grid!important;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:9px 8px;min-width:0;width:100%;min-height:86px;padding:12px 14px!important;background:#fff!important;border:1px solid #d7e6ed!important;border-radius:10px!important;text-align:left;color:#28586e!important;box-shadow:none!important;transition:background .15s,border-color .15s,transform .15s;cursor:pointer}
-  #pagina-painel-candidato .cp-profile .cp-stage-card[data-cp-stage=todas]{grid-column:1/-1;grid-template-columns:auto auto 1fr auto;min-height:56px;background:#edf5f9!important;border-color:#d7e6ed!important}
+  #pagina-painel-candidato .cp-profile .cp-stage-card{display:grid!important;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:9px 8px;min-width:0;width:100%;min-height:86px;padding:12px 14px!important;background:#fff!important;border:1px solid #d8ecea!important;border-radius:10px!important;text-align:left;color:#306660!important;box-shadow:none!important;transition:background .15s,border-color .15s,transform .15s;cursor:pointer}
+  #pagina-painel-candidato .cp-profile .cp-stage-card[data-cp-stage=todas]{grid-column:1/-1;grid-template-columns:auto auto 1fr auto;min-height:56px;background:#eff8f6!important;border-color:#d8ecea!important}
   #pagina-painel-candidato .cp-stage-icon{display:flex;align-items:center;color:#d64a06}
   #pagina-painel-candidato .cp-stage-icon svg{width:19px;height:19px}
-  #pagina-painel-candidato .cp-stage-card strong{font:700 25px/1 Inter,Arial,sans-serif!important;color:#28586e!important}
-  #pagina-painel-candidato .cp-stage-label{font:600 11px/1.4 Inter,Arial,sans-serif!important;color:#28586e!important}
+  #pagina-painel-candidato .cp-stage-card strong{font:700 25px/1 Inter,Arial,sans-serif!important;color:#306660!important}
+  #pagina-painel-candidato .cp-stage-label{font:600 11px/1.4 Inter,Arial,sans-serif!important;color:#306660!important}
   #pagina-painel-candidato .cp-stage-arrow{display:flex;justify-content:flex-end;color:#d64a06}
   #pagina-painel-candidato .cp-stage-arrow svg{width:14px;height:14px}
-  #pagina-painel-candidato .cp-profile .cp-stage-card:hover{background:#edf5f9!important;border-color:#d64a06!important;transform:translateY(-1px)}
+  #pagina-painel-candidato .cp-profile .cp-stage-card:hover{background:#eff8f6!important;border-color:#d64a06!important;transform:translateY(-1px)}
   #pagina-painel-candidato .cp-stage-card:focus-visible,#cpApplicationFilters button:focus-visible{outline:2px solid #d64a06!important;outline-offset:3px}
-  #cpApplicationFilters{margin:0 0 20px;padding:16px 18px;border:1px solid #d7e6ed;border-radius:12px;background:#fff;font-family:Inter,Arial,sans-serif}
+  #cpApplicationFilters{margin:0 0 20px;padding:16px 18px;border:1px solid #d8ecea;border-radius:12px;background:#fff;font-family:Inter,Arial,sans-serif}
   #pagina-candidaturas>.container-menor{max-width:1180px}
   #cpApplicationFilters .cp-application-filter-buttons{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:9px}
   #cpApplicationFilters [data-cp-filter]{display:flex;flex-direction:column;align-items:flex-start;justify-content:space-between;gap:10px;min-width:0;min-height:88px;text-align:left}
   #cpApplicationFilters [data-cp-filter] strong{font-size:24px;line-height:1}
-  #cpApplicationFilters button{padding:9px 13px;border:1px solid #d7e6ed;border-radius:8px;background:#fff;color:#28586e;font:600 12px/1.4 Inter,Arial,sans-serif;cursor:pointer}
-  #cpApplicationFilters button[aria-pressed=true]{background:#28586e;border-color:#28586e;color:#fff}
+  #cpApplicationFilters button{padding:9px 13px;border:1px solid #d8ecea;border-radius:8px;background:#fff;color:#306660;font:600 12px/1.4 Inter,Arial,sans-serif;cursor:pointer}
+  #cpApplicationFilters button[aria-pressed=true]{background:#306660;border-color:#306660;color:#fff}
   #cpApplicationFilters .cp-application-result-row{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;margin-top:14px}
   #cpApplicationResult{margin:0;color:#d64a06;font:400 12px/1.5 Inter,Arial,sans-serif}
   #cpApplicationFilters .cp-application-sync{display:flex;align-items:center;flex-wrap:wrap;gap:10px;font:400 11px/1.5 Inter,Arial,sans-serif;color:#d64a06}
@@ -167,18 +167,18 @@
   @media(max-width:540px){#cpApplicationFilters{padding:14px}#cpApplicationFilters button{padding:9px 11px;font-size:11px}#cpApplicationFilters .cp-application-filter-buttons{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}#cpApplicationFilters [data-cp-filter]{min-height:76px;gap:6px}#cpApplicationFilters [data-cp-filter=todas]{grid-column:1/-1;flex-direction:row;align-items:center;justify-content:flex-start;gap:12px;min-height:50px}#cpApplicationFilters .cp-application-result-row{align-items:flex-start;flex-direction:column}#pagina-candidaturas .candidatura-top{gap:12px;flex-wrap:wrap}}
 
   #pagina-candidaturas>.container-menor{width:calc(100% - 40px)!important;max-width:1100px!important;margin:0 auto!important;padding:30px 0 48px!important}
-  .cp-applications-intro{margin:0 0 24px;font-family:Inter,Arial,sans-serif;color:#28586e}.cp-applications-intro>span{font-size:10px;font-weight:700;letter-spacing:.12em;color:#d64a06}.cp-applications-intro h1{font:750 28px/1.3 Inter,Arial,sans-serif;margin:7px 0 9px}.cp-applications-intro p{font-size:14px;color:#d64a06;margin:0;line-height:1.6}
+  .cp-applications-intro{margin:0 0 24px;font-family:Inter,Arial,sans-serif;color:#306660}.cp-applications-intro>span{font-size:10px;font-weight:700;letter-spacing:.12em;color:#d64a06}.cp-applications-intro h1{font:750 28px/1.3 Inter,Arial,sans-serif;margin:7px 0 9px}.cp-applications-intro p{font-size:14px;color:#d64a06;margin:0;line-height:1.6}
   #pagina-candidaturas>.page-header[hidden]{display:none!important}
-  #pagina-candidaturas .cp-applications-hero{position:relative;isolation:isolate;display:grid;grid-template-columns:minmax(0,1fr) 150px;gap:24px;align-items:center;background:linear-gradient(110deg,#28586e,#d64a06 85%,#d64a06);border-radius:12px;padding:20px 28px;margin:0 0 18px;color:#fff;overflow:hidden;box-sizing:border-box;font-family:Inter,Arial,sans-serif}
+  #pagina-candidaturas .cp-applications-hero{position:relative;isolation:isolate;display:grid;grid-template-columns:minmax(0,1fr) 150px;gap:24px;align-items:center;background:linear-gradient(110deg,#306660,#d64a06 85%,#d64a06);border-radius:12px;padding:20px 28px;margin:0 0 18px;color:#fff;overflow:hidden;box-sizing:border-box;font-family:Inter,Arial,sans-serif}
   .cp-applications-hero:after{content:'';position:absolute;z-index:-1;width:450px;height:450px;border:1px solid #ffffff22;border-radius:50%;right:-300px;bottom:-300px;box-shadow:0 0 0 60px #ffffff09}
-  .cp-applications-hero-copy{min-width:0}.cp-applications-back{display:inline-flex;gap:10px;align-items:center;border:1px solid #d7e6ed99;border-radius:7px;background:#ffffff08;color:#fff;padding:9px 15px;font:600 13px Inter,Arial,sans-serif;cursor:pointer}.cp-applications-back:focus-visible{outline:2px solid #fff;outline-offset:4px}
-  .cp-applications-kicker{font:600 12px Inter,Arial,sans-serif;color:#edf5f9;letter-spacing:1.3px;margin:12px 0 10px;display:flex;align-items:center;gap:16px}.cp-applications-kicker span{font:700 11px Inter,Arial,sans-serif;color:#fff;background:#d64a0670;border-radius:20px;padding:7px 13px;letter-spacing:.5px}
-  #pagina-candidaturas .cp-applications-hero h1{font:750 32px/1.2 Inter,Arial,sans-serif;color:#fff;margin:0 0 8px;letter-spacing:-.8px}#pagina-candidaturas .cp-applications-hero p{font:400 13px/1.7 Inter,Arial,sans-serif;color:#edf5f9;margin:0;max-width:850px}
-  .cp-applications-hero-icon{display:grid;place-items:center;width:110px;height:110px;justify-self:center;border-radius:50%;background:#ffffff12;border:1px solid #ffffff30;color:#edf5f9}.cp-applications-hero-icon svg{width:52px;height:52px}
+  .cp-applications-hero-copy{min-width:0}.cp-applications-back{display:inline-flex;gap:10px;align-items:center;border:1px solid #d8ecea99;border-radius:7px;background:#ffffff08;color:#fff;padding:9px 15px;font:600 13px Inter,Arial,sans-serif;cursor:pointer}.cp-applications-back:focus-visible{outline:2px solid #fff;outline-offset:4px}
+  .cp-applications-kicker{font:600 12px Inter,Arial,sans-serif;color:#eff8f6;letter-spacing:1.3px;margin:12px 0 10px;display:flex;align-items:center;gap:16px}.cp-applications-kicker span{font:700 11px Inter,Arial,sans-serif;color:#fff;background:#d64a0670;border-radius:20px;padding:7px 13px;letter-spacing:.5px}
+  #pagina-candidaturas .cp-applications-hero h1{font:750 32px/1.2 Inter,Arial,sans-serif;color:#fff;margin:0 0 8px;letter-spacing:-.8px}#pagina-candidaturas .cp-applications-hero p{font:400 13px/1.7 Inter,Arial,sans-serif;color:#eff8f6;margin:0;max-width:850px}
+  .cp-applications-hero-icon{display:grid;place-items:center;width:110px;height:110px;justify-self:center;border-radius:50%;background:#ffffff12;border:1px solid #ffffff30;color:#eff8f6}.cp-applications-hero-icon svg{width:52px;height:52px}
   @media(max-width:760px){.cp-applications-kicker{font-size:10px;letter-spacing:.5px;flex-wrap:wrap;gap:8px}}
   @media(max-width:600px){#pagina-candidaturas .cp-applications-hero{grid-template-columns:1fr;gap:16px}.cp-applications-hero-icon{justify-self:start}}
   @media(max-width:480px){#pagina-candidaturas .cp-applications-hero{padding:20px}#pagina-candidaturas .cp-applications-hero h1{font-size:28px}}
-  #pagina-candidaturas .candidatura-item{padding:22px!important;border:1px solid #d7e6ed!important;border-radius:14px!important;background:#fff!important;margin-bottom:16px!important;font-family:Inter,Arial,sans-serif}
+  #pagina-candidaturas .candidatura-item{padding:22px!important;border:1px solid #d8ecea!important;border-radius:14px!important;background:#fff!important;margin-bottom:16px!important;font-family:Inter,Arial,sans-serif}
   #pagina-candidaturas #listaCandidaturas{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px;align-items:start}
   #pagina-candidaturas #listaCandidaturas>.candidatura-item{min-width:0;margin:0!important}
   #pagina-candidaturas #listaCandidaturas>.vazio{grid-column:1/-1}
@@ -186,13 +186,13 @@
   #pagina-candidaturas #listaCandidaturas .cp-process-grid{grid-template-columns:1fr}
   #pagina-candidaturas #listaCandidaturas .cp-process-history{grid-column:auto}
   @media(max-width:760px){#pagina-candidaturas #listaCandidaturas{grid-template-columns:1fr}}
-  .cp-process-details{margin-top:18px;border-top:1px solid #edf5f9}.cp-process-details>summary{display:flex;align-items:center;justify-content:space-between;gap:12px;list-style:none;cursor:pointer;padding:16px 0 0;color:#28586e;font:650 13px Inter,Arial,sans-serif}.cp-process-details>summary::-webkit-details-marker{display:none}.cp-process-details summary svg{width:18px;height:18px}.cp-process-details[open] summary svg{transform:rotate(90deg)}.cp-process-details>summary:focus-visible{outline:2px solid #d64a06;outline-offset:4px}
+  .cp-process-details{margin-top:18px;border-top:1px solid #eff8f6}.cp-process-details>summary{display:flex;align-items:center;justify-content:space-between;gap:12px;list-style:none;cursor:pointer;padding:16px 0 0;color:#306660;font:650 13px Inter,Arial,sans-serif}.cp-process-details>summary::-webkit-details-marker{display:none}.cp-process-details summary svg{width:18px;height:18px}.cp-process-details[open] summary svg{transform:rotate(90deg)}.cp-process-details>summary:focus-visible{outline:2px solid #d64a06;outline-offset:4px}
   #pagina-candidaturas .cp-application-viewed{display:flex;align-items:center;gap:10px;margin-top:14px;padding:10px 12px;background:#e8f5f1;border:1px solid #cce7df;border-radius:9px;color:#0f766e;font:12px/1.5 Inter,Arial,sans-serif}.cp-application-viewed svg{width:20px;height:20px;flex:0 0 20px}.cp-application-viewed strong,.cp-application-viewed small{display:block}.cp-application-viewed small{font-size:11px}
-  .cp-process-trigger{display:flex;align-items:center;justify-content:space-between;gap:12px;width:100%;padding:16px 0 0;border:0;background:transparent;color:#28586e;font:650 13px Inter,Arial,sans-serif;cursor:pointer;text-align:left}.cp-process-trigger svg{width:18px;height:18px}.cp-process-trigger:focus-visible{outline:2px solid #d64a06;outline-offset:4px}
-  body.cp-process-modal-open{overflow:hidden}.cp-process-modal{box-sizing:border-box;width: min(860px,calc(100% - 40px));max-height:calc(100dvh - 48px);margin:auto;padding:0;border:1px solid #d7e6ed;border-radius:18px;background:#fff;color:#28586e;box-shadow:0 24px 90px #28586e40;font-family:Inter,Arial,sans-serif;overflow:auto}.cp-process-modal::backdrop{background:#28586e99;backdrop-filter:blur(3px)}.cp-process-modal-header{position:sticky;top:0;z-index:1;display:flex;align-items:flex-start;justify-content:space-between;gap:18px;padding:24px 28px 20px;background:#fff;border-bottom:1px solid #edf5f9}.cp-process-modal-header>div{min-width:0}.cp-process-modal-header span{font-size:10px;font-weight:700;letter-spacing:.1em;color:#d64a06}.cp-process-modal-header h2{margin:8px 0;font:700 22px/1.3 Inter,Arial,sans-serif;overflow-wrap:anywhere}.cp-process-modal-subtitle{margin:0;font-size:12px;line-height:1.6;color:#d64a06}.cp-process-modal-close{display:grid;place-items:center;flex:0 0 36px;width:36px;height:36px;padding:6px;border:1px solid #d7e6ed;border-radius:10px;background:#edf5f9;color:#28586e;cursor:pointer}.cp-process-modal-close svg{width:22px;height:22px}.cp-process-modal .cp-process-body{padding:24px 28px}.cp-process-modal-footer{display:flex;justify-content:flex-end;padding:16px 28px;border-top:1px solid #edf5f9}.cp-process-modal-footer button{padding:10px 24px;border:0;border-radius:9px;background:#28586e;color:#fff;font:600 13px Inter,Arial,sans-serif;cursor:pointer}.cp-process-modal button:focus-visible{outline:2px solid #d64a06;outline-offset:3px}
+  .cp-process-trigger{display:flex;align-items:center;justify-content:space-between;gap:12px;width:100%;padding:16px 0 0;border:0;background:transparent;color:#306660;font:650 13px Inter,Arial,sans-serif;cursor:pointer;text-align:left}.cp-process-trigger svg{width:18px;height:18px}.cp-process-trigger:focus-visible{outline:2px solid #d64a06;outline-offset:4px}
+  body.cp-process-modal-open{overflow:hidden}.cp-process-modal{box-sizing:border-box;width: min(860px,calc(100% - 40px));max-height:calc(100dvh - 48px);margin:auto;padding:0;border:1px solid #d8ecea;border-radius:18px;background:#fff;color:#306660;box-shadow:0 24px 90px #30666040;font-family:Inter,Arial,sans-serif;overflow:auto}.cp-process-modal::backdrop{background:#30666099;backdrop-filter:blur(3px)}.cp-process-modal-header{position:sticky;top:0;z-index:1;display:flex;align-items:flex-start;justify-content:space-between;gap:18px;padding:24px 28px 20px;background:#fff;border-bottom:1px solid #eff8f6}.cp-process-modal-header>div{min-width:0}.cp-process-modal-header span{font-size:10px;font-weight:700;letter-spacing:.1em;color:#d64a06}.cp-process-modal-header h2{margin:8px 0;font:700 22px/1.3 Inter,Arial,sans-serif;overflow-wrap:anywhere}.cp-process-modal-subtitle{margin:0;font-size:12px;line-height:1.6;color:#d64a06}.cp-process-modal-close{display:grid;place-items:center;flex:0 0 36px;width:36px;height:36px;padding:6px;border:1px solid #d8ecea;border-radius:10px;background:#eff8f6;color:#306660;cursor:pointer}.cp-process-modal-close svg{width:22px;height:22px}.cp-process-modal .cp-process-body{padding:24px 28px}.cp-process-modal-footer{display:flex;justify-content:flex-end;padding:16px 28px;border-top:1px solid #eff8f6}.cp-process-modal-footer button{padding:10px 24px;border:0;border-radius:9px;background:#306660;color:#fff;font:600 13px Inter,Arial,sans-serif;cursor:pointer}.cp-process-modal button:focus-visible{outline:2px solid #d64a06;outline-offset:3px}
   @media(max-width:600px){.cp-process-modal{width:calc(100% - 20px);max-height:calc(100dvh - 24px);border-radius:14px}.cp-process-modal-header{padding:18px}.cp-process-modal-header h2{font-size:19px}.cp-process-modal .cp-process-body{padding:18px}.cp-process-modal-footer{padding:14px 18px}}
-  .cp-process-body{padding-top:18px;color:#28586e;font:400 13px/1.6 Inter,Arial,sans-serif}.cp-process-note{padding:16px 18px;border-radius:10px;background:#edf5f9;border:1px solid #edf5f9}.cp-process-note strong{color:#28586e}.cp-process-note p{margin:4px 0 0}
-  .cp-process-grid{display:grid;grid-template-columns:1fr 1fr;gap:22px;margin-top:22px}.cp-process-grid section{min-width:0}.cp-process-grid h4{margin:0 0 14px;font-size:14px;color:#28586e}.cp-process-grid p{margin:0 0 10px;overflow-wrap:anywhere}.cp-process-grid small{font-size:11px;color:#d64a06}.cp-process-steps{list-style:none;margin:0;padding:0}.cp-process-steps li{display:flex;gap:12px;padding:0 0 16px;position:relative}.cp-process-steps li>span{display:grid;place-items:center;flex:0 0 30px;height:30px;border-radius:50%;background:#edf5f9;color:#d64a06}.cp-process-steps svg{width:16px;height:16px}.cp-process-steps strong,.cp-process-steps small{display:block}.cp-process-steps strong{font-size:12px}.cp-process-steps .is-current>span{background:#28586e;color:#fff}.cp-process-steps .is-current strong{color:#28586e}.cp-process-grid dl{display:grid;grid-template-columns:auto 1fr;gap:10px 18px;margin:0}.cp-process-grid dt{color:#d64a06}.cp-process-grid dd{margin:0;overflow-wrap:anywhere;font-weight:600}.cp-process-history{grid-column:1/-1;border-top:1px solid #edf5f9;padding-top:18px}.cp-process-history ul{list-style:none;padding:0;margin:0}.cp-process-history li{display:flex;justify-content:space-between;gap:15px;margin:0 0 12px}.cp-process-history li strong{font-size:12px}.cp-process-history li span{font-size:11px}.cp-process-ended{color:#9d4052}
+  .cp-process-body{padding-top:18px;color:#306660;font:400 13px/1.6 Inter,Arial,sans-serif}.cp-process-note{padding:16px 18px;border-radius:10px;background:#eff8f6;border:1px solid #eff8f6}.cp-process-note strong{color:#306660}.cp-process-note p{margin:4px 0 0}
+  .cp-process-grid{display:grid;grid-template-columns:1fr 1fr;gap:22px;margin-top:22px}.cp-process-grid section{min-width:0}.cp-process-grid h4{margin:0 0 14px;font-size:14px;color:#306660}.cp-process-grid p{margin:0 0 10px;overflow-wrap:anywhere}.cp-process-grid small{font-size:11px;color:#d64a06}.cp-process-steps{list-style:none;margin:0;padding:0}.cp-process-steps li{display:flex;gap:12px;padding:0 0 16px;position:relative}.cp-process-steps li>span{display:grid;place-items:center;flex:0 0 30px;height:30px;border-radius:50%;background:#eff8f6;color:#d64a06}.cp-process-steps svg{width:16px;height:16px}.cp-process-steps strong,.cp-process-steps small{display:block}.cp-process-steps strong{font-size:12px}.cp-process-steps .is-current>span{background:#306660;color:#fff}.cp-process-steps .is-current strong{color:#306660}.cp-process-grid dl{display:grid;grid-template-columns:auto 1fr;gap:10px 18px;margin:0}.cp-process-grid dt{color:#d64a06}.cp-process-grid dd{margin:0;overflow-wrap:anywhere;font-weight:600}.cp-process-history{grid-column:1/-1;border-top:1px solid #eff8f6;padding-top:18px}.cp-process-history ul{list-style:none;padding:0;margin:0}.cp-process-history li{display:flex;justify-content:space-between;gap:15px;margin:0 0 12px}.cp-process-history li strong{font-size:12px}.cp-process-history li span{font-size:11px}.cp-process-ended{color:#9d4052}
   @media(max-width:600px){#pagina-candidaturas>.container-menor{width:calc(100% - 28px)!important;padding-top:22px!important}.cp-applications-intro h1{font-size:24px}.cp-process-grid{grid-template-columns:1fr}.cp-process-history{grid-column:auto}#pagina-candidaturas .candidatura-item{padding:17px!important}.cp-process-grid dl{grid-template-columns:1fr;gap:3px}.cp-process-grid dd{margin-bottom:9px}}
 
   html body dialog.cp-process-modal[open]{position:fixed!important;inset:0!important;margin:auto!important;box-sizing:border-box!important;max-width:calc(100vw - 32px)!important;max-height:calc(100dvh - 40px)!important;height:fit-content!important;min-height:0!important}
@@ -204,7 +204,7 @@
    .cp-process-modal .cp-process-body{padding:14px 24px 20px;font-size:12px;line-height:1.5}
    .cp-process-modal .cp-process-note{padding:10px 14px}
    .cp-process-modal .cp-process-grid{grid-template-columns:1fr 1fr 1fr;gap:12px 20px;margin-top:12px}
-   .cp-process-modal .cp-process-grid>section:first-child{grid-column:1/-1;padding-bottom:12px;border-bottom:1px solid #edf5f9}
+   .cp-process-modal .cp-process-grid>section:first-child{grid-column:1/-1;padding-bottom:12px;border-bottom:1px solid #eff8f6}
    .cp-process-modal .cp-process-grid h4{margin-bottom:9px;font-size:13px}
    .cp-process-modal .cp-process-steps{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:12px}
    .cp-process-modal .cp-process-steps li{display:flex;flex-direction:column;gap:7px;padding:0;align-items:flex-start}
@@ -220,35 +220,35 @@
    .cp-process-modal .cp-process-modal-footer{padding:10px 24px}
   }
 
-  .cp-process-modal .cp-process-tabs{display:flex;gap:24px;border-bottom:1px solid #dce4e7;margin-bottom:18px}.cp-process-tabs button{display:flex;align-items:center;gap:9px;border:0;border-bottom:3px solid transparent;background:transparent;color:#43516a;padding:12px 8px;font:600 13px Inter,Arial,sans-serif;cursor:pointer}.cp-process-tabs button svg{width:23px;height:23px;color:#0f766e}.cp-process-tabs button[aria-selected=true]{color:#28586e;border-bottom-color:#28586e}.cp-process-tabs button[aria-selected=true] svg{color:#28586e}
-  .cp-process-modal .cp-process-tab-content>[hidden]{display:none!important}.cp-process-tab-content h3,.cp-process-tab-content h4{color:#243247;font-size:15px;margin:16px 0 12px}.cp-process-tab-content .cp-process-note{margin-bottom:18px}.cp-process-tab-content .cp-process-steps{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:12px}.cp-process-tab-content .cp-process-steps li{flex-direction:column;gap:7px;padding-bottom:0}.cp-process-tab-content .cp-process-steps li>span{flex:none;width:32px;height:32px}
-  .cp-process-support{display:grid;grid-template-columns:1.4fr 1fr;gap:16px;margin-top:20px}.cp-process-support>section{padding:18px;border:1px solid #cce7df;border-radius:11px;background:#fff;min-width:0}.cp-process-support .cp-interview-preview{background:#e8f5f1}.cp-process-support h4{margin:0 0 9px;font-size:14px}.cp-process-support p{margin:8px 0;line-height:1.6}.cp-interview-heading{display:flex;gap:10px;align-items:center}.cp-interview-heading svg{width:27px;height:27px;color:#0f766e}.cp-interview-heading h4{margin:0 0 8px}.cp-interview-preview>strong{font-size:21px;color:#243247}.cp-interview-buttons{display:flex;flex-wrap:wrap;gap:9px;margin:14px 0 8px}.cp-interview-buttons button{border:1px solid #28586e;border-radius:8px;padding:10px 13px;background:#fff;color:#28586e;font-weight:600;cursor:pointer}.cp-interview-buttons [data-join]{background:#28586e;color:#fff}.cp-interview-buttons button:disabled{opacity:.5;cursor:default}.cp-message-preview button{display:inline-flex;align-items:center;gap:8px;border:0;background:transparent;color:#0f766e;padding:8px 0;font-weight:700;cursor:pointer}.cp-message-preview button svg{width:17px;height:17px}.cp-process-tab-content small{font-size:11px;color:#64748b}.cp-process-tab-content dl{display:grid;grid-template-columns:180px 1fr;gap:12px}.cp-process-tab-content dd{margin:0;font-weight:600;overflow-wrap:anywhere}.cp-process-tab-content dt{color:#64748b}.cp-process-messages article{padding:16px;background:#e8f5f1;border:1px solid #cce7df;border-radius:10px;margin:12px 0}.cp-process-messages small{display:block;margin-top:4px}.cp-process-messages p{white-space:pre-wrap;overflow-wrap:anywhere;line-height:1.7}
+  .cp-process-modal .cp-process-tabs{display:flex;gap:24px;border-bottom:1px solid #dce7e6;margin-bottom:18px}.cp-process-tabs button{display:flex;align-items:center;gap:9px;border:0;border-bottom:3px solid transparent;background:transparent;color:#436a65;padding:12px 8px;font:600 13px Inter,Arial,sans-serif;cursor:pointer}.cp-process-tabs button svg{width:23px;height:23px;color:#0f766e}.cp-process-tabs button[aria-selected=true]{color:#306660;border-bottom-color:#306660}.cp-process-tabs button[aria-selected=true] svg{color:#306660}
+  .cp-process-modal .cp-process-tab-content>[hidden]{display:none!important}.cp-process-tab-content h3,.cp-process-tab-content h4{color:#2b5550;font-size:15px;margin:16px 0 12px}.cp-process-tab-content .cp-process-note{margin-bottom:18px}.cp-process-tab-content .cp-process-steps{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:12px}.cp-process-tab-content .cp-process-steps li{flex-direction:column;gap:7px;padding-bottom:0}.cp-process-tab-content .cp-process-steps li>span{flex:none;width:32px;height:32px}
+  .cp-process-support{display:grid;grid-template-columns:1.4fr 1fr;gap:16px;margin-top:20px}.cp-process-support>section{padding:18px;border:1px solid #cce7df;border-radius:11px;background:#fff;min-width:0}.cp-process-support .cp-interview-preview{background:#e8f5f1}.cp-process-support h4{margin:0 0 9px;font-size:14px}.cp-process-support p{margin:8px 0;line-height:1.6}.cp-interview-heading{display:flex;gap:10px;align-items:center}.cp-interview-heading svg{width:27px;height:27px;color:#0f766e}.cp-interview-heading h4{margin:0 0 8px}.cp-interview-preview>strong{font-size:21px;color:#2b5550}.cp-interview-buttons{display:flex;flex-wrap:wrap;gap:9px;margin:14px 0 8px}.cp-interview-buttons button{border:1px solid #306660;border-radius:8px;padding:10px 13px;background:#fff;color:#306660;font-weight:600;cursor:pointer}.cp-interview-buttons [data-join]{background:#306660;color:#fff}.cp-interview-buttons button:disabled{opacity:.5;cursor:default}.cp-message-preview button{display:inline-flex;align-items:center;gap:8px;border:0;background:transparent;color:#0f766e;padding:8px 0;font-weight:700;cursor:pointer}.cp-message-preview button svg{width:17px;height:17px}.cp-process-tab-content small{font-size:11px;color:#648b86}.cp-process-tab-content dl{display:grid;grid-template-columns:180px 1fr;gap:12px}.cp-process-tab-content dd{margin:0;font-weight:600;overflow-wrap:anywhere}.cp-process-tab-content dt{color:#648b86}.cp-process-messages article{padding:16px;background:#e8f5f1;border:1px solid #cce7df;border-radius:10px;margin:12px 0}.cp-process-messages small{display:block;margin-top:4px}.cp-process-messages p{white-space:pre-wrap;overflow-wrap:anywhere;line-height:1.7}
   @media(max-width:700px){.cp-process-modal .cp-process-tabs{gap:5px;justify-content:space-between}.cp-process-tabs button{padding:10px 3px;font-size:11px;gap:5px}.cp-process-tabs button svg{width:18px;height:18px}.cp-process-tab-content .cp-process-steps{grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}.cp-process-support{grid-template-columns:1fr}.cp-process-tab-content dl{grid-template-columns:1fr;gap:5px}.cp-process-tab-content dd{margin-bottom:10px}}
 
   /* Layout da referência: dimensões explícitas evitam estilos globais nos cards. */
-  html body dialog.cp-process-modal[open]{width:min(1030px,calc(100vw - 48px))!important;background:#fff!important;border-radius:14px!important;color:#243247!important}
+  html body dialog.cp-process-modal[open]{width:min(1030px,calc(100vw - 48px))!important;background:#fff!important;border-radius:14px!important;color:#2b5550!important}
   html body .cp-process-modal *{box-sizing:border-box}
-  html body .cp-process-modal .cp-process-modal-header{display:flex!important;position:static!important;background:#fff!important;color:#243247!important;padding:22px 28px 10px!important;border:0!important;min-height:0!important;height:auto!important;gap:18px!important}
-  html body .cp-process-modal .cp-process-modal-header h2{font:750 25px/1.25 Inter,Arial,sans-serif!important;margin:8px 0 5px!important;color:#243247!important}
-  html body .cp-process-modal .cp-process-modal-header>div>span{font:650 10px/1.5 Inter,Arial,sans-serif!important;color:#28586e!important}
-  html body .cp-process-modal .cp-process-modal-close{background:#fff!important;border:1px solid #cbd5e1!important;width:34px!important;height:34px!important;border-radius:6px!important;padding:6px!important;flex:0 0 34px!important}
+  html body .cp-process-modal .cp-process-modal-header{display:flex!important;position:static!important;background:#fff!important;color:#2b5550!important;padding:22px 28px 10px!important;border:0!important;min-height:0!important;height:auto!important;gap:18px!important}
+  html body .cp-process-modal .cp-process-modal-header h2{font:750 25px/1.25 Inter,Arial,sans-serif!important;margin:8px 0 5px!important;color:#2b5550!important}
+  html body .cp-process-modal .cp-process-modal-header>div>span{font:650 10px/1.5 Inter,Arial,sans-serif!important;color:#306660!important}
+  html body .cp-process-modal .cp-process-modal-close{background:#fff!important;border:1px solid #cbe1de!important;width:34px!important;height:34px!important;border-radius:6px!important;padding:6px!important;flex:0 0 34px!important}
   html body .cp-process-modal .cp-process-modal-close svg{width:20px!important;height:20px!important}
   html body .cp-process-modal .cp-process-body{padding:0 28px 24px!important;font:400 12px/1.5 Inter,Arial,sans-serif!important}
   html body .cp-process-modal .cp-process-tabs{gap:36px!important;margin:0 0 16px!important;padding:0!important;background:#fff!important}
   html body .cp-process-modal .cp-process-tabs button{padding:16px 12px 13px!important;background:transparent!important;border-radius:0!important;font:650 13px/1.4 Inter,Arial,sans-serif!important;min-height:0!important}
   html body .cp-process-modal .cp-process-note{display:block!important;padding:12px 16px!important;margin-bottom:18px!important;border-radius:8px!important;background:#e8f5f1!important;border:0!important;min-height:0!important}
   html body .cp-process-modal .cp-process-note strong{font-size:15px!important;color:#0f766e!important}.cp-process-modal .cp-process-note p{margin:3px 0 0!important;font-size:12px!important}
-  html body .cp-process-modal .cp-process-tab-content h4{font:700 17px/1.4 Inter,Arial,sans-serif!important;margin:0 0 18px!important;color:#243247!important}
+  html body .cp-process-modal .cp-process-tab-content h4{font:700 17px/1.4 Inter,Arial,sans-serif!important;margin:0 0 18px!important;color:#2b5550!important}
   html body .cp-process-modal .cp-process-steps{gap:0!important;margin:0 0 12px!important;padding:0!important}
   html body .cp-process-modal .cp-process-steps li{position:relative!important;align-items:center!important;text-align:center!important;gap:7px!important;padding:0 6px!important;background:transparent!important;border:0!important;min-height:0!important}
-  html body .cp-process-modal .cp-process-steps li:not(:last-child):after{content:'';position:absolute;top:17px;left:calc(50% + 20px);width:calc(100% - 40px);border-top:2px solid #d8e0e5}
-  html body .cp-process-modal .cp-process-steps li>span{position:relative;z-index:1;width:36px!important;height:36px!important;flex:none!important;border:1px solid #d8e0e5!important;background:#fff!important;color:#8995a6!important}
+  html body .cp-process-modal .cp-process-steps li:not(:last-child):after{content:'';position:absolute;top:17px;left:calc(50% + 20px);width:calc(100% - 40px);border-top:2px solid #d8e5e3}
+  html body .cp-process-modal .cp-process-steps li>span{position:relative;z-index:1;width:36px!important;height:36px!important;flex:none!important;border:1px solid #d8e5e3!important;background:#fff!important;color:#89a6a3!important}
   html body .cp-process-modal .cp-process-steps li:first-child>span{background:#0f766e!important;color:#fff!important;border-color:#0f766e!important}
-  html body .cp-process-modal .cp-process-steps li.is-current>span{background:#28586e!important;border-color:#28586e!important;color:#fff!important;box-shadow:0 0 0 4px #edf5f9}
-  html body .cp-process-modal .cp-process-steps strong{font-size:11px!important;line-height:1.4!important;color:#243247!important}
+  html body .cp-process-modal .cp-process-steps li.is-current>span{background:#306660!important;border-color:#306660!important;color:#fff!important;box-shadow:0 0 0 4px #eff8f6}
+  html body .cp-process-modal .cp-process-steps strong{font-size:11px!important;line-height:1.4!important;color:#2b5550!important}
   html body .cp-process-modal .cp-process-steps small{font-size:10px!important;line-height:1.4!important}
   html body .cp-process-modal .cp-process-support{grid-template-columns:1.45fr 1fr!important;gap:14px!important;margin-top:20px!important}
-  html body .cp-process-modal .cp-process-support>section{position:relative!important;display:block!important;padding:18px 18px 16px 90px!important;border:1px solid #bfe0da!important;border-radius:9px!important;min-height:0!important;height:auto!important;box-shadow:none!important;color:#243247!important}
+  html body .cp-process-modal .cp-process-support>section{position:relative!important;display:block!important;padding:18px 18px 16px 90px!important;border:1px solid #bfe0da!important;border-radius:9px!important;min-height:0!important;height:auto!important;box-shadow:none!important;color:#2b5550!important}
   html body .cp-process-modal .cp-support-icon{position:absolute;left:20px;top:22px;display:grid;place-items:center;width:52px;height:52px;border-radius:9px;background:#d7efeb;color:#0f766e}
   html body .cp-process-modal .cp-support-icon svg{width:30px!important;height:30px!important}
   html body .cp-process-modal .cp-interview-heading>svg{display:none!important}
@@ -306,42 +306,42 @@
    html body .cp-process-modal #cpProcessPane0 .cp-process-support small{font-size:9px!important}
   }
 
-  html body .cp-process-modal .cp-full-job{display:grid;grid-template-columns:280px minmax(0,1fr);gap:18px;align-items:start;color:#243247}
-  html body .cp-process-modal .cp-full-job h3{display:flex;align-items:center;gap:8px;margin:0 0 13px;font:700 14px/1.4 Inter,Arial,sans-serif;color:#243247}
+  html body .cp-process-modal .cp-full-job{display:grid;grid-template-columns:280px minmax(0,1fr);gap:18px;align-items:start;color:#2b5550}
+  html body .cp-process-modal .cp-full-job h3{display:flex;align-items:center;gap:8px;margin:0 0 13px;font:700 14px/1.4 Inter,Arial,sans-serif;color:#2b5550}
   html body .cp-process-modal .cp-full-job h3 svg{width:20px;height:20px;color:#0f766e}
   html body .cp-process-modal .cp-job-facts{padding:16px;background:#e8f5f1;border:1px solid #cce7df;border-radius:10px}
   html body .cp-process-modal .cp-job-facts dl{display:grid;grid-template-columns:1fr;gap:10px;margin:0}
   html body .cp-process-modal .cp-job-facts dl>div{display:grid;grid-template-columns:100px 1fr;gap:9px}
-  html body .cp-process-modal .cp-job-facts dt{font-size:11px;color:#526575}
+  html body .cp-process-modal .cp-job-facts dt{font-size:11px;color:#527571}
   html body .cp-process-modal .cp-job-facts dd{font-size:11px;line-height:1.5;font-weight:600;margin:0;overflow-wrap:anywhere}
   html body .cp-process-modal .cp-job-description{display:grid;gap:12px}
-  html body .cp-process-modal .cp-job-description>section{padding:15px 17px;border:1px solid #d8e0e5;border-radius:10px;background:#fff}
+  html body .cp-process-modal .cp-job-description>section{padding:15px 17px;border:1px solid #d8e5e3;border-radius:10px;background:#fff}
   html body .cp-process-modal .cp-job-description p{font:400 12px/1.7 Inter,Arial,sans-serif;margin:0;white-space:pre-wrap;overflow-wrap:anywhere}
-  html body .cp-process-modal .cp-job-description .cp-job-empty{color:#64748b;font-size:11px}
+  html body .cp-process-modal .cp-job-description .cp-job-empty{color:#648b86;font-size:11px}
   @media(max-width:700px){html body .cp-process-modal .cp-full-job{grid-template-columns:1fr}html body .cp-process-modal .cp-job-facts dl{grid-template-columns:1fr 1fr}html body .cp-process-modal .cp-job-facts dl>div{grid-template-columns:1fr;gap:2px}}
   @media(prefers-reduced-motion:reduce){#pagina-painel-candidato .cp-profile .cp-stage-card{transition:none}}
   /* Applications header follows the compact illustrated resume header. */
 html body #pagina-candidaturas#pagina-candidaturas .cp-applications-hero{
  display:grid!important;grid-template-columns:minmax(0,1fr) 33%!important;gap:12px 16px!important;
- padding:20px 24px 12px!important;min-height:0!important;border:1px solid #bcd8e3!important;border-radius:16px!important;
- background:radial-gradient(ellipse at 84% 15%,#d6e9f1 0,transparent 58%),linear-gradient(115deg,#f6fafc,#e5f0f5)!important;
- box-shadow:0 5px 20px #2854670a!important;overflow:hidden!important;color:#123946!important;
+ padding:20px 24px 12px!important;min-height:0!important;border:1px solid #bee1dd!important;border-radius:16px!important;
+ background:radial-gradient(ellipse at 84% 15%,#daedeb 0,transparent 58%),linear-gradient(115deg,#f6fafc,#e7f3f2)!important;
+ box-shadow:0 5px 20px #2e615b0a!important;overflow:hidden!important;color:#295751!important;
 }
-html body #pagina-candidaturas#pagina-candidaturas .cp-applications-hero:after{width:420px;height:420px;right:-90px;bottom:25px;border-color:#83b0c555;box-shadow:0 0 0 75px #8cb9cc12;pointer-events:none}
+html body #pagina-candidaturas#pagina-candidaturas .cp-applications-hero:after{width:420px;height:420px;right:-90px;bottom:25px;border-color:#83c5bd55;box-shadow:0 0 0 75px #8ecac312;pointer-events:none}
 html body #pagina-candidaturas#pagina-candidaturas .cp-applications-hero-copy{grid-column:1;grid-row:1;min-height:216px;display:flex;flex-direction:column;justify-content:center;min-width:0;z-index:1}
-html body #pagina-candidaturas#pagina-candidaturas .cp-applications-back{align-self:flex-start;border:0!important;background:transparent!important;color:#39768a!important;font-size:11px!important;padding:0!important;min-height:24px;margin:0!important}
-html body #pagina-candidaturas#pagina-candidaturas .cp-applications-kicker{display:flex;align-items:center;flex-wrap:wrap;color:#456675!important;font-size:10px!important;font-weight:600;letter-spacing:.7px;margin:10px 0 8px!important;gap:10px}
-html body #pagina-candidaturas#pagina-candidaturas .cp-applications-kicker span{background:#ffffffaa!important;color:#245e73!important;border:1px solid #83b0c5!important;border-radius:7px;padding:4px 9px;font-size:9px!important}
-html body #pagina-candidaturas#pagina-candidaturas .cp-applications-hero h1{font-size:clamp(23px,2.4vw,32px)!important;line-height:1.12!important;font-weight:750!important;color:#123946!important;letter-spacing:-.7px!important;margin:0 0 9px!important}
-html body #pagina-candidaturas#pagina-candidaturas .cp-applications-hero p{font-size:12px!important;line-height:1.55!important;font-weight:500!important;color:#52727e!important;max-width:560px!important;margin:0!important}
+html body #pagina-candidaturas#pagina-candidaturas .cp-applications-back{align-self:flex-start;border:0!important;background:transparent!important;color:#3e857c!important;font-size:11px!important;padding:0!important;min-height:24px;margin:0!important}
+html body #pagina-candidaturas#pagina-candidaturas .cp-applications-kicker{display:flex;align-items:center;flex-wrap:wrap;color:#45756f!important;font-size:10px!important;font-weight:600;letter-spacing:.7px;margin:10px 0 8px!important;gap:10px}
+html body #pagina-candidaturas#pagina-candidaturas .cp-applications-kicker span{background:#ffffffaa!important;color:#306760!important;border:1px solid #83c5bd!important;border-radius:7px;padding:4px 9px;font-size:9px!important}
+html body #pagina-candidaturas#pagina-candidaturas .cp-applications-hero h1{font-size:clamp(23px,2.4vw,32px)!important;line-height:1.12!important;font-weight:750!important;color:#295751!important;letter-spacing:-.7px!important;margin:0 0 9px!important}
+html body #pagina-candidaturas#pagina-candidaturas .cp-applications-hero p{font-size:12px!important;line-height:1.55!important;font-weight:500!important;color:#527e79!important;max-width:560px!important;margin:0!important}
 html body #pagina-candidaturas#pagina-candidaturas .cp-applications-chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:13px}
-html body #pagina-candidaturas#pagina-candidaturas .cp-applications-chips span{display:inline-flex;align-items:center;gap:6px;background:#fff5!important;border:1px solid #b6d3e0;border-radius:18px;padding:5px 10px;font-size:10px!important;color:#245e73!important}
-html body #pagina-candidaturas#pagina-candidaturas .cp-applications-chips span:before{content:'○';display:grid;place-items:center;width:17px;height:17px;border-radius:50%;background:#dcecf3;color:#39768a;font-size:10px}
+html body #pagina-candidaturas#pagina-candidaturas .cp-applications-chips span{display:inline-flex;align-items:center;gap:6px;background:#fff5!important;border:1px solid #b8ded9;border-radius:18px;padding:5px 10px;font-size:10px!important;color:#306760!important}
+html body #pagina-candidaturas#pagina-candidaturas .cp-applications-chips span:before{content:'○';display:grid;place-items:center;width:17px;height:17px;border-radius:50%;background:#dff0ee;color:#3e857c;font-size:10px}
 html body #pagina-candidaturas#pagina-candidaturas .cp-applications-art{grid-column:2;grid-row:1;display:flex;align-items:center;justify-content:center;min-width:0;max-height:216px}
 html body #pagina-candidaturas#pagina-candidaturas .cp-applications-art svg{display:block;width:100%!important;height:100%!important;max-height:216px;overflow:visible}
-html body #pagina-candidaturas#pagina-candidaturas .cp-applications-rail{grid-column:1/-1;grid-row:2;display:flex;align-items:center;gap:18px;min-height:40px;padding:9px 14px;border:1px solid #cde1ea;border-radius:11px;background:#ffffffba}
-html body #pagina-candidaturas#pagina-candidaturas .cp-applications-rail strong{color:#123946!important;font-size:12px!important;font-weight:700!important;white-space:nowrap}
-html body #pagina-candidaturas#pagina-candidaturas .cp-applications-rail span{color:#52727e!important;font-size:10px!important;border-left:1px solid #bdd6e1;padding-left:18px}
+html body #pagina-candidaturas#pagina-candidaturas .cp-applications-rail{grid-column:1/-1;grid-row:2;display:flex;align-items:center;gap:18px;min-height:40px;padding:9px 14px;border:1px solid #cfe8e5;border-radius:11px;background:#ffffffba}
+html body #pagina-candidaturas#pagina-candidaturas .cp-applications-rail strong{color:#295751!important;font-size:12px!important;font-weight:700!important;white-space:nowrap}
+html body #pagina-candidaturas#pagina-candidaturas .cp-applications-rail span{color:#527e79!important;font-size:10px!important;border-left:1px solid #bee0dc;padding-left:18px}
 @media(max-width:760px){
  html body #pagina-candidaturas#pagina-candidaturas .cp-applications-hero{padding:18px 18px 12px!important;grid-template-columns:minmax(0,1fr) 29%!important}
  html body #pagina-candidaturas#pagina-candidaturas .cp-applications-hero h1{font-size:24px!important}
@@ -364,35 +364,35 @@ html body #pagina-candidaturas#pagina-candidaturas .cp-applications-hero-copy{mi
 html body #pagina-candidaturas#pagina-candidaturas .cp-applications-chips{gap:10px!important;margin-top:14px!important}
 html body #pagina-candidaturas#pagina-candidaturas .cp-applications-chips span{min-height:36px!important;border-radius:9px!important;padding:7px 12px!important;font-weight:600!important;background:#ffffff88!important}
 html body #pagina-candidaturas#pagina-candidaturas .cp-applications-chips span:before{display:none!important}
-html body #pagina-candidaturas#pagina-candidaturas .cp-applications-chips svg{width:19px!important;height:19px!important;flex:0 0 19px!important;color:#245e73!important}
+html body #pagina-candidaturas#pagina-candidaturas .cp-applications-chips svg{width:19px!important;height:19px!important;flex:0 0 19px!important;color:#306760!important}
 html body #pagina-candidaturas#pagina-candidaturas .cp-applications-art{height:100%!important;max-height:216px!important;min-height:0!important}
 html body #pagina-candidaturas#pagina-candidaturas .cp-applications-art>svg{width:100%!important;height:100%!important;max-height:216px!important}
 @layer site-typography{
- #pagina-candidaturas#pagina-candidaturas .cp-applications-hero p{color:#52727e!important}
- #pagina-candidaturas#pagina-candidaturas .cp-applications-kicker span,#pagina-candidaturas#pagina-candidaturas .cp-applications-chips span{color:#245e73!important}
- #pagina-candidaturas#pagina-candidaturas .cp-applications-rail span{color:#52727e!important}
+ #pagina-candidaturas#pagina-candidaturas .cp-applications-hero p{color:#527e79!important}
+ #pagina-candidaturas#pagina-candidaturas .cp-applications-kicker span,#pagina-candidaturas#pagina-candidaturas .cp-applications-chips span{color:#306760!important}
+ #pagina-candidaturas#pagina-candidaturas .cp-applications-rail span{color:#527e79!important}
 }
 @media(max-width:760px){html body #pagina-candidaturas#pagina-candidaturas .cp-applications-hero{height:auto!important;min-height:250px!important}}
 @media(max-width:540px){html body #pagina-candidaturas#pagina-candidaturas .cp-applications-hero{height:auto!important;min-height:0!important}html body #pagina-candidaturas#pagina-candidaturas .cp-applications-chips span{min-height:30px!important;padding:5px 7px!important}html body #pagina-candidaturas#pagina-candidaturas .cp-applications-chips svg{width:15px!important;height:15px!important;flex-basis:15px!important}}
 
 /* Compact SVG status filters: petroleum palette. */
-html body #cpApplicationFilters#cpApplicationFilters{padding:14px 16px!important;border:1px solid #cddfe9!important;border-radius:12px!important;background:#fff!important;box-shadow:0 3px 14px #174e6105!important}
+html body #cpApplicationFilters#cpApplicationFilters{padding:14px 16px!important;border:1px solid #cee8e5!important;border-radius:12px!important;background:#fff!important;box-shadow:0 3px 14px #26524d05!important}
 html body #cpApplicationFilters#cpApplicationFilters .cp-application-filter-buttons{display:grid!important;grid-template-columns:repeat(7,minmax(0,1fr))!important;gap:8px!important}
-html body #cpApplicationFilters#cpApplicationFilters [data-cp-filter]{--filter-icon-bg:#eaf2f7;display:flex!important;flex-direction:row!important;align-items:center!important;justify-content:flex-start!important;gap:9px!important;height:66px!important;min-height:66px!important;min-width:0!important;padding:9px 10px!important;border:1px solid #cddfe9!important;border-radius:9px!important;background:#fff!important;color:#245e73!important;text-align:left!important;grid-column:auto!important;box-shadow:none!important;transition:background .15s,border-color .15s}
-html body #cpApplicationFilters#cpApplicationFilters [data-cp-filter]:hover{background:#f3f8fa!important;border-color:#80adbf!important}
+html body #cpApplicationFilters#cpApplicationFilters [data-cp-filter]{--filter-icon-bg:#ebf6f5;display:flex!important;flex-direction:row!important;align-items:center!important;justify-content:flex-start!important;gap:9px!important;height:66px!important;min-height:66px!important;min-width:0!important;padding:9px 10px!important;border:1px solid #cee8e5!important;border-radius:9px!important;background:#fff!important;color:#306760!important;text-align:left!important;grid-column:auto!important;box-shadow:none!important;transition:background .15s,border-color .15s}
+html body #cpApplicationFilters#cpApplicationFilters [data-cp-filter]:hover{background:#f3faf9!important;border-color:#80bfb8!important}
 html body #cpApplicationFilters#cpApplicationFilters .cp-filter-icon{display:grid!important;place-items:center!important;flex:0 0 34px!important;width:34px!important;height:36px!important;background:var(--filter-icon-bg)!important;color:inherit!important;border-radius:8px!important}
 html body #cpApplicationFilters#cpApplicationFilters .cp-filter-icon svg{display:block!important;width:25px!important;height:25px!important;color:inherit!important}
 html body #cpApplicationFilters#cpApplicationFilters .cp-filter-copy{display:flex!important;flex-direction:column!important;justify-content:center!important;gap:3px!important;min-width:0!important;color:inherit!important}
 html body #cpApplicationFilters#cpApplicationFilters [data-cp-filter] strong{display:block!important;font:700 24px/1 Inter,Arial,sans-serif!important;color:inherit!important}
 html body #cpApplicationFilters#cpApplicationFilters .cp-filter-label{font:500 10px/1.3 Inter,Arial,sans-serif!important;color:inherit!important;overflow-wrap:normal!important;white-space:normal!important}
-html body #cpApplicationFilters#cpApplicationFilters [data-cp-filter=contratadas]{--filter-icon-bg:#dfefef;background:#f1f8f8!important;border-color:#badbdf!important;color:#246375!important}
-html body #cpApplicationFilters#cpApplicationFilters [data-cp-filter][aria-pressed=true]{--filter-icon-bg:#ffffff24;background:linear-gradient(120deg,#245e73,#174e61)!important;border-color:#245e73!important;color:#fff!important;box-shadow:0 2px 6px #174e611a!important}
+html body #cpApplicationFilters#cpApplicationFilters [data-cp-filter=contratadas]{--filter-icon-bg:#dfefef;background:#f1f8f8!important;border-color:#badfda!important;color:#316862!important}
+html body #cpApplicationFilters#cpApplicationFilters [data-cp-filter][aria-pressed=true]{--filter-icon-bg:#ffffff24;background:linear-gradient(120deg,#306760,#26524d)!important;border-color:#306760!important;color:#fff!important;box-shadow:0 2px 6px #26524d1a!important}
 html body #cpApplicationFilters#cpApplicationFilters .cp-application-result-row{margin-top:12px!important;gap:10px!important}
-html body #cpApplicationFilters#cpApplicationFilters #cpApplicationResult{font-size:12px!important;font-weight:500!important;color:#638092!important}
-html body #cpApplicationFilters#cpApplicationFilters .cp-application-sync{font-size:10px!important;color:#748a98!important}
-html body #cpApplicationFilters#cpApplicationFilters #cpApplicationRefresh{display:inline-flex!important;align-items:center!important;gap:7px!important;padding:7px 11px!important;border:1px solid #c5dae5!important;border-radius:8px!important;color:#315f75!important;background:#fff!important;font-size:11px!important;min-height:32px!important}
+html body #cpApplicationFilters#cpApplicationFilters #cpApplicationResult{font-size:12px!important;font-weight:500!important;color:#63928d!important}
+html body #cpApplicationFilters#cpApplicationFilters .cp-application-sync{font-size:10px!important;color:#749894!important}
+html body #cpApplicationFilters#cpApplicationFilters #cpApplicationRefresh{display:inline-flex!important;align-items:center!important;gap:7px!important;padding:7px 11px!important;border:1px solid #c6e4e1!important;border-radius:8px!important;color:#35716a!important;background:#fff!important;font-size:11px!important;min-height:32px!important}
 html body #cpApplicationFilters#cpApplicationFilters #cpApplicationRefresh svg{width:18px!important;height:18px!important}
-html body #cpApplicationFilters#cpApplicationFilters [data-cp-filter]:focus-visible{outline:3px solid #93bdcf!important;outline-offset:3px!important}
+html body #cpApplicationFilters#cpApplicationFilters [data-cp-filter]:focus-visible{outline:3px solid #95cdc7!important;outline-offset:3px!important}
 @layer site-typography{#cpApplicationFilters#cpApplicationFilters .cp-filter-label,#cpApplicationFilters#cpApplicationFilters .cp-filter-copy{color:inherit!important}}
 @media(min-width:1001px) and (max-width:1200px){html body #cpApplicationFilters#cpApplicationFilters [data-cp-filter]{gap:6px!important;padding:8px!important}html body #cpApplicationFilters#cpApplicationFilters .cp-filter-icon{width:28px!important;flex-basis:28px!important}html body #cpApplicationFilters#cpApplicationFilters .cp-filter-label{font-size:9px!important}}
 @media(max-width:1000px){html body #cpApplicationFilters#cpApplicationFilters .cp-application-filter-buttons{grid-template-columns:repeat(4,minmax(0,1fr))!important}}
@@ -408,7 +408,7 @@ html body #cpApplicationFilters#cpApplicationFilters .cp-filter-label{
 }
 @layer site-typography{
  #pagina-candidaturas#pagina-candidaturas .cp-applications-chips span,
- #cpApplicationFilters#cpApplicationFilters .cp-filter-label{color:#456675!important}
+ #cpApplicationFilters#cpApplicationFilters .cp-filter-label{color:#45756f!important}
  #cpApplicationFilters#cpApplicationFilters [aria-pressed=true] .cp-filter-label{color:#fff!important}
 }
 
@@ -446,73 +446,73 @@ html body #cpApplicationFilters#cpApplicationFilters .cp-filter-label{font-famil
 html body #cpApplicationFilters#cpApplicationFilters [data-cp-filter=entrevista] .cp-filter-label{white-space:normal!important;max-width:84px}
 html body #cpApplicationFilters#cpApplicationFilters .cp-filter-copy{gap:5px!important}
 html body #cpApplicationFilters#cpApplicationFilters [data-cp-filter] strong{font-size:26px!important;font-weight:700!important}
-html body #cpApplicationFilters#cpApplicationFilters [data-cp-filter][aria-pressed=true]{background:linear-gradient(115deg,#216780,#15536b)!important}
+html body #cpApplicationFilters#cpApplicationFilters [data-cp-filter][aria-pressed=true]{background:linear-gradient(115deg,#346d67,#295752)!important}
 @layer site-typography{
- #cpApplicationFilters#cpApplicationFilters .cp-filter-label{color:#36566c!important}
+ #cpApplicationFilters#cpApplicationFilters .cp-filter-label{color:#366c66!important}
  #cpApplicationFilters#cpApplicationFilters [aria-pressed=true] .cp-filter-label{color:#fff!important}
 }
 @media(min-width:1001px) and (max-width:1200px){html body #cpApplicationFilters#cpApplicationFilters [data-cp-filter]{padding:10px 8px!important;gap:8px!important}html body #cpApplicationFilters#cpApplicationFilters .cp-filter-icon{width:34px!important;height:40px!important;flex-basis:34px!important}html body #cpApplicationFilters#cpApplicationFilters .cp-filter-label{font-size:11px!important}}
 @media(max-width:1000px){html body #cpApplicationFilters#cpApplicationFilters .cp-application-filter-buttons{grid-template-columns:repeat(4,minmax(0,1fr))!important}}
 @media(max-width:540px){html body #cpApplicationFilters#cpApplicationFilters .cp-application-filter-buttons{grid-template-columns:repeat(2,minmax(0,1fr))!important}html body #cpApplicationFilters#cpApplicationFilters [data-cp-filter]{height:74px!important;min-height:74px!important}html body #cpApplicationFilters#cpApplicationFilters [data-cp-filter=todas]{height:60px!important;min-height:60px!important}}
 /* Candidate applications: match the petroleum / orange resume workspace. */
-html body #pagina-candidaturas#pagina-candidaturas{background:#edf5f9!important;--roxo:#d64a06;--roxoClaro:#fff3e8;color:#28586e!important}
+html body #pagina-candidaturas#pagina-candidaturas{background:#eff8f6!important;--roxo:#d64a06;--roxoClaro:#fff3e8;color:#306660!important}
 html body #pagina-candidaturas#pagina-candidaturas>.container-menor{padding:16px 0 40px!important;max-width:1180px!important;width:calc(100% - 40px)!important}
-html body #pagina-candidaturas#pagina-candidaturas .cp-applications-hero{height:240px!important;padding:20px 24px 14px!important;border:0!important;border-radius:18px!important;background:radial-gradient(ellipse at 95% 0%,#5894a7,transparent 65%),linear-gradient(110deg,#306b80,#407f94)!important;color:#fff!important;gap:10px 18px!important;grid-template-columns:minmax(0,1fr) 31%!important;box-shadow:0 5px 18px #28586e08!important}
-html body #pagina-candidaturas#pagina-candidaturas .cp-applications-hero:after{border-color:#85c5dd25!important;box-shadow:0 0 0 65px #b1e0ee08!important}
+html body #pagina-candidaturas#pagina-candidaturas .cp-applications-hero{height:240px!important;padding:20px 24px 14px!important;border:0!important;border-radius:18px!important;background:radial-gradient(ellipse at 95% 0%,#69a7a0,transparent 65%),linear-gradient(110deg,#397d78,#438c87)!important;color:#fff!important;gap:10px 18px!important;grid-template-columns:minmax(0,1fr) 31%!important;box-shadow:0 5px 18px #30666008!important}
+html body #pagina-candidaturas#pagina-candidaturas .cp-applications-hero:after{border-color:#95cdc725!important;box-shadow:0 0 0 65px #bee1dd08!important}
 html body #pagina-candidaturas#pagina-candidaturas .cp-applications-hero h1{color:#fff!important;font:700 clamp(25px,2.5vw,34px)/1.15 Inter,Arial,sans-serif!important;letter-spacing:-.6px!important;margin:0 0 9px!important}
-html body #pagina-candidaturas#pagina-candidaturas .cp-applications-back{color:#c9e5f0!important;min-height:24px!important}
-html body #pagina-candidaturas#pagina-candidaturas .cp-applications-kicker{color:#b9dce9!important;margin:6px 0 9px!important;letter-spacing:1px!important}
+html body #pagina-candidaturas#pagina-candidaturas .cp-applications-back{color:#d0e9e6!important;min-height:24px!important}
+html body #pagina-candidaturas#pagina-candidaturas .cp-applications-kicker{color:#c0e2de!important;margin:6px 0 9px!important;letter-spacing:1px!important}
 html body #pagina-candidaturas#pagina-candidaturas .cp-applications-kicker span{color:#ffe0c5!important;background:#ffffff12!important;border-color:#ffffff45!important}
-html body #pagina-candidaturas#pagina-candidaturas .cp-applications-hero p{color:#d9edf6!important;font-size:13px!important;font-weight:400!important;line-height:1.55!important}
+html body #pagina-candidaturas#pagina-candidaturas .cp-applications-hero p{color:#dff0ee!important;font-size:13px!important;font-weight:400!important;line-height:1.55!important}
 html body #pagina-candidaturas#pagina-candidaturas .cp-applications-chips{margin-top:13px!important;gap:8px!important}
-html body #pagina-candidaturas#pagina-candidaturas .cp-applications-chips span{color:#e5f2f8!important;background:#ffffff10!important;border:1px solid #ffffff35!important;min-height:32px!important;padding:5px 10px!important;border-radius:9px!important;font-size:10px!important;font-weight:500!important;letter-spacing:.4px!important}
+html body #pagina-candidaturas#pagina-candidaturas .cp-applications-chips span{color:#e9f4f3!important;background:#ffffff10!important;border:1px solid #ffffff35!important;min-height:32px!important;padding:5px 10px!important;border-radius:9px!important;font-size:10px!important;font-weight:500!important;letter-spacing:.4px!important}
 html body #pagina-candidaturas#pagina-candidaturas .cp-applications-chips svg{color:#ffb779!important;width:18px!important;height:18px!important}
-html body #pagina-candidaturas#pagina-candidaturas .cp-applications-art{max-height:175px!important;filter:drop-shadow(0 8px 8px #062d4230)}
+html body #pagina-candidaturas#pagina-candidaturas .cp-applications-art{max-height:175px!important;filter:drop-shadow(0 8px 8px #29575130)}
 html body #pagina-candidaturas#pagina-candidaturas .cp-applications-art>svg{max-height:175px!important}
 html body #pagina-candidaturas#pagina-candidaturas .cp-applications-rail{background:#ffffffed!important;border:0!important;border-radius:10px!important;min-height:36px!important;padding:8px 14px!important;box-shadow:none!important}
-html body #pagina-candidaturas#pagina-candidaturas .cp-applications-rail strong{color:#28586e!important}
-html body #pagina-candidaturas#pagina-candidaturas .cp-applications-rail span{color:#526e81!important;border-color:#d7e5ec!important}
-html body #cpApplicationFilters#cpApplicationFilters{padding:15px!important;border:1px solid #d7e5ed!important;border-radius:15px!important;box-shadow:0 4px 16px #28586e04!important;margin-bottom:18px!important}
-html body #cpApplicationFilters#cpApplicationFilters [data-cp-filter]{--filter-paper:#f9fcfe;--filter-soft:#fff0e2;--filter-accent:#d64a06;--filter-icon-bg:#edf5f9;height:82px!important;min-height:82px!important;padding:10px!important;border:1px solid #d8e5ed!important;border-radius:11px!important;background:#fff!important;color:#15465d!important;box-shadow:0 2px 4px #28586e03!important}
-html body #cpApplicationFilters#cpApplicationFilters [data-cp-filter]:hover{background:#f5fafc!important;border-color:#9dc5d6!important}
-html body #cpApplicationFilters#cpApplicationFilters .cp-filter-icon{width:38px!important;height:42px!important;flex-basis:38px!important;background:linear-gradient(145deg,#f0f7fb,#e4f0f6)!important;border:1px solid #dceaf1!important;border-radius:10px!important;color:#1d617c!important}
-html body #cpApplicationFilters#cpApplicationFilters .cp-filter-icon svg{width:28px!important;height:30px!important;filter:drop-shadow(1px 2px 1px #28586e15)}
+html body #pagina-candidaturas#pagina-candidaturas .cp-applications-rail strong{color:#306660!important}
+html body #pagina-candidaturas#pagina-candidaturas .cp-applications-rail span{color:#52817c!important;border-color:#d7ecea!important}
+html body #cpApplicationFilters#cpApplicationFilters{padding:15px!important;border:1px solid #d8ecea!important;border-radius:15px!important;box-shadow:0 4px 16px #30666004!important;margin-bottom:18px!important}
+html body #cpApplicationFilters#cpApplicationFilters [data-cp-filter]{--filter-paper:#f9fcfe;--filter-soft:#fff0e2;--filter-accent:#d64a06;--filter-icon-bg:#eff8f6;height:82px!important;min-height:82px!important;padding:10px!important;border:1px solid #d8edea!important;border-radius:11px!important;background:#fff!important;color:#244e49!important;box-shadow:0 2px 4px #30666003!important}
+html body #cpApplicationFilters#cpApplicationFilters [data-cp-filter]:hover{background:#f6fbfa!important;border-color:#a0d3cd!important}
+html body #cpApplicationFilters#cpApplicationFilters .cp-filter-icon{width:38px!important;height:42px!important;flex-basis:38px!important;background:linear-gradient(145deg,#f2f9f8,#e7f3f2)!important;border:1px solid #deefed!important;border-radius:10px!important;color:#316862!important}
+html body #cpApplicationFilters#cpApplicationFilters .cp-filter-icon svg{width:28px!important;height:30px!important;filter:drop-shadow(1px 2px 1px #30666015)}
 html body #cpApplicationFilters#cpApplicationFilters [data-cp-filter][aria-pressed=true]{--filter-paper:#ffffff10;--filter-soft:#ffffff12;--filter-accent:#fff;--filter-icon-bg:#ffffff16;background:linear-gradient(110deg,#c74605,#e05b0d)!important;border-color:#d64a06!important;color:#fff!important;box-shadow:0 3px 10px #d64a0618!important}
 html body #cpApplicationFilters#cpApplicationFilters [data-cp-filter][aria-pressed=true] .cp-filter-icon{background:#ffffff15!important;border-color:#ffffff35!important;color:#fff!important}
 html body #cpApplicationFilters#cpApplicationFilters [data-cp-filter] strong{font:700 25px/1.05 Inter,Arial,sans-serif!important;color:inherit!important}
-html body #cpApplicationFilters#cpApplicationFilters .cp-filter-label{font:500 11px/1.3 Inter,Arial,sans-serif!important;color:#43667b!important;white-space:normal!important}
+html body #cpApplicationFilters#cpApplicationFilters .cp-filter-label{font:500 11px/1.3 Inter,Arial,sans-serif!important;color:#437b74!important;white-space:normal!important}
 html body #cpApplicationFilters#cpApplicationFilters #cpApplicationRefresh{border:1px solid #edc5a5!important;background:#fff8f1!important;color:#b34208!important;border-radius:8px!important}
 html body #pagina-candidaturas#pagina-candidaturas #listaCandidaturas{gap:16px!important}
-html body #pagina-candidaturas#pagina-candidaturas .candidatura-item{border:1px solid #d7e5ed!important;border-radius:15px!important;background:#fff!important;padding:20px!important;box-shadow:0 4px 16px #28586e04!important;overflow:hidden!important}
-html body #pagina-candidaturas#pagina-candidaturas .candidatura-item:hover{border-color:#a7c9d9!important;box-shadow:0 7px 22px #28586e08!important}
-html body #pagina-candidaturas#pagina-candidaturas .candidatura-top h3{display:flex!important;align-items:center!important;gap:10px!important;color:#28586e!important;font-size:18px!important;line-height:1.35!important}
-html body #pagina-candidaturas#pagina-candidaturas .cp-application-emblem{display:grid;place-items:center;width:40px;height:44px;flex:0 0 40px;border:1px solid #dceaf1;border-radius:10px;background:linear-gradient(145deg,#f4f9fc,#e8f3f8);color:#1d617c}
+html body #pagina-candidaturas#pagina-candidaturas .candidatura-item{border:1px solid #d8ecea!important;border-radius:15px!important;background:#fff!important;padding:20px!important;box-shadow:0 4px 16px #30666004!important;overflow:hidden!important}
+html body #pagina-candidaturas#pagina-candidaturas .candidatura-item:hover{border-color:#a9d7d1!important;box-shadow:0 7px 22px #30666008!important}
+html body #pagina-candidaturas#pagina-candidaturas .candidatura-top h3{display:flex!important;align-items:center!important;gap:10px!important;color:#306660!important;font-size:18px!important;line-height:1.35!important}
+html body #pagina-candidaturas#pagina-candidaturas .cp-application-emblem{display:grid;place-items:center;width:40px;height:44px;flex:0 0 40px;border:1px solid #deefed;border-radius:10px;background:linear-gradient(145deg,#f5faf8,#ebf5f4);color:#316862}
 html body #pagina-candidaturas#pagina-candidaturas .cp-application-emblem svg{width:27px;height:30px}
 html body #pagina-candidaturas#pagina-candidaturas .status-processo{border:1px solid #f1cfb2!important;border-radius:999px!important;padding:6px 10px!important;background:#fff4e9!important;color:#ab4008!important;font-size:10px!important;font-weight:600!important}
-html body #pagina-candidaturas#pagina-candidaturas [data-cp-application-stage=entrevista] .status-processo,html body #pagina-candidaturas#pagina-candidaturas [data-cp-application-stage=aprovadas] .status-processo,html body #pagina-candidaturas#pagina-candidaturas [data-cp-application-stage=contratadas] .status-processo{background:#edf6fa!important;border-color:#cee2ed!important;color:#175571!important}
+html body #pagina-candidaturas#pagina-candidaturas [data-cp-application-stage=entrevista] .status-processo,html body #pagina-candidaturas#pagina-candidaturas [data-cp-application-stage=aprovadas] .status-processo,html body #pagina-candidaturas#pagina-candidaturas [data-cp-application-stage=contratadas] .status-processo{background:#eff8f7!important;border-color:#d1eae7!important;color:#2c5c57!important}
 html body #pagina-candidaturas#pagina-candidaturas [data-cp-application-stage=reprovadas] .status-processo{background:#fff1ef!important;border-color:#efd1cc!important;color:#a64434!important}
 html body #pagina-candidaturas#pagina-candidaturas .cp-process-trigger{display:flex!important;align-items:center!important;justify-content:space-between!important;padding:11px 14px!important;margin-top:14px!important;background:#fff5eb!important;border:1px solid #f0c8a7!important;border-radius:9px!important;color:#b64207!important;font-size:12px!important;font-weight:600!important}
 html body #pagina-candidaturas#pagina-candidaturas .cp-process-trigger:hover{background:#ffecd9!important;border-color:#e59c64!important}
-html body #pagina-candidaturas#pagina-candidaturas .cp-application-viewed{background:#edf6fa!important;border-color:#d1e4ef!important;color:#1b5f79!important;border-radius:10px!important}
-html body dialog.cp-process-modal{border-color:#d7e5ed!important;color:#28586e!important}
-html body .cp-process-modal .cp-process-modal-header{border-color:#dce8ef!important;background:#f9fcfd!important}
-html body .cp-process-modal .cp-process-modal-header h2{color:#28586e!important}
+html body #pagina-candidaturas#pagina-candidaturas .cp-application-viewed{background:#eff8f7!important;border-color:#d5ebe9!important;color:#2f655e!important;border-radius:10px!important}
+html body dialog.cp-process-modal{border-color:#d8ecea!important;color:#306660!important}
+html body .cp-process-modal .cp-process-modal-header{border-color:#dcefed!important;background:#f9fcfd!important}
+html body .cp-process-modal .cp-process-modal-header h2{color:#306660!important}
 html body .cp-process-modal .cp-process-tabs [aria-selected=true]{color:#c74605!important;border-bottom-color:#d64a06!important}
-html body .cp-process-modal .cp-process-modal-close{color:#326f85!important;background:#edf5f9!important;border-color:#d5e5ed!important}
+html body .cp-process-modal .cp-process-modal-close{color:#3b7c75!important;background:#eff8f6!important;border-color:#d6ece9!important}
 html body .cp-process-modal .cp-process-modal-footer button{background:#d64a06!important;color:#fff!important;border-radius:9px!important}
 html body .cp-process-modal .cp-process-steps .is-current>span{background:#d64a06!important;color:#fff!important}
 html body .cp-process-modal .cp-process-steps .is-current strong{color:#b34208!important}
-html body .cp-process-modal .cp-job-facts{background:#edf6fa!important;border-color:#d1e4ef!important}
+html body .cp-process-modal .cp-job-facts{background:#eff8f7!important;border-color:#d5ebe9!important}
 @layer site-typography{
  html body #pagina-candidaturas#pagina-candidaturas .cp-applications-hero h1{color:#fff!important}
- html body #pagina-candidaturas#pagina-candidaturas .cp-applications-hero p{color:#d9edf6!important;font-weight:400!important}
- html body #pagina-candidaturas#pagina-candidaturas :is(.cp-applications-back,.cp-applications-kicker){color:#c9e5f0!important}
+ html body #pagina-candidaturas#pagina-candidaturas .cp-applications-hero p{color:#dff0ee!important;font-weight:400!important}
+ html body #pagina-candidaturas#pagina-candidaturas :is(.cp-applications-back,.cp-applications-kicker){color:#d0e9e6!important}
  html body #pagina-candidaturas#pagina-candidaturas .cp-applications-kicker span{color:#ffe0c5!important}
- html body #pagina-candidaturas#pagina-candidaturas .cp-applications-chips span{color:#e5f2f8!important}
- html body #cpApplicationFilters#cpApplicationFilters .cp-filter-label{color:#43667b!important}
+ html body #pagina-candidaturas#pagina-candidaturas .cp-applications-chips span{color:#e9f4f3!important}
+ html body #cpApplicationFilters#cpApplicationFilters .cp-filter-label{color:#437b74!important}
  html body #cpApplicationFilters#cpApplicationFilters [aria-pressed=true] .cp-filter-label{color:#fff!important}
  html body #pagina-candidaturas#pagina-candidaturas .cp-process-trigger{color:#b64207!important}
- html body #pagina-candidaturas#pagina-candidaturas .cp-applications-rail span{color:#526e81!important}
+ html body #pagina-candidaturas#pagina-candidaturas .cp-applications-rail span{color:#52817c!important}
 }
 @media(max-width:1100px) and (min-width:1001px){html body #cpApplicationFilters#cpApplicationFilters [data-cp-filter]{padding:9px 7px!important;gap:7px!important}html body #cpApplicationFilters#cpApplicationFilters .cp-filter-icon{width:32px!important;flex-basis:32px!important}html body #cpApplicationFilters#cpApplicationFilters .cp-filter-label{font-size:10px!important}}
 @media(max-width:1000px){html body #cpApplicationFilters#cpApplicationFilters .cp-application-filter-buttons{grid-template-columns:repeat(4,minmax(0,1fr))!important}}
@@ -521,39 +521,39 @@ html body .cp-process-modal .cp-job-facts{background:#edf6fa!important;border-co
 
 
 /* Keep the process dialog within the same petroleum palette. */
-html body .cp-process-modal .cp-process-modal-subtitle{color:#59778a!important}
-html body .cp-process-modal .cp-process-note{background:#edf6fa!important;border-color:#d1e4ef!important;color:#1a546d!important}
-html body .cp-process-modal .cp-process-note strong{color:#1a546d!important}
-html body .cp-process-modal .cp-process-support>section{border-color:#d4e5ed!important;background:#fff!important}
-html body .cp-process-modal .cp-process-support>section:first-child{background:#edf6fa!important}
-html body .cp-process-modal .cp-process-support :is(h4,svg){color:#1d617c!important}
-html body .cp-process-modal .cp-process-tabs button svg{color:#1d617c!important}
+html body .cp-process-modal .cp-process-modal-subtitle{color:#598a84!important}
+html body .cp-process-modal .cp-process-note{background:#eff8f7!important;border-color:#d5ebe9!important;color:#2b5c56!important}
+html body .cp-process-modal .cp-process-note strong{color:#2b5c56!important}
+html body .cp-process-modal .cp-process-support>section{border-color:#d6ebe9!important;background:#fff!important}
+html body .cp-process-modal .cp-process-support>section:first-child{background:#eff8f7!important}
+html body .cp-process-modal .cp-process-support :is(h4,svg){color:#316862!important}
+html body .cp-process-modal .cp-process-tabs button svg{color:#316862!important}
 html body .cp-process-modal .cp-interview-buttons [data-confirm]{background:#d64a06!important;border-color:#d64a06!important;color:#fff!important}
-html body .cp-process-modal .cp-process-steps li>span{background:#edf5f9!important;color:#46788e!important;border-color:#d4e5ed!important}
-html body .cp-process-modal .cp-process-steps li.is-current>span{background:#326f85!important;color:#fff!important}
-@layer site-typography{html body .cp-process-modal .cp-process-modal-subtitle{color:#59778a!important}html body .cp-process-modal .cp-interview-buttons [data-confirm]{color:#fff!important}}
+html body .cp-process-modal .cp-process-steps li>span{background:#eff8f6!important;color:#468e86!important;border-color:#d6ebe9!important}
+html body .cp-process-modal .cp-process-steps li.is-current>span{background:#3b7c75!important;color:#fff!important}
+@layer site-typography{html body .cp-process-modal .cp-process-modal-subtitle{color:#598a84!important}html body .cp-process-modal .cp-interview-buttons [data-confirm]{color:#fff!important}}
 
-.cp-application-date{display:flex;align-items:center;gap:10px;color:#365b72;font-size:12px;line-height:1.5}.cp-application-date svg{width:19px;height:19px;color:#326f85;flex:none}
+.cp-application-date{display:flex;align-items:center;gap:10px;color:#36726b;font-size:12px;line-height:1.5}.cp-application-date svg{width:19px;height:19px;color:#3b7c75;flex:none}
 /* Selected reference 2: petroleum headers and a spacious vertical journey. */
 html body #pagina-candidaturas#pagina-candidaturas #listaCandidaturas{align-items:stretch!important}
 html body #pagina-candidaturas#pagina-candidaturas .candidatura-item{display:flex!important;flex-direction:column!important;padding:0 20px 18px!important;min-width:0!important;min-height:238px!important;border-radius:13px!important}
-html body #pagina-candidaturas#pagina-candidaturas .candidatura-top{margin:0 -20px 16px!important;padding:16px 20px!important;background:linear-gradient(110deg,#306b80,#407f94)!important;align-items:center!important;gap:10px!important;min-height:88px!important}
+html body #pagina-candidaturas#pagina-candidaturas .candidatura-top{margin:0 -20px 16px!important;padding:16px 20px!important;background:linear-gradient(110deg,#397d78,#438c87)!important;align-items:center!important;gap:10px!important;min-height:88px!important}
 html body #pagina-candidaturas#pagina-candidaturas .candidatura-top>div{min-width:0;flex:1}
 html body #pagina-candidaturas#pagina-candidaturas .candidatura-top h3{color:#fff!important;font-size:17px!important;margin:0!important}
-html body #pagina-candidaturas#pagina-candidaturas .candidatura-top p{color:#e1eff6!important;margin:4px 0 0 54px!important;font-size:12px!important}
+html body #pagina-candidaturas#pagina-candidaturas .candidatura-top p{color:#e4f3f1!important;margin:4px 0 0 54px!important;font-size:12px!important}
 html body #pagina-candidaturas#pagina-candidaturas .cp-application-emblem{width:44px!important;height:44px!important;flex-basis:44px!important;border:1px solid #ffffff20!important;border-radius:50%!important;background:#ffffff14!important;color:#fff!important;--filter-paper:transparent;--filter-accent:#fff;--filter-soft:#ffffff18}
 html body #pagina-candidaturas#pagina-candidaturas .cp-process-details{margin-top:auto!important;padding-top:12px!important}
 html body #pagina-candidaturas#pagina-candidaturas .cp-process-trigger{width:100%!important;margin:0!important;background:linear-gradient(100deg,#cc4504,#df5407)!important;color:#fff!important;border-color:#d64a06!important;min-height:43px!important}
 html body #pagina-candidaturas#pagina-candidaturas .cp-process-trigger:hover{background:#b93d03!important}
 html body #pagina-candidaturas#pagina-candidaturas .cp-application-viewed{margin:10px 0 0!important}
 html body dialog.cp-process-modal.cp-process-modal[open]{display:flex!important;flex-direction:column!important;width:min(1440px,calc(100vw - 48px))!important;max-width:calc(100vw - 48px)!important;height:min(850px,calc(100dvh - 48px))!important;max-height:calc(100dvh - 48px)!important;overflow:hidden!important;border-radius:14px!important;padding:0!important}
-html body dialog.cp-process-modal.cp-process-modal .cp-process-modal-header{flex:none!important;padding:22px 28px!important;background:linear-gradient(110deg,#306b80,#407f94)!important;color:#fff!important;align-items:center!important}
+html body dialog.cp-process-modal.cp-process-modal .cp-process-modal-header{flex:none!important;padding:22px 28px!important;background:linear-gradient(110deg,#397d78,#438c87)!important;color:#fff!important;align-items:center!important}
 html body dialog.cp-process-modal.cp-process-modal .cp-process-modal-header h2{font-size:25px!important;color:#fff!important;margin:7px 0 5px!important}
-html body dialog.cp-process-modal.cp-process-modal .cp-process-modal-header>div>span{color:#e4f2f8!important;letter-spacing:1px!important}
-html body dialog.cp-process-modal.cp-process-modal .cp-process-modal-subtitle{color:#d8ebf4!important;font-size:13px!important}
+html body dialog.cp-process-modal.cp-process-modal .cp-process-modal-header>div>span{color:#e8f4f3!important;letter-spacing:1px!important}
+html body dialog.cp-process-modal.cp-process-modal .cp-process-modal-subtitle{color:#ddefed!important;font-size:13px!important}
 html body dialog.cp-process-modal.cp-process-modal .cp-process-modal-close{background:#ffffff0d!important;color:#fff!important;border-color:#ffffff70!important;width:38px!important;height:38px!important;flex-basis:38px!important}
 html body dialog.cp-process-modal.cp-process-modal .cp-process-body{display:flex!important;flex-direction:column!important;flex:1!important;min-height:0!important;overflow:hidden!important;padding:0 24px 22px!important}
-html body dialog.cp-process-modal.cp-process-modal .cp-process-tabs{flex:none!important;display:flex!important;gap:24px!important;margin:0 0 18px!important;border-bottom:1px solid #dce8ef!important;overflow-x:auto!important}
+html body dialog.cp-process-modal.cp-process-modal .cp-process-tabs{flex:none!important;display:flex!important;gap:24px!important;margin:0 0 18px!important;border-bottom:1px solid #dcefed!important;overflow-x:auto!important}
 html body dialog.cp-process-modal.cp-process-modal .cp-process-tabs button{flex-shrink:0!important;font-size:13px!important;padding:16px 12px!important}
 html body dialog.cp-process-modal.cp-process-modal .cp-process-tabs button[aria-selected=true] svg{color:#d64a06!important}
 html body dialog.cp-process-modal.cp-process-modal .cp-process-tab-content{flex:1!important;min-height:0!important;overflow:auto!important;padding:0 4px 4px!important}
@@ -564,17 +564,17 @@ html body dialog.cp-process-modal.cp-process-modal #cpProcessPane0>section{min-w
 html body dialog.cp-process-modal.cp-process-modal #cpProcessPane0>section>h4{font-size:16px!important;margin:0 0 18px!important}
 html body dialog.cp-process-modal.cp-process-modal .cp-process-steps{display:flex!important;flex-direction:column!important;gap:0!important;margin:0!important;padding:0!important}
 html body dialog.cp-process-modal.cp-process-modal .cp-process-steps li{display:grid!important;grid-template-columns:38px minmax(120px,.9fr) minmax(0,1.1fr)!important;gap:15px!important;align-items:center!important;text-align:left!important;padding:0 0 20px!important;min-height:65px!important}
-html body dialog.cp-process-modal.cp-process-modal .cp-process-steps li:not(:last-child):after{display:block!important;top:38px!important;left:18px!important;width:0!important;height:calc(100% - 38px)!important;border:0!important;border-left:1px dashed #b9d2df!important}
-html body dialog.cp-process-modal.cp-process-modal .cp-process-steps li>span{width:36px!important;height:36px!important;background:#f5fafc!important;border-color:#c5dce7!important;color:#326f85!important;box-shadow:none!important}
-html body dialog.cp-process-modal.cp-process-modal .cp-process-steps li:first-child>span{background:#326f85!important;color:#fff!important;border-color:#326f85!important}
+html body dialog.cp-process-modal.cp-process-modal .cp-process-steps li:not(:last-child):after{display:block!important;top:38px!important;left:18px!important;width:0!important;height:calc(100% - 38px)!important;border:0!important;border-left:1px dashed #badeda!important}
+html body dialog.cp-process-modal.cp-process-modal .cp-process-steps li>span{width:36px!important;height:36px!important;background:#f6fbfa!important;border-color:#c7e5e1!important;color:#3b7c75!important;box-shadow:none!important}
+html body dialog.cp-process-modal.cp-process-modal .cp-process-steps li:first-child>span{background:#3b7c75!important;color:#fff!important;border-color:#3b7c75!important}
 html body dialog.cp-process-modal.cp-process-modal .cp-process-steps li.is-current>span{background:#fff5eb!important;color:#d64a06!important;border:2px solid #d64a06!important}
-html body dialog.cp-process-modal.cp-process-modal .cp-process-steps strong{font-size:13px!important;line-height:1.4!important;color:#28586e!important}
-html body dialog.cp-process-modal.cp-process-modal .cp-process-steps small{font-size:11px!important;color:#58758a!important;line-height:1.5!important}
+html body dialog.cp-process-modal.cp-process-modal .cp-process-steps strong{font-size:13px!important;line-height:1.4!important;color:#306660!important}
+html body dialog.cp-process-modal.cp-process-modal .cp-process-steps small{font-size:11px!important;color:#588a84!important;line-height:1.5!important}
 html body dialog.cp-process-modal.cp-process-modal .cp-process-steps .is-current strong{color:#c74606!important}
-html body dialog.cp-process-modal.cp-process-modal .cp-step-context{display:block!important;background:#f0f6fa;border-radius:8px;padding:10px 12px;font-size:11px;line-height:1.5;color:#456579}
+html body dialog.cp-process-modal.cp-process-modal .cp-step-context{display:block!important;background:#f1f9f8;border-radius:8px;padding:10px 12px;font-size:11px;line-height:1.5;color:#457973}
 html body dialog.cp-process-modal.cp-process-modal .is-current .cp-step-context{background:#fff3e8;color:#b64005}
-html body dialog.cp-process-modal.cp-process-modal #cpProcessPane0 .cp-process-support{display:flex!important;flex-direction:column!important;gap:16px!important;margin:0!important;padding-left:20px!important;border-left:1px solid #dfebf2!important;align-items:stretch!important}
-html body dialog.cp-process-modal.cp-process-modal #cpProcessPane0 .cp-process-support>section{width:100%!important;min-height:0!important;padding:18px 18px 18px 66px!important;border:1px solid #d1e3ed!important;border-radius:11px!important;overflow-wrap:anywhere!important}
+html body dialog.cp-process-modal.cp-process-modal #cpProcessPane0 .cp-process-support{display:flex!important;flex-direction:column!important;gap:16px!important;margin:0!important;padding-left:20px!important;border-left:1px solid #e0f1ef!important;align-items:stretch!important}
+html body dialog.cp-process-modal.cp-process-modal #cpProcessPane0 .cp-process-support>section{width:100%!important;min-height:0!important;padding:18px 18px 18px 66px!important;border:1px solid #d3ebe8!important;border-radius:11px!important;overflow-wrap:anywhere!important}
 html body dialog.cp-process-modal.cp-process-modal #cpProcessPane0 .cp-process-support h4{font-size:13px!important;margin:0 0 10px!important}
 html body dialog.cp-process-modal.cp-process-modal #cpProcessPane0 .cp-process-support p{font-size:12px!important;line-height:1.55!important;margin:6px 0!important}
 html body dialog.cp-process-modal.cp-process-modal #cpProcessPane0 .cp-process-support small{font-size:10px!important;line-height:1.5!important}
@@ -584,11 +584,11 @@ html body dialog.cp-process-modal.cp-process-modal #cpProcessPane0 .cp-interview
 html body dialog.cp-process-modal.cp-process-modal #cpProcessPane0 .cp-support-icon{top:17px!important;left:16px!important;width:36px!important;height:36px!important}
 @layer site-typography{
  html body #pagina-candidaturas#pagina-candidaturas .candidatura-top h3{color:#fff!important}
- html body #pagina-candidaturas#pagina-candidaturas .candidatura-top p{color:#e1eff6!important}
+ html body #pagina-candidaturas#pagina-candidaturas .candidatura-top p{color:#e4f3f1!important}
  html body #pagina-candidaturas#pagina-candidaturas .cp-process-trigger{color:#fff!important}
  html body dialog.cp-process-modal.cp-process-modal .cp-process-modal-header h2{color:#fff!important}
- html body dialog.cp-process-modal.cp-process-modal .cp-process-modal-header>div>span{color:#e4f2f8!important}
- html body dialog.cp-process-modal.cp-process-modal .cp-process-modal-subtitle{color:#d8ebf4!important}
+ html body dialog.cp-process-modal.cp-process-modal .cp-process-modal-header>div>span{color:#e8f4f3!important}
+ html body dialog.cp-process-modal.cp-process-modal .cp-process-modal-subtitle{color:#ddefed!important}
 }
 @media(max-width:1000px){
  html body dialog.cp-process-modal.cp-process-modal .cp-process-steps li{grid-template-columns:38px minmax(0,1fr)!important}
@@ -610,30 +610,30 @@ html body dialog.cp-process-modal.cp-process-modal #cpProcessPane0 .cp-support-i
 
 
 /* Lighter candidate cards: keep brand colors as accents. */
-html body #pagina-candidaturas#pagina-candidaturas .candidatura-top{background:linear-gradient(110deg,#f4f9fc,#eaf3f7)!important;border-bottom:1px solid #dce9f0!important}
-html body #pagina-candidaturas#pagina-candidaturas .candidatura-top h3{color:#32677c!important}
-html body #pagina-candidaturas#pagina-candidaturas .candidatura-top p{color:#526f80!important}
-html body #pagina-candidaturas#pagina-candidaturas .cp-application-emblem{background:#fff!important;color:#28637b!important;border-color:#d7e7ef!important}
+html body #pagina-candidaturas#pagina-candidaturas .candidatura-top{background:linear-gradient(110deg,#f5faf8,#edf7f4)!important;border-bottom:1px solid #ddefed!important}
+html body #pagina-candidaturas#pagina-candidaturas .candidatura-top h3{color:#285b57!important}
+html body #pagina-candidaturas#pagina-candidaturas .candidatura-top p{color:#52807b!important}
+html body #pagina-candidaturas#pagina-candidaturas .cp-application-emblem{background:#fff!important;color:#346f68!important;border-color:#d9edeb!important}
 html body #pagina-candidaturas#pagina-candidaturas .cp-process-trigger{background:#fff3e8!important;color:#a94716!important;border:1px solid #efd0b8!important;box-shadow:none!important}
 html body #pagina-candidaturas#pagina-candidaturas .cp-process-trigger:hover{background:#ffe9d7!important;border-color:#dfb38f!important}
 html body #cpApplicationFilters#cpApplicationFilters [data-cp-filter][aria-pressed=true]{--filter-paper:#fff;--filter-soft:#fff5eb;--filter-accent:#b85b29;background:#fff4e9!important;border-color:#e6bd9e!important;color:#a14b20!important;box-shadow:none!important}
 html body #cpApplicationFilters#cpApplicationFilters [data-cp-filter][aria-pressed=true] .cp-filter-icon{background:#fff!important;border-color:#efd9c8!important;color:#a55229!important}
-html body dialog.cp-process-modal.cp-process-modal .cp-process-modal-header{background:linear-gradient(110deg,#f5fafc,#e7f2f7)!important;color:#32677c!important;border-bottom:1px solid #d8e8f0!important}
-html body dialog.cp-process-modal.cp-process-modal .cp-process-modal-header h2{color:#32677c!important}
-html body dialog.cp-process-modal.cp-process-modal .cp-process-modal-header>div>span{color:#53788b!important}
-html body dialog.cp-process-modal.cp-process-modal .cp-process-modal-subtitle{color:#526f80!important}
-html body dialog.cp-process-modal.cp-process-modal .cp-process-modal-close{background:#ffffffcc!important;border-color:#c6dce7!important;color:#28637b!important}
+html body dialog.cp-process-modal.cp-process-modal .cp-process-modal-header{background:linear-gradient(110deg,#f6fbfa,#e9f5f3)!important;color:#285b57!important;border-bottom:1px solid #daeeeb!important}
+html body dialog.cp-process-modal.cp-process-modal .cp-process-modal-header h2{color:#285b57!important}
+html body dialog.cp-process-modal.cp-process-modal .cp-process-modal-header>div>span{color:#538b84!important}
+html body dialog.cp-process-modal.cp-process-modal .cp-process-modal-subtitle{color:#52807b!important}
+html body dialog.cp-process-modal.cp-process-modal .cp-process-modal-close{background:#ffffffcc!important;border-color:#c8e5e2!important;color:#346f68!important}
 html body dialog.cp-process-modal.cp-process-modal .cp-interview-buttons [data-confirm]{background:#fff0e3!important;border:1px solid #e8c5aa!important;color:#a94716!important}
-html body dialog.cp-process-modal.cp-process-modal .cp-process-steps li:first-child>span{background:#edf5f9!important;color:#28637b!important;border-color:#c6dce7!important}
+html body dialog.cp-process-modal.cp-process-modal .cp-process-steps li:first-child>span{background:#eff8f6!important;color:#346f68!important;border-color:#c8e5e2!important}
 html body dialog.cp-process-modal.cp-process-modal .cp-process-steps li.is-current>span{background:#fff4e9!important;color:#b15b2b!important;border-color:#d9a883!important}
 @layer site-typography{
- html body #pagina-candidaturas#pagina-candidaturas .candidatura-top h3{color:#32677c!important}
- html body #pagina-candidaturas#pagina-candidaturas .candidatura-top p{color:#526f80!important}
+ html body #pagina-candidaturas#pagina-candidaturas .candidatura-top h3{color:#285b57!important}
+ html body #pagina-candidaturas#pagina-candidaturas .candidatura-top p{color:#52807b!important}
  html body #pagina-candidaturas#pagina-candidaturas .cp-process-trigger{color:#a94716!important}
  html body #cpApplicationFilters#cpApplicationFilters [aria-pressed=true] .cp-filter-label{color:#a14b20!important}
- html body dialog.cp-process-modal.cp-process-modal .cp-process-modal-header h2{color:#32677c!important}
- html body dialog.cp-process-modal.cp-process-modal .cp-process-modal-header>div>span{color:#53788b!important}
- html body dialog.cp-process-modal.cp-process-modal .cp-process-modal-subtitle{color:#526f80!important}
+ html body dialog.cp-process-modal.cp-process-modal .cp-process-modal-header h2{color:#285b57!important}
+ html body dialog.cp-process-modal.cp-process-modal .cp-process-modal-header>div>span{color:#538b84!important}
+ html body dialog.cp-process-modal.cp-process-modal .cp-process-modal-subtitle{color:#52807b!important}
  html body dialog.cp-process-modal.cp-process-modal .cp-interview-buttons [data-confirm]{color:#a94716!important}
 }
 
