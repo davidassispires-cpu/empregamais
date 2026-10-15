@@ -192,6 +192,7 @@
  }
  function enhanceRecommendations(){
   var c=profile();container.querySelectorAll('.em-personal-grid [data-cp-job-id]').forEach(function(card){
+   var company=card.querySelector(':scope > p'),place=card.querySelector(':scope > small');if(company&&place){place.classList.add('cp-inline-place');company.appendChild(document.createTextNode(' · '));company.appendChild(place);}
    var job=jobById(card.dataset.cpJobId),match=compatibility(job,c),signature=JSON.stringify(match),holder=card.querySelector('.cp-fit-and-alert');
    if(!holder){holder=document.createElement('div');holder.className='cp-fit-and-alert';card.appendChild(holder);}
    if(holder.dataset.signature===signature)return;holder.dataset.signature=signature;
@@ -349,9 +350,14 @@
   }
   extra.hidden=false;
   enhanceMetrics();renderLatest();renderAlertCard();renderPracticeCard();enhanceRecommendations();enhanceInterview();
-  applyWorkspaceFont(container);applyWorkspaceFont(document.getElementById('cpCandidateHeader'));
+  applyWorkspaceFont(container);applyWorkspaceFont(document.getElementById('cpCandidateHeader'));applyOrangePalette(page);applyOrangePalette(document.getElementById('cpCandidateHeader'));
  }
  function schedule(){if(scheduled)return;scheduled=true;requestAnimationFrame(function(){scheduled=false;mount();});}
+ function applyOrangePalette(scope){
+  if(!scope)return;
+  function orange(value){return value.replace(/rgba?\(([^)]+)\)/g,function(match,parts){var nums=parts.split(/[,\s/]+/).map(Number),r=nums[0]/255,g=nums[1]/255,b=nums[2]/255,max=Math.max(r,g,b),min=Math.min(r,g,b),d=max-min;if(d<.03)return match;var h=max===r?((g-b)/d+6)%6:max===g?(b-r)/d+2:(r-g)/d+4;h*=60;if(h<245||h>315)return match;var l=(max+min)/2,s=d/(1-Math.abs(2*l-1));return 'hsla(21,'+Math.round(s*100)+'%,'+Math.round(l*100)+'%,'+(nums[3]==null?1:nums[3])+')';});}
+  scope.querySelectorAll('*').forEach(function(el){var cs=getComputedStyle(el);['color','background-color','border-top-color','border-right-color','border-bottom-color','border-left-color','background-image'].forEach(function(prop){var value=cs.getPropertyValue(prop),next=orange(value);if(next!==value)el.style.setProperty(prop,next,'important');});});
+ }
  function applyWorkspaceFont(scope){
   if(!scope)return;
   scope.querySelectorAll('h1,h2,h3,h4,p,span,small,strong,button,a,label,legend,input,textarea,dt,dd,li,summary').forEach(function(el){
@@ -688,6 +694,7 @@
   var types={'painel-candidato':'home',curriculo:'resume',candidaturas:'case',home:'search',messages:'chat',perfil:'user',salvas:'saved','premium-candidato':'crown'};
   nav.querySelectorAll('button[data-route]').forEach(function(b){var holder=b.querySelector('.cp-card-icon');if(holder&&!holder.dataset.m3){holder.innerHTML=icon(types[b.dataset.route]);holder.dataset.m3='1';}});
   var intro=p.querySelector('.cp-home-intro');if(intro&&!intro.dataset.m3){intro.dataset.m3='1';intro.innerHTML='<div class="m3-welcome"><small>BEM-VINDO AO EMPREGAMAIS</small><h1>Olá, <span class="m3-name">Candidato</span></h1><p>Continue sua jornada profissional. Novas oportunidades<br> te esperam por aqui.</p><button type="button">Buscar novas vagas <span aria-hidden="true">→</span></button></div><div class="m3-art">'+art()+'</div><div class="m3-motto">DISCIPLINA HOJE,<br>GRANDES CONQUISTAS<br>AMANHÃ.<i></i></div>';intro.querySelector('button').onclick=function(){go('home');};}
+  var motto=p.querySelector('.m3-motto');if(motto)motto.style.setProperty('color','#cae5f0','important');
   var name=p.querySelector('.cp-name'),target=p.querySelector('.m3-name'),first=(name&&name.textContent.trim().split(/\s+/)[0])||'Candidato';if(target&&target.textContent!==first)target.textContent=first;
  }
  function schedule(){if(!queued){queued=true;requestAnimationFrame(paint);}}
