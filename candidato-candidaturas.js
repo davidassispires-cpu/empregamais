@@ -518,6 +518,20 @@ html body .cp-process-modal .cp-job-facts{background:#edf6fa!important;border-co
 @media(max-width:700px){html body #pagina-candidaturas#pagina-candidaturas .cp-applications-hero{height:auto!important;min-height:210px!important;grid-template-columns:minmax(0,1fr) 27%!important;padding:18px!important}html body #pagina-candidaturas#pagina-candidaturas .cp-applications-art{max-height:150px!important}html body #pagina-candidaturas#pagina-candidaturas .candidatura-item{padding:17px!important}html body #pagina-candidaturas#pagina-candidaturas .candidatura-top h3{font-size:16px!important}}
 @media(max-width:540px){html body #pagina-candidaturas#pagina-candidaturas>.container-menor{width:calc(100% - 24px)!important}html body #pagina-candidaturas#pagina-candidaturas .cp-applications-hero{grid-template-columns:1fr!important;min-height:0!important}html body #pagina-candidaturas#pagina-candidaturas .cp-applications-art{display:none!important}html body #pagina-candidaturas#pagina-candidaturas .cp-applications-chips{gap:6px!important}html body #pagina-candidaturas#pagina-candidaturas .cp-applications-chips span{font-size:9px!important;min-height:30px!important;padding:5px 7px!important}html body #cpApplicationFilters#cpApplicationFilters .cp-application-filter-buttons{grid-template-columns:repeat(2,minmax(0,1fr))!important}html body #cpApplicationFilters#cpApplicationFilters [data-cp-filter]{height:74px!important;min-height:74px!important}html body #cpApplicationFilters#cpApplicationFilters [data-cp-filter=todas]{height:62px!important;min-height:62px!important}html body #pagina-candidaturas#pagina-candidaturas .cp-applications-rail{gap:6px!important}html body #pagina-candidaturas#pagina-candidaturas .cp-applications-rail span{border:0!important;padding:0!important}}
 
+
+/* Keep the process dialog within the same petroleum palette. */
+html body .cp-process-modal .cp-process-modal-subtitle{color:#59778a!important}
+html body .cp-process-modal .cp-process-note{background:#edf6fa!important;border-color:#d1e4ef!important;color:#1a546d!important}
+html body .cp-process-modal .cp-process-note strong{color:#1a546d!important}
+html body .cp-process-modal .cp-process-support>section{border-color:#d4e5ed!important;background:#fff!important}
+html body .cp-process-modal .cp-process-support>section:first-child{background:#edf6fa!important}
+html body .cp-process-modal .cp-process-support :is(h4,svg){color:#1d617c!important}
+html body .cp-process-modal .cp-process-tabs button svg{color:#1d617c!important}
+html body .cp-process-modal .cp-interview-buttons [data-confirm]{background:#d64a06!important;border-color:#d64a06!important;color:#fff!important}
+html body .cp-process-modal .cp-process-steps li>span{background:#edf5f9!important;color:#46788e!important;border-color:#d4e5ed!important}
+html body .cp-process-modal .cp-process-steps li.is-current>span{background:#15516b!important;color:#fff!important}
+@layer site-typography{html body .cp-process-modal .cp-process-modal-subtitle{color:#59778a!important}html body .cp-process-modal .cp-interview-buttons [data-confirm]{color:#fff!important}}
+
 `;document.head.appendChild(style);
   window.addEventListener('popstate',refresh);window.addEventListener('storage',refresh);document.addEventListener('empregamais:candidato-sincronizado',refresh);document.addEventListener('empregamais:candidaturas-sincronizadas',refresh);refresh();
  }
