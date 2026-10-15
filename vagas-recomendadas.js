@@ -182,6 +182,18 @@
  function navigationArt(index){
   return svg(['home','document','search','user','chat','bookmark','crown'][index]).replace('<svg ','<svg class="cp-nav-icon" ');
  }
+ function sidebarCardIcon(type){
+ var shapes={
+ home:'<path d="m5 21 15-13 15 13" fill="#d8edf6"/><path d="M8 19v16h24V19L20 9Z" fill="#e1f1f8" stroke="currentColor"/><path d="M17 35V24h7v11" fill="#75b5ce" stroke="currentColor"/>',
+ document:'<path d="M9 5h16l7 7v23H9Z" fill="#dceff7" stroke="currentColor"/><path d="M25 5v8h7M14 18h11M14 23h8M14 28h8" stroke="currentColor"/><circle cx="30" cy="29" r="8" fill="#fff" stroke="currentColor"/><circle cx="30" cy="27" r="2" fill="currentColor" stroke="none"/><path d="M26 33a4 4 0 0 1 8 0" stroke="currentColor"/>',
+ search:'<circle cx="17" cy="17" r="11" fill="#d9edf6" stroke="currentColor"/><path d="m25 25 10 10" stroke="currentColor" stroke-width="3.5"/>',
+ chat:'<rect x="5" y="10" width="29" height="23" rx="3" fill="#dceef6" stroke="currentColor"/><path d="m6 12 13.5 11L33 12" stroke="currentColor"/><circle cx="33" cy="10" r="6.5" fill="#58b4d5" stroke="#fff"/>',
+ bookmark:'<path d="M11 5h19v30l-9.5-7L11 35Z" fill="#deeff7" stroke="currentColor"/>',
+ user:'<circle cx="18" cy="12" r="7" fill="#b4d8e9" stroke="currentColor"/><path d="M5 33v-3a13 13 0 0 1 26 0v3Z" fill="#97c7dd" stroke="currentColor"/><circle cx="31" cy="30" r="8" fill="#146884" stroke="#fff"/><path d="m27 33 1-4 5-5 3 3-5 5Z" fill="#fff" stroke="none"/>',
+ resume:'<path d="M10 5h15l7 7v23H10Z" fill="#d8edf6" stroke="currentColor"/><path d="M25 5v8h7M15 18h6M15 23h12M15 28h12" stroke="currentColor"/>',
+ crown:'<path d="m5 12 8 6 7-12 7 12 8-6-4 20H9Z" fill="#add5e6" stroke="currentColor"/><path d="M10 36h20M10 27h20" stroke="currentColor"/>'
+ };return '<span class="cp-card-icon"><svg class="cp-nav-icon" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round" aria-hidden="true">'+(shapes[type]||shapes.resume)+'</svg></span>';
+ }
  function setup(){
   page=document.getElementById('pagina-painel-candidato');if(!page)return;container=page.querySelector('.container-dashboard');if(!container)return;
   if(container.querySelector('.cp-layout')){var existingInbox=container.querySelector('.em-candidate-inbox');if(existingInbox&&existingInbox!==container.lastElementChild)container.appendChild(existingInbox);update();return}
@@ -189,7 +201,7 @@
   if(new URLSearchParams(location.search).get('pagina')==='demo-candidato')page.dataset.cpDemo='true';
   var nav=document.createElement('nav');nav.className='cp-navigation';nav.setAttribute('aria-label','Área do candidato');
   var routes=[['home','Minha área','painel-candidato','Gestão'],['document','Candidaturas','candidaturas'],['search','Buscar vagas','home'],['chat','Mensagens','messages'],['bookmark','Vagas salvas','salvas'],['user','Editar perfil','perfil','Perfil do candidato'],['document','Currículo','curriculo'],['crown','Premium','premium-candidato']];
-  nav.innerHTML=routes.map(function(r,i){return (r[3]?'<div class="cp-nav-label cp-nav-section-label">'+r[3]+'</div>':'')+'<button type="button" data-route="'+r[2]+'" '+(i===0?'aria-current="page"':'')+'>'+svg(r[0]).replace('<svg ','<svg class="cp-nav-icon" ')+'<span>'+r[1]+'</span>'+(r[2]==='messages'?'<small class="cp-message-count" hidden></small>':'')+'</button>';}).join('');
+  nav.innerHTML=routes.map(function(r,i){return (r[3]?'<div class="cp-nav-label cp-nav-section-label">'+r[3]+'</div>':'')+'<button type="button" data-route="'+r[2]+'" '+(i===0?'aria-current="page"':'')+'>'+sidebarCardIcon(r[2]==='curriculo'?'resume':r[0])+'<span>'+r[1]+'</span>'+(r[2]==='messages'?'<small class="cp-message-count" hidden></small>':'')+'</button>';}).join('');
   var toolbar=document.createElement('div');toolbar.className='cp-toolbar';toolbar.innerHTML='<strong>+Empregos</strong><span class="cp-toolbar-context">Portal do candidato</span><button type="button" class="cp-notifications" data-route="messages" aria-label="Abrir mensagens">'+svg('bell')+'<span class="cp-notification-dot" hidden></span></button><button type="button" class="cp-greeting" data-route="perfil" aria-label="Abrir minha conta"><span class="cp-user-avatar" aria-hidden="true"></span><span class="cp-greeting-name">Minha conta</span><svg class="cp-account-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m5 9 7 7 7-7"/></svg></button>';
   var header=document.createElement('div');header.id='cpCandidateHeader';header.className='cp-header';header.append(toolbar,nav);page.prepend(header);
   candidateHeader=header;var initialName=profile().nome||sessionStorage.getItem('candidatoNome')||'Candidato';header.querySelector('.cp-user-avatar').textContent=initialName.split(/\s+/).filter(Boolean).slice(0,2).map(function(n){return n[0];}).join('').toUpperCase();
