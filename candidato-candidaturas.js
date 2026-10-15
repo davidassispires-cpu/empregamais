@@ -118,7 +118,7 @@
   list.querySelectorAll('.candidatura-item').forEach(function(card,i){
    var a=rows[i];if(!a)return;card.dataset.cpApplicationStage=classify(a);var title=card.querySelector('.candidatura-top h3');if(title&&!title.querySelector('.cp-application-emblem')){var emblem=document.createElement('span');emblem.className='cp-application-emblem';emblem.setAttribute('aria-hidden','true');emblem.innerHTML=icon('briefcase');title.prepend(emblem);}if(card.querySelector('.cp-process-details'))return;
    var top=card.querySelector('.candidatura-top'),company=top.querySelector('p');if(company){company.textContent=a.empresa||'Empresa não informada';company.style.setProperty('color','#e1eff6','important');company.style.setProperty('font-size','12px','important');}var sent=document.createElement('div');sent.className='cp-application-date';sent.innerHTML=icon('calendar')+'<span>Enviada em '+safe(applicationDate(a.data||a.dataCandidatura))+'</span>';top.after(sent);
-   var notice=viewNotice(a);if(notice){var holder=document.createElement('div');holder.innerHTML=notice;card.querySelector('.candidatura-top').after(holder.firstChild);}
+   var notice=viewNotice(a);if(notice){var holder=document.createElement('div');holder.innerHTML=notice;sent.after(holder.firstChild);}
    var details=document.createElement('div');details.className='cp-process-details';
    var button=document.createElement('button');button.type='button';button.className='cp-process-trigger';button.setAttribute('aria-haspopup','dialog');
    button.innerHTML='Acompanhar processo '+icon('arrow');button.onclick=function(){openProcess(a,button);};
@@ -540,7 +540,7 @@ html body #pagina-candidaturas#pagina-candidaturas .candidatura-item{display:fle
 html body #pagina-candidaturas#pagina-candidaturas .candidatura-top{margin:0 -20px 16px!important;padding:16px 20px!important;background:linear-gradient(110deg,#0b455d,#155c75)!important;align-items:center!important;gap:10px!important;min-height:88px!important}
 html body #pagina-candidaturas#pagina-candidaturas .candidatura-top>div{min-width:0;flex:1}
 html body #pagina-candidaturas#pagina-candidaturas .candidatura-top h3{color:#fff!important;font-size:17px!important;margin:0!important}
-html body #pagina-candidaturas#pagina-candidaturas .candidatura-top p{color:#e1eff6!important;margin:4px 0 0!important;font-size:12px!important}
+html body #pagina-candidaturas#pagina-candidaturas .candidatura-top p{color:#e1eff6!important;margin:4px 0 0 54px!important;font-size:12px!important}
 html body #pagina-candidaturas#pagina-candidaturas .cp-application-emblem{width:44px!important;height:44px!important;flex-basis:44px!important;border:1px solid #ffffff20!important;border-radius:50%!important;background:#ffffff14!important;color:#fff!important;--filter-paper:transparent;--filter-accent:#fff;--filter-soft:#ffffff18}
 html body #pagina-candidaturas#pagina-candidaturas .cp-process-details{margin-top:auto!important;padding-top:12px!important}
 html body #pagina-candidaturas#pagina-candidaturas .cp-process-trigger{width:100%!important;margin:0!important;background:linear-gradient(100deg,#cc4504,#df5407)!important;color:#fff!important;border-color:#d64a06!important;min-height:43px!important}
