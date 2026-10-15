@@ -464,3 +464,29 @@
 
  document.addEventListener('empregamais:candidato-sincronizado',function(){var p=current();document.querySelectorAll('.cp-avatar,.cp-user-avatar').forEach(function(n){if(/^data:image\/(jpeg|png|webp);base64,/.test(p.fotoPerfil||'')){n.style.setProperty('background-image','url("'+p.fotoPerfil+'")','important');n.style.backgroundSize='cover';n.style.backgroundPosition='center';n.textContent='';}});});
 })();
+
+
+/* Site-wide readability: add exactly one pixel to small text, preserve headings. */
+(function(){
+ 'use strict';
+ var sizes=new WeakMap(),colors=new WeakSet(),observed=new WeakSet(),queued=false;
+ function rgb(s){var n=String(s).match(/[\d.]+/g);return n&&n.length>=3?n.slice(0,3).map(Number):null;}
+ function luminance(c){return c.reduce(function(n,v,i){v/=255;return n+[.2126,.7152,.0722][i]*(v<=.04045?v/12.92:Math.pow((v+.055)/1.055,2.4));},0);}
+ function background(el){for(var n=el;n;){var s=getComputedStyle(n),v=s.backgroundColor,c=rgb(v);if(c&&!/rgba\([^)]*,\s*0\s*\)/.test(v)&&v!=='transparent')return c;n=n.parentElement||(n.getRootNode&&n.getRootNode().host);}return [255,255,255];}
+ function watch(root){if(observed.has(root))return;observed.add(root);new MutationObserver(schedule).observe(root,{childList:true,subtree:true});}
+ function scan(root){watch(root);root.querySelectorAll('*').forEach(function(el){
+  if(el.shadowRoot)scan(el.shadowRoot);
+  if(el.closest('svg,script,style,h1,h2,h3,h4,h5,h6,[aria-hidden=true],.fa,.fas,.far,.fab,.material-icons,.material-symbols-outlined'))return;
+  var text=Array.from(el.childNodes).some(function(n){return n.nodeType===3&&n.textContent.trim();});
+  if(!text&&!el.matches('input:not([type=checkbox]):not([type=radio]),textarea,select'))return;
+  var style=getComputedStyle(el),size=parseFloat(style.fontSize);
+  if(!sizes.has(el)&&size>=8&&size<=14){sizes.set(el,size);el.style.setProperty('font-size',(size+1)+'px','important');}
+  if(colors.has(el)||!style.color)return;var c=rgb(style.color);if(!c)return;
+  var l=luminance(c),bg=luminance(background(el)),contrast=(Math.max(l,bg)+.05)/(Math.min(l,bg)+.05);
+  if(bg>.65&&l>.105&&contrast<5&&Math.max.apply(null,c)-Math.min.apply(null,c)<100){el.style.setProperty('color','#405570','important');colors.add(el);}
+ });}
+ function schedule(){if(queued)return;queued=true;setTimeout(function(){queued=false;if(document.body)scan(document.body);},120);}
+ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',schedule,{once:true});else schedule();
+ window.addEventListener('load',schedule);window.addEventListener('resize',schedule);
+ document.addEventListener('empregamais:candidato-sincronizado',schedule);
+})();
