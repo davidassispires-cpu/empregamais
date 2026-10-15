@@ -4,7 +4,9 @@
   if(new URLSearchParams(location.search).get('pagina')!=='demo-candidato')return;
   document.documentElement.classList.add('em-candidate-demo');
   var demoStyle=document.createElement('style');
-  demoStyle.textContent='html.em-candidate-demo #pagina-candidaturas .emi-candidate,html.em-candidate-demo #pagina-candidaturas .em-hire-confirmations,html.em-candidate-demo #pagina-candidaturas .em-candidate-inbox,html.em-candidate-demo #pagina-painel-candidato .emi-candidate,html.em-candidate-demo #pagina-painel-candidato .em-hire-confirmations{display:none!important}';
+  demoStyle.textContent='html.em-candidate-demo #pagina-candidaturas .emi-candidate,html.em-candidate-demo #pagina-candidaturas .em-hire-confirmations,html.em-candidate-demo #pagina-candidaturas .em-candidate-inbox,html.em-candidate-demo #pagina-painel-candidato .emi-candidate,html.em-candidate-demo #pagina-painel-candidato .em-hire-confirmations{display:none!important}'+
+    '@layer site-typography{html.em-candidate-demo .pagina>.cp-demo-plans{box-sizing:border-box!important;width:calc(100% - 52px)!important;max-width:1548px!important;margin:8px auto 18px!important}}'+
+    '@media(max-width:850px){@layer site-typography{html.em-candidate-demo .pagina>.cp-demo-plans{width:calc(100% - 28px)!important}}}';
   document.head.appendChild(demoStyle);
   var demoPlan=new URLSearchParams(location.search).get('planoCandidato')==='premium'?'premium':'gratuito';
   var backing=window.localStorage,prefix='emCandidatePreviewV2:'+demoPlan+':',ready=false;
@@ -63,17 +65,23 @@
     var originalOpen=window.abrirRota,allowed=['painel-candidato','perfil','curriculo','candidaturas','salvas','premium-candidato','home','vaga','candidatura'];
     function open(route,id,push){if(route==='demo-recrutador'){location.href=location.pathname+'?pagina=demo-recrutador&abaPainel=candidates';return;}if(allowed.indexOf(route)<0)route='painel-candidato';var url=new URL(location.href);url.searchParams.set('pagina','demo-candidato');url.searchParams.set('abaCandidato',route);if(id)url.searchParams.set('id',id);else url.searchParams.delete('id');history[push?'pushState':'replaceState']({},'',url.toString());try{originalOpen.call(window,route,id);}catch(error){console.error('Falha ao abrir a prévia do candidato:',error);}
     var target=document.getElementById('pagina-'+route);if(target&&!target.classList.contains('ativa')){document.querySelectorAll('.pagina.ativa').forEach(function(item){item.classList.remove('ativa');});target.classList.add('ativa');}
-    url.searchParams.set('pagina','demo-candidato');history.replaceState({},'',url.toString());}
+    url.searchParams.set('pagina','demo-candidato');history.replaceState({},'',url.toString());demoWidgets();}
     window.irPara=function(route,id){open(route,id,true);};window.abrirRota=function(route,id){open(route==='demo-candidato'?new URLSearchParams(location.search).get('abaCandidato')||'painel-candidato':route,id,false);};
     document.addEventListener('click',function(event){var link=event.target.closest('a[href]');if(!link)return;var url=new URL(link.href,location.href),route=url.searchParams.get('pagina');if(url.origin===location.origin&&url.pathname===location.pathname&&allowed.indexOf(route)>=0){event.preventDefault();event.stopImmediatePropagation();window.irPara(route,url.searchParams.get('id'));}},true);
     window.sairCandidato=function(){location.href=location.pathname+'?pagina=demo-recrutador';};
     window.addEventListener('popstate',function(){var p=new URLSearchParams(location.search);open(p.get('abaCandidato')||'painel-candidato',p.get('id'),false);});
     open(new URLSearchParams(location.search).get('abaCandidato')||'painel-candidato',new URLSearchParams(location.search).get('id'),false);
-    function demoWidgets(){if(demoPanel&&!demoPanel.isConnected){var home=document.querySelector('#pagina-painel-candidato .container-dashboard');if(home)home.prepend(demoPanel);}document.querySelectorAll('#pagina-painel-candidato,#pagina-candidaturas').forEach(function(root){root.querySelectorAll('.emi-candidate,.em-hire-confirmations,.em-candidate-inbox').forEach(function(box){box.style.setProperty('display','none','important');});});}
+    function demoWidgets(){
+      var route=new URLSearchParams(location.search).get('abaCandidato')||'painel-candidato';
+      var active=document.getElementById('pagina-'+route);
+      var host=active&&(active.querySelector('.container-dashboard,.container-menor')||active);
+      // Keep the selector on the current tab, ahead of any Premium summary cards.
+      if(demoPanel&&host&&(demoPanel.parentNode!==host||host.firstElementChild!==demoPanel))host.prepend(demoPanel);
+      document.querySelectorAll('#pagina-painel-candidato,#pagina-candidaturas').forEach(function(root){root.querySelectorAll('.emi-candidate,.em-hire-confirmations,.em-candidate-inbox').forEach(function(box){box.style.setProperty('display','none','important');});});
+    }
     var demoPanel=document.createElement('section');demoPanel.className='cp-demo-plans';demoPanel.setAttribute('aria-label','Selecionar acesso de demonstração');
     demoPanel.innerHTML='<div><strong>Demonstração do candidato</strong><p>Dados fictícios · Sem cobrança. Compare os recursos de cada acesso.</p></div><nav aria-label="Plano da demonstração"></nav>';
-    ['gratuito','premium'].forEach(function(plan){var link=document.createElement('a'),url=new URL(location.href);url.searchParams.set('planoCandidato',plan);link.href=url.toString();link.textContent=plan==='premium'?'Acesso Premium':'Acesso gratuito';if(plan===demoPlan)link.setAttribute('aria-current','page');demoPanel.querySelector('nav').appendChild(link);});
-    var demoHome=document.querySelector('#pagina-painel-candidato .container-dashboard')||document.getElementById('pagina-painel-candidato');if(demoHome)demoHome.prepend(demoPanel);
+    ['gratuito','premium'].forEach(function(plan){var link=document.createElement('a'),url=new URL(location.href);url.searchParams.set('pagina','demo-candidato');url.searchParams.set('abaCandidato','painel-candidato');url.searchParams.set('planoCandidato',plan);url.searchParams.delete('id');link.href=url.toString();link.textContent=plan==='premium'?'Painel Premium':'Painel gratuito';if(plan===demoPlan)link.setAttribute('aria-current','page');demoPanel.querySelector('nav').appendChild(link);});
     ready=true;
     demoWidgets();
     if(window.MutationObserver)document.querySelectorAll('#pagina-painel-candidato,#pagina-candidaturas').forEach(function(root){new MutationObserver(demoWidgets).observe(root,{childList:true,subtree:true});});
