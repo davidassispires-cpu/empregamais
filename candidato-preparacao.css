@@ -707,8 +707,8 @@ html body #pagina-candidaturas#pagina-candidaturas .cp-applications-art>svg{widt
 
 /* Account trigger matches the approved popover reference. */
 html body.cp-shell-active #cpCandidateHeader .cp-greeting{display:flex!important;align-items:center;gap:12px!important;padding:0 4px 0 16px!important;background:transparent!important;border:0!important;border-left:1px solid #cad8e5!important;border-radius:0!important;color:#092d4c!important;box-shadow:none!important}
-html body.cp-shell-active #cpCandidateHeader .cp-user-avatar{display:grid!important;place-items:center;width:44px!important;height:44px!important;flex:0 0 44px!important;border:0!important;border-radius:50%!important;background-color:#c9dfea!important;color:#092d4c!important;font:600 17px Arial,Helvetica,sans-serif!important;opacity:1!important;visibility:visible!important}
-html body.cp-shell-active #cpCandidateHeader .cp-greeting-name{display:block!important;font:600 16px Arial,Helvetica,sans-serif!important;color:#092d4c!important;white-space:nowrap}
+html body.cp-shell-active #cpCandidateHeader .cp-user-avatar{display:grid!important;place-items:center;width:44px!important;height:44px!important;flex:0 0 44px!important;border:0!important;border-radius:50%!important;background-color:#c9dfea!important;color:#092d4c!important;font:600 17px Montserrat,Arial,sans-serif!important;opacity:1!important;visibility:visible!important}
+html body.cp-shell-active #cpCandidateHeader .cp-greeting-name{display:block!important;font:600 16px Montserrat,Arial,sans-serif!important;color:#092d4c!important;white-space:nowrap}
 html body.cp-shell-active #cpCandidateHeader .cp-account-chevron{display:block!important;width:19px!important;height:19px!important;margin-left:0;color:#092d4c!important}
 html body.cp-shell-active #cpCandidateHeader .cp-notifications{color:#092d4c!important}
 html body.cp-shell-active #cpCandidateHeader .cp-notifications svg{width:25px!important;height:25px!important}
