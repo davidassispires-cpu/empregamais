@@ -222,7 +222,7 @@ function planoEmpresa(e){return e.plano_nome||e.planoNome||e.plano_id||e.plano||
 function nomeEmpresa(e){return e.nome_fantasia||e.nomeFantasia||e.nome||e.razao_social||e.razaoSocial||"Empresa"}
 function nomeCand(c){return c.nome||c.nomeCompleto||c.nome_completo||"Candidato"}
 function emailCand(c){return c.email||"E-mail não informado"}
-function premium(c){var p=norm(c.plano_candidato||c.planoCandidato||c.plano);if(!["premium","trimestral","semestral","anual"].includes(p))return false;var f=c.premium_valido_ate||c.premiumValidoAte||c.plano_valido_ate;if(f){var d=new Date(f);if(!isNaN(d)&&d<Date.now())return false}return true}
+function premium(c){var p=norm(c.plano_candidato||c.planoCandidato||c.plano);if(!["premium","trimestral","semestral","anual"].includes(p))return false;var f=c.premium_valido_ate||c.premiumValidoAte||c.plano_valido_ate;if(f){var d=new Date(f);if(isNaN(d)||d<Date.now())return false}return true}
 function vagasEmpresa(e){var n=norm(nomeEmpresa(e)),cnpj=String(e.cnpj||"").replace(/\D/g,"");return vagas.filter(function(v){return norm(v.empresa||v.empresaNome||v.nomeEmpresa)===n||(cnpj&&String(v.cnpj||v.empresaCnpj||"").replace(/\D/g,"")===cnpj)})}
 function iniciais(n){return n.split(/\s+/).slice(0,2).map(function(x){return x.charAt(0)}).join("").toUpperCase()||"?"}
 function montar(){
@@ -316,7 +316,7 @@ if(!c)return false;
 var p=norm(c.plano_candidato||c.planoCandidato||c.plano);
 if(!["premium","trimestral","semestral","anual"].includes(p))return false;
 var f=c.premium_valido_ate||c.premiumValidoAte||c.plano_valido_ate;
-if(f){var d=new Date(f);if(!isNaN(d)&&d<Date.now())return false}
+if(f){var d=new Date(f);if(isNaN(d)||d<Date.now())return false}
 return true;
 }
 function dataBR(v){if(!v)return"Sem prazo informado";var d=new Date(v);return isNaN(d)?"Sem prazo informado":d.toLocaleDateString("pt-BR")}
@@ -328,7 +328,7 @@ var old=document.getElementById("premium92Banner");if(old)old.remove();
 if(!is)return;
 var f=c.premium_valido_ate||c.premiumValidoAte||c.plano_valido_ate;
 var b=document.createElement("div");b.id="premium92Banner";b.className="premium92-banner";
-b.innerHTML="<div class='p92-left'><div class='premium92-crown'>★</div><div><small>EMPREGAMAIS PREMIUM</small><h3>Seu acesso Premium está ativo</h3><p>Recursos avançados do candidato liberados para esta conta.</p></div></div><div class='premium92-validade'><span>ACESSO LIBERADO ATÉ</span><strong>"+dataBR(f)+"</strong></div>";
+b.innerHTML="<div class='p92-left'><div class='premium92-crown'><svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round' aria-hidden='true'><path d='m3 7 5 4 4-7 4 7 5-4-3 13H6Z'/><path d='M7 22h10'/></svg></div><div><small>EMPREGAMAIS PREMIUM</small><h3>Seu acesso Premium está ativo</h3><p>Recursos avançados do candidato liberados para esta conta.</p></div></div><div class='premium92-validade'><span>ACESSO LIBERADO ATÉ</span><strong>"+dataBR(f)+"</strong></div>";
 var alvo=page.querySelector(".container-dashboard")||page.querySelector(".painel-candidato")||page.firstElementChild;
 if(alvo)alvo.insertBefore(b,alvo.firstChild);
 var head=page.querySelector(".painel-candidato-header,.dashboard-header,.perfil-resumo");
@@ -362,6 +362,7 @@ return all.filter(function(x){return norm(x.email||x.candidato_email||x.candidat
 function visto(x){return x.visualizada===true||x.curriculo_visualizado===true||!!x.visualizado_em||!!x.visualizadoEm}
 function status(x){return x.status_processo||x.statusProcesso||x.status||"Candidatura enviada"}
 function aderencia(x){var n=Number(x.aderencia||x.percentual_aderencia||x.percentualAderencia);return isFinite(n)&&n>0?Math.min(100,Math.round(n)):0}
+function premiumIcon(name){var paths={target:'<circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><path d="m12 12 9-9M16 3h5v5"/>',eye:'<path d="M2 12s4-7 10-7 10 7 10 7-4 7-10 7S2 12 2 12Z"/><circle cx="12" cy="12" r="3"/>',progress:'<path d="M4 20V4M4 20h17M8 15l5-5 4 2 4-7"/>',star:'<path d="m12 2 3 6 7 1-5 5 1 7-6-3-6 3 1-7-5-5 7-1Z"/>',stats:'<rect x="3" y="12" width="4" height="9" rx="1"/><rect x="10" y="7" width="4" height="14" rx="1"/><rect x="17" y="3" width="4" height="18" rx="1"/>',calendar:'<rect x="3" y="5" width="18" height="16" rx="3"/><path d="M7 2v6M17 2v6M3 11h18m-11 5 2 2 4-4"/>',document:'<path d="M5 2h10l4 4v16H5ZM14 2v6h5M8 12h8M8 16h6"/>'};return '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'+(paths[name]||paths.target)+'</svg>';}
 function montar(){
 var page=document.getElementById("pagina-painel-candidato");if(!page)return;
 var old=document.getElementById("centralPremiumV93");if(old)old.remove();
@@ -375,17 +376,17 @@ function render(){
 var box=document.getElementById("centralPremiumV93");if(!box)return;
 var premium=window.EmpregaMaisPremiumCandidatoV92&&window.EmpregaMaisPremiumCandidatoV92.ehPremium();box.hidden=!premium;if(!premium)return;
 var a=minhas(),vis=a.filter(visto).length,processo=a.filter(function(x){var s=norm(status(x));return s!=="candidatura enviada"&&s!=="enviada"}).length,entrev=a.filter(function(x){return norm(status(x)).includes("entrevista")}).length,max=a.reduce(function(m,x){return Math.max(m,aderencia(x))},0);
-box.innerHTML="<div class='cp93-head'><div><small>CENTRAL PREMIUM</small><h2>Inteligência da sua busca por emprego</h2><p>Acompanhe suas candidaturas e os recursos avançados da sua conta.</p></div><span class='cp93-pill'>★ PREMIUM ATIVO</span></div>"+
-"<div class='cp93-metrics'><div class='cp93-metric'><span>CANDIDATURAS</span><strong>"+a.length+"</strong><em>enviadas</em></div><div class='cp93-metric'><span>VISUALIZADAS</span><strong>"+vis+"</strong><em>pela empresa</em></div><div class='cp93-metric'><span>EM PROCESSO</span><strong>"+processo+"</strong><em>com atualização</em></div><div class='cp93-metric'><span>ENTREVISTAS</span><strong>"+entrev+"</strong><em>registradas</em></div><div class='cp93-metric'><span>MAIOR ADERÊNCIA</span><strong>"+(max?max+"%":"—")+"</strong><em>entre candidaturas</em></div></div>"+
+box.innerHTML="<div class='cp93-head'><div><small>CENTRAL PREMIUM</small><h2>Inteligência da sua busca por emprego</h2><p>Acompanhe suas candidaturas e os recursos avançados da sua conta.</p></div><span class='cp93-pill'>PREMIUM ATIVO</span></div>"+
+"<div class='cp93-metrics'><div class='cp93-metric'><i class='cp93-metric-icon'>"+premiumIcon("document")+"</i><span>CANDIDATURAS</span><strong>"+a.length+"</strong><em>enviadas</em></div><div class='cp93-metric'><i class='cp93-metric-icon'>"+premiumIcon("eye")+"</i><span>VISUALIZADAS</span><strong>"+vis+"</strong><em>pela empresa</em></div><div class='cp93-metric'><i class='cp93-metric-icon'>"+premiumIcon("progress")+"</i><span>EM PROCESSO</span><strong>"+processo+"</strong><em>com atualização</em></div><div class='cp93-metric'><i class='cp93-metric-icon'>"+premiumIcon("calendar")+"</i><span>ENTREVISTAS</span><strong>"+entrev+"</strong><em>registradas</em></div><div class='cp93-metric'><i class='cp93-metric-icon'>"+premiumIcon("target")+"</i><span>MAIOR ADERÊNCIA</span><strong>"+(max?max+"%":"—")+"</strong><em>entre candidaturas</em></div></div>"+
 "<div class='cp93-grid'><div class='cp93-box'><h3>Minhas candidaturas</h3><p>Movimentações mais recentes do seu processo seletivo.</p><div id='cp93Apps'>"+apps(a)+"</div></div>"+
 "<div class='cp93-box'><h3>Seus recursos Premium</h3><p>Ferramentas liberadas para esta conta.</p>"+
-feat("◎","Aderência às vagas","Compatibilidade entre seu currículo e os requisitos da oportunidade.")+
-feat("◉","Visualização da candidatura","Identificação quando o recrutador registrar a abertura do seu currículo.")+
-feat("↗","Evolução no processo","Acompanhe mudanças de etapa registradas pela empresa.")+
-feat("★","Recomendações inteligentes","Base para recomendar oportunidades com maior compatibilidade.")+
-feat("▦","Estatísticas avançadas","Visão consolidada do desempenho das suas candidaturas.")+"</div></div>";
+feat("target","Aderência às vagas","Compatibilidade entre seu currículo e os requisitos da oportunidade.")+
+feat("eye","Visualização da candidatura","Identificação quando o recrutador registrar a abertura do seu currículo.")+
+feat("progress","Evolução no processo","Acompanhe mudanças de etapa registradas pela empresa.")+
+feat("star","Recomendações inteligentes","Base para recomendar oportunidades com maior compatibilidade.")+
+feat("stats","Estatísticas avançadas","Visão consolidada do desempenho das suas candidaturas.")+"</div></div>";
 }
-function feat(i,t,d){return"<div class='cp93-feature'><div class='cp93-icon'>"+i+"</div><div><b>"+t+"</b><span>"+d+"</span></div></div>"}
+function feat(i,t,d){return"<div class='cp93-feature'><div class='cp93-icon'>"+premiumIcon(i)+"</div><div><b>"+t+"</b><span>"+d+"</span></div></div>"}
 function apps(a){
 if(!a.length)return"<div class='cp93-empty'>Suas candidaturas aparecerão aqui assim que você se candidatar a uma vaga.</div>";
 return a.slice().reverse().slice(0,5).map(function(x){var ad=aderencia(x),vi=visto(x),cargo=x.cargo||x.vaga||x.titulo||"Vaga",emp=x.empresa||x.empresa_nome||x.empresaNome||"Empresa";return"<div class='cp93-app'><div class='cp93-app-top'><div><strong>"+cargo+"</strong><br/><small>"+emp+"</small></div><span class='cp93-status "+(vi?"visto":"")+"'>"+status(x)+"</span></div><div class='cp93-line'><i class='cp93-dot ok'></i>Candidatura enviada <i class='cp93-dot "+(vi?"ok":"")+"'></i>"+(vi?"Visualizada pela empresa":"Aguardando visualização")+"</div>"+(ad?"<div class='cp93-aderencia'><div class='cp93-ad-top'><span>Aderência à vaga</span><b>"+ad+"%</b></div><div class='cp93-bar'><i style='width:"+ad+"%'></i></div></div>":"")+"</div>"}).join("");
