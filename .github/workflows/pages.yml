@@ -31,7 +31,11 @@ jobs:
           for asset in ('empregamais_lote8.js', 'site-fonts.css', 'processo-seletivo-etapas.js', 'candidato-demo.js', 'vagas-recomendadas.js', 'candidato-candidaturas.js', 'candidato-candidaturas-sync.js', 'recruiter-sync-and-reports.js', 'candidato-preparacao.js', 'candidato-preparacao.css'):
               html = re.sub(re.escape(asset) + r'\?v=[^\"\']+', asset + '?v=' + os.environ['DEPLOY_SHA'], html)
           html = re.sub(r'<script[^>]+src=[\"\']form-validation\.js[^>]*></script>', '', html)
-          html = html.replace('</body>', '<script src=\"form-validation.js?v=' + os.environ['DEPLOY_SHA'] + '\" defer></script></body>')
+          # Insert only at the document end; preview templates also contain body tags.
+          before_body_end, closing_body, after_body_end = html.rpartition('</body>')
+          if not closing_body:
+              raise ValueError('Missing document closing body tag')
+          html = before_body_end + '<script src="form-validation.js?v=' + os.environ['DEPLOY_SHA'] + '" defer></script>' + closing_body + after_body_end
           page.write_text(html)
           PYTHON
       - uses: actions/upload-pages-artifact@v3
