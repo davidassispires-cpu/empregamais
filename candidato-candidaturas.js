@@ -397,6 +397,19 @@ html body #cpApplicationFilters#cpApplicationFilters [data-cp-filter]:focus-visi
 @media(max-width:1000px){html body #cpApplicationFilters#cpApplicationFilters .cp-application-filter-buttons{grid-template-columns:repeat(4,minmax(0,1fr))!important}}
 @media(max-width:540px){html body #cpApplicationFilters#cpApplicationFilters{padding:12px!important}html body #cpApplicationFilters#cpApplicationFilters .cp-application-filter-buttons{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:8px!important}html body #cpApplicationFilters#cpApplicationFilters [data-cp-filter]{height:62px!important;min-height:62px!important}html body #cpApplicationFilters#cpApplicationFilters [data-cp-filter=todas]{grid-column:1/-1!important;height:54px!important;min-height:54px!important}html body #cpApplicationFilters#cpApplicationFilters [data-cp-filter=todas] .cp-filter-copy{flex-direction:row!important;align-items:center!important;gap:10px!important}html body #cpApplicationFilters#cpApplicationFilters .cp-filter-label{font-size:11px!important}}
 @media(prefers-reduced-motion:reduce){html body #cpApplicationFilters#cpApplicationFilters [data-cp-filter]{transition:none}}
+
+/* Card labels use the same typography as PROCESSOS SELETIVOS. */
+html body #pagina-candidaturas#pagina-candidaturas .cp-applications-chips span,
+html body #cpApplicationFilters#cpApplicationFilters .cp-filter-label{
+ font-family:Montserrat,Arial,sans-serif!important;
+ font-size:10px!important;font-weight:600!important;line-height:1.4!important;
+ letter-spacing:.7px!important;font-style:normal!important;
+}
+@layer site-typography{
+ #pagina-candidaturas#pagina-candidaturas .cp-applications-chips span,
+ #cpApplicationFilters#cpApplicationFilters .cp-filter-label{color:#456675!important}
+ #cpApplicationFilters#cpApplicationFilters [aria-pressed=true] .cp-filter-label{color:#fff!important}
+}
 `;document.head.appendChild(style);
   window.addEventListener('popstate',refresh);window.addEventListener('storage',refresh);document.addEventListener('empregamais:candidato-sincronizado',refresh);document.addEventListener('empregamais:candidaturas-sincronizadas',refresh);refresh();
  }
