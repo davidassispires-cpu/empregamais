@@ -579,3 +579,26 @@ html body .em-field-message{display:block!important;grid-column:1/-1!important;m
   html body.cp-shell-active #cpCandidateHeader#cpCandidateHeader .cp-navigation[data-menu-model="4"] button[data-route=messages]{padding-right:34px!important}
  }
 }
+
+/* Compact welcome banner with a high-contrast search action. */
+@layer field-feedback {
+ html body.cp-shell-active #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato .cp-home-intro{height:180px!important;min-height:0!important;padding:16px 28px!important;margin-bottom:14px!important;overflow:hidden!important}
+ html body.cp-shell-active #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato .m3-welcome{flex:0 0 54%!important;position:relative!important;z-index:2!important;min-width:0!important}
+ html body.cp-shell-active #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato .m3-welcome small{display:block!important;font-size:9px!important;line-height:1.3!important;letter-spacing:1.1px!important}
+ html body.cp-shell-active #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato .m3-welcome h1{font-size:32px!important;line-height:1.1!important;margin:8px 0!important}
+ html body.cp-shell-active #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato .m3-welcome p{font-size:13px!important;line-height:1.45!important;margin:0 0 10px!important;color:#fff!important}
+ html body.cp-shell-active #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato .m3-welcome button{display:inline-flex!important;align-items:center!important;justify-content:center!important;gap:16px!important;min-height:36px!important;height:36px!important;padding:8px 15px!important;border:1px solid #a83e12!important;border-radius:7px!important;background:#a83e12!important;color:#fff!important;box-shadow:none!important;font:600 12px/1.3 Inter,Arial,sans-serif!important}
+ html body.cp-shell-active #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato .m3-welcome button span{color:#fff!important;font-size:18px!important}
+ html body.cp-shell-active #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato .m3-welcome button:hover{background:#8c310c!important;border-color:#8c310c!important}
+ html body.cp-shell-active #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato .m3-welcome button:focus-visible{outline:2px solid #fff!important;outline-offset:3px!important}
+ html body.cp-shell-active #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato .m3-art{width:34%!important;max-width:310px!important;right:10%!important;bottom:-3px!important}
+ html body.cp-shell-active #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato .m3-motto{right:2%!important;top:20px!important;max-width:100px!important;font-size:8px!important;line-height:1.6!important;letter-spacing:1px!important}
+ @media(max-width:1100px){html body.cp-shell-active #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato .m3-motto{display:none!important}html body.cp-shell-active #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato .m3-art{right:1%!important;width:40%!important}}
+ @media(max-width:650px){
+ html body.cp-shell-active #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato .cp-home-intro{height:auto!important;min-height:172px!important;padding:16px 18px!important}
+ html body.cp-shell-active #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato .m3-welcome{flex-basis:100%!important}
+ html body.cp-shell-active #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato .m3-welcome h1{font-size:28px!important}
+ html body.cp-shell-active #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato .m3-welcome p{font-size:12px!important;max-width:100%!important}
+ html body.cp-shell-active #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato .m3-art{width:42%!important;right:-18px!important;opacity:.14!important}
+ }
+}
