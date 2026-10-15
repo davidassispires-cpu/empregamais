@@ -590,7 +590,7 @@
 (function(){
  'use strict';var panel,trigger;
  function esc(v){return String(v||'').replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];});}
- function icon(type){var paths={user:'<circle cx="12" cy="7" r="4"/><path d="M4 22v-3a8 8 0 0 1 16 0v3"/>',document:'<path d="M5 2h10l4 4v16H5ZM14 2v6h5M8 12h8M8 16h6"/>',bell:'<path d="M6 9a6 6 0 0 1 12 0v7l2 3H4l2-3ZM10 22h4"/>',gear:'<circle cx="12" cy="12" r="4"/><path d="m9 2 6 0 1 4 4 1 2 5-3 3 0 4-5 3-3-3-4 1-4-5 2-4-1-4 5-2Z"/>',power:'<path d="M12 2v10M6 5a9 9 0 1 0 12 0"/>',crown:'<path d="m2 6 5 4 5-8 5 8 5-4-3 15H5Z"/>',eye:'<path d="M2 12s4-7 10-7 10 7 10 7-4 7-10 7S2 12 2 12Z"/><circle cx="12" cy="12" r="3"/>'};return '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'+(paths[type]||paths.gear)+'</svg>';}
+ function icon(type){var paths={key:'<path d="m12 2 9 4v6c0 6-9 10-9 10S3 18 3 12V6Z"/><circle cx="13" cy="9" r="2.3"/><path d="m11.5 11-4 6m1.5-2 2 1"/>',mail:'<path d="M3 9h18v13H3ZM3 10l9 6 9-6M7 11V3h10v8M10 6h4M10 9h4"/>',user:'<circle cx="12" cy="7" r="4"/><path d="M4 22v-3a8 8 0 0 1 16 0v3"/>',document:'<path d="M5 2h10l4 4v16H5ZM14 2v6h5M8 12h8M8 16h6"/>',bell:'<path d="M6 9a6 6 0 0 1 12 0v7l2 3H4l2-3ZM10 22h4"/>',gear:'<circle cx="12" cy="12" r="4"/><path d="m9 2 6 0 1 4 4 1 2 5-3 3 0 4-5 3-3-3-4 1-4-5 2-4-1-4 5-2Z"/>',power:'<path d="M12 2v10M6 5a9 9 0 1 0 12 0"/>',crown:'<path d="m2 6 5 4 5-8 5 8 5-4-3 15H5Z"/>',eye:'<path d="M2 12s4-7 10-7 10 7 10 7-4 7-10 7S2 12 2 12Z"/><circle cx="12" cy="12" r="3"/>'};return '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'+(paths[type]||paths.gear)+'</svg>';}
  function close(focus){if(panel)panel.remove();panel=null;if(trigger){trigger.setAttribute('aria-expanded','false');if(focus)trigger.focus();}}
  function place(){if(!panel||!trigger)return;var r=trigger.getBoundingClientRect();panel.style.top=Math.min(r.bottom+10,innerHeight-120)+'px';panel.style.right=Math.max(12,innerWidth-r.right)+'px';}
  function go(route){close();if(route==='profile'){window.EmpregaMaisEditarPerfilCandidato();return;}if(window.irPara)window.irPara(route);if(route==='painel-candidato')setTimeout(function(){var b=document.querySelector('[data-cp-action="alerts"]');if(b)b.click();},80);}
@@ -606,11 +606,11 @@
  function open(button){
   if(panel){close(true);return;}trigger=button;var p=window.obterCandidatoAtual&&window.obterCandidatoAtual()||{},name=p.nome||sessionStorage.getItem('candidatoNome')||'Minha conta',completion=(document.querySelector('.cp-completion')||{}).textContent||'Confira seu currículo';
   panel=document.createElement('section');panel.id='emCandidateAccountMenu';panel.setAttribute('aria-label','Minha conta');
-  var photo=/^data:image\/(jpeg|png|webp);base64,/.test(p.fotoPerfil||'')?'<img alt="" src="'+p.fotoPerfil+'">':icon('user');
-  panel.innerHTML='<div class="em-account-top"><span class="em-account-avatar">'+photo+'</span><div><strong>'+esc(name)+'</strong><small>'+esc(completion)+'</small></div><button type="button" data-account="close" aria-label="Fechar menu">×</button></div><div class="em-account-links">'+[['profile','Meu perfil','user'],['curriculo','Meu currículo','document'],['alerts','Alertas de vagas','bell'],['access','Dados de acesso','gear'],['communications','Comunicações','bell'],['visibility','Visibilidade do currículo','eye'],['status','Status da conta','gear'],['premium-candidato','Conhecer Premium','crown']].map(function(r){return '<button type="button" data-account="'+r[0]+'">'+icon(r[2])+'<span>'+r[1]+'</span><b aria-hidden="true">›</b></button>';}).join('')+'</div><button type="button" class="em-account-logout" data-account="logout">'+icon('power')+'Encerrar sessão</button>';
+  var photo=/^data:image\/(jpeg|png|webp);base64,/.test(p.fotoPerfil||'')?'<img alt="" src="'+p.fotoPerfil+'">':'<span class="em-account-initials">'+esc(name.split(/\s+/).filter(Boolean).slice(0,2).map(function(x){return x[0];}).join('').toUpperCase())+'</span>';
+  panel.innerHTML='<div class="em-account-top"><span class="em-account-avatar">'+photo+'</span><div><strong>'+esc(name)+'</strong><small>Minha conta</small></div><button type="button" data-account="close" aria-label="Fechar menu">×</button></div><div class="em-account-links">'+[['alerts','Alertas de vagas','bell'],['access','Dados de acesso','key'],['communications','Comunicações','mail'],['premium-candidato','Conhecer Premium','crown']].map(function(r){return '<button type="button" data-account="'+r[0]+'">'+'<span class="em-account-card-icon">'+icon(r[2])+'</span><span>'+r[1]+'</span></button>';}).join('')+'</div><button type="button" class="em-account-logout" data-account="logout">'+icon('power')+'Encerrar sessão</button>';
   document.body.appendChild(panel);button.setAttribute('aria-controls',panel.id);button.setAttribute('aria-expanded','true');place();
   panel.onclick=function(e){var b=e.target.closest('[data-account]');if(!b)return;var key=b.dataset.account;if(key==='close')close(true);else if(key==='logout'){close();if(window.sairTodasContas)window.sairTodasContas();}else if(['access','communications','visibility','status'].includes(key))info(key);else go(key==='alerts'?'painel-candidato':key);};
-  panel.querySelector('[data-account=profile]').focus();
+  panel.querySelector('[data-account=alerts]').focus();
  }
  var style=document.createElement('style');style.textContent=`
  #emCandidateAccountMenu{position:fixed;z-index:10050;width:340px;max-width:calc(100vw - 24px);max-height:calc(100dvh - 90px);overflow:auto;padding:18px;background:#fff;border:1px solid #bfd6e1;border-radius:14px;box-shadow:0 12px 40px #17324f24;color:#173d50;font:500 12px Montserrat,Arial,sans-serif}
@@ -626,7 +626,30 @@
  #emCandidateAccountMenu :focus-visible{outline:3px solid #93bdcf;outline-offset:2px}
  #emCandidateProfile .em-account-details{grid-column:1/-1}
  @media(max-width:540px){#emCandidateAccountMenu{right:12px!important;left:12px;width:auto}}
- `;document.head.appendChild(style);
+ 
+ /* Approved compact four-card account menu. */
+ #emCandidateAccountMenu#emCandidateAccountMenu{width:360px;padding:0;border:1px solid #87b0c5;border-radius:12px;overflow:auto;box-shadow:0 10px 30px #17324f20}
+ #emCandidateAccountMenu#emCandidateAccountMenu .em-account-top{padding:16px;margin:0;gap:12px;border-bottom:1px solid #dce7ee;min-height:72px}
+ #emCandidateAccountMenu#emCandidateAccountMenu .em-account-avatar{width:40px;height:40px;flex:0 0 40px;background:linear-gradient(135deg,#257b99,#174e61);color:white}
+ #emCandidateAccountMenu#emCandidateAccountMenu .em-account-initials{font:650 15px Montserrat,Arial,sans-serif;color:#fff!important}
+ #emCandidateAccountMenu#emCandidateAccountMenu .em-account-top strong{font-size:14px;color:#173547;font-weight:700}
+ #emCandidateAccountMenu#emCandidateAccountMenu .em-account-top small{font-size:11px;color:#617b8e;margin-top:3px}
+ #emCandidateAccountMenu#emCandidateAccountMenu .em-account-top>button{align-self:flex-start;padding:0;line-height:1;color:#6c8395}
+ #emCandidateAccountMenu#emCandidateAccountMenu .em-account-links{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;padding:12px 10px}
+ #emCandidateAccountMenu#emCandidateAccountMenu .em-account-links>button{display:flex;gap:9px;align-items:center;min-height:60px;border:1px solid #ccdce6;border-radius:8px;padding:8px;background:#fff;color:#173d50;text-align:left;font-size:11px!important;font-weight:600;line-height:1.35}
+ #emCandidateAccountMenu#emCandidateAccountMenu .em-account-links>button:hover{border-color:#7aabbe;background:#f5f9fb}
+ #emCandidateAccountMenu#emCandidateAccountMenu .em-account-card-icon{width:32px;height:36px;flex:0 0 32px;display:grid;place-items:center;background:#edf5f8;border-radius:7px;color:#226b87}
+ #emCandidateAccountMenu#emCandidateAccountMenu .em-account-card-icon svg{width:23px;height:23px;flex:none}
+ #emCandidateAccountMenu#emCandidateAccountMenu .em-account-logout{width:auto;margin:10px 12px 12px auto;min-height:32px;border:1px solid #6e9bb1;border-radius:8px;background:#fff;color:#245e73!important;padding:7px 11px;font-size:11px!important}
+ #emCandidateAccountMenu#emCandidateAccountMenu .em-account-logout svg{width:17px;height:17px}
+ #emCandidateAccountMenu#emCandidateAccountMenu .em-account-links>button:focus:not(:focus-visible){outline:none}
+ @layer site-typography{
+ #emCandidateAccountMenu#emCandidateAccountMenu .em-account-links>button>span{color:#173d50!important}
+ #emCandidateAccountMenu#emCandidateAccountMenu .em-account-links>button>.em-account-card-icon{color:#226b87!important}
+ #emCandidateAccountMenu#emCandidateAccountMenu .em-account-top small{color:#617b8e!important}
+ }
+ @media(max-width:540px){#emCandidateAccountMenu#emCandidateAccountMenu{width:min(360px,calc(100vw - 24px));left:auto;right:12px!important} }
+`;document.head.appendChild(style);
  document.addEventListener('click',function(e){var b=e.target.closest&&e.target.closest('#cpCandidateHeader .cp-greeting');if(b){e.preventDefault();e.stopImmediatePropagation();open(b);}else if(panel&&!panel.contains(e.target))close();},true);
  document.addEventListener('keydown',function(e){if(!panel)return;if(e.key==='Escape'){e.preventDefault();close(true);}if(e.key==='Tab'){var items=Array.from(panel.querySelectorAll('button')),first=items[0],last=items[items.length-1];if(e.shiftKey&&document.activeElement===first){e.preventDefault();last.focus();}else if(!e.shiftKey&&document.activeElement===last){e.preventDefault();first.focus();}}});
  window.addEventListener('resize',place);window.addEventListener('popstate',function(){close();});
