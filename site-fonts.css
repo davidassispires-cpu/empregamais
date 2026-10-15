@@ -455,41 +455,41 @@ html body #pagina-painel-candidato#pagina-painel-candidato:not(.candidato-premiu
 
 /* Model 2: compact peach application cards. */
 @layer site-typography{
-html body #pagina-candidaturas#pagina-candidaturas{background:#fffcf9!important;color:#374151!important}
-html body #pagina-candidaturas#pagina-candidaturas .candidatura-item{padding:0!important;overflow:hidden!important;border:1px solid #eedfd4!important;border-top:4px solid #ed762e!important;border-radius:12px!important;background:#fff!important;display:flex!important;flex-direction:column!important;gap:0!important;min-height:0!important;box-shadow:0 3px 10px #6f371405!important}
-html body #pagina-candidaturas#pagina-candidaturas #listaCandidaturas{align-items:stretch!important;gap:18px!important}
-html body #pagina-candidaturas#pagina-candidaturas .candidatura-top{padding:16px 18px!important;background:#fff3e9!important;min-height:82px!important;border-bottom:1px solid #f6e5d8!important;align-items:center!important;gap:8px!important}
-html body #pagina-candidaturas#pagina-candidaturas .candidatura-top h3{font-size:15px!important;line-height:1.4!important;color:#374151!important;margin:0 0 4px!important}
-html body #pagina-candidaturas#pagina-candidaturas .candidatura-top p{color:#667085!important;font-size:12px!important}
-html body #pagina-candidaturas#pagina-candidaturas .cp-application-emblem{background:#fffaf5!important;color:#c85417!important;border:1px solid #f2d8c3!important;border-radius:10px!important;width:36px!important;height:38px!important}
-html body #pagina-candidaturas#pagina-candidaturas .cp-application-emblem svg{width:23px!important;height:23px!important}
-html body #pagina-candidaturas#pagina-candidaturas .status-processo{background:#fff!important;border:1px solid #efc8ac!important;color:#984316!important;font-size:10px!important;padding:5px 8px!important;border-radius:20px!important}
-html body #pagina-candidaturas#pagina-candidaturas .cp-application-date{margin:13px 18px 0!important;padding:0!important;color:#667085!important;font-size:12px!important}
-html body #pagina-candidaturas#pagina-candidaturas .cp-application-date svg{color:#b46a3b!important}
-html body #pagina-candidaturas#pagina-candidaturas .cp-application-viewed{margin:9px 18px 0!important;padding:7px 9px!important;background:#fffaf5!important;border-color:#f3e5da!important;color:#667085!important;font-size:11px!important}
-html body #pagina-candidaturas#pagina-candidaturas .cp-application-viewed strong{color:#4b5563!important;font-size:11px!important}
-html body #pagina-candidaturas#pagina-candidaturas .cp-application-viewed small{font-size:10px!important;color:#667085!important}
-html body #pagina-candidaturas#pagina-candidaturas .cp-card-journey{display:flex!important;list-style:none!important;margin:16px 18px!important;padding:0!important;gap:0!important}
-html body #pagina-candidaturas#pagina-candidaturas .cp-card-journey li{position:relative!important;flex:1!important;display:flex!important;flex-direction:column!important;align-items:center!important;gap:5px!important;font-size:10px!important;color:#667085!important;z-index:0!important}
-html body #pagina-candidaturas#pagina-candidaturas .cp-card-journey li:not(:last-child):after{content:'';position:absolute;top:12px;left:50%;width:100%;height:1px;background:#e5e7eb;z-index:-1}
-html body #pagina-candidaturas#pagina-candidaturas .cp-card-journey i{display:grid!important;place-items:center!important;width:24px!important;height:24px!important;border:1px solid #dedfe2!important;border-radius:50%!important;background:#fff!important;font-style:normal!important;font-size:10px!important}
-html body #pagina-candidaturas#pagina-candidaturas .cp-card-journey .is-done i{background:#e4742f!important;color:#fff!important;border-color:#e4742f!important}
-html body #pagina-candidaturas#pagina-candidaturas .cp-card-journey .is-current i{background:#fff0e4!important;color:#b54e16!important;border:2px solid #e4742f!important}
-html body #pagina-candidaturas#pagina-candidaturas .cp-card-journey .is-current span{font-weight:700!important;color:#374151!important}
-html body #pagina-candidaturas#pagina-candidaturas .cp-process-details{display:flex!important;gap:10px!important;padding:12px 18px!important;margin-top:auto!important;border-top:1px solid #f1e6de!important;background:#fffdfb!important}
-html body #pagina-candidaturas#pagina-candidaturas .cp-process-trigger{display:flex!important;align-items:center!important;justify-content:center!important;gap:8px!important;flex:1!important;width:auto!important;min-height:39px!important;padding:9px 12px!important;border-radius:7px!important;background:#cf5b1a!important;border:1px solid #cf5b1a!important;color:#fff!important;font-size:11px!important;font-weight:600!important}
-html body #pagina-candidaturas#pagina-candidaturas .cp-cancel-trigger{flex:0 1 auto!important;min-height:39px!important;padding:9px 10px!important;border:1px solid #d9dce1!important;border-radius:7px!important;background:#fff!important;color:#667085!important;font:500 11px Inter,Arial,sans-serif!important;cursor:pointer!important}
-html body #pagina-candidaturas#pagina-candidaturas .cp-cancel-trigger:hover{color:#a43826!important;border-color:#c98d7e!important}
-html body #pagina-candidaturas#pagina-candidaturas .cp-applications-hero{background:#fff3e9!important;border-color:#efd4be!important;color:#374151!important;box-shadow:none!important}
-html body #pagina-candidaturas#pagina-candidaturas .cp-applications-hero h1{color:#374151!important}
-html body #pagina-candidaturas#pagina-candidaturas .cp-applications-hero p{color:#667085!important}
-html body #pagina-candidaturas#pagina-candidaturas .cp-applications-kicker,html body #pagina-candidaturas#pagina-candidaturas .cp-applications-kicker span{color:#a65020!important;background:transparent!important}
-html body #pagina-candidaturas#pagina-candidaturas .cp-applications-back{color:#9c4e23!important;background:#fff!important;border-color:#edd0ba!important}
-html body #pagina-candidaturas#pagina-candidaturas #cpApplicationFilters{border-color:#efdfd3!important}
-html body #pagina-candidaturas#pagina-candidaturas #cpApplicationFilters .cp-application-filter-buttons{grid-template-columns:repeat(4,minmax(0,1fr))!important;gap:8px!important}
-html body #pagina-candidaturas#pagina-candidaturas #cpApplicationFilters [data-cp-filter]{background:#fffaf5!important;border-color:#f0ddce!important;color:#667085!important;--filter-accent:#ce601f;--filter-soft:#fff0e2}
-html body #pagina-candidaturas#pagina-candidaturas #cpApplicationFilters [aria-pressed=true]{background:#fff0e3!important;border-color:#e99a65!important;color:#9d481a!important}
-html body #pagina-candidaturas#pagina-candidaturas #cpApplicationFilters strong{color:#374151!important}
+html body #pagina-candidaturas#pagina-candidaturas#pagina-candidaturas{background:#fffcf9!important;color:#374151!important}
+html body #pagina-candidaturas#pagina-candidaturas#pagina-candidaturas .candidatura-item{padding:0!important;overflow:hidden!important;border:1px solid #eedfd4!important;border-top:4px solid #ed762e!important;border-radius:12px!important;background:#fff!important;display:flex!important;flex-direction:column!important;gap:0!important;min-height:0!important;box-shadow:0 3px 10px #6f371405!important}
+html body #pagina-candidaturas#pagina-candidaturas#pagina-candidaturas #listaCandidaturas{align-items:stretch!important;gap:18px!important}
+html body #pagina-candidaturas#pagina-candidaturas#pagina-candidaturas .candidatura-top{padding:16px 18px!important;background:#fff3e9!important;min-height:82px!important;border-bottom:1px solid #f6e5d8!important;align-items:center!important;gap:8px!important}
+html body #pagina-candidaturas#pagina-candidaturas#pagina-candidaturas .candidatura-top h3{font-size:15px!important;line-height:1.4!important;color:#374151!important;margin:0 0 4px!important}
+html body #pagina-candidaturas#pagina-candidaturas#pagina-candidaturas .candidatura-top p{color:#667085!important;font-size:12px!important}
+html body #pagina-candidaturas#pagina-candidaturas#pagina-candidaturas .cp-application-emblem{background:#fffaf5!important;color:#c85417!important;border:1px solid #f2d8c3!important;border-radius:10px!important;width:36px!important;height:38px!important}
+html body #pagina-candidaturas#pagina-candidaturas#pagina-candidaturas .cp-application-emblem svg{width:23px!important;height:23px!important}
+html body #pagina-candidaturas#pagina-candidaturas#pagina-candidaturas .status-processo{background:#fff!important;border:1px solid #efc8ac!important;color:#984316!important;font-size:10px!important;padding:5px 8px!important;border-radius:20px!important}
+html body #pagina-candidaturas#pagina-candidaturas#pagina-candidaturas .cp-application-date{margin:13px 18px 0!important;padding:0!important;color:#667085!important;font-size:12px!important}
+html body #pagina-candidaturas#pagina-candidaturas#pagina-candidaturas .cp-application-date svg{color:#b46a3b!important}
+html body #pagina-candidaturas#pagina-candidaturas#pagina-candidaturas .cp-application-viewed{margin:9px 18px 0!important;padding:7px 9px!important;background:#fffaf5!important;border-color:#f3e5da!important;color:#667085!important;font-size:11px!important}
+html body #pagina-candidaturas#pagina-candidaturas#pagina-candidaturas .cp-application-viewed strong{color:#4b5563!important;font-size:11px!important}
+html body #pagina-candidaturas#pagina-candidaturas#pagina-candidaturas .cp-application-viewed small{font-size:10px!important;color:#667085!important}
+html body #pagina-candidaturas#pagina-candidaturas#pagina-candidaturas .cp-card-journey{display:flex!important;list-style:none!important;margin:16px 18px!important;padding:0!important;gap:0!important}
+html body #pagina-candidaturas#pagina-candidaturas#pagina-candidaturas .cp-card-journey li{position:relative!important;flex:1!important;display:flex!important;flex-direction:column!important;align-items:center!important;gap:5px!important;font-size:10px!important;color:#667085!important;z-index:0!important}
+html body #pagina-candidaturas#pagina-candidaturas#pagina-candidaturas .cp-card-journey li:not(:last-child):after{content:'';position:absolute;top:12px;left:50%;width:100%;height:1px;background:#e5e7eb;z-index:-1}
+html body #pagina-candidaturas#pagina-candidaturas#pagina-candidaturas .cp-card-journey i{display:grid!important;place-items:center!important;width:24px!important;height:24px!important;border:1px solid #dedfe2!important;border-radius:50%!important;background:#fff!important;font-style:normal!important;font-size:10px!important}
+html body #pagina-candidaturas#pagina-candidaturas#pagina-candidaturas .cp-card-journey .is-done i{background:#e4742f!important;color:#fff!important;border-color:#e4742f!important}
+html body #pagina-candidaturas#pagina-candidaturas#pagina-candidaturas .cp-card-journey .is-current i{background:#fff0e4!important;color:#b54e16!important;border:2px solid #e4742f!important}
+html body #pagina-candidaturas#pagina-candidaturas#pagina-candidaturas .cp-card-journey .is-current span{font-weight:700!important;color:#374151!important}
+html body #pagina-candidaturas#pagina-candidaturas#pagina-candidaturas .cp-process-details{display:flex!important;gap:10px!important;padding:12px 18px!important;margin-top:auto!important;border-top:1px solid #f1e6de!important;background:#fffdfb!important}
+html body #pagina-candidaturas#pagina-candidaturas#pagina-candidaturas .cp-process-trigger{display:flex!important;align-items:center!important;justify-content:center!important;gap:8px!important;flex:1!important;width:auto!important;min-height:39px!important;padding:9px 12px!important;border-radius:7px!important;background:#cf5b1a!important;border:1px solid #cf5b1a!important;color:#fff!important;font-size:11px!important;font-weight:600!important}
+html body #pagina-candidaturas#pagina-candidaturas#pagina-candidaturas .cp-cancel-trigger{flex:0 1 auto!important;min-height:39px!important;padding:9px 10px!important;border:1px solid #d9dce1!important;border-radius:7px!important;background:#fff!important;color:#667085!important;font:500 11px Inter,Arial,sans-serif!important;cursor:pointer!important}
+html body #pagina-candidaturas#pagina-candidaturas#pagina-candidaturas .cp-cancel-trigger:hover{color:#a43826!important;border-color:#c98d7e!important}
+html body #pagina-candidaturas#pagina-candidaturas#pagina-candidaturas .cp-applications-hero{background:#fff3e9!important;border-color:#efd4be!important;color:#374151!important;box-shadow:none!important}
+html body #pagina-candidaturas#pagina-candidaturas#pagina-candidaturas .cp-applications-hero h1{color:#374151!important}
+html body #pagina-candidaturas#pagina-candidaturas#pagina-candidaturas .cp-applications-hero p{color:#667085!important}
+html body #pagina-candidaturas#pagina-candidaturas#pagina-candidaturas .cp-applications-kicker,html body #pagina-candidaturas#pagina-candidaturas#pagina-candidaturas .cp-applications-kicker span{color:#a65020!important;background:transparent!important}
+html body #pagina-candidaturas#pagina-candidaturas#pagina-candidaturas .cp-applications-back{color:#9c4e23!important;background:#fff!important;border-color:#edd0ba!important}
+html body #pagina-candidaturas#pagina-candidaturas#pagina-candidaturas #cpApplicationFilters{border-color:#efdfd3!important}
+html body #pagina-candidaturas#pagina-candidaturas#pagina-candidaturas #cpApplicationFilters .cp-application-filter-buttons{grid-template-columns:repeat(4,minmax(0,1fr))!important;gap:8px!important}
+html body #pagina-candidaturas#pagina-candidaturas#pagina-candidaturas #cpApplicationFilters [data-cp-filter]{background:#fffaf5!important;border-color:#f0ddce!important;color:#667085!important;--filter-accent:#ce601f;--filter-soft:#fff0e2}
+html body #pagina-candidaturas#pagina-candidaturas#pagina-candidaturas #cpApplicationFilters [aria-pressed=true]{background:#fff0e3!important;border-color:#e99a65!important;color:#9d481a!important}
+html body #pagina-candidaturas#pagina-candidaturas#pagina-candidaturas #cpApplicationFilters strong{color:#374151!important}
 html body dialog.cp-cancel-modal{box-sizing:border-box;width:min(480px,calc(100vw - 32px));max-height:calc(100dvh - 40px);padding:25px;border:1px solid #ead6c6;border-radius:14px;color:#4b5563;background:white;font:13px/1.6 Inter,Arial,sans-serif;overflow:auto}
 html body dialog.cp-cancel-modal::backdrop{background:#1f293766}
 html body dialog.cp-cancel-modal h2{font-size:20px;color:#374151;margin:0 0 10px}
@@ -500,4 +500,4 @@ html body dialog.cp-cancel-modal .cp-confirm-cancel{background:#bd4e20;color:#ff
 html body dialog.cp-cancel-modal button:disabled{opacity:.5;cursor:wait}
 html body dialog.cp-cancel-modal .cp-cancel-status{color:#a43826}
 }
-@media(max-width:600px){@layer site-typography{html body #pagina-candidaturas#pagina-candidaturas #cpApplicationFilters .cp-application-filter-buttons{grid-template-columns:repeat(2,minmax(0,1fr))!important}html body #pagina-candidaturas#pagina-candidaturas .cp-process-details{flex-wrap:wrap!important}html body #pagina-candidaturas#pagina-candidaturas .cp-process-trigger,html body #pagina-candidaturas#pagina-candidaturas .cp-cancel-trigger{min-height:44px!important;flex:1 1 100%!important}}}
+@media(max-width:600px){@layer site-typography{html body #pagina-candidaturas#pagina-candidaturas#pagina-candidaturas #cpApplicationFilters .cp-application-filter-buttons{grid-template-columns:repeat(2,minmax(0,1fr))!important}html body #pagina-candidaturas#pagina-candidaturas#pagina-candidaturas .cp-process-details{flex-wrap:wrap!important}html body #pagina-candidaturas#pagina-candidaturas#pagina-candidaturas .cp-process-trigger,html body #pagina-candidaturas#pagina-candidaturas#pagina-candidaturas .cp-cancel-trigger{min-height:44px!important;flex:1 1 100%!important}}}
