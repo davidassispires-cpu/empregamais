@@ -31,18 +31,28 @@
       [class*="descricao"],[class*="location"],[class*="localizacao"],
       [class*="meta"],[class*="muted"],[class*="caption"],
       .cp-role,.cp-location,.cp-completion,.cp-overview-card div>span,
-      .cp-avatar-box>small):not(:is(header *,nav *,footer *,aside *,button *,a *,[role="button"] *,[class*="badge"],[class*="status"],[class*="error"],[class*="success"])) {color:#667594!important}
+      .cp-avatar-box>small):not(:is(header *,nav *,footer *,aside *,button *,a *,#emHeroFloripa *,[role="button"] *,[class*="badge"],[class*="status"],[class*="error"],[class*="success"])) {color:#667594!important}
 }
 
 /* Compact public footer only while a recruiter workspace is active. */
 @media(max-width:760px){
- body:has(:is(#pagina-painel-empresa,#pagina-demo-recrutador).ativa)>footer.rodape{padding:18px 16px!important;margin-top:0!important}
- body:has(:is(#pagina-painel-empresa,#pagina-demo-recrutador).ativa)>footer.rodape .rodape-grid{display:flex!important;justify-content:space-between!important;gap:12px!important;align-items:center!important}
- body:has(:is(#pagina-painel-empresa,#pagina-demo-recrutador).ativa)>footer.rodape .rodape-grid>div:not(:first-child):not(:last-child),
- body:has(:is(#pagina-painel-empresa,#pagina-demo-recrutador).ativa)>footer.rodape .rodape-grid p,
- body:has(:is(#pagina-painel-empresa,#pagina-demo-recrutador).ativa)>footer.rodape .rodape-grid h3,
- body:has(:is(#pagina-painel-empresa,#pagina-demo-recrutador).ativa)>footer.rodape .rodape-admin>button{display:none!important}
- body:has(:is(#pagina-painel-empresa,#pagina-demo-recrutador).ativa)>footer.rodape .rodape-grid>div:last-child{display:flex!important;gap:12px!important}
- body:has(:is(#pagina-painel-empresa,#pagina-demo-recrutador).ativa)>footer.rodape button{min-height:44px!important;margin:0!important}
- body:has(:is(#pagina-painel-empresa,#pagina-demo-recrutador).ativa)>footer.rodape .rodape-admin{margin-top:10px!important;padding-top:10px!important}
+ body:is([data-recruiter-demo],:has(:is(#pagina-painel-empresa,#pagina-demo-recrutador).ativa))>footer.rodape{padding:18px 16px!important;margin-top:0!important}
+ body:is([data-recruiter-demo],:has(:is(#pagina-painel-empresa,#pagina-demo-recrutador).ativa))>footer.rodape .rodape-grid{display:flex!important;justify-content:space-between!important;gap:12px!important;align-items:center!important}
+ body:is([data-recruiter-demo],:has(:is(#pagina-painel-empresa,#pagina-demo-recrutador).ativa))>footer.rodape .rodape-grid>div:not(:first-child):not(:last-child),
+ body:is([data-recruiter-demo],:has(:is(#pagina-painel-empresa,#pagina-demo-recrutador).ativa))>footer.rodape .rodape-grid p,
+ body:is([data-recruiter-demo],:has(:is(#pagina-painel-empresa,#pagina-demo-recrutador).ativa))>footer.rodape .rodape-grid h3,
+ body:is([data-recruiter-demo],:has(:is(#pagina-painel-empresa,#pagina-demo-recrutador).ativa))>footer.rodape .rodape-admin>button{display:none!important}
+ body:is([data-recruiter-demo],:has(:is(#pagina-painel-empresa,#pagina-demo-recrutador).ativa))>footer.rodape .rodape-grid>div:last-child{display:flex!important;gap:12px!important}
+ body:is([data-recruiter-demo],:has(:is(#pagina-painel-empresa,#pagina-demo-recrutador).ativa))>footer.rodape button{min-height:44px!important;margin:0!important}
+ body:is([data-recruiter-demo],:has(:is(#pagina-painel-empresa,#pagina-demo-recrutador).ativa))>footer.rodape .rodape-admin{margin-top:10px!important;padding-top:10px!important}
+}
+
+@media(max-width:760px){
+ html body #pagina-home#pagina-home{width:100%!important;max-width:100%!important;min-width:0!important;box-sizing:border-box!important}
+ html body #pagina-home#pagina-home :is(.container,.home-layout,.home-main,.home-sidebar,.hero-inner,.hero-search-shell-em,#emPerto,#listaVagas){min-width:0!important;max-width:100%!important;box-sizing:border-box!important}
+ html body #pagina-home#pagina-home #emHeroFloripa .hero-copy-em p{color:#e4edff!important;opacity:1!important}
+ html body #pagina-home#pagina-home #emHeroFloripa .hero-copy-em h1{color:#fff!important}
+ html body #pagina-home#pagina-home #emPerto{width:100%!important;margin-left:0!important;margin-right:0!important}
+ html body #pagina-home#pagina-home #listaVagas>*{min-width:0!important;max-width:100%!important;box-sizing:border-box!important}
+ html body #pagina-home#pagina-home #listaVagas :is(button,a){max-width:100%!important}
 }
