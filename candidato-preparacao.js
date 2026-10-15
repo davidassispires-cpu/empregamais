@@ -570,7 +570,7 @@
  function watch(root){if(observed.has(root))return;observed.add(root);new MutationObserver(schedule).observe(root,{childList:true,subtree:true});}
  function scan(root){watch(root);var updates=[];root.querySelectorAll('*').forEach(function(el){
   if(el.shadowRoot)scan(el.shadowRoot);
-  if(el.closest('svg,script,style,h1,h2,h3,h4,h5,h6,[aria-hidden=true],.fa,.fas,.far,.fab,.material-icons,.material-symbols-outlined'))return;
+  if(el.closest('#emCandidateAccountMenu,svg,script,style,h1,h2,h3,h4,h5,h6,[aria-hidden=true],.fa,.fas,.far,.fab,.material-icons,.material-symbols-outlined'))return;
   var text=Array.from(el.childNodes).some(function(n){return n.nodeType===3&&n.textContent.trim();});
   if(!text&&!el.matches('input:not([type=checkbox]):not([type=radio]),textarea,select'))return;
   var style=getComputedStyle(el),size=parseFloat(style.fontSize);
@@ -603,14 +603,14 @@
    host.querySelector('form').prepend(card);card.scrollIntoView({behavior:'smooth',block:'center'});card.focus();
   },100);
  }
- function open(button){
+ function open(button,keyboard){
   if(panel){close(true);return;}trigger=button;var p=window.obterCandidatoAtual&&window.obterCandidatoAtual()||{},name=p.nome||sessionStorage.getItem('candidatoNome')||'Minha conta',completion=(document.querySelector('.cp-completion')||{}).textContent||'Confira seu currículo';
   panel=document.createElement('section');panel.id='emCandidateAccountMenu';panel.setAttribute('aria-label','Minha conta');
   var photo=/^data:image\/(jpeg|png|webp);base64,/.test(p.fotoPerfil||'')?'<img alt="" src="'+p.fotoPerfil+'">':'<span class="em-account-initials">'+esc(name.split(/\s+/).filter(Boolean).slice(0,2).map(function(x){return x[0];}).join('').toUpperCase())+'</span>';
   panel.innerHTML='<div class="em-account-top"><span class="em-account-avatar">'+photo+'</span><div><strong>'+esc(name)+'</strong><small>Minha conta</small></div><button type="button" data-account="close" aria-label="Fechar menu">×</button></div><div class="em-account-links">'+[['alerts','Alertas de vagas','bell'],['access','Dados de acesso','key'],['communications','Comunicações','mail'],['premium-candidato','Conhecer Premium','crown']].map(function(r){return '<button type="button" data-account="'+r[0]+'">'+'<span class="em-account-card-icon">'+icon(r[2])+'</span><span>'+r[1]+'</span></button>';}).join('')+'</div><button type="button" class="em-account-logout" data-account="logout">'+icon('power')+'Encerrar sessão</button>';
-  document.body.appendChild(panel);button.setAttribute('aria-controls',panel.id);button.setAttribute('aria-expanded','true');place();
+  var footer=document.createElement('div');footer.className='em-account-footer';footer.appendChild(panel.querySelector('.em-account-logout'));panel.appendChild(footer);panel.querySelectorAll('.em-account-initials').forEach(function(el){el.style.setProperty('color','#fff','important');});document.body.appendChild(panel);button.setAttribute('aria-controls',panel.id);button.setAttribute('aria-expanded','true');place();
   panel.onclick=function(e){var b=e.target.closest('[data-account]');if(!b)return;var key=b.dataset.account;if(key==='close')close(true);else if(key==='logout'){close();if(window.sairTodasContas)window.sairTodasContas();}else if(['access','communications','visibility','status'].includes(key))info(key);else go(key==='alerts'?'painel-candidato':key);};
-  panel.querySelector('[data-account=alerts]').focus();
+  if(keyboard)panel.querySelector('[data-account=alerts]').focus();
  }
  var style=document.createElement('style');style.textContent=`
  #emCandidateAccountMenu{position:fixed;z-index:10050;width:340px;max-width:calc(100vw - 24px);max-height:calc(100dvh - 90px);overflow:auto;padding:18px;background:#fff;border:1px solid #bfd6e1;border-radius:14px;box-shadow:0 12px 40px #17324f24;color:#173d50;font:500 12px Montserrat,Arial,sans-serif}
@@ -649,8 +649,27 @@
  #emCandidateAccountMenu#emCandidateAccountMenu .em-account-top small{color:#617b8e!important}
  }
  @media(max-width:540px){#emCandidateAccountMenu#emCandidateAccountMenu{width:min(360px,calc(100vw - 24px));left:auto;right:12px!important} }
+
+ /* Match the approved reference proportions and separators. */
+ #emCandidateAccountMenu#emCandidateAccountMenu{width:410px;max-width:calc(100vw - 24px);border-color:#75a9c1;border-radius:11px;overflow:visible}
+ #emCandidateAccountMenu#emCandidateAccountMenu:before{content:'';position:absolute;top:-8px;right:52px;width:14px;height:14px;background:#fff;border-left:1px solid #75a9c1;border-top:1px solid #75a9c1;transform:rotate(45deg)}
+ #emCandidateAccountMenu#emCandidateAccountMenu .em-account-top{padding:17px 18px;min-height:82px;gap:14px;position:relative;background:#fff;border-radius:11px 11px 0 0}
+ #emCandidateAccountMenu#emCandidateAccountMenu .em-account-avatar{width:48px;height:48px;flex-basis:48px}
+ #emCandidateAccountMenu#emCandidateAccountMenu .em-account-initials{font-size:18px!important;font-weight:650!important;color:#fff!important}
+ #emCandidateAccountMenu#emCandidateAccountMenu .em-account-top strong{font-size:16px!important;font-weight:700!important;color:#102f48}
+ #emCandidateAccountMenu#emCandidateAccountMenu .em-account-top small{font-size:12px!important;margin-top:4px}
+ #emCandidateAccountMenu#emCandidateAccountMenu .em-account-links{padding:14px 12px;gap:8px}
+ #emCandidateAccountMenu#emCandidateAccountMenu .em-account-links>button{height:74px;min-height:74px;padding:9px 8px;gap:10px;border-radius:8px;border-color:#c8d8e3;font-size:12px!important;font-weight:600!important;outline:none!important}
+ #emCandidateAccountMenu#emCandidateAccountMenu .em-account-links>button>span:last-child{white-space:nowrap;letter-spacing:-.2px}
+ #emCandidateAccountMenu#emCandidateAccountMenu .em-account-card-icon{width:44px;height:48px;flex-basis:44px;border-radius:8px;background:linear-gradient(135deg,#edf7fb,#e7f2f7)}
+ #emCandidateAccountMenu#emCandidateAccountMenu .em-account-card-icon svg{width:29px;height:29px;stroke-width:1.65}
+ #emCandidateAccountMenu#emCandidateAccountMenu .em-account-footer{display:flex;justify-content:flex-end;border-top:1px solid #d5e2eb;padding:12px 13px}
+ #emCandidateAccountMenu#emCandidateAccountMenu .em-account-logout{margin:0;min-height:34px;padding:7px 12px;font-size:12px!important;font-weight:500}
+ #emCandidateAccountMenu#emCandidateAccountMenu .em-account-links>button:focus-visible{outline:2px solid #8cb8cb!important;outline-offset:2px}
+ @media(max-width:440px){#emCandidateAccountMenu#emCandidateAccountMenu{width:calc(100vw - 24px)}#emCandidateAccountMenu#emCandidateAccountMenu .em-account-links>button{gap:7px;font-size:11px!important}#emCandidateAccountMenu#emCandidateAccountMenu .em-account-card-icon{width:34px;flex-basis:34px;height:40px}#emCandidateAccountMenu#emCandidateAccountMenu .em-account-card-icon svg{width:25px;height:25px}}
+ @media(max-height:480px){#emCandidateAccountMenu#emCandidateAccountMenu{overflow-y:auto;max-height:calc(100dvh - 85px)}#emCandidateAccountMenu#emCandidateAccountMenu:before{display:none}}
 `;document.head.appendChild(style);
- document.addEventListener('click',function(e){var b=e.target.closest&&e.target.closest('#cpCandidateHeader .cp-greeting');if(b){e.preventDefault();e.stopImmediatePropagation();open(b);}else if(panel&&!panel.contains(e.target))close();},true);
+ document.addEventListener('click',function(e){var b=e.target.closest&&e.target.closest('#cpCandidateHeader .cp-greeting');if(b){e.preventDefault();e.stopImmediatePropagation();open(b,e.detail===0);}else if(panel&&!panel.contains(e.target))close();},true);
  document.addEventListener('keydown',function(e){if(!panel)return;if(e.key==='Escape'){e.preventDefault();close(true);}if(e.key==='Tab'){var items=Array.from(panel.querySelectorAll('button')),first=items[0],last=items[items.length-1];if(e.shiftKey&&document.activeElement===first){e.preventDefault();last.focus();}else if(!e.shiftKey&&document.activeElement===last){e.preventDefault();first.focus();}}});
  window.addEventListener('resize',place);window.addEventListener('popstate',function(){close();});
 })();
