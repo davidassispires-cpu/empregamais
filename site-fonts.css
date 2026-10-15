@@ -241,3 +241,113 @@ html body #pagina-curriculo#pagina-curriculo #cvResumeWizard :is(.cv-preference-
  html body .cp-demo-plans a[aria-current=page]{background:#edf7f3!important;border-color:#86b8ab!important;color:#285b57!important}
 }
 @media(max-width:650px){@layer site-typography{html body #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato .cp-fit-panel{flex-wrap:wrap!important}html body #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato .cp-fit-panel-action{padding-left:38px!important}}}
+
+/* Candidate mobile layout. Keep every override inside this breakpoint so the
+   existing desktop cascade, branding and navigation remain unchanged. */
+@media (max-width:760px) {
+ @layer site-typography {
+  html body.cp-shell-active {--cp-sidebar-width:0px;--cp-header-height:48px!important}
+  html body.cp-shell-active .pagina.cp-tab-content {width:100%!important;margin-left:0!important;padding-top:16px!important}
+  html body.cp-shell-active>footer {width:100%!important;margin-left:0!important}
+  html body.cp-shell-active #cpCandidateHeader#cpCandidateHeader {height:auto!important;min-height:0!important;padding-top:48px!important}
+  html body.cp-shell-active #cpCandidateHeader#cpCandidateHeader .cp-toolbar {height:48px!important;min-height:48px!important;padding:0 14px!important}
+  html body.cp-shell-active #cpCandidateHeader#cpCandidateHeader .cp-navigation {position:relative!important;inset:auto!important;display:flex!important;flex-direction:row!important;flex-wrap:nowrap!important;width:100%!important;max-width:100%!important;height:auto!important;max-height:none!important;margin:0!important;padding:8px 14px!important;gap:8px!important;overflow-x:auto!important;overflow-y:hidden!important;scroll-padding-inline:14px;overscroll-behavior-x:contain;border-radius:0!important;box-sizing:border-box!important}
+  html body.cp-shell-active #cpCandidateHeader#cpCandidateHeader .cp-navigation button[data-route] {flex:0 0 auto!important;width:auto!important;min-width:0!important;min-height:44px!important;height:44px!important;padding:0 12px!important;gap:8px!important;scroll-margin-inline:14px}
+  html body.cp-shell-active #cpCandidateHeader#cpCandidateHeader .cp-navigation :is(.m3-brand,.m3-help,.cp-nav-section-label) {display:none!important}
+  html body.cp-shell-active #cpCandidateHeader#cpCandidateHeader .cp-navigation button[data-route]>span:not(.cp-card-icon) {font-size:12px!important;white-space:nowrap!important}
+  html body.cp-shell-active #cpCandidateHeader#cpCandidateHeader .cp-navigation button[data-route=messages] {padding-right:30px!important}
+  html body.cp-shell-active .pagina.cp-tab-content :is(.container-dashboard,.container-menor) {width:100%!important;max-width:none!important;margin-inline:0!important;padding:0 14px 24px!important;box-sizing:border-box!important;min-width:0!important}
+  html body.cp-shell-active .pagina.cp-tab-content :is(input,select,textarea) {box-sizing:border-box!important;max-width:100%!important;font-size:16px!important}
+  html body.cp-shell-active .pagina.cp-tab-content :is(button,a) {touch-action:manipulation}
+  html body.cp-shell-active .cp-demo-plans {width:100%!important;padding:14px!important;gap:12px!important;box-sizing:border-box!important}
+  html.em-candidate-demo body.cp-shell-active .pagina>.cp-demo-plans {width:calc(100% - 28px)!important;margin:0 14px 16px!important}
+  html body.cp-shell-active .cp-demo-plans nav {display:flex!important;width:100%!important;gap:8px!important}
+  html body.cp-shell-active .cp-demo-plans nav a {flex:1!important;min-height:44px!important;padding:10px 8px!important;box-sizing:border-box!important;text-align:center!important}
+
+  html body #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato :is(.cp-layout,.cp-opportunities,.cp-follow-grid,.cp-value-grid,.cp-recommendations-grid) {grid-template-columns:minmax(0,1fr)!important;min-width:0!important;gap:14px!important}
+  html body #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato .cp-home-summary {grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:10px!important}
+  html body #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato .cp-overview-card {min-width:0!important;height:auto!important;min-height:88px!important;padding:12px!important;gap:8px!important}
+  html body #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato .cp-overview-card div>span {font-size:12px!important;white-space:normal!important}
+  html body #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato .cp-overview-icon {width:32px!important;height:32px!important;flex-basis:32px!important}
+  html body #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato .cp-overview-arrow {display:none!important}
+  html body #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato .cp-home-intro {height:auto!important;min-height:210px!important;padding:22px 20px!important}
+  html body #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato .m3-welcome {min-width:0!important;max-width:100%!important}
+  html body #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato .m3-welcome h1 {font-size:32px!important}
+  html body #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato .m3-welcome p {font-size:13px!important;max-width:100%!important}
+  html body #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato :is(#emPersonalDashboard,.cp-panel,.cp-home-activity>section) {padding:16px!important;min-width:0!important}
+  html body #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato .em-personal-head {flex-wrap:wrap!important;gap:8px!important}
+  html body #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato .em-personal-grid article {grid-template-columns:36px minmax(0,1fr)!important;gap:8px 10px!important;padding:14px!important;min-width:0!important}
+  html body #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato .em-personal-grid .cp-job-symbol {width:36px!important;height:40px!important;grid-row:1/3!important}
+  html body #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato .em-personal-grid article :is(h3,p,small) {min-width:0!important;white-space:normal!important;overflow-wrap:break-word!important}
+  html body #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato .em-personal-grid .cp-recommended-salary {grid-column:2!important;grid-row:4!important;text-align:left!important}
+  html body #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato .em-personal-grid .em-personal-reasons {grid-column:2!important;grid-row:5!important;flex-wrap:wrap!important}
+  html body #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato .em-personal-grid article>a {grid-column:2!important;grid-row:6!important;justify-self:start!important;min-height:44px!important;display:inline-flex!important;align-items:center!important;white-space:normal!important}
+  html body #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato .em-personal-grid .cp-fit-and-alert {grid-column:1/-1!important;grid-row:7!important;width:100%!important;min-width:0!important;box-sizing:border-box!important}
+  html body #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato .cp-fit-panel {display:grid!important;grid-template-columns:26px minmax(0,1fr)!important;gap:10px!important;width:100%!important;min-width:0!important;padding:14px!important;box-sizing:border-box!important}
+  html body #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato .cp-fit-copy {grid-column:2!important;min-width:0!important}
+  html body #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato .cp-fit-panel-action {grid-column:2!important;white-space:normal!important;padding-left:0!important}
+  html body #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato .cp-home-activity h3 {font-size:16px!important}
+  html body #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato .cp-latest-list article {flex-wrap:wrap!important}
+  html body #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato .cp-application-end {width:100%!important;max-width:none!important;align-items:flex-start!important;text-align:left!important;padding-left:56px!important;box-sizing:border-box!important}
+  html body.cp-shell-active #cpPreparationWorkspace .cp-recommendation-footer {align-items:stretch!important;flex-direction:column!important;gap:12px!important}
+  html body.cp-shell-active #cpPreparationWorkspace .cp-recommendation-footer>div {display:flex!important;flex-wrap:wrap!important;gap:8px!important}
+  html body.cp-shell-active #cpPreparationWorkspace .cp-recommendation-footer button {min-height:44px!important;white-space:normal!important}
+
+  html body.cp-shell-active #pagina-candidaturas#pagina-candidaturas#pagina-candidaturas .cp-applications-hero {height:auto!important;min-height:0!important;grid-template-columns:minmax(0,1fr)!important;padding:20px 16px 14px!important}
+  html body.cp-shell-active #pagina-candidaturas#pagina-candidaturas#pagina-candidaturas .cp-applications-art {display:none!important}
+  html body.cp-shell-active #pagina-candidaturas#pagina-candidaturas#pagina-candidaturas .cp-applications-rail {flex-wrap:wrap!important;gap:6px!important}
+  html body.cp-shell-active #pagina-candidaturas#pagina-candidaturas#pagina-candidaturas .cp-applications-rail span {border:0!important;padding:0!important}
+  html body.cp-shell-active #cpApplicationFilters {padding:14px!important}
+  html body.cp-shell-active #cpApplicationFilters .cp-application-filter-buttons {grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:8px!important}
+  html body.cp-shell-active #cpApplicationFilters [data-cp-filter=todas] {grid-column:1/-1!important}
+  html body.cp-shell-active #pagina-candidaturas #listaCandidaturas {grid-template-columns:minmax(0,1fr)!important}
+  html body.cp-shell-active #pagina-candidaturas .candidatura-top {flex-wrap:wrap!important;gap:10px!important}
+  html body.cp-shell-active #pagina-candidaturas .candidatura-top h3 {font-size:16px!important;line-height:1.4!important;min-width:0!important}
+  html body.cp-shell-active dialog.cp-process-modal[open] {width:calc(100vw - 24px)!important;max-width:calc(100vw - 24px)!important;max-height:calc(100dvh - 24px)!important;overflow:auto!important}
+  html body.cp-shell-active .cp-process-modal :is(.cp-process-modal-header,.cp-process-body,.cp-process-modal-footer) {padding:16px!important}
+  html body.cp-shell-active .cp-process-modal .cp-process-tabs {overflow-x:auto!important;justify-content:flex-start!important}
+  html body.cp-shell-active .cp-process-modal .cp-process-tabs button {flex-shrink:0!important;min-height:44px!important}
+  html body.cp-shell-active .cp-process-modal :is(.cp-process-support,.cp-process-grid) {grid-template-columns:minmax(0,1fr)!important}
+
+  /* SVGs in saved jobs had no explicit dimensions and expanded to 300x150. */
+  html body.cp-shell-active #listaVagasSalvas svg {width:22px!important;height:22px!important;max-width:22px!important;max-height:22px!important;flex-shrink:0!important;fill:none!important;stroke:currentColor!important;stroke-width:1.8!important}
+  html body.cp-shell-active #listaVagasSalvas :is(.vaga-card,.card-vaga) {width:100%!important;min-width:0!important;box-sizing:border-box!important}
+  html body.cp-shell-active #listaVagasSalvas :is(button,a) {min-height:44px!important;white-space:normal!important}
+
+  html body.cp-shell-active #pagina-perfil.ep-inline-profile-page #emCandidateProfile#emCandidateProfile {width:calc(100% - 28px)!important;margin-inline:14px!important;box-sizing:border-box!important}
+  html body.cp-shell-active #emCandidateProfile#emCandidateProfile .ep-head {grid-template-columns:minmax(0,1fr)!important;padding:18px!important;gap:14px!important}
+  html body.cp-shell-active #emCandidateProfile#emCandidateProfile .ep-hero-art {display:none!important}
+  html body.cp-shell-active #emCandidateProfile#emCandidateProfile form {grid-template-columns:minmax(0,1fr)!important}
+  html body.cp-shell-active #emCandidateProfile#emCandidateProfile :is(.ep-grid,.ep-contact-card .ep-grid,.ep-diversity-card>.ep-grid) {grid-template-columns:minmax(0,1fr)!important;gap:16px!important}
+  html body.cp-shell-active #emCandidateProfile#emCandidateProfile .ep-grid label {grid-column:1!important;min-width:0!important}
+  html body.cp-shell-active #emCandidateProfile#emCandidateProfile :is(section,.ep-photo-card) {padding:18px!important;min-width:0!important}
+  html body.cp-shell-active #emCandidateProfile#emCandidateProfile .ep-footer {padding:0!important;gap:8px!important;flex-wrap:wrap!important}
+  html body.cp-shell-active #emCandidateProfile#emCandidateProfile .ep-footer button {flex:1 1 140px!important;min-height:44px!important;white-space:normal!important}
+
+  html body.cp-shell-active #pagina-curriculo #cvResumeWizard.cv-wizard {height:auto!important;min-height:0!important;grid-template-columns:minmax(0,1fr)!important}
+  html body.cp-shell-active #pagina-curriculo #cvResumeWizard.cv-wizard>.cv86-editor {height:auto!important;max-height:none!important;overflow:visible!important;padding-right:0!important}
+  html body.cp-shell-active #pagina-curriculo #cvResumeWizard #curriculoOnlineV84 {height:auto!important;max-height:none!important;overflow:visible!important;padding:16px!important}
+  html body.cp-shell-active #pagina-curriculo #cvResumeWizard .curriculo-grid-v84 {grid-template-columns:minmax(0,1fr)!important;min-width:0!important}
+  html body.cp-shell-active #pagina-curriculo #cvResumeWizard .cv-wizard-actions {flex-wrap:wrap!important}
+  html body.cp-shell-active #pagina-curriculo #cvResumeWizard .cv-wizard-actions button {flex:1 1 120px!important;min-height:44px!important;white-space:normal!important}
+
+  html body.cp-shell-active #pagina-curriculo #cvResumeWizard :is(.cv-fields-frame,.cv-fields-viewport) {height:auto!important;max-height:none!important;overflow:visible!important;overscroll-behavior:auto!important;flex:none!important;padding:0!important}
+  html body.cp-shell-active #pagina-curriculo #cvResumeWizard .cv-scroll-arrow {display:none!important}
+  html body.cp-shell-active #pagina-curriculo #cvResumeWizard .cv-fields-frame:before,html body.cp-shell-active #pagina-curriculo #cvResumeWizard .cv-fields-frame:after {display:none!important}
+  html body.cp-shell-active #listaVagasSalvas {display:grid!important;grid-template-columns:minmax(0,1fr)!important;gap:14px!important}
+  html body.cp-shell-active #listaVagasSalvas .em-lista-final {position:relative!important;display:flex!important;flex-direction:column!important;gap:12px!important;padding:16px!important;background:#fff!important;border:1px solid #d8e5e2!important;border-radius:12px!important;min-height:0!important}
+  html body.cp-shell-active #listaVagasSalvas .em-lista-cab {padding-right:42px!important}
+  html body.cp-shell-active #listaVagasSalvas :is(.em-lista-empresa,.em-lista-meta-item,.em-lista-data,.em-lista-urgente,.em-lista-indicadores>span) {display:flex!important;align-items:center!important;gap:7px!important;min-width:0!important}
+  html body.cp-shell-active #listaVagasSalvas :is(.em-lista-meta,.em-lista-indicadores) {display:flex!important;flex-wrap:wrap!important;gap:10px!important}
+  html body.cp-shell-active #listaVagasSalvas .em-lista-meta-item {font-size:12px!important}
+  html body.cp-shell-active #listaVagasSalvas .em-lista-meta-item b {font-weight:500!important}
+  html body.cp-shell-active #listaVagasSalvas .em-lista-titulo {margin:0!important;font-size:18px!important;line-height:1.4!important}
+  html body.cp-shell-active #listaVagasSalvas .em-lista-resumo {font-size:13px!important;line-height:1.6!important;margin:0!important;overflow-wrap:break-word!important}
+  html body.cp-shell-active #listaVagasSalvas .em-lista-footer {display:grid!important;gap:12px!important;border-top:1px solid #e0ece9!important;padding-top:12px!important}
+  html body.cp-shell-active #listaVagasSalvas .em-lista-salario {display:flex!important;align-items:center!important;gap:6px!important;color:#285b57!important}
+  html body.cp-shell-active #listaVagasSalvas .em-lista-data {font-size:11px!important}
+  html body.cp-shell-active #listaVagasSalvas .em-lista-indicadores {font-size:11px!important}
+  html body.cp-shell-active #listaVagasSalvas .em-lista-ver {display:flex!important;align-items:center!important;justify-content:center!important;gap:12px!important;width:100%!important;padding:12px!important;border:0!important;border-radius:8px!important;background:#285b57!important;color:#fff!important}
+  html body.cp-shell-active #listaVagasSalvas .em-lista-fav {position:absolute!important;right:12px!important;top:12px!important;width:44px!important;height:44px!important;min-width:44px!important;padding:0!important;background:#eff8f6!important;color:#285b57!important;border:0!important;border-radius:8px!important;font-size:23px!important}
+ }
+}
