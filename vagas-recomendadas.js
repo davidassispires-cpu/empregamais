@@ -95,7 +95,7 @@
  var queued=false;function schedule(){if(queued)return;queued=true;setTimeout(function(){queued=false;render();},100);}
  function start(){
   var style=document.createElement('style');style.textContent=`
-.em-personal-recs{box-sizing:border-box;background:#fff;border:1px solid #e1e7ef;border-radius:12px;padding:20px;margin:18px 0;color:#183553;font-family:Montserrat,Arial,sans-serif}
+.em-personal-recs{box-sizing:border-box;background:#fff;border:1px solid #e1e7ef;border-radius:12px;padding:20px;margin:18px 0;color:#183553;font-family:Inter,Arial,sans-serif}
 #emPersonalHome{max-width:1180px;width:calc(100% - 32px);margin:20px auto}
 .em-personal-recs[hidden]{display:none!important}
 .em-personal-head{display:flex;justify-content:space-between;align-items:center;gap:16px;margin-bottom:16px}

@@ -86,7 +86,7 @@ function compactGraphic(kind,accent,soft,line){
  if(kind==='apply'){
   [['Portal','layout-dashboard'],['E-mail','mail'],['WhatsApp','message-circle'],['Site externo','external-link']].forEach(function(item,index){const x=21+(index%2)*145,y=94+Math.floor(index/2)*62;body+=rect(x,y,133,53,soft,line,8)+symbol(item[1],x+12,y+15,23,accent)+label(x+43,y+32,item[0],item[0]==='Site externo'?12:13,'#43566f',600);});
  }else rows[kind].forEach(function(text,index){const y=94+index*43;body+=rect(21,y,278,34,soft,line,7)+symbol(kind==='search'?'search':kind==='review'?'file-text':'check',32,y+8,18,accent)+label(63,y+23,text,14,'#43566f',600);});
- return '<svg class="cf-guide-compact-graphic" viewBox="0 0 320 240" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="'+esc(names[kind])+': exemplo ilustrativo" font-family="Montserrat, Arial, sans-serif"><title>'+esc(names[kind])+'</title>'+body+'</svg>';
+ return '<svg class="cf-guide-compact-graphic" viewBox="0 0 320 240" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="'+esc(names[kind])+': exemplo ilustrativo" font-family="Inter, Arial, sans-serif"><title>'+esc(names[kind])+'</title>'+body+'</svg>';
 }
 function companyCompactGraphic(kind){
  const accent='#1767b8',soft='#eff6fd',line='#dce8f4',ink='#20354e',muted='#62748b';
@@ -102,7 +102,7 @@ function companyCompactGraphic(kind){
   [5,15,30].forEach(function(minutes,i){const x=21+i*95;body+=rect(x,146,88,31,i===1?accent:soft,line,7)+label(x+18,167,minutes+' min',14,i===1?'#fff':accent,700);});
   [['sparkles','Destaque'],['zap','Urgência'],['eye-off','Confidencial']].forEach(function(item,i){const x=21+i*95;body+=rect(x,187,88,41,soft,line,6)+symbol(item[0],x+35,190,17,accent)+'<text x="'+(x+44)+'" y="223" text-anchor="middle" fill="'+ink+'" font-size="12" font-weight="600">'+item[1]+'</text>';});
  }
- return '<svg class="cf-guide-compact-graphic" viewBox="0 0 320 240" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="'+esc(names[kind])+': exemplo ilustrativo" font-family="Montserrat, Arial, sans-serif"><title>'+esc(names[kind])+'</title>'+body+'</svg>';
+ return '<svg class="cf-guide-compact-graphic" viewBox="0 0 320 240" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="'+esc(names[kind])+': exemplo ilustrativo" font-family="Inter, Arial, sans-serif"><title>'+esc(names[kind])+'</title>'+body+'</svg>';
 }
 function companyGraphic(kind){
  const accent='#1767b8',soft='#eff6fd',line='#dce8f4',ink='#20354e',muted='#62748b';
@@ -121,7 +121,7 @@ function companyGraphic(kind){
   [5,15,30].forEach(function(minutes,i){const x=42+i*134;body+=rect(x,170,118,29,i===1?accent:soft,line,6)+label(x+26,190,minutes+' minutos',13,i===1?'#fff':accent,700);});
   [['sparkles','Destaque'],['zap','Urgência'],['eye-off','Confidencial']].forEach(function(item,i){const x=28+i*145;body+=rect(x,231,133,64,soft,line,8)+symbol(item[0],x+56,240,22,accent)+'<text x="'+(x+66.5)+'" y="282" text-anchor="middle" fill="'+ink+'" font-size="13" font-weight="700">'+item[1]+'</text>';});
  }
- return '<svg class="cf-guide-desktop-graphic" viewBox="0 0 480 320" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="'+esc(names[kind])+': exemplo ilustrativo" font-family="Montserrat, Arial, sans-serif"><title>'+esc(names[kind])+'</title>'+body+'</svg>'+companyCompactGraphic(kind);
+ return '<svg class="cf-guide-desktop-graphic" viewBox="0 0 480 320" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="'+esc(names[kind])+': exemplo ilustrativo" font-family="Inter, Arial, sans-serif"><title>'+esc(names[kind])+'</title>'+body+'</svg>'+companyCompactGraphic(kind);
 }
 function graphic(kind,audience){
  if(audience==='empresa')return companyGraphic(kind);
@@ -142,7 +142,7 @@ function graphic(kind,audience){
   [['Portal','layout-dashboard','Acesse sua conta'],['E-mail','mail','Envie o arquivo'],['WhatsApp','message-circle','Use o contato'],['Site externo','external-link','Abra o link da vaga']].forEach(function(item,i){const x=28+(i%2)*220,y=129+Math.floor(i/2)*81;body+=rect(x,y,204,70,soft,line,8)+symbol(item[1],x+14,y+21,27,accent)+label(x+53,y+30,item[0],15,ink,700)+label(x+53,y+49,item[2],12,muted);});
 
  }
- return '<svg class="cf-guide-desktop-graphic" viewBox="0 0 480 320" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="'+esc(names[kind])+': exemplo ilustrativo" font-family="Montserrat, Arial, sans-serif"><title>'+esc(names[kind])+'</title>'+body+'</svg>'+compactGraphic(kind,accent,soft,line);
+ return '<svg class="cf-guide-desktop-graphic" viewBox="0 0 480 320" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="'+esc(names[kind])+': exemplo ilustrativo" font-family="Inter, Arial, sans-serif"><title>'+esc(names[kind])+'</title>'+body+'</svg>'+compactGraphic(kind,accent,soft,line);
 }
 if(typeof module!=='undefined'&&module.exports)module.exports={createController:createController,graphic:graphic,profiles:profiles,companySlide:companySlide};
 if(typeof document==='undefined')return;

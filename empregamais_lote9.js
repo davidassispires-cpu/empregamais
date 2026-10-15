@@ -660,7 +660,7 @@ document.addEventListener('pointerup',go,true);
   var style=document.createElement('style');style.id='em-job-status-badges';
   style.textContent=`
 html body #pagina-home #listaVagas#listaVagas#listaVagas .em-status-badges{display:flex!important;align-items:center!important;flex-wrap:wrap!important;gap:6px!important;margin:0!important;padding:0!important}
-html body #pagina-home #listaVagas#listaVagas#listaVagas .em-status-badge{display:inline-flex!important;align-items:center!important;gap:5px!important;border:1px solid transparent!important;border-radius:6px!important;padding:4px 8px!important;font:600 10px/1.4 Montserrat,Arial,sans-serif!important;white-space:nowrap!important;box-shadow:none!important}
+html body #pagina-home #listaVagas#listaVagas#listaVagas .em-status-badge{display:inline-flex!important;align-items:center!important;gap:5px!important;border:1px solid transparent!important;border-radius:6px!important;padding:4px 8px!important;font:600 10px/1.4 Inter,Arial,sans-serif!important;white-space:nowrap!important;box-shadow:none!important}
 html body #pagina-home #listaVagas#listaVagas#listaVagas .em-status-badge svg{display:block!important;width:13px!important;height:13px!important;flex:0 0 13px!important;fill:none!important;stroke:currentColor!important}
 html body #pagina-home #listaVagas#listaVagas#listaVagas .em-status-badge>span{font:inherit!important;color:inherit!important;padding:0!important;background:none!important;border:0!important}
 html body #pagina-home #listaVagas#listaVagas#listaVagas .em-status-new{color:#1768b4!important;background:#eef6ff!important;border-color:#d2e6fb!important}

@@ -6,7 +6,7 @@ html body #pagina-painel-candidato#pagina-painel-candidato.cp-enhanced{
 }
 html body #pagina-painel-candidato#pagina-painel-candidato.cp-enhanced,
 html body #pagina-painel-candidato#pagina-painel-candidato.cp-enhanced :is(h1,h2,h3,h4,p,span,small,strong,a,button,input,textarea,select,dt,dd,label,legend,summary,li){
- font-family:Montserrat,Arial,sans-serif!important;letter-spacing:normal!important;
+ font-family:Inter,Arial,sans-serif!important;letter-spacing:normal!important;
 }
 html body #pagina-painel-candidato#pagina-painel-candidato.cp-enhanced .cp-profile{
  background:#fff!important;border:1px solid var(--cp-border)!important;border-radius:14px!important;
@@ -707,8 +707,8 @@ html body #pagina-candidaturas#pagina-candidaturas .cp-applications-art>svg{widt
 
 /* Account trigger matches the approved popover reference. */
 html body.cp-shell-active #cpCandidateHeader .cp-greeting{display:flex!important;align-items:center;gap:12px!important;padding:0 4px 0 16px!important;background:transparent!important;border:0!important;border-left:1px solid #cad8e5!important;border-radius:0!important;color:#092d4c!important;box-shadow:none!important}
-html body.cp-shell-active #cpCandidateHeader .cp-user-avatar{display:grid!important;place-items:center;width:44px!important;height:44px!important;flex:0 0 44px!important;border:0!important;border-radius:50%!important;background-color:#c9dfea!important;color:#092d4c!important;font:600 17px Montserrat,Arial,sans-serif!important;opacity:1!important;visibility:visible!important}
-html body.cp-shell-active #cpCandidateHeader .cp-greeting-name{display:block!important;font:600 16px Montserrat,Arial,sans-serif!important;color:#092d4c!important;white-space:nowrap}
+html body.cp-shell-active #cpCandidateHeader .cp-user-avatar{display:grid!important;place-items:center;width:44px!important;height:44px!important;flex:0 0 44px!important;border:0!important;border-radius:50%!important;background-color:#c9dfea!important;color:#092d4c!important;font:600 17px Inter,Arial,sans-serif!important;opacity:1!important;visibility:visible!important}
+html body.cp-shell-active #cpCandidateHeader .cp-greeting-name{display:block!important;font:600 16px Inter,Arial,sans-serif!important;color:#092d4c!important;white-space:nowrap}
 html body.cp-shell-active #cpCandidateHeader .cp-account-chevron{display:block!important;width:19px!important;height:19px!important;margin-left:0;color:#092d4c!important}
 html body.cp-shell-active #cpCandidateHeader .cp-notifications{color:#092d4c!important}
 html body.cp-shell-active #cpCandidateHeader .cp-notifications svg{width:25px!important;height:25px!important}
@@ -716,11 +716,11 @@ html body.cp-shell-active #cpCandidateHeader .cp-notifications svg{width:25px!im
 
 /* Approved option 6: compact modular navigation cards. */
 html body.cp-shell-active #cpCandidateHeader .cp-navigation{background:#fff!important;padding:24px 16px!important;gap:8px!important}
-html body.cp-shell-active #cpCandidateHeader .cp-navigation .cp-nav-section-label{position:relative;width:100%;margin:0 0 12px!important;padding:0 0 12px!important;border:0!important;color:#102f4c!important;font:700 12px Montserrat,Arial,sans-serif!important;letter-spacing:.4px!important;text-transform:uppercase}
+html body.cp-shell-active #cpCandidateHeader .cp-navigation .cp-nav-section-label{position:relative;width:100%;margin:0 0 12px!important;padding:0 0 12px!important;border:0!important;color:#102f4c!important;font:700 12px Inter,Arial,sans-serif!important;letter-spacing:.4px!important;text-transform:uppercase}
 html body.cp-shell-active #cpCandidateHeader .cp-navigation .cp-nav-section-label:after{content:"";display:block;position:absolute;bottom:0;left:0;width:35px;height:3px;border-radius:2px;background:#176c86}
 html body.cp-shell-active #cpCandidateHeader .cp-navigation .cp-nav-section-label:not(:first-child){margin-top:22px!important}
 html body.cp-shell-active #cpCandidateHeader .cp-navigation button{position:relative;display:flex!important;align-items:center!important;gap:0!important;width:100%!important;min-height:49px!important;height:49px!important;padding:0 25px 0 0!important;margin:0!important;border:1px solid #d8e4ed!important;border-radius:7px!important;background:#fff!important;box-shadow:none!important;overflow:hidden!important;color:#123451!important;text-align:left!important}
-html body.cp-shell-active #cpCandidateHeader .cp-navigation button>span:not(.cp-card-icon){padding:0 11px!important;font:500 13px Montserrat,Arial,sans-serif!important;letter-spacing:0!important;color:#123451!important;white-space:nowrap}
+html body.cp-shell-active #cpCandidateHeader .cp-navigation button>span:not(.cp-card-icon){padding:0 11px!important;font:500 13px Inter,Arial,sans-serif!important;letter-spacing:0!important;color:#123451!important;white-space:nowrap}
 html body.cp-shell-active #cpCandidateHeader .cp-navigation button>.cp-card-icon{display:grid!important;place-items:center!important;align-self:stretch!important;width:50px!important;min-width:50px!important;flex:0 0 50px!important;padding:7px!important;margin:0!important;border-right:1px solid #dfebf2!important;border-radius:0!important;background:#f0f7fb!important;color:#145571!important}
 html body.cp-shell-active #cpCandidateHeader .cp-navigation button .cp-nav-icon{width:29px!important;height:29px!important;flex:none!important;color:#145571!important}
 html body.cp-shell-active #cpCandidateHeader .cp-navigation button:after{content:""!important;display:block!important;position:absolute;right:13px;top:19px;width:7px;height:7px;border-top:2px solid #8199ad;border-right:2px solid #8199ad;transform:rotate(45deg);background:none!important}
@@ -776,7 +776,7 @@ html body.cp-shell-active #cpCandidateHeader#cpCandidateHeader .cp-navigation bu
  min-width:22px!important;width:auto!important;height:22px!important;padding:0 5px!important;
  box-sizing:border-box!important;border-radius:7px!important;background:#FEF2F2!important;
  color:#B91C1C!important;border:1px solid #FECACA!important;
- font:700 12px/1 Montserrat,Arial,sans-serif!important;box-shadow:none!important;
+ font:700 12px/1 Inter,Arial,sans-serif!important;box-shadow:none!important;
 }
 html body.cp-shell-active #cpCandidateHeader#cpCandidateHeader .cp-navigation button .cp-message-count[hidden]{display:none!important}
 
