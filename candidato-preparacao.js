@@ -244,7 +244,8 @@
   workspace.hidden=false;workspace.dataset.cpView='';page.classList.add('cp-tool-active');
   var backToRecommendations=page.classList.contains('cp-recommendations-active')&&title!=='Recomendações';
   workspace.innerHTML='<header class="cp-workspace-head"><button type="button" data-cp-action="'+(backToRecommendations?'recommendations':'close')+'" class="cp-text-button">'+icon('back')+(backToRecommendations?' Voltar às recomendações':' Voltar à minha área')+'</button><h1 tabindex="-1">'+escape(title)+'</h1></header><div class="cp-workspace-content">'+body+'</div><p class="cp-feedback" role="status" aria-live="polite"></p>';
-  workspace.querySelector('h1').focus();workspace.scrollIntoView({block:'start',behavior:'auto'});
+  workspace.querySelector('h1').focus({preventScroll:true});
+  (container.querySelector('.cp-demo-plans')||workspace).scrollIntoView({block:'start',behavior:'auto'});
  }
  function toolStatus(text){var el=workspace.querySelector('.cp-feedback');if(el)el.textContent=text;}
  function openRecommendations(refresh){

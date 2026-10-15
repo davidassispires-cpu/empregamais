@@ -928,6 +928,7 @@ html body.cp-shell-active #cpCandidateHeader#cpCandidateHeader .cp-navigation bu
 @media(max-width:850px){html body.cp-shell-active #cpCandidateHeader#cpCandidateHeader .cp-navigation button[data-route]{gap:9px!important;min-width:155px!important}html body.cp-shell-active #cpCandidateHeader#cpCandidateHeader .cp-navigation button[data-route]>.cp-card-icon{width:32px!important;height:32px!important;min-width:32px!important;flex-basis:32px!important}}
 
 /* Premium recommendations stay inside the candidate workspace. */
+html body #pagina-painel-candidato#pagina-painel-candidato.cp-enhanced :is(.cp-workspace,.cp-demo-plans){scroll-margin-top:calc(var(--cp-header-height,64px) + 16px)}
 html body #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato.cp-recommendations-active .container-dashboard> :not(.cp-demo-plans,.cp-workspace){display:none!important}
 html body #pagina-painel-candidato#pagina-painel-candidato.cp-enhanced .cp-recommendations-link{border:0!important;background:transparent!important;padding:4px 0!important;color:var(--cp-lilac)!important;font-size:12px!important;font-weight:600!important;cursor:pointer;text-align:right}
 html body #pagina-painel-candidato#pagina-painel-candidato.cp-enhanced .cp-recommendations-intro{display:flex;gap:18px;align-items:center;margin:4px 0 24px;padding-bottom:22px;border-bottom:1px solid var(--cp-border)}
