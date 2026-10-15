@@ -494,19 +494,19 @@
  function select(name,label){return '<label>'+label+'<select name="'+name+'"><option value="">Selecione (opcional)</option>'+choices[name].map(function(x){return '<option>'+esc(x)+'</option>';}).join('')+'</select></label>';}
  function status(text){dialog.querySelector('[role=status]').textContent=text;}
  function age(value){if(!value)return '';var d=new Date(value+'T12:00:00'),now=new Date();var n=now.getFullYear()-d.getFullYear();if(now.getMonth()<d.getMonth()||(now.getMonth()===d.getMonth()&&now.getDate()<d.getDate()))n--;return n>=0?n+' anos':'';}
- function profileIcon(name){var paths={"user":"<circle cx=\"12\" cy=\"7\" r=\"4\"/><path d=\"M4 22v-3a8 8 0 0 1 16 0v3Z\"/>","pin":"<path d=\"M20 10c0 6-8 12-8 12S4 16 4 10a8 8 0 1 1 16 0Z\"/><circle cx=\"12\" cy=\"10\" r=\"3\"/>","group":"<circle cx=\"9\" cy=\"7\" r=\"4\"/><path d=\"M2 22v-3a7 7 0 0 1 14 0v3M17 3a4 4 0 0 1 0 8m2 5a6 6 0 0 1 3 6\"/>","camera":"<path d=\"M3 7h4l2-4h6l2 4h4v14H3Z\"/><circle cx=\"12\" cy=\"13\" r=\"4\"/>","trash":"<path d=\"M4 6h16M9 6V3h6v3M6 6l1 16h10l1-16M10 10v8m4-8v8\"/>","document":"<path d=\"M5 2h10l4 4v16H5ZM14 2v6h5M8 12h8M8 16h6\"/>","check":"<path d=\"m4 12 5 5L20 5\"/>"};return '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'+(paths[name]||paths.user)+'</svg>';}
+ function profileIcon(name){var paths={"lock":"<rect x=\"5\" y=\"10\" width=\"14\" height=\"11\" rx=\"2\"/><path d=\"M8 10V7a4 4 0 0 1 8 0v3M12 14v3\"/>","user":"<circle cx=\"12\" cy=\"7\" r=\"4\"/><path d=\"M4 22v-3a8 8 0 0 1 16 0v3Z\"/>","pin":"<path d=\"M20 10c0 6-8 12-8 12S4 16 4 10a8 8 0 1 1 16 0Z\"/><circle cx=\"12\" cy=\"10\" r=\"3\"/>","group":"<circle cx=\"9\" cy=\"7\" r=\"4\"/><path d=\"M2 22v-3a7 7 0 0 1 14 0v3M17 3a4 4 0 0 1 0 8m2 5a6 6 0 0 1 3 6\"/>","camera":"<path d=\"M3 7h4l2-4h6l2 4h4v14H3Z\"/><circle cx=\"12\" cy=\"13\" r=\"4\"/>","trash":"<path d=\"M4 6h16M9 6V3h6v3M6 6l1 16h10l1-16M10 10v8m4-8v8\"/>","document":"<path d=\"M5 2h10l4 4v16H5ZM14 2v6h5M8 12h8M8 16h6\"/>","check":"<path d=\"m4 12 5 5L20 5\"/>"};return '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'+(paths[name]||paths.user)+'</svg>';}
  function styles(){if(document.getElementById('emCandidateProfileStyle'))return;var el=document.createElement('style');el.id='emCandidateProfileStyle';el.textContent=`
  #emCandidateProfile{width:min(720px,calc(100vw - 32px));max-height:calc(100dvh - 32px);box-sizing:border-box;padding:0;border:1px solid #ddd3f3;border-radius:18px;background:#fff;color:#234945;box-shadow:0 24px 80px #29575133;overflow:auto}
- #emCandidateProfile::backdrop{background:#29575166}
+ #emCandidateProfile::backdrop{background:#15576a66}
  #emCandidateProfile *{box-sizing:border-box;font-family:Inter,Arial,sans-serif!important}
  #emCandidateProfile .ep-head{display:flex;justify-content:space-between;gap:16px;padding:24px 28px;border-bottom:1px solid #eee9f8}
  #emCandidateProfile h2{font-size:23px!important;margin:0 0 6px;font-weight:700!important}#emCandidateProfile h3{font-size:16px!important;margin:0 0 12px;font-weight:650!important}
- #emCandidateProfile p{font-size:12px!important;line-height:1.7;color:#66948f!important;margin:0 0 14px}
+ #emCandidateProfile p{font-size:12px!important;line-height:1.7;color:#64748b!important;margin:0 0 14px}
  #emCandidateProfile button{cursor:pointer;border-radius:9px;border:1px solid #ddd3f3;background:#fff;color:#6946bd;padding:11px 15px;font-size:12px!important;font-weight:600!important}
  #emCandidateProfile button:disabled{opacity:.6;cursor:wait}#emCandidateProfile .ep-primary{background:linear-gradient(135deg,#805bdd,#6946bd);color:white;border-color:transparent}
  #emCandidateProfile section{padding:24px 28px;border-bottom:1px solid #eee9f8}#emCandidateProfile .ep-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
- #emCandidateProfile label{display:grid;gap:8px;font-size:12px!important;color:#356862!important;font-weight:500!important}
- #emCandidateProfile input,#emCandidateProfile select{width:100%;min-height:43px;padding:10px 12px;border:1px solid #ddd3f3;border-radius:8px;background:#fff;font-size:13px!important;color:#356862!important}
+ #emCandidateProfile label{display:grid;gap:8px;font-size:12px!important;color:#374151!important;font-weight:500!important}
+ #emCandidateProfile input,#emCandidateProfile select{width:100%;min-height:43px;padding:10px 12px;border:1px solid #ddd3f3;border-radius:8px;background:#fff;font-size:13px!important;color:#374151!important}
  #emCandidateProfile input:disabled{background:#f5f6fb}#emCandidateProfile .ep-consent{display:flex;align-items:flex-start;gap:10px;margin:18px 0;line-height:1.6}
  #emCandidateProfile .ep-consent input{width:18px;min-height:18px;height:18px;flex:0 0 18px;accent-color:#7453c8}
  #emCandidateProfile .ep-footer{padding:20px 28px;display:flex;justify-content:flex-end;gap:10px;flex-wrap:wrap}#emCandidateProfile [role=status]{padding:0 28px;font-size:12px;line-height:1.6}
@@ -526,43 +526,43 @@
 
  /* Approved petroleum profile layout. */
  html body #pagina-perfil.ep-inline-profile-page #emCandidateProfile#emCandidateProfile{width:calc(100% - 48px)!important;max-width:1220px!important;background:transparent!important;border:0!important;box-shadow:none!important}
- #emCandidateProfile#emCandidateProfile .ep-head{display:grid;grid-template-columns:minmax(0,1fr) 240px auto;align-items:center;gap:24px;padding:20px 28px;min-height:145px;background:linear-gradient(110deg,#eff8f7,#e2f2f0);border:1px solid #bee1dd;border-radius:12px;margin-bottom:20px}
- #emCandidateProfile#emCandidateProfile .ep-eyebrow{font-size:10px;color:#3d837a;letter-spacing:2px;font-weight:650;display:block;margin-bottom:10px}
- #emCandidateProfile#emCandidateProfile h2{font-size:30px!important;color:#295751!important;line-height:1.2;margin:0 0 8px}
- #emCandidateProfile#emCandidateProfile .ep-head p{margin:0!important;color:#40706a!important;font-size:13px!important}
+ #emCandidateProfile#emCandidateProfile .ep-head{display:grid;grid-template-columns:minmax(0,1fr) 240px auto;align-items:center;gap:24px;padding:20px 28px;min-height:145px;background:linear-gradient(110deg,#f4f7fa,#edf3f7);border:1px solid #dce5ea;border-radius:12px;margin-bottom:20px}
+ #emCandidateProfile#emCandidateProfile .ep-eyebrow{font-size:10px;color:#15576a;letter-spacing:2px;font-weight:650;display:block;margin-bottom:10px}
+ #emCandidateProfile#emCandidateProfile h2{font-size:30px!important;color:#15576a!important;line-height:1.2;margin:0 0 8px}
+ #emCandidateProfile#emCandidateProfile .ep-head p{margin:0!important;color:#64748b!important;font-size:13px!important}
  #emCandidateProfile#emCandidateProfile .ep-hero-art svg{width:100%;height:120px;display:block}
  #emCandidateProfile#emCandidateProfile form{display:grid;grid-template-columns:minmax(0,1.08fr) minmax(0,1fr);gap:18px}
- #emCandidateProfile#emCandidateProfile form>section,#emCandidateProfile#emCandidateProfile .ep-photo-card{background:#fff;border:1px solid #d9edeb;border-radius:12px;padding:22px 24px;box-shadow:0 3px 10px #29575104;margin:0;min-width:0}
+ #emCandidateProfile#emCandidateProfile form>section,#emCandidateProfile#emCandidateProfile .ep-photo-card{background:#fff;border:1px solid #e2e8f0;border-radius:12px;padding:22px 24px;box-shadow:0 3px 10px #15576a04;margin:0;min-width:0}
  #emCandidateProfile#emCandidateProfile .ep-photo-card{grid-column:1/-1;display:flex;align-items:center;gap:20px;min-height:112px}
- #emCandidateProfile#emCandidateProfile .ep-avatar-placeholder{display:grid;place-items:center;width:76px;height:76px;flex:0 0 76px;background:#ddefed;color:#306760;font-size:24px;font-weight:700;border-radius:50%}
+ #emCandidateProfile#emCandidateProfile .ep-avatar-placeholder{display:grid;place-items:center;width:76px;height:76px;flex:0 0 76px;background:#edf3f7;color:#15576a;font-size:24px;font-weight:700;border-radius:50%}
  #emCandidateProfile#emCandidateProfile .ep-photo img{width:76px;height:76px;object-fit:cover;flex:0 0 76px;border-radius:50%}
  #emCandidateProfile#emCandidateProfile .ep-photo-copy{flex:1;min-width:0}
- #emCandidateProfile#emCandidateProfile .ep-photo-copy strong{font-size:18px;font-weight:700;color:#295751}
- #emCandidateProfile#emCandidateProfile .ep-photo-copy p{margin:5px 0 0!important;font-size:13px!important;color:#40706a!important}
+ #emCandidateProfile#emCandidateProfile .ep-photo-copy strong{font-size:18px;font-weight:700;color:#15576a}
+ #emCandidateProfile#emCandidateProfile .ep-photo-copy p{margin:5px 0 0!important;font-size:13px!important;color:#64748b!important}
  #emCandidateProfile#emCandidateProfile [hidden]{display:none!important}
- #emCandidateProfile#emCandidateProfile h3{display:flex;gap:12px;align-items:center;margin:0 0 18px;font-size:17px!important;color:#295751!important;font-weight:700!important}
- #emCandidateProfile#emCandidateProfile h3>span{font-size:15px;font-weight:500;color:#35716a}
- #emCandidateProfile#emCandidateProfile h3 svg{width:24px;height:24px;flex:0 0 24px;color:#26524d}
- #emCandidateProfile#emCandidateProfile label{font-size:12px!important;color:#30635d!important;gap:8px!important}
+ #emCandidateProfile#emCandidateProfile h3{display:flex;gap:12px;align-items:center;margin:0 0 18px;font-size:17px!important;color:#15576a!important;font-weight:700!important}
+ #emCandidateProfile#emCandidateProfile h3>span{font-size:15px;font-weight:500;color:#64748b}
+ #emCandidateProfile#emCandidateProfile h3 svg{width:24px;height:24px;flex:0 0 24px;color:#15576a}
+ #emCandidateProfile#emCandidateProfile label{font-size:12px!important;color:#374151!important;gap:8px!important}
  #emCandidateProfile#emCandidateProfile .ep-grid{gap:20px 18px}
- #emCandidateProfile#emCandidateProfile input,#emCandidateProfile#emCandidateProfile select{font-size:13px!important;color:#27534e!important;border:1px solid #cbe6e3!important;border-radius:8px;min-height:44px;padding:11px 12px;background:#fff}
+ #emCandidateProfile#emCandidateProfile input,#emCandidateProfile#emCandidateProfile select{font-size:13px!important;color:#374151!important;border:1px solid #d1d5db!important;border-radius:8px;min-height:44px;padding:11px 12px;background:#fff}
  #emCandidateProfile#emCandidateProfile input:disabled{background:#f1f8f7;color:#699993!important}
  #emCandidateProfile#emCandidateProfile .ep-contact-card .ep-grid{grid-template-columns:repeat(6,minmax(0,1fr));gap:20px 14px}
  #emCandidateProfile#emCandidateProfile .ep-contact-card label{grid-column:span 2}
  #emCandidateProfile#emCandidateProfile .ep-contact-card label[data-field=email],#emCandidateProfile#emCandidateProfile .ep-contact-card label[data-field=telefone]{grid-column:span 3}
  #emCandidateProfile#emCandidateProfile .ep-diversity-card{grid-column:1/-1}
  #emCandidateProfile#emCandidateProfile .ep-diversity-card>.ep-grid{grid-template-columns:repeat(3,minmax(0,1fr));margin-top:16px}
- #emCandidateProfile#emCandidateProfile .ep-diversity-card p,#emCandidateProfile#emCandidateProfile .ep-consent{color:#40706a!important;font-size:12px!important}
- #emCandidateProfile#emCandidateProfile details{font-size:12px;color:#306760;margin:10px 0}
+ #emCandidateProfile#emCandidateProfile .ep-diversity-card p,#emCandidateProfile#emCandidateProfile .ep-consent{color:#64748b!important;font-size:12px!important}
+ #emCandidateProfile#emCandidateProfile details{font-size:12px;color:#15576a;margin:10px 0}
  #emCandidateProfile#emCandidateProfile summary{cursor:pointer}
  #emCandidateProfile#emCandidateProfile .ep-consent{display:flex;gap:10px;margin:20px 0 12px;align-items:flex-start}
- #emCandidateProfile#emCandidateProfile .ep-consent input{width:18px;min-height:18px;flex:0 0 18px;padding:0;accent-color:#306760}
- #emCandidateProfile#emCandidateProfile button{display:inline-flex;justify-content:center;align-items:center;gap:9px;padding:11px 16px;min-height:40px;border:1px solid #86bfb8;background:#fff;color:#306760!important;border-radius:8px;font-size:12px!important;font-weight:600!important;white-space:nowrap}
+ #emCandidateProfile#emCandidateProfile .ep-consent input{width:18px;min-height:18px;flex:0 0 18px;padding:0;accent-color:#15576a}
+ #emCandidateProfile#emCandidateProfile button{display:inline-flex;justify-content:center;align-items:center;gap:9px;padding:11px 16px;min-height:40px;border:1px solid #86bfb8;background:#fff;color:#15576a!important;border-radius:8px;font-size:12px!important;font-weight:600!important;white-space:nowrap}
  #emCandidateProfile#emCandidateProfile button svg{width:19px;height:19px;flex:0 0 19px}
- #emCandidateProfile#emCandidateProfile .ep-primary{background:linear-gradient(110deg,#306760,#26524d)!important;border-color:#306760!important;color:#fff!important;box-shadow:0 2px 7px #30676010}
+ #emCandidateProfile#emCandidateProfile .ep-primary{background:linear-gradient(110deg,#15576a,#15576a)!important;border-color:#15576a!important;color:#fff!important;box-shadow:0 2px 7px #15576a10}
  #emCandidateProfile#emCandidateProfile .ep-footer{grid-column:1/-1;padding:0;display:flex;gap:12px;margin:0}
  #emCandidateProfile#emCandidateProfile [data-resume]{margin-right:auto}
- #emCandidateProfile#emCandidateProfile [role=status]{grid-column:1/-1;padding:0;color:#306760}
+ #emCandidateProfile#emCandidateProfile [role=status]{grid-column:1/-1;padding:0;color:#15576a}
  #emCandidateProfile#emCandidateProfile [role=status]:empty{display:none}
  #emCandidateProfile#emCandidateProfile :focus-visible{outline:3px solid #90cac3;outline-offset:2px}
  html body.cp-shell-active{--candidate-primary:#306760;--candidate-accent:#306760;--candidate-soft:#e8f4f3}
@@ -570,7 +570,7 @@
  html body.cp-shell-active #cpCandidateHeader#cpCandidateHeader .cp-navigation button[aria-current=page]:hover{background:#26524d!important}
  html body.cp-shell-active #cpCandidateHeader#cpCandidateHeader .cp-notification-dot{background:#306760}
  @layer site-typography{
- #emCandidateProfile#emCandidateProfile label,#emCandidateProfile#emCandidateProfile p,#emCandidateProfile#emCandidateProfile small{color:#40706a!important}
+ #emCandidateProfile#emCandidateProfile label{color:#374151!important} #emCandidateProfile#emCandidateProfile p,#emCandidateProfile#emCandidateProfile small{color:#64748b!important}
  #emCandidateProfile#emCandidateProfile .ep-primary,#emCandidateProfile#emCandidateProfile .ep-primary span{color:#fff!important}
  }
  @media(max-width:1100px){
@@ -606,12 +606,13 @@
   
   /* Build real independent cards while preserving named form fields and handlers. */
   var head=dialog.querySelector('.ep-head');head.querySelector('h2').insertAdjacentHTML('beforebegin','<span class="ep-eyebrow">PERFIL DO CANDIDATO</span>');
-  var heroArt=document.createElement('div');heroArt.className='ep-hero-art';heroArt.setAttribute('aria-hidden','true');heroArt.innerHTML="<svg viewBox=\"0 0 280 150\" aria-hidden=\"true\"><rect x=\"12\" y=\"40\" width=\"245\" height=\"95\" rx=\"36\" fill=\"#cfe9e6\" opacity=\".55\"/><rect x=\"52\" y=\"18\" width=\"174\" height=\"114\" rx=\"9\" fill=\"#fff\" stroke=\"#306760\"/><circle cx=\"90\" cy=\"61\" r=\"24\" fill=\"#dcefed\"/><circle cx=\"90\" cy=\"54\" r=\"9\" fill=\"#306760\"/><path d=\"M72 78c2-20 34-20 36 0\" fill=\"#306760\"/><g stroke=\"#9ccec8\" stroke-width=\"5\" stroke-linecap=\"round\"><path d=\"M126 44h68M126 60h57M126 76h53M72 111h98\"/></g><circle cx=\"225\" cy=\"27\" r=\"20\" fill=\"#306760\"/><path d=\"m225 15 3 5 6-1 1 6 4 3-4 4-1 6-6-1-3 4-3-4-6 1-1-6-4-4 4-3 1-6 6 1Z\" fill=\"#fff\"/><circle cx=\"225\" cy=\"28\" r=\"4\" fill=\"#306760\"/></svg>";head.insertBefore(heroArt,head.querySelector('[data-close]'));head.querySelector('[data-close]').textContent='← Voltar ao painel';
+  var heroArt=document.createElement('div');heroArt.className='ep-hero-art';heroArt.setAttribute('aria-hidden','true');heroArt.innerHTML="<svg viewBox=\"0 0 280 150\" aria-hidden=\"true\"><rect x=\"12\" y=\"40\" width=\"245\" height=\"95\" rx=\"36\" fill=\"#e2ebf2\" opacity=\".55\"/><rect x=\"52\" y=\"18\" width=\"174\" height=\"114\" rx=\"9\" fill=\"#fff\" stroke=\"#15576a\"/><circle cx=\"90\" cy=\"61\" r=\"24\" fill=\"#edf3f7\"/><circle cx=\"90\" cy=\"54\" r=\"9\" fill=\"#15576a\"/><path d=\"M72 78c2-20 34-20 36 0\" fill=\"#15576a\"/><g stroke=\"#b6cbd8\" stroke-width=\"5\" stroke-linecap=\"round\"><path d=\"M126 44h68M126 60h57M126 76h53M72 111h98\"/></g><circle cx=\"225\" cy=\"27\" r=\"20\" fill=\"#15576a\"/><path d=\"m225 15 3 5 6-1 1 6 4 3-4 4-1 6-6-1-3 4-3-4-6 1-1-6-4-4 4-3 1-6 6 1Z\" fill=\"#fff\"/><circle cx=\"225\" cy=\"28\" r=\"4\" fill=\"#15576a\"/></svg>";head.insertBefore(heroArt,head.querySelector('[data-close]'));head.querySelector('[data-close]').textContent='← Voltar ao painel';
   var profileForm=dialog.querySelector('form'),personal=profileForm.querySelector('section'),photoRow=personal.querySelector('.ep-photo'),grid=personal.querySelector('.ep-grid'),diversity=profileForm.querySelectorAll('section')[1];
   personal.classList.add('ep-personal-card');personal.querySelector('h3').innerHTML=profileIcon('user')+'Dados pessoais';
   var contact=document.createElement('section');contact.className='ep-contact-card';contact.innerHTML='<h3>'+profileIcon('pin')+'Contato e localização</h3><div class="ep-grid"></div>';personal.after(contact);
   ['email','telefone','cep','cidade','uf'].forEach(function(name){var input=grid.querySelector('[name="'+name+'"]');if(input){input.closest('label').dataset.field=name;contact.querySelector('.ep-grid').appendChild(input.closest('label'));}});
   var personalNote=personal.querySelector('p');if(personalNote)personalNote.remove();
+  personal.querySelector('h3').insertAdjacentHTML('afterend','<p class="ep-privacy-note">'+profileIcon('lock')+'<span><strong>Fique tranquilo!</strong> Seu nome social e sua data de nascimento ficam privados nesta seção. O e-mail identifica sua conta e pode ser usado na recuperação de acesso. Nome e contato podem ser exibidos às empresas nas suas candidaturas.</span></p>');
   profileForm.prepend(photoRow);photoRow.classList.add('ep-photo-card');photoRow.querySelector('label').hidden=true;
   photoRow.insertAdjacentHTML('afterbegin','<span class="ep-avatar-placeholder">'+esc(String(p.nome||'').split(/\\s+/).filter(Boolean).slice(0,2).map(function(x){return x[0];}).join('').toUpperCase())+'</span>');
   var photoCopy=document.createElement('div');photoCopy.className='ep-photo-copy';photoCopy.innerHTML='<strong class="ep-photo-name">'+esc(p.nome||'Seu perfil')+'</strong><p>Foto de perfil opcional</p>';photoRow.insertBefore(photoCopy,photoRow.querySelector('[data-remove-photo]'));

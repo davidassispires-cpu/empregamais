@@ -516,3 +516,25 @@ html body .em-field-message{display:block!important;grid-column:1/-1!important;m
 }
 
 @layer field-feedback{html body label:has(>input.em-field-valid),html body label:has(>input.em-field-invalid),html body label:has(>select.em-field-valid),html body label:has(>select.em-field-invalid),html body label:has(>textarea.em-field-valid),html body label:has(>textarea.em-field-invalid){align-content:start!important;align-self:start!important}html body form label:has(>input){align-content:start!important}}
+
+/* Approved profile model 2: petroleum headings, neutral fields, burnt orange actions. */
+@layer site-typography {
+ html body.cp-shell-active #emCandidateProfile#emCandidateProfile :is(h2,h3,.ep-photo-copy strong){color:#15576a!important}
+ html body.cp-shell-active #emCandidateProfile#emCandidateProfile .ep-head{background:#f1f5f9!important;border-color:#dce5ea!important}
+ html body.cp-shell-active #emCandidateProfile#emCandidateProfile :is(h3 svg,.ep-eyebrow){color:#15576a!important}
+ html body.cp-shell-active #emCandidateProfile#emCandidateProfile label{color:#374151!important}
+ html body.cp-shell-active #emCandidateProfile#emCandidateProfile :is(p,small){color:#64748b!important}
+ html body.cp-shell-active #emCandidateProfile#emCandidateProfile .ep-primary{background:#b84c1b!important;border-color:#b84c1b!important;color:#fff!important;box-shadow:none!important}
+ html body.cp-shell-active #emCandidateProfile#emCandidateProfile .ep-primary:hover{background:#9d3d13!important;border-color:#9d3d13!important}
+ html body.cp-shell-active #emCandidateProfile#emCandidateProfile button:not(.ep-primary){background:#fff!important;color:#15576a!important;border-color:#d1d5db!important}
+ html body.cp-shell-active #emCandidateProfile#emCandidateProfile :is(input,select){accent-color:#b84c1b}
+ html body.cp-shell-active #emCandidateProfile#emCandidateProfile :is(input,select):not(.em-field-invalid){border-color:#d1d5db!important;color:#374151!important;background-color:#fff!important}
+ html body.cp-shell-active #emCandidateProfile#emCandidateProfile input:disabled{background-color:#f1f5f9!important;color:#64748b!important}
+ html body.cp-shell-active #emCandidateProfile#emCandidateProfile :focus-visible{outline:2px solid #15576a!important;outline-offset:2px!important}
+ html body.cp-shell-active #emCandidateProfile#emCandidateProfile .ep-privacy-note{display:flex;align-items:flex-start;gap:10px;padding:12px;margin:0 0 18px;background:#f1f5f9;border-radius:8px;font-size:12px!important;line-height:1.6}
+ #emCandidateProfile .ep-privacy-note>svg{width:18px;height:18px;flex:0 0 18px;color:#64748b}
+}
+@layer field-feedback {
+ html body #emCandidateProfile :is(input,select,textarea).em-field-valid{border-color:#d1d5db!important;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none'%3E%3Ccircle cx='12' cy='12' r='9' fill='%23fff0e5'/%3E%3Cpath d='m7 12 3 3 7-7' stroke='%23b84c1b' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E")!important}
+ html body #emCandidateProfile :is(input,select,textarea).em-field-valid:focus{outline-color:#15576a!important}
+}
