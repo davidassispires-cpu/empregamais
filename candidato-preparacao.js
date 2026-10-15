@@ -518,6 +518,7 @@
   diversity.querySelector('[data-clear]').innerHTML=profileIcon('trash')+'Excluir respostas';
   dialog.querySelector('[data-resume]').innerHTML=profileIcon('document')+'Editar currículo';
   dialog.querySelector('[type=submit]').innerHTML=profileIcon('check')+'Salvar alterações';
+  dialog.querySelectorAll('.ep-primary').forEach(function(button){button.style.setProperty('color','#fff','important');});
 
   var profilePage=document.getElementById('pagina-perfil');if(!profilePage){status('Não foi possível abrir a aba Perfil.');return;}profilePage.classList.add('ep-inline-profile-page');profilePage.appendChild(dialog);var form=dialog.querySelector('form'),ready=false;
   function close(){if(busy)return;dialog.remove();dialog=null;if(window.irPara)window.irPara('painel-candidato');}
@@ -574,7 +575,7 @@
   if(!text&&!el.matches('input:not([type=checkbox]):not([type=radio]),textarea,select'))return;
   var style=getComputedStyle(el),size=parseFloat(style.fontSize);
   if(!sizes.has(el)&&size>=8&&size<=14){sizes.set(el,size);updates.push(function(){el.style.setProperty('font-size',(size+1)+'px','important');});}
-  if(colors.has(el)||!style.color)return;var c=rgb(style.color);if(!c)return;
+  if(colors.has(el)||!style.color)return;var action=el.closest('button,a,[role="button"]');if(action&&(action.classList.contains('ep-primary')||action.getAttribute('aria-pressed')==='true'||action.getAttribute('aria-current')==='page'||getComputedStyle(action).backgroundImage!=='none'))return;var c=rgb(style.color);if(!c)return;
   var l=luminance(c),bg=luminance(background(el)),contrast=(Math.max(l,bg)+.05)/(Math.min(l,bg)+.05);
   if(bg>.65&&l>.105&&contrast<5&&Math.max.apply(null,c)-Math.min.apply(null,c)<100){updates.push(function(){el.style.setProperty('color','#405570','important');});colors.add(el);}
  });updates.forEach(function(update){update();});}
