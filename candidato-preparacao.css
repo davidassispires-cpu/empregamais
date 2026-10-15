@@ -931,9 +931,58 @@ html body.cp-shell-active #cpCandidateHeader#cpCandidateHeader .cp-navigation bu
 html body #pagina-painel-candidato#pagina-painel-candidato.cp-enhanced :is(.cp-workspace,.cp-demo-plans){scroll-margin-top:calc(var(--cp-header-height,64px) + 16px)}
 html body #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato.cp-recommendations-active .container-dashboard> :not(.cp-demo-plans,.cp-workspace){display:none!important}
 html body #pagina-painel-candidato#pagina-painel-candidato.cp-enhanced .cp-recommendations-link{border:0!important;background:transparent!important;padding:4px 0!important;color:var(--cp-lilac)!important;font-size:12px!important;font-weight:600!important;cursor:pointer;text-align:right}
-html body #pagina-painel-candidato#pagina-painel-candidato.cp-enhanced .cp-recommendations-intro{display:flex;gap:18px;align-items:center;margin:4px 0 24px;padding-bottom:22px;border-bottom:1px solid var(--cp-border)}
-html body #pagina-painel-candidato#pagina-painel-candidato.cp-enhanced .cp-recommendations-intro h2{margin:8px 0 6px!important}
-html body #pagina-painel-candidato#pagina-painel-candidato.cp-enhanced .cp-recommendations-intro p{margin:0!important}
+/* Approved recommendations banner; the other candidate banners also use 240px. */
+@layer site-typography {
+ html body #pagina-painel-candidato.cp-enhanced #cpPreparationWorkspace[data-cp-view=recommendations]{width:100%!important;max-width:none!important;padding:0!important;border:0!important;background:transparent!important;box-shadow:none!important}
+ html body #pagina-painel-candidato.cp-enhanced #cpPreparationWorkspace .cp-recommendations-hero,
+ html body #pagina-painel-candidato.cp-enhanced #cpPreparationWorkspace .cp-recommendations-hero *{box-sizing:border-box!important}
+ html body #pagina-painel-candidato.cp-enhanced #cpPreparationWorkspace .cp-recommendations-hero{position:relative;isolation:isolate;display:grid!important;grid-template-columns:minmax(0,1fr) 28%;grid-template-rows:minmax(0,1fr) 36px;gap:14px 20px;height:240px;min-width:0;padding:18px 24px 14px;border:0;border-radius:18px;background:linear-gradient(110deg,#397d78,#438c87)!important;color:#fff!important;overflow:hidden}
+ html body #pagina-painel-candidato.cp-enhanced #cpPreparationWorkspace .cp-recommendations-hero:before,
+ html body #pagina-painel-candidato.cp-enhanced #cpPreparationWorkspace .cp-recommendations-hero:after{content:"";position:absolute;z-index:-1;pointer-events:none;border-radius:50%}
+ html body #pagina-painel-candidato.cp-enhanced #cpPreparationWorkspace .cp-recommendations-hero:before{width:480px;height:480px;right:-90px;top:-250px;background:#ffffff04;border:1px solid #ffffff05;box-shadow:0 0 0 65px #ffffff03}
+ html body #pagina-painel-candidato.cp-enhanced #cpPreparationWorkspace .cp-recommendations-hero:after{width:310px;height:240px;right:8px;top:10px;border:1px solid #c2e3df66;transform:rotate(-18deg)}
+ html body #pagina-painel-candidato.cp-enhanced #cpPreparationWorkspace .cp-recommendations-hero-copy{position:relative;z-index:1;grid-column:1;grid-row:1;display:flex;flex-direction:column;justify-content:center;min-width:0;min-height:0}
+ html body #pagina-painel-candidato.cp-enhanced #cpPreparationWorkspace .cp-recommendations-back{display:inline-flex;align-items:center;align-self:flex-start;gap:7px;min-height:18px;padding:0!important;margin:0!important;border:0!important;border-radius:3px;background:transparent!important;box-shadow:none!important;color:#d8ecea!important;font-size:11px!important;font-weight:600!important;line-height:18px!important;cursor:pointer}
+ html body #pagina-painel-candidato.cp-enhanced #cpPreparationWorkspace .cp-recommendations-back svg{width:15px;height:15px;flex:none}
+ html body #pagina-painel-candidato.cp-enhanced #cpPreparationWorkspace .cp-recommendations-kicker{display:flex;align-items:center;gap:12px;margin:3px 0 6px;color:#c0e2de!important;font-size:9px!important;font-weight:700!important;line-height:12px!important;letter-spacing:1px!important}
+ html body #pagina-painel-candidato.cp-enhanced #cpPreparationWorkspace .cp-recommendations-kicker span{display:inline-flex;align-items:center;padding:3px 7px;border:1px solid #ffffff45;border-radius:6px;background:#ffffff12;color:#ffe1c7!important;font-size:9px!important;font-weight:700!important;line-height:11px!important;letter-spacing:.3px!important}
+ html body #pagina-painel-candidato.cp-enhanced #cpPreparationWorkspace .cp-recommendations-hero h1{margin:0 0 6px!important;color:#fff!important;font-size:26px!important;font-weight:750!important;line-height:1.1!important;letter-spacing:-.6px!important;overflow-wrap:break-word}
+ html body #pagina-painel-candidato.cp-enhanced #cpPreparationWorkspace .cp-recommendations-hero h1:focus{outline:none!important}
+ html body #pagina-painel-candidato.cp-enhanced #cpPreparationWorkspace .cp-recommendations-hero h1 span{color:#ffab68!important;letter-spacing:inherit!important}
+ html body #pagina-painel-candidato.cp-enhanced #cpPreparationWorkspace .cp-recommendations-hero-copy>p{margin:0!important;color:#dff0ee!important;font-size:12px!important;font-weight:400!important;line-height:1.5!important}
+ html body #pagina-painel-candidato.cp-enhanced #cpPreparationWorkspace .cp-recommendations-features{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}
+ html body #pagina-painel-candidato.cp-enhanced #cpPreparationWorkspace .cp-recommendations-features>span{display:inline-flex;align-items:center;gap:6px;min-height:24px;padding:4px 9px;border:1px solid #ffffff33;border-radius:999px;background:#ffffff10;color:#e7f4f2!important;font-size:10px!important;font-weight:500!important;line-height:14px!important;white-space:nowrap}
+ html body #pagina-painel-candidato.cp-enhanced #cpPreparationWorkspace .cp-recommendations-features svg{width:14px;height:14px;flex:none;color:#ffbd86!important}
+ html body #pagina-painel-candidato.cp-enhanced #cpPreparationWorkspace .cp-recommendations-art{position:relative;z-index:1;grid-column:2;grid-row:1;display:flex;align-items:center;justify-content:center;min-width:0;min-height:0;height:100%;max-height:158px;align-self:center}
+ html body #pagina-painel-candidato.cp-enhanced #cpPreparationWorkspace .cp-recommendations-art img{display:block;width:100%;height:100%;max-height:158px;object-fit:contain}
+ html body #pagina-painel-candidato.cp-enhanced #cpPreparationWorkspace .cp-recommendations-rail{position:relative;z-index:1;grid-column:1/-1;grid-row:2;display:flex;align-items:center;justify-content:space-between;gap:14px;height:36px;min-width:0;padding:0 14px;border:0;border-radius:10px;background:#fffffff0!important}
+ html body #pagina-painel-candidato.cp-enhanced #cpPreparationWorkspace .cp-recommendations-rail strong{color:#244e49!important;font-size:12px!important;font-weight:700!important;line-height:16px!important}
+ html body #pagina-painel-candidato.cp-enhanced #cpPreparationWorkspace .cp-recommendations-rail button{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:28px;margin:0!important;padding:2px 0 2px 18px!important;border:0!important;border-left:1px solid #d7ecea!important;border-radius:0!important;background:transparent!important;box-shadow:none!important;color:#4f7282!important;font-size:11px!important;font-weight:500!important;line-height:16px!important;cursor:pointer}
+ html body #pagina-painel-candidato.cp-enhanced #cpPreparationWorkspace .cp-recommendations-rail button span{color:inherit!important;font-size:18px!important}
+ html body #pagina-painel-candidato.cp-enhanced #cpPreparationWorkspace .cp-recommendations-hero button:hover{text-decoration:underline}
+ html body #pagina-painel-candidato.cp-enhanced #cpPreparationWorkspace .cp-recommendations-hero button:focus-visible{outline:2px solid #ffbd86!important;outline-offset:3px}
+ html body #pagina-painel-candidato.cp-enhanced #cpPreparationWorkspace[data-cp-view=recommendations]>.cp-workspace-content{margin-top:20px}
+ html body #pagina-painel-candidato.cp-enhanced #cpPreparationWorkspace[data-cp-view=recommendations]>.cp-feedback:empty{display:none}
+ html body #pagina-painel-candidato.cp-enhanced #cpPreparationWorkspace :is(.cp-recommendations-grid,.cp-recommendations-empty){scroll-margin-top:calc(var(--cp-header-height,64px) + 20px)}
+ @media(min-width:761px) and (max-width:980px){
+  html body #pagina-painel-candidato.cp-enhanced #cpPreparationWorkspace .cp-recommendations-hero{grid-template-columns:minmax(0,1fr) 24%;column-gap:12px}
+  html body #pagina-painel-candidato.cp-enhanced #cpPreparationWorkspace .cp-recommendations-hero h1{font-size:24px!important}
+  html body #pagina-painel-candidato.cp-enhanced #cpPreparationWorkspace .cp-recommendations-hero-copy>p{font-size:11px!important}
+ }
+ @media(max-width:760px){
+  html body #pagina-painel-candidato.cp-enhanced #cpPreparationWorkspace .cp-recommendations-hero{height:auto;grid-template-rows:auto auto;padding:18px 18px 14px;gap:14px 12px}
+  html body #pagina-painel-candidato.cp-enhanced #cpPreparationWorkspace .cp-recommendations-rail{height:auto;min-height:36px;flex-wrap:wrap;gap:4px 10px;padding:8px 12px}
+  html body #pagina-painel-candidato.cp-enhanced #cpPreparationWorkspace .cp-recommendations-rail button{padding-left:0!important;border-left:0!important}
+ }
+ @media(max-width:540px){
+  html body #pagina-painel-candidato.cp-enhanced #cpPreparationWorkspace .cp-recommendations-hero{grid-template-columns:minmax(0,1fr);padding:18px 16px 12px}
+  html body #pagina-painel-candidato.cp-enhanced #cpPreparationWorkspace .cp-recommendations-art{display:none}
+  html body #pagina-painel-candidato.cp-enhanced #cpPreparationWorkspace .cp-recommendations-hero h1{font-size:25px!important}
+  html body #pagina-painel-candidato.cp-enhanced #cpPreparationWorkspace .cp-recommendations-kicker{margin:6px 0 8px}
+  html body #pagina-painel-candidato.cp-enhanced #cpPreparationWorkspace .cp-recommendations-features{gap:6px;margin-top:12px}
+  html body #pagina-painel-candidato.cp-enhanced #cpPreparationWorkspace .cp-recommendations-features>span{white-space:normal}
+ }
+}
 html body #pagina-painel-candidato#pagina-painel-candidato.cp-enhanced .cp-recommendations-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
 html body #pagina-painel-candidato#pagina-painel-candidato.cp-enhanced .cp-recommendations-grid:has(>.cp-recommendation-card:only-child){grid-template-columns:minmax(0,1fr)}
 html body #pagina-painel-candidato#pagina-painel-candidato.cp-enhanced .cp-recommendation-card{display:flex;flex-direction:column;gap:16px;min-width:0;padding:22px;border:1px solid var(--cp-border);border-radius:12px;background:#fff}

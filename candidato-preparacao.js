@@ -238,21 +238,31 @@
   if(!workspace)return;clearTimeout(draftTimer);saveCurrentAnswer();workspace.hidden=true;workspace.dataset.cpView='';page.classList.remove('cp-tool-active','cp-recommendations-active');
   if(focus!==false){var button=container.querySelector('.cp-preparation [data-cp-action="interview"]');if(button)button.focus();}
  }
- function openWorkspace(title,body){
+ function openWorkspace(title,body,header){
   if(global.irPara&&!page.classList.contains('ativa'))global.irPara('painel-candidato');
   if(identity()!==owner)return;
   workspace.hidden=false;workspace.dataset.cpView='';page.classList.add('cp-tool-active');
   var backToRecommendations=page.classList.contains('cp-recommendations-active')&&title!=='Recomendações';
-  workspace.innerHTML='<header class="cp-workspace-head"><button type="button" data-cp-action="'+(backToRecommendations?'recommendations':'close')+'" class="cp-text-button">'+icon('back')+(backToRecommendations?' Voltar às recomendações':' Voltar à minha área')+'</button><h1 tabindex="-1">'+escape(title)+'</h1></header><div class="cp-workspace-content">'+body+'</div><p class="cp-feedback" role="status" aria-live="polite"></p>';
+  workspace.innerHTML=(header||'<header class="cp-workspace-head"><button type="button" data-cp-action="'+(backToRecommendations?'recommendations':'close')+'" class="cp-text-button">'+icon('back')+(backToRecommendations?' Voltar às recomendações':' Voltar à minha área')+'</button><h1 tabindex="-1">'+escape(title)+'</h1></header>')+'<div class="cp-workspace-content">'+body+'</div><p class="cp-feedback" role="status" aria-live="polite"></p>';
   workspace.querySelector('h1').focus({preventScroll:true});
   (container.querySelector('.cp-demo-plans')||workspace).scrollIntoView({block:'start',behavior:'auto'});
  }
  function toolStatus(text){var el=workspace.querySelector('.cp-feedback');if(el)el.textContent=text;}
+ function recommendationsHeader(){
+  return '<header class="cp-recommendations-hero" aria-labelledby="cpRecommendationsTitle">'+
+   '<div class="cp-recommendations-hero-copy"><button type="button" class="cp-recommendations-back" data-cp-action="close">'+icon('back')+' Voltar à minha área</button>'+
+   '<div class="cp-recommendations-kicker">RECOMENDAÇÕES <span>PREMIUM</span></div>'+
+   '<h1 id="cpRecommendationsTitle" tabindex="-1">Vagas que combinam<br>com o <span>seu perfil.</span></h1>'+
+   '<p>Vagas selecionadas para o seu perfil. Confira sua compatibilidade.</p>'+
+   '<div class="cp-recommendations-features"><span>'+icon('target')+'Aderência ao perfil</span><span>'+icon('briefcase')+'Vagas recomendadas</span><span>'+icon('analysis')+'Ver análise</span></div></div>'+
+   '<div class="cp-recommendations-art" aria-hidden="true"><img src="assets/candidate-navigation/recommendations-job-match.png" width="1536" height="1024" alt="" decoding="async"></div>'+
+   '<div class="cp-recommendations-rail"><strong>Sua próxima oportunidade</strong><button type="button" data-cp-action="recommendations-list">Explore suas recomendações <span aria-hidden="true">→</span></button></div></header>';
+ }
  function openRecommendations(refresh){
   if(refresh!==true){if(global.irPara&&(!page||!page.classList.contains('ativa')))global.irPara('painel-candidato');mount();}
   if(!workspace||!identity())return;
   var candidate=profile(),allowed=premiumAccess(candidate),rows=allowed?recommendedJobs(jobs(),candidate):[];
-  var html='<div class="cp-recommendations-intro"><span class="cp-feature-icon">'+icon('target')+'</span><div><span class="cp-status-chip">Recurso Premium</span><h2>Oportunidades que combinam com você</h2><p>Recomendações com base no cargo, na área e nas habilidades do seu perfil.</p></div></div>';
+  var html='';
   if(!allowed){
    html+='<section class="cp-recommendations-empty"><h2>Suas recomendações estão no Premium</h2><p>Receba uma seleção de vagas para o seu perfil, organizada por compatibilidade, e consulte os critérios de cada indicação.</p><div class="cp-tool-actions"><button type="button" class="cp-primary" data-cp-action="premium">Conhecer Premium →</button><button type="button" data-cp-action="search">Explorar todas as vagas</button></div></section>';
   }else if(!rows.length){
@@ -267,7 +277,7 @@
    }).join('')+'</div>';
   }
   if(refresh===true)stableHTML(workspace.querySelector('.cp-workspace-content'),html);
-  else{openWorkspace('Recomendações',html);workspace.dataset.cpView='recommendations';page.classList.add('cp-recommendations-active');}
+  else{openWorkspace('Recomendações',html,recommendationsHeader());workspace.dataset.cpView='recommendations';page.classList.add('cp-recommendations-active');}
  }
  core.abrirRecomendacoes=openRecommendations;
  function applyRecommendedJob(id){
@@ -382,6 +392,10 @@
   if(target.dataset.cpApplication!=null){var row=applicationRows().find(function(a){return String(a.id)===target.dataset.cpApplication;}),controller=global.EmpregaMaisCandidaturasCandidato;if(controller)controller.abrir(row?statusKey(row):'todas');return;}
   var action=target.dataset.cpAction;if(!action)return;
   if(action==='recommendations')openRecommendations();
+  else if(action==='recommendations-list'){
+   var results=workspace&&workspace.querySelector('.cp-recommendations-grid,.cp-recommendations-empty');
+   if(results){results.tabIndex=-1;results.focus({preventScroll:true});results.scrollIntoView({block:'start',behavior:'auto'});}
+  }
   else if(action==='close')closeWorkspace();
   else if(action==='interview')interviewSetup();
   else if(action==='resume-interview')renderInterview();
