@@ -210,3 +210,11 @@ html body #pagina-curriculo#pagina-curriculo #cvResumeWizard :is(.cv-preference-
  html body.cp-shell-active :is(#pagina-painel-candidato,#pagina-curriculo,#pagina-perfil,#pagina-mensagens,#pagina-vagas-salvas,#pagina-vagas) :is(input,select,textarea){accent-color:#5b9c94}
  html body.cp-shell-active :is(#pagina-painel-candidato,#pagina-curriculo,#pagina-perfil,#pagina-mensagens,#pagina-vagas-salvas,#pagina-vagas) :is(button,a,input,select,textarea):focus-visible{outline-color:#91c6c0!important}
 }
+
+/* Aqua top bar for the candidate workspace. */
+@layer site-typography {
+ html body.cp-shell-active #cpCandidateHeader#cpCandidateHeader .cp-toolbar{background:#438c87!important;border-bottom:1px solid #397d78!important;color:#fff!important}
+ html body.cp-shell-active #cpCandidateHeader#cpCandidateHeader .cp-toolbar :is(button,a,.cp-greeting-name,.cp-account-chevron,.cp-notifications){color:#fff!important}
+ html body.cp-shell-active #cpCandidateHeader#cpCandidateHeader .cp-toolbar svg{color:#fff!important}
+ html body.cp-shell-active #cpCandidateHeader#cpCandidateHeader .cp-user-avatar{background:#e9f6f3!important;color:#285b57!important;border-color:#c9e4de!important}
+}
