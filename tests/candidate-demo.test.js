@@ -1,7 +1,7 @@
 'use strict';
 const assert=require('node:assert/strict'),vm=require('node:vm'),fs=require('node:fs');
 const source=fs.readFileSync(require.resolve('../candidato-demo.js'),'utf8');
-function createContext(search,sharedLocal){
+function createContext(search,sharedLocal,scriptVersion){
  const nativeLocal=sharedLocal||new Map([['real-account','untouched']]),nativeSession=new Map([['empregaMaisPapel','empresa']]);
  const wrap=map=>({getItem:k=>map.get(k)||null,setItem:(k,v)=>map.set(k,String(v)),removeItem:k=>map.delete(k)});
  const listeners={},calls=[],notice={textContent:''},created=[];
@@ -27,7 +27,7 @@ function createContext(search,sharedLocal){
  }));
  const originalFetch=()=>{calls.push('real-fetch');return Promise.resolve(new Response('{}'))};
  function navigate(url){const next=new URL(url,ctx.location.href);ctx.location.href=next.href;ctx.location.search=next.search;ctx.location.pathname=next.pathname;}
- const ctx={location:{search,href:'https://example.com/'+search,pathname:'/',origin:'https://example.com'},localStorage:wrap(nativeLocal),sessionStorage:wrap(nativeSession),fetch:originalFetch,URLSearchParams,URL,Response,Promise,Map,Date,JSON,Object,btoa:s=>Buffer.from(s,'binary').toString('base64'),setTimeout:fn=>fn(),history:{pushState(a,b,url){navigate(url)},replaceState(a,b,url){navigate(url)}},document:{documentElement:{classList:{add(){}}},head:{appendChild(){}},getElementById(id){return id==='emCandidateDemoNotice'?notice:[...pages.values()].find(p=>p.id===id)||null},createElement:element,querySelectorAll(selector){return selector==='.pagina.ativa'?[...pages.values()].filter(p=>p.classList.contains('ativa')):selector==='#pagina-painel-candidato,#pagina-candidaturas'?[pages.get('painel-candidato'),pages.get('candidaturas')]:[]},addEventListener(type,fn){listeners["document:"+type]=fn;}},addEventListener(type,fn){listeners[type]=fn},abrirRota(route,id){calls.push([route,id])},EmpregaMaisPerfilCloud:{refresh(){throw Error('Real profile refresh must not run')}}};
+ const ctx={location:{search,href:'https://example.com/'+search,pathname:'/',origin:'https://example.com'},localStorage:wrap(nativeLocal),sessionStorage:wrap(nativeSession),fetch:originalFetch,URLSearchParams,URL,Response,Promise,Map,Date,JSON,Object,btoa:s=>Buffer.from(s,'binary').toString('base64'),setTimeout:fn=>fn(),history:{pushState(a,b,url){navigate(url)},replaceState(a,b,url){navigate(url)}},document:{currentScript:scriptVersion?{src:'https://example.com/candidato-demo.js?v='+scriptVersion}:null,documentElement:{classList:{add(){}}},head:{appendChild(){}},getElementById(id){return id==='emCandidateDemoNotice'?notice:[...pages.values()].find(p=>p.id===id)||null},createElement:element,querySelectorAll(selector){return selector==='.pagina.ativa'?[...pages.values()].filter(p=>p.classList.contains('ativa')):selector==='#pagina-painel-candidato,#pagina-candidaturas'?[pages.get('painel-candidato'),pages.get('candidaturas')]:[]},addEventListener(type,fn){listeners["document:"+type]=fn;}},addEventListener(type,fn){listeners[type]=fn},abrirRota(route,id){calls.push([route,id])},EmpregaMaisPerfilCloud:{refresh(){throw Error('Real profile refresh must not run')}}};
  ctx.window=ctx;vm.createContext(ctx);vm.runInContext(source,ctx);return {ctx,listeners,calls,nativeLocal,nativeSession,originalFetch,pages,get panel(){return created.find(el=>el.className==='cp-demo-plans');}};
 }
 for(const route of ['demo-recrutador','painel-empresa','painel-candidato','home']){
@@ -105,6 +105,11 @@ assert.equal(new URL(deep.panel.querySelector('nav').children[0].href).searchPar
 deep.ctx.history.replaceState({},'','?pagina=demo-candidato&planoCandidato=premium&abaCandidato=candidaturas');
 deep.listeners.popstate();
 assert.equal(deep.panel.parentNode,deep.pages.get('candidaturas').contentHost,'Browser back/forward keeps the selector in the active tab');
+const updated=createContext('?pagina=demo-candidato&planoCandidato=premium',undefined,'deployment-2');
+updated.listeners.load();
+for(const link of updated.panel.querySelector('nav').children){
+ assert.equal(new URL(link.href).searchParams.get('versaoDemo'),'deployment-2','Switching plans must not reopen HTML cached from an older deployment');
+}
 (async()=>{
  const response=await env.ctx.fetch('https://example.supabase.co/rest/v1/candidatos?user_id=eq.demo');
  assert.equal((await response.json())[0].nome,'Ana Exemplo');

@@ -2,6 +2,8 @@
 (function(){
   'use strict';
   if(new URLSearchParams(location.search).get('pagina')!=='demo-candidato')return;
+  var demoRevision='';
+  try{if(document.currentScript&&document.currentScript.src)demoRevision=new URL(document.currentScript.src,location.href).searchParams.get('v')||'';}catch(ignore){}
   document.documentElement.classList.add('em-candidate-demo');
   var demoStyle=document.createElement('style');
   demoStyle.textContent='html.em-candidate-demo #pagina-candidaturas .emi-candidate,html.em-candidate-demo #pagina-candidaturas .em-hire-confirmations,html.em-candidate-demo #pagina-candidaturas .em-candidate-inbox,html.em-candidate-demo #pagina-painel-candidato .emi-candidate,html.em-candidate-demo #pagina-painel-candidato .em-hire-confirmations{display:none!important}'+
@@ -81,7 +83,7 @@
     }
     var demoPanel=document.createElement('section');demoPanel.className='cp-demo-plans';demoPanel.setAttribute('aria-label','Selecionar acesso de demonstração');
     demoPanel.innerHTML='<div><strong>Demonstração do candidato</strong><p>Dados fictícios · Sem cobrança. Compare os recursos de cada acesso.</p></div><nav aria-label="Plano da demonstração"></nav>';
-    ['gratuito','premium'].forEach(function(plan){var link=document.createElement('a'),url=new URL(location.href);url.searchParams.set('pagina','demo-candidato');url.searchParams.set('abaCandidato','painel-candidato');url.searchParams.set('planoCandidato',plan);url.searchParams.delete('id');link.href=url.toString();link.textContent=plan==='premium'?'Painel Premium':'Painel gratuito';if(plan===demoPlan)link.setAttribute('aria-current','page');demoPanel.querySelector('nav').appendChild(link);});
+    ['gratuito','premium'].forEach(function(plan){var link=document.createElement('a'),url=new URL(location.href);url.searchParams.set('pagina','demo-candidato');url.searchParams.set('abaCandidato','painel-candidato');url.searchParams.set('planoCandidato',plan);url.searchParams.delete('id');if(demoRevision)url.searchParams.set('versaoDemo',demoRevision);link.href=url.toString();link.textContent=plan==='premium'?'Painel Premium':'Painel gratuito';if(plan===demoPlan)link.setAttribute('aria-current','page');demoPanel.querySelector('nav').appendChild(link);});
     ready=true;
     demoWidgets();
     if(window.MutationObserver)document.querySelectorAll('#pagina-painel-candidato,#pagina-candidaturas').forEach(function(root){new MutationObserver(demoWidgets).observe(root,{childList:true,subtree:true});});
