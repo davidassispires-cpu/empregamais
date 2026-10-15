@@ -103,6 +103,11 @@
  };
  function gradeTest(topic,answers){var exam=tests[topic];if(!exam)throw Error('Escolha um teste disponível.');answers=Array.isArray(answers)?answers:[];var correct=exam.questions.filter(function(q,i){return Number.isInteger(answers[i])&&answers[i]===q[2];}).length;return {correct:correct,total:exam.questions.length,percent:Math.round(correct/exam.questions.length*100)};}
  function premiumAccess(candidate,now){if(!candidate)return false;var plan=norm(candidate.plano_candidato||candidate.planoCandidato||candidate.plano);if(['premium','trimestral','semestral','anual'].indexOf(plan)<0)return false;var until=candidate.premium_valido_ate||candidate.premiumValidoAte||candidate.plano_valido_ate;if(until){var at=Date.parse(until);if(!Number.isFinite(at)||at<(now==null?Date.now():now))return false;}return true;}
+ function urgentJob(job,now){
+  job=job||{};var marked=[job.contratacaoUrgente,job.urgente].some(function(flag){return ['true','1','sim','yes'].indexOf(norm(flag))>=0;});
+  var until=job.urgenteAte||job.urgente_ate;
+  return marked&&(!until||Number.isFinite(Date.parse(until))&&Date.parse(until)>(now==null?Date.now():now));
+ }
  function recommendedJobs(rows,candidate,now){
   if(!premiumAccess(candidate,now))return [];
   var seen=new Set(),at=now==null?Date.now():now;
@@ -116,7 +121,7 @@
    return item.match.percent!=null&&item.match.percent>0&&item.match.criteria.slice(0,3).some(function(c){return c.available&&c.match>0;});
   }).sort(function(a,b){return b.match.percent-a.match.percent||(Date.parse(b.job.dataPublicacao||b.job.criadoEm)||0)-(Date.parse(a.job.dataPublicacao||a.job.criadoEm)||0);});
  }
- var core={temPremium:premiumAccess,recomendarVagas:recommendedJobs,compatibilidade:compatibility,correspondeAlerta:matchesAlert,validarAlerta:validateAlert,perguntasEntrevista:interviewQuestions,orientarResposta:responseFeedback,corrigirTeste:gradeTest,testes:tests,podeEntrar:canJoin,linkEntrevista:interviewLink,escape:escape};
+ var core={temPremium:premiumAccess,vagaUrgente:urgentJob,recomendarVagas:recommendedJobs,compatibilidade:compatibility,correspondeAlerta:matchesAlert,validarAlerta:validateAlert,perguntasEntrevista:interviewQuestions,orientarResposta:responseFeedback,corrigirTeste:gradeTest,testes:tests,podeEntrar:canJoin,linkEntrevista:interviewLink,escape:escape};
  global.EmpregaMaisPreparacao=core;
  if(typeof module!=='undefined'&&module.exports)module.exports=core;
  if(!global.document)return;
@@ -167,6 +172,7 @@
  }
  function icon(name){
   var p={analysis:'<rect x="3" y="14" width="4" height="8" rx="1" fill="#3d837a" stroke="none"/><rect x="10" y="9" width="4" height="13" rx="1" fill="#f3a357" stroke="none"/><rect x="17" y="3" width="4" height="19" rx="1" fill="#d64905" stroke="none"/>',document:'<path d="M6 3h9l4 4v14H6Z M14 3v5h5M9 12h7M9 16h7"/>',calendar:'<rect x="3" y="5" width="18" height="16" rx="3"/><path d="M7 3v4M17 3v4M3 11h18"/>',bookmark:'<path d="M6 21V3h12v18l-6-4Z"/>',message:'<rect x="2" y="4" width="20" height="16" rx="3" fill="#fff8ef"/><path d="m3 6 9 7 9-7"/>',arrow:'<path d="m9 5 7 7-7 7"/>',bell:'<path d="M5 10a7 7 0 0 1 14 0v5l2 3H3l2-3Z M9 21h6"/>',briefcase:'<rect x="3" y="7" width="18" height="14" rx="3"/><path d="M8 7V3h8v4M3 12h18M10 12v3h4v-3"/>',check:'<path d="m5 12 4 4 10-10"/>',target:'<circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1"/>',book:'<path d="M12 5c-3-3-7-3-10-1v16c3-2 7-2 10 1 3-3 7-3 10-1V4c-3-2-7-2-10 1Zm0 0v16"/>',video:'<rect x="3" y="5" width="12" height="14" rx="2"/><path d="m15 9 6-4v14l-6-4"/>',pin:'<path d="M20 10c0 6-8 11-8 11S4 16 4 10a8 8 0 1 1 16 0Z"/><circle cx="12" cy="10" r="2.5"/>',back:'<path d="M19 12H5m6-6-6 6 6 6"/>',download:'<path d="M12 3v12m-5-5 5 5 5-5M4 17v4h16v-4"/>'};
+  p.fire='<path d="M12 3c0 5-6 6-6 12a6 6 0 0 0 12 0c0-4-2-6-4-8 0 4-2 5-2 5s-2-4 0-9Z"/>';
   p.document='<rect x="4" y="2" width="16" height="21" rx="2" fill="#ffe5cc" stroke="#d54b06"/><rect x="6" y="3" width="12" height="18" rx="1" fill="#fffaf2" stroke="none"/><rect x="8" y="6" width="3" height="3" rx=".4" stroke="#dc5409"/><path d="M8 13h8M8 17h8" stroke="#dc5409"/>';p.calendar='<rect x="2" y="4" width="20" height="18" rx="3" fill="#e3f2f0" stroke="#2d615b"/><path d="M3 10h18M7 2v5M17 2v5" stroke="#ce4806" stroke-width="2.3"/><path d="M3 8V7a3 3 0 0 1 3-3h12a3 3 0 0 1 3 3v1" stroke="#ce4806"/><g fill="#3c8078" stroke="none"><rect x="6" y="13" width="2.5" height="2.5" rx=".4"/><rect x="11" y="13" width="2.5" height="2.5" rx=".4"/><rect x="16" y="13" width="2.5" height="2.5" rx=".4"/><rect x="6" y="17" width="2.5" height="2.5" rx=".4"/><rect x="11" y="17" width="2.5" height="2.5" rx=".4"/><rect x="16" y="17" width="2.5" height="2.5" rx=".4"/></g>';return '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'+(p[name]||p.briefcase)+'</svg>';
  }
  function formatDate(value){var d=new Date(value);return value&&!isNaN(d.getTime())?d.toLocaleDateString('pt-BR'):'Data não informada';}
@@ -236,7 +242,8 @@
   if(global.irPara&&!page.classList.contains('ativa'))global.irPara('painel-candidato');
   if(identity()!==owner)return;
   workspace.hidden=false;workspace.dataset.cpView='';page.classList.add('cp-tool-active');
-  workspace.innerHTML='<header class="cp-workspace-head"><button type="button" data-cp-action="close" class="cp-text-button">'+icon('back')+' Voltar à minha área</button><h1 tabindex="-1">'+escape(title)+'</h1></header><div class="cp-workspace-content">'+body+'</div><p class="cp-feedback" role="status" aria-live="polite"></p>';
+  var backToRecommendations=page.classList.contains('cp-recommendations-active')&&title!=='Recomendações';
+  workspace.innerHTML='<header class="cp-workspace-head"><button type="button" data-cp-action="'+(backToRecommendations?'recommendations':'close')+'" class="cp-text-button">'+icon('back')+(backToRecommendations?' Voltar às recomendações':' Voltar à minha área')+'</button><h1 tabindex="-1">'+escape(title)+'</h1></header><div class="cp-workspace-content">'+body+'</div><p class="cp-feedback" role="status" aria-live="polite"></p>';
   workspace.querySelector('h1').focus();workspace.scrollIntoView({block:'start',behavior:'auto'});
  }
  function toolStatus(text){var el=workspace.querySelector('.cp-feedback');if(el)el.textContent=text;}
@@ -255,13 +262,23 @@
     var reasons=fit.criteria.filter(function(c){return c.available&&c.match>=.5;}).slice(0,3).map(function(c){return '<span>'+escape(c.label)+'</span>';}).join('');
     var salary=typeof global.formatarSalarioExibicao==='function'?global.formatarSalarioExibicao(job.salario):job.salario;
     if(salary&&/\d/.test(salary)&&!/R\$/.test(salary))salary='R$ '+salary;
-    return '<article class="cp-recommendation-card"><div class="cp-recommendation-top"><span class="cp-small-icon">'+icon('briefcase')+'</span><div><h2>'+escape(job.cargo||job.titulo||'Vaga')+'</h2><p>'+escape(conf?'Empresa confidencial':job.empresa||'Empresa')+'</p></div><strong class="cp-recommendation-match">'+fit.percent+'%<small>de compatibilidade</small></strong></div><div class="cp-recommendation-chips"><span>'+escape(job.cidade||'Local não informado')+(job.uf?' – '+escape(job.uf):'')+'</span><span>'+escape(job.modalidade||'Modalidade não informada')+'</span><span>'+escape(job.contrato||'Contrato não informado')+'</span></div><strong class="cp-recommendation-salary">'+escape(salary||'Salário a combinar')+'</strong><div class="cp-recommendation-reasons" aria-label="Critérios em comum">'+reasons+'</div><footer><small>'+(job.dataPublicacao||job.criadoEm?'Publicada em '+formatDate(job.dataPublicacao||job.criadoEm):'Data não informada')+'</small><div><button type="button" class="cp-text-button" data-cp-fit="'+escape(job.id)+'">Ver critérios</button><button type="button" class="cp-primary" data-cp-job-open="'+escape(job.id)+'">Ver vaga →</button></div></footer></article>';
+    return '<article class="cp-recommendation-card"><div class="cp-recommendation-top"><span class="cp-small-icon">'+icon('briefcase')+'</span><div><h2>'+escape(job.cargo||job.titulo||'Vaga')+'</h2><p>'+escape(conf?'Empresa confidencial':job.empresa||'Empresa')+'</p></div><strong class="cp-recommendation-match">'+fit.percent+'%<small>de aderência</small></strong></div><div class="cp-recommendation-chips"><span>'+escape(job.cidade||'Local não informado')+(job.uf?' – '+escape(job.uf):'')+'</span><span>'+escape(job.modalidade||'Modalidade não informada')+'</span><span>'+escape(job.contrato||'Contrato não informado')+'</span>'+(urgentJob(job)?'<span class="cp-recommendation-urgent">'+icon('fire')+' Contratação urgente</span>':'')+'</div><strong class="cp-recommendation-salary">'+escape(salary||'Salário a combinar')+'</strong><div class="cp-recommendation-reasons" aria-label="Critérios em comum">'+reasons+'</div><footer><small>'+(job.dataPublicacao||job.criadoEm?'Publicada em '+formatDate(job.dataPublicacao||job.criadoEm):'Data não informada')+'</small><div><button type="button" class="cp-text-button" data-cp-fit="'+escape(job.id)+'">Ver análise</button><button type="button" class="cp-primary" data-cp-apply-job="'+escape(job.id)+'">Candidatar-se agora</button></div></footer></article>';
    }).join('')+'</div>';
   }
   if(refresh===true)stableHTML(workspace.querySelector('.cp-workspace-content'),html);
   else{openWorkspace('Recomendações',html);workspace.dataset.cpView='recommendations';page.classList.add('cp-recommendations-active');}
  }
  core.abrirRecomendacoes=openRecommendations;
+ function applyRecommendedJob(id){
+  if(!premiumAccess(profile())){openRecommendations();return;}
+  var item=recommendedJobs(jobs(),profile()).find(function(row){return String(row.job.id)===String(id);});
+  if(!item){toolStatus('Esta vaga não está mais disponível nas suas recomendações.');return;}
+  // The existing application dialog also reads the selected job after opening.
+  global.vagaAtual=item.job;
+  if(global.EmpregaMaisCandidaturaV94&&typeof global.EmpregaMaisCandidaturaV94.abrir==='function')global.EmpregaMaisCandidaturaV94.abrir(item.job);
+  else if(typeof global.abrirCandidaturaProtegida==='function')global.abrirCandidaturaProtegida(item.job.id);
+  else{closeWorkspace(false);global.irPara('candidatura',item.job.id);}
+ }
  function openCompatibility(id){
   if(!hasCompatibilityAccess()){openWorkspace('Compatibilidade de perfil · Premium','<div class="cp-tool-intro"><span class="cp-feature-icon">'+icon('target')+'</span><div><h2>Encontre oportunidades com mais informação</h2><p>Compare as informações do seu perfil com os requisitos de cada vaga.</p></div></div><p>No Premium, você vê o percentual de compatibilidade e os critérios considerados na análise. O indicador é uma orientação e não garante contratação.</p><div class="cp-tool-actions"><button type="button" class="cp-primary" data-cp-action="premium">Conhecer Premium →</button><button type="button" data-cp-job-open="'+escape(id)+'">Continuar vendo a vaga</button></div>');return;}
 
@@ -359,6 +376,7 @@
   if(target.dataset.cpAlertEdit){openAlerts(null,target.dataset.cpAlertEdit);return;}
   if(target.dataset.cpAlertDelete){target.disabled=true;saveAlerts(alerts().filter(function(a){return a.id!==target.dataset.cpAlertDelete;})).then(function(message){openAlerts();toolStatus(message);schedule();}).catch(function(e){toolStatus(e.message);target.disabled=false;});return;}
   if(target.dataset.cpTestStart){startTest(target.dataset.cpTestStart);return;}
+  if(target.dataset.cpApplyJob!=null){applyRecommendedJob(target.dataset.cpApplyJob);return;}
   if(target.dataset.cpJobOpen!=null){closeWorkspace(false);global.irPara('vaga',target.dataset.cpJobOpen);return;}
   if(target.dataset.cpApplication!=null){var row=applicationRows().find(function(a){return String(a.id)===target.dataset.cpApplication;}),controller=global.EmpregaMaisCandidaturasCandidato;if(controller)controller.abrir(row?statusKey(row):'todas');return;}
   var action=target.dataset.cpAction;if(!action)return;

@@ -86,6 +86,14 @@ test('candidate-entered content is escaped in all generated HTML',()=>{
 
 const recommendationNow=Date.parse('2026-10-15T13:00:00Z');
 const premiumCandidate={...candidate,plano_candidato:'premium',premium_valido_ate:'2027-01-01T00:00:00Z'};
+test('the urgency flame follows the vacancy flag and its validity period',()=>{
+ assert.equal(core.vagaUrgente({contratacaoUrgente:true},recommendationNow),true);
+ assert.equal(core.vagaUrgente({urgente:'sim',urgenteAte:'2026-11-01'},recommendationNow),true);
+ assert.equal(core.vagaUrgente({urgente:true,urgenteAte:'2026-10-01'},recommendationNow),false);
+ assert.equal(core.vagaUrgente({urgente:true,urgenteAte:'invalid'},recommendationNow),false);
+ assert.equal(core.vagaUrgente({urgente:'false'},recommendationNow),false);
+ assert.equal(core.vagaUrgente({},recommendationNow),false);
+});
 test('personal recommendations require an active Premium subscription',()=>{
  const rows=[{...job,id:'1'}];
  assert.deepEqual(core.recomendarVagas(rows,candidate,recommendationNow),[]);

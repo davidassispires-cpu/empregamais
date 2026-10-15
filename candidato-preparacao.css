@@ -943,6 +943,8 @@ html body #pagina-painel-candidato#pagina-painel-candidato.cp-enhanced .cp-recom
 html body #pagina-painel-candidato#pagina-painel-candidato.cp-enhanced .cp-recommendation-match small{display:block;font-size:9px!important;font-weight:500!important}
 html body #pagina-painel-candidato#pagina-painel-candidato.cp-enhanced :is(.cp-recommendation-chips,.cp-recommendation-reasons){display:flex;flex-wrap:wrap;gap:7px}
 html body #pagina-painel-candidato#pagina-painel-candidato.cp-enhanced .cp-recommendation-chips span{padding:5px 8px;border-radius:6px;background:var(--cp-light);color:var(--cp-navy);font-size:10px}
+html body #pagina-painel-candidato#pagina-painel-candidato.cp-enhanced .cp-recommendation-chips .cp-recommendation-urgent{display:inline-flex;align-items:center;gap:5px;color:#c74605;background:#fff3e7}
+html body #pagina-painel-candidato#pagina-painel-candidato.cp-enhanced .cp-recommendation-urgent svg{width:15px;height:15px;flex:none}
 html body #pagina-painel-candidato#pagina-painel-candidato.cp-enhanced .cp-recommendation-reasons span{color:var(--cp-muted);font-size:10px;padding-right:8px;border-right:1px solid var(--cp-border)}
 html body #pagina-painel-candidato#pagina-painel-candidato.cp-enhanced .cp-recommendation-reasons span:last-child{border:0}
 html body #pagina-painel-candidato#pagina-painel-candidato.cp-enhanced .cp-recommendation-salary{font-size:14px;color:var(--cp-navy)}
