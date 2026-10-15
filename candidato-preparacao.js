@@ -474,17 +474,17 @@
  function luminance(c){return c.reduce(function(n,v,i){v/=255;return n+[.2126,.7152,.0722][i]*(v<=.04045?v/12.92:Math.pow((v+.055)/1.055,2.4));},0);}
  function background(el){for(var n=el;n;){var s=getComputedStyle(n),v=s.backgroundColor,c=rgb(v);if(c&&!/rgba\([^)]*,\s*0\s*\)/.test(v)&&v!=='transparent')return c;n=n.parentElement||(n.getRootNode&&n.getRootNode().host);}return [255,255,255];}
  function watch(root){if(observed.has(root))return;observed.add(root);new MutationObserver(schedule).observe(root,{childList:true,subtree:true});}
- function scan(root){watch(root);root.querySelectorAll('*').forEach(function(el){
+ function scan(root){watch(root);var updates=[];root.querySelectorAll('*').forEach(function(el){
   if(el.shadowRoot)scan(el.shadowRoot);
   if(el.closest('svg,script,style,h1,h2,h3,h4,h5,h6,[aria-hidden=true],.fa,.fas,.far,.fab,.material-icons,.material-symbols-outlined'))return;
   var text=Array.from(el.childNodes).some(function(n){return n.nodeType===3&&n.textContent.trim();});
   if(!text&&!el.matches('input:not([type=checkbox]):not([type=radio]),textarea,select'))return;
   var style=getComputedStyle(el),size=parseFloat(style.fontSize);
-  if(!sizes.has(el)&&size>=8&&size<=14){sizes.set(el,size);el.style.setProperty('font-size',(size+1)+'px','important');}
+  if(!sizes.has(el)&&size>=8&&size<=14){sizes.set(el,size);updates.push(function(){el.style.setProperty('font-size',(size+1)+'px','important');});}
   if(colors.has(el)||!style.color)return;var c=rgb(style.color);if(!c)return;
   var l=luminance(c),bg=luminance(background(el)),contrast=(Math.max(l,bg)+.05)/(Math.min(l,bg)+.05);
-  if(bg>.65&&l>.105&&contrast<5&&Math.max.apply(null,c)-Math.min.apply(null,c)<100){el.style.setProperty('color','#405570','important');colors.add(el);}
- });}
+  if(bg>.65&&l>.105&&contrast<5&&Math.max.apply(null,c)-Math.min.apply(null,c)<100){updates.push(function(){el.style.setProperty('color','#405570','important');});colors.add(el);}
+ });updates.forEach(function(update){update();});}
  function schedule(){if(queued)return;queued=true;setTimeout(function(){queued=false;if(document.body)scan(document.body);},120);}
  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',schedule,{once:true});else schedule();
  window.addEventListener('load',schedule);window.addEventListener('resize',schedule);
