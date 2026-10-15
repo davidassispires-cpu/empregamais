@@ -647,6 +647,24 @@
  #emCandidateProfile .em-account-details{grid-column:1/-1}
  @media(max-width:440px){#emCandidateAccountMenu{right:12px!important;width:calc(100vw - 24px)}#emCandidateAccountMenu .em-account-links>button{gap:7px;padding:7px}#emCandidateAccountMenu .em-account-card-icon{width:40px;flex-basis:40px;height:48px}#emCandidateAccountMenu .em-account-card-icon svg{width:30px;height:30px}#emCandidateAccountMenu .em-account-links>button>span:last-child{font-size:11px!important}}
  @media(max-height:480px){#emCandidateAccountMenu{max-height:calc(100dvh - 85px);overflow:auto}#emCandidateAccountMenu:before{display:none}}
+
+ /* Smaller account card without shrinking the labels. */
+ #emCandidateAccountMenu{width:370px}
+ #emCandidateAccountMenu .em-account-top{min-height:70px;padding:12px 15px;gap:11px}
+ #emCandidateAccountMenu .em-account-avatar{width:42px;height:42px;flex-basis:42px}
+ #emCandidateAccountMenu .em-account-top strong{font-size:16px!important}
+ #emCandidateAccountMenu .em-account-top small{font-size:12px!important}
+ #emCandidateAccountMenu .em-account-links{padding:10px;gap:7px}
+ #emCandidateAccountMenu .em-account-links>button{height:62px;padding:7px;gap:8px}
+ #emCandidateAccountMenu .em-account-card-icon{width:40px;height:44px;flex-basis:40px}
+ #emCandidateAccountMenu .em-account-card-icon svg{width:29px;height:29px}
+ #emCandidateAccountMenu .em-account-links>button>span:last-child{font-size:11.5px!important}
+ #emCandidateAccountMenu .em-account-footer{padding:9px 11px}
+ html body.cp-shell-active #cpCandidateHeader .cp-greeting{gap:9px!important;padding:0 3px 0 12px!important}
+ html body.cp-shell-active #cpCandidateHeader .cp-user-avatar{width:36px!important;height:36px!important;flex-basis:36px!important;font-size:15px!important}
+ html body.cp-shell-active #cpCandidateHeader .cp-greeting-name{font-size:14px!important}
+ html body.cp-shell-active #cpCandidateHeader .cp-account-chevron{width:16px!important;height:16px!important}
+ @media(max-width:390px){#emCandidateAccountMenu{width:calc(100vw - 24px)}#emCandidateAccountMenu .em-account-card-icon{width:32px;flex-basis:32px}#emCandidateAccountMenu .em-account-links>button{gap:6px}#emCandidateAccountMenu .em-account-links>button>span:last-child{font-size:10.5px!important}}
 `;document.head.appendChild(style);
  document.addEventListener('click',function(e){var b=e.target.closest&&e.target.closest('#cpCandidateHeader .cp-greeting');if(b){e.preventDefault();e.stopImmediatePropagation();open(b,e.detail===0);}else if(panel&&!panel.contains(e.target))close();},true);
  document.addEventListener('keydown',function(e){if(!panel)return;if(e.key==='Escape'){e.preventDefault();close(true);}if(e.key==='Tab'){var items=Array.from(panel.querySelectorAll('button')),first=items[0],last=items[items.length-1];if(e.shiftKey&&document.activeElement===first){e.preventDefault();last.focus();}else if(!e.shiftKey&&document.activeElement===last){e.preventDefault();first.focus();}}});
