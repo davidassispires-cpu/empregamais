@@ -1,7 +1,7 @@
 /* Approved navy / light blue / lilac palette, scoped to the candidate home. */
 html body #pagina-painel-candidato#pagina-painel-candidato.cp-enhanced{
- --cp-navy:#173a67;--cp-light:#e5f0ff;--cp-lilac:#C2410C;--cp-pale-lilac:#FFF7ED;
- --cp-border:#dce6f3;--cp-muted:#59708c;--cp-bg:#f4f7fc;
+ --cp-navy:#285650;--cp-light:#edf7f6;--cp-lilac:#C2410C;--cp-pale-lilac:#FFF7ED;
+ --cp-border:#dff0ee;--cp-muted:#598c86;--cp-bg:#f5fbfa;
  background:var(--cp-bg)!important;color:var(--cp-navy)!important;
 }
 html body #pagina-painel-candidato#pagina-painel-candidato.cp-enhanced,
@@ -10,7 +10,7 @@ html body #pagina-painel-candidato#pagina-painel-candidato.cp-enhanced :is(h1,h2
 }
 html body #pagina-painel-candidato#pagina-painel-candidato.cp-enhanced .cp-profile{
  background:#fff!important;border:1px solid var(--cp-border)!important;border-radius:14px!important;
- box-shadow:0 3px 16px #173a6705!important;padding:24px 28px!important;
+ box-shadow:0 3px 16px #28565005!important;padding:24px 28px!important;
 }
 html body #pagina-painel-candidato#pagina-painel-candidato.cp-enhanced .cp-profile .cp-name{
  color:var(--cp-navy)!important;font-size:24px!important;font-weight:750!important;
@@ -37,10 +37,10 @@ html body #pagina-painel-candidato#pagina-painel-candidato.cp-enhanced .cp-home-
 html body #pagina-painel-candidato#pagina-painel-candidato.cp-enhanced .cp-overview-card{
  display:flex;align-items:center;gap:16px;padding:20px!important;min-width:0;width:100%;min-height:98px;
  border:1px solid var(--cp-border)!important;border-radius:13px!important;background:#fff!important;
- color:var(--cp-navy)!important;text-align:left;cursor:pointer;box-shadow:0 3px 12px #173a6704!important;
+ color:var(--cp-navy)!important;text-align:left;cursor:pointer;box-shadow:0 3px 12px #28565004!important;
  transition:transform .15s,border-color .15s;
 }
-html body #pagina-painel-candidato#pagina-painel-candidato.cp-enhanced .cp-overview-card:hover{transform:translateY(-2px);border-color:#b5cbe4!important}
+html body #pagina-painel-candidato#pagina-painel-candidato.cp-enhanced .cp-overview-card:hover{transform:translateY(-2px);border-color:#badfda!important}
 html body #pagina-painel-candidato#pagina-painel-candidato.cp-enhanced .cp-overview-card>div{min-width:0}
 html body #pagina-painel-candidato#pagina-painel-candidato.cp-enhanced .cp-overview-icon{
  display:grid;place-items:center;width:50px;height:50px;flex:0 0 50px;border-radius:11px;background:var(--cp-light);color:var(--cp-navy);
@@ -109,7 +109,7 @@ html body #pagina-painel-candidato#pagina-painel-candidato.cp-enhanced .cp-panel
 html body #pagina-painel-candidato#pagina-painel-candidato.cp-enhanced .cp-panel button svg{width:17px;height:17px;flex:none}
 html body #pagina-painel-candidato#pagina-painel-candidato.cp-enhanced .cp-section-head{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:12px}
 html body #pagina-painel-candidato#pagina-painel-candidato.cp-enhanced .cp-section-head p{margin:0;font-size:11px!important}
-html body #pagina-painel-candidato#pagina-painel-candidato.cp-enhanced .cp-latest-list article{display:flex;gap:13px;align-items:center;padding:14px 0;border-top:1px solid #e9eef6}
+html body #pagina-painel-candidato#pagina-painel-candidato.cp-enhanced .cp-latest-list article{display:flex;gap:13px;align-items:center;padding:14px 0;border-top:1px solid #eaf5f4}
 html body #pagina-painel-candidato#pagina-painel-candidato.cp-enhanced .cp-latest-list article>div:nth-child(2){flex:1;min-width:0}
 html body #pagina-painel-candidato#pagina-painel-candidato.cp-enhanced .cp-latest-list p{margin:0;font-size:11px!important}
 html body #pagina-painel-candidato#pagina-painel-candidato.cp-enhanced .cp-small-icon,
@@ -125,7 +125,7 @@ html body #pagina-painel-candidato#pagina-painel-candidato.cp-enhanced .cp-statu
 }
 html body #pagina-painel-candidato#pagina-painel-candidato.cp-enhanced .cp-status-entrevista,
 html body #pagina-painel-candidato#pagina-painel-candidato.cp-enhanced .cp-status-contato{background:var(--cp-pale-lilac);color:var(--cp-lilac)}
-html body #pagina-painel-candidato#pagina-painel-candidato.cp-enhanced .cp-status-reprovadas{background:#f0f2f7;color:#647084}
+html body #pagina-painel-candidato#pagina-painel-candidato.cp-enhanced .cp-status-reprovadas{background:#f0f7f6;color:#648480}
 html body #pagina-painel-candidato#pagina-painel-candidato.cp-enhanced .cp-alert-card{background:#f9fbff;display:flex;flex-direction:column;align-items:flex-start;gap:10px}
 html body #pagina-painel-candidato#pagina-painel-candidato.cp-enhanced .cp-alert-card :is(h2,p){margin:0!important}
 html body #pagina-painel-candidato#pagina-painel-candidato.cp-enhanced .cp-alert-card .cp-secondary{margin-top:auto}
@@ -146,7 +146,7 @@ html body #pagina-painel-candidato#pagina-painel-candidato.cp-enhanced .cp-tool-
 html body #pagina-painel-candidato#pagina-painel-candidato.cp-enhanced .cp-tool-intro p{margin:0}
 html body #pagina-painel-candidato#pagina-painel-candidato.cp-enhanced .cp-tool-form{display:grid;gap:16px;margin:20px 0 26px}
 html body #pagina-painel-candidato#pagina-painel-candidato.cp-enhanced .cp-tool-form>label{display:grid;gap:8px;color:var(--cp-navy);font-size:12px;font-weight:600}
-html body #pagina-painel-candidato#pagina-painel-candidato.cp-enhanced .cp-tool-form :is(input:not([type=checkbox]):not([type=radio]),textarea){width:100%;box-sizing:border-box;border:1px solid #cad9ea;border-radius:8px;padding:12px 14px;background:#fff;color:var(--cp-navy);font-size:13px;line-height:1.8;min-width:0}
+html body #pagina-painel-candidato#pagina-painel-candidato.cp-enhanced .cp-tool-form :is(input:not([type=checkbox]):not([type=radio]),textarea){width:100%;box-sizing:border-box;border:1px solid #cde7e4;border-radius:8px;padding:12px 14px;background:#fff;color:var(--cp-navy);font-size:13px;line-height:1.8;min-width:0}
 html body #pagina-painel-candidato#pagina-painel-candidato.cp-enhanced .cp-tool-form textarea{resize:vertical}
 html body #pagina-painel-candidato#pagina-painel-candidato.cp-enhanced .cp-tool-form fieldset{border:0;padding:0;margin:0;min-width:0}
 html body #pagina-painel-candidato#pagina-painel-candidato.cp-enhanced .cp-tool-form legend{font-size:12px;color:var(--cp-navy);font-weight:600;margin-bottom:10px}
@@ -172,7 +172,7 @@ html body #pagina-painel-candidato#pagina-painel-candidato.cp-enhanced .cp-guide
 html body #pagina-painel-candidato#pagina-painel-candidato.cp-enhanced .cp-training-progress{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px;font-size:12px;color:var(--cp-muted)}
 html body #pagina-painel-candidato#pagina-painel-candidato.cp-enhanced .cp-training-progress strong{color:var(--cp-navy)}
 html body #pagina-painel-candidato#pagina-painel-candidato.cp-enhanced progress{width:100%;height:8px;accent-color:var(--cp-lilac);border:0}
-html body #pagina-painel-candidato#pagina-painel-candidato.cp-enhanced progress::-webkit-progress-bar{background:#e9edf5;border-radius:10px}
+html body #pagina-painel-candidato#pagina-painel-candidato.cp-enhanced progress::-webkit-progress-bar{background:#e9f5f3;border-radius:10px}
 html body #pagina-painel-candidato#pagina-painel-candidato.cp-enhanced progress::-webkit-progress-value{background:var(--cp-lilac);border-radius:10px}
 html body #pagina-painel-candidato#pagina-painel-candidato.cp-enhanced .cp-question-title{font-size:19px!important;font-weight:700!important;line-height:1.6}
 html body #pagina-painel-candidato#pagina-painel-candidato.cp-enhanced .cp-question-hint{background:#f8f6fc;padding:12px;border-radius:8px;font-size:11px;color:var(--cp-lilac)}
@@ -182,7 +182,7 @@ html body #pagina-painel-candidato#pagina-painel-candidato.cp-enhanced .cp-answe
 html body #pagina-painel-candidato#pagina-painel-candidato.cp-enhanced .cp-answer-review summary{cursor:pointer;font-weight:600;font-size:13px;line-height:1.7;color:var(--cp-navy)}
 html body #pagina-painel-candidato#pagina-painel-candidato.cp-enhanced .cp-answer-review h4{font-size:12px;margin:16px 0 8px;color:var(--cp-navy)}
 html body #pagina-painel-candidato#pagina-painel-candidato.cp-enhanced .cp-answer-text{white-space:pre-wrap}
-html body #pagina-painel-candidato#pagina-painel-candidato.cp-enhanced .cp-response-feedback{background:#f5f8fe;padding:2px 16px 12px;border-radius:9px;margin:12px 0}
+html body #pagina-painel-candidato#pagina-painel-candidato.cp-enhanced .cp-response-feedback{background:#f8fbfb;padding:2px 16px 12px;border-radius:9px;margin:12px 0}
 html body #pagina-painel-candidato#pagina-painel-candidato.cp-enhanced .cp-response-feedback ul{padding-left:18px;margin:6px 0;font-size:12px;line-height:1.9;color:var(--cp-muted)}
 html body #pagina-painel-candidato#pagina-painel-candidato.cp-enhanced :is(.cp-resume,.cp-practice-records){border-top:1px solid var(--cp-border);padding-top:18px;margin-top:20px}
 html body #pagina-painel-candidato#pagina-painel-candidato.cp-enhanced .cp-complete{display:flex;flex-direction:column;align-items:center;gap:12px;text-align:center;padding:22px;margin-bottom:22px;background:var(--cp-pale-lilac);border-radius:12px}
@@ -195,14 +195,14 @@ html body #pagina-painel-candidato#pagina-painel-candidato.cp-enhanced .cp-test-
 html body #pagina-painel-candidato#pagina-painel-candidato.cp-enhanced .cp-test-topics button>svg{grid-column:3;grid-row:1/3;align-self:center}
 html body #pagina-painel-candidato#pagina-painel-candidato.cp-enhanced .cp-test-options{display:grid;gap:12px;margin:18px 0}
 html body #pagina-painel-candidato#pagina-painel-candidato.cp-enhanced .cp-test-options label{display:flex;align-items:center;gap:12px;padding:15px;border:1px solid var(--cp-border);border-radius:10px;font-size:13px;line-height:1.7;cursor:pointer}
-html body #pagina-painel-candidato#pagina-painel-candidato.cp-enhanced .cp-test-options .cp-correct-option{border-color:#a9c2e3;background:var(--cp-light)}
+html body #pagina-painel-candidato#pagina-painel-candidato.cp-enhanced .cp-test-options .cp-correct-option{border-color:#b1dbd6;background:var(--cp-light)}
 html body #pagina-painel-candidato#pagina-painel-candidato.cp-enhanced .cp-test-explanation{border:1px solid #cfc0e7;border-radius:10px;padding:18px;background:var(--cp-pale-lilac);color:var(--cp-navy);font-size:13px}
 html body #pagina-painel-candidato#pagina-painel-candidato.cp-enhanced .cp-test-explanation p{margin:6px 0 0}
 html body #pagina-painel-candidato#pagina-painel-candidato.cp-enhanced .cp-feedback{min-height:20px;margin:15px 0 0;color:var(--cp-navy)}
 html body #pagina-painel-candidato#pagina-painel-candidato.cp-enhanced .cp-muted{color:var(--cp-muted)!important;font-size:11px!important}
 html body #pagina-painel-candidato#pagina-painel-candidato.cp-enhanced .cp-empty{display:flex;flex-wrap:wrap;align-items:center;gap:14px;padding:20px 0}
 html body #pagina-painel-candidato#pagina-painel-candidato.cp-enhanced :is(button,a,input,textarea,summary):focus-visible{outline:3px solid #FDBA74!important;outline-offset:3px}
-html body #pagina-painel-candidato#pagina-painel-candidato.cp-enhanced .cp-shortcuts .painel-card{background:#f6faff!important}
+html body #pagina-painel-candidato#pagina-painel-candidato.cp-enhanced .cp-shortcuts .painel-card{background:#f9fcfc!important}
 @media(max-width:1050px){
  html body #pagina-painel-candidato#pagina-painel-candidato.cp-enhanced .cp-overview-card{gap:10px;padding:15px!important}
  html body #pagina-painel-candidato#pagina-painel-candidato.cp-enhanced .cp-overview-icon{width:40px;height:40px;flex-basis:40px}
@@ -250,7 +250,7 @@ html body #pagina-painel-candidato#pagina-painel-candidato.cp-enhanced .cp-short
 
 /* Approved candidate dashboard: navy navigation, purple accents, blue actions. */
 html body.cp-shell-active {
- --candidate-primary:#7453c8;--candidate-accent:#3261d8;--candidate-soft:#eee9fa;--candidate-ink:#1b2c51;
+ --candidate-primary:#7453c8;--candidate-accent:#59b1a7;--candidate-soft:#eee9fa;--candidate-ink:#234945;
  --cp-sidebar-width:232px;--cp-header-height:72px;
  background:#f5f6fb!important;
 }
@@ -264,18 +264,18 @@ html body.cp-shell-active #cpCandidateHeader .cp-toolbar {
  width:100%;height:var(--cp-header-height);min-height:var(--cp-header-height)!important;
  display:flex!important;align-items:center!important;justify-content:flex-start!important;
  gap:24px;padding:0 28px!important;margin:0!important;
- border-bottom:1px solid #e4e8f4;background:#fff!important;box-shadow:none!important;
+ border-bottom:1px solid #e5f3f1;background:#fff!important;box-shadow:none!important;
 }
 html body.cp-shell-active #cpCandidateHeader .cp-toolbar>strong {
- font-size:24px!important;font-weight:750!important;color:#152449!important;letter-spacing:-.7px!important;
+ font-size:24px!important;font-weight:750!important;color:#295751!important;letter-spacing:-.7px!important;
 }
 html body.cp-shell-active #cpCandidateHeader .cp-toolbar-context {
- color:#667594;font-size:13px;font-weight:400;border-left:1px solid #dce2f0;padding-left:24px;
+ color:#66948f;font-size:13px;font-weight:400;border-left:1px solid #ddefed;padding-left:24px;
 }
 html body.cp-shell-active #cpCandidateHeader .cp-notifications {
  position:relative;display:grid;place-items:center;width:40px;height:40px;flex:0 0 40px;
  margin-left:auto!important;padding:8px!important;border:0!important;border-radius:8px!important;
- background:transparent!important;color:#607092!important;
+ background:transparent!important;color:#60928c!important;
 }
 html body.cp-shell-active #cpCandidateHeader .cp-notifications svg {width:23px;height:23px}
 html body.cp-shell-active #cpCandidateHeader .cp-notification-dot {
@@ -284,13 +284,13 @@ html body.cp-shell-active #cpCandidateHeader .cp-notification-dot {
 html body.cp-shell-active #cpCandidateHeader .cp-notification-dot[hidden] {display:none!important}
 html body.cp-shell-active #cpCandidateHeader .cp-greeting {
  display:flex!important;align-items:center!important;gap:12px;margin-left:0!important;min-width:0;
- color:#294e94!important;border:0!important;border-left:1px solid #edf0f8!important;
+ color:#3c8179!important;border:0!important;border-left:1px solid #eef7f6!important;
  background:transparent!important;border-radius:0!important;padding:0 0 0 16px!important;
  font-size:12px!important;font-weight:600!important;
 }
 html body.cp-shell-active #cpCandidateHeader .cp-user-avatar {
  display:grid;place-items:center;width:44px;height:44px;flex:0 0 44px;border-radius:50%;
- border:1px solid #dce3fa;background:#f1f4ff;color:#3261d8;font-size:16px;font-weight:600;
+ border:1px solid #e4f2f1;background:#f5fbfa;color:#59b1a7;font-size:16px;font-weight:600;
 }
 html body.cp-shell-active #cpCandidateHeader .cp-greeting-name {
  max-width:180px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;
@@ -300,17 +300,17 @@ html body.cp-shell-active #cpCandidateHeader .cp-navigation {
  width:var(--cp-sidebar-width);max-width:none!important;max-height:calc(100dvh - var(--cp-header-height));
  box-sizing:border-box;display:flex!important;flex-direction:column!important;gap:6px!important;
  margin:0!important;padding:24px 16px!important;border:0;border-radius:0;
- background:#142447!important;overflow-y:auto!important;overflow-x:hidden!important;
+ background:#295751!important;overflow-y:auto!important;overflow-x:hidden!important;
  scroll-snap-type:none!important;scrollbar-width:none;box-shadow:none!important;
 }
 html body.cp-shell-active #cpCandidateHeader .cp-navigation::-webkit-scrollbar {display:none}
 html body.cp-shell-active #cpCandidateHeader .cp-nav-label {
- padding:8px 12px 14px;color:#c1cbe2;font-size:9px;font-weight:500;letter-spacing:.06em!important;line-height:1.5;
+ padding:8px 12px 14px;color:#c1e2de;font-size:9px;font-weight:500;letter-spacing:.06em!important;line-height:1.5;
 }
 html body.cp-shell-active #cpCandidateHeader .cp-navigation button {
  display:flex!important;flex-direction:row!important;align-items:center!important;justify-content:flex-start!important;
  gap:12px!important;flex:none!important;width:100%;min-width:0!important;min-height:50px!important;
- box-sizing:border-box;padding:12px 14px!important;background:transparent!important;color:#edf1ff!important;
+ box-sizing:border-box;padding:12px 14px!important;background:transparent!important;color:#f3f9f8!important;
  border:0!important;border-radius:9px!important;box-shadow:none!important;
  font-size:13px!important;line-height:1.5!important;font-weight:500!important;transform:none!important;
  transition:background .15s!important;
@@ -320,7 +320,7 @@ html body.cp-shell-active #cpCandidateHeader .cp-navigation button>span {
 }
 html body.cp-shell-active #cpCandidateHeader .cp-navigation button .cp-nav-icon {
  display:block!important;width:22px!important;height:22px!important;max-width:none!important;
- aspect-ratio:auto!important;flex:0 0 22px!important;color:#d2dbf4!important;overflow:visible!important;border-radius:0!important;
+ aspect-ratio:auto!important;flex:0 0 22px!important;color:#d9edeb!important;overflow:visible!important;border-radius:0!important;
 }
 html body.cp-shell-active #cpCandidateHeader .cp-navigation button[aria-current=page] {
  background:#7453c8!important;color:#fff!important;box-shadow:none!important;
@@ -328,12 +328,12 @@ html body.cp-shell-active #cpCandidateHeader .cp-navigation button[aria-current=
 html body.cp-shell-active #cpCandidateHeader .cp-navigation button[aria-current=page] :is(svg,span) {
  color:#fff!important;font-weight:600!important;
 }
-html body.cp-shell-active #cpCandidateHeader .cp-navigation button:hover {background:#263859!important}
+html body.cp-shell-active #cpCandidateHeader .cp-navigation button:hover {background:#295651!important}
 html body.cp-shell-active #cpCandidateHeader .cp-navigation button[aria-current=page]:hover {background:#6847ba!important}
 html body.cp-shell-active #cpCandidateHeader .cp-navigation button:after {display:none!important}
 html body.cp-shell-active #cpCandidateHeader .cp-message-count {
  position:static!important;display:grid;place-items:center;margin-left:auto!important;
- background:#4c528a!important;color:#fff!important;border-radius:6px;min-width:22px;height:22px;
+ background:#4c8a83!important;color:#fff!important;border-radius:6px;min-width:22px;height:22px;
  padding:0 4px;font-size:10px!important;line-height:22px!important;
 }
 html body.cp-shell-active #cpCandidateHeader .cp-message-count[hidden] {display:none!important}
@@ -341,26 +341,26 @@ html body.cp-shell-active #cpCandidateHeader :is(button,a):focus-visible {outlin
 html body.cp-shell-active .pagina.cp-tab-content {
  margin-left:var(--cp-sidebar-width)!important;width:calc(100% - var(--cp-sidebar-width))!important;
  box-sizing:border-box!important;min-width:0!important;min-height:calc(100dvh - var(--cp-header-height));
- padding-top:24px!important;background:#f5f6fb!important;color:#1b2c51!important;
+ padding-top:24px!important;background:#f5f6fb!important;color:#234945!important;
 }
 html body.cp-shell-active>footer {margin-left:var(--cp-sidebar-width);width:calc(100% - var(--cp-sidebar-width))}
 html body #pagina-painel-candidato#pagina-painel-candidato.cp-enhanced {
- --cp-navy:#1b2c51;--cp-light:#e9f0fd;--cp-lilac:#7453c8;--cp-pale-lilac:#eee9fa;
- --cp-border:#e0e5f3;--cp-muted:#667594;--cp-bg:#f5f6fb;
+ --cp-navy:#234945;--cp-light:#eff7f6;--cp-lilac:#7453c8;--cp-pale-lilac:#eee9fa;
+ --cp-border:#e2f1ef;--cp-muted:#66948f;--cp-bg:#f5f6fb;
 }
 html body #pagina-painel-candidato#pagina-painel-candidato.cp-enhanced .container-dashboard {
  width:calc(100% - 64px)!important;max-width:1320px!important;padding:0 0 36px!important;margin:0 auto!important;
 }
 html body #pagina-painel-candidato#pagina-painel-candidato.cp-enhanced .cp-home-intro {margin:0 0 24px!important}
 html body #pagina-painel-candidato#pagina-painel-candidato.cp-enhanced .cp-home-intro h1 {
- font-size:30px!important;font-weight:750!important;line-height:1.3!important;color:#152449!important;margin:0 0 6px!important;
+ font-size:30px!important;font-weight:750!important;line-height:1.3!important;color:#295751!important;margin:0 0 6px!important;
 }
 html body #pagina-painel-candidato#pagina-painel-candidato.cp-enhanced .cp-home-intro p {
  font-size:14px!important;line-height:1.65!important;color:var(--cp-muted)!important;margin:0!important;
 }
 html body #pagina-painel-candidato#pagina-painel-candidato.cp-enhanced .cp-layout {gap:20px!important;margin-bottom:24px!important}
 html body #pagina-painel-candidato#pagina-painel-candidato.cp-enhanced .cp-profile {
- padding:24px!important;border-radius:12px!important;box-shadow:0 3px 14px #14244703!important;min-height:0!important;
+ padding:24px!important;border-radius:12px!important;box-shadow:0 3px 14px #29575103!important;min-height:0!important;
 }
 html body #pagina-painel-candidato#pagina-painel-candidato.cp-enhanced .cp-profile-identity {
  grid-template-columns:100px minmax(0,1.2fr) minmax(210px,1fr) auto!important;gap:24px!important;align-items:center!important;
@@ -380,10 +380,10 @@ html body #pagina-painel-candidato#pagina-painel-candidato.cp-enhanced .cp-avata
  display:block!important;font-size:10px!important;font-weight:400!important;color:var(--cp-muted)!important;margin-top:4px;
 }
 html body #pagina-painel-candidato#pagina-painel-candidato.cp-enhanced .cp-profile .cp-name {
- font-size:24px!important;font-weight:700!important;color:#152449!important;margin-bottom:6px!important;
+ font-size:24px!important;font-weight:700!important;color:#295751!important;margin-bottom:6px!important;
 }
 html body #pagina-painel-candidato#pagina-painel-candidato.cp-enhanced .cp-profile .cp-role {
- font-size:14px!important;font-weight:500!important;color:#667594!important;
+ font-size:14px!important;font-weight:500!important;color:#66948f!important;
 }
 html body #pagina-painel-candidato#pagina-painel-candidato.cp-enhanced .cp-profile .cp-location {
  font-size:12px!important;color:var(--cp-muted)!important;
@@ -404,7 +404,7 @@ html body #pagina-painel-candidato#pagina-painel-candidato.cp-enhanced .cp-profi
 }
 html body #pagina-painel-candidato#pagina-painel-candidato.cp-enhanced .cp-profile-objective small {font-size:11px!important}
 html body #pagina-painel-candidato#pagina-painel-candidato.cp-enhanced .cp-profile-identity>button {
- border-color:#3261d8!important;color:#3261d8!important;border-radius:8px!important;
+ border-color:#59b1a7!important;color:#59b1a7!important;border-radius:8px!important;
  padding:10px 14px!important;font-size:11px!important;font-weight:600!important;
 }
 html body #pagina-painel-candidato#pagina-painel-candidato.cp-enhanced .cp-home-summary {gap:16px!important}
@@ -416,17 +416,17 @@ html body #pagina-painel-candidato#pagina-painel-candidato.cp-enhanced .cp-overv
  background:#fafbff!important;border-color:#c8c3ec!important;
 }
 html body #pagina-painel-candidato#pagina-painel-candidato.cp-enhanced .cp-overview-icon {
- width:50px;height:50px;flex-basis:50px;background:var(--cp-light);color:#3261d8;border-radius:10px;
+ width:50px;height:50px;flex-basis:50px;background:var(--cp-light);color:#59b1a7;border-radius:10px;
 }
 html body #pagina-painel-candidato#pagina-painel-candidato.cp-enhanced .cp-overview-card:nth-child(even) .cp-overview-icon {
- background:var(--cp-light);color:#3261d8;
+ background:var(--cp-light);color:#59b1a7;
 }
 html body #pagina-painel-candidato#pagina-painel-candidato.cp-enhanced .cp-overview-card:last-child .cp-overview-icon {
  background:var(--cp-pale-lilac);color:var(--cp-lilac);
 }
 html body #pagina-painel-candidato#pagina-painel-candidato.cp-enhanced .cp-overview-card svg {width:27px!important;height:27px!important}
 html body #pagina-painel-candidato#pagina-painel-candidato.cp-enhanced .cp-overview-card strong {
- font-size:30px!important;font-weight:700!important;color:#152449!important;
+ font-size:30px!important;font-weight:700!important;color:#295751!important;
 }
 html body #pagina-painel-candidato#pagina-painel-candidato.cp-enhanced .cp-overview-card div>span {
  font-size:12px!important;font-weight:400!important;color:var(--cp-muted)!important;
@@ -440,13 +440,13 @@ html body #pagina-painel-candidato#pagina-painel-candidato.cp-enhanced :is(.cp-p
 }
 html body #pagina-painel-candidato#pagina-painel-candidato.cp-enhanced .cp-panel {padding:22px}
 html body #pagina-painel-candidato#pagina-painel-candidato.cp-enhanced :is(.cp-panel h2,.em-personal-head h2) {
- font-size:19px!important;font-weight:700!important;color:#152449!important;
+ font-size:19px!important;font-weight:700!important;color:#295751!important;
 }
 html body #pagina-painel-candidato#pagina-painel-candidato.cp-enhanced .cp-panel h3 {font-size:13px!important;font-weight:650!important;color:var(--cp-navy)!important}
 html body #pagina-painel-candidato#pagina-painel-candidato.cp-enhanced .cp-panel p {font-size:12px!important;color:var(--cp-muted)!important}
 html body #pagina-painel-candidato#pagina-painel-candidato.cp-enhanced .cp-latest-list article {padding:16px 0;gap:14px}
 html body #pagina-painel-candidato#pagina-painel-candidato.cp-enhanced .cp-latest-list article:last-child {padding-bottom:0}
-html body #pagina-painel-candidato#pagina-painel-candidato.cp-enhanced .cp-small-icon {background:var(--cp-light)!important;color:#5277ca!important}
+html body #pagina-painel-candidato#pagina-painel-candidato.cp-enhanced .cp-small-icon {background:var(--cp-light)!important;color:#65b7ad!important}
 html body #pagina-painel-candidato#pagina-painel-candidato.cp-enhanced .cp-feature-icon {
  background:var(--cp-pale-lilac)!important;color:var(--cp-lilac)!important;border-radius:10px;
 }
@@ -454,9 +454,9 @@ html body #pagina-painel-candidato#pagina-painel-candidato.cp-enhanced .cp-statu
  background:var(--cp-pale-lilac)!important;color:#6745b2!important;font-size:10px!important;font-weight:500!important;border-radius:6px;
 }
 html body #pagina-painel-candidato#pagina-painel-candidato.cp-enhanced :is(.cp-status-entrevista,.cp-status-contato) {
- background:var(--cp-light)!important;color:#3261d8!important;
+ background:var(--cp-light)!important;color:#59b1a7!important;
 }
-html body #pagina-painel-candidato#pagina-painel-candidato.cp-enhanced .cp-status-reprovadas {background:#f1f3f8!important;color:#6c768d!important}
+html body #pagina-painel-candidato#pagina-painel-candidato.cp-enhanced .cp-status-reprovadas {background:#f1f8f7!important;color:#6c8d89!important}
 html body #pagina-painel-candidato#pagina-painel-candidato.cp-enhanced .cp-alert-card {
  display:flex;flex-direction:column;align-items:flex-start;gap:12px;background:#fff!important;
 }
@@ -464,23 +464,23 @@ html body #pagina-painel-candidato#pagina-painel-candidato.cp-enhanced .cp-alert
  display:flex;flex-wrap:wrap;gap:7px;width:100%;min-width:0;margin:4px 0;
 }
 html body #pagina-painel-candidato#pagina-painel-candidato.cp-enhanced .cp-alert-interests span {
- border:1px solid var(--cp-border);border-radius:6px;padding:6px 9px;color:#3261d8;
+ border:1px solid var(--cp-border);border-radius:6px;padding:6px 9px;color:#59b1a7;
  font-size:10px;font-weight:500;line-height:1.5;max-width:100%;overflow-wrap:anywhere;
 }
 html body #pagina-painel-candidato#pagina-painel-candidato.cp-enhanced .cp-alert-card .cp-primary {width:100%;margin-top:auto;min-height:40px}
 html body #pagina-painel-candidato#pagina-painel-candidato.cp-enhanced :is(.cp-panel .cp-primary,.cp-next-interview .cp-primary,.em-personal-grid article>a) {
- background:#3261d8!important;border-color:#3261d8!important;color:#fff!important;font-weight:600!important;
+ background:#59b1a7!important;border-color:#59b1a7!important;color:#fff!important;font-weight:600!important;
 }
 html body #pagina-painel-candidato#pagina-painel-candidato.cp-enhanced .cp-panel .cp-secondary {
  border-color:#c8b9ec!important;color:var(--cp-lilac)!important;background:#fff!important;
 }
-html body #pagina-painel-candidato#pagina-painel-candidato.cp-enhanced .cp-panel .cp-text-button {color:#3261d8!important;font-size:11px!important}
+html body #pagina-painel-candidato#pagina-painel-candidato.cp-enhanced .cp-panel .cp-text-button {color:#59b1a7!important;font-size:11px!important}
 html body #pagina-painel-candidato#pagina-painel-candidato.cp-enhanced .cp-value-sections {margin:4px 0 0;gap:0}
 html body #pagina-painel-candidato#pagina-painel-candidato.cp-enhanced .cp-preparation {
  display:block!important;background:transparent!important;border:0!important;padding:0!important;margin:0!important;
 }
 html body #pagina-painel-candidato#pagina-painel-candidato.cp-enhanced .cp-preparation>h2 {
- font-size:19px!important;line-height:1.4!important;font-weight:700!important;color:#152449!important;margin:0 0 14px!important;
+ font-size:19px!important;line-height:1.4!important;font-weight:700!important;color:#295751!important;margin:0 0 14px!important;
 }
 html body #pagina-painel-candidato#pagina-painel-candidato.cp-enhanced .cp-preparation>.cp-preparation-grid {
  display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;min-width:0!important;
@@ -491,7 +491,7 @@ html body #pagina-painel-candidato#pagina-painel-candidato.cp-enhanced .cp-prepa
 html body #pagina-painel-candidato#pagina-painel-candidato.cp-enhanced .cp-preparation-copy {flex:1 1 170px;min-width:0}
 html body #pagina-painel-candidato#pagina-painel-candidato.cp-enhanced .cp-preparation-copy :is(p,small) {margin:0;font-size:11px!important}
 html body #pagina-painel-candidato#pagina-painel-candidato.cp-enhanced .cp-preparation-card>.cp-text-button {margin-left:auto;white-space:nowrap}
-html body #pagina-painel-candidato#pagina-painel-candidato.cp-enhanced .cp-resume-card .cp-feature-icon {background:var(--cp-light)!important;color:#3261d8!important}
+html body #pagina-painel-candidato#pagina-painel-candidato.cp-enhanced .cp-resume-card .cp-feature-icon {background:var(--cp-light)!important;color:#59b1a7!important}
 html body #pagina-painel-candidato#pagina-painel-candidato.cp-enhanced .cp-practice-tests {margin-top:4px}
 html body #pagina-painel-candidato#pagina-painel-candidato.cp-enhanced :is(.cp-strengthen-heading,.cp-shortcuts) {
  background:transparent!important;border:0!important;padding:0!important;border-radius:0!important;
@@ -501,12 +501,12 @@ html body #pagina-painel-candidato#pagina-painel-candidato.cp-enhanced .cp-short
  background:#fff!important;border-color:var(--cp-border)!important;border-radius:12px!important;
 }
 html body #pagina-painel-candidato#pagina-painel-candidato.cp-enhanced .cp-shortcuts h3 {font-weight:650!important;color:var(--cp-navy)!important}
-html body #pagina-painel-candidato#pagina-painel-candidato.cp-enhanced .cp-shortcuts .painel-card>svg {color:#5277ca!important}
+html body #pagina-painel-candidato#pagina-painel-candidato.cp-enhanced .cp-shortcuts .painel-card>svg {color:#65b7ad!important}
 html body #pagina-painel-candidato#pagina-painel-candidato.cp-enhanced :is(button,a,input,textarea,summary):focus-visible {outline:3px solid #b8a4f1!important;outline-offset:3px!important}
 html body.cp-shell-active #pagina-candidaturas .cp-applications-hero {
- background:#fff!important;color:#1b2c51!important;border:1px solid #e0e5f3;box-shadow:none!important;border-radius:12px!important;
+ background:#fff!important;color:#234945!important;border:1px solid #e2f1ef;box-shadow:none!important;border-radius:12px!important;
 }
-html body.cp-shell-active #pagina-candidaturas .cp-applications-hero :is(h1,p,button,span) {color:#1b2c51!important}
+html body.cp-shell-active #pagina-candidaturas .cp-applications-hero :is(h1,p,button,span) {color:#234945!important}
 html body.cp-shell-active #pagina-candidaturas .cp-applications-hero h1 {font-size:28px!important;font-weight:700!important}
 html body.cp-shell-active #pagina-candidaturas .cp-applications-hero-icon {background:#eee9fa!important;border:0!important;color:#7453c8!important}
 html body.cp-shell-active #pagina-candidaturas .cp-applications-hero-icon svg {color:#7453c8!important}
@@ -581,12 +581,12 @@ html body.cp-shell-active #pagina-candidaturas .cp-applications-hero-icon svg {c
 
 /* Candidate dashboard: approved white navigation and purple actions. */
 html body.cp-shell-active #cpCandidateHeader .cp-navigation {
- background:#fff!important;border-right:1px solid #edf0f6!important;
+ background:#fff!important;border-right:1px solid #edf6f5!important;
 }
-html body.cp-shell-active #cpCandidateHeader .cp-nav-label {color:#667594!important}
-html body.cp-shell-active #cpCandidateHeader .cp-navigation button {color:#1b2c51!important}
-html body.cp-shell-active #cpCandidateHeader .cp-navigation button .cp-nav-icon {color:#1b2c51!important}
-html body.cp-shell-active #cpCandidateHeader .cp-navigation button:hover {background:#f1f4fa!important}
+html body.cp-shell-active #cpCandidateHeader .cp-nav-label {color:#66948f!important}
+html body.cp-shell-active #cpCandidateHeader .cp-navigation button {color:#234945!important}
+html body.cp-shell-active #cpCandidateHeader .cp-navigation button .cp-nav-icon {color:#234945!important}
+html body.cp-shell-active #cpCandidateHeader .cp-navigation button:hover {background:#f2f9f8!important}
 html body.cp-shell-active #cpCandidateHeader .cp-navigation button[aria-current=page] {
  background:linear-gradient(135deg,#C2410C,#B83B0B)!important;color:#fff!important;
  box-shadow:0 4px 12px #C2410C22!important;
@@ -595,26 +595,26 @@ html body.cp-shell-active #cpCandidateHeader .cp-navigation button[aria-current=
  background:linear-gradient(135deg,#A93609,#9A3412)!important;
 }
 html body.cp-shell-active #cpCandidateHeader .cp-navigation button[aria-current=page] :is(svg,span) {color:#fff!important}
-html body.cp-shell-active #cpCandidateHeader .cp-message-count {background:#edf2fb!important;color:#1b2c51!important}
+html body.cp-shell-active #cpCandidateHeader .cp-message-count {background:#f0f8f7!important;color:#234945!important}
 html body #pagina-painel-candidato#pagina-painel-candidato.cp-enhanced {
- --cp-pale-lilac:#eef2fa;--cp-border:#edf0f6;
+ --cp-pale-lilac:#f0f8f7;--cp-border:#edf6f5;
 }
 html body #pagina-painel-candidato#pagina-painel-candidato.cp-enhanced :is(.cp-profile,.cp-overview-card,.cp-panel,#emPersonalDashboard,.cp-home-activity>section,.cp-shortcuts .painel-card) {
- background:#fff!important;border:1px solid #E0E8ED!important;border-radius:14px!important;
+ background:#fff!important;border:1px solid #e0edeb!important;border-radius:14px!important;
  box-shadow:0 6px 24px rgba(27,44,81,.045)!important;
 }
 html body #pagina-painel-candidato#pagina-painel-candidato.cp-enhanced .cp-overview-card:hover {
  background:#fff!important;border-color:#FDBA74!important;box-shadow:0 8px 26px rgba(27,44,81,.08)!important;
 }
 html body #pagina-painel-candidato#pagina-painel-candidato.cp-enhanced .cp-avatar {
- border:4px solid #fff!important;background:#e4ecfb!important;color:#1b2c51!important;
+ border:4px solid #fff!important;background:#eaf5f4!important;color:#234945!important;
  box-shadow:0 3px 14px rgba(27,44,81,.06)!important;
 }
 html body #pagina-painel-candidato#pagina-painel-candidato.cp-enhanced :is(.cp-profile-skills span,.cp-status-chip) {
- background:#eef2fa!important;color:#354768!important;
+ background:#f0f8f7!important;color:#356862!important;
 }
 html body #pagina-painel-candidato#pagina-painel-candidato.cp-enhanced :is(.cp-feature-icon,.cp-overview-card:last-child .cp-overview-icon) {
- background:#edf2fc!important;color:#3261d8!important;
+ background:#f1f8f7!important;color:#59b1a7!important;
 }
 html body #pagina-painel-candidato#pagina-painel-candidato.cp-enhanced :is(.cp-profile-identity>button,.cp-panel .cp-primary,.cp-next-interview .cp-primary,.em-personal-grid article>a) {
  background:linear-gradient(135deg,#C2410C,#B83B0B)!important;border:1px solid transparent!important;
@@ -625,16 +625,16 @@ html body #pagina-painel-candidato#pagina-painel-candidato.cp-enhanced :is(.cp-p
  background:linear-gradient(135deg,#A93609,#9A3412)!important;
 }
 html body #pagina-painel-candidato#pagina-painel-candidato.cp-enhanced .cp-panel .cp-secondary {
- border-color:#edf0f6!important;background:#FFF7ED!important;color:#B83B0B!important;
+ border-color:#edf6f5!important;background:#FFF7ED!important;color:#B83B0B!important;
 }
 
 /* Candidate navigation groups. */
 html body.cp-shell-active #cpCandidateHeader .cp-nav-section-label {
- color:#667594!important;font-size:10px!important;font-weight:650!important;
+ color:#66948f!important;font-size:10px!important;font-weight:650!important;
  padding:8px 12px 10px;letter-spacing:.05em!important;
 }
 html body.cp-shell-active #cpCandidateHeader .cp-nav-section-label:not(:first-child) {
- border-top:1px solid #edf0f6;margin-top:16px;padding-top:20px;
+ border-top:1px solid #edf6f5;margin-top:16px;padding-top:20px;
 }
 @media(min-width:1201px){
  html body #pagina-painel-candidato#pagina-painel-candidato.cp-enhanced .cp-profile-identity {
@@ -646,32 +646,32 @@ html body.cp-shell-active #cpCandidateHeader .cp-nav-section-label:not(:first-ch
  display:flex;align-items:center;flex:0 0 auto;white-space:nowrap;padding:6px 10px!important;
  }
  html body.cp-shell-active #cpCandidateHeader .cp-nav-section-label:not(:first-child) {
- border-top:0;border-left:1px solid #e4e8f2;margin:0 0 0 8px;padding-left:16px!important;
+ border-top:0;border-left:1px solid #e4f2f0;margin:0 0 0 8px;padding-left:16px!important;
  }
 }
 
 /* Applications header follows the compact illustrated resume header. */
 html body #pagina-candidaturas#pagina-candidaturas .cp-applications-hero{
  display:grid!important;grid-template-columns:minmax(0,1fr) 33%!important;gap:12px 16px!important;
- padding:20px 24px 12px!important;min-height:0!important;border:1px solid #bcd8e3!important;border-radius:16px!important;
- background:radial-gradient(ellipse at 84% 15%,#d6e9f1 0,transparent 58%),linear-gradient(115deg,#f6fafc,#e5f0f5)!important;
- box-shadow:0 5px 20px #2854670a!important;overflow:hidden!important;color:#123946!important;
+ padding:20px 24px 12px!important;min-height:0!important;border:1px solid #bee1dd!important;border-radius:16px!important;
+ background:radial-gradient(ellipse at 84% 15%,#daedeb 0,transparent 58%),linear-gradient(115deg,#f6fafc,#e7f3f2)!important;
+ box-shadow:0 5px 20px #2e615b0a!important;overflow:hidden!important;color:#295751!important;
 }
-html body #pagina-candidaturas#pagina-candidaturas .cp-applications-hero:after{width:420px;height:420px;right:-90px;bottom:25px;border-color:#83b0c555;box-shadow:0 0 0 75px #8cb9cc12;pointer-events:none}
+html body #pagina-candidaturas#pagina-candidaturas .cp-applications-hero:after{width:420px;height:420px;right:-90px;bottom:25px;border-color:#83c5bd55;box-shadow:0 0 0 75px #8ecac312;pointer-events:none}
 html body #pagina-candidaturas#pagina-candidaturas .cp-applications-hero-copy{grid-column:1;grid-row:1;min-height:216px;display:flex;flex-direction:column;justify-content:center;min-width:0;z-index:1}
-html body #pagina-candidaturas#pagina-candidaturas .cp-applications-back{align-self:flex-start;border:0!important;background:transparent!important;color:#39768a!important;font-size:11px!important;padding:0!important;min-height:24px;margin:0!important}
-html body #pagina-candidaturas#pagina-candidaturas .cp-applications-kicker{display:flex;align-items:center;flex-wrap:wrap;color:#456675!important;font-size:10px!important;font-weight:600;letter-spacing:.7px;margin:10px 0 8px!important;gap:10px}
-html body #pagina-candidaturas#pagina-candidaturas .cp-applications-kicker span{background:#ffffffaa!important;color:#245e73!important;border:1px solid #83b0c5!important;border-radius:7px;padding:4px 9px;font-size:9px!important}
-html body #pagina-candidaturas#pagina-candidaturas .cp-applications-hero h1{font-size:clamp(23px,2.4vw,32px)!important;line-height:1.12!important;font-weight:750!important;color:#123946!important;letter-spacing:-.7px!important;margin:0 0 9px!important}
-html body #pagina-candidaturas#pagina-candidaturas .cp-applications-hero p{font-size:12px!important;line-height:1.55!important;font-weight:500!important;color:#52727e!important;max-width:560px!important;margin:0!important}
+html body #pagina-candidaturas#pagina-candidaturas .cp-applications-back{align-self:flex-start;border:0!important;background:transparent!important;color:#3e857c!important;font-size:11px!important;padding:0!important;min-height:24px;margin:0!important}
+html body #pagina-candidaturas#pagina-candidaturas .cp-applications-kicker{display:flex;align-items:center;flex-wrap:wrap;color:#45756f!important;font-size:10px!important;font-weight:600;letter-spacing:.7px;margin:10px 0 8px!important;gap:10px}
+html body #pagina-candidaturas#pagina-candidaturas .cp-applications-kicker span{background:#ffffffaa!important;color:#306760!important;border:1px solid #83c5bd!important;border-radius:7px;padding:4px 9px;font-size:9px!important}
+html body #pagina-candidaturas#pagina-candidaturas .cp-applications-hero h1{font-size:clamp(23px,2.4vw,32px)!important;line-height:1.12!important;font-weight:750!important;color:#295751!important;letter-spacing:-.7px!important;margin:0 0 9px!important}
+html body #pagina-candidaturas#pagina-candidaturas .cp-applications-hero p{font-size:12px!important;line-height:1.55!important;font-weight:500!important;color:#527e79!important;max-width:560px!important;margin:0!important}
 html body #pagina-candidaturas#pagina-candidaturas .cp-applications-chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:13px}
-html body #pagina-candidaturas#pagina-candidaturas .cp-applications-chips span{display:inline-flex;align-items:center;gap:6px;background:#fff5!important;border:1px solid #b6d3e0;border-radius:18px;padding:5px 10px;font-size:10px!important;color:#245e73!important}
-html body #pagina-candidaturas#pagina-candidaturas .cp-applications-chips span:before{content:'○';display:grid;place-items:center;width:17px;height:17px;border-radius:50%;background:#dcecf3;color:#39768a;font-size:10px}
+html body #pagina-candidaturas#pagina-candidaturas .cp-applications-chips span{display:inline-flex;align-items:center;gap:6px;background:#fff5!important;border:1px solid #b8ded9;border-radius:18px;padding:5px 10px;font-size:10px!important;color:#306760!important}
+html body #pagina-candidaturas#pagina-candidaturas .cp-applications-chips span:before{content:'○';display:grid;place-items:center;width:17px;height:17px;border-radius:50%;background:#dff0ee;color:#3e857c;font-size:10px}
 html body #pagina-candidaturas#pagina-candidaturas .cp-applications-art{grid-column:2;grid-row:1;display:flex;align-items:center;justify-content:center;min-width:0;max-height:216px}
 html body #pagina-candidaturas#pagina-candidaturas .cp-applications-art svg{display:block;width:100%!important;height:100%!important;max-height:216px;overflow:visible}
-html body #pagina-candidaturas#pagina-candidaturas .cp-applications-rail{grid-column:1/-1;grid-row:2;display:flex;align-items:center;gap:18px;min-height:40px;padding:9px 14px;border:1px solid #cde1ea;border-radius:11px;background:#ffffffba}
-html body #pagina-candidaturas#pagina-candidaturas .cp-applications-rail strong{color:#123946!important;font-size:12px!important;font-weight:700!important;white-space:nowrap}
-html body #pagina-candidaturas#pagina-candidaturas .cp-applications-rail span{color:#52727e!important;font-size:10px!important;border-left:1px solid #bdd6e1;padding-left:18px}
+html body #pagina-candidaturas#pagina-candidaturas .cp-applications-rail{grid-column:1/-1;grid-row:2;display:flex;align-items:center;gap:18px;min-height:40px;padding:9px 14px;border:1px solid #cfe8e5;border-radius:11px;background:#ffffffba}
+html body #pagina-candidaturas#pagina-candidaturas .cp-applications-rail strong{color:#295751!important;font-size:12px!important;font-weight:700!important;white-space:nowrap}
+html body #pagina-candidaturas#pagina-candidaturas .cp-applications-rail span{color:#527e79!important;font-size:10px!important;border-left:1px solid #bee0dc;padding-left:18px}
 @media(max-width:760px){
  html body #pagina-candidaturas#pagina-candidaturas .cp-applications-hero{padding:18px 18px 12px!important;grid-template-columns:minmax(0,1fr) 29%!important}
  html body #pagina-candidaturas#pagina-candidaturas .cp-applications-hero h1{font-size:24px!important}
@@ -694,48 +694,48 @@ html body #pagina-candidaturas#pagina-candidaturas .cp-applications-hero-copy{mi
 html body #pagina-candidaturas#pagina-candidaturas .cp-applications-chips{gap:10px!important;margin-top:14px!important}
 html body #pagina-candidaturas#pagina-candidaturas .cp-applications-chips span{min-height:36px!important;border-radius:9px!important;padding:7px 12px!important;font-weight:600!important;background:#ffffff88!important}
 html body #pagina-candidaturas#pagina-candidaturas .cp-applications-chips span:before{display:none!important}
-html body #pagina-candidaturas#pagina-candidaturas .cp-applications-chips svg{width:19px!important;height:19px!important;flex:0 0 19px!important;color:#245e73!important}
+html body #pagina-candidaturas#pagina-candidaturas .cp-applications-chips svg{width:19px!important;height:19px!important;flex:0 0 19px!important;color:#306760!important}
 html body #pagina-candidaturas#pagina-candidaturas .cp-applications-art{height:100%!important;max-height:216px!important;min-height:0!important}
 html body #pagina-candidaturas#pagina-candidaturas .cp-applications-art>svg{width:100%!important;height:100%!important;max-height:216px!important}
 @layer site-typography{
- #pagina-candidaturas#pagina-candidaturas .cp-applications-hero p{color:#52727e!important}
- #pagina-candidaturas#pagina-candidaturas .cp-applications-kicker span,#pagina-candidaturas#pagina-candidaturas .cp-applications-chips span{color:#245e73!important}
- #pagina-candidaturas#pagina-candidaturas .cp-applications-rail span{color:#52727e!important}
+ #pagina-candidaturas#pagina-candidaturas .cp-applications-hero p{color:#527e79!important}
+ #pagina-candidaturas#pagina-candidaturas .cp-applications-kicker span,#pagina-candidaturas#pagina-candidaturas .cp-applications-chips span{color:#306760!important}
+ #pagina-candidaturas#pagina-candidaturas .cp-applications-rail span{color:#527e79!important}
 }
 @media(max-width:760px){html body #pagina-candidaturas#pagina-candidaturas .cp-applications-hero{height:auto!important;min-height:250px!important}}
 @media(max-width:540px){html body #pagina-candidaturas#pagina-candidaturas .cp-applications-hero{height:auto!important;min-height:0!important}html body #pagina-candidaturas#pagina-candidaturas .cp-applications-chips span{min-height:30px!important;padding:5px 7px!important}html body #pagina-candidaturas#pagina-candidaturas .cp-applications-chips svg{width:15px!important;height:15px!important;flex-basis:15px!important}}
 
 /* Account trigger matches the approved popover reference. */
-html body.cp-shell-active #cpCandidateHeader .cp-greeting{display:flex!important;align-items:center;gap:12px!important;padding:0 4px 0 16px!important;background:transparent!important;border:0!important;border-left:1px solid #cad8e5!important;border-radius:0!important;color:#092d4c!important;box-shadow:none!important}
-html body.cp-shell-active #cpCandidateHeader .cp-user-avatar{display:grid!important;place-items:center;width:44px!important;height:44px!important;flex:0 0 44px!important;border:0!important;border-radius:50%!important;background-color:#c9dfea!important;color:#092d4c!important;font:600 17px Inter,Arial,sans-serif!important;opacity:1!important;visibility:visible!important}
-html body.cp-shell-active #cpCandidateHeader .cp-greeting-name{display:block!important;font:600 16px Inter,Arial,sans-serif!important;color:#092d4c!important;white-space:nowrap}
-html body.cp-shell-active #cpCandidateHeader .cp-account-chevron{display:block!important;width:19px!important;height:19px!important;margin-left:0;color:#092d4c!important}
-html body.cp-shell-active #cpCandidateHeader .cp-notifications{color:#092d4c!important}
+html body.cp-shell-active #cpCandidateHeader .cp-greeting{display:flex!important;align-items:center;gap:12px!important;padding:0 4px 0 16px!important;background:transparent!important;border:0!important;border-left:1px solid #cae5e2!important;border-radius:0!important;color:#295751!important;box-shadow:none!important}
+html body.cp-shell-active #cpCandidateHeader .cp-user-avatar{display:grid!important;place-items:center;width:44px!important;height:44px!important;flex:0 0 44px!important;border:0!important;border-radius:50%!important;background-color:#cce7e4!important;color:#295751!important;font:600 17px Inter,Arial,sans-serif!important;opacity:1!important;visibility:visible!important}
+html body.cp-shell-active #cpCandidateHeader .cp-greeting-name{display:block!important;font:600 16px Inter,Arial,sans-serif!important;color:#295751!important;white-space:nowrap}
+html body.cp-shell-active #cpCandidateHeader .cp-account-chevron{display:block!important;width:19px!important;height:19px!important;margin-left:0;color:#295751!important}
+html body.cp-shell-active #cpCandidateHeader .cp-notifications{color:#295751!important}
 html body.cp-shell-active #cpCandidateHeader .cp-notifications svg{width:25px!important;height:25px!important}
 @media(max-width:540px){html body.cp-shell-active #cpCandidateHeader .cp-greeting{gap:8px!important;padding-left:10px!important}html body.cp-shell-active #cpCandidateHeader .cp-greeting-name{font-size:13px!important}html body.cp-shell-active #cpCandidateHeader .cp-user-avatar{width:36px!important;height:36px!important;flex-basis:36px!important;font-size:15px!important}}
 
 /* Approved option 6: compact modular navigation cards. */
 html body.cp-shell-active #cpCandidateHeader .cp-navigation{background:#fff!important;padding:24px 16px!important;gap:8px!important}
-html body.cp-shell-active #cpCandidateHeader .cp-navigation .cp-nav-section-label{position:relative;width:100%;margin:0 0 12px!important;padding:0 0 12px!important;border:0!important;color:#102f4c!important;font:700 12px Inter,Arial,sans-serif!important;letter-spacing:.4px!important;text-transform:uppercase}
-html body.cp-shell-active #cpCandidateHeader .cp-navigation .cp-nav-section-label:after{content:"";display:block;position:absolute;bottom:0;left:0;width:35px;height:3px;border-radius:2px;background:#176c86}
+html body.cp-shell-active #cpCandidateHeader .cp-navigation .cp-nav-section-label{position:relative;width:100%;margin:0 0 12px!important;padding:0 0 12px!important;border:0!important;color:#295751!important;font:700 12px Inter,Arial,sans-serif!important;letter-spacing:.4px!important;text-transform:uppercase}
+html body.cp-shell-active #cpCandidateHeader .cp-navigation .cp-nav-section-label:after{content:"";display:block;position:absolute;bottom:0;left:0;width:35px;height:3px;border-radius:2px;background:#326b64}
 html body.cp-shell-active #cpCandidateHeader .cp-navigation .cp-nav-section-label:not(:first-child){margin-top:22px!important}
-html body.cp-shell-active #cpCandidateHeader .cp-navigation button{position:relative;display:flex!important;align-items:center!important;gap:0!important;width:100%!important;min-height:49px!important;height:49px!important;padding:0 25px 0 0!important;margin:0!important;border:1px solid #d8e4ed!important;border-radius:7px!important;background:#fff!important;box-shadow:none!important;overflow:hidden!important;color:#123451!important;text-align:left!important}
-html body.cp-shell-active #cpCandidateHeader .cp-navigation button>span:not(.cp-card-icon){padding:0 11px!important;font:500 13px Inter,Arial,sans-serif!important;letter-spacing:0!important;color:#123451!important;white-space:nowrap}
-html body.cp-shell-active #cpCandidateHeader .cp-navigation button>.cp-card-icon{display:grid!important;place-items:center!important;align-self:stretch!important;width:50px!important;min-width:50px!important;flex:0 0 50px!important;padding:7px!important;margin:0!important;border-right:1px solid #dfebf2!important;border-radius:0!important;background:#f0f7fb!important;color:#145571!important}
-html body.cp-shell-active #cpCandidateHeader .cp-navigation button .cp-nav-icon{width:29px!important;height:29px!important;flex:none!important;color:#145571!important}
-html body.cp-shell-active #cpCandidateHeader .cp-navigation button:after{content:""!important;display:block!important;position:absolute;right:13px;top:19px;width:7px;height:7px;border-top:2px solid #8199ad;border-right:2px solid #8199ad;transform:rotate(45deg);background:none!important}
-html body.cp-shell-active #cpCandidateHeader .cp-navigation button:hover{background:#f7fbfd!important;border-color:#a6c5d6!important}
+html body.cp-shell-active #cpCandidateHeader .cp-navigation button{position:relative;display:flex!important;align-items:center!important;gap:0!important;width:100%!important;min-height:49px!important;height:49px!important;padding:0 25px 0 0!important;margin:0!important;border:1px solid #d8edea!important;border-radius:7px!important;background:#fff!important;box-shadow:none!important;overflow:hidden!important;color:#285b57!important;text-align:left!important}
+html body.cp-shell-active #cpCandidateHeader .cp-navigation button>span:not(.cp-card-icon){padding:0 11px!important;font:500 13px Inter,Arial,sans-serif!important;letter-spacing:0!important;color:#285b57!important;white-space:nowrap}
+html body.cp-shell-active #cpCandidateHeader .cp-navigation button>.cp-card-icon{display:grid!important;place-items:center!important;align-self:stretch!important;width:50px!important;min-width:50px!important;flex:0 0 50px!important;padding:7px!important;margin:0!important;border-right:1px solid #e0f1ef!important;border-radius:0!important;background:#f2f9f8!important;color:#2b5a55!important}
+html body.cp-shell-active #cpCandidateHeader .cp-navigation button .cp-nav-icon{width:29px!important;height:29px!important;flex:none!important;color:#2b5a55!important}
+html body.cp-shell-active #cpCandidateHeader .cp-navigation button:after{content:""!important;display:block!important;position:absolute;right:13px;top:19px;width:7px;height:7px;border-top:2px solid #81ada8;border-right:2px solid #81ada8;transform:rotate(45deg);background:none!important}
+html body.cp-shell-active #cpCandidateHeader .cp-navigation button:hover{background:#f7fbfd!important;border-color:#a7d5d0!important}
 html body.cp-shell-active #cpCandidateHeader .cp-navigation button[aria-current=page],html body.cp-shell-active #cpCandidateHeader .cp-navigation button[aria-current=page]:hover{background:linear-gradient(110deg,#C2410C,#B83B0B)!important;border-color:#B83B0B!important;color:#fff!important}
 html body.cp-shell-active #cpCandidateHeader .cp-navigation button[aria-current=page]>span:not(.cp-card-icon){color:#fff!important;font-weight:600!important}
 html body.cp-shell-active #cpCandidateHeader .cp-navigation button[aria-current=page]>.cp-card-icon{background:transparent!important;border-right-color:#ffffff45!important;color:#fff!important}
 html body.cp-shell-active #cpCandidateHeader .cp-navigation button[aria-current=page] .cp-nav-icon{color:#fff!important}
 html body.cp-shell-active #cpCandidateHeader .cp-navigation button[aria-current=page]:after{border-color:#fff!important}
-html body.cp-shell-active #cpCandidateHeader .cp-navigation button[aria-current=page] .cp-nav-icon [fill]:not([fill=none]):not([fill=currentColor]){fill:#d9eef6}
+html body.cp-shell-active #cpCandidateHeader .cp-navigation button[aria-current=page] .cp-nav-icon [fill]:not([fill=none]):not([fill=currentColor]){fill:#dff0ee}
 @media(max-width:760px){html body.cp-shell-active #cpCandidateHeader .cp-navigation{padding:12px!important}html body.cp-shell-active #cpCandidateHeader .cp-navigation button{min-width:170px!important;width:auto!important;flex-shrink:0!important}html body.cp-shell-active #cpCandidateHeader .cp-navigation .cp-nav-section-label{width:auto!important;min-width:90px!important;margin:0 8px 0 0!important;align-self:center}html body.cp-shell-active #cpCandidateHeader .cp-navigation .cp-nav-section-label:not(:first-child){margin-top:0!important}}
 
 @media(min-width:851px){
  html body.cp-shell-active{--cp-sidebar-width:266px}
- html body.cp-shell-active #cpCandidateHeader .cp-navigation{display:flex!important;flex-direction:column!important;grid-template-columns:none!important;align-items:stretch!important;margin:0!important;max-width:none!important;border-right:1px solid #e1eaf0!important}
+ html body.cp-shell-active #cpCandidateHeader .cp-navigation{display:flex!important;flex-direction:column!important;grid-template-columns:none!important;align-items:stretch!important;margin:0!important;max-width:none!important;border-right:1px solid #e1f0ee!important}
  html body.cp-shell-active #cpCandidateHeader .cp-navigation button{flex:0 0 49px!important;flex-direction:row!important;justify-content:flex-start!important;transform:none!important}
  html body.cp-shell-active #cpCandidateHeader .cp-navigation .cp-nav-section-label{display:block!important;font-size:12px!important;line-height:1.5!important;font-weight:700!important}
  html body.cp-shell-active #cpCandidateHeader .cp-navigation .cp-nav-section-label:not(:first-child){margin-top:23px!important}
@@ -754,12 +754,12 @@ html body #pagina-painel-candidato#pagina-painel-candidato.cp-enhanced :is(butto
 
 /* Refined candidate tabs and clearly visible unread-message counter. */
 html body.cp-shell-active #cpCandidateHeader#cpCandidateHeader .cp-navigation button{
- border-radius:10px!important;border-color:#DFE7EC!important;
- box-shadow:0 2px 5px #12394605!important;
+ border-radius:10px!important;border-color:#dfecea!important;
+ box-shadow:0 2px 5px #29575105!important;
  transition:background .18s,border-color .18s,box-shadow .18s;
 }
 html body.cp-shell-active #cpCandidateHeader#cpCandidateHeader .cp-navigation button:hover{
- background:#F4F8FA!important;border-color:#A5C2CF!important;box-shadow:0 3px 9px #1239460D!important;
+ background:#F4F8FA!important;border-color:#a5cfca!important;box-shadow:0 3px 9px #2957510d!important;
 }
 html body.cp-shell-active #cpCandidateHeader#cpCandidateHeader .cp-navigation button[aria-current=page]{
  background:linear-gradient(110deg,#C2410C,#B83B0B)!important;border-color:#B83B0B!important;
@@ -781,39 +781,39 @@ html body.cp-shell-active #cpCandidateHeader#cpCandidateHeader .cp-navigation bu
 html body.cp-shell-active #cpCandidateHeader#cpCandidateHeader .cp-navigation button .cp-message-count[hidden]{display:none!important}
 
 /* Model 3: floating white navigation, petroleum hero and warm orange actions. */
-html body.cp-shell-active{--cp-sidebar-width:270px;background:#EAF3F8!important;--candidate-primary:#C2410C;--candidate-accent:#C2410C}
-html body.cp-shell-active #cpCandidateHeader#cpCandidateHeader .cp-toolbar{background:#EAF3F8!important;border:0!important;height:64px!important;min-height:64px!important}
+html body.cp-shell-active{--cp-sidebar-width:270px;background:#ecf6f5!important;--candidate-primary:#C2410C;--candidate-accent:#C2410C}
+html body.cp-shell-active #cpCandidateHeader#cpCandidateHeader .cp-toolbar{background:#ecf6f5!important;border:0!important;height:64px!important;min-height:64px!important}
 html body.cp-shell-active #cpCandidateHeader#cpCandidateHeader .cp-toolbar>strong,html body.cp-shell-active #cpCandidateHeader#cpCandidateHeader .cp-toolbar-context{visibility:hidden}
-html body.cp-shell-active #cpCandidateHeader#cpCandidateHeader .cp-navigation{top:24px!important;left:24px!important;bottom:24px!important;width:246px!important;max-height:calc(100dvh - 48px)!important;border:0!important;border-radius:18px!important;padding:24px 14px!important;gap:7px!important;box-shadow:0 8px 32px #12425A05!important;z-index:1001;overflow-y:auto!important}
+html body.cp-shell-active #cpCandidateHeader#cpCandidateHeader .cp-navigation{top:24px!important;left:24px!important;bottom:24px!important;width:246px!important;max-height:calc(100dvh - 48px)!important;border:0!important;border-radius:18px!important;padding:24px 14px!important;gap:7px!important;box-shadow:0 8px 32px #23494505!important;z-index:1001;overflow-y:auto!important}
 html body.cp-shell-active #cpCandidateHeader#cpCandidateHeader .cp-nav-section-label{display:none!important}
-.m3-brand{padding:0 10px 28px;font:750 27px/1.3 Inter,Arial,sans-serif;color:#155E75;letter-spacing:-1px}.m3-brand span{color:#C2410C!important}
+.m3-brand{padding:0 10px 28px;font:750 27px/1.3 Inter,Arial,sans-serif;color:#2c5e58;letter-spacing:-1px}.m3-brand span{color:#C2410C!important}
 html body.cp-shell-active #cpCandidateHeader#cpCandidateHeader .cp-navigation button{background:transparent!important;border:0!important;box-shadow:none!important;min-height:52px!important;height:52px!important;flex:0 0 52px!important;border-radius:13px!important;padding:0 12px!important;gap:12px!important;overflow:visible!important}
-html body.cp-shell-active #cpCandidateHeader#cpCandidateHeader .cp-navigation button>span:not(.cp-card-icon){font:500 14px/1.3 Inter,Arial,sans-serif!important;padding:0!important;color:#123451!important}
-html body.cp-shell-active #cpCandidateHeader#cpCandidateHeader .cp-navigation button>.cp-card-icon{border:0!important;background:transparent!important;padding:0!important;width:26px!important;min-width:26px!important;flex:0 0 26px!important;color:#123451!important}
+html body.cp-shell-active #cpCandidateHeader#cpCandidateHeader .cp-navigation button>span:not(.cp-card-icon){font:500 14px/1.3 Inter,Arial,sans-serif!important;padding:0!important;color:#285b57!important}
+html body.cp-shell-active #cpCandidateHeader#cpCandidateHeader .cp-navigation button>.cp-card-icon{border:0!important;background:transparent!important;padding:0!important;width:26px!important;min-width:26px!important;flex:0 0 26px!important;color:#285b57!important}
 html body.cp-shell-active #cpCandidateHeader#cpCandidateHeader .cp-card-icon svg{width:25px!important;height:25px!important}
 html body.cp-shell-active #cpCandidateHeader#cpCandidateHeader .cp-navigation button:after{display:none!important}
-html body.cp-shell-active #cpCandidateHeader#cpCandidateHeader .cp-navigation button:hover{background:#EFF6FA!important}
+html body.cp-shell-active #cpCandidateHeader#cpCandidateHeader .cp-navigation button:hover{background:#f1f8f7!important}
 html body.cp-shell-active #cpCandidateHeader#cpCandidateHeader .cp-navigation button[aria-current=page]{background:linear-gradient(110deg,#C2410C,#DE5008)!important;box-shadow:0 4px 10px #C2410C12!important}
 html body.cp-shell-active #cpCandidateHeader#cpCandidateHeader .cp-navigation button[aria-current=page]>span{color:#fff!important;font-weight:650!important}
 html body.cp-shell-active #cpCandidateHeader#cpCandidateHeader .cp-navigation button[aria-current=page] svg{color:#fff!important}
-.m3-help{margin:20px 4px 0;padding:20px 16px 16px;border-top:1px solid #E0EAF0;background:linear-gradient(#FFF8F1,#FFFAF5);border-radius:14px;color:#123451}.m3-help strong{display:block;font:700 18px/1.25 Inter,Arial,sans-serif}.m3-help p{font:400 12px/1.5 Inter,Arial,sans-serif;color:#637D93;margin:12px 0}.m3-help svg{width:100%;height:90px}.m3-help button{border:1px solid #C2410C!important;color:#C2410C!important;justify-content:center!important;font-weight:650!important;min-height:38px!important}
-html body #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato.cp-enhanced{background:#EAF3F8!important;--cp-navy:#123451;--cp-bg:#EAF3F8}
+.m3-help{margin:20px 4px 0;padding:20px 16px 16px;border-top:1px solid #e0f0ee;background:linear-gradient(#FFF8F1,#FFFAF5);border-radius:14px;color:#285b57}.m3-help strong{display:block;font:700 18px/1.25 Inter,Arial,sans-serif}.m3-help p{font:400 12px/1.5 Inter,Arial,sans-serif;color:#63938d;margin:12px 0}.m3-help svg{width:100%;height:90px}.m3-help button{border:1px solid #C2410C!important;color:#C2410C!important;justify-content:center!important;font-weight:650!important;min-height:38px!important}
+html body #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato.cp-enhanced{background:#ecf6f5!important;--cp-navy:#285b57;--cp-bg:#ecf6f5}
 html body #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato .container-dashboard{max-width:1600px!important;padding:8px 26px 32px!important}
-html body #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato .cp-home-intro{display:flex!important;align-items:center;justify-content:space-between;position:relative;overflow:hidden;min-height:290px;padding:32px 38px!important;border-radius:18px!important;background:linear-gradient(110deg,#07465E,#1A6984)!important;margin:0 0 18px!important;box-sizing:border-box;gap:12px}
-.m3-welcome{position:relative;z-index:1;flex:1}.m3-welcome>small{color:#C6E2EE!important;font:500 10px Inter,Arial,sans-serif!important;letter-spacing:1.7px!important}
+html body #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato .cp-home-intro{display:flex!important;align-items:center;justify-content:space-between;position:relative;overflow:hidden;min-height:290px;padding:32px 38px!important;border-radius:18px!important;background:linear-gradient(110deg,#397d78,#438c87)!important;margin:0 0 18px!important;box-sizing:border-box;gap:12px}
+.m3-welcome{position:relative;z-index:1;flex:1}.m3-welcome>small{color:#cde7e4!important;font:500 10px Inter,Arial,sans-serif!important;letter-spacing:1.7px!important}
 html body #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato .cp-home-intro h1{font:750 clamp(30px,3.6vw,53px)/1.15 Inter,Arial,sans-serif!important;letter-spacing:-1px!important;color:white!important;margin:16px 0 12px!important}
-html body #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato .cp-home-intro p{font:400 16px/1.55 Inter,Arial,sans-serif!important;color:#E6F1F7!important;margin:0 0 22px!important}
+html body #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato .cp-home-intro p{font:400 16px/1.55 Inter,Arial,sans-serif!important;color:#e9f4f3!important;margin:0 0 22px!important}
 .m3-welcome button{background:#C2410C!important;color:#fff!important;border:0!important;border-radius:11px;padding:13px 22px;font:650 13px Inter,Arial,sans-serif;cursor:pointer}.m3-welcome button span{margin-left:24px;font-size:21px}.m3-art{width:44%;max-width:460px;flex-shrink:0}.m3-art svg{display:block;width:100%;height:auto}
 html body #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato :is(.cp-profile,.cp-search,.cp-banner){display:none!important}
 html body #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato .cp-layout{display:flex!important;flex-direction:column!important;gap:18px!important}
 html body #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato .cp-home-summary{display:grid!important;grid-template-columns:repeat(4,minmax(0,1fr))!important;gap:14px!important;margin:0!important}
 html body #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato .cp-overview-card{min-height:112px!important;border:0!important;border-radius:16px!important;padding:20px!important;box-shadow:none!important;background:#fff!important;gap:14px!important}
-html body #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato .cp-overview-icon{background:#EFF6FA!important;border-radius:50%!important;width:52px!important;height:52px!important;flex:0 0 52px!important;color:#C2410C!important}
-html body #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato .cp-overview-arrow{margin-left:auto;background:#EFF5F9!important;border-radius:50%;padding:5px;color:#123451!important}
+html body #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato .cp-overview-icon{background:#f1f8f7!important;border-radius:50%!important;width:52px!important;height:52px!important;flex:0 0 52px!important;color:#C2410C!important}
+html body #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato .cp-overview-arrow{margin-left:auto;background:#f0f8f7!important;border-radius:50%;padding:5px;color:#285b57!important}
 html body #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato .cp-opportunities{display:grid!important;grid-template-columns:minmax(0,1.8fr) minmax(260px,1fr)!important;gap:18px!important}
 html body #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato #emPersonalDashboard{border:0!important;border-radius:17px!important;box-shadow:none!important;padding:22px!important}
 html body #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato .em-personal-grid{grid-template-columns:1fr!important;gap:14px!important}
-html body #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato .em-personal-grid article{border:1px solid #E2ECF2!important;border-radius:12px!important;padding:20px!important;min-height:130px!important}
+html body #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato .em-personal-grid article{border:1px solid #e2f2f0!important;border-radius:12px!important;padding:20px!important;min-height:130px!important}
 html body #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato .cp-home-activity{display:flex!important;flex-direction:column!important;gap:14px!important}
 html body #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato .cp-home-activity>section{background:white!important;border:0!important;border-radius:17px!important;padding:24px!important;box-shadow:none!important}
 @media(max-width:1100px){html body #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato .cp-home-summary{grid-template-columns:repeat(2,minmax(0,1fr))!important}html body #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato .cp-opportunities{grid-template-columns:1fr!important}}
@@ -825,9 +825,9 @@ html body #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candida
 html body #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato .cp-layout>.cp-opportunities{order:1!important}
 html body #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato .cp-layout>.cp-follow-grid{order:2!important}
 html body #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato .cp-layout>.cp-value-sections{order:3!important}
-html body #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato .cp-home-intro{background-color:#10536B!important}
-html body #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato .m3-welcome p{color:#E6F1F7!important}
-html body #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato .m3-welcome small{color:#BEDCEB!important}
+html body #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato .cp-home-intro{background-color:#27544e!important}
+html body #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato .m3-welcome p{color:#e9f4f3!important}
+html body #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato .m3-welcome small{color:#c5e4e0!important}
 html body #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato .m3-welcome h1{font-family:Inter,Arial,sans-serif!important;font-weight:750!important}
 html body #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato .cp-overview-arrow{display:grid!important;place-items:center!important;flex:0 0 25px!important;width:25px!important;height:25px!important;padding:2px!important}
 html body #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato .cp-overview-arrow svg{width:17px!important;height:17px!important}
@@ -837,7 +837,7 @@ html body.cp-shell-active #cpCandidateHeader#cpCandidateHeader .cp-navigation{ga
 html body.cp-shell-active #cpCandidateHeader#cpCandidateHeader .cp-navigation button{height:48px!important;min-height:48px!important;flex-basis:48px!important}
 .m3-help{margin-top:15px;padding:16px 14px}.m3-help strong{font-size:17px}.m3-help p{font-size:11px;margin:9px 0}.m3-help svg{height:75px}
 @media(max-width:1100px){html body #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato .cp-home-summary{grid-template-columns:repeat(2,minmax(0,1fr))!important}}
-@layer site-typography{html body #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato .m3-welcome p{color:#E6F1F7!important}html body #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato .m3-welcome small{color:#BEDCEB!important}}
+@layer site-typography{html body #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato .m3-welcome p{color:#e9f4f3!important}html body #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato .m3-welcome small{color:#c5e4e0!important}}
 /* Recommended jobs use the compact horizontal cards from the reference. */
 html body #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato .em-personal-grid article{display:grid!important;grid-template-columns:44px minmax(0,1fr) auto!important;gap:6px 12px!important;align-items:start!important;padding:18px!important;min-height:156px!important}
 html body #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato .em-personal-grid .cp-job-symbol{grid-column:1!important;grid-row:1/4!important;position:static!important;width:44px!important;height:44px!important;margin:0!important;border-radius:10px!important;display:grid!important;place-items:center!important}
@@ -847,7 +847,7 @@ html body #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candida
 html body #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato .em-personal-grid .cp-recommended-salary{grid-column:3!important;grid-row:1/3!important;padding:0!important;margin:0!important;border:0!important;font-size:13px!important;text-align:right!important}
 html body #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato .em-personal-reasons{grid-column:2!important;grid-row:4!important;margin:0!important}
 html body #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato .em-personal-grid article>a{grid-column:3!important;grid-row:3/5!important;width:auto!important;margin:0!important;align-self:center!important;padding:8px 12px!important;font-size:10px!important;white-space:nowrap!important}
-html body #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato .cp-fit-and-alert{grid-column:1/-1!important;display:flex!important;align-items:center!important;gap:8px!important;border-top:1px solid #EFF3F7;padding-top:8px;margin-top:4px}
+html body #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato .cp-fit-and-alert{grid-column:1/-1!important;display:flex!important;align-items:center!important;gap:8px!important;border-top:1px solid #eff7f6;padding-top:8px;margin-top:4px}
 html body #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato .cp-fit-and-alert button{margin:0!important;font-size:9px!important;min-height:25px!important;padding:4px 6px!important}
 @media(max-width:650px){html body #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato .em-personal-grid article{grid-template-columns:36px minmax(0,1fr)!important}html body #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato .em-personal-grid .cp-recommended-salary{grid-column:2!important;grid-row:4!important;text-align:left!important}html body #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato .em-personal-reasons{grid-row:5!important}html body #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato .em-personal-grid article>a{grid-column:2!important;grid-row:6!important;justify-self:start}.cp-fit-and-alert{flex-wrap:wrap}}
 
@@ -867,19 +867,19 @@ html body #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candida
 /* Model 3 refinement: one consistent size and color hierarchy. */
 @layer site-typography {
  html body.cp-shell-active #pagina-painel-candidato.cp-enhanced .cp-home-intro .m3-welcome h1{font-family:Inter,Arial,sans-serif!important;font-size:42px!important;font-weight:700!important;line-height:1.1!important;color:#fff!important}
- html body.cp-shell-active #pagina-painel-candidato.cp-enhanced .cp-home-intro .m3-welcome p{font-family:Inter,Arial,sans-serif!important;font-size:15px!important;font-weight:400!important;line-height:1.5!important;color:#e5f3fa!important}
- html body.cp-shell-active #pagina-painel-candidato.cp-enhanced .cp-home-intro .m3-welcome small{font-size:10px!important;font-weight:500!important;letter-spacing:1.3px!important;color:#c4e0ee!important}
+ html body.cp-shell-active #pagina-painel-candidato.cp-enhanced .cp-home-intro .m3-welcome p{font-family:Inter,Arial,sans-serif!important;font-size:15px!important;font-weight:400!important;line-height:1.5!important;color:#eaf5f4!important}
+ html body.cp-shell-active #pagina-painel-candidato.cp-enhanced .cp-home-intro .m3-welcome small{font-size:10px!important;font-weight:500!important;letter-spacing:1.3px!important;color:#cbe7e3!important}
  html body.cp-shell-active #pagina-painel-candidato.cp-enhanced .cp-home-intro .m3-welcome button{color:#fff!important;font-size:13px!important;font-weight:600!important}
- html body.cp-shell-active #pagina-painel-candidato.cp-enhanced .cp-home-intro .m3-motto{color:#cae5f0!important;font:500 9px/1.7 Inter,Arial,sans-serif!important;letter-spacing:1.4px!important}
- html body.cp-shell-active #cpCandidateHeader .m3-help strong{font:700 17px/1.22 Inter,Arial,sans-serif!important;color:#123451!important}
- html body.cp-shell-active #cpCandidateHeader .m3-help p{font:400 12px/1.35 Inter,Arial,sans-serif!important;color:#657e94!important}
+ html body.cp-shell-active #pagina-painel-candidato.cp-enhanced .cp-home-intro .m3-motto{color:#d1e9e6!important;font:500 9px/1.7 Inter,Arial,sans-serif!important;letter-spacing:1.4px!important}
+ html body.cp-shell-active #cpCandidateHeader .m3-help strong{font:700 17px/1.22 Inter,Arial,sans-serif!important;color:#285b57!important}
+ html body.cp-shell-active #cpCandidateHeader .m3-help p{font:400 12px/1.35 Inter,Arial,sans-serif!important;color:#65948f!important}
  html body.cp-shell-active #cpCandidateHeader .m3-help button{font:600 12px/1.3 Inter,Arial,sans-serif!important;color:#c74605!important}
  html body.cp-shell-active #pagina-painel-candidato.cp-enhanced .em-personal-head a{color:#cb4706!important}
- html body.cp-shell-active #pagina-painel-candidato.cp-enhanced .cp-overview-card div>span{font:400 13px/1.3 Inter,Arial,sans-serif!important;color:#466582!important}
+ html body.cp-shell-active #pagina-painel-candidato.cp-enhanced .cp-overview-card div>span{font:400 13px/1.3 Inter,Arial,sans-serif!important;color:#46827b!important}
 }
 html body.cp-shell-active{--candidate-primary:#c74605!important;--candidate-soft:#fff3e7!important;--roxo:#c74605!important;--roxoClaro:#fff3e7!important}
 html body #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato.cp-enhanced{--cp-lilac:#c74605;--cp-pale-lilac:#fff5eb;--roxo:#c74605;--roxoClaro:#fff5eb}
-html body #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato .cp-home-intro{height:240px!important;min-height:0!important;padding:24px 34px!important;background:radial-gradient(ellipse at 85% 0%,#2c7895 0%,transparent 65%),linear-gradient(110deg,#0b4961,#14617a)!important;margin-bottom:14px!important}
+html body #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato .cp-home-intro{height:240px!important;min-height:0!important;padding:24px 34px!important;background:radial-gradient(ellipse at 85% 0%,#3e837b 0%,transparent 65%),linear-gradient(110deg,#234945,#2d615b)!important;margin-bottom:14px!important}
 html body #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato .cp-home-intro h1{margin:12px 0!important}
 html body #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato .cp-home-intro p{margin:0 0 18px!important}
 html body #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato .m3-welcome{flex:0 0 53%!important}
@@ -892,8 +892,8 @@ html body.cp-shell-active #cpCandidateHeader#cpCandidateHeader .m3-help p{margin
 html body.cp-shell-active #cpCandidateHeader#cpCandidateHeader .m3-help svg{display:block!important;width:100%!important;height:110px!important;margin:-8px 0 9px!important}
 html body.cp-shell-active #cpCandidateHeader#cpCandidateHeader .cp-navigation .m3-help button{display:flex!important;justify-content:center!important;align-items:center!important;width:100%!important;height:36px!important;min-height:36px!important;max-height:36px!important;margin:0!important;padding:0 8px!important;border:1.5px solid #d94b05!important;border-radius:10px!important;background:transparent!important;color:#c74605!important}
 html body #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato .cp-overview-card{min-height:94px!important;height:94px!important;padding:14px 16px!important;gap:12px!important}
-html body #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato .cp-overview-icon{width:54px!important;height:54px!important;flex-basis:54px!important;background:radial-gradient(circle at 35% 25%,#f6fbfe,#eaf3f8)!important}
-html body #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato .cp-overview-icon svg{width:32px!important;height:36px!important;filter:drop-shadow(1px 2px 1px #153b531c)}
+html body #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato .cp-overview-icon{width:54px!important;height:54px!important;flex-basis:54px!important;background:radial-gradient(circle at 35% 25%,#f8fcfb,#ecf6f5)!important}
+html body #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato .cp-overview-icon svg{width:32px!important;height:36px!important;filter:drop-shadow(1px 2px 1px #2957511c)}
 html body #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato .cp-overview-card strong{font-size:29px!important;font-weight:700!important}
 html body #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato .em-personal-head{margin-bottom:14px!important;align-items:center!important}
 html body #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato .em-personal-head a{color:#c74605!important;font-size:12px!important;font-weight:600!important}
@@ -902,7 +902,7 @@ html body #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candida
 html body #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato .em-personal-grid .cp-job-symbol{width:52px!important;height:56px!important}
 html body #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato .em-personal-grid article>a{background:#fff5eb!important;color:#c74605!important;border:1px solid #f2be98!important}
 html body #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato .cp-fit-button{background:#fff6ed!important;color:#a43a05!important;border-color:#efcfb8!important}
-html body #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato .em-personal-reasons span{background:#eef4f8!important;color:#385b77!important;border-radius:20px!important;padding:4px 9px!important}
+html body #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato .em-personal-reasons span{background:#eff7f6!important;color:#387770!important;border-radius:20px!important;padding:4px 9px!important}
 @media(max-width:1100px) and (min-width:851px){.m3-motto{font-size:8px!important;right:2%;top:15px}html body #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato .cp-overview-card{padding:12px!important;gap:8px!important}html body #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato .cp-overview-icon{width:40px!important;height:40px!important;flex-basis:40px!important}}
 @media(max-width:650px){.m3-motto{display:none!important}html body #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato .cp-home-intro{height:220px!important;padding:20px!important}html body #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato .m3-welcome{flex-basis:100%!important}html body #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato .m3-art{width:48%!important;right:-25px!important;opacity:.22!important}html body #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato .cp-home-summary{grid-template-columns:repeat(2,minmax(0,1fr))!important}html body #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato .cp-overview-card{height:90px!important;padding:12px!important;gap:8px!important}html body #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato .cp-overview-arrow{display:none!important}html body #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato .cp-overview-icon{width:38px!important;height:38px!important;flex-basis:38px!important}html body #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato .em-personal-grid article{grid-template-columns:40px minmax(0,1fr)!important}html body #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato .em-personal-grid .cp-job-symbol{width:40px!important;height:44px!important}html body #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato .em-personal-head{gap:10px!important;flex-wrap:wrap!important}}
 /* Keep company and city on the same compact metadata row. */
@@ -915,9 +915,9 @@ html body.cp-shell-active #cpCandidateHeader#cpCandidateHeader .cp-notification-
 /* Refined candidate navigation: illustrated icons and circular unread count. */
 html body.cp-shell-active{--cp-header-height:48px!important}
 html body.cp-shell-active #cpCandidateHeader#cpCandidateHeader .cp-toolbar{height:48px!important;min-height:48px!important;background:linear-gradient(110deg,#c74605,#de5008)!important}
-html body.cp-shell-active #cpCandidateHeader#cpCandidateHeader .cp-navigation button[data-route]{--nav-stroke:#15465d;--nav-accent:#d94b05;--nav-fill:#e7f2f8;gap:12px!important}
-html body.cp-shell-active #cpCandidateHeader#cpCandidateHeader .cp-navigation button[data-route]>.cp-card-icon{display:grid!important;place-items:center!important;flex:0 0 36px!important;width:36px!important;height:36px!important;min-width:36px!important;border-radius:10px!important;background:linear-gradient(140deg,#f4f9fc,#e6f0f6)!important;border:1px solid #dbe8ef!important;box-shadow:0 2px 4px #12345105!important}
-html body.cp-shell-active #cpCandidateHeader#cpCandidateHeader .cp-navigation .cp-card-icon .m3-nav-svg{width:25px!important;height:27px!important;flex:none!important;filter:drop-shadow(0 1px 1px #12345112)}
+html body.cp-shell-active #cpCandidateHeader#cpCandidateHeader .cp-navigation button[data-route]{--nav-stroke:#244e49;--nav-accent:#d94b05;--nav-fill:#eaf5f4;gap:12px!important}
+html body.cp-shell-active #cpCandidateHeader#cpCandidateHeader .cp-navigation button[data-route]>.cp-card-icon{display:grid!important;place-items:center!important;flex:0 0 36px!important;width:36px!important;height:36px!important;min-width:36px!important;border-radius:10px!important;background:linear-gradient(140deg,#f5faf8,#e8f4f3)!important;border:1px solid #dceeec!important;box-shadow:0 2px 4px #29575105!important}
+html body.cp-shell-active #cpCandidateHeader#cpCandidateHeader .cp-navigation .cp-card-icon .m3-nav-svg{width:25px!important;height:27px!important;flex:none!important;filter:drop-shadow(0 1px 1px #29575112)}
 html body.cp-shell-active #cpCandidateHeader#cpCandidateHeader .cp-navigation button[data-route][aria-current=page]{--nav-stroke:#fff;--nav-accent:#fff;--nav-fill:#ffffff18}
 html body.cp-shell-active #cpCandidateHeader#cpCandidateHeader .cp-navigation button[data-route][aria-current=page]>.cp-card-icon{background:#ffffff15!important;border-color:#ffffff32!important;box-shadow:none!important}
 html body.cp-shell-active #cpCandidateHeader#cpCandidateHeader .cp-navigation button[data-route=messages]>.cp-message-count{display:grid!important;place-items:center!important;right:12px!important;width:20px!important;height:20px!important;min-width:20px!important;padding:0!important;border:0!important;border-radius:50%!important;background:#dc2626!important;color:#fff!important;box-shadow:none!important;font:700 11px/20px Inter,Arial,sans-serif!important}
