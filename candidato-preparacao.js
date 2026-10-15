@@ -590,7 +590,15 @@
 (function(){
  'use strict';var panel,trigger;
  function esc(v){return String(v||'').replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];});}
- function icon(type){var paths={key:'<path d="m12 2 9 4v6c0 6-9 10-9 10S3 18 3 12V6Z"/><circle cx="13" cy="9" r="2.3"/><path d="m11.5 11-4 6m1.5-2 2 1"/>',mail:'<path d="M3 9h18v13H3ZM3 10l9 6 9-6M7 11V3h10v8M10 6h4M10 9h4"/>',user:'<circle cx="12" cy="7" r="4"/><path d="M4 22v-3a8 8 0 0 1 16 0v3"/>',document:'<path d="M5 2h10l4 4v16H5ZM14 2v6h5M8 12h8M8 16h6"/>',bell:'<path d="M6 9a6 6 0 0 1 12 0v7l2 3H4l2-3ZM10 22h4"/>',gear:'<circle cx="12" cy="12" r="4"/><path d="m9 2 6 0 1 4 4 1 2 5-3 3 0 4-5 3-3-3-4 1-4-5 2-4-1-4 5-2Z"/>',power:'<path d="M12 2v10M6 5a9 9 0 1 0 12 0"/>',crown:'<path d="m2 6 5 4 5-8 5 8 5-4-3 15H5Z"/>',eye:'<path d="M2 12s4-7 10-7 10 7 10 7-4 7-10 7S2 12 2 12Z"/><circle cx="12" cy="12" r="3"/>'};return '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'+(paths[type]||paths.gear)+'</svg>';}
+ function icon(type){
+ var art={
+ bell:'<path d="M6 17h12l-2-3V9a4 4 0 0 0-8 0v5Z" fill="#e0f0f7"/><path d="M6 17h12l-2-3V9a4 4 0 0 0-8 0v5ZM10 19a2 2 0 0 0 4 0" stroke="#146788"/><circle cx="12" cy="4" r="1" fill="#146788" stroke="none"/><path d="m19 5 1-1m0 4 2-.3m-3-6 .5-1" stroke="#80bdd8"/>',
+ key:'<path d="m12 2 8 3v7c0 5-8 10-8 10S4 17 4 12V5Z" fill="#e3f2f8" stroke="#146788"/><path d="m12 11-3 6m1-2 2 1" stroke="#146788"/><circle cx="13" cy="9" r="1.8" stroke="#146788"/>',
+ mail:'<rect x="6" y="3" width="12" height="13" rx="1.5" fill="#dbedf5" stroke="#7cb8d4"/><path d="M9 7h6M9 10h6" stroke="#7cb8d4"/><path d="m3 10 9 7 9-7v11H3Z" fill="#f8fcfe" stroke="#146788"/><path d="m3 10 3-2m15 2-3-2" stroke="#146788"/>',
+ crown:'<path d="m2 8 5 3 5-8 5 8 5-3-3 11H5Z" fill="#176f91" stroke="#176f91"/><path d="M5 22h14" stroke="#176f91"/><g fill="#176f91" stroke="none"><circle cx="2" cy="7" r="1.4"/><circle cx="12" cy="2.5" r="1.4"/><circle cx="22" cy="7" r="1.4"/></g>',
+ power:'<path d="M12 2v10M6 5a9 9 0 1 0 12 0" stroke="currentColor"/>'
+ };return '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.35" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'+(art[type]||art.key)+'</svg>';
+ }
  function close(focus){if(panel)panel.remove();panel=null;if(trigger){trigger.setAttribute('aria-expanded','false');if(focus)trigger.focus();}}
  function place(){if(!panel||!trigger)return;var r=trigger.getBoundingClientRect();panel.style.top=Math.min(r.bottom+10,innerHeight-120)+'px';panel.style.right=Math.max(12,innerWidth-r.right)+'px';}
  function go(route){close();if(route==='profile'){window.EmpregaMaisEditarPerfilCandidato();return;}if(window.irPara)window.irPara(route);if(route==='painel-candidato')setTimeout(function(){var b=document.querySelector('[data-cp-action="alerts"]');if(b)b.click();},80);}
@@ -608,66 +616,37 @@
   panel=document.createElement('section');panel.id='emCandidateAccountMenu';panel.setAttribute('aria-label','Minha conta');
   var photo=/^data:image\/(jpeg|png|webp);base64,/.test(p.fotoPerfil||'')?'<img alt="" src="'+p.fotoPerfil+'">':'<span class="em-account-initials">'+esc(name.split(/\s+/).filter(Boolean).slice(0,2).map(function(x){return x[0];}).join('').toUpperCase())+'</span>';
   panel.innerHTML='<div class="em-account-top"><span class="em-account-avatar">'+photo+'</span><div><strong>'+esc(name)+'</strong><small>Minha conta</small></div><button type="button" data-account="close" aria-label="Fechar menu">×</button></div><div class="em-account-links">'+[['alerts','Alertas de vagas','bell'],['access','Dados de acesso','key'],['communications','Comunicações','mail'],['premium-candidato','Conhecer Premium','crown']].map(function(r){return '<button type="button" data-account="'+r[0]+'">'+'<span class="em-account-card-icon">'+icon(r[2])+'</span><span>'+r[1]+'</span></button>';}).join('')+'</div><button type="button" class="em-account-logout" data-account="logout">'+icon('power')+'Encerrar sessão</button>';
-  var footer=document.createElement('div');footer.className='em-account-footer';footer.appendChild(panel.querySelector('.em-account-logout'));panel.appendChild(footer);panel.querySelectorAll('.em-account-initials').forEach(function(el){el.style.setProperty('color','#fff','important');});document.body.appendChild(panel);button.setAttribute('aria-controls',panel.id);button.setAttribute('aria-expanded','true');place();
+  var footer=document.createElement('div');footer.className='em-account-footer';footer.appendChild(panel.querySelector('.em-account-logout'));panel.appendChild(footer);panel.querySelectorAll('.em-account-initials').forEach(function(el){el.style.setProperty('color','#fff','important');});panel.querySelectorAll('*').forEach(function(el){el.style.setProperty('font-family','Arial, Helvetica, sans-serif','important');});document.body.appendChild(panel);button.setAttribute('aria-controls',panel.id);button.setAttribute('aria-expanded','true');place();
   panel.onclick=function(e){var b=e.target.closest('[data-account]');if(!b)return;var key=b.dataset.account;if(key==='close')close(true);else if(key==='logout'){close();if(window.sairTodasContas)window.sairTodasContas();}else if(['access','communications','visibility','status'].includes(key))info(key);else go(key==='alerts'?'painel-candidato':key);};
   if(keyboard)panel.querySelector('[data-account=alerts]').focus();
  }
  var style=document.createElement('style');style.textContent=`
- #emCandidateAccountMenu{position:fixed;z-index:10050;width:340px;max-width:calc(100vw - 24px);max-height:calc(100dvh - 90px);overflow:auto;padding:18px;background:#fff;border:1px solid #bfd6e1;border-radius:14px;box-shadow:0 12px 40px #17324f24;color:#173d50;font:500 12px Montserrat,Arial,sans-serif}
- #emCandidateAccountMenu .em-account-top{display:flex;align-items:center;gap:12px;border-bottom:1px solid #e1ecf1;padding-bottom:16px;margin-bottom:8px}
- #emCandidateAccountMenu .em-account-top>div{flex:1;min-width:0}#emCandidateAccountMenu strong{display:block;font-size:14px;overflow-wrap:anywhere}#emCandidateAccountMenu small{display:block;margin-top:5px;color:#526d80;font-size:11px}
- #emCandidateAccountMenu .em-account-avatar{width:54px;height:54px;flex:0 0 54px;background:#e7f1f5;border-radius:50%;display:grid;place-items:center}
- #emCandidateAccountMenu .em-account-avatar img{width:100%;height:100%;object-fit:cover;border-radius:50%}#emCandidateAccountMenu .em-account-avatar svg{width:28px;height:28px}
- #emCandidateAccountMenu button{font:500 12px Montserrat,Arial,sans-serif;cursor:pointer}
- #emCandidateAccountMenu .em-account-top>button{background:transparent;border:0;font-size:24px;color:#245e73}
- #emCandidateAccountMenu .em-account-links>button{display:flex;align-items:center;gap:11px;width:100%;padding:10px;border:0;border-radius:8px;background:#fff;color:#245e73;text-align:left;min-height:38px}
- #emCandidateAccountMenu .em-account-links>button:hover{background:#edf5f8}#emCandidateAccountMenu svg{width:19px;height:19px;flex:0 0 19px}#emCandidateAccountMenu b{margin-left:auto;font-size:17px;font-weight:400}
- #emCandidateAccountMenu .em-account-logout{width:100%;margin-top:12px;display:flex;align-items:center;justify-content:center;gap:9px;padding:12px;border:0;border-radius:8px;background:#245e73;color:#fff!important}
- #emCandidateAccountMenu :focus-visible{outline:3px solid #93bdcf;outline-offset:2px}
+ #emCandidateAccountMenu{position:fixed;z-index:10050;box-sizing:border-box;width:410px;max-width:calc(100vw - 24px);padding:0;background:#fff;border:1px solid #75afcc;border-radius:10px;box-shadow:0 9px 21px #183a5124;color:#092d4c;font-family:Arial,Helvetica,sans-serif}
+ #emCandidateAccountMenu *{box-sizing:border-box}
+ #emCandidateAccountMenu:before{content:'';position:absolute;top:-9px;right:60px;width:16px;height:16px;background:white;border-left:1px solid #75afcc;border-top:1px solid #75afcc;transform:rotate(45deg)}
+ #emCandidateAccountMenu .em-account-top{position:relative;display:flex;align-items:center;gap:14px;min-height:83px;padding:18px;border-bottom:1px solid #d2dfe9;background:white;border-radius:10px 10px 0 0}
+ #emCandidateAccountMenu .em-account-avatar{display:grid;place-items:center;width:49px;height:49px;flex:0 0 49px;border-radius:50%;background:radial-gradient(circle at 32% 30%,#2183a3,#116080);color:#fff}
+ #emCandidateAccountMenu .em-account-avatar img{width:100%;height:100%;object-fit:cover;border-radius:50%}
+ #emCandidateAccountMenu .em-account-initials{font-size:18px!important;font-weight:500!important;color:white!important}
+ #emCandidateAccountMenu .em-account-top>div{flex:1;min-width:0}
+ #emCandidateAccountMenu .em-account-top strong{display:block;font-size:18px!important;line-height:1.2;font-weight:700!important;color:#09294a!important}
+ #emCandidateAccountMenu .em-account-top small{display:block;font-size:14px!important;line-height:1.3;margin-top:3px;color:#788ca5!important}
+ #emCandidateAccountMenu button{cursor:pointer;box-shadow:none;letter-spacing:normal;text-transform:none}
+ #emCandidateAccountMenu .em-account-top>button{align-self:flex-start;padding:0;border:0;background:none;color:#72899f!important;font-size:26px!important;font-weight:300;line-height:1}
+ #emCandidateAccountMenu .em-account-links{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;padding:14px 12px}
+ #emCandidateAccountMenu .em-account-links>button{display:flex;align-items:center;gap:11px;width:100%;height:74px;margin:0;padding:9px 8px;border:1px solid #cbd9e6;border-radius:8px;background:#fff;text-align:left;color:#082d4e!important;font-size:12px!important;font-weight:600!important;line-height:1.2}
+ #emCandidateAccountMenu .em-account-links>button>span:last-child{white-space:nowrap;color:#082d4e!important;font-size:12px!important;font-weight:600!important}
+ #emCandidateAccountMenu .em-account-card-icon{display:grid;place-items:center;width:53px;height:55px;flex:0 0 53px;border-radius:9px;background:linear-gradient(135deg,#eef8fc,#e6f3f9);color:#146788!important}
+ #emCandidateAccountMenu .em-account-card-icon svg{width:34px;height:34px;flex:none}
+ #emCandidateAccountMenu .em-account-links>button:hover{background:#f8fcfe;border-color:#78afc8}
+ #emCandidateAccountMenu .em-account-footer{display:flex;justify-content:flex-end;padding:11px 13px 13px;border-top:1px solid #d2dfe9}
+ #emCandidateAccountMenu .em-account-logout{display:flex;align-items:center;justify-content:center;gap:10px;width:auto;min-height:33px;padding:7px 12px;margin:0;border:1px solid #1b749a;border-radius:8px;background:white;color:#126587!important;font-size:12px!important;font-weight:500!important}
+ #emCandidateAccountMenu .em-account-logout svg{width:19px;height:19px}
+ #emCandidateAccountMenu button:focus{outline:none}
+ #emCandidateAccountMenu button:focus-visible{outline:2px solid #579bbd;outline-offset:2px}
  #emCandidateProfile .em-account-details{grid-column:1/-1}
- @media(max-width:540px){#emCandidateAccountMenu{right:12px!important;left:12px;width:auto}}
- 
- /* Approved compact four-card account menu. */
- #emCandidateAccountMenu#emCandidateAccountMenu{width:360px;padding:0;border:1px solid #87b0c5;border-radius:12px;overflow:auto;box-shadow:0 10px 30px #17324f20}
- #emCandidateAccountMenu#emCandidateAccountMenu .em-account-top{padding:16px;margin:0;gap:12px;border-bottom:1px solid #dce7ee;min-height:72px}
- #emCandidateAccountMenu#emCandidateAccountMenu .em-account-avatar{width:40px;height:40px;flex:0 0 40px;background:linear-gradient(135deg,#257b99,#174e61);color:white}
- #emCandidateAccountMenu#emCandidateAccountMenu .em-account-initials{font:650 15px Montserrat,Arial,sans-serif;color:#fff!important}
- #emCandidateAccountMenu#emCandidateAccountMenu .em-account-top strong{font-size:14px;color:#173547;font-weight:700}
- #emCandidateAccountMenu#emCandidateAccountMenu .em-account-top small{font-size:11px;color:#617b8e;margin-top:3px}
- #emCandidateAccountMenu#emCandidateAccountMenu .em-account-top>button{align-self:flex-start;padding:0;line-height:1;color:#6c8395}
- #emCandidateAccountMenu#emCandidateAccountMenu .em-account-links{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;padding:12px 10px}
- #emCandidateAccountMenu#emCandidateAccountMenu .em-account-links>button{display:flex;gap:9px;align-items:center;min-height:60px;border:1px solid #ccdce6;border-radius:8px;padding:8px;background:#fff;color:#173d50;text-align:left;font-size:11px!important;font-weight:600;line-height:1.35}
- #emCandidateAccountMenu#emCandidateAccountMenu .em-account-links>button:hover{border-color:#7aabbe;background:#f5f9fb}
- #emCandidateAccountMenu#emCandidateAccountMenu .em-account-card-icon{width:32px;height:36px;flex:0 0 32px;display:grid;place-items:center;background:#edf5f8;border-radius:7px;color:#226b87}
- #emCandidateAccountMenu#emCandidateAccountMenu .em-account-card-icon svg{width:23px;height:23px;flex:none}
- #emCandidateAccountMenu#emCandidateAccountMenu .em-account-logout{width:auto;margin:10px 12px 12px auto;min-height:32px;border:1px solid #6e9bb1;border-radius:8px;background:#fff;color:#245e73!important;padding:7px 11px;font-size:11px!important}
- #emCandidateAccountMenu#emCandidateAccountMenu .em-account-logout svg{width:17px;height:17px}
- #emCandidateAccountMenu#emCandidateAccountMenu .em-account-links>button:focus:not(:focus-visible){outline:none}
- @layer site-typography{
- #emCandidateAccountMenu#emCandidateAccountMenu .em-account-links>button>span{color:#173d50!important}
- #emCandidateAccountMenu#emCandidateAccountMenu .em-account-links>button>.em-account-card-icon{color:#226b87!important}
- #emCandidateAccountMenu#emCandidateAccountMenu .em-account-top small{color:#617b8e!important}
- }
- @media(max-width:540px){#emCandidateAccountMenu#emCandidateAccountMenu{width:min(360px,calc(100vw - 24px));left:auto;right:12px!important} }
-
- /* Match the approved reference proportions and separators. */
- #emCandidateAccountMenu#emCandidateAccountMenu{width:410px;max-width:calc(100vw - 24px);border-color:#75a9c1;border-radius:11px;overflow:visible}
- #emCandidateAccountMenu#emCandidateAccountMenu:before{content:'';position:absolute;top:-8px;right:52px;width:14px;height:14px;background:#fff;border-left:1px solid #75a9c1;border-top:1px solid #75a9c1;transform:rotate(45deg)}
- #emCandidateAccountMenu#emCandidateAccountMenu .em-account-top{padding:17px 18px;min-height:82px;gap:14px;position:relative;background:#fff;border-radius:11px 11px 0 0}
- #emCandidateAccountMenu#emCandidateAccountMenu .em-account-avatar{width:48px;height:48px;flex-basis:48px}
- #emCandidateAccountMenu#emCandidateAccountMenu .em-account-initials{font-size:18px!important;font-weight:650!important;color:#fff!important}
- #emCandidateAccountMenu#emCandidateAccountMenu .em-account-top strong{font-size:16px!important;font-weight:700!important;color:#102f48}
- #emCandidateAccountMenu#emCandidateAccountMenu .em-account-top small{font-size:12px!important;margin-top:4px}
- #emCandidateAccountMenu#emCandidateAccountMenu .em-account-links{padding:14px 12px;gap:8px}
- #emCandidateAccountMenu#emCandidateAccountMenu .em-account-links>button{height:74px;min-height:74px;padding:9px 8px;gap:10px;border-radius:8px;border-color:#c8d8e3;font-size:12px!important;font-weight:600!important;outline:none!important}
- #emCandidateAccountMenu#emCandidateAccountMenu .em-account-links>button>span:last-child{white-space:nowrap;letter-spacing:-.2px}
- #emCandidateAccountMenu#emCandidateAccountMenu .em-account-card-icon{width:44px;height:48px;flex-basis:44px;border-radius:8px;background:linear-gradient(135deg,#edf7fb,#e7f2f7)}
- #emCandidateAccountMenu#emCandidateAccountMenu .em-account-card-icon svg{width:29px;height:29px;stroke-width:1.65}
- #emCandidateAccountMenu#emCandidateAccountMenu .em-account-footer{display:flex;justify-content:flex-end;border-top:1px solid #d5e2eb;padding:12px 13px}
- #emCandidateAccountMenu#emCandidateAccountMenu .em-account-logout{margin:0;min-height:34px;padding:7px 12px;font-size:12px!important;font-weight:500}
- #emCandidateAccountMenu#emCandidateAccountMenu .em-account-links>button:focus-visible{outline:2px solid #8cb8cb!important;outline-offset:2px}
- @media(max-width:440px){#emCandidateAccountMenu#emCandidateAccountMenu{width:calc(100vw - 24px)}#emCandidateAccountMenu#emCandidateAccountMenu .em-account-links>button{gap:7px;font-size:11px!important}#emCandidateAccountMenu#emCandidateAccountMenu .em-account-card-icon{width:34px;flex-basis:34px;height:40px}#emCandidateAccountMenu#emCandidateAccountMenu .em-account-card-icon svg{width:25px;height:25px}}
- @media(max-height:480px){#emCandidateAccountMenu#emCandidateAccountMenu{overflow-y:auto;max-height:calc(100dvh - 85px)}#emCandidateAccountMenu#emCandidateAccountMenu:before{display:none}}
+ @media(max-width:440px){#emCandidateAccountMenu{right:12px!important;width:calc(100vw - 24px)}#emCandidateAccountMenu .em-account-links>button{gap:7px;padding:7px}#emCandidateAccountMenu .em-account-card-icon{width:40px;flex-basis:40px;height:48px}#emCandidateAccountMenu .em-account-card-icon svg{width:30px;height:30px}#emCandidateAccountMenu .em-account-links>button>span:last-child{font-size:11px!important}}
+ @media(max-height:480px){#emCandidateAccountMenu{max-height:calc(100dvh - 85px);overflow:auto}#emCandidateAccountMenu:before{display:none}}
 `;document.head.appendChild(style);
  document.addEventListener('click',function(e){var b=e.target.closest&&e.target.closest('#cpCandidateHeader .cp-greeting');if(b){e.preventDefault();e.stopImmediatePropagation();open(b,e.detail===0);}else if(panel&&!panel.contains(e.target))close();},true);
  document.addEventListener('keydown',function(e){if(!panel)return;if(e.key==='Escape'){e.preventDefault();close(true);}if(e.key==='Tab'){var items=Array.from(panel.querySelectorAll('button')),first=items[0],last=items[items.length-1];if(e.shiftKey&&document.activeElement===first){e.preventDefault();last.focus();}else if(!e.shiftKey&&document.activeElement===last){e.preventDefault();first.focus();}}});
