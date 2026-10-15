@@ -850,3 +850,16 @@ html body #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candida
 html body #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato .cp-fit-and-alert{grid-column:1/-1!important;display:flex!important;align-items:center!important;gap:8px!important;border-top:1px solid #EFF3F7;padding-top:8px;margin-top:4px}
 html body #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato .cp-fit-and-alert button{margin:0!important;font-size:9px!important;min-height:25px!important;padding:4px 6px!important}
 @media(max-width:650px){html body #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato .em-personal-grid article{grid-template-columns:36px minmax(0,1fr)!important}html body #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato .em-personal-grid .cp-recommended-salary{grid-column:2!important;grid-row:4!important;text-align:left!important}html body #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato .em-personal-reasons{grid-row:5!important}html body #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato .em-personal-grid article>a{grid-column:2!important;grid-row:6!important;justify-self:start}.cp-fit-and-alert{flex-wrap:wrap}}
+
+/* Reference proportions and metric hierarchy. */
+html body #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato .cp-home-intro{min-height:0!important;height:270px!important;padding:28px 38px!important;}
+html body #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato .cp-home-intro h1{font-size:46px!important;margin:12px 0!important;}
+html body #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato .cp-home-intro p{font-weight:400!important;font-size:16px!important;}
+html body #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato .cp-overview-card{min-height:100px!important;padding:16px 18px!important;}
+html body #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato .cp-overview-icon svg{width:32px!important;height:32px!important;}
+html body #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato .cp-overview-card strong{font-size:30px!important;}
+html body #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato .cp-overview-card div>span{font-size:13px!important;font-weight:400!important;}
+html body #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato .em-personal-grid article{min-height:0!important;padding:16px!important;}
+html body #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato .em-personal-grid{gap:12px!important;}
+html body #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato .cp-home-summary{gap:14px!important;}
+@media(max-width:650px){html body #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato .cp-home-intro{height:auto!important;min-height:220px!important;padding:24px!important}html body #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato .cp-home-intro h1{font-size:34px!important}}
