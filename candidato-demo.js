@@ -6,7 +6,8 @@
   var demoStyle=document.createElement('style');
   demoStyle.textContent='html.em-candidate-demo #pagina-candidaturas .emi-candidate,html.em-candidate-demo #pagina-candidaturas .em-hire-confirmations,html.em-candidate-demo #pagina-candidaturas .em-candidate-inbox,html.em-candidate-demo #pagina-painel-candidato .emi-candidate,html.em-candidate-demo #pagina-painel-candidato .em-hire-confirmations{display:none!important}';
   document.head.appendChild(demoStyle);
-  var backing=window.localStorage,prefix='emCandidatePreviewV1:',ready=false;
+  var demoPlan=new URLSearchParams(location.search).get('planoCandidato')==='premium'?'premium':'gratuito';
+  var backing=window.localStorage,prefix='emCandidatePreviewV2:'+demoPlan+':',ready=false;
   function storage(name){
     var values=new Map();try{var saved=JSON.parse(backing.getItem(prefix+name)||'[]');if(Array.isArray(saved))values=new Map(saved);}catch(ignore){}
     function persist(){try{backing.setItem(prefix+name,JSON.stringify(Array.from(values.entries())));}catch(ignore){}}
@@ -48,6 +49,7 @@
     var savedProfile=Array.isArray(savedProfiles)&&savedProfiles.find(function(item){return item&&item.email==='ana@example.com';});
     if(savedProfile)profile=Object.assign({},profile,savedProfile);
     else localStorage.setItem('candidatosEmpregaMais',JSON.stringify([profile]));
+    profile.plano_candidato=demoPlan==='premium'?'premium':'basico';profile.planoCandidato=profile.plano_candidato;profile.plano=profile.plano_candidato;profile.premium_valido_ate=demoPlan==='premium'?new Date(Date.now()+365*86400000).toISOString():null;localStorage.setItem('candidatosEmpregaMais',JSON.stringify([profile]));
     sessionStorage.setItem('empregaMaisPapel','candidato');sessionStorage.setItem('candidatoNome',profile.nome);sessionStorage.setItem('candidatoEmail',profile.email);sessionStorage.setItem('candidatoTelefone',profile.telefone);sessionStorage.setItem('candidatoCep',profile.cep);
     window.candidatoEstaLogado=function(){return true;};window.empresaEstaLogada=function(){return false;};
     window.carregarVagasPortal=function(){return jobs;};window.salvarVagasPortal=function(list){jobs=list;};window.vagasPadrao=[];
@@ -67,7 +69,11 @@
     window.sairCandidato=function(){location.href=location.pathname+'?pagina=demo-recrutador';};
     window.addEventListener('popstate',function(){var p=new URLSearchParams(location.search);open(p.get('abaCandidato')||'painel-candidato',p.get('id'),false);});
     open(new URLSearchParams(location.search).get('abaCandidato')||'painel-candidato',new URLSearchParams(location.search).get('id'),false);
-    function demoWidgets(){document.querySelectorAll('#pagina-painel-candidato,#pagina-candidaturas').forEach(function(root){root.querySelectorAll('.emi-candidate,.em-hire-confirmations,.em-candidate-inbox').forEach(function(box){box.style.setProperty('display','none','important');});});}
+    function demoWidgets(){if(demoPanel&&!demoPanel.isConnected){var home=document.querySelector('#pagina-painel-candidato .container-dashboard');if(home)home.prepend(demoPanel);}document.querySelectorAll('#pagina-painel-candidato,#pagina-candidaturas').forEach(function(root){root.querySelectorAll('.emi-candidate,.em-hire-confirmations,.em-candidate-inbox').forEach(function(box){box.style.setProperty('display','none','important');});});}
+    var demoPanel=document.createElement('section');demoPanel.className='cp-demo-plans';demoPanel.setAttribute('aria-label','Selecionar acesso de demonstração');
+    demoPanel.innerHTML='<div><strong>Demonstração do candidato</strong><p>Dados fictícios · Sem cobrança. Compare os recursos de cada acesso.</p></div><nav aria-label="Plano da demonstração"></nav>';
+    ['gratuito','premium'].forEach(function(plan){var link=document.createElement('a'),url=new URL(location.href);url.searchParams.set('planoCandidato',plan);link.href=url.toString();link.textContent=plan==='premium'?'Acesso Premium':'Acesso gratuito';if(plan===demoPlan)link.setAttribute('aria-current','page');demoPanel.querySelector('nav').appendChild(link);});
+    var demoHome=document.querySelector('#pagina-painel-candidato .container-dashboard')||document.getElementById('pagina-painel-candidato');if(demoHome)demoHome.prepend(demoPanel);
     ready=true;
     demoWidgets();
     if(window.MutationObserver)document.querySelectorAll('#pagina-painel-candidato,#pagina-candidaturas').forEach(function(root){new MutationObserver(demoWidgets).observe(root,{childList:true,subtree:true});});
@@ -77,50 +83,3 @@
   document.addEventListener('DOMContentLoaded',function(){setTimeout(boot,0);},{once:true});
   window.addEventListener('load',function(){setTimeout(boot,0);});
 })();
-
-
-/* EmpregaMais: somente tons verdes viram azul no painel do candidato.
-   Preserva integralmente os elementos roxos e os SVGs roxos. */
-(function(){
-  'use strict';
-  if(new URLSearchParams(location.search).get('pagina')!=='demo-candidato')return;
-  var rootId='pagina-painel-candidato', azul='#173B70', azulClaro='#E5F0FC';
-  function verde(value){
-    var match=String(value||'').match(/^rgba?\(\s*(\d+)[, ]+\s*(\d+)[, ]+\s*(\d+)/i);
-    if(!match)return false;
-    var r=+match[1]/255,g=+match[2]/255,b=+match[3]/255;
-    var max=Math.max(r,g,b),min=Math.min(r,g,b),delta=max-min;
-    if(delta<.09||max===0)return false;
-    var hue=0;
-    if(max===r)hue=((g-b)/delta)%6;
-    else if(max===g)hue=(b-r)/delta+2;
-    else hue=(r-g)/delta+4;
-    hue=(hue*60+360)%360;
-    return hue>=75&&hue<=170&&g>r*1.10;
-  }
-  function aplicar(){
-    var root=document.getElementById(rootId);
-    if(!root||root.hidden||getComputedStyle(root).display==='none')return;
-    root.querySelectorAll('*').forEach(function(el){
-      if(el.dataset.emGreenToBlue==='1')return;
-      var style=getComputedStyle(el),changed=false;
-      [['backgroundColor','background-color'],['color','color'],['borderTopColor','border-top-color'],['borderRightColor','border-right-color'],['borderBottomColor','border-bottom-color'],['borderLeftColor','border-left-color']].forEach(function(pair){
-        if(verde(style[pair[0]])){el.style.setProperty(pair[1],pair[1]==='background-color'&&style.backgroundColor.match(/rgba?\(\s*2[0-5]\d[, ]+\s*2[0-5]\d/)?azulClaro:azul,'important');changed=true;}
-      });
-      if(typeof SVGElement!=='undefined'&&el instanceof SVGElement){
-        ['fill','stroke'].forEach(function(prop){if(verde(style[prop])){el.style.setProperty(prop,azul,'important');changed=true;}});
-      }
-      if(changed)el.dataset.emGreenToBlue='1';
-    });
-  }
-  function iniciar(){
-    var root=document.getElementById(rootId);if(!root||typeof MutationObserver!=='function')return;
-    var scheduled=false;
-    function schedule(){if(scheduled)return;scheduled=true;requestAnimationFrame(function(){scheduled=false;aplicar();});}
-    new MutationObserver(schedule).observe(root,{childList:true,subtree:true});
-    schedule();
-    document.addEventListener('click',schedule,true);
-  }
-  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',iniciar);else iniciar();
-})();
-
