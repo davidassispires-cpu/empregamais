@@ -255,7 +255,7 @@
    var fill=Math.max(0,Math.min(100,(value-index*5)*20));
    return '<span aria-hidden="true" style="--cp-segment-fill:'+fill+'%"></span>';
   }).join('');
-  return '<div class="cp-recommendation-fit"><span class="cp-recommendation-fit-label">ADERÊNCIA À VAGA</span><strong class="cp-recommendation-match">'+value+'<span>%</span></strong><div class="cp-recommendation-meter" role="meter" aria-label="Aderência à vaga" aria-valuemin="0" aria-valuemax="100" aria-valuenow="'+value+'">'+segments+'</div><small class="cp-recommendation-fit-caption">Compatibilidade do perfil</small></div>';
+  return '<div class="cp-recommendation-fit"><span class="cp-recommendation-premium">PREMIUM</span><span class="cp-recommendation-fit-label">ADERÊNCIA À VAGA</span><strong class="cp-recommendation-match">'+value+'<span>%</span></strong><div class="cp-recommendation-meter" role="meter" aria-label="Aderência à vaga" aria-valuemin="0" aria-valuemax="100" aria-valuenow="'+value+'">'+segments+'</div><small class="cp-recommendation-fit-caption">Compatibilidade do perfil</small></div>';
  }
  function recommendationsHeader(){
   return '<header class="cp-recommendations-hero" aria-labelledby="cpRecommendationsTitle">'+
