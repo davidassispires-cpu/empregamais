@@ -117,7 +117,7 @@
   var rows=applications().filter(function(a){return matches(a)});
   list.querySelectorAll('.candidatura-item').forEach(function(card,i){
    var a=rows[i];if(!a)return;card.dataset.cpApplicationStage=classify(a);var title=card.querySelector('.candidatura-top h3');if(title&&!title.querySelector('.cp-application-emblem')){var emblem=document.createElement('span');emblem.className='cp-application-emblem';emblem.setAttribute('aria-hidden','true');emblem.innerHTML=icon('briefcase');title.prepend(emblem);}if(card.querySelector('.cp-process-details'))return;
-   var top=card.querySelector('.candidatura-top'),company=top.querySelector('p');if(company){company.textContent=a.empresa||'Empresa não informada';company.style.setProperty('color','#e1eff6','important');company.style.setProperty('font-size','12px','important');}var sent=document.createElement('div');sent.className='cp-application-date';sent.innerHTML=icon('calendar')+'<span>Enviada em '+safe(applicationDate(a.data||a.dataCandidatura))+'</span>';top.after(sent);
+   var top=card.querySelector('.candidatura-top'),company=top.querySelector('p');if(company){company.textContent=a.empresa||'Empresa não informada';company.style.setProperty('color','#526f80','important');company.style.setProperty('font-size','12px','important');}var sent=document.createElement('div');sent.className='cp-application-date';sent.innerHTML=icon('calendar')+'<span>Enviada em '+safe(applicationDate(a.data||a.dataCandidatura))+'</span>';top.after(sent);
    var notice=viewNotice(a);if(notice){var holder=document.createElement('div');holder.innerHTML=notice;sent.after(holder.firstChild);}
    var details=document.createElement('div');details.className='cp-process-details';
    var button=document.createElement('button');button.type='button';button.className='cp-process-trigger';button.setAttribute('aria-haspopup','dialog');
@@ -606,6 +606,35 @@ html body dialog.cp-process-modal.cp-process-modal #cpProcessPane0 .cp-support-i
  html body dialog.cp-process-modal.cp-process-modal #cpProcessPane0{grid-template-columns:1fr!important;gap:18px!important}
  html body dialog.cp-process-modal.cp-process-modal #cpProcessPane0 .cp-process-support{padding:0!important;border:0!important}
  html body #pagina-candidaturas#pagina-candidaturas .candidatura-top{flex-wrap:wrap!important}
+}
+
+
+/* Lighter candidate cards: keep brand colors as accents. */
+html body #pagina-candidaturas#pagina-candidaturas .candidatura-top{background:linear-gradient(110deg,#f4f9fc,#eaf3f7)!important;border-bottom:1px solid #dce9f0!important}
+html body #pagina-candidaturas#pagina-candidaturas .candidatura-top h3{color:#174b61!important}
+html body #pagina-candidaturas#pagina-candidaturas .candidatura-top p{color:#526f80!important}
+html body #pagina-candidaturas#pagina-candidaturas .cp-application-emblem{background:#fff!important;color:#28637b!important;border-color:#d7e7ef!important}
+html body #pagina-candidaturas#pagina-candidaturas .cp-process-trigger{background:#fff3e8!important;color:#a94716!important;border:1px solid #efd0b8!important;box-shadow:none!important}
+html body #pagina-candidaturas#pagina-candidaturas .cp-process-trigger:hover{background:#ffe9d7!important;border-color:#dfb38f!important}
+html body #cpApplicationFilters#cpApplicationFilters [data-cp-filter][aria-pressed=true]{--filter-paper:#fff;--filter-soft:#fff5eb;--filter-accent:#b85b29;background:#fff4e9!important;border-color:#e6bd9e!important;color:#a14b20!important;box-shadow:none!important}
+html body #cpApplicationFilters#cpApplicationFilters [data-cp-filter][aria-pressed=true] .cp-filter-icon{background:#fff!important;border-color:#efd9c8!important;color:#a55229!important}
+html body dialog.cp-process-modal.cp-process-modal .cp-process-modal-header{background:linear-gradient(110deg,#f5fafc,#e7f2f7)!important;color:#174b61!important;border-bottom:1px solid #d8e8f0!important}
+html body dialog.cp-process-modal.cp-process-modal .cp-process-modal-header h2{color:#174b61!important}
+html body dialog.cp-process-modal.cp-process-modal .cp-process-modal-header>div>span{color:#53788b!important}
+html body dialog.cp-process-modal.cp-process-modal .cp-process-modal-subtitle{color:#526f80!important}
+html body dialog.cp-process-modal.cp-process-modal .cp-process-modal-close{background:#ffffffcc!important;border-color:#c6dce7!important;color:#28637b!important}
+html body dialog.cp-process-modal.cp-process-modal .cp-interview-buttons [data-confirm]{background:#fff0e3!important;border:1px solid #e8c5aa!important;color:#a94716!important}
+html body dialog.cp-process-modal.cp-process-modal .cp-process-steps li:first-child>span{background:#edf5f9!important;color:#28637b!important;border-color:#c6dce7!important}
+html body dialog.cp-process-modal.cp-process-modal .cp-process-steps li.is-current>span{background:#fff4e9!important;color:#b15b2b!important;border-color:#d9a883!important}
+@layer site-typography{
+ html body #pagina-candidaturas#pagina-candidaturas .candidatura-top h3{color:#174b61!important}
+ html body #pagina-candidaturas#pagina-candidaturas .candidatura-top p{color:#526f80!important}
+ html body #pagina-candidaturas#pagina-candidaturas .cp-process-trigger{color:#a94716!important}
+ html body #cpApplicationFilters#cpApplicationFilters [aria-pressed=true] .cp-filter-label{color:#a14b20!important}
+ html body dialog.cp-process-modal.cp-process-modal .cp-process-modal-header h2{color:#174b61!important}
+ html body dialog.cp-process-modal.cp-process-modal .cp-process-modal-header>div>span{color:#53788b!important}
+ html body dialog.cp-process-modal.cp-process-modal .cp-process-modal-subtitle{color:#526f80!important}
+ html body dialog.cp-process-modal.cp-process-modal .cp-interview-buttons [data-confirm]{color:#a94716!important}
 }
 
 `;document.head.appendChild(style);
