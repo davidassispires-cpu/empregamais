@@ -218,3 +218,26 @@ html body #pagina-curriculo#pagina-curriculo #cvResumeWizard :is(.cv-preference-
  html body.cp-shell-active #cpCandidateHeader#cpCandidateHeader .cp-toolbar svg{color:#fff!important}
  html body.cp-shell-active #cpCandidateHeader#cpCandidateHeader .cp-user-avatar{background:#e9f6f3!important;color:#285b57!important;border-color:#c9e4de!important}
 }
+
+/* Candidate plan comparison and Premium compatibility. */
+@layer site-typography{
+ html body #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato .cp-fit-and-alert{display:flex!important;flex-direction:column!important;align-items:stretch!important;gap:10px!important;margin-top:12px!important;padding-top:12px!important;border-top:1px solid #e4ece9!important}
+ html body #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato .cp-fit-panel{display:flex!important;align-items:center!important;gap:12px!important;width:100%!important;max-width:none!important;white-space:normal!important;padding:14px!important;border:1px solid #d0e4df!important;border-radius:10px!important;background:#f4faf8!important;text-align:left!important;height:auto!important;min-height:90px!important;color:#374151!important;box-shadow:none!important}
+ html body #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato .cp-fit-panel>svg{width:26px!important;height:26px!important;flex:0 0 26px!important;color:#438c87!important}
+ html body #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato .cp-fit-copy{display:flex!important;flex:1!important;min-width:0!important;flex-direction:column!important;gap:5px!important}
+ html body #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato .cp-fit-copy strong{font-size:20px!important;line-height:1.2!important;color:#374151!important}
+ html body #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato .cp-fit-copy small{font-size:11px!important;line-height:1.5!important;color:#667085!important}
+ html body #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato .cp-fit-premium-label{font-size:9px!important;letter-spacing:.8px!important;font-weight:700!important;color:#92512c!important}
+ html body #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato .cp-fit-panel-action{font-size:11px!important;font-weight:600!important;color:#285b57!important;flex:0 0 auto!important}
+ html body #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato .is-locked{background:#fffaf5!important;border-color:#efddcd!important}
+ html body #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato .is-locked .cp-fit-copy strong{font-size:14px!important}
+ html body #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato .cp-fit-meter{height:5px!important;border-radius:10px!important;overflow:hidden!important;background:#dcece7!important;display:block!important;max-width:230px!important;margin-top:3px!important}
+ html body #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato .cp-fit-meter>span{display:block!important;height:100%!important;background:#438c87!important;border-radius:10px!important}
+ html body .cp-demo-plans{display:flex!important;justify-content:space-between!important;align-items:center!important;flex-wrap:wrap!important;gap:14px!important;padding:16px 20px!important;margin:0 0 18px!important;border:1px solid #d4e4df!important;border-radius:12px!important;background:#fff!important;color:#374151!important}
+ html body .cp-demo-plans strong{font-size:14px!important;color:#374151!important}
+ html body .cp-demo-plans p{font-size:11px!important;color:#667085!important;margin:5px 0 0!important}
+ html body .cp-demo-plans nav{display:flex!important;flex-wrap:wrap!important;gap:8px!important}
+ html body .cp-demo-plans a{padding:10px 15px!important;border:1px solid #d7e4df!important;border-radius:8px!important;background:#fff!important;color:#374151!important;text-decoration:none!important;font-size:12px!important;font-weight:600!important}
+ html body .cp-demo-plans a[aria-current=page]{background:#edf7f3!important;border-color:#86b8ab!important;color:#285b57!important}
+}
+@media(max-width:650px){@layer site-typography{html body #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato .cp-fit-panel{flex-wrap:wrap!important}html body #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato .cp-fit-panel-action{padding-left:38px!important}}}
