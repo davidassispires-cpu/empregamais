@@ -364,19 +364,21 @@ function status(x){return x.status_processo||x.statusProcesso||x.status||"Candid
 function aderencia(x){var n=Number(x.aderencia||x.percentual_aderencia||x.percentualAderencia);return isFinite(n)&&n>0?Math.min(100,Math.round(n)):0}
 function premiumIcon(name){var paths={target:'<circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><path d="m12 12 9-9M16 3h5v5"/>',eye:'<path d="M2 12s4-7 10-7 10 7 10 7-4 7-10 7S2 12 2 12Z"/><circle cx="12" cy="12" r="3"/>',progress:'<path d="M4 20V4M4 20h17M8 15l5-5 4 2 4-7"/>',star:'<path d="m12 2 3 6 7 1-5 5 1 7-6-3-6 3 1-7-5-5 7-1Z"/>',stats:'<rect x="3" y="12" width="4" height="9" rx="1"/><rect x="10" y="7" width="4" height="14" rx="1"/><rect x="17" y="3" width="4" height="18" rx="1"/>',calendar:'<rect x="3" y="5" width="18" height="16" rx="3"/><path d="M7 2v6M17 2v6M3 11h18m-11 5 2 2 4-4"/>',document:'<path d="M5 2h10l4 4v16H5ZM14 2v6h5M8 12h8M8 16h6"/>'};return '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'+(paths[name]||paths.target)+'</svg>';}
 function montar(){
-var page=document.getElementById("pagina-painel-candidato");if(!page)return;
-var old=document.getElementById("centralPremiumV93");if(old)old.remove();
-var box=document.createElement("section");box.id="centralPremiumV93";
-var alvo=page.querySelector(".container-dashboard")||page.querySelector(".painel-candidato")||page.firstElementChild;if(!alvo)return;
-var banner=document.getElementById("premium92Banner");
-if(banner&&banner.parentNode===alvo)banner.insertAdjacentElement("afterend",box);else alvo.insertBefore(box,alvo.firstChild);
-render();
+var page=document.getElementById("pagina-premium-candidato");if(!page)return null;
+var alvo=page.querySelector(".premium-candidato-main-v78");if(!alvo)return null;
+var box=document.getElementById("centralPremiumV93");
+if(!box){box=document.createElement("section");box.id="centralPremiumV93";box.hidden=true;box.setAttribute("aria-label","Central Premium");}
+if(box.parentNode!==alvo)alvo.insertBefore(box,alvo.firstChild);
+return box;
 }
 function render(){
-var box=document.getElementById("centralPremiumV93");if(!box)return;
-var premium=window.EmpregaMaisPremiumCandidatoV92&&window.EmpregaMaisPremiumCandidatoV92.ehPremium();box.hidden=!premium;if(!premium)return;
+var box=montar();if(!box)return;
+var premium=!!(window.EmpregaMaisPremiumCandidatoV92&&window.EmpregaMaisPremiumCandidatoV92.ehPremium());
+var page=document.getElementById("pagina-premium-candidato");
+if(page.classList.contains("candidato-premium-v92")!==premium)page.classList.toggle("candidato-premium-v92",premium);
+box.hidden=!premium;if(!premium){if(box.innerHTML)box.innerHTML="";box.cp93Markup="";return;}
 var a=minhas(),vis=a.filter(visto).length,processo=a.filter(function(x){var s=norm(status(x));return s!=="candidatura enviada"&&s!=="enviada"}).length,entrev=a.filter(function(x){return norm(status(x)).includes("entrevista")}).length,max=a.reduce(function(m,x){return Math.max(m,aderencia(x))},0);
-box.innerHTML="<div class='cp93-head'><div><small>CENTRAL PREMIUM</small><h2>Inteligência da sua busca por emprego</h2><p>Acompanhe suas candidaturas e os recursos avançados da sua conta.</p></div><span class='cp93-pill'>PREMIUM ATIVO</span></div>"+
+var html="<div class='cp93-head'><div><small>CENTRAL PREMIUM</small><h2>Inteligência da sua busca por emprego</h2><p>Acompanhe suas candidaturas e os recursos avançados da sua conta.</p></div><span class='cp93-pill'>PREMIUM ATIVO</span></div>"+
 "<div class='cp93-metrics'><div class='cp93-metric'><i class='cp93-metric-icon'>"+premiumIcon("document")+"</i><span>CANDIDATURAS</span><strong>"+a.length+"</strong><em>enviadas</em></div><div class='cp93-metric'><i class='cp93-metric-icon'>"+premiumIcon("eye")+"</i><span>VISUALIZADAS</span><strong>"+vis+"</strong><em>pela empresa</em></div><div class='cp93-metric'><i class='cp93-metric-icon'>"+premiumIcon("progress")+"</i><span>EM PROCESSO</span><strong>"+processo+"</strong><em>com atualização</em></div><div class='cp93-metric'><i class='cp93-metric-icon'>"+premiumIcon("calendar")+"</i><span>ENTREVISTAS</span><strong>"+entrev+"</strong><em>registradas</em></div><div class='cp93-metric'><i class='cp93-metric-icon'>"+premiumIcon("target")+"</i><span>MAIOR ADERÊNCIA</span><strong>"+(max?max+"%":"—")+"</strong><em>entre candidaturas</em></div></div>"+
 "<div class='cp93-grid'><div class='cp93-box'><h3>Minhas candidaturas</h3><p>Movimentações mais recentes do seu processo seletivo.</p><div id='cp93Apps'>"+apps(a)+"</div></div>"+
 "<div class='cp93-box'><h3>Seus recursos Premium</h3><p>Ferramentas liberadas para esta conta.</p>"+
@@ -385,6 +387,7 @@ feat("eye","Visualização da candidatura","Identificação quando o recrutador 
 feat("progress","Evolução no processo","Acompanhe mudanças de etapa registradas pela empresa.")+
 feat("star","Recomendações inteligentes","Base para recomendar oportunidades com maior compatibilidade.")+
 feat("stats","Estatísticas avançadas","Visão consolidada do desempenho das suas candidaturas.")+"</div></div>";
+if(box.cp93Markup!==html){box.innerHTML=html;box.cp93Markup=html;}
 }
 function feat(i,t,d){return"<div class='cp93-feature'><div class='cp93-icon'>"+premiumIcon(i)+"</div><div><b>"+t+"</b><span>"+d+"</span></div></div>"}
 function apps(a){
@@ -392,9 +395,12 @@ if(!a.length)return"<div class='cp93-empty'>Suas candidaturas aparecerão aqui a
 return a.slice().reverse().slice(0,5).map(function(x){var ad=aderencia(x),vi=visto(x),cargo=x.cargo||x.vaga||x.titulo||"Vaga",emp=x.empresa||x.empresa_nome||x.empresaNome||"Empresa";return"<div class='cp93-app'><div class='cp93-app-top'><div><strong>"+cargo+"</strong><br/><small>"+emp+"</small></div><span class='cp93-status "+(vi?"visto":"")+"'>"+status(x)+"</span></div><div class='cp93-line'><i class='cp93-dot ok'></i>Candidatura enviada <i class='cp93-dot "+(vi?"ok":"")+"'></i>"+(vi?"Visualizada pela empresa":"Aguardando visualização")+"</div>"+(ad?"<div class='cp93-aderencia'><div class='cp93-ad-top'><span>Aderência à vaga</span><b>"+ad+"%</b></div><div class='cp93-bar'><i style='width:"+ad+"%'></i></div></div>":"")+"</div>"}).join("");
 }
 window.EmpregaMaisCentralPremiumV93={atualizar:render};
-window.addEventListener("load",function(){setTimeout(montar,1500)});
+if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",render,{once:true});else render();
+window.addEventListener("load",function(){setTimeout(render,1500)});
 document.addEventListener("click",function(){setTimeout(render,250)},true);
 window.addEventListener("storage",function(){setTimeout(render,100)});
+["empregamais:candidato-sincronizado","empregamais:candidaturas-sincronizadas"].forEach(function(event){document.addEventListener(event,render);});
+window.addEventListener("popstate",render);
 })();
 //
 (function(){
@@ -1001,3 +1007,4 @@ body.cp-shell-active #pagina-painel-candidato .em-inbox-entry{border-color:#d8e0
 `;document.head.appendChild(style);
  window.addEventListener('load',function(){setTimeout(setup,1200)},{once:true});
 })();
+
