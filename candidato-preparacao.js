@@ -102,7 +102,8 @@
   ]}
  };
  function gradeTest(topic,answers){var exam=tests[topic];if(!exam)throw Error('Escolha um teste disponível.');answers=Array.isArray(answers)?answers:[];var correct=exam.questions.filter(function(q,i){return Number.isInteger(answers[i])&&answers[i]===q[2];}).length;return {correct:correct,total:exam.questions.length,percent:Math.round(correct/exam.questions.length*100)};}
- var core={compatibilidade:compatibility,correspondeAlerta:matchesAlert,validarAlerta:validateAlert,perguntasEntrevista:interviewQuestions,orientarResposta:responseFeedback,corrigirTeste:gradeTest,testes:tests,podeEntrar:canJoin,linkEntrevista:interviewLink,escape:escape};
+ function premiumAccess(candidate,now){if(!candidate)return false;var plan=norm(candidate.plano_candidato||candidate.planoCandidato||candidate.plano);if(['premium','trimestral','semestral','anual'].indexOf(plan)<0)return false;var until=candidate.premium_valido_ate||candidate.premiumValidoAte||candidate.plano_valido_ate;if(until){var at=Date.parse(until);if(!Number.isFinite(at)||at<(now==null?Date.now():now))return false;}return true;}
+ var core={temPremium:premiumAccess,compatibilidade:compatibility,correspondeAlerta:matchesAlert,validarAlerta:validateAlert,perguntasEntrevista:interviewQuestions,orientarResposta:responseFeedback,corrigirTeste:gradeTest,testes:tests,podeEntrar:canJoin,linkEntrevista:interviewLink,escape:escape};
  global.EmpregaMaisPreparacao=core;
  if(typeof module!=='undefined'&&module.exports)module.exports=core;
  if(!global.document)return;
@@ -190,13 +191,21 @@
   var counter=summary.querySelector('[data-home-message-count]'),unread=Number(counter&&counter.textContent)||0,bell=document.querySelector('#cpCandidateHeader .cp-notifications');
   if(bell){bell.querySelector('.cp-notification-dot').hidden=unread<1;bell.setAttribute('aria-label',unread>0?'Abrir mensagens: '+unread+' recebida'+(unread===1?'':'s'):'Abrir mensagens');}
  }
+ function hasCompatibilityAccess(){try{var api=global.EmpregaMaisPremiumCandidatoV92;return api&&typeof api.ehPremium==='function'?!!api.ehPremium():premiumAccess(profile());}catch(ignore){return false;}}
+ function compatibilityMarkup(job,c,allowed){
+  var fit=allowed?compatibility(job,c):null;
+  var badge=allowed?'<span class="cp-fit-premium-label">PREMIUM</span>':'<span class="cp-fit-premium-label">RECURSO PREMIUM</span>';
+  var score=allowed?(fit.percent==null?'Complete seu perfil':fit.percent+'%'):'Conheça sua compatibilidade';
+  var detail=allowed?(fit.percent==null?'Adicione informações para calcular.':'Compatibilidade com seu perfil · Ver critérios'):'Compare seu perfil com os requisitos da vaga.';
+  return '<button type="button" class="cp-fit-button cp-fit-panel '+(allowed?'is-unlocked':'is-locked')+'" data-cp-fit="'+escape(job.id||'')+'">'+icon('target')+'<span class="cp-fit-copy">'+badge+'<strong>'+score+'</strong><small>'+detail+'</small>'+(allowed&&fit.percent!=null?'<span class="cp-fit-meter" aria-hidden="true"><span style="width:'+Math.max(0,Math.min(100,fit.percent))+'%"></span></span>':'')+'</span><span class="cp-fit-panel-action">'+(allowed?'Ver análise →':'Conhecer Premium →')+'</span></button>';
+ }
  function enhanceRecommendations(){
   var c=profile();container.querySelectorAll('.em-personal-grid [data-cp-job-id]').forEach(function(card){
    var company=card.querySelector(':scope > p'),place=card.querySelector(':scope > small');if(company&&place){place.classList.add('cp-inline-place');company.appendChild(document.createTextNode(' · '));company.appendChild(place);}
-   var job=jobById(card.dataset.cpJobId),match=compatibility(job,c),signature=JSON.stringify(match),holder=card.querySelector('.cp-fit-and-alert');
+   var job=jobById(card.dataset.cpJobId),allowed=hasCompatibilityAccess(),signature=JSON.stringify([allowed,allowed?compatibility(job,c):null]),holder=card.querySelector('.cp-fit-and-alert');
    if(!holder){holder=document.createElement('div');holder.className='cp-fit-and-alert';card.appendChild(holder);}
    if(holder.dataset.signature===signature)return;holder.dataset.signature=signature;
-   holder.innerHTML='<button type="button" class="cp-fit-button" data-cp-fit="'+escape(job.id||'')+'">'+icon('target')+'<span>'+(match.percent==null?'Complete o perfil para ver a compatibilidade':match.percent+'% de compatibilidade')+'</span><span class="cp-fit-info" aria-hidden="true">i</span></button><button type="button" class="cp-job-alert" data-cp-alert-job="'+escape(job.id||'')+'">'+icon('bell')+' Avise-me sobre vagas como esta</button>';
+   holder.innerHTML=compatibilityMarkup(job,c,allowed)+'<button type="button" class="cp-job-alert" data-cp-alert-job="'+escape(job.id||'')+'">'+icon('bell')+' Avise-me sobre vagas como esta</button>';
   });
  }
  function enhanceInterview(){
@@ -219,6 +228,8 @@
  }
  function toolStatus(text){var el=workspace.querySelector('.cp-feedback');if(el)el.textContent=text;}
  function openCompatibility(id){
+  if(!hasCompatibilityAccess()){openWorkspace('Compatibilidade de perfil · Premium','<div class="cp-tool-intro"><span class="cp-feature-icon">'+icon('target')+'</span><div><h2>Encontre oportunidades com mais informação</h2><p>Compare as informações do seu perfil com os requisitos de cada vaga.</p></div></div><p>No Premium, você vê o percentual de compatibilidade e os critérios considerados na análise. O indicador é uma orientação e não garante contratação.</p><div class="cp-tool-actions"><button type="button" class="cp-primary" data-cp-action="premium">Conhecer Premium →</button><button type="button" data-cp-job-open="'+escape(id)+'">Continuar vendo a vaga</button></div>');return;}
+
   var job=jobById(id),match=compatibility(job,profile());
   openWorkspace('Entenda sua compatibilidade','<div class="cp-tool-intro"><span class="cp-feature-icon">'+icon('target')+'</span><div><h2>'+escape(job.cargo||job.titulo||'Vaga')+'</h2><p>'+(match.percent==null?'Preencha mais informações no seu perfil para calcular.':match.percent+'% de compatibilidade com as informações disponíveis.')+'</p></div></div><p>O indicador compara informações do seu perfil com o anúncio. A pontuação considera apenas os critérios disponíveis e não representa uma previsão de contratação.</p><div class="cp-criteria">'+match.criteria.map(function(c){return '<article><div><strong>'+c.label+'</strong><small>Peso: '+c.weight+'</small></div><span>'+(!c.available?'Informação insuficiente':c.match>=.8?'Em comum':c.match>0?'Em parte':'Sem correspondência')+'</span><dl><dt>Seu perfil</dt><dd>'+escape(c.profile||'Não informado')+'</dd><dt>Vaga</dt><dd>'+escape(c.job||'Não informado')+'</dd></dl></article>';}).join('')+'</div><p class="cp-muted">Habilidades e experiência são comparadas por termos em comum. Confira também os requisitos completos da vaga.</p><div class="cp-tool-actions"><button type="button" data-cp-action="profile">Atualizar meu perfil</button><button type="button" class="cp-primary" data-cp-job-open="'+escape(id)+'">Ver vaga →</button></div>');
  }
@@ -306,6 +317,7 @@
  function click(event){
   var target=event.target.closest('button');if(!target||!page.contains(target))return;
   if(target.dataset.cpLocalSubmit){event.preventDefault();event.stopPropagation();submitToolForm(target.closest('form'));return;}
+  if(target.dataset.cpAction==='premium'){closeWorkspace(false);global.irPara('premium-candidato');return;}
   if(target.dataset.cpFit!=null){openCompatibility(target.dataset.cpFit);return;}
   if(target.dataset.cpAlertJob!=null){openAlerts(target.dataset.cpAlertJob);return;}
   if(target.dataset.cpAlertView){showAlertJobs(target.dataset.cpAlertView);return;}
@@ -382,6 +394,7 @@
 
 /* Candidate profile editor. Sensitive data never enters resume/localStorage. */
 (function(){
+ if(typeof document==='undefined')return;
  'use strict';
  var dialog,opener,demoPrivate={},photo='',busy=false;
  var BASE='https://mkezlcewyengejdmtppl.supabase.co',KEY='sb_publishable_8YnXpzGX8zj-tvzvcMYdyw_FVBhQutR';
@@ -572,6 +585,7 @@
 
 /* Site-wide readability: add exactly one pixel to small text, preserve headings. */
 (function(){
+ if(typeof document==='undefined')return;
  'use strict';
  var sizes=new WeakMap(),colors=new WeakSet(),observed=new WeakSet(),queued=false;
  function rgb(s){var n=String(s).match(/[\d.]+/g);return n&&n.length>=3?n.slice(0,3).map(Number):null;}
@@ -598,6 +612,7 @@
 
 /* Candidate account dropdown, anchored to the persistent toolbar. */
 (function(){
+ if(typeof document==='undefined')return;
  'use strict';var panel,trigger;
  function esc(v){return String(v||'').replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];});}
  function icon(type){
@@ -614,6 +629,7 @@
  function go(route){close();if(route==='profile'){window.EmpregaMaisEditarPerfilCandidato();return;}if(window.irPara)window.irPara(route);if(route==='painel-candidato')setTimeout(function(){var b=document.querySelector('[data-cp-action="alerts"]');if(b)b.click();},80);}
  function info(key){
   close();window.EmpregaMaisEditarPerfilCandidato();setTimeout(function(){
+ if(typeof document==='undefined')return;
    var host=document.getElementById('emCandidateProfile');if(!host)return;var old=host.querySelector('.em-account-details');if(old)old.remove();var card=document.createElement('section');card.className='em-account-details';card.tabIndex=-1;
    var texts={access:['Dados de acesso','Seu e-mail de acesso é o informado no perfil. Para alterar sua senha, use a opção Recuperar senha.'],communications:['Comunicações','As mensagens das empresas e os convites de entrevista ficam disponíveis na aba Mensagens. Seus alertas de vagas podem ser ajustados em Alertas de vagas.'],visibility:['Visibilidade do currículo','O envio de uma candidatura compartilha seu currículo com a empresa responsável pela vaga. Os dados de diversidade ficam privados e não são incluídos no currículo.'],status:['Status da conta','Você está conectado à sua conta de candidato. Encerrar sessão desconecta este dispositivo e preserva seus dados.']},copy=texts[key];
    card.innerHTML='<h3>'+icon(key==='visibility'?'eye':'gear')+copy[0]+'</h3><p>'+copy[1]+'</p>';
@@ -683,6 +699,7 @@
 
 /* Model 3: presentation layer; existing data, navigation and actions are retained. */
 (function(){
+ if(typeof document==='undefined')return;
  'use strict';
  var queued=false;
  function go(route){var b=document.querySelector('#cpCandidateHeader [data-route="'+route+'"]');if(b)b.click();}
