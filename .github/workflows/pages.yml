@@ -30,6 +30,8 @@ jobs:
           html = page.read_text()
           for asset in ('empregamais_lote8.js', 'site-fonts.css', 'processo-seletivo-etapas.js', 'candidato-demo.js', 'vagas-recomendadas.js', 'candidato-candidaturas.js', 'candidato-candidaturas-sync.js', 'recruiter-sync-and-reports.js', 'candidato-preparacao.js', 'candidato-preparacao.css'):
               html = re.sub(re.escape(asset) + r'\?v=[^\"\']+', asset + '?v=' + os.environ['DEPLOY_SHA'], html)
+          html = re.sub(r'<script[^>]+src=[\"\']form-validation\.js[^>]*></script>', '', html)
+          html = html.replace('</body>', '<script src=\"form-validation.js?v=' + os.environ['DEPLOY_SHA'] + '\" defer></script></body>')
           page.write_text(html)
           PYTHON
       - uses: actions/upload-pages-artifact@v3
@@ -42,4 +44,5 @@ jobs:
         with:
           artifact_name: github-pages-${{ github.run_id }}-${{ github.run_attempt }}
           timeout: 1200000
+
 
