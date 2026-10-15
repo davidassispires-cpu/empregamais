@@ -935,6 +935,7 @@ html body #pagina-painel-candidato#pagina-painel-candidato.cp-enhanced .cp-recom
 html body #pagina-painel-candidato#pagina-painel-candidato.cp-enhanced .cp-recommendations-intro h2{margin:8px 0 6px!important}
 html body #pagina-painel-candidato#pagina-painel-candidato.cp-enhanced .cp-recommendations-intro p{margin:0!important}
 html body #pagina-painel-candidato#pagina-painel-candidato.cp-enhanced .cp-recommendations-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
+html body #pagina-painel-candidato#pagina-painel-candidato.cp-enhanced .cp-recommendations-grid:has(>.cp-recommendation-card:only-child){grid-template-columns:minmax(0,1fr)}
 html body #pagina-painel-candidato#pagina-painel-candidato.cp-enhanced .cp-recommendation-card{display:flex;flex-direction:column;gap:16px;min-width:0;padding:22px;border:1px solid var(--cp-border);border-radius:12px;background:#fff}
 html body #pagina-painel-candidato#pagina-painel-candidato.cp-enhanced .cp-recommendation-top{display:flex;align-items:flex-start;gap:12px}
 html body #pagina-painel-candidato#pagina-painel-candidato.cp-enhanced .cp-recommendation-top>div{flex:1;min-width:0}
@@ -949,8 +950,8 @@ html body #pagina-painel-candidato#pagina-painel-candidato.cp-enhanced .cp-recom
 html body #pagina-painel-candidato#pagina-painel-candidato.cp-enhanced .cp-recommendation-reasons span{color:var(--cp-muted);font-size:10px;padding-right:8px;border-right:1px solid var(--cp-border)}
 html body #pagina-painel-candidato#pagina-painel-candidato.cp-enhanced .cp-recommendation-reasons span:last-child{border:0}
 html body #pagina-painel-candidato#pagina-painel-candidato.cp-enhanced .cp-recommendation-salary{font-size:14px;color:var(--cp-navy)}
-html body #pagina-painel-candidato#pagina-painel-candidato.cp-enhanced .cp-recommendation-card footer{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;padding:14px 0 0;margin-top:auto;border-top:1px solid var(--cp-border);background:transparent}
-html body #pagina-painel-candidato#pagina-painel-candidato.cp-enhanced .cp-recommendation-card footer>div{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+html body #pagina-painel-candidato#pagina-painel-candidato.cp-enhanced .cp-recommendation-footer{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;padding:14px 0 0;margin-top:auto;border-top:1px solid var(--cp-border);background:transparent}
+html body #pagina-painel-candidato#pagina-painel-candidato.cp-enhanced .cp-recommendation-footer>div{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
 html body #pagina-painel-candidato#pagina-painel-candidato.cp-enhanced .cp-recommendations-empty{padding:26px;border-radius:12px;background:var(--cp-light);border:1px solid var(--cp-border)}
 @media(max-width:1100px){html body #pagina-painel-candidato#pagina-painel-candidato.cp-enhanced .cp-recommendations-grid{grid-template-columns:1fr}}
 @media(max-width:540px){html body #pagina-painel-candidato#pagina-painel-candidato.cp-enhanced .cp-recommendations-intro{align-items:flex-start;gap:12px}html body #pagina-painel-candidato#pagina-painel-candidato.cp-enhanced .cp-recommendation-card{padding:16px}html body #pagina-painel-candidato#pagina-painel-candidato.cp-enhanced .cp-recommendation-top{flex-wrap:wrap}html body #pagina-painel-candidato#pagina-painel-candidato.cp-enhanced .cp-recommendation-match{width:100%;text-align:left;padding-left:55px}html body #pagina-painel-candidato#pagina-painel-candidato.cp-enhanced .cp-recommendations-empty{padding:18px}}
