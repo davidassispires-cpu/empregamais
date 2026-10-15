@@ -391,6 +391,7 @@
  function select(name,label){return '<label>'+label+'<select name="'+name+'"><option value="">Selecione (opcional)</option>'+choices[name].map(function(x){return '<option>'+esc(x)+'</option>';}).join('')+'</select></label>';}
  function status(text){dialog.querySelector('[role=status]').textContent=text;}
  function age(value){if(!value)return '';var d=new Date(value+'T12:00:00'),now=new Date();var n=now.getFullYear()-d.getFullYear();if(now.getMonth()<d.getMonth()||(now.getMonth()===d.getMonth()&&now.getDate()<d.getDate()))n--;return n>=0?n+' anos':'';}
+ function profileIcon(name){var paths={"user":"<circle cx=\"12\" cy=\"7\" r=\"4\"/><path d=\"M4 22v-3a8 8 0 0 1 16 0v3Z\"/>","pin":"<path d=\"M20 10c0 6-8 12-8 12S4 16 4 10a8 8 0 1 1 16 0Z\"/><circle cx=\"12\" cy=\"10\" r=\"3\"/>","group":"<circle cx=\"9\" cy=\"7\" r=\"4\"/><path d=\"M2 22v-3a7 7 0 0 1 14 0v3M17 3a4 4 0 0 1 0 8m2 5a6 6 0 0 1 3 6\"/>","camera":"<path d=\"M3 7h4l2-4h6l2 4h4v14H3Z\"/><circle cx=\"12\" cy=\"13\" r=\"4\"/>","trash":"<path d=\"M4 6h16M9 6V3h6v3M6 6l1 16h10l1-16M10 10v8m4-8v8\"/>","document":"<path d=\"M5 2h10l4 4v16H5ZM14 2v6h5M8 12h8M8 16h6\"/>","check":"<path d=\"m4 12 5 5L20 5\"/>"};return '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'+(paths[name]||paths.user)+'</svg>';}
  function styles(){if(document.getElementById('emCandidateProfileStyle'))return;var el=document.createElement('style');el.id='emCandidateProfileStyle';el.textContent=`
  #emCandidateProfile{width:min(720px,calc(100vw - 32px));max-height:calc(100dvh - 32px);box-sizing:border-box;padding:0;border:1px solid #ddd3f3;border-radius:18px;background:#fff;color:#1b2c51;box-shadow:0 24px 80px #14244733;overflow:auto}
  #emCandidateProfile::backdrop{background:#14244766}
@@ -419,6 +420,79 @@
  border:1px solid #ddd3f3!important;border-radius:14px!important;box-shadow:0 4px 20px #1b2c5106!important;
  }
  @media(max-width:540px){html body #pagina-perfil.ep-inline-profile-page #emCandidateProfile{width:calc(100% - 28px)!important}}
+
+ /* Approved petroleum profile layout. */
+ html body #pagina-perfil.ep-inline-profile-page #emCandidateProfile#emCandidateProfile{width:calc(100% - 48px)!important;max-width:1220px!important;background:transparent!important;border:0!important;box-shadow:none!important}
+ #emCandidateProfile#emCandidateProfile .ep-head{display:grid;grid-template-columns:minmax(0,1fr) 240px auto;align-items:center;gap:24px;padding:20px 28px;min-height:145px;background:linear-gradient(110deg,#edf6fa,#e1eef3);border:1px solid #bbd7e4;border-radius:12px;margin-bottom:20px}
+ #emCandidateProfile#emCandidateProfile .ep-eyebrow{font-size:10px;color:#396e87;letter-spacing:2px;font-weight:650;display:block;margin-bottom:10px}
+ #emCandidateProfile#emCandidateProfile h2{font-size:30px!important;color:#10273c!important;line-height:1.2;margin:0 0 8px}
+ #emCandidateProfile#emCandidateProfile .ep-head p{margin:0!important;color:#405570!important;font-size:13px!important}
+ #emCandidateProfile#emCandidateProfile .ep-hero-art svg{width:100%;height:120px;display:block}
+ #emCandidateProfile#emCandidateProfile form{display:grid;grid-template-columns:minmax(0,1.08fr) minmax(0,1fr);gap:18px}
+ #emCandidateProfile#emCandidateProfile form>section,#emCandidateProfile#emCandidateProfile .ep-photo-card{background:#fff;border:1px solid #d9e5ed;border-radius:12px;padding:22px 24px;box-shadow:0 3px 10px #17324f04;margin:0;min-width:0}
+ #emCandidateProfile#emCandidateProfile .ep-photo-card{grid-column:1/-1;display:flex;align-items:center;gap:20px;min-height:112px}
+ #emCandidateProfile#emCandidateProfile .ep-avatar-placeholder{display:grid;place-items:center;width:76px;height:76px;flex:0 0 76px;background:#dbeaf1;color:#245e73;font-size:24px;font-weight:700;border-radius:50%}
+ #emCandidateProfile#emCandidateProfile .ep-photo img{width:76px;height:76px;object-fit:cover;flex:0 0 76px;border-radius:50%}
+ #emCandidateProfile#emCandidateProfile .ep-photo-copy{flex:1;min-width:0}
+ #emCandidateProfile#emCandidateProfile .ep-photo-copy strong{font-size:18px;font-weight:700;color:#10273c}
+ #emCandidateProfile#emCandidateProfile .ep-photo-copy p{margin:5px 0 0!important;font-size:13px!important;color:#405570!important}
+ #emCandidateProfile#emCandidateProfile [hidden]{display:none!important}
+ #emCandidateProfile#emCandidateProfile h3{display:flex;gap:12px;align-items:center;margin:0 0 18px;font-size:17px!important;color:#10273c!important;font-weight:700!important}
+ #emCandidateProfile#emCandidateProfile h3>span{font-size:15px;font-weight:500;color:#315e75}
+ #emCandidateProfile#emCandidateProfile h3 svg{width:24px;height:24px;flex:0 0 24px;color:#174e61}
+ #emCandidateProfile#emCandidateProfile label{font-size:12px!important;color:#304b63!important;gap:8px!important}
+ #emCandidateProfile#emCandidateProfile .ep-grid{gap:20px 18px}
+ #emCandidateProfile#emCandidateProfile input,#emCandidateProfile#emCandidateProfile select{font-size:13px!important;color:#243f56!important;border:1px solid #cbdce6!important;border-radius:8px;min-height:44px;padding:11px 12px;background:#fff}
+ #emCandidateProfile#emCandidateProfile input:disabled{background:#f1f5f8;color:#698499!important}
+ #emCandidateProfile#emCandidateProfile .ep-contact-card .ep-grid{grid-template-columns:repeat(6,minmax(0,1fr));gap:20px 14px}
+ #emCandidateProfile#emCandidateProfile .ep-contact-card label{grid-column:span 2}
+ #emCandidateProfile#emCandidateProfile .ep-contact-card label[data-field=email],#emCandidateProfile#emCandidateProfile .ep-contact-card label[data-field=telefone]{grid-column:span 3}
+ #emCandidateProfile#emCandidateProfile .ep-diversity-card{grid-column:1/-1}
+ #emCandidateProfile#emCandidateProfile .ep-diversity-card>.ep-grid{grid-template-columns:repeat(3,minmax(0,1fr));margin-top:16px}
+ #emCandidateProfile#emCandidateProfile .ep-diversity-card p,#emCandidateProfile#emCandidateProfile .ep-consent{color:#405570!important;font-size:12px!important}
+ #emCandidateProfile#emCandidateProfile details{font-size:12px;color:#245e73;margin:10px 0}
+ #emCandidateProfile#emCandidateProfile summary{cursor:pointer}
+ #emCandidateProfile#emCandidateProfile .ep-consent{display:flex;gap:10px;margin:20px 0 12px;align-items:flex-start}
+ #emCandidateProfile#emCandidateProfile .ep-consent input{width:18px;min-height:18px;flex:0 0 18px;padding:0;accent-color:#245e73}
+ #emCandidateProfile#emCandidateProfile button{display:inline-flex;justify-content:center;align-items:center;gap:9px;padding:11px 16px;min-height:40px;border:1px solid #86adbf;background:#fff;color:#245e73!important;border-radius:8px;font-size:12px!important;font-weight:600!important;white-space:nowrap}
+ #emCandidateProfile#emCandidateProfile button svg{width:19px;height:19px;flex:0 0 19px}
+ #emCandidateProfile#emCandidateProfile .ep-primary{background:linear-gradient(110deg,#245e73,#174e61)!important;border-color:#245e73!important;color:#fff!important;box-shadow:0 2px 7px #245e7310}
+ #emCandidateProfile#emCandidateProfile .ep-footer{grid-column:1/-1;padding:0;display:flex;gap:12px;margin:0}
+ #emCandidateProfile#emCandidateProfile [data-resume]{margin-right:auto}
+ #emCandidateProfile#emCandidateProfile [role=status]{grid-column:1/-1;padding:0;color:#245e73}
+ #emCandidateProfile#emCandidateProfile [role=status]:empty{display:none}
+ #emCandidateProfile#emCandidateProfile :focus-visible{outline:3px solid #90b7ca;outline-offset:2px}
+ html body.cp-shell-active{--candidate-primary:#245e73;--candidate-accent:#245e73;--candidate-soft:#e7f1f5}
+ html body.cp-shell-active #cpCandidateHeader#cpCandidateHeader .cp-navigation button[aria-current=page]{background:linear-gradient(110deg,#245e73,#174e61)!important;color:#fff!important;box-shadow:0 3px 10px #174e611a!important}
+ html body.cp-shell-active #cpCandidateHeader#cpCandidateHeader .cp-navigation button[aria-current=page]:hover{background:#174e61!important}
+ html body.cp-shell-active #cpCandidateHeader#cpCandidateHeader .cp-notification-dot{background:#245e73}
+ @layer site-typography{
+ #emCandidateProfile#emCandidateProfile label,#emCandidateProfile#emCandidateProfile p,#emCandidateProfile#emCandidateProfile small{color:#405570!important}
+ #emCandidateProfile#emCandidateProfile .ep-primary,#emCandidateProfile#emCandidateProfile .ep-primary span{color:#fff!important}
+ }
+ @media(max-width:1100px){
+ #emCandidateProfile#emCandidateProfile .ep-head{grid-template-columns:minmax(0,1fr) 150px auto;gap:16px}
+ #emCandidateProfile#emCandidateProfile form{grid-template-columns:1fr}
+ #emCandidateProfile#emCandidateProfile .ep-photo-card{gap:14px;flex-wrap:wrap}
+ }
+ @media(max-width:700px){
+ #emCandidateProfile#emCandidateProfile .ep-head{grid-template-columns:minmax(0,1fr) auto;padding:20px;min-height:130px}
+ #emCandidateProfile#emCandidateProfile .ep-hero-art{display:none}
+ #emCandidateProfile#emCandidateProfile h2{font-size:26px!important}
+ #emCandidateProfile#emCandidateProfile form>section,#emCandidateProfile#emCandidateProfile .ep-photo-card{padding:20px}
+ #emCandidateProfile#emCandidateProfile .ep-diversity-card>.ep-grid{grid-template-columns:1fr}
+ #emCandidateProfile#emCandidateProfile .ep-photo-copy{flex-basis:calc(100% - 96px)}
+ #emCandidateProfile#emCandidateProfile .ep-footer{flex-wrap:wrap}
+ }
+ @media(max-width:540px){
+ html body #pagina-perfil.ep-inline-profile-page #emCandidateProfile#emCandidateProfile{width:calc(100% - 28px)!important}
+ #emCandidateProfile#emCandidateProfile .ep-head{grid-template-columns:1fr;gap:14px}
+ #emCandidateProfile#emCandidateProfile .ep-head>button{justify-self:start}
+ #emCandidateProfile#emCandidateProfile .ep-grid,#emCandidateProfile#emCandidateProfile .ep-contact-card .ep-grid{grid-template-columns:1fr}
+ #emCandidateProfile#emCandidateProfile .ep-contact-card label{grid-column:1!important}
+ #emCandidateProfile#emCandidateProfile .ep-footer button{flex:1 1 auto}
+ #emCandidateProfile#emCandidateProfile [data-resume]{margin-right:0}
+ }
 `;document.head.appendChild(el);}
  function refresh(){var p=current();if(window.EmpregaMaisAtualizarPainelCloud)window.EmpregaMaisAtualizarPainelCloud();document.dispatchEvent(new Event('empregamais:candidato-sincronizado'));document.querySelectorAll('.cp-name,.cp-greeting-name').forEach(function(n){n.textContent=p.nome||'';});document.querySelectorAll('.cp-location').forEach(function(n){n.textContent=[p.cidade,p.uf].filter(Boolean).join(' – ');});document.querySelectorAll('.cp-avatar,.cp-user-avatar').forEach(function(n){if(/^data:image\/(jpeg|png|webp);base64,/.test(p.fotoPerfil||'')){n.style.setProperty('background-image','url("'+p.fotoPerfil+'")','important');n.style.backgroundSize='cover';n.style.backgroundPosition='center';n.textContent='';}else{n.style.removeProperty('background-image');n.textContent=String(p.nome||'').split(/\s+/).filter(Boolean).slice(0,2).map(function(s){return s[0];}).join('').toUpperCase();}});}
  async function open(){
@@ -426,11 +500,30 @@
   dialog=document.createElement('section');dialog.id='emCandidateProfile';dialog.setAttribute('aria-labelledby','epTitle');
   var today=new Date().toLocaleDateString('en-CA');
   dialog.innerHTML='<div class="ep-head"><div><h2 id="epTitle">Meu perfil</h2><p>Atualize seus dados pessoais e suas preferências.</p></div><button type="button" data-close aria-label="Voltar ao painel">← Voltar</button></div><form><section><h3>Dados pessoais</h3><div class="ep-photo"><img alt="Foto do perfil" hidden><label>Foto de perfil (opcional)<input type="file" name="foto" accept="image/jpeg,image/png,image/webp"></label><button type="button" data-remove-photo>Remover foto</button></div><div class="ep-grid">'+field('nome','Nome completo','text',p.nome,'required maxlength="150" autocomplete="name"')+field('nome_social','Nome social (opcional)','text','','maxlength="120"')+field('data_nascimento','Data de nascimento (opcional)','date','','min="1900-01-01" max="'+today+'"')+'<label>Idade calculada<input name="idade" disabled></label>'+field('email','E-mail da conta','email',p.email||sessionStorage.getItem('candidatoEmail'),'disabled')+field('telefone','Celular / WhatsApp','tel',p.telefone,'maxlength="30" autocomplete="tel"')+field('cep','CEP','text',p.cep,'inputmode="numeric" maxlength="9" autocomplete="postal-code"')+field('cidade','Cidade','text',p.cidade,'required maxlength="120" autocomplete="address-level2"')+field('uf','Estado (UF)','text',p.uf,'required minlength="2" maxlength="2" pattern="[A-Za-z]{2}" autocomplete="address-level1"')+'</div><p>O e-mail identifica sua conta. A data de nascimento e o nome social ficam privados nesta seção.</p></section><section><h3>Diversidade · opcional</h3><p>Você pode deixar estes campos em branco sem impedir suas candidaturas. As respostas ficam privadas e não são usadas para calcular aderência, classificar ou eliminar candidatos.</p><details><summary>Por que pedimos essas informações?</summary><p>Este espaço permite registrar voluntariamente sua autodeclaração para iniciativas de diversidade e inclusão. Atualmente, as respostas ficam acessíveis somente a você e não são compartilhadas com empresas.</p></details><div class="ep-grid">'+select('identidade_genero','Identidade de gênero')+select('orientacao_sexual','Orientação sexual')+select('cor_raca','Cor ou raça')+'</div><label class="ep-consent"><input type="checkbox" name="consentimento"><span>Autorizo o EmpregaMais a armazenar minhas respostas opcionais de diversidade no meu perfil privado. Posso retirar esta autorização e excluir as respostas a qualquer momento.</span></label><button type="button" data-clear>Excluir respostas de diversidade</button></section><div role="status" aria-live="polite"></div><div class="ep-footer"><button type="button" data-resume>Editar currículo</button><button type="button" data-close>Cancelar</button><button class="ep-primary" type="submit">Salvar alterações</button></div></form>';
+  
+  /* Build real independent cards while preserving named form fields and handlers. */
+  var head=dialog.querySelector('.ep-head');head.querySelector('h2').insertAdjacentHTML('beforebegin','<span class="ep-eyebrow">PERFIL DO CANDIDATO</span>');
+  var heroArt=document.createElement('div');heroArt.className='ep-hero-art';heroArt.setAttribute('aria-hidden','true');heroArt.innerHTML="<svg viewBox=\"0 0 280 150\" aria-hidden=\"true\"><rect x=\"12\" y=\"40\" width=\"245\" height=\"95\" rx=\"36\" fill=\"#cce3ec\" opacity=\".55\"/><rect x=\"52\" y=\"18\" width=\"174\" height=\"114\" rx=\"9\" fill=\"#fff\" stroke=\"#245e73\"/><circle cx=\"90\" cy=\"61\" r=\"24\" fill=\"#dbeaf0\"/><circle cx=\"90\" cy=\"54\" r=\"9\" fill=\"#245e73\"/><path d=\"M72 78c2-20 34-20 36 0\" fill=\"#245e73\"/><g stroke=\"#9cbece\" stroke-width=\"5\" stroke-linecap=\"round\"><path d=\"M126 44h68M126 60h57M126 76h53M72 111h98\"/></g><circle cx=\"225\" cy=\"27\" r=\"20\" fill=\"#245e73\"/><path d=\"m225 15 3 5 6-1 1 6 4 3-4 4-1 6-6-1-3 4-3-4-6 1-1-6-4-4 4-3 1-6 6 1Z\" fill=\"#fff\"/><circle cx=\"225\" cy=\"28\" r=\"4\" fill=\"#245e73\"/></svg>";head.insertBefore(heroArt,head.querySelector('[data-close]'));head.querySelector('[data-close]').textContent='← Voltar ao painel';
+  var profileForm=dialog.querySelector('form'),personal=profileForm.querySelector('section'),photoRow=personal.querySelector('.ep-photo'),grid=personal.querySelector('.ep-grid'),diversity=profileForm.querySelectorAll('section')[1];
+  personal.classList.add('ep-personal-card');personal.querySelector('h3').innerHTML=profileIcon('user')+'Dados pessoais';
+  var contact=document.createElement('section');contact.className='ep-contact-card';contact.innerHTML='<h3>'+profileIcon('pin')+'Contato e localização</h3><div class="ep-grid"></div>';personal.after(contact);
+  ['email','telefone','cep','cidade','uf'].forEach(function(name){var input=grid.querySelector('[name="'+name+'"]');if(input){input.closest('label').dataset.field=name;contact.querySelector('.ep-grid').appendChild(input.closest('label'));}});
+  var personalNote=personal.querySelector('p');if(personalNote)personalNote.remove();
+  profileForm.prepend(photoRow);photoRow.classList.add('ep-photo-card');photoRow.querySelector('label').hidden=true;
+  photoRow.insertAdjacentHTML('afterbegin','<span class="ep-avatar-placeholder">'+esc(String(p.nome||'').split(/\\s+/).filter(Boolean).slice(0,2).map(function(x){return x[0];}).join('').toUpperCase())+'</span>');
+  var photoCopy=document.createElement('div');photoCopy.className='ep-photo-copy';photoCopy.innerHTML='<strong class="ep-photo-name">'+esc(p.nome||'Seu perfil')+'</strong><p>Foto de perfil opcional</p>';photoRow.insertBefore(photoCopy,photoRow.querySelector('[data-remove-photo]'));
+  var addPhoto=document.createElement('button');addPhoto.type='button';addPhoto.className='ep-primary ep-add-photo';addPhoto.innerHTML=profileIcon('camera')+'Adicionar foto';addPhoto.onclick=function(){profileForm.elements.foto.click();};photoRow.insertBefore(addPhoto,photoRow.querySelector('[data-remove-photo]'));
+  photoRow.querySelector('[data-remove-photo]').innerHTML=profileIcon('trash')+'Remover';
+  diversity.classList.add('ep-diversity-card');diversity.querySelector('h3').innerHTML=profileIcon('group')+'Diversidade <span>· opcional</span>';
+  diversity.querySelector('[data-clear]').innerHTML=profileIcon('trash')+'Excluir respostas';
+  dialog.querySelector('[data-resume]').innerHTML=profileIcon('document')+'Editar currículo';
+  dialog.querySelector('[type=submit]').innerHTML=profileIcon('check')+'Salvar alterações';
+
   var profilePage=document.getElementById('pagina-perfil');if(!profilePage){status('Não foi possível abrir a aba Perfil.');return;}profilePage.classList.add('ep-inline-profile-page');profilePage.appendChild(dialog);var form=dialog.querySelector('form'),ready=false;
   function close(){if(busy)return;dialog.remove();dialog=null;if(window.irPara)window.irPara('painel-candidato');}
   dialog.addEventListener('cancel',function(e){e.preventDefault();close();});dialog.querySelectorAll('[data-close]').forEach(function(b){b.onclick=close;});
   dialog.querySelector('[data-resume]').onclick=function(){close();if(window.irPara)window.irPara('curriculo');};
-  function preview(){var img=dialog.querySelector('.ep-photo img');img.hidden=!photo;if(photo)img.src=photo;else img.removeAttribute('src');}preview();
+  function preview(){var img=dialog.querySelector('.ep-photo img');img.hidden=!photo;var placeholder=dialog.querySelector('.ep-avatar-placeholder');if(placeholder)placeholder.hidden=!!photo;if(photo)img.src=photo;else img.removeAttribute('src');}preview();
   dialog.querySelector('[data-remove-photo]').onclick=function(){photo='';form.elements.foto.value='';preview();};
   form.elements.foto.onchange=async function(){var file=this.files[0];if(!file)return;if(!['image/jpeg','image/png','image/webp'].includes(file.type)||file.size>5*1024*1024){status('Escolha uma imagem JPG, PNG ou WebP de até 5 MB.');this.value='';return;}try{var bitmap=await createImageBitmap(file),canvas=document.createElement('canvas'),scale=Math.min(1,240/Math.max(bitmap.width,bitmap.height));canvas.width=Math.round(bitmap.width*scale);canvas.height=Math.round(bitmap.height*scale);canvas.getContext('2d').drawImage(bitmap,0,0,canvas.width,canvas.height);photo=canvas.toDataURL('image/jpeg',.8);bitmap.close();preview();}catch(e){status('Não foi possível abrir essa foto. Escolha outra imagem.');}};
   form.elements.data_nascimento.onchange=function(){form.elements.idade.value=age(this.value);};
@@ -449,7 +542,7 @@
     if(index<0)list.push(next);else list[index]=next;localStorage.setItem('candidatosEmpregaMais',JSON.stringify(list));sessionStorage.setItem('candidatoNome',next.nome);sessionStorage.setItem('candidatoTelefone',next.telefone);sessionStorage.setItem('candidatoCep',next.cep);
     var cv=read('empregaMaisDadosCurriculoV87:'+email,{});Object.assign(cv,{cvNomeV87:next.nome,cvTelefoneV87:next.telefone,cvEmailV87:email,cvCidadePessoalV87:next.cidade});localStorage.setItem('empregaMaisDadosCurriculoV87:'+email,JSON.stringify(cv));
     if(!demo()){if(!window.EmpregaMaisPerfilCloud)throw Error('Dados privados salvos; os dados pessoais aguardam sincronização.');await window.EmpregaMaisPerfilCloud.flush();}
-    refresh();status(demo()?'Perfil atualizado nesta demonstração. Diversidade permanece somente nesta sessão.':'Perfil e dados privados salvos na sua conta.');
+    refresh();var photoName=dialog.querySelector('.ep-photo-name');if(photoName)photoName.textContent=next.nome;status(demo()?'Perfil atualizado nesta demonstração. Diversidade permanece somente nesta sessão.':'Perfil e dados privados salvos na sua conta.');
    }catch(error){status(error.message);}finally{busy=false;form.querySelector('[type=submit]').disabled=false;}
   };
   form.querySelector('[type=submit]').disabled=true;status('Carregando seus dados privados…');
