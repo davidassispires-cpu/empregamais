@@ -132,3 +132,47 @@ html body #pagina-curriculo#pagina-curriculo #cvResumeWizard :is(.cv-preference-
 }
 @media(max-width:760px){html body #pagina-curriculo#pagina-curriculo .container-menor:has(#cvResumeWizard){width:calc(100% - 24px)!important}html body #pagina-curriculo#pagina-curriculo .cv-purple-hero{padding:20px 18px 14px!important;grid-template-columns:minmax(0,1fr) 26%!important}html body #pagina-curriculo#pagina-curriculo .cv-purple-hero .cv-hero-illustration{max-height:145px!important}html body #pagina-curriculo#pagina-curriculo #cvResumeWizard #curriculoOnlineV84{padding:17px!important}html body #pagina-curriculo#pagina-curriculo #cvResumeWizard .cv-context-guide{padding:16px!important}}
 @media(max-width:540px){html body #pagina-curriculo#pagina-curriculo .cv-purple-hero{grid-template-columns:1fr!important}html body #pagina-curriculo#pagina-curriculo .cv-purple-hero .cv-hero-illustration{display:none!important}html body #pagina-curriculo#pagina-curriculo #cvResumeWizard .cv-step-nav button{min-height:42px!important}html body #pagina-curriculo#pagina-curriculo .cv-purple-hero .cv85-score{flex-wrap:wrap!important}html body #pagina-curriculo#pagina-curriculo .cv-purple-hero .cv-rail-label{display:none!important}}
+
+/* Standard candidate headers: equal desktop height and breathing room above rails. */
+@media(min-width:761px){
+ html body #pagina-candidaturas#pagina-candidaturas#pagina-candidaturas .cp-applications-hero,
+ html body #pagina-curriculo#pagina-curriculo#pagina-curriculo .cv-purple-hero{
+  height:240px!important;min-height:240px!important;max-height:240px!important;
+  padding:18px 24px 14px!important;grid-template-rows:minmax(0,1fr) 36px!important;row-gap:14px!important;box-sizing:border-box!important;
+ }
+ html body #pagina-candidaturas#pagina-candidaturas#pagina-candidaturas .cp-applications-hero-copy,
+ html body #pagina-curriculo#pagina-curriculo#pagina-curriculo .cv85-hero-copy{
+  min-height:0!important;display:flex!important;flex-direction:column!important;justify-content:center!important;
+ }
+ html body #pagina-candidaturas#pagina-candidaturas#pagina-candidaturas .cp-applications-back,
+ html body #pagina-curriculo#pagina-curriculo#pagina-curriculo .cv-hero-back{
+  align-self:flex-start!important;min-height:18px!important;line-height:18px!important;padding:0!important;margin:0!important;
+ }
+ html body #pagina-candidaturas#pagina-candidaturas#pagina-candidaturas .cp-applications-kicker,
+ html body #pagina-curriculo#pagina-curriculo#pagina-curriculo .cv85-kicker{
+  margin:3px 0 6px!important;font-size:9px!important;line-height:1.3!important;
+ }
+ html body #pagina-curriculo#pagina-curriculo#pagina-curriculo .cv85-kicker span{padding:3px 7px!important}
+ html body #pagina-curriculo#pagina-curriculo#pagina-curriculo .cv-purple-hero h2{
+  font-size:26px!important;line-height:1.1!important;margin:0 0 6px!important;
+ }
+ html body #pagina-curriculo#pagina-curriculo#pagina-curriculo .cv85-hero-copy p{font-size:12px!important;line-height:1.5!important;margin:0!important}
+ html body #pagina-candidaturas#pagina-candidaturas#pagina-candidaturas .cp-applications-chips,
+ html body #pagina-curriculo#pagina-curriculo#pagina-curriculo .cv-hero-step-chips{margin-top:8px!important;gap:8px!important}
+ html body #pagina-curriculo#pagina-curriculo#pagina-curriculo .cv-hero-step-chips span{padding:4px 9px!important;min-height:24px!important;box-sizing:border-box!important}
+ html body #pagina-candidaturas#pagina-candidaturas#pagina-candidaturas .cp-applications-chips span{min-height:28px!important;padding:4px 9px!important}
+ html body #pagina-candidaturas#pagina-candidaturas#pagina-candidaturas .cp-applications-rail,
+ html body #pagina-curriculo#pagina-curriculo#pagina-curriculo .cv85-score{
+  height:36px!important;min-height:36px!important;max-height:36px!important;margin:0!important;padding:8px 14px!important;box-sizing:border-box!important;align-self:end!important;
+ }
+ html body #pagina-candidaturas#pagina-candidaturas#pagina-candidaturas .cp-applications-art,
+ html body #pagina-curriculo#pagina-curriculo#pagina-curriculo .cv-hero-illustration{height:100%!important;max-height:158px!important;min-height:0!important}
+ html body #pagina-candidaturas#pagina-candidaturas#pagina-candidaturas .cp-applications-art>svg,
+ html body #pagina-curriculo#pagina-curriculo#pagina-curriculo .cv-hero-illustration>svg{max-height:158px!important}
+}
+@layer site-typography{
+ @media(min-width:761px){
+  html body #pagina-curriculo#pagina-curriculo#pagina-curriculo .cv-purple-hero h2{font-size:26px!important;line-height:1.1!important}
+  html body #pagina-curriculo#pagina-curriculo#pagina-curriculo .cv85-hero-copy p{font-size:12px!important;line-height:1.5!important}
+ }
+}
