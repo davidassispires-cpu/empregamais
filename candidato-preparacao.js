@@ -457,5 +457,10 @@
  }
  document.addEventListener('click',function(e){var b=e.target.closest&&e.target.closest('button,a');if(!b||b.closest('#emCandidateProfile'))return;var action=b.getAttribute('data-cp-action'),route=b.getAttribute('data-route'),inline=b.getAttribute('onclick')||'';if(action==='profile'||route==='perfil'||(/irPara\(['"]perfil['"]\)/.test(inline)&&b.closest('#pagina-painel-candidato'))){e.preventDefault();e.stopImmediatePropagation();open();}},true);
  window.EmpregaMaisEditarPerfilCandidato=open;
+ function ensureProfileTab(){var page=document.getElementById('pagina-perfil');if(page&&page.classList.contains('ativa')&&(!dialog||!dialog.isConnected))open();}
+ if(document.body)new MutationObserver(ensureProfileTab).observe(document.body,{subtree:true,attributes:true,attributeFilter:['class']});
+ window.addEventListener('popstate',ensureProfileTab);
+ setTimeout(ensureProfileTab,0);
+
  document.addEventListener('empregamais:candidato-sincronizado',function(){var p=current();document.querySelectorAll('.cp-avatar,.cp-user-avatar').forEach(function(n){if(/^data:image\/(jpeg|png|webp);base64,/.test(p.fotoPerfil||'')){n.style.setProperty('background-image','url("'+p.fotoPerfil+'")','important');n.style.backgroundSize='cover';n.style.backgroundPosition='center';n.textContent='';}});});
 })();
