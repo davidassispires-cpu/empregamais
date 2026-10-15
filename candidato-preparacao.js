@@ -576,7 +576,7 @@
  var sizes=new WeakMap(),colors=new WeakSet(),observed=new WeakSet(),queued=false;
  function rgb(s){var n=String(s).match(/[\d.]+/g);return n&&n.length>=3?n.slice(0,3).map(Number):null;}
  function luminance(c){return c.reduce(function(n,v,i){v/=255;return n+[.2126,.7152,.0722][i]*(v<=.04045?v/12.92:Math.pow((v+.055)/1.055,2.4));},0);}
- function background(el){for(var n=el;n;){var s=getComputedStyle(n);if(s.backgroundImage!=='none')return null;var v=s.backgroundColor,c=rgb(v);if(c&&!/rgba\([^)]*,\s*0\s*\)/.test(v)&&v!=='transparent')return c;n=n.parentElement||(n.getRootNode&&n.getRootNode().host);}return [255,255,255];}
+ function background(el){for(var n=el;n;){var s=getComputedStyle(n);if(s.backgroundImage!=='none')return null;var v=s.backgroundColor,c=rgb(v);if(c&&(!/^rgba/.test(v)||Number((v.match(/[\d.]+/g)||[])[3])>=1)&&v!=='transparent')return c;n=n.parentElement||(n.getRootNode&&n.getRootNode().host);}return [255,255,255];}
  function watch(root){if(observed.has(root))return;observed.add(root);new MutationObserver(schedule).observe(root,{childList:true,subtree:true});}
  function scan(root){watch(root);var updates=[];root.querySelectorAll('*').forEach(function(el){
   if(el.shadowRoot)scan(el.shadowRoot);
