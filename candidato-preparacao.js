@@ -118,7 +118,7 @@
    var until=Date.parse(job.expiraEm||job.expira_em||'');if(Number.isFinite(until)&&until<=at)return false;
    seen.add(String(job.id));return true;
   }).map(function(job){return {job:job,match:compatibility(job,candidate)};}).filter(function(item){
-   return item.match.percent!=null&&item.match.percent>0&&item.match.criteria.slice(0,3).some(function(c){return c.available&&c.match>0;});
+   return item.match.percent!=null;
   }).sort(function(a,b){return b.match.percent-a.match.percent||(Date.parse(b.job.dataPublicacao||b.job.criadoEm)||0)-(Date.parse(a.job.dataPublicacao||a.job.criadoEm)||0);});
  }
  var core={temPremium:premiumAccess,vagaUrgente:urgentJob,recomendarVagas:recommendedJobs,compatibilidade:compatibility,correspondeAlerta:matchesAlert,validarAlerta:validateAlert,perguntasEntrevista:interviewQuestions,orientarResposta:responseFeedback,corrigirTeste:gradeTest,testes:tests,podeEntrar:canJoin,linkEntrevista:interviewLink,escape:escape};

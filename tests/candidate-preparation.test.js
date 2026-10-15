@@ -108,11 +108,23 @@ test('recommendations exclude unavailable, expired, duplicate and unapproved job
  assert.deepEqual(result.map(item=>item.job.id),['available']);
  assert.equal(rows.length,7,'The public vacancy list is not mutated');
 });
-test('a matching city and modality alone do not create a professional recommendation',()=>{
- const unrelated={id:'unrelated',cargo:'Programador Java',area:'Tecnologia',requisitos:'Java, SQL',cidade:candidate.cidadeProfissional,modalidade:'Presencial'};
- assert.ok(core.compatibilidade(unrelated,premiumCandidate).percent>0);
- assert.deepEqual(core.recomendarVagas([unrelated],premiumCandidate,recommendationNow),[]);
+test('recommendations include low and zero compatibility without inventing missing percentages',()=>{
+ const low={id:'low',cargo:'Programador Java',area:'Tecnologia',requisitos:'Java, SQL',cidade:candidate.cidadeProfissional,modalidade:'Presencial'};
+ const zero={...low,id:'zero',cidade:'São Paulo',modalidade:'Remoto'};
+ const lowScore=core.compatibilidade(low,premiumCandidate).percent;
+ assert.ok(lowScore>0&&lowScore<50);
+ assert.equal(core.compatibilidade(zero,premiumCandidate).percent,0);
+ const result=core.recomendarVagas([zero,low],premiumCandidate,recommendationNow);
+ assert.deepEqual(result.map(item=>item.job.id),['low','zero']);
+ assert.equal(result[1].match.percent,0);
  assert.deepEqual(core.recomendarVagas([{...job,id:'1'}],{plano_candidato:'premium'},recommendationNow),[]);
+});
+test('the full recommendations list retains all low-score vacancies without a preview limit',()=>{
+ const rows=Array.from({length:40},(_,i)=>({id:'low-'+i,cargo:'Programador Java',area:'Tecnologia',requisitos:'Java, SQL',cidade:candidate.cidadeProfissional,modalidade:'Presencial'}));
+ const result=core.recomendarVagas(rows,premiumCandidate,recommendationNow);
+ assert.equal(result.length,rows.length);
+ assert.deepEqual(new Set(result.map(item=>item.job.id)),new Set(rows.map(item=>item.id)));
+ assert.ok(result.every(item=>item.match.percent>0&&item.match.percent<50));
 });
 test('recommendations use compatibility first and newest publication to break ties',()=>{
  const high={...job,id:'high',dataPublicacao:'2026-10-10'},newer={...job,id:'newer',dataPublicacao:'2026-10-14'};
