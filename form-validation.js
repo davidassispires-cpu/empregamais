@@ -10,7 +10,7 @@
  }
  function digits(value){return String(value||'').replace(/\D/g,'');}
  function extraError(f,lookup){
-  var value=String(f.value||'').trim(),id=f.id||'';
+  var value=String(f.value||'').trim(),id=f.id||f.name||'';
   if(!value)return '';
   if(/cep/i.test(id)&&digits(value).length!==8)return 'Informe um CEP com 8 números.';
   if(/cnpj/i.test(id)&&digits(value).length!==14)return 'Informe um CNPJ com 14 números.';
@@ -37,11 +37,13 @@
   f.classList.remove('em-field-valid','em-field-invalid');
   if(s.ariaInvalid===null)f.removeAttribute('aria-invalid');else f.setAttribute('aria-invalid',s.ariaInvalid);
   if(s.message){var ids=(f.getAttribute('aria-describedby')||'').split(/\s+/).filter(function(id){return id&&id!==s.message.id;});if(ids.length)f.setAttribute('aria-describedby',ids.join(' '));else f.removeAttribute('aria-describedby');s.message.remove();s.message=null;}
+  if(s.color)f.style.setProperty('color',s.color,s.colorPriority);else f.style.removeProperty('color');
  }
  function paint(f){
   if(!eligible(f)||!f.getClientRects().length)return true;
-  if(!states.has(f))states.set(f,{ariaInvalid:f.getAttribute('aria-invalid'),message:null});
+  if(!states.has(f))states.set(f,{ariaInvalid:f.getAttribute('aria-invalid'),message:null,color:f.style.getPropertyValue('color'),colorPriority:f.style.getPropertyPriority('color')});
   clear(f);var r=result(f,function(id){return document.getElementById(id);}),s=states.get(f);
+  if(r.state!=='neutral')f.style.setProperty('color','#374151','important');
   if(r.state==='valid'){f.classList.add('em-field-valid');f.setAttribute('aria-invalid','false');}
   if(r.state==='invalid'){
    f.classList.add('em-field-invalid');f.setAttribute('aria-invalid','true');
