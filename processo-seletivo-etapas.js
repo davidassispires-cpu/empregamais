@@ -6,12 +6,14 @@
   {key:'entrevista',label:'Entrevista agendada',group:'Entrevista',icon:'calendar'},
   {key:'aprovadas',label:'Aprovado',group:'Aprovados',icon:'check'},
   {key:'contratadas',label:'Contratado',group:'Contratados',icon:'briefcase'},
+  {key:'canceladas',label:'Cancelada pelo candidato',group:'Canceladas',icon:'close'},
   {key:'reprovadas',label:'Reprovado',group:'Reprovados',icon:'close'}
  ];
  function norm(value){return String(value||'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').trim().toLowerCase();}
  function classify(application){
   application=application||{};
   var status=norm(typeof application==='string'?application:application.status||application.statusProcesso||application.status_processo||application.etapa||application.etapaAtual);
+  if(/cancelad|desist/.test(status))return 'canceladas';
   if(/nao selecionad|nao aprovad|reprovad|desclassificad|encerrad/.test(status))return 'reprovadas';
   if(/contratad/.test(status))return 'contratadas';
   if(/entrevista/.test(status))return 'entrevista';
@@ -40,3 +42,4 @@
  function saveDemo(rows){try{backing.setItem(demoKey,JSON.stringify(rows));}catch(ignore){}document.dispatchEvent(new Event('empregamais:candidaturas-sincronizadas'));}
  workflow.demo=demoApplications;workflow.salvarDemo=saveDemo;workflow.chaveDemo=demoKey;
 })();
+
