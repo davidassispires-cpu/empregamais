@@ -549,7 +549,7 @@
   form.querySelector('[type=submit]').disabled=true;status('Carregando seus dados privados…');
   try{if(!uid)throw Error('Entre na sua conta para editar o perfil.');var rows=demo()?[demoPrivate]:await request('candidato_dados_privados?select=*&user_id=eq.'+encodeURIComponent(uid)+'&limit=1');if(!dialog||uid!==owner())return;var data=rows&&rows[0]||{};['nome_social','data_nascimento'].concat(Object.keys(choices)).forEach(function(k){form.elements[k].value=data[k]||'';});form.elements.idade.value=age(data.data_nascimento);form.elements.consentimento.checked=!!data.consentimento_em;ready=true;form.querySelector('[type=submit]').disabled=false;status('');}catch(e){if(dialog)status(e.message);}
  }
- document.addEventListener('click',function(e){var b=e.target.closest&&e.target.closest('button,a');if(!b||b.closest('#emCandidateProfile'))return;var action=b.getAttribute('data-cp-action'),route=b.getAttribute('data-route'),inline=b.getAttribute('onclick')||'';if(action==='profile'||route==='perfil'||(/irPara\(['"]perfil['"]\)/.test(inline)&&b.closest('#pagina-painel-candidato'))){e.preventDefault();e.stopImmediatePropagation();open();}},true);
+ document.addEventListener('click',function(e){var b=e.target.closest&&e.target.closest('button,a');if(!b||b.closest('#emCandidateProfile')||b.classList.contains('cp-greeting'))return;var action=b.getAttribute('data-cp-action'),route=b.getAttribute('data-route'),inline=b.getAttribute('onclick')||'';if(action==='profile'||route==='perfil'||(/irPara\(['"]perfil['"]\)/.test(inline)&&b.closest('#pagina-painel-candidato'))){e.preventDefault();e.stopImmediatePropagation();open();}},true);
  window.EmpregaMaisEditarPerfilCandidato=open;
  function ensureProfileTab(){var page=document.getElementById('pagina-perfil');if(page&&page.classList.contains('ativa')&&(!dialog||!dialog.isConnected))open();}
  if(document.body)new MutationObserver(ensureProfileTab).observe(document.body,{subtree:true,attributes:true,attributeFilter:['class']});
@@ -583,4 +583,51 @@
  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',schedule,{once:true});else schedule();
  window.addEventListener('load',schedule);window.addEventListener('resize',schedule);
  document.addEventListener('empregamais:candidato-sincronizado',schedule);
+})();
+
+
+/* Candidate account dropdown, anchored to the persistent toolbar. */
+(function(){
+ 'use strict';var panel,trigger;
+ function esc(v){return String(v||'').replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];});}
+ function icon(type){var paths={user:'<circle cx="12" cy="7" r="4"/><path d="M4 22v-3a8 8 0 0 1 16 0v3"/>',document:'<path d="M5 2h10l4 4v16H5ZM14 2v6h5M8 12h8M8 16h6"/>',bell:'<path d="M6 9a6 6 0 0 1 12 0v7l2 3H4l2-3ZM10 22h4"/>',gear:'<circle cx="12" cy="12" r="4"/><path d="m9 2 6 0 1 4 4 1 2 5-3 3 0 4-5 3-3-3-4 1-4-5 2-4-1-4 5-2Z"/>',power:'<path d="M12 2v10M6 5a9 9 0 1 0 12 0"/>',crown:'<path d="m2 6 5 4 5-8 5 8 5-4-3 15H5Z"/>',eye:'<path d="M2 12s4-7 10-7 10 7 10 7-4 7-10 7S2 12 2 12Z"/><circle cx="12" cy="12" r="3"/>'};return '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'+(paths[type]||paths.gear)+'</svg>';}
+ function close(focus){if(panel)panel.remove();panel=null;if(trigger){trigger.setAttribute('aria-expanded','false');if(focus)trigger.focus();}}
+ function place(){if(!panel||!trigger)return;var r=trigger.getBoundingClientRect();panel.style.top=Math.min(r.bottom+10,innerHeight-120)+'px';panel.style.right=Math.max(12,innerWidth-r.right)+'px';}
+ function go(route){close();if(route==='profile'){window.EmpregaMaisEditarPerfilCandidato();return;}if(window.irPara)window.irPara(route);if(route==='painel-candidato')setTimeout(function(){var b=document.querySelector('[data-cp-action="alerts"]');if(b)b.click();},80);}
+ function info(key){
+  close();window.EmpregaMaisEditarPerfilCandidato();setTimeout(function(){
+   var host=document.getElementById('emCandidateProfile');if(!host)return;var old=host.querySelector('.em-account-details');if(old)old.remove();var card=document.createElement('section');card.className='em-account-details';card.tabIndex=-1;
+   var texts={access:['Dados de acesso','Seu e-mail de acesso é o informado no perfil. Para alterar sua senha, use a opção Recuperar senha.'],communications:['Comunicações','As mensagens das empresas e os convites de entrevista ficam disponíveis na aba Mensagens. Seus alertas de vagas podem ser ajustados em Alertas de vagas.'],visibility:['Visibilidade do currículo','O envio de uma candidatura compartilha seu currículo com a empresa responsável pela vaga. Os dados de diversidade ficam privados e não são incluídos no currículo.'],status:['Status da conta','Você está conectado à sua conta de candidato. Encerrar sessão desconecta este dispositivo e preserva seus dados.']},copy=texts[key];
+   card.innerHTML='<h3>'+icon(key==='visibility'?'eye':'gear')+copy[0]+'</h3><p>'+copy[1]+'</p>';
+   if(key==='access'){var reset=document.createElement('button');reset.type='button';reset.textContent='Recuperar senha';reset.onclick=function(){if(typeof window.abrirRecuperacaoSenhaEM==='function')window.abrirRecuperacaoSenhaEM('candidato');else{var link=document.querySelector('[onclick*="Recupera"],[onclick*="recupera"]');if(link)link.click();else card.querySelector('p').textContent='Na página de acesso do candidato, escolha Esqueci minha senha para receber o link de redefinição.';}};card.appendChild(reset);}
+   host.querySelector('form').prepend(card);card.scrollIntoView({behavior:'smooth',block:'center'});card.focus();
+  },100);
+ }
+ function open(button){
+  if(panel){close(true);return;}trigger=button;var p=window.obterCandidatoAtual&&window.obterCandidatoAtual()||{},name=p.nome||sessionStorage.getItem('candidatoNome')||'Minha conta',completion=(document.querySelector('.cp-completion')||{}).textContent||'Confira seu currículo';
+  panel=document.createElement('section');panel.id='emCandidateAccountMenu';panel.setAttribute('aria-label','Minha conta');
+  var photo=/^data:image\/(jpeg|png|webp);base64,/.test(p.fotoPerfil||'')?'<img alt="" src="'+p.fotoPerfil+'">':icon('user');
+  panel.innerHTML='<div class="em-account-top"><span class="em-account-avatar">'+photo+'</span><div><strong>'+esc(name)+'</strong><small>'+esc(completion)+'</small></div><button type="button" data-account="close" aria-label="Fechar menu">×</button></div><div class="em-account-links">'+[['profile','Meu perfil','user'],['curriculo','Meu currículo','document'],['alerts','Alertas de vagas','bell'],['access','Dados de acesso','gear'],['communications','Comunicações','bell'],['visibility','Visibilidade do currículo','eye'],['status','Status da conta','gear'],['premium-candidato','Conhecer Premium','crown']].map(function(r){return '<button type="button" data-account="'+r[0]+'">'+icon(r[2])+'<span>'+r[1]+'</span><b aria-hidden="true">›</b></button>';}).join('')+'</div><button type="button" class="em-account-logout" data-account="logout">'+icon('power')+'Encerrar sessão</button>';
+  document.body.appendChild(panel);button.setAttribute('aria-controls',panel.id);button.setAttribute('aria-expanded','true');place();
+  panel.onclick=function(e){var b=e.target.closest('[data-account]');if(!b)return;var key=b.dataset.account;if(key==='close')close(true);else if(key==='logout'){close();if(window.sairTodasContas)window.sairTodasContas();}else if(['access','communications','visibility','status'].includes(key))info(key);else go(key==='alerts'?'painel-candidato':key);};
+  panel.querySelector('[data-account=profile]').focus();
+ }
+ var style=document.createElement('style');style.textContent=`
+ #emCandidateAccountMenu{position:fixed;z-index:10050;width:340px;max-width:calc(100vw - 24px);max-height:calc(100dvh - 90px);overflow:auto;padding:18px;background:#fff;border:1px solid #bfd6e1;border-radius:14px;box-shadow:0 12px 40px #17324f24;color:#173d50;font:500 12px Montserrat,Arial,sans-serif}
+ #emCandidateAccountMenu .em-account-top{display:flex;align-items:center;gap:12px;border-bottom:1px solid #e1ecf1;padding-bottom:16px;margin-bottom:8px}
+ #emCandidateAccountMenu .em-account-top>div{flex:1;min-width:0}#emCandidateAccountMenu strong{display:block;font-size:14px;overflow-wrap:anywhere}#emCandidateAccountMenu small{display:block;margin-top:5px;color:#526d80;font-size:11px}
+ #emCandidateAccountMenu .em-account-avatar{width:54px;height:54px;flex:0 0 54px;background:#e7f1f5;border-radius:50%;display:grid;place-items:center}
+ #emCandidateAccountMenu .em-account-avatar img{width:100%;height:100%;object-fit:cover;border-radius:50%}#emCandidateAccountMenu .em-account-avatar svg{width:28px;height:28px}
+ #emCandidateAccountMenu button{font:500 12px Montserrat,Arial,sans-serif;cursor:pointer}
+ #emCandidateAccountMenu .em-account-top>button{background:transparent;border:0;font-size:24px;color:#245e73}
+ #emCandidateAccountMenu .em-account-links>button{display:flex;align-items:center;gap:11px;width:100%;padding:10px;border:0;border-radius:8px;background:#fff;color:#245e73;text-align:left;min-height:38px}
+ #emCandidateAccountMenu .em-account-links>button:hover{background:#edf5f8}#emCandidateAccountMenu svg{width:19px;height:19px;flex:0 0 19px}#emCandidateAccountMenu b{margin-left:auto;font-size:17px;font-weight:400}
+ #emCandidateAccountMenu .em-account-logout{width:100%;margin-top:12px;display:flex;align-items:center;justify-content:center;gap:9px;padding:12px;border:0;border-radius:8px;background:#245e73;color:#fff!important}
+ #emCandidateAccountMenu :focus-visible{outline:3px solid #93bdcf;outline-offset:2px}
+ #emCandidateProfile .em-account-details{grid-column:1/-1}
+ @media(max-width:540px){#emCandidateAccountMenu{right:12px!important;left:12px;width:auto}}
+ `;document.head.appendChild(style);
+ document.addEventListener('click',function(e){var b=e.target.closest&&e.target.closest('#cpCandidateHeader .cp-greeting');if(b){e.preventDefault();e.stopImmediatePropagation();open(b);}else if(panel&&!panel.contains(e.target))close();},true);
+ document.addEventListener('keydown',function(e){if(!panel)return;if(e.key==='Escape'){e.preventDefault();close(true);}if(e.key==='Tab'){var items=Array.from(panel.querySelectorAll('button')),first=items[0],last=items[items.length-1];if(e.shiftKey&&document.activeElement===first){e.preventDefault();last.focus();}else if(!e.shiftKey&&document.activeElement===last){e.preventDefault();first.focus();}}});
+ window.addEventListener('resize',place);window.addEventListener('popstate',function(){close();});
 })();
