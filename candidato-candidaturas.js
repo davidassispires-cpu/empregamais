@@ -410,6 +410,32 @@ html body #cpApplicationFilters#cpApplicationFilters .cp-filter-label{
  #cpApplicationFilters#cpApplicationFilters .cp-filter-label{color:#456675!important}
  #cpApplicationFilters#cpApplicationFilters [aria-pressed=true] .cp-filter-label{color:#fff!important}
 }
+
+/* Restore the reference proportions while keeping uppercase labels. */
+html body #cpApplicationFilters#cpApplicationFilters{padding:16px!important}
+html body #cpApplicationFilters#cpApplicationFilters .cp-application-filter-buttons{gap:9px!important}
+html body #cpApplicationFilters#cpApplicationFilters [data-cp-filter]{height:80px!important;min-height:80px!important;padding:11px 10px!important;gap:10px!important;border-radius:9px!important;box-sizing:border-box!important}
+html body #cpApplicationFilters#cpApplicationFilters .cp-filter-icon{width:40px!important;height:40px!important;flex-basis:40px!important;border-radius:9px!important}
+html body #cpApplicationFilters#cpApplicationFilters .cp-filter-icon svg{width:29px!important;height:29px!important}
+html body #cpApplicationFilters#cpApplicationFilters [data-cp-filter] strong{font-size:26px!important;line-height:1.05!important}
+html body #cpApplicationFilters#cpApplicationFilters .cp-filter-copy{gap:5px!important;flex:1!important}
+html body #cpApplicationFilters#cpApplicationFilters .cp-filter-label{font-size:11px!important;line-height:1.35!important;letter-spacing:.7px!important}
+html body #cpApplicationFilters#cpApplicationFilters .cp-application-result-row{margin-top:14px!important;min-height:34px}
+html body #cpApplicationFilters#cpApplicationFilters #cpApplicationResult{font-size:13px!important}
+html body #cpApplicationFilters#cpApplicationFilters .cp-application-sync{font-size:11px!important}
+html body #cpApplicationFilters#cpApplicationFilters #cpApplicationRefresh{min-height:34px!important;padding:7px 12px!important;font-size:12px!important}
+html body #cpApplicationFilters#cpApplicationFilters [data-cp-filter]:focus:not(:focus-visible){outline:none!important}
+@media(min-width:1001px) and (max-width:1200px){
+ html body #cpApplicationFilters#cpApplicationFilters [data-cp-filter]{padding:10px 8px!important;gap:8px!important}
+ html body #cpApplicationFilters#cpApplicationFilters .cp-filter-icon{width:36px!important;height:40px!important;flex-basis:36px!important}
+ html body #cpApplicationFilters#cpApplicationFilters .cp-filter-label{font-size:10px!important}
+}
+@media(max-width:540px){
+ html body #cpApplicationFilters#cpApplicationFilters{padding:12px!important}
+ html body #cpApplicationFilters#cpApplicationFilters [data-cp-filter]{height:74px!important;min-height:74px!important}
+ html body #cpApplicationFilters#cpApplicationFilters [data-cp-filter=todas]{height:60px!important;min-height:60px!important}
+ html body #cpApplicationFilters#cpApplicationFilters .cp-filter-label{font-size:11px!important}
+}
 `;document.head.appendChild(style);
   window.addEventListener('popstate',refresh);window.addEventListener('storage',refresh);document.addEventListener('empregamais:candidato-sincronizado',refresh);document.addEventListener('empregamais:candidaturas-sincronizadas',refresh);refresh();
  }
