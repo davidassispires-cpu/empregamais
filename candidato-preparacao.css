@@ -751,3 +751,31 @@ html body.cp-shell-active #cpCandidateHeader .cp-navigation button[aria-current=
 html body.cp-shell-active #cpCandidateHeader .cp-navigation button[aria-current=page] .cp-nav-icon [fill]:not([fill=none]):not([fill=currentColor]){fill:#FFEDD5}
 html body.cp-shell-active #cpCandidateHeader .cp-navigation button:focus-visible,
 html body #pagina-painel-candidato#pagina-painel-candidato.cp-enhanced :is(button,a):focus-visible{outline:3px solid #C2410C!important;outline-offset:3px}
+
+/* Refined candidate tabs and clearly visible unread-message counter. */
+html body.cp-shell-active #cpCandidateHeader#cpCandidateHeader .cp-navigation button{
+ border-radius:10px!important;border-color:#DFE7EC!important;
+ box-shadow:0 2px 5px #12394605!important;
+ transition:background .18s,border-color .18s,box-shadow .18s;
+}
+html body.cp-shell-active #cpCandidateHeader#cpCandidateHeader .cp-navigation button:hover{
+ background:#F4F8FA!important;border-color:#A5C2CF!important;box-shadow:0 3px 9px #1239460D!important;
+}
+html body.cp-shell-active #cpCandidateHeader#cpCandidateHeader .cp-navigation button[aria-current=page]{
+ background:linear-gradient(110deg,#C2410C,#B83B0B)!important;border-color:#B83B0B!important;
+ box-shadow:0 3px 10px #C2410C24!important;color:#fff!important;
+}
+html body.cp-shell-active #cpCandidateHeader#cpCandidateHeader .cp-navigation button[aria-current=page]:hover{
+ background:#9A3412!important;border-color:#9A3412!important;
+}
+html body.cp-shell-active #cpCandidateHeader#cpCandidateHeader .cp-navigation button[data-route=messages]{padding-right:42px!important}
+html body.cp-shell-active #cpCandidateHeader#cpCandidateHeader .cp-navigation button[data-route=messages]:has(.cp-message-count:not([hidden])):after{display:none!important}
+html body.cp-shell-active #cpCandidateHeader#cpCandidateHeader .cp-navigation button .cp-message-count{
+ display:grid!important;place-items:center!important;position:absolute!important;
+ top:50%!important;right:12px!important;transform:translateY(-50%)!important;
+ min-width:22px!important;width:auto!important;height:22px!important;padding:0 5px!important;
+ box-sizing:border-box!important;border-radius:7px!important;background:#FEF2F2!important;
+ color:#B91C1C!important;border:1px solid #FECACA!important;
+ font:700 12px/1 Montserrat,Arial,sans-serif!important;box-shadow:none!important;
+}
+html body.cp-shell-active #cpCandidateHeader#cpCandidateHeader .cp-navigation button .cp-message-count[hidden]{display:none!important}
