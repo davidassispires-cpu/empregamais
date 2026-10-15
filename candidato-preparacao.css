@@ -715,15 +715,15 @@ html body.cp-shell-active #cpCandidateHeader .cp-notifications svg{width:25px!im
 @media(max-width:540px){html body.cp-shell-active #cpCandidateHeader .cp-greeting{gap:8px!important;padding-left:10px!important}html body.cp-shell-active #cpCandidateHeader .cp-greeting-name{font-size:13px!important}html body.cp-shell-active #cpCandidateHeader .cp-user-avatar{width:36px!important;height:36px!important;flex-basis:36px!important;font-size:15px!important}}
 
 /* Approved option 6: compact modular navigation cards. */
-html body.cp-shell-active #cpCandidateHeader .cp-navigation{background:#fff!important;padding:20px 14px!important;gap:8px!important}
+html body.cp-shell-active #cpCandidateHeader .cp-navigation{background:#fff!important;padding:24px 16px!important;gap:8px!important}
 html body.cp-shell-active #cpCandidateHeader .cp-navigation .cp-nav-section-label{position:relative;width:100%;margin:0 0 12px!important;padding:0 0 12px!important;border:0!important;color:#102f4c!important;font:700 12px Montserrat,Arial,sans-serif!important;letter-spacing:.4px!important;text-transform:uppercase}
 html body.cp-shell-active #cpCandidateHeader .cp-navigation .cp-nav-section-label:after{content:"";display:block;position:absolute;bottom:0;left:0;width:35px;height:3px;border-radius:2px;background:#176c86}
 html body.cp-shell-active #cpCandidateHeader .cp-navigation .cp-nav-section-label:not(:first-child){margin-top:22px!important}
-html body.cp-shell-active #cpCandidateHeader .cp-navigation button{position:relative;display:flex!important;align-items:center!important;gap:0!important;width:100%!important;min-height:46px!important;height:46px!important;padding:0 25px 0 0!important;margin:0!important;border:1px solid #d8e4ed!important;border-radius:7px!important;background:#fff!important;box-shadow:none!important;overflow:hidden!important;color:#123451!important;text-align:left!important}
-html body.cp-shell-active #cpCandidateHeader .cp-navigation button>span:not(.cp-card-icon){padding:0 11px!important;font:500 12px Montserrat,Arial,sans-serif!important;letter-spacing:0!important;color:#123451!important;white-space:nowrap}
-html body.cp-shell-active #cpCandidateHeader .cp-navigation button>.cp-card-icon{display:grid!important;place-items:center!important;align-self:stretch!important;width:47px!important;min-width:47px!important;flex:0 0 47px!important;padding:7px!important;margin:0!important;border-right:1px solid #dfebf2!important;border-radius:0!important;background:#f0f7fb!important;color:#145571!important}
+html body.cp-shell-active #cpCandidateHeader .cp-navigation button{position:relative;display:flex!important;align-items:center!important;gap:0!important;width:100%!important;min-height:49px!important;height:49px!important;padding:0 25px 0 0!important;margin:0!important;border:1px solid #d8e4ed!important;border-radius:7px!important;background:#fff!important;box-shadow:none!important;overflow:hidden!important;color:#123451!important;text-align:left!important}
+html body.cp-shell-active #cpCandidateHeader .cp-navigation button>span:not(.cp-card-icon){padding:0 11px!important;font:500 13px Montserrat,Arial,sans-serif!important;letter-spacing:0!important;color:#123451!important;white-space:nowrap}
+html body.cp-shell-active #cpCandidateHeader .cp-navigation button>.cp-card-icon{display:grid!important;place-items:center!important;align-self:stretch!important;width:50px!important;min-width:50px!important;flex:0 0 50px!important;padding:7px!important;margin:0!important;border-right:1px solid #dfebf2!important;border-radius:0!important;background:#f0f7fb!important;color:#145571!important}
 html body.cp-shell-active #cpCandidateHeader .cp-navigation button .cp-nav-icon{width:29px!important;height:29px!important;flex:none!important;color:#145571!important}
-html body.cp-shell-active #cpCandidateHeader .cp-navigation button:after{content:""!important;display:block!important;position:absolute;right:13px;top:18px;width:7px;height:7px;border-top:2px solid #8199ad;border-right:2px solid #8199ad;transform:rotate(45deg);background:none!important}
+html body.cp-shell-active #cpCandidateHeader .cp-navigation button:after{content:""!important;display:block!important;position:absolute;right:13px;top:19px;width:7px;height:7px;border-top:2px solid #8199ad;border-right:2px solid #8199ad;transform:rotate(45deg);background:none!important}
 html body.cp-shell-active #cpCandidateHeader .cp-navigation button:hover{background:#f7fbfd!important;border-color:#a6c5d6!important}
 html body.cp-shell-active #cpCandidateHeader .cp-navigation button[aria-current=page],html body.cp-shell-active #cpCandidateHeader .cp-navigation button[aria-current=page]:hover{background:linear-gradient(110deg,#125b72,#1a6a80)!important;border-color:#17657c!important;color:#fff!important}
 html body.cp-shell-active #cpCandidateHeader .cp-navigation button[aria-current=page]>span:not(.cp-card-icon){color:#fff!important;font-weight:600!important}
@@ -732,3 +732,15 @@ html body.cp-shell-active #cpCandidateHeader .cp-navigation button[aria-current=
 html body.cp-shell-active #cpCandidateHeader .cp-navigation button[aria-current=page]:after{border-color:#fff!important}
 html body.cp-shell-active #cpCandidateHeader .cp-navigation button[aria-current=page] .cp-nav-icon [fill]:not([fill=none]):not([fill=currentColor]){fill:#d9eef6}
 @media(max-width:760px){html body.cp-shell-active #cpCandidateHeader .cp-navigation{padding:12px!important}html body.cp-shell-active #cpCandidateHeader .cp-navigation button{min-width:170px!important;width:auto!important;flex-shrink:0!important}html body.cp-shell-active #cpCandidateHeader .cp-navigation .cp-nav-section-label{width:auto!important;min-width:90px!important;margin:0 8px 0 0!important;align-self:center}html body.cp-shell-active #cpCandidateHeader .cp-navigation .cp-nav-section-label:not(:first-child){margin-top:0!important}}
+
+@media(min-width:851px){
+ html body.cp-shell-active{--cp-sidebar-width:266px}
+ html body.cp-shell-active #cpCandidateHeader .cp-navigation{display:flex!important;flex-direction:column!important;grid-template-columns:none!important;align-items:stretch!important;margin:0!important;max-width:none!important;border-right:1px solid #e1eaf0!important}
+ html body.cp-shell-active #cpCandidateHeader .cp-navigation button{flex:0 0 49px!important;flex-direction:row!important;justify-content:flex-start!important;transform:none!important}
+ html body.cp-shell-active #cpCandidateHeader .cp-navigation .cp-nav-section-label{display:block!important;font-size:12px!important;line-height:1.5!important;font-weight:700!important}
+ html body.cp-shell-active #cpCandidateHeader .cp-navigation .cp-nav-section-label:not(:first-child){margin-top:23px!important}
+}
+html body.cp-shell-active #cpCandidateHeader .cp-navigation button>.cp-card-icon{font-size:0!important;line-height:0!important}
+html body.cp-shell-active #cpCandidateHeader .cp-navigation button>span:not(.cp-card-icon){line-height:1.3!important;font-weight:500!important}
+html body.cp-shell-active #cpCandidateHeader .cp-navigation button[aria-current=page]>span:not(.cp-card-icon){font-weight:600!important}
+html body.cp-shell-active #cpCandidateHeader .cp-navigation button .cp-nav-icon{stroke-width:2!important}
