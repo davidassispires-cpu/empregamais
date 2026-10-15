@@ -1,3 +1,4 @@
+@layer field-feedback, site-typography;
 /* Inter variable, served locally. Arial is the fallback. */
 @font-face {
   font-family: 'Inter';
@@ -501,3 +502,15 @@ html body dialog.cp-cancel-modal button:disabled{opacity:.5;cursor:wait}
 html body dialog.cp-cancel-modal .cp-cancel-status{color:#a43826}
 }
 @media(max-width:600px){@layer site-typography{html body #pagina-candidaturas#pagina-candidaturas#pagina-candidaturas #cpApplicationFilters .cp-application-filter-buttons{grid-template-columns:repeat(2,minmax(0,1fr))!important}html body #pagina-candidaturas#pagina-candidaturas#pagina-candidaturas .cp-process-details{flex-wrap:wrap!important}html body #pagina-candidaturas#pagina-candidaturas#pagina-candidaturas .cp-process-trigger,html body #pagina-candidaturas#pagina-candidaturas#pagina-candidaturas .cp-cancel-trigger{min-height:44px!important;flex:1 1 100%!important}}}
+
+
+/* Field format feedback; does not indicate verified identity or saved data. */
+@layer field-feedback{
+html body input.em-field-valid,html body select.em-field-valid,html body textarea.em-field-valid{border-color:#5b9b7a!important;color:#374151!important;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none'%3E%3Ccircle cx='12' cy='12' r='9' fill='%23edf7f0'/%3E%3Cpath d='m7 12 3 3 7-7' stroke='%23357854' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E")!important;background-repeat:no-repeat!important;background-size:20px 20px!important;background-position:right 10px center!important;padding-right:38px!important}
+html body input.em-field-invalid,html body select.em-field-invalid,html body textarea.em-field-invalid{border-color:#c65f55!important;color:#374151!important;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none'%3E%3Ccircle cx='12' cy='12' r='9' fill='%23fff1ef' stroke='%23b64d43'/%3E%3Cpath d='m9 9 6 6m0-6-6 6' stroke='%23b64d43' stroke-width='1.8' stroke-linecap='round'/%3E%3C/svg%3E")!important;background-repeat:no-repeat!important;background-size:20px 20px!important;background-position:right 10px center!important;padding-right:38px!important}
+html body select:is(.em-field-valid,.em-field-invalid){background-position:right 30px center!important;padding-right:58px!important}
+html body textarea:is(.em-field-valid,.em-field-invalid){background-position:right 10px top 12px!important}
+html body :is(input,select,textarea).em-field-valid:focus{outline:2px solid #c6dfd0!important;outline-offset:2px!important}
+html body :is(input,select,textarea).em-field-invalid:focus{outline:2px solid #f0cbc6!important;outline-offset:2px!important}
+html body .em-field-message{display:block!important;grid-column:1/-1!important;margin:5px 0 8px!important;padding:0!important;color:#a43e35!important;font:400 12px/1.5 Inter,Arial,sans-serif!important;letter-spacing:normal!important;white-space:normal!important}
+}
