@@ -248,6 +248,15 @@
   (container.querySelector('.cp-demo-plans')||workspace).scrollIntoView({block:'start',behavior:'auto'});
  }
  function toolStatus(text){var el=workspace.querySelector('.cp-feedback');if(el)el.textContent=text;}
+ function recommendationIndicator(percent){
+  if(typeof percent!=='number'||!Number.isFinite(percent))return '';
+  var value=Math.max(0,Math.min(100,percent));
+  var segments=Array.from({length:20},function(_,index){
+   var fill=Math.max(0,Math.min(100,(value-index*5)*20));
+   return '<span aria-hidden="true" style="--cp-segment-fill:'+fill+'%"></span>';
+  }).join('');
+  return '<div class="cp-recommendation-fit"><span class="cp-recommendation-fit-label">ADERÊNCIA À VAGA</span><strong class="cp-recommendation-match">'+value+'<span>%</span></strong><div class="cp-recommendation-meter" role="meter" aria-label="Aderência à vaga" aria-valuemin="0" aria-valuemax="100" aria-valuenow="'+value+'">'+segments+'</div><small class="cp-recommendation-fit-caption">Compatibilidade do perfil</small></div>';
+ }
  function recommendationsHeader(){
   return '<header class="cp-recommendations-hero" aria-labelledby="cpRecommendationsTitle">'+
    '<div class="cp-recommendations-hero-copy"><button type="button" class="cp-recommendations-back" data-cp-action="close">'+icon('back')+' Voltar à minha área</button>'+
@@ -273,7 +282,7 @@
     var reasons=fit.criteria.filter(function(c){return c.available&&c.match>=.5;}).slice(0,3).map(function(c){return '<span>'+escape(c.label)+'</span>';}).join('');
     var salary=typeof global.formatarSalarioExibicao==='function'?global.formatarSalarioExibicao(job.salario):job.salario;
     if(salary&&/\d/.test(salary)&&!/R\$/.test(salary))salary='R$ '+salary;
-    return '<article class="cp-recommendation-card"><div class="cp-recommendation-top"><span class="cp-small-icon">'+icon('briefcase')+'</span><div><h2>'+escape(job.cargo||job.titulo||'Vaga')+'</h2><p>'+escape(conf?'Empresa confidencial':job.empresa||'Empresa')+'</p></div><strong class="cp-recommendation-match">'+fit.percent+'%<small>de aderência</small></strong></div><div class="cp-recommendation-chips"><span>'+escape(job.cidade||'Local não informado')+(job.uf?' – '+escape(job.uf):'')+'</span><span>'+escape(job.modalidade||'Modalidade não informada')+'</span><span>'+escape(job.contrato||'Contrato não informado')+'</span>'+(urgentJob(job)?'<span class="cp-recommendation-urgent">'+icon('fire')+' Contratação urgente</span>':'')+'</div><strong class="cp-recommendation-salary">'+escape(salary||'Salário a combinar')+'</strong><div class="cp-recommendation-reasons" aria-label="Critérios em comum">'+reasons+'</div><div class="cp-recommendation-footer"><small>'+(job.dataPublicacao||job.criadoEm?'Publicada em '+formatDate(job.dataPublicacao||job.criadoEm):'Data não informada')+'</small><div><button type="button" class="cp-text-button" data-cp-fit="'+escape(job.id)+'">Ver análise</button><button type="button" class="cp-primary" data-cp-apply-job="'+escape(job.id)+'">Candidatar-se agora</button></div></div></article>';
+    return '<article class="cp-recommendation-card"><div class="cp-recommendation-top"><span class="cp-small-icon">'+icon('briefcase')+'</span><div class="cp-recommendation-heading"><h2>'+escape(job.cargo||job.titulo||'Vaga')+'</h2><p>'+escape(conf?'Empresa confidencial':job.empresa||'Empresa')+'</p></div>'+recommendationIndicator(fit.percent)+'</div><div class="cp-recommendation-chips"><span>'+escape(job.cidade||'Local não informado')+(job.uf?' – '+escape(job.uf):'')+'</span><span>'+escape(job.modalidade||'Modalidade não informada')+'</span><span>'+escape(job.contrato||'Contrato não informado')+'</span>'+(urgentJob(job)?'<span class="cp-recommendation-urgent">'+icon('fire')+' Contratação urgente</span>':'')+'</div><strong class="cp-recommendation-salary">'+escape(salary||'Salário a combinar')+'</strong><div class="cp-recommendation-reasons" aria-label="Critérios em comum">'+reasons+'</div><div class="cp-recommendation-footer"><small>'+(job.dataPublicacao||job.criadoEm?'Publicada em '+formatDate(job.dataPublicacao||job.criadoEm):'Data não informada')+'</small><div><button type="button" class="cp-text-button" data-cp-fit="'+escape(job.id)+'">Ver análise</button><button type="button" class="cp-primary" data-cp-apply-job="'+escape(job.id)+'">Candidatar-se agora</button></div></div></article>';
    }).join('')+'</div>';
   }
   if(refresh===true)stableHTML(workspace.querySelector('.cp-workspace-content'),html);
