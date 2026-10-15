@@ -191,7 +191,9 @@
 `;
   // Workspace chrome shared by the free, paid and demonstration panels.
   var recruiterChromeCss = `
-:host{--recruiter-sidebar-width:246px;--recruiter-sidebar-inset:24px;--recruiter-content-left:308px;--recruiter-toolbar-height:48px;min-height:100dvh;background:#edf4fb}
+:host{--recruiter-sidebar-width:246px;--recruiter-sidebar-inset:24px;--recruiter-content-left:308px;--recruiter-toolbar-height:48px;min-height:100dvh;background:#fff}
+:host .layout,:host .main{background:#fff}
+::slotted(.em-candidates-in-panel),::slotted(.em-publish-in-panel),::slotted(.em-profile-in-panel){background:#fff!important}
 .recruiter-topbar{position:fixed;top:0;left:0;right:0;z-index:110;height:var(--recruiter-toolbar-height);display:flex;align-items:center;justify-content:space-between;gap:20px;padding:0 30px 0 var(--recruiter-content-left);background:#1268d4;color:#fff;border:0;box-sizing:border-box;font-family:Inter,Arial,sans-serif}
 .recruiter-context{visibility:hidden;min-width:0;overflow:hidden}.recruiter-context small,.recruiter-context strong{white-space:nowrap}
 .recruiter-toolbar-actions{display:flex;align-items:center;gap:18px;margin-left:auto;flex-shrink:0}
@@ -205,7 +207,7 @@
 .recruiter-account-menu button{display:flex;align-items:center;gap:10px;min-height:44px;width:100%;padding:10px;border-radius:7px;font-size:12px;text-align:left;color:#294765}.recruiter-account-menu button:hover{background:#edf5ff;color:#0869cc}.recruiter-account-menu button svg{width:18px;height:18px}.recruiter-account-menu [data-view="exit"]{margin-top:5px;border-top:1px solid #e5edf6;border-radius:0 0 7px 7px;color:#a63d3d}
 @media(min-width:761px){
  :host .layout,:host([data-paid="true"]) .layout{display:block!important;padding:var(--recruiter-toolbar-height) 0 0 var(--recruiter-content-left);min-height:100dvh}
- :host .sidebar.reference-sidebar,:host([data-paid="true"]) .sidebar.reference-sidebar{position:fixed!important;inset:var(--recruiter-sidebar-inset) auto var(--recruiter-sidebar-inset) var(--recruiter-sidebar-inset)!important;width:var(--recruiter-sidebar-width)!important;height:calc(100dvh - 48px)!important;max-height:calc(100dvh - 48px)!important;min-height:0!important;z-index:120;padding:22px 16px 16px!important;background:#fafcfd!important;color:#173f65!important;border:1px solid #d5e0ec!important;border-radius:12px!important;box-shadow:none!important;overflow-y:auto!important;overscroll-behavior:contain;scrollbar-width:none}
+ :host .sidebar.reference-sidebar,:host([data-paid="true"]) .sidebar.reference-sidebar{position:fixed!important;inset:var(--recruiter-sidebar-inset) auto var(--recruiter-sidebar-inset) var(--recruiter-sidebar-inset)!important;width:var(--recruiter-sidebar-width)!important;height:calc(100dvh - 48px)!important;max-height:calc(100dvh - 48px)!important;min-height:0!important;z-index:120;padding:22px 16px 16px!important;background:#fff!important;color:#173f65!important;border:1px solid #d5e0ec!important;border-radius:12px!important;box-shadow:none!important;overflow-y:auto!important;overscroll-behavior:contain;scrollbar-width:none}
  :host .sidebar.reference-sidebar::-webkit-scrollbar{display:none}
  :host .sidebar.reference-sidebar .panel-navigation-items{display:flex;flex-direction:column;min-height:100%}
  :host .sidebar.reference-sidebar .sidebar-label,:host([data-paid="true"]) .sidebar.reference-sidebar .sidebar-label{display:block!important;padding:0 7px!important;margin:0 0 22px!important}
@@ -236,7 +238,7 @@
 @media(max-width:760px){
  .recruiter-topbar{position:sticky;left:auto;right:auto;top:0;width:100%;padding:0 16px;gap:12px}
  :host .layout,:host([data-paid="true"]) .layout{padding:0!important;min-height:calc(100dvh - var(--recruiter-toolbar-height))}
- :host .sidebar.reference-sidebar,:host([data-paid="true"]) .sidebar.reference-sidebar{width:calc(100% - 24px)!important;margin:12px!important;border:1px solid #d5e0ec!important;border-radius:12px!important;background:#fafcfd!important}
+ :host .sidebar.reference-sidebar,:host([data-paid="true"]) .sidebar.reference-sidebar{width:calc(100% - 24px)!important;margin:12px!important;border:1px solid #d5e0ec!important;border-radius:12px!important;background:#fff!important}
  .recruiter-context{display:none}.recruiter-toolbar-actions{gap:12px}.recruiter-account{padding-left:12px}.recruiter-account-copy strong{font-size:12px}.recruiter-account-avatar{width:32px;height:32px;flex-basis:32px;font-size:11px}.recruiter-account>summary{gap:8px}.recruiter-account-chevron{width:14px;height:14px}
 }
 @media(prefers-reduced-motion:reduce){.recruiter-account-chevron{transition:none}}
@@ -258,7 +260,7 @@
     var paid=String(!!window.EMPlanos.get(window.EMPlanos.companyKey(e)).pago);if(host&&host.dataset.paid!==paid)host.dataset.paid=paid;
     if(!document.getElementById('em-recruiter-paid-shell')){
       var style=document.createElement('style');style.id='em-recruiter-paid-shell';
-      style.textContent='body:has(:is(#pagina-painel-empresa.ativa,#pagina-demo-recrutador.ativa)>#emRecruiterPanel){padding-top:0!important}body:has(:is(#pagina-painel-empresa.ativa,#pagina-demo-recrutador.ativa)>#emRecruiterPanel)>header.topo,body:has(:is(#pagina-painel-empresa.ativa,#pagina-demo-recrutador.ativa)>#emRecruiterPanel) .rodape{display:none!important}:is(#pagina-painel-empresa,#pagina-demo-recrutador):has(>#emRecruiterPanel){padding:0!important;margin:0!important;width:100%!important;max-width:none!important;min-height:100dvh!important;background:#f5f8fc!important}';
+      style.textContent='body:has(:is(#pagina-painel-empresa.ativa,#pagina-demo-recrutador.ativa)>#emRecruiterPanel){padding-top:0!important}body:has(:is(#pagina-painel-empresa.ativa,#pagina-demo-recrutador.ativa)>#emRecruiterPanel)>header.topo,body:has(:is(#pagina-painel-empresa.ativa,#pagina-demo-recrutador.ativa)>#emRecruiterPanel) .rodape{display:none!important}:is(#pagina-painel-empresa,#pagina-demo-recrutador):has(>#emRecruiterPanel){padding:0!important;margin:0!important;width:100%!important;max-width:none!important;min-height:100dvh!important;background:#fff!important}';
       document.head.appendChild(style);
       var viewport=window.matchMedia('(min-width:761px)');
       var resizeNavigation=function(event){var navigation=root&&root.querySelector('.panel-navigation');if(navigation)navigation.open=event.matches;};
