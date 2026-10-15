@@ -83,7 +83,7 @@
    var hidden=index===1?!ctx.logged:!ctx.logged&&!ctx.refs.length;section.hidden=hidden;if(hidden)return;
    var title=ctx.logged?'Vagas recomendadas para você':'Relacionadas às vagas que você viu';
    var subtitle=ctx.logged?'Sugestões com base nas informações do seu perfil.':'Sugestões com base nas suas visitas recentes neste navegador.';
-   var html='<div class="em-personal-head"><div><h2>'+title+'</h2><p>'+subtitle+'</p></div>'+(ctx.logged?'<a href="?pagina=home">Ver todas as vagas →</a>':'')+'</div>';
+   var html='<div class="em-personal-head"><div><h2>'+title+'</h2><p>'+subtitle+'</p></div>'+(ctx.logged?'<button type="button" class="cp-recommendations-link" data-cp-action="recommendations">Ver recomendações →</button>':'')+'</div>';
    if(!jobs.length)html+='<p class="em-personal-empty">'+(ctx.logged?'Ainda não encontramos vagas compatíveis. Complete seu perfil e confira as oportunidades disponíveis.':'Ainda não encontramos outras vagas relacionadas às suas visitas.')+'</p>';
    else html+='<div class="em-personal-grid">'+jobs.slice(0,2).map(function(x){
     var v=x.v,conf=typeof window.vagaEhConfidencialEM==='function'?window.vagaEhConfidencialEM(v):v.confidencial===true;
@@ -200,7 +200,7 @@
   page.classList.add('cp-reference');
   if(new URLSearchParams(location.search).get('pagina')==='demo-candidato')page.dataset.cpDemo='true';
   var nav=document.createElement('nav');nav.className='cp-navigation';nav.setAttribute('aria-label','Área do candidato');
-  var routes=[['home','Minha área','painel-candidato','Gestão'],['document','Candidaturas','candidaturas'],['search','Buscar vagas','home'],['chat','Mensagens','messages'],['bookmark','Vagas salvas','salvas'],['user','Editar perfil','perfil','Perfil do candidato'],['document','Currículo','curriculo'],['crown','Premium','premium-candidato']];
+  var routes=[['home','Minha área','painel-candidato','Gestão'],['document','Candidaturas','candidaturas'],['search','Recomendações','recommendations'],['chat','Mensagens','messages'],['bookmark','Vagas salvas','salvas'],['user','Editar perfil','perfil','Perfil do candidato'],['document','Currículo','curriculo'],['crown','Premium','premium-candidato']];
   nav.innerHTML=routes.map(function(r,i){return (r[3]?'<div class="cp-nav-label cp-nav-section-label">'+r[3]+'</div>':'')+'<button type="button" data-route="'+r[2]+'" '+(i===0?'aria-current="page"':'')+'>'+sidebarCardIcon(r[2]==='curriculo'?'resume':r[0])+'<span>'+r[1]+'</span>'+(r[2]==='messages'?'<small class="cp-message-count" hidden></small>':'')+'</button>';}).join('');
   var toolbar=document.createElement('div');toolbar.className='cp-toolbar';toolbar.innerHTML='<strong>+Empregos</strong><span class="cp-toolbar-context">Portal do candidato</span><button type="button" class="cp-notifications" data-route="messages" aria-label="Abrir mensagens">'+svg('bell')+'<span class="cp-notification-dot" hidden></span></button><button type="button" class="cp-greeting" data-route="perfil" aria-label="Abrir minha conta"><span class="cp-user-avatar" aria-hidden="true"></span><span class="cp-greeting-name">Minha conta</span><svg class="cp-account-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m5 9 7 7 7-7"/></svg></button>';
   var header=document.createElement('div');header.id='cpCandidateHeader';header.className='cp-header';header.append(toolbar,nav);page.prepend(header);
@@ -209,6 +209,11 @@
   document.body.insertBefore(header,document.body.firstChild);
   header.addEventListener('click',function(event){
    var button=event.target.closest('[data-route]');if(!button)return;
+   if(button.dataset.route==='recommendations'){
+    messageTab=false;go('painel-candidato');
+    if(window.EmpregaMaisPreparacao&&window.EmpregaMaisPreparacao.abrirRecomendacoes)window.EmpregaMaisPreparacao.abrirRecomendacoes();
+    syncShell();return;
+   }
    messageTab=button.dataset.route==='messages';
    go(messageTab?'painel-candidato':button.dataset.route);syncShell();
   });
@@ -223,7 +228,8 @@
    active.classList.add('cp-tab-content');
    if(route!=='painel-candidato')messageTab=false;
    page.classList.toggle('cp-messages-active',messageTab);
-   nav.querySelectorAll('[data-route]').forEach(function(b){if(b.dataset.route===(messageTab?'messages':route))b.setAttribute('aria-current','page');else b.removeAttribute('aria-current')});
+   var selected=messageTab?'messages':route==='painel-candidato'&&page.classList.contains('cp-recommendations-active')?'recommendations':route;
+   nav.querySelectorAll('[data-route]').forEach(function(b){if(b.dataset.route===selected)b.setAttribute('aria-current','page');else b.removeAttribute('aria-current')});
   }
   var shellPending=false;
   new MutationObserver(function(records){if(shellPending||!records.some(function(r){return r.oldValue!==r.target.getAttribute('class')}))return;shellPending=true;requestAnimationFrame(function(){shellPending=false;syncShell()})}).observe(document.body,{subtree:true,attributes:true,attributeOldValue:true,attributeFilter:['class']});

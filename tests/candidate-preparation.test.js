@@ -83,3 +83,34 @@ test('candidate-entered content is escaped in all generated HTML',()=>{
  assert.equal(core.escape('<img src=x onerror="alert(1)">'), '&lt;img src=x onerror=&quot;alert(1)&quot;&gt;');
  assert.equal(core.escape("Ana & 'Exemplo'"),'Ana &amp; &#39;Exemplo&#39;');
 });
+
+const recommendationNow=Date.parse('2026-10-15T13:00:00Z');
+const premiumCandidate={...candidate,plano_candidato:'premium',premium_valido_ate:'2027-01-01T00:00:00Z'};
+test('personal recommendations require an active Premium subscription',()=>{
+ const rows=[{...job,id:'1'}];
+ assert.deepEqual(core.recomendarVagas(rows,candidate,recommendationNow),[]);
+ assert.deepEqual(core.recomendarVagas(rows,{...premiumCandidate,premium_valido_ate:'2026-10-01'},recommendationNow),[]);
+ assert.deepEqual(core.recomendarVagas(rows,{...premiumCandidate,premium_valido_ate:'invalid'},recommendationNow),[]);
+ assert.equal(core.recomendarVagas(rows,premiumCandidate,recommendationNow).length,1);
+});
+test('recommendations exclude unavailable, expired, duplicate and unapproved jobs',()=>{
+ const available={...job,id:'available',status:'ativa',aprovacao:'aprovada',expiraEm:'2026-11-01T00:00:00Z'};
+ const rows=[available,available,{...available,id:'closed',status:'Encerrada'},{...available,id:'paused',status:'Pausada'},{...available,id:'expired',expiraEm:'2026-10-01'},{...available,id:'draft',status:'rascunho'},{...available,id:'pending',aprovacao:'pendente'}];
+ const result=core.recomendarVagas(rows,premiumCandidate,recommendationNow);
+ assert.deepEqual(result.map(item=>item.job.id),['available']);
+ assert.equal(rows.length,7,'The public vacancy list is not mutated');
+});
+test('a matching city and modality alone do not create a professional recommendation',()=>{
+ const unrelated={id:'unrelated',cargo:'Programador Java',area:'Tecnologia',requisitos:'Java, SQL',cidade:candidate.cidadeProfissional,modalidade:'Presencial'};
+ assert.ok(core.compatibilidade(unrelated,premiumCandidate).percent>0);
+ assert.deepEqual(core.recomendarVagas([unrelated],premiumCandidate,recommendationNow),[]);
+ assert.deepEqual(core.recomendarVagas([{...job,id:'1'}],{plano_candidato:'premium'},recommendationNow),[]);
+});
+test('recommendations use compatibility first and newest publication to break ties',()=>{
+ const high={...job,id:'high',dataPublicacao:'2026-10-10'},newer={...job,id:'newer',dataPublicacao:'2026-10-14'};
+ const lower={...job,id:'lower',cargo:'Auxiliar Administrativo',area:'Administrativo',requisitos:'Atendimento',cidade:'Betim',modalidade:'Híbrido'};
+ const result=core.recomendarVagas([lower,high,newer],premiumCandidate,recommendationNow);
+ assert.deepEqual(result.map(item=>item.job.id),['newer','high','lower']);
+ assert.ok(result[0].match.percent>result[2].match.percent);
+ assert.equal(core.recomendarVagas(null,premiumCandidate,recommendationNow).length,0);
+});
