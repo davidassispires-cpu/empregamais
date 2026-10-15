@@ -514,3 +514,5 @@ html body :is(input,select,textarea).em-field-valid:focus{outline:2px solid #c6d
 html body :is(input,select,textarea).em-field-invalid:focus{outline:2px solid #f0cbc6!important;outline-offset:2px!important}
 html body .em-field-message{display:block!important;grid-column:1/-1!important;margin:5px 0 8px!important;padding:0!important;color:#a43e35!important;font:400 12px/1.5 Inter,Arial,sans-serif!important;letter-spacing:normal!important;white-space:normal!important}
 }
+
+@layer field-feedback{html body label:has(>input.em-field-valid),html body label:has(>input.em-field-invalid),html body label:has(>select.em-field-valid),html body label:has(>select.em-field-invalid),html body label:has(>textarea.em-field-valid),html body label:has(>textarea.em-field-invalid){align-content:start!important;align-self:start!important}html body form label:has(>input){align-content:start!important}}
