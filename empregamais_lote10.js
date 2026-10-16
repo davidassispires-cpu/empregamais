@@ -193,7 +193,7 @@
   var recruiterChromeCss = `
 :host{--recruiter-sidebar-width:246px;--recruiter-sidebar-inset:24px;--recruiter-content-left:308px;--recruiter-toolbar-height:48px;min-height:100dvh;background:#fff}
 :host .layout,:host .main{background:#fff}
-.job-title-line>strong{font-family:Montserrat,Arial,sans-serif!important;font-weight:700;text-transform:uppercase}
+.job-title-line>strong{font-family:Inter,Arial,sans-serif!important;font-weight:700;text-transform:uppercase}
 ::slotted(.em-candidates-in-panel),::slotted(.em-publish-in-panel),::slotted(.em-profile-in-panel){background:#fff!important}
 .premium-recruiter-banner{display:grid;grid-template-columns:64px minmax(0,1fr) auto;align-items:center;gap:20px;min-height:132px;margin:0 0 22px;padding:22px 24px;border:1px solid #d5e2f4;border-left:6px solid #0874eb;border-radius:12px;background:#fff;color:#16365e}
 .premium-recruiter-crown{display:grid;place-items:center;width:64px;height:64px;border:1px solid #ffe3b7;border-radius:13px;background:#fff1d9;color:#aa7b1e}
