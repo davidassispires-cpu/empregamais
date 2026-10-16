@@ -1489,3 +1489,12 @@ html body #pagina-painel-candidato#pagina-painel-candidato.cp-reference #emPerso
 html body #pagina-painel-candidato#pagina-painel-candidato.cp-reference #emPersonalDashboard#emPersonalDashboard .cp-job-apply{grid-row:8!important}
 }
 }
+
+/* Premium access card is exclusive to the candidate overview, wherever mounted. */
+@layer site-typography{
+html body:not(:has(#pagina-painel-candidato.ativa)) #premium92Banner#premium92Banner,
+html body:has(#pagina-painel-candidato:is(.cp-tool-active,.cp-recommendations-active,.cp-messages-active)) #premium92Banner#premium92Banner,
+html body:has(#cpPreparationWorkspace:not([hidden])) #premium92Banner#premium92Banner{
+ display:none!important;
+}
+}
