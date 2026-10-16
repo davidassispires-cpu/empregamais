@@ -40,6 +40,38 @@
   }
 }
 
+/* Warm orange accents in the recruiter's application overview. */
+@layer field-feedback {
+  html body #pagina-candidatos-empresa .em-jh-card.em-app-card .em-jh-icon {
+    background: #fff1e4 !important;
+    color: #b45309 !important;
+  }
+  html body #pagina-candidatos-empresa .em-jh-card.em-app-card .em-jh-icon svg {
+    color: #b45309 !important;
+  }
+  html body #pagina-candidatos-empresa .em-jh-card.em-app-card .em-app-new {
+    background: #fff2e6 !important;
+    border-color: #f2d3b4 !important;
+  }
+  html body #pagina-candidatos-empresa .em-jh-card.em-app-card .em-app-new :is(strong,span,svg) {
+    color: #a94716 !important;
+  }
+  html body #pagina-candidatos-empresa .em-jh-card.em-app-card .em-app-analyzing {
+    background: #fff7ed !important;
+    border-color: #eed8b9 !important;
+  }
+  html body #pagina-candidatos-empresa .em-jh-card.em-app-card .em-app-analyzing :is(strong,span,svg) {
+    color: #99520f !important;
+  }
+  html body #pagina-candidatos-empresa .em-jh-card.em-app-card .em-jh-status.paused {
+    background: #fff0de !important;
+    color: #9a4c0f !important;
+  }
+  html body #pagina-candidatos-empresa .em-jh-card.em-app-card:hover {
+    border-color: #e8b98f !important;
+  }
+}
+
 /* Small supporting text matches the company name in candidate applications. */
 @layer site-typography {
   :is(p,small,label,dt,dd,li,input,textarea,select,
