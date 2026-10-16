@@ -38,8 +38,8 @@ test('summary totals correspond to the rows shown by each filter', () => {
  const api=controller();
  const mine=[{status:'Em avaliação'},{status:'Selecionado'},{status:'Finalista'},{status:'Não selecionado'},{status:'Entrevista agendada'}];
  const totals=api.contar(mine);
- assert.deepEqual(JSON.parse(JSON.stringify(totals)),{todas:5,avaliacao:1,contato:0,entrevista:1,aprovadas:2,contratadas:0,reprovadas:1});
- for(const key of ['todas','avaliacao','contato','entrevista','aprovadas','contratadas','reprovadas'])assert.equal(mine.filter(item=>api.corresponde(item,key)).length,totals[key]);
+ assert.deepEqual(JSON.parse(JSON.stringify(totals)),{todas:5,avaliacao:1,contato:0,entrevista:1,aprovadas:2,contratadas:0,reprovadas:1,canceladas:0});
+ for(const key of ['todas','avaliacao','contato','entrevista','aprovadas','contratadas','reprovadas','canceladas'])assert.equal(mine.filter(item=>api.corresponde(item,key)).length,totals[key]);
 });
 
 test('supports direct filter URLs, empty stages and unknown filter values', () => {
@@ -59,8 +59,10 @@ test('keeps the legacy Premium section hidden for Basic accounts and available f
  const start=source.lastIndexOf('(function(){',anchor);
  const end=source.indexOf('})();',anchor)+5;
  const box={innerHTML:'',hidden:false};
+ const host={insertBefore(child){child.parentNode=this;}},classes=new Set();
+ const page={querySelector(){return host;},classList:{contains:key=>classes.has(key),toggle(key,on){if(on)classes.add(key);else classes.delete(key);}}};
  let premium=false;
- const context={window:{EmpregaMaisPremiumCandidatoV92:{ehPremium(){return premium;}},addEventListener(){}},document:{getElementById(){return box;},addEventListener(){}},sessionStorage:{getItem(){return 'ana@example.com';}},localStorage:{getItem(){return '[]';}},setTimeout(){}};
+ const context={window:{EmpregaMaisPremiumCandidatoV92:{ehPremium(){return premium;}},addEventListener(){}},document:{readyState:'loading',getElementById(id){return id==='centralPremiumV93'?box:id==='pagina-premium-candidato'?page:null;},addEventListener(){}},sessionStorage:{getItem(){return 'ana@example.com';}},localStorage:{getItem(){return '[]';}},setTimeout(){}};
  vm.runInNewContext(source.slice(start,end),context);
  context.window.EmpregaMaisCentralPremiumV93.atualizar();
  assert.equal(box.hidden,true);
@@ -96,4 +98,8 @@ test('view receipt is shown only for actual recorded views and keeps the timesta
  assert.match(html,/14\/10\/2026/);
  assert.match(api.avisoVisualizacao({visualizada:true}),/Vista pela empresa/);
  assert.doesNotMatch(api.avisoVisualizacao({visualizada:true}),/Invalid Date/);
+ const compact=api.avisoVisualizacao({visualizadoEm:'2026-10-14T11:15:00Z'},true);
+ assert.match(compact,/<strong>Vista pela empresa<\/strong>/);
+ assert.match(compact,/14\/10, às \d{2}h\d{2}/);
+ assert.doesNotMatch(api.avisoVisualizacao({visualizada:true},true),/Invalid Date/);
 });
