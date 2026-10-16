@@ -1078,6 +1078,7 @@ html body #pagina-painel-candidato#pagina-painel-candidato.cp-enhanced #cpPrepar
 html body #pagina-painel-candidato#pagina-painel-candidato.cp-enhanced #cpPreparationWorkspace#cpPreparationWorkspace .cp-recommendation-footer button{min-height:44px!important}
 }}
 
+@layer site-typography {
 /* Premium access summary belongs exclusively to the overview. */
 html body #pagina-painel-candidato:not(.ativa) #premium92Banner,
 html body #pagina-painel-candidato:is(.cp-tool-active,.cp-recommendations-active,.cp-messages-active) #premium92Banner{
@@ -1119,3 +1120,5 @@ html body #pagina-candidaturas#pagina-candidaturas#pagina-candidaturas .candidat
 html body #pagina-candidaturas#pagina-candidaturas#pagina-candidaturas .cp-card-journey li:has(.cp-journey-step[aria-expanded="true"]){z-index:50!important}
 html body #pagina-candidaturas#pagina-candidaturas#pagina-candidaturas .cp-journey-step[aria-expanded="true"] + .cp-journey-explanation{display:block!important;z-index:60!important}
 html body #pagina-candidaturas#pagina-candidaturas#pagina-candidaturas .cp-card-journey li.is-linked:after{background:#d45c13!important}
+
+}
