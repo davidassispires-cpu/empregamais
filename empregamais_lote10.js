@@ -254,6 +254,24 @@
  :host .sidebar.reference-sidebar,:host([data-paid="true"]) .sidebar.reference-sidebar{width:calc(100% - 24px)!important;margin:12px!important;border:1px solid #d5e0ec!important;border-radius:12px!important;background:#fff!important}
  .recruiter-context{display:none}.recruiter-toolbar-actions{gap:12px}.recruiter-account{padding-left:12px}.recruiter-account-copy strong{font-size:12px}.recruiter-account-avatar{width:32px;height:32px;flex-basis:32px;font-size:11px}.recruiter-account>summary{gap:8px}.recruiter-account-chevron{width:14px;height:14px}
 }
+/* Keep the native mobile filter group aligned as a row on desktop. */
+@media(min-width:761px){
+ .jobs-reference .job-extra-filters{display:grid;grid-template-columns:minmax(200px,1.55fr) minmax(0,4fr);align-items:end;gap:12px;padding:16px 0;margin-bottom:16px}
+ .jobs-reference .job-extra-filters label{grid-column:auto;min-width:0;margin:0}
+ .jobs-reference .job-extra-filters>.job-search-label{grid-column:auto}
+ .jobs-reference .job-extra-filters>.mobile-filters{display:block;min-width:0;padding:0;margin:0;border:0}
+ .jobs-reference .mobile-filters>summary{display:none}
+ .jobs-reference .mobile-filters>.filter-options{display:grid;grid-template-columns:repeat(3,minmax(0,1fr)) auto;align-items:end;gap:12px;min-width:0;padding:0}
+ .jobs-reference .job-extra-filters .filter-control,.jobs-reference .job-extra-filters input,.jobs-reference .job-extra-filters select{width:100%;min-width:0}
+ .jobs-reference .job-extra-filters .filter-reset{grid-column:auto;width:100%;min-width:0;align-self:end}
+}
+@media(min-width:761px) and (max-width:1200px){
+ .jobs-reference .job-extra-filters{grid-template-columns:minmax(0,1fr)}
+ .jobs-reference .mobile-filters>.filter-options{grid-template-columns:repeat(4,minmax(0,1fr))}
+}
+@media(min-width:761px) and (max-width:1000px){
+ .jobs-reference .mobile-filters>.filter-options{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
 @media(prefers-reduced-motion:reduce){.recruiter-account-chevron{transition:none}}
 `;
   Object.assign(icons,{bell:'M5 10a7 7 0 0 1 14 0v5l2 3H3l2-3ZM9 21h6',chevron:'m6 9 6 6 6-6'});
@@ -276,7 +294,7 @@
       style.textContent='body:has(:is(#pagina-painel-empresa.ativa,#pagina-demo-recrutador.ativa)>#emRecruiterPanel){padding-top:0!important}body:has(:is(#pagina-painel-empresa.ativa,#pagina-demo-recrutador.ativa)>#emRecruiterPanel)>header.topo,body:has(:is(#pagina-painel-empresa.ativa,#pagina-demo-recrutador.ativa)>#emRecruiterPanel) .rodape{display:none!important}:is(#pagina-painel-empresa,#pagina-demo-recrutador):has(>#emRecruiterPanel){padding:0!important;margin:0!important;width:100%!important;max-width:none!important;min-height:100dvh!important;background:#fff!important}';
       document.head.appendChild(style);
       var viewport=window.matchMedia('(min-width:761px)');
-      var resizeNavigation=function(event){var navigation=root&&root.querySelector('.panel-navigation');if(navigation)navigation.open=event.matches;};
+      var resizeNavigation=function(event){var navigation=root&&root.querySelector('.panel-navigation');if(navigation)navigation.open=event.matches;var filters=root&&root.querySelector('.mobile-filters');if(filters)filters.open=event.matches||!!(locationFilter||areaFilter||sortOrder!=='recent');};
       if(viewport.addEventListener)viewport.addEventListener('change',resizeNavigation);else if(viewport.addListener)viewport.addListener(resizeNavigation);
     }
     return paidSidebarCss;
