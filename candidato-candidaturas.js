@@ -227,7 +227,7 @@
   var owner=String(sessionStorage.getItem('candidatoEmail')||'').trim().toLowerCase();
   if(owner!==journeyOwner){journeyPins=Object.create(null);journeyOwner=owner;activeJourney=null;}
   var viewKey=String(a.id)+'|'+String(a.vagaId||a.vaga_id||a.idVaga);
-  var footer=document.createElement('section');footer.className='cp-journey-footer';footer.setAttribute('aria-label','Etapas do processo seletivo');
+  var footer=document.createElement('section');footer.dataset.journeySignature=JSON.stringify(journeyModel(a));footer.className='cp-journey-footer';footer.setAttribute('aria-label','Etapas do processo seletivo');
   var journey=document.createElement('ol');journey.className='cp-card-journey';journey.setAttribute('aria-label','Etapa atual: '+label(a));footer.appendChild(journey);
   var entries=[],pinned=null;
   function expanded(entry){entries.forEach(function(other){other.button.setAttribute('aria-expanded',String(other===entry));});}
@@ -276,7 +276,7 @@
   list.classList.add('cp-applications-list-view');
   var rows=applications().filter(function(a){return matches(a)});
   list.querySelectorAll('.candidatura-item').forEach(function(card,i){
-   var a=rows[i];if(!a)return;card.dataset.cpApplicationStage=classify(a);var title=card.querySelector('.candidatura-top h3');if(title&&!title.querySelector('.cp-application-emblem')){var emblem=document.createElement('span');emblem.className='cp-application-emblem';emblem.setAttribute('aria-hidden','true');emblem.innerHTML=icon('briefcase');title.prepend(emblem);}if(card.querySelector('.cp-process-details')){var oldJourney=card.querySelector('.cp-journey-footer');if(oldJourney)oldJourney.replaceWith(buildJourney(a,i));return;}
+   var a=rows[i];if(!a)return;card.dataset.cpApplicationStage=classify(a);var title=card.querySelector('.candidatura-top h3');if(title&&!title.querySelector('.cp-application-emblem')){var emblem=document.createElement('span');emblem.className='cp-application-emblem';emblem.setAttribute('aria-hidden','true');emblem.innerHTML=icon('briefcase');title.prepend(emblem);}if(card.querySelector('.cp-process-details')){var oldJourney=card.querySelector('.cp-journey-footer');if(oldJourney&&oldJourney.dataset.journeySignature!==JSON.stringify(journeyModel(a)))oldJourney.replaceWith(buildJourney(a,i));return;}
    card.classList.add('cp-application-list-row');
    var top=card.querySelector('.candidatura-top'),info=top.firstElementChild,status=top.querySelector('.status-processo'),company=top.querySelector('p');if(company){company.textContent=a.empresa||'Empresa não informada';company.style.removeProperty('color');company.style.removeProperty('font-size');}var sent=document.createElement('div');sent.className='cp-application-date';sent.innerHTML=icon('calendar')+'<span>Enviada em '+safe(applicationDate(a.data||a.dataCandidatura))+'</span>';info.appendChild(sent);
    var notice=viewNotice(a,true);if(notice){var holder=document.createElement('div');holder.innerHTML=notice;info.appendChild(holder.firstChild);}
