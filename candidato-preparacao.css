@@ -1200,3 +1200,21 @@ html body #pagina-candidaturas#pagina-candidaturas#pagina-candidaturas .cp-card-
   font-style:normal!important;
  }
 }
+
+/* Candidate overview: consistent Montserrat and readable supporting copy. */
+@layer field-feedback {
+ html body #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato,
+ html body #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato *{
+  font-family:'Montserrat Applications',Montserrat,Arial,sans-serif!important;
+  font-style:normal!important;
+ }
+ html body #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato :is(p,small,label,dt,dd),
+ html body #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato :is(.cp-role,.cp-stage-label,.cp-journey-step-label,.cp-recommended-salary,.cp-profile-skills span,.cp-recommendation-chips span,.cp-recommendation-reasons span,.em-personal-reasons span,.cp-recommendation-fit-caption){
+  color:#334155!important;font-weight:550!important;
+ }
+ html body #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato :is(h1,h2,h3,h4,h5,h6){font-weight:700!important}
+ html body #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato :is(button,a){font-weight:600!important}
+ /* Preserve readable copy on the dark welcome banner and solid actions. */
+ html body #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato .cp-home-intro :is(p,small,label,span){color:#fff!important;font-weight:550!important}
+ html body #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato :is(.cp-primary,.cp-completion,.cp-overview-card[aria-pressed=true]) :is(span,small){color:inherit!important}
+}
