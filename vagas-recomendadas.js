@@ -73,7 +73,7 @@
   return best;
  }
  window.emRankPersonalJob=rank;
- var hashes={};
+ var hashes={},previewIndex=0,previewOwner='';
  function mount(id,parent,before){var el=document.getElementById(id);if(!el&&parent){el=document.createElement('section');el.id=id;el.className='em-personal-recs';parent.insertBefore(el,before||null);}return el;}
  function render(){
   var ctx=context(),home=document.getElementById('vagas'),dashboard=document.querySelector('#pagina-painel-candidato .container-dashboard');
@@ -87,6 +87,7 @@
    var core=window.EmpregaMaisPreparacao,candidate=typeof window.obterCandidatoAtual==='function'?window.obterCandidatoAtual()||{}:{};
    jobs=core&&typeof core.recomendarVagas==='function'?core.recomendarVagas(typeof window.todasAsVagasPublicas==='function'?window.todasAsVagasPublicas():[],candidate).map(function(item){return {v:item.job,match:{score:item.match.percent,reasons:[]}};}):[];
   }
+  var previewKey=String(sessionStorage.getItem('candidatoEmail')||'');if(previewOwner!==previewKey){previewOwner=previewKey;previewIndex=0;}previewIndex=jobs.length?((previewIndex%jobs.length)+jobs.length)%jobs.length:0;
   sections.forEach(function(section,index){
    if(!section)return;
    var hidden=index===1?!ctx.logged:!ctx.logged&&!ctx.refs.length;section.hidden=hidden;if(hidden)return;
@@ -94,17 +95,19 @@
    var subtitle=latest?'Confira as oportunidades mais recentes do site.':ctx.logged?'Sugestões com base nas informações do seu perfil.':'Sugestões com base nas suas visitas recentes neste navegador.';
    var html='<div class="em-personal-head"><div><h2>'+title+'</h2><p>'+subtitle+'</p></div>'+(ctx.logged?'<button type="button" class="cp-recommendations-link" data-cp-action="'+(latest?'search':'recommendations')+'">'+(latest?'Ver todas as vagas':'Ver recomendações')+' →</button>':'')+'</div>';
    if(!jobs.length)html+='<p class="em-personal-empty">'+(latest?'Nenhuma vaga disponível no momento.':ctx.logged?'Ainda não encontramos vagas compatíveis. Complete seu perfil e confira as oportunidades disponíveis.':'Ainda não encontramos outras vagas relacionadas às suas visitas.')+'</p>';
-   else html+='<div class="em-personal-grid">'+jobs.slice(0,demo?12:2).map(function(x){
+   else html+='<div class="em-personal-grid">'+jobs.slice(previewIndex,previewIndex+1).map(function(x){
     var v=x.v,conf=typeof window.vagaEhConfidencialEM==='function'?window.vagaEhConfidencialEM(v):v.confidencial===true;
     var locality=[v.cidade||'Local não informado',v.uf].filter(Boolean).join(' – ');
     var badges=window.EmpregaMaisPreparacao&&typeof window.EmpregaMaisPreparacao.selosVaga==='function'?window.EmpregaMaisPreparacao.selosVaga(v):'';
     return '<article data-cp-job-id="'+esc(v.id)+'"><span class="cp-job-symbol"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M5 21V3h12v18M17 10h3v11M3 21h19M8 7h2M12 7h2M8 11h2M12 11h2M8 15h2M12 15h2"/></svg></span><h3>'+esc(v.cargo||v.titulo||'Vaga')+'</h3><p>'+esc(conf?'Empresa confidencial':v.empresa||'Empresa')+'</p><strong class="cp-recommended-salary">'+esc(v.salario||'Salário a combinar')+'</strong>'+'<div class="em-personal-reasons">'+[locality,v.contrato||'Contrato não informado',v.modalidade||'Modalidade não informada'].map(function(r,i){return '<span'+(i===0?' class="cp-job-location"':'')+'>'+(i===0?'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M20 10c0 6-8 11-8 11S4 16 4 10a8 8 0 1 1 16 0Z"/><circle cx="12" cy="10" r="2.5"/></svg>':'')+esc(r)+'</span>';}).join('')+'</div>'+badges+(!latest?'<p class="cp-recommendation-message">'+(x.match.score>=80?'Seu perfil tem alta aderência a esta oportunidade. Candidate-se!':'Seu perfil combina com esta oportunidade. Confira os detalhes e candidate-se.')+'</p>':'')+'<div class="cp-fit-and-alert"></div><button type="button" class="cp-job-apply" data-cp-overview-apply="'+esc(v.id)+'">Quero me candidatar</button></article>';
    }).join('')+'</div>';
+   if(jobs.length>1)html+='<nav class="cp-preview-carousel" aria-label="Navegar pelas vagas recomendadas"><button type="button" data-cp-preview-step="-1" aria-label="Vaga anterior">‹</button><span aria-live="polite">'+(previewIndex+1)+' de '+jobs.length+'</span><button type="button" data-cp-preview-step="1" aria-label="Próxima vaga">›</button></nav>';
    if(hashes[section.id]!==html){section.innerHTML=html;hashes[section.id]=html;}
   });
  }
  var queued=false;function schedule(){if(queued)return;queued=true;setTimeout(function(){queued=false;render();},100);}
  function start(){
+  document.addEventListener('click',function(event){var button=event.target.closest('[data-cp-preview-step]');if(!button)return;event.preventDefault();previewIndex+=Number(button.dataset.cpPreviewStep)||0;render();var next=document.querySelector('[data-cp-preview-step="'+button.dataset.cpPreviewStep+'"]');if(next)next.focus({preventScroll:true});});
   var style=document.createElement('style');style.textContent=`
 .em-personal-recs{box-sizing:border-box;background:#fff;border:1px solid #e1e7ef;border-radius:12px;padding:20px;margin:18px 0;color:#0080c9;font-family:Inter,Arial,sans-serif}
 #emPersonalHome{max-width:1180px;width:calc(100% - 32px);margin:20px auto}
