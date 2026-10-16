@@ -291,14 +291,7 @@
   return '<div class="cp-recommendation-fit cp-match-column"><span class="cp-recommendation-premium">'+recommendationIcon('crown')+'PREMIUM</span><div class="cp-match-ring" role="meter" aria-label="Aderência ao perfil" aria-valuemin="0" aria-valuemax="100" aria-valuenow="'+value+'" style="--cp-match:'+value+'%"><strong>'+value+'<span>%</span></strong></div><span class="cp-match-title">Aderência ao perfil</span><button type="button" class="cp-match-analysis" data-cp-fit="'+escape(id)+'">Ver análise <span aria-hidden="true">›</span></button></div>';
  }
  function recommendationsHeader(){
-  return '<header class="cp-recommendations-hero" aria-labelledby="cpRecommendationsTitle">'+
-   '<div class="cp-recommendations-hero-copy"><button type="button" class="cp-recommendations-back" data-cp-action="close">'+icon('back')+' Voltar à minha área</button>'+
-   '<div class="cp-recommendations-kicker">RECOMENDAÇÕES <span>PREMIUM</span></div>'+
-   '<h1 id="cpRecommendationsTitle" tabindex="-1">Vagas que combinam<br>com o <span>seu perfil.</span></h1>'+
-   '<p>Vagas selecionadas para o seu perfil. Recomendações com pelo menos 60% de aderência ao seu perfil.</p>'+
-   '<div class="cp-recommendations-features"><span>'+icon('target')+'Aderência ao perfil</span><span>'+icon('briefcase')+'Vagas recomendadas</span><span>'+icon('analysis')+'Ver análise</span></div></div>'+
-   '<div class="cp-recommendations-art" aria-hidden="true"><img src="assets/candidate-navigation/recommendations-job-match.png" width="1536" height="1024" alt="" decoding="async"></div>'+
-   '<div class="cp-recommendations-rail"><strong>Sua próxima oportunidade</strong><button type="button" data-cp-action="recommendations-list">Explore suas recomendações <span aria-hidden="true">→</span></button></div></header>';
+  return '<header class="cp-recommendations-hero cp-recommendations-elegant" aria-labelledby="cpRecommendationsTitle"><div class="cp-recommendations-hero-copy"><button type="button" class="cp-recommendations-back" data-cp-action="close">'+icon('back')+' Voltar à minha área</button><div class="cp-recommendations-title-row"><h1 id="cpRecommendationsTitle" tabindex="-1">Vagas recomendadas para você</h1><span class="cp-recommendations-premium-badge">PREMIUM</span></div><p>Oportunidades com pelo menos 60% de aderência ao seu perfil.</p></div></header>';
  }
  function openRecommendations(refresh){
   if(refresh!==true){if(global.irPara&&(!page||!page.classList.contains('ativa')))global.irPara('painel-candidato');mount();}
