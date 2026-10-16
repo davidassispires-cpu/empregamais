@@ -149,18 +149,23 @@
   if(demo&&workflow.demo){var id=String(a.vagaId||a.vaga_id||a.idVaga),seen=new Set();workflow.demo().forEach(function(row){if(String(row.vagaId||row.vaga_id||row.idVaga)===id)seen.add(String(row.id));});total=seen.size;}
   return '<h4>'+title+'</h4>'+(total==null?'<p>O total de inscritos ainda não foi informado para esta vaga.</p>':'<p class="cp-insight-total"><strong>'+safe(total.toLocaleString('pt-BR'))+'</strong> '+(total===1?'candidatura recebida':'candidaturas recebidas')+'</p>')+(demo?'<p class="cp-insight-source">Dados fictícios da demonstração.</p>':'');
  }
+ var insightViews=Object.create(null),insightOwner='';
  function addPremiumOptions(card,details,a,index){
+  var owner=String(sessionStorage.getItem('candidatoEmail')||'').trim().toLowerCase();if(owner!==insightOwner){insightViews=Object.create(null);insightOwner=owner;}
+  var viewKey=String(a.id)+'|'+String(a.vagaId||a.vaga_id||a.idVaga);
   var group=document.createElement('div');group.className='cp-application-premium';group.setAttribute('aria-label','Detalhes Premium');
   group.innerHTML='<span class="cp-premium-caption">Detalhes Premium</span><div class="cp-premium-options"></div>';
   var panel=document.createElement('section');panel.className='cp-card-insight';panel.id='cpApplicationInsight'+index;panel.hidden=true;
-  var active='',buttons=[];
+  var active=insightViews[viewKey]||'',buttons=[];
   [{key:'match',label:'Sua adequação'},{key:'applicants',label:'Total de inscritos'}].forEach(function(item){
    var button=document.createElement('button');button.type='button';button.className='cp-premium-option';button.setAttribute('aria-expanded','false');button.setAttribute('aria-controls',panel.id);button.setAttribute('aria-label','Visualizar '+item.label.toLowerCase());
    button.innerHTML='<span>'+item.label+'</span><strong>Visualizar '+icon('arrow')+'</strong>';
-   button.onclick=function(){var closing=!panel.hidden&&active===item.key;buttons.forEach(function(b){b.setAttribute('aria-expanded','false');});if(closing){panel.hidden=true;active='';return;}active=item.key;panel.innerHTML=premiumInsight(a,item.key);panel.hidden=false;button.setAttribute('aria-expanded','true');};
+   button.dataset.cpInsightKind=item.key;
+   button.onclick=function(){var closing=!panel.hidden&&active===item.key;buttons.forEach(function(b){b.setAttribute('aria-expanded','false');});if(closing){panel.hidden=true;active='';delete insightViews[viewKey];return;}active=item.key;insightViews[viewKey]=active;panel.innerHTML=premiumInsight(a,item.key);panel.hidden=false;button.setAttribute('aria-expanded','true');};
    buttons.push(button);group.querySelector('.cp-premium-options').appendChild(button);
   });
   panel.addEventListener('click',function(event){var button=event.target.closest('[data-cp-insight-route]');if(button&&typeof window.irPara==='function')window.irPara(button.dataset.cpInsightRoute);});
+  if(active){panel.innerHTML=premiumInsight(a,active);panel.hidden=false;buttons.forEach(function(button){button.setAttribute('aria-expanded',String(button.dataset.cpInsightKind===active));});}
   details.appendChild(group);card.appendChild(panel);
  }
  function enhanceList(){
