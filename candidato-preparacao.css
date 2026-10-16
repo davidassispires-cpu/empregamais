@@ -1351,3 +1351,18 @@ html body .cp-low-competition svg{width:13px!important;height:13px!important;fle
  #listaCandidaturas.cp-applications-list-view .cp-option-lock,
  #listaCandidaturas.cp-applications-list-view .is-locked .cp-option-cta {color:#c2410c!important}
 }
+
+/* Visible orange accents on the candidate overview. */
+@layer field-feedback {
+ html body.cp-shell-active #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato.cp-enhanced .m3-welcome button {background:#c2410c!important;background-image:none!important;border-color:#c2410c!important;color:#fff!important}
+ html body.cp-shell-active #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato.cp-enhanced .m3-welcome button:hover {background:#9a3412!important;border-color:#9a3412!important}
+ html body.cp-shell-active #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato.cp-enhanced .m3-welcome button :is(span,svg) {color:inherit!important}
+ html body.cp-shell-active #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato.cp-enhanced #premium92Banner {background:#fff3e8!important;background-image:none!important;border:1px solid #fed7aa!important;border-left:4px solid #ea580c!important}
+ html body.cp-shell-active #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato.cp-enhanced #premium92Banner .premium92-validade {background:#fffaf5!important;border-color:#fed7aa!important}
+ html body.cp-shell-active #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato.cp-enhanced #premium92Banner .premium92-crown {background:#ffedd5!important;border-color:#fdba74!important;color:#c2410c!important}
+ html body.cp-shell-active #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato.cp-enhanced .cp-overview-card[data-cp-action="analysis"] :is(.cp-overview-icon,.cp-overview-arrow) {background:#fff3e8!important;background-image:none!important;color:#c2410c!important}
+ html body.cp-shell-active #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato.cp-enhanced .cp-overview-card[data-cp-action="analysis"] .cp-overview-icon svg {color:#ea580c!important}
+ html body.cp-shell-active #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato.cp-enhanced .cp-overview-card[data-cp-action="analysis"] .cp-overview-icon rect[fill]:not([fill="none"]) {fill:#ea580c!important}
+ html body.cp-shell-active #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato.cp-enhanced .cp-overview-card[data-cp-action="analysis"] .cp-overview-icon rect:nth-of-type(2) {fill:#fb923c!important}
+ html body.cp-shell-active #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato.cp-enhanced .cp-overview-card[data-cp-action="analysis"] :is(strong,div>span,.cp-overview-arrow svg) {color:#c2410c!important}
+}
