@@ -1,6 +1,8 @@
 (function(){
  'use strict';
- var selector='input,select,textarea',states=new WeakMap(),next=0;
+ var selector='input,select,textarea',states=new WeakMap(),next=0,jobTouched=new WeakSet(),jobAttempted=new WeakSet();
+ function jobField(f){return !!(f&&f.closest&&f.closest('#formVaga'));}
+ function jobAllowed(f){return !jobField(f)||jobTouched.has(f)||jobAttempted.has(f);}
  function eligible(f){
   if(!f||!f.matches||!f.matches(selector)||f.disabled||f.readOnly||f.hidden)return false;
   if(f.tagName==='INPUT'&&/^(hidden|checkbox|radio|file|submit|button|reset|search|range|color)$/i.test(f.type))return false;
@@ -53,10 +55,12 @@
   return r.state!=='invalid';
  }
  function start(){
-  document.addEventListener('focusout',function(e){paint(e.target);});
-  document.addEventListener('change',function(e){paint(e.target);});
-  document.addEventListener('input',function(e){if(eligible(e.target))clear(e.target);});
-  document.addEventListener('invalid',function(e){paint(e.target);},true);
+  document.addEventListener('pointerdown',function(e){if(jobField(e.target)&&e.target.matches(selector))jobTouched.add(e.target);},true);
+  window.addEventListener('click',function(e){var b=e.target.closest&&e.target.closest('#formVaga .em-btn-next,#formVaga button[type=submit]');if(!b)return;var panel=b.closest('[data-panel]')||b.closest('form');panel.querySelectorAll(selector).forEach(function(f){jobAttempted.add(f);});},true);
+  document.addEventListener('focusout',function(e){if(jobAllowed(e.target))paint(e.target);});
+  document.addEventListener('change',function(e){if(jobField(e.target)&&e.isTrusted)jobTouched.add(e.target);if(jobAllowed(e.target))paint(e.target);});
+  document.addEventListener('input',function(e){if(eligible(e.target)){if(jobField(e.target)&&e.isTrusted)jobTouched.add(e.target);clear(e.target);}});
+  document.addEventListener('invalid',function(e){if(jobAllowed(e.target))paint(e.target);},true);
   document.addEventListener('submit',function(e){var first; e.target.querySelectorAll(selector).forEach(function(f){if(!paint(f)&&!first)first=f;});if(first){e.preventDefault();e.stopImmediatePropagation();first.focus();}},true);
   document.addEventListener('reset',function(e){e.target.querySelectorAll(selector).forEach(clear);},true);
  }
