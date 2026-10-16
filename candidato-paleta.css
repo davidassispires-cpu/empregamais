@@ -167,4 +167,41 @@
     .cp-interview-extra > button:not(.cp-primary)) {
     color: #ff981f !important;
   }
+
+  /* The overview application action follows the complete job and fit details. */
+  body.cp-shell-active #emPersonalDashboard .em-personal-grid .cp-fit-and-alert {
+    grid-column: 1 / -1 !important;
+    grid-row: auto !important;
+    order: 1 !important;
+  }
+  body.cp-shell-active #emPersonalDashboard .em-personal-grid article > .cp-job-apply {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    grid-column: 1 / -1 !important;
+    grid-row: auto !important;
+    order: 2 !important;
+    box-sizing: border-box !important;
+    width: 100% !important;
+    min-width: 0 !important;
+    min-height: 50px !important;
+    margin: 6px 0 0 !important;
+    padding: 14px 18px !important;
+    border: 1px solid #ff981f !important;
+    border-radius: 9px !important;
+    background: #ff981f !important;
+    color: #fff !important;
+    --candidate-contrast-ink: #fff !important;
+    font-family: inherit !important;
+    font-size: 15px !important;
+    font-weight: 700 !important;
+    line-height: 1.4 !important;
+    text-align: center !important;
+    white-space: normal !important;
+    cursor: pointer !important;
+  }
+  body.cp-shell-active #emPersonalDashboard .cp-job-apply:focus-visible {
+    outline: 2px solid #0080c9 !important;
+    outline-offset: 3px !important;
+  }
 }

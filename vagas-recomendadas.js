@@ -92,7 +92,7 @@
    if(!jobs.length)html+='<p class="em-personal-empty">'+(latest?'Nenhuma vaga disponível no momento.':ctx.logged?'Ainda não encontramos vagas compatíveis. Complete seu perfil e confira as oportunidades disponíveis.':'Ainda não encontramos outras vagas relacionadas às suas visitas.')+'</p>';
    else html+='<div class="em-personal-grid">'+jobs.slice(0,2).map(function(x){
     var v=x.v,conf=typeof window.vagaEhConfidencialEM==='function'?window.vagaEhConfidencialEM(v):v.confidencial===true;
-    return '<article data-cp-job-id="'+esc(v.id)+'"><span class="cp-job-symbol"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M5 21V3h12v18M17 10h3v11M3 21h19M8 7h2M12 7h2M8 11h2M12 11h2M8 15h2M12 15h2"/></svg></span><h3>'+esc(v.cargo||v.titulo||'Vaga')+'</h3><p>'+esc(conf?'Empresa confidencial':v.empresa||'Empresa')+'</p><small>'+esc(v.cidade||'Local não informado')+(v.uf?' – '+esc(v.uf):'')+'</small><strong class="cp-recommended-salary">'+esc(v.salario||'Salário a combinar')+'</strong>'+(window.EmpregaMaisPreparacao?window.EmpregaMaisPreparacao.seloBaixaConcorrencia(v):'')+'<div class="em-personal-reasons">'+[v.contrato||'Contrato não informado',v.modalidade||'Modalidade não informada'].map(function(r){return '<span>'+esc(r)+'</span>';}).join('')+'</div><a href="?pagina=vaga&amp;id='+encodeURIComponent(v.id)+'">Ver vaga →</a></article>';
+    return '<article data-cp-job-id="'+esc(v.id)+'"><span class="cp-job-symbol"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M5 21V3h12v18M17 10h3v11M3 21h19M8 7h2M12 7h2M8 11h2M12 11h2M8 15h2M12 15h2"/></svg></span><h3>'+esc(v.cargo||v.titulo||'Vaga')+'</h3><p>'+esc(conf?'Empresa confidencial':v.empresa||'Empresa')+'</p><small>'+esc(v.cidade||'Local não informado')+(v.uf?' – '+esc(v.uf):'')+'</small><strong class="cp-recommended-salary">'+esc(v.salario||'Salário a combinar')+'</strong>'+(window.EmpregaMaisPreparacao?window.EmpregaMaisPreparacao.seloBaixaConcorrencia(v):'')+'<div class="em-personal-reasons">'+[v.contrato||'Contrato não informado',v.modalidade||'Modalidade não informada'].map(function(r){return '<span>'+esc(r)+'</span>';}).join('')+'</div><div class="cp-fit-and-alert"></div><button type="button" class="cp-job-apply" data-cp-overview-apply="'+esc(v.id)+'">Quero me candidatar</button></article>';
    }).join('')+'</div>';
    if(hashes[section.id]!==html){section.innerHTML=html;hashes[section.id]=html;}
   });
@@ -121,6 +121,18 @@
 `;document.head.appendChild(style);
   ['pagina-home','pagina-painel-candidato'].forEach(function(id){var p=document.getElementById(id);if(p)new MutationObserver(schedule).observe(p,{attributes:true,attributeFilter:['class']});});
   ['listaVagas','emRecentHeaderHistory'].forEach(function(id){var el=document.getElementById(id);if(el)new MutationObserver(schedule).observe(el,{childList:true,subtree:true});});
+  document.addEventListener('click',function(event){
+   var button=event.target.closest('#emPersonalDashboard [data-cp-overview-apply]');if(!button)return;
+   event.preventDefault();
+   var id=button.dataset.cpOverviewApply;
+   var available=typeof window.todasAsVagasPublicas==='function'?window.todasAsVagasPublicas():[];
+   var job=available.find(function(item){return String(item.id)===String(id);});
+   if(!job){alert('Esta vaga não está mais disponível. Atualize as oportunidades.');return;}
+   window.vagaAtual=job;
+   if(window.EmpregaMaisCandidaturaV94&&typeof window.EmpregaMaisCandidaturaV94.abrir==='function')window.EmpregaMaisCandidaturaV94.abrir(job);
+   else if(typeof window.abrirCandidaturaProtegida==='function')window.abrirCandidaturaProtegida(job.id);
+   else if(typeof window.irPara==='function')window.irPara('candidatura',job.id);
+  });
   window.addEventListener('storage',schedule);window.addEventListener('popstate',schedule);window.addEventListener('load',schedule);document.addEventListener('submit',function(){setTimeout(schedule,700);},true);
   render();
  }
