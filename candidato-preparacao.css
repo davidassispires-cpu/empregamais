@@ -1462,3 +1462,30 @@ html body #pagina-painel-candidato#pagina-painel-candidato.cp-enhanced #cpPrepar
 html body #pagina-painel-candidato#pagina-painel-candidato.cp-enhanced #cpPreparationWorkspace#cpPreparationWorkspace .cp-recommendation-footer{grid-column:4!important;grid-row:1/4!important}
 }
 }
+
+@layer site-typography{
+html body #pagina-painel-candidato#pagina-painel-candidato.cp-reference #emPersonalDashboard#emPersonalDashboard .em-personal-grid{grid-template-columns:minmax(0,1fr)!important}
+html body #pagina-painel-candidato#pagina-painel-candidato.cp-reference #emPersonalDashboard#emPersonalDashboard .em-personal-grid article{display:grid!important;grid-template-columns:40px minmax(0,1fr) auto!important;grid-template-rows:none!important;gap:8px 10px!important;min-height:0!important;height:auto!important;padding:14px!important}
+html body #pagina-painel-candidato#pagina-painel-candidato.cp-reference #emPersonalDashboard#emPersonalDashboard .em-personal-grid article>*{position:static!important;inset:auto!important;transform:none!important;grid-area:auto!important;margin:0!important;min-width:0!important}
+html body #pagina-painel-candidato#pagina-painel-candidato.cp-reference #emPersonalDashboard#emPersonalDashboard .em-personal-grid .cp-job-symbol{grid-column:1!important;grid-row:1/3!important;width:38px!important;height:44px!important}
+html body #pagina-painel-candidato#pagina-painel-candidato.cp-reference #emPersonalDashboard#emPersonalDashboard .em-personal-grid h3{grid-column:2!important;grid-row:1!important;padding:0!important}
+html body #pagina-painel-candidato#pagina-painel-candidato.cp-reference #emPersonalDashboard#emPersonalDashboard .em-personal-grid article>p:not(.cp-recommendation-message){grid-column:2!important;grid-row:2!important;line-height:1.5!important;padding:0!important}
+html body #pagina-painel-candidato#pagina-painel-candidato.cp-reference #emPersonalDashboard#emPersonalDashboard .cp-recommended-salary{grid-column:3!important;grid-row:1/3!important;align-self:start!important}
+html body #pagina-painel-candidato#pagina-painel-candidato.cp-reference #emPersonalDashboard#emPersonalDashboard .em-personal-reasons{grid-column:1/-1!important;grid-row:3!important;flex-wrap:wrap!important}
+html body #pagina-painel-candidato#pagina-painel-candidato.cp-reference #emPersonalDashboard#emPersonalDashboard .cp-job-badges{grid-column:1/-1!important;grid-row:4!important}
+html body #pagina-painel-candidato#pagina-painel-candidato.cp-reference #emPersonalDashboard#emPersonalDashboard .em-personal-grid .cp-recommendation-message{grid-column:1/-1!important;grid-row:5!important;font-size:12px!important;line-height:1.5!important;color:#536174!important;padding:8px 0!important;white-space:normal!important}
+html body #pagina-painel-candidato#pagina-painel-candidato.cp-reference #emPersonalDashboard#emPersonalDashboard .cp-fit-and-alert{grid-column:1/-1!important;grid-row:6!important}
+html body #pagina-painel-candidato#pagina-painel-candidato.cp-reference #emPersonalDashboard#emPersonalDashboard .cp-job-apply{grid-column:1/-1!important;grid-row:7!important;width:100%!important}
+html body #pagina-painel-candidato#pagina-painel-candidato.cp-reference #emPersonalDashboard#emPersonalDashboard .cp-preview-carousel{display:flex!important;align-items:center!important;justify-content:flex-end!important;gap:12px!important;margin-top:12px!important}
+html body #pagina-painel-candidato#pagina-painel-candidato.cp-reference #emPersonalDashboard#emPersonalDashboard .cp-preview-carousel button{display:grid!important;place-items:center!important;width:34px!important;height:34px!important;padding:0!important;border:1px solid #dbe5ef!important;border-radius:8px!important;background:#fff!important;color:#0080c9!important;font-size:24px!important;cursor:pointer!important}
+html body #pagina-painel-candidato#pagina-painel-candidato.cp-reference #emPersonalDashboard#emPersonalDashboard .cp-preview-carousel span{font-size:12px!important;color:#627085!important}
+@media(max-width:480px){
+html body #pagina-painel-candidato#pagina-painel-candidato.cp-reference #emPersonalDashboard#emPersonalDashboard .em-personal-grid article{grid-template-columns:38px minmax(0,1fr)!important}
+html body #pagina-painel-candidato#pagina-painel-candidato.cp-reference #emPersonalDashboard#emPersonalDashboard .cp-recommended-salary{grid-column:1/-1!important;grid-row:3!important}
+html body #pagina-painel-candidato#pagina-painel-candidato.cp-reference #emPersonalDashboard#emPersonalDashboard .em-personal-reasons{grid-row:4!important}
+html body #pagina-painel-candidato#pagina-painel-candidato.cp-reference #emPersonalDashboard#emPersonalDashboard .cp-job-badges{grid-row:5!important}
+html body #pagina-painel-candidato#pagina-painel-candidato.cp-reference #emPersonalDashboard#emPersonalDashboard .em-personal-grid .cp-recommendation-message{grid-row:6!important}
+html body #pagina-painel-candidato#pagina-painel-candidato.cp-reference #emPersonalDashboard#emPersonalDashboard .cp-fit-and-alert{grid-row:7!important}
+html body #pagina-painel-candidato#pagina-painel-candidato.cp-reference #emPersonalDashboard#emPersonalDashboard .cp-job-apply{grid-row:8!important}
+}
+}
