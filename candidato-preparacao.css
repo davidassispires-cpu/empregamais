@@ -1366,3 +1366,15 @@ html body .cp-low-competition svg{width:13px!important;height:13px!important;fle
  html body.cp-shell-active #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato.cp-enhanced .cp-overview-card[data-cp-action="analysis"] .cp-overview-icon rect:nth-of-type(2) {fill:#fb923c!important}
  html body.cp-shell-active #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato.cp-enhanced .cp-overview-card[data-cp-action="analysis"] :is(strong,div>span,.cp-overview-arrow svg) {color:#c2410c!important}
 }
+
+/* Neutral gray surfaces and readable placeholders in the resume editor. */
+@layer field-feedback {
+ html body.cp-shell-active #pagina-curriculo#pagina-curriculo#pagina-curriculo#pagina-curriculo#pagina-curriculo #cvResumeWizard :is(input:not([type="checkbox"]):not([type="radio"]):not([type="file"]),select,textarea) {background-color:#f9fafb!important;color:#374151!important}
+ html body.cp-shell-active #pagina-curriculo#pagina-curriculo#pagina-curriculo#pagina-curriculo#pagina-curriculo #cvResumeWizard :is(input:not([type="checkbox"]):not([type="radio"]):not([type="file"]),select,textarea):not(.em-field-invalid):not(.em-field-valid) {border-color:#d1d5db!important}
+ html body.cp-shell-active #pagina-curriculo#pagina-curriculo#pagina-curriculo#pagina-curriculo#pagina-curriculo #cvResumeWizard :is(input:not([type="checkbox"]):not([type="radio"]):not([type="file"]),select,textarea):focus:not(.em-field-invalid) {border-color:#1d4ed8!important}
+ html body.cp-shell-active #pagina-curriculo#pagina-curriculo#pagina-curriculo#pagina-curriculo#pagina-curriculo #cvResumeWizard :is(input,textarea)::placeholder {color:#6b7280!important;opacity:1!important}
+ html body.cp-shell-active #pagina-curriculo#pagina-curriculo#pagina-curriculo#pagina-curriculo#pagina-curriculo #cvResumeWizard :is(input:not([type="checkbox"]):not([type="radio"]):not([type="file"]),select,textarea):disabled {background-color:#f3f4f6!important;color:#6b7280!important}
+ html body.cp-shell-active #pagina-curriculo#pagina-curriculo#pagina-curriculo#pagina-curriculo#pagina-curriculo #cvResumeWizard .cv85-number {background:#f3f4f6!important;color:#374151!important}
+ html body.cp-shell-active #pagina-curriculo#pagina-curriculo#pagina-curriculo#pagina-curriculo#pagina-curriculo #cvResumeWizard :is(.cv-step-nav,.cv-wizard-actions) {border-color:#e5e7eb!important}
+ html body.cp-shell-active #cpCandidateHeader#cpCandidateHeader#cpCandidateHeader#cpCandidateHeader#cpCandidateHeader .cp-navigation button[data-route][aria-current="page"] {background:#f1f3f5!important;background-image:none!important}
+}
