@@ -23,6 +23,7 @@
    var old=position===undefined?{}:all[position];
    var job=typeof window.localizarVaga==='function'?window.localizarVaga(row.job_ref):null;
    var updated=Object.assign({},old,{id:row.application_ref,vagaId:row.job_ref,email:owner.email,status:row.status,statusProcesso:row.status,statusAtualizadoEm:row.status_updated_at||''});
+   updated.historicoEtapasPublico=window.EmpregaMaisEtapasCandidatura.historicoPublico(updated,old);
    if(Object.prototype.hasOwnProperty.call(row,'first_viewed_at')){updated.visualizadoEm=row.first_viewed_at||'';updated.visualizada=!!row.first_viewed_at;}
    updated.vaga=old.vaga||row.job_title||job&&job.cargo||'Processo seletivo';
    updated.empresa=old.empresa||job&&job.empresa||row.company_name||'Empresa';

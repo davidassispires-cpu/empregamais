@@ -6,12 +6,13 @@ const vm=require('node:vm');
 
 // A small DOM fixture for the existing card controller; no network or real account writes.
 function element(tag='div',className=''){
- const node={tagName:tag,className,children:[],dataset:{},attributes:{},hidden:false,style:{removeProperty(){}},
+ const node={tagName:tag,className,children:[],dataset:{},attributes:{},listeners:{},hidden:false,style:{removeProperty(){}},
   appendChild(child){if(child.parentNode)child.parentNode.children=child.parentNode.children.filter(c=>c!==child);this.children.push(child);child.parentNode=this;return child;},
   prepend(child){this.appendChild(child);this.children.unshift(this.children.pop());},
   setAttribute(key,value){this.attributes[key]=String(value);},
   getAttribute(key){return this.attributes[key]??null;},
-  addEventListener(){},
+  addEventListener(type,callback){this.listeners[type]=callback;},
+  contains(child){return child===this||this.children.some(item=>item.contains(child));},
   querySelectorAll(selector){
    const parts=selector.split(/\s+/),first=parts.shift(),found=[];
    function walk(parent){for(const child of parent.children){if(first[0]==='.'?child.className.split(/\s+/).includes(first.slice(1)):child.tagName===first)found.push(child);walk(child);}}
@@ -27,8 +28,8 @@ function element(tag='div',className=''){
  return node;
 }
 
-function fixture(premium){
- const options={premium},routes=[],application={id:'own-application',vagaId:'job-1',vaga:'Assistente Administrativo',empresa:'Empresa',email:'ana@example.com',status:'Em avaliação',data:'2026-10-14'};
+function fixture(premium,changes={}){
+ const options={premium},routes=[],application=Object.assign({id:'own-application',vagaId:'job-1',vaga:'Assistente Administrativo',empresa:'Empresa',email:'ana@example.com',status:'Em avaliação',data:'2026-10-14'},changes);
  const list=element(),toolbar=element(),result=element();
  const document={readyState:'loading',addEventListener(){},createElement:element,querySelector(){return null;},getElementById(id){return {listaCandidaturas:list,cpApplicationFilters:toolbar,cpApplicationResult:result}[id]||null;}};
  const context={window:{
@@ -97,4 +98,36 @@ test('automatic refresh preserves an open insight only while the candidate still
   assert.match(button.innerHTML,/Desbloquear/);
   assert.doesNotMatch(button.innerHTML,/86%|>24<|cp-option-metric/);
  }
+});
+
+test('every stage is visible, with explanations only for recorded stages and no fabricated progression',()=>{
+ const env=fixture(false,{status:'Entrevista agendada'}),card=env.render(),buttons=card.querySelectorAll('.cp-journey-step');
+ assert.deepEqual(buttons.map(button=>button.dataset.cpJourneyKey),['enviada','avaliacao','contato','entrevista','aprovadas','contratadas','reprovadas','canceladas']);
+ assert.deepEqual(buttons.filter(button=>!button.disabled).map(button=>button.dataset.cpJourneyKey),['enviada','entrevista']);
+ assert.equal(buttons[3].getAttribute('aria-current'),'step');
+ assert.equal(card.querySelectorAll('.cp-journey-ending').length,2);
+ assert.equal(buttons[1].onclick,undefined);
+});
+
+test('hover, keyboard focus and touch open the stage explanation and Escape closes it',()=>{
+ const env=fixture(false,{status:'Em contato',statusAtualizadoEm:'2026-10-16T12:30:00Z',historico:[{status:'Em avaliação',data:'2026-10-15',observacao:'PRIVATE_NOTE'}]}),card=env.render(),footer=card.querySelector('.cp-journey-footer'),panel=card.querySelector('.cp-journey-explanation'),buttons=card.querySelectorAll('.cp-journey-step');
+ buttons[1].onmouseenter();
+ assert.equal(panel.hidden,false);
+ assert.match(panel.innerHTML,/Em avaliação|analisar seu perfil/);
+ assert.match(panel.innerHTML,/15\/10\/2026/);
+ assert.doesNotMatch(panel.innerHTML,/PRIVATE_NOTE/);
+ footer.listeners.mouseleave();
+ assert.equal(panel.hidden,true);
+ buttons[2].onfocus();
+ assert.equal(panel.hidden,false);
+ assert.match(panel.innerHTML,/Em contato/);
+ assert.equal(buttons[2].getAttribute('aria-expanded'),'true');
+ footer.listeners.keydown({key:'Escape',stopPropagation(){}});
+ assert.equal(panel.hidden,true);
+ buttons[2].onclick();
+ footer.listeners.mouseleave();
+ assert.equal(panel.hidden,false,'A touch/click pins the explanation until toggled or dismissed');
+ buttons[2].onclick();
+ assert.equal(panel.hidden,true);
+ assert.equal(env.routes.length,0,'Stage explanations remain inside the same application card');
 });

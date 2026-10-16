@@ -40,7 +40,7 @@
   }
   #listaCandidaturas.cp-applications-list-view .cp-application-list-row {
     display: grid !important;
-    grid-template-columns: minmax(0, 1.2fr) minmax(210px, .85fr) minmax(390px, 1.35fr) !important;
+    grid-template-columns: minmax(0, 1fr) minmax(390px, 1.1fr) !important;
     align-items: stretch !important;
     gap: 0 !important;
     padding: 20px !important;
@@ -169,46 +169,81 @@
   }
   #listaCandidaturas.cp-applications-list-view .cp-application-date svg { color: #bb662c !important; }
   #listaCandidaturas.cp-applications-list-view .cp-application-viewed svg { color: #15803d !important; width: 23px !important; height: 23px !important; flex-basis: 23px !important; }
-  #listaCandidaturas.cp-applications-list-view .cp-card-journey {
+  #listaCandidaturas.cp-applications-list-view .cp-journey-footer {
+    grid-column: 1 / -1 !important;
+    min-width: 0 !important;
+    margin-top: 18px !important;
+    padding-top: 14px !important;
+    border-top: 1px solid #e6e9ed !important;
+  }
+  #listaCandidaturas.cp-applications-list-view .cp-journey-heading {
     display: flex !important;
     align-items: center !important;
-    align-self: stretch !important;
-    justify-content: center !important;
+    justify-content: space-between !important;
+    flex-wrap: wrap !important;
+    gap: 5px 14px !important;
+  }
+  #listaCandidaturas.cp-applications-list-view .cp-journey-heading h4 { margin: 0 !important; color: #173550 !important; font-size: 12px !important; font-weight: 700 !important; }
+  #listaCandidaturas.cp-applications-list-view .cp-journey-heading small { color: #475569 !important; font-size: 11px !important; line-height: 1.5 !important; }
+  #listaCandidaturas.cp-applications-list-view .cp-card-journey {
+    display: grid !important;
+    grid-template-columns: repeat(6, minmax(0, 1fr)) !important;
+    align-items: start !important;
     min-width: 0 !important;
-    margin: 0 !important;
-    padding: 16px 12px !important;
-    border-left: 1px solid #e6e9ed !important;
+    margin: 12px 0 0 !important;
+    padding: 0 !important;
+    border: 0 !important;
     list-style: none !important;
     gap: 0 !important;
   }
   #listaCandidaturas.cp-applications-list-view .cp-card-journey li {
     position: relative !important;
     display: flex !important;
-    flex: 1 1 0 !important;
-    flex-direction: column !important;
-    align-items: center !important;
-    gap: 9px !important;
     min-width: 0 !important;
     padding: 0 !important;
     margin: 0 !important;
+    list-style: none !important;
+    z-index: 0 !important;
+  }
+  #listaCandidaturas.cp-applications-list-view .cp-journey-step {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: flex-start !important;
+    gap: 6px !important;
+    width: 100% !important;
+    min-width: 0 !important;
+    min-height: 76px !important;
+    padding: 4px !important;
+    margin: 0 !important;
+    border: 1px solid transparent !important;
+    border-radius: 9px !important;
+    background: transparent !important;
     color: #334155 !important;
     font-size: 12px !important;
     font-weight: 500 !important;
     line-height: 1.4 !important;
     text-align: center !important;
-    z-index: 0 !important;
+    box-shadow: none !important;
+    opacity: 1 !important;
+    cursor: pointer !important;
+    transform: none !important;
   }
+  #listaCandidaturas.cp-applications-list-view .cp-journey-step:disabled { cursor: default !important; }
+  #listaCandidaturas.cp-applications-list-view .cp-journey-step:enabled:hover { background: #f7faff !important; border-color: #dbe7f8 !important; }
+  #listaCandidaturas.cp-applications-list-view .cp-journey-step-label { color: #334155 !important; font-size: 12px !important; line-height: 1.4 !important; }
+  #listaCandidaturas.cp-applications-list-view .cp-journey-step-state { color: #526174 !important; font-size: 10px !important; line-height: 1.4 !important; }
   #listaCandidaturas.cp-applications-list-view .cp-card-journey li:not(:last-child)::after {
     content: '' !important;
     position: absolute !important;
-    top: 14px !important;
+    top: 19px !important;
     left: 50% !important;
     width: 100% !important;
     height: 1px !important;
     background: #d5dce4 !important;
     z-index: -1 !important;
   }
-  #listaCandidaturas.cp-applications-list-view .cp-card-journey li.is-done::after { background: #d45c13 !important; }
+  #listaCandidaturas.cp-applications-list-view .cp-card-journey li.is-linked::after { background: #d45c13 !important; }
   #listaCandidaturas.cp-applications-list-view .cp-card-journey i {
     display: grid !important;
     place-items: center !important;
@@ -235,19 +270,48 @@
     color: #c6530e !important;
     font-weight: 700 !important;
   }
-  #listaCandidaturas.cp-applications-list-view .cp-card-journey .is-current span {
+  #listaCandidaturas.cp-applications-list-view .cp-card-journey .is-current .cp-journey-step-label {
     color: #173550 !important;
     font-weight: 700 !important;
   }
-  #listaCandidaturas.cp-applications-list-view .cp-application-ended {
+  #listaCandidaturas.cp-applications-list-view .cp-journey-endings {
     display: flex !important;
     align-items: center !important;
+    flex-wrap: wrap !important;
+    gap: 8px !important;
+    margin-top: 12px !important;
+  }
+  #listaCandidaturas.cp-applications-list-view .cp-journey-endings-label { color: #475569 !important; font-size: 11px !important; }
+  #listaCandidaturas.cp-applications-list-view .cp-journey-ending .cp-journey-step {
+    flex-direction: row !important;
     justify-content: center !important;
-    padding: 16px !important;
-    border-left: 1px solid #e6e9ed !important;
+    min-height: 34px !important;
+    padding: 6px 10px !important;
+    border: 1px solid #e2e8f0 !important;
+    background: #f8fafc !important;
+  }
+  #listaCandidaturas.cp-applications-list-view .cp-journey-ending i { display: none !important; }
+  #listaCandidaturas.cp-applications-list-view .cp-journey-ending :is(.cp-journey-step-label, .cp-journey-step-state) { font-size: 11px !important; }
+  #listaCandidaturas.cp-applications-list-view .cp-journey-ending .cp-journey-step-state { padding-left: 6px !important; border-left: 1px solid #dce2ea !important; }
+  #listaCandidaturas.cp-applications-list-view .cp-journey-ending:is(.is-current, .is-done) .cp-journey-step { background: #fff3ed !important; border-color: #efc7af !important; }
+  #listaCandidaturas.cp-applications-list-view .cp-journey-ending.is-current .cp-journey-step-label { color: #99410a !important; font-weight: 700 !important; }
+  #listaCandidaturas.cp-applications-list-view .cp-journey-explanation {
+    margin-top: 12px !important;
+    padding: 13px 15px !important;
+    border: 1px solid #dbe5f1 !important;
+    border-left: 3px solid #d45c13 !important;
+    border-radius: 9px !important;
+    background: #f8faff !important;
     color: #334155 !important;
     font-size: 12px !important;
+    line-height: 1.6 !important;
   }
+  #listaCandidaturas.cp-applications-list-view .cp-journey-explanation[hidden] { display: none !important; }
+  #listaCandidaturas.cp-applications-list-view .cp-journey-explanation-heading { display: flex !important; align-items: center !important; flex-wrap: wrap !important; gap: 6px 12px !important; }
+  #listaCandidaturas.cp-applications-list-view .cp-journey-explanation-heading strong { color: #173550 !important; font-size: 13px !important; font-weight: 700 !important; }
+  #listaCandidaturas.cp-applications-list-view .cp-journey-explanation-heading span { color: #99410a !important; font-size: 11px !important; font-weight: 600 !important; }
+  #listaCandidaturas.cp-applications-list-view .cp-journey-explanation p { margin: 6px 0 0 !important; color: #334155 !important; font-size: 12px !important; line-height: 1.6 !important; }
+  #listaCandidaturas.cp-applications-list-view .cp-journey-explanation small { display: block !important; margin-top: 5px !important; color: #475569 !important; font-size: 11px !important; }
   #listaCandidaturas.cp-applications-list-view .cp-process-details {
     display: grid !important;
     grid-template-columns: minmax(0, 1fr) auto !important;
@@ -463,16 +527,14 @@
     cursor: pointer !important;
   }
   #listaCandidaturas.cp-applications-list-view [data-cp-insight-route] svg { width: 16px !important; height: 16px !important; }
-  #listaCandidaturas.cp-applications-list-view :is(.cp-cancel-trigger, .cp-application-open, .cp-premium-option, [data-cp-insight-route]):focus-visible {
+  #listaCandidaturas.cp-applications-list-view :is(.cp-cancel-trigger, .cp-application-open, .cp-premium-option, .cp-journey-step, [data-cp-insight-route]):focus-visible {
     outline: 2px solid #2563eb !important;
     outline-offset: 3px !important;
   }
   @media (max-width: 1100px) and (min-width: 801px) {
     #listaCandidaturas.cp-applications-list-view .cp-application-list-row { grid-template-columns: minmax(0, 1fr) 390px !important; }
     #listaCandidaturas.cp-applications-list-view .candidatura-top { grid-column: 1 !important; grid-row: 1 !important; }
-    #listaCandidaturas.cp-applications-list-view .cp-card-journey { grid-column: 1 !important; grid-row: 2 !important; border: 0 !important; padding: 18px 20px 0 0 !important; }
-    #listaCandidaturas.cp-applications-list-view .cp-application-ended { grid-column: 1 !important; grid-row: 2 !important; border: 0 !important; padding: 18px 20px 0 0 !important; }
-    #listaCandidaturas.cp-applications-list-view .cp-process-details { grid-column: 2 !important; grid-row: 1 / 3 !important; }
+    #listaCandidaturas.cp-applications-list-view .cp-process-details { grid-column: 2 !important; grid-row: 1 !important; }
   }
   @media (max-width: 800px) {
     #listaCandidaturas.cp-applications-list-view .cp-application-list-row { grid-template-columns: minmax(0, 1fr) !important; padding: 16px !important; min-height: 0 !important; }
@@ -481,7 +543,8 @@
     #listaCandidaturas.cp-applications-list-view .candidatura-top h3 { font-size: 14px !important; }
     #listaCandidaturas.cp-applications-list-view .candidatura-top p { font-size: 12px !important; }
     #listaCandidaturas.cp-applications-list-view .cp-application-emblem { width: 36px !important; height: 38px !important; }
-    #listaCandidaturas.cp-applications-list-view :is(.cp-card-journey, .cp-application-ended) { border: 0 !important; border-top: 1px solid #edf0f3 !important; padding: 15px 0 !important; margin-top: 15px !important; }
+    #listaCandidaturas.cp-applications-list-view .cp-card-journey { grid-template-columns: repeat(3, minmax(0, 1fr)) !important; gap: 12px 6px !important; }
+    #listaCandidaturas.cp-applications-list-view .cp-card-journey li::after { display: none !important; }
     #listaCandidaturas.cp-applications-list-view .cp-process-details { display: grid !important; border: 0 !important; border-top: 1px solid #edf0f3 !important; padding: 13px 0 0 !important; gap: 8px !important; }
     #listaCandidaturas.cp-applications-list-view .cp-cancel-trigger { min-height: 40px !important; }
     #listaCandidaturas.cp-applications-list-view .cp-insight-criteria { grid-template-columns: minmax(0, 1fr) !important; }
@@ -500,6 +563,12 @@
     #listaCandidaturas.cp-applications-list-view .cp-application-open { font-size: 11px !important; padding: 8px 6px !important; }
     #listaCandidaturas.cp-applications-list-view .cp-application-viewed { gap: 8px !important; padding: 9px !important; }
     #listaCandidaturas.cp-applications-list-view .cp-application-viewed > div { padding-left: 8px !important; }
+    #listaCandidaturas.cp-applications-list-view .cp-card-journey { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; }
+    #listaCandidaturas.cp-applications-list-view .cp-journey-endings { align-items: stretch !important; }
+    #listaCandidaturas.cp-applications-list-view .cp-journey-endings-label { width: 100% !important; }
+    #listaCandidaturas.cp-applications-list-view .cp-journey-ending { flex: 1 1 0 !important; min-width: 0 !important; }
+    #listaCandidaturas.cp-applications-list-view .cp-journey-ending .cp-journey-step { flex-direction: column !important; gap: 3px !important; }
+    #listaCandidaturas.cp-applications-list-view .cp-journey-ending .cp-journey-step-state { border: 0 !important; padding: 0 !important; }
   }
 }
 

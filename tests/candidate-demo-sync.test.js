@@ -22,6 +22,9 @@ test('recruiter changes persist into the candidate demo without altering real ap
   assert.equal(candidate.api.classificar(after),stage.key);
   assert.equal(after.vagaId,ana.vagaId);
  }
+ const history=candidate.api.demo().find(row=>row.id===ana.id).historicoEtapasPublico;
+ assert.deepEqual(Array.from(history,row=>row.key).sort(),Array.from(recruiter.api.etapas,stage=>stage.key).sort(),'Previously selected stages survive loading the other demo panel');
+ assert(history.every(row=>Object.keys(row).sort().join(',')==='data,key,status'));
  assert.equal(candidate.api.demo().filter(row=>row.email==='ana@example.com').length,2);
  assert.equal(values.get('candidaturasEmpregaMais'),'REAL APPLICATIONS');
  assert.equal(recruiter.events.at(-1),'empregamais:candidaturas-sincronizadas');

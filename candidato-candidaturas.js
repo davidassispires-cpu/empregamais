@@ -129,7 +129,7 @@
      var response=await fetch('https://mkezlcewyengejdmtppl.supabase.co/rest/v1/rpc/em_cancel_candidate_application',{method:'POST',headers:{apikey:'sb_publishable_8YnXpzGX8zj-tvzvcMYdyw_FVBhQutR',Authorization:'Bearer '+token,'Content-Type':'application/json'},body:JSON.stringify({p_application_ref:String(a.id),p_job_ref:String(a.vagaId||a.vaga_id||a.idVaga)})});
      result=await response.json();if(!response.ok||result.status!=='Cancelada pelo candidato')throw Error(result.message||'Não foi possível cancelar. Tente novamente.');
     }
-    var all=window.carregarCandidaturas(),now=new Date().toISOString();all.forEach(function(x){if(String(x.id)===String(a.id)&&belongs(x)){x.status=x.statusProcesso='Cancelada pelo candidato';x.canceladoEm=now;x.statusAtualizadoEm=now;if(x.entrevista)x.entrevista=Object.assign({},x.entrevista,{state:'cancelled'});}});window.salvarCandidaturas(all);dialog.close();refresh();
+    var all=window.carregarCandidaturas(),now=new Date().toISOString();all.forEach(function(x){if(String(x.id)===String(a.id)&&belongs(x)){var previous=Object.assign({},x);x.status=x.statusProcesso='Cancelada pelo candidato';x.canceladoEm=now;x.statusAtualizadoEm=now;x.historicoEtapasPublico=workflow.historicoPublico(x,previous);if(x.entrevista)x.entrevista=Object.assign({},x.entrevista,{state:'cancelled'});}});window.salvarCandidaturas(all);dialog.close();refresh();
    }catch(e){status.textContent=e.message;busy=false;dialog.querySelectorAll('button').forEach(function(b){b.disabled=false;});}
   };dialog.showModal();dialog.querySelector('.cp-keep').focus();
  }
@@ -192,6 +192,64 @@
   if(active){panel.innerHTML=premiumInsight(a,active);panel.hidden=false;buttons.forEach(function(button){button.setAttribute('aria-expanded',String(button.dataset.cpInsightKind===active));});}
   details.appendChild(group);card.appendChild(panel);
  }
+ function journeyModel(a){
+  var recorded=Object.create(null),current=classify(a);
+  workflow.historicoPublico(a).forEach(function(row){recorded[row.key]=row;});
+  recorded.enviada={data:a.data||a.dataCandidatura||''};
+  if(/^(candidatura )?enviad[ao]$/i.test(String(a.status||'').trim()))current='enviada';
+  var steps=[
+   {key:'enviada',label:'Enviada',text:'Sua candidatura foi enviada e ficou disponível para a empresa avaliar.'},
+   {key:'avaliacao',label:'Em avaliação',text:'A empresa colocou sua candidatura em avaliação para analisar seu perfil e os requisitos da vaga.'},
+   {key:'contato',label:'Em contato',text:'A empresa marcou sua candidatura para contato. Confira a aba Mensagens e os canais informados no seu cadastro.'},
+   {key:'entrevista',label:'Entrevista',text:'Sua candidatura foi marcada para a etapa de entrevista. A data, o formato e as orientações aparecem quando a empresa enviar o convite.'},
+   {key:'aprovadas',label:'Aprovado',text:'Sua candidatura foi aprovada nesta seleção. Confira as orientações da empresa sobre os próximos passos.'},
+   {key:'contratadas',label:'Contratado',text:'A empresa registrou sua candidatura como contratada. Confirme com a empresa os detalhes da admissão.'},
+   {key:'reprovadas',label:'Reprovado',alternate:true,text:'A empresa encerrou sua participação nesta seleção. Você pode continuar se candidatando a outras oportunidades.'},
+   {key:'canceladas',label:'Cancelada',alternate:true,text:'Você cancelou sua participação neste processo seletivo. A desistência permanece registrada na candidatura.'}
+  ];
+  return steps.map(function(step){var record=recorded[step.key];return Object.assign({},step,{registered:!!record,current:step.key===current,date:record&&record.data||''});});
+ }
+ function journeyTimestamp(value){
+  if(typeof value!=='string'||!value)return '';
+  if(/^\d{4}-\d{2}-\d{2}$/.test(value))return applicationDate(value);
+  var date=new Date(value);return isNaN(date.getTime())?'':date.toLocaleString('pt-BR',{day:'2-digit',month:'2-digit',year:'numeric',hour:'2-digit',minute:'2-digit'});
+ }
+ function buildJourney(a,index){
+  var footer=document.createElement('section');footer.className='cp-journey-footer';footer.setAttribute('aria-label','Etapas do processo seletivo');
+  var heading=document.createElement('div');heading.className='cp-journey-heading';heading.innerHTML='<h4>Etapas do processo</h4><small>Passe o mouse ou toque nas etapas marcadas para entender.</small>';footer.appendChild(heading);
+  var journey=document.createElement('ol');journey.className='cp-card-journey';journey.setAttribute('aria-label','Etapa atual: '+label(a));footer.appendChild(journey);
+  var endings=document.createElement('div');endings.className='cp-journey-endings';endings.setAttribute('aria-label','Possíveis encerramentos');
+  var endingsLabel=document.createElement('span');endingsLabel.className='cp-journey-endings-label';endingsLabel.textContent='Encerramento:';endings.appendChild(endingsLabel);footer.appendChild(endings);
+  var explanation=document.createElement('div');explanation.className='cp-journey-explanation';explanation.id='cpJourneyExplanation'+index;explanation.hidden=true;explanation.setAttribute('role','region');explanation.setAttribute('aria-live','polite');
+  var buttons=[],active=null,pinned=false;
+  function close(){explanation.hidden=true;active=null;pinned=false;buttons.forEach(function(button){if(!button.disabled)button.setAttribute('aria-expanded','false');});}
+  function show(step,button){
+   active=button;buttons.forEach(function(other){if(!other.disabled)other.setAttribute('aria-expanded',String(other===button));});
+   var date=journeyTimestamp(step.date);
+   explanation.setAttribute('aria-labelledby',button.id);
+   explanation.innerHTML='<div class="cp-journey-explanation-heading"><strong>'+safe(step.label)+'</strong><span>'+(step.current?'Etapa atual':'Etapa registrada')+'</span></div><p>'+safe(step.text)+'</p>'+(date?'<small>Registrada em '+safe(date)+'</small>':'');explanation.hidden=false;
+  }
+  var steps=journeyModel(a);
+  steps.forEach(function(step,n){
+   var item=document.createElement(step.alternate?'span':'li');item.className=(step.alternate?'cp-journey-ending ':'')+(step.current?'is-current':step.registered?'is-done':'is-pending');
+   if(!step.alternate&&step.registered&&steps[n+1]&&steps[n+1].registered&&!steps[n+1].alternate)item.classList.add('is-linked');
+   var button=document.createElement('button');button.type='button';button.className='cp-journey-step';button.id='cpJourneyStep'+index+'-'+step.key;button.dataset.cpJourneyKey=step.key;button.disabled=!step.registered;
+   button.setAttribute('aria-label',step.label+'. '+(step.current?'Etapa atual.':step.registered?'Etapa registrada. Ver explicação.':'Sem registro desta etapa.'));
+   if(step.current)button.setAttribute('aria-current','step');
+   button.innerHTML='<i aria-hidden="true">'+(step.alternate?'×':step.registered&&!step.current?'✓':n+1)+'</i><span class="cp-journey-step-label">'+safe(step.label)+'</span><small class="cp-journey-step-state">'+(step.current?'Etapa atual':step.registered?'Registrada':step.alternate?'Se aplicável':'Sem registro')+'</small>';
+   if(step.registered){
+    button.setAttribute('aria-expanded','false');button.setAttribute('aria-controls',explanation.id);
+    button.onmouseenter=function(){pinned=false;show(step,button);};button.onfocus=function(){pinned=false;show(step,button);};
+    button.onclick=function(){if(active===button&&pinned){close();return;}pinned=true;show(step,button);};
+   }
+   buttons.push(button);item.appendChild(button);(step.alternate?endings:journey).appendChild(item);
+  });
+  footer.appendChild(explanation);
+  footer.addEventListener('mouseleave',function(){if(!pinned)close();});
+  footer.addEventListener('focusout',function(event){if(!pinned&&!footer.contains(event.relatedTarget))close();});
+  footer.addEventListener('keydown',function(event){if(event.key==='Escape'){close();event.stopPropagation();}});
+  return footer;
+ }
  function enhanceList(){
   var list=document.getElementById('listaCandidaturas');if(!list)return;
   list.classList.add('cp-applications-list-view');
@@ -203,18 +261,15 @@
    var notice=viewNotice(a,true);if(notice){var holder=document.createElement('div');holder.innerHTML=notice;info.appendChild(holder.firstChild);}
    var details=document.createElement('div');details.className='cp-process-details';
    if(status)details.appendChild(status);
-   var stage=classify(a), journey=document.createElement('ol');journey.className='cp-card-journey';journey.setAttribute('aria-label','Etapa atual: '+label(a));
-   var step=stage==='entrevista'?2:stage==='aprovadas'||stage==='contratadas'?3:1;
-   ['Enviada','Em análise','Entrevista'].forEach(function(text,n){var li=document.createElement('li');li.className=n<step?'is-done':n===step?'is-current':'';if(n===step)li.setAttribute('aria-current','step');li.innerHTML='<i aria-hidden="true">'+ (n<step?'✓':n+1)+'</i><span>'+text+'</span>';journey.appendChild(li);});
-   if(stage!=='canceladas'&&stage!=='reprovadas')card.appendChild(journey);else{var ended=document.createElement('div');ended.className='cp-application-ended';ended.textContent='Processo encerrado';card.appendChild(ended);}
+   var stage=classify(a);
    if(!['canceladas','reprovadas','contratadas'].includes(stage)){var cancel=document.createElement('button');cancel.type='button';cancel.className='cp-cancel-trigger';cancel.innerHTML=actionIcon('close')+'<span>Cancelar candidatura</span>';cancel.onclick=function(){openCancel(a,cancel);};details.appendChild(cancel);}
-   card.appendChild(details);addPremiumOptions(card,details,a,i);
+   card.appendChild(details);card.appendChild(buildJourney(a,i));addPremiumOptions(card,details,a,i);
   });
  }
  function updateList(total){prepareList();enhanceList();var toolbar=document.getElementById('cpApplicationFilters');if(!toolbar)return;var key=currentStage(),totals=counts(applications());toolbar.querySelectorAll('[data-cp-filter]').forEach(function(button){button.setAttribute('aria-pressed',String(button.dataset.cpFilter===key));button.querySelector('[data-cp-filter-count]').textContent=String(totals[button.dataset.cpFilter]);button.setAttribute('aria-label',description(totals[button.dataset.cpFilter],button.dataset.cpFilter));});var result=document.getElementById('cpApplicationResult'),text=description(total,key);if(result.textContent!==text)result.textContent=text;if(window.EmpregaMaisCandidaturasCloud)window.EmpregaMaisCandidaturasCloud.atualizarIndicador();}
  function emptyMessage(){return currentStage()==='todas'?'Você ainda não enviou candidaturas.':'Você ainda não tem candidaturas nesta etapa. Clique em Todas para consultar os demais processos.';}
  function refresh(){var slot=document.querySelector('#pagina-painel-candidato .cp-metrics-slot');if(slot)renderSummary(slot);var page=document.getElementById('pagina-candidaturas');if(page&&page.classList.contains('ativa')&&typeof window.renderizarCandidaturas==='function')window.renderizarCandidaturas();}
- window.EmpregaMaisCandidaturasCandidato={dadosVaga:fullJobDetails,avisoVisualizacao:viewNotice,detalhesPublicos:publicDetails,detalhesPremium:premiumInsight,opcaoPremium:premiumOption,pertence:belongs,classificar:classify,rotulo:label,data:applicationDate,corresponde:matches,contar:counts,filtroAtual:currentStage,prepararLista:prepareList,atualizarLista:updateList,mensagemVazia:emptyMessage,atualizarResumo:renderSummary,abrir:openStage,atualizar:refresh};
+ window.EmpregaMaisCandidaturasCandidato={dadosVaga:fullJobDetails,avisoVisualizacao:viewNotice,detalhesPublicos:publicDetails,detalhesPremium:premiumInsight,opcaoPremium:premiumOption,etapasProcesso:journeyModel,pertence:belongs,classificar:classify,rotulo:label,data:applicationDate,corresponde:matches,contar:counts,filtroAtual:currentStage,prepararLista:prepareList,atualizarLista:updateList,mensagemVazia:emptyMessage,atualizarResumo:renderSummary,abrir:openStage,atualizar:refresh};
  function start(){
   var style=document.createElement('style');style.id='cp-application-stages-style';style.textContent=`
   #pagina-painel-candidato.cp-reference .cp-profile .cp-metrics-slot>.metricas[hidden]{display:none!important}

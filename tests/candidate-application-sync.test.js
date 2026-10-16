@@ -25,10 +25,24 @@ test('reads the recruiter stage and updates only the matching candidate applicat
  assert.equal(mine.empresa,'Empresa Exemplo');
  assert.equal(mine.data,'2026-10-14');
  assert.equal(mine.observacaoRecrutador,undefined,'Do not import internal recruiter fields');
+ assert.deepEqual(Array.from(mine.historicoEtapasPublico,row=>row.key),['avaliacao','entrevista']);
+ assert.doesNotMatch(JSON.stringify(mine.historicoEtapasPublico),/PRIVATE NOTE/);
  assert.equal(other.status,'Em contato');
  assert.equal(env.context.EmpregaMaisEtapasCandidatura.classificar(mine),'entrevista');
  assert(env.events.includes('empregamais:candidaturas-sincronizadas'));
  assert.equal(env.requests[0].options.headers.Authorization,'Bearer candidate-token');
+});
+
+test('public stage history deduplicates refreshes and preserves only status and valid dates',async()=>{
+ const env=environment();
+ await env.context.EmpregaMaisCandidaturasCloud.sincronizar(true);
+ await env.context.EmpregaMaisCandidaturasCloud.sincronizar(true);
+ assert.equal(env.applications()[0].historicoEtapasPublico.length,2);
+ const workflow=env.context.EmpregaMaisEtapasCandidatura;
+ const records=workflow.historicoPublico({status:'Contratado',statusAtualizadoEm:'invalid',historico:[{status:'Em contato',data:'invalid',observacaoRecrutador:'SECRET'},{status:'NOT A STAGE',data:'2026-10-15'}]});
+ assert.deepEqual(Array.from(records,row=>row.key),['contato','contratadas']);
+ assert(records.every(row=>row.data===''));
+ assert(records.every(row=>Object.keys(row).sort().join(',')==='data,key,status'));
 });
 
 test('deduplicates overlapping refreshes and ignores responses after an account switch',async()=>{

@@ -103,3 +103,19 @@ test('view receipt is shown only for actual recorded views and keeps the timesta
  assert.match(compact,/14\/10, às \d{2}h\d{2}/);
  assert.doesNotMatch(api.avisoVisualizacao({visualizada:true},true),/Invalid Date/);
 });
+
+test('full journey uses only recorded stages, separates endings and does not expose recruiter notes',()=>{
+ const api=controller();
+ const steps=api.etapasProcesso({status:'Aprovado',statusAtualizadoEm:'2026-10-16T10:00:00Z',historico:[{status:'Em contato',data:'2026-10-15',nota:'PRIVATE_HISTORY'},{status:'<script>PRIVATE_SCRIPT</script>'}]});
+ assert.equal(steps.length,8);
+ assert.deepEqual(Array.from(steps.filter(step=>step.registered),step=>step.key),['enviada','contato','aprovadas']);
+ assert.deepEqual(Array.from(steps.filter(step=>step.current),step=>step.key),['aprovadas']);
+ assert.deepEqual(Array.from(steps.filter(step=>step.alternate),step=>step.key),['reprovadas','canceladas']);
+ assert.doesNotMatch(JSON.stringify(steps),/PRIVATE_HISTORY|PRIVATE_SCRIPT|<script>/);
+ for(const status of ['Reprovado','Cancelada pelo candidato']){
+  const ended=api.etapasProcesso({status});
+  assert.equal(ended.length,8);
+  assert.equal(ended.find(step=>step.current).alternate,true);
+  assert.equal(ended.find(step=>step.key==='contratadas').registered,false);
+ }
+});

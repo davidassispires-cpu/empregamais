@@ -25,7 +25,27 @@
  function stage(application){var key=classify(application);return stages.find(function(item){return item.key===key;});}
  function group(status){var item=stage(status);return item?item.group:'Em avaliação';}
  function filter(key){var aliases={analise:'avaliacao',selecionadas:'aprovadas',finalistas:'aprovadas'};key=aliases[key]||key;return key==='todas'||stages.some(function(item){return item.key===key;})?key:'todas';}
- window.EmpregaMaisEtapasCandidatura={etapas:stages,classificar:classify,etapa:stage,grupo:group,filtro:filter};
+ function publicHistory(current,previous){
+  var records=Object.create(null);
+  function add(value){
+   if(typeof value==='string')value={status:value};
+   if(!value||typeof value!=='object')return;
+   var text=value.status||value.statusProcesso||value.status_processo||value.etapa;
+   if(typeof text!=='string'||!text.trim())return;
+   var key=/^(candidatura )?enviad[ao]$/.test(norm(text))?'enviada':classify(text),item=stages.find(function(s){return s.key===key;});
+   if(key!=='enviada'&&!item)return;
+   var raw=value.data||value.statusAtualizadoEm||value.status_updated_at||'',date=typeof raw==='string'&&!isNaN(new Date(raw).getTime())?raw:'';
+   var existing=records[key];
+   if(!existing||date&&(!existing.data||new Date(date)>=new Date(existing.data)))records[key]={key:key,status:item?item.label:'Candidatura enviada',data:date};
+  }
+  [previous,current].forEach(function(application){
+   if(!application)return;
+   [application.historicoEtapasPublico,application.historico].forEach(function(rows){if(Array.isArray(rows))rows.forEach(add);});
+   add({status:application.status||application.statusProcesso||application.status_processo,data:application.statusAtualizadoEm||application.status_updated_at||''});
+  });
+  return Object.keys(records).map(function(key){return records[key];});
+ }
+ window.EmpregaMaisEtapasCandidatura={etapas:stages,classificar:classify,etapa:stage,grupo:group,filtro:filter,historicoPublico:publicHistory};
 })();
 
 (function(){
@@ -39,7 +59,7 @@
   rows.push({id:'demo-ana-rh',vagaId:'demo-2',vaga:'Analista de Recursos Humanos',empresa:'Empresa Demonstração',nome:'Ana Exemplo',candidato:'Ana Exemplo',email:'ana@example.com',cidade:'Contagem',modalidade:'Híbrido',contrato:'CLT',status:'Entrevista agendada',data:date});
   saveDemo(rows);return rows;
  }
- function saveDemo(rows){try{backing.setItem(demoKey,JSON.stringify(rows));}catch(ignore){}document.dispatchEvent(new Event('empregamais:candidaturas-sincronizadas'));}
+ function saveDemo(rows){try{var previous=JSON.parse(backing.getItem(demoKey)||'[]'),byId=new Map((Array.isArray(previous)?previous:[]).map(function(row){return [String(row.id)+'|'+String(row.vagaId||row.vaga_id||row.idVaga),row];}));rows.forEach(function(row){row.historicoEtapasPublico=workflow.historicoPublico(row,byId.get(String(row.id)+'|'+String(row.vagaId||row.vaga_id||row.idVaga)));});backing.setItem(demoKey,JSON.stringify(rows));}catch(ignore){}document.dispatchEvent(new Event('empregamais:candidaturas-sincronizadas'));}
  workflow.demo=demoApplications;workflow.salvarDemo=saveDemo;workflow.chaveDemo=demoKey;
 })();
 
