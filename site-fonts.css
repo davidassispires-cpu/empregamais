@@ -843,10 +843,10 @@ html body #pagina-curriculo#pagina-curriculo #cvResumeWizard :is(.cv-preference-
  html body.cp-shell-active #cpCandidateHeader#cpCandidateHeader .cp-user-avatar{background:#e9f6f3!important;color:#285b57!important;border-color:#c9e4de!important}
 }
 
-/* Petroleum outline on the floating candidate sidebar. */
+/* Petroleum accent on the left edge of the floating candidate sidebar. */
 @media (min-width: 851px) {
  @layer field-feedback {
-  html body.cp-shell-active #cpCandidateHeader .cp-navigation {border:1px solid #15576a!important;box-sizing:border-box!important}
+  html body.cp-shell-active #cpCandidateHeader .cp-navigation {border:0!important;border-left:3px solid #15576a!important;box-sizing:border-box!important}
  }
 }
 
