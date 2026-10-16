@@ -772,9 +772,25 @@ function companyHero(e){
         expand.textContent='Expandir';expand.setAttribute('aria-expanded','false');expand.setAttribute('aria-controls',id);
         expand.setAttribute('aria-label','Expandir '+(label?label.textContent.replace('*','').trim():'campo'));
         heading.appendChild(expand);
+        expand.removeAttribute('aria-expanded');expand.setAttribute('aria-haspopup','dialog');
+        var hint='Abrir uma janela maior para escrever e revisar este conteúdo.';
+        expand.title=hint;expand.dataset.tooltip=hint;
         expand.addEventListener('click',function(){
-          var expanded=field.classList.toggle('is-expanded');
-          expand.setAttribute('aria-expanded',String(expanded));expand.textContent=expanded?'Recolher':'Expandir';
+          var dialog=document.createElement('dialog');dialog.className='publish-text-dialog';
+          var header=document.createElement('div');header.className='publish-text-dialog-head';
+          var title=document.createElement('h2');title.id='publishTextDialogTitle';title.textContent=label?label.textContent.replace('*','').trim():'Editar conteúdo';
+          var close=document.createElement('button');close.type='button';close.className='publish-text-dialog-close';close.textContent='×';close.setAttribute('aria-label','Fechar editor');
+          header.appendChild(title);header.appendChild(close);dialog.appendChild(header);
+          var note=document.createElement('p');note.textContent='Edite com mais espaço. O conteúdo é atualizado automaticamente no formulário.';dialog.appendChild(note);
+          var editor=document.createElement('textarea');editor.value=textarea.value;editor.placeholder=textarea.placeholder;editor.setAttribute('aria-label',title.textContent);dialog.appendChild(editor);
+          var footer=document.createElement('div');footer.className='publish-text-dialog-footer';
+          var done=document.createElement('button');done.type='button';done.textContent='Concluir';footer.appendChild(done);dialog.appendChild(footer);
+          dialog.setAttribute('aria-labelledby',title.id);page.appendChild(dialog);
+          editor.addEventListener('input',function(){textarea.value=editor.value;textarea.dispatchEvent(new Event('input',{bubbles:true}));});
+          function finish(){dialog.close();}
+          close.addEventListener('click',finish);done.addEventListener('click',finish);
+          dialog.addEventListener('close',function(){textarea.value=editor.value;textarea.dispatchEvent(new Event('change',{bubbles:true}));dialog.remove();expand.focus();},{once:true});
+          dialog.showModal();editor.focus();
         });
       });
     }
@@ -835,7 +851,7 @@ function companyHero(e){
   }
   function mountPublish() {
     var page=document.getElementById('pagina-publicar');if(!page||!host)return;
-    if(!document.getElementById('em-publish-profile-design')){var link=document.createElement('link');link.id='em-publish-profile-design';link.rel='stylesheet';link.href='publicacao-painel.css?v=20261016-text-cards-5';document.head.appendChild(link);}
+    if(!document.getElementById('em-publish-profile-design')){var link=document.createElement('link');link.id='em-publish-profile-design';link.rel='stylesheet';link.href='publicacao-painel.css?v=20261016-text-modal-6';document.head.appendChild(link);}
     var shell=page.querySelector('.em-job-shell');if(shell&&!shell.querySelector('.em-publish-heading')){var heading=document.createElement('div');heading.className='em-publish-heading';heading.innerHTML='<small>RECRUTAMENTO E SELEÇÃO</small><h1>Publicar vaga</h1><p>Preencha as etapas e revise os dados antes de enviar sua oportunidade.</p>';shell.prepend(heading);}
     if(page.slot!=='recruiter-publish')page.slot='recruiter-publish';if(!page.classList.contains('ativa'))page.classList.add('ativa');
     if(!page.classList.contains('em-publish-in-panel'))page.classList.add('em-publish-in-panel');if(page.style.getPropertyValue('display')!=='block'||page.style.getPropertyPriority('display')!=='important')page.style.setProperty('display','block','important');
