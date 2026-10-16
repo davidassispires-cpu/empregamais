@@ -377,3 +377,33 @@
 @media(max-width:480px){#pagina-publicar.publish-reference .publish-reference-aside{grid-template-columns:1fr}#pagina-publicar.publish-reference #formVaga .em-grid{grid-template-columns:1fr!important}#pagina-publicar.publish-reference #formVaga .publish-logo-upload{flex-wrap:wrap}#pagina-publicar.publish-reference #formVaga label.publish-upload-button{margin-left:80px!important}#pagina-publicar.publish-reference .publish-required-note{width:100%}#pagina-publicar.publish-reference #formVaga .em-job-actions .em-btn{flex:1;padding:12px!important}#pagina-publicar.publish-reference #formVaga .em-job-card-head{padding-right:18px!important;padding-bottom:48px!important}#pagina-publicar.publish-reference #formVaga .publish-step-badge{position:absolute!important;top:auto;bottom:12px}}
 
 #pagina-publicar.publish-reference #formVaga .publish-reference-mode{grid-column:auto!important}
+
+/* Job publishing follows the candidate resume form palette and controls. */
+@layer site-typography{
+html body #pagina-publicar#pagina-publicar#pagina-publicar{color:#343b4b!important;font-family:Inter,Arial,sans-serif!important}
+html body #pagina-publicar#pagina-publicar#pagina-publicar :is(.em-job-top,.em-job-card){background:#fff!important;border:1px solid #d3d9e4!important;border-radius:12px!important;box-shadow:none!important}
+html body #pagina-publicar#pagina-publicar#pagina-publicar #emJobProgress{display:flex!important;flex-wrap:nowrap!important;gap:7px!important;overflow-x:auto!important;padding:8px 0 12px!important;scrollbar-width:thin!important;scrollbar-color:#d5e5f5 transparent!important}
+html body #pagina-publicar#pagina-publicar#pagina-publicar #emJobProgress .em-job-step{display:flex!important;align-items:center!important;flex:0 0 auto!important;gap:7px!important;padding:8px 10px!important;border:1px solid #d3d9e4!important;border-radius:10px!important;background:#f3f4f6!important;color:#343b4b!important;font:600 12px/1.4 Inter,Arial,sans-serif!important}
+html body #pagina-publicar#pagina-publicar#pagina-publicar #emJobProgress .em-job-step:after{display:none!important}
+html body #pagina-publicar#pagina-publicar#pagina-publicar #emJobProgress .em-job-num{width:27px!important;height:27px!important;flex:0 0 27px!important;border-radius:8px!important;background:#e5e7eb!important;color:#343b4b!important}
+html body #pagina-publicar#pagina-publicar#pagina-publicar #emJobProgress .em-job-step.active{color:#0080c9!important;background:#f3f4f6!important}
+html body #pagina-publicar#pagina-publicar#pagina-publicar #emJobProgress .em-job-step.active .em-job-num{background:#0080c9!important;color:#fff!important}
+html body #pagina-publicar#pagina-publicar#pagina-publicar #emJobProgress .em-job-step.done .em-job-num{background:#343b4b!important;color:#fff!important}
+html body #pagina-publicar#pagina-publicar#pagina-publicar :is(.em-job-card-head h2,.em-publish-heading h1,.em-field>label){color:#0080c9!important;font-weight:600!important}
+html body #pagina-publicar#pagina-publicar#pagina-publicar .em-job-card-head h2{font-size:22px!important;font-weight:700!important}
+html body #pagina-publicar#pagina-publicar#pagina-publicar :is(.em-job-card-head p,.em-publish-heading p,.publish-title-hint,.em-field>small){color:#4c5b70!important;font-weight:400!important;line-height:1.5!important}
+html body #pagina-publicar#pagina-publicar#pagina-publicar #formVaga :is(input:not([type=checkbox]):not([type=radio]):not([type=file]):not([type=hidden]),select,textarea){box-sizing:border-box!important;border:1px solid #d3d9e4!important;border-radius:9px!important;background:#f8f9fb!important;color:#343b4b!important;min-height:44px!important;font:400 14px/1.5 Inter,Arial,sans-serif!important;box-shadow:none!important;padding:10px 12px!important}
+html body #pagina-publicar#pagina-publicar#pagina-publicar #formVaga :is(input,textarea)::placeholder{color:#7c889a!important;opacity:1!important}
+html body #pagina-publicar#pagina-publicar#pagina-publicar #formVaga :is(input,select,textarea):focus{outline:0!important;border-color:#0080c9!important;box-shadow:0 0 0 3px #0080c918!important;background:#fff!important}
+html body #pagina-publicar#pagina-publicar#pagina-publicar #formVaga :is(input[type=checkbox],input[type=radio]){accent-color:#0080c9!important}
+html body #pagina-publicar#pagina-publicar#pagina-publicar :is(.publish-section-icon,.publish-logo-icon,.publish-reference-preview-icon){background:#f3f4f6!important;border:1px solid #e5e7eb!important;color:#64748b!important;border-radius:10px!important}
+html body #pagina-publicar#pagina-publicar#pagina-publicar .publish-step-badge{background:#f3f4f6!important;color:#4c5b70!important;border:1px solid #e5e7eb!important;border-radius:8px!important}
+html body #pagina-publicar#pagina-publicar#pagina-publicar :is(.publish-reference-tips,.publish-reference-preview){background:#f8fbff!important;border:1px solid #e4edf5!important;border-radius:10px!important}
+html body #pagina-publicar#pagina-publicar#pagina-publicar :is(.publish-reference-tips h3,.publish-reference-preview h3,.publish-preview-title){color:#343b4b!important}
+html body #pagina-publicar#pagina-publicar#pagina-publicar .publish-reference-tips li{color:#4c5b70!important}
+html body #pagina-publicar#pagina-publicar#pagina-publicar .publish-reference-tips li:before{background:#edf4fb!important;color:#0080c9!important;border-radius:8px!important}
+html body #pagina-publicar#pagina-publicar#pagina-publicar :is(.publish-preview-chips span,.em-choice,.em-chip){background:#f3f4f6!important;border-color:#d3d9e4!important;color:#343b4b!important}
+html body #pagina-publicar#pagina-publicar#pagina-publicar #formVaga :is(.em-btn,.publish-upload-button){border-radius:9px!important;border:1px solid #d3d9e4!important;background:#fff!important;color:#4c5b70!important;min-height:40px!important;padding:10px 18px!important;font-weight:600!important;box-shadow:none!important}
+html body #pagina-publicar#pagina-publicar#pagina-publicar #formVaga :is(.em-btn-next,.em-btn-publish,button[type=submit]){background:#0080c9!important;border-color:#0080c9!important;color:#fff!important}
+html body #pagina-publicar#pagina-publicar#pagina-publicar .em-job-actions{border-color:#e5e7eb!important;gap:12px!important;background:#fff!important}
+}
