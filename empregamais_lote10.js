@@ -792,7 +792,7 @@ function companyHero(e){
           var editor=document.createElement('textarea');editor.value=textarea.value;editor.placeholder=textarea.placeholder;editor.setAttribute('aria-label',title.textContent);dialog.appendChild(editor);
           var footer=document.createElement('div');footer.className='publish-text-dialog-footer';
           var done=document.createElement('button');done.type='button';done.textContent='Concluir';footer.appendChild(done);dialog.appendChild(footer);
-          dialog.setAttribute('aria-labelledby',title.id);page.appendChild(dialog);
+          dialog.setAttribute('aria-labelledby',title.id);document.body.appendChild(dialog);
           editor.addEventListener('input',function(){textarea.value=editor.value;textarea.dispatchEvent(new Event('input',{bubbles:true}));});
           function finish(){dialog.close();}
           close.addEventListener('click',finish);done.addEventListener('click',finish);
@@ -858,7 +858,7 @@ function companyHero(e){
   }
   function mountPublish() {
     var page=document.getElementById('pagina-publicar');if(!page||!host)return;
-    if(!document.getElementById('em-publish-profile-design')){var link=document.createElement('link');link.id='em-publish-profile-design';link.rel='stylesheet';link.href='publicacao-painel.css?v=20261016-text-modal-6';document.head.appendChild(link);}
+    if(!document.getElementById('em-publish-profile-design')){var link=document.createElement('link');link.id='em-publish-profile-design';link.rel='stylesheet';link.href='publicacao-painel.css?v=20261016-modal-overlay-7';document.head.appendChild(link);}
     var shell=page.querySelector('.em-job-shell');if(shell&&!shell.querySelector('.em-publish-heading')){var heading=document.createElement('div');heading.className='em-publish-heading';heading.innerHTML='<small>RECRUTAMENTO E SELEÇÃO</small><h1>Publicar vaga</h1><p>Preencha as etapas e revise os dados antes de enviar sua oportunidade.</p>';shell.prepend(heading);}
     if(page.slot!=='recruiter-publish')page.slot='recruiter-publish';if(!page.classList.contains('ativa'))page.classList.add('ativa');
     if(!page.classList.contains('em-publish-in-panel'))page.classList.add('em-publish-in-panel');if(page.style.getPropertyValue('display')!=='block'||page.style.getPropertyPriority('display')!=='important')page.style.setProperty('display','block','important');
