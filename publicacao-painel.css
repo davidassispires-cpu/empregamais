@@ -475,3 +475,16 @@ html body #pagina-publicar#pagina-publicar#pagina-publicar .publish-address-resu
 html body #pagina-publicar#pagina-publicar#pagina-publicar .publish-address-options {grid-template-columns:repeat(2,minmax(0,1fr))!important}
 @media(max-width:600px){html body #pagina-publicar#pagina-publicar#pagina-publicar .publish-address-options {grid-template-columns:1fr!important}}
 }
+
+/* Four expandable text editors, two cards per row on desktop. */
+@layer site-typography {
+html body #pagina-publicar#pagina-publicar#pagina-publicar .publish-text-grid{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:20px!important;grid-column:1/-1!important;width:100%!important}
+html body #pagina-publicar#pagina-publicar#pagina-publicar .publish-text-grid .publish-text-card{display:flex!important;flex-direction:column!important;grid-column:auto!important;min-width:0!important;margin:0!important;padding:16px!important;border:1px solid #dce4ee!important;border-radius:10px!important;background:#fff!important;gap:12px!important;align-items:stretch!important}
+html body #pagina-publicar#pagina-publicar#pagina-publicar .publish-text-card-heading{display:flex!important;align-items:center!important;justify-content:space-between!important;gap:10px!important;width:100%!important}
+html body #pagina-publicar#pagina-publicar#pagina-publicar .publish-text-card-heading label{margin:0!important;flex:1!important}
+html body #pagina-publicar#pagina-publicar#pagina-publicar .publish-text-expand{display:inline-flex!important;align-items:center!important;padding:6px 10px!important;background:#f2f7fd!important;border:1px solid #d6e4f3!important;border-radius:7px!important;font-size:12px!important;cursor:pointer!important;white-space:nowrap!important;--candidate-contrast-ink:#1764a9}
+html body #pagina-publicar#pagina-publicar#pagina-publicar .publish-text-grid .publish-text-card textarea{height:220px!important;min-height:220px!important;width:100%!important;max-width:none!important;resize:vertical!important;line-height:1.7!important}
+html body #pagina-publicar#pagina-publicar#pagina-publicar .publish-text-grid .publish-text-card.is-expanded{grid-column:1/-1!important}
+html body #pagina-publicar#pagina-publicar#pagina-publicar .publish-text-grid .publish-text-card.is-expanded textarea{height:440px!important;min-height:360px!important}
+@media(max-width:700px){html body #pagina-publicar#pagina-publicar#pagina-publicar .publish-text-grid{grid-template-columns:1fr!important}}
+}
