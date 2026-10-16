@@ -133,6 +133,36 @@
    }catch(e){status.textContent=e.message;busy=false;dialog.querySelectorAll('button').forEach(function(b){b.disabled=false;});}
   };dialog.showModal();dialog.querySelector('.cp-keep').focus();
  }
+ function premiumInsight(a,kind){
+  var core=window.EmpregaMaisPreparacao,profile={},premium=false,job={};
+  try{profile=window.obterCandidatoAtual?window.obterCandidatoAtual()||{}:{};var access=window.EmpregaMaisPremiumCandidatoV92;premium=access&&typeof access.ehPremium==='function'?!!access.ehPremium():!!(core&&core.temPremium(profile));}catch(ignore){}
+  var title=kind==='match'?'Sua adequação à vaga':'Total de inscritos';
+  if(!premium)return '<h4>'+title+'</h4><p>Este detalhe faz parte do Premium. Consulte sua adequação à vaga e a quantidade de candidaturas recebidas.</p><button type="button" data-cp-insight-route="premium-candidato">Conhecer Premium '+icon('arrow')+'</button>';
+  try{job=typeof window.localizarVaga==='function'?window.localizarVaga(a.vagaId||a.vaga_id||a.idVaga)||{}:{};}catch(ignore){}
+  if(kind==='match'){
+   var match=core&&typeof core.compatibilidade==='function'?core.compatibilidade(Object.assign({cargo:a.vagaTitulo||a.tituloVaga||a.vaga||a.titulo,cidade:a.cidade,modalidade:a.modalidade},job),profile):null;
+   if(!match||match.percent==null)return '<h4>'+title+'</h4><p>Complete seu perfil profissional para calcular sua adequação com as informações disponíveis na vaga.</p><button type="button" data-cp-insight-route="perfil">Atualizar meu perfil '+icon('arrow')+'</button>';
+   return '<h4>'+title+' <strong>'+safe(match.percent)+'%</strong></h4><p>Comparação das informações profissionais do seu perfil com o anúncio.</p><ul class="cp-insight-criteria">'+match.criteria.map(function(c){return '<li><span>'+safe(c.label)+'</span><strong>'+(!c.available?'Não informado':c.match>=.8?'Em comum':c.match>0?'Em parte':'Sem correspondência')+'</strong></li>';}).join('')+'</ul>';
+  }
+  var total=null,demo=new URLSearchParams(location.search).get('pagina')==='demo-candidato';
+  [job.totalCandidaturas,job.candidaturas_count].some(function(value){if((typeof value==='number'||typeof value==='string'&&/^\d+$/.test(value))&&Number.isSafeInteger(Number(value))&&Number(value)>=0){total=Number(value);return true;}return false;});
+  if(demo&&workflow.demo){var id=String(a.vagaId||a.vaga_id||a.idVaga),seen=new Set();workflow.demo().forEach(function(row){if(String(row.vagaId||row.vaga_id||row.idVaga)===id)seen.add(String(row.id));});total=seen.size;}
+  return '<h4>'+title+'</h4>'+(total==null?'<p>O total de inscritos ainda não foi informado para esta vaga.</p>':'<p class="cp-insight-total"><strong>'+safe(total.toLocaleString('pt-BR'))+'</strong> '+(total===1?'candidatura recebida':'candidaturas recebidas')+'</p>')+(demo?'<p class="cp-insight-source">Dados fictícios da demonstração.</p>':'');
+ }
+ function addPremiumOptions(card,details,a,index){
+  var group=document.createElement('div');group.className='cp-application-premium';group.setAttribute('aria-label','Detalhes Premium');
+  group.innerHTML='<span class="cp-premium-caption">Detalhes Premium</span><div class="cp-premium-options"></div>';
+  var panel=document.createElement('section');panel.className='cp-card-insight';panel.id='cpApplicationInsight'+index;panel.hidden=true;
+  var active='',buttons=[];
+  [{key:'match',label:'Sua adequação'},{key:'applicants',label:'Total de inscritos'}].forEach(function(item){
+   var button=document.createElement('button');button.type='button';button.className='cp-premium-option';button.setAttribute('aria-expanded','false');button.setAttribute('aria-controls',panel.id);button.setAttribute('aria-label','Visualizar '+item.label.toLowerCase());
+   button.innerHTML='<span>'+item.label+'</span><strong>Visualizar '+icon('arrow')+'</strong>';
+   button.onclick=function(){var closing=!panel.hidden&&active===item.key;buttons.forEach(function(b){b.setAttribute('aria-expanded','false');});if(closing){panel.hidden=true;active='';return;}active=item.key;panel.innerHTML=premiumInsight(a,item.key);panel.hidden=false;button.setAttribute('aria-expanded','true');};
+   buttons.push(button);group.querySelector('.cp-premium-options').appendChild(button);
+  });
+  panel.addEventListener('click',function(event){var button=event.target.closest('[data-cp-insight-route]');if(button&&typeof window.irPara==='function')window.irPara(button.dataset.cpInsightRoute);});
+  details.appendChild(group);card.appendChild(panel);
+ }
  function enhanceList(){
   var list=document.getElementById('listaCandidaturas');if(!list)return;
   list.classList.add('cp-applications-list-view');
@@ -144,21 +174,18 @@
    var notice=viewNotice(a,true);if(notice){var holder=document.createElement('div');holder.innerHTML=notice;info.appendChild(holder.firstChild);}
    var details=document.createElement('div');details.className='cp-process-details';
    if(status)details.appendChild(status);
-   var button=document.createElement('button');button.type='button';button.className='cp-process-trigger';button.setAttribute('aria-haspopup','dialog');
-   button.innerHTML='Acompanhar processo '+icon('arrow');button.onclick=function(){openProcess(a,button);};
-   details.appendChild(button);
    var stage=classify(a), journey=document.createElement('ol');journey.className='cp-card-journey';journey.setAttribute('aria-label','Etapa atual: '+label(a));
    var step=stage==='entrevista'?2:stage==='aprovadas'||stage==='contratadas'?3:1;
    ['Enviada','Em análise','Entrevista'].forEach(function(text,n){var li=document.createElement('li');li.className=n<step?'is-done':n===step?'is-current':'';if(n===step)li.setAttribute('aria-current','step');li.innerHTML='<i aria-hidden="true">'+ (n<step?'✓':n+1)+'</i><span>'+text+'</span>';journey.appendChild(li);});
    if(stage!=='canceladas'&&stage!=='reprovadas')card.appendChild(journey);else{var ended=document.createElement('div');ended.className='cp-application-ended';ended.textContent='Processo encerrado';card.appendChild(ended);}
    if(!['canceladas','reprovadas','contratadas'].includes(stage)){var cancel=document.createElement('button');cancel.type='button';cancel.className='cp-cancel-trigger';cancel.textContent='Cancelar candidatura';cancel.onclick=function(){openCancel(a,cancel);};details.appendChild(cancel);}
-   card.appendChild(details);
+   card.appendChild(details);addPremiumOptions(card,details,a,i);
   });
  }
  function updateList(total){prepareList();enhanceList();var toolbar=document.getElementById('cpApplicationFilters');if(!toolbar)return;var key=currentStage(),totals=counts(applications());toolbar.querySelectorAll('[data-cp-filter]').forEach(function(button){button.setAttribute('aria-pressed',String(button.dataset.cpFilter===key));button.querySelector('[data-cp-filter-count]').textContent=String(totals[button.dataset.cpFilter]);button.setAttribute('aria-label',description(totals[button.dataset.cpFilter],button.dataset.cpFilter));});var result=document.getElementById('cpApplicationResult'),text=description(total,key);if(result.textContent!==text)result.textContent=text;if(window.EmpregaMaisCandidaturasCloud)window.EmpregaMaisCandidaturasCloud.atualizarIndicador();}
  function emptyMessage(){return currentStage()==='todas'?'Você ainda não enviou candidaturas.':'Você ainda não tem candidaturas nesta etapa. Clique em Todas para consultar os demais processos.';}
  function refresh(){var slot=document.querySelector('#pagina-painel-candidato .cp-metrics-slot');if(slot)renderSummary(slot);var page=document.getElementById('pagina-candidaturas');if(page&&page.classList.contains('ativa')&&typeof window.renderizarCandidaturas==='function')window.renderizarCandidaturas();}
- window.EmpregaMaisCandidaturasCandidato={dadosVaga:fullJobDetails,avisoVisualizacao:viewNotice,detalhesPublicos:publicDetails,pertence:belongs,classificar:classify,rotulo:label,data:applicationDate,corresponde:matches,contar:counts,filtroAtual:currentStage,prepararLista:prepareList,atualizarLista:updateList,mensagemVazia:emptyMessage,atualizarResumo:renderSummary,abrir:openStage,atualizar:refresh};
+ window.EmpregaMaisCandidaturasCandidato={dadosVaga:fullJobDetails,avisoVisualizacao:viewNotice,detalhesPublicos:publicDetails,detalhesPremium:premiumInsight,pertence:belongs,classificar:classify,rotulo:label,data:applicationDate,corresponde:matches,contar:counts,filtroAtual:currentStage,prepararLista:prepareList,atualizarLista:updateList,mensagemVazia:emptyMessage,atualizarResumo:renderSummary,abrir:openStage,atualizar:refresh};
  function start(){
   var style=document.createElement('style');style.id='cp-application-stages-style';style.textContent=`
   #pagina-painel-candidato.cp-reference .cp-profile .cp-metrics-slot>.metricas[hidden]{display:none!important}
