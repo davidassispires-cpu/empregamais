@@ -1097,3 +1097,14 @@ html body #pagina-candidaturas#pagina-candidaturas#pagina-candidaturas .cp-appli
 @media(max-width:540px){
  html body #pagina-candidaturas#pagina-candidaturas#pagina-candidaturas .cp-applications-hero{min-height:0!important;padding:16px!important}
 }
+
+/* White surfaces for the applications page. */
+html body #pagina-candidaturas#pagina-candidaturas#pagina-candidaturas,
+html body #pagina-candidaturas#pagina-candidaturas#pagina-candidaturas .cp-applications-hero,
+html body #cpApplicationFilters#cpApplicationFilters#cpApplicationFilters,
+html body #cpApplicationFilters#cpApplicationFilters#cpApplicationFilters [data-cp-filter],
+html body #pagina-candidaturas#pagina-candidaturas#pagina-candidaturas .cp-applications-kicker span,
+html body #cpApplicationFilters#cpApplicationFilters#cpApplicationFilters #cpApplicationRefresh{
+ background:#fff!important;background-image:none!important;
+}
+html body #pagina-candidaturas#pagina-candidaturas#pagina-candidaturas .cp-applications-hero:after{display:none!important}
