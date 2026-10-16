@@ -442,7 +442,7 @@
   extra.hidden=false;
   enhanceMetrics();renderLatest();renderAlertCard();renderPracticeCard();enhanceRecommendations();enhanceInterview();
   if(workspace&&workspace.dataset.cpView==='recommendations'&&page.classList.contains('cp-recommendations-active'))openRecommendations(true);
-  applyWorkspaceFont(container);applyWorkspaceFont(document.getElementById('cpCandidateHeader'));applyOrangePalette(page);
+  applyWorkspaceFont(container);applyWorkspaceFont(document.getElementById('cpCandidateHeader'));
  }
  function schedule(){if(scheduled)return;scheduled=true;requestAnimationFrame(function(){scheduled=false;mount();});}
  function applyOrangePalette(scope){
@@ -809,7 +809,7 @@
   organizePremiumMenu(nav,premium);
   var intro=p.querySelector('.cp-home-intro');if(intro&&!intro.dataset.m3){intro.dataset.m3='1';intro.innerHTML='<div class="m3-welcome"><small>BEM-VINDO AO EMPREGAMAIS</small><h1>Olá, <span class="m3-name">Candidato</span></h1><p>Continue sua jornada profissional. Novas oportunidades<br> te esperam por aqui.</p><button type="button">Buscar novas vagas <span aria-hidden="true">→</span></button></div><div class="m3-art">'+art()+'</div><div class="m3-motto">DISCIPLINA HOJE,<br>GRANDES CONQUISTAS<br>AMANHÃ.<i></i></div>';intro.querySelector('button').onclick=function(){go('home');};}
   nav.querySelectorAll('.cp-message-count').forEach(function(badge){var styles={'background':'#dc2626','color':'#fff','border':'0','border-radius':'50%','box-shadow':'none','width':'20px','height':'20px','min-width':'20px','padding':'0','font-size':'11px','font-weight':'700','line-height':'20px'};Object.keys(styles).forEach(function(key){if(badge.style.getPropertyValue(key)!==styles[key])badge.style.setProperty(key,styles[key],'important');});});
-  var motto=p.querySelector('.m3-motto');if(motto)motto.style.setProperty('color','#d1e9e6','important');
+  var motto=p.querySelector('.m3-motto');if(motto)motto.style.setProperty('color','#625d50','important');
   var name=p.querySelector('.cp-name'),target=p.querySelector('.m3-name'),first=(name&&name.textContent.trim().split(/\s+/)[0])||'Candidato';if(target&&target.textContent!==first)target.textContent=first;
  }
  function schedule(){if(!queued){queued=true;requestAnimationFrame(paint);}}
