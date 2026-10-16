@@ -757,6 +757,27 @@ function companyHero(e){
       ranges.forEach(function(value){var option=document.createElement('option');option.value=value;option.textContent=value;salarySelect.appendChild(option)});
       salarySelect.value=salary.value||'A combinar';salary.replaceWith(salarySelect);
     }
+    var descriptionPanel=form.querySelector('[data-panel="3"] .em-job-body');
+    if(descriptionPanel&&!descriptionPanel.querySelector('.publish-text-grid')){
+      var textGrid=document.createElement('div');textGrid.className='publish-text-grid';
+      descriptionPanel.prepend(textGrid);
+      ['descricaoVaga','requisitosVaga','beneficiosVaga','sobreEmpresaVaga'].forEach(function(id){
+        var textarea=document.getElementById(id),field=textarea&&textarea.closest('.em-field');
+        if(!field)return;
+        field.classList.add('publish-text-card');textGrid.appendChild(field);
+        var label=field.querySelector('label'),heading=document.createElement('div');
+        heading.className='publish-text-card-heading';field.prepend(heading);
+        if(label)heading.appendChild(label);
+        var expand=document.createElement('button');expand.type='button';expand.className='publish-text-expand';
+        expand.textContent='Expandir';expand.setAttribute('aria-expanded','false');expand.setAttribute('aria-controls',id);
+        expand.setAttribute('aria-label','Expandir '+(label?label.textContent.replace('*','').trim():'campo'));
+        heading.appendChild(expand);
+        expand.addEventListener('click',function(){
+          var expanded=field.classList.toggle('is-expanded');
+          expand.setAttribute('aria-expanded',String(expanded));expand.textContent=expanded?'Recolher':'Expandir';
+        });
+      });
+    }
     page.querySelectorAll('.em-job-card-head').forEach(function(head,i){if(head.querySelector('.publish-section-icon'))return;var badge=document.createElement('span');badge.className='publish-step-badge';badge.textContent='Etapa '+head.closest('[data-panel]').dataset.panel+' de 6';head.appendChild(badge);var pic=document.createElement('span');pic.className='publish-section-icon';pic.innerHTML=icon(i===0?'briefcase':i===1?'pin':i===2?'company':i===3?'mail':'check');head.prepend(pic)});
     [['empresaVaga','company'],['cargoVaga','briefcase'],['areaVaga','company'],['contratoVaga','card'],['cidadeVaga','pin'],['salarioVaga','card']].forEach(function(pair){var input=document.getElementById(pair[0]);if(!input||input.closest('.publish-input-wrap'))return;var wrap=document.createElement('div');wrap.className='publish-input-wrap';input.parentNode.insertBefore(wrap,input);var pic=document.createElement('span');pic.className='publish-field-icon';pic.innerHTML=icon(pair[1]);wrap.appendChild(pic);wrap.appendChild(input)});
     var upload=document.getElementById('logoVaga');if(upload&&!page.querySelector('.publish-logo-upload')){var field=upload.closest('.em-field');if(field){var box=document.createElement('div');box.className='publish-logo-upload';box.innerHTML='<div class="publish-logo-placeholder">'+icon('company')+'</div><div><strong>Logo da empresa</strong><p>Adicione sua logo para personalizar a oportunidade.</p><label class="publish-upload-button" for="logoVaga">'+icon('plus')+' Enviar logo</label><small class="publish-file-name" aria-live="polite"></small></div>';field.prepend(box);var preview=document.getElementById('previewLogo');if(preview)box.querySelector('.publish-logo-placeholder').appendChild(preview);upload.addEventListener('change',function(){box.querySelector('.publish-file-name').textContent=upload.files&&upload.files[0]?upload.files[0].name:''})}}
@@ -814,7 +835,7 @@ function companyHero(e){
   }
   function mountPublish() {
     var page=document.getElementById('pagina-publicar');if(!page||!host)return;
-    if(!document.getElementById('em-publish-profile-design')){var link=document.createElement('link');link.id='em-publish-profile-design';link.rel='stylesheet';link.href='publicacao-painel.css?v=20261016-details-4';document.head.appendChild(link);}
+    if(!document.getElementById('em-publish-profile-design')){var link=document.createElement('link');link.id='em-publish-profile-design';link.rel='stylesheet';link.href='publicacao-painel.css?v=20261016-text-cards-5';document.head.appendChild(link);}
     var shell=page.querySelector('.em-job-shell');if(shell&&!shell.querySelector('.em-publish-heading')){var heading=document.createElement('div');heading.className='em-publish-heading';heading.innerHTML='<small>RECRUTAMENTO E SELEÇÃO</small><h1>Publicar vaga</h1><p>Preencha as etapas e revise os dados antes de enviar sua oportunidade.</p>';shell.prepend(heading);}
     if(page.slot!=='recruiter-publish')page.slot='recruiter-publish';if(!page.classList.contains('ativa'))page.classList.add('ativa');
     if(!page.classList.contains('em-publish-in-panel'))page.classList.add('em-publish-in-panel');if(page.style.getPropertyValue('display')!=='block'||page.style.getPropertyPriority('display')!=='important')page.style.setProperty('display','block','important');
