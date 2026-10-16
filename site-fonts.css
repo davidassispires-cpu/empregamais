@@ -350,7 +350,7 @@
   }
   #listaCandidaturas.cp-applications-list-view .cp-premium-options {
     display: grid !important;
-    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+    grid-template-columns: 136px repeat(2, minmax(0, 1fr)) !important;
     gap: 8px !important;
   }
   #listaCandidaturas.cp-applications-list-view .cp-premium-option {
@@ -404,34 +404,38 @@
   }
   #listaCandidaturas.cp-applications-list-view .cp-premium-option.is-informational { cursor: default !important; }
   #listaCandidaturas.cp-applications-list-view .cp-premium-option.is-informational:hover { border-color: #d5e4ff !important; background: #f5f9ff !important; }
-  #listaCandidaturas.cp-applications-list-view .cp-premium-option.is-locked { display: flex !important; flex-direction: column !important; align-items: flex-start !important; gap: 2px !important; padding: 6px 8px !important; min-height: 64px !important; border-color: #e2d7ff !important; background: #faf7ff !important; }
+  #listaCandidaturas.cp-applications-list-view .cp-premium-option.is-locked { display: flex !important; flex-direction: column !important; align-items: flex-start !important; gap: 2px !important; padding: 6px 8px !important; min-height: 64px !important; border-color: #c9e1f2 !important; background: #f0f8ff !important; }
   #listaCandidaturas.cp-applications-list-view .cp-option-lock {
     display: flex !important;
     align-items: center !important;
     gap: 4px !important;
-    color: #6d28d9 !important;
+    color: #215a80 !important;
     font-size: 12px !important;
     font-weight: 800 !important;
   }
   #listaCandidaturas.cp-applications-list-view .cp-option-lock svg { width: 16px !important; height: 16px !important; flex: 0 0 16px !important; }
-  #listaCandidaturas.cp-applications-list-view .is-locked .cp-option-cta { min-height: 18px !important; padding: 0 !important; border: 0 !important; color: #6d28d9 !important; }
-  #listaCandidaturas.cp-applications-list-view .cp-premium-option.is-locked:hover { background: #f3edff !important; border-color: #a78bfa !important; }
+  #listaCandidaturas.cp-applications-list-view .is-locked .cp-option-cta { min-height: 18px !important; padding: 0 !important; border: 0 !important; color: #215a80 !important; }
+  #listaCandidaturas.cp-applications-list-view .cp-premium-option.is-locked:hover { background: #e3f2fc !important; border-color: #8fc8ed !important; }
   #listaCandidaturas.cp-applications-list-view .cp-application-open {
     display: flex !important;
     flex-direction: row !important;
     align-items: center !important;
     justify-content: center !important;
     gap: 6px !important;
-    width: 100% !important;
+    width: max-content !important;
+    max-width: 100% !important;
     min-width: 0 !important;
-    min-height: 56px !important;
+    height: 36px !important;
+    min-height: 36px !important;
+    align-self: center !important;
+    justify-self: start !important;
     margin: 0 !important;
-    padding: 7px 9px !important;
-    border: 1px solid #0866e9 !important;
+    padding: 6px 10px !important;
+    border: 1px solid #b9e2fa !important;
     border-radius: 8px !important;
-    background: #0866e9 !important;
-    color: #fff !important;
-    font-size: 12px !important;
+    background: #b9e2fa !important;
+    color: #173f5f !important;
+    font-size: 11px !important;
     font-weight: 700 !important;
     line-height: 1.4 !important;
     text-align: center !important;
@@ -440,8 +444,8 @@
     transition: background .15s ease !important;
   }
   #listaCandidaturas.cp-applications-list-view .cp-application-open span { color: inherit !important; }
-  #listaCandidaturas.cp-applications-list-view .cp-application-open svg { width: 18px !important; height: 18px !important; flex: 0 0 18px !important; color: inherit !important; }
-  #listaCandidaturas.cp-applications-list-view .cp-application-open:hover { background: #0757c7 !important; border-color: #0757c7 !important; }
+  #listaCandidaturas.cp-applications-list-view .cp-application-open svg { width: 16px !important; height: 16px !important; flex: 0 0 16px !important; color: inherit !important; }
+  #listaCandidaturas.cp-applications-list-view .cp-application-open:hover { background: #a4d8f7 !important; border-color: #8fc8ed !important; }
   #listaCandidaturas.cp-applications-list-view .cp-card-insight {
     grid-column: 1 / -1 !important;
     margin-top: 16px !important;
@@ -1156,7 +1160,7 @@ html body .em-field-message{display:block!important;grid-column:1/-1!important;m
 @layer field-feedback {
  html body.cp-shell-active #cpCandidateHeader#cpCandidateHeader .cp-navigation[data-menu-model="4"]{background:#fafcfd!important;padding:22px 16px 16px!important;gap:0!important;border:1px solid #dae3e9!important;border-radius:12px!important;box-shadow:none!important;overflow-y:auto!important;scrollbar-width:thin}
  html body.cp-shell-active #cpCandidateHeader#cpCandidateHeader .cp-navigation[data-menu-model="4"] .m3-brand{font-size:25px!important;font-weight:650!important;color:#153f50!important;padding:0 7px!important;margin:0 0 22px!important;letter-spacing:-.6px!important}
- html body.cp-shell-active #cpCandidateHeader#cpCandidateHeader .cp-navigation[data-menu-model="4"] .m3-brand>span{color:#74639b!important}
+ html body.cp-shell-active #cpCandidateHeader#cpCandidateHeader .cp-navigation[data-menu-model="4"] .m3-brand>span{color:#2874a6!important}
  html body.cp-shell-active #cpCandidateHeader#cpCandidateHeader .cp-navigation[data-menu-model="4"] .m3-help{display:none!important}
  html body.cp-shell-active #cpCandidateHeader#cpCandidateHeader .cp-navigation[data-menu-model="4"] .m4-menu-group{display:flex!important;flex-direction:column!important;gap:2px!important;padding:12px 0!important;margin:0!important;border-bottom:1px solid #dbe3e9!important;flex:none!important}
  html body.cp-shell-active #cpCandidateHeader#cpCandidateHeader .cp-navigation[data-menu-model="4"] .m4-menu-caption{display:block!important;color:#516475!important;font-size:9px!important;line-height:1.4!important;font-weight:650!important;letter-spacing:1.2px!important;padding:0 8px!important;margin:0 0 8px!important}
@@ -1174,7 +1178,7 @@ html body .em-field-message{display:block!important;grid-column:1/-1!important;m
  html body.cp-shell-active #cpCandidateHeader#cpCandidateHeader .cp-navigation[data-menu-model="4"] .m4-plan-copy{display:flex!important;flex-direction:column!important;gap:8px!important;min-width:0!important;flex:1!important;white-space:normal!important}
  html body.cp-shell-active #cpCandidateHeader#cpCandidateHeader .cp-navigation[data-menu-model="4"] .m4-plan-copy strong{color:#153f50!important;font:650 13px/1.3 Inter,Arial,sans-serif!important}
  html body.cp-shell-active #cpCandidateHeader#cpCandidateHeader .cp-navigation[data-menu-model="4"] .m4-plan-copy small{color:#536b7d!important;font:400 10px/1.3 Inter,Arial,sans-serif!important;white-space:nowrap!important}
- html body.cp-shell-active #cpCandidateHeader#cpCandidateHeader .cp-navigation[data-menu-model="4"] button .m4-plan-status{position:absolute!important;top:13px!important;right:23px!important;padding:3px 6px!important;border-radius:5px!important;background:#f3eefb!important;color:#34333d!important;font-size:9px!important;font-weight:500!important}
+ html body.cp-shell-active #cpCandidateHeader#cpCandidateHeader .cp-navigation[data-menu-model="4"] button .m4-plan-status{position:absolute!important;top:13px!important;right:23px!important;padding:3px 6px!important;border-radius:5px!important;background:#f0f8ff!important;color:#173f5f!important;font-size:9px!important;font-weight:500!important}
  html body.cp-shell-active #cpCandidateHeader#cpCandidateHeader .cp-navigation[data-menu-model="4"] button .m4-plan-chevron{margin-left:auto!important;position:absolute!important;right:9px!important;top:19px!important;font-size:20px!important;line-height:1!important}
  html body.cp-shell-active #cpCandidateHeader#cpCandidateHeader .cp-navigation[data-menu-model="4"] button[data-route]:focus-visible,html body.cp-shell-active #cpCandidateHeader#cpCandidateHeader .cp-navigation[data-menu-model="4"] .m4-resume-action:focus-visible{outline:2px solid #15576a!important;outline-offset:2px!important}
  html body.cp-shell-active #cpCandidateHeader#cpCandidateHeader .cp-navigation[data-menu-model="4"] button[data-route=messages]{padding-right:34px!important}
