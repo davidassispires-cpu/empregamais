@@ -225,7 +225,7 @@
    header.hidden=!enabled;document.body.classList.toggle('cp-shell-active',enabled);
    document.querySelectorAll('.cp-tab-content').forEach(function(p){if(p!==active)p.classList.remove('cp-tab-content')});
    if(!enabled)return;
-   active.classList.add('cp-tab-content');
+   if(!active.classList.contains('cp-tab-content'))active.classList.add('cp-tab-content');
    if(route!=='painel-candidato')messageTab=false;
    page.classList.toggle('cp-messages-active',messageTab);
    var selected=messageTab?'messages':route==='painel-candidato'&&page.classList.contains('cp-recommendations-active')?'recommendations':route;
