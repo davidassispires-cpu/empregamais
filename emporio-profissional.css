@@ -1782,20 +1782,20 @@ html body #pagina-home #areasDestaqueHome #areasTrackRefV1 .home-area-ref-card-v
 @media(prefers-reduced-motion:reduce){html body #pagina-home #areasDestaqueHome #areasTrackRefV1 .home-area-ref-card-v1,html body #pagina-home #areasDestaqueHome #areasTrackRefV1 .home-area-ref-card-v1>b{transition:none!important;transform:none!important}}
 
 /* Identidade por público: empresa azul; candidato roxo. */
-:root{--candidato:#7953b2;--candidato-hover:#634291;--candidato-suave:#f3eef9;--empresa:#1268d4}
-html body header.topo .em-candidate-menu{border-color:#dfd2ee!important}
-html body header.topo .em-candidate-menu .em-account-icon{background:#f3eef9!important;color:#7953b2!important}
-html body header.topo .em-candidate-menu .em-account-primary{background:#7953b2!important;border-color:#7953b2!important;color:white!important}
+:root{--candidato:#1d4ed8;--candidato-hover:#1e40af;--candidato-suave:#eff6ff;--empresa:#1268d4}
+html body header.topo .em-candidate-menu{border-color:#d5e5f5!important}
+html body header.topo .em-candidate-menu .em-account-icon{background:#eff6ff!important;color:#1d4ed8!important}
+html body header.topo .em-candidate-menu .em-account-primary{background:#1d4ed8!important;border-color:#1d4ed8!important;color:white!important}
 html body header.topo .em-candidate-menu .em-account-primary :is(strong,small,svg){color:white!important}
 html body header.topo .em-candidate-menu .em-account-primary .em-account-icon{background:#ffffff24!important;color:white!important}
-html body header.topo .em-candidate-menu>button:not(.em-account-primary):hover{background:#f3eef9!important}
-html body header.topo .em-candidate-menu .em-account-arrow{color:#7953b2!important}
-html body header.topo #menuContaCandidato .menu-icone-v52,html body header.topo #contaCandidatoTopo .avatar{background:#f3eef9!important;color:#7953b2!important}
-html body :is(#pagina-login-candidato,#pagina-curriculo,#pagina-painel-candidato,#pagina-perfil,#pagina-candidaturas,#pagina-salvas){--azul:#7953b2;--azulEscuro:#634291;--azulClaro:#f3eef9;--laranja:#7953b2;--laranjaClaro:#f3eef9}
-html body :is(#pagina-login-candidato,#pagina-curriculo,#pagina-painel-candidato,#pagina-perfil,#pagina-candidaturas,#pagina-salvas) :is(.btn-azul,button[type=submit]){background:#7953b2!important;border-color:#7953b2!important;color:white!important}
-html body :is(#pagina-login-candidato,#pagina-curriculo,#pagina-painel-candidato) :is(.btn-azul,button[type=submit]):hover{background:#634291!important}
-html body #pagina-login-candidato :is(.login-senha-link,.login-ajuda button){color:#7953b2!important;border-color:#7953b2!important}
-html body #pagina-login-candidato .campo:focus{outline-color:#7953b2!important}
+html body header.topo .em-candidate-menu>button:not(.em-account-primary):hover{background:#eff6ff!important}
+html body header.topo .em-candidate-menu .em-account-arrow{color:#1d4ed8!important}
+html body header.topo #menuContaCandidato .menu-icone-v52,html body header.topo #contaCandidatoTopo .avatar{background:#eff6ff!important;color:#1d4ed8!important}
+html body :is(#pagina-login-candidato,#pagina-curriculo,#pagina-painel-candidato,#pagina-perfil,#pagina-candidaturas,#pagina-salvas){--azul:#1d4ed8;--azulEscuro:#1e40af;--azulClaro:#eff6ff;--laranja:#ea580c;--laranjaClaro:#fff3e8}
+html body :is(#pagina-login-candidato,#pagina-curriculo,#pagina-painel-candidato,#pagina-perfil,#pagina-candidaturas,#pagina-salvas) :is(.btn-azul,button[type=submit]){background:#1d4ed8!important;border-color:#1d4ed8!important;color:white!important}
+html body :is(#pagina-login-candidato,#pagina-curriculo,#pagina-painel-candidato) :is(.btn-azul,button[type=submit]):hover{background:#1e40af!important}
+html body #pagina-login-candidato :is(.login-senha-link,.login-ajuda button){color:#1d4ed8!important;border-color:#1d4ed8!important}
+html body #pagina-login-candidato .campo:focus{outline-color:#1d4ed8!important}
 
 
 /* Destaques em uma única faixa: quatro no desktop, swipe no celular. */
@@ -1899,7 +1899,7 @@ html body #pagina-home #listaDestaques#listaDestaques#listaDestaques .em-feature
 html body #pagina-home #listaDestaques#listaDestaques#listaDestaques .em-featured-reference .dz-botao{height:36px!important}
 
 /* Correção do fundo e ícones do menu de candidatos. */
-html body header.topo #acoesPublicas#acoesPublicas .header-v98-area .em-candidate-menu.em-account-menu>button.em-account-primary{background:#7953b2!important;background-image:none!important;border:1px solid #7953b2!important;color:white!important;box-shadow:none!important}html body header.topo #acoesPublicas#acoesPublicas .header-v98-area .em-candidate-menu.em-account-menu>button.em-account-primary:hover{background:#634291!important;border-color:#634291!important}html body header.topo #acoesPublicas#acoesPublicas .header-v98-area .em-candidate-menu.em-account-menu>button.em-account-primary :is(strong,small,svg,span){color:white!important}html body header.topo #acoesPublicas#acoesPublicas .header-v98-area .em-candidate-menu.em-account-menu>button.em-account-primary .em-account-icon{background:#ffffff26!important}html body header.topo #acoesPublicas#acoesPublicas .header-v98-area .em-candidate-menu.em-account-menu>button:not(.em-account-primary) .em-account-icon{background:#f3eef9!important;color:#7953b2!important}html body header.topo #acoesPublicas#acoesPublicas .header-v98-area .em-candidate-menu.em-account-menu>button:not(.em-account-primary) .em-account-icon svg{color:#7953b2!important;stroke:#7953b2!important}
+html body header.topo #acoesPublicas#acoesPublicas .header-v98-area .em-candidate-menu.em-account-menu>button.em-account-primary{background:#1d4ed8!important;background-image:none!important;border:1px solid #1d4ed8!important;color:white!important;box-shadow:none!important}html body header.topo #acoesPublicas#acoesPublicas .header-v98-area .em-candidate-menu.em-account-menu>button.em-account-primary:hover{background:#1e40af!important;border-color:#1e40af!important}html body header.topo #acoesPublicas#acoesPublicas .header-v98-area .em-candidate-menu.em-account-menu>button.em-account-primary :is(strong,small,svg,span){color:white!important}html body header.topo #acoesPublicas#acoesPublicas .header-v98-area .em-candidate-menu.em-account-menu>button.em-account-primary .em-account-icon{background:#ffffff26!important}html body header.topo #acoesPublicas#acoesPublicas .header-v98-area .em-candidate-menu.em-account-menu>button:not(.em-account-primary) .em-account-icon{background:#eff6ff!important;color:#1d4ed8!important}html body header.topo #acoesPublicas#acoesPublicas .header-v98-area .em-candidate-menu.em-account-menu>button:not(.em-account-primary) .em-account-icon svg{color:#1d4ed8!important;stroke:#1d4ed8!important}
 
 /* Tipografia única aprovada para todas as páginas e controles. */
 html body :is(#em-site-font#em-font-global#em-font-priority#em-font-theme#em-font-standard#em-font-inter,*){font-family:Inter,Arial,sans-serif!important}
