@@ -1176,3 +1176,16 @@ html body #pagina-candidaturas#pagina-candidaturas#pagina-candidaturas .cp-card-
   color:#a94716!important;
  }
 }
+
+/* Align job information after removing its decorative icon. */
+@layer field-feedback {
+ html body #pagina-candidaturas #listaCandidaturas.cp-applications-list-view .candidatura-top>div{
+  padding-left:0!important;margin-left:0!important;text-align:left!important;
+ }
+ html body #pagina-candidaturas #listaCandidaturas.cp-applications-list-view .candidatura-top :is(h3,p,.cp-application-date,.cp-application-viewed){
+  text-align:left!important;margin-left:0!important;
+ }
+ html body #pagina-candidaturas #listaCandidaturas.cp-applications-list-view .cp-application-date{
+  justify-content:flex-start!important;
+ }
+}
