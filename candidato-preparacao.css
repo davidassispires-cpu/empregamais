@@ -1298,3 +1298,7 @@ html body #pagina-candidaturas#pagina-candidaturas#pagina-candidaturas .cp-card-
   background:#fff!important;background-image:none!important;
  }
 }
+
+@layer field-feedback {
+ html body #pagina-painel-candidato #emPersonalDashboard[data-job-feed="latest"] .cp-fit-and-alert{display:none!important}
+}
