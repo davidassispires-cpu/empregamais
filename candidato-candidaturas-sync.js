@@ -33,7 +33,7 @@
   document.dispatchEvent(new CustomEvent('empregamais:candidaturas-sincronizadas'));
  }
  async function sync(force){
-  if(demo()){if(window.EmpregaMaisCandidaturasCandidato)window.EmpregaMaisCandidaturasCandidato.atualizar();statusUI();return;}
+  if(demo()){if(force&&window.EmpregaMaisCandidaturasCandidato)window.EmpregaMaisCandidaturasCandidato.atualizar();statusUI();return;}
   var owner=identity();
   if(!owner.email||!owner.token||sessionStorage.getItem('empregaMaisPapel')==='empresa'){message='Entre na sua conta para atualizar.';statusUI();return;}
   if(pending)return pending;
