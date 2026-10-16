@@ -1108,3 +1108,6 @@ html body #cpApplicationFilters#cpApplicationFilters#cpApplicationFilters #cpApp
  background:#fff!important;background-image:none!important;
 }
 html body #pagina-candidaturas#pagina-candidaturas#pagina-candidaturas .cp-applications-hero:after{display:none!important}
+
+/* Remove decorative briefcase from application titles. */
+html body #pagina-candidaturas#pagina-candidaturas#pagina-candidaturas .cp-application-emblem{display:none!important}
