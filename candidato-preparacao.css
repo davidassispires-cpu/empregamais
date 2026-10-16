@@ -1189,3 +1189,14 @@ html body #pagina-candidaturas#pagina-candidaturas#pagina-candidaturas .cp-card-
   justify-content:flex-start!important;
  }
 }
+
+/* Montserrat for supporting text throughout candidate applications. */
+@layer field-feedback {
+ html body #pagina-candidaturas#pagina-candidaturas#pagina-candidaturas :is(p,small,span,a,button,label,strong,dt,dd,time),
+ html body #pagina-candidaturas#pagina-candidaturas#pagina-candidaturas :is(p,small,span,a,button,label,strong,dt,dd,time) *,
+ html body dialog.cp-cancel-modal.cp-cancel-modal :is(p,small,span,a,button,label,strong),
+ html body dialog.cp-process-modal.cp-process-modal :is(p,small,span,a,button,label,strong,dt,dd){
+  font-family:'Montserrat Applications',Montserrat,Arial,sans-serif!important;
+  font-style:normal!important;
+ }
+}
