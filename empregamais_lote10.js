@@ -720,21 +720,38 @@ function companyHero(e){
         var visibility=document.createElement('div');visibility.className='em-field full publish-address-visibility';
         var addressMode=document.getElementById('enderecoVisibilidadeV130');
         if(!addressMode){addressMode=document.createElement('input');addressMode.type='hidden';addressMode.id='enderecoVisibilidadeV130';addressMode.value='cidade';form.appendChild(addressMode)}
-        var previousMode=addressMode.value;
+        var previousMode=addressMode.value==='completo'?'completo':'bairro';
         form.querySelectorAll('input[name="enderecoVisibilidadeRadioV130"]').forEach(function(input){input.remove()});
-        visibility.innerHTML='<label>O que será mostrado na vaga?</label><div class="publish-address-options" role="radiogroup" aria-label="Informações de localização exibidas na vaga"></div>';
-        [['completo','Endereço completo','home','Rua, bairro, cidade e estado.'],['bairro','Bairro e cidade','pin','Bairro, cidade e estado.'],['cidade','Somente cidade','eye','Cidade e estado.']].forEach(function(row){
+        visibility.innerHTML='<label>Podemos exibir o endereço completo na vaga?</label><div class="publish-address-options" role="radiogroup" aria-label="Informações de localização exibidas na vaga"></div>';
+        [['completo','Sim, endereço completo','home','Rua, bairro, cidade e estado.'],['bairro','Somente bairro e cidade','pin','A rua não será exibida.']].forEach(function(row){
           var label=document.createElement('label');
           label.innerHTML='<input id="publishAddress_'+row[0]+'" type="radio" name="enderecoVisibilidadeRadioV130" value="'+row[0]+'"><span>'+icon(row[2])+'<b>'+row[1]+'</b><small>'+row[3]+'</small></span>';
           var input=label.querySelector('input');input.checked=row[0]===previousMode;
           input.addEventListener('change',function(){if(input.checked){addressMode.value=input.value;if(typeof window.atualizarPreviewEnderecoV150==='function')window.atualizarPreviewEnderecoV150()}});
           visibility.querySelector('.publish-address-options').appendChild(label);
         });
-        if(!visibility.querySelector('input:checked'))visibility.querySelector('input[value="cidade"]').checked=true;
+        if(!visibility.querySelector('input:checked'))visibility.querySelector('input[value="bairro"]').checked=true;
         addressMode.value=visibility.querySelector('input:checked').value;
         var cepField=detail.querySelector('.publish-cep-field');
         var addressRow=document.createElement('div');addressRow.className='publish-address-row';
         detail.insertBefore(addressRow,cepField);addressRow.appendChild(cepField);addressRow.appendChild(visibility);
+        var cepControl=document.getElementById('cepVaga'),cepStatus=document.getElementById('cepStatusEM'),confirmedCep='';
+        visibility.style.setProperty('display','none','important');
+        function revealAddressChoice(){
+          var code=String(cepControl.value||'').replace(/\D/g,'');
+          if(code.length!==8||!/CEP localizado/i.test(cepStatus.textContent||''))return;
+          if(confirmedCep===code)return;
+          confirmedCep=code;
+          visibility.style.removeProperty('display');
+          visibility.querySelector('label').setAttribute('tabindex','-1');
+        }
+        cepControl.addEventListener('input',function(){
+          var code=String(cepControl.value||'').replace(/\D/g,'');
+          if(code!==confirmedCep){confirmedCep='';visibility.style.setProperty('display','none','important');}
+        });
+        new MutationObserver(revealAddressChoice).observe(cepStatus,{childList:true,characterData:true,subtree:true});
+        revealAddressChoice();
+
       }
     }
 
