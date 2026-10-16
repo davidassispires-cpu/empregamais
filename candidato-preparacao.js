@@ -279,7 +279,8 @@
  function toolStatus(text){var el=workspace.querySelector('.cp-feedback');if(el)el.textContent=text;}
  function recommendationIcon(name){var paths={crown:'<path d="m3 7 5 4 4-7 4 7 5-4-3 13H6Z"/><path d="M7 22h10"/>',pin:'<path d="M20 10c0 6-8 12-8 12S4 16 4 10a8 8 0 1 1 16 0Z"/><circle cx="12" cy="10" r="3"/>',office:'<path d="M4 22V3h13v19M17 11h4v11M2 22h21M8 7h1m3 0h1M8 11h1m3 0h1M8 15h1m3 0h1M9 22v-4h4v4"/>',document:'<path d="M5 2h10l4 4v16H5ZM14 2v6h5M8 12h8M8 16h8"/>',target:'<circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><path d="m12 12 9-9M16 3h5v5"/>',skills:'<path d="m12 2 3 5 6 1-2 6 1 6-6-1-5 3-3-5-5-2 3-5 1-6 6 1Z"/><circle cx="12" cy="12" r="3"/>'};return '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'+(paths[name]||paths.target)+'</svg>';}
  function recommendationCompanyLogo(job,conf){
-  if(conf||!job.demo)return icon('briefcase');
+  var demo=job.demo||/^demo[-_]/i.test(String(job.id||''))||/demonstra[cç][aã]o/i.test(String(job.empresa||''));
+  if(conf||!demo)return icon('briefcase');
   var retail=String(job.empresa||'').indexOf('Varejo')>=0;
   var initials=retail?'VD':'ED',color=retail?'#5b4b8a':'#00689d';
   return '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40" role="img" aria-label="'+escape('Logo fictícia de '+(job.empresa||'Empresa Demonstração'))+'" style="width:30px;height:30px;max-width:none;flex:none"><rect width="40" height="40" rx="8" fill="'+color+'"/><path d="M8 10h24" stroke="#fff" stroke-opacity=".45" stroke-width="2"/><text x="20" y="27" text-anchor="middle" fill="#fff" font-family="Arial,sans-serif" font-size="16" font-weight="700" letter-spacing="-1">'+initials+'</text></svg>';
