@@ -407,3 +407,32 @@ html body #pagina-publicar#pagina-publicar#pagina-publicar #formVaga :is(.em-btn
 html body #pagina-publicar#pagina-publicar#pagina-publicar #formVaga :is(.em-btn-next,.em-btn-publish,button[type=submit]){background:#0080c9!important;border-color:#0080c9!important;color:#fff!important}
 html body #pagina-publicar#pagina-publicar#pagina-publicar .em-job-actions{border-color:#e5e7eb!important;gap:12px!important;background:#fff!important}
 }
+
+/* Repair duplicate legacy selectors and inline palette overrides. */
+@layer site-typography{
+html body #pagina-publicar#pagina-publicar#pagina-publicar{--candidate-contrast-ink:#4c5b70}
+html body #pagina-publicar#pagina-publicar#pagina-publicar #formVaga .em-grid{align-items:start!important;gap:18px 22px!important}
+html body #pagina-publicar#pagina-publicar#pagina-publicar #formVaga .em-field{display:flex!important;flex-direction:column!important;justify-content:flex-start!important;gap:7px!important;min-width:0!important}
+html body #pagina-publicar#pagina-publicar#pagina-publicar #formVaga .em-field>label{--candidate-contrast-ink:#0080c9;display:block!important;margin:0!important;line-height:1.5!important}
+html body #pagina-publicar#pagina-publicar#pagina-publicar #formVaga :is(input,select,textarea,option){--candidate-contrast-ink:#343b4b}
+html body #pagina-publicar#pagina-publicar#pagina-publicar #formVaga :is(.publish-title-hint,.publish-preview-location,.publish-required-note){--candidate-contrast-ink:#64748b}
+html body #pagina-publicar#pagina-publicar#pagina-publicar #formVaga .em-select-v4{display:none!important}
+html body #pagina-publicar#pagina-publicar#pagina-publicar #formVaga .publish-input-wrap{position:relative!important;display:block!important;height:auto!important;min-height:44px!important;margin:0!important}
+html body #pagina-publicar#pagina-publicar#pagina-publicar #formVaga .publish-input-wrap>select.em-select-real-v4{position:static!important;display:block!important;opacity:1!important;visibility:visible!important;clip:auto!important;clip-path:none!important;width:100%!important;height:44px!important;min-height:44px!important;max-height:none!important;pointer-events:auto!important;appearance:auto!important;padding:10px 32px 10px 40px!important}
+html body #pagina-publicar#pagina-publicar#pagina-publicar #formVaga .publish-input-wrap>input:not([type=checkbox]):not([type=radio]){height:44px!important;padding-left:40px!important}
+html body #pagina-publicar#pagina-publicar#pagina-publicar #formVaga .publish-input-wrap>textarea{padding-left:40px!important}
+html body #pagina-publicar#pagina-publicar#pagina-publicar #formVaga .publish-field-icon{position:absolute!important;left:12px!important;top:22px!important;transform:translateY(-50%)!important;pointer-events:none!important;color:#78879a!important}
+html body #pagina-publicar#pagina-publicar#pagina-publicar #formVaga .em-field-message{position:static!important;display:block!important;margin:5px 0 0!important;line-height:1.4!important;font-size:12px!important;color:#b42318!important;--candidate-contrast-ink:#b42318}
+html body #pagina-publicar#pagina-publicar#pagina-publicar #formVaga :is(input,select,textarea).em-field-invalid{border-color:#d9534f!important;background:#fffafa!important}
+html body #pagina-publicar#pagina-publicar#pagina-publicar #formVaga :is(input,select,textarea).em-field-valid{border-color:#a6c7d9!important}
+html body #pagina-publicar#pagina-publicar#pagina-publicar #formVaga .em-job-actions{display:flex!important;flex-wrap:wrap!important;align-items:center!important;justify-content:flex-end!important;gap:10px!important}
+html body #pagina-publicar#pagina-publicar#pagina-publicar #formVaga .em-job-actions .publish-required-note{margin-right:auto!important}
+html body #pagina-publicar#pagina-publicar#pagina-publicar #formVaga [data-panel="1"] .em-job-actions .publish-back-button{display:none!important}
+html body #pagina-publicar#pagina-publicar#pagina-publicar .publish-reference-aside{align-self:start!important}
+@media(max-width:760px){
+html body #pagina-publicar#pagina-publicar#pagina-publicar #formVaga .em-job-body{grid-template-columns:minmax(0,1fr)!important}
+html body #pagina-publicar#pagina-publicar#pagina-publicar #formVaga .em-grid{grid-template-columns:minmax(0,1fr)!important}
+html body #pagina-publicar#pagina-publicar#pagina-publicar .publish-reference-aside{border-left:0!important;padding-left:0!important}
+html body #pagina-publicar#pagina-publicar#pagina-publicar #formVaga .em-job-actions .publish-required-note{width:100%!important}
+}
+}
