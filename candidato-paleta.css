@@ -143,15 +143,18 @@
   #pagina-curriculo .cv-purple-hero .cv-rail-track { background: #e5e7eb !important; }
   #pagina-curriculo .cv-purple-hero .cv-rail-track i { background: #ff981f !important; }
 
-  /* Marked dashboard labels and text links stay neutral; icons and card
-     headings keep their brand colors, and filled actions keep white text. */
+  /* Candidate navigation labels stay gray. */
   body.cp-shell-active #cpCandidateHeader .cp-navigation button[data-route]:not(.m4-resume-action) > span:not(.cp-card-icon):not(.cp-message-count),
   body.cp-shell-active #cpCandidateHeader .cp-navigation :is(.m4-menu-caption, .cp-nav-label),
-  body.cp-shell-active #cpCandidateHeader .cp-navigation .m4-plan-copy :is(strong, small),
+  body.cp-shell-active #cpCandidateHeader .cp-navigation .m4-plan-copy :is(strong, small) {
+    color: #374151 !important;
+  }
+
+  /* The remaining marked dashboard labels and text links use brand orange. */
   body.cp-shell-active #pagina-painel-candidato .cp-overview-card > div > span,
   body.cp-shell-active #pagina-painel-candidato :is(.cp-recommendations-link,
     .cp-fit-panel-action, .cp-interview-mode, .cp-recent-message > button,
     .cp-interview-extra > button:not(.cp-primary)) {
-    color: #374151 !important;
+    color: #ff981f !important;
   }
 }
