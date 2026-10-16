@@ -403,6 +403,8 @@
     border-color: #8bb4f8 !important;
     background: #edf4ff !important;
   }
+  #listaCandidaturas.cp-applications-list-view .cp-premium-option.is-informational { cursor: default !important; }
+  #listaCandidaturas.cp-applications-list-view .cp-premium-option.is-informational:hover { border-color: #d5e4ff !important; background: #f5f9ff !important; }
   #listaCandidaturas.cp-applications-list-view .cp-premium-option.is-locked { display: flex !important; flex-direction: column !important; align-items: flex-start !important; gap: 2px !important; padding: 6px 8px !important; min-height: 64px !important; border-color: #e2d7ff !important; background: #faf7ff !important; }
   #listaCandidaturas.cp-applications-list-view .cp-option-lock {
     display: flex !important;

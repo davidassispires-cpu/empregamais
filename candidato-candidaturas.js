@@ -151,7 +151,8 @@
   var access=insightAccess(),title=kind==='match'?'Sua adequação':'Total de inscritos',heading='<span class="cp-option-label">'+title+'</span>';
   if(!access.premium)return heading+'<strong class="cp-option-lock">'+actionIcon('lock')+'Premium</strong><span class="cp-option-cta">Desbloquear '+icon('arrow')+'</span>';
   var job=insightJob(a),match=kind==='match'?insightMatch(a,job,access):null,value=kind==='match'?match&&match.percent:insightTotal(a,job);
-  return heading+'<strong class="cp-option-metric'+(value==null?' is-unavailable':'')+'">'+(value==null?kind==='match'?'Complete seu perfil':'Não informado':safe(kind==='match'?value+'%':value.toLocaleString('pt-BR')))+'</strong><span class="cp-option-cta">'+(kind==='match'?'Ver análise':'Ver detalhes')+' '+icon('arrow')+'</span>';
+  var metric=heading+'<strong class="cp-option-metric'+(value==null?' is-unavailable':'')+'">'+(value==null?kind==='match'?'Complete seu perfil':'Não informado':safe(kind==='match'?value+'%':value.toLocaleString('pt-BR')))+'</strong>';
+  return metric+(kind==='match'?'<span class="cp-option-cta">Ver análise '+icon('arrow')+'</span>':'');
  }
  function premiumInsight(a,kind){
   var access=insightAccess();
@@ -179,14 +180,18 @@
   open.onclick=function(){if(typeof window.irPara==='function')window.irPara('vaga',String(a.vagaId||a.vaga_id||a.idVaga));};
   group.querySelector('.cp-premium-options').appendChild(open);
   var panel=document.createElement('section');panel.className='cp-card-insight';panel.id='cpApplicationInsight'+index;panel.hidden=true;panel.setAttribute('aria-label','Detalhes da candidatura');
-  var active=premium?insightViews[viewKey]||'':'',buttons=[];
+  var active=premium&&insightViews[viewKey]==='match'?'match':'',buttons=[];
   [{key:'match',label:'Sua adequação'},{key:'applicants',label:'Total de inscritos'}].forEach(function(item){
-   var button=document.createElement('button');button.type='button';button.className='cp-premium-option'+(premium?'':' is-locked');button.setAttribute('aria-label',premium?'Visualizar '+item.label.toLowerCase():'Desbloquear '+item.label.toLowerCase()+' com o Premium');
-   if(premium){button.setAttribute('aria-expanded','false');button.setAttribute('aria-controls',panel.id);}
+   var informational=premium&&item.key==='applicants';
+   var button=document.createElement(informational?'div':'button');button.className='cp-premium-option'+(premium?'':' is-locked')+(informational?' is-informational':'');
+   if(!informational){button.type='button';button.setAttribute('aria-label',premium?'Visualizar '+item.label.toLowerCase():'Desbloquear '+item.label.toLowerCase()+' com o Premium');}
+   if(premium&&!informational){button.setAttribute('aria-expanded','false');button.setAttribute('aria-controls',panel.id);}
    button.innerHTML=premiumOption(a,item.key);
    button.dataset.cpInsightKind=item.key;
+   group.querySelector('.cp-premium-options').appendChild(button);
+   if(informational)return;
    button.onclick=function(){if(!insightAccess().premium){panel.hidden=true;active='';delete insightViews[viewKey];if(typeof window.irPara==='function')window.irPara('premium-candidato');return;}var closing=!panel.hidden&&active===item.key;buttons.forEach(function(b){b.setAttribute('aria-expanded','false');});if(closing){panel.hidden=true;active='';delete insightViews[viewKey];return;}active=item.key;insightViews[viewKey]=active;panel.innerHTML=premiumInsight(a,item.key);panel.hidden=false;button.setAttribute('aria-expanded','true');};
-   buttons.push(button);group.querySelector('.cp-premium-options').appendChild(button);
+   buttons.push(button);
   });
   panel.addEventListener('click',function(event){var button=event.target.closest('[data-cp-insight-route]');if(button&&typeof window.irPara==='function')window.irPara(button.dataset.cpInsightRoute);});
   if(active){panel.innerHTML=premiumInsight(a,active);panel.hidden=false;buttons.forEach(function(button){button.setAttribute('aria-expanded',String(button.dataset.cpInsightKind===active));});}

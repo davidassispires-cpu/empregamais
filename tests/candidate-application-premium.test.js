@@ -46,6 +46,7 @@ test('Premium card tiles and their expanded details use the same real metrics, i
  assert.match(api.opcaoPremium(application,'match'),/>86%<\/strong>/);
  assert.match(api.detalhesPremium(application,'match'),/>86%<\/strong>/);
  assert.match(api.opcaoPremium(application,'applicants'),/>24<\/strong>/);
+ assert.doesNotMatch(api.opcaoPremium(application,'applicants'),/Ver análise|Ver detalhes|cp-option-cta/);
  assert.match(api.detalhesPremium(application,'applicants'),/>24<\/strong>/);
  assert.doesNotMatch(api.opcaoPremium(application,'match'),/Desbloquear|cp-option-lock/);
  assert.match(controller({job:{totalCandidaturas:0}}).opcaoPremium(application,'applicants'),/>0<\/strong>/);

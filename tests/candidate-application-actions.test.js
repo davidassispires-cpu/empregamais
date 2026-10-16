@@ -66,19 +66,21 @@ test('free candidates can view the job and both locked actions open the Premium 
  }
 });
 
-test('Premium actions open the correct analysis, switch details and close on a second click',()=>{
+test('Premium opens compatibility analysis while applicant count is informational without a details action',()=>{
  const env=fixture(true),card=env.render(),buttons=card.querySelectorAll('.cp-premium-option'),panel=card.querySelector('.cp-card-insight');
+ assert.equal(buttons[1].tagName,'div');
+ assert.equal(buttons[1].onclick,undefined);
+ assert.equal(buttons[1].getAttribute('aria-expanded'),null);
+ assert.equal(buttons[1].getAttribute('aria-controls'),null);
+ assert.match(buttons[1].innerHTML,/>24<\/strong>/);
+ assert.doesNotMatch(buttons[1].innerHTML,/Ver análise|Ver detalhes|cp-option-cta/);
  buttons[0].onclick();
  assert.equal(panel.hidden,false);
  assert.match(panel.innerHTML,/86%/);
  assert.equal(buttons[0].getAttribute('aria-expanded'),'true');
- buttons[1].onclick();
- assert.match(panel.innerHTML,/>24<\/strong>/);
- assert.equal(buttons[0].getAttribute('aria-expanded'),'false');
- assert.equal(buttons[1].getAttribute('aria-expanded'),'true');
- buttons[1].onclick();
+ buttons[0].onclick();
  assert.equal(panel.hidden,true);
- assert.equal(buttons[1].getAttribute('aria-expanded'),'false');
+ assert.equal(buttons[0].getAttribute('aria-expanded'),'false');
  assert.equal(env.routes.length,0);
 });
 
@@ -89,7 +91,7 @@ test('automatic refresh preserves an open insight only while the candidate still
  assert.equal(refreshed.querySelector('.cp-card-insight').hidden,false);
  assert.match(refreshed.querySelector('.cp-card-insight').innerHTML,/86%/);
  env.options.premium=false;
- refreshed.querySelectorAll('.cp-premium-option')[1].onclick();
+ refreshed.querySelectorAll('.cp-premium-option')[0].onclick();
  assert.deepEqual(env.routes.pop(),['premium-candidato']);
  assert.equal(refreshed.querySelector('.cp-card-insight').hidden,true);
  const locked=env.render();
