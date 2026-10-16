@@ -199,6 +199,7 @@
     list-style: none !important;
     z-index: 0 !important;
   }
+  #listaCandidaturas.cp-applications-list-view .cp-card-journey li:is(:hover, :focus-within, .is-pinned) { z-index: 30 !important; }
   #listaCandidaturas.cp-applications-list-view .cp-journey-step {
     display: flex !important;
     flex-direction: column !important;
@@ -223,8 +224,7 @@
     cursor: pointer !important;
     transform: none !important;
   }
-  #listaCandidaturas.cp-applications-list-view .cp-journey-step:disabled { cursor: default !important; }
-  #listaCandidaturas.cp-applications-list-view .cp-journey-step:enabled:hover { background: #f7faff !important; border-color: #dbe7f8 !important; }
+  #listaCandidaturas.cp-applications-list-view .cp-journey-step:hover { background: #f7faff !important; border-color: #dbe7f8 !important; }
   #listaCandidaturas.cp-applications-list-view .cp-journey-step-label { color: #334155 !important; font-size: 12px !important; line-height: 1.4 !important; }
   #listaCandidaturas.cp-applications-list-view .cp-journey-step-state { color: #526174 !important; font-size: 10px !important; line-height: 1.4 !important; }
   #listaCandidaturas.cp-applications-list-view .cp-card-journey .cp-journey-step-state { display: none !important; }
@@ -270,17 +270,36 @@
     font-weight: 700 !important;
   }
   #listaCandidaturas.cp-applications-list-view .cp-journey-explanation {
-    margin-top: 12px !important;
-    padding: 13px 15px !important;
+    display: none !important;
+    position: absolute !important;
+    top: 100% !important;
+    left: 50% !important;
+    z-index: 40 !important;
+    width: min(320px, calc(100vw - 64px)) !important;
+    margin: 0 !important;
+    padding: 12px 14px !important;
     border: 1px solid #dbe5f1 !important;
     border-left: 3px solid #d45c13 !important;
     border-radius: 9px !important;
     background: #f8faff !important;
     color: #334155 !important;
     font-size: 12px !important;
+    font-weight: 400 !important;
     line-height: 1.6 !important;
+    text-align: left !important;
+    white-space: normal !important;
+    box-shadow: 0 8px 24px #17355024 !important;
+    transform: translateX(-50%) !important;
   }
-  #listaCandidaturas.cp-applications-list-view .cp-journey-explanation[hidden] { display: none !important; }
+  #listaCandidaturas.cp-applications-list-view .cp-card-journey li:first-child > .cp-journey-explanation { left: 0 !important; transform: none !important; }
+  #listaCandidaturas.cp-applications-list-view .cp-card-journey li:last-child > .cp-journey-explanation { left: auto !important; right: 0 !important; transform: none !important; }
+  #listaCandidaturas.cp-applications-list-view .cp-journey-footer:not(.is-dismissed) li.is-pinned > .cp-journey-explanation,
+  #listaCandidaturas.cp-applications-list-view .cp-journey-footer:not(.is-dismissed):not(.has-pinned):not(:hover) .cp-journey-step:focus-visible + .cp-journey-explanation {
+    display: block !important;
+  }
+  @media (any-hover: hover) {
+    #listaCandidaturas.cp-applications-list-view .cp-journey-footer:not(.is-dismissed):not(.has-pinned) li:hover > .cp-journey-explanation { display: block !important; }
+  }
   #listaCandidaturas.cp-applications-list-view .cp-journey-explanation-heading { display: flex !important; align-items: center !important; flex-wrap: wrap !important; gap: 6px 12px !important; }
   #listaCandidaturas.cp-applications-list-view .cp-journey-explanation-heading strong { color: #173550 !important; font-size: 13px !important; font-weight: 700 !important; }
   #listaCandidaturas.cp-applications-list-view .cp-journey-explanation-heading span { color: #99410a !important; font-size: 11px !important; font-weight: 600 !important; }
@@ -522,6 +541,8 @@
     #listaCandidaturas.cp-applications-list-view .cp-application-emblem { width: 36px !important; height: 38px !important; }
     #listaCandidaturas.cp-applications-list-view .cp-card-journey { grid-template-columns: repeat(3, minmax(0, 1fr)) !important; gap: 8px 6px !important; }
     #listaCandidaturas.cp-applications-list-view .cp-card-journey li::after { display: none !important; }
+    #listaCandidaturas.cp-applications-list-view .cp-card-journey li:nth-child(3n + 1) > .cp-journey-explanation { left: 0 !important; right: auto !important; transform: none !important; }
+    #listaCandidaturas.cp-applications-list-view .cp-card-journey li:nth-child(3n) > .cp-journey-explanation { left: auto !important; right: 0 !important; transform: none !important; }
     #listaCandidaturas.cp-applications-list-view .cp-process-details { display: grid !important; border: 0 !important; border-top: 1px solid #edf0f3 !important; margin-top: 10px !important; padding: 10px 0 0 !important; gap: 6px !important; }
     #listaCandidaturas.cp-applications-list-view .cp-cancel-trigger { min-height: 40px !important; }
     #listaCandidaturas.cp-applications-list-view .cp-insight-criteria { grid-template-columns: minmax(0, 1fr) !important; }
@@ -539,6 +560,8 @@
     #listaCandidaturas.cp-applications-list-view .cp-option-lock svg { width: 17px !important; height: 17px !important; flex-basis: 17px !important; }
     #listaCandidaturas.cp-applications-list-view .cp-application-open { font-size: 11px !important; padding: 8px 6px !important; }
     #listaCandidaturas.cp-applications-list-view .cp-card-journey { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; }
+    #listaCandidaturas.cp-applications-list-view .cp-card-journey li:nth-child(odd) > .cp-journey-explanation { left: 0 !important; right: auto !important; transform: none !important; }
+    #listaCandidaturas.cp-applications-list-view .cp-card-journey li:nth-child(even) > .cp-journey-explanation { left: auto !important; right: 0 !important; transform: none !important; }
   }
 }
 

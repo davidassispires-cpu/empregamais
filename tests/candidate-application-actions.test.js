@@ -24,14 +24,14 @@ function element(tag='div',className=''){
   set innerHTML(value){this.html=value;this.children=[];if(value.includes('<div class="cp-premium-options">'))this.appendChild(element('div','cp-premium-options'));},
   get innerHTML(){return this.html||'';}
  };
- node.classList={add(name){if(!node.className.split(/\s+/).includes(name))node.className+=' '+name;},contains:name=>node.className.split(/\s+/).includes(name)};
+ node.classList={add(name){if(!node.className.split(/\s+/).includes(name))node.className+=' '+name;},remove(name){node.className=node.className.split(/\s+/).filter(value=>value!==name).join(' ');},contains:name=>node.className.split(/\s+/).includes(name)};
  return node;
 }
 
 function fixture(premium,changes={}){
- const options={premium},routes=[],application=Object.assign({id:'own-application',vagaId:'job-1',vaga:'Assistente Administrativo',empresa:'Empresa',email:'ana@example.com',status:'Em avaliação',data:'2026-10-14'},changes);
+ const options={premium},routes=[],events={},application=Object.assign({id:'own-application',vagaId:'job-1',vaga:'Assistente Administrativo',empresa:'Empresa',email:'ana@example.com',status:'Em avaliação',data:'2026-10-14'},changes);
  const list=element(),toolbar=element(),result=element();
- const document={readyState:'loading',addEventListener(){},createElement:element,querySelector(){return null;},getElementById(id){return {listaCandidaturas:list,cpApplicationFilters:toolbar,cpApplicationResult:result}[id]||null;}};
+ const document={readyState:'loading',addEventListener(type,callback){events[type]=callback;},createElement:element,querySelector(){return null;},getElementById(id){return {listaCandidaturas:list,cpApplicationFilters:toolbar,cpApplicationResult:result}[id]||null;}};
  const context={window:{
   EmpregaMaisPremiumCandidatoV92:{ehPremium:()=>options.premium},
   EmpregaMaisPreparacao:{compatibilidade:()=>({percent:86,criteria:[]})},
@@ -46,7 +46,7 @@ function fixture(premium,changes={}){
   context.window.EmpregaMaisCandidaturasCandidato.atualizarLista(1);
   return card;
  }
- return {options,routes,render};
+ return {options,routes,events,render};
 }
 
 test('free candidates can view the job and both locked actions open the Premium plans',()=>{
@@ -102,35 +102,76 @@ test('automatic refresh preserves an open insight only while the candidate still
  }
 });
 
-test('the compact journey keeps six stages with explanations and omits the removed heading and ending row',()=>{
+test('all six compact stages have pre-rendered explanations, including unrecorded stages',()=>{
  const env=fixture(false,{status:'Entrevista agendada'}),card=env.render(),buttons=card.querySelectorAll('.cp-journey-step');
  assert.deepEqual(buttons.map(button=>button.dataset.cpJourneyKey),['enviada','avaliacao','contato','entrevista','aprovadas','contratadas']);
- assert.deepEqual(buttons.filter(button=>!button.disabled).map(button=>button.dataset.cpJourneyKey),['enviada','entrevista']);
+ assert.ok(buttons.every(button=>!button.disabled),'Unrecorded stages must also receive hover, focus and touch');
  assert.equal(buttons[3].getAttribute('aria-current'),'step');
  assert.equal(card.querySelector('.cp-journey-heading'),null);
  assert.equal(card.querySelector('.cp-journey-endings'),null);
- assert.equal(buttons[1].onclick,undefined);
+ const panels=card.querySelectorAll('.cp-journey-explanation');
+ assert.equal(panels.length,6);
+ for(const [index,button] of buttons.entries()){
+  const panel=button.parentNode.querySelector('.cp-journey-explanation');
+  assert.equal(button.parentNode.children[1],panel,'Native CSS can reveal the adjacent tooltip without a JS event');
+  assert.equal(button.getAttribute('aria-describedby'),panel.id);
+  assert.equal(button.getAttribute('aria-controls'),panel.id);
+  assert.equal(panel.getAttribute('role'),'tooltip');
+  assert.equal(panel.hidden,false,'Visibility is controlled by hover/focus CSS, not the hidden attribute');
+  assert.ok(panel.innerHTML.length>100);
+  if(index!==0&&index!==3){
+   assert.match(panel.innerHTML,/Não registrada/);
+   assert.match(panel.innerHTML,/ainda não foi registrada/);
+   assert.doesNotMatch(panel.innerHTML,/Registrada em|Sua candidatura foi aprovada|registrou sua candidatura como contratada/);
+   assert.ok(button.parentNode.classList.contains('is-pending'));
+  }
+ }
 });
 
-test('hover, keyboard focus and touch open the stage explanation and Escape closes it',()=>{
- const env=fixture(false,{status:'Em contato',statusAtualizadoEm:'2026-10-16T12:30:00Z',historico:[{status:'Em avaliação',data:'2026-10-15',observacao:'PRIVATE_NOTE'}]}),card=env.render(),footer=card.querySelector('.cp-journey-footer'),panel=card.querySelector('.cp-journey-explanation'),buttons=card.querySelectorAll('.cp-journey-step');
- buttons[1].onmouseenter();
- assert.equal(panel.hidden,false);
+test('hover and keyboard expose the recorded explanation, and Escape also dismisses hover without focus',()=>{
+ const env=fixture(false,{status:'Em contato',statusAtualizadoEm:'2026-10-16T12:30:00Z',historico:[{status:'Em avaliação',data:'2026-10-15',observacao:'PRIVATE_NOTE'}]}),card=env.render(),footer=card.querySelector('.cp-journey-footer'),buttons=card.querySelectorAll('.cp-journey-step'),panel=buttons[1].parentNode.querySelector('.cp-journey-explanation');
  assert.match(panel.innerHTML,/Em avaliação|analisar seu perfil/);
  assert.match(panel.innerHTML,/15\/10\/2026/);
  assert.doesNotMatch(panel.innerHTML,/PRIVATE_NOTE/);
+ buttons[1].parentNode.onmouseenter();
+ assert.equal(buttons[1].getAttribute('aria-expanded'),'true');
+ env.events.keydown({key:'Escape'});
+ assert.ok(footer.classList.contains('is-dismissed'));
+ assert.equal(buttons[1].getAttribute('aria-expanded'),'false');
+ buttons[1].parentNode.onmouseenter();
+ assert.equal(footer.classList.contains('is-dismissed'),false);
  footer.listeners.mouseleave();
- assert.equal(panel.hidden,true);
+ assert.equal(buttons[1].getAttribute('aria-expanded'),'false');
  buttons[2].onfocus();
- assert.equal(panel.hidden,false);
- assert.match(panel.innerHTML,/Em contato/);
  assert.equal(buttons[2].getAttribute('aria-expanded'),'true');
- footer.listeners.keydown({key:'Escape',stopPropagation(){}});
- assert.equal(panel.hidden,true);
+ env.events.keydown({key:'Escape'});
+ assert.ok(footer.classList.contains('is-dismissed'));
+ assert.equal(buttons[2].getAttribute('aria-expanded'),'false');
+ assert.equal(env.routes.length,0,'Stage explanations remain inside the same application card');
+});
+
+test('touch pins a stage across automatic refresh, can switch stages and closes on repeat or outside touch',()=>{
+ const env=fixture(false),card=env.render(),footer=card.querySelector('.cp-journey-footer'),buttons=card.querySelectorAll('.cp-journey-step');
  buttons[2].onclick();
  footer.listeners.mouseleave();
- assert.equal(panel.hidden,false,'A touch/click pins the explanation until toggled or dismissed');
- buttons[2].onclick();
- assert.equal(panel.hidden,true);
+ assert.ok(buttons[2].parentNode.classList.contains('is-pinned'));
+ const refreshed=env.render(),newFooter=refreshed.querySelector('.cp-journey-footer'),newButtons=refreshed.querySelectorAll('.cp-journey-step');
+ assert.ok(newButtons[2].parentNode.classList.contains('is-pinned'));
+ assert.equal(newButtons[2].getAttribute('aria-expanded'),'true');
+ newButtons[4].parentNode.onmouseenter();
+ assert.equal(newFooter.classList.contains('has-pinned'),false,'Hovering another stage releases the previous touch pin');
+ assert.equal(newButtons[4].getAttribute('aria-expanded'),'true');
+ newButtons[4].onclick();
+ assert.equal(newButtons[2].parentNode.classList.contains('is-pinned'),false);
+ assert.ok(newButtons[4].parentNode.classList.contains('is-pinned'));
+ newButtons[4].onclick();
+ assert.equal(newFooter.classList.contains('has-pinned'),false);
+ assert.ok(newFooter.classList.contains('is-dismissed'));
+ newButtons[0].onclick();
+ env.events.pointerdown({target:newButtons[0]});
+ assert.ok(newFooter.classList.contains('has-pinned'),'Touching within the journey keeps the panel open');
+ env.events.pointerdown({target:element()});
+ assert.equal(newFooter.classList.contains('has-pinned'),false);
+ assert.equal(env.render().querySelector('.cp-journey-footer').classList.contains('has-pinned'),false);
  assert.equal(env.routes.length,0,'Stage explanations remain inside the same application card');
 });

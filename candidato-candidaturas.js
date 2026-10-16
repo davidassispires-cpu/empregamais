@@ -204,11 +204,11 @@
   if(/^(candidatura )?enviad[ao]$/i.test(String(a.status||'').trim()))current='enviada';
   var steps=[
    {key:'enviada',label:'Enviada',text:'Sua candidatura foi enviada e ficou disponível para a empresa avaliar.'},
-   {key:'avaliacao',label:'Em avaliação',text:'A empresa colocou sua candidatura em avaliação para analisar seu perfil e os requisitos da vaga.'},
-   {key:'contato',label:'Em contato',text:'A empresa marcou sua candidatura para contato. Confira a aba Mensagens e os canais informados no seu cadastro.'},
-   {key:'entrevista',label:'Entrevista',text:'Sua candidatura foi marcada para a etapa de entrevista. A data, o formato e as orientações aparecem quando a empresa enviar o convite.'},
-   {key:'aprovadas',label:'Aprovado',text:'Sua candidatura foi aprovada nesta seleção. Confira as orientações da empresa sobre os próximos passos.'},
-   {key:'contratadas',label:'Contratado',text:'A empresa registrou sua candidatura como contratada. Confirme com a empresa os detalhes da admissão.'},
+   {key:'avaliacao',label:'Em avaliação',text:'A empresa colocou sua candidatura em avaliação para analisar seu perfil e os requisitos da vaga.',pendingText:'Nesta etapa, a empresa analisa seu perfil e os requisitos da vaga.'},
+   {key:'contato',label:'Em contato',text:'A empresa marcou sua candidatura para contato. Confira a aba Mensagens e os canais informados no seu cadastro.',pendingText:'Nesta etapa, a empresa entra em contato com você. Confira a aba Mensagens e os canais informados no seu cadastro.'},
+   {key:'entrevista',label:'Entrevista',text:'Sua candidatura foi marcada para a etapa de entrevista. A data, o formato e as orientações aparecem quando a empresa enviar o convite.',pendingText:'Nesta etapa, a empresa entrevista os candidatos. A data, o formato e as orientações são informados no convite.'},
+   {key:'aprovadas',label:'Aprovado',text:'Sua candidatura foi aprovada nesta seleção. Confira as orientações da empresa sobre os próximos passos.',pendingText:'Nesta etapa, a empresa aprova a candidatura e informa os próximos passos da seleção.'},
+   {key:'contratadas',label:'Contratado',text:'A empresa registrou sua candidatura como contratada. Confirme com a empresa os detalhes da admissão.',pendingText:'Nesta etapa, a empresa registra a contratação e combina os detalhes da admissão com o candidato.'},
    {key:'reprovadas',label:'Reprovado',alternate:true,text:'A empresa encerrou sua participação nesta seleção. Você pode continuar se candidatando a outras oportunidades.'},
    {key:'canceladas',label:'Cancelada',alternate:true,text:'Você cancelou sua participação neste processo seletivo. A desistência permanece registrada na candidatura.'}
   ];
@@ -219,37 +219,55 @@
   if(/^\d{4}-\d{2}-\d{2}$/.test(value))return applicationDate(value);
   var date=new Date(value);return isNaN(date.getTime())?'':date.toLocaleString('pt-BR',{day:'2-digit',month:'2-digit',year:'numeric',hour:'2-digit',minute:'2-digit'});
  }
+ var journeyPins=Object.create(null),journeyOwner='',activeJourney=null;
+ document.addEventListener('keydown',function(event){if(event.key==='Escape'&&activeJourney)activeJourney.dismiss();});
+ document.addEventListener('pointerdown',function(event){if(activeJourney&&!activeJourney.footer.contains(event.target))activeJourney.dismiss();});
  function buildJourney(a,index){
+  var owner=String(sessionStorage.getItem('candidatoEmail')||'').trim().toLowerCase();
+  if(owner!==journeyOwner){journeyPins=Object.create(null);journeyOwner=owner;activeJourney=null;}
+  var viewKey=String(a.id)+'|'+String(a.vagaId||a.vaga_id||a.idVaga);
   var footer=document.createElement('section');footer.className='cp-journey-footer';footer.setAttribute('aria-label','Etapas do processo seletivo');
   var journey=document.createElement('ol');journey.className='cp-card-journey';journey.setAttribute('aria-label','Etapa atual: '+label(a));footer.appendChild(journey);
-  var explanation=document.createElement('div');explanation.className='cp-journey-explanation';explanation.id='cpJourneyExplanation'+index;explanation.hidden=true;explanation.setAttribute('role','region');explanation.setAttribute('aria-live','polite');
-  var buttons=[],active=null,pinned=false;
-  function close(){explanation.hidden=true;active=null;pinned=false;buttons.forEach(function(button){if(!button.disabled)button.setAttribute('aria-expanded','false');});}
-  function show(step,button){
-   active=button;buttons.forEach(function(other){if(!other.disabled)other.setAttribute('aria-expanded',String(other===button));});
-   var date=journeyTimestamp(step.date);
-   explanation.setAttribute('aria-labelledby',button.id);
-   explanation.innerHTML='<div class="cp-journey-explanation-heading"><strong>'+safe(step.label)+'</strong><span>'+(step.current?'Etapa atual':'Etapa registrada')+'</span></div><p>'+safe(step.text)+'</p>'+(date?'<small>Registrada em '+safe(date)+'</small>':'');explanation.hidden=false;
+  var entries=[],pinned=null;
+  function expanded(entry){entries.forEach(function(other){other.button.setAttribute('aria-expanded',String(other===entry));});}
+  function close(){
+   entries.forEach(function(entry){entry.item.classList.remove('is-pinned');});
+   pinned=null;delete journeyPins[viewKey];footer.classList.remove('has-pinned');footer.classList.add('is-dismissed');expanded(null);
+   if(activeJourney&&activeJourney.footer===footer)activeJourney=null;
+  }
+  function activate(entry){
+   if(activeJourney&&activeJourney.key!==viewKey)activeJourney.dismiss();
+   if(pinned&&pinned!==entry){pinned.item.classList.remove('is-pinned');pinned=null;delete journeyPins[viewKey];footer.classList.remove('has-pinned');}
+   footer.classList.remove('is-dismissed');activeJourney={key:viewKey,footer:footer,dismiss:close};
+   if(!pinned)expanded(entry);
+  }
+  function pin(entry){
+   entries.forEach(function(other){other.item.classList.remove('is-pinned');});
+   pinned=entry;journeyPins[viewKey]=entry.key;entry.item.classList.add('is-pinned');footer.classList.add('has-pinned');activate(entry);expanded(entry);
   }
   var steps=journeyModel(a).filter(function(step){return !step.alternate;});
   steps.forEach(function(step,n){
    var item=document.createElement('li');item.className=step.current?'is-current':step.registered?'is-done':'is-pending';
    if(step.registered&&steps[n+1]&&steps[n+1].registered)item.classList.add('is-linked');
-   var button=document.createElement('button');button.type='button';button.className='cp-journey-step';button.id='cpJourneyStep'+index+'-'+step.key;button.dataset.cpJourneyKey=step.key;button.disabled=!step.registered;
-   button.setAttribute('aria-label',step.label+'. '+(step.current?'Etapa atual.':step.registered?'Etapa registrada. Ver explicação.':'Sem registro desta etapa.'));
+   var button=document.createElement('button');button.type='button';button.className='cp-journey-step';button.id='cpJourneyStep'+index+'-'+step.key;button.dataset.cpJourneyKey=step.key;
+   button.setAttribute('aria-label',step.label+'. '+(step.current?'Etapa atual.':step.registered?'Etapa registrada.':'Sem registro desta etapa.')+' Ver explicação.');
    if(step.current)button.setAttribute('aria-current','step');
    button.innerHTML='<i aria-hidden="true">'+(step.registered&&!step.current?'✓':n+1)+'</i><span class="cp-journey-step-label">'+safe(step.label)+'</span><small class="cp-journey-step-state">'+(step.current?'Etapa atual':step.registered?'Registrada':'Sem registro')+'</small>';
-   if(step.registered){
-    button.setAttribute('aria-expanded','false');button.setAttribute('aria-controls',explanation.id);
-    button.onmouseenter=function(){pinned=false;show(step,button);};button.onfocus=function(){pinned=false;show(step,button);};
-    button.onclick=function(){if(active===button&&pinned){close();return;}pinned=true;show(step,button);};
-   }
-   buttons.push(button);item.appendChild(button);journey.appendChild(item);
+   // Pre-render each tooltip so native CSS hover also works after an automatic list refresh.
+   var explanation=document.createElement('div');explanation.className='cp-journey-explanation';explanation.id='cpJourneyExplanation'+index+'-'+step.key;explanation.setAttribute('role','tooltip');
+   var date=step.registered?journeyTimestamp(step.date):'';
+   explanation.innerHTML='<div class="cp-journey-explanation-heading"><strong>'+safe(step.label)+'</strong><span>'+(step.current?'Etapa atual':step.registered?'Etapa registrada':'Não registrada')+'</span></div><p>'+safe(step.registered?step.text:step.pendingText)+'</p>'+(date?'<small>Registrada em '+safe(date)+'</small>':!step.registered?'<small>Esta etapa ainda não foi registrada para a sua candidatura.</small>':'');
+   button.setAttribute('aria-expanded','false');button.setAttribute('aria-controls',explanation.id);button.setAttribute('aria-describedby',explanation.id);
+   var entry={key:step.key,item:item,button:button};entries.push(entry);
+   item.onmouseenter=function(){activate(entry);};
+   item.onmouseleave=function(){if(!pinned)expanded(null);};
+   button.onfocus=function(){activate(entry);};
+   button.onclick=function(){if(pinned===entry){close();return;}pin(entry);};
+   item.appendChild(button);item.appendChild(explanation);journey.appendChild(item);
   });
-  footer.appendChild(explanation);
-  footer.addEventListener('mouseleave',function(){if(!pinned)close();});
-  footer.addEventListener('focusout',function(event){if(!pinned&&!footer.contains(event.relatedTarget))close();});
-  footer.addEventListener('keydown',function(event){if(event.key==='Escape'){close();event.stopPropagation();}});
+  var remembered=entries.filter(function(entry){return entry.key===journeyPins[viewKey];})[0];if(remembered)pin(remembered);
+  footer.addEventListener('mouseleave',function(){if(!pinned&&!footer.contains(document.activeElement)){expanded(null);if(activeJourney&&activeJourney.footer===footer)activeJourney=null;}});
+  footer.addEventListener('focusout',function(event){if(!footer.contains(event.relatedTarget))close();});
   return footer;
  }
  function enhanceList(){
