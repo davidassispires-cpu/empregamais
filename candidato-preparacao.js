@@ -453,7 +453,7 @@
  function applyWorkspaceFont(scope){
   if(!scope)return;
   scope.querySelectorAll('h1,h2,h3,h4,p,span,small,strong,button,a,label,legend,input,textarea,dt,dd,li,summary').forEach(function(el){
-   var family=el.closest('.cp-home-intro,.cp-home-summary,#cpCandidateHeader')?'Inter, Arial, sans-serif':'Inter, Arial, sans-serif';
+   var family="'Montserrat Applications', Montserrat, Arial, sans-serif";
    if(el.style.getPropertyValue('font-family')!==family)el.style.setProperty('font-family',family,'important');
   });
  }
