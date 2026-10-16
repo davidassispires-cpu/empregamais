@@ -704,10 +704,10 @@ SOFTWARE.
 #pagina-curriculo .cv-purple-hero{position:relative;isolation:isolate;display:grid!important;grid-template-columns:minmax(0,1fr) 210px!important;gap:24px!important;align-items:center!important;background:linear-gradient(110deg,#123d54,#d64a06 85%,#d64a06)!important;border-radius:14px!important;border:0!important;padding:28px 38px!important;margin:0 0 24px!important;color:#fff!important;overflow:hidden!important;box-shadow:none!important;min-height:230px!important;box-sizing:border-box!important}
 #pagina-curriculo .cv-purple-hero:after{content:'';position:absolute;z-index:-1;width:450px;height:450px;border:1px solid #ffffff22;border-radius:50%;right:-300px;bottom:-300px;box-shadow:0 0 0 60px #ffffff09}
 #pagina-curriculo .cv-purple-hero .cv85-hero-copy{min-width:0!important}#pagina-curriculo .cv-purple-hero .cv85-kicker{font:600 12px Inter,Arial,sans-serif!important;color:#fff5ec!important;letter-spacing:1.3px!important;margin:22px 0 10px!important;display:flex;align-items:center;gap:16px}
-#pagina-curriculo .cv-purple-hero .cv85-kicker span{font:700 11px Inter,Arial,sans-serif!important;border:0!important;color:white!important;background:#9867ce70!important;border-radius:20px!important;padding:7px 13px!important;letter-spacing:.5px!important}
+#pagina-curriculo .cv-purple-hero .cv85-kicker span{font:700 11px Inter,Arial,sans-serif!important;border:0!important;color:white!important;background:#6789ce70!important;border-radius:20px!important;padding:7px 13px!important;letter-spacing:.5px!important}
 #pagina-curriculo .cv-purple-hero h2{font:750 clamp(26px,3vw,40px)/1.2 Inter,Arial,sans-serif!important;color:#fff!important;margin:0 0 14px!important;letter-spacing:-.8px!important}
 #pagina-curriculo .cv-purple-hero .cv85-hero-copy p{font:400 15px/1.7 Inter,Arial,sans-serif!important;color:#fff5ec!important;margin:0!important;max-width:850px!important}
-#pagina-curriculo .cv-purple-hero .cv-hero-back{display:inline-flex;gap:10px;align-items:center;border:1px solid #c8a4ed99;border-radius:7px;background:#ffffff08;color:white;padding:9px 15px;font:600 13px Inter,Arial,sans-serif;cursor:pointer}
+#pagina-curriculo .cv-purple-hero .cv-hero-back{display:inline-flex;gap:10px;align-items:center;border:1px solid #a4bced99;border-radius:7px;background:#ffffff08;color:white;padding:9px 15px;font:600 13px Inter,Arial,sans-serif;cursor:pointer}
 #pagina-curriculo .cv-purple-hero .cv85-score{width:142px!important;height:142px!important;border:0!important;border-radius:50%!important;display:flex!important;flex-direction:column!important;justify-content:center!important;align-items:center!important;gap:6px!important;text-align:center!important;justify-self:center!important;background:radial-gradient(circle at center,#d64a06 62%,transparent 63%),conic-gradient(#fff5ec var(--cv-progress,0%),#ffffff22 0)!important;box-shadow:none!important;flex-shrink:0!important}
 #pagina-curriculo .cv-purple-hero .cv85-score strong{font:750 28px Inter,Arial,sans-serif!important;color:#fff!important}#pagina-curriculo .cv-purple-hero .cv85-score>span{font:400 12px/1.4 Inter,Arial,sans-serif!important;color:#fff5ec!important;max-width:95px!important}
 #cvResumeWizard #curriculoOnlineV84>.cv85-progress,#cvResumeWizard #curriculoOnlineV84>.cv85-info{display:none!important}
@@ -723,7 +723,7 @@ SOFTWARE.
 #cvResumeWizard .cv-fields-frame{position:relative;flex:1 1 auto;min-height:0;padding:20px 0 28px;box-sizing:border-box;overflow:hidden}
 #cvResumeWizard .cv-fields-viewport{height:100%;overflow-y:auto;overflow-x:hidden;scrollbar-width:none;overscroll-behavior:contain;padding:0 4px;box-sizing:border-box;outline-offset:-2px}
 #cvResumeWizard .cv-fields-viewport::-webkit-scrollbar{display:none}
-#cvResumeWizard .cv-scroll-arrow{position:absolute;left:50%;transform:translateX(-50%);z-index:3;width:34px;height:34px;display:grid;place-items:center;border:0;border-radius:50%;background:#d64a06;color:white;cursor:pointer;padding:7px;box-shadow:0 3px 12px #51258a25}
+#cvResumeWizard .cv-scroll-arrow{position:absolute;left:50%;transform:translateX(-50%);z-index:3;width:34px;height:34px;display:grid;place-items:center;border:0;border-radius:50%;background:#d64a06;color:white;cursor:pointer;padding:7px;box-shadow:0 3px 12px #25478a25}
 #cvResumeWizard .cv-scroll-arrow svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round}
 #cvResumeWizard .cv-scroll-up{top:0}#cvResumeWizard .cv-scroll-down{bottom:0}
 #cvResumeWizard .cv-scroll-arrow:disabled{background:#fff5ec;color:#d64a06;box-shadow:none;cursor:default}
@@ -819,8 +819,8 @@ SOFTWARE.
 #cvResumeWizard .cv85-section-head h3{font-weight:750!important}#cvResumeWizard .cv-entry-title{grid-column:1/-1;font-size:16px;color:#1c2147;font-weight:700;padding-bottom:4px}#cvResumeWizard .experiencia-v84>label,#cvResumeWizard .formacao-v84>label{font-weight:600!important}
 #cvResumeWizard .cv-date-control{display:block;position:relative}#cvResumeWizard .cv-date-control input{padding-right:38px!important}#cvResumeWizard .cv-date-control svg{position:absolute;right:12px;top:50%;transform:translateY(-50%);width:18px;height:18px;fill:none;stroke:#d64a06;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round;pointer-events:none}
 #cvResumeWizard .cv-professional-assistant{grid-column:1/-1;position:relative;display:flex;align-items:flex-start;gap:12px;margin:8px 0;max-width:510px;box-sizing:border-box}
-#cvResumeWizard .cv-professional-assistant[hidden]{display:none!important}#cvResumeWizard .cv-helper-symbol{width:44px;height:44px;flex:0 0 44px;display:grid;place-items:center;border-radius:50%;background:linear-gradient(135deg,#7f9bad,#123d54);color:white;font:700 32px Inter,Arial,sans-serif;box-shadow:0 3px 12px #7540ae25}
-#cvResumeWizard .cv-helper-card{position:relative;flex:1;min-width:0;background:white;border:1px solid #f6ddc7;border-radius:10px;padding:18px;box-shadow:0 4px 18px #7540ae13}
+#cvResumeWizard .cv-professional-assistant[hidden]{display:none!important}#cvResumeWizard .cv-helper-symbol{width:44px;height:44px;flex:0 0 44px;display:grid;place-items:center;border-radius:50%;background:linear-gradient(135deg,#7f9bad,#123d54);color:white;font:700 32px Inter,Arial,sans-serif;box-shadow:0 3px 12px #4065ae25}
+#cvResumeWizard .cv-helper-card{position:relative;flex:1;min-width:0;background:white;border:1px solid #f6ddc7;border-radius:10px;padding:18px;box-shadow:0 4px 18px #4065ae13}
 #cvResumeWizard .cv-helper-card>small{display:block;font-size:9px;letter-spacing:.7px;color:#d64a06;margin-bottom:10px}#cvResumeWizard .cv-helper-card>strong{display:block;font-size:15px;line-height:1.5;color:#1c2147;font-weight:700}#cvResumeWizard .cv-helper-copy{font-size:12px;line-height:1.7;color:#123d54;margin:8px 0 13px}
 #cvResumeWizard .cv-helper-close{position:absolute;right:8px;top:5px;border:0;background:transparent;color:#d64a06;font-size:22px;padding:0 5px;cursor:pointer}
 #cvResumeWizard .cv-helper-buttons{display:flex;gap:10px;flex-wrap:wrap}#cvResumeWizard .cv-helper-buttons button{height:auto;min-height:36px;border:1px solid #f6ddc7;border-radius:7px;padding:8px 13px;background:white;color:#d64a06;font-size:11px;font-weight:650;cursor:pointer}#cvResumeWizard .cv-helper-buttons .cv-helper-example{background:#d64a06;color:white;border-color:#d64a06}
@@ -855,19 +855,19 @@ SOFTWARE.
 #pagina-curriculo #cvResumeWizard .cv-preference-multi input{width:15px!important;height:15px!important;min-height:0!important;padding:0!important;margin:0!important;accent-color:#d64a06}
 
 #pagina-curriculo #cvResumeWizard .cv-professional-assistant.cv-always-helper{position:fixed!important;right:22px;bottom:20px;width:370px;max-width:calc(100vw - 32px);z-index:1200;margin:0!important;align-items:flex-end;pointer-events:auto}
-#pagina-curriculo #cvResumeWizard .cv-always-helper .cv-helper-card{box-shadow:0 5px 24px #51258a25;background:#fff}
+#pagina-curriculo #cvResumeWizard .cv-always-helper .cv-helper-card{box-shadow:0 5px 24px #25478a25;background:#fff}
 @media(max-width:600px){#pagina-curriculo #cvResumeWizard .cv-professional-assistant.cv-always-helper{position:static!important;width:100%!important;max-width:none!important;margin-top:18px!important}}
 
 #pagina-curriculo #cvResumeWizard .cv-professional-assistant.cv-field-helper{position:relative!important;inset:auto!important;grid-column:1/-1!important;width:min(100%,510px)!important;max-width:100%!important;margin:10px 0!important;z-index:2;align-items:center!important}
 #pagina-curriculo #cvResumeWizard .cv-helper-symbol{background:transparent!important;box-shadow:none!important;width:62px!important;height:76px!important;flex:0 0 62px!important}
 #pagina-curriculo #cvResumeWizard .cv-helper-symbol svg{width:62px;height:76px;fill:#fff5ec;stroke:#d64a06;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
 #pagina-curriculo #cvResumeWizard .cv-helper-card footer{background:transparent!important;color:#d64a06!important;padding:9px 0 0!important;margin:12px 0 0!important;width:auto!important;min-height:0!important;text-align:left!important;font:400 10px/1.5 Inter,Arial,sans-serif!important;box-shadow:none!important}
-#pagina-curriculo #cvResumeWizard .cv-needs-help{border-color:#7f9bad!important;box-shadow:0 0 0 2px #9860ee20!important}
+#pagina-curriculo #cvResumeWizard .cv-needs-help{border-color:#7f9bad!important;box-shadow:0 0 0 2px #608fee20!important}
 
 /* Assistente discreto, somente quando necessário. */
 #pagina-curriculo #cvResumeWizard .cv-professional-assistant.cv-field-helper{width:390px!important;max-width:100%!important;gap:8px!important;margin:8px 0!important;align-items:flex-start!important}
 #pagina-curriculo #cvResumeWizard .cv-helper-symbol{width:38px!important;height:48px!important;flex-basis:38px!important}#pagina-curriculo #cvResumeWizard .cv-helper-symbol svg{width:38px!important;height:48px!important;stroke-width:1.6!important}
-#pagina-curriculo #cvResumeWizard .cv-helper-card{padding:12px 14px!important;border-radius:8px!important;box-shadow:0 3px 12px #51258a10!important;border-color:#f6ddc7!important}
+#pagina-curriculo #cvResumeWizard .cv-helper-card{padding:12px 14px!important;border-radius:8px!important;box-shadow:0 3px 12px #25478a10!important;border-color:#f6ddc7!important}
 #pagina-curriculo #cvResumeWizard .cv-helper-card>small{font-size:8px!important;margin:0 0 5px!important;letter-spacing:.5px!important}
 #pagina-curriculo #cvResumeWizard .cv-helper-card>strong{font-size:12px!important;line-height:1.5!important;font-weight:650!important}
 #pagina-curriculo #cvResumeWizard .cv-helper-copy{font-size:11px!important;line-height:1.6!important;margin:5px 0 9px!important}
@@ -967,9 +967,9 @@ body.cp-shell-active #pagina-painel-candidato .em-inbox-entry{border-color:#d8e0
  display:grid!important;grid-template-columns:minmax(0,1fr) 33%!important;gap:12px 16px!important;
  padding:20px 24px 12px!important;min-height:0!important;border:1px solid #f6ddc7!important;
  border-radius:16px!important;background:radial-gradient(ellipse at 84% 15%,#f6ddc7 0,transparent 58%),linear-gradient(115deg,#fff5ec,#fff5ec)!important;
- box-shadow:0 5px 20px #6040830a!important;color:#123d54!important;overflow:hidden!important;
+ box-shadow:0 5px 20px #4056830a!important;color:#123d54!important;overflow:hidden!important;
 }
-#pagina-curriculo .cv-purple-hero:after{width:420px;height:420px;right:-90px;bottom:25px;border-color:#c6aceb55;box-shadow:0 0 0 75px #c8b2e512;pointer-events:none}
+#pagina-curriculo .cv-purple-hero:after{width:420px;height:420px;right:-90px;bottom:25px;border-color:#acc1eb55;box-shadow:0 0 0 75px #b2c3e512;pointer-events:none}
 #pagina-curriculo .cv-purple-hero .cv85-hero-copy{grid-column:1;grid-row:1;z-index:1}
 #pagina-curriculo .cv-purple-hero .cv-hero-back{border:0!important;background:transparent!important;color:#d64a06!important;font-size:11px!important;padding:0!important;min-height:24px;margin:0!important}
 #pagina-curriculo .cv-purple-hero .cv85-kicker{color:#123d54!important;font-size:10px!important;letter-spacing:.7px!important;margin:10px 0 8px!important;gap:10px}
@@ -982,7 +982,7 @@ body.cp-shell-active #pagina-painel-candidato .em-inbox-entry{border-color:#d8e0
 #pagina-curriculo .cv-purple-hero .cv-hero-step-chips span:before{content:'○';display:grid;place-items:center;width:17px;height:17px;border-radius:50%;background:#f6ddc7;color:#d64a06;font-size:10px}
 #pagina-curriculo .cv-purple-hero .cv-hero-illustration{grid-column:2;grid-row:1;align-self:stretch;display:flex;align-items:center;justify-content:center;min-width:0;max-height:216px;z-index:0}
 #pagina-curriculo .cv-purple-hero .cv-hero-illustration svg{display:block;width:100%!important;height:100%!important;max-height:216px;overflow:visible}
-#pagina-curriculo .cv-purple-hero .cv85-score{grid-column:1/-1;grid-row:2;display:flex!important;flex-direction:row!important;align-items:center!important;gap:7px!important;width:100%!important;height:auto!important;min-height:40px!important;padding:9px 14px!important;border:1px solid #f6ddc7!important;border-radius:11px!important;background:#ffffffba!important;justify-content:flex-start!important;justify-self:stretch!important;box-shadow:0 2px 7px #7453c807!important}
+#pagina-curriculo .cv-purple-hero .cv85-score{grid-column:1/-1;grid-row:2;display:flex!important;flex-direction:row!important;align-items:center!important;gap:7px!important;width:100%!important;height:auto!important;min-height:40px!important;padding:9px 14px!important;border:1px solid #f6ddc7!important;border-radius:11px!important;background:#ffffffba!important;justify-content:flex-start!important;justify-self:stretch!important;box-shadow:0 2px 7px #537ac807!important}
 #pagina-curriculo .cv-purple-hero .cv85-score .cv-rail-label{font-size:12px!important;font-weight:700!important;color:#123d54!important;white-space:nowrap;margin-right:10px}
 #pagina-curriculo .cv-purple-hero .cv-rail-track{height:7px;border-radius:9px;background:#f6ddc7;flex:1;min-width:30px;overflow:hidden;margin-right:12px}
 #pagina-curriculo .cv-purple-hero .cv-rail-track i{display:block;height:100%;width:var(--cv-progress,0%);background:linear-gradient(90deg,#7f9bad,#d64a06);border-radius:inherit;transition:width .2s}
