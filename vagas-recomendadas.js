@@ -75,16 +75,19 @@
  function mount(id,parent,before){var el=document.getElementById(id);if(!el&&parent){el=document.createElement('section');el.id=id;el.className='em-personal-recs';parent.insertBefore(el,before||null);}return el;}
  function render(){
   var ctx=context(),home=document.getElementById('vagas'),dashboard=document.querySelector('#pagina-painel-candidato .container-dashboard');
+  var premium=false;try{var access=window.EmpregaMaisPremiumCandidatoV92;premium=!!(access&&typeof access.ehPremium==='function'&&access.ehPremium());}catch(ignore){}
+  var latest=ctx.logged&&!premium;
+  function publicationTime(v){var raw=v.dataPublicacao||v.criado_em||v.criadoEm||v.publicadaEm||v.dataCriacao||'',m=String(raw).match(/^(\d{2})\/(\d{2})\/(\d{4})$/),d=m?new Date(+m[3],+m[2]-1,+m[1]):new Date(raw);return isNaN(d.getTime())?0:d.getTime();}
   var previousHome=document.getElementById('emPersonalHome');if(previousHome)previousHome.remove();
   var sections=[null,mount('emPersonalDashboard',dashboard,dashboard&&dashboard.querySelector('.painel-candidato-grid'))];
-  var seen=new Set(),jobs=(typeof window.todasAsVagasPublicas==='function'?window.todasAsVagasPublicas():[]).filter(function(v){if(v.id==null||seen.has(String(v.id)))return false;seen.add(String(v.id));return true;}).map(function(v){return {v:v,match:rank(v,ctx)};}).filter(function(x){return x.match.score>0||new URLSearchParams(location.search).get('pagina')==='demo-candidato';}).sort(function(a,b){return b.match.score-a.match.score||String(b.v.dataPublicacao||'').localeCompare(String(a.v.dataPublicacao||''));}).slice(0,4);
+  var seen=new Set(),jobs=(typeof window.todasAsVagasPublicas==='function'?window.todasAsVagasPublicas():[]).filter(function(v){if(v.id==null||seen.has(String(v.id)))return false;seen.add(String(v.id));return true;}).map(function(v){return {v:v,match:latest?{score:0,reasons:[]}:rank(v,ctx)};}).filter(function(x){return latest||x.match.score>0||new URLSearchParams(location.search).get('pagina')==='demo-candidato';}).sort(function(a,b){return (latest?0:b.match.score-a.match.score)||publicationTime(b.v)-publicationTime(a.v);}).slice(0,4);
   sections.forEach(function(section,index){
    if(!section)return;
    var hidden=index===1?!ctx.logged:!ctx.logged&&!ctx.refs.length;section.hidden=hidden;if(hidden)return;
-   var title=ctx.logged?'Vagas recomendadas para você':'Relacionadas às vagas que você viu';
-   var subtitle=ctx.logged?'Sugestões com base nas informações do seu perfil.':'Sugestões com base nas suas visitas recentes neste navegador.';
-   var html='<div class="em-personal-head"><div><h2>'+title+'</h2><p>'+subtitle+'</p></div>'+(ctx.logged?'<button type="button" class="cp-recommendations-link" data-cp-action="recommendations">Ver recomendações →</button>':'')+'</div>';
-   if(!jobs.length)html+='<p class="em-personal-empty">'+(ctx.logged?'Ainda não encontramos vagas compatíveis. Complete seu perfil e confira as oportunidades disponíveis.':'Ainda não encontramos outras vagas relacionadas às suas visitas.')+'</p>';
+   var title=latest?'Últimas vagas anunciadas':ctx.logged?'Vagas recomendadas para você':'Relacionadas às vagas que você viu';
+   var subtitle=latest?'Confira as oportunidades mais recentes do site.':ctx.logged?'Sugestões com base nas informações do seu perfil.':'Sugestões com base nas suas visitas recentes neste navegador.';
+   var html='<div class="em-personal-head"><div><h2>'+title+'</h2><p>'+subtitle+'</p></div>'+(ctx.logged?'<button type="button" class="cp-recommendations-link" data-cp-action="'+(latest?'search':'recommendations')+'">'+(latest?'Ver todas as vagas':'Ver recomendações')+' →</button>':'')+'</div>';
+   if(!jobs.length)html+='<p class="em-personal-empty">'+(latest?'Nenhuma vaga disponível no momento.':ctx.logged?'Ainda não encontramos vagas compatíveis. Complete seu perfil e confira as oportunidades disponíveis.':'Ainda não encontramos outras vagas relacionadas às suas visitas.')+'</p>';
    else html+='<div class="em-personal-grid">'+jobs.slice(0,2).map(function(x){
     var v=x.v,conf=typeof window.vagaEhConfidencialEM==='function'?window.vagaEhConfidencialEM(v):v.confidencial===true;
     return '<article data-cp-job-id="'+esc(v.id)+'"><span class="cp-job-symbol"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M5 21V3h12v18M17 10h3v11M3 21h19M8 7h2M12 7h2M8 11h2M12 11h2M8 15h2M12 15h2"/></svg></span><h3>'+esc(v.cargo||v.titulo||'Vaga')+'</h3><p>'+esc(conf?'Empresa confidencial':v.empresa||'Empresa')+'</p><small>'+esc(v.cidade||'Local não informado')+(v.uf?' – '+esc(v.uf):'')+'</small><strong class="cp-recommended-salary">'+esc(v.salario||'Salário a combinar')+'</strong><div class="em-personal-reasons">'+[v.contrato||'Contrato não informado',v.modalidade||'Modalidade não informada'].map(function(r){return '<span>'+esc(r)+'</span>';}).join('')+'</div><a href="?pagina=vaga&amp;id='+encodeURIComponent(v.id)+'">Ver vaga →</a></article>';
