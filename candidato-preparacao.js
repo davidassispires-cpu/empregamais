@@ -148,7 +148,7 @@
    var until=Date.parse(job.expiraEm||job.expira_em||'');if(Number.isFinite(until)&&until<=at)return false;
    seen.add(String(job.id));return true;
   }).map(function(job){return {job:job,match:compatibility(job,candidate)};}).filter(function(item){
-   return item.match.percent!=null;
+   return item.match.percent!=null&&item.match.percent>=60;
   }).sort(function(a,b){return b.match.percent-a.match.percent||(Date.parse(b.job.dataPublicacao||b.job.criadoEm)||0)-(Date.parse(a.job.dataPublicacao||a.job.criadoEm)||0);});
  }
  var core={baixaConcorrencia:lowCompetition,seloBaixaConcorrencia:lowCompetitionBadge,selosVaga:jobBadges,temPremium:premiumAccess,vagaUrgente:urgentJob,recomendarVagas:recommendedJobs,compatibilidade:compatibility,correspondeAlerta:matchesAlert,validarAlerta:validateAlert,perguntasEntrevista:interviewQuestions,orientarResposta:responseFeedback,corrigirTeste:gradeTest,testes:tests,podeEntrar:canJoin,linkEntrevista:interviewLink,escape:escape};
@@ -295,7 +295,7 @@
    '<div class="cp-recommendations-hero-copy"><button type="button" class="cp-recommendations-back" data-cp-action="close">'+icon('back')+' Voltar à minha área</button>'+
    '<div class="cp-recommendations-kicker">RECOMENDAÇÕES <span>PREMIUM</span></div>'+
    '<h1 id="cpRecommendationsTitle" tabindex="-1">Vagas que combinam<br>com o <span>seu perfil.</span></h1>'+
-   '<p>Vagas selecionadas para o seu perfil. Confira sua compatibilidade.</p>'+
+   '<p>Vagas selecionadas para o seu perfil. Recomendações com pelo menos 60% de aderência ao seu perfil.</p>'+
    '<div class="cp-recommendations-features"><span>'+icon('target')+'Aderência ao perfil</span><span>'+icon('briefcase')+'Vagas recomendadas</span><span>'+icon('analysis')+'Ver análise</span></div></div>'+
    '<div class="cp-recommendations-art" aria-hidden="true"><img src="assets/candidate-navigation/recommendations-job-match.png" width="1536" height="1024" alt="" decoding="async"></div>'+
    '<div class="cp-recommendations-rail"><strong>Sua próxima oportunidade</strong><button type="button" data-cp-action="recommendations-list">Explore suas recomendações <span aria-hidden="true">→</span></button></div></header>';
@@ -308,7 +308,7 @@
   if(!allowed){
    html+='<section class="cp-recommendations-empty"><h2>Suas recomendações estão no Premium</h2><p>Receba uma seleção de vagas para o seu perfil, organizada por compatibilidade, e consulte os critérios de cada indicação.</p><div class="cp-tool-actions"><button type="button" class="cp-primary" data-cp-action="premium">Conhecer Premium →</button><button type="button" data-cp-action="search">Explorar todas as vagas</button></div></section>';
   }else if(!rows.length){
-   html+='<section class="cp-recommendations-empty"><h2>Nenhuma recomendação por enquanto</h2><p>Atualize seus cargos de interesse e suas habilidades. Novas recomendações aparecerão quando houver vagas compatíveis disponíveis.</p><div class="cp-tool-actions"><button type="button" class="cp-primary" data-cp-action="profile">Atualizar meu perfil</button><button type="button" data-cp-action="search">Explorar todas as vagas</button></div></section>';
+   html+='<section class="cp-recommendations-empty"><h2>Nenhuma recomendação por enquanto</h2><p>Atualize seus cargos de interesse e suas habilidades. Novas recomendações aparecerão quando houver vagas com pelo menos 60% de aderência. Você pode explorar todas as oportunidades na busca.</p><div class="cp-tool-actions"><button type="button" class="cp-primary" data-cp-action="profile">Atualizar meu perfil</button><button type="button" data-cp-action="search">Explorar todas as vagas</button></div></section>';
   }else{
    html+='<div class="cp-section-head"><p>'+rows.length+' oportunidade'+(rows.length===1?' recomendada':'s recomendadas')+' · Maior compatibilidade primeiro</p><button type="button" class="cp-text-button" data-cp-action="profile">Atualizar meu perfil →</button></div><div class="cp-recommendations-grid">'+rows.map(function(item){
     var job=item.job,fit=item.match,conf=typeof global.vagaEhConfidencialEM==='function'?global.vagaEhConfidencialEM(job):['true','1','sim','confidencial'].indexOf(norm(job.confidencial))>=0;
