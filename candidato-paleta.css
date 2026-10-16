@@ -1,0 +1,145 @@
+/* Reference colors: Cadastrar CV #0080c9; Anunciar vaga #ff981f.
+   Important brand declarations belong to the first layer so legacy portal
+   overrides cannot recolor fields when switching tabs or resume steps. */
+@layer candidate-palette {
+  body.cp-shell-active,
+  body.cp-shell-active :is(#cpCandidateHeader, .pagina.cp-tab-content),
+  #pagina-curriculo {
+    --candidate-primary: #0080c9 !important;
+    --candidate-accent: #ff981f !important;
+    --candidate-soft: #f3f4f6 !important;
+    --candidate-ink: #374151 !important;
+    --candidate-contrast-ink: #374151 !important;
+    --roxo: #0080c9 !important;
+    --azul: #0080c9 !important;
+    --roxoClaro: #f3f4f6 !important;
+    --cp-lilac: #0080c9 !important;
+    --cp-navy: #374151 !important;
+    --cp-muted: #6b7280 !important;
+    --cp-light: #f3f4f6 !important;
+    --cp-pale-lilac: #f3f4f6 !important;
+    --cp-border: #d1d5db !important;
+    --cv-ink: #374151 !important;
+    --cv-accent: #0080c9 !important;
+    --cv-soft: #f3f4f6 !important;
+  }
+
+  body.cp-shell-active :is(.cp-primary, .ep-primary, .btn-azul,
+    .m4-resume-action, .cp-interview-booking, .cp-process-trigger,
+    .cp-option-cta, .cp-confirm-cancel, .premium-btn-v78,
+    .em-personal-grid article > a, .cp-search button, .cp-banner button),
+  #pagina-curriculo #cvWizardNext {
+    background: #0080c9 !important;
+    border-color: #0080c9 !important;
+    color: #fff !important;
+    --candidate-contrast-ink: #fff !important;
+  }
+  body.cp-shell-active :is(.cp-primary, .ep-primary, .btn-azul,
+    .m4-resume-action, .cp-interview-booking, .cp-process-trigger,
+    .cp-option-cta, .cp-confirm-cancel, .premium-btn-v78,
+    .em-personal-grid article > a, .cp-search button, .cp-banner button) :is(span, svg),
+  #pagina-curriculo #cvWizardNext :is(span, svg) { color: inherit !important; }
+
+  body.cp-shell-active .m3-welcome button,
+  body.cp-shell-active .m3-welcome button:hover,
+  body.cp-shell-active :is(.premium92-crown, .cp-recommendation-premium, .cp93-pill) {
+    background: #ff981f !important;
+    border-color: #ff981f !important;
+    color: #fff !important;
+    --candidate-contrast-ink: #fff !important;
+  }
+  body.cp-shell-active :is(.m3-welcome button, .premium92-crown,
+    .cp-recommendation-premium, .cp93-pill) :is(span, svg) { color: inherit !important; }
+  body.cp-shell-active #premium92Banner { border-color: #d1d5db !important; border-left-color: #ff981f !important; }
+  body.cp-shell-active .cp-overview-card[data-cp-action="analysis"] :is(.cp-overview-icon, .cp-overview-arrow) {
+    background: #f3f4f6 !important; color: #ff981f !important;
+  }
+  body.cp-shell-active .cp-overview-card[data-cp-action="analysis"] .cp-overview-icon svg { color: #ff981f !important; }
+  body.cp-shell-active .cp-overview-card[data-cp-action="analysis"] .cp-overview-icon rect[fill]:not([fill="none"]) { fill: #ff981f !important; }
+  body.cp-shell-active .cp-overview-card[data-cp-action="analysis"] :is(strong, div > span) { color: #374151 !important; }
+
+  body.cp-shell-active :is(.cp-home-intro, .cp-overview-icon, .cp-job-symbol,
+    .cp-interview-date, .cp-interview-mode, .cp-user-avatar,
+    .cp-fit-button, .em-personal-reasons span, .m4-plan-status) {
+    background: #f3f4f6 !important;
+    border-color: #d1d5db !important;
+  }
+  body.cp-shell-active :is(.cp-home-intro, .cp-interview-date, .cp-interview-mode) :is(p, small, span, strong) { color: #374151 !important; }
+  body.cp-shell-active :is(.cp-overview-icon, .cp-job-symbol, .cp-user-avatar,
+    .cp-fit-button, .cp-text-button, .cp-fit-panel-action,
+    .cp-recommendations-link, .em-personal-head a, .cp-interview-extra button) { color: #0080c9 !important; }
+  body.cp-shell-active .cp-notification-dot { background: #ff981f !important; }
+  body.cp-shell-active #cpCandidateHeader :is(.m3-brand > span, .cp-notifications,
+    .cp-greeting, .cp-toolbar-context) { color: #0080c9 !important; }
+  body.cp-shell-active #cpCandidateHeader .cp-navigation button[data-route] {
+    --nav-stroke: #0080c9 !important;
+    --nav-accent: #ff981f !important;
+    --nav-fill: #f3f4f6 !important;
+  }
+  body.cp-shell-active #cpCandidateHeader .cp-navigation button[data-route][aria-current="page"] {
+    background: #f1f3f5 !important;
+    color: #0080c9 !important;
+  }
+  body.cp-shell-active #cpCandidateHeader .cp-navigation button[data-route][aria-current="page"] :is(span, svg) { color: #0080c9 !important; }
+  body.cp-shell-active :is(.cp-panel, .cp-section-head, .cp-next-interview,
+    .cp-resume-card, .em-personal-head, .em-personal-grid article,
+    .candidatura-item, #emCandidateProfile) :is(h2, h3),
+  body.cp-shell-active .cp-home-intro h1,
+  body.cp-shell-active .cp-recommendation-title { color: #0080c9 !important; }
+
+  /* All eight resume steps, including dynamically added education/experience. */
+  #pagina-curriculo #cvResumeWizard { color: #374151 !important; --candidate-contrast-ink: #374151 !important; }
+  #pagina-curriculo #cvResumeWizard :is(label, legend, p, small, .cv-field-caption,
+    .curriculo-campo-v84, .cv85-opcional, .cv-entry-help, .cv-current-role,
+    .cv-school-tip, .cv-manual-course-card, .cv-guide-tip, #cvStepCounter) { color: #374151 !important; }
+  #pagina-curriculo #cvResumeWizard :is(.cv85-section-head p, .cv-context-guide p,
+    .cv-guide-tip, .cv-guide-match) :is(strong, span, small) { color: #374151 !important; }
+  #pagina-curriculo #cvResumeWizard :is(input:not([type="checkbox"]):not([type="radio"]):not([type="hidden"]):not([type="submit"]):not([type="button"]), select, textarea, [contenteditable="true"]),
+  body.cp-shell-active #emCandidateProfile :is(input, select, textarea) {
+    background-color: #f9fafb !important;
+    color: #374151 !important;
+    -webkit-text-fill-color: #374151 !important;
+    caret-color: #374151 !important;
+  }
+  #pagina-curriculo #cvResumeWizard :is(input, select, textarea):not(.em-field-valid):not(.em-field-invalid),
+  body.cp-shell-active #emCandidateProfile :is(input, select, textarea):not(.em-field-valid):not(.em-field-invalid) { border-color: #d1d5db !important; }
+  #pagina-curriculo #cvResumeWizard :is(input, select, textarea):focus:not(.em-field-invalid) {
+    border-color: #6b7280 !important;
+    outline: 2px solid #d1d5db !important;
+    outline-offset: 2px !important;
+    box-shadow: none !important;
+  }
+  #pagina-curriculo #cvResumeWizard :is(input, textarea)::placeholder,
+  body.cp-shell-active #emCandidateProfile :is(input, textarea)::placeholder {
+    color: #6b7280 !important; -webkit-text-fill-color: #6b7280 !important; opacity: 1 !important;
+  }
+  #pagina-curriculo #cvResumeWizard :is(input, select, textarea):disabled {
+    background-color: #f3f4f6 !important; color: #6b7280 !important; -webkit-text-fill-color: #6b7280 !important;
+  }
+  #pagina-curriculo #cvResumeWizard :is(.cv-professional-field, .cv-date-control) > svg { color: #6b7280 !important; stroke: #6b7280 !important; }
+  #pagina-curriculo #cvResumeWizard :is(.cv85-section-head h3, .cv-entry-title, .cv-context-guide h2) { color: #0080c9 !important; }
+  #pagina-curriculo #cvResumeWizard .cv-entry-title svg { color: #0080c9 !important; stroke: #0080c9 !important; }
+  #pagina-curriculo #cvResumeWizard :is(#curriculoOnlineV84, .cv-context-guide,
+    .cv-entry, .cv-entry-card, .experiencia-v84, .formacao-v84) { background: #fff !important; border-color: #d1d5db !important; }
+  #pagina-curriculo #cvResumeWizard :is(.cv85-number, .cv-guide-tip, .cv-school-tip,
+    .cv-manual-course-card, .cv-add-entry, .cv-chip, .cv-choice,
+    .cv-preference-trigger, .cv-multi-trigger, .cv-preference-multi > label) {
+    background: #f3f4f6 !important; border-color: #d1d5db !important; color: #374151 !important;
+  }
+  #pagina-curriculo #cvResumeWizard :is(.cv-preference-trigger, .cv-multi-trigger, .cv-chip, .cv-choice) :is(span, small) { color: #374151 !important; }
+  #pagina-curriculo #cvResumeWizard :is(input[type="checkbox"], input[type="radio"]) { accent-color: #ff981f !important; }
+  #pagina-curriculo #cvResumeWizard .cv-preference-multi > label.selected { border-color: #ff981f !important; }
+  #pagina-curriculo #cvResumeWizard :is(.cv-step-nav, .cv-wizard-actions) { border-color: #e5e7eb !important; }
+  #pagina-curriculo #cvResumeWizard .cv-step-nav button,
+  #pagina-curriculo #cvResumeWizard .cv-step-nav button:hover { background: #f3f4f6 !important; border-color: #d1d5db !important; color: #374151 !important; }
+  #pagina-curriculo #cvResumeWizard .cv-step-nav button > span { background: #e5e7eb !important; color: #374151 !important; border-color: #d1d5db !important; }
+  #pagina-curriculo #cvResumeWizard .cv-step-nav button[aria-current="step"] :is(strong, small) { color: #0080c9 !important; }
+  #pagina-curriculo #cvResumeWizard .cv-step-nav button[aria-current="step"] > span { background: #0080c9 !important; color: #fff !important; border-color: #0080c9 !important; }
+  #pagina-curriculo #cvResumeWizard .cv-wizard-actions button:not(#cvWizardNext) { background: #fff !important; border-color: #d1d5db !important; color: #374151 !important; }
+  #pagina-curriculo #cvResumeWizard .em-field-message { color: #a43e35 !important; }
+
+  #pagina-curriculo .cv-purple-hero { background: #0080c9 !important; }
+  #pagina-curriculo .cv-purple-hero :is(h2, h2 span, p, small, strong, .cv-rail-label, .cv85-score > span, .cv85-kicker) { color: #fff !important; }
+  #pagina-curriculo .cv-purple-hero .cv-rail-track { background: #e5e7eb !important; }
+  #pagina-curriculo .cv-purple-hero .cv-rail-track i { background: #ff981f !important; }
+}
