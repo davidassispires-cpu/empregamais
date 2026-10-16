@@ -90,10 +90,14 @@
   /* All eight resume steps, including dynamically added education/experience. */
   #pagina-curriculo #cvResumeWizard { color: #374151 !important; --candidate-contrast-ink: #374151 !important; }
   #pagina-curriculo #cvResumeWizard :is(p, small, .cv-entry-help, .cv-current-role,
-    .cv-school-tip, .cv-manual-course-card, .cv-guide-tip, #cvStepCounter) { color: #374151 !important; }
+    .cv-school-tip, .cv-manual-course-card, .cv-guide-tip, #cvStepCounter) {
+    color: #374151 !important; --candidate-contrast-ink: #374151 !important;
+  }
   #pagina-curriculo #cvResumeWizard :is(
     label:not(.cv-current-role):not(:has(> input[type="checkbox"])):not(:has(> input[type="radio"])),
-    legend, .cv-field-caption, .curriculo-campo-v84, .cv85-opcional) { color: #0080c9 !important; }
+    legend, .cv-field-caption, .curriculo-campo-v84, .cv85-opcional) {
+    color: #0080c9 !important; --candidate-contrast-ink: #0080c9 !important;
+  }
   #pagina-curriculo #cvResumeWizard :is(.cv85-section-head p, .cv-context-guide p,
     .cv-guide-tip, .cv-guide-match) :is(strong, span, small) { color: #374151 !important; }
   #pagina-curriculo #cvResumeWizard :is(input:not([type="checkbox"]):not([type="radio"]):not([type="hidden"]):not([type="submit"]):not([type="button"]), select, textarea, [contenteditable="true"]),
@@ -102,6 +106,7 @@
     color: #374151 !important;
     -webkit-text-fill-color: #374151 !important;
     caret-color: #374151 !important;
+    --candidate-contrast-ink: #374151 !important;
   }
   #pagina-curriculo #cvResumeWizard :is(input, select, textarea):not(.em-field-valid):not(.em-field-invalid),
   body.cp-shell-active #emCandidateProfile :is(input, select, textarea):not(.em-field-valid):not(.em-field-invalid) { border-color: #d1d5db !important; }
@@ -119,7 +124,9 @@
     background-color: #f3f4f6 !important; color: #6b7280 !important; -webkit-text-fill-color: #6b7280 !important;
   }
   #pagina-curriculo #cvResumeWizard :is(.cv-professional-field, .cv-date-control) > svg { color: #6b7280 !important; stroke: #6b7280 !important; }
-  #pagina-curriculo #cvResumeWizard :is(.cv85-section-head h3, .cv-entry-title, .cv-context-guide h2) { color: #0080c9 !important; }
+  #pagina-curriculo #cvResumeWizard :is(h2, h3, h4, .cv-entry-title) {
+    color: #0080c9 !important; --candidate-contrast-ink: #0080c9 !important;
+  }
   #pagina-curriculo #cvResumeWizard .cv-entry-title svg { color: #0080c9 !important; stroke: #0080c9 !important; }
   #pagina-curriculo #cvResumeWizard :is(#curriculoOnlineV84, .cv-context-guide,
     .cv-entry, .cv-entry-card, .experiencia-v84, .formacao-v84) { background: #fff !important; border-color: #d1d5db !important; }
@@ -127,6 +134,7 @@
     .cv-manual-course-card, .cv-add-entry, .cv-chip, .cv-choice,
     .cv-preference-trigger, .cv-multi-trigger, .cv-preference-multi > label) {
     background: #f3f4f6 !important; border-color: #d1d5db !important; color: #374151 !important;
+    --candidate-contrast-ink: #374151 !important;
   }
   #pagina-curriculo #cvResumeWizard :is(.cv-preference-trigger, .cv-multi-trigger, .cv-chip, .cv-choice) :is(span, small) { color: #374151 !important; }
   #pagina-curriculo #cvResumeWizard :is(input[type="checkbox"], input[type="radio"]) { accent-color: #ff981f !important; }

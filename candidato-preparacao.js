@@ -696,7 +696,8 @@
   if(!text&&!el.matches('input:not([type=checkbox]):not([type=radio]),textarea,select'))return;
   var style=getComputedStyle(el),size=parseFloat(style.fontSize);
   if(!sizes.has(el)&&size>=8&&size<=14){sizes.set(el,size);updates.push(function(){el.style.setProperty('font-size',(size+1)+'px','important');});}
-  if(colors.has(el)||!style.color)return;var action=el.closest('button,a,[role="button"]');if(action&&(action.classList.contains('ep-primary')||action.getAttribute('aria-pressed')==='true'||action.getAttribute('aria-current')==='page'||getComputedStyle(action).backgroundImage!=='none'))return;var c=rgb(style.color);if(!c)return;
+  // Resume fields have explicit title/value colors, including before wizard setup.
+  if(colors.has(el)||!style.color||el.closest('#curriculoOnlineV84,#cvResumeWizard'))return;var action=el.closest('button,a,[role="button"]');if(action&&(action.classList.contains('ep-primary')||action.getAttribute('aria-pressed')==='true'||action.getAttribute('aria-current')==='page'||getComputedStyle(action).backgroundImage!=='none'))return;var c=rgb(style.color);if(!c)return;
   var backgroundColor=background(el);if(!backgroundColor)return;var l=luminance(c),bg=luminance(backgroundColor),contrast=(Math.max(l,bg)+.05)/(Math.min(l,bg)+.05);
   if(bg>.65&&l>.105&&contrast<5&&Math.max.apply(null,c)-Math.min.apply(null,c)<100){updates.push(function(){el.style.setProperty('color','var(--candidate-contrast-ink, #74639b)','important');});colors.add(el);}
  });updates.forEach(function(update){update();});}
