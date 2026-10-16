@@ -462,5 +462,5 @@ html body #pagina-publicar#pagina-publicar#pagina-publicar .publish-process-remo
 
 /* Publishing content shares the recruiter navigation typeface. */
 @layer site-typography {
-html body #pagina-publicar#pagina-publicar#pagina-publicar,html body #pagina-publicar#pagina-publicar#pagina-publicar * {font-family:Inter,Arial,sans-serif!important;font-style:normal!important}
+html body #pagina-publicar#pagina-publicar#pagina-publicar,html body #pagina-publicar#pagina-publicar#pagina-publicar * {font-family:Poppins,Arial,sans-serif!important;font-style:normal!important}
 }
