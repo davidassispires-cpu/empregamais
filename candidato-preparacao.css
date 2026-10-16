@@ -1330,3 +1330,16 @@ html body.cp-shell-active :is(#cpCandidateHeader#cpCandidateHeader#cpCandidateHe
 html body.cp-shell-active :is(#cpCandidateHeader#cpCandidateHeader#cpCandidateHeader#cpCandidateHeader,.pagina.cp-tab-content.cp-tab-content.cp-tab-content.cp-tab-content,#emCandidateAccountMenu#emCandidateAccountMenu#emCandidateAccountMenu#emCandidateAccountMenu) .cp-card-journey li.is-linked:after{background:#b7a4d7!important}
 html body.cp-shell-active :is(#cpCandidateHeader#cpCandidateHeader#cpCandidateHeader#cpCandidateHeader,.pagina.cp-tab-content.cp-tab-content.cp-tab-content.cp-tab-content,#emCandidateAccountMenu#emCandidateAccountMenu#emCandidateAccountMenu#emCandidateAccountMenu) :is(.cp-confirm-cancel,.em-account-logout){background:#fff!important;color:#a43939!important;border-color:#e6bcbc!important}
 }
+
+@layer field-feedback {
+html body.cp-shell-active :is(#cpCandidateHeader#cpCandidateHeader#cpCandidateHeader#cpCandidateHeader,.pagina.cp-tab-content.cp-tab-content.cp-tab-content.cp-tab-content) .cp-overview-card{background:#fff!important;border-color:#e8e5ed!important}
+html body.cp-shell-active :is(#cpCandidateHeader#cpCandidateHeader#cpCandidateHeader#cpCandidateHeader,.pagina.cp-tab-content.cp-tab-content.cp-tab-content.cp-tab-content) .cp-overview-card:hover{background:#fffaf0!important}
+html body.cp-shell-active :is(#cpCandidateHeader#cpCandidateHeader#cpCandidateHeader#cpCandidateHeader,.pagina.cp-tab-content.cp-tab-content.cp-tab-content.cp-tab-content) .cp-toolbar :is(button,.cp-account,.cp-notification){background:transparent!important;color:#645183!important;border-color:#e6dff0!important}
+html body.cp-shell-active :is(#cpCandidateHeader#cpCandidateHeader#cpCandidateHeader#cpCandidateHeader,.pagina.cp-tab-content.cp-tab-content.cp-tab-content.cp-tab-content) .m3-brand span{color:#74639b!important}
+html body.cp-shell-active :is(#cpCandidateHeader#cpCandidateHeader#cpCandidateHeader#cpCandidateHeader,.pagina.cp-tab-content.cp-tab-content.cp-tab-content.cp-tab-content) #premium92Banner{border-left-color:#d9c778!important}
+html body.cp-shell-active :is(#cpCandidateHeader#cpCandidateHeader#cpCandidateHeader#cpCandidateHeader,.pagina.cp-tab-content.cp-tab-content.cp-tab-content.cp-tab-content) .m3-art :is(#m3body,#m3flap,#m3hair,#m3laptop) stop{stop-color:#a48dca!important}
+html body.cp-shell-active :is(#cpCandidateHeader#cpCandidateHeader#cpCandidateHeader#cpCandidateHeader,.pagina.cp-tab-content.cp-tab-content.cp-tab-content.cp-tab-content) .m3-art :is(#m3body,#m3flap,#m3hair,#m3laptop) stop:last-child{stop-color:#74618f!important}
+html body.cp-shell-active :is(#cpCandidateHeader#cpCandidateHeader#cpCandidateHeader#cpCandidateHeader,.pagina.cp-tab-content.cp-tab-content.cp-tab-content.cp-tab-content) .m3-art #m3sheet stop:last-child{stop-color:#eee7f8!important}
+html body.cp-shell-active :is(#cpCandidateHeader#cpCandidateHeader#cpCandidateHeader#cpCandidateHeader,.pagina.cp-tab-content.cp-tab-content.cp-tab-content.cp-tab-content) .m3-art #m3gold stop{stop-color:#f4d770!important}
+html body.cp-shell-active :is(#cpCandidateHeader#cpCandidateHeader#cpCandidateHeader#cpCandidateHeader,.pagina.cp-tab-content.cp-tab-content.cp-tab-content.cp-tab-content) .m3-art #m3gold stop:last-child{stop-color:#dfbc50!important}
+}
