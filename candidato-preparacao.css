@@ -1156,3 +1156,23 @@ html body #pagina-candidaturas#pagina-candidaturas#pagina-candidaturas .cp-card-
   html body dialog.cp-cancel-modal.cp-cancel-modal button{width:100%!important}
  }
 }
+
+@layer site-typography {
+ html body.cp-shell-active #cpCandidateHeader#cpCandidateHeader#cpCandidateHeader .cp-navigation,
+ html body.cp-shell-active #cpCandidateHeader#cpCandidateHeader#cpCandidateHeader .cp-navigation *{
+  font-family:'Montserrat Applications',Montserrat,Arial,sans-serif!important;font-style:normal!important;
+ }
+ html body.cp-shell-active #cpCandidateHeader#cpCandidateHeader#cpCandidateHeader .cp-navigation button[data-route][aria-current=page]{
+  --nav-stroke:#285b57!important;--nav-accent:#c2410c!important;--nav-fill:#eaf5f3!important;
+  background:#fff3e8!important;color:#a94716!important;
+ }
+ html body.cp-shell-active #cpCandidateHeader#cpCandidateHeader#cpCandidateHeader .cp-navigation button[data-route][aria-current=page]>.cp-card-icon{
+  background:#fff!important;border-color:#e7d4c5!important;color:#285b57!important;
+ }
+ html body.cp-shell-active #cpCandidateHeader#cpCandidateHeader#cpCandidateHeader .cp-navigation button[data-route][aria-current=page] svg{
+  color:#285b57!important;
+ }
+ html body.cp-shell-active #cpCandidateHeader#cpCandidateHeader#cpCandidateHeader .cp-navigation button[data-route][aria-current=page]>span:not(.cp-card-icon):not(.cp-message-count){
+  color:#a94716!important;
+ }
+}
