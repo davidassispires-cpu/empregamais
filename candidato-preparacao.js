@@ -108,6 +108,22 @@
   var until=job.urgenteAte||job.urgente_ate;
   return marked&&(!until||Number.isFinite(Date.parse(until))&&Date.parse(until)>(now==null?Date.now():now));
  }
+ function lowCompetition(job,now){
+  job=job||{};
+  var raw=job.dataPublicacao||job.publicadaEm||job.created_at||job.criado_em||job.criadoEm||job.dataCriacao;
+  if(!raw)return false;
+  var m=String(raw).match(/^(\d{2})\/(\d{2})\/(\d{4})$/),published=m?new Date(+m[3],+m[2]-1,+m[1]).getTime():Date.parse(raw);
+  var at=now==null?Date.now():now,total=null;
+  [job.totalCandidaturas,job.candidaturas_count].some(function(n){if((typeof n==='number'||typeof n==='string'&&/^\d+$/.test(n))&&Number.isSafeInteger(Number(n))&&Number(n)>=0){total=Number(n);return true;}return false;});
+  var status=norm(job.status),approval=norm(job.aprovacao),until=Date.parse(job.expiraEm||job.expira_em||'');
+  if(['encerrada','encerrado','pausada','pausado','inativa','inativo','expirada','expirado','rascunho','excluida'].indexOf(status)>=0||['pendente','reprovada','rejeitada','em analise'].indexOf(approval)>=0||Number.isFinite(until)&&until<=at)return false;
+  return Number.isFinite(published)&&at-published>=86400000&&total!==null&&total<15;
+ }
+ function lowCompetitionBadge(job){
+  var access=global.EmpregaMaisPremiumCandidatoV92,premium=false;
+  try{premium=access&&typeof access.ehPremium==='function'?!!access.ehPremium():premiumAccess(global.obterCandidatoAtual?global.obterCandidatoAtual():null);}catch(ignore){}
+  return premium&&lowCompetition(job)?'<span class="cp-low-competition" title="Publicada há pelo menos 24 horas e com menos de 15 candidaturas"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M4 4v16h16M7 9l5 5 7-8M14 6h5v5"/></svg>Baixa concorrência</span>':'';
+ }
  function recommendedJobs(rows,candidate,now){
   if(!premiumAccess(candidate,now))return [];
   var seen=new Set(),at=now==null?Date.now():now;
@@ -121,7 +137,7 @@
    return item.match.percent!=null;
   }).sort(function(a,b){return b.match.percent-a.match.percent||(Date.parse(b.job.dataPublicacao||b.job.criadoEm)||0)-(Date.parse(a.job.dataPublicacao||a.job.criadoEm)||0);});
  }
- var core={temPremium:premiumAccess,vagaUrgente:urgentJob,recomendarVagas:recommendedJobs,compatibilidade:compatibility,correspondeAlerta:matchesAlert,validarAlerta:validateAlert,perguntasEntrevista:interviewQuestions,orientarResposta:responseFeedback,corrigirTeste:gradeTest,testes:tests,podeEntrar:canJoin,linkEntrevista:interviewLink,escape:escape};
+ var core={baixaConcorrencia:lowCompetition,seloBaixaConcorrencia:lowCompetitionBadge,temPremium:premiumAccess,vagaUrgente:urgentJob,recomendarVagas:recommendedJobs,compatibilidade:compatibility,correspondeAlerta:matchesAlert,validarAlerta:validateAlert,perguntasEntrevista:interviewQuestions,orientarResposta:responseFeedback,corrigirTeste:gradeTest,testes:tests,podeEntrar:canJoin,linkEntrevista:interviewLink,escape:escape};
  global.EmpregaMaisPreparacao=core;
  if(typeof module!=='undefined'&&module.exports)module.exports=core;
  if(!global.document)return;
@@ -283,7 +299,7 @@
     var reasons=fit.criteria.filter(function(c){return c.available&&c.match>=.5;}).slice(0,3).map(function(c){return '<span>'+recommendationIcon(c.label.indexOf('Habilidade')>=0?'skills':'target')+escape(c.label)+'</span>';}).join('');
     var salary=typeof global.formatarSalarioExibicao==='function'?global.formatarSalarioExibicao(job.salario):job.salario;
     if(salary&&/\d/.test(salary)&&!/R\$/.test(salary))salary='R$ '+salary;
-    return '<article class="cp-recommendation-card"><div class="cp-recommendation-top"><span class="cp-small-icon">'+icon('briefcase')+'</span><div class="cp-recommendation-heading"><h2>'+escape(job.cargo||job.titulo||'Vaga')+'</h2><p>'+escape(conf?'Empresa confidencial':job.empresa||'Empresa')+'</p></div>'+recommendationIndicator(fit.percent)+'</div><div class="cp-recommendation-chips"><span>'+recommendationIcon('pin')+escape(job.cidade||'Local não informado')+(job.uf?' – '+escape(job.uf):'')+'</span><span>'+recommendationIcon('office')+escape(job.modalidade||'Modalidade não informada')+'</span><span>'+recommendationIcon('document')+escape(job.contrato||'Contrato não informado')+'</span>'+(urgentJob(job)?'<span class="cp-recommendation-urgent">'+icon('fire')+' Contratação urgente</span>':'')+'</div><strong class="cp-recommendation-salary">'+escape(salary||'Salário a combinar')+'</strong><div class="cp-recommendation-reasons" aria-label="Critérios em comum">'+reasons+'</div><div class="cp-recommendation-footer"><small>'+(job.dataPublicacao||job.criadoEm?'Publicada em '+formatDate(job.dataPublicacao||job.criadoEm):'Data não informada')+'</small><div><button type="button" class="cp-text-button" data-cp-fit="'+escape(job.id)+'">Ver análise</button><button type="button" class="cp-primary" data-cp-apply-job="'+escape(job.id)+'">Candidatar-se agora</button></div></div></article>';
+    return '<article class="cp-recommendation-card"><div class="cp-recommendation-top"><span class="cp-small-icon">'+icon('briefcase')+'</span><div class="cp-recommendation-heading"><h2>'+escape(job.cargo||job.titulo||'Vaga')+'</h2><p>'+escape(conf?'Empresa confidencial':job.empresa||'Empresa')+'</p></div>'+recommendationIndicator(fit.percent)+'</div><div class="cp-recommendation-chips"><span>'+recommendationIcon('pin')+escape(job.cidade||'Local não informado')+(job.uf?' – '+escape(job.uf):'')+'</span><span>'+recommendationIcon('office')+escape(job.modalidade||'Modalidade não informada')+'</span><span>'+recommendationIcon('document')+escape(job.contrato||'Contrato não informado')+'</span>'+(urgentJob(job)?'<span class="cp-recommendation-urgent">'+icon('fire')+' Contratação urgente</span>':'')+'</div>'+lowCompetitionBadge(job)+'<strong class="cp-recommendation-salary">'+escape(salary||'Salário a combinar')+'</strong><div class="cp-recommendation-reasons" aria-label="Critérios em comum">'+reasons+'</div><div class="cp-recommendation-footer"><small>'+(job.dataPublicacao||job.criadoEm?'Publicada em '+formatDate(job.dataPublicacao||job.criadoEm):'Data não informada')+'</small><div><button type="button" class="cp-text-button" data-cp-fit="'+escape(job.id)+'">Ver análise</button><button type="button" class="cp-primary" data-cp-apply-job="'+escape(job.id)+'">Candidatar-se agora</button></div></div></article>';
    }).join('')+'</div>';
   }
   if(refresh===true)stableHTML(workspace.querySelector('.cp-workspace-content'),html);

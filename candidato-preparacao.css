@@ -1321,3 +1321,9 @@ html body.cp-shell-active :is(#cpCandidateHeader#cpCandidateHeader#cpCandidateHe
 html body.cp-shell-active :is(#cpCandidateHeader#cpCandidateHeader#cpCandidateHeader#cpCandidateHeader,.pagina.cp-tab-content.cp-tab-content.cp-tab-content.cp-tab-content) #premium92Banner{background:#f3eefb!important;background-image:none!important;border-color:#ded4ed!important}
 html body.cp-shell-active :is(#cpCandidateHeader#cpCandidateHeader#cpCandidateHeader#cpCandidateHeader,.pagina.cp-tab-content.cp-tab-content.cp-tab-content.cp-tab-content) #premium92Banner :is(h2,h3,p,strong,small,span){color:#34333d!important}
 }
+
+/* Premium vacancy indicator uses the approved candidate palette. */
+@layer field-feedback {
+html body .cp-low-competition{display:inline-flex!important;align-items:center!important;gap:5px!important;max-width:100%;padding:4px 8px!important;margin:5px 0!important;border:1px solid #e7ca66!important;border-radius:6px!important;background:#fff8df!important;color:#645183!important;font:600 10px/1.4 Inter,Arial,sans-serif!important;white-space:nowrap!important}
+html body .cp-low-competition svg{width:13px!important;height:13px!important;flex:0 0 13px!important;stroke:currentColor!important;fill:none!important}
+}

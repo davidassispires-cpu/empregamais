@@ -650,7 +650,8 @@ document.addEventListener('pointerup',go,true);
    var activity=v.recrutadorAtivo||v.recrutador_ativo;
    if(activity===true)html+=badge('active','Recrutador ativo','Atividade de recrutamento confirmada');
    var total=v.totalCandidaturas!=null?v.totalCandidaturas:v.candidaturas_count;
-   if(age>24&&total!=null&&Number.isFinite(Number(total))&&Number(total)>=0&&Number(total)<15)html+=badge('low','Baixa concorrência','Menos de 15 candidaturas recebidas; publicada há mais de 24 horas');
+   var core=window.EmpregaMaisPreparacao,low=core&&core.seloBaixaConcorrencia?core.seloBaixaConcorrencia(v):'';
+   if(low)html+=low;
    if(!html)html=badge('quick','Candidatura rápida','Candidate-se pelo portal');
    if(target.dataset.emBadgeMarkup!==html){target.classList.add('em-status-badges');target.innerHTML=html;target.dataset.emBadgeMarkup=html;}
   });
@@ -667,7 +668,7 @@ html body #pagina-home #listaVagas#listaVagas#listaVagas .em-status-new{color:#1
 html body #pagina-home #listaVagas#listaVagas#listaVagas .em-status-active{color:#16804a!important;background:#effaf3!important;border-color:#d1eddc!important}
 html body #pagina-home #listaVagas#listaVagas#listaVagas .em-status-low{color:#ac6810!important;background:#fff8ec!important;border-color:#f4e1ba!important}
 html body #pagina-home #listaVagas#listaVagas#listaVagas .em-status-quick{color:#1768b4!important;background:#eef6ff!important;border-color:#d2e6fb!important}
-`;document.head.appendChild(style);paint();var list=document.getElementById('listaVagas');if(list)new MutationObserver(schedule).observe(list,{childList:true,subtree:true});window.addEventListener('storage',schedule);window.addEventListener('load',schedule);
+`;document.head.appendChild(style);paint();var list=document.getElementById('listaVagas');if(list)new MutationObserver(schedule).observe(list,{childList:true,subtree:true});window.addEventListener('storage',schedule);window.addEventListener('load',schedule);['empregamais:candidato-sincronizado','empregamais:candidaturas-sincronizadas'].forEach(function(event){document.addEventListener(event,schedule);});setInterval(function(){if(!document.hidden)schedule();},60000);
  }
  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',start,{once:true});else start();
 })();
