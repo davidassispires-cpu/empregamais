@@ -459,3 +459,8 @@ html body #pagina-publicar#pagina-publicar#pagina-publicar .publish-process-remo
 html body #pagina-publicar#pagina-publicar#pagina-publicar .publish-process-remove:disabled{opacity:.3!important;cursor:default!important}
 @media(max-width:600px){html body #pagina-publicar#pagina-publicar#pagina-publicar .publish-process-modes{grid-template-columns:1fr!important}html body #pagina-publicar#pagina-publicar#pagina-publicar .publish-process-row{gap:6px!important;padding:8px!important;grid-template-columns:14px 24px minmax(0,1fr) 28px!important}}
 }
+
+/* Publishing content shares the recruiter navigation typeface. */
+@layer site-typography {
+html body #pagina-publicar#pagina-publicar#pagina-publicar,html body #pagina-publicar#pagina-publicar#pagina-publicar * {font-family:Inter,Arial,sans-serif!important;font-style:normal!important}
+}
