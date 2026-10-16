@@ -1077,3 +1077,9 @@ html body #pagina-painel-candidato#pagina-painel-candidato.cp-enhanced #cpPrepar
 html body #pagina-painel-candidato#pagina-painel-candidato.cp-enhanced #cpPreparationWorkspace#cpPreparationWorkspace .cp-recommendation-footer{flex-direction:column!important;align-items:stretch!important}
 html body #pagina-painel-candidato#pagina-painel-candidato.cp-enhanced #cpPreparationWorkspace#cpPreparationWorkspace .cp-recommendation-footer button{min-height:44px!important}
 }}
+
+/* Premium access summary belongs exclusively to the overview. */
+html body #pagina-painel-candidato:not(.ativa) #premium92Banner,
+html body #pagina-painel-candidato:is(.cp-tool-active,.cp-recommendations-active,.cp-messages-active) #premium92Banner{
+ display:none!important;
+}
