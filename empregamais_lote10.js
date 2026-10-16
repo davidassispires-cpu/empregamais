@@ -735,26 +735,28 @@ function companyHero(e){
         var cepField=detail.querySelector('.publish-cep-field');
         var addressRow=document.createElement('div');addressRow.className='publish-address-row';
         detail.insertBefore(addressRow,cepField);addressRow.appendChild(cepField);addressRow.appendChild(visibility);
-        var cepControl=document.getElementById('cepVaga'),cepStatus=document.getElementById('cepStatusEM'),confirmedCep='';
-        visibility.style.setProperty('display','none','important');
-        function revealAddressChoice(){
-          var code=String(cepControl.value||'').replace(/\D/g,'');
-          if(code.length!==8||!/CEP localizado/i.test(cepStatus.textContent||''))return;
-          if(confirmedCep===code)return;
-          confirmedCep=code;
-          visibility.style.removeProperty('display');
-          visibility.querySelector('label').setAttribute('tabindex','-1');
-        }
-        cepControl.addEventListener('input',function(){
-          var code=String(cepControl.value||'').replace(/\D/g,'');
-          if(code!==confirmedCep){confirmedCep='';visibility.style.setProperty('display','none','important');}
-        });
-        new MutationObserver(revealAddressChoice).observe(cepStatus,{childList:true,characterData:true,subtree:true});
-        revealAddressChoice();
+        var cepStatus=document.getElementById('cepStatusEM');
+        if(cepStatus){cepStatus.classList.add('publish-address-result');addressRow.insertAdjacentElement('afterend',cepStatus);}
+
 
       }
     }
 
+    ['horarioEntradaV183','horarioSaidaV183'].forEach(function(id){
+      var input=document.getElementById(id);if(!input)return;
+      input.value='';input.disabled=true;
+      var field=input.closest('.em-field');if(field)field.style.setProperty('display','none','important');
+    });
+    var salary=document.getElementById('salarioVaga');
+    if(salary&&salary.tagName!=='SELECT'){
+      var salarySelect=document.createElement('select');
+      salarySelect.id=salary.id;salarySelect.name=salary.name||'salario';
+      salarySelect.className=salary.className;salarySelect.setAttribute('aria-label','Faixa salarial');
+      var ranges=['A combinar','Até R$ 1.500,00','De R$ 1.500,01 a R$ 2.000,00','De R$ 2.000,01 a R$ 3.000,00','De R$ 3.000,01 a R$ 4.000,00','De R$ 4.000,01 a R$ 5.000,00','De R$ 5.000,01 a R$ 7.000,00','De R$ 7.000,01 a R$ 10.000,00','Acima de R$ 10.000,00'];
+      if(salary.value&&ranges.indexOf(salary.value)<0)ranges.push(salary.value);
+      ranges.forEach(function(value){var option=document.createElement('option');option.value=value;option.textContent=value;salarySelect.appendChild(option)});
+      salarySelect.value=salary.value||'A combinar';salary.replaceWith(salarySelect);
+    }
     page.querySelectorAll('.em-job-card-head').forEach(function(head,i){if(head.querySelector('.publish-section-icon'))return;var badge=document.createElement('span');badge.className='publish-step-badge';badge.textContent='Etapa '+head.closest('[data-panel]').dataset.panel+' de 6';head.appendChild(badge);var pic=document.createElement('span');pic.className='publish-section-icon';pic.innerHTML=icon(i===0?'briefcase':i===1?'pin':i===2?'company':i===3?'mail':'check');head.prepend(pic)});
     [['empresaVaga','company'],['cargoVaga','briefcase'],['areaVaga','company'],['contratoVaga','card'],['cidadeVaga','pin'],['salarioVaga','card']].forEach(function(pair){var input=document.getElementById(pair[0]);if(!input||input.closest('.publish-input-wrap'))return;var wrap=document.createElement('div');wrap.className='publish-input-wrap';input.parentNode.insertBefore(wrap,input);var pic=document.createElement('span');pic.className='publish-field-icon';pic.innerHTML=icon(pair[1]);wrap.appendChild(pic);wrap.appendChild(input)});
     var upload=document.getElementById('logoVaga');if(upload&&!page.querySelector('.publish-logo-upload')){var field=upload.closest('.em-field');if(field){var box=document.createElement('div');box.className='publish-logo-upload';box.innerHTML='<div class="publish-logo-placeholder">'+icon('company')+'</div><div><strong>Logo da empresa</strong><p>Adicione sua logo para personalizar a oportunidade.</p><label class="publish-upload-button" for="logoVaga">'+icon('plus')+' Enviar logo</label><small class="publish-file-name" aria-live="polite"></small></div>';field.prepend(box);var preview=document.getElementById('previewLogo');if(preview)box.querySelector('.publish-logo-placeholder').appendChild(preview);upload.addEventListener('change',function(){box.querySelector('.publish-file-name').textContent=upload.files&&upload.files[0]?upload.files[0].name:''})}}
@@ -812,7 +814,7 @@ function companyHero(e){
   }
   function mountPublish() {
     var page=document.getElementById('pagina-publicar');if(!page||!host)return;
-    if(!document.getElementById('em-publish-profile-design')){var link=document.createElement('link');link.id='em-publish-profile-design';link.rel='stylesheet';link.href='publicacao-painel.css?v=20261016-process-editor-3';document.head.appendChild(link);}
+    if(!document.getElementById('em-publish-profile-design')){var link=document.createElement('link');link.id='em-publish-profile-design';link.rel='stylesheet';link.href='publicacao-painel.css?v=20261016-details-4';document.head.appendChild(link);}
     var shell=page.querySelector('.em-job-shell');if(shell&&!shell.querySelector('.em-publish-heading')){var heading=document.createElement('div');heading.className='em-publish-heading';heading.innerHTML='<small>RECRUTAMENTO E SELEÇÃO</small><h1>Publicar vaga</h1><p>Preencha as etapas e revise os dados antes de enviar sua oportunidade.</p>';shell.prepend(heading);}
     if(page.slot!=='recruiter-publish')page.slot='recruiter-publish';if(!page.classList.contains('ativa'))page.classList.add('ativa');
     if(!page.classList.contains('em-publish-in-panel'))page.classList.add('em-publish-in-panel');if(page.style.getPropertyValue('display')!=='block'||page.style.getPropertyPriority('display')!=='important')page.style.setProperty('display','block','important');
