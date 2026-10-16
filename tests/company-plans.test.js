@@ -25,6 +25,7 @@ assert.equal(P.publicationCount(e,jobs,now),2,'closed jobs still consume a publi
 assert.equal(P.serviceActive({destaque:true,destaqueAte:'2026-10-13T11:59:59Z'},'destaque',now),false);
 assert.equal(P.serviceActive({destaque:true,destaqueAte:'2026-10-14T12:00:00Z'},'destaque',now),true);
 assert.deepEqual(Object.values(P.services).map(s=>s.dias),[15,7,15]);
+assert.deepEqual(Object.values(P.services).map(s=>Math.round(s.preco*100)),[2990,1990,1790]);
 const root=path.join(__dirname,'..'),html=fs.readFileSync(path.join(root,'index.html'),'utf8');
 function extract(source,name){let m=new RegExp('function\\s+'+name+'\\s*\\(').exec(source);assert(m,name);let a=source.indexOf('{',m.index),depth=0,q=null,esc=false;for(let i=a;i<source.length;i++){const c=source[i];if(q){if(esc)esc=false;else if(c==='\\')esc=true;else if(c===q)q=null;}else if(['"',"'",'`'].includes(c))q=c;else if(c==='{')depth++;else if(c==='}'&&--depth===0)return source.slice(m.index,i+1);}throw Error(name);}
 const context=vm.createContext({window:{EMPlanos:P}});

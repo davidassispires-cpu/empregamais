@@ -15,7 +15,7 @@ begin
  if new.tipo='confidencial' and job.confidencial and (job.confidencial_ate is null or job.confidencial_ate>now()) then raise exception 'Esta vaga já possui confidencialidade ativa.'; end if;
  new.empresa_id:=job.empresa_id;new.user_id:=coalesce(auth.uid(),job.user_id);
  if new.tipo not in ('destaque','urgencia','confidencial') then raise exception 'Serviço inválido.'; end if;
- new.valor:=9.90;
+ new.valor:=case new.tipo when 'destaque' then 29.90 when 'urgencia' then 19.90 when 'confidencial' then 17.90 end;
  new.dias:=case when new.tipo='urgencia' then 7 else 15 end;
  new.status:='aguardando_pagamento';new.criado_em:=now();new.ativado_em:=null;new.cancelado_em:=null;
  return new;

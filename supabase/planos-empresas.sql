@@ -84,7 +84,7 @@ begin
    extra_key:=case feature when 'destaque' then 'destaques' when 'urgente' then 'urgentes' else 'confidenciais' end;
    limit_feature:=(limits->>feature)::integer+greatest(0,coalesce((e.recursos_admin->>extra_key)::integer,0));
    select count(*) into used from private.em_service_activations a where a.empresa_id=e.id and a.service=feature and a.activated_at>=month_start;
-   if used>=limit_feature then raise exception 'Saldo mensal de % esgotado. A contratação avulsa custa R$ 9,90.',feature using errcode='42501'; end if;
+   if used>=limit_feature then raise exception 'Saldo mensal de % esgotado. A contratação avulsa custa R$ %.',feature,case feature when 'destaque' then '29,90' when 'urgente' then '19,90' else '17,90' end using errcode='42501'; end if;
    ending:=now()+make_interval(days=>days);
    insert into private.em_service_activations(empresa_id,vaga_id,service,activated_at,expires_at) values(e.id,new.id,feature,now(),ending);
   elsif enabled and ending is null then
@@ -134,7 +134,7 @@ alter table public.solicitacoes_extras drop constraint solicitacoes_extras_tipo_
 alter table public.solicitacoes_extras add constraint solicitacoes_extras_tipo_check check(tipo in ('destaque','urgencia','confidencial'));
 create or replace function private.solicitar_servico_vaga(p_vaga_id uuid,p_servico text)
 returns public.solicitacoes_extras language plpgsql security definer set search_path='' as $$
-declare v public.vagas; result public.solicitacoes_extras; service text; duration integer;
+declare v public.vagas; result public.solicitacoes_extras; service text; duration integer; amount numeric;
 begin
  if auth.uid() is null then raise exception 'Autenticação necessária.' using errcode='42501'; end if;
  service:=case when p_servico='urgente' then 'urgencia' else p_servico end;
@@ -143,9 +143,10 @@ begin
  if v.id is null or not(v.user_id=auth.uid() or private.usuario_pertence_empresa(v.empresa_id)) then raise exception 'Esta vaga não pertence à empresa.' using errcode='42501'; end if;
  if v.status='encerrada' then raise exception 'A vaga está encerrada.' using errcode='42501'; end if;
  duration:=case when service='urgencia' then 7 else 15 end;
- select * into result from public.solicitacoes_extras where vaga_id=v.id and tipo=service and status='aguardando_pagamento' and valor=9.90 and dias=duration order by criado_em desc limit 1;
+ amount:=case service when 'destaque' then 29.90 when 'urgencia' then 19.90 else 17.90 end;
+ select * into result from public.solicitacoes_extras where vaga_id=v.id and tipo=service and status='aguardando_pagamento' order by criado_em desc limit 1;
  if result.id is not null then return result; end if;
- insert into public.solicitacoes_extras(vaga_id,empresa_id,user_id,tipo,valor,dias,status) values(v.id,v.empresa_id,auth.uid(),service,9.90,duration,'aguardando_pagamento') returning * into result;
+ insert into public.solicitacoes_extras(vaga_id,empresa_id,user_id,tipo,valor,dias,status) values(v.id,v.empresa_id,auth.uid(),service,amount,duration,'aguardando_pagamento') returning * into result;
  return result;
 end $$;
 revoke all on function private.solicitar_servico_vaga(uuid,text) from public,anon;

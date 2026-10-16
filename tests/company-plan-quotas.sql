@@ -39,7 +39,7 @@ begin
   end loop;
   req:=public.solicitar_servico_vaga(ids[cap],'confidencial');repeated:=public.solicitar_servico_vaga(ids[cap],'confidencial');
   assert req.id=repeated.id,'duplicate clicks must reuse the same pending request';
-  assert req.valor=9.90 and req.dias=15 and req.status='aguardando_pagamento','confidential purchase terms';
+  assert req.valor=17.90 and req.dias=15 and req.status='aguardando_pagamento','confidential purchase terms';
   assert not(select confidencial from public.vagas where id=ids[cap]),'unpaid requests cannot activate a feature';
   quote:=public.solicitar_plano('empresa',plan,'pix');assert quote.valor=(limits->>'preco')::numeric,'approved plan price';
   delete from public.solicitacoes_extras where vaga_id=any(ids);

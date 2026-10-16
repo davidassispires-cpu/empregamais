@@ -8,9 +8,9 @@
     anual: {id:'anual',nome:'Anual',preco:399.90,meses:12,dias:365,vagas:150,destaques:6,urgentes:6,confidenciais:3,pago:true,logo:true,whatsapp:true,link:true}
   };
   var services = {
-    destaque:{nome:'Destacar vaga',titulo:'Vaga em destaque',dias:15,preco:9.90,campo:'destaques'},
-    urgente:{nome:'Marcar como urgente',titulo:'Vaga urgente',dias:7,preco:9.90,campo:'urgentes'},
-    confidencial:{nome:'Tornar confidencial',titulo:'Vaga confidencial',dias:15,preco:9.90,campo:'confidenciais'}
+    destaque:{nome:'Destacar vaga',titulo:'Vaga em destaque',dias:15,preco:29.90,campo:'destaques'},
+    urgente:{nome:'Marcar como urgente',titulo:'Vaga urgente',dias:7,preco:19.90,campo:'urgentes'},
+    confidencial:{nome:'Tornar confidencial',titulo:'Vaga confidencial',dias:15,preco:17.90,campo:'confidenciais'}
   };
   function normalize(key) {
     key=String(key||'basico').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/^plano\s+/,'').trim();
