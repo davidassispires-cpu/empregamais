@@ -1286,3 +1286,15 @@ html body #pagina-candidaturas#pagina-candidaturas#pagina-candidaturas .cp-card-
   html body #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato .cp-next-interview>.cp-interview-extra{grid-column:1!important;grid-row:4!important;border:0!important;padding:0!important}
  }
 }
+
+/* White canvas throughout the candidate portal. */
+@layer field-feedback {
+ html:has(body.cp-shell-active),
+ html body.cp-shell-active,
+ html body.cp-shell-active .pagina.cp-tab-content,
+ html body.cp-shell-active #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato,
+ html body.cp-shell-active #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato .container-dashboard,
+ html body.cp-shell-active #cpCandidateHeader#cpCandidateHeader#cpCandidateHeader{
+  background:#fff!important;background-image:none!important;
+ }
+}
