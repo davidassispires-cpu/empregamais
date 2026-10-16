@@ -100,12 +100,13 @@ test('automatic refresh preserves an open insight only while the candidate still
  }
 });
 
-test('every stage is visible, with explanations only for recorded stages and no fabricated progression',()=>{
+test('the compact journey keeps six stages with explanations and omits the removed heading and ending row',()=>{
  const env=fixture(false,{status:'Entrevista agendada'}),card=env.render(),buttons=card.querySelectorAll('.cp-journey-step');
- assert.deepEqual(buttons.map(button=>button.dataset.cpJourneyKey),['enviada','avaliacao','contato','entrevista','aprovadas','contratadas','reprovadas','canceladas']);
+ assert.deepEqual(buttons.map(button=>button.dataset.cpJourneyKey),['enviada','avaliacao','contato','entrevista','aprovadas','contratadas']);
  assert.deepEqual(buttons.filter(button=>!button.disabled).map(button=>button.dataset.cpJourneyKey),['enviada','entrevista']);
  assert.equal(buttons[3].getAttribute('aria-current'),'step');
- assert.equal(card.querySelectorAll('.cp-journey-ending').length,2);
+ assert.equal(card.querySelector('.cp-journey-heading'),null);
+ assert.equal(card.querySelector('.cp-journey-endings'),null);
  assert.equal(buttons[1].onclick,undefined);
 });
 

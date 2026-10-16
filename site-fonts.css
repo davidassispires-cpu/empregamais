@@ -175,25 +175,16 @@
   #listaCandidaturas.cp-applications-list-view .cp-journey-footer {
     grid-column: 1 / -1 !important;
     min-width: 0 !important;
-    margin-top: 12px !important;
-    padding-top: 10px !important;
-    border-top: 1px solid #e6e9ed !important;
+    margin-top: 10px !important;
+    padding-top: 0 !important;
+    border-top: 0 !important;
   }
-  #listaCandidaturas.cp-applications-list-view .cp-journey-heading {
-    display: flex !important;
-    align-items: center !important;
-    justify-content: space-between !important;
-    flex-wrap: wrap !important;
-    gap: 5px 14px !important;
-  }
-  #listaCandidaturas.cp-applications-list-view .cp-journey-heading h4 { margin: 0 !important; color: #173550 !important; font-size: 12px !important; font-weight: 700 !important; }
-  #listaCandidaturas.cp-applications-list-view .cp-journey-heading small { color: #475569 !important; font-size: 11px !important; line-height: 1.5 !important; }
   #listaCandidaturas.cp-applications-list-view .cp-card-journey {
     display: grid !important;
     grid-template-columns: repeat(6, minmax(0, 1fr)) !important;
     align-items: start !important;
     min-width: 0 !important;
-    margin: 8px 0 0 !important;
+    margin: 0 !important;
     padding: 0 !important;
     border: 0 !important;
     list-style: none !important;
@@ -278,27 +269,6 @@
     color: #173550 !important;
     font-weight: 700 !important;
   }
-  #listaCandidaturas.cp-applications-list-view .cp-journey-endings {
-    display: flex !important;
-    align-items: center !important;
-    flex-wrap: wrap !important;
-    gap: 6px !important;
-    margin-top: 6px !important;
-  }
-  #listaCandidaturas.cp-applications-list-view .cp-journey-endings-label { color: #475569 !important; font-size: 11px !important; }
-  #listaCandidaturas.cp-applications-list-view .cp-journey-ending .cp-journey-step {
-    flex-direction: row !important;
-    justify-content: center !important;
-    min-height: 28px !important;
-    padding: 4px 8px !important;
-    border: 1px solid #e2e8f0 !important;
-    background: #f8fafc !important;
-  }
-  #listaCandidaturas.cp-applications-list-view .cp-journey-ending i { display: none !important; }
-  #listaCandidaturas.cp-applications-list-view .cp-journey-ending :is(.cp-journey-step-label, .cp-journey-step-state) { font-size: 11px !important; }
-  #listaCandidaturas.cp-applications-list-view .cp-journey-ending .cp-journey-step-state { display: none !important; }
-  #listaCandidaturas.cp-applications-list-view .cp-journey-ending:is(.is-current, .is-done) .cp-journey-step { background: #fff3ed !important; border-color: #efc7af !important; }
-  #listaCandidaturas.cp-applications-list-view .cp-journey-ending.is-current .cp-journey-step-label { color: #99410a !important; font-weight: 700 !important; }
   #listaCandidaturas.cp-applications-list-view .cp-journey-explanation {
     margin-top: 12px !important;
     padding: 13px 15px !important;
@@ -567,11 +537,6 @@
     #listaCandidaturas.cp-applications-list-view .cp-option-lock svg { width: 17px !important; height: 17px !important; flex-basis: 17px !important; }
     #listaCandidaturas.cp-applications-list-view .cp-application-open { font-size: 11px !important; padding: 8px 6px !important; }
     #listaCandidaturas.cp-applications-list-view .cp-card-journey { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; }
-    #listaCandidaturas.cp-applications-list-view .cp-journey-endings { align-items: stretch !important; }
-    #listaCandidaturas.cp-applications-list-view .cp-journey-endings-label { width: 100% !important; }
-    #listaCandidaturas.cp-applications-list-view .cp-journey-ending { flex: 1 1 0 !important; min-width: 0 !important; }
-    #listaCandidaturas.cp-applications-list-view .cp-journey-ending .cp-journey-step { flex-direction: column !important; gap: 3px !important; }
-    #listaCandidaturas.cp-applications-list-view .cp-journey-ending .cp-journey-step-state { border: 0 !important; padding: 0 !important; }
   }
 }
 

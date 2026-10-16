@@ -216,10 +216,7 @@
  }
  function buildJourney(a,index){
   var footer=document.createElement('section');footer.className='cp-journey-footer';footer.setAttribute('aria-label','Etapas do processo seletivo');
-  var heading=document.createElement('div');heading.className='cp-journey-heading';heading.innerHTML='<h4>Etapas do processo</h4><small>Passe o mouse ou toque nas etapas marcadas para entender.</small>';footer.appendChild(heading);
   var journey=document.createElement('ol');journey.className='cp-card-journey';journey.setAttribute('aria-label','Etapa atual: '+label(a));footer.appendChild(journey);
-  var endings=document.createElement('div');endings.className='cp-journey-endings';endings.setAttribute('aria-label','Possíveis encerramentos');
-  var endingsLabel=document.createElement('span');endingsLabel.className='cp-journey-endings-label';endingsLabel.textContent='Encerramento:';endings.appendChild(endingsLabel);footer.appendChild(endings);
   var explanation=document.createElement('div');explanation.className='cp-journey-explanation';explanation.id='cpJourneyExplanation'+index;explanation.hidden=true;explanation.setAttribute('role','region');explanation.setAttribute('aria-live','polite');
   var buttons=[],active=null,pinned=false;
   function close(){explanation.hidden=true;active=null;pinned=false;buttons.forEach(function(button){if(!button.disabled)button.setAttribute('aria-expanded','false');});}
@@ -229,20 +226,20 @@
    explanation.setAttribute('aria-labelledby',button.id);
    explanation.innerHTML='<div class="cp-journey-explanation-heading"><strong>'+safe(step.label)+'</strong><span>'+(step.current?'Etapa atual':'Etapa registrada')+'</span></div><p>'+safe(step.text)+'</p>'+(date?'<small>Registrada em '+safe(date)+'</small>':'');explanation.hidden=false;
   }
-  var steps=journeyModel(a);
+  var steps=journeyModel(a).filter(function(step){return !step.alternate;});
   steps.forEach(function(step,n){
-   var item=document.createElement(step.alternate?'span':'li');item.className=(step.alternate?'cp-journey-ending ':'')+(step.current?'is-current':step.registered?'is-done':'is-pending');
-   if(!step.alternate&&step.registered&&steps[n+1]&&steps[n+1].registered&&!steps[n+1].alternate)item.classList.add('is-linked');
+   var item=document.createElement('li');item.className=step.current?'is-current':step.registered?'is-done':'is-pending';
+   if(step.registered&&steps[n+1]&&steps[n+1].registered)item.classList.add('is-linked');
    var button=document.createElement('button');button.type='button';button.className='cp-journey-step';button.id='cpJourneyStep'+index+'-'+step.key;button.dataset.cpJourneyKey=step.key;button.disabled=!step.registered;
    button.setAttribute('aria-label',step.label+'. '+(step.current?'Etapa atual.':step.registered?'Etapa registrada. Ver explicação.':'Sem registro desta etapa.'));
    if(step.current)button.setAttribute('aria-current','step');
-   button.innerHTML='<i aria-hidden="true">'+(step.alternate?'×':step.registered&&!step.current?'✓':n+1)+'</i><span class="cp-journey-step-label">'+safe(step.label)+'</span><small class="cp-journey-step-state">'+(step.current?'Etapa atual':step.registered?'Registrada':step.alternate?'Se aplicável':'Sem registro')+'</small>';
+   button.innerHTML='<i aria-hidden="true">'+(step.registered&&!step.current?'✓':n+1)+'</i><span class="cp-journey-step-label">'+safe(step.label)+'</span><small class="cp-journey-step-state">'+(step.current?'Etapa atual':step.registered?'Registrada':'Sem registro')+'</small>';
    if(step.registered){
     button.setAttribute('aria-expanded','false');button.setAttribute('aria-controls',explanation.id);
     button.onmouseenter=function(){pinned=false;show(step,button);};button.onfocus=function(){pinned=false;show(step,button);};
     button.onclick=function(){if(active===button&&pinned){close();return;}pinned=true;show(step,button);};
    }
-   buttons.push(button);item.appendChild(button);(step.alternate?endings:journey).appendChild(item);
+   buttons.push(button);item.appendChild(button);journey.appendChild(item);
   });
   footer.appendChild(explanation);
   footer.addEventListener('mouseleave',function(){if(!pinned)close();});
