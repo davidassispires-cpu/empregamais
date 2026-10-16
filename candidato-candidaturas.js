@@ -212,7 +212,8 @@
    {key:'reprovadas',label:'Reprovado',alternate:true,text:'A empresa encerrou sua participação nesta seleção. Você pode continuar se candidatando a outras oportunidades.'},
    {key:'canceladas',label:'Cancelada',alternate:true,text:'Você cancelou sua participação neste processo seletivo. A desistência permanece registrada na candidatura.'}
   ];
-  return steps.map(function(step){var record=recorded[step.key];return Object.assign({},step,{registered:!!record,current:step.key===current,date:record&&record.data||''});});
+  var currentIndex=steps.findIndex(function(step){return step.key===current&&!step.alternate;});
+  return steps.map(function(step,index){var record=recorded[step.key],reached=!step.alternate&&currentIndex>=0&&index<=currentIndex;return Object.assign({},step,{registered:!!record||reached,inferred:!record&&reached,current:step.key===current,date:record&&record.data||''});});
  }
  function journeyTimestamp(value){
   if(typeof value!=='string'||!value)return '';
@@ -256,7 +257,7 @@
    // Pre-render each tooltip so native CSS hover also works after an automatic list refresh.
    var explanation=document.createElement('div');explanation.className='cp-journey-explanation';explanation.id='cpJourneyExplanation'+index+'-'+step.key;explanation.setAttribute('role','tooltip');
    var date=step.registered?journeyTimestamp(step.date):'';
-   explanation.innerHTML='<div class="cp-journey-explanation-heading"><strong>'+safe(step.label)+'</strong><span>'+(step.current?'Etapa atual':step.registered?'Etapa registrada':'Não registrada')+'</span></div><p>'+safe(step.registered?step.text:step.pendingText)+'</p>'+(date?'<small>Registrada em '+safe(date)+'</small>':!step.registered?'<small>Esta etapa ainda não foi registrada para a sua candidatura.</small>':'');
+   explanation.innerHTML='<div class="cp-journey-explanation-heading"><strong>'+safe(step.label)+'</strong><span>'+(step.current?'Etapa atual':step.registered?'Etapa registrada':'Não registrada')+'</span></div><p>'+safe(step.inferred?'Etapa anterior à fase atual da candidatura. Não há data individual registrada.':step.registered?step.text:step.pendingText)+'</p>'+(date?'<small>Registrada em '+safe(date)+'</small>':!step.registered?'<small>Esta etapa ainda não foi registrada para a sua candidatura.</small>':'');
    button.setAttribute('aria-expanded','false');button.setAttribute('aria-controls',explanation.id);button.setAttribute('aria-describedby',explanation.id);
    var entry={key:step.key,item:item,button:button};entries.push(entry);
    item.onmouseenter=function(){activate(entry);};
@@ -275,7 +276,7 @@
   list.classList.add('cp-applications-list-view');
   var rows=applications().filter(function(a){return matches(a)});
   list.querySelectorAll('.candidatura-item').forEach(function(card,i){
-   var a=rows[i];if(!a)return;card.dataset.cpApplicationStage=classify(a);var title=card.querySelector('.candidatura-top h3');if(title&&!title.querySelector('.cp-application-emblem')){var emblem=document.createElement('span');emblem.className='cp-application-emblem';emblem.setAttribute('aria-hidden','true');emblem.innerHTML=icon('briefcase');title.prepend(emblem);}if(card.querySelector('.cp-process-details'))return;
+   var a=rows[i];if(!a)return;card.dataset.cpApplicationStage=classify(a);var title=card.querySelector('.candidatura-top h3');if(title&&!title.querySelector('.cp-application-emblem')){var emblem=document.createElement('span');emblem.className='cp-application-emblem';emblem.setAttribute('aria-hidden','true');emblem.innerHTML=icon('briefcase');title.prepend(emblem);}if(card.querySelector('.cp-process-details')){var oldJourney=card.querySelector('.cp-journey-footer');if(oldJourney)oldJourney.replaceWith(buildJourney(a,i));return;}
    card.classList.add('cp-application-list-row');
    var top=card.querySelector('.candidatura-top'),info=top.firstElementChild,status=top.querySelector('.status-processo'),company=top.querySelector('p');if(company){company.textContent=a.empresa||'Empresa não informada';company.style.removeProperty('color');company.style.removeProperty('font-size');}var sent=document.createElement('div');sent.className='cp-application-date';sent.innerHTML=icon('calendar')+'<span>Enviada em '+safe(applicationDate(a.data||a.dataCandidatura))+'</span>';info.appendChild(sent);
    var notice=viewNotice(a,true);if(notice){var holder=document.createElement('div');holder.innerHTML=notice;info.appendChild(holder.firstChild);}
