@@ -22,9 +22,29 @@
   sessionStorage.removeItem('empregaMaisPapel');
   var profile={id:'demo-candidato',nome:'Ana Exemplo',email:'ana@example.com',telefone:'(31) 90000-0000',cep:'30000000',cidade:'Belo Horizonte',uf:'MG',areaProfissional:'Administrativo',cargoDesejado:'Assistente Administrativo',escolaridadeProfissional:'Superior em andamento',experienciaProfissional:'3 anos em atendimento e rotinas administrativas',habilidadesProfissionais:'Excel, atendimento e organização',modalidadePreferida:'Presencial',cidadeProfissional:'Belo Horizonte'};
   var now=new Date(),date=now.toISOString().slice(0,10);
-  var jobs=[{id:'demo-1',contratacaoUrgente:true,urgente:true,urgenteAte:new Date(Date.now()+7*86400000).toISOString(),cargo:'Assistente Administrativo',empresa:'Empresa Demonstração',empresaCnpj:'00000000000100',cidade:'Belo Horizonte',uf:'MG',area:'Administrativo',contrato:'CLT',modalidade:'Presencial',salario:'R$ 2.500,00',status:'ativa',aprovacao:'aprovada',dataPublicacao:date,criadoEm:now.toISOString(),expiraEm:new Date(Date.now()+45*86400000).toISOString(),descricao:'Oportunidade fictícia para visualizar o painel do candidato.',requisitos:'Organização, atendimento e conhecimentos de Excel.',beneficios:'Vale-transporte e vale-alimentação.'},{id:'demo-2',cargo:'Analista de Recursos Humanos',empresa:'Empresa Demonstração',empresaCnpj:'00000000000100',cidade:'Contagem',uf:'MG',area:'Recursos Humanos',contrato:'CLT',modalidade:'Híbrido',salario:'R$ 3.800,00',status:'ativa',aprovacao:'aprovada',dataPublicacao:date,criadoEm:now.toISOString(),expiraEm:new Date(Date.now()+45*86400000).toISOString(),descricao:'Vaga fictícia para conhecer as candidaturas e as vagas salvas.',requisitos:'Boa comunicação e experiência em rotinas de RH.',beneficios:'Vale-transporte.'}];
+  var day=86400000,urgentUntil=new Date(now.getTime()+7*day).toISOString(),featuredUntil=new Date(now.getTime()+15*day).toISOString();
+  function demoJob(number,daysAgo,details){
+    var published=new Date(now.getTime()-daysAgo*day).toISOString();
+    return Object.assign({id:'demo-'+number,demo:true,empresa:'Empresa Demonstração',empresaCnpj:'00000000000100',uf:'MG',contrato:'CLT',modalidade:'Presencial',status:'ativa',aprovacao:'aprovada',totalCandidaturas:20,dataPublicacao:published,criadoEm:published,expiraEm:new Date(now.getTime()+45*day).toISOString(),descricao:'Vaga de demonstração para conhecer o portal. Esta oportunidade é fictícia.',requisitos:'Boa comunicação, organização e conhecimentos relacionados ao cargo.',beneficios:'Vale-transporte e vale-alimentação.'},details);
+  }
+  var jobs=[
+    demoJob(1,0,{cargo:'Assistente Administrativo',cidade:'Belo Horizonte',area:'Administrativo',salario:'R$ 2.500,00',contratacaoUrgente:true,urgente:true,urgenteAte:urgentUntil,totalCandidaturas:8,requisitos:'Organização, atendimento e conhecimentos de Excel.'}),
+    demoJob(2,3,{cargo:'Analista de Recursos Humanos',cidade:'Contagem',area:'Recursos Humanos',modalidade:'Híbrido',salario:'R$ 3.800,00',destaque:true,destaqueAte:featuredUntil,requisitos:'Boa comunicação e experiência em rotinas de RH.'}),
+    demoJob(3,.15,{cargo:'Auxiliar de E-commerce',cidade:'Betim',area:'Comercial',salario:'R$ 2.200,00',empresa:'Comércio Demonstração',totalCandidaturas:5,requisitos:'Atendimento ao cliente, cadastro de produtos e organização de pedidos.'}),
+    demoJob(4,4,{cargo:'Vendedor de Loja',cidade:'Belo Horizonte',area:'Comercial',salario:'R$ 2.100,00 + comissão',empresa:'Varejo Demonstração',contratacaoUrgente:true,urgente:true,urgenteAte:urgentUntil}),
+    demoJob(5,5,{cargo:'Auxiliar de Logística',cidade:'Contagem',area:'Logística',salario:'R$ 2.350,00',empresa:'Empresa confidencial',confidencial:true,confidencialAte:featuredUntil}),
+    demoJob(6,.5,{cargo:'Operador de Caixa',cidade:'Betim',area:'Atendimento',salario:'R$ 1.950,00',empresa:'Varejo Demonstração',totalCandidaturas:4}),
+    demoJob(7,6,{cargo:'Assistente Financeiro',cidade:'Belo Horizonte',area:'Financeiro',modalidade:'Híbrido',salario:'R$ 2.900,00',destaque:true,destaqueAte:featuredUntil,totalCandidaturas:12,requisitos:'Excel, contas a pagar e receber e organização de documentos.'}),
+    demoJob(8,3,{cargo:'Recepcionista',cidade:'Ibirité',area:'Atendimento',salario:'R$ 2.000,00',empresa:'Empresa confidencial',confidencial:true,confidencialAte:featuredUntil}),
+    demoJob(9,2.5,{cargo:'Auxiliar de Produção',cidade:'Contagem',area:'Produção',salario:'R$ 2.180,00',empresa:'Indústria Demonstração',contratacaoUrgente:true,urgente:true,urgenteAte:urgentUntil,totalCandidaturas:32}),
+    demoJob(10,7,{cargo:'Analista de Marketing',cidade:'Nova Lima',area:'Marketing',modalidade:'Remoto',salario:'R$ 4.200,00',destaque:true,destaqueAte:featuredUntil}),
+    demoJob(11,.25,{cargo:'Atendente de Relacionamento',cidade:'Ribeirão das Neves',area:'Atendimento',salario:'R$ 1.980,00',empresa:'Serviços Demonstração'}),
+    demoJob(12,9,{cargo:'Assistente Comercial',cidade:'Sabará',area:'Comercial',salario:'R$ 2.600,00',requisitos:'Atendimento, elaboração de propostas e conhecimentos de Excel.'})
+  ];
   function seed(k,v){if(!localStorage.getItem(k))localStorage.setItem(k,JSON.stringify(v));}
-  seed('candidatosEmpregaMais',[profile]);seed('vagasEmpregaMais',jobs);
+  seed('candidatosEmpregaMais',[profile]);
+  // Refresh only the isolated job fixtures so returning demos see every example.
+  localStorage.setItem('vagasEmpregaMais',JSON.stringify(jobs));
   seed('candidaturasEmpregaMais',[{id:'demo-cand-1',vagaId:'demo-1',vaga:'Assistente Administrativo',empresa:'Empresa Demonstração',email:profile.email,nome:profile.nome,candidato:profile.nome,cidade:profile.cidade,status:'Em avaliação',data:date},{id:'demo-cand-2',vagaId:'demo-2',vaga:'Analista de Recursos Humanos',empresa:'Empresa Demonstração',email:profile.email,nome:profile.nome,candidato:profile.nome,cidade:profile.cidade,status:'Entrevista agendada',data:date}]);
   seed('favoritosEmpregaMais_'+profile.email,['demo-1','demo-2']);
   function sampleResume(){

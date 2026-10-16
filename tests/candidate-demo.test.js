@@ -61,7 +61,7 @@ assert.deepEqual(planLinks.map(link=>link.textContent),['Painel gratuito','Paine
 assert.equal(planLinks[0].getAttribute('aria-current'),'page');
 assert.equal(planLinks[1].getAttribute('aria-current'),null);
 assert.equal(env.ctx.carregarCandidaturas().length,2);
-assert.equal(env.ctx.carregarVagasPortal().length,2);
+assert.equal(env.ctx.carregarVagasPortal().length,12);
 const cv=JSON.parse(env.ctx.localStorage.getItem('curriculoEmpregaMais_ana@example.com'));
 assert(Buffer.from(cv.dados.split(',')[1],'base64').toString('binary').startsWith('%PDF-1.4'));
 env.ctx.irPara('candidaturas');

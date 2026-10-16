@@ -124,6 +124,20 @@
   try{premium=access&&typeof access.ehPremium==='function'?!!access.ehPremium():premiumAccess(global.obterCandidatoAtual?global.obterCandidatoAtual():null);}catch(ignore){}
   return premium&&lowCompetition(job)?'<span class="cp-low-competition" title="Publicada há pelo menos 24 horas e com menos de 15 candidaturas"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M4 4v16h16M7 9l5 5 7-8M14 6h5v5"/></svg>Baixa concorrência</span>':'';
  }
+ function jobBadges(job,now){
+  job=job||{};var at=now==null?Date.now():now,items=[];
+  function flag(value){return ['true','1','sim','yes','confidencial'].indexOf(norm(value))>=0;}
+  function active(value,until){return flag(value)&&(!until||Number.isFinite(Date.parse(until))&&Date.parse(until)>at);}
+  function badge(kind,label,path){items.push('<span class="cp-job-badge" data-job-badge="'+kind+'"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">'+path+'</svg>'+label+'</span>');}
+  var raw=job.dataPublicacao||job.publicadaEm||job.created_at||job.criado_em||job.criadoEm||job.dataCriacao,m=String(raw||'').match(/^(\d{2})\/(\d{2})\/(\d{4})$/),published=m?new Date(+m[3],+m[2]-1,+m[1]).getTime():Date.parse(raw||'');
+  if(Number.isFinite(published)&&at>=published&&at-published<2*86400000)badge('nova','Nova','<path d="m12 3 2.5 6.5L21 12l-6.5 2.5L12 21l-2.5-6.5L3 12l6.5-2.5Z"/>');
+  if(active(job.destaque||job.emDestaque||job.destacada,job.destaqueAte||job.destaque_ate||job.fimDestaque))badge('destaque','Destaque','<path d="m12 3 2.8 5.7 6.2.9-4.5 4.4 1.1 6.2-5.6-3-5.6 3 1.1-6.2L3 9.6l6.2-.9Z"/>');
+  if(flag(job.confidencial))badge('confidencial','Confidencial','<rect x="5" y="10" width="14" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3M12 14v3"/>');
+  if(urgentJob(job,at))badge('urgente','Contratação urgente','<path d="M13 3c1 5-4 5-2 9 1-2 3-3 4-5 3 3 5 6 4 10a7 7 0 0 1-13-1C5 11 8 7 13 3Z"/>');
+  if(job.demo===true)badge('demo','Demonstração','<circle cx="12" cy="12" r="9"/><path d="M12 10v7M12 7h.01"/>');
+  var content=items.join('')+lowCompetitionBadge(job);
+  return content?'<div class="cp-job-badges" aria-label="Sinalizações da vaga">'+content+'</div>':'';
+ }
  function recommendedJobs(rows,candidate,now){
   if(!premiumAccess(candidate,now))return [];
   var seen=new Set(),at=now==null?Date.now():now;
@@ -137,7 +151,7 @@
    return item.match.percent!=null;
   }).sort(function(a,b){return b.match.percent-a.match.percent||(Date.parse(b.job.dataPublicacao||b.job.criadoEm)||0)-(Date.parse(a.job.dataPublicacao||a.job.criadoEm)||0);});
  }
- var core={baixaConcorrencia:lowCompetition,seloBaixaConcorrencia:lowCompetitionBadge,temPremium:premiumAccess,vagaUrgente:urgentJob,recomendarVagas:recommendedJobs,compatibilidade:compatibility,correspondeAlerta:matchesAlert,validarAlerta:validateAlert,perguntasEntrevista:interviewQuestions,orientarResposta:responseFeedback,corrigirTeste:gradeTest,testes:tests,podeEntrar:canJoin,linkEntrevista:interviewLink,escape:escape};
+ var core={baixaConcorrencia:lowCompetition,seloBaixaConcorrencia:lowCompetitionBadge,selosVaga:jobBadges,temPremium:premiumAccess,vagaUrgente:urgentJob,recomendarVagas:recommendedJobs,compatibilidade:compatibility,correspondeAlerta:matchesAlert,validarAlerta:validateAlert,perguntasEntrevista:interviewQuestions,orientarResposta:responseFeedback,corrigirTeste:gradeTest,testes:tests,podeEntrar:canJoin,linkEntrevista:interviewLink,escape:escape};
  global.EmpregaMaisPreparacao=core;
  if(typeof module!=='undefined'&&module.exports)module.exports=core;
  if(!global.document)return;
@@ -236,7 +250,6 @@
  }
  function enhanceRecommendations(){
   var c=profile();container.querySelectorAll('.em-personal-grid [data-cp-job-id]').forEach(function(card){
-   var company=card.querySelector(':scope > p'),place=card.querySelector(':scope > small');if(company&&place){place.classList.add('cp-inline-place');company.appendChild(document.createTextNode(' · '));company.appendChild(place);}
    var job=jobById(card.dataset.cpJobId),allowed=hasCompatibilityAccess(),signature=JSON.stringify([allowed,allowed?compatibility(job,c):null]),holder=card.querySelector('.cp-fit-and-alert');
    if(!holder){holder=document.createElement('div');holder.className='cp-fit-and-alert';card.appendChild(holder);}
    if(holder.dataset.signature===signature)return;holder.dataset.signature=signature;
@@ -299,7 +312,7 @@
     var reasons=fit.criteria.filter(function(c){return c.available&&c.match>=.5;}).slice(0,3).map(function(c){return '<span>'+recommendationIcon(c.label.indexOf('Habilidade')>=0?'skills':'target')+escape(c.label)+'</span>';}).join('');
     var salary=typeof global.formatarSalarioExibicao==='function'?global.formatarSalarioExibicao(job.salario):job.salario;
     if(salary&&/\d/.test(salary)&&!/R\$/.test(salary))salary='R$ '+salary;
-    return '<article class="cp-recommendation-card"><div class="cp-recommendation-top"><span class="cp-small-icon">'+icon('briefcase')+'</span><div class="cp-recommendation-heading"><h2>'+escape(job.cargo||job.titulo||'Vaga')+'</h2><p>'+escape(conf?'Empresa confidencial':job.empresa||'Empresa')+'</p></div>'+recommendationIndicator(fit.percent)+'</div><div class="cp-recommendation-chips"><span>'+recommendationIcon('pin')+escape(job.cidade||'Local não informado')+(job.uf?' – '+escape(job.uf):'')+'</span><span>'+recommendationIcon('office')+escape(job.modalidade||'Modalidade não informada')+'</span><span>'+recommendationIcon('document')+escape(job.contrato||'Contrato não informado')+'</span>'+(urgentJob(job)?'<span class="cp-recommendation-urgent">'+icon('fire')+' Contratação urgente</span>':'')+'</div>'+lowCompetitionBadge(job)+'<strong class="cp-recommendation-salary">'+escape(salary||'Salário a combinar')+'</strong><div class="cp-recommendation-reasons" aria-label="Critérios em comum">'+reasons+'</div><div class="cp-recommendation-footer"><small>'+(job.dataPublicacao||job.criadoEm?'Publicada em '+formatDate(job.dataPublicacao||job.criadoEm):'Data não informada')+'</small><div><button type="button" class="cp-text-button" data-cp-fit="'+escape(job.id)+'">Ver análise</button><button type="button" class="cp-primary" data-cp-apply-job="'+escape(job.id)+'">Candidatar-se agora</button></div></div></article>';
+    return '<article class="cp-recommendation-card"><div class="cp-recommendation-top"><span class="cp-small-icon">'+icon('briefcase')+'</span><div class="cp-recommendation-heading"><h2>'+escape(job.cargo||job.titulo||'Vaga')+'</h2><p>'+escape(conf?'Empresa confidencial':job.empresa||'Empresa')+'</p></div>'+recommendationIndicator(fit.percent)+'</div><div class="cp-recommendation-chips"><span>'+recommendationIcon('pin')+escape(job.cidade||'Local não informado')+(job.uf?' – '+escape(job.uf):'')+'</span><span>'+recommendationIcon('office')+escape(job.modalidade||'Modalidade não informada')+'</span><span>'+recommendationIcon('document')+escape(job.contrato||'Contrato não informado')+'</span>'+'</div>'+jobBadges(job)+'<strong class="cp-recommendation-salary">'+escape(salary||'Salário a combinar')+'</strong><div class="cp-recommendation-reasons" aria-label="Critérios em comum">'+reasons+'</div><div class="cp-recommendation-footer"><small>'+(job.dataPublicacao||job.criadoEm?'Publicada em '+formatDate(job.dataPublicacao||job.criadoEm):'Data não informada')+'</small><div><button type="button" class="cp-text-button" data-cp-fit="'+escape(job.id)+'">Ver análise</button><button type="button" class="cp-primary" data-cp-apply-job="'+escape(job.id)+'">Candidatar-se agora</button></div></div></article>';
    }).join('')+'</div>';
   }
   if(refresh===true)stableHTML(workspace.querySelector('.cp-workspace-content'),html);

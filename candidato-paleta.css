@@ -204,4 +204,72 @@
     outline: 2px solid #0080c9 !important;
     outline-offset: 3px !important;
   }
+
+  /* Explicit job metadata and a shared set of vacancy labels. */
+  body.cp-shell-active .cp-job-badges {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    align-items: center !important;
+    gap: 6px !important;
+    min-width: 0 !important;
+    margin: 0 !important;
+  }
+  body.cp-shell-active .cp-job-badge {
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 5px !important;
+    padding: 4px 8px !important;
+    border: 1px solid #d1d5db !important;
+    border-radius: 6px !important;
+    background: #f3f4f6 !important;
+    color: #374151 !important;
+    font-size: 10px !important;
+    font-weight: 650 !important;
+    line-height: 1.4 !important;
+    white-space: normal !important;
+  }
+  body.cp-shell-active .cp-job-badge svg {
+    width: 13px !important;
+    height: 13px !important;
+    flex: 0 0 13px !important;
+    color: inherit !important;
+    stroke: currentColor !important;
+  }
+  body.cp-shell-active .cp-job-badge[data-job-badge="nova"] {
+    border-color: #0080c9 !important;
+    background: #0080c9 !important;
+    color: #fff !important;
+  }
+  body.cp-shell-active .cp-job-badge:is([data-job-badge="destaque"], [data-job-badge="urgente"]) {
+    border-color: #ff981f !important;
+    background: #ff981f !important;
+    color: #fff !important;
+  }
+  body.cp-shell-active .cp-job-badge[data-job-badge="demo"] { background: #fff !important; }
+  body.cp-shell-active #emPersonalDashboard .em-personal-grid article {
+    grid-template-columns: 52px minmax(0, 1fr) auto !important;
+    grid-template-areas: "symbol title salary" "symbol company salary" "meta meta meta" "badges badges badges" "fit fit fit" "apply apply apply" !important;
+  }
+  body.cp-shell-active #emPersonalDashboard .em-personal-grid article > .cp-job-symbol { grid-area: symbol !important; }
+  body.cp-shell-active #emPersonalDashboard .em-personal-grid article > h3 { grid-area: title !important; }
+  body.cp-shell-active #emPersonalDashboard .em-personal-grid article > p { grid-area: company !important; }
+  body.cp-shell-active #emPersonalDashboard .em-personal-grid article > .cp-recommended-salary { grid-area: salary !important; }
+  body.cp-shell-active #emPersonalDashboard .em-personal-grid article > .em-personal-reasons { grid-area: meta !important; }
+  body.cp-shell-active #emPersonalDashboard .em-personal-grid article > .cp-job-badges { grid-area: badges !important; }
+  body.cp-shell-active #emPersonalDashboard .em-personal-grid article > .cp-fit-and-alert { grid-area: fit !important; }
+  body.cp-shell-active #emPersonalDashboard .em-personal-grid article > .cp-job-apply { grid-area: apply !important; }
+  body.cp-shell-active #emPersonalDashboard .em-personal-reasons .cp-job-location {
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 5px !important;
+    max-width: 100% !important;
+    white-space: normal !important;
+  }
+  body.cp-shell-active #emPersonalDashboard .cp-job-location svg { width: 13px !important; height: 13px !important; flex: 0 0 13px !important; }
+  @media (max-width: 650px) {
+    body.cp-shell-active #emPersonalDashboard .em-personal-grid article {
+      grid-template-columns: 36px minmax(0, 1fr) !important;
+      grid-template-areas: "symbol title" "symbol company" "salary salary" "meta meta" "badges badges" "fit fit" "apply apply" !important;
+    }
+  }
 }
