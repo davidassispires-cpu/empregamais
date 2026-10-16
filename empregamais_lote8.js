@@ -330,7 +330,9 @@ var f=c.premium_valido_ate||c.premiumValidoAte||c.plano_valido_ate;
 var b=document.createElement("div");b.id="premium92Banner";b.className="premium92-banner";
 b.innerHTML="<div class='p92-left'><div class='premium92-crown'><svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round' aria-hidden='true'><path d='m3 7 5 4 4-7 4 7 5-4-3 13H6Z'/><path d='M7 22h10'/></svg></div><div><small>EMPREGAMAIS PREMIUM</small><h3>Seu acesso Premium está ativo</h3><p>Recursos avançados do candidato liberados para esta conta.</p></div></div><div class='premium92-validade'><span>ACESSO LIBERADO ATÉ</span><strong>"+dataBR(f)+"</strong></div>";
 var alvo=page.querySelector(".container-dashboard")||page.querySelector(".painel-candidato")||page.firstElementChild;
-if(alvo)alvo.insertBefore(b,alvo.firstChild);
+var contentHead=alvo&&alvo.querySelector(".cp-home-intro,.painel-candidato-header,.dashboard-header,.perfil-resumo");
+if(contentHead)contentHead.parentNode.insertBefore(b,contentHead.nextSibling);
+else if(alvo)alvo.insertBefore(b,alvo.firstChild);
 var head=page.querySelector(".painel-candidato-header,.dashboard-header,.perfil-resumo");
 if(head&&!head.querySelector(".premium92-selo")){var sp=document.createElement("span");sp.className="premium92-selo";sp.textContent="★ PREMIUM";head.appendChild(sp)}
 try{localStorage.setItem("empregaMaisPlanoCandidato","premium")}catch(e){}
