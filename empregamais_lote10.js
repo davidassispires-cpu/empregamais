@@ -672,6 +672,13 @@ function companyHero(e){
     step.querySelectorAll('.publish-process-mode').forEach(function(btn){btn.onclick=function(){mode=this.dataset.mode;step.querySelectorAll('.publish-process-mode').forEach(function(b){b.classList.toggle('selected',b===btn)});if(mode==='padrao')stages=defaults.slice();render()}});
     step.querySelector('.publish-process-add').onclick=function(){if(mode!=='personalizado'){mode='personalizado';step.querySelectorAll('.publish-process-mode').forEach(function(b){b.classList.toggle('selected',b.dataset.mode==='personalizado')})}stages.push('Nova etapa');render();var inputs=list.querySelectorAll('input');inputs[inputs.length-1].focus();inputs[inputs.length-1].select()};
     step.querySelector('.em-btn-back').onclick=function(){window.emShowJobStep(3)};
+    var skip=document.createElement('button');skip.type='button';skip.className='em-btn publish-process-skip';
+    skip.textContent='Pular etapa';skip.title='Continuar sem personalizar o processo seletivo. Será usado o modelo padrão.';
+    skip.addEventListener('click',function(){mode='padrao';stages=defaults.slice();step.querySelectorAll('.publish-process-mode').forEach(function(button){button.classList.toggle('selected',button.dataset.mode==='padrao')});render();window.emShowJobStep(5)});
+    step.querySelector('.em-job-actions').insertBefore(skip,step.querySelector('.em-btn-next'));
+    var optional=document.createElement('p');optional.textContent='Etapa opcional. Você pode pular e usar o processo padrão.';
+    optional.style.cssText='margin:0 0 16px;font-size:13px;color:#64748b';step.querySelector('.em-job-body').prepend(optional);
+
     render();
   }
   function setupPublishExtras(page,form){
