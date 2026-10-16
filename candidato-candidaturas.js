@@ -107,9 +107,10 @@
   if(!processDialog.open)processDialog.showModal();
   document.body.classList.add('cp-process-modal-open');processDialog.scrollTop=0;processDialog.querySelector('.cp-process-modal-close').focus();
  }
- function viewNotice(a){
+ function viewNotice(a,compact){
   var value=a.visualizadoEm||a.visualizado_em||a.first_viewed_at, date=value?new Date(value):null;
   if(!value&&a.visualizada!==true&&a.curriculo_visualizado!==true)return '';
+  if(compact){var text=date&&!isNaN(date.getTime())?'Vista em '+date.toLocaleDateString('pt-BR',{day:'2-digit',month:'2-digit'})+', '+date.toLocaleTimeString('pt-BR',{hour:'2-digit',minute:'2-digit'}):'Vista pela empresa';return '<div class="cp-application-viewed" aria-label="Candidatura visualizada"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12Z"/><circle cx="12" cy="12" r="3"/></svg><small>'+safe(text)+'</small></div>';}
   return '<div class="cp-application-viewed"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12Z"/><circle cx="12" cy="12" r="3"/></svg><div><strong>Candidatura visualizada</strong><small>'+ (date&&!isNaN(date.getTime())?'Vista pela empresa em '+safe(date.toLocaleString('pt-BR',{day:'2-digit',month:'2-digit',year:'numeric',hour:'2-digit',minute:'2-digit'})):'Vista pela empresa')+'</small></div></div>';
  }
  function openCancel(a,trigger){
@@ -134,19 +135,22 @@
  }
  function enhanceList(){
   var list=document.getElementById('listaCandidaturas');if(!list)return;
+  list.classList.add('cp-applications-list-view');
   var rows=applications().filter(function(a){return matches(a)});
   list.querySelectorAll('.candidatura-item').forEach(function(card,i){
    var a=rows[i];if(!a)return;card.dataset.cpApplicationStage=classify(a);var title=card.querySelector('.candidatura-top h3');if(title&&!title.querySelector('.cp-application-emblem')){var emblem=document.createElement('span');emblem.className='cp-application-emblem';emblem.setAttribute('aria-hidden','true');emblem.innerHTML=icon('briefcase');title.prepend(emblem);}if(card.querySelector('.cp-process-details'))return;
-   var top=card.querySelector('.candidatura-top'),company=top.querySelector('p');if(company){company.textContent=a.empresa||'Empresa não informada';company.style.setProperty('color','#667085','important');company.style.setProperty('font-size','12px','important');}var sent=document.createElement('div');sent.className='cp-application-date';sent.innerHTML=icon('calendar')+'<span>Enviada em '+safe(applicationDate(a.data||a.dataCandidatura))+'</span>';top.after(sent);
-   var notice=viewNotice(a);if(notice){var holder=document.createElement('div');holder.innerHTML=notice;sent.after(holder.firstChild);}
+   card.classList.add('cp-application-list-row');
+   var top=card.querySelector('.candidatura-top'),info=top.firstElementChild,status=top.querySelector('.status-processo'),company=top.querySelector('p');if(company){company.textContent=a.empresa||'Empresa não informada';company.style.removeProperty('color');company.style.removeProperty('font-size');}var sent=document.createElement('div');sent.className='cp-application-date';sent.innerHTML=icon('calendar')+'<span>Enviada em '+safe(applicationDate(a.data||a.dataCandidatura))+'</span>';info.appendChild(sent);
+   var notice=viewNotice(a,true);if(notice){var holder=document.createElement('div');holder.innerHTML=notice;info.appendChild(holder.firstChild);}
    var details=document.createElement('div');details.className='cp-process-details';
+   if(status)details.appendChild(status);
    var button=document.createElement('button');button.type='button';button.className='cp-process-trigger';button.setAttribute('aria-haspopup','dialog');
    button.innerHTML='Acompanhar processo '+icon('arrow');button.onclick=function(){openProcess(a,button);};
    details.appendChild(button);
    var stage=classify(a), journey=document.createElement('ol');journey.className='cp-card-journey';journey.setAttribute('aria-label','Etapa atual: '+label(a));
    var step=stage==='entrevista'?2:stage==='aprovadas'||stage==='contratadas'?3:1;
-   ['Enviada','Em análise','Entrevista'].forEach(function(text,n){var li=document.createElement('li');li.className=(n===0?'is-done ':n===step?'is-current ':'');li.innerHTML='<i>'+ (n===0?'✓':n+1)+'</i><span>'+text+'</span>';journey.appendChild(li);});
-   if(stage!=='canceladas'&&stage!=='reprovadas')card.appendChild(journey);
+   ['Enviada','Em análise','Entrevista'].forEach(function(text,n){var li=document.createElement('li');li.className=n<step?'is-done':n===step?'is-current':'';if(n===step)li.setAttribute('aria-current','step');li.innerHTML='<i aria-hidden="true">'+ (n<step?'✓':n+1)+'</i><span>'+text+'</span>';journey.appendChild(li);});
+   if(stage!=='canceladas'&&stage!=='reprovadas')card.appendChild(journey);else{var ended=document.createElement('div');ended.className='cp-application-ended';ended.textContent='Processo encerrado';card.appendChild(ended);}
    if(!['canceladas','reprovadas','contratadas'].includes(stage)){var cancel=document.createElement('button');cancel.type='button';cancel.className='cp-cancel-trigger';cancel.textContent='Cancelar candidatura';cancel.onclick=function(){openCancel(a,cancel);};details.appendChild(cancel);}
    card.appendChild(details);
   });

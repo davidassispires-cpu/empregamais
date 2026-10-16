@@ -17,6 +17,314 @@
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
 /* Inter is shared by every portal page and served from the project. */
+@font-face {
+  font-family: 'Montserrat Applications';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url(assets/fonts/cf-montserrat.woff) format('woff');
+}
+
+/* Approved application model 2: information, journey and actions in one row. */
+@layer field-feedback {
+  #pagina-candidaturas #listaCandidaturas.cp-applications-list-view {
+    display: grid !important;
+    grid-template-columns: minmax(0, 1fr) !important;
+    gap: 16px !important;
+    align-items: stretch !important;
+  }
+  #listaCandidaturas.cp-applications-list-view .cp-application-list-row,
+  #listaCandidaturas.cp-applications-list-view .cp-application-list-row * {
+    box-sizing: border-box !important;
+    font-family: 'Montserrat Applications', Montserrat, Arial, sans-serif !important;
+  }
+  #listaCandidaturas.cp-applications-list-view .cp-application-list-row {
+    display: grid !important;
+    grid-template-columns: minmax(0, 1.25fr) minmax(235px, 1fr) minmax(220px, .9fr) !important;
+    align-items: stretch !important;
+    gap: 0 !important;
+    padding: 20px !important;
+    min-width: 0 !important;
+    min-height: 166px !important;
+    margin: 0 !important;
+    border: 1px solid #dfe3e8 !important;
+    border-radius: 12px !important;
+    background: #fff !important;
+    color: #173550 !important;
+    box-shadow: 0 2px 6px #17355003 !important;
+    overflow: visible !important;
+  }
+  #listaCandidaturas.cp-applications-list-view .cp-application-list-row:hover {
+    border-color: #cbd3dc !important;
+    box-shadow: 0 3px 10px #17355006 !important;
+    transform: none !important;
+  }
+  #listaCandidaturas.cp-applications-list-view .candidatura-top {
+    display: flex !important;
+    align-items: center !important;
+    flex-wrap: nowrap !important;
+    gap: 0 !important;
+    min-height: 0 !important;
+    min-width: 0 !important;
+    margin: 0 !important;
+    padding: 0 18px 0 0 !important;
+    border: 0 !important;
+    background: transparent !important;
+  }
+  #listaCandidaturas.cp-applications-list-view .candidatura-top > div {
+    position: relative !important;
+    width: 100% !important;
+    min-width: 0 !important;
+    padding-left: 54px !important;
+  }
+  #listaCandidaturas.cp-applications-list-view .candidatura-top h3 {
+    display: block !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    color: #173550 !important;
+    font-size: 16px !important;
+    font-weight: 700 !important;
+    line-height: 1.4 !important;
+    letter-spacing: normal !important;
+    text-transform: none !important;
+    overflow-wrap: anywhere !important;
+  }
+  #listaCandidaturas.cp-applications-list-view .cp-application-emblem {
+    position: absolute !important;
+    left: 0 !important;
+    top: 2px !important;
+    display: grid !important;
+    place-items: center !important;
+    width: 40px !important;
+    height: 42px !important;
+    border: 1px solid #f5e4d8 !important;
+    border-radius: 8px !important;
+    background: #fff7f0 !important;
+    color: #ce5a19 !important;
+  }
+  #listaCandidaturas.cp-applications-list-view .cp-application-emblem svg {
+    width: 24px !important;
+    height: 24px !important;
+    color: inherit !important;
+  }
+  #listaCandidaturas.cp-applications-list-view .candidatura-top p {
+    margin: 5px 0 0 !important;
+    color: #426b76 !important;
+    font-size: 13px !important;
+    font-weight: 400 !important;
+    line-height: 1.5 !important;
+    overflow-wrap: anywhere !important;
+  }
+  #listaCandidaturas.cp-applications-list-view :is(.cp-application-date, .cp-application-viewed) {
+    display: flex !important;
+    align-items: center !important;
+    gap: 8px !important;
+    padding: 0 !important;
+    border: 0 !important;
+    border-radius: 0 !important;
+    background: transparent !important;
+    color: #60748b !important;
+    font-size: 11px !important;
+    font-weight: 400 !important;
+    line-height: 1.5 !important;
+  }
+  #listaCandidaturas.cp-applications-list-view .cp-application-date { margin: 13px 0 0 !important; }
+  #listaCandidaturas.cp-applications-list-view .cp-application-viewed { margin: 8px 0 0 !important; }
+  #listaCandidaturas.cp-applications-list-view .cp-application-viewed small {
+    color: inherit !important;
+    font-size: inherit !important;
+    line-height: inherit !important;
+  }
+  #listaCandidaturas.cp-applications-list-view :is(.cp-application-date, .cp-application-viewed) svg {
+    width: 18px !important;
+    height: 18px !important;
+    flex: 0 0 18px !important;
+    color: #6a7d91 !important;
+  }
+  #listaCandidaturas.cp-applications-list-view .cp-application-date svg { color: #bb662c !important; }
+  #listaCandidaturas.cp-applications-list-view .cp-card-journey {
+    display: flex !important;
+    align-items: center !important;
+    align-self: stretch !important;
+    justify-content: center !important;
+    min-width: 0 !important;
+    margin: 0 !important;
+    padding: 16px 12px !important;
+    border-left: 1px solid #e6e9ed !important;
+    list-style: none !important;
+    gap: 0 !important;
+  }
+  #listaCandidaturas.cp-applications-list-view .cp-card-journey li {
+    position: relative !important;
+    display: flex !important;
+    flex: 1 1 0 !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    gap: 9px !important;
+    min-width: 0 !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    color: #426b76 !important;
+    font-size: 11px !important;
+    font-weight: 400 !important;
+    line-height: 1.4 !important;
+    text-align: center !important;
+    z-index: 0 !important;
+  }
+  #listaCandidaturas.cp-applications-list-view .cp-card-journey li:not(:last-child)::after {
+    content: '' !important;
+    position: absolute !important;
+    top: 14px !important;
+    left: 50% !important;
+    width: 100% !important;
+    height: 1px !important;
+    background: #d5dce4 !important;
+    z-index: -1 !important;
+  }
+  #listaCandidaturas.cp-applications-list-view .cp-card-journey li.is-done::after { background: #d45c13 !important; }
+  #listaCandidaturas.cp-applications-list-view .cp-card-journey i {
+    display: grid !important;
+    place-items: center !important;
+    width: 29px !important;
+    height: 29px !important;
+    padding: 0 !important;
+    border: 1px solid #cfd6df !important;
+    border-radius: 50% !important;
+    background: #fff !important;
+    color: #61738a !important;
+    font-size: 12px !important;
+    font-style: normal !important;
+    font-weight: 500 !important;
+  }
+  #listaCandidaturas.cp-applications-list-view .cp-card-journey .is-done i {
+    border-color: #d45c13 !important;
+    background: #d45c13 !important;
+    color: #fff !important;
+    font-size: 16px !important;
+  }
+  #listaCandidaturas.cp-applications-list-view .cp-card-journey .is-current i {
+    border: 2px solid #d45c13 !important;
+    background: #fff !important;
+    color: #c6530e !important;
+    font-weight: 700 !important;
+  }
+  #listaCandidaturas.cp-applications-list-view .cp-card-journey .is-current span {
+    color: #173550 !important;
+    font-weight: 700 !important;
+  }
+  #listaCandidaturas.cp-applications-list-view .cp-application-ended {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    padding: 16px !important;
+    border-left: 1px solid #e6e9ed !important;
+    color: #60748b !important;
+    font-size: 12px !important;
+  }
+  #listaCandidaturas.cp-applications-list-view .cp-process-details {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: stretch !important;
+    justify-content: center !important;
+    flex-wrap: nowrap !important;
+    gap: 9px !important;
+    min-width: 0 !important;
+    margin: 0 !important;
+    padding: 0 0 0 22px !important;
+    border: 0 !important;
+    border-left: 1px solid #e6e9ed !important;
+    background: transparent !important;
+  }
+  #listaCandidaturas.cp-applications-list-view .status-processo {
+    display: inline-flex !important;
+    align-self: flex-start !important;
+    max-width: 100% !important;
+    padding: 6px 12px !important;
+    border: 1px solid #f5d7c3 !important;
+    border-radius: 999px !important;
+    background: #fff5ed !important;
+    color: #c45a1a !important;
+    font-size: 11px !important;
+    font-weight: 600 !important;
+    line-height: 1.4 !important;
+    text-align: left !important;
+    white-space: normal !important;
+  }
+  #listaCandidaturas.cp-applications-list-view .cp-process-trigger {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 10px !important;
+    width: 100% !important;
+    min-height: 42px !important;
+    margin: 0 !important;
+    padding: 10px 12px !important;
+    border: 1px solid #d45c13 !important;
+    border-radius: 7px !important;
+    background: #d45c13 !important;
+    color: #fff !important;
+    font-size: 12px !important;
+    font-weight: 700 !important;
+    line-height: 1.4 !important;
+    box-shadow: none !important;
+    cursor: pointer !important;
+  }
+  #listaCandidaturas.cp-applications-list-view .cp-process-trigger svg {
+    width: 18px !important;
+    height: 18px !important;
+    flex: 0 0 18px !important;
+    color: inherit !important;
+  }
+  #listaCandidaturas.cp-applications-list-view .cp-process-trigger:hover {
+    background: #bd4d0b !important;
+    border-color: #bd4d0b !important;
+  }
+  #listaCandidaturas.cp-applications-list-view .cp-cancel-trigger {
+    display: block !important;
+    align-self: center !important;
+    flex: none !important;
+    width: auto !important;
+    min-height: 32px !important;
+    margin: 0 !important;
+    padding: 6px 4px !important;
+    border: 0 !important;
+    border-radius: 4px !important;
+    background: transparent !important;
+    color: #60748b !important;
+    font-size: 11px !important;
+    font-weight: 400 !important;
+    line-height: 1.4 !important;
+    box-shadow: none !important;
+    cursor: pointer !important;
+  }
+  #listaCandidaturas.cp-applications-list-view .cp-cancel-trigger:hover {
+    color: #a43826 !important;
+    text-decoration: underline !important;
+  }
+  #listaCandidaturas.cp-applications-list-view :is(.cp-process-trigger, .cp-cancel-trigger):focus-visible {
+    outline: 2px solid #d45c13 !important;
+    outline-offset: 3px !important;
+  }
+  @media (max-width: 900px) and (min-width: 601px) {
+    #listaCandidaturas.cp-applications-list-view .cp-application-list-row { grid-template-columns: minmax(0, 1fr) 220px !important; }
+    #listaCandidaturas.cp-applications-list-view .candidatura-top { grid-column: 1 !important; grid-row: 1 !important; }
+    #listaCandidaturas.cp-applications-list-view .cp-card-journey { grid-column: 1 !important; grid-row: 2 !important; border: 0 !important; padding: 18px 20px 0 0 !important; }
+    #listaCandidaturas.cp-applications-list-view .cp-application-ended { grid-column: 1 !important; grid-row: 2 !important; border: 0 !important; padding: 18px 20px 0 0 !important; }
+    #listaCandidaturas.cp-applications-list-view .cp-process-details { grid-column: 2 !important; grid-row: 1 / 3 !important; }
+  }
+  @media (max-width: 600px) {
+    #listaCandidaturas.cp-applications-list-view .cp-application-list-row { grid-template-columns: minmax(0, 1fr) !important; padding: 16px !important; min-height: 0 !important; }
+    #listaCandidaturas.cp-applications-list-view .candidatura-top { padding: 0 !important; }
+    #listaCandidaturas.cp-applications-list-view .candidatura-top > div { padding-left: 48px !important; }
+    #listaCandidaturas.cp-applications-list-view .candidatura-top h3 { font-size: 14px !important; }
+    #listaCandidaturas.cp-applications-list-view .candidatura-top p { font-size: 12px !important; }
+    #listaCandidaturas.cp-applications-list-view .cp-application-emblem { width: 36px !important; height: 38px !important; }
+    #listaCandidaturas.cp-applications-list-view :is(.cp-card-journey, .cp-application-ended) { border: 0 !important; border-top: 1px solid #edf0f3 !important; padding: 15px 0 !important; margin-top: 15px !important; }
+    #listaCandidaturas.cp-applications-list-view .cp-process-details { display: flex !important; border: 0 !important; border-top: 1px solid #edf0f3 !important; padding: 13px 0 0 !important; gap: 8px !important; }
+    #listaCandidaturas.cp-applications-list-view .cp-process-trigger { min-height: 44px !important; }
+    #listaCandidaturas.cp-applications-list-view .cp-cancel-trigger { min-height: 40px !important; }
+  }
+}
 
 
 /* The first important layer wins over legacy rules, including injected CSS. */
