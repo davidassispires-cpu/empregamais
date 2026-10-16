@@ -1277,6 +1277,8 @@ function arrangeCandidateMessageComposer(section){
  .jobs-reference .management-compact-actions>.management-toggle svg{flex-shrink:0}
 }
 `;
+  // Use the sidebar typeface throughout each vacancy card, including legacy font overrides.
+  css += '\n@layer site-typography { .jobs-reference .jobs-table .management-card, .jobs-reference .jobs-table .management-card * { font-family:Poppins,Arial,sans-serif!important; } }\n';
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',activate);else activate();
   window.addEventListener('load',function(){if(new URL(location.href).searchParams.get('pagina')==='publicar'){openPublish();}window.editarVagaEmpresa=restrictedEdit;window.montarPainelReferenciaRecrutadorEM=mount;window.renderizarPainelEmpresa=mount;window.montarCentralRecrutadorEM=mount;mount();});
 })();
