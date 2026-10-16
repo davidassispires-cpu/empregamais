@@ -27,7 +27,7 @@
     min-width: 0 !important;
     min-height: 0 !important;
     margin: 0 !important;
-    border: 1px solid #dfe3e8 !important;
+    border: 1px solid #bfc5cd !important;
     border-radius: 12px !important;
     background: #fff !important;
     color: #173550 !important;
@@ -35,7 +35,7 @@
     overflow: visible !important;
   }
   #listaCandidaturas.cp-applications-list-view .cp-application-list-row:hover {
-    border-color: #cbd3dc !important;
+    border-color: #aeb5bf !important;
     box-shadow: 0 3px 10px #17355006 !important;
     transform: none !important;
   }
@@ -431,21 +431,22 @@
     justify-self: start !important;
     margin: 0 !important;
     padding: 6px 10px !important;
-    border: 1px solid #b9e2fa !important;
+    border: 1px solid #1d4ed8 !important;
     border-radius: 8px !important;
-    background: #b9e2fa !important;
-    color: #173f5f !important;
+    background: #1d4ed8 !important;
+    color: #fff !important;
     font-size: 11px !important;
     font-weight: 700 !important;
     line-height: 1.4 !important;
     text-align: center !important;
+    white-space: nowrap !important;
     box-shadow: none !important;
     cursor: pointer !important;
     transition: background .15s ease !important;
   }
-  #listaCandidaturas.cp-applications-list-view .cp-application-open span { color: inherit !important; }
+  #listaCandidaturas.cp-applications-list-view .cp-application-open span { color: inherit !important; font-size: inherit !important; white-space: nowrap !important; }
   #listaCandidaturas.cp-applications-list-view .cp-application-open svg { width: 16px !important; height: 16px !important; flex: 0 0 16px !important; color: inherit !important; }
-  #listaCandidaturas.cp-applications-list-view .cp-application-open:hover { background: #a4d8f7 !important; border-color: #8fc8ed !important; }
+  #listaCandidaturas.cp-applications-list-view .cp-application-open:hover { background: #1e40af !important; border-color: #1e40af !important; }
   #listaCandidaturas.cp-applications-list-view .cp-card-insight {
     grid-column: 1 / -1 !important;
     margin-top: 16px !important;
