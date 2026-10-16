@@ -21,6 +21,8 @@ function companyPanel(){var modal=document.getElementById('emCandidateDetails');
 var queued=false;function schedule(){if(queued)return;queued=true;requestAnimationFrame(function(){queued=false;mount();companyPanel();});}
 function start(){var style=document.createElement('style');style.textContent=`
 @layer site-typography{
+html body #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato.cp-messages-active>.container-dashboard>:not(.em-chat):not(.cp-demo-plans){display:none!important}
+
 html body #pagina-painel-candidato.cp-messages-active>.container-dashboard>.em-chat.em-chat{display:grid!important}
 html body #pagina-painel-candidato.cp-messages-active .em-candidate-inbox,html body #pagina-painel-candidato.cp-messages-active .cp-message-empty{display:none!important}
 html body #pagina-painel-candidato:not(.cp-messages-active) .em-chat{display:none!important}
