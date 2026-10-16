@@ -457,7 +457,7 @@ removeHistoryTab();
 /* Isolate candidate tab panels from legacy display overrides. */
 (function(){
 'use strict';
-var keys={'Visão geral':'overview','Currículo':'resume','Mensagens':'messages','Anotações':'notes'};
+var keys={'Visão geral':'overview','Currículo':'resume','Mensagens':'messages','Anotações':'notes','Aderência':'adherence'};
 var style=document.createElement('style');style.id='em-candidate-isolated-tabs';
 style.textContent='html body #emCandidateDetails#emCandidateDetails .em-wide-panels>[data-detail-panel][hidden]{display:none!important}html body #emCandidateDetails#emCandidateDetails .em-wide-panels>[data-detail-panel]:not([hidden]):not([data-detail-panel="overview"]){display:block!important}';
 document.head.appendChild(style);
