@@ -1111,3 +1111,11 @@ html body #pagina-candidaturas#pagina-candidaturas#pagina-candidaturas .cp-appli
 
 /* Remove decorative briefcase from application titles. */
 html body #pagina-candidaturas#pagina-candidaturas#pagina-candidaturas .cp-application-emblem{display:none!important}
+
+/* Keep stage explanations visible above neighbouring application cards. */
+html body #pagina-candidaturas#pagina-candidaturas#pagina-candidaturas .candidatura-item,
+html body #pagina-candidaturas#pagina-candidaturas#pagina-candidaturas .cp-journey-footer{overflow:visible!important}
+html body #pagina-candidaturas#pagina-candidaturas#pagina-candidaturas .candidatura-item:has(.cp-journey-step[aria-expanded="true"]){position:relative!important;z-index:20!important}
+html body #pagina-candidaturas#pagina-candidaturas#pagina-candidaturas .cp-card-journey li:has(.cp-journey-step[aria-expanded="true"]){z-index:50!important}
+html body #pagina-candidaturas#pagina-candidaturas#pagina-candidaturas .cp-journey-step[aria-expanded="true"] + .cp-journey-explanation{display:block!important;z-index:60!important}
+html body #pagina-candidaturas#pagina-candidaturas#pagina-candidaturas .cp-card-journey li.is-linked:after{background:#d45c13!important}
