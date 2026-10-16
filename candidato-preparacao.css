@@ -1218,3 +1218,27 @@ html body #pagina-candidaturas#pagina-candidaturas#pagina-candidaturas .cp-card-
  html body #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato .cp-home-intro :is(p,small,label,span){color:#fff!important;font-weight:550!important}
  html body #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato :is(.cp-primary,.cp-completion,.cp-overview-card[aria-pressed=true]) :is(span,small){color:inherit!important}
 }
+
+/* Overview recommendations: concise compatibility row. */
+@layer field-feedback {
+ html body #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato .em-personal-grid .cp-fit-and-alert{
+  margin:8px 0 0!important;padding:8px 0 0!important;border-top:1px solid #e4ecef!important;
+ }
+ html body #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato .em-personal-grid .cp-job-alert,
+ html body #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato .em-personal-grid .cp-fit-premium-label,
+ html body #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato .em-personal-grid .cp-fit-meter,
+ html body #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato .em-personal-grid .cp-fit-copy>small,
+ html body #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato .em-personal-grid .cp-fit-panel>svg{display:none!important}
+ html body #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato .em-personal-grid .cp-fit-panel{
+  display:flex!important;align-items:center!important;justify-content:space-between!important;gap:8px!important;
+  width:100%!important;min-height:28px!important;height:auto!important;padding:0!important;margin:0!important;
+  border:0!important;border-radius:0!important;background:transparent!important;box-shadow:none!important;
+ }
+ html body #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato .em-personal-grid .cp-fit-copy{
+  display:flex!important;flex-direction:row!important;align-items:center!important;gap:5px!important;
+ }
+ html body #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato .em-personal-grid .cp-fit-copy strong{font-size:12px!important;color:#285b62!important}
+ html body #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato .em-personal-grid .cp-fit-panel.is-unlocked .cp-fit-copy strong:after{content:' de compatibilidade';font-weight:550;font-size:11px}
+ html body #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato .em-personal-grid .cp-fit-panel-action{font-size:11px!important;font-weight:600!important;color:#285b62!important}
+ html body #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato .em-personal-grid article{min-height:0!important;padding:12px!important}
+}
