@@ -633,11 +633,17 @@ function companyHero(e){
       document.getElementById('emPreviewCard').innerHTML='<div class="em-preview-title">'+esc(value('cargoVaga'))+'</div><div class="em-preview-company">'+esc(value('empresaVaga'))+'</div><div>'+esc([value('cidadeVaga'),value('estadoVaga')].filter(Boolean).join(' - '))+'</div><div class="em-preview-tags"><span>'+esc(value('contratoVaga'))+'</span><span>'+esc(value('modalidadeVaga'))+'</span></div><strong>Sobre a vaga</strong><p>'+esc(value('descricaoVaga').slice(0,220))+(value('descricaoVaga').length>220?'…':'')+'</p>';
     };
     window.emShowJobStep=function(n){
-      form.querySelectorAll('.em-job-card[data-panel]').forEach(function(card){var active=Number(card.dataset.panel)===Number(n);card.classList.toggle('active',active);card.style.setProperty('display',active?'block':'none','important')});
+      form.querySelectorAll('.em-job-card[data-panel]').forEach(function(card){var active=Number(card.dataset.panel)===Number(n);if(card.classList.contains('active')!==active)card.classList.toggle('active',active);var display=active?'block':'none';if(card.style.getPropertyValue('display')!==display||card.style.getPropertyPriority('display')!=='important')card.style.setProperty('display',display,'important')});
       progress.querySelectorAll('[data-step]').forEach(function(item){var i=Number(item.dataset.step);item.classList.toggle('active',i===Number(n));item.classList.toggle('done',i<Number(n))});
       if(Number(n)===5)sync();if(Number(n)===6&&typeof window.emBuildJobReview==='function'){window.emBuildJobReview();var summary=document.getElementById('emReviewContent');var entry=document.createElement('div');entry.className='em-review-section';var selected=form.querySelector('input[name="tipoContatoVaga"]:checked'),row=choices.find(function(x){return x[0]===(selected?selected.value:'email')});entry.innerHTML='<strong>Recebimento de candidaturas</strong><div>'+row[2]+': '+esc(document.getElementById(row[4]).value)+'</div>';summary.appendChild(entry);if(window.emPublishExtrasSummary)summary.insertAdjacentHTML('beforeend',window.emPublishExtrasSummary())}
       progress.scrollIntoView({behavior:'smooth',block:'start'});
     };
+    if(!progress.dataset.localNavigation){
+      progress.dataset.localNavigation='1';progress.setAttribute('aria-label','Etapas da publicação');
+      progress.querySelectorAll('[data-step]').forEach(function(item){item.setAttribute('role','button');item.tabIndex=0;});
+      function localStep(event){var item=event.target.closest&&event.target.closest('#emJobProgress [data-step]');if(!item)return;if(event.type==='keydown'&&event.key!=='Enter'&&event.key!==' ')return;event.preventDefault();event.stopImmediatePropagation();window.emShowJobStep(Number(item.dataset.step));}
+      window.addEventListener('click',localStep,true);window.addEventListener('keydown',localStep,true);
+    }
     window.emNextJob=function(n){var card=form.querySelector('[data-panel="'+n+'"]');if(Number(n)===5&&!validContact())return;var required=card.querySelectorAll('[required]');for(var i=0;i<required.length;i++){if(!required[i].checkValidity()){required[i].reportValidity();return}}window.emShowJobStep(Number(n)+1)};
     window.addEventListener('click',function(event){var button=event.target.closest&&event.target.closest('#formVaga .em-btn-next');if(!button)return;event.preventDefault();event.stopImmediatePropagation();window.emNextJob(Number(button.closest('[data-panel]').dataset.panel))},true);
     form.addEventListener('submit',function(event){if(!validContact()){event.preventDefault();event.stopImmediatePropagation();window.emShowJobStep(5)}},true);
