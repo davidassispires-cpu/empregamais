@@ -153,11 +153,12 @@
       ['.em-lista-urgente','.em-public-demo-badges','.em-lista-rapida'].forEach(function (selector) {
         var node = card.querySelector(selector); if (node) labels.appendChild(node);
       });
+      if (highlighted && !labels.querySelector('.featured')) badge(labels, 'featured', 'Em destaque');
+      if (confidential && !labels.querySelector('.confidential')) badge(labels, 'confidential', 'Confidencial');
       var published = new Date(job.criadoEm || job.dataPublicacao).getTime();
       if (Number.isFinite(published) && Date.now() >= published && Date.now() - published < 2 * day && !labels.querySelector('.new')) badge(labels, 'new', 'Nova vaga');
-      var topActions = doc.createElement('div'); topActions.className = 'em-recent-top-actions';
-      var newBadge = labels.querySelector('.new'); if (newBadge) topActions.appendChild(newBadge);
-      if (labels.children.length) heading.appendChild(labels);
+      var newBadge = labels.querySelector('.new'); if (newBadge) labels.appendChild(newBadge);
+      if (labels.children.length) card.insertBefore(labels, header);
       var save = card.querySelector('.em-lista-fav');
       var originalSave = save && save.onclick;
       if (!save) { save = doc.createElement('button'); save.type = 'button'; }
@@ -179,7 +180,6 @@
       var footer = card.querySelector('.em-lista-footer');
       if (!footer) { footer = doc.createElement('div'); footer.className = 'em-lista-footer'; card.appendChild(footer); }
       footer.insertBefore(save, footer.firstChild);
-      if (topActions.children.length) header.appendChild(topActions);
       var meta = card.querySelector('.em-lista-meta');
       var publication = card.querySelector('.em-lista-data');
       if (meta && publication) meta.appendChild(publication);
