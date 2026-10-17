@@ -261,7 +261,7 @@ html body #pagina-home#pagina-home #listaVagas#listaVagas#listaVagas article.vag
 html body #pagina-home#pagina-home #listaVagas#listaVagas#listaVagas article.vaga-card.em-lista-final.em-recent-model3 .em-selo-nova-v31,
 html body #pagina-home#pagina-home #listaVagas#listaVagas#listaVagas article.vaga-card.em-lista-final.em-recent-model3 .em-tooltip-nova-v31 {display:none!important;visibility:hidden!important}
 html body #pagina-home#pagina-home #listaVagas#listaVagas#listaVagas article.vaga-card.em-lista-final.em-recent-model3 .em-lista-detalhes span {white-space:nowrap!important}
-html body #pagina-home#pagina-home #listaVagas#listaVagas#listaVagas article.vaga-card.em-lista-final.em-recent-model3 .em-lista-ver {min-width:140px!important}
+html body #pagina-home#pagina-home #listaVagas#listaVagas#listaVagas article.vaga-card.em-lista-final.em-recent-model3 .em-lista-ver {min-width:180px!important}
 @media(max-width:500px) {
  html body #pagina-home#pagina-home #listaVagas#listaVagas#listaVagas article.vaga-card.em-lista-final.em-recent-model3 .em-lista-acoes {grid-template-columns:minmax(0,1.25fr) minmax(0,1fr)!important;width:100%!important;max-width:380px!important}
  html body #pagina-home#pagina-home #listaVagas#listaVagas#listaVagas article.vaga-card.em-lista-final.em-recent-model3 .em-lista-detalhes,html body #pagina-home#pagina-home #listaVagas#listaVagas#listaVagas article.vaga-card.em-lista-final.em-recent-model3 .em-lista-ver {height:38px!important;min-height:38px!important;min-width:0!important}
