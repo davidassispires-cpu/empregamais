@@ -155,8 +155,17 @@
       });
       var published = new Date(job.criadoEm || job.dataPublicacao).getTime();
       if (Number.isFinite(published) && Date.now() >= published && Date.now() - published < 2 * day && !labels.querySelector('.new')) badge(labels, 'new', 'Nova vaga');
-      if (labels.children.length) header.appendChild(labels);
+      if (labels.children.length) heading.appendChild(labels);
+      var share = doc.createElement('a'); share.className = 'em-recent-share';
+      var jobUrl = String(win.location.origin || '') + String(win.location.pathname || '') + '?pagina=vaga&id=' + encodeURIComponent(job.id);
+      share.href = 'https://wa.me/?text=' + encodeURIComponent(String(job.cargo || 'Vaga no +Empregos') + '\n' + jobUrl);
+      share.target = '_blank'; share.rel = 'noopener noreferrer'; share.title = 'Compartilhar vaga no WhatsApp'; share.setAttribute('aria-label', share.title);
+      share.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="m9 10 6-3m-6 7 6 3"/></svg>';
+      share.onclick = function (event) { event.stopPropagation(); }; header.appendChild(share);
       var meta = card.querySelector('.em-lista-meta');
+      var publication = card.querySelector('.em-lista-data');
+      if (meta && publication) meta.appendChild(publication);
+
       var salary = meta && meta.querySelector('.em-lista-salario');
       if (salary && !salary.querySelector('.em-recent-salary-icon')) {
         var money = doc.createElement('span'); money.className = 'em-recent-salary-icon'; money.setAttribute('aria-hidden', 'true');
@@ -168,6 +177,18 @@
         var uf = String(job.uf || '').trim();
         if (uf.length !== 2) { var suffix = /[/•–-]\s*([A-Za-z]{2})$/.exec(place.textContent.trim()); uf = suffix ? suffix[1] : ''; }
         place.textContent = String(job.cidade).trim() + (uf.length === 2 ? ' – ' + uf.toUpperCase() : '');
+      }
+      var actions = card.querySelector('.em-lista-acoes');
+      if (actions && !actions.querySelector('.em-lista-detalhes')) {
+        var details = doc.createElement('button'); details.type = 'button'; details.className = 'em-lista-detalhes';
+        details.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M4 7h16M4 12h12M4 17h8"/></svg><span>Mais detalhes</span>';
+        details.setAttribute('data-vaga-id', String(job.id || ''));
+        details.onclick = function (event) {
+          event.preventDefault(); event.stopPropagation();
+          if (typeof win.irPara === 'function') win.irPara('vaga', job.id);
+          else win.location.href = String(win.location.pathname || '') + '?pagina=vaga&id=' + encodeURIComponent(job.id);
+        };
+        actions.insertBefore(details, actions.firstChild);
       }
       return card;
     }
