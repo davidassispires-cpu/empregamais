@@ -35,3 +35,57 @@ html body #pagina-home .em-public-demo-badge svg { width: 13px !important; heigh
 html body #pagina-home :is(#listaVagas, #listaDestaques) .em-public-demo-badge.featured { background: #fff8eb !important; border-color: #f3d5a3 !important; color: #9a5b0c !important; }
 html body #pagina-home :is(#listaVagas, #listaDestaques) .em-public-demo-badge.new { background: #eef6ff !important; border-color: #d2e6fb !important; color: #1768b4 !important; }
 html body #pagina-vaga .em-public-demo-notice { box-sizing: border-box !important; max-width: 1200px !important; margin: 14px auto !important; padding: 11px 14px !important; border: 1px solid #d1d5db !important; border-radius: 8px !important; background: #f9fafb !important; color: #4b5563 !important; font-size: 12px !important; line-height: 1.6 !important; }
+
+
+/* Featured vacancies — horizontal compact model, orange full-width application CTA. */
+@media (min-width: 760px) {
+  html body #pagina-home #listaDestaques.carrossel-destaques-v60 {
+    display: grid !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 16px !important;
+    overflow: visible !important;
+    scroll-snap-type: none !important;
+  }
+  html body #pagina-home #listaDestaques.carrossel-destaques-v60 > .vaga-card {
+    width: 100% !important;
+    min-width: 0 !important;
+    max-width: none !important;
+    flex: initial !important;
+  }
+}
+html body #pagina-home #listaDestaques .vaga-card {
+  box-sizing: border-box !important;
+  display: flex !important;
+  flex-direction: column !important;
+  border: 1px solid #e3eaf3 !important;
+  border-radius: 14px !important;
+  background: #fff !important;
+  padding: 16px !important;
+  box-shadow: 0 3px 12px rgba(15, 42, 77, .045) !important;
+  min-height: 0 !important;
+  height: auto !important;
+}
+html body #pagina-home #listaDestaques .vaga-card :is(button, a).btn-candidatar,
+html body #pagina-home #listaDestaques .vaga-card :is(button, a).candidatar,
+html body #pagina-home #listaDestaques .vaga-card :is(button, a)[class*="candidatar"] {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 100% !important;
+  max-width: none !important;
+  min-height: 46px !important;
+  margin-top: auto !important;
+  border: 0 !important;
+  border-radius: 9px !important;
+  background: #ff941e !important;
+  color: #fff !important;
+  font-weight: 750 !important;
+  text-align: center !important;
+  box-shadow: none !important;
+}
+html body #pagina-home #listaDestaques .vaga-card :is(button, a)[class*="candidatar"]:hover {
+  background: #e97c0d !important;
+}
+@media (max-width: 759px) {
+  html body #pagina-home #listaDestaques .vaga-card {padding: 13px !important;}
+}
