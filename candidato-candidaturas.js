@@ -195,6 +195,10 @@
   });
   panel.addEventListener('click',function(event){var button=event.target.closest('[data-cp-insight-route]');if(button&&typeof window.irPara==='function')window.irPara(button.dataset.cpInsightRoute);});
   if(active){panel.innerHTML=premiumInsight(a,active);panel.hidden=false;buttons.forEach(function(button){button.setAttribute('aria-expanded',String(button.dataset.cpInsightKind===active));});}
+  var options=group.querySelector('.cp-premium-options');
+  var cancelAction=details.querySelector('.cp-cancel-trigger');
+  if(cancelAction)options.appendChild(cancelAction);
+  if(premium){var analysis=document.createElement('button');analysis.type='button';analysis.className='cp-model2-analysis';analysis.innerHTML=actionIcon('chart')+'<span>Ver análise</span>';analysis.onclick=function(){var target=options.querySelector('[data-cp-insight-kind="match"]');if(target)target.click();};options.appendChild(analysis);}
   details.appendChild(group);card.appendChild(panel);
  }
  function journeyModel(a){
