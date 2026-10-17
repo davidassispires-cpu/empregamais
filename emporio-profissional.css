@@ -1964,3 +1964,16 @@ html body #pagina-home .destaques-carrossel-em{position:relative!important;paddi
 html body #pagina-home .destaques-carrossel-em .destaques-seta-em{display:flex!important;z-index:10!important}
 @media(max-width:1000px) and (min-width:761px){html body #pagina-home #listaDestaques#listaDestaques#listaDestaques{grid-auto-columns:calc((100% - 32px)/3)!important}}
 @media(max-width:760px){html body #pagina-home #listaDestaques#listaDestaques#listaDestaques{grid-auto-columns:82%!important;gap:12px!important}html body #pagina-home #listaDestaques#listaDestaques#listaDestaques .em-featured-reference{aspect-ratio:1 / 1!important;min-height:0!important}html body #pagina-home .destaques-carrossel-em{padding:0!important}html body #pagina-home .destaques-carrossel-em .destaques-seta-em{display:none!important}}
+
+/* Três vagas visíveis por vez, em cards quadrados maiores. */
+@media(min-width:761px){
+html body #pagina-home #listaDestaques#listaDestaques#listaDestaques{grid-auto-columns:calc((100% - 32px)/3)!important}
+html body #pagina-home #listaDestaques#listaDestaques#listaDestaques .em-featured-reference{padding:18px!important;gap:10px 12px!important;grid-template-columns:48px minmax(0,1fr)!important;grid-template-rows:auto auto minmax(0,1fr) auto 48px!important}
+html body #pagina-home #listaDestaques#listaDestaques#listaDestaques .em-featured-reference .dz-titulo{font-size:15px!important}
+html body #pagina-home #listaDestaques#listaDestaques#listaDestaques .em-featured-reference .dz-empresa{font-size:12px!important}
+html body #pagina-home #listaDestaques#listaDestaques#listaDestaques .em-featured-reference .dz-logo{width:46px!important;height:46px!important;min-width:46px!important}
+html body #pagina-home #listaDestaques#listaDestaques#listaDestaques .em-featured-reference .dz-info,html body #pagina-home #listaDestaques#listaDestaques#listaDestaques .em-featured-reference .dz-infos .dz-salario{font-size:11px!important;padding:5px 7px!important}
+html body #pagina-home #listaDestaques#listaDestaques#listaDestaques .em-featured-reference .dz-infos .dz-salario strong{font-size:12px!important}
+html body #pagina-home #listaDestaques#listaDestaques#listaDestaques .em-featured-reference .em-featured-badge,html body #pagina-home #listaDestaques#listaDestaques#listaDestaques .em-featured-reference .em-public-demo-badge{font-size:10px!important;padding:5px 7px!important}
+html body #pagina-home #listaDestaques#listaDestaques#listaDestaques .em-featured-reference .dz-botao{height:48px!important;min-height:48px!important;font-size:14px!important}
+}
