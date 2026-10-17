@@ -175,7 +175,11 @@
         else if (typeof win.alternarFavorito === 'function') win.alternarFavorito(job.id);
         updateSave();
       };
-      updateSave(); topActions.appendChild(save); header.appendChild(topActions);
+      updateSave();
+      var footer = card.querySelector('.em-lista-footer');
+      if (!footer) { footer = doc.createElement('div'); footer.className = 'em-lista-footer'; card.appendChild(footer); }
+      footer.insertBefore(save, footer.firstChild);
+      if (topActions.children.length) header.appendChild(topActions);
       var meta = card.querySelector('.em-lista-meta');
       var publication = card.querySelector('.em-lista-data');
       if (meta && publication) meta.appendChild(publication);
