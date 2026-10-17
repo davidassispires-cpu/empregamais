@@ -54,8 +54,8 @@
   // Marcas usadas exclusivamente como exemplos visuais, sem vínculo ou vaga real.
   var demoBrands = [
     {name:'Drogaria Araujo',domain:'araujo.com.br'},
-    {name:'Carrefour',domain:'carrefour.com.br'},
-    {name:'Postos Ipiranga',domain:'ipiranga.com.br',logo:'https://www.ipiranga.com.br/wps/contenthandler/pt-br/!ut/p/digest!jrNKL_3isuc4kfF0Av0GfQ/dav/fs-type1/themes/ipiranga.institucionalv4.theme/assets/ico/apple-touch-icon-152x152.png'},
+    {name:'Carrefour',domain:'carrefour.com.br',logo:'https://cdn.jsdelivr.net/gh/glincker/thesvg@main/public/icons/carrefour/default.svg'},
+    {name:'Postos Ipiranga',domain:'ipiranga.com.br',logo:'https://www.ipiranga.com.br/wps/contenthandler/pt-br/!ut/p/digest!jrNKL_3isuc4kfF0Av0GfQ/dav/fs-type1/themes/ipiranga.institucionalv4.theme/assets/img/logo-ipiranga-azul.svg'},
     {name:'Magazine Luiza',domain:'magazineluiza.com.br'}
   ];
   function demoBrand(index) { return demoBrands[index % demoBrands.length]; }
