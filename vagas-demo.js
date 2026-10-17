@@ -51,7 +51,15 @@
   ];
 
 
-  // Identidades vetoriais fictícias para as empresas de demonstração.
+  // Marcas usadas exclusivamente como exemplos visuais, sem vínculo ou vaga real.
+  var demoBrands = [
+    {name:'Drogaria Araujo',domain:'araujo.com.br'},
+    {name:'Carrefour',domain:'carrefour.com.br'},
+    {name:'Postos Ipiranga',domain:'ipiranga.com.br'},
+    {name:'Magazine Luiza',domain:'magazineluiza.com.br'}
+  ];
+  function demoBrand(index) { return demoBrands[index % demoBrands.length]; }
+  // Fallback vetorial para identidades de demonstração.
   function demoLogo(index) {
     var colors = ['#126ca0','#6553a2','#d27625','#127c80','#425b85','#54725a','#a65b72','#304c72'];
     var marks = [
@@ -78,7 +86,7 @@
       var published = new Date(time - item.idade * day);
       return {
         id:'demo-publica-' + String(index + 1).padStart(2, '0'), demo:true, demoPublica:true,
-        empresa:item.confidencial ? 'Empresa confidencial' : item.empresa + ' (Demo)', empresaCnpj:'', empresaEmail:'',
+        empresa:item.confidencial ? 'Empresa confidencial' : demoBrand(index).name + ' (Demo)', empresaCnpj:'', empresaEmail:'',
         cargo:item.cargo, cidade:item.cidade, uf:'MG', area:item.area,
         modalidade:item.modalidade || 'Presencial', contrato:item.contrato || 'Efetivo – CLT',
         pcd:'Não exclusiva para PcD', salario:'R$ ' + item.salario.toLocaleString('pt-BR', {minimumFractionDigits:2}) + (item.comissao ? ' + comissão' : ''), salarioNumero:item.salario,
@@ -86,8 +94,8 @@
         requisitos:item.requisitos, beneficios:item.beneficios || 'Vale-transporte; vale-alimentação; seguro de vida.',
         jornada:item.jornada || '44 horas semanais', horario:item.horario || 'Segunda a sexta, das 8h às 17h48',
         experiencia:/Aprendiz|Estágio/.test(item.cargo) ? 'Não exigida' : 'Desejável experiência na função',
-        sobreEmpresa:'Empresa fictícia utilizada para demonstrar os recursos do +Empregos.',
-        logo:item.destaque && !item.confidencial ? demoLogo(index) : '', tipoContato:'portal', contatoCandidatura:'',
+        sobreEmpresa:'Demonstração visual do +Empregos. A marca é usada apenas como exemplo, sem vínculo com a empresa e sem anúncio real de contratação.',
+        logo:!item.confidencial ? 'https://www.google.com/s2/favicons?domain=' + demoBrand(index).domain + '&sz=128' : '', tipoContato:'portal', contatoCandidatura:'',
         destaque:!!item.destaque, destaqueAte:item.destaque ? new Date(time + 15 * day).toISOString() : '',
         urgente:!!item.urgente, contratacaoUrgente:!!item.urgente, urgenteAte:item.urgente ? new Date(time + 7 * day).toISOString() : '',
         confidencial:!!item.confidencial, confidencialAte:item.confidencial ? new Date(time + 15 * day).toISOString() : '',
