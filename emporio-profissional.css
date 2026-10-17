@@ -1929,3 +1929,12 @@ html body #pagina-home #listaDestaques#listaDestaques#listaDestaques .em-feature
 html body #pagina-home #listaDestaques#listaDestaques#listaDestaques .em-featured-reference .dz-botao:focus-visible{outline:3px solid #153b66!important;outline-offset:3px!important}
 @media(max-width:760px){html body #pagina-home #listaDestaques#listaDestaques#listaDestaques{grid-template-columns:minmax(0,1fr)!important}}
 @media(max-width:380px){html body #pagina-home #listaDestaques#listaDestaques#listaDestaques .em-featured-reference{grid-template-columns:40px minmax(0,1fr)!important;grid-template-areas:"logo title" "logo company" "salary salary" "info info" "badges badges" "button button"!important}}
+
+/* Reset legacy carousel widths and application wrapper placement. */
+html body #pagina-home #listaDestaques#listaDestaques#listaDestaques .em-featured-reference{width:100%!important;min-width:0!important;max-width:100%!important;justify-self:stretch!important;flex:none!important;box-sizing:border-box!important;overflow:hidden!important;border-top:1px solid #e6edf5!important}
+html body #pagina-home #listaDestaques#listaDestaques#listaDestaques .em-featured-reference .em-apply-share-featured{grid-area:button!important;display:flex!important;width:100%!important;min-width:0!important;margin:0!important;align-items:center!important;gap:8px!important}
+html body #pagina-home #listaDestaques#listaDestaques#listaDestaques .em-featured-reference .em-apply-share-featured .dz-botao{grid-area:auto!important;flex:1 1 auto!important;width:100%!important;min-width:0!important;white-space:normal!important}
+html body #pagina-home #listaDestaques#listaDestaques#listaDestaques .em-featured-reference .dz-logo{min-width:44px!important}
+html body #pagina-home #listaDestaques#listaDestaques#listaDestaques .em-featured-reference .dz-titulo{min-width:0!important;word-break:normal!important;overflow-wrap:break-word!important}
+html body #pagina-home #listaDestaques#listaDestaques#listaDestaques .em-featured-reference .dz-empresa{min-width:0!important;white-space:normal!important;overflow-wrap:break-word!important}
+html body #pagina-home #listaDestaques#listaDestaques#listaDestaques{overflow:visible!important;scroll-snap-type:none!important}
