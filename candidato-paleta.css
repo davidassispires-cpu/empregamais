@@ -40,6 +40,31 @@
     .em-personal-grid article > a, .cp-search button, .cp-banner button) :is(span, svg),
   #pagina-curriculo #cvWizardNext :is(span, svg) { color: inherit !important; }
 
+  /* Give the compatibility action room inside its compact summary tile. */
+  body.cp-shell-active #listaCandidaturas.cp-applications-list-view .cp-premium-option[data-cp-insight-kind="match"]:not(.is-locked) > .cp-option-cta {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    box-sizing: border-box !important;
+    grid-column: 1 / -1 !important;
+    gap: 8px !important;
+    width: 100% !important;
+    min-width: 0 !important;
+    height: auto !important;
+    min-height: 28px !important;
+    margin: 0 !important;
+    padding: 5px 8px !important;
+    border-radius: 5px !important;
+    font-size: 11px !important;
+    line-height: 1.4 !important;
+    white-space: normal !important;
+  }
+  body.cp-shell-active #listaCandidaturas.cp-applications-list-view .cp-premium-option[data-cp-insight-kind="match"]:not(.is-locked) > .cp-option-cta svg {
+    flex: 0 0 14px !important;
+    width: 14px !important;
+    height: 14px !important;
+  }
+
   body.cp-shell-active .m3-welcome button,
   body.cp-shell-active .m3-welcome button:hover,
   body.cp-shell-active :is(.premium92-crown, .cp-recommendation-premium, .cp93-pill) {
