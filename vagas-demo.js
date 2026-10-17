@@ -129,10 +129,52 @@
       span.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' + paths[kind] + '</svg>';
       var text = doc.createElement('span'); text.textContent = label; span.appendChild(text); bar.appendChild(span);
     }
+    function enabled(value) { return value === true || value === 1 || /^(true|1)$/i.test(String(value)); }
+    function recentCard(card, job, featured) {
+      if (!card || featured || !card.classList.contains('em-lista-final')) return card;
+      var home = doc.getElementById('pagina-home');
+      if (!home || !home.classList.contains('ativa')) return card;
+      job = job || {};
+      card.classList.add('em-recent-model3');
+      var highlighted = enabled(job.destaque) || enabled(job.emDestaque) || enabled(job.destacada);
+      var confidential = typeof win.vagaEhConfidencialEM === 'function' ? win.vagaEhConfidencialEM(job) : enabled(job.confidencial);
+      card.setAttribute('data-em-highlighted', String(highlighted));
+      card.setAttribute('data-em-confidential', String(confidential));
+      var logo = card.querySelector('.em-logo-destaque-previa,.em-lista-logo');
+      if (logo && (!highlighted || confidential)) logo.remove();
+      else if (logo) logo.classList.add('em-recent-logo');
+      var header = card.querySelector('.em-lista-cab');
+      var title = card.querySelector('.em-lista-titulo');
+      var company = card.querySelector('.em-lista-empresa');
+      if (!header || !title || !company) return card;
+      var heading = doc.createElement('div'); heading.className = 'em-recent-heading';
+      heading.appendChild(title); heading.appendChild(company); header.appendChild(heading);
+      var labels = doc.createElement('div'); labels.className = 'em-recent-badges';
+      ['.em-lista-urgente','.em-public-demo-badges','.em-lista-rapida'].forEach(function (selector) {
+        var node = card.querySelector(selector); if (node) labels.appendChild(node);
+      });
+      var published = new Date(job.criadoEm || job.dataPublicacao).getTime();
+      if (Number.isFinite(published) && Date.now() >= published && Date.now() - published < 2 * day && !labels.querySelector('.new')) badge(labels, 'new', 'Nova vaga');
+      if (labels.children.length) header.appendChild(labels);
+      var meta = card.querySelector('.em-lista-meta');
+      var salary = meta && meta.querySelector('.em-lista-salario');
+      if (salary && !salary.querySelector('.em-recent-salary-icon')) {
+        var money = doc.createElement('span'); money.className = 'em-recent-salary-icon'; money.setAttribute('aria-hidden', 'true');
+        money.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="9" cy="6" rx="6" ry="3"/><path d="M3 6v5c0 2 3 3 6 3m6-8v4M3 11v5c0 2 3 3 6 3"/><ellipse cx="16" cy="14" rx="5" ry="2.5"/><path d="M11 14v5c0 1.4 2.2 2.5 5 2.5s5-1.1 5-2.5v-5"/></svg>';
+        salary.insertBefore(money, salary.firstChild);
+      }
+      var place = meta && meta.querySelector('.em-lista-meta-item b');
+      if (place && job.cidade) {
+        var uf = String(job.uf || '').trim();
+        if (uf.length !== 2) { var suffix = /[/•–-]\s*([A-Za-z]{2})$/.exec(place.textContent.trim()); uf = suffix ? suffix[1] : ''; }
+        place.textContent = String(job.cidade).trim() + (uf.length === 2 ? ' – ' + uf.toUpperCase() : '');
+      }
+      return card;
+    }
     var makeCard = win.criarCardVaga;
     if (typeof makeCard === 'function') win.criarCardVaga = function (job, featured) {
       var card = makeCard.apply(this, arguments);
-      if (!card || !isDemo(job)) return card;
+      if (!card || !isDemo(job)) return recentCard(card, job, featured);
       card.classList.add('em-public-demo-card');
       var bar = featured && card.querySelector('.em-featured-badges');
       if (!bar) {
@@ -145,7 +187,7 @@
       if (job.destaque && !featured) badge(bar, 'featured', 'Em destaque');
       if (job.confidencial) badge(bar, 'confidential', 'Confidencial');
       if (featured && Date.now() - new Date(job.criadoEm).getTime() < 2 * day) badge(bar, 'new', 'Nova vaga');
-      return card;
+      return recentCard(card, job, featured);
     };
 
     function currentDemo() { return isDemo(win.vagaAtual); }
