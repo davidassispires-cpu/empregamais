@@ -55,7 +55,7 @@
   var demoBrands = [
     {name:'Drogaria Araujo',domain:'araujo.com.br'},
     {name:'Carrefour',domain:'carrefour.com.br'},
-    {name:'Postos Ipiranga',domain:'ipiranga.com.br'},
+    {name:'Postos Ipiranga',domain:'ipiranga.com.br',logo:'https://www.ipiranga.com.br/wps/contenthandler/pt-br/!ut/p/digest!jrNKL_3isuc4kfF0Av0GfQ/dav/fs-type1/themes/ipiranga.institucionalv4.theme/assets/ico/apple-touch-icon-152x152.png'},
     {name:'Magazine Luiza',domain:'magazineluiza.com.br'}
   ];
   function demoBrand(index) { return demoBrands[index % demoBrands.length]; }
@@ -95,7 +95,7 @@
         jornada:item.jornada || '44 horas semanais', horario:item.horario || 'Segunda a sexta, das 8h às 17h48',
         experiencia:/Aprendiz|Estágio/.test(item.cargo) ? 'Não exigida' : 'Desejável experiência na função',
         sobreEmpresa:'Demonstração visual do +Empregos. A marca é usada apenas como exemplo, sem vínculo com a empresa e sem anúncio real de contratação.',
-        logo:!item.confidencial ? 'https://www.google.com/s2/favicons?domain=' + demoBrand(index).domain + '&sz=128' : '', tipoContato:'portal', contatoCandidatura:'',
+        logo:!item.confidencial ? (demoBrand(index).logo || 'https://www.google.com/s2/favicons?domain=' + demoBrand(index).domain + '&sz=128') : '', tipoContato:'portal', contatoCandidatura:'',
         destaque:!!item.destaque, destaqueAte:item.destaque ? new Date(time + 15 * day).toISOString() : '',
         urgente:!!item.urgente, contratacaoUrgente:!!item.urgente, urgenteAte:item.urgente ? new Date(time + 7 * day).toISOString() : '',
         confidencial:!!item.confidencial, confidencialAte:item.confidencial ? new Date(time + 15 * day).toISOString() : '',
