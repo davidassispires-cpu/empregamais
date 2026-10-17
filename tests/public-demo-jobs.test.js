@@ -23,11 +23,11 @@ function element(className = '') {
     },
     get firstChild() { return this.children[0] || null; }
   };
-  node.classList = {add(name) { node.className += ' ' + name; }};
+  node.classList = {add(name) { node.className += ' ' + name; },contains(name) { return node.className.split(' ').includes(name); }};
   return node;
 }
 function fixture(route = '?pagina=home') {
-  const page = element(), listeners = {}, messages = [], calls = [];
+  const page = element(), home = element('ativa'), listeners = {}, messages = [], calls = [];
   const realJob = {id:'real-job',cargo:'Vaga cadastrada',empresa:'Empresa real',status:'ativa',aprovacao:'aprovada',dataPublicacao:new Date().toISOString().slice(0,10),salario:'R$ 3.000,00'};
   const stored = [realJob];
   const win = {
@@ -38,7 +38,7 @@ function fixture(route = '?pagina=home') {
     extrairSalarioNumero:() => 3000,
     document:{
       createElement:() => element(),
-      getElementById(id) { return id === 'pagina-vaga' ? page : page.children.find(n => n.id === id) || null; }
+      getElementById(id) { return id === 'pagina-home' ? home : id === 'pagina-vaga' ? page : page.children.find(n => n.id === id) || null; }
     },
     localStorage:{setItem() { throw Error('Demo jobs must not be persisted'); }},
     fetch() { throw Error('Demo jobs must not call the backend'); },
@@ -67,7 +67,7 @@ function fixture(route = '?pagina=home') {
   existingFunction('prazoRestanteVaga45EM(', 'papelAtual(');
   existingFunction('todasAsVagasPublicas(', 'esconderPaginas(');
   existingFunction('localizarVaga(id)', 'inicioDoDiaLocal(');
-  return {win, page, stored, realJob, listeners, messages, calls};
+  return {win, page, home, stored, realJob, listeners, messages, calls};
 }
 
 test('the public catalog contains twenty distinct samples with the requested badge combinations', () => {
@@ -122,6 +122,19 @@ test('default examples survive confirmed remote refreshes without being written 
   env.stored.push({...env.realJob, id:'second-real-job'});
   assert.equal(env.win.todasAsVagasPublicas().length, 21);
   assert.deepEqual(env.stored.map(j => j.id), ['second-real-job']);
+});
+
+test('opening a job does not rebuild the hidden home; returning home still renders all twenty samples', () => {
+  const env = fixture('?pagina=vaga&id=demo-publica-07');
+  env.home.className = '';
+  demo.instalar(env.win);
+  for (let i = 0; i < 10; i++) env.win.renderizarVagas();
+  assert.equal(env.win.cards, undefined);
+  assert.equal(env.win.localizarVaga('demo-publica-07').cargo, 'Assistente Financeiro');
+  env.home.className = 'ativa';
+  env.win.renderizarVagas();
+  assert.equal(env.win.cards.length, 21);
+  assert.equal(env.win.featured.length, 8);
 });
 
 test('both card sections label samples and keep the existing data IDs used for filtering and navigation', () => {

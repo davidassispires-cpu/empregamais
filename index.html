@@ -32839,11 +32839,13 @@ function vagasEM(){
 try{return carregarVagasPortal()||[];}catch(e){return [];}
 }
 function aplicarCardsEM(){
+var home=document.getElementById("pagina-home");
+if(!home||!home.classList.contains("ativa"))return;
 var cand=candidatoEM();
 if(!cand.cep && (cand.latitude===null || cand.longitude===null)) return;
 var vs=vagasEM(), mapa={};
 for(var i=0;i<vs.length;i++) mapa[String(vs[i].id||"")]=vs[i];
-var cards=document.querySelectorAll(".vaga-card,.card-destaque");
+var cards=home.querySelectorAll(".vaga-card,.card-destaque");
 Array.prototype.forEach.call(cards,function(card){
 var id=String(card.getAttribute("data-id")||"");
 var vaga=mapa[id];
@@ -32867,7 +32869,8 @@ el.style.cssText="margin-top:8px;font-size:13px;font-weight:700;color:#16794b;";
 var alvo=card.querySelector(".vaga-principal")||card;
 alvo.appendChild(el);
 }
-el.textContent="\u2316 "+txt;
+var label="\u2316 "+txt;
+if(el.textContent!==label)el.textContent=label;
 });
 });
 }
@@ -32886,12 +32889,19 @@ var txt=textoKmEM(km);
 if(txt){out.textContent=txt;}else{box.style.display="none";}
 });
 }
+var cardsTimerEM=0;
+function agendarCardsEM(){
+var home=document.getElementById("pagina-home");
+if(!home||!home.classList.contains("ativa"))return;
+clearTimeout(cardsTimerEM);
+cardsTimerEM=setTimeout(function(){cardsTimerEM=0;aplicarCardsEM();},30);
+}
 if(typeof criarCardVaga==="function"){
 var criarOriginalFinalEM=criarCardVaga;
 criarCardVaga=function(vaga,destaque){
 var card=criarOriginalFinalEM(vaga,destaque);
 try{card.setAttribute("data-id",String((vaga&&vaga.id)||""));}catch(e){}
-setTimeout(aplicarCardsEM,0);
+agendarCardsEM();
 return card;
 };
 }
@@ -32903,7 +32913,7 @@ setTimeout(function(){aplicarDetalheEM(id);},50);
 return r;
 };
 }
-var obs=new MutationObserver(function(){setTimeout(aplicarCardsEM,30);});
+var obs=new MutationObserver(agendarCardsEM);
 window.addEventListener("load",function(){
 setTimeout(function(){
 aplicarCardsEM();
@@ -39275,7 +39285,7 @@ modal.showModal();};});host.querySelectorAll('[data-gc27-stage]').forEach(functi
     card.classList.add('vaga-confidencial-em');
     var nomes=card.querySelectorAll('.vaga-empresa,.empresa,.empresa-nome,[data-empresa-nome]');
     for(var i=0;i<nomes.length;i++){
-      nomes[i].textContent='Empresa confidencial';
+      if(nomes[i].textContent!=='Empresa confidencial'||nomes[i].childElementCount)nomes[i].textContent='Empresa confidencial';
       nomes[i].onclick=null; nomes[i].removeAttribute('href'); nomes[i].removeAttribute('title');
     }
     var logos=card.querySelectorAll('.logo-empresa,.logo-placeholder,.vaga-logo,.logo-vaga,.vaga-card-logo,[class*="empresa-logo"]');
@@ -41598,7 +41608,7 @@ if(typeof mostrarPopupPerfilAtualizadoEM==="function"){var popup=mostrarPopupPer
 function install(){var box=document.getElementById("emPerto");if(!box||box.dataset.attentionReady)return;box.dataset.attentionReady="1";
 var title=box.querySelector("h3"),description=box.querySelector("p"),head=document.createElement("div");head.className="em-near-head";var copy=document.createElement("div");copy.className="em-near-copy";var icon=document.createElement("span");icon.className="em-near-icon";icon.innerHTML='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12S4 16 4 10a8 8 0 1 1 16 0Z"/><circle cx="12" cy="10" r="2.5"/></svg>';box.prepend(head);head.appendChild(icon);head.appendChild(copy);if(title)copy.appendChild(title);if(description){description.textContent="Use sua localização ou informe seu CEP para encontrar oportunidades na sua região.";copy.appendChild(description);}
 var actions=document.createElement("div");actions.className="em-near-actions";head.appendChild(actions);var local=document.getElementById("emPertoLocal");if(local)actions.appendChild(local);var cepButton=document.createElement("button");cepButton.id="emNearCepAction";cepButton.type="button";cepButton.textContent="Informar CEP";actions.appendChild(cepButton);cepButton.onclick=function(){var input=document.getElementById("emPertoCep");if(input){input.scrollIntoView({block:"center",behavior:window.matchMedia("(prefers-reduced-motion: reduce)").matches?"auto":"smooth"});input.focus({preventScroll:true});}};
-function active(){var selected=box.classList.contains("em-perto-active");if(title)title.textContent=selected?"Buscando vagas perto de você":"Encontre vagas perto de você";cepButton.textContent=selected?"Alterar localização":"Informar CEP";if(selected)box.classList.remove("em-near-attention");}
+function active(){var selected=box.classList.contains("em-perto-active"),heading=selected?"Buscando vagas perto de você":"Encontre vagas perto de você",action=selected?"Alterar localização":"Informar CEP";if(title&&title.textContent!==heading)title.textContent=heading;if(cepButton.textContent!==action)cepButton.textContent=action;if(selected&&box.classList.contains("em-near-attention"))box.classList.remove("em-near-attention");}
 new MutationObserver(active).observe(box,{attributes:true,attributeFilter:["class"]});active();
 var seen=false;try{seen=sessionStorage.getItem("emNearAttentionSeen")==="1";}catch(e){}if(!seen){var observer=new IntersectionObserver(function(entries){if(entries.some(function(entry){return entry.isIntersecting;})){box.classList.add("em-near-attention");try{sessionStorage.setItem("emNearAttentionSeen","1");}catch(e){}observer.disconnect();}},{threshold:.35});observer.observe(box);}
 }

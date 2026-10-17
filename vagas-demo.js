@@ -89,6 +89,15 @@
       return job.id !== 'vaga1' && job.id !== 'vaga2' && !isDemo(job);
     }).concat(createJobs());
 
+    // Legacy startup callbacks also request the home list while a detail page is open.
+    // Build its cards when the visitor actually opens the home page.
+    var renderHome = win.renderizarVagas;
+    if (typeof renderHome === 'function') win.renderizarVagas = function () {
+      var home = doc.getElementById('pagina-home');
+      if (!home || !home.classList.contains('ativa')) return;
+      return renderHome.apply(this, arguments);
+    };
+
     var paths = {
       demo:'<rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 8h8M8 12h8M8 16h5"/>',
       featured:'<path d="m12 3 2.8 5.7 6.3.9-4.6 4.4 1.1 6.3-5.6-3-5.6 3 1.1-6.3L3 9.6l6.2-.9Z"/>',

@@ -35,7 +35,7 @@ function protegerCard(card,v){
  card.classList.add("vaga-confidencial-publica-em");
  var nome=card.querySelector(".vaga-empresa,.empresa-vaga,.vaga-card-empresa,[data-campo='empresa']");
  if(nome){
-  nome.textContent="Empresa confidencial";
+  if(nome.textContent!=="Empresa confidencial"||nome.childElementCount)nome.textContent="Empresa confidencial";
   nome.onclick=null;
   nome.removeAttribute("title");
   nome.removeAttribute("href");
@@ -64,14 +64,13 @@ function protegerDetalhe(v){
  pagina.classList.add("vaga-confidencial-em");
  var nome=document.getElementById("detalheEmpresaCab");
  if(nome){
-  nome.innerHTML="";
-  nome.textContent="Empresa confidencial";
+  if(nome.textContent!=="Empresa confidencial"||nome.childElementCount)nome.textContent="Empresa confidencial";
   nome.onclick=null;nome.removeAttribute("href");nome.removeAttribute("title");
   nome.classList.remove("empresa-link-em","empresa-link-cadastro-em","empresa-verificada-link");
  }
  ["logoDetalhe","detalheLogoEmpresa","empresaLateralVerificada","btnConhecerEmpresa"].forEach(function(id){ocultar(document.getElementById(id));});
  var lateral=document.getElementById("empresaLateralNome");
- if(lateral)lateral.textContent="Empresa confidencial";
+ if(lateral&&lateral.textContent!=="Empresa confidencial")lateral.textContent="Empresa confidencial";
  var sobre=document.getElementById("detalheSobreEmpresa");
  if(sobre){
   var box=sobre.closest(".empresa-lateral")||sobre.parentElement;
