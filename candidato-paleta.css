@@ -325,3 +325,16 @@
     }
   }
 }
+
+@layer candidate-palette {
+ body.cp-shell-active #pagina-painel-candidato .cp-overview-card :is(strong,b),
+ body.cp-shell-active #pagina-painel-candidato :is(.cp-interview-time,.cp-interview-date strong) {
+ color:#4b5563!important;--candidate-contrast-ink:#4b5563!important;
+ }
+ body.cp-shell-active #pagina-painel-candidato .m3-art #m3body stop:first-child{stop-color:#4aafe1!important}
+ body.cp-shell-active #pagina-painel-candidato .m3-art #m3body stop:not(:first-child){stop-color:#3786b6!important}
+ body.cp-shell-active #pagina-painel-candidato .m3-art #m3flap stop{stop-color:#439ed0!important}
+ body.cp-shell-active #pagina-painel-candidato .m3-art [fill="#34333d"]{fill:#3786b6!important}
+ body.cp-shell-active #pagina-painel-candidato .m3-art [stroke="#34333d"]{stroke:#3786b6!important}
+ body.cp-shell-active #pagina-painel-candidato .m3-art feDropShadow{flood-color:#3786b6!important;flood-opacity:.18!important}
+}
