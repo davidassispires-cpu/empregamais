@@ -110,3 +110,12 @@ html body #pagina-home #listaDestaques .card-destaque :is(button,a)[class*="cand
 }
 html body #pagina-home #listaDestaques .card-destaque :is(button,a)[class*="candidat"]:hover{background:#e9810c!important}
 @media(max-width:759px){html body #pagina-home #listaDestaques.destaques{display:grid!important;grid-template-columns:1fr!important;gap:12px!important}}
+
+/* Override the real homepage featured cards and their actual .btn-azul CTA. */
+html body #pagina-home #listaDestaques.destaques{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:16px!important;overflow:visible!important;}
+html body #pagina-home #listaDestaques .card-destaque{width:100%!important;min-width:0!important;max-width:none!important;height:auto!important;min-height:280px!important;max-height:none!important;overflow:visible!important;display:flex!important;flex-direction:column!important;padding:16px!important;border:1px solid #e1e8f2!important;border-radius:14px!important;background:#fff!important;box-shadow:0 3px 12px rgba(15,42,77,.05)!important;}
+html body #pagina-home #listaDestaques .card-destaque .vaga-card-top{height:auto!important;min-height:0!important;flex:0 0 auto!important;}
+html body #pagina-home #listaDestaques .card-destaque .vaga-card-footer{display:flex!important;flex-direction:column!important;width:100%!important;height:auto!important;min-height:0!important;max-height:none!important;margin-top:auto!important;padding-top:12px!important;}
+html body #pagina-home #listaDestaques .card-destaque .btn-azul{display:flex!important;align-items:center!important;justify-content:center!important;box-sizing:border-box!important;width:100%!important;max-width:none!important;height:48px!important;min-height:48px!important;padding:0 12px!important;margin:0!important;border:0!important;border-radius:9px!important;background:#ff941e!important;color:#fff!important;font:750 14px Inter,Arial,sans-serif!important;box-shadow:none!important;}
+html body #pagina-home #listaDestaques .card-destaque .btn-azul:hover{background:#e9810c!important;}
+@media(max-width:759px){html body #pagina-home #listaDestaques.destaques{grid-template-columns:1fr!important;}}
