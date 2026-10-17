@@ -513,3 +513,93 @@ html body #pagina-home#pagina-home #listaDestaques#listaDestaques#listaDestaques
   html body #pagina-home#pagina-home #listaDestaques#listaDestaques#listaDestaques#listaDestaques article.em-featured-reference.em-featured-reference .dz-logo {width:60px!important;height:60px!important;min-width:60px!important;max-width:60px!important}
   html body #pagina-home#pagina-home #listaDestaques#listaDestaques#listaDestaques#listaDestaques article.em-featured-reference.em-featured-reference .dz-titulo {font-size:17px!important}
 }
+
+/* Model 2: professional areas above the existing filters, in a vertical carousel. */
+html body #pagina-home#pagina-home #filtrosLateral#filtrosLateral.em-home-sidebar-areas {
+  padding:0!important;border:0!important;border-radius:0!important;background:transparent!important;box-shadow:none!important;
+  position:static!important;overflow:visible!important;min-width:0!important;max-height:none!important;
+}
+html body #pagina-home#pagina-home #filtrosLateral#filtrosLateral .em-home-filter-panel {
+  box-sizing:border-box!important;width:100%!important;min-width:0!important;margin:16px 0 0!important;padding:20px!important;
+  border:1px solid #dce5ef!important;border-radius:12px!important;background:#fff!important;box-shadow:none!important;
+}
+html body #pagina-home#pagina-home #areasDestaqueHome {display:none!important}
+html body #pagina-home#pagina-home #filtrosLateral#filtrosLateral #emCategoriasHomeV2 {
+  --candidate-contrast-ink:#193c64!important;
+  box-sizing:border-box!important;display:block!important;width:100%!important;max-width:100%!important;min-width:0!important;
+  margin:0!important;padding:16px!important;border:1px solid #dce5ef!important;border-radius:12px!important;
+  background:#fff!important;box-shadow:none!important;overflow:hidden!important;
+}
+html body #pagina-home#pagina-home #filtrosLateral#filtrosLateral #emCategoriasHomeV2 .em-cat-cab {display:block!important;width:100%!important;margin:0 0 12px!important;padding:0!important}
+html body #pagina-home#pagina-home #filtrosLateral#filtrosLateral #emCategoriasHomeV2 :is(.em-cat-kicker,.em-cat-sub) {display:none!important}
+html body #pagina-home#pagina-home #filtrosLateral#filtrosLateral #emCategoriasHomeV2 h2 {
+  --candidate-contrast-ink:#193c64!important;
+  margin:0!important;padding:0!important;font-size:18px!important;line-height:1.35!important;font-weight:750!important;
+  letter-spacing:-.3px!important;color:#193c64!important;text-align:left!important;
+}
+html body #pagina-home#pagina-home #filtrosLateral#filtrosLateral #emCategoriasHomeV2 .em-cat-viewport {
+  box-sizing:border-box!important;width:100%!important;min-width:0!important;height:280px!important;max-height:280px!important;
+  overflow-x:hidden!important;overflow-y:auto!important;scrollbar-width:none!important;
+  scroll-snap-type:y mandatory!important;overscroll-behavior-y:contain!important;
+  margin:0!important;padding:0!important;border:0!important;border-radius:8px!important;
+}
+html body #pagina-home#pagina-home #filtrosLateral#filtrosLateral #emCategoriasHomeV2 .em-cat-viewport::-webkit-scrollbar {display:none!important}
+html body #pagina-home#pagina-home #filtrosLateral#filtrosLateral #emCategoriasHomeV2 .em-cat-track {
+  display:flex!important;flex-direction:column!important;align-items:stretch!important;gap:8px!important;
+  width:100%!important;min-width:0!important;max-width:100%!important;height:auto!important;
+  margin:0!important;padding:0!important;transform:none!important;overflow:visible!important;
+}
+html body #pagina-home#pagina-home #filtrosLateral#filtrosLateral #emCategoriasHomeV2 .em-cat-card {
+  box-sizing:border-box!important;display:grid!important;grid-template-columns:34px minmax(0,1fr) 16px!important;
+  grid-template-rows:minmax(0,1fr)!important;align-items:center!important;gap:9px!important;
+  flex:0 0 64px!important;width:100%!important;min-width:0!important;max-width:100%!important;
+  height:64px!important;min-height:64px!important;max-height:64px!important;margin:0!important;padding:8px 10px!important;
+  border:1px solid #dce5ef!important;border-radius:8px!important;background:#fff!important;
+  box-shadow:none!important;transform:none!important;scroll-snap-align:start!important;opacity:1!important;
+  text-align:left!important;text-transform:none!important;cursor:pointer!important;
+  transition:background-color .15s,border-color .15s!important;
+}
+html body #pagina-home#pagina-home #filtrosLateral#filtrosLateral #emCategoriasHomeV2 .em-cat-card::before {display:none!important;content:none!important}
+html body #pagina-home#pagina-home #filtrosLateral#filtrosLateral #emCategoriasHomeV2 .em-cat-card:hover {border-color:#b8d8ef!important;background:#f1f8fd!important;box-shadow:none!important;transform:none!important}
+html body #pagina-home#pagina-home #filtrosLateral#filtrosLateral #emCategoriasHomeV2 .em-cat-icon {
+  --candidate-contrast-ink:#0080c9!important;
+  display:flex!important;align-items:center!important;justify-content:center!important;
+  width:34px!important;height:34px!important;border:0!important;border-radius:8px!important;background:#edf6ff!important;color:#0080c9!important;
+}
+html body #pagina-home#pagina-home #filtrosLateral#filtrosLateral #emCategoriasHomeV2 .em-cat-icon svg {display:block!important;width:20px!important;height:20px!important;fill:none!important;stroke:currentColor!important}
+html body #pagina-home#pagina-home #filtrosLateral#filtrosLateral #emCategoriasHomeV2 .em-cat-info {min-width:0!important;text-align:left!important}
+html body #pagina-home#pagina-home #filtrosLateral#filtrosLateral #emCategoriasHomeV2 .em-cat-info strong {
+  --candidate-contrast-ink:#193c64!important;
+  display:block!important;margin:0 0 2px!important;font-size:13px!important;line-height:18px!important;font-weight:700!important;
+  white-space:nowrap!important;overflow:hidden!important;text-overflow:ellipsis!important;color:#193c64!important;
+}
+html body #pagina-home#pagina-home #filtrosLateral#filtrosLateral #emCategoriasHomeV2 .em-cat-info span {
+  --candidate-contrast-ink:#526176!important;
+  display:block!important;margin:0!important;font-size:11px!important;line-height:16px!important;font-weight:500!important;
+  white-space:nowrap!important;color:#526176!important;
+}
+html body #pagina-home#pagina-home #filtrosLateral#filtrosLateral #emCategoriasHomeV2 .em-cat-arrow {
+  --candidate-contrast-ink:#0080c9!important;
+  width:16px!important;height:20px!important;border:0!important;background:none!important;border-radius:0!important;
+  font-size:19px!important;line-height:20px!important;color:#0080c9!important;transform:none!important;
+}
+html body #pagina-home#pagina-home #filtrosLateral#filtrosLateral #emCategoriasHomeV2 .em-cat-arrow svg {display:block!important;width:16px!important;height:16px!important;fill:none!important;stroke:currentColor!important;stroke-width:1.8!important;stroke-linecap:round!important;stroke-linejoin:round!important}
+html body #pagina-home#pagina-home #filtrosLateral#filtrosLateral #emCategoriasHomeV2 .em-area-carousel-control {
+  --candidate-contrast-ink:#0080c9!important;
+  box-sizing:border-box!important;display:flex!important;align-items:center!important;justify-content:center!important;
+  width:32px!important;min-width:32px!important;max-width:32px!important;height:28px!important;min-height:28px!important;
+  margin:8px auto!important;padding:0!important;border:1px solid #d4e2ef!important;border-radius:7px!important;
+  background:#fff!important;color:#0080c9!important;box-shadow:none!important;transform:none!important;cursor:pointer!important;
+}
+html body #pagina-home#pagina-home #filtrosLateral#filtrosLateral #emCategoriasHomeV2 .em-area-carousel-control svg {display:block!important;width:18px!important;height:18px!important;fill:none!important;stroke:currentColor!important;stroke-width:1.8!important;stroke-linecap:round!important;stroke-linejoin:round!important}
+html body #pagina-home#pagina-home #filtrosLateral#filtrosLateral #emCategoriasHomeV2 .em-area-carousel-control:hover:not(:disabled) {background:#edf6ff!important;border-color:#b8d8ef!important}
+html body #pagina-home#pagina-home #filtrosLateral#filtrosLateral #emCategoriasHomeV2 .em-area-carousel-control:disabled {opacity:.4!important;cursor:default!important}
+html body #pagina-home#pagina-home #filtrosLateral#filtrosLateral #emCategoriasHomeV2 .em-area-carousel-status {
+  --candidate-contrast-ink:#526176!important;
+  margin:8px 0 0!important;padding:0!important;font-size:11px!important;line-height:16px!important;font-weight:500!important;
+  color:#526176!important;text-align:center!important;
+}
+html body #pagina-home#pagina-home #filtrosLateral#filtrosLateral #emCategoriasHomeV2 :is(button,.em-cat-viewport):focus-visible {outline:2px solid #0080c9!important;outline-offset:2px!important}
+@media(prefers-reduced-motion:reduce) {
+  html body #pagina-home#pagina-home #filtrosLateral#filtrosLateral #emCategoriasHomeV2 .em-cat-card {transition:none!important}
+}

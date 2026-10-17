@@ -98,6 +98,84 @@
   }
   function isDemo(job) { return !!job && job.demoPublica === true && /^demo-publica-\d{2}$/.test(String(job.id)); }
 
+  function installAreaCarousel(win) {
+    var doc = win.document;
+    function mount() {
+      var sidebar = doc.getElementById('filtrosLateral');
+      var areas = doc.getElementById('emCategoriasHomeV2');
+      var track = doc.getElementById('emCatTrackV2');
+      var up = doc.getElementById('emCatPrevV2'), down = doc.getElementById('emCatNextV2');
+      if (!sidebar || !areas || !track || !up || !down || areas.dataset.verticalCarousel) return;
+      var viewport = areas.querySelector('.em-cat-viewport'), heading = areas.querySelector('h2');
+      if (!viewport || !heading) return;
+
+      // Keep the actual form nodes, event handlers and mobile filter toggle intact.
+      var panel = doc.createElement('div'); panel.className = 'em-home-filter-panel';
+      while (sidebar.firstChild) panel.appendChild(sidebar.firstChild);
+      sidebar.appendChild(panel); sidebar.insertBefore(areas, panel);
+      sidebar.classList.add('em-home-sidebar-areas');
+      areas.dataset.verticalCarousel = '1';
+      heading.id = 'emAreaCarouselHeading'; areas.setAttribute('aria-labelledby', heading.id);
+      viewport.id = 'emAreaCarouselViewport'; viewport.tabIndex = 0;
+      viewport.setAttribute('role', 'group'); viewport.setAttribute('aria-roledescription', 'carrossel');
+      viewport.setAttribute('aria-label', 'Áreas profissionais. Use as setas para cima e para baixo para navegar.');
+      var nav = areas.querySelector('.em-cat-nav');
+      areas.insertBefore(up, viewport); areas.appendChild(down);
+      if (nav) nav.remove();
+      [up, down].forEach(function (button, index) {
+        button.classList.add('em-area-carousel-control');
+        button.setAttribute('aria-label', index ? 'Próximas áreas' : 'Áreas anteriores');
+        button.setAttribute('aria-controls', viewport.id);
+        button.innerHTML = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="'+(index ? 'm6 9 6 6 6-6' : 'm6 15 6-6 6 6')+'"/></svg>';
+      });
+      var status = doc.createElement('p'); status.className = 'em-area-carousel-status';
+      status.setAttribute('role', 'status'); status.setAttribute('aria-live', 'polite'); status.setAttribute('aria-atomic', 'true');
+      areas.appendChild(status);
+      var cards = Array.from(track.children), visible = 4;
+      cards.forEach(function (card) {
+        var arrow = card.querySelector('.em-cat-arrow');
+        if (arrow) {
+          arrow.setAttribute('aria-hidden', 'true');
+          arrow.innerHTML = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 6 6 6-6 6"/></svg>';
+        }
+      });
+      function pitch() { return cards.length > 1 && cards[1].offsetTop - cards[0].offsetTop || 72; }
+      function current() { return Math.min(Math.max(0, cards.length - visible), Math.max(0, Math.round(viewport.scrollTop / pitch()))); }
+      function update() {
+        var first = current(), last = Math.min(first + visible, cards.length);
+        up.disabled = first === 0; down.disabled = last === cards.length;
+        var text = cards.length ? (first + 1) + '–' + last + ' de ' + cards.length + ' áreas' : 'Sem áreas disponíveis';
+        if (status.textContent !== text) status.textContent = text;
+      }
+      function move(index) {
+        var first = Math.max(0, Math.min(cards.length - visible, index));
+        var reduced = win.matchMedia && win.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        viewport.scrollTo({top:first * pitch(), behavior:reduced ? 'auto' : 'smooth'});
+      }
+      up.onclick = function () { move(current() - 1); };
+      down.onclick = function () { move(current() + 1); };
+      viewport.addEventListener('scroll', update, {passive:true});
+      viewport.addEventListener('keydown', function (event) {
+        var index = current();
+        if (event.key === 'ArrowUp') index--;
+        else if (event.key === 'ArrowDown') index++;
+        else if (event.key === 'PageUp') index -= visible;
+        else if (event.key === 'PageDown') index += visible;
+        else if (event.key === 'Home') index = 0;
+        else if (event.key === 'End') index = cards.length - visible;
+        else return;
+        event.preventDefault(); move(index);
+      });
+      win.addEventListener('resize', update);
+      update();
+    }
+    // The legacy filter initializer replaces the aside contents at DOMContentLoaded.
+    // Mount after all of those callbacks, then retain the existing aside on mobile.
+    if (doc.readyState === 'loading') doc.addEventListener('DOMContentLoaded', function () { win.setTimeout(mount, 0); }, {once:true});
+    else mount();
+    win.addEventListener('load', mount, {once:true});
+  }
+
   function install(win) {
     var route = new URLSearchParams(win.location.search).get('pagina');
     if (win.__emPublicDemoJobs || route === 'demo-candidato' || route === 'demo-recrutador') return;
@@ -262,6 +340,7 @@
     }, true);
     if (typeof win.renderizarVagas === 'function') win.renderizarVagas();
     detailNotice();
+    installAreaCarousel(win);
   }
   return {criarVagas:createJobs, ehDemo:isDemo, instalar:install};
 });
