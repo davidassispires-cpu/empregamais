@@ -110,8 +110,8 @@
  function viewNotice(a,compact){
   var value=a.visualizadoEm||a.visualizado_em||a.first_viewed_at, date=value?new Date(value):null;
   if(!value&&a.visualizada!==true&&a.curriculo_visualizado!==true)return '';
-  if(compact){var text=date&&!isNaN(date.getTime())?date.toLocaleDateString('pt-BR',{day:'2-digit',month:'2-digit'})+', às '+date.toLocaleTimeString('pt-BR',{hour:'2-digit',minute:'2-digit'}).replace(':','h'):'';return '<div class="cp-application-viewed" aria-label="Candidatura visualizada">'+actionIcon('eye')+'<div><strong>Vista pela empresa</strong>'+(text?'<small>'+safe(text)+'</small>':'')+'</div></div>';}
-  return '<div class="cp-application-viewed"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12Z"/><circle cx="12" cy="12" r="3"/></svg><div><strong>Candidatura visualizada</strong><small>'+ (date&&!isNaN(date.getTime())?'Vista pela empresa em '+safe(date.toLocaleString('pt-BR',{day:'2-digit',month:'2-digit',year:'numeric',hour:'2-digit',minute:'2-digit'})):'Vista pela empresa')+'</small></div></div>';
+  if(compact)return '<div class="cp-application-viewed" aria-label="Candidatura visualizada">'+actionIcon('eye')+'<div><strong>Candidatura visualizada</strong></div></div>';
+  return '<div class="cp-application-viewed"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12Z"/><circle cx="12" cy="12" r="3"/></svg><div><strong>Candidatura visualizada</strong></div></div>';
  }
  function openCancel(a,trigger){
   var dialog=document.createElement('dialog');dialog.className='cp-cancel-modal';dialog.setAttribute('aria-labelledby','cpCancelTitle');
