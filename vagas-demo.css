@@ -1,0 +1,37 @@
+/* Sample labels use the same restrained palette as the public vacancy list. */
+html body #pagina-home :is(#listaVagas, #listaDestaques) .em-public-demo-badges {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  align-items: center !important;
+  gap: 6px !important;
+  min-width: 0 !important;
+}
+html body #pagina-home #listaVagas article.em-public-demo-card.em-lista-final .em-lista-cab {
+  flex-wrap: wrap !important;
+  row-gap: 6px !important;
+}
+html body #pagina-home #listaVagas .em-public-demo-badges {
+  flex: 1 0 100% !important;
+  width: 100% !important;
+}
+html body #pagina-home :is(#listaVagas, #listaDestaques) .em-public-demo-badge {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 4px !important;
+  max-width: 100% !important;
+  padding: 4px 7px !important;
+  border: 1px solid #d1d5db !important;
+  border-radius: 6px !important;
+  background: #f3f4f6 !important;
+  color: #4b5563 !important;
+  font-family: inherit !important;
+  font-size: 10px !important;
+  font-weight: 650 !important;
+  line-height: 1.4 !important;
+  white-space: normal !important;
+}
+html body #pagina-home .em-public-demo-badge > span { color: inherit !important; font: inherit !important; }
+html body #pagina-home .em-public-demo-badge svg { width: 13px !important; height: 13px !important; flex: 0 0 13px !important; color: inherit !important; }
+html body #pagina-home :is(#listaVagas, #listaDestaques) .em-public-demo-badge.featured { background: #fff8eb !important; border-color: #f3d5a3 !important; color: #9a5b0c !important; }
+html body #pagina-home :is(#listaVagas, #listaDestaques) .em-public-demo-badge.new { background: #eef6ff !important; border-color: #d2e6fb !important; color: #1768b4 !important; }
+html body #pagina-vaga .em-public-demo-notice { box-sizing: border-box !important; max-width: 1200px !important; margin: 14px auto !important; padding: 11px 14px !important; border: 1px solid #d1d5db !important; border-radius: 8px !important; background: #f9fafb !important; color: #4b5563 !important; font-size: 12px !important; line-height: 1.6 !important; }
