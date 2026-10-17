@@ -149,9 +149,7 @@ html body #pagina-home#pagina-home #listaDestaques#listaDestaques#listaDestaques
 html body #pagina-home#pagina-home #listaDestaques#listaDestaques#listaDestaques#listaDestaques article.em-featured-reference.em-featured-reference .dz-infos .dz-salario strong {color:#4b5563!important;text-align:center!important}
 html body #pagina-home#pagina-home #listaDestaques#listaDestaques#listaDestaques#listaDestaques article.em-featured-reference.em-featured-reference .dz-infos .dz-salario>div {text-align:center!important}
 html body #pagina-home#pagina-home #listaDestaques#listaDestaques#listaDestaques#listaDestaques article.em-featured-reference.em-featured-reference .dz-resumo {font-size:12px!important;line-height:18px!important;height:36px!important;min-height:36px!important;max-height:36px!important;display:-webkit-box!important;-webkit-box-orient:vertical!important;-webkit-line-clamp:2!important;overflow:hidden!important;color:#4b5563!important}
-html body #pagina-home#pagina-home #listaDestaques#listaDestaques#listaDestaques#listaDestaques article.em-featured-reference.em-featured-reference .dz-resumo *,
-html body #pagina-home#pagina-home #listaDestaques#listaDestaques#listaDestaques#listaDestaques article.em-featured-reference.em-featured-reference .em-public-demo-badge.new,
-html body #pagina-home#pagina-home #listaDestaques#listaDestaques#listaDestaques#listaDestaques article.em-featured-reference.em-featured-reference .em-public-demo-badge.new>span {color:#4b5563!important}
+html body #pagina-home#pagina-home #listaDestaques#listaDestaques#listaDestaques#listaDestaques article.em-featured-reference.em-featured-reference .dz-resumo * {color:#4b5563!important}
 html body #pagina-home#pagina-home #listaDestaques#listaDestaques#listaDestaques#listaDestaques article.em-featured-reference.em-featured-reference .dz-botao {height:42px!important;min-height:42px!important}
 html body #pagina-home#pagina-home #listaDestaques#listaDestaques#listaDestaques#listaDestaques article.em-featured-reference.em-featured-reference .dz-detalhes-ref {padding-top:6px!important}
 @media(max-width:760px) {
@@ -300,4 +298,174 @@ html body #pagina-home#pagina-home #listaVagas#listaVagas#listaVagas article.vag
  html body #pagina-home#pagina-home #listaVagas#listaVagas#listaVagas article.vaga-card.em-lista-final.em-recent-model3 .em-lista-acoes {grid-template-columns:minmax(0,1.25fr) minmax(0,1fr)!important;width:100%!important;max-width:380px!important}
  html body #pagina-home#pagina-home #listaVagas#listaVagas#listaVagas article.vaga-card.em-lista-final.em-recent-model3 .em-lista-detalhes,html body #pagina-home#pagina-home #listaVagas#listaVagas#listaVagas article.vaga-card.em-lista-final.em-recent-model3 .em-lista-ver {height:38px!important;min-height:38px!important;min-width:0!important}
  html body #pagina-home#pagina-home #listaVagas#listaVagas#listaVagas article.vaga-card.em-lista-final.em-recent-model3 .em-lista-detalhes,html body #pagina-home#pagina-home #listaVagas#listaVagas#listaVagas article.vaga-card.em-lista-final.em-recent-model3 .em-lista-detalhes span {white-space:normal!important}
+}
+
+/* Model 1: soft uppercase status badges and matching neutral vacancy facts.
+   Share the public palette while keeping the existing legacy layout overrides scoped. */
+html body :is(
+  #pagina-home#pagina-home #listaVagas#listaVagas#listaVagas article.vaga-card.em-lista-final.em-recent-model3,
+  #pagina-home#pagina-home #listaDestaques#listaDestaques#listaDestaques#listaDestaques article.em-featured-reference.em-featured-reference,
+  #pagina-vaga#pagina-vaga #emJobHeaderReference
+) :is(.em-public-demo-badge,.em-featured-badge,.em-lista-urgente,.em-lista-rapida,.jh-highlight) {
+--em-status-bg:#f3f4f6;
+  --em-status-border:#dce1e7;
+  --em-status-ink:#4b5563;
+  --candidate-contrast-ink:var(--em-status-ink)!important;
+  display:inline-flex!important;position:static!important;inset:auto!important;transform:none!important;
+  align-items:center!important;justify-content:center!important;flex:0 1 auto!important;
+  box-sizing:border-box!important;gap:4px!important;width:auto!important;min-width:0!important;max-width:100%!important;
+  min-height:22px!important;height:auto!important;margin:0!important;padding:3px 7px!important;
+  border:1px solid var(--em-status-border)!important;border-radius:6px!important;
+  background:var(--em-status-bg)!important;background-image:none!important;color:var(--em-status-ink)!important;box-shadow:none!important;
+  font-family:inherit!important;font-size:10px!important;font-weight:650!important;line-height:1.3!important;
+  text-transform:uppercase!important;letter-spacing:.1px!important;text-align:center!important;white-space:normal!important;overflow-wrap:anywhere!important;
+}
+html body :is(
+  #pagina-home#pagina-home #listaVagas#listaVagas#listaVagas article.vaga-card.em-lista-final.em-recent-model3,
+  #pagina-home#pagina-home #listaDestaques#listaDestaques#listaDestaques#listaDestaques article.em-featured-reference.em-featured-reference,
+  #pagina-vaga#pagina-vaga #emJobHeaderReference
+) :is(.em-lista-urgente,.em-featured-badge.urgent) {
+--em-status-bg:#fff0eb;--em-status-border:#f5cdbf;--em-status-ink:#c54825;
+}
+html body :is(
+  #pagina-home#pagina-home #listaVagas#listaVagas#listaVagas article.vaga-card.em-lista-final.em-recent-model3,
+  #pagina-home#pagina-home #listaDestaques#listaDestaques#listaDestaques#listaDestaques article.em-featured-reference.em-featured-reference,
+  #pagina-vaga#pagina-vaga #emJobHeaderReference
+) :is(.em-public-demo-badge.demo,.em-lista-rapida) {
+--em-status-bg:#eef5ff;--em-status-border:#cfdef5;--em-status-ink:#245fb3;
+}
+html body :is(
+  #pagina-home#pagina-home #listaVagas#listaVagas#listaVagas article.vaga-card.em-lista-final.em-recent-model3,
+  #pagina-home#pagina-home #listaDestaques#listaDestaques#listaDestaques#listaDestaques article.em-featured-reference.em-featured-reference,
+  #pagina-vaga#pagina-vaga #emJobHeaderReference
+) :is(.em-public-demo-badge.featured,.em-featured-badge.featured,.jh-highlight) {
+--em-status-bg:#fff6e2;--em-status-border:#efdbac;--em-status-ink:#8b5a10;
+}
+html body :is(
+  #pagina-home#pagina-home #listaVagas#listaVagas#listaVagas article.vaga-card.em-lista-final.em-recent-model3,
+  #pagina-home#pagina-home #listaDestaques#listaDestaques#listaDestaques#listaDestaques article.em-featured-reference.em-featured-reference,
+  #pagina-vaga#pagina-vaga #emJobHeaderReference
+) .em-public-demo-badge.new {
+--em-status-bg:#edf4ef;--em-status-border:#d0e0d5;--em-status-ink:#315f49;
+}
+html body :is(
+  #pagina-home#pagina-home #listaVagas#listaVagas#listaVagas article.vaga-card.em-lista-final.em-recent-model3,
+  #pagina-home#pagina-home #listaDestaques#listaDestaques#listaDestaques#listaDestaques article.em-featured-reference.em-featured-reference,
+  #pagina-vaga#pagina-vaga #emJobHeaderReference
+) :is(.em-public-demo-badge,.em-featured-badge,.em-lista-urgente,.em-lista-rapida,.jh-highlight) > :is(span,strong) {
+font:inherit!important;color:inherit!important;text-transform:inherit!important;letter-spacing:inherit!important;
+}
+html body :is(
+  #pagina-home#pagina-home #listaVagas#listaVagas#listaVagas article.vaga-card.em-lista-final.em-recent-model3,
+  #pagina-home#pagina-home #listaDestaques#listaDestaques#listaDestaques#listaDestaques article.em-featured-reference.em-featured-reference,
+  #pagina-vaga#pagina-vaga #emJobHeaderReference
+) :is(.em-public-demo-badge,.em-featured-badge,.em-lista-urgente,.em-lista-rapida,.jh-highlight) svg {
+display:block!important;flex:0 0 12px!important;width:12px!important;height:12px!important;
+  fill:none!important;stroke:currentColor!important;stroke-width:1.8!important;stroke-linecap:round!important;stroke-linejoin:round!important;color:inherit!important;
+}
+html body :is(
+  #pagina-home#pagina-home #listaVagas#listaVagas#listaVagas article.vaga-card.em-lista-final.em-recent-model3,
+  #pagina-home#pagina-home #listaDestaques#listaDestaques#listaDestaques#listaDestaques article.em-featured-reference.em-featured-reference,
+  #pagina-vaga#pagina-vaga #emJobHeaderReference
+) :is(.em-public-demo-badge,.em-featured-badge,.em-lista-urgente,.em-lista-rapida,.jh-highlight) svg * {
+fill:none!important;stroke:inherit!important;
+}
+html body :is(
+  #pagina-home#pagina-home #listaVagas#listaVagas#listaVagas article.vaga-card.em-lista-final.em-recent-model3,
+  #pagina-home#pagina-home #listaDestaques#listaDestaques#listaDestaques#listaDestaques article.em-featured-reference.em-featured-reference,
+  #pagina-vaga#pagina-vaga #emJobHeaderReference
+) :is(.em-recent-badges,.em-featured-badges) {
+flex-wrap:wrap!important;align-items:center!important;gap:5px!important;min-width:0!important;max-width:100%!important;
+}
+html body :is(
+  #pagina-home#pagina-home #listaVagas#listaVagas#listaVagas article.vaga-card.em-lista-final.em-recent-model3,
+  #pagina-home#pagina-home #listaDestaques#listaDestaques#listaDestaques#listaDestaques article.em-featured-reference.em-featured-reference,
+  #pagina-vaga#pagina-vaga #emJobHeaderReference
+) .em-lista-meta {
+gap:6px!important;
+}
+html body :is(
+  #pagina-home#pagina-home #listaVagas#listaVagas#listaVagas article.vaga-card.em-lista-final.em-recent-model3,
+  #pagina-home#pagina-home #listaDestaques#listaDestaques#listaDestaques#listaDestaques article.em-featured-reference.em-featured-reference,
+  #pagina-vaga#pagina-vaga #emJobHeaderReference
+) :is(.em-lista-meta-item,.em-lista-salario,.dz-info,.dz-infos .dz-salario,.jh-tile) {
+--candidate-contrast-ink:#374151!important;
+  display:inline-flex!important;align-items:center!important;justify-content:center!important;
+  box-sizing:border-box!important;gap:6px!important;min-width:0!important;max-width:100%!important;min-height:28px!important;height:auto!important;
+  padding:5px 8px!important;border:1px solid #e0e4ea!important;border-radius:6px!important;
+  background:#f6f7f9!important;background-image:none!important;box-shadow:none!important;
+  font-family:inherit!important;font-size:11px!important;font-weight:600!important;line-height:1.4!important;
+  text-align:center!important;text-transform:uppercase!important;color:#374151!important;white-space:normal!important;overflow-wrap:anywhere!important;
+}
+html body :is(
+  #pagina-home#pagina-home #listaVagas#listaVagas#listaVagas article.vaga-card.em-lista-final.em-recent-model3,
+  #pagina-home#pagina-home #listaDestaques#listaDestaques#listaDestaques#listaDestaques article.em-featured-reference.em-featured-reference,
+  #pagina-vaga#pagina-vaga #emJobHeaderReference
+) :is(.em-lista-meta-item,.em-lista-salario,.dz-info,.dz-infos .dz-salario,.jh-tile) :is(b,strong,span) {
+color:#374151!important;font-family:inherit!important;font-size:11px!important;font-weight:600!important;line-height:1.4!important;
+  text-align:center!important;text-transform:uppercase!important;white-space:normal!important;overflow-wrap:anywhere!important;
+}
+html body :is(
+  #pagina-home#pagina-home #listaVagas#listaVagas#listaVagas article.vaga-card.em-lista-final.em-recent-model3,
+  #pagina-home#pagina-home #listaDestaques#listaDestaques#listaDestaques#listaDestaques article.em-featured-reference.em-featured-reference,
+  #pagina-vaga#pagina-vaga #emJobHeaderReference
+) :is(.em-lista-meta-item,.em-lista-salario,.dz-info,.dz-infos .dz-salario,.jh-tile) svg {
+display:block!important;flex:0 0 14px!important;width:14px!important;height:14px!important;
+  fill:none!important;stroke:#64748b!important;color:#64748b!important;
+}
+html body :is(
+  #pagina-home#pagina-home #listaVagas#listaVagas#listaVagas article.vaga-card.em-lista-final.em-recent-model3,
+  #pagina-home#pagina-home #listaDestaques#listaDestaques#listaDestaques#listaDestaques article.em-featured-reference.em-featured-reference,
+  #pagina-vaga#pagina-vaga #emJobHeaderReference
+) .dz-infos {
+gap:6px!important;grid-template-rows:repeat(2,minmax(28px,auto))!important;
+}
+html body :is(
+  #pagina-home#pagina-home #listaVagas#listaVagas#listaVagas article.vaga-card.em-lista-final.em-recent-model3,
+  #pagina-home#pagina-home #listaDestaques#listaDestaques#listaDestaques#listaDestaques article.em-featured-reference.em-featured-reference,
+  #pagina-vaga#pagina-vaga #emJobHeaderReference
+) .dz-infos .dz-salario {
+min-height:28px!important;margin:0!important;
+}
+html body :is(
+  #pagina-home#pagina-home #listaVagas#listaVagas#listaVagas article.vaga-card.em-lista-final.em-recent-model3,
+  #pagina-home#pagina-home #listaDestaques#listaDestaques#listaDestaques#listaDestaques article.em-featured-reference.em-featured-reference,
+  #pagina-vaga#pagina-vaga #emJobHeaderReference
+) .dz-infos .dz-salario > div {
+min-width:0!important;text-align:center!important;
+}
+html body :is(
+  #pagina-home#pagina-home #listaVagas#listaVagas#listaVagas article.vaga-card.em-lista-final.em-recent-model3,
+  #pagina-home#pagina-home #listaDestaques#listaDestaques#listaDestaques#listaDestaques article.em-featured-reference.em-featured-reference,
+  #pagina-vaga#pagina-vaga #emJobHeaderReference
+) .jh-tile {
+display:flex!important;min-height:48px!important;padding:8px 10px!important;
+}
+html body :is(
+  #pagina-home#pagina-home #listaVagas#listaVagas#listaVagas article.vaga-card.em-lista-final.em-recent-model3,
+  #pagina-home#pagina-home #listaDestaques#listaDestaques#listaDestaques#listaDestaques article.em-featured-reference.em-featured-reference,
+  #pagina-vaga#pagina-vaga #emJobHeaderReference
+) .jh-tile > div {
+min-width:0!important;text-align:center!important;
+}
+html body :is(
+  #pagina-home#pagina-home #listaVagas#listaVagas#listaVagas article.vaga-card.em-lista-final.em-recent-model3,
+  #pagina-home#pagina-home #listaDestaques#listaDestaques#listaDestaques#listaDestaques article.em-featured-reference.em-featured-reference,
+  #pagina-vaga#pagina-vaga #emJobHeaderReference
+) .jh-tile .jh-icon {
+flex:0 0 22px!important;width:22px!important;height:22px!important;background:transparent!important;border:0!important;color:#64748b!important;
+}
+html body :is(
+  #pagina-home#pagina-home #listaVagas#listaVagas#listaVagas article.vaga-card.em-lista-final.em-recent-model3,
+  #pagina-home#pagina-home #listaDestaques#listaDestaques#listaDestaques#listaDestaques article.em-featured-reference.em-featured-reference,
+  #pagina-vaga#pagina-vaga #emJobHeaderReference
+) .jh-tile .jh-label {
+margin:0 0 2px!important;font-size:9px!important;font-weight:600!important;color:#4b5563!important;
+}
+html body :is(
+  #pagina-home#pagina-home #listaVagas#listaVagas#listaVagas article.vaga-card.em-lista-final.em-recent-model3,
+  #pagina-home#pagina-home #listaDestaques#listaDestaques#listaDestaques#listaDestaques article.em-featured-reference.em-featured-reference,
+  #pagina-vaga#pagina-vaga #emJobHeaderReference
+) .jh-tile .jh-value {
+font-size:12px!important;color:#374151!important;
 }
