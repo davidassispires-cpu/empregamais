@@ -1977,3 +1977,11 @@ html body #pagina-home #listaDestaques#listaDestaques#listaDestaques .em-feature
 html body #pagina-home #listaDestaques#listaDestaques#listaDestaques .em-featured-reference .em-featured-badge,html body #pagina-home #listaDestaques#listaDestaques#listaDestaques .em-featured-reference .em-public-demo-badge{font-size:10px!important;padding:5px 7px!important}
 html body #pagina-home #listaDestaques#listaDestaques#listaDestaques .em-featured-reference .dz-botao{height:48px!important;min-height:48px!important;font-size:14px!important}
 }
+
+/* Logos maiores e títulos das vagas em caixa alta nos destaques. */
+html body #pagina-home #listaDestaques#listaDestaques#listaDestaques .em-featured-reference{grid-template-columns:64px minmax(0,1fr)!important}
+html body #pagina-home #listaDestaques#listaDestaques#listaDestaques .em-featured-reference .dz-logo{width:60px!important;height:60px!important;min-width:60px!important;border-radius:12px!important}
+html body #pagina-home #listaDestaques#listaDestaques#listaDestaques .em-featured-reference .dz-logo .em-logo-destaque-previa{width:100%!important;height:100%!important}
+html body #pagina-home #listaDestaques#listaDestaques#listaDestaques .em-featured-reference .dz-logo img{width:100%!important;height:100%!important;padding:2px!important;object-fit:contain!important;box-sizing:border-box!important}
+html body #pagina-home #listaDestaques#listaDestaques#listaDestaques .em-featured-reference .dz-titulo{text-transform:uppercase!important}
+@media(max-width:760px){html body #pagina-home #listaDestaques#listaDestaques#listaDestaques .em-featured-reference{grid-template-columns:56px minmax(0,1fr)!important}html body #pagina-home #listaDestaques#listaDestaques#listaDestaques .em-featured-reference .dz-logo{width:52px!important;height:52px!important;min-width:52px!important}}
