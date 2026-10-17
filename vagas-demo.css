@@ -204,7 +204,7 @@ html body #pagina-home#pagina-home #listaVagas#listaVagas#listaVagas article.vag
   box-shadow:none!important;overflow:visible!important;
 }
 /* Pagination writes display:grid inline; own every direct child's grid placement. */
-html body #pagina-home#pagina-home #listaVagas#listaVagas#listaVagas article.vaga-card.em-lista-final.em-recent-model3 > :is(.em-recent-badges,.em-lista-cab,.em-lista-meta,.em-lista-resumo,.em-lista-footer) {
+html body #pagina-home#pagina-home #listaVagas#listaVagas#listaVagas article.vaga-card.em-lista-final.em-recent-model3 > :is(.em-lista-cab,.em-lista-meta,.em-lista-resumo,.em-lista-footer) {
   grid-area:auto!important;grid-column:1 / -1!important;grid-row:auto!important;order:0!important;min-width:0!important;
 }
 html body #pagina-home#pagina-home #listaVagas#listaVagas#listaVagas article.vaga-card.em-lista-final.em-recent-model3::before,html body #pagina-home#pagina-home #listaVagas#listaVagas#listaVagas article.vaga-card.em-lista-final.em-recent-model3::after {content:none!important;display:none!important}
@@ -223,7 +223,7 @@ html body #pagina-home#pagina-home #listaVagas#listaVagas#listaVagas article.vag
 html body #pagina-home#pagina-home #listaVagas#listaVagas#listaVagas article.vaga-card.em-lista-final.em-recent-model3 .em-recent-save span {font:inherit!important;color:inherit!important}
 html body #pagina-home#pagina-home #listaVagas#listaVagas#listaVagas article.vaga-card.em-lista-final.em-recent-model3 .em-lista-footer .em-recent-save[aria-pressed="true"] {background:#edf5fc!important;border-color:#b7d9ed!important;color:#15549a!important}
 html body #pagina-home#pagina-home #listaVagas#listaVagas#listaVagas article.vaga-card.em-lista-final.em-recent-model3 .em-recent-save:focus-visible {outline:2px solid #0080c9!important;outline-offset:3px!important}
-html body #pagina-home#pagina-home #listaVagas#listaVagas#listaVagas article.vaga-card.em-lista-final.em-recent-model3 .em-recent-badges {display:flex!important;align-items:center!important;justify-content:flex-end!important;flex:0 0 auto!important;flex-wrap:wrap!important;gap:5px!important;width:100%!important;min-width:0!important;max-width:100%!important;margin:0!important;padding:0!important}
+html body #pagina-home#pagina-home #listaVagas#listaVagas#listaVagas article.vaga-card.em-lista-final.em-recent-model3 .em-recent-badges {--em-status-row-max-width:60%;display:flex!important;align-self:flex-start!important;align-items:center!important;justify-content:flex-end!important;flex:0 1 auto!important;flex-wrap:wrap!important;gap:5px!important;width:auto!important;min-width:0!important;max-width:var(--em-status-row-max-width)!important;margin:0!important;padding:0!important}
 html body #pagina-home#pagina-home #listaVagas#listaVagas#listaVagas article.vaga-card.em-lista-final.em-recent-model3 .em-public-demo-badges {display:contents!important}
 html body #pagina-home#pagina-home #listaVagas#listaVagas#listaVagas article.vaga-card.em-lista-final.em-recent-model3 .em-lista-urgente,
 html body #pagina-home#pagina-home #listaVagas#listaVagas#listaVagas article.vaga-card.em-lista-final.em-recent-model3 .em-public-demo-badge,
@@ -274,7 +274,9 @@ html body #pagina-home#pagina-home #listaVagas#listaVagas#listaVagas article.vag
 @media(max-width:760px) {
   html body #pagina-home#pagina-home #listaVagas#listaVagas#listaVagas article.vaga-card.em-lista-final.em-recent-model3 {padding:12px!important;gap:7px!important}
   html body #pagina-home#pagina-home #listaVagas#listaVagas#listaVagas article.vaga-card.em-lista-final.em-recent-model3[data-em-highlighted="true"] {padding-left:8px!important}
-  html body #pagina-home#pagina-home #listaVagas#listaVagas#listaVagas article.vaga-card.em-lista-final.em-recent-model3 .em-lista-cab {gap:10px!important;flex-wrap:nowrap!important}
+  html body #pagina-home#pagina-home #listaVagas#listaVagas#listaVagas article.vaga-card.em-lista-final.em-recent-model3 .em-lista-cab {gap:10px!important;flex-wrap:wrap!important}
+  html body #pagina-home#pagina-home #listaVagas#listaVagas#listaVagas article.vaga-card.em-lista-final.em-recent-model3 .em-recent-heading {flex:1 1 0!important}
+  html body #pagina-home#pagina-home #listaVagas#listaVagas#listaVagas article.vaga-card.em-lista-final.em-recent-model3 .em-recent-badges {--em-status-row-max-width:100%;width:100%!important;flex-basis:100%!important}
   html body #pagina-home#pagina-home #listaVagas#listaVagas#listaVagas article.vaga-card.em-lista-final.em-recent-model3 .em-lista-titulo {font-size:16px!important}
   html body #pagina-home#pagina-home #listaVagas#listaVagas#listaVagas article.vaga-card.em-lista-final.em-recent-model3 .em-lista-empresa {font-size:12px!important}
   html body #pagina-home#pagina-home #listaVagas#listaVagas#listaVagas article.vaga-card.em-lista-final.em-recent-model3 .em-recent-logo {flex-basis:42px!important;width:42px!important;min-width:42px!important;max-width:42px!important;height:42px!important;min-height:42px!important;max-height:42px!important}
@@ -378,7 +380,7 @@ html body :is(
   #pagina-home#pagina-home #listaDestaques#listaDestaques#listaDestaques#listaDestaques article.em-featured-reference.em-featured-reference,
   #pagina-vaga#pagina-vaga #emJobHeaderReference
 ) :is(.em-recent-badges,.em-featured-badges) {
-flex-wrap:wrap!important;align-items:center!important;gap:5px!important;min-width:0!important;max-width:100%!important;
+flex-wrap:wrap!important;align-items:center!important;gap:5px!important;min-width:0!important;max-width:var(--em-status-row-max-width,100%)!important;
 }
 html body :is(
   #pagina-home#pagina-home #listaVagas#listaVagas#listaVagas article.vaga-card.em-lista-final.em-recent-model3,

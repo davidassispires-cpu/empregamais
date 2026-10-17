@@ -158,7 +158,7 @@
       var published = new Date(job.criadoEm || job.dataPublicacao).getTime();
       if (Number.isFinite(published) && Date.now() >= published && Date.now() - published < 2 * day && !labels.querySelector('.new')) badge(labels, 'new', 'Nova vaga');
       var newBadge = labels.querySelector('.new'); if (newBadge) labels.appendChild(newBadge);
-      if (labels.children.length) card.insertBefore(labels, header);
+      if (labels.children.length) header.appendChild(labels);
       var save = card.querySelector('.em-lista-fav');
       var originalSave = save && save.onclick;
       if (!save) { save = doc.createElement('button'); save.type = 'button'; }
