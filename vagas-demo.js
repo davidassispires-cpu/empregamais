@@ -155,13 +155,27 @@
       });
       var published = new Date(job.criadoEm || job.dataPublicacao).getTime();
       if (Number.isFinite(published) && Date.now() >= published && Date.now() - published < 2 * day && !labels.querySelector('.new')) badge(labels, 'new', 'Nova vaga');
+      var topActions = doc.createElement('div'); topActions.className = 'em-recent-top-actions';
+      var newBadge = labels.querySelector('.new'); if (newBadge) topActions.appendChild(newBadge);
       if (labels.children.length) heading.appendChild(labels);
-      var share = doc.createElement('a'); share.className = 'em-recent-share';
-      var jobUrl = String(win.location.origin || '') + String(win.location.pathname || '') + '?pagina=vaga&id=' + encodeURIComponent(job.id);
-      share.href = 'https://wa.me/?text=' + encodeURIComponent(String(job.cargo || 'Vaga no +Empregos') + '\n' + jobUrl);
-      share.target = '_blank'; share.rel = 'noopener noreferrer'; share.title = 'Compartilhar vaga no WhatsApp'; share.setAttribute('aria-label', share.title);
-      share.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="m9 10 6-3m-6 7 6 3"/></svg>';
-      share.onclick = function (event) { event.stopPropagation(); }; header.appendChild(share);
+      var save = card.querySelector('.em-lista-fav');
+      var originalSave = save && save.onclick;
+      if (!save) { save = doc.createElement('button'); save.type = 'button'; }
+      save.classList.add('em-recent-save'); save.setAttribute('data-vaga-id', String(job.id || ''));
+      function updateSave() {
+        var saved = typeof win.vagaEstaSalva === 'function' && win.vagaEstaSalva(job.id);
+        save.setAttribute('aria-pressed', String(!!saved));
+        save.setAttribute('aria-label', saved ? 'Remover vaga dos salvos' : 'Salvar vaga');
+        save.title = saved ? 'Remover vaga dos salvos' : 'Salvar vaga';
+        save.innerHTML = '<svg viewBox="0 0 24 24" fill="'+(saved?'currentColor':'none')+'" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3h12v18l-6-4-6 4V3Z"/></svg><span>'+(saved?'Vaga salva':'Salvar vaga')+'</span>';
+      }
+      save.onclick = function (event) {
+        event.preventDefault(); event.stopPropagation();
+        if (typeof originalSave === 'function') originalSave.call(save, event);
+        else if (typeof win.alternarFavorito === 'function') win.alternarFavorito(job.id);
+        updateSave();
+      };
+      updateSave(); topActions.appendChild(save); header.appendChild(topActions);
       var meta = card.querySelector('.em-lista-meta');
       var publication = card.querySelector('.em-lista-data');
       if (meta && publication) meta.appendChild(publication);
@@ -181,7 +195,7 @@
       var actions = card.querySelector('.em-lista-acoes');
       if (actions && !actions.querySelector('.em-lista-detalhes')) {
         var details = doc.createElement('button'); details.type = 'button'; details.className = 'em-lista-detalhes';
-        details.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M4 7h16M4 12h12M4 17h8"/></svg><span>Mais detalhes</span>';
+        details.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M4 7h16M4 12h12M4 17h8"/></svg><span>Mais detalhes da vaga</span>';
         details.setAttribute('data-vaga-id', String(job.id || ''));
         details.onclick = function (event) {
           event.preventDefault(); event.stopPropagation();
