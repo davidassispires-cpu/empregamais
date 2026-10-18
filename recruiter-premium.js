@@ -1,0 +1,208 @@
+/* Premium recruiting tools. Company-private scorecards and opt-in stage rules. */
+(function(global){
+'use strict';
+function esc(v){return String(v==null?'':v).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];});}
+function obj(v){if(v&&typeof v==='object'&&!Array.isArray(v))return v;if(typeof v==='string'){try{return obj(JSON.parse(v));}catch(_){}}return {};}
+function text(v){if(Array.isArray(v))return v.map(text).filter(Boolean).join('; ');if(v&&typeof v==='object')return ['cargo','curso','nome','nivel','instituicao','empresa','periodo','descricao'].map(function(k){return typeof v[k]==='string'?v[k]:'';}).filter(Boolean).join(' · ');return v==null?'':String(v).trim();}
+function sources(c){return [c].concat(['curriculoPerfil','perfilCurriculo','curriculoOnline','dadosCurriculo','curriculo','perfilProfissional','perfil_profissional','perfil'].map(function(k){return obj(c[k]);}));}
+function pick(c,keys){var list=sources(c);for(var i=0;i<list.length;i++)for(var j=0;j<keys.length;j++){var value=text(list[i][keys[j]]);if(value&&!/^(não informad[oa]|undefined|null)$/i.test(value))return value;}return 'Não informado';}
+function jobId(c){return String(c.vagaId||c.vaga_id||c.idVaga||'');}
+function candidateName(c){return c.candidatoNome||c.nomeCandidato||c.candidato_nome||c.nome||c.candidato||'Candidato';}
+function average(s){if(!s)return null;var scores=['technical','experience','communication','problem_solving'].map(function(k){return Number(s[k+'_score']);});return scores.every(function(n){return Number.isInteger(n)&&n>=1&&n<=5;})?scores.reduce(function(a,b){return a+b;},0)/4:null;}
+function selectionError(selected,candidate){if(selected.some(function(c){return String(c.id)===String(candidate.id);}))return '';if(selected.length>=3)return 'Selecione até 3 candidatos.';if(selected.length&&jobId(selected[0])!==jobId(candidate))return 'Compare candidatos da mesma vaga. Limpe a seleção para trocar de vaga.';return '';}
+function dueScorecard(i,now){return i.state!=='cancelled'&&(i.state==='completed'||Date.parse(i.scheduled_at)+(Number(i.duration_minutes)||30)*60000<=(now==null?Date.now():now));}
+function preview(template,values){return String(template).replace(/\{(candidato|vaga|empresa|etapa)\}/g,function(_,key){return String(values[key]||'');});}
+function templateError(template){if(!String(template||'').trim())return 'Escreva a mensagem.';if(String(template).length>4000)return 'Use até 4.000 caracteres.';return /[{}]/.test(String(template).replace(/\{(candidato|vaga|empresa|etapa)\}/g,''))?'Use apenas {candidato}, {vaga}, {empresa} e {etapa}.':'';}
+function comparisonFacts(c){return [
+ ['Experiência',pick(c,['tempoExperiencia','experienciaProfissional','experiencia','experiencias'])],
+ ['Formação',pick(c,['escolaridade','escolaridadeProfissional','formacaoAcademica','formacoes'])],
+ ['Competências',pick(c,['competencias','habilidadesProfissionais','habilidades','skills'])],
+ ['Pretensão salarial',pick(c,['pretensaoSalarial','pretensao_salarial','salarioPretendido'])],
+ ['Objetivo profissional',pick(c,['cargoDesejado','objetivoProfissional','cargoAtual','profissao'])]
+];}
+var core={esc:esc,average:average,jobId:jobId,selectionError:selectionError,dueScorecard:dueScorecard,preview:preview,templateError:templateError,comparisonFacts:comparisonFacts};
+if(typeof module!=='undefined'&&module.exports)module.exports=core;
+if(typeof document==='undefined')return;
+if(global.EMRecruiterPremium)return;
+var asset=new URL('recruiter-premium.css',document.currentScript&&document.currentScript.src||location.href);
+if(document.currentScript)asset.search=new URL(document.currentScript.src).search;
+var ctx=null,root=null,identity='',selected=[],pickerJob='',data=null,dataAt=0,pending=null,observer=null,scanFrame=0;
+var scoreKeys=[['technical','Conhecimentos técnicos','Conhecimentos exigidos para a vaga.'],['experience','Experiência relevante','Exemplos de atuação nas tarefas da função.'],['communication','Comunicação','Clareza ao explicar experiências e respostas.'],['problem_solving','Resolução de problemas','Raciocínio e exemplos apresentados na entrevista.']];
+var stages=[['contato','Em contato'],['entrevista','Entrevista agendada'],['aprovadas','Aprovado'],['contratadas','Contratado'],['reprovadas','Reprovado']];
+var recommendations={avancar:'Avançar no processo',manter:'Manter em avaliação',nao_avancar:'Não avançar'};
+var defaults={
+ contato:'Olá, {candidato}! A {empresa} está analisando sua candidatura para {vaga} e gostaria de conversar com você. Responda por aqui para continuarmos.',
+ entrevista:'Olá, {candidato}! Sua candidatura para {vaga} avançou para a entrevista. Confira a data, o horário e as orientações na aba Entrevistas do seu painel.',
+ aprovadas:'Olá, {candidato}! Você foi aprovado(a) nesta etapa do processo para {vaga}. A equipe da {empresa} entrará em contato com os próximos passos por aqui.',
+ contratadas:'Olá, {candidato}! Estamos felizes em seguir com sua contratação para {vaga}. A equipe da {empresa} enviará as orientações de admissão por esta conversa.',
+ reprovadas:'Olá, {candidato}. Agradecemos seu interesse na vaga {vaga}. Neste processo, decidimos seguir com outra candidatura. Agradecemos sua participação e desejamos sucesso em sua trajetória.'
+};
+function sessionIdentity(c){if(!c)return '';if(c.demo)return 'demo:'+String(c.company.cnpj||'');var token=sessionStorage.getItem('empregaMaisSupabaseAccessToken')||'',uid='';try{uid=JSON.parse(atob(token.split('.')[1].replace(/-/g,'+').replace(/_/g,'/'))).sub||'';}catch(_){}return token?String(c.company.id||c.company.cnpj||'')+':'+uid:'';}
+function current(key){return ctx&&key===identity&&sessionIdentity(ctx)===identity;}
+function paid(){return !!(ctx&&global.EMPlanos&&global.EMPlanos.get(global.EMPlanos.companyKey(ctx.company)).pago);}
+function apps(){if(!ctx)return [];var rows=ctx.applications||[];try{rows=ctx.demo?global.EmpregaMaisEtapasCandidatura.demo():global.carregarCandidaturas();}catch(_){}var ids=new Set(ctx.jobs.map(function(v){return String(v.id);}));return rows.filter(function(c){return ids.has(jobId(c));});}
+function byId(id){return apps().find(function(c){return String(c.id)===String(id);});}
+function job(id){return ctx.jobs.find(function(v){return String(v.id)===String(id);})||{};}
+function installStyle(target){if(!target||target.querySelector('link[data-em-premium-style]'))return;var link=document.createElement('link');link.rel='stylesheet';link.href=asset.href;link.dataset.emPremiumStyle='1';target.append(link);}
+function note(node,message,error){if(!node)return;node.textContent=message;node.classList.toggle('emp-error',!!error);}
+async function api(path,body){if(ctx.demo)throw Error('Esta operação usa a demonstração local.');if(global.EMInterviews)return global.EMInterviews.api(path,body);var token=sessionStorage.getItem('empregaMaisSupabaseAccessToken');if(!token)throw Error('Entre novamente na conta da empresa.');var r=await fetch('https://mkezlcewyengejdmtppl.supabase.co/rest/v1/'+path,{method:body===undefined?'GET':'POST',headers:{apikey:'sb_publishable_8YnXpzGX8zj-tvzvcMYdyw_FVBhQutR',Authorization:'Bearer '+token,'Content-Type':'application/json'},body:body===undefined?undefined:JSON.stringify(body),signal:AbortSignal.timeout(20000)});var result=await r.json().catch(function(){return null;});if(!r.ok)throw Error(result&&result.message||'Não foi possível carregar. Tente novamente.');return result;}
+async function allRows(path,key){var rows=[],offset=0;while(current(key)){var batch=await api(path+'&limit=500&offset='+offset);if(!current(key))throw Error('A conta mudou. Reabra o painel.');rows=rows.concat(batch);if(batch.length<500)return rows;offset+=500;}throw Error('Entre novamente na conta da empresa.');}
+function demoRead(){try{return JSON.parse(sessionStorage.getItem('emRecruiterPremiumDemo')||'{}');}catch(_){return {};}}
+function demoSave(){sessionStorage.setItem('emRecruiterPremiumDemo',JSON.stringify({scores:data.scores,rules:data.rules}));}
+async function loadData(force){
+ var key=identity;if(!key||!current(key)||!paid())throw Error('Recurso disponível para empresas com Premium ativo.');
+ if(!force&&data&&Date.now()-dataAt<30000)return data;if(pending)return pending;
+ var companySnapshot=ctx.company,demo=ctx.demo;
+ var task=(async function(){
+  if(demo){var saved=demoRead(),interviews=[];try{interviews=JSON.parse(localStorage.getItem('emInterviewReminders:demo')||'[]').map(function(i){return {id:i.id,application_ref:i.ref,job_ref:jobId(byId(i.ref)||{}),candidate_name:i.name,job_title:i.title,scheduled_at:i.at,duration_minutes:i.duration||30,state:i.state||'invited'};});}catch(_){}
+   data={companyId:'demo',interviews:interviews,scores:saved.scores||[],rules:saved.rules||[]};dataAt=Date.now();return data;
+  }
+  var companyId=companySnapshot.id;
+  if(!/^[0-9a-f-]{36}$/i.test(String(companyId||''))){var companies=await api('empresas?select=id&cnpj=eq.'+encodeURIComponent(String(companySnapshot.cnpj||'').replace(/\D/g,'')));if(companies.length!==1)throw Error('Não foi possível identificar sua empresa. Atualize o painel.');companyId=companies[0].id;}
+  var filter='empresa_id=eq.'+encodeURIComponent(companyId);
+  var result=await Promise.all([
+   allRows('em_interviews?select=id,application_ref,job_ref,candidate_name,job_title,scheduled_at,duration_minutes,state&'+filter+'&order=scheduled_at.desc,id.asc',key),
+   allRows('em_interview_scorecards?select=*&'+filter+'&order=interview_id.asc',key),
+   allRows('em_recruiter_message_rules?select=*&'+filter+'&order=id.asc',key)
+  ]);
+  if(!current(key))throw Error('A conta mudou. Reabra o painel.');
+  data={companyId:companyId,interviews:result[0],scores:result[1],rules:result[2]};dataAt=Date.now();return data;
+ })();pending=task;try{return await task;}finally{if(pending===task)pending=null;}
+}
+function dialog(id,title,subtitle){
+ installStyle(document.head);var prior=document.activeElement,old=document.getElementById(id);if(old)old.remove();
+ var d=document.createElement('dialog');d.id=id;d.className='emp-premium emp-dialog';d.setAttribute('aria-labelledby',id+'Title');
+ d.innerHTML='<header class="emp-dialog-head"><div><span class="emp-eyebrow">RECRUTADOR PREMIUM</span><h2 id="'+id+'Title">'+esc(title)+'</h2><p>'+esc(subtitle)+'</p></div><button type="button" class="emp-icon-btn" data-emp-close aria-label="Fechar">×</button></header><div class="emp-dialog-body"></div>';
+ var close=function(){d.close();d.remove();if(prior&&prior.isConnected)prior.focus();};
+ d.querySelector('[data-emp-close]').onclick=close;d.addEventListener('cancel',function(e){e.preventDefault();close();});d._close=close;
+ document.body.append(d);d.showModal();return d;
+}
+function selectedRows(){selected=selected.filter(function(id){return !!byId(id);});return selected.map(byId);}
+function refreshSelection(){var rows=selectedRows();document.querySelectorAll('[data-emp-candidate]').forEach(function(input){var c=byId(input.dataset.empCandidate);input.checked=selected.includes(input.dataset.empCandidate);input.disabled=!!(c&&!input.checked&&selectionError(rows,c));});var page=document.getElementById('emPremiumCompare');if(!page)return;var count=page.querySelector('[data-emp-count]');if(count&&count.textContent!==selected.length+'/3 selecionados')count.textContent=selected.length+'/3 selecionados';var b=page.querySelector('[data-emp-compare]');b.disabled=selected.length<2;var label='Comparar'+(selected.length?' ('+selected.length+')':'');if(b.textContent!==label)b.textContent=label;page.querySelector('[data-emp-clear]').disabled=!selected.length;}
+function toggleCandidate(id,checked,status){var c=byId(id);if(!c)return;var error=checked?selectionError(selectedRows(),c):'';if(error){note(status,error,true);refreshSelection();return;}selected=checked?selected.concat(String(id)).filter(function(v,i,a){return a.indexOf(v)===i;}):selected.filter(function(v){return v!==String(id);});note(status,selected.length?'Selecione até 3 candidatos da mesma vaga.':'');refreshSelection();}
+function fillPicker(panel){
+ var select=panel.querySelector('[data-emp-job]'),jobs=ctx.jobs.filter(function(v){return apps().some(function(c){return jobId(c)===String(v.id);});});
+ var chosen=selectedRows();if(chosen.length)pickerJob=jobId(chosen[0]);if(!jobs.some(function(v){return String(v.id)===pickerJob;}))pickerJob=jobs[0]?String(jobs[0].id):'';
+ select.innerHTML=jobs.length?jobs.map(function(v){return '<option value="'+esc(v.id)+'">'+esc(v.cargo||v.titulo||'Vaga')+'</option>';}).join(''):'<option value="">Sem candidaturas recebidas</option>';select.value=pickerJob;select.disabled=chosen.length>0;
+ var search=panel.querySelector('[data-emp-search]').value.toLocaleLowerCase('pt-BR');
+ var list=apps().filter(function(c){return jobId(c)===pickerJob&&candidateName(c).toLocaleLowerCase('pt-BR').includes(search);});
+ var container=panel.querySelector('[data-emp-picker-list]');
+ container.innerHTML=list.length?list.map(function(c){return '<label class="emp-pick-row"><input type="checkbox" data-emp-candidate="'+esc(c.id)+'"><span><strong>'+esc(candidateName(c))+'</strong><small>'+esc(c.status||'Em avaliação')+'</small></span></label>';}).join(''):'<p class="emp-muted">Nenhum candidato encontrado.</p>';
+ container.querySelectorAll('input').forEach(function(input){input.onchange=function(){toggleCandidate(input.dataset.empCandidate,input.checked,panel.querySelector('[data-emp-feedback]'));select.disabled=selected.length>0;};});refreshSelection();
+}
+function mountComparison(){
+ var page=document.getElementById('pagina-candidatos-empresa'),list=document.getElementById('listaCandidatosEmpresa');
+ if(!page||!list||!page.classList.contains('ativa'))return;
+ installStyle(document.head);var panel=document.getElementById('emPremiumCompare');
+ if(!panel){panel=document.createElement('section');panel.id='emPremiumCompare';panel.className='emp-premium emp-card emp-comparison-bar';
+ panel.innerHTML='<div class="emp-bar"><div><h2>Comparar candidatos <span class="emp-pill">Premium</span></h2><p>Até 3 perfis da mesma vaga, lado a lado.</p></div><div class="emp-actions"><span class="emp-muted" data-emp-count>0/3 selecionados</span><button type="button" class="emp-btn" data-emp-picker-toggle aria-expanded="false">Selecionar candidatos</button><button type="button" class="emp-btn emp-primary" data-emp-compare disabled>Comparar</button><button type="button" class="emp-link" data-emp-clear disabled>Limpar</button></div></div><div class="emp-picker" hidden><div class="emp-picker-filters"><label>Vaga<select data-emp-job></select></label><label>Buscar candidato<input type="search" data-emp-search placeholder="Digite o nome"></label></div><div class="emp-picker-list" data-emp-picker-list></div></div><p class="emp-feedback" data-emp-feedback role="status" aria-live="polite"></p>';
+ list.before(panel);
+ panel.querySelector('[data-emp-picker-toggle]').onclick=function(){var picker=panel.querySelector('.emp-picker');picker.hidden=!picker.hidden;this.setAttribute('aria-expanded',String(!picker.hidden));if(!picker.hidden)fillPicker(panel);};
+ panel.querySelector('[data-emp-job]').onchange=function(){pickerJob=this.value;fillPicker(panel);};
+ panel.querySelector('[data-emp-search]').oninput=function(){fillPicker(panel);};
+ panel.querySelector('[data-emp-clear]').onclick=function(){selected=[];fillPicker(panel);note(panel.querySelector('[data-emp-feedback]'),'Seleção limpa.');};
+ panel.querySelector('[data-emp-compare]').onclick=openComparison;
+ }
+ // Real cards retain their original stage controls inside a hidden subtree.
+ list.querySelectorAll('.em-gc27-card').forEach(function(card){var control=card.querySelector('[data-gc27-stage],[data-gc27-expand]');var id=control&&(control.dataset.gc27Stage||control.dataset.gc27Expand);if(!id||!byId(id)||card.querySelector('.emp-card-select'))return;
+ var holder=card.querySelector('.em-row-controls')||card.querySelector('.gc-ref-actions')||card;var label=document.createElement('label');label.className='emp-premium emp-card-select';label.innerHTML='<input type="checkbox" data-emp-candidate="'+esc(id)+'"><span>Comparar</span>';holder.append(label);label.querySelector('input').onchange=function(){toggleCandidate(id,this.checked,panel.querySelector('[data-emp-feedback]'));};
+ });refreshSelection();
+}
+async function openComparison(){
+ var rows=selectedRows();if(rows.length<2||rows.length>3||rows.some(function(c){return jobId(c)!==jobId(rows[0]);}))return;
+ var vacancy=job(jobId(rows[0])),d=dialog('emPremiumCompareDialog','Comparar candidatos',vacancy.cargo||vacancy.titulo||'Mesma vaga'),body=d.querySelector('.emp-dialog-body'),key=identity;
+ var facts=rows.map(comparisonFacts);
+ function draw(){if(!d.isConnected||!current(key))return;var analyses=rows.map(function(c){return global.EMRecruiterAdherence?global.EMRecruiterAdherence.analyze(vacancy,c):null;});
+  body.innerHTML='<div class="emp-table-scroll" tabindex="0" role="region" aria-label="Comparação dos candidatos"><table class="emp-compare-table"><thead><tr><th scope="col">Critérios</th>'+rows.map(function(c){return '<th scope="col"><strong>'+esc(candidateName(c))+'</strong><small>'+esc(c.status||'Em avaliação')+'</small></th>';}).join('')+'</tr></thead><tbody>'+facts[0].map(function(row,index){return '<tr><th scope="row">'+esc(row[0])+'</th>'+facts.map(function(f){return '<td>'+esc(f[index][1])+'</td>';}).join('')+'</tr>';}).join('')+'<tr><th scope="row">Aderência à vaga</th>'+analyses.map(function(a){return '<td>'+(a&&a.percent!==null?'<strong class="emp-table-score">'+a.percent+'%</strong><small>Cobertura de dados: '+a.coverage+'%</small>':'Dados insuficientes')+'</td>';}).join('')+'</tr><tr><th scope="row">Avaliação da entrevista</th>'+rows.map(function(c){var interviews=data?data.interviews.filter(function(i){return String(i.application_ref)===String(c.id)&&i.state!=='cancelled';}).sort(function(a,b){return Date.parse(b.scheduled_at)-Date.parse(a.scheduled_at);}):[],i=interviews[0],s=i&&data.scores.find(function(x){return x.interview_id===i.id;}),avg=average(s);return '<td>'+(avg!==null?'<strong class="emp-table-score">'+avg.toLocaleString('pt-BR',{maximumFractionDigits:2})+'/5</strong><small>'+esc(recommendations[s.recommendation])+'</small>':data?'Sem ficha preenchida':'Carregando fichas…')+'</td>';}).join('')+'</tr></tbody></table></div><p class="emp-muted">Dados declarados na candidatura. Campos sem informação não recebem nota. A comparação apoia a análise do recrutador.</p><p class="emp-feedback" data-emp-status role="status"></p>';
+ }
+ draw();try{await loadData();draw();}catch(e){note(body.querySelector('[data-emp-status]'),'As fichas não puderam ser consultadas: '+e.message,true);}
+}
+function pendingScorecards(){return data?data.interviews.filter(function(i){return dueScorecard(i)&&!data.scores.some(function(s){return s.interview_id===i.id;});}):[];}
+function updateToday(){
+ var box=root&&root.getElementById('emPremiumToday');if(!box)return;
+ var awaiting=apps().filter(function(c){return global.EmpregaMaisEtapasCandidatura&&global.EmpregaMaisEtapasCandidatura.classificar(c)==='avaliacao';}).length;
+ var today=new Date().toLocaleDateString(),interviews=data?data.interviews.filter(function(i){return !['cancelled','completed'].includes(i.state)&&new Date(i.scheduled_at).toLocaleDateString()===today;}).length:null;
+ var messages=global.EMMessages?global.EMMessages.unread('company'):null;
+ var entries=[['candidates',awaiting,'Candidaturas em avaliação'],['interviews',interviews,'Entrevistas de hoje'],['messages',messages,'Mensagens não lidas'],['interviews',data?pendingScorecards().length:null,'Fichas pendentes']];
+ var target=box.querySelector('[data-emp-tasks]');var html=entries.map(function(x){return '<button type="button" class="emp-task" data-emp-nav="'+x[0]+'"><strong>'+esc(x[1]===null?'—':x[1])+'</strong><span>'+x[2]+'</span><i aria-hidden="true">→</i></button>';}).join('');
+ if(target.innerHTML!==html){target.innerHTML=html;target.querySelectorAll('button').forEach(function(b){b.onclick=function(){ctx.navigate(b.dataset.empNav);};});}
+}
+function mountToday(){
+ var box=root.getElementById('emPremiumToday');if(!box)return;
+ if(!box.firstElementChild){box.className='emp-premium emp-card emp-today';box.innerHTML='<div class="emp-bar"><div><h2>Pendências de hoje</h2><p>Priorize os próximos passos dos seus processos.</p></div><button type="button" class="emp-link" data-emp-refresh>Atualizar</button></div><div class="emp-tasks" data-emp-tasks></div><p class="emp-feedback" data-emp-status role="status" aria-live="polite"></p>';box.querySelector('[data-emp-refresh]').onclick=function(){refreshToday(box,true);};refreshToday(box,false);}updateToday();
+}
+async function refreshToday(box,force){var key=identity;note(box.querySelector('[data-emp-status]'),'Atualizando pendências…');try{if(global.EMMessages&&force)global.EMMessages.refresh();await loadData(force);if(!box.isConnected||!current(key))return;note(box.querySelector('[data-emp-status]'),'');updateToday();}catch(e){if(box.isConnected&&current(key))note(box.querySelector('[data-emp-status]'),'Não foi possível atualizar as entrevistas e fichas. '+e.message,true);}}
+function scoreRows(panel){
+ if(!data)return;var mode=panel.querySelector('[data-emp-score-filter]').value,term=panel.querySelector('[data-emp-score-search]').value.toLocaleLowerCase('pt-BR');
+ var rows=data.interviews.filter(function(i){return i.state!=='cancelled'&&Date.parse(i.scheduled_at)<=Date.now();}).filter(function(i){var saved=data.scores.some(function(s){return s.interview_id===i.id;});return (mode==='all'||!saved)&&(i.candidate_name+' '+i.job_title).toLocaleLowerCase('pt-BR').includes(term);});
+ panel.querySelector('[data-emp-pending-score-count]').textContent=pendingScorecards().length+' pendente(s)';
+ var list=panel.querySelector('[data-emp-score-list]');list.innerHTML=rows.length?rows.map(function(i){var s=data.scores.find(function(v){return v.interview_id===i.id;}),avg=average(s);return '<article class="emp-score-row"><div><strong>'+esc(i.candidate_name)+'</strong><small>'+esc(i.job_title)+' · '+esc(new Date(i.scheduled_at).toLocaleString('pt-BR'))+'</small></div><span class="emp-score-badge">'+(avg===null?'Aguardando avaliação':avg.toLocaleString('pt-BR',{maximumFractionDigits:2})+'/5')+'</span><button type="button" class="emp-btn" data-emp-evaluate="'+esc(i.id)+'">'+(s?'Editar ficha':'Avaliar')+'</button></article>';}).join(''):'<div class="emp-empty">'+(data.interviews.length?'Nenhuma ficha neste filtro. As entrevistas ficam disponíveis para avaliação a partir do horário agendado.':'As entrevistas agendadas aparecerão aqui para avaliação.')+'</div>';
+ list.querySelectorAll('[data-emp-evaluate]').forEach(function(b){b.onclick=function(){openScorecard(b.dataset.empEvaluate);};});
+}
+function mountScorecards(){
+ var target=root.getElementById('emPremiumScorecards');if(!target)return;
+ if(target.firstElementChild){scoreRows(target);return;}
+ target.className='emp-premium emp-card';target.innerHTML='<details class="emp-section" open><summary><span><strong>Fichas de avaliação</strong><small>Critérios iguais para todos os candidatos.</small></span><span class="emp-pill" data-emp-pending-score-count>Premium</span></summary><div class="emp-section-body"><div class="emp-filter-row"><label class="emp-search-label">Buscar entrevista<input type="search" data-emp-score-search placeholder="Candidato ou vaga"></label><label>Exibir<select data-emp-score-filter><option value="pending">Sem avaliação</option><option value="all">Todas as fichas</option></select></label><button type="button" class="emp-btn" data-emp-refresh>Atualizar</button></div><p class="emp-feedback" data-emp-status role="status" aria-live="polite">Carregando entrevistas…</p><div data-emp-score-list></div></div></details>';
+ target.querySelector('[data-emp-score-filter]').onchange=function(){scoreRows(target);};target.querySelector('[data-emp-score-search]').oninput=function(){scoreRows(target);};
+ var load=async function(force){var key=identity;try{await loadData(force);if(target.isConnected&&current(key)){note(target.querySelector('[data-emp-status]'),'');scoreRows(target);}}catch(e){if(target.isConnected&&current(key))note(target.querySelector('[data-emp-status]'),e.message,true);}};
+ target.querySelector('[data-emp-refresh]').onclick=function(){note(target.querySelector('[data-emp-status]'),'Atualizando…');load(true);};load(false);
+}
+async function openScorecard(id){
+ var d=dialog('emPremiumScoreDialog','Ficha de avaliação','Análise interna da empresa. Use evidências da entrevista.'),body=d.querySelector('.emp-dialog-body'),key=identity;
+ body.innerHTML='<p class="emp-feedback" role="status">Carregando ficha…</p>';
+ try{await loadData(true);if(!d.isConnected||!current(key))return;var interview=data.interviews.find(function(i){return i.id===id;});if(!interview||interview.state==='cancelled')throw Error('A entrevista não está disponível para avaliação.');var saved=data.scores.find(function(s){return s.interview_id===id;})||null;
+ body.innerHTML='<div class="emp-score-candidate"><strong>'+esc(interview.candidate_name)+'</strong><span>'+esc(interview.job_title)+'</span><small>'+esc(new Date(interview.scheduled_at).toLocaleString('pt-BR'))+'</small></div><form class="emp-score-form"><p class="emp-scale">1 Não atende · 2 Atende parcialmente · 3 Atende · 4 Supera · 5 Supera com consistência</p>'+scoreKeys.map(function(k){return '<fieldset><legend>'+k[1]+'</legend><p>'+k[2]+'</p><div class="emp-ratings">'+[1,2,3,4,5].map(function(n){return '<label><input type="radio" name="'+k[0]+'" value="'+n+'" required '+(saved&&Number(saved[k[0]+'_score'])===n?'checked':'')+'><span>'+n+'</span></label>';}).join('')+'</div></fieldset>';}).join('')+'<label>Recomendação<select name="recommendation" required><option value="">Selecione</option>'+Object.keys(recommendations).map(function(k){return '<option value="'+k+'" '+(saved&&saved.recommendation===k?'selected':'')+'>'+recommendations[k]+'</option>';}).join('')+'</select></label><label>Evidências e observações<textarea name="evidence" maxlength="4000" rows="4" placeholder="Registre exemplos que sustentem suas notas.">'+esc(saved&&saved.evidence||'')+'</textarea></label><div class="emp-score-footer"><span class="emp-muted" data-emp-average>Média: —</span><button type="submit" class="emp-btn emp-primary">Salvar avaliação</button></div><p class="emp-feedback" data-emp-status role="status" aria-live="polite"></p></form>';
+ var form=body.querySelector('form'),status=form.querySelector('[data-emp-status]');
+ function formScores(){var scores={};scoreKeys.forEach(function(k){scores[k[0]]=Number(new FormData(form).get(k[0]));});return scores;}
+ form.onchange=function(){var values=Object.values(formScores()),ready=values.every(function(n){return n>=1&&n<=5;}),mean=ready?values.reduce(function(a,b){return a+b;},0)/4:null;form.querySelector('[data-emp-average]').textContent='Média: '+(mean===null?'—':mean.toLocaleString('pt-BR',{maximumFractionDigits:2})+'/5');};form.onchange();
+ form.onsubmit=async function(e){e.preventDefault();if(!current(key)||!form.reportValidity())return;var b=form.querySelector('[type=submit]');if(b.disabled)return;b.disabled=true;note(status,'Salvando avaliação…');
+  try{var scores=formScores(),payload={p_interview_id:id,p_scores:scores,p_recommendation:form.elements.recommendation.value,p_evidence:form.elements.evidence.value,p_expected_updated_at:saved&&saved.updated_at||null},result;
+   if(ctx.demo){result={interview_id:id,empresa_id:'demo',recommendation:payload.p_recommendation,evidence:payload.p_evidence,updated_at:new Date().toISOString()};scoreKeys.forEach(function(k){result[k[0]+'_score']=scores[k[0]];});}
+   else result=await api('rpc/em_save_interview_scorecard',payload);
+   if(!current(key)||!d.isConnected)return;result=Array.isArray(result)?result[0]:result;saved=result;data.scores=data.scores.filter(function(s){return s.interview_id!==id;}).concat(result);if(ctx.demo)demoSave();note(status,ctx.demo?'Avaliação salva nesta demonstração.':'Avaliação salva. Disponível para a equipe da empresa.');scoreRowsIfMounted();updateToday();
+  }catch(error){if(current(key))note(status,error.message,true);}finally{if(b.isConnected)b.disabled=false;}
+ };
+ }catch(e){if(d.isConnected&&current(key)){body.textContent='';var p=document.createElement('p');p.className='emp-feedback emp-error';p.textContent=e.message;body.append(p);}}
+}
+function scoreRowsIfMounted(){var target=root&&root.getElementById('emPremiumScorecards');if(target&&target.firstElementChild)scoreRows(target);}
+function ruleFor(scope,key){return data.rules.find(function(r){return r.job_ref===scope&&r.stage_key===key;});}
+function ruleList(panel){
+ var scope=panel.querySelector('[data-emp-rule-job]').value,list=panel.querySelector('[data-emp-rules]'),key=identity;
+ list.innerHTML=stages.map(function(stage){var own=ruleFor(scope,stage[0]),general=scope&&ruleFor('',stage[0]),rule=own||general,active=rule&&rule.enabled;
+  return '<details class="emp-rule" data-emp-stage="'+stage[0]+'"><summary><span><strong>'+stage[1]+'</strong><small>'+(general&&!own?'Usando a regra geral':scope?'Regra desta vaga':'Regra geral')+'</small></span><span class="emp-rule-state '+(active?'emp-active':'')+'">'+(active?'Ativa':'Desativada')+'</span></summary><form class="emp-rule-form"><label class="emp-toggle"><input type="checkbox" name="enabled" '+(active?'checked':'')+'><span>Enviar automaticamente ao entrar nesta etapa</span></label><label>Mensagem<textarea name="template" required maxlength="4000" rows="4">'+esc(rule?rule.template:defaults[stage[0]])+'</textarea></label><p class="emp-tokens">Personalize com <code>{candidato}</code>, <code>{vaga}</code>, <code>{empresa}</code> e <code>{etapa}</code>.</p><div class="emp-preview"><small>PRÉVIA DA MENSAGEM</small><p data-emp-preview></p></div><div class="emp-actions"><button type="submit" class="emp-btn emp-primary">Salvar regra</button><span class="emp-muted">Somente para as próximas mudanças de etapa.</span></div><p class="emp-feedback" data-emp-status role="status" aria-live="polite"></p></form></details>';
+ }).join('');
+ list.querySelectorAll('.emp-rule').forEach(function(detail){
+  var stage=stages.find(function(s){return s[0]===detail.dataset.empStage;}),form=detail.querySelector('form'),status=form.querySelector('[data-emp-status]'),existing=ruleFor(scope,stage[0]);
+  var updatePreview=function(){var vacancy=job(scope),sample=apps().find(function(c){return !scope||jobId(c)===scope;});detail.querySelector('[data-emp-preview]').textContent=preview(form.elements.template.value,{candidato:sample?candidateName(sample):'Candidato',vaga:vacancy.cargo||vacancy.titulo||'Nome da vaga',empresa:ctx.company.nome_fantasia||ctx.company.nomeFantasia||ctx.company.nome||'Sua empresa',etapa:stage[1]});};form.elements.template.oninput=updatePreview;updatePreview();
+  form.onsubmit=async function(e){e.preventDefault();if(!current(key)||!form.reportValidity())return;var error=templateError(form.elements.template.value);if(error){note(status,error,true);return;}var button=form.querySelector('[type=submit]');if(button.disabled)return;button.disabled=true;note(status,'Salvando regra…');
+   try{var payload={p_empresa_id:data.companyId,p_job_ref:scope,p_stage_key:stage[0],p_template:form.elements.template.value,p_enabled:form.elements.enabled.checked,p_expected_updated_at:existing&&existing.updated_at||null},result;
+    if(ctx.demo)result={id:existing&&existing.id||'demo-rule-'+scope+'-'+stage[0],empresa_id:'demo',job_ref:scope,stage_key:stage[0],template:payload.p_template,enabled:payload.p_enabled,updated_at:new Date().toISOString()};
+    else result=await api('rpc/em_save_recruiter_message_rule',payload);
+    if(!current(key)||!panel.isConnected)return;result=Array.isArray(result)?result[0]:result;existing=result;data.rules=data.rules.filter(function(r){return !(r.job_ref===scope&&r.stage_key===stage[0]);}).concat(result);if(ctx.demo)demoSave();
+    var badge=detail.querySelector('.emp-rule-state');badge.textContent=result.enabled?'Ativa':'Desativada';badge.classList.toggle('emp-active',result.enabled);detail.querySelector('summary small').textContent=scope?'Regra desta vaga':'Regra geral';
+    note(status,ctx.demo?'Regra salva nesta demonstração. Nenhuma mensagem real será enviada.':result.enabled?'Regra ativa. A próxima mudança para esta etapa enviará a mensagem no portal.':'Regra salva e desativada.');ruleCount(panel);
+   }catch(err){if(current(key))note(status,err.message,true);}finally{if(button.isConnected)button.disabled=false;}
+  };
+ });ruleCount(panel);
+}
+function ruleCount(panel){var count=data.rules.filter(function(r){return r.enabled;}).length;panel.querySelector('[data-emp-rule-count]').textContent=count?count+' regra(s) ativa(s)':'Desativadas';}
+function mountRules(){
+ var panel=root.getElementById('emPremiumMessageRules');if(!panel||panel.firstElementChild)return;
+ panel.className='emp-premium emp-card';panel.innerHTML='<details class="emp-section"><summary><span><strong>Mensagens automáticas</strong><small>Comunique cada avanço no processo seletivo.</small></span><span class="emp-pill" data-emp-rule-count>Premium</span></summary><div class="emp-section-body"><p class="emp-muted">As mensagens chegam à aba Mensagens do candidato, com a notificação do portal. Cada candidatura recebe no máximo uma mensagem por etapa. Ative as regras que deseja usar.</p><div class="emp-filter-row"><label class="emp-search-label">Aplicar em<select data-emp-rule-job><option value="">Todas as vagas · regra geral</option>'+ctx.jobs.map(function(v){return '<option value="'+esc(v.id)+'">'+esc(v.cargo||v.titulo||'Vaga')+'</option>';}).join('')+'</select></label><button type="button" class="emp-btn" data-emp-refresh>Atualizar regras</button></div><p class="emp-feedback" data-emp-status role="status" aria-live="polite">Carregando regras…</p><div data-emp-rules></div></div></details>';
+ panel.querySelector('[data-emp-rule-job]').onchange=function(){if(data)ruleList(panel);};
+ var load=async function(force){var key=identity;try{await loadData(force);if(panel.isConnected&&current(key)){note(panel.querySelector('[data-emp-status]'),'');ruleList(panel);}}catch(e){if(panel.isConnected&&current(key))note(panel.querySelector('[data-emp-status]'),e.message,true);}};
+ panel.querySelector('[data-emp-refresh]').onclick=function(){note(panel.querySelector('[data-emp-status]'),'Atualizando…');load(true);};load(false);
+}
+function scan(){scanFrame=0;if(!root||!ctx||!current(identity)||!paid())return;if(ctx.view==='candidates')mountComparison();if(ctx.view==='overview')mountToday();if(ctx.view==='interviews')mountScorecards();if(ctx.view==='messages')mountRules();}
+function scheduleScan(){if(!scanFrame)scanFrame=requestAnimationFrame(scan);}
+function sync(shadow,context){
+ var next=sessionIdentity(context);if(identity!==next){identity=next;selected=[];pickerJob='';data=null;dataAt=0;pending=null;document.querySelectorAll('.emp-dialog').forEach(function(d){d.close();d.remove();});var old=document.getElementById('emPremiumCompare');if(old)old.remove();document.querySelectorAll('.emp-card-select').forEach(function(e){e.remove();});}
+ root=shadow;ctx=context;if(!next||!paid()){var comparison=document.getElementById('emPremiumCompare');if(comparison)comparison.remove();document.querySelectorAll('.emp-card-select').forEach(function(e){e.remove();});return;}
+ installStyle(root);installStyle(document.head);if(observer)observer.disconnect();observer=new MutationObserver(scheduleScan);var page=document.getElementById('pagina-candidatos-empresa');if(page)observer.observe(page,{childList:true,subtree:true});scheduleScan();
+}
+global.EMRecruiterPremium={sync:sync};
+document.addEventListener('empregamais:candidaturas-sincronizadas',scheduleScan);
+global.addEventListener('empregamais:entrevistas-atualizadas',function(){dataAt=0;if(root&&ctx&&['overview','interviews'].includes(ctx.view))loadData(true).then(function(){updateToday();scoreRowsIfMounted();}).catch(function(){});});
+global.addEventListener('focus',function(){if(root&&ctx&&paid()&&current(identity)){dataAt=0;scheduleScan();if(ctx.view==='overview'){var box=root.getElementById('emPremiumToday');if(box)refreshToday(box,false);}}});
+setInterval(function(){if(!document.hidden&&ctx&&ctx.view==='overview'&&current(identity)&&paid()){updateToday();var box=root&&root.getElementById('emPremiumToday');if(box&&Date.now()-dataAt>60000)refreshToday(box,false);}},5000);
+})(typeof window!=='undefined'?window:globalThis);
