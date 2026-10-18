@@ -1,4 +1,22 @@
 @layer candidate-palette, field-feedback, site-typography;
+/* One local Poppins source per weight, including legacy family aliases. */
+@font-face{font-family:'Poppins';font-style:normal;font-weight:100 499;font-display:optional;src:url('assets/fonts/poppins-400.woff2') format('woff2')}
+@font-face{font-family:'Poppins';font-style:normal;font-weight:500 599;font-display:optional;src:url('assets/fonts/poppins-500.woff2') format('woff2')}
+@font-face{font-family:'Poppins';font-style:normal;font-weight:600 699;font-display:optional;src:url('assets/fonts/poppins-600.woff2') format('woff2')}
+@font-face{font-family:'Poppins';font-style:normal;font-weight:700 900;font-display:optional;src:url('assets/fonts/poppins-700.woff2') format('woff2')}
+@font-face{font-family:'Inter';font-style:normal;font-weight:100 499;font-display:optional;src:url('assets/fonts/poppins-400.woff2') format('woff2')}
+@font-face{font-family:'Inter';font-style:normal;font-weight:500 599;font-display:optional;src:url('assets/fonts/poppins-500.woff2') format('woff2')}
+@font-face{font-family:'Inter';font-style:normal;font-weight:600 699;font-display:optional;src:url('assets/fonts/poppins-600.woff2') format('woff2')}
+@font-face{font-family:'Inter';font-style:normal;font-weight:700 900;font-display:optional;src:url('assets/fonts/poppins-700.woff2') format('woff2')}
+@font-face{font-family:'Montserrat Applications';font-style:normal;font-weight:100 499;font-display:optional;src:url('assets/fonts/poppins-400.woff2') format('woff2')}
+@font-face{font-family:'Montserrat Applications';font-style:normal;font-weight:500 599;font-display:optional;src:url('assets/fonts/poppins-500.woff2') format('woff2')}
+@font-face{font-family:'Montserrat Applications';font-style:normal;font-weight:600 699;font-display:optional;src:url('assets/fonts/poppins-600.woff2') format('woff2')}
+@font-face{font-family:'Montserrat Applications';font-style:normal;font-weight:700 900;font-display:optional;src:url('assets/fonts/poppins-700.woff2') format('woff2')}
+@font-face{font-family:'Montserrat';font-style:normal;font-weight:100 499;font-display:optional;src:url('assets/fonts/poppins-400.woff2') format('woff2')}
+@font-face{font-family:'Montserrat';font-style:normal;font-weight:500 599;font-display:optional;src:url('assets/fonts/poppins-500.woff2') format('woff2')}
+@font-face{font-family:'Montserrat';font-style:normal;font-weight:600 699;font-display:optional;src:url('assets/fonts/poppins-600.woff2') format('woff2')}
+@font-face{font-family:'Montserrat';font-style:normal;font-weight:700 900;font-display:optional;src:url('assets/fonts/poppins-700.woff2') format('woff2')}
+
 /* Inter variable, served locally. Arial is the fallback. */
 
 
@@ -1223,23 +1241,6 @@ html body .em-field-message{display:block!important;grid-column:1/-1!important;m
 
 
 /* Poppins is the portal typeface. Legacy names keep runtime font overrides consistent. */
-@font-face{font-family:'Poppins';font-style:normal;font-weight:100 499;font-display:swap;src:url('https://fonts.gstatic.com/s/poppins/v24/pxiEyp8kv8JHgFVrFJA.ttf') format('truetype')}
-@font-face{font-family:'Poppins';font-style:normal;font-weight:500 599;font-display:swap;src:url('https://fonts.gstatic.com/s/poppins/v24/pxiByp8kv8JHgFVrLGT9V1s.ttf') format('truetype')}
-@font-face{font-family:'Poppins';font-style:normal;font-weight:600 699;font-display:swap;src:url('https://fonts.gstatic.com/s/poppins/v24/pxiByp8kv8JHgFVrLEj6V1s.ttf') format('truetype')}
-@font-face{font-family:'Poppins';font-style:normal;font-weight:700 900;font-display:swap;src:url('https://fonts.gstatic.com/s/poppins/v24/pxiByp8kv8JHgFVrLCz7V1s.ttf') format('truetype')}
-@font-face{font-family:'Inter';font-style:normal;font-weight:100 499;font-display:swap;src:url('https://fonts.gstatic.com/s/poppins/v24/pxiEyp8kv8JHgFVrFJA.ttf') format('truetype')}
-@font-face{font-family:'Inter';font-style:normal;font-weight:500 599;font-display:swap;src:url('https://fonts.gstatic.com/s/poppins/v24/pxiByp8kv8JHgFVrLGT9V1s.ttf') format('truetype')}
-@font-face{font-family:'Inter';font-style:normal;font-weight:600 699;font-display:swap;src:url('https://fonts.gstatic.com/s/poppins/v24/pxiByp8kv8JHgFVrLEj6V1s.ttf') format('truetype')}
-@font-face{font-family:'Inter';font-style:normal;font-weight:700 900;font-display:swap;src:url('https://fonts.gstatic.com/s/poppins/v24/pxiByp8kv8JHgFVrLCz7V1s.ttf') format('truetype')}
-@font-face{font-family:'Montserrat Applications';font-style:normal;font-weight:100 499;font-display:swap;src:url('https://fonts.gstatic.com/s/poppins/v24/pxiEyp8kv8JHgFVrFJA.ttf') format('truetype')}
-@font-face{font-family:'Montserrat Applications';font-style:normal;font-weight:500 599;font-display:swap;src:url('https://fonts.gstatic.com/s/poppins/v24/pxiByp8kv8JHgFVrLGT9V1s.ttf') format('truetype')}
-@font-face{font-family:'Montserrat Applications';font-style:normal;font-weight:600 699;font-display:swap;src:url('https://fonts.gstatic.com/s/poppins/v24/pxiByp8kv8JHgFVrLEj6V1s.ttf') format('truetype')}
-@font-face{font-family:'Montserrat Applications';font-style:normal;font-weight:700 900;font-display:swap;src:url('https://fonts.gstatic.com/s/poppins/v24/pxiByp8kv8JHgFVrLCz7V1s.ttf') format('truetype')}
-@font-face{font-family:'Montserrat';font-style:normal;font-weight:100 499;font-display:swap;src:url('https://fonts.gstatic.com/s/poppins/v24/pxiEyp8kv8JHgFVrFJA.ttf') format('truetype')}
-@font-face{font-family:'Montserrat';font-style:normal;font-weight:500 599;font-display:swap;src:url('https://fonts.gstatic.com/s/poppins/v24/pxiByp8kv8JHgFVrLGT9V1s.ttf') format('truetype')}
-@font-face{font-family:'Montserrat';font-style:normal;font-weight:600 699;font-display:swap;src:url('https://fonts.gstatic.com/s/poppins/v24/pxiByp8kv8JHgFVrLEj6V1s.ttf') format('truetype')}
-@font-face{font-family:'Montserrat';font-style:normal;font-weight:700 900;font-display:swap;src:url('https://fonts.gstatic.com/s/poppins/v24/pxiByp8kv8JHgFVrLCz7V1s.ttf') format('truetype')}
-
 @layer field-feedback {
  html body,html body :is(h1,h2,h3,h4,h5,h6,p,span,small,strong,a,button,input,textarea,select,option,label,legend,li,dt,dd,td,th,summary,blockquote){
   font-family:'Poppins',Arial,sans-serif!important;

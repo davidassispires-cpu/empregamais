@@ -40,7 +40,11 @@ function render(d){
  var partes=modo==="completo"?[d.rua,d.bairro,d.cidade,d.uf]:modo==="cidade"?[d.cidade,d.uf]:[d.bairro,d.cidade,d.uf];
  var exibido=partes.filter(function(x){return txt(x);}).join(" · ");
  var p=campo("enderecoPreviewV150")||document.querySelector(".endereco-preview-v150");
- if(p)p.innerHTML="<strong>O candidato verá:</strong> "+(exibido||"preencha o CEP para visualizar.");
+ var message=exibido||"preencha o CEP para visualizar.";
+ if(p&&p.textContent!=="O candidato verá: "+message){
+  var label=document.createElement("strong");label.textContent="O candidato verá:";
+  p.replaceChildren(label,document.createTextNode(" "+message));
+ }
 }
 async function consultarCep(){
  var c=dig(valor("cepVaga"));
@@ -77,8 +81,14 @@ document.addEventListener("click",function(e){
  var l=e.target&&e.target.closest?e.target.closest(".privacidade-opcao-v130 label"):null;
  if(l)setTimeout(atualizar,0);
 },true);
-var obs=new MutationObserver(function(){if(campo("enderecoPreviewV150"))setTimeout(atualizar,0);});
-if(document.documentElement)obs.observe(document.documentElement,{childList:true,subtree:true});
+var updateTimer=0;
+function scheduleUpdate(){clearTimeout(updateTimer);updateTimer=setTimeout(atualizar,30);}
+var obs=new MutationObserver(function(records){
+ var preview=campo("enderecoPreviewV150");
+ if(preview&&records.some(function(r){return r.target!==preview&&!preview.contains(r.target);}))scheduleUpdate();
+});
+var form=document.getElementById("formVaga")||document.getElementById("pagina-publicar");
+if(form)obs.observe(form,{childList:true,subtree:true});
 if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",function(){setTimeout(atualizar,250);});
 else setTimeout(atualizar,250);
 window.addEventListener("load",function(){setTimeout(atualizar,500);});

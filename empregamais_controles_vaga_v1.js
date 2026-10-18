@@ -44,8 +44,9 @@ function atualizar(sel,w,forcar){
  var btn=w.querySelector(".em-select-v4-btn"), lista=w.querySelector(".em-select-v4-lista");
  var opt=sel.options[sel.selectedIndex];
  if(btn){
-  btn.firstChild.nodeValue=opt?String(opt.textContent||opt.value||"").trim():"Selecione";
-  btn.disabled=!!sel.disabled;
+  var label=opt?String(opt.textContent||opt.value||"").trim():"Selecione";
+  if(btn.firstChild.nodeValue!==label)btn.firstChild.nodeValue=label;
+  if(btn.disabled!==!!sel.disabled)btn.disabled=!!sel.disabled;
  }
  var sig=assinatura(sel);
  if(!forcar && lista.dataset.assinatura===sig){
@@ -109,7 +110,7 @@ function montar(sel){
   btn.setAttribute("aria-expanded",abrir?"true":"false");atualizar(sel,w,false);
  });
  sel.addEventListener("change",function(){atualizar(sel,w,false)});
- new MutationObserver(function(){atualizar(sel,w,true)}).observe(sel,{childList:true,subtree:true,attributes:true,attributeFilter:["disabled"]});
+ new MutationObserver(function(){atualizar(sel,w,false)}).observe(sel,{childList:true,subtree:true,attributes:true,attributeFilter:["disabled"]});
  atualizar(sel,w,true);
 }
 function restaurarIgnorados(){
