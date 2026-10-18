@@ -285,6 +285,22 @@
  .jobs-reference .mobile-filters>.filter-options{grid-template-columns:repeat(2,minmax(0,1fr))}
 }
 @media(prefers-reduced-motion:reduce){.recruiter-account-chevron{transition:none}}
+/* Desktop content and indicators share the available width beside the menu. */
+@media(min-width:761px){
+ :host{--recruiter-content-left:calc(var(--recruiter-sidebar-inset) + var(--recruiter-sidebar-width) + 12px)}
+ :host .main,:host([data-paid="true"]) .main{width:100%!important;max-width:none!important;margin:0!important;padding:16px 16px 32px}
+ :host .main>.kpis{width:100%!important;max-width:none!important;margin:0 0 20px!important}
+ :host .main>:is(.company-hero,.columns,.performance,#emPremiumToday,#emRecruiterInsights){width:100%;max-width:none;min-width:0}
+}
+@media(min-width:1440px){
+ :host{font-size:16px}
+ :host .sidebar.reference-sidebar .nav{font-size:14px!important}
+ :host .main .kpis .kpi h2{font-size:14px!important}
+ :host .main .kpis .kpi small{font-size:12px!important}
+ :host .main .kpis .kpi strong{font-size:32px!important}
+ :host .main :is(table,td strong,.candidate strong){font-size:14px}
+ :host .main :is(td small,.candidate p,.candidate-action small,.location,.link){font-size:12px}
+}
 `;
   Object.assign(icons,{bell:'M5 10a7 7 0 0 1 14 0v5l2 3H3l2-3ZM9 21h6',chevron:'m6 9 6 6 6-6'});
   function recruiterToolbar(e){
