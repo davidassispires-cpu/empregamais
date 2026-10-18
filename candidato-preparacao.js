@@ -842,3 +842,56 @@
  function start(){paint();var p=document.getElementById('pagina-painel-candidato');if(p)new MutationObserver(schedule).observe(p,{childList:true,subtree:true,characterData:true});document.addEventListener('empregamais:candidato-sincronizado',schedule);}
  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',start,{once:true});else start();
 })();
+
+/* Completed résumé and unseen recommendations — reference option 3. */
+(function(){
+ 'use strict';
+ if(typeof document==='undefined')return;
+ var queued=false,currentIds=[],ownerKey='',lastNav=null,lastSignature='';
+ function readSeen(){try{return JSON.parse(localStorage.getItem(ownerKey)||'[]');}catch(e){return [];}}
+ function refresh(){
+  queued=false;
+  var nav=document.querySelector('#cpCandidateHeader .cp-navigation');if(!nav)return;
+  var c=window.obterCandidatoAtual?window.obterCandidatoAtual()||{}:{},email=String(sessionStorage.getItem('candidatoEmail')||c.email||'').trim().toLowerCase();
+  ownerKey='emRecommendationSeenV1:'+email;
+  var saved=false;try{saved=!!(window.curriculoCadastrado&&window.curriculoCadastrado());}catch(e){}
+  var complete=[!!(c.nome||sessionStorage.getItem('candidatoNome')),!!email,!!c.telefone,!!(c.cidadeProfissional||c.cidade),!!(c.cargoDesejado||c.areaProfissional),!!c.escolaridadeProfissional,!!c.experienciaProfissional,!!c.habilidadesProfissionais,saved].every(Boolean);
+  var core=window.EmpregaMaisPreparacao,rows=window.todasAsVagasPublicas?window.todasAsVagasPublicas():[];
+  var recommended=core&&core.recomendarVagas?core.recomendarVagas(rows,c):[];
+  currentIds=recommended.map(function(x){return String(x.job.id);});
+  var seen=readSeen();if(!Array.isArray(seen))seen=[];
+  var count=currentIds.filter(function(id){return seen.indexOf(id)<0;}).length;
+  var resume=nav.querySelector('button[data-route="curriculo"]'),rec=nav.querySelector('button[data-route="recommendations"]');
+  if(!resume||!rec)return;
+  var signature=JSON.stringify([complete,count,email]);
+  if(lastNav===nav&&lastSignature===signature&&(!complete||resume.querySelector('.cp-resume-state')))return;
+  lastNav=nav;lastSignature=signature;
+  resume.classList.toggle('cp-resume-complete',complete);
+  var state=resume.querySelector('.cp-resume-state');
+  if(complete&&!state){state=document.createElement('span');state.className='cp-resume-state';state.innerHTML='<small>100% preenchido</small><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="11" fill="currentColor"/><path d="m7 12 3 3 7-7" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>';resume.appendChild(state);}
+  else if(!complete&&state)state.remove();
+  var badge=rec.querySelector('.cp-recommendation-count');
+  if(count){if(!badge){badge=document.createElement('span');badge.className='cp-recommendation-count';rec.appendChild(badge);}badge.textContent=String(count);badge.setAttribute('aria-label',count+' novas vagas recomendadas');}else if(badge)badge.remove();
+  var notice=nav.querySelector('.cp-recommendation-notice');
+  if(count){if(!notice){notice=document.createElement('button');notice.type='button';notice.className='cp-recommendation-notice';notice.innerHTML='<strong>Novas vagas recomendadas para seu perfil</strong><small></small><span aria-hidden="true">›</span>';notice.onclick=function(){rec.click();};rec.after(notice);}notice.querySelector('small').textContent=count+(count===1?' nova vaga':' novas vagas');}else if(notice)notice.remove();
+ }
+ function schedule(){if(!queued){queued=true;requestAnimationFrame(refresh);}}
+ document.addEventListener('click',function(e){if(!e.target.closest||!e.target.closest('#cpCandidateHeader button[data-route="recommendations"]'))return;var seen=readSeen();if(!Array.isArray(seen))seen=[];try{localStorage.setItem(ownerKey,JSON.stringify(Array.from(new Set(seen.concat(currentIds)))));}catch(ignore){}lastSignature='';schedule();},true);
+ var style=document.createElement('style');style.textContent=`
+ html body.cp-shell-active #cpCandidateHeader .cp-navigation button.cp-resume-complete{position:relative!important;display:grid!important;grid-template-columns:24px minmax(0,1fr) 20px!important;column-gap:10px!important;row-gap:3px!important;align-items:center!important;min-height:60px!important;padding:10px 12px!important;background:#edf5ff!important;border:1px solid #a8c9fa!important;border-radius:7px!important;color:#243b63!important}
+ #cpCandidateHeader .cp-resume-complete>.cp-card-icon{grid-column:1;grid-row:1/3}
+ #cpCandidateHeader .cp-resume-complete>span:not(.cp-card-icon):not(.cp-resume-state){grid-column:2;grid-row:1;font-weight:700!important}
+ #cpCandidateHeader .cp-resume-state{display:contents!important}
+ #cpCandidateHeader .cp-resume-state small{grid-column:2;grid-row:2;font:500 11px/1.3 Inter,Arial,sans-serif!important;color:#0080c9!important}
+ #cpCandidateHeader .cp-resume-state svg{grid-column:3;grid-row:1/3;width:20px!important;height:20px!important;color:#2858a0!important}
+ #cpCandidateHeader .cp-recommendation-count{display:inline-grid!important;place-items:center!important;margin-left:auto!important;flex:0 0 auto!important;min-width:20px!important;height:20px!important;padding:0 4px!important;border-radius:20px!important;background:#dc2626!important;color:#fff!important;font:700 11px/20px Inter,Arial,sans-serif!important}
+ html body.cp-shell-active #cpCandidateHeader .cp-navigation button.cp-recommendation-notice{position:relative!important;display:block!important;width:100%!important;box-sizing:border-box!important;margin:3px 0 7px!important;padding:10px 23px 10px 11px!important;border:1px solid #fed3b0!important;border-left:3px solid #f28b36!important;border-radius:6px!important;background:#fff!important;text-align:left!important;white-space:normal!important;min-height:0!important;color:#243b63!important}
+ #cpCandidateHeader .cp-recommendation-notice strong{display:block!important;font:600 11px/1.45 Inter,Arial,sans-serif!important;color:#243b63!important}
+ #cpCandidateHeader .cp-recommendation-notice small{display:block!important;margin-top:4px!important;font:500 11px/1.3 Inter,Arial,sans-serif!important;color:#62738a!important}
+ #cpCandidateHeader .cp-recommendation-notice>span{position:absolute;right:9px;top:50%;transform:translateY(-50%);color:#ed7825!important;font-size:23px!important}
+ #cpCandidateHeader .cp-recommendation-notice:focus-visible{outline:2px solid #0080c9!important;outline-offset:2px!important}
+ `;document.head.appendChild(style);
+ function start(){refresh();var root=document.getElementById('pagina-painel-candidato');if(root)new MutationObserver(schedule).observe(root,{childList:true,subtree:true,characterData:true});}
+ document.addEventListener('empregamais:candidato-sincronizado',schedule);window.addEventListener('storage',function(){lastSignature='';schedule();});
+ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',start,{once:true});else start();
+})();
