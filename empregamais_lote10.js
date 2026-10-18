@@ -291,6 +291,8 @@
  :host .main,:host([data-paid="true"]) .main{width:100%!important;max-width:none!important;margin:0!important;padding:16px 16px 32px}
  :host .main>.kpis{width:100%!important;max-width:none!important;margin:0 0 20px!important}
  :host .main>:is(.company-hero,.columns,.performance,#emPremiumToday,#emRecruiterInsights){width:100%;max-width:none;min-width:0}
+ :host #emInterviewAgenda{width:100%;max-width:none;margin:0;min-width:0;min-height:calc(100dvh - 220px);align-content:start}
+ :host #emInterviewAgenda>.emi-list{min-width:0;width:100%;align-content:start}
 }
 @media(min-width:1440px){
  :host{font-size:16px}
