@@ -120,4 +120,11 @@ dialog.emp-dialog::backdrop{background:#102d436e!important;backdrop-filter:blur(
 /* Orange Premium daily indicators with clearer labels. */
 .emp-premium.emp-today .emp-task strong,.emp-premium.emp-today .emp-task i,.emp-premium.emp-today .emp-link{color:#ce5b0c!important;font-weight:650!important}
 .emp-premium.emp-today .emp-task span{color:#35465b!important;font-weight:550!important}
+
+/* Stable daily typography, independent of inherited button shorthand. */
+.emp-premium.emp-today .emp-task{font:550 13px/1.45 Poppins,Arial,sans-serif!important}
+.emp-premium.emp-today .emp-task span{font-size:13px!important;line-height:1.45!important;font-weight:550!important}
+.emp-premium.emp-today .emp-task strong{font-size:26px!important;line-height:1.2!important;font-weight:650!important;font-variant-numeric:tabular-nums!important;min-width:1.2em!important}
+.emp-premium.emp-today .emp-task i{font-size:20px!important;line-height:1!important}
+@media(max-width:600px){.emp-premium.emp-today .emp-task strong{font-size:23px!important}}
 }
