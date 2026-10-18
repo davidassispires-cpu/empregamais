@@ -56,7 +56,7 @@ async function loadData(force){
  if(!force&&data&&Date.now()-dataAt<30000)return data;if(pending)return pending;
  var companySnapshot=ctx.company,demo=ctx.demo;
  var task=(async function(){
-  if(demo){var saved=demoRead(),interviews=[];try{interviews=JSON.parse(localStorage.getItem('emInterviewReminders:demo')||'[]').map(function(i){return {id:i.id,application_ref:i.ref,job_ref:jobId(byId(i.ref)||{}),candidate_name:i.name,job_title:i.title,scheduled_at:i.at,duration_minutes:i.duration||30,state:i.state||'invited'};});}catch(_){}
+  if(demo){var saved=demoRead(),interviews=[];try{interviews=JSON.parse(sessionStorage.getItem('emInterviewReminders:demo')||'[]').map(function(i){return {id:i.id,application_ref:i.ref,job_ref:jobId(byId(i.ref)||{}),candidate_name:i.name,job_title:i.title,scheduled_at:i.at,duration_minutes:i.duration||30,state:i.state||'invited'};});}catch(_){}
    data={companyId:'demo',interviews:interviews,scores:saved.scores||[],rules:saved.rules||[]};dataAt=Date.now();return data;
   }
   var companyId=companySnapshot.id;
@@ -206,7 +206,7 @@ function sync(shadow,context){
  root=shadow;ctx=context;if(!next||!paid()){var comparison=document.getElementById('emPremiumCompare');if(comparison)comparison.remove();document.querySelectorAll('.emp-card-select').forEach(function(e){e.remove();});return;}
  installStyle(root);installStyle(document.head);if(observer)observer.disconnect();observer=new MutationObserver(scheduleScan);var page=document.getElementById('pagina-candidatos-empresa');if(page)observer.observe(page,{childList:true,subtree:true});scheduleScan();
 }
-global.EMRecruiterPremium={sync:sync};
+global.EMRecruiterPremium={sync:sync,load:loadData};
 document.addEventListener('empregamais:candidaturas-sincronizadas',scheduleScan);
 global.addEventListener('empregamais:entrevistas-atualizadas',function(){dataAt=0;if(root&&ctx&&['overview','interviews'].includes(ctx.view))loadData(true).then(function(){updateToday();scoreRowsIfMounted();}).catch(function(){});});
 global.addEventListener('focus',function(){if(root&&ctx&&paid()&&current(identity)){dataAt=0;scheduleScan();if(ctx.view==='overview'){var box=root.getElementById('emPremiumToday');if(box)refreshToday(box,false);}}});

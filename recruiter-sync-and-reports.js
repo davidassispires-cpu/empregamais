@@ -35,7 +35,7 @@
  function merge(rows){
   remote={};(rows||[]).forEach(function(row){remote[row.application_ref]={job_ref:row.job_ref,state:row.state,candidate_uid:row.candidate_uid};});
   var all=originalLoad();all.forEach(function(c){var r=remote[String(c.id)];if(r&&r.job_ref===job(c))Object.assign(c,r.state,pending[String(c.id)]&&pending[String(c.id)].state||{});});
-  originalSave(all);
+  originalSave(all);if(typeof document.dispatchEvent==='function')document.dispatchEvent(new Event('empregamais:candidaturas-sincronizadas'));
  }
  async function sync(force){
   switchOwner();if(busy||!owner||!token()||navigator.onLine===false)return;
@@ -47,7 +47,7 @@
     if(owner!==requestOwner||cnpj()!==requestOwner||token()!==access)return;merge(initial);ready=true;
     var jobs=ownedJobs();originalLoad().forEach(function(c){var id=String(c.id);if(!jobs.has(job(c)))return;if(pending[id]){recipient(c,pending[id]);return;}if(remote[id]&&remote[id].candidate_uid)return;
      var state={};fields.forEach(function(f){if(c[f]!==undefined)state[f]=c[f];});
-     var stage=window.EmpregaMaisEtapasCandidatura.etapa(c);if(stage)state.status=stage.label;
+     var workflow=window.EmpregaMaisEtapasCandidatura,stage=workflow&&typeof workflow.etapa==='function'?workflow.etapa(c):null;if(stage)state.status=stage.label;
      if(state.status||c.observacaoRecrutador||c.favoritoRecrutador)pending[id]=recipient(c,{application_ref:id,job_ref:job(c),state:state});
     });remember();
     if(!Object.keys(pending).length){lastPull=Date.now();failures=0;show('Etapas, anotações e favoritos sincronizados.');if(!document.getElementById('emCandidateDetails')&&typeof window.renderizarCandidatosEmpresa==='function')window.renderizarCandidatosEmpresa();return;}
