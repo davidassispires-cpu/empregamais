@@ -83,7 +83,9 @@ function job(ref){try{return (global.todasAsVagasPublicas?global.todasAsVagasPub
 function historyHtml(t){
  return t.messages.map(function(m){
   var mine=m.sender_role===context.role,name=mine?'Você':displayName(t);
-  return '<article class="em-chat-bubble '+(mine?'is-mine':'')+'"><small>'+esc(name)+'</small><p>'+esc(m.body)+'</p><time datetime="'+esc(m.created_at)+'">'+esc(stamp(m.created_at))+'</time>'+(mine?'<span class="em-chat-sent">'+(m.read_at?'Lida':'Enviada')+'</span>':'')+'</article>';
+  // Sender identity stays the same in both inboxes, independent of the viewer's palette.
+  var sender=m.sender_role==='company'?'company':'candidate',ink=sender==='company'?'#175b94':'#6941a8',textStyle=' style="color:'+ink+'!important"';
+  return '<article data-sender-role="'+sender+'" class="em-chat-bubble '+(mine?'is-mine':'')+'"><small'+textStyle+'>'+esc(name)+'</small><p'+textStyle+'>'+esc(m.body)+'</p><time'+textStyle+' datetime="'+esc(m.created_at)+'">'+esc(stamp(m.created_at))+'</time>'+(mine?'<span'+textStyle+' class="em-chat-sent">'+(m.read_at?'Lida':'Enviada')+'</span>':'')+'</article>';
  }).join('');
 }
 function details(t){
