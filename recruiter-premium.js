@@ -99,12 +99,13 @@ function mountComparison(){
  installStyle(document.head);var panel=document.getElementById('emPremiumCompare');
  if(!panel){panel=document.createElement('section');panel.id='emPremiumCompare';panel.className='emp-premium emp-card emp-comparison-bar';panel.dataset.empJob=vacancy;
  panel.innerHTML='<div class="emp-bar"><div><h2>Comparar candidatos <span class="emp-pill">Premium</span></h2><p>Até 3 candidatos desta vaga, lado a lado.</p></div><div class="emp-actions"><span class="emp-muted" data-emp-count>0/3 selecionados</span><button type="button" class="emp-btn" data-emp-picker-toggle aria-expanded="false">Selecionar candidatos</button><button type="button" class="emp-btn emp-primary" data-emp-compare disabled>Comparar</button><button type="button" class="emp-link" data-emp-clear disabled>Limpar</button></div></div><div class="emp-picker" hidden><div class="emp-filter-row"><label class="emp-search-label">Buscar candidato<input type="search" data-emp-search placeholder="Digite o nome"></label></div><div class="emp-picker-list" data-emp-picker-list></div></div><p class="emp-feedback" data-emp-feedback role="status" aria-live="polite"></p>';
- list.before(panel);
+ var tools=list.querySelector('.em-app-option2 .em-gc27-tools');if(tools)tools.before(panel);else list.before(panel);
  panel.querySelector('[data-emp-picker-toggle]').onclick=function(){var picker=panel.querySelector('.emp-picker');picker.hidden=!picker.hidden;this.setAttribute('aria-expanded',String(!picker.hidden));if(!picker.hidden)fillPicker(panel);};
  panel.querySelector('[data-emp-search]').oninput=function(){fillPicker(panel);};
  panel.querySelector('[data-emp-clear]').onclick=function(){selected=[];fillPicker(panel);note(panel.querySelector('[data-emp-feedback]'),'Seleção limpa.');};
  panel.querySelector('[data-emp-compare]').onclick=openComparison;
  }
+ var comparisonTools=list.querySelector('.em-app-option2 .em-gc27-tools');if(comparisonTools&&panel.nextElementSibling!==comparisonTools)comparisonTools.before(panel);
  // Real cards retain their original stage controls inside a hidden subtree.
  list.querySelectorAll('.em-gc27-card').forEach(function(card){var control=card.querySelector('[data-gc27-stage],[data-gc27-expand]');var id=control&&(control.dataset.gc27Stage||control.dataset.gc27Expand),candidate=id&&byId(id);if(!candidate||jobId(candidate)!==vacancy||card.querySelector('.emp-card-select'))return;
  var holder=card.querySelector('.em-row-controls')||card.querySelector('.gc-ref-actions')||card;var label=document.createElement('label');label.className='emp-premium emp-card-select';label.innerHTML='<input type="checkbox" data-emp-candidate="'+esc(id)+'"><span>Comparar</span>';holder.append(label);label.querySelector('input').onchange=function(){toggleCandidate(id,this.checked,panel.querySelector('[data-emp-feedback]'));};
