@@ -245,7 +245,8 @@
  :host .sidebar.reference-sidebar .nav.active,:host([data-paid="true"]) .sidebar.reference-sidebar .nav.active{background:#e3effc!important;color:#153d63!important;font-weight:650!important}
  :host .sidebar.reference-sidebar .nav[data-view="publish"],:host([data-paid="true"]) .sidebar.reference-sidebar .nav[data-view="publish"]{justify-content:center!important;min-height:40px!important;height:40px!important;flex-basis:40px!important;padding:0 9px!important;margin:0 0 8px!important;border:1px solid #ccdced!important;border-radius:7px!important;background:#eff5fb!important;color:#174d83!important;font-size:13px!important;font-weight:600!important}
  :host .sidebar.reference-sidebar .support,:host([data-paid="true"]) .sidebar.reference-sidebar .support{display:flex!important;flex-direction:column!important;gap:2px!important;margin:0!important;padding:12px 0 0!important;border:0!important;flex:none}
- :host .main,:host([data-paid="true"]) .main{min-width:0;width:100%;height:auto;max-height:none;overflow:visible;padding:16px 20px 32px}
+ /* Fill the space beside the fixed sidebar on desktop, including wide monitors. */
+ :host .main,:host([data-paid="true"]) .main{min-width:0;width:100%;max-width:none;margin:0;height:auto;max-height:none;overflow:visible;padding:16px 20px 32px}
 }
 @media(min-width:761px) and (max-height:700px){
  :host .sidebar.reference-sidebar,:host([data-paid="true"]) .sidebar.reference-sidebar{padding:18px 16px 14px!important}
