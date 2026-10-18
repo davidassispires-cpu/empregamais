@@ -79,34 +79,34 @@ function dialog(id,title,subtitle){
  d.querySelector('[data-emp-close]').onclick=close;d.addEventListener('cancel',function(e){e.preventDefault();close();});d._close=close;
  document.body.append(d);d.showModal();return d;
 }
-function selectedRows(){selected=selected.filter(function(id){return !!byId(id);});return selected.map(byId);}
+function comparisonJob(){var id='';try{id=String(sessionStorage.getItem('vagaCandidatosSelecionada')||'');}catch(_){}return ctx&&ctx.view==='candidates'&&ctx.jobs.some(function(v){return String(v.id)===id;})?id:'';}
+function clearComparison(){selected=[];pickerJob='';var panel=document.getElementById('emPremiumCompare');if(panel)panel.remove();document.querySelectorAll('.emp-card-select').forEach(function(e){e.remove();});var d=document.getElementById('emPremiumCompareDialog');if(d){d.close();d.remove();}}
+function selectedRows(){var vacancy=comparisonJob();selected=selected.filter(function(id){var c=byId(id);return c&&vacancy&&jobId(c)===vacancy;});return selected.map(byId);}
 function refreshSelection(){var rows=selectedRows();document.querySelectorAll('[data-emp-candidate]').forEach(function(input){var c=byId(input.dataset.empCandidate);input.checked=selected.includes(input.dataset.empCandidate);input.disabled=!!(c&&!input.checked&&selectionError(rows,c));});var page=document.getElementById('emPremiumCompare');if(!page)return;var count=page.querySelector('[data-emp-count]');if(count&&count.textContent!==selected.length+'/3 selecionados')count.textContent=selected.length+'/3 selecionados';var b=page.querySelector('[data-emp-compare]');b.disabled=selected.length<2;var label='Comparar'+(selected.length?' ('+selected.length+')':'');if(b.textContent!==label)b.textContent=label;page.querySelector('[data-emp-clear]').disabled=!selected.length;}
-function toggleCandidate(id,checked,status){var c=byId(id);if(!c)return;var error=checked?selectionError(selectedRows(),c):'';if(error){note(status,error,true);refreshSelection();return;}selected=checked?selected.concat(String(id)).filter(function(v,i,a){return a.indexOf(v)===i;}):selected.filter(function(v){return v!==String(id);});note(status,selected.length?'Selecione até 3 candidatos da mesma vaga.':'');refreshSelection();}
+function toggleCandidate(id,checked,status){var c=byId(id);if(!c||!comparisonJob()||jobId(c)!==comparisonJob())return;var error=checked?selectionError(selectedRows(),c):'';if(error){note(status,error,true);refreshSelection();return;}selected=checked?selected.concat(String(id)).filter(function(v,i,a){return a.indexOf(v)===i;}):selected.filter(function(v){return v!==String(id);});note(status,selected.length?'Selecione até 3 candidatos desta vaga.':'');refreshSelection();}
 function fillPicker(panel){
- var select=panel.querySelector('[data-emp-job]'),jobs=ctx.jobs.filter(function(v){return apps().some(function(c){return jobId(c)===String(v.id);});});
- var chosen=selectedRows();if(chosen.length)pickerJob=jobId(chosen[0]);if(!jobs.some(function(v){return String(v.id)===pickerJob;}))pickerJob=jobs[0]?String(jobs[0].id):'';
- select.innerHTML=jobs.length?jobs.map(function(v){return '<option value="'+esc(v.id)+'">'+esc(v.cargo||v.titulo||'Vaga')+'</option>';}).join(''):'<option value="">Sem candidaturas recebidas</option>';select.value=pickerJob;select.disabled=chosen.length>0;
+ var vacancy=comparisonJob();if(!vacancy||panel.dataset.empJob!==vacancy)return;
  var search=panel.querySelector('[data-emp-search]').value.toLocaleLowerCase('pt-BR');
- var list=apps().filter(function(c){return jobId(c)===pickerJob&&candidateName(c).toLocaleLowerCase('pt-BR').includes(search);});
+ var list=apps().filter(function(c){return jobId(c)===vacancy&&candidateName(c).toLocaleLowerCase('pt-BR').includes(search);});
  var container=panel.querySelector('[data-emp-picker-list]');
  container.innerHTML=list.length?list.map(function(c){return '<label class="emp-pick-row"><input type="checkbox" data-emp-candidate="'+esc(c.id)+'"><span><strong>'+esc(candidateName(c))+'</strong><small>'+esc(c.status||'Em avaliação')+'</small></span></label>';}).join(''):'<p class="emp-muted">Nenhum candidato encontrado.</p>';
- container.querySelectorAll('input').forEach(function(input){input.onchange=function(){toggleCandidate(input.dataset.empCandidate,input.checked,panel.querySelector('[data-emp-feedback]'));select.disabled=selected.length>0;};});refreshSelection();
+ container.querySelectorAll('input').forEach(function(input){input.onchange=function(){toggleCandidate(input.dataset.empCandidate,input.checked,panel.querySelector('[data-emp-feedback]'));};});refreshSelection();
 }
 function mountComparison(){
- var page=document.getElementById('pagina-candidatos-empresa'),list=document.getElementById('listaCandidatosEmpresa');
- if(!page||!list||!page.classList.contains('ativa'))return;
+ var page=document.getElementById('pagina-candidatos-empresa'),list=document.getElementById('listaCandidatosEmpresa'),vacancy=comparisonJob();
+ if(!page||!list||!page.classList.contains('ativa')||!vacancy){clearComparison();return;}
+ if(pickerJob!==vacancy){clearComparison();pickerJob=vacancy;}
  installStyle(document.head);var panel=document.getElementById('emPremiumCompare');
- if(!panel){panel=document.createElement('section');panel.id='emPremiumCompare';panel.className='emp-premium emp-card emp-comparison-bar';
- panel.innerHTML='<div class="emp-bar"><div><h2>Comparar candidatos <span class="emp-pill">Premium</span></h2><p>Até 3 perfis da mesma vaga, lado a lado.</p></div><div class="emp-actions"><span class="emp-muted" data-emp-count>0/3 selecionados</span><button type="button" class="emp-btn" data-emp-picker-toggle aria-expanded="false">Selecionar candidatos</button><button type="button" class="emp-btn emp-primary" data-emp-compare disabled>Comparar</button><button type="button" class="emp-link" data-emp-clear disabled>Limpar</button></div></div><div class="emp-picker" hidden><div class="emp-picker-filters"><label>Vaga<select data-emp-job></select></label><label>Buscar candidato<input type="search" data-emp-search placeholder="Digite o nome"></label></div><div class="emp-picker-list" data-emp-picker-list></div></div><p class="emp-feedback" data-emp-feedback role="status" aria-live="polite"></p>';
+ if(!panel){panel=document.createElement('section');panel.id='emPremiumCompare';panel.className='emp-premium emp-card emp-comparison-bar';panel.dataset.empJob=vacancy;
+ panel.innerHTML='<div class="emp-bar"><div><h2>Comparar candidatos <span class="emp-pill">Premium</span></h2><p>Até 3 candidatos desta vaga, lado a lado.</p></div><div class="emp-actions"><span class="emp-muted" data-emp-count>0/3 selecionados</span><button type="button" class="emp-btn" data-emp-picker-toggle aria-expanded="false">Selecionar candidatos</button><button type="button" class="emp-btn emp-primary" data-emp-compare disabled>Comparar</button><button type="button" class="emp-link" data-emp-clear disabled>Limpar</button></div></div><div class="emp-picker" hidden><div class="emp-filter-row"><label class="emp-search-label">Buscar candidato<input type="search" data-emp-search placeholder="Digite o nome"></label></div><div class="emp-picker-list" data-emp-picker-list></div></div><p class="emp-feedback" data-emp-feedback role="status" aria-live="polite"></p>';
  list.before(panel);
  panel.querySelector('[data-emp-picker-toggle]').onclick=function(){var picker=panel.querySelector('.emp-picker');picker.hidden=!picker.hidden;this.setAttribute('aria-expanded',String(!picker.hidden));if(!picker.hidden)fillPicker(panel);};
- panel.querySelector('[data-emp-job]').onchange=function(){pickerJob=this.value;fillPicker(panel);};
  panel.querySelector('[data-emp-search]').oninput=function(){fillPicker(panel);};
  panel.querySelector('[data-emp-clear]').onclick=function(){selected=[];fillPicker(panel);note(panel.querySelector('[data-emp-feedback]'),'Seleção limpa.');};
  panel.querySelector('[data-emp-compare]').onclick=openComparison;
  }
  // Real cards retain their original stage controls inside a hidden subtree.
- list.querySelectorAll('.em-gc27-card').forEach(function(card){var control=card.querySelector('[data-gc27-stage],[data-gc27-expand]');var id=control&&(control.dataset.gc27Stage||control.dataset.gc27Expand);if(!id||!byId(id)||card.querySelector('.emp-card-select'))return;
+ list.querySelectorAll('.em-gc27-card').forEach(function(card){var control=card.querySelector('[data-gc27-stage],[data-gc27-expand]');var id=control&&(control.dataset.gc27Stage||control.dataset.gc27Expand),candidate=id&&byId(id);if(!candidate||jobId(candidate)!==vacancy||card.querySelector('.emp-card-select'))return;
  var holder=card.querySelector('.em-row-controls')||card.querySelector('.gc-ref-actions')||card;var label=document.createElement('label');label.className='emp-premium emp-card-select';label.innerHTML='<input type="checkbox" data-emp-candidate="'+esc(id)+'"><span>Comparar</span>';holder.append(label);label.querySelector('input').onchange=function(){toggleCandidate(id,this.checked,panel.querySelector('[data-emp-feedback]'));};
  });refreshSelection();
 }
@@ -195,7 +195,7 @@ function mountRules(){
  var load=async function(force){var key=identity;try{await loadData(force);if(panel.isConnected&&current(key)){note(panel.querySelector('[data-emp-status]'),'');ruleList(panel);}}catch(e){if(panel.isConnected&&current(key))note(panel.querySelector('[data-emp-status]'),e.message,true);}};
  panel.querySelector('[data-emp-refresh]').onclick=function(){note(panel.querySelector('[data-emp-status]'),'Atualizando…');load(true);};load(false);
 }
-function scan(){scanFrame=0;if(!root||!ctx||!current(identity)||!paid())return;if(ctx.view==='candidates')mountComparison();if(ctx.view==='overview')mountToday();if(ctx.view==='interviews')mountScorecards();if(ctx.view==='messages')mountRules();}
+function scan(){scanFrame=0;if(!root||!ctx||!current(identity)||!paid())return;if(ctx.view==='candidates')mountComparison();else clearComparison();if(ctx.view==='overview')mountToday();if(ctx.view==='interviews')mountScorecards();if(ctx.view==='messages')mountRules();}
 function scheduleScan(){if(!scanFrame)scanFrame=requestAnimationFrame(scan);}
 function sync(shadow,context){
  var next=sessionIdentity(context);if(identity!==next){identity=next;selected=[];pickerJob='';data=null;dataAt=0;pending=null;document.querySelectorAll('.emp-dialog').forEach(function(d){d.close();d.remove();});var old=document.getElementById('emPremiumCompare');if(old)old.remove();document.querySelectorAll('.emp-card-select').forEach(function(e){e.remove();});}
