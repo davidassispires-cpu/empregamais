@@ -84,3 +84,19 @@ html body dialog.emi-schedule-popup .emi-schedule-footer{margin:0 -26px!importan
 html body dialog.emi-schedule-popup .emi-schedule-footer button{min-height:42px!important;font:600 13px/1.4 Inter,Arial,sans-serif!important;border-radius:8px!important;padding:10px 16px!important}
 html body dialog.emi-schedule-popup [hidden]{display:none!important}
 @media(max-width:520px){html body dialog.emi.emi-schedule-popup{width:calc(100vw - 24px)!important;max-height:calc(100dvh - 24px)!important}html body dialog.emi-schedule-popup header{padding:18px 16px!important;gap:10px!important;grid-template-columns:40px minmax(0,1fr) 32px!important}html body dialog.emi-schedule-popup h2{font-size:21px!important}html body dialog.emi-schedule-popup .emi-form{padding:16px 16px 0!important}html body dialog.emi-schedule-popup .emi-schedule-timing{grid-template-columns:1fr 1fr!important}html body dialog.emi-schedule-popup .emi-schedule-timing label:last-child{grid-column:1/-1!important}html body dialog.emi-schedule-popup .emi-schedule-footer{margin:0 -16px!important;padding:12px 16px!important}html body dialog.emi-schedule-popup .emi-schedule-footer button{flex:1!important}html body dialog.emi-schedule-popup .emi-invite-guidance{padding-left:60px!important}}
+
+/* Two interviews per row in the recruiter agenda, including the live list. */
+#emInterviewAgenda{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));column-gap:16px;align-items:stretch}
+#emInterviewAgenda>:not(.emi-card){grid-column:1/-1;min-width:0}
+#emInterviewAgenda>p[role=status]{justify-self:start}
+#emInterviewAgenda>.emi-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));column-gap:16px;align-items:stretch}
+#emInterviewAgenda .emi-card{box-sizing:border-box;grid-template-rows:auto auto auto 1fr auto auto;column-gap:12px;padding:18px;max-width:100%;overflow-wrap:anywhere}
+#emInterviewAgenda .emi-card>p{grid-column:1/-1;align-self:start}
+#emInterviewAgenda .emi-card .emi-actions{align-self:end;justify-content:stretch;gap:8px}
+#emInterviewAgenda .emi-actions>button{flex:1 1 140px;min-width:0;white-space:normal}
+#emInterviewAgenda .emi-card>.emi-feedback:empty{display:none}
+#emInterviewAgenda .emi-card>details,#emInterviewAgenda .emi-card>div:not(.emi-actions){grid-column:1/-1;min-width:0}
+@media(max-width:800px){
+#emInterviewAgenda,#emInterviewAgenda>.emi-list{grid-template-columns:minmax(0,1fr)}
+#emInterviewAgenda .emi-card{grid-template-rows:none}
+}
