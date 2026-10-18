@@ -117,4 +117,7 @@ dialog.emp-dialog::backdrop{background:#102d436e!important;backdrop-filter:blur(
 
 .emp-premium.emp-today .emp-bar{padding:13px 18px!important}.emp-premium.emp-today .emp-bar h2{font-size:15px!important}.emp-premium.emp-today .emp-task{min-height:72px!important}.emp-premium.emp-today .emp-task span{color:#52677d!important}.emp-premium.emp-today>.emp-feedback:not(:empty){font-size:11px!important;color:#667b8e!important}
 
+/* Orange Premium daily indicators with clearer labels. */
+.emp-premium.emp-today .emp-task strong,.emp-premium.emp-today .emp-task i,.emp-premium.emp-today .emp-link{color:#ce5b0c!important;font-weight:650!important}
+.emp-premium.emp-today .emp-task span{color:#35465b!important;font-weight:550!important}
 }
