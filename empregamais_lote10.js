@@ -44,7 +44,7 @@
     if(!demoMode||window.__emRealCandidatesDemo)return;
     document.body.setAttribute('data-recruiter-demo','true');
     window.__emRealCandidatesDemo=true;
-    var demoBacking=window.localStorage;
+    var demoBacking=window.localStorage;window.__emDemoStorageBacking=demoBacking;
     function memoryStorage(namespace){
       var storageKey='emDemoStorageV2:'+namespace,values=new Map();
       try{var saved=JSON.parse(demoBacking.getItem(storageKey)||'[]');if(Array.isArray(saved))values=new Map(saved);}catch(ignore){}
