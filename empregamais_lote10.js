@@ -1329,24 +1329,33 @@ function arrangeCandidateMessageComposer(section){
  .jobs-reference .management-compact-actions>.manage-job{flex:1;min-width:0;width:100%;min-height:44px!important}
 }
 `;
-  // Search precedes the status filters; use a quiet navigation strip with clear counts.
+  // Modelo 1: five equal filled buttons span the full content width.
   css += `
 .jobs-reference>.job-visibility-filters{margin-bottom:16px}
-.jobs-reference>.job-extra-filters{border:0;padding:0 0 14px;margin-bottom:0}
-.jobs-reference>.job-status-filters{margin:0 0 14px;padding:0;gap:0;min-width:0}
-.jobs-reference .job-status-filters>.job-tabs{align-self:stretch;width:100%;min-width:0;display:flex!important;flex-wrap:wrap;justify-content:flex-start;gap:0 20px;padding:0;background:transparent;border:0;border-bottom:1px solid #e2e8f0;border-radius:0;box-shadow:none;box-sizing:border-box}
-.jobs-reference .job-status-filters>.job-tabs>button{position:relative;flex:0 0 auto;display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:44px;padding:10px 4px;border:0;border-bottom:3px solid transparent;border-radius:0;background:transparent;color:#64748b;box-shadow:none;font-size:13px!important;font-weight:600;line-height:1.4;white-space:nowrap;transition:color .16s,background .16s,border-color .16s}
-.jobs-reference .job-status-filters>.job-tabs>button:hover{background:#f8fafc;color:#173f59}
-.jobs-reference .job-status-filters>.job-tabs>button.selected{background:transparent;border:0;border-bottom:3px solid #173f59;color:#173f59;box-shadow:none;font-weight:700}
-.jobs-reference .job-status-filters .tab-count{display:inline-flex;align-items:center;justify-content:center;flex:none;width:auto;min-width:24px;height:22px;box-sizing:border-box;margin:0;padding:0 6px;border:0;border-radius:6px;background:#eef2f6;color:#526377;font-size:11px;font-weight:700;line-height:1;white-space:nowrap}
-.jobs-reference .job-status-filters button.selected .tab-count{background:#173f59;color:#fff}
-.jobs-reference .job-status-filters>.job-tabs>button:focus-visible{outline:3px solid #8bb8df;outline-offset:-3px}
+.jobs-reference>.job-extra-filters{border:0;padding:0 0 16px;margin-bottom:0}
+.jobs-reference>.job-status-filters{margin:0 0 18px;padding:0;gap:0;min-width:0}
+.jobs-reference .job-status-filters>.job-tabs{align-self:stretch;width:100%;min-width:0;display:grid!important;grid-template-columns:repeat(5,minmax(0,1fr))!important;gap:10px;padding:0;background:transparent;border:0;border-radius:0;box-shadow:none;box-sizing:border-box}
+.jobs-reference .job-status-filters>.job-tabs>button{position:relative;display:flex;align-items:center;justify-content:center;width:100%;min-width:0;min-height:64px;height:100%;gap:10px;margin:0;padding:14px 12px;border:1px solid #e0e6ee;border-radius:10px;background:#f3f5f8;box-shadow:none;font-size:15px!important;font-weight:650!important;line-height:1.35;white-space:normal;box-sizing:border-box;transition:background .16s,border-color .16s}
+.jobs-reference .job-status-filters>.job-tabs>button:hover{background:#e9eef5;border-color:#c8d5e4}
+.jobs-reference .job-status-filters>.job-tabs>button.selected{background:#0065ed;border:1px solid #0065ed;box-shadow:none;font-weight:700!important}
+.jobs-reference .job-status-filters>.job-tabs>button.selected:hover{background:#0058d1;border-color:#0058d1}
+.jobs-reference .job-status-filters .tab-count{display:inline-flex;align-items:center;justify-content:center;flex:none;width:auto;min-width:34px;height:28px;box-sizing:border-box;margin:0;padding:0 9px;border:0;border-radius:16px;background:#e2e7ee;font-size:13px!important;font-weight:700;line-height:1;white-space:nowrap}
+.jobs-reference .job-status-filters button.selected .tab-count{background:rgba(255,255,255,.2)}
+.jobs-reference .job-status-filters>.job-tabs>button:focus-visible{outline:3px solid #83b7ff;outline-offset:3px}
+@layer site-typography{
+ .jobs-reference .job-status-filters>.job-tabs>button,.jobs-reference .job-status-filters .tab-count{color:#43546b!important}
+ .jobs-reference .job-status-filters>.job-tabs>button.selected,.jobs-reference .job-status-filters button.selected .tab-count{color:#fff!important}
+}
+@media(max-width:1100px) and (min-width:761px){
+ .jobs-reference .job-status-filters>.job-tabs{gap:8px}
+ .jobs-reference .job-status-filters>.job-tabs>button{min-height:60px;gap:6px;padding:12px 7px;font-size:13px!important}
+ .jobs-reference .job-status-filters .tab-count{min-width:28px;height:26px;padding:0 7px;font-size:12px!important}
+}
 @media(max-width:760px){
- .jobs-reference>.job-status-filters{margin-bottom:12px}
- .jobs-reference .job-status-filters>.job-tabs{display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:6px!important;padding:0!important;border-bottom:0}
- .jobs-reference .job-status-filters>.job-tabs>button{width:100%;min-width:0;min-height:44px!important;gap:5px;padding:8px 4px!important;border:1px solid #e2e8f0;border-radius:8px;font-size:12px!important;white-space:normal!important}
- .jobs-reference .job-status-filters>.job-tabs>button.selected{border:1px solid #173f59;background:#f0f5f8;color:#173f59}
- .jobs-reference .job-status-filters .tab-count{min-width:22px;height:22px;padding:0 5px;font-size:10px}
+ .jobs-reference>.job-status-filters{margin-bottom:14px}
+ .jobs-reference .job-status-filters>.job-tabs{display:flex!important;flex-wrap:wrap;gap:8px!important;padding:0!important}
+ .jobs-reference .job-status-filters>.job-tabs>button{flex:1 1 120px;width:auto;min-width:0;min-height:56px!important;height:auto;gap:7px;padding:12px 10px!important;border-radius:10px;font-size:13px!important;white-space:normal!important}
+ .jobs-reference .job-status-filters .tab-count{min-width:28px;height:26px;padding:0 7px;font-size:12px!important}
 }
 `;
   // Use the sidebar typeface throughout each vacancy card, including legacy font overrides.
