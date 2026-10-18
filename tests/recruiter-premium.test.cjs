@@ -48,3 +48,44 @@ test('preview replaces literal tokens safely, including replacement special char
 test('HTML displayed in comparison cells is escaped',()=>{
  assert.equal(core.esc('<img onerror="x"> & \'x\''),'&lt;img onerror=&quot;x&quot;&gt; &amp; &#39;x&#39;');
 });
+
+test('company identity remains stable when the profile receives its remote ID',()=>{
+ const before={company:{cnpj:'12.345.678/0001-90'}};
+ const after={company:{cnpj:'12345678000190',id:'remote-company-id'}};
+ assert.equal(core.companyIdentity(before),core.companyIdentity(after));
+ assert.notEqual(core.companyIdentity(before),core.companyIdentity({company:{cnpj:'98765432000199'}}));
+});
+test('tools follow the Premium state of the displayed panel',()=>{
+ const plans={get:()=>({pago:false}),companyKey:()=> 'basico'};
+ assert.equal(core.premiumEnabled({premium:true,company:{}},plans),true);
+ assert.equal(core.premiumEnabled({premium:false,company:{}},plans),false);
+ assert.equal(core.premiumEnabled({company:{}},plans),false);
+});
+test('tool styles are mounted synchronously and reused across panel renders',()=>{
+ const fs=require('node:fs'),vm=require('node:vm');
+ class Element {
+  constructor(tag){this.tagName=tag.toUpperCase();this.children=[];this.dataset={};this.textContent='';}
+  querySelector(s){return this.querySelectorAll(s)[0]||null;}
+  querySelectorAll(s){const tag=s.startsWith('style')?'STYLE':s.startsWith('link')?'LINK':null;return tag?this.children.filter(c=>c.tagName===tag&&c.dataset.emPremiumStyle):[];}
+  append(node){node.parent=this;this.children.push(node);}
+  remove(){if(this.parent)this.parent.children=this.parent.children.filter(c=>c!==this);}
+ }
+ const head=new Element('head'),shadow=new Element('shadow');
+ const token='header.'+Buffer.from(JSON.stringify({sub:'recruiter-user'})).toString('base64url')+'.signature';
+ const document={head,hidden:false,createElement:tag=>new Element(tag),getElementById:()=>null,querySelectorAll:()=>[],addEventListener:()=>{}};
+ const sandbox={document,sessionStorage:{getItem:()=>token},atob,requestAnimationFrame:()=>1,setInterval:()=>1,MutationObserver:class {observe(){}disconnect(){}},addEventListener:()=>{}};
+ sandbox.window=sandbox;
+ vm.runInNewContext(fs.readFileSync(require.resolve('../recruiter-premium.js'),'utf8'),sandbox);
+ const context={view:'jobs',premium:true,company:{cnpj:'12345678000190'},jobs:[],applications:[],demo:false};
+ sandbox.EMRecruiterPremium.sync(shadow,context);
+ assert.equal(shadow.children.length,1);
+ assert.equal(head.children.length,1);
+ assert.equal(shadow.children[0].tagName,'STYLE');
+ assert.match(shadow.children[0].textContent,/\.emp-tasks\{display:grid!important/);
+ assert.match(shadow.children[0].textContent,/@media\(max-width:600px\)/);
+ sandbox.EMRecruiterPremium.sync(shadow,{...context,company:{...context.company,id:'remote-id'}});
+ assert.equal(shadow.children.length,1);
+ assert.equal(head.children.length,1);
+ assert.equal(shadow.children.some(c=>c.tagName==='LINK'),false);
+ assert.equal(shadow.children[0].textContent,fs.readFileSync(require.resolve('../recruiter-premium.css'),'utf8'));
+});
