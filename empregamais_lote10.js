@@ -458,9 +458,8 @@
   }
 
   function managementCard(v,cs){
-    var id=esc(v.id),st=jobStatus(v),n=count(v,cs),uf=String(v.uf||v.estado||v.siglaEstado||'').trim();
-    var completeAction=missingJobFields(v).length&&st!=='closed'?'<button class="completion-action management-complete-action" data-action="complete-job" data-id="'+id+'">Completar informações '+icon('arrow')+'</button>':'';
-    return '<tr class="management-card status-'+st+'"><td colspan="4"><div class="management-heading"><span class="management-symbol">'+icon('briefcase')+'</span><div class="management-title"><strong>'+esc(v.cargo||v.titulo||'Vaga')+'</strong><small>'+esc(v.cidade||'Cidade não informada')+(uf?' · '+esc(uf.toUpperCase()):'')+'</small></div><div class="management-status"><span class="job-reference-id">ID: '+id+'</span>'+badge(st)+'</div></div>'+jobCardExtras(v)+'<div class="management-actions management-compact-actions"><button class="primary manage-job" data-action="job-settings" data-id="'+id+'">Gerenciar vaga</button><button type="button" class="management-toggle" data-action="toggle-job-details" aria-expanded="false" aria-controls="management-more-'+id+'"><span>Mais informações</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></button>'+completeAction+'</div><div class="management-more" id="management-more-'+id+'" hidden>'+publicationServices(v)+'<div class="management-meta"><button class="candidate-count" data-action="manage" data-id="'+id+'">'+icon('users')+n+' '+(n===1?'candidato':'candidatos')+'</button><span class="job-published">'+icon('calendar')+'Publicada em '+esc(dateBR(v.dataPublicacao||v.publicadaEm||v.criadoEm))+'</span></div><div class="management-actions"><a class="job-view-ad" href="'+esc(jobLink(v.id))+'">'+icon('eye')+'Ver anúncio</a><button class="job-copy-link" data-action="copy-job-link" data-id="'+id+'" aria-label="Copiar link da vaga" title="Copiar link da vaga">'+icon('card')+'</button></div></div></td></tr>';
+    var id=esc(v.id),st=jobStatus(v),uf=String(v.uf||v.estado||v.siglaEstado||'').trim();
+    return '<tr class="management-card status-'+st+'"><td colspan="4"><div class="management-heading"><span class="management-symbol">'+icon('briefcase')+'</span><div class="management-title"><strong>'+esc(v.cargo||v.titulo||'Vaga')+'</strong><small>'+esc(v.cidade||'Cidade não informada')+(uf?' · '+esc(uf.toUpperCase()):'')+'</small></div><div class="management-status"><span class="job-reference-id">ID: '+id+'</span>'+badge(st)+'</div></div>'+jobCardExtras(v)+'<div class="management-actions management-compact-actions"><button type="button" class="primary manage-job" data-action="job-settings" data-id="'+id+'">Gerenciar vaga</button></div></td></tr>';
   }
   function table(vs,cs,full) {if(!vs.length)return '<div class="empty">Nenhuma vaga encontrada.</div>';return '<div class="table-wrap"><table class="'+(full?'jobs-table':'')+'"><thead><tr><th>Vaga</th><th>Status</th><th>Candidaturas</th><th>Ações</th></tr></thead><tbody>'+vs.map(function(v){if(full)return managementCard(v,cs);var id=esc(v.id),uf=String(v.uf||v.estado||v.siglaEstado||'').trim(),n=count(v,cs);return '<tr><td data-label="Vaga"><div class="job-title-line"><strong>'+esc(v.cargo||v.titulo||'Vaga')+'</strong>'+(full?'<span class="job-reference-id">ID: '+esc(v.id)+'</span>':'')+'</div><small>'+esc(v.cidade||'Cidade não informada')+(uf?' • '+esc(uf.toUpperCase()):'')+'</small>'+(full?jobCardExtras(v):'')+'</td><td data-label="Status">'+badge(jobStatus(v))+'</td><td data-label="Candidaturas"><button class="candidate-count" data-action="manage" data-id="'+id+'">'+n+' '+(n===1?'candidato':'candidatos')+'</button></td><td data-label="Ações"><div class="row-actions job-actions"><button class="primary manage-job" data-action="job-settings" data-id="'+id+'">'+(full?'Gerenciar vaga':'Gerenciar')+'</button>'+(full?'<span class="job-published">Publicada em '+esc(dateBR(v.dataPublicacao||v.publicadaEm||v.criadoEm))+'</span><button class="job-copy-link" data-action="copy-job-link" data-id="'+id+'" aria-label="Copiar link da vaga" title="Copiar link da vaga">'+icon('card')+'</button>':'')+'</div></td></tr>';}).join('')+'</tbody></table></div>';}
   function candidateList(cs,vs,limit) {if(!cs.length)return '<div class="empty">Nenhuma candidatura recebida ainda.<br>As novas candidaturas aparecerão aqui.</div>';var sorted=cs.slice().sort(function(a,b){return (date(b)||0)-(date(a)||0);});return sorted.slice(0,limit == null ? 3 : limit).map(function(c){var name=candidateName(c),initials=name.split(/\s+/).filter(Boolean).slice(0,2).map(function(w){return w[0];}).join(''),jid=String(c.vagaId||c.vaga_id||c.idVaga),v=vs.find(function(x){return String(x.id)===jid;})||{},d=date(c);return '<article class="candidate"><span class="avatar">'+esc(initials)+'</span><div class="candidate-body"><strong>'+esc(name)+'</strong><p>'+esc(v.cargo||v.titulo||'Candidatura')+'</p><span class="location">'+icon('pin')+esc(c.cidade||c.localidade||'Localidade não informada')+'</span></div><div class="candidate-action"><small>'+(d?d.toLocaleDateString('pt-BR'):'Data não informada')+'</small><button class="secondary" data-action="manage" data-id="'+esc(jid)+'">Ver candidatura</button></div></article>';}).join('');}
@@ -522,7 +521,22 @@ function companyHero(e){
   function expirationAlert(vs){var n=vs.filter(isEnding).length;if(!n&&!expiringOnly)return '';return '<div class="expiration-notice"><button data-action="expiring-filter" aria-pressed="'+expiringOnly+'">'+icon('clock')+n+' vaga'+(n===1?'':'s')+' termina'+(n===1?'':'m')+' nos próximos 7 dias</button>'+(expiringOnly?'<button class="secondary" data-action="expiring-filter">Desmarcar filtro</button>':'')+'</div>';}
   function rejectionInfo(v){if(!/reprovad|rejeitad/.test(norm(v.aprovacao||v.status)))return '';var reason=v.motivoReprovacao||v.motivo_reprovacao||v.motivoRejeicao||v.observacaoAdmin||v.justificativaReprovacao;return '<div class="job-rejection"><strong>Publicação reprovada</strong><p>'+esc(reason||'Motivo não informado pela administração.')+'</p></div>';}
 
-  function jobsView(vs,cs) {var filtered=vs.filter(function(v){return (!expiringOnly||isEnding(v))&&(!visibilityFilter||hasVisibility(v,visibilityFilter))&&(statusFilter==='all'||jobStatus(v)===statusFilter)&&(!locationFilter||jobLocation(v)===locationFilter)&&(!areaFilter||String(v.area||'').trim()===areaFilter)&&norm((v.cargo||v.titulo||'')+' '+(v.cidade||'')+' '+v.id).indexOf(norm(query))>=0;});filtered.sort(compareJobs);var size=8,total=Math.max(1,Math.ceil(filtered.length/size));pageNumber=Math.min(pageNumber,total);return '<section class="card section jobs-reference">'+intro('Minhas vagas','Acompanhe suas vagas e gerencie os candidatos.',publish())+'<div class="filters"><div class="job-tabs" aria-label="Filtrar por status">'+[['all','Todas'],['active','Ativas'],['pending','Em análise'],['paused','Pausadas'],['closed','Encerradas']].map(function(x){return '<button class="'+(statusFilter===x[0]?'selected':'')+'" data-action="job-filter" data-filter="'+x[0]+'" aria-pressed="'+(statusFilter===x[0])+'">'+x[1]+' <span class="tab-count">'+vs.filter(function(v){return x[0]==='all'||jobStatus(v)===x[0];}).length+'</span></button>';}).join('')+'</div><details class="visibility-disclosure" '+(window.matchMedia('(min-width:761px)').matches||visibilityFilter?'open':'')+'><summary>Impulsionar vagas</summary>'+visibilityCards(vs)+'</details></div>'+(visibilityFilter?'<div class="visibility-filter-note"><span>Exibindo: '+({destaque:'vagas em destaque',urgente:'vagas urgentes',confidencial:'vagas confidenciais'}[visibilityFilter])+'</span><button class="secondary" data-action="clear-visibility-filter">Desmarcar filtro</button></div>':'')+jobFilterFields(vs)+'<div id="job-results">'+expirationAlert(vs)+table(filtered.slice((pageNumber-1)*size,pageNumber*size),cs,true)+'<div class="pager"><span>'+filtered.length+' vagas • Página '+pageNumber+' de '+total+'</span><div class="row-actions"><button class="secondary" data-action="prev" '+(pageNumber<=1?'disabled':'')+'>Anterior</button><button class="secondary" data-action="next" '+(pageNumber>=total?'disabled':'')+'>Próxima</button></div></div></div></section>';}
+  function jobsView(vs,cs) {
+    var filtered=vs.filter(function(v){return (!expiringOnly||isEnding(v))&&(!visibilityFilter||hasVisibility(v,visibilityFilter))&&(statusFilter==='all'||jobStatus(v)===statusFilter)&&(!locationFilter||jobLocation(v)===locationFilter)&&(!areaFilter||String(v.area||'').trim()===areaFilter)&&norm((v.cargo||v.titulo||'')+' '+(v.cidade||'')+' '+v.id).indexOf(norm(query))>=0;});
+    filtered.sort(compareJobs);
+    var size=8,total=Math.max(1,Math.ceil(filtered.length/size));
+    pageNumber=Math.min(pageNumber,total);
+    var tabs=[['all','Todas'],['active','Ativas'],['pending','Em análise'],['paused','Pausadas'],['closed','Encerradas']].map(function(x){
+      return '<button type="button" class="'+(statusFilter===x[0]?'selected':'')+'" data-action="job-filter" data-filter="'+x[0]+'" aria-pressed="'+(statusFilter===x[0])+'">'+x[1]+' <span class="tab-count">'+vs.filter(function(v){return x[0]==='all'||jobStatus(v)===x[0];}).length+'</span></button>';
+    }).join('');
+    return '<section class="card section jobs-reference">'+intro('Minhas vagas','Acompanhe suas vagas e gerencie os candidatos.',publish())+
+      '<div class="filters job-visibility-filters"><details class="visibility-disclosure" '+(window.matchMedia('(min-width:761px)').matches||visibilityFilter?'open':'')+'><summary>Impulsionar vagas</summary>'+visibilityCards(vs)+'</details></div>'+
+      jobFilterFields(vs)+
+      '<div class="filters job-status-filters"><div class="job-tabs" role="group" aria-label="Filtrar vagas por status">'+tabs+'</div></div>'+
+      (visibilityFilter?'<div class="visibility-filter-note"><span>Exibindo: '+({destaque:'vagas em destaque',urgente:'vagas urgentes',confidencial:'vagas confidenciais'}[visibilityFilter])+'</span><button class="secondary" data-action="clear-visibility-filter">Desmarcar filtro</button></div>':'')+
+      '<div id="job-results">'+expirationAlert(vs)+table(filtered.slice((pageNumber-1)*size,pageNumber*size),cs,true)+
+      '<div class="pager"><span>'+filtered.length+' vagas • Página '+pageNumber+' de '+total+'</span><div class="row-actions"><button class="secondary" data-action="prev" '+(pageNumber<=1?'disabled':'')+'>Anterior</button><button class="secondary" data-action="next" '+(pageNumber>=total?'disabled':'')+'>Próxima</button></div></div></div></section>';
+  }
   function annualUpgradeQuote(e,now){
     now=now||Date.now();var api=window.EMPlanos,current=api.companyKey(e,now),annual=api.get('anual');
     if(!api.get(current).pago||current==='anual')return null;
@@ -1252,36 +1266,32 @@ function arrangeCandidateMessageComposer(section){
 .jobs-reference>.intro .panel-eyebrow{display:block;width:44px;height:4px;margin-bottom:12px;border-radius:4px;background:#0065ed;font-size:0}
 .jobs-reference .jobs-table thead{display:none}
 .jobs-reference .jobs-table tbody{grid-template-columns:minmax(0,1fr);gap:14px}
-.jobs-reference .jobs-table tr.management-card{width:100%;min-width:0;padding:22px 20px;border:1px solid #d5e0ec;border-left:6px solid #173f59;border-radius:12px;background:#fff;box-shadow:0 4px 14px #16365e06}
+.jobs-reference .jobs-table tr.management-card{width:100%;min-width:0;padding:14px 16px;border:1px solid #d5e0ec;border-left:5px solid #173f59;border-radius:12px;background:#fff;box-shadow:0 4px 14px #16365e06}
 .jobs-reference .jobs-table tr.management-card.status-paused,.jobs-reference .jobs-table tr.management-card.status-closed{border-left-color:#839ab9}
-.jobs-reference .jobs-table tr.management-card>td{display:grid!important;grid-template-columns:minmax(0,1.15fr) minmax(0,1.6fr) 164px;gap:16px 18px;align-items:start}
-.jobs-reference .management-card>td>.management-heading{grid-column:1;grid-row:1/span 2;display:grid;grid-template-columns:40px minmax(0,1fr);gap:7px 12px;align-items:start;align-content:start;min-width:0;padding-top:4px}
+.jobs-reference .jobs-table tr.management-card>td{display:grid!important;grid-template-columns:minmax(0,1.15fr) minmax(0,1.6fr) 164px;gap:10px 16px;align-items:center}
+.jobs-reference .management-card>td>.management-heading{grid-column:1;grid-row:1/span 2;display:grid;grid-template-columns:40px minmax(0,1fr);gap:6px 10px;align-items:start;align-content:start;min-width:0;padding-top:0}
 .jobs-reference .management-heading>.management-symbol{grid-column:1;grid-row:1;width:40px;height:40px;flex-basis:40px;border-radius:9px;background:#edf5ff}
 .jobs-reference .management-heading>.management-symbol svg{width:24px;height:24px}
 .jobs-reference .management-heading>.management-title{grid-column:2;grid-row:1}
 .jobs-reference .management-heading .management-title strong{font-size:16px!important;line-height:1.4!important;overflow-wrap:break-word}
-.jobs-reference .management-heading .management-title small{font-size:12px!important;line-height:1.6!important;margin-top:5px}
-.jobs-reference .management-heading>.management-status{grid-column:2;align-items:flex-start;min-width:0;gap:9px}
+.jobs-reference .management-heading .management-title small{font-size:12px!important;line-height:1.5!important;margin-top:3px}
+.jobs-reference .management-heading>.management-status{grid-column:2;flex-direction:row;flex-wrap:wrap;align-items:center;justify-content:flex-start;min-width:0;max-width:none;gap:6px 10px}
 .jobs-reference .management-status .job-reference-id{font-size:11px;line-height:1.5;white-space:normal;overflow-wrap:anywhere}
-.jobs-reference .management-status .badge{font-size:11px;line-height:1.4;padding:5px 11px}
+.jobs-reference .management-status .badge{font-size:10px;line-height:1.4;padding:4px 9px}
 .jobs-reference .management-card>td>.job-data-tiles{grid-column:2;grid-row:1;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin:0;align-self:start}
-.jobs-reference .job-data-tiles>div{min-width:0;min-height:56px;gap:8px;margin:0;padding:10px 12px;border-radius:8px;background:#f3f6fa;font-size:11px;line-height:1.6}
+.jobs-reference .job-data-tiles>div{min-width:0;min-height:40px;gap:7px;margin:0;padding:7px 10px;border-radius:8px;background:#f3f6fa;font-size:11px;line-height:1.4}
 .jobs-reference .job-data-tiles>div svg{width:20px;height:20px;flex-basis:20px}
 .jobs-reference .job-data-tiles>div span{min-width:0;overflow-wrap:break-word}
 .jobs-reference .job-data-tiles>div small{font-size:11px!important;line-height:1.6!important;margin-top:1px}
 .jobs-reference .management-card>td>.job-completion{grid-column:2;grid-row:2;margin:0;padding:0;border:0;background:transparent;align-self:start;min-width:0}
 .jobs-reference .management-card .completion-heading{align-items:start;gap:8px;font-size:12px;line-height:1.5}
 .jobs-reference .management-card .completion-heading b{font-size:12px;line-height:1.5}
-.jobs-reference .management-card .completion-track{height:7px;margin-top:8px}
-.jobs-reference .management-card .completion-bottom{display:block;margin-top:9px;padding-top:0;border-top:0}
-.jobs-reference .management-card .completion-bottom p{font-size:11px;line-height:1.6;gap:7px}
-.jobs-reference .management-card .completion-alert,.jobs-reference .management-card .completion-bottom p>svg{width:20px;height:20px;flex-basis:20px}
-.jobs-reference .management-card>td>.management-compact-actions{grid-column:3;grid-row:1/span 2;flex-direction:column;align-items:stretch;align-self:stretch;gap:7px;min-width:0;margin:0;padding:0;border-top:0}
+.jobs-reference .management-card .completion-track{height:5px;margin-top:5px}
+.jobs-reference .management-card .completion-bottom{display:block;margin-top:6px;padding-top:0;border-top:0}
+.jobs-reference .management-card .completion-bottom p{font-size:11px;line-height:1.4;gap:6px}
+.jobs-reference .management-card .completion-alert,.jobs-reference .management-card .completion-bottom p>svg{width:16px;height:16px;flex-basis:16px}
+.jobs-reference .management-card>td>.management-compact-actions{grid-column:3;grid-row:1/span 2;flex-direction:column;align-items:stretch;align-self:center;gap:0;min-width:0;margin:0;padding:0;border-top:0}
 .jobs-reference .management-compact-actions>.manage-job{flex:none;width:100%;min-height:40px;height:auto;padding:10px 9px;font-size:12px!important}
-.jobs-reference .management-compact-actions>.management-toggle{flex:none;justify-content:center;width:100%;min-height:34px;gap:6px;font-size:11px}
-.jobs-reference .management-compact-actions>.management-toggle svg{width:18px;height:18px;flex-shrink:0}
-.jobs-reference .management-compact-actions>.management-complete-action{display:flex;align-items:center;justify-content:flex-end;gap:5px;flex:none;width:100%;min-height:26px;margin: auto 0 0;padding:2px 0;color:#0065ed;font-size:10px;font-weight:600;line-height:1.5;text-align:right}
-.jobs-reference .management-complete-action svg{width:15px;height:15px;flex-shrink:0}
 .jobs-reference .management-card>td>.management-more,.jobs-reference .management-card>td>.job-rejection{grid-column:1/-1;min-width:0}
 .jobs-reference .management-card>td>.management-more{padding-top:12px;border-top:1px solid #dfe8f4}
 @layer site-typography{
@@ -1291,8 +1301,8 @@ function arrangeCandidateMessageComposer(section){
 .jobs-reference .management-card.status-active .management-status .badge{background:#e8f7ef}
 .jobs-reference .management-card.status-active .management-status .badge i{background:#16a36c}
 @media(max-width:1150px) and (min-width:761px){
- .jobs-reference .jobs-table tr.management-card{padding:18px 16px}
- .jobs-reference .jobs-table tr.management-card>td{grid-template-columns:minmax(0,1fr) minmax(0,1.35fr) 140px;gap:14px}
+ .jobs-reference .jobs-table tr.management-card{padding:14px}
+ .jobs-reference .jobs-table tr.management-card>td{grid-template-columns:minmax(0,1fr) minmax(0,1.35fr) 140px;gap:10px 12px}
  .jobs-reference .management-card>td>.management-heading{grid-template-columns:34px minmax(0,1fr);gap:6px 9px}
  .jobs-reference .management-heading>.management-symbol{width:34px;height:34px;flex-basis:34px}
  .jobs-reference .management-heading .management-title strong{font-size:14px!important}
@@ -1300,7 +1310,6 @@ function arrangeCandidateMessageComposer(section){
  .jobs-reference .job-data-tiles>div small{font-size:10px!important}
  .jobs-reference .management-card .completion-heading,.jobs-reference .management-card .completion-heading b{font-size:11px}
  .jobs-reference .management-card .completion-bottom p{font-size:10px}
- .jobs-reference .management-compact-actions>.management-toggle{font-size:10px}
 }
 @media(max-width:950px) and (min-width:761px){
  .jobs-reference .jobs-table tr.management-card>td{grid-template-columns:minmax(0,1fr) minmax(0,1.25fr)}
@@ -1310,14 +1319,32 @@ function arrangeCandidateMessageComposer(section){
  .jobs-reference .management-card>td>.management-compact-actions{grid-column:2;grid-row:2}
 }
 @media(max-width:760px){
- .jobs-reference .jobs-table tr.management-card{padding:16px 12px;border-left-width:4px}
- .jobs-reference .jobs-table tr.management-card>td{grid-template-columns:minmax(0,1fr);gap:14px}
+ .jobs-reference .jobs-table tr.management-card{padding:12px;border-left-width:4px}
+ .jobs-reference .jobs-table tr.management-card>td{grid-template-columns:minmax(0,1fr);gap:10px}
  .jobs-reference .management-card>td>.management-heading,.jobs-reference .management-card>td>.job-data-tiles,.jobs-reference .management-card>td>.job-completion,.jobs-reference .management-card>td>.management-compact-actions{grid-column:1;grid-row:auto;align-self:auto}
  .jobs-reference .management-heading .management-title strong{font-size:14px!important}
- .jobs-reference .management-card>td>.management-compact-actions{flex-direction:row;flex-wrap:wrap;align-items:center;padding-top:10px;border-top:1px solid #dfe8f4}
- .jobs-reference .management-compact-actions>.manage-job,.jobs-reference .management-compact-actions>.management-toggle{flex:1;min-width:0;width:auto}
- .jobs-reference .management-compact-actions>.management-toggle{white-space:normal;font-size:11px;gap:4px}
- .jobs-reference .management-compact-actions>.management-complete-action{flex-basis:100%;min-height:36px;justify-content:flex-end;margin-top:0;font-size:11px}
+ .jobs-reference .management-card>td>.management-compact-actions{flex-direction:row;align-items:center;padding-top:8px;border-top:1px solid #dfe8f4}
+ .jobs-reference .management-compact-actions>.manage-job{flex:1;min-width:0;width:100%;min-height:44px!important}
+}
+`;
+  // Search precedes the status filters; use a quiet navigation strip with clear counts.
+  css += `
+.jobs-reference>.job-visibility-filters{margin-bottom:16px}
+.jobs-reference>.job-extra-filters{border:0;padding:0 0 14px;margin-bottom:0}
+.jobs-reference>.job-status-filters{margin:0 0 14px;padding:0;gap:0;min-width:0}
+.jobs-reference .job-status-filters>.job-tabs{align-self:stretch;width:100%;min-width:0;display:flex!important;flex-wrap:wrap;justify-content:flex-start;gap:0 20px;padding:0;background:transparent;border:0;border-bottom:1px solid #e2e8f0;border-radius:0;box-shadow:none;box-sizing:border-box}
+.jobs-reference .job-status-filters>.job-tabs>button{position:relative;flex:0 0 auto;display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:44px;padding:10px 4px;border:0;border-bottom:3px solid transparent;border-radius:0;background:transparent;color:#64748b;box-shadow:none;font-size:13px!important;font-weight:600;line-height:1.4;white-space:nowrap;transition:color .16s,background .16s,border-color .16s}
+.jobs-reference .job-status-filters>.job-tabs>button:hover{background:#f8fafc;color:#173f59}
+.jobs-reference .job-status-filters>.job-tabs>button.selected{background:transparent;border:0;border-bottom:3px solid #173f59;color:#173f59;box-shadow:none;font-weight:700}
+.jobs-reference .job-status-filters .tab-count{display:inline-flex;align-items:center;justify-content:center;flex:none;width:auto;min-width:24px;height:22px;box-sizing:border-box;margin:0;padding:0 6px;border:0;border-radius:6px;background:#eef2f6;color:#526377;font-size:11px;font-weight:700;line-height:1;white-space:nowrap}
+.jobs-reference .job-status-filters button.selected .tab-count{background:#173f59;color:#fff}
+.jobs-reference .job-status-filters>.job-tabs>button:focus-visible{outline:3px solid #8bb8df;outline-offset:-3px}
+@media(max-width:760px){
+ .jobs-reference>.job-status-filters{margin-bottom:12px}
+ .jobs-reference .job-status-filters>.job-tabs{display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:6px!important;padding:0!important;border-bottom:0}
+ .jobs-reference .job-status-filters>.job-tabs>button{width:100%;min-width:0;min-height:44px!important;gap:5px;padding:8px 4px!important;border:1px solid #e2e8f0;border-radius:8px;font-size:12px!important;white-space:normal!important}
+ .jobs-reference .job-status-filters>.job-tabs>button.selected{border:1px solid #173f59;background:#f0f5f8;color:#173f59}
+ .jobs-reference .job-status-filters .tab-count{min-width:22px;height:22px;padding:0 5px;font-size:10px}
 }
 `;
   // Use the sidebar typeface throughout each vacancy card, including legacy font overrides.
@@ -1341,3 +1368,4 @@ function arrangeCandidateMessageComposer(section){
  }
  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',start,{once:true});else start();
 })();
+
