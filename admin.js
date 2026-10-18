@@ -23,6 +23,7 @@
     subscriptions:['Assinaturas ativas','Consulte os planos ativos, a validade e a origem.','subscriptions'],
     plans:['Planos e benefícios','Consulte os valores e as cotas definidas para o portal.','plans'],
     reports:['Denúncias','Revise os relatos e registre suas decisões de moderação.','reports'],
+    support:['Suporte às empresas','Responda e acompanhe os chamados recebidos.','applications'],
     history:['Histórico','Acompanhe as decisões administrativas registradas.','history'],
     settings:['Configurações','Ajuste as preferências deste painel.','settings']
   };
@@ -181,12 +182,17 @@
     else $('settingsSignOut').onclick=signOut;
     updated();
   }
+  function supportInbox(){
+    const container=document.createElement('section');container.id='emAdminSupport';$('content').replaceChildren(container);
+    const ready=()=>{if(!container.isConnected||!window.EMSupport)return;window.EMSupport.mount(container,{admin:true,demo:preview,company:{cnpj:'00000000000100'},request});};
+    if(window.EMSupport){ready();return;}const script=document.createElement('script');script.src='recruiter-support.js?v=20261018-support-1';script.onload=ready;script.onerror=()=>{container.textContent='Não foi possível carregar os chamados. Atualize a página.';};document.head.appendChild(script);
+  }
   function go(section,filter='') {
     if(!sections[section])section='overview';state={section,query:'',filter,page:0,rows:[],total:0,sequence:state.sequence+1};showConnection('');
     $('pageTitle').textContent=sections[section][0];$('pageSubtitle').textContent=sections[section][1];
     document.querySelectorAll('.nav-button').forEach(b=>{const active=b.dataset.go===section;b.classList.toggle('active',active);if(active)b.setAttribute('aria-current','page');else b.removeAttribute('aria-current');});
     const hash='#'+section;if(location.hash!==hash)history.replaceState(null,'',location.pathname+location.search+hash);
-    if(section==='overview'){$('content').innerHTML=loading;overview(state.sequence);}else if(section==='plans')plans();else if(section==='settings')settings();else{listShell(section);loadList(section);}
+    if(section==='support')supportInbox();else if(section==='overview'){$('content').innerHTML=loading;overview(state.sequence);}else if(section==='plans')plans();else if(section==='settings')settings();else{listShell(section);loadList(section);}
   }
   function openDialog(title,body,actions='') { $('dialogTitle').textContent=title;$('dialogContent').innerHTML=body;$('dialogActions').innerHTML=actions;if(!$('recordDialog').open)$('recordDialog').showModal(); }
   function findRow(kind,id) { return (preview?demo[kind]:kind==='jobs'&&state.section==='overview'?state.overviewJobs:state.rows)?.find(r=>C.rowId(r)===String(id)); }
