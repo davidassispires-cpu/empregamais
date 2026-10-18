@@ -1371,6 +1371,8 @@ function arrangeCandidateMessageComposer(section){
 `;
   // Use the sidebar typeface throughout each vacancy card, including legacy font overrides.
   css += '\n@layer site-typography { .jobs-reference .jobs-table .management-card, .jobs-reference .jobs-table .management-card * { font-family:Poppins,Arial,sans-serif!important; } }\n';
+ // Premium sidebar icons: approved orange accent, including hover and active states.
+ css+='\n:host([data-paid="true"]) .sidebar.reference-sidebar .nav svg{color:#ed751c!important;stroke:#ed751c!important}\n';
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',activate);else activate();
   window.addEventListener('load',function(){if(new URL(location.href).searchParams.get('pagina')==='publicar'){openPublish();}window.editarVagaEmpresa=restrictedEdit;window.montarPainelReferenciaRecrutadorEM=mount;window.renderizarPainelEmpresa=mount;window.montarCentralRecrutadorEM=mount;mount();});
 })();
@@ -1388,8 +1390,6 @@ function arrangeCandidateMessageComposer(section){
   var page=document.getElementById('pagina-login-empresa');if(page){var link=document.createElement('a');link.href='?pagina=demo-recrutador';link.textContent='Visualizar painel de demonstração →';link.style.cssText='display:block;text-align:center;margin:18px auto;color:#1768b4;font:600 13px Inter,Arial,sans-serif;padding:12px;';(page.querySelector('.container')||page).appendChild(link);}
   openDemo();window.addEventListener('load',openDemo);
  }
- // Premium sidebar icons: approved orange accent, including hover and active states.
- css+='\n:host([data-paid="true"]) .sidebar.reference-sidebar .nav svg{color:#ed751c!important;stroke:#ed751c!important}\n';
  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',start,{once:true});else start();
 })();
 
