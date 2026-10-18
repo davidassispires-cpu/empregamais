@@ -1,0 +1,80 @@
+/* Mobile public pages only. Keep this guard even when the link has media=.
+   Important declarations in a layer override the legacy unlayered !important
+   rules without changing their desktop cascade or adding repeated IDs. */
+@layer em-mobile-public {
+  @media (max-width: 767px) {
+    #pagina-home, #pagina-vaga { min-width: 0 !important; max-width: 100% !important; }
+    #pagina-home *, #pagina-vaga * { box-sizing: border-box; }
+    #pagina-home > section.container, #pagina-home #vagas,
+    #pagina-vaga .detalhe-layout {
+      width: 100% !important; max-width: 100% !important;
+      margin-left: auto !important; margin-right: auto !important;
+      padding-left: 16px !important; padding-right: 16px !important;
+    }
+    /* A full search field per row: no clipped placeholders or icon-only select. */
+    #pagina-home #emHeroFloripa { padding: 24px 16px !important; }
+    #pagina-home #emHeroFloripa .hero-premium-inner-em,
+    #pagina-home #emHeroRefBusca,
+    #pagina-home .hero-search-grid-em { grid-template-columns: minmax(0, 1fr) !important; gap: 12px !important; }
+    #pagina-home #emHeroFloripa .hero-search-shell-em { width: 100% !important; min-width: 0 !important; padding: 12px !important; }
+    #pagina-home #emHeroRefBusca .em-hero-submit,
+    #pagina-home .hero-search-btn-em { grid-column: 1 !important; grid-row: auto !important; min-height: 46px !important; }
+    #pagina-home #emHeroRefBusca .em-hero-search-control { min-width: 0 !important; }
+    #pagina-home #emHeroRefBusca :is(input, select) { font-size: 16px !important; }
+    /* The track scrolls, not the document. Each slide fits completely. */
+    #pagina-home .destaques-carrossel-em { min-width: 0 !important; padding: 0 !important; }
+    #pagina-home #listaDestaques {
+      display: flex !important; width: 100% !important; max-width: 100% !important;
+      gap: 12px !important; padding: 6px 0 12px !important;
+      overflow-x: auto !important; scroll-snap-type: x mandatory !important;
+      scroll-padding-inline: 0 !important; overscroll-behavior-x: contain;
+    }
+    #pagina-home #listaDestaques > article {
+      flex: 0 0 100% !important; width: 100% !important;
+      min-width: 0 !important; max-width: 100% !important;
+      scroll-snap-align: start !important; scroll-snap-stop: always;
+    }
+    #pagina-home #listaDestaques article.em-featured-reference {
+      height: 360px !important; min-height: 360px !important; max-height: 360px !important;
+      grid-template-columns: 52px minmax(0, 1fr) !important;
+      grid-template-rows: 46px 20px 0 84px 36px 30px 44px !important;
+      gap: 8px 10px !important; padding: 14px !important;
+    }
+    #pagina-home #listaDestaques .em-featured-reference .dz-logo { width: 52px !important; min-width: 52px !important; max-width: 52px !important; height: 52px !important; }
+    #pagina-home #listaDestaques .em-featured-reference .dz-titulo { font-size: 15px !important; line-height: 1.35 !important; overflow-wrap: anywhere !important; }
+    #pagina-home #listaDestaques .em-featured-reference .em-featured-badges { display: none !important; }
+    #pagina-home #listaDestaques .em-featured-reference .dz-botao { min-height: 44px !important; height: 44px !important; }
+    #pagina-home .destaques-seta-em { display: none !important; }
+    #pagina-home #vagas .vagas-area { display: flex !important; flex-direction: column !important; gap: 16px !important; }
+    #pagina-home #vagas .vagas-area > * { width: 100% !important; min-width: 0 !important; max-width: 100% !important; }
+    #pagina-home #listaVagas { display: grid !important; grid-template-columns: minmax(0, 1fr) !important; gap: 12px !important; }
+    #pagina-home #listaVagas > article { min-width: 0 !important; width: 100% !important; max-width: 100% !important; }
+    #pagina-home #listaVagas .em-lista-cab { flex-wrap: wrap !important; gap: 10px !important; }
+    #pagina-home #listaVagas .em-recent-heading { min-width: 0 !important; flex: 1 1 160px !important; }
+    #pagina-home #listaVagas .em-lista-titulo { font-size: 18px !important; line-height: 1.35 !important; overflow-wrap: anywhere !important; }
+    #pagina-home #listaVagas .em-recent-badges { max-width: 100% !important; flex-wrap: wrap !important; }
+    #pagina-home #listaVagas .em-lista-footer { flex-wrap: wrap !important; gap: 8px !important; }
+    #pagina-home #listaVagas .em-lista-footer :is(button, a) { min-height: 44px !important; white-space: normal !important; }
+    #pagina-home #vagas .filtros-chips-home { flex-wrap: wrap !important; overflow: visible !important; gap: 8px !important; }
+    #pagina-home #vagas .filtros-chips-home button { min-height: 40px !important; }
+    #pagina-home #filtrosLateral { display: none !important; position: static !important; height: auto !important; max-height: none !important; }
+    #pagina-home #filtrosLateral.em-filters-open { display: block !important; order: -1 !important; }
+    #pagina-home #emHomeFiltersToggle { min-height: 44px !important; }
+    /* Reserve the fixed action's real height, including the phone safe area. */
+    #pagina-vaga.ativa { padding-bottom: calc(84px + env(safe-area-inset-bottom, 0px)) !important; }
+    #pagina-vaga:not(.ativa) .mobile-candidatar { display: none !important; }
+    #pagina-vaga.ativa .mobile-candidatar {
+      display: block !important; position: fixed !important; left: 0 !important; right: 0 !important;
+      bottom: 0 !important; width: 100% !important; z-index: 3500 !important;
+      padding: 10px 16px calc(10px + env(safe-area-inset-bottom, 0px)) !important;
+      background: #fff !important; border-top: 1px solid #dce4ed !important;
+    }
+    #pagina-vaga #btnCandidatarMobile { min-height: 48px !important; width: 100% !important; font-size: 15px !important; }
+    #pagina-vaga .detalhe-layout { grid-template-columns: minmax(0, 1fr) !important; gap: 16px !important; }
+    #pagina-vaga .detalhe-layout > * { min-width: 0 !important; max-width: 100% !important; }
+    #pagina-vaga .detalhe-layout aside { position: static !important; }
+    #pagina-vaga :is(.em-job-reading, .conteudo-vaga-box) { padding: 16px !important; }
+    #pagina-vaga :is(.em-job-text, .bloco-detalhe) { overflow-wrap: anywhere !important; line-height: 1.65 !important; }
+    #pagina-vaga #emRecommendedCarousel { min-width: 0 !important; max-width: 100% !important; }
+  }
+}
