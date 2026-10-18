@@ -1,6 +1,7 @@
 (function () {
   'use strict';
   const C = window.EMAdminCore, catalog = window.EMAdminCatalog;
+  const supportAssetVersion=document.currentScript?new URL(document.currentScript.src).search:'?v=20261018-support-2';
   const $ = id => document.getElementById(id), E = C.escape;
   const preview = new URLSearchParams(location.search).get('modo') === 'previa';
   const DEMO_KEY = 'maisempregos.adm.previa.v1', SESSION_KEY = 'maisempregos.adm.session.v1', PREF_KEY = 'maisempregos.adm.preferences.v1';
@@ -185,7 +186,7 @@
   function supportInbox(){
     const container=document.createElement('section');container.id='emAdminSupport';$('content').replaceChildren(container);
     const ready=()=>{if(!container.isConnected||!window.EMSupport)return;window.EMSupport.mount(container,{admin:true,demo:preview,company:{cnpj:'00000000000100'},request});};
-    if(window.EMSupport){ready();return;}const script=document.createElement('script');script.src='recruiter-support.js?v=20261018-support-1';script.onload=ready;script.onerror=()=>{container.textContent='Não foi possível carregar os chamados. Atualize a página.';};document.head.appendChild(script);
+    if(window.EMSupport){ready();return;}const script=document.createElement('script');script.src='recruiter-support.js'+supportAssetVersion;script.onload=ready;script.onerror=()=>{container.textContent='Não foi possível carregar os chamados. Atualize a página.';};document.head.appendChild(script);
   }
   function go(section,filter='') {
     if(!sections[section])section='overview';state={section,query:'',filter,page:0,rows:[],total:0,sequence:state.sequence+1};showConnection('');
