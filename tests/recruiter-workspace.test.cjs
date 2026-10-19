@@ -76,3 +76,16 @@ test('hires preserve missing dates without inventing them and put recent hires f
  assert.deepEqual(core.hiredApplications([{id:'j'}],rows).map(c=>c.id),['new','old','unknown']);assert.equal(core.hiredOn(rows[1]),null);assert.equal(core.hiredApplications([{id:'j'}],rows,{month:'2026-10'}).length,1);assert.equal(rows[0].id,'old');
 });
 
+test('overview prepares the Premium context first, leaves loading on failure and supports retry in place',async()=>{
+ const fs=require('node:fs'),vm=require('node:vm'),calls=[],retry={onclick:null};let fail=true,markup='';
+ const insights={dataset:{},querySelectorAll:()=>[],querySelector:selector=>selector==='[data-rw-agenda-refresh]'?retry:null,get innerHTML(){return markup;},set innerHTML(value){markup=value;}};
+ const styles=[],shadow={querySelector:selector=>selector==='[data-rw-style]'?styles[0]||null:null,append:node=>styles.push(node),getElementById:id=>id==='emRecruiterInsights'?insights:null};
+ const premium={contextKey:()=> 'company:recruiter',sync:()=>calls.push('prepare'),load:async()=>{assert.equal(calls.at(-1),'prepare');calls.push('load');if(fail)throw Error('Falha temporária na conexão');return {interviews:[]};}};
+ const sandbox={document:{body:{},createElement:()=>({dataset:{},textContent:''}),addEventListener:()=>{}},EMRecruiterPremium:premium,addEventListener:()=>{},MutationObserver:class{observe(){}},requestAnimationFrame:()=>1};sandbox.window=sandbox;
+ vm.runInNewContext(fs.readFileSync(require.resolve('../recruiter-workspace.js'),'utf8'),sandbox);
+ sandbox.EMRecruiterWorkspace.sync(shadow,{view:'overview',company:{cnpj:'12345678000190',nome:'Empresa'},jobs:[],applications:[],premium:true,demo:false,navigate:()=>{}});
+ await sandbox.EMRecruiterWorkspace.refresh(true);
+ assert.match(markup,/Falha temporária na conexão/);assert.doesNotMatch(markup,/Consultando a agenda da empresa|Carregando agendamentos/);assert.equal(typeof retry.onclick,'function');
+ fail=false;await retry.onclick();assert.doesNotMatch(markup,/Falha temporária/);assert.match(markup,/Nenhum agendamento futuro/);assert.match(styles[0].textContent,/\.rw-agenda>p\{grid-column:1\/-1\}/);assert.deepEqual(calls,['prepare','load','prepare','load']);
+});
+

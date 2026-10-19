@@ -1143,7 +1143,7 @@ function companyHero(e){
   function syncWorkspacePanel(){
     function ready(){if(!root||!window.EMRecruiterWorkspace)return;var e=company(),vs=jobs();window.EMRecruiterWorkspace.sync(root,{view:view,company:e,jobs:vs,applications:applications(vs),demo:demoMode,premium:recruiterPremium(e),navigate:navigate,manage:manage});}
     if(window.EMRecruiterWorkspace){ready();return;}if(workspaceLoading)return;workspaceLoading=true;
-    var script=document.createElement('script');script.src='recruiter-workspace.js?v=20261019-hires-sync1';script.onload=function(){workspaceLoading=false;ready();};script.onerror=function(){workspaceLoading=false;var box=root&&root.getElementById('emRecruiterWorkspace');if(box)box.textContent='Não foi possível carregar esta área. Atualize a página.';};document.head.appendChild(script);
+    var script=document.createElement('script');script.src='recruiter-workspace.js?v=20261019-agenda-session2';script.onload=function(){workspaceLoading=false;ready();};script.onerror=function(){workspaceLoading=false;var box=root&&root.getElementById('emRecruiterWorkspace');if(box)box.textContent='Não foi possível carregar esta área. Atualize a página.';};document.head.appendChild(script);
   }
   function supportView(){return '<section id="emRecruiterSupport" aria-label="Central de Ajuda e Atendimento"></section>';}
   function mountSupport(){
