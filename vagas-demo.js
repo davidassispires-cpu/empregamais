@@ -337,6 +337,15 @@
     function narrowJobBrowser() {
       return win.matchMedia ? win.matchMedia('(max-width:900px)').matches : win.innerWidth <= 900;
     }
+    function updateJobPanelInset(state) {
+      var top = 24;
+      var header = typeof doc.querySelector === 'function' ? doc.querySelector('body > header') : null;
+      if (header && typeof win.getComputedStyle === 'function') {
+        var position = win.getComputedStyle(header).position;
+        if (position === 'fixed' || position === 'sticky') top = Math.max(top, Math.ceil(header.getBoundingClientRect().bottom) + 16);
+      }
+      if (typeof state.root.style.setProperty === 'function') state.root.style.setProperty('--em-job-panel-top', top + 'px');
+    }
     function mountJobBrowser() {
       if (jobBrowser) return jobBrowser;
       var home = doc.getElementById('pagina-home'), list = doc.getElementById('listaVagas');
@@ -355,6 +364,7 @@
       column.classList.add('em-job-results'); root.appendChild(column); root.appendChild(panel); root.appendChild(status);
       area.classList.add('em-job-browser-layout'); home.classList.add('em-job-browser-active');
       jobBrowser = {root:root, list:list, panel:panel, status:status, selected:null, trigger:null, scroll:0, filters:null};
+      updateJobPanelInset(jobBrowser);
       var sidebar = doc.getElementById('filtrosLateral');
       if (sidebar && sidebar.parentNode === area) {
         var filters = browserNode('details', 'em-job-browser-filters'); filters.id = 'emJobBrowserFilters';
@@ -379,7 +389,8 @@
         });
         observer.observe(list, {childList:true, subtree:true, attributes:true, attributeFilter:['style','hidden']});
       }
-      win.addEventListener('resize', function () { syncJobBrowser(); });
+      win.addEventListener('resize', function () { updateJobPanelInset(jobBrowser); syncJobBrowser(); });
+      win.addEventListener('load', function () { updateJobPanelInset(jobBrowser); }, {once:true});
       return jobBrowser;
     }
     function browserCards(state) {
@@ -596,7 +607,7 @@
       }
       details.onclick = function (event) { showDetails(event, details); };
       titleButton.onclick = function (event) { showDetails(event, titleButton); };
-      actions.appendChild(details);
+      var footer = node('div','em-r4-footer'); footer.appendChild(details); footer.appendChild(date);
       if (!save) { save = doc.createElement('button'); save.type = 'button'; }
       save.classList.add('em-r4-save'); save.setAttribute('data-vaga-id',String(job.id || ''));
       function updateSave(){var saved=typeof win.vagaEstaSalva==='function'&&win.vagaEstaSalva(job.id);save.setAttribute('aria-pressed',String(!!saved));save.setAttribute('aria-label',saved?'Remover vaga dos salvos':'Salvar vaga');save.title=saved?'Remover vaga dos salvos':'Salvar vaga';save.innerHTML=svg('<path d="M6 3h12v18l-6-4-6 4V3Z"/>');}
@@ -604,7 +615,7 @@
       updateSave();
       card.replaceChildren(identity,facts,actions,save);
       if (preview) card.appendChild(preview);
-      card.appendChild(date);
+      card.appendChild(footer);
       var label = highlighted ? 'Destaque' : enabled(job.urgente) || enabled(job.contratacaoUrgente) ? 'Contratação urgente' : '';
       if (label) {
         var status=node('span','em-r4-status'); status.setAttribute('data-kind',highlighted?'featured':'urgent');
