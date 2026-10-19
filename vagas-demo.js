@@ -269,7 +269,7 @@
       var distance = card.querySelector('.em-lista-distancia');
       if (distance) { distance.classList.add('em-r4-distance'); facts.appendChild(distance); }
       var actions = node('div','em-r4-actions');
-      actions.appendChild(node('strong','em-r4-salary',salaryValue));
+      facts.appendChild(node('strong','em-r4-salary',salaryValue));
       apply.classList.add('em-r4-apply'); apply.textContent = 'Candidatar-se'; actions.appendChild(apply);
       var details = node('button','em-r4-details','Ver detalhes'); details.type = 'button'; details.setAttribute('data-vaga-id',String(job.id || ''));
       details.onclick = function(event){event.preventDefault();event.stopPropagation();if(typeof win.irPara==='function')win.irPara('vaga',job.id);else win.location.href=String(win.location.pathname || '')+'?pagina=vaga&id='+encodeURIComponent(job.id);};
