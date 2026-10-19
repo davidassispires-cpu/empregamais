@@ -367,15 +367,15 @@
       var titleLine = node('div','em-r4-title-line');
       titleLine.appendChild(title);
       copy.appendChild(titleLine); copy.appendChild(company);
+      var preview = null;
       if (highlighted) {
         var previewText = summaryText(job.resumo || job.descricao || job.descricaoVaga, 320);
-        if (previewText) copy.appendChild(node('p','em-r4-summary',previewText));
+        if (previewText) preview = node('p','em-r4-summary',previewText);
       }
       var rawDate = String(job.dataPublicacao || job.publicadaEm || job.criadoEm || '');
       var dateMatch = /^(\d{4})-(\d{2})-(\d{2})/.exec(rawDate);
       var date = node('div','em-r4-date',dateMatch ? 'Publicada em '+dateMatch[3]+'/'+dateMatch[2]+'/'+dateMatch[1] : 'Data de publicação não informada');
       if (isDemo(job)) date.appendChild(node('span','em-r4-demo',' · Demonstração'));
-      copy.appendChild(date);
       if (highlighted && !confidential) identity.appendChild(logo);
       identity.appendChild(copy);
       var facts = node('div','em-r4-facts');
@@ -392,6 +392,7 @@
       if (distance) { distance.classList.add('em-r4-distance'); facts.appendChild(distance); }
       var actions = node('div','em-r4-actions');
       var salary = node('strong','em-r4-salary',salaryValue);
+      actions.appendChild(salary);
       apply.classList.add('em-r4-apply'); apply.textContent = 'Candidatar-se'; actions.appendChild(apply);
       var details = node('button','em-r4-details','Ver detalhes'); details.type = 'button'; details.setAttribute('data-vaga-id',String(job.id || ''));
       details.setAttribute('aria-haspopup','dialog'); details.setAttribute('aria-controls','emRecentJobSummary'); details.setAttribute('aria-expanded','false');
@@ -412,7 +413,9 @@
       function updateSave(){var saved=typeof win.vagaEstaSalva==='function'&&win.vagaEstaSalva(job.id);save.setAttribute('aria-pressed',String(!!saved));save.setAttribute('aria-label',saved?'Remover vaga dos salvos':'Salvar vaga');save.title=saved?'Remover vaga dos salvos':'Salvar vaga';save.innerHTML=svg('<path d="M6 3h12v18l-6-4-6 4V3Z"/>');}
       save.onclick=function(event){event.preventDefault();event.stopPropagation();if(typeof originalSave==='function')originalSave.call(save,event);else if(typeof win.alternarFavorito==='function')win.alternarFavorito(job.id);updateSave();};
       updateSave();
-      card.replaceChildren(identity,facts,salary,actions,save);
+      card.replaceChildren(identity,facts,actions,save);
+      if (preview) card.appendChild(preview);
+      card.appendChild(date);
       var label = highlighted ? 'Destaque' : enabled(job.urgente) || enabled(job.contratacaoUrgente) ? 'Contratação urgente' : '';
       if (label) {
         var status=node('span','em-r4-status'); status.setAttribute('data-kind',highlighted?'featured':'urgent');
