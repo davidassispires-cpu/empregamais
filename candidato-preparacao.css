@@ -1499,6 +1499,33 @@ html body:has(#cpPreparationWorkspace:not([hidden])) #premium92Banner#premium92B
 }
 }
 
+/* Professional tools belong to candidates with an active Premium plan. */
+@layer candidate-palette{
+html body.cp-shell-active #cpCandidateHeader#cpCandidateHeader .cp-toolbar:has(>.cp-professional-nav){gap:14px!important;min-width:0!important}
+html body.cp-shell-active #cpCandidateHeader#cpCandidateHeader .cp-toolbar:has(>.cp-professional-nav)>:is(strong,.cp-toolbar-context){display:none!important}
+html body.cp-shell-active #cpCandidateHeader#cpCandidateHeader .cp-professional-nav{display:flex!important;align-items:center!important;gap:6px!important;flex:1 1 0!important;min-width:0!important;margin:0!important;padding:0!important;overflow-x:auto;scrollbar-width:thin}
+html body.cp-shell-active #cpCandidateHeader#cpCandidateHeader .cp-professional-nav>button{display:inline-flex!important;align-items:center!important;justify-content:center!important;gap:7px!important;flex:0 0 auto!important;min-height:40px!important;margin:0!important;padding:8px 11px!important;border:0!important;border-bottom:2px solid transparent!important;border-radius:7px 7px 0 0!important;background:transparent!important;color:#42627e!important;font-family:inherit!important;font-size:12px!important;font-weight:600!important;line-height:1.35!important;white-space:nowrap!important;box-shadow:none!important;cursor:pointer}
+html body.cp-shell-active #cpCandidateHeader#cpCandidateHeader .cp-professional-nav>button:hover{background:#edf5ff!important;color:#0065ed!important}
+html body.cp-shell-active #cpCandidateHeader#cpCandidateHeader .cp-professional-nav>button[aria-current=page]{background:#edf5ff!important;border-bottom-color:#0065ed!important;color:#0065ed!important;font-weight:700!important}
+html body.cp-shell-active #cpCandidateHeader#cpCandidateHeader .cp-professional-nav>button:focus-visible{outline:3px solid #90bcf4!important;outline-offset:-3px!important}
+html body.cp-shell-active #cpCandidateHeader#cpCandidateHeader .cp-professional-nav svg{width:17px!important;height:17px!important;flex:none!important}
+html body.cp-shell-active #cpCandidateHeader#cpCandidateHeader .cp-professional-nav .cp-professional-short{display:none!important}
+@media(min-width:851px){
+html body.cp-shell-active #cpCandidateHeader#cpCandidateHeader .cp-toolbar:has(>.cp-professional-nav){padding-left:calc(var(--cp-sidebar-width,270px) + 28px)!important}
+}
+@media(max-width:1220px){
+html body.cp-shell-active #cpCandidateHeader#cpCandidateHeader .cp-professional-nav .cp-professional-full{display:none!important}
+html body.cp-shell-active #cpCandidateHeader#cpCandidateHeader .cp-professional-nav .cp-professional-short{display:inline!important}
+}
+@media(max-width:767px){
+html body.cp-shell-active #cpCandidateHeader#cpCandidateHeader .cp-toolbar:has(>.cp-professional-nav){gap:6px!important;padding-inline:10px!important}
+html body.cp-shell-active #cpCandidateHeader#cpCandidateHeader .cp-toolbar:has(>.cp-professional-nav) .cp-greeting-name{display:none!important}
+html body.cp-shell-active #cpCandidateHeader#cpCandidateHeader .cp-professional-nav{gap:2px!important}
+html body.cp-shell-active #cpCandidateHeader#cpCandidateHeader .cp-professional-nav>button{padding:8px 6px!important;font-size:11px!important;min-height:42px!important}
+html body.cp-shell-active #cpCandidateHeader#cpCandidateHeader .cp-professional-nav svg{display:none!important}
+}
+}
+
 /* Selected header model 5: warm white and restrained champagne accent. */
 @layer site-typography{
 html body #pagina-painel-candidato#pagina-painel-candidato.cp-enhanced #cpPreparationWorkspace#cpPreparationWorkspace .cp-recommendations-hero.cp-recommendations-elegant{display:block!important;position:relative!important;box-sizing:border-box!important;min-height:0!important;height:auto!important;padding:20px 24px!important;margin-bottom:18px!important;border:1px solid #e2d9ca!important;border-left:4px solid #d5b677!important;border-radius:10px!important;background:#fbfaf7!important;background-image:none!important;box-shadow:none!important;overflow:hidden!important}
@@ -1515,3 +1542,4 @@ html body #pagina-painel-candidato#pagina-painel-candidato.cp-enhanced #cpPrepar
 html body #pagina-painel-candidato#pagina-painel-candidato.cp-enhanced #cpPreparationWorkspace#cpPreparationWorkspace .cp-recommendations-elegant .cp-recommendations-hero-copy>p{font-size:12px!important}
 }
 }
+

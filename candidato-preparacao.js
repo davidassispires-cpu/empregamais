@@ -265,6 +265,7 @@
  }
  function closeWorkspace(focus){
   if(!workspace)return;clearTimeout(draftTimer);saveCurrentAnswer();workspace.hidden=true;workspace.dataset.cpView='';if(page.classList.contains('cp-tool-active')||page.classList.contains('cp-recommendations-active'))page.classList.remove('cp-tool-active','cp-recommendations-active');
+  syncProfessionalNav();
   if(focus!==false){var button=container.querySelector('.cp-preparation [data-cp-action="interview"]');if(button)button.focus();}
  }
  function openWorkspace(title,body,header){
@@ -276,10 +277,29 @@
   workspace.querySelector('h1').focus({preventScroll:true});
   (container.querySelector('.cp-demo-plans')||workspace).scrollIntoView({block:'start',behavior:'auto'});
  }
+ function syncProfessionalNav(){
+  var toolbar=document.querySelector('#cpCandidateHeader .cp-toolbar');if(!toolbar)return;
+  var nav=toolbar.querySelector('.cp-professional-nav'),allowed=!!identity()&&hasCompatibilityAccess();
+  if(!allowed){if(nav)nav.remove();return;}
+  if(!nav){
+   nav=document.createElement('nav');nav.className='cp-professional-nav';nav.setAttribute('aria-label','Recursos do candidato Premium');
+   nav.innerHTML=[['tests','Testes e avaliações','Testes','book'],['simulator','Simulador de entrevistas','Simulador','video'],['results','Resultados','Resultados','analysis']].map(function(item){return '<button type="button" data-cp-professional-view="'+item[0]+'" aria-label="'+item[1]+'">'+icon(item[3])+'<span class="cp-professional-full">'+item[1]+'</span><span class="cp-professional-short">'+item[2]+'</span></button>';}).join('');
+   nav.addEventListener('click',function(event){var button=event.target.closest('[data-cp-professional-view]');if(!button||!nav.contains(button))return;event.preventDefault();openProfessional(button.dataset.cpProfessionalView);});
+   toolbar.insertBefore(nav,toolbar.querySelector('.cp-notifications'));
+  }
+  var selected=page&&page.classList.contains('ativa')&&workspace&&!workspace.hidden?workspace.dataset.cpView:'';
+  nav.querySelectorAll('[data-cp-professional-view]').forEach(function(button){if(selected==='professional-'+button.dataset.cpProfessionalView){if(button.getAttribute('aria-current')!=='page')button.setAttribute('aria-current','page');}else if(button.hasAttribute('aria-current'))button.removeAttribute('aria-current');});
+ }
  function openProfessional(view){
+  if(['tests','simulator','results'].indexOf(view)<0)return;
+  if(!identity()||!hasCompatibilityAccess()){closeWorkspace(false);if(global.irPara)global.irPara('premium-candidato');return;}
+  if(!page||!page.classList.contains('ativa')||page.classList.contains('cp-messages-active')){var home=document.querySelector('#cpCandidateHeader [data-route="painel-candidato"]');if(home)home.click();else if(global.irPara)global.irPara('painel-candidato');}
+  mount();if(!workspace||owner!==identity())return;
+  page.classList.remove('cp-recommendations-active');
   if(!global.EMProfessionalTools)return view==='simulator'?interviewSetup():testsSetup();
   var titles={tests:'Testes e avaliações',simulator:'Simulador de entrevistas',results:'Seus resultados'};
   openWorkspace(titles[view]||titles.tests,'<section id="emCandidateProfessionalTools" aria-label="Recursos profissionais"></section>');
+  workspace.dataset.cpView='professional-'+view;syncProfessionalNav();
   global.EMProfessionalTools.mount(workspace.querySelector('#emCandidateProfessionalTools'),{role:'candidate',view:view,profile:profile(),jobs:jobs(),applications:applicationRows(),demo:demo(),navigate:openProfessional});
  }
  function toolStatus(text){var el=workspace.querySelector('.cp-feedback');if(el)el.textContent=text;}
@@ -454,6 +474,8 @@
  }
  function mount(){
   page=document.getElementById('pagina-painel-candidato');container=page&&page.querySelector('.container-dashboard');
+  syncProfessionalNav();
+  if(workspace&&String(workspace.dataset.cpView).indexOf('professional-')===0&&!hasCompatibilityAccess())closeWorkspace(false);
   if(!container||!container.querySelector('.cp-layout')||!page.classList.contains('ativa'))return;
   if(!identity()){if(extra)extra.hidden=true;return;}
   if(owner!==identity()){if(workspace)closeWorkspace(false);owner=identity();loadPractice();}
@@ -908,4 +930,5 @@
  document.addEventListener('empregamais:candidato-sincronizado',schedule);window.addEventListener('storage',function(){lastSignature='';schedule();});
  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',start,{once:true});else start();
 })();
+
 
