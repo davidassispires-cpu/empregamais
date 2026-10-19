@@ -4,7 +4,7 @@ const assert = require('node:assert/strict');
 const demo = require('../vagas-demo.js');
 
 // Minimal DOM for exercising the real card and modal event handlers without a browser.
-function fixture(nativeDialog = true, withBrowser = false, withObserver = false) {
+function fixture(nativeDialog = true, withBrowser = false, withObserver = false, setup = null) {
   const doc = {activeElement:null, readyState:'complete'};
   class Element {
     constructor(tag) { this.tagName=tag.toUpperCase(); this.className=''; this.children=[]; this.attributes={}; this.listeners={}; this.style={}; this._text=''; this.open=false; }
@@ -96,6 +96,7 @@ function fixture(nativeDialog = true, withBrowser = false, withObserver = false)
     win.MutationObserver=class {constructor(callback){this.callback=callback;observers.push(this);}observe(target,options){this.target=target;this.options=options;}};
     win.requestAnimationFrame=function(callback){assert.equal(this,win);frames.push(callback);};
   }
+  if (setup) setup(win,doc);
   demo.instalar(win);
   function makeJob(overrides={}) {
     return {id:'real-job',cargo:'ANALISTA DE RECURSOS HUMANOS',empresa:'Empresa Exemplo',cidade:'Contagem',uf:'MG',modalidade:'Híbrido',contrato:'CLT',salario:'R$ 3.800,00',dataPublicacao:'2026-10-19',jornada:'44 horas semanais',horario:'Segunda a sexta',descricao:'Recrutamento e seleção.',requisitos:'Experiência com recrutamento.',beneficios:'Vale-transporte; vale-alimentação.',...overrides};
@@ -383,4 +384,88 @@ test('mobile can locate the open job in the list and retain its selection',()=>{
  assert.equal(env.doc.activeElement,cards[1].querySelector('.em-r4-title-select'));
  assert.equal(cards[1].getAttribute('data-em-selected'),'true');
  assert.equal(panel.getAttribute('data-vaga-id'),'two');assert.equal(env.doc.body.style.overflow,undefined);
+});
+
+test('verification explanations open on hover and focus, stay reachable, and close with Escape or outside clicks',async()=>{
+ const env=fixture(true,true),cards=env.render([{id:'demo-publica-91',demoPublica:true,empresa:'Postos Ipiranga (Demo)'}]);
+ const seal=cards[0].querySelector('.em-company-verification');
+ seal.fire('mouseenter');
+ const tip=env.doc.getElementById('emCompanyVerificationCard');
+ assert(tip);assert.equal(tip.hidden,false);assert.equal(tip.getAttribute('role'),'tooltip');
+ assert.match(tip.textContent,/Demonstração/);assert.match(tip.textContent,/sem vínculo/);
+ assert.equal(seal.getAttribute('aria-expanded'),'true');
+ seal.fire('mouseleave');tip.fire('mouseenter');
+ await new Promise(resolve=>setTimeout(resolve,180));assert.equal(tip.hidden,false);
+ const escape={key:'Escape',preventDefault(){},stopPropagation(){}};
+ env.listeners.keydown.forEach(handler=>handler(escape));
+ assert.equal(tip.hidden,true);assert.equal(seal.getAttribute('aria-expanded'),'false');
+ seal.focus();seal.fire('focus');assert.equal(tip.hidden,false);
+ env.listeners.click.forEach(handler=>handler({target:env.doc.body}));
+ assert.equal(tip.hidden,true);assert.deepEqual(env.routes,[]);
+});
+
+test('the verification button supports touch without navigating or changing the selected vacancy',()=>{
+ const env=fixture(true,true);env.win.innerWidth=390;
+ const cards=env.render([{id:'one'},{id:'demo-publica-92',demoPublica:true,empresa:'Carrefour (Demo)'}]);
+ cards[1].querySelector('.em-r4-title-select').click();
+ const panel=env.doc.getElementById('emJobPanel'),seal=panel.querySelector('.em-company-verification');
+ seal.click();assert.equal(env.doc.getElementById('emCompanyVerificationCard').hidden,false);
+ assert.equal(panel.getAttribute('data-vaga-id'),'demo-publica-92');assert.deepEqual(env.routes,[]);
+ env.render([{id:'three'}]);assert.equal(env.doc.getElementById('emCompanyVerificationCard').hidden,true);
+});
+
+test('company links use a stable demo profile and expose only that company public demonstration jobs',()=>{
+ const env=fixture(true,true),page=env.doc.createElement('main');page.id='pagina-empresa-publica';env.doc.body.appendChild(page);
+ const job=env.win.vagasPadrao.find(job=>job.empresa==='Postos Ipiranga (Demo)');
+ const cards=env.render([job]);
+ const company=cards[0].querySelector('.em-company-profile-link');
+ assert.equal(cards[0].__emJobEntry.info.company,job.empresa);
+ assert.match(company.getAttribute('href'),/id=demo-empresa-postos-ipiranga/);
+ company.click();assert.deepEqual(env.routes,[['empresa-publica','demo-empresa-postos-ipiranga']]);
+ env.win.abrirPerfilEmpresaPublica('demo-empresa-postos-ipiranga');
+ const profile=env.doc.getElementById('emDemoCompanyProfile');
+ assert(profile);assert.equal(page.getAttribute('data-em-demo-profile'),'true');
+ assert.match(profile.textContent,/Postos Ipiranga \(Demo\)/);assert.match(profile.textContent,/fictícias/);
+ assert(!profile.textContent.includes('Drogaria Araujo'));assert(!profile.textContent.includes('Empresa confidencial'));
+ const expected=env.win.vagasPadrao.filter(job=>!job.confidencial&&job.empresa==='Postos Ipiranga (Demo)');
+ assert.equal(profile.querySelectorAll('.em-dc-job').length,expected.length);
+ profile.querySelector('.em-dc-job a').click();assert.deepEqual(env.routes.at(-1),['vaga',expected[0].id]);
+});
+
+test('direct demo company URLs render their profile without an account or remote calls',()=>{
+ const shown=[];
+ const env=fixture(true,false,false,(win,doc)=>{
+  win.location.search='?pagina=empresa-publica&id=demo-empresa-carrefour';
+  win.mostrarPagina=name=>{shown.push(name);doc.getElementById('pagina-home').className='';};
+  const page=doc.createElement('main');page.id='pagina-empresa-publica';doc.body.appendChild(page);
+ });
+ assert.deepEqual(shown,['empresa-publica']);
+ assert.match(env.doc.getElementById('emDemoCompanyTitle').textContent,/Carrefour/);
+ assert(env.doc.getElementById('emDemoCompanyProfile').querySelector('.em-company-verification'));
+});
+
+test('registered company links retain the existing profile renderer and confidential jobs reveal no identity',()=>{
+ const existing=[];const record={cnpj:'12345678000190',verificada:true};
+ const env=fixture(true,true,false,win=>{
+  win.empresaDaVagaEM=job=>job.empresaCnpj===record.cnpj?record:null;
+  win.empresaEstaVerificada=company=>company.verificada;
+  win.empresaPodeTerPerfilPublicoEM=()=>true;
+  win.abrirPerfilEmpresaPublica=id=>existing.push(id);
+ });
+ const cards=env.render([{id:'real',empresaCnpj:record.cnpj},{id:'private',demoPublica:true,confidencial:true,empresa:'IDENTIDADE PRIVADA'}]);
+ const seal=cards[0].querySelector('.em-company-verification');assert(seal);seal.fire('mouseenter');
+ assert(!env.doc.getElementById('emCompanyVerificationCard').textContent.includes('Demonstração:'));
+ cards[0].querySelector('.em-company-profile-link').click();assert.deepEqual(env.routes,[['empresa-publica',record.cnpj]]);
+ env.win.abrirPerfilEmpresaPublica(record.cnpj);assert.deepEqual(existing,[record.cnpj]);
+ assert.equal(cards[1].querySelector('.em-company-verification'),null);
+ assert.equal(cards[1].querySelector('.em-company-profile-link'),null);assert(!cards[1].textContent.includes('IDENTIDADE PRIVADA'));
+});
+
+test('opening a company from a fallback summary removes the dialog before navigation',()=>{
+ const env=fixture(),card=env.card({id:'demo-publica-93',demoPublica:true,empresa:'Magazine Luiza (Demo)'});
+ card.querySelector('.em-r4-title-select').click();
+ const dialog=env.doc.getElementById('emRecentJobSummary');assert(dialog.open);
+ dialog.querySelector('.em-company-profile-link').click();
+ assert.equal(env.doc.getElementById('emRecentJobSummary'),null);
+ assert.deepEqual(env.routes,[['empresa-publica','demo-empresa-magazine-luiza']]);
 });

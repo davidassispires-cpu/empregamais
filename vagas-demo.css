@@ -849,19 +849,19 @@ html body dialog.em-job-summary button:focus-visible {outline:3px solid #90bcf4!
 
 /* Vacancy detail header — approved compact model 3. */
 @layer candidate-palette {
-html body #pagina-home #emJobBrowser .em-jb-header{position:relative!important;display:flex!important;align-items:center!important;gap:18px!important;margin:0!important;padding:20px!important;border:0!important;border-bottom:1px solid #e4e9ef!important;background:#fff!important;color:#0b203d!important}
+html body #pagina-home #emJobBrowser .em-jb-header{position:relative!important;display:flex!important;align-items:center!important;gap:16px!important;margin:0!important;padding:18px 20px!important;border:0!important;border-bottom:1px solid #e4e9ef!important;background:#fff!important;color:#0b203d!important}
 html body #pagina-home #emJobBrowser .em-jb-header *{text-align:center!important}
-html body #pagina-home #emJobBrowser .em-jb-header-content{display:flex!important;flex-direction:column!important;align-items:center!important;flex:1!important;min-width:0!important;gap:8px!important}
-html body #pagina-home #emJobBrowser .em-jb-title{outline:none!important;box-shadow:none!important;border:0!important;--candidate-contrast-ink:#0b203d!important;display:block!important;width:100%!important;margin:0!important;padding:0!important;color:#0b203d!important;font-size:30px!important;font-weight:500!important;line-height:1.3!important;text-transform:uppercase!important;white-space:normal!important;overflow-wrap:break-word!important}
-html body #pagina-home #emJobBrowser .em-jb-company{--candidate-contrast-ink:#0072ce!important;display:block!important;width:auto!important;max-width:100%!important;min-height:0!important;margin:0!important;padding:0!important;border:0!important;background:none!important;color:#0072ce!important;font-size:16px!important;font-weight:400!important;line-height:1.5!important;text-transform:none!important}
+html body #pagina-home #emJobBrowser .em-jb-header-content{display:flex!important;flex-direction:column!important;align-items:center!important;flex:1!important;min-width:0!important;gap:7px!important}
+html body #pagina-home #emJobBrowser .em-jb-title{outline:none!important;box-shadow:none!important;border:0!important;--candidate-contrast-ink:#0b203d!important;display:block!important;width:100%!important;margin:0!important;padding:0!important;color:#0b203d!important;font-size:30px!important;font-weight:600!important;line-height:1.18!important;letter-spacing:-.25px!important;text-transform:uppercase!important;white-space:normal!important;overflow-wrap:break-word!important}
+html body #pagina-home #emJobBrowser .em-jb-company{--candidate-contrast-ink:#0072ce!important;display:flex!important;align-items:center!important;justify-content:center!important;flex-wrap:wrap!important;gap:6px 10px!important;width:100%!important;max-width:100%!important;min-height:0!important;margin:0!important;padding:0!important;border:0!important;background:none!important;color:#0072ce!important;font-size:16px!important;font-weight:400!important;line-height:1.5!important;text-transform:none!important}
 html body #pagina-home #emJobBrowser button.em-jb-company{cursor:pointer!important}
 html body #pagina-home #emJobBrowser .em-jb-header-meta{display:flex!important;align-items:center!important;justify-content:center!important;flex-wrap:wrap!important;gap:4px 0!important;margin:2px 0!important;max-width:100%!important}
 html body #pagina-home #emJobBrowser .em-jb-header-meta p{--candidate-contrast-ink:#405064!important;display:inline-flex!important;align-items:center!important;gap:5px!important;margin:0!important;padding:0 9px!important;color:#405064!important;font-size:14px!important;font-weight:400!important;line-height:1.6!important}
 html body #pagina-home #emJobBrowser .em-jb-header-meta p+p{border-left:1px solid #d2dce7!important}
 html body #pagina-home #emJobBrowser .em-jb-header-meta svg{width:16px!important;height:16px!important;flex:0 0 16px!important}
-html body #pagina-home #emJobBrowser .em-jb-badges{display:flex!important;justify-content:center!important;flex-wrap:wrap!important;gap:5px!important;margin:0!important}
-html body #pagina-home #emJobBrowser .em-jb-badge{display:inline-flex!important;align-items:center!important;padding:4px 10px!important;border:1px solid #eddbb8!important;border-radius:20px!important;background:#fff8eb!important;color:#8a5a13!important;font-size:12px!important;line-height:1.45!important;font-weight:400!important;}
-html body #pagina-home #emJobBrowser .em-jb-urgent{--candidate-contrast-ink:#b42328!important;border-color:#fce1e4!important;background:#fff0f1!important;color:#b42328!important}
+html body #pagina-home #emJobBrowser .em-jb-badges{display:flex!important;justify-content:center!important;flex-wrap:wrap!important;gap:6px!important;margin:1px 0!important}
+html body #pagina-home #emJobBrowser .em-jb-badge{display:inline-flex!important;align-items:center!important;padding:4px 9px!important;border:1px solid #f0d6b8!important;border-radius:6px!important;background:#fff5e8!important;color:#9a520a!important;font-size:11px!important;line-height:1.45!important;font-weight:500!important;}
+html body #pagina-home #emJobBrowser .em-jb-urgent{--candidate-contrast-ink:#9a520a!important;border-color:#f0d6b8!important;background:#fff5e8!important;color:#9a520a!important}
 html body #pagina-home #emJobBrowser .em-jb-confidential{border-color:#dce3eb!important;background:#f5f7fa!important;color:#526174!important}
 html body #pagina-home #emJobBrowser .em-jb-header-actions{display:flex!important;align-items:center!important;justify-content:center!important;gap:10px!important;width:100%!important;padding-top:2px!important}
 html body #pagina-home #emJobBrowser .em-jb-apply{--candidate-contrast-ink:#fff!important;display:inline-flex!important;align-items:center!important;justify-content:center!important;flex:0 1 230px!important;width:230px!important;max-width:calc(100% - 48px)!important;min-height:42px!important;margin:0!important;padding:9px 20px!important;border:1px solid #123f82!important;border-radius:10px!important;background:#123f82!important;color:#fff!important;font-size:14px!important;font-weight:500!important;line-height:1.5!important;text-transform:uppercase!important;cursor:pointer!important}
@@ -950,20 +950,56 @@ html body #pagina-home #emJobBrowser .em-jb-extra>summary{width:max-content!impo
 html body #pagina-home #emJobBrowser .em-jb-extra>.em-jb-facts{margin-top:10px!important}
 html body #pagina-home #emJobBrowser .em-jb-extra:not([open])>.em-jb-facts{display:none!important}
 }
-/* Illustrative verification marks belong only to public demonstration companies. */
+
+/* Company names and verification explanations share the same interaction everywhere. */
 @layer candidate-palette {
-html body :is(#pagina-home,#pagina-vaga,dialog.em-job-summary) .em-demo-verified {
+html body :is(#pagina-home,#pagina-vaga,#pagina-empresa-publica,dialog.em-job-summary) .em-company-profile-link {
+ display:inline!important;max-width:100%!important;min-width:0!important;margin:0!important;padding:0!important;border:0!important;border-radius:3px!important;background:none!important;
+ color:inherit!important;font:inherit!important;text-transform:none!important;text-decoration:none!important;white-space:normal!important;overflow-wrap:break-word!important;
+}
+html body :is(#pagina-home,#pagina-vaga,#pagina-empresa-publica,dialog.em-job-summary) :is(a,button).em-company-profile-link{cursor:pointer!important}
+html body :is(#pagina-home,#pagina-vaga,#pagina-empresa-publica,dialog.em-job-summary) :is(a,button).em-company-profile-link:hover{text-decoration:underline!important;text-underline-offset:3px!important}
+html body :is(#pagina-home,#pagina-vaga,#pagina-empresa-publica,dialog.em-job-summary) .em-company-verification {
  --candidate-contrast-ink:#148355!important;display:inline-flex!important;align-items:center!important;justify-content:center!important;gap:5px!important;
- width:auto!important;height:24px!important;min-width:24px!important;flex:0 0 auto!important;margin:0 0 0 7px!important;padding:0!important;
- border:0!important;background:none!important;color:#148355!important;font-size:0!important;font-style:normal!important;line-height:1!important;
+ width:auto!important;min-width:0!important;min-height:30px!important;height:auto!important;flex:0 0 auto!important;margin:0!important;padding:2px 7px 2px 3px!important;
+ border:1px solid #cde6d7!important;border-radius:7px!important;background:#eff9f3!important;color:#148355!important;font-style:normal!important;line-height:1!important;
  vertical-align:middle!important;white-space:nowrap!important;cursor:help!important;
 }
-html body :is(#pagina-home,#pagina-vaga,dialog.em-job-summary) .em-demo-verified svg {
- display:block!important;width:24px!important;height:24px!important;flex:0 0 24px!important;color:inherit!important;
+html body :is(#pagina-home,#pagina-vaga,#pagina-empresa-publica,dialog.em-job-summary) .em-company-verification svg {display:block!important;width:24px!important;height:24px!important;flex:0 0 24px!important;color:inherit!important}
+html body :is(#pagina-home,#pagina-vaga,#pagina-empresa-publica,dialog.em-job-summary) .em-company-verification circle{fill:currentColor!important;stroke:none!important}
+html body :is(#pagina-home,#pagina-vaga,#pagina-empresa-publica,dialog.em-job-summary) .em-company-verification path{fill:none!important;stroke:#fff!important}
+html body :is(#pagina-home,#pagina-vaga,#pagina-empresa-publica,dialog.em-job-summary) .em-company-verification-label {
+ color:#148355!important;font-family:"Recent Montserrat",Montserrat,Arial,sans-serif!important;font-size:10px!important;font-weight:500!important;
+ line-height:1.3!important;letter-spacing:normal!important;white-space:nowrap!important;text-transform:none!important;
 }
-html body :is(#pagina-home,#pagina-vaga,dialog.em-job-summary) .em-demo-verified::after {
- content:"Empresa\A verificada"!important;display:block!important;color:#148355!important;font-family:"Recent Montserrat",Montserrat,Arial,sans-serif!important;
- font-size:10px!important;font-weight:500!important;font-style:normal!important;line-height:1.15!important;letter-spacing:normal!important;
- white-space:pre!important;text-align:left!important;text-transform:none!important;
+html body .em-company-verification-card {
+ position:fixed!important;z-index:2147483000!important;display:block!important;box-sizing:border-box!important;max-width:calc(100vw - 24px)!important;max-height:calc(100dvh - 24px)!important;overflow:auto!important;overscroll-behavior:contain!important;margin:0!important;padding:16px!important;
+ border:1px solid #d8e6dd!important;border-radius:12px!important;background:#fff!important;color:#526174!important;box-shadow:0 10px 32px #10274426!important;pointer-events:auto!important;text-align:left!important;
 }
+html body .em-company-verification-card[hidden]{display:none!important}
+html body .em-company-verification-card *{box-sizing:border-box!important;font-family:"Recent Montserrat",Montserrat,Arial,sans-serif!important;font-style:normal!important;text-align:left!important}
+html body .em-company-verification-card .em-company-verification-heading{display:block!important;margin:0 0 8px!important;color:#148355!important;font-size:14px!important;font-weight:600!important;line-height:1.4!important}
+html body .em-company-verification-card p{margin:0!important;color:#526174!important;font-size:12px!important;font-weight:400!important;line-height:1.65!important}
+html body .em-company-verification-card .em-company-verification-demo{margin-top:10px!important;padding:9px!important;border-radius:7px!important;background:#f1f8f4!important;color:#3e6751!important;font-size:11px!important}
+html body :is(.em-company-verification,.em-company-profile-link):focus-visible{outline:2px solid #0875cc!important;outline-offset:3px!important}
+html body #pagina-empresa-publica[data-em-demo-profile="true"]>:not(#emDemoCompanyProfile){display:none!important}
+html body #pagina-empresa-publica #emDemoCompanyProfile {display:grid!important;gap:20px!important;max-width:1140px!important;margin:0 auto!important;padding:28px 24px 48px!important;color:#102744!important}
+html body #emDemoCompanyProfile *{box-sizing:border-box!important;font-family:"Recent Montserrat",Montserrat,Arial,sans-serif!important;font-style:normal!important}
+html body #emDemoCompanyProfile .em-dc-back{justify-self:start!important;color:#0875cc!important;font-size:13px!important;text-decoration:none!important}
+html body #emDemoCompanyProfile .em-dc-header{display:flex!important;align-items:center!important;flex-wrap:wrap!important;gap:16px!important;padding:24px!important;border:1px solid #e1e5eb!important;border-radius:12px!important;background:#fff!important;box-shadow:0 4px 18px #10274408!important}
+html body #emDemoCompanyProfile .em-dc-logo{width:64px!important;height:64px!important;object-fit:contain!important;border-radius:10px!important;background:#f6f8fb!important;padding:6px!important}
+html body #emDemoCompanyProfile .em-dc-heading{flex:1 1 230px!important;min-width:0!important}
+html body #emDemoCompanyProfile .em-dc-eyebrow{margin:0 0 6px!important;color:#64748b!important;font-size:11px!important}
+html body #emDemoCompanyProfile h1{margin:0!important;color:#102744!important;font-size:28px!important;font-weight:600!important;line-height:1.25!important}
+html body #emDemoCompanyProfile :is(.em-dc-about,.em-dc-vacancies){padding:24px!important;border:1px solid #e1e5eb!important;border-radius:12px!important;background:#fff!important}
+html body #emDemoCompanyProfile h2{margin:0 0 14px!important;color:#102744!important;font-size:18px!important;font-weight:600!important;line-height:1.4!important}
+html body #emDemoCompanyProfile .em-dc-about p{margin:0!important;color:#526174!important;font-size:14px!important;line-height:1.75!important}
+html body #emDemoCompanyProfile .em-dc-jobs{display:grid!important;gap:12px!important}
+html body #emDemoCompanyProfile .em-dc-job{padding:16px!important;border:1px solid #e1e5eb!important;border-radius:10px!important;background:#fff!important}
+html body #emDemoCompanyProfile .em-dc-job h3{margin:0 0 8px!important;font-size:16px!important;line-height:1.4!important;text-transform:uppercase!important}
+html body #emDemoCompanyProfile .em-dc-job a{color:#0875cc!important;text-decoration:none!important}
+html body #emDemoCompanyProfile .em-dc-job a:hover{text-decoration:underline!important}
+html body #emDemoCompanyProfile .em-dc-job p{margin:0 0 8px!important;color:#526174!important;font-size:12px!important;line-height:1.6!important}
+html body #emDemoCompanyProfile .em-dc-salary{color:#087348!important;font-size:14px!important;font-weight:500!important}
+@media(max-width:600px){html body #pagina-empresa-publica #emDemoCompanyProfile{padding:20px 14px 32px!important}html body #emDemoCompanyProfile :is(.em-dc-header,.em-dc-about,.em-dc-vacancies){padding:18px!important}html body #emDemoCompanyProfile h1{font-size:23px!important}}
 }

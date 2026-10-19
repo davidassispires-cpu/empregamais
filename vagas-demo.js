@@ -225,17 +225,132 @@
       var text = doc.createElement('span'); text.textContent = label; span.appendChild(text); bar.appendChild(span);
     }
     function enabled(value) { return value === true || value === 1 || /^(true|1)$/i.test(String(value)); }
-    function demoVerifiedCompany(company, job) {
-      if (!company || !isDemo(job) || company.querySelector('.em-demo-verified')) return;
-      var confidential = typeof win.vagaEhConfidencialEM === 'function' ? win.vagaEhConfidencialEM(job) : enabled(job.confidencial);
-      if (confidential) return;
-      var seal = doc.createElement('i'); seal.className = 'em-demo-verified';
-      seal.setAttribute('role', 'img');
-      seal.setAttribute('aria-label', 'Empresa verificada (demonstração)');
-      seal.title = 'Selo ilustrativo de empresa verificada em vaga de demonstração.';
-      seal.innerHTML = '<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="10" fill="currentColor"/><path d="m7.5 12 3 3 6-6" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>';
-      company.appendChild(seal);
+    function companyIsConfidential(job) {
+      return typeof win.vagaEhConfidencialEM === 'function' ? win.vagaEhConfidencialEM(job) : enabled(job && job.confidencial);
     }
+    function companyRecord(job) {
+      if (typeof win.empresaDaVagaEM === 'function') return win.empresaDaVagaEM(job);
+      return job && job.empresaCnpj && typeof win.empresaPorCnpj === 'function' ? win.empresaPorCnpj(job.empresaCnpj) : null;
+    }
+    function demoCompanyKey(name) {
+      return 'demo-empresa-' + String(name || '').replace(/\(demo\)/ig, '').normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+    }
+    var knownDemoCompanies = Object.create(null), verificationTrigger = null, verificationCard = null, verificationCloseTimer = null;
+    function closeVerification() {
+      if (verificationCloseTimer != null) { (win.clearTimeout || clearTimeout)(verificationCloseTimer); verificationCloseTimer = null; }
+      if (verificationTrigger) { verificationTrigger.setAttribute('aria-expanded', 'false'); verificationTrigger.removeAttribute('aria-describedby'); }
+      if (verificationCard) verificationCard.hidden = true;
+      verificationTrigger = null;
+    }
+    function deferVerificationClose() {
+      if (verificationCloseTimer != null) (win.clearTimeout || clearTimeout)(verificationCloseTimer);
+      verificationCloseTimer = (win.setTimeout || setTimeout)(closeVerification, 150);
+    }
+    function openVerification(trigger, job) {
+      closeVerification();
+      if (!verificationCard) {
+        verificationCard = browserNode('div', 'em-company-verification-card'); verificationCard.id = 'emCompanyVerificationCard';
+        verificationCard.setAttribute('role', 'tooltip');
+        verificationCard.onmouseenter = function () { if (verificationCloseTimer != null) { (win.clearTimeout || clearTimeout)(verificationCloseTimer); verificationCloseTimer = null; } };
+        verificationCard.onmouseleave = deferVerificationClose;
+      }
+      verificationCard.replaceChildren(browserNode('strong', 'em-company-verification-heading', 'Empresa verificada'));
+      verificationCard.appendChild(browserNode('p', '', 'O selo identifica uma empresa com verificação aprovada no +Empregos. A verificação não garante contratação ou resultado no processo seletivo.'));
+      if (isDemo(job)) verificationCard.appendChild(browserNode('p', 'em-company-verification-demo', 'Demonstração: neste exemplo, o selo é ilustrativo. A marca é apresentada sem vínculo com a empresa e as vagas são fictícias.'));
+      (trigger.closest('dialog') || doc.body).appendChild(verificationCard);
+      verificationCard.hidden = false; verificationTrigger = trigger;
+      trigger.setAttribute('aria-expanded', 'true'); trigger.setAttribute('aria-describedby', verificationCard.id);
+      var rect = trigger.getBoundingClientRect(), viewportWidth = win.innerWidth || 1024, viewportHeight = win.innerHeight || 800;
+      var width = Math.min(310, viewportWidth - 24); verificationCard.style.width = width + 'px';
+      var height = verificationCard.getBoundingClientRect().height || 190;
+      verificationCard.style.left = Math.max(12, Math.min(rect.left, viewportWidth - width - 12)) + 'px';
+      verificationCard.style.top = Math.max(12, rect.bottom + height + 20 > viewportHeight ? rect.top - height - 8 : rect.bottom + 8) + 'px';
+    }
+    function verificationSeal(job) {
+      var seal = browserNode('button', 'em-company-verification' + (isDemo(job) ? ' em-demo-verified' : '')); seal.type = 'button';
+      seal.setAttribute('aria-label', 'Entender o selo de empresa verificada' + (isDemo(job) ? ' (demonstração)' : ''));
+      seal.setAttribute('aria-controls', 'emCompanyVerificationCard'); seal.setAttribute('aria-expanded', 'false');
+      seal.innerHTML = '<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="10" fill="currentColor"/><path d="m7.5 12 3 3 6-6" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+      seal.appendChild(browserNode('span', 'em-company-verification-label', 'Empresa verificada'));
+      seal.onmouseenter = seal.onfocus = function () { openVerification(seal, job); };
+      seal.onmouseleave = seal.onblur = deferVerificationClose;
+      seal.onclick = function (event) { event.preventDefault(); event.stopPropagation(); openVerification(seal, job); };
+      return seal;
+    }
+    function companyIdentity(company, job, displayName, originalClick) {
+      if (!company || !job) return;
+      if (companyIsConfidential(job)) { company.textContent = 'Empresa confidencial'; company.onclick = null; return; }
+      var name = summaryText(displayName || job.empresa || company.textContent || 'Empresa');
+      var record = isDemo(job) ? null : companyRecord(job), target = '';
+      var legacyClick = originalClick || company.__emOriginalCompanyClick || company.onclick;
+      company.__emOriginalCompanyClick = legacyClick; company.onclick = null;
+      if (isDemo(job)) { target = demoCompanyKey(name); knownDemoCompanies[target] = {name:name, job:job}; }
+      else if (record && record.cnpj && (typeof win.empresaPodeTerPerfilPublicoEM !== 'function' || win.empresaPodeTerPerfilPublicoEM(record))) target = String(record.cnpj);
+      var link = browserNode(target ? 'a' : typeof legacyClick === 'function' ? 'button' : 'span', 'em-company-profile-link');
+      link.appendChild(browserNode('span', 'em-company-name', name));
+      if (target) {
+        link.href = String(win.location.pathname || '') + '?pagina=empresa-publica&id=' + encodeURIComponent(target);
+        link.setAttribute('href', link.href); link.setAttribute('aria-label', 'Ver página de ' + name);
+        link.onclick = function (event) {
+          if (event.ctrlKey || event.metaKey || event.shiftKey || event.altKey) return;
+          event.preventDefault(); event.stopPropagation(); closeVerification(); if (activeSummaryClose) activeSummaryClose(false);
+          if (typeof win.irPara === 'function') win.irPara('empresa-publica', target); else win.location.href = link.href;
+        };
+      } else if (typeof legacyClick === 'function') {
+        link.type = 'button'; link.onclick = function (event) { event.preventDefault(); event.stopPropagation(); closeVerification(); if (activeSummaryClose) activeSummaryClose(false); legacyClick.call(company, event); };
+      }
+      company.replaceChildren(link);
+      var verified = isDemo(job) || record && typeof win.empresaEstaVerificada === 'function' && win.empresaEstaVerificada(record);
+      if (verified) company.appendChild(verificationSeal(job));
+    }
+    function renderDemoCompanyProfile(id) {
+      if (!/^demo-empresa-/.test(String(id || ''))) return false;
+      var jobs = (Array.isArray(win.vagasPadrao) ? win.vagasPadrao : []).filter(function (job) { return isDemo(job) && !companyIsConfidential(job) && demoCompanyKey(job.empresa) === id; });
+      var saved = knownDemoCompanies[id], base = jobs[0] || saved && saved.job;
+      var page = doc.getElementById('pagina-empresa-publica');
+      if (!base || !page) return false;
+      if (!jobs.length) jobs = [base];
+      closeVerification();
+      if (typeof win.mostrarPagina === 'function') win.mostrarPagina('empresa-publica');
+      var old = doc.getElementById('emDemoCompanyProfile'); if (old) old.remove();
+      page.setAttribute('data-em-demo-profile', 'true');
+      var root = browserNode('section', 'em-demo-company-profile'); root.id = 'emDemoCompanyProfile';
+      var back = browserNode('a', 'em-dc-back', '← Voltar às vagas'); back.href = String(win.location.pathname || '') + '?pagina=home';
+      back.onclick = function (event) { event.preventDefault(); if (typeof win.irPara === 'function') win.irPara('home'); };
+      root.appendChild(back);
+      var header = browserNode('header', 'em-dc-header');
+      if (base.logo || base.logoEmpresa) { var logo = browserNode('img', 'em-dc-logo'); logo.src = base.logo || base.logoEmpresa; logo.alt = ''; header.appendChild(logo); }
+      var heading = browserNode('div', 'em-dc-heading');
+      heading.appendChild(browserNode('p', 'em-dc-eyebrow', 'Perfil de demonstração'));
+      var name = browserNode('h1', '', base.empresa); name.id = 'emDemoCompanyTitle'; heading.appendChild(name); header.appendChild(heading); header.appendChild(verificationSeal(base));
+      root.appendChild(header); root.setAttribute('aria-labelledby', name.id);
+      var about = browserNode('section', 'em-dc-about'); about.appendChild(browserNode('h2', '', 'Sobre a empresa'));
+      about.appendChild(browserNode('p', '', 'Esta página é um exemplo visual do +Empregos. A marca é apresentada sem vínculo com a empresa. As oportunidades abaixo são fictícias e não recebem candidaturas reais.')); root.appendChild(about);
+      var vacancies = browserNode('section', 'em-dc-vacancies'); vacancies.appendChild(browserNode('h2', '', 'Vagas de demonstração (' + jobs.length + ')'));
+      var list = browserNode('div', 'em-dc-jobs');
+      jobs.forEach(function (job) {
+        var card = browserNode('article', 'em-dc-job'), title = browserNode('h3', ''), link = browserNode('a', '', job.cargo);
+        link.href = String(win.location.pathname || '') + '?pagina=vaga&id=' + encodeURIComponent(job.id);
+        link.onclick = function (event) { if (event.ctrlKey || event.metaKey || event.shiftKey || event.altKey) return; event.preventDefault(); if (typeof win.irPara === 'function') win.irPara('vaga', job.id); };
+        title.appendChild(link); card.appendChild(title);
+        card.appendChild(browserNode('p', '', [job.cidade + (job.uf ? ' – ' + job.uf : ''), job.modalidade, job.contrato].filter(Boolean).join(' · ')));
+        card.appendChild(browserNode('strong', 'em-dc-salary', job.salario || 'A combinar')); list.appendChild(card);
+      });
+      vacancies.appendChild(list); root.appendChild(vacancies); page.appendChild(root);
+      if (typeof win.scrollTo === 'function') win.scrollTo(0, 0);
+      return true;
+    }
+    var originalPublicCompany = win.abrirPerfilEmpresaPublica;
+    win.abrirPerfilEmpresaPublica = function (id) {
+      if (renderDemoCompanyProfile(String(id || ''))) return;
+      var page = doc.getElementById('pagina-empresa-publica'), demoProfile = doc.getElementById('emDemoCompanyProfile');
+      if (page) page.removeAttribute('data-em-demo-profile'); if (demoProfile) demoProfile.remove();
+      if (typeof originalPublicCompany === 'function') return originalPublicCompany.apply(this, arguments);
+    };
+    win.addEventListener('click', function (event) { if (verificationTrigger && event.target && typeof event.target.closest === 'function' && !event.target.closest('.em-company-verification,.em-company-verification-card')) closeVerification(); }, true);
+    win.addEventListener('keydown', function (event) { if (event.key === 'Escape' && verificationTrigger) { event.preventDefault(); event.stopPropagation(); closeVerification(); } }, true);
+    win.addEventListener('scroll', closeVerification, true);
+    win.addEventListener('resize', closeVerification);
     var activeSummaryClose = null;
     function summaryText(value, limit) {
       var text = Array.isArray(value) ? value.join('; ') : String(value == null ? '' : value);
@@ -282,7 +397,7 @@
       var title = node('h2', 'em-js-title', summaryText(info.title)); title.id = 'emRecentSummaryTitle';
       heading.appendChild(title);
       var company = node('p', 'em-js-company', summaryText(info.company)); company.id = 'emRecentSummaryCompany';
-      demoVerifiedCompany(company, job);
+      companyIdentity(company, job, info.company);
       heading.appendChild(company); header.appendChild(heading);
       var close = node('button', 'em-js-close', '×'); close.type = 'button';
       close.setAttribute('aria-label', 'Fechar resumo da vaga'); close.setAttribute('autofocus', '');
@@ -438,6 +553,7 @@
       state.status.textContent = 'Vaga em visualização localizada na lista: ' + card.__emJobEntry.info.title;
     }
     function fillJobPanel(state, card) {
+      closeVerification();
       var entry = card.__emJobEntry, job = entry.job, info = entry.info;
       var panel = state.panel; panel.replaceChildren(); panel.scrollTop = 0;
       panel.setAttribute('data-vaga-id', String(job.id || ''));
@@ -462,9 +578,8 @@
 
       var title = browserNode('h2', 'em-jb-title', summaryText(info.title)); title.id = 'emJobPanelTitle'; title.tabIndex = -1;
       headerContent.appendChild(title);
-      var company = browserNode(entry.company.onclick ? 'button' : 'p', 'em-jb-company', summaryText(info.company));
-      if (entry.company.onclick) { company.type = 'button'; company.onclick = function () { entry.company.click(); }; }
-      demoVerifiedCompany(company, job);
+      var company = browserNode('div', 'em-jb-company');
+      companyIdentity(company, job, info.company, entry.company.__emOriginalCompanyClick);
       headerContent.appendChild(company);
       var headerMeta = browserNode('div', 'em-jb-header-meta');
       function headerFact(className, text, path) {
@@ -475,8 +590,8 @@
       headerFact('em-jb-location', info.location, '<path d="M20 10c0 6-8 12-8 12S4 16 4 10a8 8 0 1 1 16 0Z"/><circle cx="12" cy="10" r="2.5"/>');
       headerFact('em-jb-header-pay', info.salary, '<rect x="3" y="5" width="18" height="15" rx="2"/><path d="M3 8h18M16 12h5v5h-5z"/>');
       headerFact('em-jb-header-modality', job.modalidade || 'Modalidade não informada', '<rect x="3" y="7" width="18" height="14" rx="2"/><path d="M8 7V3h8v4M3 12h18"/>');
-      headerContent.appendChild(headerMeta);
       if (badges.children.length) headerContent.appendChild(badges);
+      headerContent.appendChild(headerMeta);
       var candidate = browserNode('button', 'em-jb-apply', 'Candidatar-se'); candidate.type = 'button';
       candidate.onclick = function () {
         if (isDemo(job)) { explainDemo(); return; }
@@ -646,6 +761,7 @@
       var current = cards.find(function (card) { return String(card.__emJobEntry.job.id) === String(id); });
       if (!current && !narrowJobBrowser()) current = cards[0];
       if (current) { selectBrowserJob(current, null, false); return; }
+      closeVerification();
       state.selected = null; markBrowserSelection(state, null); state.root.setAttribute('data-view', 'list');
       state.panel.removeAttribute('data-vaga-id'); state.panel.removeAttribute('data-em-highlighted'); state.panel.removeAttribute('aria-labelledby');
       state.panel.replaceChildren(browserNode('p', 'em-jb-empty', cards.length ? 'Selecione uma vaga para ver todos os detalhes.' : 'Nenhuma vaga corresponde aos filtros. Altere sua busca para ver outras oportunidades.'));
@@ -770,9 +886,9 @@
     var makeCard = win.criarCardVaga;
     if (typeof makeCard === 'function') win.criarCardVaga = function (job, featured) {
       var card = makeCard.apply(this, arguments);
+      if (card) companyIdentity(card.querySelector('.em-lista-empresa,.em-featured-company,.dz-empresa,.vaga-empresa'), job);
       if (!card || !isDemo(job)) return recentCard(card, job, featured);
       card.classList.add('em-public-demo-card');
-      demoVerifiedCompany(card.querySelector('.em-lista-empresa,.em-featured-company,.dz-empresa,.vaga-empresa'), job);
       var bar = featured && card.querySelector('.em-featured-badges');
       if (!bar) {
         bar = doc.createElement('div');
@@ -793,7 +909,7 @@
       if (!page) return;
       page.querySelectorAll('.em-demo-verified').forEach(function(seal) { seal.remove(); });
       if (!currentDemo()) { if (notice) notice.remove(); return; }
-      page.querySelectorAll('#emV63Nome,#detalheEmpresaCab,#vagaEmpresa').forEach(function(company) { demoVerifiedCompany(company, win.vagaAtual); });
+      page.querySelectorAll('#emV63Nome,#detalheEmpresaCab,#vagaEmpresa').forEach(function(company) { companyIdentity(company, win.vagaAtual); });
       if (!notice) {
         notice = doc.createElement('p'); notice.id = 'emPublicDemoJobNotice'; notice.className = 'em-public-demo-notice'; notice.setAttribute('role', 'note');
         notice.textContent = 'Vaga de demonstração. Esta oportunidade é fictícia e não recebe candidaturas reais.';
@@ -820,6 +936,7 @@
       if (!currentDemo() || !button || !button.closest('#pagina-vaga') || !/candidatar/i.test(button.textContent || '')) return;
       event.preventDefault(); event.stopImmediatePropagation(); explainDemo();
     }, true);
+    if (route === 'empresa-publica') renderDemoCompanyProfile(new URLSearchParams(win.location.search).get('id'));
     if (typeof win.renderizarVagas === 'function') win.renderizarVagas();
     detailNotice();
     installAreaCarousel(win);
