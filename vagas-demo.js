@@ -436,19 +436,28 @@
           brand.appendChild(image); header.appendChild(brand);
         }
       }
+      var headerContent = browserNode('div', 'em-jb-header-content'); header.appendChild(headerContent);
       var badges = browserNode('div', 'em-jb-badges');
       if (entry.highlighted) badges.appendChild(browserNode('span', 'em-jb-badge', 'Destaque'));
       if (enabled(job.urgente) || enabled(job.contratacaoUrgente)) badges.appendChild(browserNode('span', 'em-jb-badge em-jb-urgent', 'Contratação urgente'));
       if (entry.confidential) badges.appendChild(browserNode('span', 'em-jb-badge em-jb-confidential', 'Empresa confidencial'));
-      if (badges.children.length) header.appendChild(badges);
+
       var title = browserNode('h2', 'em-jb-title', summaryText(info.title)); title.id = 'emJobPanelTitle'; title.tabIndex = -1;
-      header.appendChild(title);
+      headerContent.appendChild(title);
       var company = browserNode(entry.company.onclick ? 'button' : 'p', 'em-jb-company', summaryText(info.company));
       if (entry.company.onclick) { company.type = 'button'; company.onclick = function () { entry.company.click(); }; }
-      header.appendChild(company);
-      header.appendChild(browserNode('p', 'em-jb-location', summaryText(info.location)));
-      header.appendChild(browserNode('p', 'em-jb-header-pay', summaryText(info.salary)));
-      header.appendChild(browserNode('p', 'em-jb-header-modality', summaryText(job.modalidade || 'Modalidade não informada')));
+      headerContent.appendChild(company);
+      var headerMeta = browserNode('div', 'em-jb-header-meta');
+      function headerFact(className, text, path) {
+        var fact = browserNode('p', className);
+        fact.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'+path+'</svg>';
+        fact.appendChild(browserNode('span', '', summaryText(text))); headerMeta.appendChild(fact);
+      }
+      headerFact('em-jb-location', info.location, '<path d="M20 10c0 6-8 12-8 12S4 16 4 10a8 8 0 1 1 16 0Z"/><circle cx="12" cy="10" r="2.5"/>');
+      headerFact('em-jb-header-pay', info.salary, '<rect x="3" y="5" width="18" height="15" rx="2"/><path d="M3 8h18M16 12h5v5h-5z"/>');
+      headerFact('em-jb-header-modality', job.modalidade || 'Modalidade não informada', '<rect x="3" y="7" width="18" height="14" rx="2"/><path d="M8 7V3h8v4M3 12h18"/>');
+      headerContent.appendChild(headerMeta);
+      if (badges.children.length) headerContent.appendChild(badges);
       var candidate = browserNode('button', 'em-jb-apply', 'Candidatar-se'); candidate.type = 'button';
       candidate.onclick = function () {
         if (isDemo(job)) { explainDemo(); return; }
@@ -464,7 +473,7 @@
       }
       savedState(); save.onclick = function () { entry.save.click(); savedState(); };
       var headerActions = browserNode('div', 'em-jb-header-actions');
-      headerActions.appendChild(candidate); headerActions.appendChild(save); header.appendChild(headerActions);
+      headerActions.appendChild(candidate); headerActions.appendChild(save); headerContent.appendChild(headerActions);
       panel.appendChild(header);
       var body = browserNode('div', 'em-jb-body'), facts = browserNode('dl', 'em-jb-facts');
       function addFact(label, value, salary) {
