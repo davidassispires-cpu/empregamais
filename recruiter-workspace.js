@@ -6,6 +6,15 @@ const esc=v=>String(v==null?'':v).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;'
 const ref=c=>String(c.vagaId||c.vaga_id||c.idVaga||'');
 function date(value){if(!value)return null;const m=String(value).match(/^(\d{2})\/(\d{2})\/(\d{4})$/);const d=m?new Date(+m[3],+m[2]-1,+m[1],12):new Date(value);return Number.isFinite(d.getTime())?d:null;}
 function stage(c){const s=norm(c.status||c.etapa||c.statusProcesso);return /cancelad|desist/.test(s)?'canceladas':/reprovad|nao selecionad|nao aprovad|encerrad/.test(s)?'reprovadas':/contratad/.test(s)?'contratadas':/entrevista/.test(s)?'entrevista':/contato/.test(s)?'contato':/aprovad|selecionad|finalista/.test(s)?'aprovadas':'avaliacao';}
+function hiredOn(c){return date(c.contratadoEm||c.dataContratacao||c.contratado_em||c.hired_at);}
+function hiredApplications(jobs,applications,{query='',job='',month=''}={}){
+ const ids=new Set(jobs.map(v=>String(v.id))),search=norm(query);
+ return applications.filter(c=>{
+  if(!ids.has(ref(c))||stage(c)!=='contratadas')return false;
+  const hired=hiredOn(c),period=hired?hired.getFullYear()+'-'+String(hired.getMonth()+1).padStart(2,'0'):'';
+  return (!search||norm(c.nome||c.candidatoNome||c.nomeCandidato||c.candidato).includes(search))&&(!job||ref(c)===String(job))&&(!month||period===month);
+ }).sort((a,b)=>(hiredOn(b)?.getTime()||0)-(hiredOn(a)?.getTime()||0));
+}
 function summary(jobs,applications,interviews,now=Date.now()){
  const ids=new Set(jobs.map(v=>String(v.id))),apps=applications.filter(c=>ids.has(ref(c))),counts={avaliacao:0,contato:0,entrevista:0,aprovadas:0,contratadas:0,reprovadas:0,canceladas:0};apps.forEach(c=>counts[stage(c)]++);
  const agenda=(interviews||[]).filter(i=>ids.has(String(i.job_ref||ref(apps.find(c=>String(c.id)===String(i.application_ref))||{}))));
@@ -72,8 +81,9 @@ function verificationUpdate(company,values,{request=false,confirmed=false,now=ne
 async function submitVerification(company,values,options={}){const next=verificationUpdate(company,values,options);if(typeof options.transport!=='function')throw Error('O serviço de salvamento está indisponível. Tente novamente.');const result=await options.transport(next);if(!result||result.sucesso!==true)throw Error(result?.erro||'O salvamento não foi confirmado. Tente novamente.');const returned=object(result.empresa);if(returned.cnpj&&!sameCompany(company,returned))throw Error('A resposta recebida não corresponde à sua empresa.');return Object.assign({},next,returned);}
 function performance(jobs,apps){return jobs.map(v=>{const rows=apps.filter(c=>ref(c)===String(v.id));const raw=v.visualizacoes??v.views??v.visualizacoesTotal,views=raw==null?null:Math.max(0,Number(raw)||0);return {job:v,received:rows.length,unseen:rows.filter(c=>c.visualizada!==true).length,hired:rows.filter(c=>stage(c)==='contratadas').length,views,conversion:views>0?Math.round(rows.length/views*1000)/10:null};});}
 function csv(rows){return '\ufeff'+rows.map(row=>row.map(v=>'"'+String(v==null?'':v).replace(/^[\s]*([=+@-])/,'\'$1').replace(/"/g,'""')+'"').join(';')).join('\r\n');}
-const core={date,stage,summary,completion,performance,csv,esc,verificationData,verificationState,verificationErrors,verificationUpdate,submitVerification};if(typeof module!=='undefined'&&module.exports)module.exports=core;if(typeof document==='undefined')return;
+const core={date,stage,summary,completion,performance,csv,esc,verificationData,verificationState,verificationErrors,verificationUpdate,submitVerification,hiredOn,hiredApplications};if(typeof module!=='undefined'&&module.exports)module.exports=core;if(typeof document==='undefined')return;
 let root,ctx,identity='',generation=0,data=null,pending=null,pulled=0,term='',jobFilter='',monthFilter='';
+const hireRefreshers=new WeakMap();
 const labels={avaliacao:'Em avaliação',contato:'Em contato',entrevista:'Em entrevista',aprovadas:'Aprovados',contratadas:'Contratados',reprovadas:'Reprovados',canceladas:'Cancelados'};
 const name=c=>c.nome||c.candidatoNome||c.nomeCandidato||c.candidato||'Candidato';
 const fmt=v=>{const d=date(v);return d?d.toLocaleDateString('pt-BR'):'Não informada';};
@@ -162,12 +172,31 @@ function verification(target){
  target.querySelector('[data-v-save]').onclick=()=>save(false);form.onsubmit=event=>{event.preventDefault();save(true);};
 }
 function verificationIcon(name){return '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'+(name==='arrow'?'<path d="M5 12h14m-6-6 6 6-6 6"/>':'<path d="M12 3 3 7v5c0 5 9 9 9 9s9-4 9-9V7Z"/><path d="m8 12 3 3 5-6"/>')+'</svg>';}
-function hires(target){const rows=summary(ctx.jobs,apps(),[]).apps.filter(c=>stage(c)==='contratadas');target.innerHTML='<section class="rw-card"><header><div><h2>Contratações registradas</h2><p>'+rows.length+' contratação(ões) nos processos da empresa.</p></div><button data-hires-export>Exportar CSV</button></header><div class="rw-filters"><label>Buscar candidato<input type="search" placeholder="Nome do profissional" value="'+esc(term)+'"></label><label>Vaga<select><option value="">Todas as vagas</option>'+ctx.jobs.map(v=>'<option value="'+esc(v.id)+'">'+esc(v.cargo||v.titulo)+'</option>').join('')+'</select></label><label>Mês da contratação<input type="month" value="'+esc(monthFilter)+'"></label><button data-clear>Limpar filtros</button></div><div data-hire-results></div></section>';
- const search=target.querySelector('input[type=search]'),select=target.querySelector('select'),month=target.querySelector('[type=month]');select.value=jobFilter;
- function filtered(){return rows.filter(c=>{const d=date(c.contratadoEm||c.dataContratacao||c.contratado_em||c.hired_at);const ym=d?d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0'):'';return (!term||norm(name(c)).includes(norm(term)))&&(!jobFilter||ref(c)===jobFilter)&&(!monthFilter||ym===monthFilter);});}
- function draw(){const list=filtered(),box=target.querySelector('[data-hire-results]');box.innerHTML='<p role="status">'+list.length+' resultado(s)</p>'+(list.length?'<div class="rw-table"><table><thead><tr><th>Profissional</th><th>Vaga</th><th>Data da contratação</th><th>Tempo no processo</th><th>Ação</th></tr></thead><tbody>'+list.map(c=>{const v=ctx.jobs.find(v=>String(v.id)===ref(c))||{},d=date(c.contratadoEm||c.dataContratacao||c.contratado_em||c.hired_at),start=date(c.candidatadoEm||c.criadoEm||c.data);return '<tr><td><strong>'+esc(name(c))+'</strong><small>'+esc(c.email||c.candidatoEmail||'')+'</small></td><td>'+esc(v.cargo||v.titulo||c.vaga||'Não informada')+'</td><td>'+fmt(d)+'</td><td>'+(d&&start&&d>=start?Math.floor((d-start)/86400000)+' dia(s)':'Não informado')+'</td><td><button data-manage="'+esc(ref(c))+'">Ver processo</button></td></tr>';}).join('')+'</tbody></table></div>':'<p class="rw-empty">Nenhuma contratação neste filtro. Ao alterar a etapa de uma candidatura para Contratado, ela aparecerá aqui.</p>');wire(box);}
- search.oninput=()=>{term=search.value;draw();};select.onchange=()=>{jobFilter=select.value;draw();};month.onchange=()=>{monthFilter=month.value;draw();};target.querySelector('[data-clear]').onclick=()=>{term=jobFilter=monthFilter='';search.value=select.value=month.value='';draw();};target.querySelector('[data-hires-export]').onclick=()=>download('contratacoes.csv',[['Profissional','Vaga','E-mail','Data da contratação']].concat(filtered().map(c=>[name(c),(ctx.jobs.find(v=>String(v.id)===ref(c))||{}).cargo||c.vaga,c.email||c.candidatoEmail,fmt(c.contratadoEm||c.dataContratacao||c.contratado_em||c.hired_at)])));draw();}
-function render(){if(!root||!ctx)return;const s=summary(ctx.jobs,apps(),data&&data.interviews);paintCounters(s);if(ctx.view==='overview')overview();const target=root.getElementById('emRecruiterWorkspace');if(target&&!target.firstChild){target.className='rw';if(ctx.view==='settings')settings(target);if(ctx.view==='verification')verification(target);if(ctx.view==='hires')hires(target);}}
+function hires(target){
+ target.innerHTML='<section class="rw-card"><header><div><h2>Contratações registradas</h2><p data-hires-total></p></div><button data-hires-export>Exportar CSV</button></header><div class="rw-filters"><label>Buscar candidato<input type="search" placeholder="Nome do profissional" value="'+esc(term)+'"></label><label>Vaga<select><option value="">Todas as vagas</option></select></label><label>Mês da contratação<input type="month" value="'+esc(monthFilter)+'"></label><button data-clear>Limpar filtros</button></div><div data-hire-results></div></section>';
+ const search=target.querySelector('input[type=search]'),select=target.querySelector('select'),month=target.querySelector('[type=month]'),box=target.querySelector('[data-hire-results]');
+ let lastJobs='',lastResults='';
+ function filtered(rows){return hiredApplications(ctx.jobs,rows,{query:term,job:jobFilter,month:monthFilter});}
+ function draw(){
+  if(jobFilter&&!ctx.jobs.some(v=>String(v.id)===jobFilter))jobFilter='';
+  const rows=apps(),all=hiredApplications(ctx.jobs,rows),list=filtered(rows);
+  target.querySelector('[data-hires-total]').textContent=all.length+' '+(all.length===1?'contratação registrada':'contratações registradas')+' nos processos da empresa.';
+  const options='<option value="">Todas as vagas</option>'+ctx.jobs.map(v=>'<option value="'+esc(v.id)+'">'+esc(v.cargo||v.titulo)+'</option>').join('');
+  if(options!==lastJobs){lastJobs=options;select.innerHTML=options;select.value=jobFilter;}
+  const html='<p role="status">'+list.length+' resultado(s)</p>'+(list.length?'<div class="rw-table"><table><thead><tr><th>Profissional</th><th>Vaga</th><th>Data da contratação</th><th>Tempo no processo</th><th>Ação</th></tr></thead><tbody>'+list.map(c=>{const v=ctx.jobs.find(v=>String(v.id)===ref(c))||{},d=hiredOn(c),start=date(c.candidatadoEm||c.criadoEm||c.data);return '<tr><td><strong>'+esc(name(c))+'</strong><small>'+esc(c.email||c.candidatoEmail||'')+'</small></td><td>'+esc(v.cargo||v.titulo||c.vaga||'Não informada')+'</td><td>'+fmt(d)+'</td><td>'+(d&&start&&d>=start?Math.floor((d-start)/86400000)+' dia(s)':'Não informado')+'</td><td><button data-manage="'+esc(ref(c))+'">Ver processo</button></td></tr>';}).join('')+'</tbody></table></div>':'<p class="rw-empty">Nenhuma contratação neste filtro. Ao alterar a etapa de uma candidatura para Contratado, ela aparecerá aqui.</p>');
+  if(html!==lastResults){lastResults=html;box.innerHTML=html;wire(box);}
+ }
+ search.oninput=()=>{term=search.value;draw();};select.onchange=()=>{jobFilter=select.value;draw();};month.onchange=()=>{monthFilter=month.value;draw();};
+ target.querySelector('[data-clear]').onclick=()=>{term=jobFilter=monthFilter='';search.value=select.value=month.value='';draw();};
+ target.querySelector('[data-hires-export]').onclick=()=>download('contratacoes.csv',[['Profissional','Vaga','E-mail','Data da contratação']].concat(filtered(apps()).map(c=>[name(c),(ctx.jobs.find(v=>String(v.id)===ref(c))||{}).cargo||c.vaga,c.email||c.candidatoEmail,fmt(hiredOn(c))])));
+ hireRefreshers.set(target,draw);draw();
+}
+function render(){
+ if(!root||!ctx)return;const s=summary(ctx.jobs,apps(),data&&data.interviews);paintCounters(s);if(ctx.view==='overview')overview();
+ const target=root.getElementById('emRecruiterWorkspace');if(!target)return;
+ if(ctx.view==='hires'){if(!target.firstChild){target.className='rw';hires(target);}else hireRefreshers.get(target)?.();return;}
+ if(!target.firstChild){target.className='rw';if(ctx.view==='settings')settings(target);if(ctx.view==='verification')verification(target);}
+}
 async function refresh(force=false){if(!ctx||!root)return;render();if(!global.EMRecruiterPremium?.load)return;if(pending)return pending;if(!force&&data&&Date.now()-pulled<30000){render();return;}const rev=generation;pending=global.EMRecruiterPremium.load(force).then(result=>{if(rev!==generation)return;data=result;pulled=Date.now();render();}).catch(error=>{if(rev!==generation)return;const target=root.querySelector('[data-rw-agenda-status]');if(target)target.textContent='Não foi possível consultar a agenda: '+error.message;}).finally(()=>{if(rev===generation)pending=null;});return pending;}
 const VERIFICATION_CSS=String.raw`
 .rw.rw-verification{width:100%;max-width:none;min-width:0;color:#334155;font-family:inherit}
@@ -236,6 +265,7 @@ function sync(shadow,context){const next=String(context.company.cnpj||context.co
 global.EMRecruiterWorkspace={sync,refresh};
 let openedQueued=false;
 new MutationObserver(()=>{if(openedQueued||!ctx||!ctx.demo)return;openedQueued=true;requestAnimationFrame(()=>{openedQueued=false;const modal=document.getElementById('emCandidateDetails');if(!modal||!modal.open)return;const id=modal.querySelector('[data-gc27-stage]')?.dataset.gc27Stage;if(!id)return;const rows=apps(),c=rows.find(c=>String(c.id)===String(id));if(c&&c.visualizada!==true&&ctx.jobs.some(v=>String(v.id)===ref(c))){c.visualizada=true;global.EmpregaMaisEtapasCandidatura.salvarDemo(rows);render();}});}).observe(document.body,{childList:true,subtree:true,attributes:true,attributeFilter:['open']});
-document.addEventListener('empregamais:candidaturas-sincronizadas',()=>{if(ctx){pulled=0;render();}});global.addEventListener('empregamais:entrevistas-atualizadas',()=>refresh(true));
+for(const event of ['empregamais:candidaturas-atualizadas','empregamais:candidaturas-sincronizadas'])document.addEventListener(event,()=>{if(ctx){pulled=0;render();}});
+global.addEventListener('empregamais:entrevistas-atualizadas',()=>refresh(true));
 })(typeof window!=='undefined'?window:globalThis);
 

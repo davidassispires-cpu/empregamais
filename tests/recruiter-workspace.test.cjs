@@ -58,3 +58,21 @@ test('a confirmed submission sends the request and rejects a response for anothe
  await assert.rejects(core.submitVerification(company,fields(),{transport:async()=>({sucesso:true,empresa:{cnpj:'99999999000199'}})}),/não corresponde/);
 });
 
+test('marking an owned application as Contratado adds it to hires and changing its stage removes it',()=>{
+ const jobs=[{id:'own',status:'encerrada'}],rows=[{id:'candidate',vagaId:'own',status:'Aprovado'},{id:'other',vagaId:'other-company',status:'Contratado'}];
+ assert.equal(core.hiredApplications(jobs,rows).length,0);
+ Object.assign(rows[0],{status:'Contratado',contratadoEm:'2026-10-19T12:00:00Z'});
+ assert.deepEqual(core.hiredApplications(jobs,rows).map(c=>c.id),['candidate']);
+ rows[0].status='Em entrevista';assert.equal(core.hiredApplications(jobs,rows).length,0);
+});
+test('hire filters use current records and match candidate, job and hiring month together',()=>{
+ const jobs=[{id:1},{id:2}],rows=[{id:'a',vaga_id:'1',candidatoNome:'Júlia Exemplo',status:'Contratado',hired_at:'2026-10-19T12:00:00Z'},{id:'b',idVaga:2,nome:'Outra pessoa',status:'Contratada',dataContratacao:'2026-09-15T12:00:00Z'}];
+ assert.deepEqual(core.hiredApplications(jobs,rows,{query:'julia',job:'1',month:'2026-10'}).map(c=>c.id),['a']);
+ assert.equal(core.hiredApplications(jobs,rows,{month:'2026-11'}).length,0);
+ rows[0].nome='Nome atualizado';assert.equal(core.hiredApplications(jobs,rows,{query:'atualizado'}).length,1);
+});
+test('hires preserve missing dates without inventing them and put recent hires first',()=>{
+ const rows=[{id:'old',vagaId:'j',status:'Contratado',contratado_em:'2026-09-10T12:00:00Z'},{id:'unknown',vagaId:'j',status:'Contratado'},{id:'new',vagaId:'j',status:'Contratado',contratadoEm:'2026-10-19T12:00:00Z'}];
+ assert.deepEqual(core.hiredApplications([{id:'j'}],rows).map(c=>c.id),['new','old','unknown']);assert.equal(core.hiredOn(rows[1]),null);assert.equal(core.hiredApplications([{id:'j'}],rows,{month:'2026-10'}).length,1);assert.equal(rows[0].id,'old');
+});
+

@@ -72,7 +72,9 @@
     var patch={};fields.forEach(function(f){if(c[f]!==undefined&&JSON.stringify(c[f])!==JSON.stringify(old[f]))patch[f]=c[f];});
     if(Object.keys(patch).length){var current=pending[id]||{application_ref:id,job_ref:job(c),state:{}};Object.assign(current.state,patch);pending[id]=recipient(c,current);}
    });
-   var result=originalSave.apply(this,arguments);if(owner&&Object.keys(pending).length){remember();show('Salvo neste navegador. Sincronizando…');clearTimeout(timer);timer=setTimeout(function(){sync(true);},300);}return result;
+   var result=originalSave.apply(this,arguments);
+   document.dispatchEvent(new Event('empregamais:candidaturas-atualizadas'));
+   if(owner&&Object.keys(pending).length){remember();show('Salvo neste navegador. Sincronizando…');clearTimeout(timer);timer=setTimeout(function(){sync(true);},300);}return result;
   };
   function recordOpenedApplication(){
    var modal=document.getElementById('emCandidateDetails');if(!modal||!modal.open||!cnpj()||!token()||new URLSearchParams(location.search).get('pagina')==='demo-recrutador')return;
@@ -121,3 +123,4 @@
  function init(){install();installReports();}
  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init,{once:true});else init();
 })();
+
