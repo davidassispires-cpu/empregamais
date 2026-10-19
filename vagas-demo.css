@@ -714,7 +714,7 @@ html body #pagina-home #listaVagas .em-recent-discreet .em-r4-distance svg {disp
 html body #pagina-home #listaVagas .em-recent-discreet .em-r4-salary {
   --candidate-contrast-ink:#116b3a!important;
   grid-area:salary!important;display:block!important;justify-self:end!important;margin:0!important;padding:0!important;
-  color:#116b3a!important;font-size:17px!important;font-weight:700!important;line-height:1.4!important;text-align:right!important;
+  color:#116b3a!important;font-size:13px!important;font-weight:500!important;line-height:1.4!important;text-align:right!important;
   white-space:normal!important;overflow-wrap:anywhere!important;
 }
 html body #pagina-home #listaVagas .em-recent-discreet .em-r4-actions {
@@ -778,7 +778,7 @@ html body #pagina-home #listaVagas .em-recent-discreet :is(.em-selo-nova-v31,.em
     grid-template-areas:"identity facts actions save" "identity salary actions save"!important;
     gap:8px 16px!important;
   }
-  html body #pagina-home #listaVagas .em-recent-discreet .em-r4-salary {justify-self:start!important;text-align:left!important;font-size:15px!important}
+  html body #pagina-home #listaVagas .em-recent-discreet .em-r4-salary {justify-self:start!important;text-align:left!important;font-size:13px!important}
 }
 @container recent-vacancies (max-width:560px) {
   html body #pagina-home #listaVagas article.em-recent-discreet {
