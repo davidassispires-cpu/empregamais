@@ -987,31 +987,63 @@ html body #pagina-home #emJobBrowser .em-job-panel {
   border-color:#dce4ed!important;border-radius:12px!important;box-shadow:0 5px 22px #10274407!important;
   scrollbar-width:thin!important;scrollbar-color:#b8c4d2 transparent!important;
 }
-html body #pagina-home #emJobBrowser .em-jb-header {padding:20px 22px!important;border-bottom-color:#e8edf3!important}
-html body #pagina-home #emJobBrowser .em-jb-badges {gap:6px!important;margin-bottom:8px!important}
+html body #pagina-home #emJobBrowser .em-job-panel,
+html body #pagina-home #emJobBrowser .em-job-panel * {
+  font-family:'EM Recent Montserrat',Montserrat,Arial,sans-serif!important;font-synthesis:none!important;text-align:center!important;
+}
+html body #pagina-home #emJobBrowser .em-jb-header {
+  position:relative!important;padding:24px 52px 22px!important;border-bottom-color:#e8edf3!important;
+}
+html body #pagina-home #emJobBrowser .em-jb-badges {justify-content:center!important;gap:6px!important;margin-bottom:10px!important}
 html body #pagina-home #emJobBrowser .em-jb-badge {padding:3px 7px!important;font-weight:500!important}
 html body #pagina-home #emJobBrowser .em-jb-title {margin-bottom:6px!important;font-size:22px!important;line-height:1.35!important}
-html body #pagina-home #emJobBrowser .em-jb-company {margin-bottom:4px!important;font-size:13px!important;line-height:1.4!important}
+html body #pagina-home #emJobBrowser .em-jb-company {margin:0 auto 5px!important;font-size:13px!important;line-height:1.5!important}
 html body #pagina-home #emJobBrowser .em-jb-location {font-size:12px!important;font-weight:400!important;line-height:1.5!important}
-html body #pagina-home #emJobBrowser .em-jb-actions {gap:9px!important;margin-top:14px!important}
-html body #pagina-home #emJobBrowser :is(.em-jb-apply,.em-jb-save) {min-height:40px!important;padding:9px 18px!important;border-radius:7px!important;font-size:13px!important}
-html body #pagina-home #emJobBrowser .em-jb-body {padding:20px 22px!important}
-html body #pagina-home #emJobBrowser .em-jb-facts {
-  gap:13px 18px!important;margin:0 0 22px!important;padding:16px!important;
-  border:1px solid #e8edf3!important;border-radius:9px!important;background:#f8fafc!important;
+html body #pagina-home #emJobBrowser .em-jb-save {
+  position:absolute!important;top:16px!important;right:16px!important;display:inline-flex!important;flex:none!important;
+  width:34px!important;min-width:34px!important;max-width:34px!important;height:34px!important;min-height:34px!important;
+  margin:0!important;padding:8px!important;border-radius:7px!important;
 }
-html body #pagina-home #emJobBrowser .em-jb-fact dt {--candidate-contrast-ink:#64748b!important;margin-bottom:3px!important;color:#64748b!important;font-size:11px!important;line-height:1.4!important}
+html body #pagina-home #emJobBrowser .em-jb-save svg {display:block!important;width:18px!important;height:18px!important;flex:none!important}
+html body #pagina-home #emJobBrowser .em-jb-body {display:grid!important;gap:14px!important;padding:20px!important;background:#f8fafc!important}
+html body #pagina-home #emJobBrowser .em-jb-facts {
+  gap:0!important;margin:0!important;padding:0!important;overflow:hidden!important;
+  border:1px solid #dfe7f0!important;border-radius:10px!important;background:#f2f7fc!important;
+}
+html body #pagina-home #emJobBrowser .em-jb-fact {
+  display:flex!important;flex-direction:column!important;align-items:center!important;justify-content:center!important;
+  gap:4px!important;min-height:76px!important;padding:13px 12px!important;border:0!important;
+}
+html body #pagina-home #emJobBrowser .em-jb-fact:nth-child(2n) {border-left:1px solid #dfe7f0!important}
+html body #pagina-home #emJobBrowser .em-jb-fact:nth-child(n+3) {border-top:1px solid #dfe7f0!important}
+html body #pagina-home #emJobBrowser .em-jb-fact:last-child:nth-child(odd) {grid-column:1/-1!important}
+html body #pagina-home #emJobBrowser .em-jb-fact dt {--candidate-contrast-ink:#64748b!important;margin:0!important;color:#64748b!important;font-size:11px!important;line-height:1.4!important}
 html body #pagina-home #emJobBrowser .em-jb-fact dd {font-size:13px!important;font-weight:500!important;line-height:1.5!important}
 html body #pagina-home #emJobBrowser .em-jb-pay dd {font-weight:500!important}
-html body #pagina-home #emJobBrowser .em-jb-section {margin:20px 0 0!important;padding:18px 0 0!important;border-top:1px solid #e9eef4!important}
-html body #pagina-home #emJobBrowser .em-jb-facts+.em-jb-section {margin-top:0!important;padding-top:0!important;border-top:0!important}
+html body #pagina-home #emJobBrowser .em-jb-section {
+  min-width:0!important;margin:0!important;padding:18px!important;border:1px solid #dfe7f0!important;border-radius:10px!important;background:#fff!important;
+}
 html body #pagina-home #emJobBrowser .em-jb-section h3 {margin-bottom:8px!important;font-size:15px!important;font-weight:600!important}
 html body #pagina-home #emJobBrowser .em-jb-section p {--candidate-contrast-ink:#4b5b6e!important;color:#4b5b6e!important;font-size:13px!important;line-height:1.8!important}
-html body #pagina-home #emJobBrowser .em-jb-demo {font-size:11px!important}
+html body #pagina-home #emJobBrowser .em-jb-date {margin:4px 0 0!important}
+html body #pagina-home #emJobBrowser .em-jb-full {justify-self:center!important}
+html body #pagina-home #emJobBrowser .em-jb-footer {
+  position:static!important;display:grid!important;grid-template-columns:minmax(0,1fr)!important;gap:10px!important;
+  width:100%!important;margin:0!important;padding:16px 20px!important;border:0!important;border-top:1px solid #dfe7f0!important;
+  border-radius:0!important;background:#fff!important;box-shadow:none!important;
+}
+html body #pagina-home #emJobBrowser .em-jb-footer .em-jb-apply {
+  display:flex!important;flex:none!important;width:100%!important;max-width:none!important;min-height:48px!important;
+  margin:0!important;padding:12px 18px!important;border-radius:8px!important;font-size:14px!important;
+}
+html body #pagina-home #emJobBrowser .em-jb-footer .em-jb-demo {
+  --candidate-contrast-ink:#68768a!important;margin:0!important;padding:0!important;border:0!important;background:none!important;
+  color:#68768a!important;font-size:10px!important;line-height:1.6!important;
+}
 @media(max-width:1100px) {
   html body #pagina-home #emJobBrowser {gap:18px!important}
-  html body #pagina-home #emJobBrowser .em-jb-header,
   html body #pagina-home #emJobBrowser .em-jb-body {padding:18px!important}
+  html body #pagina-home #emJobBrowser .em-jb-header {padding:22px 48px!important}
   html body #pagina-home #emJobBrowser .em-jb-title {font-size:21px!important}
 }
 @media(max-width:900px) {
@@ -1025,13 +1057,21 @@ html body #pagina-home #emJobBrowser .em-jb-demo {font-size:11px!important}
   html body #pagina-home #emJobBrowser #listaVagas .em-r4-footer .em-r4-date {font-size:10px!important}
   html body #pagina-home #emJobBrowser #listaVagas .em-r4-terms {margin-left:0!important;padding-left:0!important;border-left:0!important}
   html body #pagina-home #emJobBrowser .em-jb-title {font-size:20px!important}
-  html body #pagina-home #emJobBrowser .em-jb-facts {padding:13px!important;gap:12px!important}
+  html body #pagina-home #emJobBrowser .em-jb-header {padding:22px 48px 20px!important}
+  html body #pagina-home #emJobBrowser .em-jb-save {top:12px!important;right:12px!important}
+  html body #pagina-home #emJobBrowser .em-jb-body {padding:14px!important;gap:12px!important}
+  html body #pagina-home #emJobBrowser .em-jb-facts {grid-template-columns:minmax(0,1fr)!important}
+  html body #pagina-home #emJobBrowser .em-jb-fact {min-height:68px!important;padding:12px!important}
+  html body #pagina-home #emJobBrowser .em-jb-fact:nth-child(2n) {border-left:0!important}
+  html body #pagina-home #emJobBrowser .em-jb-fact+.em-jb-fact {border-top:1px solid #dfe7f0!important}
+  html body #pagina-home #emJobBrowser .em-jb-section {padding:16px!important}
+  html body #pagina-home #emJobBrowser .em-jb-footer {padding:14px!important}
 }
 @media(pointer:coarse) {
   html body #pagina-home #emJobBrowser #listaVagas .em-r4-apply {height:44px!important;min-height:44px!important}
   html body #pagina-home #emJobBrowser #listaVagas .em-r4-footer .em-r4-details {min-height:36px!important}
   html body #pagina-home #emJobBrowser #listaVagas .em-r4-save {width:36px!important;min-width:36px!important;max-width:36px!important;height:36px!important;min-height:36px!important}
-  html body #pagina-home #emJobBrowser :is(.em-jb-apply,.em-jb-save) {min-height:44px!important}
+  html body #pagina-home #emJobBrowser .em-jb-save {width:40px!important;min-width:40px!important;max-width:40px!important;height:40px!important;min-height:40px!important;padding:10px!important}
 }
 @media(prefers-reduced-motion:reduce) {
   html body #pagina-home #emJobBrowser #listaVagas article.em-recent-discreet {transition:none!important}
