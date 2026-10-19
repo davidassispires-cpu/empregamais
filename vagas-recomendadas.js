@@ -471,3 +471,67 @@ html body.cp-shell-active .cp-header .cp-navigation .cp-message-count{top:9px;ri
  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',setup,{once:true});else setup();window.addEventListener('load',setup,{once:true});
 })();
 
+/* Mobile candidate navigation: reuse the existing SPA routes and permissions. */
+(function(){
+ 'use strict';
+ if(typeof document==='undefined')return;
+ var media=window.matchMedia('(max-width: 767px)'),bar,sheet,queued=false,watched;
+ var primary=[['painel-candidato','Início','home'],['candidaturas','Candidaturas','case'],['messages','Mensagens','chat'],['perfil','Perfil','user']];
+ var paths={home:'<path d="m3 10 9-7 9 7v10H15v-7H9v7H3Z"/>',case:'<rect x="3" y="7" width="18" height="14" rx="2"/><path d="M8 7V3h8v4M3 12h18M10 12v3h4v-3"/>',chat:'<path d="M3 3h18v14H8l-5 4Z M7 7h10M7 11h7"/>',user:'<circle cx="12" cy="7" r="4"/><path d="M4 21v-2a8 8 0 0 1 16 0v2Z"/>',more:'<circle cx="5" cy="12" r="1"/><circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/>'};
+ function icon(key){return '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'+paths[key]+'</svg>';}
+ function source(){return document.querySelector('#cpCandidateHeader .cp-navigation');}
+ function close(){if(sheet&&sheet.open)sheet.close();if(bar)bar.querySelector('[data-mobile-more]').setAttribute('aria-expanded','false');}
+ function navigate(route){var nav=source(),button=nav&&nav.querySelector('button[data-route="'+route+'"]');close();if(button){button.click();requestAnimationFrame(function(){var active=document.querySelector('.pagina.ativa'),heading=active&&active.querySelector('h1,h2');if(heading){heading.setAttribute('tabindex','-1');heading.focus({preventScroll:true});}});}}
+ function more(){
+  var nav=source();if(!nav)return;
+  if(!sheet){sheet=document.createElement('dialog');sheet.id='emMobileCandidateMore';sheet.setAttribute('aria-labelledby','emMobileMoreTitle');document.body.appendChild(sheet);sheet.addEventListener('close',function(){bar.querySelector('[data-mobile-more]').setAttribute('aria-expanded','false');bar.querySelector('[data-mobile-more]').focus({preventScroll:true});});sheet.addEventListener('click',function(e){var button=e.target.closest('button');if(button&&button.dataset.mobileRoute)navigate(button.dataset.mobileRoute);else if(button&&button.hasAttribute('data-mobile-close'))close();else if(e.target===sheet){var r=sheet.getBoundingClientRect();if(e.clientX<r.left||e.clientX>r.right||e.clientY<r.top||e.clientY>r.bottom)close();}});}
+  sheet.innerHTML='<header><h2 id="emMobileMoreTitle">Mais opções</h2><button type="button" data-mobile-close aria-label="Fechar menu">×</button></header><div class="em-mobile-more-links"></div>';
+  nav.querySelectorAll('button[data-route]').forEach(function(original){if(primary.some(function(p){return p[0]===original.dataset.route;})||original.hidden)return;var button=document.createElement('button');button.type='button';button.dataset.mobileRoute=original.dataset.route;var label=original.querySelector('span:not(.cp-card-icon):not(.cp-message-count)');button.textContent=label?label.textContent.trim():original.textContent.trim();if(original.getAttribute('aria-current')==='page')button.setAttribute('aria-current','page');sheet.querySelector('.em-mobile-more-links').appendChild(button);});
+  sheet.showModal();bar.querySelector('[data-mobile-more]').setAttribute('aria-expanded','true');
+ }
+ function update(){
+  queued=false;
+  if(!media.matches){close();return;}
+  var nav=source();if(!nav||!document.body.classList.contains('cp-shell-active')){close();return;}
+  if(!bar){
+   bar=document.createElement('nav');bar.id='emMobileCandidateNav';bar.setAttribute('aria-label','Navegação do candidato');
+   bar.innerHTML=primary.map(function(p){return '<button type="button" data-mobile-route="'+p[0]+'">'+icon(p[2])+'<span>'+p[1]+'</span>'+(p[0]==='messages'?'<small hidden aria-label="Mensagens não lidas"></small>':'')+'</button>';}).join('')+'<button type="button" data-mobile-more aria-haspopup="dialog" aria-controls="emMobileCandidateMore" aria-expanded="false">'+icon('more')+'<span>Mais</span></button>';
+   bar.addEventListener('click',function(e){var b=e.target.closest('button');if(!b)return;if(b.hasAttribute('data-mobile-more'))more();else navigate(b.dataset.mobileRoute);});document.body.appendChild(bar);
+  }
+  if(watched!==nav){watched=nav;new MutationObserver(schedule).observe(nav,{subtree:true,childList:true,characterData:true,attributes:true,attributeFilter:['aria-current','hidden']});}
+  var selected=nav.querySelector('button[aria-current="page"]'),route=selected&&selected.dataset.route,extra=route&&!primary.some(function(p){return p[0]===route;});
+  bar.querySelectorAll('button').forEach(function(b){var on=b.dataset.mobileRoute===route||b.hasAttribute('data-mobile-more')&&extra;if(on&&b.getAttribute('aria-current')!=='page')b.setAttribute('aria-current','page');else if(!on&&b.hasAttribute('aria-current'))b.removeAttribute('aria-current');});
+  var originalBadge=nav.querySelector('.cp-message-count'),badge=bar.querySelector('small'),count=originalBadge&&!originalBadge.hidden?originalBadge.textContent.trim():'';if(badge.textContent!==count)badge.textContent=count;badge.hidden=!count||count==='0';
+ }
+ function schedule(){if(!queued){queued=true;requestAnimationFrame(update);}}
+ function start(){
+  var style=document.createElement('style');style.textContent=`
+ #emMobileCandidateNav{display:none!important}
+ @media(max-width:767px){
+ html body.cp-shell-active{padding-bottom:calc(76px + env(safe-area-inset-bottom,0px))!important}
+ html body.cp-shell-active #cpCandidateHeader#cpCandidateHeader#cpCandidateHeader .cp-navigation{display:none!important}
+ html body.cp-shell-active #emMobileCandidateNav{display:grid!important;grid-template-columns:repeat(5,minmax(0,1fr))!important;position:fixed!important;inset:auto 0 0!important;z-index:4000!important;width:100%!important;box-sizing:border-box!important;padding:0 4px env(safe-area-inset-bottom,0px)!important;margin:0!important;background:#fff!important;border:0!important;border-top:1px solid #e5e7eb!important;box-shadow:0 -3px 12px #142d4510!important}
+ html body #emMobileCandidateNav button{position:relative!important;display:flex!important;flex-direction:column!important;align-items:center!important;justify-content:center!important;gap:5px!important;min-width:0!important;min-height:68px!important;padding:10px 0 8px!important;margin:0!important;background:transparent!important;color:#666b73!important;border:0!important;border-radius:0!important;box-shadow:none!important;transform:none!important;font:500 10px/1.2 Montserrat,Arial,sans-serif!important;cursor:pointer!important}
+ html body #emMobileCandidateNav button span{font:inherit!important;color:inherit!important;white-space:nowrap!important}
+ html body #emMobileCandidateNav svg{width:23px!important;height:23px!important;color:inherit!important;flex-shrink:0!important}
+ html body #emMobileCandidateNav button[aria-current=page]{color:#0080c9!important;font-weight:750!important}
+ html body #emMobileCandidateNav button[aria-current=page]::before{content:'';position:absolute;top:0;left:20%;right:20%;height:3px;background:#0080c9;border-radius:0 0 3px 3px}
+ html body #emMobileCandidateNav button:focus-visible{outline:2px solid #0080c9!important;outline-offset:-3px!important}
+ html body #emMobileCandidateNav small{position:absolute;top:5px;left:calc(50% + 6px);background:#ea741d;color:#fff;padding:2px 4px;border-radius:12px;font:700 10px Montserrat,Arial,sans-serif}
+ html body #emMobileCandidateNav small[hidden]{display:none!important}
+ html body.cp-shell-active #pagina-vaga.ativa .mobile-candidatar{bottom:calc(68px + env(safe-area-inset-bottom,0px))!important;padding-bottom:10px!important}
+ html body #emMobileCandidateMore{position:fixed;inset:auto 0 0;width:100%;max-width:none;max-height:75dvh;overflow:auto;box-sizing:border-box;margin:0;padding:20px 20px calc(24px + env(safe-area-inset-bottom,0px));border:1px solid #e5e7eb;border-radius:18px 18px 0 0;background:#fff;color:#34333d;font-family:Montserrat,Arial,sans-serif}
+ #emMobileCandidateMore::backdrop{background:#13283c66}
+ #emMobileCandidateMore header{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:12px}
+ #emMobileCandidateMore h2{margin:0;font:700 18px Montserrat,Arial,sans-serif}
+ #emMobileCandidateMore button{font:600 14px Montserrat,Arial,sans-serif;min-height:46px;border:1px solid #e5e7eb;border-radius:9px;background:#fff;color:#34333d;padding:12px;text-align:left;cursor:pointer}
+ #emMobileCandidateMore [data-mobile-close]{text-align:center;font-size:24px;min-width:46px}
+ #emMobileCandidateMore .em-mobile-more-links{display:grid;gap:9px}
+ #emMobileCandidateMore button[aria-current=page]{background:#eef7fc;color:#0080c9;border-color:#0080c9}
+ }
+ `;document.head.appendChild(style);
+  new MutationObserver(schedule).observe(document.body,{attributes:true,attributeFilter:['class'],childList:true});
+  media.addEventListener('change',schedule);window.addEventListener('pageshow',schedule);schedule();
+ }
+ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',start,{once:true});else start();
+})();
