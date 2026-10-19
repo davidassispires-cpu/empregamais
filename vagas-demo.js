@@ -424,18 +424,6 @@
       var back = browserNode('button', 'em-jb-back', '← Voltar às vagas'); back.type = 'button';
       back.onclick = function () { returnToJobList(state); }; panel.appendChild(back);
       var header = browserNode('header', 'em-jb-header');
-      if (!entry.confidential) {
-        var logoSource = job.logo || job.logoEmpresa;
-        var logoPreview = !logoSource && typeof win.logoPreviaDestaqueEM === 'function' ? win.logoPreviaDestaqueEM(job) : null;
-        var logoImage = logoPreview && logoPreview.querySelector('img');
-        if (logoSource || logoImage) {
-          var brand = browserNode('div', 'em-jb-brand');
-          var image = browserNode('img', ''); image.src = logoSource || logoImage.src;
-          image.alt = summaryText(info.company); image.loading = 'lazy';
-          image.onerror = function () { brand.remove(); };
-          brand.appendChild(image); header.appendChild(brand);
-        }
-      }
       var headerContent = browserNode('div', 'em-jb-header-content'); header.appendChild(headerContent);
       var badges = browserNode('div', 'em-jb-badges');
       if (entry.highlighted) badges.appendChild(browserNode('span', 'em-jb-badge', 'Destaque'));
