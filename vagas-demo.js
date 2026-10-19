@@ -286,11 +286,21 @@
       addFact('Contrato', job.contrato || job.tipoContrato || 'Não informado');
       addFact('Jornada', job.jornada); addFact('Horário', job.horario);
       var factNodes = Array.from(facts.children); facts.replaceChildren();
-      for (var factIndex = 0; factIndex < factNodes.length; factIndex += 2) {
-        var pair = browserNode('dl', 'em-jb-fact-pair'); pair.appendChild(factNodes[factIndex]);
-        if (factNodes[factIndex + 1]) pair.appendChild(factNodes[factIndex + 1]); facts.appendChild(pair);
+      function fillFactPairs(container, nodes) {
+        for (var i = 0; i < nodes.length; i += 2) {
+          var pair = browserNode('dl', 'em-jb-fact-pair'); pair.appendChild(nodes[i]);
+          if (nodes[i + 1]) pair.appendChild(nodes[i + 1]); container.appendChild(pair);
+        }
       }
+      fillFactPairs(facts, factNodes.filter(function (fact) { return fact.getAttribute('data-em-primary') === 'true'; }));
       body.appendChild(facts);
+      var secondary = factNodes.filter(function (fact) { return fact.getAttribute('data-em-primary') !== 'true'; });
+      if (secondary.length) {
+        var extra = browserNode('details', 'em-jb-extra');
+        extra.appendChild(browserNode('summary', '', 'Mais informações'));
+        var secondaryFacts = browserNode('div', 'em-jb-facts'); fillFactPairs(secondaryFacts, secondary);
+        extra.appendChild(secondaryFacts); body.appendChild(extra);
+      }
       function addSection(label, value, limit) {
         var text = summaryText(value, limit); if (!text) return;
         var section = node('section', 'em-js-section');
@@ -486,6 +496,7 @@
       function addFact(label, value, salary) {
         var text = summaryText(value); if (!text) return;
         var fact = browserNode('div', 'em-jb-fact' + (salary ? ' em-jb-pay' : ''));
+        fact.setAttribute('data-em-primary', String(['Salário','Contrato','Modalidade','Jornada'].indexOf(label) !== -1));
         fact.appendChild(detailIcon(detailIcons[label] || detailIcons['Área']));
         fact.appendChild(browserNode('dt', '', label)); fact.appendChild(browserNode('dd', '', text)); facts.appendChild(fact);
       }
