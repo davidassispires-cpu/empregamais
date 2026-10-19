@@ -118,9 +118,12 @@ test('only featured public vacancies display a logo, without leaving a placehold
   assert.equal(badge.textContent,'Destaque');
   assert.equal(badge.getAttribute('data-kind'),'featured');
   const facts=featured.querySelector('.em-r4-facts');
-  assert.equal(badge.parentNode,facts);
-  assert.equal(facts.firstChild,badge);
-  assert.equal(facts.children[1],featured.querySelector('.em-r4-location'));
+  assert.equal(badge.parentNode,featured.querySelector('.em-r4-copy'));
+  assert.equal(facts.firstChild,featured.querySelector('.em-r4-location'));
+  assert.equal(facts.children.length,4);
+  assert.match(featured.querySelector('.em-r4-journey').textContent,/Jornada/);
+  assert(featured.querySelector('.em-r2-benefits'));
+  assert.equal(featured.querySelector('.em-r4-details').parentNode,featured.querySelector('.em-r4-actions'));
   for(const card of [normal,urgent,featured]){
     const copy=card.querySelector('.em-r4-copy');
     assert.equal(copy.children[0],card.querySelector('.em-r4-title-line'));
