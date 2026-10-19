@@ -219,7 +219,7 @@ test('the right panel exposes the full text, sanitizes rich descriptions and com
   const panel=env.doc.getElementById('emJobPanel');
   for(const text of ['FIM DA DESCRIÇÃO','FIM DOS REQUISITOS','Plano de saúde','Vale-alimentação','Informação institucional pública.','44 horas semanais','Segunda a sexta'])assert(panel.textContent.includes(text),text);
   assert(!panel.textContent.includes('unsafe'));assert.equal(panel.querySelector('script'),null);
-  const benefits=panel.querySelectorAll('.em-jb-section').find(section=>section.firstChild.textContent==='Benefícios');
+  const benefits=panel.querySelectorAll('.em-jb-section').find(section=>section.querySelector('h3').textContent==='Benefícios');
   assert.equal(benefits.textContent.match(/Vale-transporte/g).length,1);
 });
 

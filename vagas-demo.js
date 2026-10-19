@@ -285,6 +285,11 @@
       addFact('Modalidade', job.modalidade || 'Não informada');
       addFact('Contrato', job.contrato || job.tipoContrato || 'Não informado');
       addFact('Jornada', job.jornada); addFact('Horário', job.horario);
+      var factNodes = Array.from(facts.children); facts.replaceChildren();
+      for (var factIndex = 0; factIndex < factNodes.length; factIndex += 2) {
+        var pair = browserNode('dl', 'em-jb-fact-pair'); pair.appendChild(factNodes[factIndex]);
+        if (factNodes[factIndex + 1]) pair.appendChild(factNodes[factIndex + 1]); facts.appendChild(pair);
+      }
       body.appendChild(facts);
       function addSection(label, value, limit) {
         var text = summaryText(value, limit); if (!text) return;
@@ -463,23 +468,55 @@
       var headerActions = browserNode('div', 'em-jb-header-actions');
       headerActions.appendChild(candidate); headerActions.appendChild(save); headerContent.appendChild(headerActions);
       panel.appendChild(header);
-      var body = browserNode('div', 'em-jb-body'), facts = browserNode('dl', 'em-jb-facts');
+      var body = browserNode('div', 'em-jb-body'), facts = browserNode('div', 'em-jb-facts');
+      var detailIcons = {
+        'Salário':'<circle cx="12" cy="12" r="9"/><path d="M12 6v12M15 8H10a2 2 0 0 0 0 4h4a2 2 0 0 1 0 4H9"/>',
+        'Contrato':'<path d="M5 3h10l4 4v14H5ZM14 3v5h5M8 12h8M8 16h6"/>',
+        'Modalidade':'<path d="m3 11 9-8 9 8M5 10v11h14V10M9 21v-7h6v7"/>',
+        'Jornada':'<circle cx="12" cy="12" r="9"/><path d="M12 6v6l4 2"/>',
+        'Horário':'<rect x="3" y="5" width="18" height="16" rx="2"/><path d="M7 3v4M17 3v4M3 10h18M7 14h2M12 14h2M7 17h2"/>',
+        'Experiência':'<rect x="3" y="7" width="18" height="14" rx="2"/><path d="M8 7V3h8v4M3 12h18"/>',
+        'Escolaridade':'<path d="m2 8 10-5 10 5-10 5ZM6 10v7c4 3 8 3 12 0v-7M22 8v8"/>',
+        'Área':'<path d="M4 21V12h4v9M10 21V7h4v14M16 21V3h4v18"/>'
+      };
+      function detailIcon(path) {
+        var icon = browserNode('span', 'em-jb-icon'); icon.setAttribute('aria-hidden', 'true');
+        icon.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">'+path+'</svg>'; return icon;
+      }
       function addFact(label, value, salary) {
         var text = summaryText(value); if (!text) return;
         var fact = browserNode('div', 'em-jb-fact' + (salary ? ' em-jb-pay' : ''));
+        fact.appendChild(detailIcon(detailIcons[label] || detailIcons['Área']));
         fact.appendChild(browserNode('dt', '', label)); fact.appendChild(browserNode('dd', '', text)); facts.appendChild(fact);
       }
       addFact('Salário', info.salary, true); addFact('Contrato', job.contrato || job.tipoContrato || 'Não informado');
       addFact('Modalidade', job.modalidade || 'Não informada'); addFact('Jornada', job.jornada); addFact('Horário', job.horario);
       addFact('Experiência', job.experiencia); addFact('Escolaridade', typeof win.textoEscolaridadeVaga === 'function' ? win.textoEscolaridadeVaga(job) : job.escolaridade);
       addFact('Área', job.area); if (job.pcd && job.pcd !== 'Não exclusiva para PcD') addFact('Vaga para PcD', job.pcd);
+      var factNodes = Array.from(facts.children); facts.replaceChildren();
+      for (var factIndex = 0; factIndex < factNodes.length; factIndex += 2) {
+        var pair = browserNode('dl', 'em-jb-fact-pair'); pair.appendChild(factNodes[factIndex]);
+        if (factNodes[factIndex + 1]) pair.appendChild(factNodes[factIndex + 1]); facts.appendChild(pair);
+      }
       body.appendChild(facts);
       function addSection(label, value) {
         var text = summaryText(value); if (!text) return;
-        var section = browserNode('section', 'em-jb-section');
-        section.appendChild(browserNode('h3', '', label)); section.appendChild(browserNode('p', '', text)); body.appendChild(section);
+        var kind = label === 'Requisitos' ? 'requirements' : label === 'Benefícios' ? 'benefits' : 'description';
+        var section = browserNode('section', 'em-jb-section em-jb-' + kind);
+        section.appendChild(detailIcon(kind === 'benefits' ? '<rect x="3" y="8" width="18" height="13" rx="1"/><path d="M12 8v13M3 12h18M12 8H7a3 3 0 1 1 3-3l2 3 2-3a3 3 0 1 1 3 3Z"/>' : kind === 'requirements' ? detailIcons['Escolaridade'] : detailIcons['Contrato']));
+        section.appendChild(browserNode('h3', '', label));
+        if (kind === 'benefits') {
+          var list = browserNode('ul', 'em-jb-benefit-list');
+          text.split('\n').forEach(function (benefit) {
+            var item = browserNode('li', '');
+            item.appendChild(detailIcon('<circle cx="12" cy="12" r="9"/><path d="m7 12 3 3 7-7"/>')); item.appendChild(browserNode('span', '', benefit)); list.appendChild(item);
+          }); section.appendChild(list);
+        } else section.appendChild(browserNode('p', '', text));
+        body.appendChild(section);
       }
-      addSection('Descrição da vaga', job.descricao || job.descricaoVaga || job.resumo || 'A empresa não informou a descrição desta vaga.');
+      var description = job.descricao || job.descricaoVaga || job.resumo || 'A empresa não informou a descrição desta vaga.';
+      if (isDemo(job)) description = String(description).replace(/\s*Vaga de demonstração do \+Empregos\.[\s\S]*?candidaturas reais\./g, '');
+      addSection('Descrição da vaga', description);
       addSection('Requisitos', job.requisitos || 'Não informados.');
       var benefits = [], seen = Object.create(null);
       [job.beneficiosTags, job.beneficios, job.beneficiosSelecionados, job.benefits].forEach(function (source) {

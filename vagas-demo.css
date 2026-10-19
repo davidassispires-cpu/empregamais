@@ -530,15 +530,15 @@ html body #pagina-home #emJobBrowser .em-jb-actions {display:flex!important;alig
 
 
 
-html body #pagina-home #emJobBrowser .em-jb-body {margin:0!important;padding:22px 24px!important}
-html body #pagina-home #emJobBrowser .em-jb-facts {display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:15px 18px!important;margin:0 0 24px!important;padding:0!important}
-html body #pagina-home #emJobBrowser .em-jb-fact {min-width:0!important;margin:0!important;padding:0!important}
-html body #pagina-home #emJobBrowser .em-jb-fact dt {--candidate-contrast-ink:#68768a!important;margin:0 0 4px!important;color:#68768a!important;font-size:11px!important;font-weight:500!important;line-height:1.45!important}
-html body #pagina-home #emJobBrowser .em-jb-fact dd {--candidate-contrast-ink:#18324e!important;margin:0!important;color:#18324e!important;font-size:13px!important;font-weight:500!important;line-height:1.55!important;white-space:pre-line!important;overflow-wrap:anywhere!important}
-html body #pagina-home #emJobBrowser .em-jb-pay dd {--candidate-contrast-ink:#116b3a!important;color:#116b3a!important;font-weight:600!important}
-html body #pagina-home #emJobBrowser .em-jb-section {display:block!important;margin:22px 0 0!important;padding:0!important;border:0!important;background:none!important}
-html body #pagina-home #emJobBrowser .em-jb-section h3 {--candidate-contrast-ink:#102744!important;display:block!important;margin:0 0 9px!important;padding:0!important;color:#102744!important;font-size:15px!important;font-weight:600!important;line-height:1.5!important}
-html body #pagina-home #emJobBrowser .em-jb-section p {--candidate-contrast-ink:#526174!important;display:block!important;margin:0!important;padding:0!important;color:#526174!important;font-size:13px!important;font-weight:400!important;line-height:1.8!important;white-space:pre-line!important;overflow-wrap:anywhere!important}
+
+
+
+
+
+
+
+
+
 html body #pagina-home #emJobBrowser .em-jb-demo {--candidate-contrast-ink:#8a5a13!important;display:block!important;margin:22px 0 0!important;padding:12px!important;border:1px solid #f0dfbe!important;border-radius:7px!important;background:#fff9ef!important;color:#8a5a13!important;font-size:12px!important;line-height:1.6!important}
 html body #pagina-home #emJobBrowser .em-jb-date {--candidate-contrast-ink:#68768a!important;display:block!important;margin:22px 0 12px!important;padding:0!important;color:#68768a!important;font-size:11px!important;line-height:1.5!important;text-align:right!important}
 html body #pagina-home #emJobBrowser .em-jb-full {--candidate-contrast-ink:#0078bd!important;display:inline-block!important;margin:0!important;color:#0078bd!important;font-size:12px!important;line-height:1.6!important;text-decoration:underline!important}
@@ -550,7 +550,7 @@ html body #pagina-home#pagina-home #vagas .em-job-browser-filters>summary:focus-
 @media(max-width:1100px) {
   html body #pagina-home #emJobBrowser {gap:16px!important}
   
-  html body #pagina-home #emJobBrowser .em-jb-body {padding:20px!important}
+  
   
 }
 @media(max-width:900px) {
@@ -567,9 +567,9 @@ html body #pagina-home#pagina-home #vagas .em-job-browser-filters>summary:focus-
 @media(max-width:480px) {
   html body #pagina-home#pagina-home #vagas#vagas #emJobBrowserFilters .em-home-filter-panel {grid-template-columns:minmax(0,1fr)!important}
   
-  html body #pagina-home #emJobBrowser .em-jb-body {padding:18px!important}
   
-  html body #pagina-home #emJobBrowser .em-jb-facts {gap:12px!important}
+  
+  
   html body #pagina-home #emJobBrowser .em-jb-actions {align-items:stretch!important}
   
 }
@@ -645,26 +645,18 @@ html body #pagina-home #emJobBrowser .em-job-panel * {
 
 
 
-html body #pagina-home #emJobBrowser .em-jb-body {display:grid!important;gap:14px!important;padding:20px!important;background:#f8fafc!important}
-html body #pagina-home #emJobBrowser .em-jb-facts {
-  gap:0!important;margin:0!important;padding:0!important;overflow:hidden!important;
-  border:1px solid #dfe7f0!important;border-radius:10px!important;background:#f2f7fc!important;
-}
-html body #pagina-home #emJobBrowser .em-jb-fact {
-  display:flex!important;flex-direction:column!important;align-items:center!important;justify-content:center!important;
-  gap:4px!important;min-height:76px!important;padding:13px 12px!important;border:0!important;
-}
-html body #pagina-home #emJobBrowser .em-jb-fact:nth-child(2n) {border-left:1px solid #dfe7f0!important}
-html body #pagina-home #emJobBrowser .em-jb-fact:nth-child(n/**/+3) {border-top:1px solid #dfe7f0!important}
-html body #pagina-home #emJobBrowser .em-jb-fact:last-child:nth-child(odd) {grid-column:1/-1!important}
-html body #pagina-home #emJobBrowser .em-jb-fact dt {--candidate-contrast-ink:#64748b!important;margin:0!important;color:#64748b!important;font-size:11px!important;line-height:1.4!important}
-html body #pagina-home #emJobBrowser .em-jb-fact dd {font-size:13px!important;font-weight:500!important;line-height:1.5!important}
-html body #pagina-home #emJobBrowser .em-jb-pay dd {font-weight:500!important}
-html body #pagina-home #emJobBrowser .em-jb-section {
-  min-width:0!important;margin:0!important;padding:18px!important;border:1px solid #dfe7f0!important;border-radius:10px!important;background:#fff!important;
-}
-html body #pagina-home #emJobBrowser .em-jb-section h3 {margin-bottom:8px!important;font-size:15px!important;font-weight:600!important}
-html body #pagina-home #emJobBrowser .em-jb-section p {--candidate-contrast-ink:#4b5b6e!important;color:#4b5b6e!important;font-size:13px!important;line-height:1.8!important}
+
+
+
+
+
+
+
+
+
+
+
+
 html body #pagina-home #emJobBrowser .em-jb-date {margin:4px 0 0!important}
 html body #pagina-home #emJobBrowser .em-jb-full {justify-self:center!important}
 html body #pagina-home #emJobBrowser .em-jb-footer {
@@ -679,7 +671,7 @@ html body #pagina-home #emJobBrowser .em-jb-footer .em-jb-demo {
 }
 @media(max-width:1100px) {
   html body #pagina-home #emJobBrowser {gap:18px!important}
-  html body #pagina-home #emJobBrowser .em-jb-body {padding:18px!important}
+  
   
   
 }
@@ -696,12 +688,12 @@ html body #pagina-home #emJobBrowser .em-jb-footer .em-jb-demo {
   
   
   
-  html body #pagina-home #emJobBrowser .em-jb-body {padding:14px!important;gap:12px!important}
-  html body #pagina-home #emJobBrowser .em-jb-facts {grid-template-columns:minmax(0,1fr)!important}
-  html body #pagina-home #emJobBrowser .em-jb-fact {min-height:68px!important;padding:12px!important}
-  html body #pagina-home #emJobBrowser .em-jb-fact:nth-child(2n) {border-left:0!important}
-  html body #pagina-home #emJobBrowser .em-jb-fact+.em-jb-fact {border-top:1px solid #dfe7f0!important}
-  html body #pagina-home #emJobBrowser .em-jb-section {padding:16px!important}
+  
+  
+  
+  
+  
+  
   html body #pagina-home #emJobBrowser .em-jb-footer {padding:14px!important}
 }
 @media(pointer:coarse) {
@@ -868,7 +860,7 @@ html body #pagina-home #emJobBrowser .em-jb-badge{display:inline-flex!important;
 html body #pagina-home #emJobBrowser .em-jb-urgent{--candidate-contrast-ink:#b42328!important;border-color:#fce1e4!important;background:#fff0f1!important;color:#b42328!important}
 html body #pagina-home #emJobBrowser .em-jb-confidential{border-color:#dce3eb!important;background:#f5f7fa!important;color:#526174!important}
 html body #pagina-home #emJobBrowser .em-jb-header-actions{display:flex!important;align-items:center!important;justify-content:center!important;gap:10px!important;width:100%!important;padding-top:2px!important}
-html body #pagina-home #emJobBrowser .em-jb-apply{--candidate-contrast-ink:#fff!important;display:inline-flex!important;align-items:center!important;justify-content:center!important;flex:0 1 230px!important;width:230px!important;max-width:calc(100% - 48px)!important;min-height:38px!important;margin:0!important;padding:9px 20px!important;border:1px solid #123f82!important;border-radius:24px!important;background:#123f82!important;color:#fff!important;font-size:11px!important;font-weight:650!important;line-height:1.3!important;text-transform:uppercase!important;cursor:pointer!important}
+html body #pagina-home #emJobBrowser .em-jb-apply{--candidate-contrast-ink:#fff!important;display:inline-flex!important;align-items:center!important;justify-content:center!important;flex:0 1 230px!important;width:230px!important;max-width:calc(100% - 48px)!important;min-height:38px!important;margin:0!important;padding:9px 20px!important;border:1px solid #123f82!important;border-radius:10px!important;background:#123f82!important;color:#fff!important;font-size:11px!important;font-weight:650!important;line-height:1.3!important;text-transform:uppercase!important;cursor:pointer!important}
 html body #pagina-home #emJobBrowser .em-jb-apply:hover{background:#0d326c!important}
 html body #pagina-home #emJobBrowser .em-jb-save{--candidate-contrast-ink:#123f82!important;position:static!important;display:inline-flex!important;align-items:center!important;justify-content:center!important;flex:0 0 38px!important;width:38px!important;height:38px!important;min-height:38px!important;margin:0!important;padding:9px!important;border:1px solid #123f82!important;border-radius:50%!important;background:#fff!important;color:#123f82!important;cursor:pointer!important}
 html body #pagina-home #emJobBrowser .em-jb-save[aria-pressed="true"]{background:#edf6ff!important}
@@ -889,4 +881,36 @@ html body #pagina-home #emJobBrowser .em-jb-tab:focus-visible{outline:2px solid 
 html body #pagina-home #emJobBrowser [role="tabpanel"][hidden]{display:none!important}
 html body #pagina-home #emJobBrowser .em-jb-comparison{width:100%!important;table-layout:fixed!important;border-collapse:collapse!important;font-size:11px!important;line-height:1.5!important;background:#fff!important}
 html body #pagina-home #emJobBrowser .em-jb-comparison :is(th,td){padding:9px 6px!important;border-bottom:1px solid #e2e8f0!important;overflow-wrap:anywhere!important;text-align:left!important}
+}
+
+/* Approved detail body model 2: four paired fact cards and organized content. */
+@layer candidate-palette {
+html body #pagina-home #emJobBrowser .em-jb-body{--candidate-contrast-ink:#253448!important;display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;align-items:stretch!important;gap:12px!important;margin:0!important;padding:18px!important;background:#fff!important;color:#253448!important;font-size:14px!important;font-weight:500!important;line-height:1.6!important}
+html body #pagina-home #emJobBrowser .em-jb-body>*{grid-column:1/-1!important;min-width:0!important}
+html body #pagina-home #emJobBrowser .em-jb-facts{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:10px!important;margin:0!important;padding:0!important;border:0!important;background:none!important}
+html body #pagina-home #emJobBrowser .em-jb-fact-pair{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;align-items:stretch!important;gap:0!important;min-width:0!important;margin:0!important;padding:12px 4px!important;border:1px solid #dbe3ee!important;border-radius:10px!important;background:#fff!important}
+html body #pagina-home #emJobBrowser .em-jb-fact{display:flex!important;flex-direction:column!important;align-items:center!important;justify-content:flex-start!important;gap:4px!important;min-width:0!important;margin:0!important;padding:0 7px!important;border:0!important;background:none!important}
+html body #pagina-home #emJobBrowser .em-jb-fact+.em-jb-fact{border-left:1px solid #dbe3ee!important}
+html body #pagina-home #emJobBrowser .em-jb-icon{--candidate-contrast-ink:#123f82!important;display:inline-flex!important;align-items:center!important;justify-content:center!important;flex:0 0 auto!important;width:32px!important;height:32px!important;padding:6px!important;border-radius:8px!important;background:#eaf4ff!important;color:#123f82!important}
+html body #pagina-home #emJobBrowser .em-jb-icon svg{display:block!important;width:20px!important;height:20px!important}
+html body #pagina-home #emJobBrowser .em-jb-fact dt{--candidate-contrast-ink:#46556a!important;margin:0!important;color:#46556a!important;font-size:11px!important;font-weight:500!important;line-height:1.4!important}
+html body #pagina-home #emJobBrowser .em-jb-fact dd{--candidate-contrast-ink:#102744!important;margin:0!important;color:#102744!important;font-size:13px!important;font-weight:650!important;line-height:1.4!important;overflow-wrap:break-word!important}
+html body #pagina-home #emJobBrowser .em-jb-section{display:flex!important;flex-direction:column!important;align-items:center!important;justify-content:flex-start!important;gap:7px!important;min-width:0!important;margin:0!important;padding:16px 12px!important;border:1px solid #dbe3ee!important;border-radius:10px!important;background:#fff!important;text-align:center!important}
+html body #pagina-home #emJobBrowser .em-jb-description{background:#f0f6fc!important;border-color:#f0f6fc!important}
+html body #pagina-home #emJobBrowser .em-jb-section h3{--candidate-contrast-ink:#102744!important;margin:0!important;color:#102744!important;font-size:16px!important;font-weight:700!important;line-height:1.4!important}
+html body #pagina-home #emJobBrowser .em-jb-section p{--candidate-contrast-ink:#253448!important;margin:0!important;color:#253448!important;font-size:14px!important;font-weight:500!important;line-height:1.65!important;white-space:pre-line!important;overflow-wrap:anywhere!important}
+html body #pagina-home #emJobBrowser :is(.em-jb-requirements,.em-jb-benefits){grid-column:auto!important}
+html body #pagina-home #emJobBrowser .em-jb-benefit-list{display:flex!important;flex-direction:column!important;gap:6px!important;align-self:stretch!important;margin:0!important;padding:0!important;list-style:none!important}
+html body #pagina-home #emJobBrowser .em-jb-benefit-list li{display:flex!important;align-items:flex-start!important;justify-content:flex-start!important;gap:6px!important;color:#253448!important;font-size:13px!important;font-weight:500!important;line-height:1.5!important;text-align:left!important}
+html body #pagina-home #emJobBrowser .em-jb-benefit-list li>span:last-child{text-align:left!important}
+html body #pagina-home #emJobBrowser .em-jb-benefit-list .em-jb-icon{width:20px!important;height:20px!important;padding:1px!important;border-radius:50%!important;background:transparent!important;color:#2470cf!important}
+html body #pagina-home #emJobBrowser .em-jb-date{margin:0!important;color:#46556a!important;font-size:11px!important;font-weight:500!important;line-height:1.5!important}
+html body #pagina-home #emJobBrowser .em-jb-full{color:#1260b0!important;font-size:12px!important;font-weight:600!important}
+@media(max-width:400px){
+html body #pagina-home #emJobBrowser .em-jb-body{padding:12px!important;gap:10px!important}
+html body #pagina-home #emJobBrowser .em-jb-fact-pair{padding:10px 2px!important}
+html body #pagina-home #emJobBrowser .em-jb-fact{padding:0 4px!important}
+html body #pagina-home #emJobBrowser .em-jb-fact dd{font-size:12px!important}
+html body #pagina-home #emJobBrowser :is(.em-jb-requirements,.em-jb-benefits){grid-column:1/-1!important}
+}
 }
