@@ -35,9 +35,11 @@
       scroll-snap-align: start !important; scroll-snap-stop: always;
     }
     #pagina-home #listaDestaques article.em-featured-reference {
-      height: 360px !important; min-height: 360px !important; max-height: 360px !important;
+      display: grid !important; height: auto !important; min-height: 0 !important; max-height: none !important;
+      aspect-ratio: auto !important; align-content: start !important;
       grid-template-columns: 52px minmax(0, 1fr) !important;
-      grid-template-rows: 46px 20px 0 84px 36px 30px 44px !important;
+      grid-template-areas: "logo title" "logo company" "info info" "summary summary" "details details" "button button" !important;
+      grid-template-rows: auto auto auto auto auto auto !important;
       gap: 8px 10px !important; padding: 14px !important;
     }
     #pagina-home #listaDestaques .em-featured-reference .dz-logo { width: 52px !important; min-width: 52px !important; max-width: 52px !important; height: 52px !important; }
@@ -60,6 +62,122 @@
     #pagina-home #filtrosLateral { display: none !important; position: static !important; height: auto !important; max-height: none !important; }
     #pagina-home #filtrosLateral.em-filters-open { display: block !important; order: -1 !important; }
     #pagina-home #emHomeFiltersToggle { min-height: 44px !important; }
+
+    /* Legacy cards used named grid tracks and percentage flex bases. Reset
+       both placement and sizing, rather than only changing the font size. */
+    #pagina-home #listaDestaques .em-featured-reference :is(.dz-cab,.dz-cab-texto,.dz-corpo) {
+      display: contents !important;
+    }
+    #pagina-home #listaDestaques .em-featured-reference :is(.dz-logo,.dz-titulo,.dz-empresa,.dz-infos,.dz-resumo,.dz-detalhes-ref,.em-apply-share-featured) {
+      position: static !important; inset: auto !important; transform: none !important;
+      min-width: 0 !important; max-width: 100% !important; margin: 0 !important;
+    }
+    #pagina-home #listaDestaques .em-featured-reference .dz-logo { grid-area: logo !important; }
+    #pagina-home #listaDestaques .em-featured-reference .dz-titulo {
+      grid-area: title !important; display: block !important; width: 100% !important;
+      height: auto !important; min-height: 0 !important; max-height: none !important;
+      padding: 0 !important; white-space: normal !important; text-align: left !important;
+      overflow: visible !important; align-self: start !important;
+    }
+    #pagina-home #listaDestaques .em-featured-reference .dz-empresa {
+      grid-area: company !important; font-size: 12px !important; line-height: 1.4 !important;
+      white-space: normal !important; overflow-wrap: anywhere !important; text-align: left !important;
+    }
+    #pagina-home #listaDestaques .em-featured-reference .dz-infos {
+      grid-area: info !important; display: grid !important; width: 100% !important;
+      grid-template-columns: repeat(2,minmax(0,1fr)) !important;
+      grid-template-rows: auto auto !important; grid-auto-rows: auto !important;
+      height: auto !important; min-height: 0 !important; max-height: none !important;
+      gap: 6px !important; padding: 0 !important;
+    }
+    #pagina-home #listaDestaques .em-featured-reference .dz-infos :is(.dz-info,.dz-salario) {
+      min-width: 0 !important; width: 100% !important; height: auto !important;
+      min-height: 34px !important; max-height: none !important;
+      padding: 6px !important; white-space: normal !important; overflow-wrap: anywhere !important;
+    }
+    #pagina-home #listaDestaques .em-featured-reference .dz-infos .dz-info:nth-child(1) { grid-column: 1 / -1 !important; grid-row: 1 !important; }
+    #pagina-home #listaDestaques .em-featured-reference .dz-infos .dz-info:nth-child(2) { display: none !important; }
+    #pagina-home #listaDestaques .em-featured-reference .dz-infos .dz-info:nth-child(3) { grid-column: 1 !important; grid-row: 2 !important; }
+    #pagina-home #listaDestaques .em-featured-reference .dz-infos .dz-salario { grid-area: auto !important; grid-column: 2 !important; grid-row: 2 !important; }
+    #pagina-home #listaDestaques .em-featured-reference .dz-infos :is(span,strong,div) { max-height: none !important; white-space: normal !important; overflow-wrap: anywhere !important; }
+    #pagina-home #listaDestaques .em-featured-reference .dz-resumo {
+      grid-area: summary !important; height: auto !important; min-height: 0 !important;
+      max-height: 40px !important; line-height: 20px !important; padding: 0 !important;
+    }
+    #pagina-home #listaDestaques .em-featured-reference .dz-detalhes-ref {
+      grid-area: details !important; min-height: 44px !important; width: 100% !important;
+      white-space: normal !important; padding: 8px 0 !important;
+    }
+    #pagina-home #listaDestaques .em-featured-reference .em-apply-share-featured { grid-area: button !important; width: 100% !important; }
+    #pagina-home #listaDestaques .em-featured-reference .dz-botao { width: 100% !important; white-space: normal !important; }
+    #pagina-home #listaDestaques .em-featured-reference .dz-logo img { width: 100% !important; height: 100% !important; object-fit: contain !important; }
+
+    #pagina-home #listaVagas > article.em-recent-model3 {
+      display: flex !important; flex-direction: column !important; align-items: stretch !important;
+      height: auto !important; min-height: 0 !important; max-height: none !important;
+      aspect-ratio: auto !important; padding: 14px !important; gap: 10px !important;
+    }
+    #pagina-home #listaVagas article.em-recent-model3 > :is(.em-lista-cab,.em-lista-meta,.em-lista-resumo,.em-lista-footer) {
+      flex: 0 0 auto !important; position: static !important; inset: auto !important;
+      grid-area: auto !important; width: 100% !important; min-width: 0 !important;
+      height: auto !important; min-height: 0 !important; margin: 0 !important;
+    }
+    #pagina-home #listaVagas article.em-recent-model3 .em-lista-cab {
+      display: grid !important; grid-template-columns: minmax(0,1fr) auto !important;
+      grid-template-rows: auto auto !important; align-items: start !important;
+      align-content: start !important; padding: 0 !important; gap: 8px !important;
+    }
+    #pagina-home #listaVagas article.em-recent-model3 .em-recent-heading {
+      grid-column: 1 !important; grid-row: 1 !important; flex: none !important;
+      width: 100% !important; min-width: 0 !important; height: auto !important;
+      min-height: 0 !important; padding: 0 !important; margin: 0 !important;
+      position: static !important; text-align: left !important;
+    }
+    #pagina-home #listaVagas article.em-recent-model3 .em-recent-logo {
+      grid-column: 2 !important; grid-row: 1 !important; position: static !important;
+      width: 52px !important; min-width: 52px !important; max-width: 52px !important;
+      height: 44px !important; min-height: 44px !important; max-height: 44px !important;
+      padding: 0 !important; margin: 0 !important;
+    }
+    #pagina-home #listaVagas article.em-recent-model3 .em-recent-badges {
+      grid-column: 1 / -1 !important; grid-row: 2 !important; flex: none !important;
+      width: 100% !important; max-width: 100% !important; min-height: 0 !important;
+      height: auto !important; margin: 0 !important; padding: 0 !important;
+      justify-content: flex-start !important; align-self: start !important;
+    }
+    #pagina-home #listaVagas article.em-recent-model3 .em-lista-titulo {
+      position: static !important; width: 100% !important; height: auto !important;
+      min-height: 0 !important; max-height: none !important; margin: 0 !important;
+      padding: 0 !important; text-align: left !important; font-size: 17px !important;
+      line-height: 1.35 !important; overflow-wrap: anywhere !important;
+    }
+    #pagina-home #listaVagas article.em-recent-model3 .em-lista-empresa { justify-content: flex-start !important; text-align: left !important; }
+    #pagina-home #listaVagas article.em-recent-model3 .em-lista-meta {
+      display: flex !important; flex-wrap: wrap !important; gap: 6px !important; padding: 0 !important;
+    }
+    #pagina-home #listaVagas article.em-recent-model3 .em-lista-data { flex-basis: 100% !important; white-space: normal !important; }
+    #pagina-home #listaVagas article.em-recent-model3 .em-lista-footer {
+      display: grid !important; grid-template-columns: 44px minmax(0,1fr) !important;
+      gap: 8px !important; align-items: stretch !important; padding-top: 10px !important;
+    }
+    #pagina-home #listaVagas article.em-recent-model3 .em-lista-acoes {
+      display: grid !important; grid-template-columns: minmax(0,1fr) !important;
+      grid-column: 2 !important; width: 100% !important; min-width: 0 !important;
+      max-width: none !important; margin: 0 !important; gap: 8px !important;
+    }
+    #pagina-home #listaVagas article.em-recent-model3 .em-lista-footer .em-recent-save {
+      grid-column: 1 !important; width: 44px !important; height: 44px !important;
+      min-height: 44px !important; padding: 8px !important; margin: 0 !important;
+      align-self: start !important;
+    }
+    #pagina-home #listaVagas article.em-recent-model3 .em-recent-save span { display: none !important; }
+    #pagina-home #listaVagas article.em-recent-model3 :is(.em-lista-detalhes,.em-lista-ver) {
+      width: 100% !important; min-width: 0 !important; min-height: 44px !important;
+      height: auto !important; white-space: normal !important; font-size: 12px !important;
+    }
+    #pagina-home #listaVagas article.em-recent-model3 .em-lista-detalhes span { white-space: normal !important; }
+    #pagina-home #listaVagas article.em-recent-model3 .em-apply-share-recent { min-width: 0 !important; width: 100% !important; }
+    #pagina-home #emCandidateSignupBanner { width: calc(100% - 32px) !important; min-width: 0 !important; }
     /* Reserve the fixed action's real height, including the phone safe area. */
     #pagina-vaga.ativa { padding-bottom: calc(84px + env(safe-area-inset-bottom, 0px)) !important; }
     #pagina-vaga:not(.ativa) .mobile-candidatar { display: none !important; }

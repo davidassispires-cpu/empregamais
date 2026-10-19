@@ -1,4 +1,4 @@
-@import url("mobile-public.css?v=20261018-mobile-only-1") (max-width: 767px);
+@import url("mobile-public.css?v=20261018-mobile-cards-2") (max-width: 767px);
 @layer candidate-palette, field-feedback, site-typography;
 /* One local Poppins source per weight, including legacy family aliases. */
 @font-face{font-family:'Poppins';font-style:normal;font-weight:100 499;font-display:optional;src:url('assets/fonts/poppins-400.woff2') format('woff2')}
