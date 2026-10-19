@@ -2,7 +2,7 @@
  'use strict';
  var base='https://mkezlcewyengejdmtppl.supabase.co/rest/v1/';
  var key='sb_publishable_8YnXpzGX8zj-tvzvcMYdyw_FVBhQutR';
- var fields=['visualizada','status','favoritoRecrutador','observacaoRecrutador','statusAtualizadoEm','contratadoEm'];
+ var fields=['visualizada','status','favoritoRecrutador','preSelecionadoRecrutador','observacaoRecrutador','statusAtualizadoEm','contratadoEm'];
  var remote={},owner='',pending={},busy=false,ready=false,timer,lastPull=0,lastAttempt=0,failures=0;
  var feedback='';
  function token(){return sessionStorage.getItem('empregaMaisSupabaseAccessToken')||'';}
@@ -48,7 +48,7 @@
     var jobs=ownedJobs();originalLoad().forEach(function(c){var id=String(c.id);if(!jobs.has(job(c)))return;if(pending[id]){recipient(c,pending[id]);return;}if(remote[id]&&remote[id].candidate_uid)return;
      var state={};fields.forEach(function(f){if(c[f]!==undefined)state[f]=c[f];});
      var workflow=window.EmpregaMaisEtapasCandidatura,stage=workflow&&typeof workflow.etapa==='function'?workflow.etapa(c):null;if(stage)state.status=stage.label;
-     if(state.status||c.observacaoRecrutador||c.favoritoRecrutador)pending[id]=recipient(c,{application_ref:id,job_ref:job(c),state:state});
+     if(state.status||c.observacaoRecrutador||c.favoritoRecrutador||c.preSelecionadoRecrutador)pending[id]=recipient(c,{application_ref:id,job_ref:job(c),state:state});
     });remember();
     if(!Object.keys(pending).length){lastPull=Date.now();failures=0;show('Etapas, anotações e favoritos sincronizados.');if(!document.getElementById('emCandidateDetails')&&typeof window.renderizarCandidatosEmpresa==='function')window.renderizarCandidatosEmpresa();return;}
    }
