@@ -1460,3 +1460,30 @@ html body .em-field-message{display:block!important;grid-column:1/-1!important;m
     border-color:#0874ef!important;outline:2px solid #b8d6ff!important;outline-offset:1px!important;
   }
 }
+
+/* Recruiter forms align with the plain Candidaturas page heading. */
+@layer field-feedback {
+  html body #pagina-publicar.em-publish-in-panel,
+  html body #pagina-perfil-empresa.em-profile-v50 {
+    width:100%!important;max-width:none!important;margin:0!important;padding:0!important;
+  }
+  html body #pagina-publicar.em-publish-in-panel .em-job-shell,
+  html body #pagina-perfil-empresa.em-profile-v50 #emCompanyProfileV50 {
+    width:100%!important;max-width:none!important;margin:0!important;padding:0!important;
+  }
+  html body #pagina-publicar.em-publish-in-panel .em-publish-heading {
+    padding:0!important;margin:0 0 16px!important;border:0!important;background:transparent!important;box-shadow:none!important;
+  }
+  html body #pagina-publicar.em-publish-in-panel .em-publish-heading small {display:none!important}
+  html body #pagina-publicar.em-publish-in-panel .em-publish-heading h1 {
+    margin:0!important;padding:0!important;font-size:32px!important;font-weight:800!important;line-height:1.2!important;
+    letter-spacing:-.8px!important;color:#16365e!important;-webkit-text-fill-color:#16365e!important;
+  }
+  html body #pagina-publicar.em-publish-in-panel .em-publish-heading p {
+    margin:8px 0 0!important;padding:0!important;font-size:14px!important;font-weight:500!important;line-height:1.6!important;
+  }
+  @media(max-width:700px) {
+    html body #pagina-publicar.em-publish-in-panel .em-publish-heading h1 {font-size:26px!important}
+    html body #pagina-publicar.em-publish-in-panel .em-publish-heading p {font-size:12px!important}
+  }
+}
