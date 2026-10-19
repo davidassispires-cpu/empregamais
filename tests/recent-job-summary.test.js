@@ -107,13 +107,13 @@ function fixture(nativeDialog = true, withBrowser = false, withObserver = false)
   return {doc,win,card,render,list,column,sidebar,filterInput,routes,applications,logoRequests,contacts,messages,scrolls,listeners,observers,frames};
 }
 
-test('only featured public vacancies display a logo, without leaving a placeholder on other cards',()=>{
+test('public vacancy previews display the company logo on ordinary and featured jobs',()=>{
   const env=fixture();
   const normal=env.card(),urgent=env.card({id:'urgent',urgente:true}),featured=env.card({id:'featured',destaque:true});
-  assert.equal(normal.querySelector('.em-r4-logo'),null);
-  assert.equal(urgent.querySelector('.em-r4-logo'),null);
+  assert(normal.querySelector('.em-r4-logo'));
+  assert(urgent.querySelector('.em-r4-logo'));
   assert(featured.querySelector('.em-r4-logo'));
-  assert.deepEqual(env.logoRequests,['featured']);
+  assert.deepEqual(env.logoRequests,['real-job','urgent','featured']);
   const badge=featured.querySelector('.em-r4-status');
   assert.equal(badge.textContent,'Destaque');
   assert.equal(badge.getAttribute('data-kind'),'featured');
@@ -311,3 +311,19 @@ test('asynchronous pagination updates selection once per animation frame',()=>{
 });
 
 
+
+
+test('vacancy tabs switch content in place and compare actual listed jobs',()=>{
+ const env=fixture(true,true);
+ env.render([{id:'one',sobreEmpresa:'Empresa com atuação regional.'},{id:'two',salario:'R$ 4.000,00'}]);
+ const panel=env.doc.getElementById('emJobPanel'), tabs=panel.querySelectorAll('.em-jb-tab');
+ assert.equal(tabs.length,4);
+ const views=panel.querySelectorAll('.em-jb-body');
+ assert.equal(views[0].hidden,false); assert.equal(views[1].hidden,true);
+ tabs[1].click(); assert.equal(views[0].hidden,true);assert.equal(views[1].hidden,false);
+ assert.match(views[1].textContent,/Empresa com atuação regional/);
+ tabs[2].click();assert.match(views[2].textContent,/Ainda não há avaliações/);
+ tabs[3].click();assert.equal(tabs[3].getAttribute('aria-selected'),'true');assert.equal(views[3].hidden,false);
+ assert.match(views[3].textContent,/4.000,00/);
+ assert.equal(env.routes.length,0);
+});

@@ -11,9 +11,9 @@
 .em-recent-blocks::before,.em-recent-blocks::after {display:none!important;content:none!important}
 .em-recent-blocks[hidden],.em-recent-blocks[style*="display: none"],.em-recent-blocks[style*="display:none"]{display:none!important}
 .em-recent-blocks[data-em-highlighted="true"]{border-color:#ff7a14!important}
-.em-recent-blocks .em-r4-identity{display:flex!important;align-items:center!important;gap:12px!important;padding-right:32px!important;width:100%!important;min-width:0!important}
+.em-recent-blocks .em-r4-identity{display:flex!important;align-items:flex-start!important;gap:12px!important;padding-right:32px!important;width:100%!important;min-width:0!important}
 .em-recent-blocks .em-r4-logo{display:flex!important;align-items:center!important;justify-content:center!important;flex:0 0 56px!important;width:56px!important;height:56px!important;padding:4px!important;margin:0!important;border:0!important;border-radius:10px!important;background:#f3f6fa!important;overflow:hidden!important}
-.em-recent-blocks:not([data-em-highlighted="true"]) .em-r4-logo,.em-recent-blocks[data-em-confidential="true"] .em-r4-logo{display:none!important}
+.em-recent-blocks[data-em-confidential="true"] .em-r4-logo{display:none!important}
 .em-recent-blocks .em-r4-logo img{width:100%!important;height:100%!important;object-fit:contain!important}
 .em-recent-blocks .em-r4-copy{display:flex!important;flex-direction:column!important;align-items:flex-start!important;gap:3px!important;min-width:0!important;flex:1!important}
 .em-recent-blocks .em-r4-title-line{width:100%!important}

@@ -858,7 +858,7 @@ html body #pagina-home #emJobBrowser .em-jb-header *{text-align:center!important
 html body #pagina-home #emJobBrowser .em-jb-brand{display:flex!important;align-items:center!important;justify-content:center!important;flex:0 0 88px!important;width:88px!important;height:88px!important;margin:0!important;padding:8px!important;border:1px solid #e1e6ed!important;border-radius:9px!important;background:#fff!important}
 html body #pagina-home #emJobBrowser .em-jb-brand img{display:block!important;max-width:100%!important;max-height:100%!important;object-fit:contain!important}
 html body #pagina-home #emJobBrowser .em-jb-header-content{display:flex!important;flex-direction:column!important;align-items:center!important;flex:1!important;min-width:0!important;gap:6px!important}
-html body #pagina-home #emJobBrowser .em-jb-title{--candidate-contrast-ink:#0b203d!important;display:block!important;width:100%!important;margin:0!important;padding:0!important;color:#0b203d!important;font-size:19px!important;font-weight:750!important;line-height:1.25!important;text-transform:uppercase!important;white-space:normal!important;overflow-wrap:break-word!important}
+html body #pagina-home #emJobBrowser .em-jb-title{--candidate-contrast-ink:#0b203d!important;display:block!important;width:100%!important;margin:0!important;padding:0!important;color:#0b203d!important;font-size:28px!important;font-weight:750!important;line-height:1.2!important;text-transform:uppercase!important;white-space:normal!important;overflow-wrap:break-word!important}
 html body #pagina-home #emJobBrowser .em-jb-company{--candidate-contrast-ink:#0072ce!important;display:block!important;width:auto!important;max-width:100%!important;min-height:0!important;margin:0!important;padding:0!important;border:0!important;background:none!important;color:#0072ce!important;font-size:14px!important;font-weight:600!important;line-height:1.3!important;text-transform:none!important}
 html body #pagina-home #emJobBrowser button.em-jb-company{cursor:pointer!important}
 html body #pagina-home #emJobBrowser .em-jb-header-meta{display:flex!important;align-items:center!important;justify-content:center!important;flex-wrap:wrap!important;gap:4px 0!important;margin:2px 0!important;max-width:100%!important}
@@ -877,8 +877,19 @@ html body #pagina-home #emJobBrowser .em-jb-save[aria-pressed="true"]{background
 html body #pagina-home #emJobBrowser .em-jb-save svg{display:block!important;width:18px!important;height:18px!important}
 @media(max-width:600px){
 html body #pagina-home #emJobBrowser .em-jb-header{padding:16px!important;gap:12px!important}
-html body #pagina-home #emJobBrowser .em-jb-title{font-size:17px!important}
+html body #pagina-home #emJobBrowser .em-jb-title{font-size:23px!important}
 html body #pagina-home #emJobBrowser .em-jb-brand{flex-basis:64px!important;width:64px!important;height:64px!important;padding:5px!important}
 html body #pagina-home #emJobBrowser .em-jb-header-meta p{padding:0 5px!important;font-size:10px!important}
 }
+}
+
+/* Vacancy information tabs below the application action. */
+@layer candidate-palette {
+html body #pagina-home #emJobBrowser .em-jb-tabs{display:flex!important;align-items:stretch!important;justify-content:center!important;gap:6px!important;width:100%!important;padding:0 14px!important;border-bottom:1px solid #e0e7ef!important;background:#fff!important}
+html body #pagina-home #emJobBrowser .em-jb-tab{display:block!important;flex:1!important;min-width:0!important;margin:0!important;padding:13px 5px 11px!important;border:0!important;border-bottom:3px solid transparent!important;border-radius:0!important;background:none!important;box-shadow:none!important;color:#526174!important;font-size:11px!important;font-weight:500!important;line-height:1.3!important;text-align:center!important;text-transform:uppercase!important;cursor:pointer!important}
+html body #pagina-home #emJobBrowser .em-jb-tab[aria-selected="true"]{--candidate-contrast-ink:#123f82!important;border-bottom-color:#123f82!important;color:#123f82!important;font-weight:700!important}
+html body #pagina-home #emJobBrowser .em-jb-tab:focus-visible{outline:2px solid #0072ce!important;outline-offset:-3px!important}
+html body #pagina-home #emJobBrowser [role="tabpanel"][hidden]{display:none!important}
+html body #pagina-home #emJobBrowser .em-jb-comparison{width:100%!important;table-layout:fixed!important;border-collapse:collapse!important;font-size:11px!important;line-height:1.5!important;background:#fff!important}
+html body #pagina-home #emJobBrowser .em-jb-comparison :is(th,td){padding:9px 6px!important;border-bottom:1px solid #e2e8f0!important;overflow-wrap:anywhere!important;text-align:left!important}
 }

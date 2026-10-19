@@ -501,7 +501,7 @@
         });
       });
       addSection('Benefícios', benefits.length ? benefits.join('\n') : 'Não informados.');
-      if (!entry.confidential) addSection('Sobre a empresa', job.sobreEmpresa);
+
       var footer = browserNode('footer', 'em-jb-footer');
       footer.setAttribute('aria-label', 'Candidatura à vaga');
       if (isDemo(job)) {
@@ -511,8 +511,52 @@
       body.appendChild(browserNode('p', 'em-jb-date', info.date));
       var full = browserNode('a', 'em-jb-full', 'Abrir página da vaga');
       full.href = String(win.location.pathname || '') + '?pagina=vaga&id=' + encodeURIComponent(job.id);
-      body.appendChild(full); panel.appendChild(body);
-      panel.appendChild(footer);
+      body.appendChild(full);
+      var navigation = browserNode('div', 'em-jb-tabs'); navigation.setAttribute('role', 'tablist'); navigation.setAttribute('aria-label', 'Informações da vaga');
+      panel.appendChild(navigation);
+      var companyPanel = browserNode('div', 'em-jb-body');
+      companyPanel.appendChild(browserNode('h3', '', 'Sobre a empresa'));
+      companyPanel.appendChild(browserNode('p', '', entry.confidential ? 'A identidade da empresa é confidencial.' : summaryText(job.sobreEmpresa || job.descricaoEmpresa || 'A empresa ainda não disponibilizou uma apresentação.')));
+      var reviewPanel = browserNode('div', 'em-jb-body');
+      reviewPanel.appendChild(browserNode('h3', '', 'Avaliações da empresa'));
+      reviewPanel.appendChild(browserNode('p', '', 'Ainda não há avaliações disponíveis para esta empresa no portal.'));
+      var comparisonPanel = browserNode('div', 'em-jb-body');
+      comparisonPanel.appendChild(browserNode('h3', '', 'Comparativo de vagas'));
+      var peers = Array.from(state.list.children).filter(function (item) {
+        var other = item.__emJobEntry;
+        return other && other.job.id !== job.id && isDemo(other.job) === isDemo(job) &&
+          ((job.area && other.job.area === job.area) || summaryText(other.info.title).toLowerCase() === summaryText(info.title).toLowerCase());
+      }).slice(0, 2);
+      if (peers.length) {
+        var table = browserNode('table', 'em-jb-comparison'), head = browserNode('tr', '');
+        ['Vaga', 'Salário', 'Modalidade', 'Contrato'].forEach(function (label) { head.appendChild(browserNode('th', '', label)); });
+        table.appendChild(head);
+        [card].concat(peers).forEach(function (item) {
+          var other = item.__emJobEntry, row = browserNode('tr', '');
+          [other.info.title, other.info.salary, other.job.modalidade || 'Não informada', other.job.contrato || other.job.tipoContrato || 'Não informado'].forEach(function (value) { row.appendChild(browserNode('td', '', summaryText(value))); });
+          table.appendChild(row);
+        });
+        comparisonPanel.appendChild(table);
+        comparisonPanel.appendChild(browserNode('p', '', 'Comparação com oportunidades da mesma área disponíveis nesta lista.'));
+      } else comparisonPanel.appendChild(browserNode('p', '', 'Não há outras vagas da mesma área nesta lista para comparar.'));
+      var tabs = [], views = [body, companyPanel, reviewPanel, comparisonPanel];
+      function selectTab(index) {
+        views.forEach(function (view, i) { view.hidden = i !== index; view.setAttribute('aria-hidden', String(i !== index)); });
+        tabs.forEach(function (tab, i) { tab.setAttribute('aria-selected', String(i === index)); tab.tabIndex = i === index ? 0 : -1; });
+      }
+      ['Vaga', 'Empresa', 'Avaliações', 'Comparativo'].forEach(function (label, index) {
+        var tab = browserNode('button', 'em-jb-tab', label); tab.type = 'button'; tab.id = 'emJobTab' + index;
+        var view = views[index]; view.id = 'emJobTabPanel' + index;
+        tab.setAttribute('role', 'tab'); tab.setAttribute('aria-controls', view.id);
+        view.setAttribute('role', 'tabpanel'); view.setAttribute('aria-labelledby', tab.id);
+        tab.onclick = function () { selectTab(index); };
+        tab.addEventListener('keydown', function (event) {
+          var next = event.key === 'ArrowRight' ? (index + 1) % 4 : event.key === 'ArrowLeft' ? (index + 3) % 4 : event.key === 'Home' ? 0 : event.key === 'End' ? 3 : -1;
+          if (next < 0) return; event.preventDefault(); selectTab(next); tabs[next].focus();
+        });
+        tabs.push(tab); navigation.appendChild(tab); panel.appendChild(view);
+      });
+      selectTab(0); panel.appendChild(footer);
     }
     function selectBrowserJob(card, trigger, manual) {
       var state = mountJobBrowser(); if (!state || !card.__emJobEntry) return false;
@@ -571,7 +615,7 @@
         company.textContent = 'Empresa confidencial'; company.onclick = null;
         card.setAttribute('data-empresa','Empresa confidencial');
         logo.innerHTML = svg('<rect x="5" y="10" width="14" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3M12 14v3"/>');
-      } else if (highlighted) {
+      } else {
         var publicName = company.querySelector('span'); publicName = publicName ? publicName.textContent : company.textContent;
         var initials = String(publicName || 'Empresa').replace(/\(demo\)/ig,'').trim().split(/\s+/).slice(0,2).map(function(part){return part.charAt(0);}).join('').toLocaleUpperCase('pt-BR');
         if (!originalLogo && typeof win.logoPreviaDestaqueEM === 'function') {
@@ -598,7 +642,7 @@
       var dateMatch = /^(\d{4})-(\d{2})-(\d{2})/.exec(rawDate);
       var date = node('div','em-r4-date',dateMatch ? 'Publicada em '+dateMatch[3]+'/'+dateMatch[2]+'/'+dateMatch[1] : 'Data de publicação não informada');
       if (isDemo(job)) date.appendChild(node('span','em-r4-demo',' · Demonstração'));
-      if (highlighted && !confidential) identity.appendChild(logo);
+      if (!confidential) identity.appendChild(logo);
       identity.appendChild(copy);
       var facts = node('div','em-r4-facts');
       var city = String(job.cidade || 'Localidade não informada').trim();
