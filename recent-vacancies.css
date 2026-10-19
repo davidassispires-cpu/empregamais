@@ -2,12 +2,12 @@
 @layer candidate-palette {
 #listaVagas {container-type:inline-size;container-name:em-recent-list}
 .em-recent-blocks {
- --em-recent-selection-ink:#075eb0;--em-recent-selection-bg:#eff7ff;--em-recent-selection-shadow:#0875cc26;
+ --em-recent-selection-ink:#075eb0;--em-recent-selection-bg:#eff7ff;
  box-sizing:border-box!important;position:relative!important;display:flex!important;flex-direction:column!important;
  gap:14px!important;width:100%!important;min-width:0!important;height:auto!important;min-height:0!important;
  max-height:none!important;margin:0!important;padding:16px!important;
- border:2px solid #0875cc!important;border-radius:10px!important;background:#fff!important;
- color:#0b203d!important;box-shadow:0 2px 8px #10274406!important;overflow:visible!important;transform:none!important;
+ border:0!important;border-radius:10px!important;background:#fff!important;
+ color:#0b203d!important;box-shadow:0 2px 12px #1027440d!important;overflow:visible!important;transform:none!important;
  cursor:pointer!important;scroll-margin-block:16px!important;
  transition:transform .16s ease,box-shadow .16s ease,background-color .16s ease!important;
 }
@@ -15,8 +15,8 @@
 .em-recent-blocks *, .em-recent-blocks *::before, .em-recent-blocks *::after {box-sizing:border-box!important}
 .em-recent-blocks::before,.em-recent-blocks::after {display:none!important;content:none!important}
 .em-recent-blocks[hidden],.em-recent-blocks[style*="display: none"],.em-recent-blocks[style*="display:none"]{display:none!important}
-.em-recent-blocks[data-em-highlighted="true"]{--em-recent-selection-ink:#9a4a00;--em-recent-selection-bg:#fff6eb;--em-recent-selection-shadow:#ff7a142e;border-color:#ff7a14!important}
-.em-recent-blocks[data-em-selected="true"]{background:var(--em-recent-selection-bg)!important;box-shadow:0 0 0 1px var(--em-recent-selection-shadow)!important;z-index:1!important}
+.em-recent-blocks[data-em-highlighted="true"]{--em-recent-selection-ink:#9a4a00;--em-recent-selection-bg:#fff6eb;}
+.em-recent-blocks[data-em-selected="true"]{background:var(--em-recent-selection-bg)!important;box-shadow:0 3px 14px #10274414!important;z-index:1!important}
 .em-recent-blocks .em-r4-heading{display:flex!important;align-items:flex-start!important;gap:12px!important;width:100%!important;min-width:0!important}
 .em-recent-blocks .em-r4-identity{display:flex!important;align-items:flex-start!important;gap:12px!important;flex:1 1 auto!important;min-width:0!important;padding:0!important}
 .em-recent-blocks .em-r4-logo{display:flex!important;align-items:center!important;justify-content:center!important;flex:0 0 48px!important;width:48px!important;height:48px!important;padding:4px!important;margin:0!important;border:0!important;border-radius:9px!important;background:#f3f6fa!important;color:#526782!important;font-size:14px!important;font-weight:500!important;overflow:hidden!important}
@@ -24,7 +24,7 @@
 .em-recent-blocks .em-r4-logo img{display:block!important;width:100%!important;height:100%!important;object-fit:contain!important}
 .em-recent-blocks .em-r4-copy{display:flex!important;flex-direction:column!important;align-items:flex-start!important;gap:5px!important;min-width:0!important;flex:1 1 auto!important}
 .em-recent-blocks .em-r4-title-line{width:100%!important;min-width:0!important}
-.em-recent-blocks .em-r4-title{margin:0!important;padding:0!important;font-size:18px!important;font-weight:600!important;line-height:1.35!important;color:#0b203d!important;text-transform:uppercase!important;white-space:normal!important;overflow-wrap:anywhere!important}
+.em-recent-blocks .em-r4-title{margin:0!important;padding:0!important;font-size:22px!important;font-weight:600!important;line-height:1.3!important;color:#0b203d!important;text-transform:uppercase!important;white-space:normal!important;overflow-wrap:anywhere!important}
 .em-recent-blocks .em-r4-title-select{all:unset!important;display:block!important;width:100%!important;cursor:pointer!important;font:inherit!important;color:inherit!important}
 .em-recent-blocks .em-r4-company{--candidate-contrast-ink:#0072ce!important;display:block!important;width:auto!important;max-width:100%!important;margin:0!important;padding:0!important;border:0!important;background:none!important;color:#0072ce!important;font-size:13px!important;font-weight:400!important;line-height:1.5!important;text-transform:none!important;overflow-wrap:anywhere!important}
 .em-recent-blocks .em-r4-company span{font:inherit!important;color:inherit!important}
@@ -45,10 +45,13 @@
 .em-recent-blocks .em-r4-open-state{--candidate-contrast-ink:var(--em-recent-selection-ink)!important;display:inline-flex!important;align-items:center!important;flex:0 0 auto!important;gap:4px!important;margin-left:auto!important;visibility:hidden!important;color:var(--em-recent-selection-ink)!important;font-size:11px!important;font-weight:500!important;line-height:1.5!important}
 .em-recent-blocks .em-r4-open-state svg{width:14px!important;height:14px!important;flex:none!important}
 .em-recent-blocks[data-em-selected="true"] .em-r4-open-state{visibility:visible!important}
+/* Legacy new-job badges must not overlap the current preview heading. */
+.em-recent-blocks :is(.em-selo-nova-v31,.em-tooltip-nova-v31){display:none!important}
 .em-recent-blocks :is(button,a):focus-visible{outline:2px solid #0072ce!important;outline-offset:3px!important}
 @container em-recent-list (max-width:380px){
  .em-recent-blocks{padding:14px!important;gap:12px!important}
  .em-recent-blocks .em-r4-heading{gap:8px!important}
+ .em-recent-blocks .em-r4-title{font-size:20px!important}
  .em-recent-blocks .em-r4-identity{gap:10px!important}
  .em-recent-blocks .em-r4-logo{flex-basis:42px!important;width:42px!important;height:42px!important}
  .em-recent-blocks .em-r4-status{max-width:96px!important}
