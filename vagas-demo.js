@@ -564,11 +564,6 @@
       var titleLine = node('div','em-r4-title-line');
       titleLine.appendChild(title);
       copy.appendChild(titleLine); copy.appendChild(company);
-      var preview = null;
-      if (highlighted) {
-        var previewText = summaryText(job.resumo || job.descricao || job.descricaoVaga, 320);
-        if (previewText) preview = node('p','em-r4-summary',previewText);
-      }
       var rawDate = String(job.dataPublicacao || job.publicadaEm || job.criadoEm || '');
       var dateMatch = /^(\d{4})-(\d{2})-(\d{2})/.exec(rawDate);
       var date = node('div','em-r4-date',dateMatch ? 'Publicada em '+dateMatch[3]+'/'+dateMatch[2]+'/'+dateMatch[1] : 'Data de publicação não informada');
@@ -614,7 +609,6 @@
       save.onclick=function(event){event.preventDefault();event.stopPropagation();if(typeof originalSave==='function')originalSave.call(save,event);else if(typeof win.alternarFavorito==='function')win.alternarFavorito(job.id);updateSave();};
       updateSave();
       card.replaceChildren(identity,facts,actions,save);
-      if (preview) card.appendChild(preview);
       card.appendChild(footer);
       var label = highlighted ? 'Destaque' : enabled(job.urgente) || enabled(job.contratacaoUrgente) ? 'Contratação urgente' : '';
       if (label) {

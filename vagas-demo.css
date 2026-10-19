@@ -675,15 +675,6 @@ html body #pagina-home #listaVagas .em-recent-discreet .em-r4-company {
 }
 html body #pagina-home #listaVagas .em-recent-discreet .em-r4-company>span {--candidate-contrast-ink:#0078bd!important;font:inherit!important;color:inherit!important;white-space:normal!important}
 html body #pagina-home #listaVagas .em-recent-discreet .em-r4-company .em-lista-verificada {--candidate-contrast-ink:#218344!important;color:#218344!important;background:none!important;border:0!important}
-html body #pagina-home #listaVagas article.em-recent-discreet[data-em-highlighted="true"] .em-r4-summary {
-  --candidate-contrast-ink:#526174!important;
-  display:-webkit-box!important;-webkit-box-orient:vertical!important;-webkit-line-clamp:2!important;line-clamp:2!important;
-  grid-area:auto!important;grid-column:1/-1!important;justify-self:stretch!important;align-self:start!important;
-  order:2!important;flex:0 0 auto!important;width:100%!important;min-width:0!important;max-height:39px!important;
-  margin:0!important;padding:0!important;border:0!important;background:transparent!important;
-  color:#526174!important;font-size:13px!important;font-weight:400!important;line-height:1.5!important;
-  white-space:normal!important;overflow:hidden!important;overflow-wrap:anywhere!important;text-overflow:ellipsis!important;
-}
 html body #pagina-home #listaVagas .em-recent-discreet .em-r4-date {
   grid-area:auto!important;grid-column:1/-1!important;justify-self:end!important;align-self:end!important;text-align:right!important;
   display:block!important;min-width:0!important;margin:0!important;padding:0!important;
@@ -915,7 +906,12 @@ html body #pagina-home#pagina-home #vagas .em-job-browser-filters>summary:focus-
 }
 }
 
-/* Refined job browser: compact cards, a clear footer and more room for reading. */
+/* Corporate model 1 uses the real local Montserrat variable font, independently of legacy aliases. */
+@font-face {
+  font-family:'EM Recent Montserrat';font-style:normal;font-weight:100 900;font-display:swap;
+  src:url('assets/fonts/cf-montserrat.woff') format('woff');
+}
+/* Approved model 1: corporate previews without description and a clear reading panel. */
 @layer candidate-palette {
 html body #pagina-home #listaVagas article.em-recent-discreet .em-r4-footer {
   grid-area:auto!important;grid-column:1/-1!important;order:3!important;display:grid!important;
@@ -946,21 +942,34 @@ html body #pagina-home#pagina-home #vagas .em-job-browser-filters>summary {paddi
 html body #pagina-home #emJobBrowser {gap:24px!important}
 html body #pagina-home #emJobBrowser #listaVagas {gap:14px!important}
 html body #pagina-home #emJobBrowser #listaVagas article.em-recent-discreet {
-  gap:11px 12px!important;padding:18px!important;border-color:#dfe6ee!important;border-radius:11px!important;
-  box-shadow:0 2px 6px #10274403!important;transition:border-color .15s ease,box-shadow .15s ease!important;
+  gap:12px!important;padding:18px!important;border-color:#dfe6ee!important;border-radius:10px!important;
+  box-shadow:none!important;transition:border-color .15s ease,box-shadow .15s ease!important;
+}
+html body #pagina-home #emJobBrowser #listaVagas article.em-recent-discreet,
+html body #pagina-home #emJobBrowser #listaVagas article.em-recent-discreet * {
+  font-family:'EM Recent Montserrat',Montserrat,Arial,sans-serif!important;font-synthesis:none!important;
 }
 html body #pagina-home #emJobBrowser #listaVagas article.em-recent-discreet:hover {border-color:#b8cadc!important;box-shadow:0 4px 12px #10274407!important}
 html body #pagina-home #emJobBrowser #listaVagas article.em-recent-discreet[data-em-highlighted="true"] {padding-left:15px!important;border-left-color:#ff7a14!important}
-html body #pagina-home #emJobBrowser #listaVagas article.em-recent-discreet[data-em-selected="true"] {border-color:#0078bd!important;background:#f8fbfe!important;box-shadow:0 0 0 1px #0078bd17!important}
+html body #pagina-home #emJobBrowser #listaVagas article.em-recent-discreet[data-em-selected="true"] {border-color:#0078bd!important;background:#f3f9fd!important;box-shadow:0 0 0 1px #0078bd12!important}
 html body #pagina-home #emJobBrowser #listaVagas article.em-recent-discreet[data-em-highlighted="true"][data-em-selected="true"] {border-left-color:#ff7a14!important}
 html body #pagina-home #emJobBrowser #listaVagas .em-r4-identity {padding-right:34px!important;gap:12px!important}
 html body #pagina-home #emJobBrowser #listaVagas .em-r4-title {font-size:18px!important;line-height:1.35!important}
 html body #pagina-home #emJobBrowser #listaVagas .em-r4-company {font-size:13px!important;line-height:1.45!important}
 html body #pagina-home #emJobBrowser #listaVagas .em-r4-logo {background:#f2f6fb!important}
 html body #pagina-home #emJobBrowser #listaVagas .em-r4-facts {gap:7px 12px!important}
+html body #pagina-home #emJobBrowser #listaVagas .em-r4-facts:has(>.em-r4-status[data-kind="urgent"]) {
+  display:grid!important;grid-template-columns:minmax(0,max-content) minmax(0,1fr)!important;
+  grid-template-rows:auto auto!important;grid-template-areas:"status status" "location terms"!important;gap:10px 12px!important;
+}
+html body #pagina-home #emJobBrowser #listaVagas .em-r4-facts:has(>.em-r4-status[data-kind="urgent"])>.em-r4-status {grid-area:status!important;justify-self:start!important}
+html body #pagina-home #emJobBrowser #listaVagas .em-r4-facts:has(>.em-r4-status[data-kind="urgent"])>.em-r4-location {grid-area:location!important}
+html body #pagina-home #emJobBrowser #listaVagas .em-r4-facts:has(>.em-r4-status[data-kind="urgent"])>.em-r4-terms {grid-area:terms!important}
+html body #pagina-home #emJobBrowser #listaVagas .em-r4-facts:has(>.em-r4-status[data-kind="urgent"])>.em-r4-distance {grid-area:auto!important;grid-column:1/-1!important}
+html body #pagina-home #emJobBrowser #listaVagas .em-r4-terms {margin-left:2px!important;padding-left:12px!important;border-left:1px solid #d9e2ec!important}
 html body #pagina-home #emJobBrowser #listaVagas .em-r4-actions {grid-template-rows:auto!important;grid-template-areas:"salary apply"!important;gap:0 12px!important}
 html body #pagina-home #emJobBrowser #listaVagas .em-r4-salary {--candidate-contrast-ink:#216846!important;color:#216846!important;font-weight:500!important}
-html body #pagina-home #emJobBrowser #listaVagas .em-r4-apply {height:36px!important;min-height:36px!important;border-radius:7px!important}
+html body #pagina-home #emJobBrowser #listaVagas .em-r4-apply {height:38px!important;min-height:38px!important;border-radius:8px!important}
 html body #pagina-home #emJobBrowser #listaVagas .em-r4-footer {padding-top:9px!important}
 html body #pagina-home #emJobBrowser #listaVagas .em-r4-footer .em-r4-details {width:auto!important;min-height:26px!important;font-size:12px!important}
 html body #pagina-home #emJobBrowser #listaVagas .em-r4-details::after {content:"→"!important;display:inline-block!important;margin-left:7px!important;font-size:15px!important;line-height:1!important}
@@ -1014,6 +1023,7 @@ html body #pagina-home #emJobBrowser .em-jb-demo {font-size:11px!important}
   html body #pagina-home #emJobBrowser #listaVagas article.em-recent-discreet[data-em-highlighted="true"] {padding-left:13px!important}
   html body #pagina-home #emJobBrowser #listaVagas .em-r4-footer {gap:8px!important}
   html body #pagina-home #emJobBrowser #listaVagas .em-r4-footer .em-r4-date {font-size:10px!important}
+  html body #pagina-home #emJobBrowser #listaVagas .em-r4-terms {margin-left:0!important;padding-left:0!important;border-left:0!important}
   html body #pagina-home #emJobBrowser .em-jb-title {font-size:20px!important}
   html body #pagina-home #emJobBrowser .em-jb-facts {padding:13px!important;gap:12px!important}
 }
