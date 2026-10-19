@@ -992,7 +992,18 @@ html body #pagina-home #emJobBrowser .em-job-panel * {
   font-family:'EM Recent Montserrat',Montserrat,Arial,sans-serif!important;font-synthesis:none!important;text-align:center!important;
 }
 html body #pagina-home #emJobBrowser .em-jb-header {
-  position:relative!important;padding:24px 52px 22px!important;border-bottom-color:#e8edf3!important;
+  --em-job-header-background:#0078bd;--em-job-header-ink:#fff;--em-job-header-control-ink:#0078bd;
+  position:relative!important;padding:24px 52px 22px!important;border-bottom:0!important;
+  background:var(--em-job-header-background)!important;color:var(--em-job-header-ink)!important;
+}
+html body #pagina-home #emJobBrowser .em-job-panel[data-em-highlighted="true"] .em-jb-header {
+  --em-job-header-background:#ff7a14;--em-job-header-ink:#102744;--em-job-header-control-ink:#102744;
+}
+html body #pagina-home #emJobBrowser .em-jb-header :is(.em-jb-title,.em-jb-company,.em-jb-location) {
+  --candidate-contrast-ink:var(--em-job-header-ink)!important;color:var(--em-job-header-ink)!important;
+}
+html body #pagina-home #emJobBrowser .em-jb-header .em-jb-save {
+  --candidate-contrast-ink:var(--em-job-header-control-ink)!important;color:var(--em-job-header-control-ink)!important;
 }
 html body #pagina-home #emJobBrowser .em-jb-badges {justify-content:center!important;gap:6px!important;margin-bottom:10px!important}
 html body #pagina-home #emJobBrowser .em-jb-badge {padding:3px 7px!important;font-weight:500!important}
