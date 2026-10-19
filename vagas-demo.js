@@ -225,6 +225,17 @@
       var text = doc.createElement('span'); text.textContent = label; span.appendChild(text); bar.appendChild(span);
     }
     function enabled(value) { return value === true || value === 1 || /^(true|1)$/i.test(String(value)); }
+    function demoVerifiedCompany(company, job) {
+      if (!company || !isDemo(job) || company.querySelector('.em-demo-verified')) return;
+      var confidential = typeof win.vagaEhConfidencialEM === 'function' ? win.vagaEhConfidencialEM(job) : enabled(job.confidencial);
+      if (confidential) return;
+      var seal = doc.createElement('i'); seal.className = 'em-demo-verified';
+      seal.setAttribute('role', 'img');
+      seal.setAttribute('aria-label', 'Empresa verificada (demonstração)');
+      seal.title = 'Selo ilustrativo de empresa verificada em vaga de demonstração.';
+      seal.innerHTML = '<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="10" fill="currentColor"/><path d="m7.5 12 3 3 6-6" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+      company.appendChild(seal);
+    }
     var activeSummaryClose = null;
     function summaryText(value, limit) {
       var text = Array.isArray(value) ? value.join('; ') : String(value == null ? '' : value);
@@ -271,6 +282,7 @@
       var title = node('h2', 'em-js-title', summaryText(info.title)); title.id = 'emRecentSummaryTitle';
       heading.appendChild(title);
       var company = node('p', 'em-js-company', summaryText(info.company)); company.id = 'emRecentSummaryCompany';
+      demoVerifiedCompany(company, job);
       heading.appendChild(company); header.appendChild(heading);
       var close = node('button', 'em-js-close', '×'); close.type = 'button';
       close.setAttribute('aria-label', 'Fechar resumo da vaga'); close.setAttribute('autofocus', '');
@@ -452,6 +464,7 @@
       headerContent.appendChild(title);
       var company = browserNode(entry.company.onclick ? 'button' : 'p', 'em-jb-company', summaryText(info.company));
       if (entry.company.onclick) { company.type = 'button'; company.onclick = function () { entry.company.click(); }; }
+      demoVerifiedCompany(company, job);
       headerContent.appendChild(company);
       var headerMeta = browserNode('div', 'em-jb-header-meta');
       function headerFact(className, text, path) {
@@ -759,6 +772,7 @@
       var card = makeCard.apply(this, arguments);
       if (!card || !isDemo(job)) return recentCard(card, job, featured);
       card.classList.add('em-public-demo-card');
+      demoVerifiedCompany(card.querySelector('.em-lista-empresa,.em-featured-company,.dz-empresa,.vaga-empresa'), job);
       var bar = featured && card.querySelector('.em-featured-badges');
       if (!bar) {
         bar = doc.createElement('div');
@@ -777,7 +791,9 @@
     function detailNotice() {
       var page = doc.getElementById('pagina-vaga'), notice = doc.getElementById('emPublicDemoJobNotice');
       if (!page) return;
+      page.querySelectorAll('.em-demo-verified').forEach(function(seal) { seal.remove(); });
       if (!currentDemo()) { if (notice) notice.remove(); return; }
+      page.querySelectorAll('#emV63Nome,#detalheEmpresaCab,#vagaEmpresa').forEach(function(company) { demoVerifiedCompany(company, win.vagaAtual); });
       if (!notice) {
         notice = doc.createElement('p'); notice.id = 'emPublicDemoJobNotice'; notice.className = 'em-public-demo-notice'; notice.setAttribute('role', 'note');
         notice.textContent = 'Vaga de demonstração. Esta oportunidade é fictícia e não recebe candidaturas reais.';

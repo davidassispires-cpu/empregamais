@@ -950,3 +950,15 @@ html body #pagina-home #emJobBrowser .em-jb-extra>summary{width:max-content!impo
 html body #pagina-home #emJobBrowser .em-jb-extra>.em-jb-facts{margin-top:10px!important}
 html body #pagina-home #emJobBrowser .em-jb-extra:not([open])>.em-jb-facts{display:none!important}
 }
+/* Illustrative verification marks belong only to public demonstration companies. */
+@layer candidate-palette {
+html body :is(#pagina-home,#pagina-vaga,dialog.em-job-summary) .em-demo-verified {
+ --candidate-contrast-ink:#148355!important;display:inline-flex!important;align-items:center!important;justify-content:center!important;
+ width:16px!important;height:16px!important;min-width:16px!important;flex:0 0 16px!important;margin:0 0 0 6px!important;padding:0!important;
+ border:0!important;background:none!important;color:#148355!important;font-size:0!important;font-style:normal!important;line-height:1!important;
+ vertical-align:-3px!important;cursor:help!important;
+}
+html body :is(#pagina-home,#pagina-vaga,dialog.em-job-summary) .em-demo-verified svg {
+ display:block!important;width:16px!important;height:16px!important;flex:none!important;color:inherit!important;
+}
+}
