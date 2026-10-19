@@ -424,6 +424,18 @@
       var back = browserNode('button', 'em-jb-back', '← Voltar às vagas'); back.type = 'button';
       back.onclick = function () { returnToJobList(state); }; panel.appendChild(back);
       var header = browserNode('header', 'em-jb-header');
+      if (!entry.confidential) {
+        var logoSource = job.logo || job.logoEmpresa;
+        var logoPreview = !logoSource && typeof win.logoPreviaDestaqueEM === 'function' ? win.logoPreviaDestaqueEM(job) : null;
+        var logoImage = logoPreview && logoPreview.querySelector('img');
+        if (logoSource || logoImage) {
+          var brand = browserNode('div', 'em-jb-brand');
+          var image = browserNode('img', ''); image.src = logoSource || logoImage.src;
+          image.alt = summaryText(info.company); image.loading = 'lazy';
+          image.onerror = function () { brand.remove(); };
+          brand.appendChild(image); header.appendChild(brand);
+        }
+      }
       var badges = browserNode('div', 'em-jb-badges');
       if (entry.highlighted) badges.appendChild(browserNode('span', 'em-jb-badge', 'Destaque'));
       if (enabled(job.urgente) || enabled(job.contratacaoUrgente)) badges.appendChild(browserNode('span', 'em-jb-badge em-jb-urgent', 'Contratação urgente'));
@@ -435,6 +447,8 @@
       if (entry.company.onclick) { company.type = 'button'; company.onclick = function () { entry.company.click(); }; }
       header.appendChild(company);
       header.appendChild(browserNode('p', 'em-jb-location', summaryText(info.location)));
+      header.appendChild(browserNode('p', 'em-jb-header-pay', summaryText(info.salary)));
+      header.appendChild(browserNode('p', 'em-jb-header-modality', summaryText(job.modalidade || 'Modalidade não informada')));
       var candidate = browserNode('button', 'em-jb-apply', 'Candidatar-se'); candidate.type = 'button';
       candidate.onclick = function () {
         if (isDemo(job)) { explainDemo(); return; }
@@ -448,7 +462,9 @@
         save.setAttribute('aria-label', label); save.title = label; save.setAttribute('aria-pressed', String(!!saved));
         save.innerHTML = '<svg viewBox="0 0 24 24" fill="'+(saved ? 'currentColor' : 'none')+'" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3h12v18l-6-4-6 4V3Z"/></svg>';
       }
-      savedState(); save.onclick = function () { entry.save.click(); savedState(); }; header.appendChild(save);
+      savedState(); save.onclick = function () { entry.save.click(); savedState(); };
+      var headerActions = browserNode('div', 'em-jb-header-actions');
+      headerActions.appendChild(candidate); headerActions.appendChild(save); header.appendChild(headerActions);
       panel.appendChild(header);
       var body = browserNode('div', 'em-jb-body'), facts = browserNode('dl', 'em-jb-facts');
       function addFact(label, value, salary) {
@@ -487,7 +503,7 @@
       var full = browserNode('a', 'em-jb-full', 'Abrir página da vaga');
       full.href = String(win.location.pathname || '') + '?pagina=vaga&id=' + encodeURIComponent(job.id);
       body.appendChild(full); panel.appendChild(body);
-      footer.appendChild(candidate); panel.appendChild(footer);
+      panel.appendChild(footer);
     }
     function selectBrowserJob(card, trigger, manual) {
       var state = mountJobBrowser(); if (!state || !card.__emJobEntry) return false;
