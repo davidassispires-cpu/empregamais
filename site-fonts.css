@@ -1412,3 +1412,51 @@ html body .em-field-message{display:block!important;grid-column:1/-1!important;m
     background:#f1f4f7!important;color:#667085!important;-webkit-text-fill-color:#667085!important;
   }
 }
+
+/* Compact native filters with complete, wrapping captions and a consistent focus state. */
+@layer field-feedback {
+  html body #pagina-candidatos-empresa .em-jh-reference.em-app-hub .em-app-filter-row .em-app-select-shell {
+    position:relative!important;display:block!important;box-sizing:border-box!important;
+    width:100%!important;min-width:0!important;max-width:100%!important;height:38px!important;
+    padding:0!important;margin:0!important;border:1px solid #d5e0ed!important;border-radius:8px!important;
+    background:#fff!important;box-shadow:0 1px 2px #17365404!important;
+    transition:border-color .15s,box-shadow .15s!important;
+  }
+  html body #pagina-candidatos-empresa .em-jh-reference.em-app-hub .em-app-select-shell:hover {border-color:#9bb9d9!important}
+  html body #pagina-candidatos-empresa .em-jh-reference.em-app-hub .em-app-select-shell:focus-within {
+    border-color:#0874ef!important;outline:2px solid #b8d6ff!important;outline-offset:1px!important;
+  }
+  html body #pagina-candidatos-empresa .em-jh-reference.em-app-hub .em-app-select-shell:after {
+    content:''!important;position:absolute!important;right:11px!important;top:calc(50% - 4px)!important;
+    width:6px!important;height:6px!important;border-right:1.5px solid #607a97!important;
+    border-bottom:1.5px solid #607a97!important;transform:rotate(45deg)!important;pointer-events:none!important;
+  }
+  html body #pagina-candidatos-empresa .em-jh-reference.em-app-hub .em-app-select-value {
+    display:flex!important;align-items:center!important;box-sizing:border-box!important;
+    width:100%!important;height:100%!important;min-width:0!important;padding:3px 28px 3px 11px!important;
+    margin:0!important;font-size:11px!important;font-weight:500!important;line-height:1.25!important;
+    color:#52677f!important;-webkit-text-fill-color:#52677f!important;
+    white-space:normal!important;overflow-wrap:anywhere!important;text-overflow:clip!important;
+    pointer-events:none!important;text-align:left!important;
+  }
+  html body #pagina-candidatos-empresa .em-jh-reference.em-app-hub .em-app-select-shell[data-filtered=true] {
+    border-color:#a7c9ee!important;background:#f7fbff!important;
+  }
+  html body #pagina-candidatos-empresa .em-jh-reference.em-app-hub .em-app-select-shell[data-filtered=true] .em-app-select-value {
+    color:#145ca8!important;-webkit-text-fill-color:#145ca8!important;font-weight:600!important;
+  }
+  html body #pagina-candidatos-empresa .em-jh-reference.em-app-hub .em-app-filter-row .em-app-select-shell>select {
+    position:absolute!important;inset:0!important;z-index:1!important;box-sizing:border-box!important;
+    display:block!important;width:100%!important;max-width:100%!important;min-width:0!important;
+    height:100%!important;min-height:0!important;margin:0!important;padding:0!important;
+    border:0!important;opacity:0!important;cursor:pointer!important;font-size:12px!important;
+  }
+  html body #pagina-candidatos-empresa .em-jh-reference.em-app-hub .em-app-search #emJhText {
+    border-color:#d5e0ed!important;border-radius:8px!important;
+    background:#fff!important;box-shadow:0 1px 2px #17365404!important;
+  }
+  html body #pagina-candidatos-empresa .em-jh-reference.em-app-hub .em-app-search #emJhText:hover {border-color:#9bb9d9!important}
+  html body #pagina-candidatos-empresa .em-jh-reference.em-app-hub .em-app-search #emJhText:focus-visible {
+    border-color:#0874ef!important;outline:2px solid #b8d6ff!important;outline-offset:1px!important;
+  }
+}
