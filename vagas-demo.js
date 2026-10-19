@@ -260,7 +260,9 @@
       title.classList.add('em-r4-title'); title.title = title.textContent;
       company.classList.add('em-r4-company');
       company.querySelectorAll('.em-lista-nota-empresa').forEach(function(el){el.remove();});
-      copy.appendChild(title); copy.appendChild(company);
+      var titleLine = node('div','em-r4-title-line');
+      titleLine.appendChild(title);
+      copy.appendChild(titleLine); copy.appendChild(company);
       var rawDate = String(job.dataPublicacao || job.publicadaEm || job.criadoEm || '');
       var dateMatch = /^(\d{4})-(\d{2})-(\d{2})/.exec(rawDate);
       var date = node('div','em-r4-date',dateMatch ? 'Publicada em '+dateMatch[3]+'/'+dateMatch[2]+'/'+dateMatch[1] : 'Data de publicação não informada');
@@ -279,7 +281,7 @@
       var distance = card.querySelector('.em-lista-distancia');
       if (distance) { distance.classList.add('em-r4-distance'); facts.appendChild(distance); }
       var actions = node('div','em-r4-actions');
-      facts.appendChild(node('strong','em-r4-salary',salaryValue));
+      var salary = node('strong','em-r4-salary',salaryValue);
       apply.classList.add('em-r4-apply'); apply.textContent = 'Candidatar-se'; actions.appendChild(apply);
       var details = node('button','em-r4-details','Ver detalhes'); details.type = 'button'; details.setAttribute('data-vaga-id',String(job.id || ''));
       details.onclick = function(event){event.preventDefault();event.stopPropagation();if(typeof win.irPara==='function')win.irPara('vaga',job.id);else win.location.href=String(win.location.pathname || '')+'?pagina=vaga&id='+encodeURIComponent(job.id);};
@@ -289,9 +291,9 @@
       function updateSave(){var saved=typeof win.vagaEstaSalva==='function'&&win.vagaEstaSalva(job.id);save.setAttribute('aria-pressed',String(!!saved));save.setAttribute('aria-label',saved?'Remover vaga dos salvos':'Salvar vaga');save.title=saved?'Remover vaga dos salvos':'Salvar vaga';save.innerHTML=svg('<path d="M6 3h12v18l-6-4-6 4V3Z"/>');}
       save.onclick=function(event){event.preventDefault();event.stopPropagation();if(typeof originalSave==='function')originalSave.call(save,event);else if(typeof win.alternarFavorito==='function')win.alternarFavorito(job.id);updateSave();};
       updateSave();
-      card.replaceChildren(identity,facts,actions,save);
+      card.replaceChildren(identity,facts,salary,actions,save);
       var label = highlighted ? 'Em destaque' : enabled(job.urgente) || enabled(job.contratacaoUrgente) ? 'Contratação urgente' : '';
-      if (label) { var status=node('span','em-r4-status',label); status.setAttribute('data-kind',highlighted?'featured':'urgent'); actions.appendChild(status); }
+      if (label) { var status=node('span','em-r4-status',label); status.setAttribute('data-kind',highlighted?'featured':'urgent'); titleLine.appendChild(status); }
       card.classList.add('em-recent-model3','em-recent-discreet');
       card.setAttribute('data-em-highlighted',String(highlighted)); card.setAttribute('data-em-confidential',String(confidential));
       return card;
@@ -352,4 +354,5 @@
   }
   return {criarVagas:createJobs, ehDemo:isDemo, instalar:install};
 });
+
 
