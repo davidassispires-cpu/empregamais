@@ -276,6 +276,12 @@
   workspace.querySelector('h1').focus({preventScroll:true});
   (container.querySelector('.cp-demo-plans')||workspace).scrollIntoView({block:'start',behavior:'auto'});
  }
+ function openProfessional(view){
+  if(!global.EMProfessionalTools)return view==='simulator'?interviewSetup():testsSetup();
+  var titles={tests:'Testes e avaliações',simulator:'Simulador de entrevistas',results:'Seus resultados'};
+  openWorkspace(titles[view]||titles.tests,'<section id="emCandidateProfessionalTools" aria-label="Recursos profissionais"></section>');
+  global.EMProfessionalTools.mount(workspace.querySelector('#emCandidateProfessionalTools'),{role:'candidate',view:view,profile:profile(),jobs:jobs(),applications:applicationRows(),demo:demo(),navigate:openProfessional});
+ }
  function toolStatus(text){var el=workspace.querySelector('.cp-feedback');if(el)el.textContent=text;}
  function recommendationIcon(name){var paths={crown:'<path d="m3 7 5 4 4-7 4 7 5-4-3 13H6Z"/><path d="M7 22h10"/>',pin:'<path d="M20 10c0 6-8 12-8 12S4 16 4 10a8 8 0 1 1 16 0Z"/><circle cx="12" cy="10" r="3"/>',office:'<path d="M4 22V3h13v19M17 11h4v11M2 22h21M8 7h1m3 0h1M8 11h1m3 0h1M8 15h1m3 0h1M9 22v-4h4v4"/>',document:'<path d="M5 2h10l4 4v16H5ZM14 2v6h5M8 12h8M8 16h8"/>',target:'<circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><path d="m12 12 9-9M16 3h5v5"/>',skills:'<path d="m12 2 3 5 6 1-2 6 1 6-6-1-5 3-3-5-5-2 3-5 1-6 6 1Z"/><circle cx="12" cy="12" r="3"/>'};return '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'+(paths[name]||paths.target)+'</svg>';}
  function recommendationCompanyLogo(job,conf){
@@ -432,11 +438,12 @@
    if(results){results.tabIndex=-1;results.focus({preventScroll:true});results.scrollIntoView({block:'start',behavior:'auto'});}
   }
   else if(action==='close')closeWorkspace();
-  else if(action==='interview')interviewSetup();
+  else if(action==='interview')openProfessional('simulator');
   else if(action==='resume-interview')renderInterview();
   else if(action==='previous-question'){saveCurrentAnswer();practice.interview.index=Math.max(0,practice.interview.index-1);persistPractice();renderInterview();}
   else if(action==='download-interview')downloadInterview();
-  else if(action==='tests')testsSetup();
+  else if(action==='tests')openProfessional('tests');
+  else if(action==='professional-results')openProfessional('results');
   else if(action==='resume-test')renderTest();
   else if(action==='next-test')nextTest();
   else if(action==='alerts')openAlerts();
@@ -468,6 +475,7 @@
   enhanceMetrics();renderLatest();renderAlertCard();renderPracticeCard();enhanceRecommendations();enhanceInterview();
   if(workspace&&workspace.dataset.cpView==='recommendations'&&page.classList.contains('cp-recommendations-active'))openRecommendations(true);
   applyWorkspaceFont(container);applyWorkspaceFont(document.getElementById('cpCandidateHeader'));
+  var prep=container.querySelector('.cp-preparation');if(prep&&!prep.querySelector('[data-cp-action="professional-results"]')){var link=document.createElement('button');link.type='button';link.className='cp-text-button';link.dataset.cpAction='professional-results';link.textContent='Testes recebidos e meus resultados';prep.appendChild(link);}
  }
  function schedule(){if(scheduled)return;scheduled=true;requestAnimationFrame(function(){scheduled=false;mount();});}
  function applyOrangePalette(scope){
@@ -900,3 +908,4 @@
  document.addEventListener('empregamais:candidato-sincronizado',schedule);window.addEventListener('storage',function(){lastSignature='';schedule();});
  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',start,{once:true});else start();
 })();
+

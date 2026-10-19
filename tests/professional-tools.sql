@@ -1,0 +1,68 @@
+-- Transactional end-to-end checks. Every fixture and response is rolled back.
+begin;
+do $$
+declare company_user uuid:=gen_random_uuid(); candidate_user uuid:=gen_random_uuid(); stranger uuid:=gen_random_uuid(); company_id uuid; other_company uuid; job uuid; other_job uuid; app text:='professional-test-'||gen_random_uuid(); stamp text:=substr(replace(gen_random_uuid()::text,'-',''),1,12);
+begin
+ insert into auth.users(id,email,email_confirmed_at,role,aud) values(company_user,'company-'||stamp||'@example.invalid',now(),'authenticated','authenticated'),(candidate_user,'candidate-'||stamp||'@example.invalid',now(),'authenticated','authenticated'),(stranger,'stranger-'||stamp||'@example.invalid',now(),'authenticated','authenticated');
+ insert into public.empresas(user_id,cnpj,nome) values(company_user,'91'||lpad((floor(random()*1e12)::bigint)::text,12,'0'),'Professional tools test') returning id into company_id;
+ insert into public.empresas(user_id,cnpj,nome) values(stranger,'92'||lpad((floor(random()*1e12)::bigint)::text,12,'0'),'Other test company') returning id into other_company;
+ insert into public.vagas(user_id,empresa_id,cargo,empresa) values(company_user,company_id,'Assistente Administrativo','Professional tools test') returning id into job;
+ insert into public.vagas(user_id,empresa_id,cargo,empresa) values(stranger,other_company,'Outra vaga','Other test company') returning id into other_job;
+ insert into public.candidaturas(id,vaga_id,candidato_user_id,empresa_user_id,candidato_nome,candidato_email,status) values(app,job::text,candidate_user,company_user,'Candidato de teste','candidate-'||stamp||'@example.invalid','Em avaliação');
+ perform set_config('em.test.company_user',company_user::text,true);perform set_config('em.test.candidate',candidate_user::text,true);perform set_config('em.test.stranger',stranger::text,true);
+ perform set_config('em.test.cnpj',(select cnpj from public.empresas where id=company_id),true);perform set_config('em.test.job',job::text,true);perform set_config('em.test.other_job',other_job::text,true);perform set_config('em.test.app',app,true);
+end;$$;
+set local role authenticated;
+do $$
+declare a jsonb; b jsonb; invite jsonb; assigned jsonb; sim jsonb; listed jsonb; denied boolean; stale boolean; cand text:=current_setting('em.test.candidate'); employer text:=current_setting('em.test.company_user'); other text:=current_setting('em.test.stranger'); company_data jsonb:=jsonb_build_object('role','company','company_cnpj',current_setting('em.test.cnpj')); answers jsonb:='[0,1,2,0,1,2,1,"Olá! Informamos que a entrega prevista para terça será realizada na quarta-feira. Estamos disponíveis neste canal para esclarecer suas dúvidas. Obrigado."]';
+begin
+ perform set_config('request.jwt.claims',jsonb_build_object('sub',cand,'role','authenticated')::text,true);
+ if jsonb_array_length(public.em_professional_tools('catalog','{}'))<>6 then raise exception 'Catalog must contain six themes';end if;
+ a:=public.em_professional_tools('start','{"topic":"comunicacao"}');
+ if jsonb_path_exists(a->'questions','$[*].correct') or jsonb_path_exists(a->'questions','$[*].explanation') then raise exception 'Answer key leaked before completion';end if;
+ b:=public.em_professional_tools('save',jsonb_build_object('id',a->>'id','answers','[0,1]'::jsonb,'expected_updated_at',a->>'updated_at'));
+ stale:=false;begin perform public.em_professional_tools('save',jsonb_build_object('id',a->>'id','answers','[]'::jsonb,'expected_updated_at',a->>'updated_at'));exception when others then stale:=true;end;
+ if not stale then raise exception 'Stale draft was accepted';end if;
+ a:=public.em_professional_tools('submit',jsonb_build_object('id',a->>'id','answers',answers,'percent',0));
+ if(a#>>'{result,percent}')::int<>100 or(a#>>'{result,total}')::int<>7 or(a#>>'{result,open_count}')::int<>1 then raise exception 'Incorrect objective grading';end if;
+ b:=public.em_professional_tools('submit',jsonb_build_object('id',a->>'id','answers','[]'::jsonb));
+ if b->'result'<>a->'result' then raise exception 'Completed test was changed';end if;
+ perform set_config('request.jwt.claims',jsonb_build_object('sub',employer,'role','authenticated')::text,true);
+ denied:=false;begin perform public.em_professional_tools('get',jsonb_build_object('id',a->>'id'));exception when insufficient_privilege then denied:=true;end;
+ if not denied then raise exception 'Company could access private practice';end if;
+ denied:=false;begin perform public.em_professional_tools('assign',company_data||jsonb_build_object('topic','excel','application_ref',current_setting('em.test.app'),'job_ref',current_setting('em.test.other_job')));exception when insufficient_privilege then denied:=true;end;
+ if not denied then raise exception 'Company could assign a test to another company job';end if;
+ invite:=public.em_professional_tools('assign',company_data||jsonb_build_object('topic','excel','application_ref',current_setting('em.test.app'),'job_ref',current_setting('em.test.job')));
+ listed:=public.em_professional_tools('list',company_data);
+ if jsonb_array_length(listed->'assignments')<>1 or jsonb_array_length(listed->'attempts')<>0 then raise exception 'Incorrect company scope';end if;
+ perform set_config('request.jwt.claims',jsonb_build_object('sub',other,'role','authenticated')::text,true);
+ denied:=false;begin perform public.em_professional_tools('start',jsonb_build_object('assignment_id',invite->>'id'));exception when insufficient_privilege then denied:=true;end;
+ if not denied then raise exception 'Another user could start an invitation';end if;
+ perform set_config('request.jwt.claims',jsonb_build_object('sub',cand,'role','authenticated')::text,true);
+ assigned:=public.em_professional_tools('start',jsonb_build_object('assignment_id',invite->>'id'));
+ assigned:=public.em_professional_tools('submit',jsonb_build_object('id',assigned->>'id','answers','["=1",0,2,0,0,0,0,0]'::jsonb,'result',jsonb_build_object('percent',100)));
+ if(assigned#>>'{result,percent}')::int<>0 then raise exception 'Client forged a result';end if;
+ perform set_config('request.jwt.claims',jsonb_build_object('sub',employer,'role','authenticated')::text,true);
+ b:=public.em_professional_tools('get',jsonb_build_object('id',assigned->>'id'));
+ if(b#>>'{result,percent}')::int<>0 then raise exception 'Inviting company could not read the result';end if;
+ invite:=public.em_professional_tools('assign',company_data||jsonb_build_object('topic','administrativo','application_ref',current_setting('em.test.app'),'job_ref',current_setting('em.test.job')));
+ perform public.em_professional_tools('cancel',company_data||jsonb_build_object('id',invite->>'id'));
+ perform set_config('request.jwt.claims',jsonb_build_object('sub',cand,'role','authenticated')::text,true);
+ denied:=false;begin perform public.em_professional_tools('start',jsonb_build_object('assignment_id',invite->>'id'));exception when insufficient_privilege then denied:=true;end;
+ if not denied then raise exception 'Cancelled invitation remained available';end if;
+ sim:=public.em_professional_tools('simulation_save','{"mode":"primeira","job_role":"Assistente Administrativo","questions":[{"text":"Pergunta 1","hint":"Dica"},{"text":"Pergunta 2","hint":"Dica"}],"answers":[],"complete":false}');
+ denied:=false;begin perform public.em_professional_tools('simulation_save',jsonb_build_object('id',sim->>'id','mode','primeira','job_role','Assistente Administrativo','questions','[{"text":"Pergunta"}]'::jsonb,'answers','["Resposta de teste com mais de vinte caracteres."]'::jsonb,'complete',true));exception when others then denied:=true;end;
+ if not denied then raise exception 'Simulation question count could be forged';end if;
+ sim:=public.em_professional_tools('simulation_save',jsonb_build_object('id',sim->>'id','mode','primeira','job_role','Assistente Administrativo','questions',sim->'questions','answers','["Organizei as tarefas e entreguei o relatório no prazo combinado.","Consegui melhorar o processo após conferir os dados com a equipe."]'::jsonb,'complete',true));
+ perform set_config('request.jwt.claims',jsonb_build_object('sub',employer,'role','authenticated')::text,true);
+ denied:=false;begin perform public.em_professional_tools('simulation_get',jsonb_build_object('id',sim->>'id'));exception when insufficient_privilege then denied:=true;end;
+ if not denied then raise exception 'Company could read candidate training';end if;
+ denied:=false;begin execute 'select * from private.em_professional_attempts';exception when insufficient_privilege then denied:=true;end;
+ if not denied then raise exception 'Authenticated users can read private storage';end if;
+ perform set_config('request.jwt.claims','{}',true);
+ denied:=false;begin perform public.em_professional_tools('catalog','{}');exception when insufficient_privilege then denied:=true;end;
+ if not denied then raise exception 'Unauthenticated call was accepted';end if;
+end;$$;
+reset role;
+select 'OK: catalog, server grading, drafts, invitations, cancellation, private training and cross-account permissions' as verification;
+rollback;
