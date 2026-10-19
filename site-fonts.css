@@ -1372,3 +1372,43 @@ html body .em-field-message{display:block!important;grid-column:1/-1!important;m
   font-family:'Poppins',Arial,sans-serif!important;
  }
 }
+
+/* Historical applications remain accessible without mixing inactive jobs into the active list. */
+@layer field-feedback {
+  html body #pagina-candidatos-empresa .em-app-history-hint {
+    display:flex!important;align-items:center!important;justify-content:space-between!important;
+    gap:12px!important;padding:12px 14px!important;margin:0 0 14px!important;
+    border:1px solid #e0e7ef!important;border-radius:9px!important;background:#f8fafc!important;
+    box-shadow:none!important;min-width:0!important;
+  }
+  html body #pagina-candidatos-empresa .em-app-history-hint>div {min-width:0!important}
+  html body #pagina-candidatos-empresa .em-app-history-hint strong {
+    display:block!important;font-size:12px!important;line-height:1.5!important;font-weight:600!important;
+    color:#243b53!important;-webkit-text-fill-color:#243b53!important;
+  }
+  html body #pagina-candidatos-empresa .em-app-history-hint p {
+    margin:3px 0 0!important;font-size:11px!important;line-height:1.6!important;font-weight:400!important;
+    color:#667085!important;-webkit-text-fill-color:#667085!important;overflow-wrap:anywhere!important;
+  }
+  html body #pagina-candidatos-empresa .em-app-history-hint button {
+    display:inline-flex!important;align-items:center!important;justify-content:center!important;
+    flex:0 0 auto!important;min-height:40px!important;width:auto!important;max-width:100%!important;
+    margin:0!important;padding:8px 12px!important;border:1px solid #bfd3ec!important;border-radius:7px!important;
+    background:#fff!important;color:#0864c5!important;-webkit-text-fill-color:#0864c5!important;
+    font-size:12px!important;font-weight:600!important;line-height:1.5!important;white-space:normal!important;cursor:pointer!important;
+  }
+  html body #pagina-candidatos-empresa .em-app-history-hint button:hover {background:#edf5ff!important}
+  html body #pagina-candidatos-empresa .em-app-history-hint button:focus-visible {outline:3px solid #93c5fd!important;outline-offset:3px!important}
+  @media(max-width:700px) {
+    html body #pagina-candidatos-empresa .em-app-history-hint {flex-direction:column!important;align-items:stretch!important}
+    html body #pagina-candidatos-empresa .em-app-history-hint button {align-self:flex-start!important}
+  }
+}
+@layer candidate-palette {
+  html body #pagina-candidatos-empresa .em-job-workspace .em-gc27-status.published {
+    color:#16803d!important;-webkit-text-fill-color:#16803d!important;
+  }
+  html body #pagina-candidatos-empresa .em-job-workspace .em-gc27-status:not(.published) {
+    background:#f1f4f7!important;color:#667085!important;-webkit-text-fill-color:#667085!important;
+  }
+}
