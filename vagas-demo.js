@@ -281,7 +281,7 @@
       updateSave();
       card.replaceChildren(identity,facts,actions,save);
       var label = highlighted ? 'Em destaque' : enabled(job.urgente) || enabled(job.contratacaoUrgente) ? 'Contratação urgente' : '';
-      if (label) { var status=node('span','em-r4-status',label); status.setAttribute('data-kind',highlighted?'featured':'urgent'); card.appendChild(status); }
+      if (label) { var status=node('span','em-r4-status',label); status.setAttribute('data-kind',highlighted?'featured':'urgent'); actions.appendChild(status); }
       card.classList.add('em-recent-model3','em-recent-discreet');
       card.setAttribute('data-em-highlighted',String(highlighted)); card.setAttribute('data-em-confidential',String(confidential));
       return card;
