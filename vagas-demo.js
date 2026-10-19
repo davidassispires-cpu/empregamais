@@ -413,7 +413,7 @@
       if (label) {
         var status=node('span','em-r4-status'); status.setAttribute('data-kind',highlighted?'featured':'urgent');
         if (highlighted) status.innerHTML=svg(paths.featured);
-        status.appendChild(node('span','',label)); titleLine.appendChild(status);
+        status.appendChild(node('span','',label)); facts.insertBefore(status, facts.firstChild);
       }
       card.classList.add('em-recent-model3','em-recent-discreet');
       card.setAttribute('data-em-highlighted',String(highlighted)); card.setAttribute('data-em-confidential',String(confidential));

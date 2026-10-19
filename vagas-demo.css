@@ -632,6 +632,7 @@ html body #pagina-home #listaVagas article.em-recent-discreet * {
 html body #pagina-home #listaVagas article.em-recent-discreet::before,
 html body #pagina-home #listaVagas article.em-recent-discreet::after {display:none!important;content:none!important}
 html body #pagina-home #listaVagas article.em-recent-discreet:hover {background:#fff!important;border-color:#c8d6e6!important;box-shadow:0 4px 14px #1027440a!important;transform:none!important}
+html body #pagina-home #listaVagas article.em-recent-discreet[data-em-highlighted="true"] {border-left:4px solid #ff7a14!important;padding-left:17px!important}
 html body #pagina-home #listaVagas article.em-recent-discreet[hidden] {display:none!important}
 html body #pagina-home #listaVagas .em-recent-discreet .em-r4-identity {
   grid-area:identity!important;display:grid!important;grid-template-columns:minmax(0,1fr)!important;
@@ -747,15 +748,14 @@ html body #pagina-home #listaVagas .em-recent-discreet .em-r4-status {
   border:1px solid #ecd9b9!important;border-radius:4px!important;background:#fff8ed!important;color:#925d12!important;
   font-size:10px!important;font-weight:500!important;line-height:1.3!important;white-space:nowrap!important;
 }
-html body #pagina-home #listaVagas .em-recent-discreet .em-r4-title-line:has(.em-r4-status[data-kind="featured"]) {
-  display:flex!important;flex-direction:row!important;flex-wrap:nowrap!important;align-items:flex-start!important;gap:8px!important;
-}
-html body #pagina-home #listaVagas .em-recent-discreet .em-r4-title-line:has(.em-r4-status[data-kind="featured"])>.em-r4-title {
-  grid-area:auto!important;grid-column:auto!important;grid-row:auto!important;order:0!important;flex:1 1 auto!important;min-width:0!important;
-}
+html body #pagina-home #listaVagas .em-recent-discreet .em-r4-facts:has(>.em-r4-status) {align-self:start!important;justify-content:flex-start!important;gap:8px!important}
+html body #pagina-home #listaVagas .em-recent-discreet .em-r4-facts>.em-r4-status {order:0!important;align-self:flex-start!important;flex:0 0 auto!important;width:max-content!important;max-width:100%!important}
+html body #pagina-home #listaVagas .em-recent-discreet .em-r4-title-line {order:0!important}
+html body #pagina-home #listaVagas .em-recent-discreet .em-r4-company {order:1!important}
+html body #pagina-home #listaVagas .em-recent-discreet .em-r4-date {order:2!important}
 html body #pagina-home #listaVagas .em-recent-discreet .em-r4-status[data-kind="featured"] {
   --candidate-contrast-ink:#8a5a13!important;
-  grid-area:auto!important;grid-column:auto!important;grid-row:auto!important;order:1!important;flex:0 0 auto!important;align-self:flex-start!important;justify-self:start!important;width:max-content!important;max-width:max-content!important;min-width:0!important;gap:4px!important;margin-top:2px!important;padding:3px 6px!important;
+  grid-area:auto!important;grid-column:auto!important;grid-row:auto!important;order:0!important;flex:0 0 auto!important;align-self:flex-start!important;justify-self:start!important;width:max-content!important;max-width:100%!important;min-width:0!important;gap:4px!important;margin-top:2px!important;padding:3px 6px!important;
   border:1px solid #e8d4af!important;border-radius:5px!important;background:#fff8eb!important;color:#8a5a13!important;
   font-size:10px!important;font-weight:600!important;line-height:1.3!important;white-space:nowrap!important;
 }
@@ -778,6 +778,7 @@ html body #pagina-home #listaVagas .em-recent-discreet :is(.em-selo-nova-v31,.em
     grid-template-areas:"identity identity" "facts facts" "salary actions"!important;
     gap:12px 14px!important;min-height:0!important;padding:18px!important;
   }
+  html body #pagina-home #listaVagas article.em-recent-discreet[data-em-highlighted="true"] {padding-left:15px!important}
   html body #pagina-home #listaVagas .em-recent-discreet .em-r4-identity {padding-right:30px!important;grid-template-columns:minmax(0,1fr)!important;gap:12px!important}
   html body #pagina-home #listaVagas article.em-recent-discreet[data-em-highlighted="true"]:not([data-em-confidential="true"]) .em-r4-identity {grid-template-columns:44px minmax(0,1fr)!important}
   html body #pagina-home #listaVagas .em-recent-discreet .em-r4-logo {width:44px!important;min-width:44px!important;height:44px!important}

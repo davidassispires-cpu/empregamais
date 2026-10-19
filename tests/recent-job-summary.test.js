@@ -87,7 +87,16 @@ test('only featured public vacancies display a logo, without leaving a placehold
   const badge=featured.querySelector('.em-r4-status');
   assert.equal(badge.textContent,'Destaque');
   assert.equal(badge.getAttribute('data-kind'),'featured');
-  assert.equal(badge.parentNode,featured.querySelector('.em-r4-title').parentNode);
+  const facts=featured.querySelector('.em-r4-facts');
+  assert.equal(badge.parentNode,facts);
+  assert.equal(facts.firstChild,badge);
+  assert.equal(facts.children[1],featured.querySelector('.em-r4-location'));
+  for(const card of [normal,urgent,featured]){
+    const copy=card.querySelector('.em-r4-copy');
+    assert.equal(copy.children[0],card.querySelector('.em-r4-title-line'));
+    assert.equal(copy.children[1],card.querySelector('.em-r4-company'));
+    assert.equal(card.querySelector('.em-r4-title-line').querySelector('.em-r4-status'),null);
+  }
 });
 
 test('Ver detalhes opens a summary with the vacancy facts and content without navigating',()=>{
