@@ -1,3 +1,4 @@
+@layer portal-typography;
 @import url("mobile-public.css?v=20261018-mobile-cards-2") (max-width: 767px);
 @layer candidate-palette, field-feedback, site-typography;
 /* Keep the active-job badge green across legacy text-color rules. */
@@ -1506,14 +1507,15 @@ html body .em-field-message{display:block!important;grid-column:1/-1!important;m
 /* Actual Montserrat variable file shared across the portal. */
 
 
-@layer candidate-palette {
- html body, html body * {}
-}
 
-/* Portal typography: one font file and one shared family declaration. */
-@font-face{font-family:Montserrat;font-style:normal;font-weight:100 900;font-display:swap;src:url('assets/fonts/cf-montserrat.woff') format('woff')}
-@layer candidate-palette {
- html body, html body * {font-family:Montserrat,Arial,sans-serif!important}
+/* Portal typography: local Poppins, defined once for every portal page. */
+@font-face{font-family:Poppins;font-style:normal;font-weight:400;font-display:swap;src:url('assets/fonts/poppins-400.woff2') format('woff2')}
+@font-face{font-family:Poppins;font-style:normal;font-weight:500;font-display:swap;src:url('assets/fonts/poppins-500.woff2') format('woff2')}
+@font-face{font-family:Poppins;font-style:normal;font-weight:600;font-display:swap;src:url('assets/fonts/poppins-600.woff2') format('woff2')}
+@font-face{font-family:Poppins;font-style:normal;font-weight:700;font-display:swap;src:url('assets/fonts/poppins-700.woff2') format('woff2')}
+
+@layer portal-typography {
+ html body, html body * {font-family:Poppins,Arial,sans-serif!important}
  html body{font-weight:500}
  html body :is(input,textarea,select){font-weight:500!important}
  html body :is(button,.btn){font-weight:600!important}
