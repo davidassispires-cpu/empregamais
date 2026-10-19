@@ -244,8 +244,18 @@
         logo.innerHTML = svg('<rect x="5" y="10" width="14" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3M12 14v3"/>');
       } else {
         var publicName = company.querySelector('span'); publicName = publicName ? publicName.textContent : company.textContent;
-        if (originalLogo) { originalLogo.alt = ''; logo.appendChild(originalLogo); }
-        else logo.textContent = String(publicName || 'Empresa').replace(/\(demo\)/ig,'').trim().split(/\s+/).slice(0,2).map(function(part){return part.charAt(0);}).join('').toLocaleUpperCase('pt-BR');
+        var initials = String(publicName || 'Empresa').replace(/\(demo\)/ig,'').trim().split(/\s+/).slice(0,2).map(function(part){return part.charAt(0);}).join('').toLocaleUpperCase('pt-BR');
+        if (!originalLogo && typeof win.logoPreviaDestaqueEM === 'function') {
+          originalLogo = win.logoPreviaDestaqueEM(job).querySelector('img');
+        }
+        if (!originalLogo && (job.logo || job.logoEmpresa)) {
+          originalLogo = doc.createElement('img'); originalLogo.src = job.logo || job.logoEmpresa;
+        }
+        if (originalLogo) {
+          originalLogo.alt = ''; originalLogo.loading = 'lazy';
+          originalLogo.onerror = function(){ logo.textContent = initials; };
+          logo.appendChild(originalLogo);
+        } else logo.textContent = initials;
       }
       title.classList.add('em-r4-title'); title.title = title.textContent;
       company.classList.add('em-r4-company');

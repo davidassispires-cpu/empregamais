@@ -69,3 +69,10 @@ test('unavailable dates and salary are never replaced with made-up values',()=>{
  const f=fixture({dataPublicacao:''});f.card.querySelector('.em-lista-salario').remove();f.render(false);
  assert.equal(f.card.querySelector('.em-r4-salary').textContent,'A combinar');assert.match(f.card.querySelector('.em-r4-date').textContent,/não informada/);
 });
+test('ordinary vacancies load their logo even when the base card omitted its image',()=>{
+ const f=fixture({logo:'https://example.test/ordinary-logo.png',destaque:false,urgente:false});
+ f.image.remove();f.render(false);
+ const image=f.card.querySelector('.em-r4-logo img');
+ assert(image);assert.equal(image.src,f.job.logo);
+ image.onerror();assert.equal(f.card.querySelector('.em-r4-logo').textContent,'ER');
+});
