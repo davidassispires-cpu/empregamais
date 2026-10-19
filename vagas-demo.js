@@ -264,7 +264,7 @@
       facts.appendChild(fact('em-r4-location','<path d="M20 10c0 6-8 12-8 12S4 16 4 10a8 8 0 1 1 16 0Z"/><circle cx="12" cy="10" r="2.5"/>',city+(uf.length===2?' – '+uf.toUpperCase():'')));
       var terms = node('div','em-r4-terms');
       terms.appendChild(fact('em-r4-modality','<rect x="3" y="7" width="18" height="14" rx="2"/><path d="M8 7V3h8v4M3 12h18"/>',job.modalidade || 'Modalidade não informada'));
-      terms.appendChild(fact('em-r4-contract','<path d="M5 3h10l4 4v14H5ZM14 3v5h5M8 12h8M8 16h6"/>',job.contrato || job.tipoContrato || 'Contrato não informado'));
+      terms.appendChild(fact('em-r4-contract','<path d="M5 3h10l4 4v14H5ZM14 3v5h5M8 12h8M8 16h6"/>',String(job.contrato || job.tipoContrato || 'Contrato não informado').replace(/^Efetivo\s*[–-]\s*CLT$/i,'CLT')));
       facts.appendChild(terms);
       var distance = card.querySelector('.em-lista-distancia');
       if (distance) { distance.classList.add('em-r4-distance'); facts.appendChild(distance); }
