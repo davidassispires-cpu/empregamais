@@ -255,7 +255,7 @@
         verificationCard.onmouseleave = deferVerificationClose;
       }
       verificationCard.replaceChildren(browserNode('strong', 'em-company-verification-heading', 'Empresa verificada'));
-      verificationCard.appendChild(browserNode('p', '', 'O selo identifica uma empresa com verificação aprovada no +Empregos. A verificação não garante contratação ou resultado no processo seletivo.'));
+      verificationCard.appendChild(browserNode('p', '', 'Este selo indica que a empresa foi consultada, verificada e aprovada pelo +Empregos, sendo considerada idônea conforme os critérios de análise da plataforma.'));
       if (isDemo(job)) verificationCard.appendChild(browserNode('p', 'em-company-verification-demo', 'Demonstração: neste exemplo, o selo é ilustrativo. A marca é apresentada sem vínculo com a empresa e as vagas são fictícias.'));
       (trigger.closest('dialog') || doc.body).appendChild(verificationCard);
       verificationCard.hidden = false; verificationTrigger = trigger;

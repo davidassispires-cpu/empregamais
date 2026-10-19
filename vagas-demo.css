@@ -961,8 +961,8 @@ html body :is(#pagina-home,#pagina-vaga,#pagina-empresa-publica,dialog.em-job-su
 html body :is(#pagina-home,#pagina-vaga,#pagina-empresa-publica,dialog.em-job-summary) :is(a,button).em-company-profile-link:hover{text-decoration:underline!important;text-underline-offset:3px!important}
 html body :is(#pagina-home,#pagina-vaga,#pagina-empresa-publica,dialog.em-job-summary) .em-company-verification {
  --candidate-contrast-ink:#148355!important;display:inline-flex!important;align-items:center!important;justify-content:center!important;gap:5px!important;
- width:auto!important;min-width:0!important;min-height:30px!important;height:auto!important;flex:0 0 auto!important;margin:0!important;padding:2px 7px 2px 3px!important;
- border:1px solid #cde6d7!important;border-radius:7px!important;background:#eff9f3!important;color:#148355!important;font-style:normal!important;line-height:1!important;
+ width:auto!important;min-width:0!important;min-height:24px!important;height:auto!important;flex:0 0 auto!important;margin:0!important;padding:0!important;
+ border:0!important;border-radius:0!important;background:none!important;box-shadow:none!important;color:#148355!important;font-style:normal!important;line-height:1!important;
  vertical-align:middle!important;white-space:nowrap!important;cursor:help!important;
 }
 html body :is(#pagina-home,#pagina-vaga,#pagina-empresa-publica,dialog.em-job-summary) .em-company-verification svg {display:block!important;width:24px!important;height:24px!important;flex:0 0 24px!important;color:inherit!important}
@@ -974,7 +974,7 @@ html body :is(#pagina-home,#pagina-vaga,#pagina-empresa-publica,dialog.em-job-su
 }
 html body .em-company-verification-card {
  position:fixed!important;z-index:2147483000!important;display:block!important;box-sizing:border-box!important;max-width:calc(100vw - 24px)!important;max-height:calc(100dvh - 24px)!important;overflow:auto!important;overscroll-behavior:contain!important;margin:0!important;padding:16px!important;
- border:1px solid #d8e6dd!important;border-radius:12px!important;background:#fff!important;color:#526174!important;box-shadow:0 10px 32px #10274426!important;pointer-events:auto!important;text-align:left!important;
+ border:1px solid #dfe5ec!important;border-radius:12px!important;background:#fff!important;color:#526174!important;box-shadow:0 10px 32px #10274426!important;pointer-events:auto!important;text-align:left!important;
 }
 html body .em-company-verification-card[hidden]{display:none!important}
 html body .em-company-verification-card *{box-sizing:border-box!important;font-family:"Recent Montserrat",Montserrat,Arial,sans-serif!important;font-style:normal!important;text-align:left!important}
