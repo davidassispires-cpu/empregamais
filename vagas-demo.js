@@ -367,6 +367,10 @@
       var titleLine = node('div','em-r4-title-line');
       titleLine.appendChild(title);
       copy.appendChild(titleLine); copy.appendChild(company);
+      if (highlighted) {
+        var previewText = summaryText(job.resumo || job.descricao || job.descricaoVaga, 320);
+        if (previewText) copy.appendChild(node('p','em-r4-summary',previewText));
+      }
       var rawDate = String(job.dataPublicacao || job.publicadaEm || job.criadoEm || '');
       var dateMatch = /^(\d{4})-(\d{2})-(\d{2})/.exec(rawDate);
       var date = node('div','em-r4-date',dateMatch ? 'Publicada em '+dateMatch[3]+'/'+dateMatch[2]+'/'+dateMatch[1] : 'Data de publicação não informada');

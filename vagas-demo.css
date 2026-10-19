@@ -675,6 +675,14 @@ html body #pagina-home #listaVagas .em-recent-discreet .em-r4-company {
 }
 html body #pagina-home #listaVagas .em-recent-discreet .em-r4-company>span {--candidate-contrast-ink:#0078bd!important;font:inherit!important;color:inherit!important;white-space:normal!important}
 html body #pagina-home #listaVagas .em-recent-discreet .em-r4-company .em-lista-verificada {--candidate-contrast-ink:#218344!important;color:#218344!important;background:none!important;border:0!important}
+html body #pagina-home #listaVagas article.em-recent-discreet[data-em-highlighted="true"] .em-r4-summary {
+  --candidate-contrast-ink:#526174!important;
+  display:-webkit-box!important;-webkit-box-orient:vertical!important;-webkit-line-clamp:2!important;line-clamp:2!important;
+  order:2!important;flex:0 0 auto!important;width:100%!important;min-width:0!important;max-height:39px!important;
+  margin:2px 0!important;padding:0!important;border:0!important;background:transparent!important;
+  color:#526174!important;font-size:13px!important;font-weight:400!important;line-height:1.5!important;
+  white-space:normal!important;overflow:hidden!important;overflow-wrap:anywhere!important;text-overflow:ellipsis!important;
+}
 html body #pagina-home #listaVagas .em-recent-discreet .em-r4-date {
   display:block!important;min-width:0!important;margin:0!important;padding:0!important;
   color:#68768a!important;font-size:11px!important;font-weight:400!important;line-height:1.5!important;
@@ -752,7 +760,7 @@ html body #pagina-home #listaVagas .em-recent-discreet .em-r4-facts:has(>.em-r4-
 html body #pagina-home #listaVagas .em-recent-discreet .em-r4-facts>.em-r4-status {order:0!important;align-self:flex-start!important;flex:0 0 auto!important;width:max-content!important;max-width:100%!important}
 html body #pagina-home #listaVagas .em-recent-discreet .em-r4-title-line {order:0!important}
 html body #pagina-home #listaVagas .em-recent-discreet .em-r4-company {order:1!important}
-html body #pagina-home #listaVagas .em-recent-discreet .em-r4-date {order:2!important}
+html body #pagina-home #listaVagas .em-recent-discreet .em-r4-date {order:3!important}
 html body #pagina-home #listaVagas .em-recent-discreet .em-r4-status[data-kind="featured"] {
   --candidate-contrast-ink:#8a5a13!important;
   grid-area:auto!important;grid-column:auto!important;grid-row:auto!important;order:0!important;flex:0 0 auto!important;align-self:flex-start!important;justify-self:start!important;width:max-content!important;max-width:100%!important;min-width:0!important;gap:4px!important;margin-top:2px!important;padding:3px 6px!important;
