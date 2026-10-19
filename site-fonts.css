@@ -1,5 +1,12 @@
 @import url("mobile-public.css?v=20261018-mobile-cards-2") (max-width: 767px);
 @layer candidate-palette, field-feedback, site-typography;
+/* Keep the active-job badge green across legacy text-color rules. */
+@layer candidate-palette {
+  html body #pagina-candidatos-empresa .em-jh-card.em-app-card .em-jh-status.published {
+    color: #16803d !important;
+    -webkit-text-fill-color: #16803d !important;
+  }
+}
 /* One local Poppins source per weight, including legacy family aliases. */
 @font-face{font-family:'Poppins';font-style:normal;font-weight:100 499;font-display:optional;src:url('assets/fonts/poppins-400.woff2') format('woff2')}
 @font-face{font-family:'Poppins';font-style:normal;font-weight:500 599;font-display:optional;src:url('assets/fonts/poppins-500.woff2') format('woff2')}
