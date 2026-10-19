@@ -4,7 +4,7 @@ const assert = require('node:assert/strict');
 const demo = require('../vagas-demo.js');
 
 // Minimal DOM for exercising the real card and modal event handlers without a browser.
-function fixture(nativeDialog = true) {
+function fixture(nativeDialog = true, withBrowser = false, withObserver = false) {
   const doc = {activeElement:null, readyState:'complete'};
   class Element {
     constructor(tag) { this.tagName=tag.toUpperCase(); this.className=''; this.children=[]; this.attributes={}; this.listeners={}; this.style={}; this._text=''; this.open=false; }
@@ -16,6 +16,7 @@ function fixture(nativeDialog = true) {
     get isConnected() { let node=this; while(node.parentNode)node=node.parentNode;return node===doc.body; }
     setAttribute(name,value) { this.attributes[name]=String(value);if(name==='id')this.id=String(value);if(name==='open')this.open=true; }
     getAttribute(name) { return this.attributes[name] ?? null; }
+    removeAttribute(name) { delete this.attributes[name]; }
     appendChild(child) { child.remove();this.children.push(child);child.parentNode=this;return child; }
     insertBefore(child,before) { child.remove();const at=this.children.indexOf(before);this.children.splice(at<0?this.children.length:at,0,child);child.parentNode=this;return child; }
     replaceChildren(...children) { this.children.forEach(child=>{child.parentNode=null;});this.children=[];this._text='';children.forEach(child=>this.appendChild(child)); }
@@ -34,6 +35,11 @@ function fixture(nativeDialog = true) {
       visit(this);return found;
     }
     querySelector(selector) { return this.querySelectorAll(selector)[0] || null; }
+    closest(selector) {
+      const parts=selector.split(',').map(part=>part.trim());let node=this;
+      while(node){if(parts.some(part=>part[0]==='.'?node.classList.contains(part.slice(1)):node.tagName===part.toUpperCase()))return node;node=node.parentNode;}
+      return null;
+    }
     addEventListener(type,handler) { (this.listeners[type] ||= []).push(handler); }
     fire(type,properties={}) {
       const event={target:this,preventDefault(){this.defaultPrevented=true;},stopPropagation(){this.stopped=true;},...properties};
@@ -42,6 +48,7 @@ function fixture(nativeDialog = true) {
     }
     click() { this.fire('click'); }
     focus() { doc.activeElement=this; }
+    scrollIntoView() { this.scrolledIntoView=true; }
     showModal() { this.open=true; }
     close() { this.open=false;this.fire('close'); }
     getBoundingClientRect() { return {left:100,top:100,right:700,bottom:600}; }
@@ -50,12 +57,28 @@ function fixture(nativeDialog = true) {
   doc.body=doc.createElement('body');
   doc.getElementById=id=>doc.body.querySelector('#'+id);
   const home=doc.createElement('main');home.id='pagina-home';home.className='ativa';doc.body.appendChild(home);
-  const routes=[],applications=[],logoRequests=[];
+  const routes=[],applications=[],logoRequests=[],contacts=[],messages=[],scrolls=[],listeners={},saved=new Set(),observers=[],frames=[];
+  let list=null,column=null,sidebar=null,filterInput=null,renderJobs=[];
+  if(withBrowser){
+    const area=doc.createElement('div');area.className='vagas-area';home.appendChild(area);
+    column=doc.createElement('div');area.appendChild(column);
+    const toolbar=doc.createElement('div');toolbar.className='vagas-toolbar';column.appendChild(toolbar);
+    list=doc.createElement('div');list.id='listaVagas';column.appendChild(list);
+    sidebar=doc.createElement('aside');sidebar.id='filtrosLateral';area.appendChild(sidebar);
+    filterInput=doc.createElement('input');filterInput.id='filtroPalavra';filterInput.value='';sidebar.appendChild(filterInput);
+  }
   const make=(tag,className,text)=>{const el=doc.createElement(tag);el.className=className;if(text!=null)el.textContent=text;return el;};
   const win={
     document:doc,location:{search:'?pagina=home',pathname:'/empregamais/'},vagasPadrao:[],
-    addEventListener(){},renderizarVagas(){},irPara:(...args)=>routes.push(args),
-    vagaEhConfidencialEM:job=>!!job.confidencial,vagaEstaSalva:()=>false,
+    innerWidth:1200,scrollY:0,matchMedia(){return {matches:win.innerWidth<=900};},
+    scrollTo(x,y){scrolls.push([x,y]);win.scrollY=y;},
+    addEventListener(type,handler){(listeners[type] ||= []).push(handler);},
+    renderizarVagas(){if(list){list.replaceChildren();renderJobs.forEach(job=>list.appendChild(win.criarCardVaga(makeJob(job),false)));}},
+    filtrarVagas(){},alternarFiltrosMobile(){},abrirFiltrosEFocar(id){doc.getElementById(id).focus();},
+    irPara:(...args)=>routes.push(args),
+    vagaEhConfidencialEM:job=>!!job.confidencial,vagaEstaSalva:id=>saved.has(id),
+    alternarFavorito(id){if(saved.has(id))saved.delete(id);else saved.add(id);},
+    abrirContatoExternoVaga:job=>contacts.push(job.id),mostrarModalSite:(...args)=>messages.push(args),
     fetch(){throw Error('A summary must not make network requests');},
     logoPreviaDestaqueEM(job){logoRequests.push(job.id);const wrap=make('div','');wrap.appendChild(make('img',''));return wrap;},
     criarCardVaga(job,featured){
@@ -69,12 +92,19 @@ function fixture(nativeDialog = true) {
       return card;
     }
   };
-  demo.instalar(win);
-  function card(overrides={}) {
-    const job={id:'real-job',cargo:'ANALISTA DE RECURSOS HUMANOS',empresa:'Empresa Exemplo',cidade:'Contagem',uf:'MG',modalidade:'Híbrido',contrato:'CLT',salario:'R$ 3.800,00',dataPublicacao:'2026-10-19',jornada:'44 horas semanais',horario:'Segunda a sexta',descricao:'Recrutamento e seleção.',requisitos:'Experiência com recrutamento.',beneficios:'Vale-transporte; vale-alimentação.',...overrides};
-    const node=win.criarCardVaga(job,false);home.appendChild(node);return node;
+  if(withObserver){
+    win.MutationObserver=class {constructor(callback){this.callback=callback;observers.push(this);}observe(target,options){this.target=target;this.options=options;}};
+    win.requestAnimationFrame=function(callback){assert.equal(this,win);frames.push(callback);};
   }
-  return {doc,win,card,routes,applications,logoRequests};
+  demo.instalar(win);
+  function makeJob(overrides={}) {
+    return {id:'real-job',cargo:'ANALISTA DE RECURSOS HUMANOS',empresa:'Empresa Exemplo',cidade:'Contagem',uf:'MG',modalidade:'Híbrido',contrato:'CLT',salario:'R$ 3.800,00',dataPublicacao:'2026-10-19',jornada:'44 horas semanais',horario:'Segunda a sexta',descricao:'Recrutamento e seleção.',requisitos:'Experiência com recrutamento.',beneficios:'Vale-transporte; vale-alimentação.',...overrides};
+  }
+  function card(overrides={}) {
+    const node=win.criarCardVaga(makeJob(overrides),false);(list||home).appendChild(node);if(list)win.filtrarVagas();return node;
+  }
+  function render(jobs){renderJobs=jobs;win.renderizarVagas();return [...list.children];}
+  return {doc,win,card,render,list,column,sidebar,filterInput,routes,applications,logoRequests,contacts,messages,scrolls,listeners,observers,frames};
 }
 
 test('only featured public vacancies display a logo, without leaving a placeholder on other cards',()=>{
@@ -162,3 +192,119 @@ test('HTML descriptions remain inert plain text and demo summaries explain their
   assert.equal(dialog.querySelector('script'),null);assert.equal(dialog.querySelector('img'),null);
   assert(dialog.querySelector('.em-js-demo').textContent.includes('não recebe candidaturas reais'));
 });
+test('the desktop browser keeps results on the left and switches the complete panel without navigation',()=>{
+  const env=fixture(true,true),cards=env.render([{id:'one',cargo:'PRIMEIRA VAGA'},{id:'two',cargo:'SEGUNDA VAGA'}]);
+  const root=env.doc.getElementById('emJobBrowser'),panel=env.doc.getElementById('emJobPanel');
+  assert.equal(root.children[0],env.column);assert.equal(root.children[1],panel);
+  assert.equal(panel.getAttribute('data-vaga-id'),'one');
+  env.win.scrollY=460;env.list.scrollTop=120;panel.scrollTop=160;
+  cards[1].querySelector('.em-r4-title-select').click();
+  assert.equal(panel.getAttribute('data-vaga-id'),'two');assert.equal(panel.scrollTop,0);
+  assert.equal(env.win.scrollY,460);assert.equal(env.list.scrollTop,120);assert.deepEqual(env.scrolls,[]);
+  assert.equal(cards[0].getAttribute('data-em-selected'),'false');assert.equal(cards[1].getAttribute('data-em-selected'),'true');
+  assert.equal(cards[1].querySelector('.em-r4-details').getAttribute('aria-expanded'),'true');
+  assert.equal(cards[1].querySelector('.em-r4-details').getAttribute('aria-haspopup'),null);
+  assert.equal(env.doc.activeElement,env.doc.getElementById('emJobPanelTitle'));
+  assert.deepEqual(env.routes,[]);
+  assert.equal(env.doc.body.querySelector('dialog'),null);
+});
+
+test('the right panel exposes the full text, sanitizes rich descriptions and combines benefits',()=>{
+  const env=fixture(true,true),description='Atendimento ao cliente. '.repeat(80)+'FIM DA DESCRIÇÃO';
+  const requirements='Experiência na função. '.repeat(30)+'FIM DOS REQUISITOS';
+  env.render([{id:'long',descricao:'<p>'+description+'</p><script>unsafe()</script>',requisitos:requirements,beneficios:'Vale-transporte',beneficiosTags:['Vale-transporte','Plano de saúde'],beneficiosSelecionados:['Vale-alimentação'],sobreEmpresa:'Informação institucional pública.'}]);
+  const panel=env.doc.getElementById('emJobPanel');
+  for(const text of ['FIM DA DESCRIÇÃO','FIM DOS REQUISITOS','Plano de saúde','Vale-alimentação','Informação institucional pública.','44 horas semanais','Segunda a sexta'])assert(panel.textContent.includes(text),text);
+  assert(!panel.textContent.includes('unsafe'));assert.equal(panel.querySelector('script'),null);
+  const benefits=panel.querySelectorAll('.em-jb-section').find(section=>section.firstChild.textContent==='Benefícios');
+  assert.equal(benefits.textContent.match(/Vale-transporte/g).length,1);
+});
+
+test('filtering and pagination cannot leave details from an invisible vacancy selected',()=>{
+  const env=fixture(true,true),cards=env.render([{id:'one'},{id:'two'}]);
+  cards[1].querySelector('.em-r4-details').click();
+  cards[1].style.display='none';env.win.filtrarVagas();
+  const panel=env.doc.getElementById('emJobPanel');
+  assert.equal(panel.getAttribute('data-vaga-id'),'one');
+  cards[0].setAttribute('hidden','');env.win.filtrarVagas();
+  assert.equal(panel.getAttribute('data-vaga-id'),null);
+  assert(panel.textContent.includes('Nenhuma vaga corresponde'));
+  assert(cards.every(card=>card.getAttribute('data-em-selected')==='false'));
+  cards[0].removeAttribute('hidden');env.win.filtrarVagas();
+  assert.equal(panel.getAttribute('data-vaga-id'),'one');
+});
+
+test('rerendering retains the selected vacancy by ID and refreshes its details',()=>{
+  const env=fixture(true,true),cards=env.render([{id:'one'},{id:'two',cargo:'TÍTULO ANTERIOR'}]);
+  cards[1].querySelector('.em-r4-details').click();
+  const updated=env.render([{id:'two',cargo:'TÍTULO ATUALIZADO',descricao:'Descrição atualizada.'},{id:'one'}]);
+  const panel=env.doc.getElementById('emJobPanel');
+  assert.equal(panel.getAttribute('data-vaga-id'),'two');assert(panel.textContent.includes('TÍTULO ATUALIZADO'));
+  assert(!panel.textContent.includes('TÍTULO ANTERIOR'));assert(panel.textContent.includes('Descrição atualizada.'));
+  assert.equal(updated[0].getAttribute('data-em-selected'),'true');
+});
+
+test('panel applications use the selected real vacancy and saved state stays synchronized',()=>{
+  const env=fixture(true,true),cards=env.render([{id:'one'},{id:'two'}]);
+  cards[1].querySelector('.em-r4-details').click();
+  const panel=env.doc.getElementById('emJobPanel');panel.querySelector('.em-jb-apply').click();
+  assert.deepEqual(env.contacts,['two']);assert.deepEqual(env.routes,[]);
+  panel.querySelector('.em-jb-save').click();
+  assert.equal(cards[1].querySelector('.em-r4-save').getAttribute('aria-pressed'),'true');
+  assert.equal(panel.querySelector('.em-jb-save').getAttribute('aria-pressed'),'true');
+  panel.querySelector('.em-jb-save').click();
+  assert.equal(cards[1].querySelector('.em-r4-save').getAttribute('aria-pressed'),'false');
+  delete env.win.abrirContatoExternoVaga;
+  panel.querySelector('.em-jb-apply').click();
+  assert.deepEqual(env.applications,[{id:'two',originalButton:true}]);
+});
+
+test('the inline panel protects confidential identity and prevents applications to demonstrations',()=>{
+  const env=fixture(true,true);
+  env.render([{id:'demo-publica-99',demoPublica:true,destaque:true,confidencial:true,empresa:'IDENTIDADE PRIVADA',sobreEmpresa:'DADOS PRIVADOS DA EMPRESA'}]);
+  const panel=env.doc.getElementById('emJobPanel');
+  assert(panel.textContent.includes('Empresa confidencial'));
+  assert(!panel.textContent.includes('IDENTIDADE PRIVADA'));assert(!panel.textContent.includes('DADOS PRIVADOS'));
+  assert.equal(panel.querySelector('img'),null);
+  panel.querySelector('.em-jb-apply').click();
+  assert.equal(env.messages.length,1);assert.deepEqual(env.contacts,[]);assert.deepEqual(env.applications,[]);
+  assert(panel.querySelector('.em-jb-demo').textContent.includes('não recebe candidaturas reais'));
+});
+
+test('mobile opens one vacancy and returns to the same list position without a scroll lock',()=>{
+  const env=fixture(true,true);env.win.innerWidth=390;env.win.scrollY=680;
+  const cards=env.render([{id:'one'},{id:'two'}]),root=env.doc.getElementById('emJobBrowser'),panel=env.doc.getElementById('emJobPanel');
+  assert.equal(root.getAttribute('data-view'),'list');assert.equal(panel.getAttribute('data-vaga-id'),null);
+  const button=cards[1].querySelector('.em-r4-title-select');button.click();
+  assert.equal(root.getAttribute('data-view'),'details');assert.equal(panel.getAttribute('data-vaga-id'),'two');
+  assert.equal(panel.scrolledIntoView,true);env.win.scrollY=900;
+  panel.querySelector('.em-jb-back').click();
+  assert.equal(root.getAttribute('data-view'),'list');assert.equal(env.win.scrollY,680);
+  assert.equal(env.doc.activeElement,button);assert.deepEqual(env.list.children,cards);
+  assert.equal(env.doc.body.style.overflow,undefined);
+});
+
+test('the browser preserves real filter fields and allows selecting cards without hijacking their buttons',()=>{
+  const env=fixture(true,true),cards=env.render([{id:'one'},{id:'two'}]);
+  const filters=env.doc.getElementById('emJobBrowserFilters');
+  assert.equal(env.sidebar.parentNode,filters);assert.equal(env.doc.getElementById('filtroPalavra'),env.filterInput);
+  env.filterInput.value='Analista';env.win.alternarFiltrosMobile();assert.equal(filters.open,true);
+  env.win.alternarFiltrosMobile();assert.equal(filters.open,false);
+  env.win.abrirFiltrosEFocar('filtroPalavra');assert.equal(filters.open,true);assert.equal(env.filterInput.value,'Analista');
+  cards[1].fire('click',{target:cards[1]});
+  assert.equal(env.doc.getElementById('emJobPanel').getAttribute('data-vaga-id'),'two');
+  cards[0].fire('click',{target:cards[0].querySelector('.em-r4-save')});
+  assert.equal(env.doc.getElementById('emJobPanel').getAttribute('data-vaga-id'),'two');
+});
+test('asynchronous pagination updates selection once per animation frame',()=>{
+  const env=fixture(true,true,true),cards=env.render([{id:'one'},{id:'two'}]);
+  cards[1].querySelector('.em-r4-details').click();
+  const observer=env.observers[0];
+  assert.equal(observer.target,env.list);assert.deepEqual(observer.options.attributeFilter,['style','hidden']);
+  cards[1].style.display='none';observer.callback([]);observer.callback([]);
+  assert.equal(env.frames.length,1);
+  env.frames.shift()();
+  assert.equal(env.doc.getElementById('emJobPanel').getAttribute('data-vaga-id'),'one');
+});
+
+
