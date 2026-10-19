@@ -41216,7 +41216,7 @@ function refresh(){
   var page=document.getElementById(id);if(!page)return;
   
   var boxId=id+"-link-exclusivo",old=document.getElementById(boxId);
-  if(id==="pagina-painel-empresa"&&document.getElementById("emRecruiterPanel")&&!eligible(e)){if(old)old.remove();return;}
+  if(id==="pagina-painel-empresa"){if(old)old.remove();return;}
   if(!e){if(old)old.remove();return;}
   var cardKey=eligible(e)?e.linkEmpresaSlug:"convite";
   if(old&&old.dataset.slug===cardKey)return;
