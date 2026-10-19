@@ -10,21 +10,6 @@ test('comparison only accepts up to three applications from one job',()=>{
  assert.match(core.selectionError(rows.slice(0,1),{id:4,vaga_id:'B'}),/mesma vaga/);
  assert.equal(core.selectionError(rows,rows[0]),'');
 });
-test('missing or invalid ratings never become a zero or a fabricated score',()=>{
- assert.equal(core.average(null),null);
- assert.equal(core.average({technical_score:5}),null);
- assert.equal(core.average({technical_score:6,experience_score:5,communication_score:5,problem_solving_score:5}),null);
- assert.equal(core.average({technical_score:4,experience_score:3,communication_score:5,problem_solving_score:2}),3.5);
-});
-test('pending scorecards exclude future, in-progress and cancelled interviews',()=>{
- const now=Date.parse('2026-10-18T12:00:00Z');
- const row={scheduled_at:'2026-10-18T11:00:00Z',duration_minutes:30,state:'confirmed'};
- assert.equal(core.dueScorecard(row,now),true);
- assert.equal(core.dueScorecard({...row,state:'cancelled'},now),false);
- assert.equal(core.dueScorecard({...row,scheduled_at:'2026-10-18T12:00:00Z'},now),false);
- assert.equal(core.dueScorecard({...row,scheduled_at:'2026-10-18T13:00:00Z'},now),false);
- assert.equal(core.dueScorecard({...row,state:'completed'},now),true);
-});
 test('comparison extracts only professional fields from submitted snapshots',()=>{
  const candidate={data_nascimento:'1990-01-01',orientacao_sexual:'private',perfil_profissional:{escolaridade:'Superior completo',experiencia:'3 anos',habilidades:['Excel','Atendimento'],pretensao_salarial:'R$ 3.000'},curriculoOnline:{objetivoProfissional:'Assistente Administrativo'}};
  const facts=core.comparisonFacts(candidate);
@@ -61,6 +46,21 @@ test('tools follow the Premium state of the displayed panel',()=>{
  assert.equal(core.premiumEnabled({premium:false,company:{}},plans),false);
  assert.equal(core.premiumEnabled({company:{}},plans),false);
 });
+test('loading agenda and message rules no longer queries interview evaluations',async()=>{
+ const fs=require('node:fs'),vm=require('node:vm'),requests=[];
+ const token='header.'+Buffer.from(JSON.stringify({sub:'recruiter-user'})).toString('base64url')+'.signature';
+ const interview={id:'interview-1',state:'confirmed'},rule={id:'rule-1',stage_key:'entrevista'};
+ function surface(){return {querySelector:()=>null,querySelectorAll:()=>[],append:()=>{},getElementById:()=>null};}
+ const sandbox={document:{head:surface(),hidden:false,createElement:()=>({dataset:{},textContent:''}),getElementById:()=>null,querySelectorAll:()=>[],addEventListener:()=>{}},sessionStorage:{getItem:()=>token},atob,requestAnimationFrame:()=>1,setInterval:()=>1,MutationObserver:class {observe(){}disconnect(){}},addEventListener:()=>{},EMInterviews:{api:async(path)=>{requests.push(path);if(path.startsWith('em_interviews?'))return [interview];if(path.startsWith('em_recruiter_message_rules?'))return [rule];throw Error('Unexpected request: '+path);}}};
+ sandbox.window=sandbox;
+ vm.runInNewContext(fs.readFileSync(require.resolve('../recruiter-premium.js'),'utf8'),sandbox);
+ sandbox.EMRecruiterPremium.sync(surface(),{view:'interviews',premium:true,company:{id:'11111111-1111-4111-8111-111111111111',cnpj:'12345678000190'},jobs:[],applications:[],demo:false});
+ const data=await sandbox.EMRecruiterPremium.load(true);
+ assert.equal(requests.length,2);
+ assert.equal(data.interviews[0].id,'interview-1');
+ assert.equal(data.rules[0].id,'rule-1');
+ assert.equal('scores' in data,false);
+});
 test('tool styles are mounted synchronously and reused across panel renders',()=>{
  const fs=require('node:fs'),vm=require('node:vm');
  class Element {
@@ -89,3 +89,4 @@ test('tool styles are mounted synchronously and reused across panel renders',()=
  assert.equal(shadow.children.some(c=>c.tagName==='LINK'),false);
  assert.equal(shadow.children[0].textContent,fs.readFileSync(require.resolve('../recruiter-premium.css'),'utf8'));
 });
+
