@@ -984,11 +984,9 @@ html body #pagina-home #emJobBrowser #listaVagas .em-r4-save svg {width:16px!imp
 html body #pagina-home #emJobBrowser .em-job-panel {
   top:var(--em-job-panel-top,24px)!important;min-height:min(460px,calc(100dvh - var(--em-job-panel-top,24px) - 20px))!important;
   max-height:calc(100dvh - var(--em-job-panel-top,24px) - 20px)!important;scroll-margin-top:var(--em-job-panel-top,24px)!important;
-  border:2px solid #dce4ed!important;border-radius:12px!important;box-shadow:0 5px 22px #10274407!important;
+  border:0!important;border-radius:12px!important;box-shadow:0 5px 22px #10274407!important;
   scrollbar-width:thin!important;scrollbar-color:#b8c4d2 transparent!important;
 }
-html body #pagina-home #emJobBrowser .em-job-panel[data-em-highlighted="true"] {border-color:#ff7a14!important}
-html body #pagina-home #emJobBrowser .em-job-panel[data-em-highlighted="false"] {border-color:#0078bd!important}
 html body #pagina-home #emJobBrowser .em-job-panel,
 html body #pagina-home #emJobBrowser .em-job-panel * {
   font-family:'EM Recent Montserrat',Montserrat,Arial,sans-serif!important;font-synthesis:none!important;text-align:center!important;
