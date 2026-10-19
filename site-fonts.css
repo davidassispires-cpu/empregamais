@@ -16,14 +16,14 @@
 @font-face{font-family:'Inter';font-style:normal;font-weight:500 599;font-display:optional;src:url('assets/fonts/poppins-500.woff2') format('woff2')}
 @font-face{font-family:'Inter';font-style:normal;font-weight:600 699;font-display:optional;src:url('assets/fonts/poppins-600.woff2') format('woff2')}
 @font-face{font-family:'Inter';font-style:normal;font-weight:700 900;font-display:optional;src:url('assets/fonts/poppins-700.woff2') format('woff2')}
-@font-face{font-family:'Montserrat Applications';font-style:normal;font-weight:100 499;font-display:optional;src:url('assets/fonts/poppins-400.woff2') format('woff2')}
-@font-face{font-family:'Montserrat Applications';font-style:normal;font-weight:500 599;font-display:optional;src:url('assets/fonts/poppins-500.woff2') format('woff2')}
-@font-face{font-family:'Montserrat Applications';font-style:normal;font-weight:600 699;font-display:optional;src:url('assets/fonts/poppins-600.woff2') format('woff2')}
-@font-face{font-family:'Montserrat Applications';font-style:normal;font-weight:700 900;font-display:optional;src:url('assets/fonts/poppins-700.woff2') format('woff2')}
-@font-face{font-family:'Montserrat';font-style:normal;font-weight:100 499;font-display:optional;src:url('assets/fonts/poppins-400.woff2') format('woff2')}
-@font-face{font-family:'Montserrat';font-style:normal;font-weight:500 599;font-display:optional;src:url('assets/fonts/poppins-500.woff2') format('woff2')}
-@font-face{font-family:'Montserrat';font-style:normal;font-weight:600 699;font-display:optional;src:url('assets/fonts/poppins-600.woff2') format('woff2')}
-@font-face{font-family:'Montserrat';font-style:normal;font-weight:700 900;font-display:optional;src:url('assets/fonts/poppins-700.woff2') format('woff2')}
+
+
+
+
+
+
+
+
 
 /* Inter variable, served locally. Arial is the fallback. */
 
@@ -1501,4 +1501,11 @@ html body .em-field-message{display:block!important;grid-column:1/-1!important;m
   html body.cp-shell-active #pagina-painel-candidato.cp-messages-active .container-dashboard > .em-chat {display:grid!important}
   html body.cp-shell-active #pagina-painel-candidato:not(.cp-messages-active) .container-dashboard > .em-chat {display:none!important}
  }
+}
+
+/* Actual Montserrat variable file shared across the portal. */
+@font-face{font-family:'Montserrat';font-style:normal;font-weight:100 900;font-display:swap;src:url('assets/fonts/cf-montserrat.woff') format('woff')}
+@font-face{font-family:'Montserrat Applications';font-style:normal;font-weight:100 900;font-display:swap;src:url('assets/fonts/cf-montserrat.woff') format('woff')}
+@layer candidate-palette {
+ html body, html body * {font-family:'Montserrat',Arial,sans-serif!important}
 }
