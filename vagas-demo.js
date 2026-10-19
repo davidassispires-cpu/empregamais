@@ -419,6 +419,7 @@
       var entry = card.__emJobEntry, job = entry.job, info = entry.info;
       var panel = state.panel; panel.replaceChildren(); panel.scrollTop = 0;
       panel.setAttribute('data-vaga-id', String(job.id || ''));
+      panel.setAttribute('data-em-highlighted', String(entry.highlighted));
       panel.setAttribute('aria-labelledby', 'emJobPanelTitle');
       var back = browserNode('button', 'em-jb-back', '← Voltar às vagas'); back.type = 'button';
       back.onclick = function () { returnToJobList(state); }; panel.appendChild(back);
@@ -515,7 +516,7 @@
       if (!current && !narrowJobBrowser()) current = cards[0];
       if (current) { selectBrowserJob(current, null, false); return; }
       state.selected = null; markBrowserSelection(state, null); state.root.setAttribute('data-view', 'list');
-      state.panel.removeAttribute('data-vaga-id'); state.panel.removeAttribute('aria-labelledby');
+      state.panel.removeAttribute('data-vaga-id'); state.panel.removeAttribute('data-em-highlighted'); state.panel.removeAttribute('aria-labelledby');
       state.panel.replaceChildren(browserNode('p', 'em-jb-empty', cards.length ? 'Selecione uma vaga para ver todos os detalhes.' : 'Nenhuma vaga corresponde aos filtros. Altere sua busca para ver outras oportunidades.'));
     }
     function recentCard(card, job, featured) {
