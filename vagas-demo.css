@@ -953,12 +953,17 @@ html body #pagina-home #emJobBrowser .em-jb-extra:not([open])>.em-jb-facts{displ
 /* Illustrative verification marks belong only to public demonstration companies. */
 @layer candidate-palette {
 html body :is(#pagina-home,#pagina-vaga,dialog.em-job-summary) .em-demo-verified {
- --candidate-contrast-ink:#148355!important;display:inline-flex!important;align-items:center!important;justify-content:center!important;
- width:16px!important;height:16px!important;min-width:16px!important;flex:0 0 16px!important;margin:0 0 0 6px!important;padding:0!important;
+ --candidate-contrast-ink:#148355!important;display:inline-flex!important;align-items:center!important;justify-content:center!important;gap:5px!important;
+ width:auto!important;height:24px!important;min-width:24px!important;flex:0 0 auto!important;margin:0 0 0 7px!important;padding:0!important;
  border:0!important;background:none!important;color:#148355!important;font-size:0!important;font-style:normal!important;line-height:1!important;
- vertical-align:-3px!important;cursor:help!important;
+ vertical-align:middle!important;white-space:nowrap!important;cursor:help!important;
 }
 html body :is(#pagina-home,#pagina-vaga,dialog.em-job-summary) .em-demo-verified svg {
- display:block!important;width:16px!important;height:16px!important;flex:none!important;color:inherit!important;
+ display:block!important;width:24px!important;height:24px!important;flex:0 0 24px!important;color:inherit!important;
+}
+html body :is(#pagina-home,#pagina-vaga,dialog.em-job-summary) .em-demo-verified::after {
+ content:"Empresa\A verificada"!important;display:block!important;color:#148355!important;font-family:"Recent Montserrat",Montserrat,Arial,sans-serif!important;
+ font-size:10px!important;font-weight:500!important;font-style:normal!important;line-height:1.15!important;letter-spacing:normal!important;
+ white-space:pre!important;text-align:left!important;text-transform:none!important;
 }
 }
