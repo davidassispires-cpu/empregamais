@@ -118,11 +118,11 @@ test('public vacancy previews display the company logo on ordinary and featured 
   assert.equal(badge.textContent,'Destaque');
   assert.equal(badge.getAttribute('data-kind'),'featured');
   const facts=featured.querySelector('.em-r4-facts');
-  assert.equal(badge.parentNode,featured.querySelector('.em-r4-copy'));
+  assert.equal(badge.parentNode,featured.querySelector('.em-r4-heading'));
   assert.equal(facts.firstChild,featured.querySelector('.em-r4-location'));
-  assert.equal(facts.children.length,4);
-  assert.match(featured.querySelector('.em-r4-journey').textContent,/Jornada/);
-  assert(featured.querySelector('.em-r2-benefits'));
+  assert.equal(featured.querySelector('.em-r4-journey'),null);
+  assert.equal(featured.querySelector('.em-r2-benefits'),null);
+  assert.equal(featured.querySelector('.em-r4-save'),null);
   assert.equal(featured.querySelector('.em-r4-details'),null);
   assert.equal(featured.querySelector('.em-lista-ver'),null);
   for(const card of [normal,urgent,featured]){
@@ -254,10 +254,10 @@ test('panel applications use the selected real vacancy and saved state stays syn
   const panel=env.doc.getElementById('emJobPanel');panel.querySelector('.em-jb-apply').click();
   assert.deepEqual(env.contacts,['two']);assert.deepEqual(env.routes,[]);
   panel.querySelector('.em-jb-save').click();
-  assert.equal(cards[1].querySelector('.em-r4-save').getAttribute('aria-pressed'),'true');
+  assert.equal(cards[1].__emJobEntry.save.getAttribute('aria-pressed'),'true');
   assert.equal(panel.querySelector('.em-jb-save').getAttribute('aria-pressed'),'true');
   panel.querySelector('.em-jb-save').click();
-  assert.equal(cards[1].querySelector('.em-r4-save').getAttribute('aria-pressed'),'false');
+  assert.equal(cards[1].__emJobEntry.save.getAttribute('aria-pressed'),'false');
   delete env.win.abrirContatoExternoVaga;
   panel.querySelector('.em-jb-apply').click();
   assert.deepEqual(env.applications,[{id:'two',originalButton:true}]);
@@ -297,7 +297,7 @@ test('the browser preserves real filter fields and allows selecting cards withou
   env.win.abrirFiltrosEFocar('filtroPalavra');assert.equal(filters.open,true);assert.equal(env.filterInput.value,'Analista');
   cards[1].fire('click',{target:cards[1]});
   assert.equal(env.doc.getElementById('emJobPanel').getAttribute('data-vaga-id'),'two');
-  cards[0].fire('click',{target:cards[0].querySelector('.em-r4-save')});
+  cards[0].fire('click',{target:cards[0].querySelector('.em-r4-title-select')});
   assert.equal(env.doc.getElementById('emJobPanel').getAttribute('data-vaga-id'),'two');
 });
 test('asynchronous pagination updates selection once per animation frame',()=>{

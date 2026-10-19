@@ -694,6 +694,8 @@
       if (isDemo(job)) date.appendChild(node('span','em-r4-demo',' · Demonstração'));
       if (!confidential) identity.appendChild(logo);
       identity.appendChild(copy);
+      var heading = node('div','em-r4-heading');
+      heading.appendChild(identity);
       var facts = node('div','em-r4-facts');
       var city = String(job.cidade || 'Localidade não informada').trim();
       var originalPlace = card.querySelector('.em-lista-meta-item b');
@@ -702,13 +704,15 @@
       facts.appendChild(fact('em-r4-location','<path d="M20 10c0 6-8 12-8 12S4 16 4 10a8 8 0 1 1 16 0Z"/><circle cx="12" cy="10" r="2.5"/>',city+(uf.length===2?' – '+uf.toUpperCase():'')));
       var terms = node('div','em-r4-terms');
       terms.appendChild(fact('em-r4-modality','<rect x="3" y="7" width="18" height="14" rx="2"/><path d="M8 7V3h8v4M3 12h18"/>',job.modalidade || 'Modalidade não informada'));
-      terms.appendChild(fact('em-r4-contract','<path d="M5 3h10l4 4v14H5ZM14 3v5h5M8 12h8M8 16h6"/>',String(job.contrato || job.tipoContrato || 'Contrato não informado').replace(/^Efetivo\s*[–-]\s*CLT$/i,'CLT')));
+      terms.appendChild(node('span','em-r4-contract',' · '+String(job.contrato || job.tipoContrato || 'Contrato não informado').replace(/^Efetivo\s*[–-]\s*CLT$/i,'CLT')));
       facts.appendChild(terms);
       var distance = card.querySelector('.em-lista-distancia');
       if (distance) { distance.classList.add('em-r4-distance'); facts.appendChild(distance); }
       var actions = node('div','em-r4-actions');
       var salary = node('strong','em-r4-salary',salaryValue);
       actions.appendChild(salary);
+      var metaRow = node('div','em-r4-meta-row');
+      metaRow.appendChild(facts); metaRow.appendChild(actions);
       function showDetails(event){
         event.preventDefault(); event.stopPropagation();
         if (selectBrowserJob(card, titleButton, true)) return;
@@ -724,38 +728,20 @@
       titleButton.onclick = showDetails;
       var footer = node('div','em-r4-footer');
       var openState = fact('em-r4-open-state','<circle cx="12" cy="12" r="9"/><path d="m7 12 3 3 7-7"/>','Em visualização');
-      openState.setAttribute('aria-hidden', 'true'); footer.appendChild(openState); footer.appendChild(date);
+      openState.setAttribute('aria-hidden', 'true'); footer.appendChild(date); footer.appendChild(openState);
       if (!save) { save = doc.createElement('button'); save.type = 'button'; }
       save.classList.add('em-r4-save'); save.setAttribute('data-vaga-id',String(job.id || ''));
       function updateSave(){var saved=typeof win.vagaEstaSalva==='function'&&win.vagaEstaSalva(job.id);save.setAttribute('aria-pressed',String(!!saved));save.setAttribute('aria-label',saved?'Remover vaga dos salvos':'Salvar vaga');save.title=saved?'Remover vaga dos salvos':'Salvar vaga';save.innerHTML=svg('<path d="M6 3h12v18l-6-4-6 4V3Z"/>');}
       save.onclick=function(event){event.preventDefault();event.stopPropagation();if(typeof originalSave==='function')originalSave.call(save,event);else if(typeof win.alternarFavorito==='function')win.alternarFavorito(job.id);updateSave();};
       updateSave();
-      var labels = ['Localidade','Modalidade','Contrato'];
-      [facts.querySelector('.em-r4-location'),terms.querySelector('.em-r4-modality'),terms.querySelector('.em-r4-contract')].forEach(function(el,i){
-        var value=el.querySelector('span'); var block=node('span','em-r2-value');
-        block.appendChild(node('small','em-r2-label',labels[i])); block.appendChild(value); el.appendChild(block);
-      });
-      while(terms.firstChild) facts.appendChild(terms.firstChild);
-      terms.remove();
-      var journey=fact('em-r4-journey','<circle cx="12" cy="12" r="9"/><path d="M12 6v6l4 2"/>',job.jornada || 'Não informada');
-      var journeyValue=journey.querySelector('span'), journeyBlock=node('span','em-r2-value');
-      journeyBlock.appendChild(node('small','em-r2-label','Jornada'));journeyBlock.appendChild(journeyValue);journey.appendChild(journeyBlock);facts.appendChild(journey);
-      var benefits=node('div','em-r2-benefits'), seenBenefits=Object.create(null);
-      [job.beneficiosTags,job.beneficios,job.beneficiosSelecionados,job.benefits].forEach(function(source){
-        (Array.isArray(source)?source:String(source || '').split(/[;|\n]+/)).forEach(function(value){
-          var text=summaryText(value), key=text.toLocaleLowerCase('pt-BR');
-          if(text&&!seenBenefits[key]){seenBenefits[key]=true;benefits.appendChild(fact('em-r2-benefit','<path d="M12 3l8 4v5c0 5-8 9-8 9s-8-4-8-9V7Z"/>',text));}
-        });
-      });
-      var salaryBlock=node('div','em-r2-salary-block');salaryBlock.appendChild(node('small','em-r2-label','Salário mensal'));salaryBlock.appendChild(salary);actions.appendChild(salaryBlock);
-      card.replaceChildren(identity,facts,benefits,actions,save);
+      // Saving and applying stay in the full details; previews show only essential facts.
+      card.replaceChildren(heading,metaRow,footer);
       card.classList.add('em-recent-blocks');
-      card.appendChild(footer);
       var label = highlighted ? 'Destaque' : enabled(job.urgente) || enabled(job.contratacaoUrgente) ? 'Contratação urgente' : '';
       if (label) {
         var status=node('span','em-r4-status'); status.setAttribute('data-kind',highlighted?'featured':'urgent');
         if (highlighted) status.innerHTML=svg(paths.featured);
-        status.appendChild(node('span','',label)); copy.appendChild(status);
+        status.appendChild(node('span','',label)); heading.appendChild(status);
       }
       card.classList.add('em-recent-discreet');
       card.setAttribute('data-em-highlighted',String(highlighted)); card.setAttribute('data-em-confidential',String(confidential));
