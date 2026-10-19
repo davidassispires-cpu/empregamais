@@ -48,7 +48,7 @@ function fixture(nativeDialog = true, withBrowser = false, withObserver = false)
     }
     click() { this.fire('click'); }
     focus() { doc.activeElement=this; }
-    scrollIntoView() { this.scrolledIntoView=true; }
+    scrollIntoView(options) { this.scrolledIntoView=true; this.scrollOptions=options; }
     showModal() { this.open=true; }
     close() { this.open=false;this.fire('close'); }
     getBoundingClientRect() { return {left:100,top:100,right:700,bottom:600}; }
@@ -123,7 +123,8 @@ test('public vacancy previews display the company logo on ordinary and featured 
   assert.equal(facts.children.length,4);
   assert.match(featured.querySelector('.em-r4-journey').textContent,/Jornada/);
   assert(featured.querySelector('.em-r2-benefits'));
-  assert.equal(featured.querySelector('.em-r4-details').parentNode,featured.querySelector('.em-r4-actions'));
+  assert.equal(featured.querySelector('.em-r4-details'),null);
+  assert.equal(featured.querySelector('.em-lista-ver'),null);
   for(const card of [normal,urgent,featured]){
     const copy=card.querySelector('.em-r4-copy');
     assert.equal(copy.children[0],card.querySelector('.em-r4-title-line'));
@@ -132,8 +133,8 @@ test('public vacancy previews display the company logo on ordinary and featured 
   }
 });
 
-test('Ver detalhes opens a summary with the vacancy facts and content without navigating',()=>{
-  const env=fixture(),card=env.card(),details=card.querySelector('.em-r4-details');
+test('the job title opens a summary with the vacancy facts and content without navigating',()=>{
+  const env=fixture(),card=env.card(),details=card.querySelector('.em-r4-title-select');
   details.click();
   const dialog=env.doc.getElementById('emRecentJobSummary');
   assert(dialog&&dialog.open);
@@ -149,7 +150,7 @@ test('Ver detalhes opens a summary with the vacancy facts and content without na
 });
 
 test('summary actions open the full vacancy or reuse the original application action',()=>{
-  const env=fixture(),card=env.card(),details=card.querySelector('.em-r4-details');
+  const env=fixture(),card=env.card(),details=card.querySelector('.em-r4-title-select');
   details.click();env.doc.getElementById('emRecentJobSummary').querySelector('.em-js-full').click();
   assert.deepEqual(env.routes,[['vaga','real-job']]);
   assert.equal(env.doc.getElementById('emRecentJobSummary'),null);
@@ -159,7 +160,7 @@ test('summary actions open the full vacancy or reuse the original application ac
 });
 
 test('summary keyboard navigation contains focus and Escape closes without leaving an overlay',()=>{
-  const env=fixture(),card=env.card(),details=card.querySelector('.em-r4-details');details.click();
+  const env=fixture(),card=env.card(),details=card.querySelector('.em-r4-title-select');details.click();
   const dialog=env.doc.getElementById('emRecentJobSummary'),close=dialog.querySelector('.em-js-close'),apply=dialog.querySelector('.em-js-apply');
   assert.equal(env.doc.activeElement,close);
   assert(dialog.fire('keydown',{key:'Tab',shiftKey:true}).defaultPrevented);assert.equal(env.doc.activeElement,apply);
@@ -170,7 +171,7 @@ test('summary keyboard navigation contains focus and Escape closes without leavi
 
 test('reopening summaries replaces the previous dialog and the fallback backdrop closes cleanly',()=>{
   const env=fixture(false),one=env.card({id:'one'}),two=env.card({id:'two',cargo:'SEGUNDA VAGA'});
-  const first=one.querySelector('.em-r4-details'),second=two.querySelector('.em-r4-details');first.click();second.click();
+  const first=one.querySelector('.em-r4-title-select'),second=two.querySelector('.em-r4-title-select');first.click();second.click();
   assert.equal(env.doc.body.querySelectorAll('dialog').length,1);
   assert.equal(env.doc.body.querySelectorAll('.em-job-summary-backdrop').length,1);
   assert.equal(first.getAttribute('aria-expanded'),'false');
@@ -184,13 +185,13 @@ test('reopening summaries replaces the previous dialog and the fallback backdrop
 test('confidential featured jobs do not expose the company or logo in the card or summary',()=>{
   const env=fixture(),card=env.card({destaque:true,confidencial:true,empresa:'Identidade privada'});
   assert.equal(card.querySelector('.em-r4-logo'),null);assert.equal(env.logoRequests.length,0);
-  card.querySelector('.em-r4-details').click();const dialog=env.doc.getElementById('emRecentJobSummary');
+  card.querySelector('.em-r4-title-select').click();const dialog=env.doc.getElementById('emRecentJobSummary');
   assert(dialog.textContent.includes('Empresa confidencial'));assert(!dialog.textContent.includes('Identidade privada'));
 });
 
 test('HTML descriptions remain inert plain text and demo summaries explain their fictional identity',()=>{
   const env=fixture(),card=env.card({id:'demo-publica-99',demoPublica:true,descricao:'<p>Atendimento ao público.</p><script>unsafe()</script><img src=x onerror=unsafe()>'});
-  card.querySelector('.em-r4-details').click();const dialog=env.doc.getElementById('emRecentJobSummary');
+  card.querySelector('.em-r4-title-select').click();const dialog=env.doc.getElementById('emRecentJobSummary');
   assert(dialog.textContent.includes('Atendimento ao público.'));assert(!dialog.textContent.includes('unsafe'));
   assert.equal(dialog.querySelector('script'),null);assert.equal(dialog.querySelector('img'),null);
   assert(dialog.querySelector('.em-js-demo').textContent.includes('não recebe candidaturas reais'));
@@ -205,8 +206,8 @@ test('the desktop browser keeps results on the left and switches the complete pa
   assert.equal(panel.getAttribute('data-vaga-id'),'two');assert.equal(panel.scrollTop,0);
   assert.equal(env.win.scrollY,460);assert.equal(env.list.scrollTop,120);assert.deepEqual(env.scrolls,[]);
   assert.equal(cards[0].getAttribute('data-em-selected'),'false');assert.equal(cards[1].getAttribute('data-em-selected'),'true');
-  assert.equal(cards[1].querySelector('.em-r4-details').getAttribute('aria-expanded'),'true');
-  assert.equal(cards[1].querySelector('.em-r4-details').getAttribute('aria-haspopup'),null);
+  assert.equal(cards[1].querySelector('.em-r4-title-select').getAttribute('aria-expanded'),'true');
+  assert.equal(cards[1].querySelector('.em-r4-title-select').getAttribute('aria-haspopup'),null);
   assert.equal(env.doc.activeElement,env.doc.getElementById('emJobPanelTitle'));
   assert.deepEqual(env.routes,[]);
   assert.equal(env.doc.body.querySelector('dialog'),null);
@@ -225,7 +226,7 @@ test('the right panel exposes the full text, sanitizes rich descriptions and com
 
 test('filtering and pagination cannot leave details from an invisible vacancy selected',()=>{
   const env=fixture(true,true),cards=env.render([{id:'one'},{id:'two'}]);
-  cards[1].querySelector('.em-r4-details').click();
+  cards[1].querySelector('.em-r4-title-select').click();
   cards[1].style.display='none';env.win.filtrarVagas();
   const panel=env.doc.getElementById('emJobPanel');
   assert.equal(panel.getAttribute('data-vaga-id'),'one');
@@ -239,7 +240,7 @@ test('filtering and pagination cannot leave details from an invisible vacancy se
 
 test('rerendering retains the selected vacancy by ID and refreshes its details',()=>{
   const env=fixture(true,true),cards=env.render([{id:'one'},{id:'two',cargo:'TÍTULO ANTERIOR'}]);
-  cards[1].querySelector('.em-r4-details').click();
+  cards[1].querySelector('.em-r4-title-select').click();
   const updated=env.render([{id:'two',cargo:'TÍTULO ATUALIZADO',descricao:'Descrição atualizada.'},{id:'one'}]);
   const panel=env.doc.getElementById('emJobPanel');
   assert.equal(panel.getAttribute('data-vaga-id'),'two');assert(panel.textContent.includes('TÍTULO ATUALIZADO'));
@@ -249,7 +250,7 @@ test('rerendering retains the selected vacancy by ID and refreshes its details',
 
 test('panel applications use the selected real vacancy and saved state stays synchronized',()=>{
   const env=fixture(true,true),cards=env.render([{id:'one'},{id:'two'}]);
-  cards[1].querySelector('.em-r4-details').click();
+  cards[1].querySelector('.em-r4-title-select').click();
   const panel=env.doc.getElementById('emJobPanel');panel.querySelector('.em-jb-apply').click();
   assert.deepEqual(env.contacts,['two']);assert.deepEqual(env.routes,[]);
   panel.querySelector('.em-jb-save').click();
@@ -301,7 +302,7 @@ test('the browser preserves real filter fields and allows selecting cards withou
 });
 test('asynchronous pagination updates selection once per animation frame',()=>{
   const env=fixture(true,true,true),cards=env.render([{id:'one'},{id:'two'}]);
-  cards[1].querySelector('.em-r4-details').click();
+  cards[1].querySelector('.em-r4-title-select').click();
   const observer=env.observers[0];
   assert.equal(observer.target,env.list);assert.deepEqual(observer.options.attributeFilter,['style','hidden']);
   cards[1].style.display='none';observer.callback([]);observer.callback([]);
@@ -337,4 +338,49 @@ test('only four essential facts appear outside the collapsed extra details',()=>
  assert(extra);assert.equal(extra.tagName,'DETAILS');assert.equal(extra.getAttribute('open'),null);
  assert.match(extra.textContent,/Horário/);assert.match(extra.textContent,/Experiência/);
  assert(!primary.textContent.includes('Escolaridade'));
+});
+
+test('whole cards select a vacancy and clearly mark only the open job',()=>{
+ const env=fixture(true,true),cards=env.render([{id:'one',cargo:'ATENDENTE'},{id:'two',cargo:'AUXILIAR',destaque:true}]);
+ for(const card of cards){assert.equal(card.querySelector('.em-r4-details'),null);assert.equal(card.querySelector('.em-lista-ver'),null);}
+ cards[1].fire('click');
+ const panel=env.doc.getElementById('emJobPanel');
+ assert.equal(panel.getAttribute('data-vaga-id'),'two');
+ assert.equal(panel.querySelector('.em-jb-context-title').textContent,'AUXILIAR');
+ assert.equal(cards[1].querySelector('.em-r4-open-state').getAttribute('aria-hidden'),'false');
+ assert.equal(cards[0].querySelector('.em-r4-open-state').getAttribute('aria-hidden'),'true');
+ assert.equal(cards[1].querySelector('.em-r4-title-select').getAttribute('aria-current'),'true');
+ cards[0].fire('click');
+ assert.equal(panel.getAttribute('data-vaga-id'),'one');
+ assert.equal(cards[1].querySelector('.em-r4-open-state').getAttribute('aria-hidden'),'true');
+ assert.equal(cards[0].querySelector('.em-r4-open-state').getAttribute('aria-hidden'),'false');
+ assert.deepEqual(env.routes,[]);
+});
+
+test('locating the open job returns to the current card without resetting its details',()=>{
+ const env=fixture(true,true),cards=env.render([{id:'one'},{id:'two'}]);
+ cards[1].fire('click');
+ const panel=env.doc.getElementById('emJobPanel');panel.scrollTop=190;
+ panel.querySelector('.em-jb-locate').click();
+ assert.equal(cards[1].scrolledIntoView,true);
+ assert.deepEqual(cards[1].scrollOptions,{block:'nearest',inline:'nearest',behavior:'auto'});
+ assert.equal(env.doc.activeElement,cards[1].querySelector('.em-r4-title-select'));
+ assert.equal(panel.getAttribute('data-vaga-id'),'two');assert.equal(panel.scrollTop,190);
+ const refreshed=env.render([{id:'one'},{id:'two',cargo:'CARGO ATUALIZADO'}]);
+ panel.querySelector('.em-jb-locate').click();
+ assert.equal(refreshed[1].scrolledIntoView,true);
+ assert.equal(env.doc.activeElement,refreshed[1].querySelector('.em-r4-title-select'));
+ assert.equal(panel.querySelector('.em-jb-context-title').textContent,'CARGO ATUALIZADO');
+});
+
+test('mobile can locate the open job in the list and retain its selection',()=>{
+ const env=fixture(true,true);env.win.innerWidth=600;
+ const cards=env.render([{id:'one'},{id:'two'}]);cards[1].fire('click');
+ const root=env.doc.getElementById('emJobBrowser'),panel=env.doc.getElementById('emJobPanel');
+ assert.equal(root.getAttribute('data-view'),'details');
+ panel.querySelector('.em-jb-locate').click();
+ assert.equal(root.getAttribute('data-view'),'list');assert.equal(cards[1].scrolledIntoView,true);
+ assert.equal(env.doc.activeElement,cards[1].querySelector('.em-r4-title-select'));
+ assert.equal(cards[1].getAttribute('data-em-selected'),'true');
+ assert.equal(panel.getAttribute('data-vaga-id'),'two');assert.equal(env.doc.body.style.overflow,undefined);
 });

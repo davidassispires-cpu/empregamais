@@ -926,6 +926,19 @@ html body #pagina-home #emJobBrowser .em-jb-tab{flex:1 0 auto!important;padding-
 }
 }
 
+/* The current job stays identifiable while either column scrolls. */
+@layer candidate-palette {
+html body #pagina-home #emJobBrowser .em-jb-context{position:sticky!important;top:0!important;z-index:3!important;display:flex!important;align-items:center!important;justify-content:space-between!important;gap:12px!important;width:100%!important;margin:0!important;padding:8px 16px!important;border:0!important;border-bottom:1px solid #e0e7ef!important;background:#f8fafc!important}
+html body #pagina-home #emJobBrowser .em-jb-context-copy{display:flex!important;flex-direction:column!important;gap:2px!important;flex:1 1 auto!important;min-width:0!important;text-align:left!important}
+html body #pagina-home #emJobBrowser .em-jb-context-label{--candidate-contrast-ink:#526174!important;color:#526174!important;font-size:10px!important;font-weight:400!important;line-height:1.4!important;text-align:left!important}
+html body #pagina-home #emJobBrowser .em-jb-context-title{--candidate-contrast-ink:#102744!important;display:block!important;min-width:0!important;overflow:hidden!important;color:#102744!important;font-size:13px!important;font-weight:500!important;line-height:1.5!important;text-align:left!important;text-overflow:ellipsis!important;white-space:nowrap!important}
+html body #pagina-home #emJobBrowser .em-jb-locate{--candidate-contrast-ink:#075eb0!important;display:inline-flex!important;align-items:center!important;justify-content:center!important;flex:0 0 auto!important;min-height:36px!important;margin:0!important;padding:6px 4px!important;border:0!important;border-radius:5px!important;background:none!important;color:#075eb0!important;font-size:12px!important;font-weight:400!important;line-height:1.5!important;text-transform:none!important;white-space:nowrap!important;cursor:pointer!important}
+html body #pagina-home #emJobBrowser .em-jb-locate:hover{text-decoration:underline!important}
+@media(max-width:900px){
+html body #pagina-home #emJobBrowser .em-jb-context{position:static!important;padding-inline:14px!important}
+}
+}
+
 /* Secondary vacancy facts stay available without crowding the initial view. */
 @layer candidate-palette {
 html body #pagina-home #emJobBrowser .em-jb-extra{margin:0!important;padding:0!important;border:0!important;background:none!important}
