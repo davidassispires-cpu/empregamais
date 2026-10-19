@@ -327,3 +327,14 @@ test('vacancy tabs switch content in place and compare actual listed jobs',()=>{
  assert.match(views[3].textContent,/4.000,00/);
  assert.equal(env.routes.length,0);
 });
+
+
+test('only four essential facts appear outside the collapsed extra details',()=>{
+ const env=fixture(true,true);env.render([{id:'one',area:'Administração',escolaridade:'Ensino médio',experiencia:'Desejável'}]);
+ const panel=env.doc.getElementById('emJobPanel'),body=panel.querySelector('.em-jb-body');
+ const primary=body.children[0],extra=body.querySelector('.em-jb-extra');
+ assert.equal(primary.querySelectorAll('.em-jb-fact').length,4);
+ assert(extra);assert.equal(extra.tagName,'DETAILS');assert.equal(extra.getAttribute('open'),null);
+ assert.match(extra.textContent,/Horário/);assert.match(extra.textContent,/Experiência/);
+ assert(!primary.textContent.includes('Escolaridade'));
+});
