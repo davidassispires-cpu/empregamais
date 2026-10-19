@@ -522,6 +522,7 @@
       job = job || {};
       var title = card.querySelector('.em-lista-titulo');
       var company = card.querySelector('.em-lista-empresa');
+      // Keep the original action only as a fallback for the full job details.
       var apply = card.querySelector('.em-lista-ver');
       if (!title || !company || !apply) return card;
       var highlighted = enabled(job.destaque) || enabled(job.emDestaque) || enabled(job.destacada);
@@ -585,7 +586,6 @@
       var actions = node('div','em-r4-actions');
       var salary = node('strong','em-r4-salary',salaryValue);
       actions.appendChild(salary);
-      apply.classList.add('em-r4-apply'); apply.textContent = 'Candidatar-se'; actions.appendChild(apply);
       var details = node('button','em-r4-details','Ver detalhes'); details.type = 'button'; details.setAttribute('data-vaga-id',String(job.id || ''));
       details.setAttribute('aria-haspopup','dialog'); details.setAttribute('aria-controls','emRecentJobSummary'); details.setAttribute('aria-expanded','false');
       function showDetails(event, trigger){

@@ -711,8 +711,8 @@ html body #pagina-home #listaVagas .em-recent-discreet .em-r4-salary {
   white-space:normal!important;overflow-wrap:anywhere!important;
 }
 html body #pagina-home #listaVagas .em-recent-discreet .em-r4-actions {
-  grid-area:actions!important;display:grid!important;grid-template-columns:minmax(0,1fr) 140px!important;
-  grid-template-rows:auto!important;grid-template-areas:"salary apply"!important;align-items:center!important;
+  grid-area:actions!important;display:grid!important;grid-template-columns:minmax(0,1fr)!important;
+  grid-template-rows:auto!important;grid-template-areas:"salary"!important;align-items:center!important;
   justify-content:stretch!important;gap:10px 24px!important;min-width:0!important;min-height:0!important;height:auto!important;
   margin:0!important;padding:0!important;border:0!important;background:none!important;
 }
@@ -791,7 +791,7 @@ html body #pagina-home #listaVagas .em-recent-discreet :is(.em-selo-nova-v31,.em
   html body #pagina-home #listaVagas .em-recent-discreet .em-r4-company {font-size:12px!important}
   html body #pagina-home #listaVagas .em-recent-discreet .em-r4-facts {flex-direction:row!important;flex-wrap:wrap!important;gap:5px 12px!important}
   html body #pagina-home #listaVagas .em-recent-discreet .em-r4-distance {flex-basis:100%!important}
-  html body #pagina-home #listaVagas .em-recent-discreet .em-r4-actions {grid-template-columns:minmax(0,1fr) 126px!important;gap:8px 14px!important}
+  html body #pagina-home #listaVagas .em-recent-discreet .em-r4-actions {grid-template-columns:minmax(0,1fr)!important;gap:8px 14px!important}
   html body #pagina-home #listaVagas .em-recent-discreet .em-r4-save {
     position:absolute!important;inset:8px 7px auto auto!important;width:32px!important;min-width:32px!important;max-width:32px!important;height:36px!important;min-height:36px!important;
   }
@@ -838,7 +838,7 @@ html body #pagina-home #emJobBrowser #listaVagas .em-r4-title-select {--candidat
 html body #pagina-home #emJobBrowser #listaVagas .em-r4-copy {gap:4px!important}
 html body #pagina-home #emJobBrowser #listaVagas .em-r4-facts {flex-direction:row!important;flex-wrap:wrap!important;gap:6px 12px!important}
 html body #pagina-home #emJobBrowser #listaVagas .em-r4-distance {flex-basis:100%!important}
-html body #pagina-home #emJobBrowser #listaVagas .em-r4-actions {grid-template-columns:minmax(0,1fr) 126px!important;gap:7px 12px!important}
+html body #pagina-home #emJobBrowser #listaVagas .em-r4-actions {grid-template-columns:minmax(0,1fr)!important;gap:7px 12px!important}
 html body #pagina-home #emJobBrowser #listaVagas .em-r4-salary {justify-self:start!important;text-align:left!important;font-size:13px!important}
 html body #pagina-home #emJobBrowser #listaVagas .em-r4-apply {width:126px!important}
 html body #pagina-home #emJobBrowser #listaVagas .em-r4-save {position:absolute!important;inset:10px 8px auto auto!important;width:30px!important;min-width:30px!important;max-width:30px!important;height:36px!important;min-height:36px!important}
@@ -967,7 +967,7 @@ html body #pagina-home #emJobBrowser #listaVagas .em-r4-facts:has(>.em-r4-status
 html body #pagina-home #emJobBrowser #listaVagas .em-r4-facts:has(>.em-r4-status[data-kind="urgent"])>.em-r4-terms {grid-area:terms!important}
 html body #pagina-home #emJobBrowser #listaVagas .em-r4-facts:has(>.em-r4-status[data-kind="urgent"])>.em-r4-distance {grid-area:auto!important;grid-column:1/-1!important}
 html body #pagina-home #emJobBrowser #listaVagas .em-r4-terms {margin-left:2px!important;padding-left:12px!important;border-left:1px solid #d9e2ec!important}
-html body #pagina-home #emJobBrowser #listaVagas .em-r4-actions {grid-template-rows:auto!important;grid-template-areas:"salary apply"!important;gap:0 12px!important}
+html body #pagina-home #emJobBrowser #listaVagas .em-r4-actions {grid-template-rows:auto!important;grid-template-areas:"salary"!important;gap:0!important}
 html body #pagina-home #emJobBrowser #listaVagas .em-r4-salary {--candidate-contrast-ink:#216846!important;color:#216846!important;font-weight:500!important}
 html body #pagina-home #emJobBrowser #listaVagas .em-r4-apply {height:38px!important;min-height:38px!important;border-radius:8px!important}
 html body #pagina-home #emJobBrowser #listaVagas .em-r4-footer {padding-top:9px!important}
