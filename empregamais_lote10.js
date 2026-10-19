@@ -1341,15 +1341,15 @@ function arrangeCandidateMessageComposer(section){
 .jobs-reference>.intro .panel-eyebrow{display:block;width:44px;height:4px;margin-bottom:12px;border-radius:4px;background:#0065ed;font-size:0}
 .jobs-reference .jobs-table thead{display:none}
 .jobs-reference .jobs-table tbody{grid-template-columns:minmax(0,1fr);gap:14px}
-.jobs-reference .jobs-table tr.management-card.management-model7{width:100%;min-width:0;margin:0;padding:16px;border:1px solid #d5e0ec;border-radius:12px;background:#fff;box-shadow:none;transform:none}
-.jobs-reference .jobs-table tr.management-card.management-model7:hover{border-color:#b9cce3;background:#fff;transform:none}
+.jobs-reference .jobs-table tr.management-card.management-model7{width:100%;min-width:0;margin:0;padding:16px;border:1px solid #bdd7f4;border-radius:12px;background:#fff;box-shadow:none;transform:none}
+.jobs-reference .jobs-table tr.management-card.management-model7:hover{border-color:#93bff0;background:#fff;transform:none}
 .jobs-reference .jobs-table tr.management-card.management-model7>td{display:grid!important;grid-template-columns:minmax(0,1.4fr) minmax(0,1fr) 184px;gap:16px 20px;align-items:center}
 .jobs-reference .management-model7 .management-summary{grid-column:1;grid-row:1;min-width:0}
 .jobs-reference .management-model7 .management-heading{display:flex;align-items:flex-start;flex-wrap:nowrap;gap:12px;min-width:0;padding:0}
 .jobs-reference .management-model7 .management-symbol{width:44px;height:44px;flex:0 0 44px;border-radius:9px;background:#edf5ff;color:#0065ed}
 .jobs-reference .management-model7 .management-symbol svg{width:26px;height:26px}
 .jobs-reference .management-model7 .management-title{min-width:0}
-.jobs-reference .management-model7 .management-title strong{display:block;font-size:18px!important;line-height:1.35!important;font-weight:700!important;overflow-wrap:break-word}
+.jobs-reference .management-model7 .management-title strong{display:block;font-size:18px!important;line-height:1.35!important;font-weight:700!important;text-transform:uppercase!important;overflow-wrap:break-word}
 .jobs-reference .management-model7 .management-title small{display:block;font-size:13px!important;line-height:1.5!important;margin-top:5px}
 .jobs-reference .management-model7 .management-title small.management-job-id{max-width:100%;margin-top:4px;font-size:11px!important;line-height:1.4!important;overflow-wrap:anywhere}
 .jobs-reference .management-model7 .job-data-tiles{display:flex;align-items:center;flex-wrap:wrap;gap:8px 12px;margin:14px 0 0;padding:0;min-width:0}
