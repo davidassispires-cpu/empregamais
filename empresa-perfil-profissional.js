@@ -78,6 +78,8 @@
  css += ':host{width:100%;max-width:none;margin:0}header{padding:0;margin:0 0 16px;border:0;background:transparent;box-shadow:none}header .eyebrow{display:none}header h1{font-size:32px;font-weight:800;line-height:1.2;letter-spacing:-.8px;margin:0;color:#16365e}header p{font-size:14px;font-weight:500;line-height:1.6;margin:8px 0 0}@media(max-width:700px){header h1{font-size:26px}header p{font-size:12px}}';
 
  window.montarFormularioPerfilEmpresarialEM=mount;
+ window.atualizarFormularioPerfilEmpresarialEM=function(){owner='';};
  function init(){var page=document.getElementById('pagina-perfil-empresa');if(!page)return;new MutationObserver(mount).observe(page,{attributes:true,attributeFilter:['class']});mount()}
  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init,{once:true});else init();
 })();
+

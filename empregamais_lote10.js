@@ -1139,11 +1139,11 @@ function companyHero(e){
   }
 
   var workspaceLoading=false;
-  function workspaceView(){var titles={settings:'Configurações',verification:'Verificação da empresa',hires:'Contratações'};return intro(titles[view],'Informações e ações da sua empresa no portal.','')+'<section id="emRecruiterWorkspace" aria-label="'+titles[view]+'"></section>';}
+  function workspaceView(){var titles={settings:'Configurações',verification:'Verificação da empresa',hires:'Contratações'};return intro(titles[view],view==='verification'?'Confira os dados e envie sua solicitação para análise.':'Informações e ações da sua empresa no portal.','')+'<section id="emRecruiterWorkspace" aria-label="'+titles[view]+'"></section>';}
   function syncWorkspacePanel(){
     function ready(){if(!root||!window.EMRecruiterWorkspace)return;var e=company(),vs=jobs();window.EMRecruiterWorkspace.sync(root,{view:view,company:e,jobs:vs,applications:applications(vs),demo:demoMode,premium:recruiterPremium(e),navigate:navigate,manage:manage});}
     if(window.EMRecruiterWorkspace){ready();return;}if(workspaceLoading)return;workspaceLoading=true;
-    var script=document.createElement('script');script.src='recruiter-workspace.js'+premiumAssetsVersion;script.onload=function(){workspaceLoading=false;ready();};script.onerror=function(){workspaceLoading=false;var box=root&&root.getElementById('emRecruiterWorkspace');if(box)box.textContent='Não foi possível carregar esta área. Atualize a página.';};document.head.appendChild(script);
+    var script=document.createElement('script');script.src='recruiter-workspace.js?v=20261019-verification-form1';script.onload=function(){workspaceLoading=false;ready();};script.onerror=function(){workspaceLoading=false;var box=root&&root.getElementById('emRecruiterWorkspace');if(box)box.textContent='Não foi possível carregar esta área. Atualize a página.';};document.head.appendChild(script);
   }
   function supportView(){return '<section id="emRecruiterSupport" aria-label="Central de Ajuda e Atendimento"></section>';}
   function mountSupport(){
