@@ -634,9 +634,12 @@ html body #pagina-home #listaVagas article.em-recent-discreet::after {display:no
 html body #pagina-home #listaVagas article.em-recent-discreet:hover {background:#fff!important;border-color:#c8d6e6!important;box-shadow:0 4px 14px #1027440a!important;transform:none!important}
 html body #pagina-home #listaVagas article.em-recent-discreet[hidden] {display:none!important}
 html body #pagina-home #listaVagas .em-recent-discreet .em-r4-identity {
-  grid-area:identity!important;display:grid!important;grid-template-columns:56px minmax(0,1fr)!important;
+  grid-area:identity!important;display:grid!important;grid-template-columns:minmax(0,1fr)!important;
   align-items:center!important;gap:16px!important;min-width:0!important;
 }
+html body #pagina-home #listaVagas article.em-recent-discreet[data-em-highlighted="true"]:not([data-em-confidential="true"]) .em-r4-identity {grid-template-columns:56px minmax(0,1fr)!important}
+html body #pagina-home #listaVagas article.em-recent-discreet:not([data-em-highlighted="true"]) .em-r4-logo,
+html body #pagina-home #listaVagas article.em-recent-discreet[data-em-confidential="true"] .em-r4-logo {display:none!important}
 html body #pagina-home #listaVagas .em-recent-discreet .em-r4-logo {
   display:flex!important;align-items:center!important;justify-content:center!important;flex:none!important;
   width:56px!important;height:56px!important;min-width:56px!important;padding:5px!important;
@@ -706,7 +709,7 @@ html body #pagina-home #listaVagas .em-recent-discreet .em-r4-salary {
   white-space:normal!important;overflow-wrap:anywhere!important;
 }
 html body #pagina-home #listaVagas .em-recent-discreet .em-r4-actions {
-  grid-area:actions!important;display:flex!important;flex-direction:column!important;align-items:flex-start!important;
+  grid-area:actions!important;display:flex!important;flex-direction:column!important;align-items:center!important;
   justify-content:center!important;gap:10px!important;min-width:0!important;min-height:0!important;height:auto!important;
   margin:0!important;padding:0!important;border:0!important;background:none!important;
 }
@@ -714,7 +717,7 @@ html body #pagina-home #listaVagas .em-recent-discreet .em-r4-apply {
   --candidate-contrast-ink:#fff!important;
   display:flex!important;align-items:center!important;justify-content:center!important;
   width:140px!important;min-width:0!important;max-width:100%!important;min-height:38px!important;max-height:none!important;height:38px!important;
-  flex:0 0 auto!important;align-self:flex-start!important;margin:0!important;padding:8px 11px!important;
+  flex:0 0 auto!important;align-self:center!important;margin:0!important;padding:8px 11px!important;
   border:0!important;border-radius:6px!important;background:#ff7a14!important;color:#fff!important;
   font-size:13px!important;font-weight:600!important;line-height:1.4!important;text-align:center!important;
   text-decoration:none!important;white-space:nowrap!important;box-shadow:none!important;cursor:pointer!important;
@@ -722,10 +725,10 @@ html body #pagina-home #listaVagas .em-recent-discreet .em-r4-apply {
 html body #pagina-home #listaVagas .em-recent-discreet .em-r4-apply:hover {background:#e96808!important}
 html body #pagina-home #listaVagas .em-recent-discreet .em-r4-details {
   --candidate-contrast-ink:#0078bd!important;
-  display:flex!important;align-items:center!important;align-self:flex-start!important;width:auto!important;
+  display:flex!important;align-items:center!important;justify-content:center!important;align-self:center!important;width:140px!important;max-width:100%!important;
   min-height:24px!important;height:auto!important;margin:0!important;padding:0!important;border:0!important;border-radius:0!important;
   background:none!important;color:#0078bd!important;font-size:13px!important;font-weight:500!important;line-height:1.4!important;
-  text-align:left!important;box-shadow:none!important;cursor:pointer!important;
+  text-align:center!important;box-shadow:none!important;cursor:pointer!important;
 }
 html body #pagina-home #listaVagas .em-recent-discreet .em-r4-details:hover {text-decoration:underline!important}
 html body #pagina-home #listaVagas .em-recent-discreet .em-r4-save {
@@ -744,6 +747,17 @@ html body #pagina-home #listaVagas .em-recent-discreet .em-r4-status {
   border:1px solid #ecd9b9!important;border-radius:4px!important;background:#fff8ed!important;color:#925d12!important;
   font-size:10px!important;font-weight:500!important;line-height:1.3!important;white-space:nowrap!important;
 }
+html body #pagina-home #listaVagas .em-recent-discreet .em-r4-title-line:has(.em-r4-status[data-kind="featured"]) {
+  display:grid!important;grid-template-columns:minmax(0,1fr) auto!important;align-items:start!important;gap:8px!important;
+}
+html body #pagina-home #listaVagas .em-recent-discreet .em-r4-status[data-kind="featured"] {
+  --candidate-contrast-ink:#8a5a13!important;
+  align-self:start!important;gap:4px!important;margin-top:2px!important;padding:3px 6px!important;
+  border:1px solid #e8d4af!important;border-radius:5px!important;background:#fff8eb!important;color:#8a5a13!important;
+  font-size:10px!important;font-weight:600!important;line-height:1.3!important;white-space:nowrap!important;
+}
+html body #pagina-home #listaVagas .em-recent-discreet .em-r4-status[data-kind="featured"] svg {width:12px!important;height:12px!important;flex:0 0 12px!important;fill:currentColor!important;stroke:currentColor!important}
+html body #pagina-home #listaVagas .em-recent-discreet .em-r4-status>span {font:inherit!important;color:inherit!important}
 html body #pagina-home #listaVagas .em-recent-discreet .em-r4-status[data-kind=urgent] {color:#a34321!important;border-color:#f0d7cc!important;background:#fff5ef!important}
 html body #pagina-home #listaVagas .em-recent-discreet :is(.em-r4-save,.em-r4-details,.em-r4-apply):focus-visible {outline:3px solid #90bcf4!important;outline-offset:3px!important}
 html body #pagina-home #listaVagas .em-recent-discreet :is(.em-selo-nova-v31,.em-tooltip-nova-v31,.em-public-demo-badges,.em-lista-urgente,.em-recrutamento-demo,.em-lista-resumo,.em-lista-indicadores) {display:none!important}
@@ -761,7 +775,8 @@ html body #pagina-home #listaVagas .em-recent-discreet :is(.em-selo-nova-v31,.em
     grid-template-areas:"identity identity" "facts facts" "salary actions"!important;
     gap:12px 14px!important;min-height:0!important;padding:18px!important;
   }
-  html body #pagina-home #listaVagas .em-recent-discreet .em-r4-identity {padding-right:30px!important;grid-template-columns:44px minmax(0,1fr)!important;gap:12px!important}
+  html body #pagina-home #listaVagas .em-recent-discreet .em-r4-identity {padding-right:30px!important;grid-template-columns:minmax(0,1fr)!important;gap:12px!important}
+  html body #pagina-home #listaVagas article.em-recent-discreet[data-em-highlighted="true"]:not([data-em-confidential="true"]) .em-r4-identity {grid-template-columns:44px minmax(0,1fr)!important}
   html body #pagina-home #listaVagas .em-recent-discreet .em-r4-logo {width:44px!important;min-width:44px!important;height:44px!important}
   html body #pagina-home #listaVagas .em-recent-discreet .em-r4-title {font-size:15px!important}
   html body #pagina-home #listaVagas .em-recent-discreet .em-r4-company {font-size:12px!important}
@@ -835,5 +850,56 @@ html body #pagina-home#pagina-home #listaDestaques#listaDestaques#listaDestaques
 html body #pagina-home#pagina-home #listaDestaques#listaDestaques#listaDestaques#listaDestaques article.em-featured-reference.em-featured-reference.em-featured-orange2 .dz-selo strong::after {content:"Destaque";font:600 9px/14px Inter,Arial,sans-serif!important;color:#925d12!important}
 html body #pagina-home#pagina-home #listaDestaques#listaDestaques#listaDestaques#listaDestaques article.em-featured-reference.em-featured-reference.em-featured-orange2 .dz-selo svg {width:11px!important;height:11px!important;fill:currentColor!important}
 html body #pagina-home#pagina-home #listaDestaques#listaDestaques#listaDestaques#listaDestaques article.em-featured-reference.em-featured-reference.em-featured-orange2 {grid-template-rows:54px 44px 56px 40px 38px!important}
+}
+
+
+/* Quick job summary: native modal with keyboard support and no page scroll-lock mutation. */
+@layer candidate-palette {
+html body dialog.em-job-summary,
+html body dialog.em-job-summary * {box-sizing:border-box!important;font-family:Montserrat,Inter,Arial,sans-serif!important;font-style:normal!important}
+html body dialog.em-job-summary {
+  --candidate-contrast-ink:#374151!important;
+  position:fixed!important;inset:0!important;margin:auto!important;width:calc(100% - 32px)!important;max-width:680px!important;
+  height:fit-content!important;max-height:calc(100dvh - 32px)!important;padding:0!important;
+  border:1px solid #dce5ef!important;border-radius:14px!important;background:#fff!important;
+  color:#374151!important;box-shadow:0 24px 80px #10274433!important;overflow:hidden!important;z-index:100001!important;
+}
+html body dialog.em-job-summary[open] {display:flex!important;flex-direction:column!important}
+html body dialog.em-job-summary::backdrop {background:#10274466;backdrop-filter:blur(2px)}
+html body .em-job-summary-backdrop {position:fixed!important;inset:0!important;z-index:100000!important;background:#10274466!important;touch-action:none!important}
+html body dialog.em-job-summary[data-fallback="true"] {inset:50% auto auto 50%!important;transform:translate(-50%,-50%)!important;margin:0!important}
+html body dialog.em-job-summary .em-js-header {position:static!important;display:flex!important;flex:0 0 auto!important;align-items:flex-start!important;justify-content:space-between!important;gap:16px!important;padding:20px 24px!important;border-bottom:1px solid #e7ecf2!important;background:#fff!important}
+html body dialog.em-job-summary .em-js-heading {min-width:0!important;flex:1 1 auto!important}
+html body dialog.em-job-summary .em-js-eyebrow {display:block!important;margin:0 0 7px!important;color:#63748a!important;font-size:10px!important;font-weight:600!important;letter-spacing:.6px!important;text-transform:uppercase!important}
+html body dialog.em-job-summary .em-js-title {--candidate-contrast-ink:#102744!important;margin:0!important;padding:0!important;color:#102744!important;font-size:20px!important;font-weight:700!important;line-height:1.35!important;text-transform:uppercase!important;overflow-wrap:anywhere!important}
+html body dialog.em-job-summary .em-js-company {--candidate-contrast-ink:#0078bd!important;margin:8px 0 0!important;color:#0078bd!important;font-size:13px!important;font-weight:500!important;line-height:1.45!important}
+html body dialog.em-job-summary .em-js-close {display:flex!important;align-items:center!important;justify-content:center!important;flex:0 0 36px!important;width:36px!important;height:36px!important;margin:0!important;padding:0!important;border:1px solid #dce5ef!important;border-radius:8px!important;background:#f8fafc!important;color:#526174!important;font-size:25px!important;font-weight:400!important;line-height:1!important;cursor:pointer!important}
+html body dialog.em-job-summary .em-js-body {display:grid!important;flex:1 1 auto!important;min-height:0!important;gap:18px!important;max-height:calc(100dvh - 220px)!important;margin:0!important;padding:20px 24px!important;overflow-y:auto!important;overscroll-behavior:contain!important;scrollbar-gutter:stable}
+html body dialog.em-job-summary .em-js-facts {display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:10px!important;margin:0!important;padding:0!important}
+html body dialog.em-job-summary .em-js-fact {min-width:0!important;padding:11px 12px!important;border:1px solid #e5eaf1!important;border-radius:8px!important;background:#f8fafc!important}
+html body dialog.em-job-summary .em-js-fact dt {margin:0 0 5px!important;color:#63748a!important;font-size:11px!important;font-weight:500!important;line-height:1.35!important}
+html body dialog.em-job-summary .em-js-fact dd {--candidate-contrast-ink:#263b55!important;margin:0!important;color:#263b55!important;font-size:13px!important;font-weight:600!important;line-height:1.45!important;overflow-wrap:anywhere!important}
+html body dialog.em-job-summary .em-js-pay dd {--candidate-contrast-ink:#116b3a!important;color:#116b3a!important;font-size:15px!important}
+html body dialog.em-job-summary .em-js-section {margin:0!important;padding:0!important}
+html body dialog.em-job-summary .em-js-section h3 {--candidate-contrast-ink:#102744!important;margin:0 0 7px!important;color:#102744!important;font-size:13px!important;font-weight:700!important;line-height:1.4!important}
+html body dialog.em-job-summary .em-js-section p {margin:0!important;color:#4b586b!important;font-size:13px!important;font-weight:400!important;line-height:1.65!important;white-space:pre-line!important;overflow-wrap:anywhere!important}
+html body dialog.em-job-summary .em-js-date {margin:0!important;color:#63748a!important;font-size:11px!important;line-height:1.5!important}
+html body dialog.em-job-summary .em-js-demo {--candidate-contrast-ink:#805c1c!important;margin:0!important;padding:10px 12px!important;border:1px solid #f0dfba!important;border-radius:8px!important;background:#fff9ed!important;color:#805c1c!important;font-size:11px!important;line-height:1.6!important}
+html body dialog.em-job-summary .em-js-footer {position:static!important;display:flex!important;flex:0 0 auto!important;align-items:center!important;justify-content:flex-end!important;flex-wrap:wrap!important;gap:10px!important;margin:0!important;padding:16px 24px!important;border-top:1px solid #e7ecf2!important;background:#fff!important}
+html body dialog.em-job-summary :is(.em-js-full,.em-js-apply) {display:flex!important;align-items:center!important;justify-content:center!important;min-height:40px!important;margin:0!important;padding:10px 15px!important;border:1px solid #0078bd!important;border-radius:7px!important;background:#fff!important;color:#0078bd!important;font-size:13px!important;font-weight:600!important;line-height:1.4!important;cursor:pointer!important;box-shadow:none!important}
+html body dialog.em-job-summary .em-js-apply {--candidate-contrast-ink:#fff!important;border-color:#ff7a14!important;background:#ff7a14!important;color:#fff!important}
+html body dialog.em-job-summary .em-js-apply:hover {border-color:#e96808!important;background:#e96808!important}
+html body dialog.em-job-summary button:focus-visible {outline:3px solid #90bcf4!important;outline-offset:2px!important}
+@media(max-width:560px) {
+  html body dialog.em-job-summary {width:calc(100% - 24px)!important;max-height:calc(100dvh - 24px)!important}
+  html body dialog.em-job-summary .em-js-header {padding:18px!important;gap:10px!important}
+  html body dialog.em-job-summary .em-js-title {font-size:18px!important}
+  html body dialog.em-job-summary .em-js-body {padding:18px!important}
+  html body dialog.em-job-summary .em-js-footer {padding:14px 18px!important}
+  html body dialog.em-job-summary :is(.em-js-full,.em-js-apply) {flex:1 1 auto!important;min-height:44px!important;font-size:12px!important}
+}
+@media(max-width:380px) {
+  html body dialog.em-job-summary .em-js-facts {grid-template-columns:minmax(0,1fr)!important}
+}
 }
 

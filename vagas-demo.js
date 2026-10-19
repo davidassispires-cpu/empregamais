@@ -216,6 +216,110 @@
       var text = doc.createElement('span'); text.textContent = label; span.appendChild(text); bar.appendChild(span);
     }
     function enabled(value) { return value === true || value === 1 || /^(true|1)$/i.test(String(value)); }
+    var activeSummaryClose = null;
+    function summaryText(value, limit) {
+      var text = Array.isArray(value) ? value.join('; ') : String(value == null ? '' : value);
+      text = text.replace(/<(script|style)\b[^>]*>[\s\S]*?<\/\1\s*>/gi, '')
+        .replace(/<!--[\s\S]*?-->/g, '').replace(/<br\s*\/?>/gi, '\n')
+        .replace(/<\/(p|div|li)>/gi, '\n').replace(/<\/?[a-z][^>]*>/gi, '')
+        .replace(/&nbsp;|&#160;/gi, ' ').replace(/&amp;/gi, '&')
+        .replace(/&lt;/gi, '<').replace(/&gt;/gi, '>').replace(/&quot;/gi, '"').replace(/&#39;/g, "'")
+        .replace(/[ \t]+/g, ' ').replace(/ *\n */g, '\n').replace(/\n{3,}/g, '\n\n').trim();
+      return limit && text.length > limit ? text.slice(0, limit).replace(/\s+\S*$/, '') + '…' : text;
+    }
+    function openJobSummary(job, info, apply, trigger) {
+      if (activeSummaryClose) activeSummaryClose(false);
+      function node(tag, className, text) {
+        var el = doc.createElement(tag); el.className = className;
+        if (text != null) el.textContent = text;
+        return el;
+      }
+      var dialog = node('dialog', 'em-job-summary'); dialog.id = 'emRecentJobSummary';
+      dialog.setAttribute('aria-labelledby', 'emRecentSummaryTitle');
+      dialog.setAttribute('aria-describedby', 'emRecentSummaryCompany');
+      var fallback = null, disposed = false;
+      function cleanup(restoreFocus) {
+        if (disposed) return;
+        disposed = true;
+        if (activeSummaryClose === dismiss) activeSummaryClose = null;
+        trigger.setAttribute('aria-expanded', 'false');
+        dialog.remove(); if (fallback) fallback.remove();
+        if (restoreFocus && trigger.isConnected !== false && typeof trigger.focus === 'function') trigger.focus();
+      }
+      function dismiss(restoreFocus) {
+        if (dialog.open && typeof dialog.close === 'function') dialog.close();
+        cleanup(restoreFocus !== false);
+      }
+      function openFullJob() {
+        dismiss(false);
+        if (typeof win.irPara === 'function') win.irPara('vaga', job.id);
+        else win.location.href = String(win.location.pathname || '') + '?pagina=vaga&id=' + encodeURIComponent(job.id);
+      }
+      activeSummaryClose = dismiss;
+      var header = node('header', 'em-js-header');
+      var heading = node('div', 'em-js-heading');
+      heading.appendChild(node('span', 'em-js-eyebrow', 'Resumo da vaga'));
+      var title = node('h2', 'em-js-title', summaryText(info.title)); title.id = 'emRecentSummaryTitle';
+      heading.appendChild(title);
+      var company = node('p', 'em-js-company', summaryText(info.company)); company.id = 'emRecentSummaryCompany';
+      heading.appendChild(company); header.appendChild(heading);
+      var close = node('button', 'em-js-close', '×'); close.type = 'button';
+      close.setAttribute('aria-label', 'Fechar resumo da vaga'); close.setAttribute('autofocus', '');
+      close.onclick = function () { dismiss(true); }; header.appendChild(close); dialog.appendChild(header);
+      var body = node('div', 'em-js-body'), facts = node('dl', 'em-js-facts');
+      function addFact(label, value, salary) {
+        var text = summaryText(value, 180); if (!text) return;
+        var fact = node('div', 'em-js-fact' + (salary ? ' em-js-pay' : ''));
+        fact.appendChild(node('dt', '', label)); fact.appendChild(node('dd', '', text)); facts.appendChild(fact);
+      }
+      addFact('Local', info.location); addFact('Salário', info.salary, true);
+      addFact('Modalidade', job.modalidade || 'Não informada');
+      addFact('Contrato', job.contrato || job.tipoContrato || 'Não informado');
+      addFact('Jornada', job.jornada); addFact('Horário', job.horario);
+      body.appendChild(facts);
+      function addSection(label, value, limit) {
+        var text = summaryText(value, limit); if (!text) return;
+        var section = node('section', 'em-js-section');
+        section.appendChild(node('h3', '', label)); section.appendChild(node('p', '', text)); body.appendChild(section);
+      }
+      addSection('Sobre a vaga', job.descricao || job.descricaoVaga || job.resumo || 'A empresa não informou a descrição desta vaga.', 650);
+      addSection('Requisitos', job.requisitos, 420); addSection('Benefícios', job.beneficios, 350);
+      if (info.date) body.appendChild(node('p', 'em-js-date', summaryText(info.date)));
+      if (isDemo(job)) {
+        var note = node('p', 'em-js-demo', 'Vaga de demonstração. Esta oportunidade é fictícia e não recebe candidaturas reais.');
+        note.setAttribute('role', 'note'); body.appendChild(note);
+      }
+      dialog.appendChild(body);
+      var footer = node('footer', 'em-js-footer');
+      var full = node('button', 'em-js-full', 'Ver vaga completa'); full.type = 'button'; full.onclick = openFullJob;
+      var candidate = node('button', 'em-js-apply', 'Candidatar-se'); candidate.type = 'button';
+      candidate.onclick = function () { dismiss(false); apply.click(); };
+      footer.appendChild(full); footer.appendChild(candidate); dialog.appendChild(footer);
+      dialog.addEventListener('close', function () { cleanup(true); });
+      dialog.addEventListener('cancel', function (event) { event.preventDefault(); dismiss(true); });
+      dialog.addEventListener('keydown', function (event) {
+        if (event.key === 'Escape') { event.preventDefault(); dismiss(true); return; }
+        if (event.key !== 'Tab') return;
+        var buttons = Array.prototype.filter.call(dialog.querySelectorAll('button'), function (button) { return !button.disabled; });
+        var first = buttons[0], last = buttons[buttons.length - 1];
+        if (event.shiftKey && doc.activeElement === first) { event.preventDefault(); last.focus(); }
+        else if (!event.shiftKey && doc.activeElement === last) { event.preventDefault(); first.focus(); }
+      });
+      dialog.addEventListener('click', function (event) {
+        if (event.target !== dialog) return;
+        var rect = dialog.getBoundingClientRect();
+        if (event.clientX < rect.left || event.clientX > rect.right || event.clientY < rect.top || event.clientY > rect.bottom) dismiss(true);
+      });
+      doc.body.appendChild(dialog); trigger.setAttribute('aria-expanded', 'true');
+      if (typeof dialog.showModal === 'function') dialog.showModal();
+      else {
+        fallback = node('div', 'em-job-summary-backdrop'); fallback.setAttribute('aria-hidden', 'true');
+        fallback.onclick = function () { dismiss(true); }; doc.body.insertBefore(fallback, dialog);
+        dialog.setAttribute('open', ''); dialog.setAttribute('role', 'dialog');
+        dialog.setAttribute('aria-modal', 'true'); dialog.setAttribute('data-fallback', 'true');
+      }
+      close.focus();
+    }
     function recentCard(card, job, featured) {
       if (!card || featured || !card.classList.contains('em-lista-final')) return card;
       var home = doc.getElementById('pagina-home');
@@ -242,7 +346,7 @@
         company.textContent = 'Empresa confidencial'; company.onclick = null;
         card.setAttribute('data-empresa','Empresa confidencial');
         logo.innerHTML = svg('<rect x="5" y="10" width="14" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3M12 14v3"/>');
-      } else {
+      } else if (highlighted) {
         var publicName = company.querySelector('span'); publicName = publicName ? publicName.textContent : company.textContent;
         var initials = String(publicName || 'Empresa').replace(/\(demo\)/ig,'').trim().split(/\s+/).slice(0,2).map(function(part){return part.charAt(0);}).join('').toLocaleUpperCase('pt-BR');
         if (!originalLogo && typeof win.logoPreviaDestaqueEM === 'function') {
@@ -267,7 +371,9 @@
       var dateMatch = /^(\d{4})-(\d{2})-(\d{2})/.exec(rawDate);
       var date = node('div','em-r4-date',dateMatch ? 'Publicada em '+dateMatch[3]+'/'+dateMatch[2]+'/'+dateMatch[1] : 'Data de publicação não informada');
       if (isDemo(job)) date.appendChild(node('span','em-r4-demo',' · Demonstração'));
-      copy.appendChild(date); identity.appendChild(logo); identity.appendChild(copy);
+      copy.appendChild(date);
+      if (highlighted && !confidential) identity.appendChild(logo);
+      identity.appendChild(copy);
       var facts = node('div','em-r4-facts');
       var city = String(job.cidade || 'Localidade não informada').trim();
       var originalPlace = card.querySelector('.em-lista-meta-item b');
@@ -284,7 +390,18 @@
       var salary = node('strong','em-r4-salary',salaryValue);
       apply.classList.add('em-r4-apply'); apply.textContent = 'Candidatar-se'; actions.appendChild(apply);
       var details = node('button','em-r4-details','Ver detalhes'); details.type = 'button'; details.setAttribute('data-vaga-id',String(job.id || ''));
-      details.onclick = function(event){event.preventDefault();event.stopPropagation();if(typeof win.irPara==='function')win.irPara('vaga',job.id);else win.location.href=String(win.location.pathname || '')+'?pagina=vaga&id='+encodeURIComponent(job.id);};
+      details.setAttribute('aria-haspopup','dialog'); details.setAttribute('aria-controls','emRecentJobSummary'); details.setAttribute('aria-expanded','false');
+      details.onclick = function(event){
+        event.preventDefault(); event.stopPropagation();
+        var publicCompany = company.querySelector('span');
+        openJobSummary(job, {
+          title:title.textContent,
+          company:confidential ? 'Empresa confidencial' : (publicCompany ? publicCompany.textContent : company.textContent),
+          location:city+(uf.length===2?' – '+uf.toUpperCase():''),
+          salary:salaryValue,
+          date:date.textContent
+        }, apply, details);
+      };
       actions.appendChild(details);
       if (!save) { save = doc.createElement('button'); save.type = 'button'; }
       save.classList.add('em-r4-save'); save.setAttribute('data-vaga-id',String(job.id || ''));
@@ -292,8 +409,12 @@
       save.onclick=function(event){event.preventDefault();event.stopPropagation();if(typeof originalSave==='function')originalSave.call(save,event);else if(typeof win.alternarFavorito==='function')win.alternarFavorito(job.id);updateSave();};
       updateSave();
       card.replaceChildren(identity,facts,salary,actions,save);
-      var label = highlighted ? 'Em destaque' : enabled(job.urgente) || enabled(job.contratacaoUrgente) ? 'Contratação urgente' : '';
-      if (label) { var status=node('span','em-r4-status',label); status.setAttribute('data-kind',highlighted?'featured':'urgent'); titleLine.appendChild(status); }
+      var label = highlighted ? 'Destaque' : enabled(job.urgente) || enabled(job.contratacaoUrgente) ? 'Contratação urgente' : '';
+      if (label) {
+        var status=node('span','em-r4-status'); status.setAttribute('data-kind',highlighted?'featured':'urgent');
+        if (highlighted) status.innerHTML=svg(paths.featured);
+        status.appendChild(node('span','',label)); titleLine.appendChild(status);
+      }
       card.classList.add('em-recent-model3','em-recent-discreet');
       card.setAttribute('data-em-highlighted',String(highlighted)); card.setAttribute('data-em-confidential',String(confidential));
       return card;
