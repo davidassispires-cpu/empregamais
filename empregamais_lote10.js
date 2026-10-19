@@ -444,15 +444,28 @@
 
 
   function missingJobFields(v){
-    function supplied(value){var t=norm(value).trim().replace(/[.!]+$/,'');return !!t&&!/^(nao informad[oa]s?|nao definid[oa]s?|nenhum|nenhuma|-)$/i.test(t);}
-    var missing=[];if(!supplied(v.salario)&&!(Number(v.salarioNumero)>0))missing.push('salário');
-    if(!supplied(v.beneficios)&&!(Array.isArray(v.beneficiosTags)&&v.beneficiosTags.some(supplied)))missing.push('benefícios');
-    if(!supplied(v.requisitos))missing.push('requisitos');return missing;
+    return jobCompletion(v).missing;
+  }
+  function jobCompletion(v){
+    function supplied(value){var t=norm(value).replace(/<[^>]*>/g,' ').replace(/&nbsp;|\u00a0/g,' ').trim().replace(/[.!]+$/,'').trim();return !!t&&!/^(nao informad[oa]s?|nao definid[oa]s?|nenhum|nenhuma|-)$/i.test(t);}
+    var fields=[
+      ['cargo',supplied(v.cargo)||supplied(v.titulo)],
+      ['cidade',supplied(v.cidade)],
+      ['contrato',supplied(v.contrato)],
+      ['modalidade',supplied(v.modalidade)],
+      ['salário',supplied(v.salario)||Number(v.salarioNumero)>0],
+      ['descrição',supplied(v.descricao)],
+      ['requisitos',supplied(v.requisitos)],
+      ['benefícios',supplied(v.beneficios)||(Array.isArray(v.beneficiosTags)&&v.beneficiosTags.some(supplied))]
+    ];
+    var missing=fields.filter(function(field){return !field[1];}).map(function(field){return field[0];});
+    var filled=fields.length-missing.length;
+    return {total:fields.length,filled:filled,missing:missing,percent:Math.round(filled*100/fields.length)};
   }
   function completionIndicator(v){
-    var missing=missingJobFields(v),pct=Math.round((3-missing.length)*100/3);
-    var clipboard='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="4" width="14" height="17" rx="2"/><rect x="9" y="2" width="6" height="4" rx="1"/><path d="M9 11h6M9 15h4"/></svg>';
-    return '<div class="job-completion '+(missing.length?'incomplete':'complete')+'"><div class="completion-heading"><span>'+(missing.length?clipboard:icon('check'))+(missing.length?'Informações da vaga':'Informações completas')+'</span><b>'+pct+'% completo</b></div><div class="completion-track" role="progressbar" aria-label="Preenchimento de salário, benefícios e requisitos" aria-valuemin="0" aria-valuemax="100" aria-valuenow="'+pct+'"><i style="width:'+pct+'%"></i></div><div class="completion-bottom"><p>'+(missing.length?'<span class="completion-alert" aria-hidden="true">!</span> Falta adicionar '+esc(missing.join(', ')):icon('check')+'Salário, benefícios e requisitos preenchidos')+'</p>'+'</div></div>';
+    var progress=jobCompletion(v),missing=progress.missing,pct=progress.percent;
+    var detail=missing.length?'Falta preencher: '+missing.join(', '):'Cargo, cidade, contrato, modalidade, salário, descrição, requisitos e benefícios preenchidos';
+    return '<div class="job-completion '+(missing.length?'incomplete':'complete')+'" title="'+esc(detail)+'"><div class="completion-heading"><span>Preenchimento da vaga</span><b>'+pct+'%</b></div><div class="completion-track" role="progressbar" aria-label="Preenchimento dos dados da vaga" aria-valuemin="0" aria-valuemax="100" aria-valuenow="'+pct+'" aria-valuetext="'+progress.filled+' de '+progress.total+' campos preenchidos. '+esc(detail)+'"><i style="width:'+pct+'%"></i></div><div class="completion-bottom"><p>'+progress.filled+' de '+progress.total+' campos'+(missing.length?' · '+(missing.length===1?'Falta 1 campo':'Faltam '+missing.length+' campos'):'')+'</p></div></div>';
   }
 
   function publicationIcon(key){
@@ -466,13 +479,14 @@
     }).join('');
     return '<section class="publication-services"><h3 class="publication-services-title">Serviços da publicação</h3><div class="publication-services-body">'+(chips?'<div class="publication-service-grid">'+chips+'</div>':'<div class="publication-free"><span class="service-symbol">'+icon('support')+'</span><div><strong>Divulgação gratuita</strong><small>Nenhum serviço adicional ativo</small></div><button data-action="job-settings" data-id="'+esc(v.id)+'">Adicionar serviços '+icon('arrow')+'</button></div>')+'</div></section>';
   }
-  function jobCardExtras(v){
+  function jobCardMetadata(v){
     var st=jobStatus(v),left=remaining(v,Date.now()),days=isFinite(left)?Math.ceil(left/86400000):null;
-    var label=st==='closed'?'Publicação encerrada':days===null?'Prazo não informado':st==='paused'?'Pausada · saldo de '+days+' dia(s)':st==='pending'?'Em análise':'Restam '+days+' dia(s)';
     var expiry=deadline(v);if(!isFinite(expiry)&&isFinite(left)&&st==='active')expiry=Date.now()+left;
+    var label=st==='closed'?'Publicação encerrada':st==='paused'?(days===null?'Prazo suspenso':'Saldo de '+days+' dia(s)'):st==='pending'?'Aguardando aprovação':isFinite(expiry)?'Encerra em '+dateBR(expiry):'Prazo não informado';
     var views=Math.max(0,Number(v.visualizacoes||v.views||v.visualizacoesTotal)||0);
-    return '<div class="job-data-tiles"><div class="job-time '+(st==='active'&&days!==null&&days<=3?'ending':'')+'">'+icon('clock')+'<span>'+esc(label)+(st==='active'&&isFinite(expiry)?'<small>Expira em '+esc(dateBR(expiry))+'</small>':'')+'</span></div><div>'+icon('eye')+'<span>'+views.toLocaleString('pt-BR')+' visualizações</span></div></div>'+completionIndicator(v)+rejectionInfo(v);
+    return '<div class="job-data-tiles"><div class="job-views">'+icon('eye')+'<span>'+views.toLocaleString('pt-BR')+' visualizações</span></div><div class="job-time '+(st==='active'&&days!==null&&days<=3?'ending':'')+'">'+icon('clock')+'<span>'+esc(label)+'</span></div><div class="management-status">'+badge(st)+'</div></div>';
   }
+  function jobCardExtras(v){return jobCardMetadata(v)+completionIndicator(v)+rejectionInfo(v);}
   function jobLink(id){var url=new URL(location.href);url.search='';url.hash='';url.searchParams.set('pagina','vaga');url.searchParams.set('id',String(id));return url.toString();}
   function copyJobLink(button){
     var link=jobLink(button.dataset.id);
@@ -483,7 +497,7 @@
 
   function managementCard(v,cs){
     var id=esc(v.id),st=jobStatus(v),uf=String(v.uf||v.estado||v.siglaEstado||'').trim();
-    return '<tr class="management-card status-'+st+'"><td colspan="4"><div class="management-heading"><span class="management-symbol">'+icon('briefcase')+'</span><div class="management-title"><strong>'+esc(v.cargo||v.titulo||'Vaga')+'</strong><small>'+esc(v.cidade||'Cidade não informada')+(uf?' · '+esc(uf.toUpperCase()):'')+'</small></div><div class="management-status"><span class="job-reference-id">ID: '+id+'</span>'+badge(st)+'</div></div>'+jobCardExtras(v)+'<div class="management-actions management-compact-actions"><button type="button" class="primary manage-job" data-action="job-settings" data-id="'+id+'">Gerenciar vaga</button><button type="button" class="secondary" data-action="manage" data-id="'+id+'">'+count(v,cs)+' candidaturas</button><button type="button" class="secondary" data-action="job" data-id="'+id+'">Ver anúncio</button></div></td></tr>';
+    return '<tr class="management-card management-model7 status-'+st+'"><td colspan="4"><div class="management-summary"><div class="management-heading"><span class="management-symbol">'+icon('briefcase')+'</span><div class="management-title"><strong>'+esc(v.cargo||v.titulo||'Vaga')+'</strong><small>'+esc(v.cidade||'Cidade não informada')+(uf?' · '+esc(uf.toUpperCase()):'')+'</small></div></div>'+jobCardMetadata(v)+'</div>'+completionIndicator(v)+'<div class="management-actions management-compact-actions"><button type="button" class="primary manage-job" data-action="job-settings" data-id="'+id+'">Gerenciar vaga</button><button type="button" class="secondary" data-action="manage" data-id="'+id+'">'+count(v,cs)+' candidaturas</button><button type="button" class="job-view-ad" data-action="job" data-id="'+id+'">Ver anúncio</button></div>'+rejectionInfo(v)+'</td></tr>';
   }
   function table(vs,cs,full) {if(!vs.length)return '<div class="empty">Nenhuma vaga encontrada.</div>';return '<div class="table-wrap"><table class="'+(full?'jobs-table':'')+'"><thead><tr><th>Vaga</th><th>Status</th><th>Candidaturas</th><th>Ações</th></tr></thead><tbody>'+vs.map(function(v){if(full)return managementCard(v,cs);var id=esc(v.id),uf=String(v.uf||v.estado||v.siglaEstado||'').trim(),n=count(v,cs);return '<tr><td data-label="Vaga"><div class="job-title-line"><strong>'+esc(v.cargo||v.titulo||'Vaga')+'</strong>'+(full?'<span class="job-reference-id">ID: '+esc(v.id)+'</span>':'')+'</div><small>'+esc(v.cidade||'Cidade não informada')+(uf?' • '+esc(uf.toUpperCase()):'')+'</small>'+(full?jobCardExtras(v):'')+'</td><td data-label="Status">'+badge(jobStatus(v))+'</td><td data-label="Candidaturas"><button class="candidate-count" data-action="manage" data-id="'+id+'">'+n+' '+(n===1?'candidato':'candidatos')+'</button></td><td data-label="Ações"><div class="row-actions job-actions"><button class="primary manage-job" data-action="job-settings" data-id="'+id+'">'+(full?'Gerenciar vaga':'Gerenciar')+'</button>'+(full?'<span class="job-published">Publicada em '+esc(dateBR(v.dataPublicacao||v.publicadaEm||v.criadoEm))+'</span><button class="job-copy-link" data-action="copy-job-link" data-id="'+id+'" aria-label="Copiar link da vaga" title="Copiar link da vaga">'+icon('card')+'</button>':'')+'</div></td></tr>';}).join('')+'</tbody></table></div>';}
   function candidateList(cs,vs,limit) {if(!cs.length)return '<div class="empty">Nenhuma candidatura recebida ainda.<br>As novas candidaturas aparecerão aqui.</div>';var sorted=cs.slice().sort(function(a,b){return (date(b)||0)-(date(a)||0);});return sorted.slice(0,limit == null ? 3 : limit).map(function(c){var name=candidateName(c),initials=name.split(/\s+/).filter(Boolean).slice(0,2).map(function(w){return w[0];}).join(''),jid=String(c.vagaId||c.vaga_id||c.idVaga),v=vs.find(function(x){return String(x.id)===jid;})||{},d=date(c);return '<article class="candidate"><span class="avatar">'+esc(initials)+'</span><div class="candidate-body"><strong>'+esc(name)+'</strong><p>'+esc(v.cargo||v.titulo||'Candidatura')+'</p><span class="location">'+icon('pin')+esc(c.cidade||c.localidade||'Localidade não informada')+'</span></div><div class="candidate-action"><small>'+(d?d.toLocaleDateString('pt-BR'):'Data não informada')+'</small><button class="secondary" data-action="manage" data-id="'+esc(jid)+'">Ver candidatura</button></div></article>';}).join('');}
@@ -1318,70 +1332,70 @@ function arrangeCandidateMessageComposer(section){
   css+="\n.kpis.kpis-integrated{display:grid!important;grid-template-columns:repeat(4,minmax(0,1fr))!important;gap:0!important;max-width:1080px!important;margin:0 auto 20px!important;padding:12px 0!important;background:#fff!important;border:1px solid #dce5ef!important;border-radius:12px!important;box-shadow:none!important}\n.kpis-integrated .card.kpi{display:flex!important;flex-direction:column!important;align-items:center!important;justify-content:center!important;gap:5px!important;min-height:108px!important;margin:0!important;padding:4px 12px!important;border:0!important;border-right:1px solid #e5ebf2!important;border-radius:0!important;background:transparent!important;box-shadow:none!important;text-align:center!important;transform:none!important}\n.kpis-integrated .card.kpi:last-child{border-right:0!important}\n.kpis-integrated .kpi:before,.kpis-integrated .kpi:after{display:none!important}\n.kpis-integrated .kpi .icon{display:grid!important;place-items:center!important;width:26px!important;height:26px!important;min-width:0!important;flex:none!important;padding:0!important;margin:0!important;border:0!important;border-radius:0!important;background:transparent!important;color:#0080c9!important}\n.kpis-integrated .kpi .icon svg{width:24px!important;height:24px!important;stroke-width:1.7!important}\n.kpis-integrated .kpi>div{display:flex!important;flex-direction:column!important;align-items:center!important;gap:3px!important;width:100%!important;min-width:0!important}\n.kpis-integrated .kpi h2{font:600 12px/1.3 Inter,Arial,sans-serif!important;color:#26354a!important;margin:0!important}\n.kpis-integrated .kpi strong{display:block!important;font:700 28px/1.1 Inter,Arial,sans-serif!important;color:#17324d!important;margin:0!important}\n.kpis-integrated .kpi small{display:block!important;font:400 10px/1.4 Inter,Arial,sans-serif!important;color:#78879a!important;margin:0!important}\n.kpis-integrated .kpi:hover{background:#f6faff!important}\n.kpis-integrated .kpi:focus-visible{outline:2px solid #0080c9!important;outline-offset:-4px!important;border-radius:6px!important}\n@media(max-width:600px){.kpis.kpis-integrated{grid-template-columns:repeat(2,minmax(0,1fr))!important;padding:0!important}.kpis-integrated .card.kpi{min-height:120px!important;padding:12px 8px!important}.kpis-integrated .card.kpi:nth-child(2){border-right:0!important}.kpis-integrated .card.kpi:nth-child(-n+2){border-bottom:1px solid #e5ebf2!important}}\n";
   css+="\n.kpis.kpis-premium-discreet{display:grid!important;grid-template-columns:repeat(4,minmax(0,1fr))!important;gap:12px!important;max-width:1080px!important;margin:0 auto 20px!important;padding:0!important;background:transparent!important;border:0!important;box-shadow:none!important}\n.kpis-premium-discreet .card.kpi{display:flex!important;flex-direction:column!important;align-items:center!important;justify-content:center!important;gap:6px!important;min-height:130px!important;padding:14px 10px!important;margin:0!important;background:#fff!important;border:1px solid #e5e8ed!important;border-top:1px solid #c9aa6c!important;border-radius:10px!important;box-shadow:0 4px 12px #26354a06!important;text-align:center!important;transform:none!important}\n.kpis-premium-discreet .kpi:before,.kpis-premium-discreet .kpi:after{display:none!important}\n.kpis-premium-discreet .kpi .icon{display:grid!important;place-items:center!important;flex:none!important;width:26px!important;height:26px!important;padding:0!important;margin:0!important;border:0!important;border-radius:0!important;background:transparent!important;color:#29415d!important}\n.kpis-premium-discreet .kpi .icon svg{width:24px!important;height:24px!important;stroke-width:1.7!important}\n.kpis-premium-discreet .kpi>div{display:flex!important;flex-direction:column!important;align-items:center!important;gap:4px!important;width:100%!important;min-width:0!important}\n.kpis-premium-discreet .kpi h2{margin:0!important;font:600 12px/1.3 Inter,Arial,sans-serif!important;color:#26354a!important}\n.kpis-premium-discreet .kpi strong{display:block!important;margin:0!important;font:700 28px/1.1 Inter,Arial,sans-serif!important;color:#17324d!important}\n.kpis-premium-discreet .kpi small{display:block!important;margin:0!important;font:400 10px/1.4 Inter,Arial,sans-serif!important;color:#78879a!important}\n.kpis-premium-discreet .kpi:hover{border-color:#c9aa6c!important;box-shadow:0 5px 15px #26354a0b!important}\n.kpis-premium-discreet .kpi:focus-visible{outline:2px solid #0080c9!important;outline-offset:3px!important}\n@media(max-width:600px){.kpis.kpis-premium-discreet{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:10px!important}.kpis-premium-discreet .card.kpi{min-height:122px!important;padding:12px 8px!important}}\n";
   css+="\n:host([data-paid=\"true\"]) .sidebar{border-left:3px solid #0080c9!important}\n:host([data-paid=\"true\"]) .sidebar .nav.active{position:relative!important}\n:host([data-paid=\"true\"]) .sidebar .nav.active:before{content:\"\"!important;display:block!important;position:absolute!important;left:0!important;top:9px!important;bottom:9px!important;width:3px!important;border-radius:3px!important;background:#0080c9!important}\n.hires-grid{display:grid;gap:12px}.hire-entry{display:flex;align-items:center;gap:14px;padding:16px;border:1px solid #e4eaf1;border-radius:10px;background:#fff}.hire-symbol{display:grid;place-items:center;width:40px;height:40px;flex:none;border-radius:10px;background:#edf6fc;color:#0080c9}.hire-symbol svg{width:22px;height:22px}.hire-entry>div{flex:1;min-width:0}.hire-entry h3{font-size:14px;margin:0 0 5px}.hire-entry p{font-size:12px;color:#61748b;margin:0 0 5px}.hire-entry small{font-size:11px;color:#78879a}.hires-empty{text-align:center;padding:36px 16px;color:#738196}.hires-empty>svg{width:36px;height:36px;color:#0080c9}.hires-empty h3{font-size:16px;color:#304158}.hires-empty p{font-size:13px}@media(max-width:600px){.hire-entry{flex-wrap:wrap}.hire-entry .badge{margin-left:54px}}\n";
-  // Referência escolhida: faixa lateral azul-petróleo e progresso abaixo dos indicadores.
+  // Modelo 7: identidade, preenchimento compacto e ações em colunas alinhadas.
   css += `
 .jobs-reference>.intro .panel-eyebrow{display:block;width:44px;height:4px;margin-bottom:12px;border-radius:4px;background:#0065ed;font-size:0}
 .jobs-reference .jobs-table thead{display:none}
 .jobs-reference .jobs-table tbody{grid-template-columns:minmax(0,1fr);gap:14px}
-.jobs-reference .jobs-table tr.management-card{width:100%;min-width:0;padding:14px 16px;border:1px solid #d5e0ec;border-left:5px solid #173f59;border-radius:12px;background:#fff;box-shadow:0 4px 14px #16365e06}
-.jobs-reference .jobs-table tr.management-card.status-paused,.jobs-reference .jobs-table tr.management-card.status-closed{border-left-color:#839ab9}
-.jobs-reference .jobs-table tr.management-card>td{display:grid!important;grid-template-columns:minmax(0,1.15fr) minmax(0,1.6fr) 164px;gap:10px 16px;align-items:center}
-.jobs-reference .management-card>td>.management-heading{grid-column:1;grid-row:1/span 2;display:grid;grid-template-columns:40px minmax(0,1fr);gap:6px 10px;align-items:start;align-content:start;min-width:0;padding-top:0}
-.jobs-reference .management-heading>.management-symbol{grid-column:1;grid-row:1;width:40px;height:40px;flex-basis:40px;border-radius:9px;background:#edf5ff}
-.jobs-reference .management-heading>.management-symbol svg{width:24px;height:24px}
-.jobs-reference .management-heading>.management-title{grid-column:2;grid-row:1}
-.jobs-reference .management-heading .management-title strong{font-size:16px!important;line-height:1.4!important;overflow-wrap:break-word}
-.jobs-reference .management-heading .management-title small{font-size:12px!important;line-height:1.5!important;margin-top:3px}
-.jobs-reference .management-heading>.management-status{grid-column:2;flex-direction:row;flex-wrap:wrap;align-items:center;justify-content:flex-start;min-width:0;max-width:none;gap:6px 10px}
-.jobs-reference .management-status .job-reference-id{font-size:11px;line-height:1.5;white-space:normal;overflow-wrap:anywhere}
-.jobs-reference .management-status .badge{font-size:10px;line-height:1.4;padding:4px 9px}
-.jobs-reference .management-card>td>.job-data-tiles{grid-column:2;grid-row:1;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin:0;align-self:start}
-.jobs-reference .job-data-tiles>div{min-width:0;min-height:40px;gap:7px;margin:0;padding:7px 10px;border-radius:8px;background:#f3f6fa;font-size:11px;line-height:1.4}
-.jobs-reference .job-data-tiles>div svg{width:20px;height:20px;flex-basis:20px}
-.jobs-reference .job-data-tiles>div span{min-width:0;overflow-wrap:break-word}
-.jobs-reference .job-data-tiles>div small{font-size:11px!important;line-height:1.6!important;margin-top:1px}
-.jobs-reference .management-card>td>.job-completion{grid-column:2;grid-row:2;margin:0;padding:0;border:0;background:transparent;align-self:start;min-width:0}
-.jobs-reference .management-card .completion-heading{align-items:start;gap:8px;font-size:12px;line-height:1.5}
-.jobs-reference .management-card .completion-heading b{font-size:12px;line-height:1.5}
-.jobs-reference .management-card .completion-track{height:5px;margin-top:5px}
-.jobs-reference .management-card .completion-bottom{display:block;margin-top:6px;padding-top:0;border-top:0}
-.jobs-reference .management-card .completion-bottom p{font-size:11px;line-height:1.4;gap:6px}
-.jobs-reference .management-card .completion-alert,.jobs-reference .management-card .completion-bottom p>svg{width:16px;height:16px;flex-basis:16px}
-.jobs-reference .management-card>td>.management-compact-actions{grid-column:3;grid-row:1/span 2;flex-direction:column;align-items:stretch;align-self:center;gap:0;min-width:0;margin:0;padding:0;border-top:0}
-.jobs-reference .management-compact-actions>.manage-job{flex:none;width:100%;min-height:40px;height:auto;padding:10px 9px;font-size:12px!important}
-.jobs-reference .management-card>td>.management-more,.jobs-reference .management-card>td>.job-rejection{grid-column:1/-1;min-width:0}
-.jobs-reference .management-card>td>.management-more{padding-top:12px;border-top:1px solid #dfe8f4}
+.jobs-reference .jobs-table tr.management-card.management-model7{width:100%;min-width:0;margin:0;padding:16px;border:1px solid #d5e0ec;border-radius:12px;background:#fff;box-shadow:none;transform:none}
+.jobs-reference .jobs-table tr.management-card.management-model7:hover{border-color:#b9cce3;background:#fff;transform:none}
+.jobs-reference .jobs-table tr.management-card.management-model7>td{display:grid!important;grid-template-columns:minmax(0,1.4fr) minmax(0,1fr) 184px;gap:16px 20px;align-items:center}
+.jobs-reference .management-model7 .management-summary{grid-column:1;grid-row:1;min-width:0}
+.jobs-reference .management-model7 .management-heading{display:flex;align-items:flex-start;flex-wrap:nowrap;gap:12px;min-width:0;padding:0}
+.jobs-reference .management-model7 .management-symbol{width:44px;height:44px;flex:0 0 44px;border-radius:9px;background:#edf5ff;color:#0065ed}
+.jobs-reference .management-model7 .management-symbol svg{width:26px;height:26px}
+.jobs-reference .management-model7 .management-title{min-width:0}
+.jobs-reference .management-model7 .management-title strong{display:block;font-size:18px!important;line-height:1.35!important;font-weight:700!important;overflow-wrap:break-word}
+.jobs-reference .management-model7 .management-title small{display:block;font-size:13px!important;line-height:1.5!important;margin-top:5px}
+.jobs-reference .management-model7 .job-data-tiles{display:flex;align-items:center;flex-wrap:wrap;gap:8px 12px;margin:14px 0 0;padding:0;min-width:0}
+.jobs-reference .management-model7 .job-data-tiles>div{display:inline-flex;align-items:center;flex:none;min-width:0;min-height:0;gap:7px;margin:0;padding:0;border:0;border-radius:0;background:transparent;font-size:11px;line-height:1.5;color:#64748b}
+.jobs-reference .management-model7 .job-data-tiles>div+div{border-left:1px solid #dce5ef;padding-left:12px}
+.jobs-reference .management-model7 .job-data-tiles>div>svg{width:18px;height:18px;flex:0 0 18px;color:#294b73}
+.jobs-reference .management-model7 .job-data-tiles>div>span{min-width:0;overflow-wrap:break-word}
+.jobs-reference .management-model7 .job-data-tiles>.management-status{max-width:none;flex-direction:row;justify-content:flex-start}
+.jobs-reference .management-model7 .management-status .badge{font-size:11px;line-height:1.4;padding:5px 10px;white-space:nowrap}
+.jobs-reference .management-model7.status-active .management-status .badge{background:#e8f7ef}
+.jobs-reference .management-model7.status-active .management-status .badge i{background:#16a36c}
+.jobs-reference .management-card.management-model7>td>.job-completion{grid-column:2;grid-row:1;min-width:0;align-self:center;margin:0;padding:0;border:0;border-radius:0;background:transparent}
+.jobs-reference .management-model7 .completion-heading{display:flex;align-items:center;justify-content:space-between;gap:12px;font-size:13px;line-height:1.4}
+.jobs-reference .management-model7 .completion-heading>span{color:#16365e;font-weight:650}
+.jobs-reference .management-model7 .completion-heading b{font-size:22px;font-weight:750;line-height:1.2;color:#0065ed;white-space:nowrap}
+.jobs-reference .management-model7 .complete .completion-heading b{color:#138453}
+.jobs-reference .management-model7 .completion-track{display:block;width:100%;height:8px;margin-top:10px;border-radius:8px;background:#e3e9f0;overflow:hidden}
+.jobs-reference .management-model7 .completion-track i{display:block;height:100%;max-width:100%;border-radius:inherit;background:#0065ed}
+.jobs-reference .management-model7 .complete .completion-track i{background:#25b77c}
+.jobs-reference .management-model7 .completion-bottom{display:block;margin-top:8px;padding:0;border:0}
+.jobs-reference .management-model7 .completion-bottom p{display:block;margin:0;font-size:12px;line-height:1.5;color:#64748b}
+.jobs-reference .management-card.management-model7>td>.management-compact-actions{grid-column:3;grid-row:1;display:flex;flex-direction:column;align-items:stretch;align-self:center;gap:8px;min-width:0;margin:0;padding:0 0 0 20px;border:0;border-left:1px solid #e2e8f0}
+.jobs-reference .management-model7 .management-compact-actions>button{flex:none;width:100%;min-width:0;max-width:none;min-height:40px;height:auto;justify-content:center;border-radius:8px;padding:9px;font-size:12px!important;font-weight:600;line-height:1.4}
+.jobs-reference .management-model7 .management-compact-actions>.manage-job{background:#0065ed;color:#fff;border:1px solid #0065ed}
+.jobs-reference .management-model7 .management-compact-actions>.secondary{background:#fff;color:#0065ed;border:1px solid #a8caff}
+.jobs-reference .management-model7 .management-compact-actions>.job-view-ad{display:flex;align-items:center;min-height:30px;padding:4px 8px;border:0;border-radius:6px;background:transparent;color:#0065ed;box-shadow:none;text-decoration:none}
+.jobs-reference .management-model7 .management-compact-actions>.job-view-ad:hover{text-decoration:underline;background:#f3f7fd}
+.jobs-reference .management-card.management-model7>td>.job-rejection{grid-column:1/-1;min-width:0;margin:0}
 @layer site-typography{
- .jobs-reference .management-card :is(.management-title small,.job-reference-id,.completion-bottom p,.job-data-tiles small){color:#64748b!important}
- .jobs-reference .management-card.status-active .management-status .badge{color:#245748!important}
+ .jobs-reference .management-model7 .management-title small,.jobs-reference .management-model7 .completion-bottom p{color:#64748b!important}
+ .jobs-reference .management-model7.status-active .management-status .badge{color:#168153!important}
 }
-.jobs-reference .management-card.status-active .management-status .badge{background:#e8f7ef}
-.jobs-reference .management-card.status-active .management-status .badge i{background:#16a36c}
-@media(max-width:1150px) and (min-width:761px){
- .jobs-reference .jobs-table tr.management-card{padding:14px}
- .jobs-reference .jobs-table tr.management-card>td{grid-template-columns:minmax(0,1fr) minmax(0,1.35fr) 140px;gap:10px 12px}
- .jobs-reference .management-card>td>.management-heading{grid-template-columns:34px minmax(0,1fr);gap:6px 9px}
- .jobs-reference .management-heading>.management-symbol{width:34px;height:34px;flex-basis:34px}
- .jobs-reference .management-heading .management-title strong{font-size:14px!important}
- .jobs-reference .job-data-tiles>div{padding:9px 8px;gap:6px;font-size:10px}
- .jobs-reference .job-data-tiles>div small{font-size:10px!important}
- .jobs-reference .management-card .completion-heading,.jobs-reference .management-card .completion-heading b{font-size:11px}
- .jobs-reference .management-card .completion-bottom p{font-size:10px}
-}
-@media(max-width:950px) and (min-width:761px){
- .jobs-reference .jobs-table tr.management-card>td{grid-template-columns:minmax(0,1fr) minmax(0,1.25fr)}
- .jobs-reference .management-card>td>.management-heading{grid-column:1;grid-row:1}
- .jobs-reference .management-card>td>.job-data-tiles{grid-column:2;grid-row:1}
- .jobs-reference .management-card>td>.job-completion{grid-column:1;grid-row:2}
- .jobs-reference .management-card>td>.management-compact-actions{grid-column:2;grid-row:2}
+@media(max-width:1100px) and (min-width:761px){
+ .jobs-reference .jobs-table tr.management-card.management-model7>td{grid-template-columns:minmax(0,1fr) 164px;gap:14px 18px}
+ .jobs-reference .management-card.management-model7>td>.job-completion{grid-column:1;grid-row:2}
+ .jobs-reference .management-card.management-model7>td>.management-compact-actions{grid-column:2;grid-row:1/span 2;padding-left:16px}
+ .jobs-reference .management-model7 .completion-heading b{font-size:20px}
 }
 @media(max-width:760px){
- .jobs-reference .jobs-table tr.management-card{padding:12px;border-left-width:4px}
- .jobs-reference .jobs-table tr.management-card>td{grid-template-columns:minmax(0,1fr);gap:10px}
- .jobs-reference .management-card>td>.management-heading,.jobs-reference .management-card>td>.job-data-tiles,.jobs-reference .management-card>td>.job-completion,.jobs-reference .management-card>td>.management-compact-actions{grid-column:1;grid-row:auto;align-self:auto}
- .jobs-reference .management-heading .management-title strong{font-size:14px!important}
- .jobs-reference .management-card>td>.management-compact-actions{flex-direction:row;align-items:center;padding-top:8px;border-top:1px solid #dfe8f4}
- .jobs-reference .management-compact-actions>.manage-job{flex:1;min-width:0;width:100%;min-height:44px!important}
+ .jobs-reference .jobs-table tr.management-card.management-model7{padding:14px}
+ .jobs-reference .jobs-table tr.management-card.management-model7>td{grid-template-columns:minmax(0,1fr);gap:16px}
+ .jobs-reference .management-model7 .management-summary,.jobs-reference .management-card.management-model7>td>.job-completion,.jobs-reference .management-card.management-model7>td>.management-compact-actions{grid-column:1;grid-row:auto;align-self:auto}
+ .jobs-reference .management-model7 .management-title strong{font-size:16px!important}
+ .jobs-reference .management-model7 .management-title small{font-size:12px!important}
+ .jobs-reference .management-model7 .job-data-tiles{gap:8px 10px;margin-top:12px}
+ .jobs-reference .management-model7 .job-data-tiles>div+div{padding-left:10px}
+ .jobs-reference .management-model7 .completion-heading{font-size:12px}
+ .jobs-reference .management-model7 .completion-heading b{font-size:20px}
+ .jobs-reference .management-card.management-model7>td>.management-compact-actions{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;padding:12px 0 0;border:0;border-top:1px solid #e2e8f0}
+ .jobs-reference .management-model7 .management-compact-actions>button{min-height:44px!important}
+ .jobs-reference .management-model7 .management-compact-actions>.job-view-ad{grid-column:1/-1}
 }
 `;
   // Modelo 1: five equal filled buttons span the full content width.
@@ -1449,4 +1463,5 @@ function arrangeCandidateMessageComposer(section){
  }
  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',start,{once:true});else start();
 })();
+
 
