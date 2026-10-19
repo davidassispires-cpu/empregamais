@@ -1487,3 +1487,18 @@ html body .em-field-message{display:block!important;grid-column:1/-1!important;m
     html body #pagina-publicar.em-publish-in-panel .em-publish-heading p {font-size:12px!important}
   }
 }
+
+/* Bottom navigation owns candidate navigation on phones. Use the first layer
+   because important declarations in later layers cannot override this one. */
+@layer candidate-palette {
+ @media(max-width:767px) {
+  html body.cp-shell-active #cpCandidateHeader#cpCandidateHeader#cpCandidateHeader .cp-navigation {display:none!important}
+  html body.cp-shell-active #cpCandidateHeader#cpCandidateHeader {width:100%!important;height:48px!important;min-height:48px!important;padding:0!important;margin:0!important}
+  html body.cp-shell-active #cpCandidateHeader#cpCandidateHeader .cp-toolbar {position:fixed!important;inset:0 0 auto!important;width:100%!important;height:48px!important;min-height:48px!important;box-sizing:border-box!important}
+  html body.cp-shell-active .pagina.cp-tab-content {width:100%!important;margin-inline:0!important;padding-top:16px!important}
+  html body.cp-shell-active {padding-top:0!important;padding-bottom:calc(76px + env(safe-area-inset-bottom,0px))!important}
+  html body.cp-shell-active #emMobileCandidateNav button {touch-action:manipulation}
+  html body.cp-shell-active #pagina-painel-candidato.cp-messages-active .container-dashboard > .em-chat {display:grid!important}
+  html body.cp-shell-active #pagina-painel-candidato:not(.cp-messages-active) .container-dashboard > .em-chat {display:none!important}
+ }
+}

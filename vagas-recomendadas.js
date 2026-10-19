@@ -249,17 +249,18 @@
    var active=document.querySelector('.pagina.ativa'),route=active&&active.id.replace('pagina-','');
    var logged=typeof window.candidatoEstaLogado==='function'&&window.candidatoEstaLogado();
    var enabled=!!logged&&['painel-candidato','candidaturas','home','curriculo','perfil','salvas','premium-candidato','vaga','candidatura'].indexOf(route)>=0;
-   header.hidden=!enabled;document.body.classList.toggle('cp-shell-active',enabled);
+   if(header.hidden===enabled)header.hidden=!enabled;
+   if(document.body.classList.contains('cp-shell-active')!==enabled)document.body.classList.toggle('cp-shell-active',enabled);
    document.querySelectorAll('.cp-tab-content').forEach(function(p){if(p!==active)p.classList.remove('cp-tab-content')});
    if(!enabled)return;
    if(!active.classList.contains('cp-tab-content'))active.classList.add('cp-tab-content');
    if(route!=='painel-candidato')messageTab=false;
-   page.classList.toggle('cp-messages-active',messageTab);
+   if(page.classList.contains('cp-messages-active')!==messageTab)page.classList.toggle('cp-messages-active',messageTab);
    var selected=messageTab?'messages':route==='painel-candidato'&&page.classList.contains('cp-recommendations-active')?'recommendations':route;
-   nav.querySelectorAll('[data-route]').forEach(function(b){if(b.dataset.route===selected)b.setAttribute('aria-current','page');else b.removeAttribute('aria-current')});
+   nav.querySelectorAll('[data-route]').forEach(function(b){if(b.dataset.route===selected){if(b.getAttribute('aria-current')!=='page')b.setAttribute('aria-current','page');}else if(b.hasAttribute('aria-current'))b.removeAttribute('aria-current');});
   }
   var shellPending=false;
-  new MutationObserver(function(records){if(shellPending||!records.some(function(r){return r.oldValue!==r.target.getAttribute('class')}))return;shellPending=true;requestAnimationFrame(function(){shellPending=false;syncShell()})}).observe(document.body,{subtree:true,attributes:true,attributeOldValue:true,attributeFilter:['class']});
+  new MutationObserver(function(records){if(shellPending||!records.some(function(r){return (r.target===document.body||r.target===page||r.target.classList.contains('pagina'))&&r.oldValue!==r.target.getAttribute('class')}))return;shellPending=true;requestAnimationFrame(function(){shellPending=false;syncShell()})}).observe(document.body,{subtree:true,attributes:true,attributeOldValue:true,attributeFilter:['class']});
   window.addEventListener('popstate',function(){messageTab=false;syncShell()});
   syncShell();
   var banner=container.querySelector('.premium-chamada-painel-v79');if(banner){banner.classList.add('cp-banner');banner.querySelector('strong').textContent='Encontre oportunidades que combinam com você';banner.querySelector('p').textContent='Complete seu perfil e conheça as ferramentas para organizar sua busca por emprego.';var close=document.createElement('button');close.type='button';close.className='cp-banner-close';close.setAttribute('aria-label','Fechar destaque');close.textContent='×';close.onclick=function(){banner.hidden=true};banner.appendChild(close)}
@@ -475,7 +476,7 @@ html body.cp-shell-active .cp-header .cp-navigation .cp-message-count{top:9px;ri
 (function(){
  'use strict';
  if(typeof document==='undefined')return;
- var media=window.matchMedia('(max-width: 767px)'),bar,sheet,queued=false,watched;
+ var media=window.matchMedia('(max-width: 767px)'),bar,sheet,queued=false,watched,navObserver;
  var primary=[['painel-candidato','Início','home'],['candidaturas','Candidaturas','case'],['messages','Mensagens','chat'],['perfil','Perfil','user']];
  var paths={home:'<path d="m3 10 9-7 9 7v10H15v-7H9v7H3Z"/>',case:'<rect x="3" y="7" width="18" height="14" rx="2"/><path d="M8 7V3h8v4M3 12h18M10 12v3h4v-3"/>',chat:'<path d="M3 3h18v14H8l-5 4Z M7 7h10M7 11h7"/>',user:'<circle cx="12" cy="7" r="4"/><path d="M4 21v-2a8 8 0 0 1 16 0v2Z"/>',more:'<circle cx="5" cy="12" r="1"/><circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/>'};
  function icon(key){return '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'+paths[key]+'</svg>';}
@@ -498,10 +499,10 @@ html body.cp-shell-active .cp-header .cp-navigation .cp-message-count{top:9px;ri
    bar.innerHTML=primary.map(function(p){return '<button type="button" data-mobile-route="'+p[0]+'">'+icon(p[2])+'<span>'+p[1]+'</span>'+(p[0]==='messages'?'<small hidden aria-label="Mensagens não lidas"></small>':'')+'</button>';}).join('')+'<button type="button" data-mobile-more aria-haspopup="dialog" aria-controls="emMobileCandidateMore" aria-expanded="false">'+icon('more')+'<span>Mais</span></button>';
    bar.addEventListener('click',function(e){var b=e.target.closest('button');if(!b)return;if(b.hasAttribute('data-mobile-more'))more();else navigate(b.dataset.mobileRoute);});document.body.appendChild(bar);
   }
-  if(watched!==nav){watched=nav;new MutationObserver(schedule).observe(nav,{subtree:true,childList:true,characterData:true,attributes:true,attributeFilter:['aria-current','hidden']});}
+  if(watched!==nav){if(navObserver)navObserver.disconnect();watched=nav;navObserver=new MutationObserver(schedule);navObserver.observe(nav,{subtree:true,childList:true,characterData:true,attributes:true,attributeFilter:['aria-current','hidden']});}
   var selected=nav.querySelector('button[aria-current="page"]'),route=selected&&selected.dataset.route,extra=route&&!primary.some(function(p){return p[0]===route;});
   bar.querySelectorAll('button').forEach(function(b){var on=b.dataset.mobileRoute===route||b.hasAttribute('data-mobile-more')&&extra;if(on&&b.getAttribute('aria-current')!=='page')b.setAttribute('aria-current','page');else if(!on&&b.hasAttribute('aria-current'))b.removeAttribute('aria-current');});
-  var originalBadge=nav.querySelector('.cp-message-count'),badge=bar.querySelector('small'),count=originalBadge&&!originalBadge.hidden?originalBadge.textContent.trim():'';if(badge.textContent!==count)badge.textContent=count;badge.hidden=!count||count==='0';
+  var originalBadge=nav.querySelector('.cp-message-count'),badge=bar.querySelector('small'),count=originalBadge&&!originalBadge.hidden?originalBadge.textContent.trim():'';if(badge.textContent!==count)badge.textContent=count;var hideBadge=!count||count==='0';if(badge.hidden!==hideBadge)badge.hidden=hideBadge;
  }
  function schedule(){if(!queued){queued=true;requestAnimationFrame(update);}}
  function start(){

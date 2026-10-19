@@ -264,7 +264,7 @@
   stableHTML(actions,'<button type="button" data-cp-action="interview-guide">'+icon('book')+' Ver orientações</button>'+(canJoin(next)?'<button type="button" data-cp-action="join" class="cp-primary">'+icon('video')+' Entrar na entrevista</button>':''));
  }
  function closeWorkspace(focus){
-  if(!workspace)return;clearTimeout(draftTimer);saveCurrentAnswer();workspace.hidden=true;workspace.dataset.cpView='';page.classList.remove('cp-tool-active','cp-recommendations-active');
+  if(!workspace)return;clearTimeout(draftTimer);saveCurrentAnswer();workspace.hidden=true;workspace.dataset.cpView='';if(page.classList.contains('cp-tool-active')||page.classList.contains('cp-recommendations-active'))page.classList.remove('cp-tool-active','cp-recommendations-active');
   if(focus!==false){var button=container.querySelector('.cp-preparation [data-cp-action="interview"]');if(button)button.focus();}
  }
  function openWorkspace(title,body,header){
@@ -454,7 +454,7 @@
  }
  function mount(){
   page=document.getElementById('pagina-painel-candidato');container=page&&page.querySelector('.container-dashboard');
-  if(!container||!container.querySelector('.cp-layout'))return;
+  if(!container||!container.querySelector('.cp-layout')||!page.classList.contains('ativa'))return;
   if(!identity()){if(extra)extra.hidden=true;return;}
   if(owner!==identity()){if(workspace)closeWorkspace(false);owner=identity();loadPractice();}
   if(!page.classList.contains('cp-enhanced'))page.classList.add('cp-enhanced');
@@ -493,7 +493,7 @@
  function start(){
   page=document.getElementById('pagina-painel-candidato');if(!page)return;
   var css=document.getElementById('cp-preparation-styles');if(css)document.head.appendChild(css);
-  new MutationObserver(schedule).observe(page,{childList:true,subtree:true,attributes:true,attributeFilter:['class']});
+  new MutationObserver(function(records){if(records.some(function(r){return r.type!=='attributes'||r.oldValue!==r.target.getAttribute('class');}))schedule();}).observe(page,{childList:true,subtree:true,attributes:true,attributeOldValue:true,attributeFilter:['class']});
   ['empregamais:candidato-sincronizado','empregamais:candidaturas-sincronizadas','empregamais:atividade-candidato'].forEach(function(e){document.addEventListener(e,schedule);});
   global.addEventListener('storage',schedule);global.addEventListener('focus',schedule);global.addEventListener('load',schedule);
   global.addEventListener('pagehide',saveCurrentAnswer);
