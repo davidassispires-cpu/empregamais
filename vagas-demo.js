@@ -639,7 +639,7 @@
         if (highlighted) status.innerHTML=svg(paths.featured);
         status.appendChild(node('span','',label)); copy.appendChild(status);
       }
-      card.classList.add('em-recent-model3','em-recent-discreet');
+      card.classList.add('em-recent-discreet');
       card.setAttribute('data-em-highlighted',String(highlighted)); card.setAttribute('data-em-confidential',String(confidential));
       var publicCompany = company.querySelector('span');
       card.__emJobEntry = {job:job, apply:apply, save:save, details:details, titleButton:titleButton, company:company, highlighted:highlighted, confidential:confidential,

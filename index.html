@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pt-BR"><head><link rel="preload" href="assets/fonts/poppins-400.woff2" as="font" type="font/woff2" crossorigin><link rel="preload" href="assets/fonts/poppins-500.woff2" as="font" type="font/woff2" crossorigin><link rel="preload" href="assets/fonts/poppins-600.woff2" as="font" type="font/woff2" crossorigin><link rel="preload" href="assets/fonts/poppins-700.woff2" as="font" type="font/woff2" crossorigin><link id="site-typography" rel="stylesheet" href="site-fonts.css?v=20261019-montserrat-real-2"><link rel="stylesheet" href="candidato-paleta.css?v=20261017-compact-cancel-top"><script src="processo-seletivo-etapas.js?v=20261014-demo-sync-1"></script><script src="candidato-demo.js?v=20261016-palette-complete"></script><script src="planos-config.js?v=b6a3200687d6"></script><style id="em-portal-boot-css">.pagina.ativa{min-height:calc(100dvh - 72px)}html[data-em-booting] .rodape{visibility:hidden!important}html[data-em-initial-route="demo-recrutador"][data-em-booting] body:after{content:"Carregando painel…";position:fixed;top:35vh;left:0;right:0;text-align:center;color:#526b82;font:500 14px Poppins,Arial,sans-serif;pointer-events:none;z-index:1}html[data-em-initial-route="demo-recrutador"]:has(#emRecruiterPanel) body:after{display:none}</style><script id="em-portal-boot">
+<html lang="pt-BR"><head><link rel="preload" href="assets/fonts/poppins-400.woff2" as="font" type="font/woff2" crossorigin><link rel="preload" href="assets/fonts/poppins-500.woff2" as="font" type="font/woff2" crossorigin><link rel="preload" href="assets/fonts/poppins-600.woff2" as="font" type="font/woff2" crossorigin><link rel="preload" href="assets/fonts/poppins-700.woff2" as="font" type="font/woff2" crossorigin><link id="site-typography" rel="stylesheet" href="site-fonts.css?v=20261019-clean-font"><link rel="stylesheet" href="candidato-paleta.css?v=20261017-compact-cancel-top"><script src="processo-seletivo-etapas.js?v=20261014-demo-sync-1"></script><script src="candidato-demo.js?v=20261016-palette-complete"></script><script src="planos-config.js?v=b6a3200687d6"></script><style id="em-portal-boot-css">.pagina.ativa{min-height:calc(100dvh - 72px)}html[data-em-booting] .rodape{visibility:hidden!important}html[data-em-initial-route="demo-recrutador"][data-em-booting] body:after{content:"Carregando painel…";position:fixed;top:35vh;left:0;right:0;text-align:center;color:#526b82;font:500 14px Poppins,Arial,sans-serif;pointer-events:none;z-index:1}html[data-em-initial-route="demo-recrutador"]:has(#emRecruiterPanel) body:after{display:none}</style><script id="em-portal-boot">
 (function(){
  var h=document.documentElement,route=new URLSearchParams(location.search).get('pagina')||'home';
  if(!/^[a-z][a-z0-9-]{0,59}$/.test(route))route='home';if(route==='inicio')route='home';
@@ -272,7 +272,7 @@ button{
   padding:82px 24px 72px;
   background:
     linear-gradient(90deg,rgba(8,66,110,.90),rgba(23,105,170,.82)),
-    url('https://images.unsplash.com/photo-1758518730384-be3d205838e8?auto=format&fit=crop&fm=jpg&q=85&w=2200') center center/cover no-repeat;
+    url("https://images.unsplash.com/photo-1758518730384-be3d205838e8?auto=format&fit=crop&fm=jpg&q=85&w=2200") center center/cover no-repeat;
   color:#fff;
 }
 .hero-inner{
@@ -8301,7 +8301,7 @@ section.container:has(#listaDestaques){
   #pagina-empresa-publica .empresa-publica-info > div:nth-child(2n){
     border-right:0 !important;
   }
-  #pagina-empresa-publica .empresa-publica-info > div:nth-last-child(-n+2){
+  #pagina-empresa-publica .empresa-publica-info > div:nth-last-child(-n/**/+2){
     border-bottom:0 !important;
   }
   #pagina-empresa-publica .empresa-publica-sobre,
@@ -9735,7 +9735,9 @@ table,th,td{
   .vaga-titulo,.card-destaque .vaga-titulo{font-size:17px!important}
 }
 
-500;600;700%26display=swap');
+500;600;700%26display=swap"[bad string]
+
+
 html,body,button,input,select,textarea,header,nav,main,section,article,aside,footer,
 h1,h2,h3,h4,h5,h6,p,span,div,label,a,li,td,th,.btn,.botao,.vaga-card,.card-destaque{
   font-family:Montserrat,Arial,sans-serif!important;
@@ -9854,7 +9856,9 @@ section:has([id*="empresasContratando"]) {
   display:none!important;
 }
 
-500;600;700%26display=swap');
+500;600;700%26display=swap"[bad string]
+
+
 html,body,button,input,select,textarea,header,nav,main,section,article,aside,footer,
 h1,h2,h3,h4,h5,h6,p,span,div,label,a,li,td,th,
 .btn,.botao,.vaga-card,.card-destaque{
@@ -11798,7 +11802,7 @@ body.admin-publicando-em #pagina-publicar .vaga-confidencial-topo-em>span{backgr
 
 .painel-card-aderencia-em{position:relative;overflow:hidden}
 .painel-card-aderencia-em:before{
- content:'';position:absolute;left:0;top:0;bottom:0;width:3px;background:#159447
+ content:"";position:absolute;left:0;top:0;bottom:0;width:3px;background:#159447
 }
 .perfil-profissional-status-em{
  display:inline-flex;margin:4px 0 14px;padding:5px 8px;border-radius:999px;
@@ -11880,9 +11884,9 @@ body.admin-publicando-em #pagina-publicar .vaga-confidencial-topo-em>span{backgr
 #pagina-vaga #vagaDistancia,
 #pagina-vaga #vagaDistanciaBadge,
 #pagina-vaga #distanciaVaga,
-#pagina-vaga [class*='distancia-vaga']:not(.distancia-canonica-em),
-.card-vaga [class*='distancia']:not(.distancia-canonica-em),
-.card-destaque [class*='distancia']:not(.distancia-canonica-em){
+#pagina-vaga [class*="distancia-vaga"]:not(.distancia-canonica-em),
+.card-vaga [class*="distancia"]:not(.distancia-canonica-em),
+.card-destaque [class*="distancia"]:not(.distancia-canonica-em){
  display:none!important;
 }
 
@@ -11997,10 +12001,10 @@ body.admin-publicando-em #pagina-publicar .vaga-confidencial-topo-em>span{backgr
 
 #pagina-painel-empresa .auto-aprovacao-box,
 #pagina-painel-empresa .aprovacao-automatica-box,
-#pagina-painel-empresa [class*='aprovacao-automatica'],
-#pagina-painel-empresa [class*='auto-aprovacao'],
+#pagina-painel-empresa [class*="aprovacao-automatica"],
+#pagina-painel-empresa [class*="auto-aprovacao"],
 #pagina-painel-empresa .cortesia-destaque-aviso-em,
-#pagina-painel-empresa [class*='cortesia']{
+#pagina-painel-empresa [class*="cortesia"]{
  display:none!important;
 }
 
@@ -12117,12 +12121,12 @@ body.admin-publicando-em #pagina-publicar .vaga-confidencial-topo-em>span{backgr
 #pagina-perfil .aderencia-explicacao-perfil-em{margin-top:5px;padding:14px 15px;border:1px solid #dce8f2;border-radius:10px;background:#f7fbfe}
 #pagina-perfil .aderencia-explicacao-perfil-em strong{display:block;margin-bottom:4px;color:#0d4f82;font-size:11px}
 #pagina-perfil .aderencia-explicacao-perfil-em p{margin:0;color:#667085;font-size:10.5px;line-height:1.55}
-#pagina-perfil form > button[type='submit']{margin:22px 28px 28px;min-width:170px}
+#pagina-perfil form > button[type="submit"]{margin:22px 28px 28px;min-width:170px}
 @media(max-width:680px){
  #pagina-perfil .form-card{border-radius:12px}
  #pagina-perfil form > .grupo,#pagina-perfil .perfil-candidato-secao-em{padding:20px 18px}
  #pagina-perfil .perfil-linha-em{grid-template-columns:1fr;gap:0}
- #pagina-perfil form > button[type='submit']{width:calc(100% - 36px);margin:20px 18px 24px}
+ #pagina-perfil form > button[type="submit"]{width:calc(100% - 36px);margin:20px 18px 24px}
 }
 
 .popup-perfil-em{position:fixed;inset:0;z-index:999999;display:none;align-items:center;justify-content:center;padding:20px;background:rgba(15,23,42,.42);backdrop-filter:blur(3px)}
@@ -12692,7 +12696,7 @@ body.admin-publicando-em #pagina-publicar .vaga-confidencial-topo-em>span{backgr
 }
 #pagina-cadastro-curriculo-v101 .cv101-form-layout-em{width:100%;max-width:1120px;margin:0 auto;display:grid;grid-template-columns:minmax(0,1.15fr) minmax(330px,.85fr);gap:24px;align-items:stretch}
 #pagina-cadastro-curriculo-v101 .cv101-form-layout-em .cv101-card{width:100%;max-width:none;margin:0;height:100%}
-#pagina-cadastro-curriculo-v101 .cv101-form-photo-em{position:relative;min-height:100%;overflow:hidden;border:1px solid #d8e4ee;border-radius:18px;background:linear-gradient(180deg,rgba(5,42,75,.10),rgba(5,42,75,.82)),url('https://images.unsplash.com/photo-1521737711867-e3b97375f902?auto=format&fit=crop&w=1200&q=85') center/cover no-repeat;box-shadow:0 10px 30px rgba(16,45,78,.08)}
+#pagina-cadastro-curriculo-v101 .cv101-form-photo-em{position:relative;min-height:100%;overflow:hidden;border:1px solid #d8e4ee;border-radius:18px;background:linear-gradient(180deg,rgba(5,42,75,.10),rgba(5,42,75,.82)),url("https://images.unsplash.com/photo-1521737711867-e3b97375f902?auto=format&fit=crop&w=1200&q=85") center/cover no-repeat;box-shadow:0 10px 30px rgba(16,45,78,.08)}
 #pagina-cadastro-curriculo-v101 .cv101-form-photo-overlay-em{position:absolute;left:0;right:0;bottom:0;padding:34px 30px;color:#fff}
 #pagina-cadastro-curriculo-v101 .cv101-form-photo-kicker-em{display:inline-block;margin-bottom:12px;padding:6px 10px;border:1px solid rgba(255,255,255,.32);border-radius:999px;background:rgba(255,255,255,.12);font-size:9px;font-weight:800;letter-spacing:1px}
 #pagina-cadastro-curriculo-v101 .cv101-form-photo-overlay-em h3{max-width:360px;margin:0 0 10px;color:#fff;font-size:25px;line-height:1.18}
@@ -12867,7 +12871,7 @@ body.admin-publicando-em #pagina-publicar .vaga-confidencial-topo-em>span{backgr
    overflow:auto;
    box-shadow:0 15px 40px rgba(16,24,40,.16);
  }
- #pagina-planos .ep8-grid .ep8-card:nth-child(n+2){
+ #pagina-planos .ep8-grid .ep8-card:nth-child(n/**/+2){
    grid-column:auto!important;
    margin:0!important;
    min-height:760px!important;
@@ -15441,308 +15445,48 @@ button,.btn,.botao,[class*="btn-"],[class*="button"]{
   gap:14px 16px !important;
   align-items:stretch !important;
 }
-#pagina-home #listaVagas .em-lista-final{
-  position:relative !important;
-  min-width:0 !important;
-  min-height:265px !important;
-  padding:18px 20px 15px !important;
-  display:flex !important;
-  flex-direction:column !important;
-  background:#fff !important;
-  border:1px solid #d8e5ef !important;
-  border-radius:12px !important;
-  box-shadow:0 4px 14px rgba(15,55,90,.045) !important;
-  overflow:hidden !important;
-}
-#pagina-home #listaVagas .em-lista-final:hover{
-  transform:translateY(-1px) !important;
-  border-color:#c8dce9 !important;
-  box-shadow:0 7px 20px rgba(15,55,90,.075) !important;
-}
-#pagina-home #listaVagas .em-lista-cab{
-  width:100% !important;
-  min-height:34px !important;
-  margin:0 0 2px !important;
-  display:flex !important;
-  align-items:center !important;
-  justify-content:space-between !important;
-  gap:12px !important;
-}
-#pagina-home #listaVagas .em-lista-empresa{
-  min-width:0 !important;
-  display:flex !important;
-  align-items:center !important;
-  gap:6px !important;
-  color:#174d80 !important;
-  font-size:12px !important;
-  line-height:1.15 !important;
-  font-weight:650 !important;
-}
-#pagina-home #listaVagas .em-lista-empresa > span:first-child{
-  overflow:hidden !important;
-  text-overflow:ellipsis !important;
-  white-space:nowrap !important;
-}
-#pagina-home #listaVagas .em-lista-verificada{
-  width:17px !important;
-  height:17px !important;
-  flex:0 0 17px !important;
-  display:inline-flex !important;
-  align-items:center !important;
-  justify-content:center !important;
-  border-radius:50% !important;
-  background:#087bd4 !important;
-  color:#fff !important;
-  font-size:10px !important;
-  font-weight:900 !important;
-}
-#pagina-home #listaVagas .em-lista-urgente{
-  flex:0 0 auto !important;
-  min-height:34px !important;
-  padding:6px 11px !important;
-  display:inline-flex !important;
-  align-items:center !important;
-  gap:7px !important;
-  background:#fffaf5 !important;
-  border:1px solid #f1b77d !important;
-  border-radius:8px !important;
-  color:#d95c05 !important;
-}
-#pagina-home #listaVagas .em-lista-urgente svg{
-  width:17px !important;
-  height:17px !important;
-  fill:#f26a0b !important;
-  stroke:#f26a0b !important;
-}
-#pagina-home #listaVagas .em-lista-urgente strong{
-  color:#d95c05 !important;
-  font-size:9.5px !important;
-  line-height:1 !important;
-  font-weight:850 !important;
-  white-space:nowrap !important;
-}
-#pagina-home #listaVagas .em-lista-titulo{
-  width:100% !important;
-  margin:0 0 11px !important;
-  color:#082f62 !important;
-  font-family:Montserrat,Arial,sans-serif!important;
-  font-size:20px !important;
-  line-height:1 !important;
-  font-weight:900 !important;
-  letter-spacing:-.55px !important;
-  text-transform:uppercase !important;
-}
-#pagina-home #listaVagas .em-lista-meta{
-  width:100% !important;
-  margin:0 0 11px !important;
-  padding:8px 0 10px !important;
-  display:flex !important;
-  align-items:center !important;
-  flex-wrap:wrap !important;
-  gap:0 !important;
-  border-bottom:1px solid #dce7ef !important;
-}
-#pagina-home #listaVagas .em-lista-meta-item{
-  min-height:18px !important;
-  padding:0 12px !important;
-  display:inline-flex !important;
-  align-items:center !important;
-  gap:6px !important;
-  border-right:1px solid #d6e1e9 !important;
-  color:#234f79 !important;
-}
-#pagina-home #listaVagas .em-lista-meta-item:first-child{padding-left:0 !important;}
-#pagina-home #listaVagas .em-lista-meta-item:last-child{border-right:0 !important;}
-#pagina-home #listaVagas .em-lista-meta-item svg{
-  width:16px !important;
-  height:16px !important;
-  flex:0 0 16px !important;
-  fill:none !important;
-  stroke:#165e9d !important;
-  stroke-width:1.7 !important;
-}
-#pagina-home #listaVagas .em-lista-meta-item b{
-  color:#234f79 !important;
-  font-size:9.3px !important;
-  line-height:1.1 !important;
-  font-weight:550 !important;
-  white-space:nowrap !important;
-}
-#pagina-home #listaVagas .em-lista-resumo{
-  display:-webkit-box !important;
-  -webkit-box-orient:vertical !important;
-  -webkit-line-clamp:3 !important;
-  overflow:hidden !important;
-  width:100% !important;
-  height:51px !important;
-  min-height:51px !important;
-  max-height:51px !important;
-  margin:0 0 12px !important;
-  color:#526d87 !important;
-  font-size:11px !important;
-  line-height:17px !important;
-  font-weight:500 !important;
-}
-#pagina-home #listaVagas .em-lista-footer{
-  width:100% !important;
-  min-height:57px !important;
-  margin:auto 0 0 !important;
-  padding:11px 0 0 !important;
-  display:grid !important;
-  grid-template-columns:minmax(135px,1fr) minmax(105px,.78fr) auto !important;
-  align-items:end !important;
-  gap:12px !important;
-  border-top:1px solid #dfe8ef !important;
-}
-#pagina-home #listaVagas .em-lista-salario small{
-  display:block !important;
-  margin:0 0 3px !important;
-  color:#39867a !important;
-  font-size:9px !important;
-  line-height:1 !important;
-  font-weight:500 !important;
-}
-#pagina-home #listaVagas .em-lista-salario strong{
-  display:block !important;
-  color:#07846f !important;
-  font-size:19px !important;
-  line-height:1.05 !important;
-  font-weight:850 !important;
-  white-space:nowrap !important;
-}
-#pagina-home #listaVagas .em-lista-data{
-  min-height:39px !important;
-  display:flex !important;
-  align-items:center !important;
-  gap:8px !important;
-  color:#5c7690 !important;
-  font-size:9px !important;
-  line-height:1.25 !important;
-}
-#pagina-home #listaVagas .em-lista-data svg{
-  width:20px !important;
-  height:20px !important;
-  flex:0 0 20px !important;
-  fill:none !important;
-  stroke:#155b98 !important;
-  stroke-width:1.7 !important;
-}
-#pagina-home #listaVagas .em-lista-data b{font-weight:550 !important;}
-#pagina-home #listaVagas .em-lista-acoes{
-  display:flex !important;
-  align-items:center !important;
-  justify-content:flex-end !important;
-  gap:9px !important;
-}
-#pagina-home #listaVagas .em-lista-fav{
-  width:39px !important;
-  height:39px !important;
-  min-width:39px !important;
-  padding:0 !important;
-  border:1px solid #d4e2ed !important;
-  border-radius:9px !important;
-  background:#fff !important;
-  color:#174f81 !important;
-  font-size:17px !important;
-  cursor:pointer !important;
-}
-#pagina-home #listaVagas .em-lista-ver{
-  min-width:112px !important;
-  height:39px !important;
-  padding:0 15px !important;
-  display:inline-flex !important;
-  align-items:center !important;
-  justify-content:center !important;
-  gap:12px !important;
-  border:0 !important;
-  border-radius:9px !important;
-  background:#07569c !important;
-  color:#fff !important;
-  font-size:10px !important;
-  font-weight:750 !important;
-  cursor:pointer !important;
-  box-shadow:0 3px 7px rgba(4,65,120,.10) !important;
-}
-#pagina-home #listaVagas .em-lista-ver b{
-  color:#fff !important;
-  font-size:15px !important;
-  font-weight:500 !important;
-}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 @media(max-width:1050px){
   #pagina-home #listaVagas{grid-template-columns:1fr !important;}
 }
-@media(max-width:620px){
-  #pagina-home #listaVagas .em-lista-final{min-height:0 !important;padding:15px !important;}
-  #pagina-home #listaVagas .em-lista-cab{align-items:flex-start !important;flex-direction:column !important;}
-  #pagina-home #listaVagas .em-lista-urgente{min-height:31px !important;}
-  #pagina-home #listaVagas .em-lista-titulo{font-size:18px !important;}
-  #pagina-home #listaVagas .em-lista-meta{gap:7px !important;}
-  #pagina-home #listaVagas .em-lista-meta-item{padding:0 8px 0 0 !important;border-right:0 !important;}
-  #pagina-home #listaVagas .em-lista-footer{grid-template-columns:1fr auto !important;}
-  #pagina-home #listaVagas .em-lista-data{display:none !important;}
-}
 
-#pagina-home #listaVagas .em-lista-footer{
-  grid-template-columns:minmax(120px,1fr) 118px 166px !important;
-  gap:10px !important;
-  align-items:center !important;
-}
-#pagina-home #listaVagas .em-lista-salario{
-  min-width:0 !important;
-}
-#pagina-home #listaVagas .em-lista-salario strong{
-  font-size:18px !important;
-  white-space:nowrap !important;
-}
-#pagina-home #listaVagas .em-lista-data{
-  width:118px !important;
-  min-width:118px !important;
-  min-height:40px !important;
-  display:flex !important;
-  align-items:center !important;
-  gap:8px !important;
-  white-space:nowrap !important;
-}
-#pagina-home #listaVagas .em-lista-data span{
-  display:block !important;
-  white-space:nowrap !important;
-  font-size:9px !important;
-  line-height:1.3 !important;
-}
-#pagina-home #listaVagas .em-lista-data b{
-  display:inline !important;
-  white-space:nowrap !important;
-}
-#pagina-home #listaVagas .em-lista-acoes{
-  width:166px !important;
-  min-width:166px !important;
-  display:grid !important;
-  grid-template-columns:39px 118px !important;
-  gap:9px !important;
-}
-#pagina-home #listaVagas .em-lista-fav{
-  width:39px !important;
-  min-width:39px !important;
-  height:39px !important;
-  overflow:hidden !important;
-  font-family:Montserrat,Arial,sans-serif!important;
-  font-size:20px !important;
-  line-height:37px !important;
-  text-align:center !important;
-  color:#174f81 !important;
-}
-#pagina-home #listaVagas .em-lista-ver{
-  width:118px !important;
-  min-width:118px !important;
-}
-@media(max-width:620px){
-  #pagina-home #listaVagas .em-lista-footer{
-    grid-template-columns:1fr 166px !important;
-  }
-  #pagina-home #listaVagas .em-lista-data{
-    display:none !important;
-  }
-}
+
+
+
+
+
+
+
+
+
+
+
 
 #pagina-home #listaDestaques .destaque-zero-m6 .dz-cab{
   position:relative !important;
@@ -16137,10 +15881,9 @@ html body>header.topo #acoesPublicas .em-candidate-menu>button.em-account-primar
 #emCandidateSignupBanner .em-signup-button:focus-visible{outline:3px solid white;outline-offset:4px}
 @media(max-width:900px){#pagina-home #emCandidateSignupBanner{gap:16px}#emCandidateSignupBanner .em-signup-icon{flex-basis:76px}#emCandidateSignupBanner .em-signup-copy p{font-size:13px}#emCandidateSignupBanner .em-signup-button{padding:14px 12px;margin-right:16px;font-size:12px}}
 @media(max-width:600px){#pagina-home #emCandidateSignupBanner{width:calc(100% - 28px);display:grid;grid-template-columns:58px minmax(0,1fr);gap:0 14px;margin:18px auto}#emCandidateSignupBanner .em-signup-icon{grid-row:1/3;height:100%}#emCandidateSignupBanner .em-signup-icon svg{width:34px;height:44px}#emCandidateSignupBanner .em-signup-copy{padding:14px 12px 10px 0}#emCandidateSignupBanner .em-signup-copy h2{font-size:14px;line-height:1.35}#emCandidateSignupBanner .em-signup-copy p{font-size:12px}#emCandidateSignupBanner .em-signup-button{grid-column:2;justify-self:start;margin:0 12px 14px 0;padding:11px 14px;font-size:11px}}
-</style><link rel="preload" as="style" href="emporio-profissional.css?v=20261017-featured-executive3"><link rel="preload" as="style" href="vagas-demo.css?v=20261019-compact-montserrat-2"><style id="em-home-card-first-paint">
-html body #pagina-home#pagina-home #listaDestaques#listaDestaques>article:not(.em-featured-reference),
-html body #pagina-home#pagina-home #listaVagas#listaVagas>article.em-lista-final:not(.em-recent-model3){visibility:hidden!important}
-</style><link rel="stylesheet" href="emporio-profissional.css?v=20261017-featured-executive3"><link rel="stylesheet" href="vagas-demo.css?v=20261019-compact-montserrat-2"></head><body><header class='topo'><div class='topo-inner'><button class='marca' onclick='irPara(&quot;home&quot;)' type='button'><span class='marca-nome'>+Empregos</span></button><button id='emHeaderMenuToggle' class='em-header-menu-toggle' type='button' aria-controls='emHeaderNavigation' aria-expanded='false'><svg viewBox='0 0 24 24' width='20' height='20' fill='none' stroke='currentColor' stroke-width='2' aria-hidden='true'><path d='M4 6h16M4 12h16M4 18h16'/></svg><span>Menu</span></button><nav class='menu-principal menu-v19' id='menuPublico'><button class='menu-link' onclick='irPara(&quot;home&quot;);rolarVagas();' type='button'>Buscar vagas</button><button class='menu-link' onclick='irPara(&quot;como-funciona&quot;)' type='button'>Como funciona</button></nav><div class='acoes-topo' id='emHeaderNavigation'><div class='acoes-publicas-v19' id='acoesPublicas'><div class='menu-empresa-v19'><button class='menu-link menu-empresa-btn-v19' type='button'>Para empresas <span>&#8964;</span></button></div><button class='btn btn-claro btn-candidato-v19' onclick='irPara(&quot;login-candidato&quot;)' type='button'>Área do candidato <span>&#8964;</span></button><button class='btn btn-empresa btn-publicar-v19' onclick='abrirPublicacao()' type='button'>+ Publicar vaga</button></div><div class='conta-topo' id='contaCandidatoTopo'><button class='btn-conta' onclick='alternarContaMenu(&quot;menuContaCandidato&quot;)' type='button'><span class='avatar' id='avatarCandidato'>C</span><span class='conta-nome' id='nomeCandidatoTopo'>
+</style><link rel="preload" as="style" href="emporio-profissional.css?v=20261017-featured-executive3"><link rel="preload" as="style" href="vagas-demo.css?v=20261019-clean-layout"><style id="em-home-card-first-paint">
+html body #pagina-home#pagina-home #listaDestaques#listaDestaques>article:not(.em-featured-reference){visibility:hidden!important}
+</style><link rel="stylesheet" href="emporio-profissional.css?v=20261017-featured-executive3"><link rel="stylesheet" href="vagas-demo.css?v=20261019-clean-layout"><link rel="stylesheet" href="recent-vacancies.css?v=20261019-clean-layout"></head><body><header class='topo'><div class='topo-inner'><button class='marca' onclick='irPara(&quot;home&quot;)' type='button'><span class='marca-nome'>+Empregos</span></button><button id='emHeaderMenuToggle' class='em-header-menu-toggle' type='button' aria-controls='emHeaderNavigation' aria-expanded='false'><svg viewBox='0 0 24 24' width='20' height='20' fill='none' stroke='currentColor' stroke-width='2' aria-hidden='true'><path d='M4 6h16M4 12h16M4 18h16'/></svg><span>Menu</span></button><nav class='menu-principal menu-v19' id='menuPublico'><button class='menu-link' onclick='irPara(&quot;home&quot;);rolarVagas();' type='button'>Buscar vagas</button><button class='menu-link' onclick='irPara(&quot;como-funciona&quot;)' type='button'>Como funciona</button></nav><div class='acoes-topo' id='emHeaderNavigation'><div class='acoes-publicas-v19' id='acoesPublicas'><div class='menu-empresa-v19'><button class='menu-link menu-empresa-btn-v19' type='button'>Para empresas <span>&#8964;</span></button></div><button class='btn btn-claro btn-candidato-v19' onclick='irPara(&quot;login-candidato&quot;)' type='button'>Área do candidato <span>&#8964;</span></button><button class='btn btn-empresa btn-publicar-v19' onclick='abrirPublicacao()' type='button'>+ Publicar vaga</button></div><div class='conta-topo' id='contaCandidatoTopo'><button class='btn-conta' onclick='alternarContaMenu(&quot;menuContaCandidato&quot;)' type='button'><span class='avatar' id='avatarCandidato'>C</span><span class='conta-nome' id='nomeCandidatoTopo'>
 Candidato
 </span><span>&#8964;</span></button><div class='conta-menu' id='menuContaCandidato'><button onclick='irPara(&quot;painel-candidato&quot;)' type='button'>
 &#9635; Meu painel
@@ -16408,7 +16151,7 @@ Atualize a etapa de cada processo seletivo.
 .em-job-top{background:#fff;border:1px solid #dfe7f1;border-radius:18px;padding:22px 26px;margin-bottom:18px;box-shadow:0 8px 28px rgba(18,43,77,.06)}
 .em-job-progress{display:grid;grid-template-columns:repeat(4,1fr);gap:0;position:relative}
 .em-job-step{text-align:center;position:relative;color:#7a899d;font-size:13px;font-weight:700}
-.em-job-step:before{content:'';position:absolute;height:2px;background:#dbe4ee;left:-50%;right:50%;top:17px;z-index:0}
+.em-job-step:before{content:"";position:absolute;height:2px;background:#dbe4ee;left:-50%;right:50%;top:17px;z-index:0}
 .em-job-step:first-child:before{display:none}
 .em-job-num{width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 8px;background:#e7edf5;color:#6d7d91;position:relative;z-index:1}
 .em-job-step.active,.em-job-step.done{color:#0b67c2}
@@ -35622,7 +35365,7 @@ html body #pagina-candidatos-empresa .em-app-option2 .em-gc27-stat:last-child{bo
 html body #pagina-candidatos-empresa .em-app-option2 .em-gc27-stat strong{font:600 14px Inter,Arial,sans-serif!important;padding:4px 9px!important;border-radius:20px!important;background:#f0f4f8!important;color:#354b63!important}
 html body #pagina-candidatos-empresa .em-app-option2 .em-gc27-stat strong::before{content:none!important}
 html body #pagina-candidatos-empresa .em-app-option2 .em-gc27-stat span{font:600 12px/1.35 Inter,Arial,sans-serif!important;color:inherit!important}
-html body #pagina-candidatos-empresa .em-app-option2 .em-gc27-stat span::before{content:'';display:inline-block;width:7px;height:7px;border-radius:50%;margin-right:7px;background:var(--stage,#086be6)}
+html body #pagina-candidatos-empresa .em-app-option2 .em-gc27-stat span::before{content:"";display:inline-block;width:7px;height:7px;border-radius:50%;margin-right:7px;background:var(--stage,#086be6)}
 html body #pagina-candidatos-empresa .em-app-option2 .em-gc27-stat:nth-child(2){--stage:#aa760d}html body #pagina-candidatos-empresa .em-app-option2 .em-gc27-stat:nth-child(3){--stage:#008da8}html body #pagina-candidatos-empresa .em-app-option2 .em-gc27-stat:nth-child(4){--stage:#7940c9}html body #pagina-candidatos-empresa .em-app-option2 .em-gc27-stat:nth-child(5){--stage:#22864c}html body #pagina-candidatos-empresa .em-app-option2 .em-gc27-stat:nth-child(6){--stage:#00877d}html body #pagina-candidatos-empresa .em-app-option2 .em-gc27-stat:nth-child(7){--stage:#c73550}
 html body #pagina-candidatos-empresa .em-app-option2 .em-gc27-stat.active{background:#edf5ff!important;color:#086be6!important;box-shadow:inset 0 0 0 1px #086be6!important;border-radius:8px!important}
 html body #pagina-candidatos-empresa .em-app-option2 .em-gc27-stat:focus-visible{outline:3px solid #93bfff!important;outline-offset:2px!important}
@@ -35876,7 +35619,7 @@ if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",
 else aplicar();
 window.addEventListener("load",function(){setTimeout(aplicar,180)});
 })();
-//</script><style type='text/css'>#pagina-publicar .beneficios-v128{position:relative!important;margin:28px 0 30px!important;padding:26px 26px 24px!important;border:1px solid #dbe7f1!important;border-radius:18px!important;background:radial-gradient(circle at 100% 0,rgba(18,143,219,.055),transparent 28%),linear-gradient(145deg,#fbfdff 0%,#f7fbff 48%,#ffffff 100%)!important;box-shadow:0 12px 34px rgba(9,55,91,.055)!important;overflow:hidden!important}#pagina-publicar .beneficios-v128:before{content:&quot;&quot;!important;position:absolute!important;left:0!important;top:0!important;bottom:0!important;width:4px!important;background:linear-gradient(180deg,#0785da,#0a5fa9)!important}#pagina-publicar .beneficios-topo-v128{display:flex!important;align-items:center!important;gap:13px!important;margin:0 0 21px!important;padding:0 0 18px!important;border-bottom:1px solid #e3edf5!important}#pagina-publicar .beneficios-icone-v128{width:43px!important;height:43px!important;flex:0 0 43px!important;display:grid!important;place-items:center!important;border-radius:12px!important;background:linear-gradient(145deg,#e8f5ff,#f3f9ff)!important;border:1px solid #d5eafa!important;color:#0877cb!important;font-size:0!important}#pagina-publicar .beneficios-icone-v128:before{content:&quot;&quot;!important;width:21px!important;height:21px!important;background:no-repeat center/contain url(&quot;data:image/svg+xml,%3Csvg xmlns=&#39;http://www.w3.org/2000/svg&#39;viewBox=&#39;0 0 24 24&#39;fill=&#39;none&#39;stroke=&#39;%230877cb&#39;stroke-width=&#39;1.7&#39;stroke-linecap=&#39;round&#39;stroke-linejoin=&#39;round&#39;%3E%3Cpath d=&#39;M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.6l-1-1a5.5 5.5 0 0 0-7.8 7.8l1 1L12 21l7.8-7.6 1-1a5.5 5.5 0 0 0 0-7.8Z&#39;/%3E%3C/svg%3E&quot;)!important}#pagina-publicar .beneficios-topo-v128 strong{display:block!important;color:#082f55!important;font-family:Montserrat,Arial,sans-serif!important;Inter&#39;,Arial,sans-serif!important;font-size:18px!important;font-weight:500!important;letter-spacing:-.15px!important}#pagina-publicar .beneficios-topo-v128 p{margin:5px 0 0!important;color:#71869a!important;font-size:11px!important;line-height:1.45!important}#pagina-publicar .beneficios-grid-v128{display:grid!important;grid-template-columns:repeat(4,minmax(0,1fr))!important;gap:12px!important}#pagina-publicar .beneficio-v128{position:relative!important;min-width:0!important}#pagina-publicar .beneficio-v128 input{position:absolute!important;opacity:0!important;pointer-events:none!important}#pagina-publicar .beneficio-v128 label{position:relative!important;min-height:72px!important;box-sizing:border-box!important;display:flex!important;align-items:center!important;gap:12px!important;padding:13px 34px 13px 13px!important;border:1px solid #dbe7f1!important;border-radius:13px!important;background:#fff!important;color:#173b5d!important;font-family:Montserrat,Arial,sans-serif!important;Inter&#39;,Arial,sans-serif!important;font-size:12px!important;line-height:1.25!important;cursor:pointer!important;transition:border-color .16s ease,background .16s ease,box-shadow .16s ease,transform .16s ease!important;box-shadow:0 3px 10px rgba(15,58,91,.025)!important}#pagina-publicar .beneficio-v128 label:hover{transform:translateY(-1px)!important;border-color:#9fcdeb!important;background:#fbfdff!important;box-shadow:0 8px 18px rgba(8,89,147,.07)!important}#pagina-publicar .beneficio-v128 label span:first-child{width:38px!important;height:38px!important;flex:0 0 38px!important;display:grid!important;place-items:center!important;border-radius:10px!important;background:#edf6fd!important;border:1px solid #e0eef8!important;color:#0876ca!important;font-size:0!important}#pagina-publicar .beneficio-v128 label span:first-child:before{content:&quot;&quot;!important;width:20px!important;height:20px!important;background-repeat:no-repeat!important;background-position:center!important;background-size:contain!important}#pagina-publicar .beneficio-v128:nth-child(1) label span:first-child:before,#pagina-publicar .beneficio-v128:nth-child(2) label span:first-child:before,#pagina-publicar .beneficio-v128:nth-child(16) label span:first-child:before{background-image:url(&quot;data:image/svg+xml,%3Csvg xmlns=&#39;http://www.w3.org/2000/svg&#39;viewBox=&#39;0 0 24 24&#39;fill=&#39;none&#39;stroke=&#39;%230876ca&#39;stroke-width=&#39;1.7&#39;stroke-linecap=&#39;round&#39;stroke-linejoin=&#39;round&#39;%3E%3Cpath d=&#39;M5 7h14l-1 12H6L5 7Z&#39;/%3E%3Cpath d=&#39;M9 7a3 3 0 0 1 6 0M8 11h8M9 15h6&#39;/%3E%3C/svg%3E&quot;)!important}#pagina-publicar .beneficio-v128:nth-child(3) label span:first-child:before{background-image:url(&quot;data:image/svg+xml,%3Csvg xmlns=&#39;http://www.w3.org/2000/svg&#39;viewBox=&#39;0 0 24 24&#39;fill=&#39;none&#39;stroke=&#39;%230876ca&#39;stroke-width=&#39;1.7&#39;stroke-linecap=&#39;round&#39;stroke-linejoin=&#39;round&#39;%3E%3Crect x=&#39;3&#39;y=&#39;5&#39;width=&#39;18&#39;height=&#39;13&#39;rx=&#39;2&#39;/%3E%3Cpath d=&#39;M6 18v2M18 18v2M6 9h12M7 14h.01M17 14h.01&#39;/%3E%3C/svg%3E&quot;)!important}#pagina-publicar .beneficio-v128:nth-child(4) label span:first-child:before,#pagina-publicar .beneficio-v128:nth-child(5) label span:first-child:before{background-image:url(&quot;data:image/svg+xml,%3Csvg xmlns=&#39;http://www.w3.org/2000/svg&#39;viewBox=&#39;0 0 24 24&#39;fill=&#39;none&#39;stroke=&#39;%230876ca&#39;stroke-width=&#39;1.7&#39;stroke-linecap=&#39;round&#39;stroke-linejoin=&#39;round&#39;%3E%3Cpath d=&#39;M12 3v18M3 12h18&#39;/%3E%3C/svg%3E&quot;)!important}#pagina-publicar .beneficio-v128:nth-child(6) label span:first-child:before{background-image:url(&quot;data:image/svg+xml,%3Csvg xmlns=&#39;http://www.w3.org/2000/svg&#39;viewBox=&#39;0 0 24 24&#39;fill=&#39;none&#39;stroke=&#39;%230876ca&#39;stroke-width=&#39;1.7&#39;stroke-linecap=&#39;round&#39;stroke-linejoin=&#39;round&#39;%3E%3Cpath d=&#39;M12 3 20 6v6c0 5-3.4 8-8 9-4.6-1-8-4-8-9V6l8-3Z&#39;/%3E%3Cpath d=&#39;m8.5 12 2.2 2.2 4.8-5&#39;/%3E%3C/svg%3E&quot;)!important}#pagina-publicar .beneficio-v128:nth-child(7) label span:first-child:before{background-image:url(&quot;data:image/svg+xml,%3Csvg xmlns=&#39;http://www.w3.org/2000/svg&#39;viewBox=&#39;0 0 24 24&#39;fill=&#39;none&#39;stroke=&#39;%230876ca&#39;stroke-width=&#39;1.7&#39;stroke-linecap=&#39;round&#39;stroke-linejoin=&#39;round&#39;%3E%3Ccircle cx=&#39;12&#39;cy=&#39;12&#39;r=&#39;3&#39;/%3E%3Cpath d=&#39;M4 12h5M15 12h5M12 4v5M12 15v5&#39;/%3E%3C/svg%3E&quot;)!important}#pagina-publicar .beneficio-v128:nth-child(8) label span:first-child:before{background-image:url(&quot;data:image/svg+xml,%3Csvg xmlns=&#39;http://www.w3.org/2000/svg&#39;viewBox=&#39;0 0 24 24&#39;fill=&#39;none&#39;stroke=&#39;%230876ca&#39;stroke-width=&#39;1.7&#39;stroke-linecap=&#39;round&#39;stroke-linejoin=&#39;round&#39;%3E%3Cpath d=&#39;m3 11 9-7 9 7&#39;/%3E%3Cpath d=&#39;M5 10v10h14V10M9 20v-6h6v6&#39;/%3E%3C/svg%3E&quot;)!important}#pagina-publicar .beneficio-v128:nth-child(9) label span:first-child:before{background-image:url(&quot;data:image/svg+xml,%3Csvg xmlns=&#39;http://www.w3.org/2000/svg&#39;viewBox=&#39;0 0 24 24&#39;fill=&#39;none&#39;stroke=&#39;%230876ca&#39;stroke-width=&#39;1.7&#39;stroke-linecap=&#39;round&#39;stroke-linejoin=&#39;round&#39;%3E%3Ccircle cx=&#39;12&#39;cy=&#39;8&#39;r=&#39;3&#39;/%3E%3Cpath d=&#39;M6 20v-2a6 6 0 0 1 12 0v2M9 13h6&#39;/%3E%3C/svg%3E&quot;)!important}#pagina-publicar .beneficio-v128:nth-child(10) label span:first-child:before,#pagina-publicar .beneficio-v128:nth-child(11) label span:first-child:before,#pagina-publicar .beneficio-v128:nth-child(12) label span:first-child:before{background-image:url(&quot;data:image/svg+xml,%3Csvg xmlns=&#39;http://www.w3.org/2000/svg&#39;viewBox=&#39;0 0 24 24&#39;fill=&#39;none&#39;stroke=&#39;%230876ca&#39;stroke-width=&#39;1.7&#39;stroke-linecap=&#39;round&#39;stroke-linejoin=&#39;round&#39;%3E%3Cpath d=&#39;M5 17 10 12l3 3 6-7&#39;/%3E%3Cpath d=&#39;M14 8h5v5&#39;/%3E%3C/svg%3E&quot;)!important}#pagina-publicar .beneficio-v128:nth-child(13) label span:first-child:before{background-image:url(&quot;data:image/svg+xml,%3Csvg xmlns=&#39;http://www.w3.org/2000/svg&#39;viewBox=&#39;0 0 24 24&#39;fill=&#39;none&#39;stroke=&#39;%230876ca&#39;stroke-width=&#39;1.7&#39;stroke-linecap=&#39;round&#39;stroke-linejoin=&#39;round&#39;%3E%3Crect x=&#39;4&#39;y=&#39;3&#39;width=&#39;16&#39;height=&#39;18&#39;rx=&#39;2&#39;/%3E%3Cpath d=&#39;M8 17h8M8 7h8M8 11h8&#39;/%3E%3C/svg%3E&quot;)!important}#pagina-publicar .beneficio-v128:nth-child(14) label span:first-child:before{background-image:url(&quot;data:image/svg+xml,%3Csvg xmlns=&#39;http://www.w3.org/2000/svg&#39;viewBox=&#39;0 0 24 24&#39;fill=&#39;none&#39;stroke=&#39;%230876ca&#39;stroke-width=&#39;1.7&#39;stroke-linecap=&#39;round&#39;stroke-linejoin=&#39;round&#39;%3E%3Ccircle cx=&#39;12&#39;cy=&#39;12&#39;r=&#39;9&#39;/%3E%3Cpath d=&#39;M12 7v5l3 2&#39;/%3E%3C/svg%3E&quot;)!important}#pagina-publicar .beneficio-v128:nth-child(15) label span:first-child:before{background-image:url(&quot;data:image/svg+xml,%3Csvg xmlns=&#39;http://www.w3.org/2000/svg&#39;viewBox=&#39;0 0 24 24&#39;fill=&#39;none&#39;stroke=&#39;%230876ca&#39;stroke-width=&#39;1.7&#39;stroke-linecap=&#39;round&#39;stroke-linejoin=&#39;round&#39;%3E%3Ccircle cx=&#39;12&#39;cy=&#39;12&#39;r=&#39;4&#39;/%3E%3Cpath d=&#39;M12 2v3M12 19v3M4.9 4.9 7 7M17 17l2.1 2.1M2 12h3M19 12h3M4.9 19.1 7 17M17 7l2.1-2.1&#39;/%3E%3C/svg%3E&quot;)!important}#pagina-publicar .beneficio-v128 label:after{content:&quot;&quot;!important;position:absolute!important;right:11px!important;top:11px!important;width:18px!important;height:18px!important;border:1px solid #cfdeea!important;border-radius:50%!important;background:#fff!important;transition:.16s ease!important}#pagina-publicar .beneficio-v128 input:checked+label{transform:none!important;border-color:#1686d1!important;background:linear-gradient(145deg,#f0f9ff,#f8fcff)!important;color:#075b99!important;box-shadow:0 7px 18px rgba(8,107,176,.09),inset 0 0 0 1px rgba(8,119,207,.04)!important}#pagina-publicar .beneficio-v128 input:checked+label span:first-child{background:#dff1fd!important;border-color:#c8e5f8!important}#pagina-publicar .beneficio-v128 input:checked+label:after{content:&quot;&quot;!important;display:block!important;border-color:#0878cb!important;background:#0878cb!important;box-shadow:inset 0 0 0 1px #0878cb!important}#pagina-publicar .beneficio-v128 input:checked+label:before{content:&quot;&quot;!important;position:absolute!important;z-index:2!important;right:16px!important;top:14px!important;width:5px!important;height:9px!important;border:solid #fff!important;border-width:0 2px 2px 0!important;transform:rotate(45deg)!important}#pagina-publicar .beneficio-outro-v128{position:relative!important;margin-top:16px!important;padding-top:16px!important;border-top:1px solid #e3edf5!important}#pagina-publicar .beneficio-outro-v128:before{content:&quot;+&quot;!important;position:absolute!important;left:14px!important;top:29px!important;width:23px!important;height:23px!important;display:grid!important;place-items:center!important;border-radius:7px!important;background:#eaf5fd!important;color:#0875c7!important;font-size:17px!important}#pagina-publicar .beneficio-outro-v128 input{min-height:50px!important;padding-left:48px!important;border-radius:11px!important;background:#fff!important}#pagina-publicar .beneficio-outro-v128 input::placeholder{color:transparent!important}#pagina-publicar .beneficio-outro-v128:after{content:&quot;Adicionar outro benefício&quot;!important;position:absolute!important;left:49px!important;top:34px!important;color:#667e93!important;font-size:11px!important;pointer-events:none!important}#pagina-publicar .beneficio-outro-v128:focus-within:after{display:none!important}#pagina-publicar .beneficios-contador-v128{margin-top:9px!important;color:#8295a6!important;font-size:9px!important;text-align:right!important}@media(max-width:960px){#pagina-publicar .beneficios-grid-v128{grid-template-columns:repeat(2,minmax(0,1fr))!important}}@media(max-width:560px){#pagina-publicar .beneficios-v128{padding:19px 15px 18px!important}#pagina-publicar .beneficios-grid-v128{grid-template-columns:1fr!important}#pagina-publicar .beneficio-v128 label{min-height:64px!important}}</style><script src='empregamais_lote13.js?v=e1fd5cad0870'></script><script src='empregamais_endereco_definitivo_v1.js?v=1bb6da0998f0'></script><style type='text/css'>#pagina-publicar .page-header{min-height:178px!important;padding:0!important;background:linear-gradient(112deg,#07385f 0%,#07558b 58%,#0875b9 100%)!important}#pagina-publicar .page-header-inner{min-height:178px!important;display:flex!important;flex-direction:column!important;justify-content:center!important;padding:22px 330px 22px 0!important;box-sizing:border-box!important}#pagina-publicar .page-header h1{font-size:29px!important;line-height:1.1!important;font-weight:500!important;letter-spacing:-.45px!important;margin:8px 0 7px!important}#pagina-publicar .page-header p{font-size:13px!important;line-height:1.5!important;max-width:600px!important}#pagina-publicar .page-header:before{content:&quot;&quot;!important;position:absolute!important;right:7%!important;top:50%!important;width:255px!important;height:136px!important;transform:translateY(-50%)!important;border-radius:18px!important;opacity:.96!important;background:url(&quot;data:image/svg+xml,%3Csvg xmlns=&#39;http://www.w3.org/2000/svg&#39;width=&#39;510&#39;height=&#39;272&#39;viewBox=&#39;0 0 510 272&#39;%3E%3Crect x=&#39;2&#39;y=&#39;2&#39;width=&#39;506&#39;height=&#39;268&#39;rx=&#39;28&#39;fill=&#39;%23ffffff&#39;fill-opacity=&#39;.09&#39;stroke=&#39;%23ffffff&#39;stroke-opacity=&#39;.23&#39;stroke-width=&#39;2&#39;/%3E%3Crect x=&#39;31&#39;y=&#39;30&#39;width=&#39;185&#39;height=&#39;20&#39;rx=&#39;10&#39;fill=&#39;%23ffffff&#39;fill-opacity=&#39;.74&#39;/%3E%3Crect x=&#39;31&#39;y=&#39;64&#39;width=&#39;115&#39;height=&#39;10&#39;rx=&#39;5&#39;fill=&#39;%23ffffff&#39;fill-opacity=&#39;.27&#39;/%3E%3Ccircle cx=&#39;61&#39;cy=&#39;121&#39;r=&#39;23&#39;fill=&#39;%2397d8ff&#39;fill-opacity=&#39;.65&#39;/%3E%3Cpath d=&#39;M50 121l8 8 15-18&#39;fill=&#39;none&#39;stroke=&#39;%23ffffff&#39;stroke-width=&#39;5&#39;stroke-linecap=&#39;round&#39;stroke-linejoin=&#39;round&#39;/%3E%3Crect x=&#39;98&#39;y=&#39;103&#39;width=&#39;151&#39;height=&#39;13&#39;rx=&#39;6.5&#39;fill=&#39;%23ffffff&#39;fill-opacity=&#39;.55&#39;/%3E%3Crect x=&#39;98&#39;y=&#39;126&#39;width=&#39;105&#39;height=&#39;9&#39;rx=&#39;4.5&#39;fill=&#39;%23ffffff&#39;fill-opacity=&#39;.23&#39;/%3E%3Ccircle cx=&#39;61&#39;cy=&#39;186&#39;r=&#39;23&#39;fill=&#39;%23ffffff&#39;fill-opacity=&#39;.12&#39;/%3E%3Cpath d=&#39;M50 186l8 8 15-18&#39;fill=&#39;none&#39;stroke=&#39;%23ffffff&#39;stroke-opacity=&#39;.55&#39;stroke-width=&#39;5&#39;stroke-linecap=&#39;round&#39;stroke-linejoin=&#39;round&#39;/%3E%3Crect x=&#39;98&#39;y=&#39;168&#39;width=&#39;180&#39;height=&#39;13&#39;rx=&#39;6.5&#39;fill=&#39;%23ffffff&#39;fill-opacity=&#39;.42&#39;/%3E%3Crect x=&#39;98&#39;y=&#39;191&#39;width=&#39;129&#39;height=&#39;9&#39;rx=&#39;4.5&#39;fill=&#39;%23ffffff&#39;fill-opacity=&#39;.2&#39;/%3E%3Crect x=&#39;316&#39;y=&#39;49&#39;width=&#39;150&#39;height=&#39;169&#39;rx=&#39;18&#39;fill=&#39;%23ffffff&#39;fill-opacity=&#39;.12&#39;stroke=&#39;%23ffffff&#39;stroke-opacity=&#39;.18&#39;/%3E%3Ccircle cx=&#39;391&#39;cy=&#39;93&#39;r=&#39;26&#39;fill=&#39;%23a6dcff&#39;fill-opacity=&#39;.65&#39;/%3E%3Cpath d=&#39;M369 154c6-25 38-25 44 0&#39;fill=&#39;none&#39;stroke=&#39;%23ffffff&#39;stroke-opacity=&#39;.8&#39;stroke-width=&#39;7&#39;stroke-linecap=&#39;round&#39;/%3E%3Crect x=&#39;348&#39;y=&#39;177&#39;width=&#39;86&#39;height=&#39;10&#39;rx=&#39;5&#39;fill=&#39;%23ffffff&#39;fill-opacity=&#39;.42&#39;/%3E%3C/svg%3E&quot;) center/contain no-repeat!important}#pagina-publicar .form-card{margin-top:20px!important;border-radius:18px!important;box-shadow:0 12px 32px rgba(9,50,80,.065)!important}#pagina-publicar #formVaga{padding:25px 30px 31px!important}#pagina-publicar .publicar-etapas-em{padding:11px 18px!important;margin-bottom:20px!important;min-height:48px!important}#pagina-publicar .publicar-etapas-em span{font-size:12px!important}#pagina-publicar .publicar-etapas-em b{width:25px!important;height:25px!important;font-size:11px!important}#pagina-publicar .publicar-secao-titulo-em{margin-top:23px!important;padding-bottom:11px!important;margin-bottom:15px!important}#pagina-publicar .publicar-secao-numero-em{width:33px!important;height:33px!important;flex-basis:33px!important}#pagina-publicar .publicar-secao-titulo-em strong{font-size:19px!important}#pagina-publicar .publicar-secao-titulo-em small{font-size:12px!important;line-height:1.4!important}#pagina-publicar .grupo{margin-bottom:14px!important}#pagina-publicar .grupo&gt;label{font-size:13px!important;line-height:1.35!important;margin-bottom:7px!important}#pagina-publicar .campo,#pagina-publicar input,#pagina-publicar select,#pagina-publicar textarea{font-size:13px!important}#pagina-publicar .campo{min-height:46px!important;padding-top:10px!important;padding-bottom:10px!important}#pagina-publicar textarea.campo{min-height:105px!important;line-height:1.5!important}#pagina-publicar .ajuda,#pagina-publicar .cep-ajuda-em{font-size:10.5px!important;line-height:1.45!important}#pagina-publicar .form-grid,#pagina-publicar .grid-2,#pagina-publicar .campos-duplos{gap:13px!important}#pagina-publicar .beneficios-v128{margin:19px 0 21px!important;padding:19px 20px 18px!important}#pagina-publicar .beneficios-topo-v128{margin-bottom:14px!important;padding-bottom:13px!important}#pagina-publicar .beneficios-topo-v128 strong{font-size:17px!important}#pagina-publicar .beneficios-topo-v128 p{font-size:11.5px!important}#pagina-publicar .beneficios-grid-v128{gap:8px!important}#pagina-publicar .beneficio-v128 label{min-height:58px!important;padding:9px 32px 9px 10px!important;font-size:12.5px!important}#pagina-publicar .beneficio-v128 label span:first-child{width:32px!important;height:32px!important;flex-basis:32px!important}#pagina-publicar .beneficio-v128 label span:first-child:before{width:18px!important;height:18px!important}#pagina-publicar .beneficio-outro-v128{margin-top:11px!important;padding-top:11px!important}#pagina-publicar .beneficio-outro-v128:before{top:24px!important}#pagina-publicar .beneficio-outro-v128:after{top:29px!important}#pagina-publicar .endereco-cep-v130{margin-top:9px!important;padding:14px!important}#pagina-publicar .endereco-campo-v130 label{font-size:11.5px!important}#pagina-publicar .privacidade-endereco-v130{margin-top:11px!important}#pagina-publicar .privacidade-endereco-v130&gt;strong{font-size:12px!important}#pagina-publicar .privacidade-opcao-v130 label{min-height:58px!important;padding:10px!important}#pagina-publicar .privacidade-opcao-v130 label b{font-size:11.5px!important}#pagina-publicar .privacidade-opcao-v130 label small{font-size:10px!important}#pagina-publicar .contato-candidatura-box{padding:18px!important;margin-top:12px!important}#pagina-publicar .contato-opcoes{gap:8px!important}#pagina-publicar .contato-opcao{min-height:70px!important}#pagina-publicar .contato-opcao label{padding:10px 12px!important;font-size:12px!important}#pagina-publicar button[type=&quot;submit&quot;],#pagina-publicar .btn-publicar{min-height:48px!important;font-size:13px!important;border-radius:10px!important}@media(max-width:900px){#pagina-publicar .page-header-inner{padding-right:245px!important}#pagina-publicar .page-header:before{right:3%!important;width:205px!important;height:112px!important}}@media(max-width:680px){#pagina-publicar .page-header{min-height:165px!important}#pagina-publicar .page-header-inner{min-height:165px!important;padding:20px 20px!important}#pagina-publicar .page-header:before{opacity:.13!important;right:-50px!important;width:220px!important}#pagina-publicar .page-header h1{font-size:25px!important}#pagina-publicar #formVaga{padding:19px 14px 24px!important}}</style><script src='empregamais_lote6.js?v=9fc5e012087a'></script><script type='text/javascript'>//<![CDATA[
+//</script><style type='text/css'>#pagina-publicar .beneficios-v128{position:relative!important;margin:28px 0 30px!important;padding:26px 26px 24px!important;border:1px solid #dbe7f1!important;border-radius:18px!important;background:radial-gradient(circle at 100% 0,rgba(18,143,219,.055),transparent 28%),linear-gradient(145deg,#fbfdff 0%,#f7fbff 48%,#ffffff 100%)!important;box-shadow:0 12px 34px rgba(9,55,91,.055)!important;overflow:hidden!important}#pagina-publicar .beneficios-v128:before{content:&quot;&quot;!important;position:absolute!important;left:0!important;top:0!important;bottom:0!important;width:4px!important;background:linear-gradient(180deg,#0785da,#0a5fa9)!important}#pagina-publicar .beneficios-topo-v128{display:flex!important;align-items:center!important;gap:13px!important;margin:0 0 21px!important;padding:0 0 18px!important;border-bottom:1px solid #e3edf5!important}#pagina-publicar .beneficios-icone-v128{width:43px!important;height:43px!important;flex:0 0 43px!important;display:grid!important;place-items:center!important;border-radius:12px!important;background:linear-gradient(145deg,#e8f5ff,#f3f9ff)!important;border:1px solid #d5eafa!important;color:#0877cb!important;font-size:0!important}#pagina-publicar .beneficios-icone-v128:before{content:&quot;&quot;!important;width:21px!important;height:21px!important;background:no-repeat center/contain url([bad url])!important}#pagina-publicar .beneficios-topo-v128 strong{display:block!important;color:#082f55!important;font-family:Montserrat,Arial,sans-serif!important;Inter&#39;,Arial,sans-serif!important;font-size:18px!important;font-weight:500!important;letter-spacing:-.15px!important}#pagina-publicar .beneficios-topo-v128 p{margin:5px 0 0!important;color:#71869a!important;font-size:11px!important;line-height:1.45!important}#pagina-publicar .beneficios-grid-v128{display:grid!important;grid-template-columns:repeat(4,minmax(0,1fr))!important;gap:12px!important}#pagina-publicar .beneficio-v128{position:relative!important;min-width:0!important}#pagina-publicar .beneficio-v128 input{position:absolute!important;opacity:0!important;pointer-events:none!important}#pagina-publicar .beneficio-v128 label{position:relative!important;min-height:72px!important;box-sizing:border-box!important;display:flex!important;align-items:center!important;gap:12px!important;padding:13px 34px 13px 13px!important;border:1px solid #dbe7f1!important;border-radius:13px!important;background:#fff!important;color:#173b5d!important;font-family:Montserrat,Arial,sans-serif!important;Inter&#39;,Arial,sans-serif!important;font-size:12px!important;line-height:1.25!important;cursor:pointer!important;transition:border-color .16s ease,background .16s ease,box-shadow .16s ease,transform .16s ease!important;box-shadow:0 3px 10px rgba(15,58,91,.025)!important}#pagina-publicar .beneficio-v128 label:hover{transform:translateY(-1px)!important;border-color:#9fcdeb!important;background:#fbfdff!important;box-shadow:0 8px 18px rgba(8,89,147,.07)!important}#pagina-publicar .beneficio-v128 label span:first-child{width:38px!important;height:38px!important;flex:0 0 38px!important;display:grid!important;place-items:center!important;border-radius:10px!important;background:#edf6fd!important;border:1px solid #e0eef8!important;color:#0876ca!important;font-size:0!important}#pagina-publicar .beneficio-v128 label span:first-child:before{content:&quot;&quot;!important;width:20px!important;height:20px!important;background-repeat:no-repeat!important;background-position:center!important;background-size:contain!important}#pagina-publicar .beneficio-v128:nth-child(1) label span:first-child:before,#pagina-publicar .beneficio-v128:nth-child(2) label span:first-child:before,#pagina-publicar .beneficio-v128:nth-child(16) label span:first-child:before{background-image:url([bad url])!important}#pagina-publicar .beneficio-v128:nth-child(3) label span:first-child:before{background-image:url([bad url])!important}#pagina-publicar .beneficio-v128:nth-child(4) label span:first-child:before,#pagina-publicar .beneficio-v128:nth-child(5) label span:first-child:before{background-image:url([bad url])!important}#pagina-publicar .beneficio-v128:nth-child(6) label span:first-child:before{background-image:url([bad url])!important}#pagina-publicar .beneficio-v128:nth-child(7) label span:first-child:before{background-image:url([bad url])!important}#pagina-publicar .beneficio-v128:nth-child(8) label span:first-child:before{background-image:url([bad url])!important}#pagina-publicar .beneficio-v128:nth-child(9) label span:first-child:before{background-image:url([bad url])!important}#pagina-publicar .beneficio-v128:nth-child(10) label span:first-child:before,#pagina-publicar .beneficio-v128:nth-child(11) label span:first-child:before,#pagina-publicar .beneficio-v128:nth-child(12) label span:first-child:before{background-image:url([bad url])!important}#pagina-publicar .beneficio-v128:nth-child(13) label span:first-child:before{background-image:url([bad url])!important}#pagina-publicar .beneficio-v128:nth-child(14) label span:first-child:before{background-image:url([bad url])!important}#pagina-publicar .beneficio-v128:nth-child(15) label span:first-child:before{background-image:url([bad url])!important}#pagina-publicar .beneficio-v128 label:after{content:&quot;&quot;!important;position:absolute!important;right:11px!important;top:11px!important;width:18px!important;height:18px!important;border:1px solid #cfdeea!important;border-radius:50%!important;background:#fff!important;transition:.16s ease!important}#pagina-publicar .beneficio-v128 input:checked+label{transform:none!important;border-color:#1686d1!important;background:linear-gradient(145deg,#f0f9ff,#f8fcff)!important;color:#075b99!important;box-shadow:0 7px 18px rgba(8,107,176,.09),inset 0 0 0 1px rgba(8,119,207,.04)!important}#pagina-publicar .beneficio-v128 input:checked+label span:first-child{background:#dff1fd!important;border-color:#c8e5f8!important}#pagina-publicar .beneficio-v128 input:checked+label:after{content:&quot;&quot;!important;display:block!important;border-color:#0878cb!important;background:#0878cb!important;box-shadow:inset 0 0 0 1px #0878cb!important}#pagina-publicar .beneficio-v128 input:checked+label:before{content:&quot;&quot;!important;position:absolute!important;z-index:2!important;right:16px!important;top:14px!important;width:5px!important;height:9px!important;border:solid #fff!important;border-width:0 2px 2px 0!important;transform:rotate(45deg)!important}#pagina-publicar .beneficio-outro-v128{position:relative!important;margin-top:16px!important;padding-top:16px!important;border-top:1px solid #e3edf5!important}#pagina-publicar .beneficio-outro-v128:before{content:&quot;+&quot;!important;position:absolute!important;left:14px!important;top:29px!important;width:23px!important;height:23px!important;display:grid!important;place-items:center!important;border-radius:7px!important;background:#eaf5fd!important;color:#0875c7!important;font-size:17px!important}#pagina-publicar .beneficio-outro-v128 input{min-height:50px!important;padding-left:48px!important;border-radius:11px!important;background:#fff!important}#pagina-publicar .beneficio-outro-v128 input::placeholder{color:transparent!important}#pagina-publicar .beneficio-outro-v128:after{content:&quot;Adicionar outro benefício&quot;!important;position:absolute!important;left:49px!important;top:34px!important;color:#667e93!important;font-size:11px!important;pointer-events:none!important}#pagina-publicar .beneficio-outro-v128:focus-within:after{display:none!important}#pagina-publicar .beneficios-contador-v128{margin-top:9px!important;color:#8295a6!important;font-size:9px!important;text-align:right!important}@media(max-width:960px){#pagina-publicar .beneficios-grid-v128{grid-template-columns:repeat(2,minmax(0,1fr))!important}}@media(max-width:560px){#pagina-publicar .beneficios-v128{padding:19px 15px 18px!important}#pagina-publicar .beneficios-grid-v128{grid-template-columns:1fr!important}#pagina-publicar .beneficio-v128 label{min-height:64px!important}}</style><script src='empregamais_lote13.js?v=e1fd5cad0870'></script><script src='empregamais_endereco_definitivo_v1.js?v=1bb6da0998f0'></script><style type='text/css'>#pagina-publicar .page-header{min-height:178px!important;padding:0!important;background:linear-gradient(112deg,#07385f 0%,#07558b 58%,#0875b9 100%)!important}#pagina-publicar .page-header-inner{min-height:178px!important;display:flex!important;flex-direction:column!important;justify-content:center!important;padding:22px 330px 22px 0!important;box-sizing:border-box!important}#pagina-publicar .page-header h1{font-size:29px!important;line-height:1.1!important;font-weight:500!important;letter-spacing:-.45px!important;margin:8px 0 7px!important}#pagina-publicar .page-header p{font-size:13px!important;line-height:1.5!important;max-width:600px!important}#pagina-publicar .page-header:before{content:&quot;&quot;!important;position:absolute!important;right:7%!important;top:50%!important;width:255px!important;height:136px!important;transform:translateY(-50%)!important;border-radius:18px!important;opacity:.96!important;background:url([bad url]) center/contain no-repeat!important}#pagina-publicar .form-card{margin-top:20px!important;border-radius:18px!important;box-shadow:0 12px 32px rgba(9,50,80,.065)!important}#pagina-publicar #formVaga{padding:25px 30px 31px!important}#pagina-publicar .publicar-etapas-em{padding:11px 18px!important;margin-bottom:20px!important;min-height:48px!important}#pagina-publicar .publicar-etapas-em span{font-size:12px!important}#pagina-publicar .publicar-etapas-em b{width:25px!important;height:25px!important;font-size:11px!important}#pagina-publicar .publicar-secao-titulo-em{margin-top:23px!important;padding-bottom:11px!important;margin-bottom:15px!important}#pagina-publicar .publicar-secao-numero-em{width:33px!important;height:33px!important;flex-basis:33px!important}#pagina-publicar .publicar-secao-titulo-em strong{font-size:19px!important}#pagina-publicar .publicar-secao-titulo-em small{font-size:12px!important;line-height:1.4!important}#pagina-publicar .grupo{margin-bottom:14px!important}#pagina-publicar .grupo&gt;label{font-size:13px!important;line-height:1.35!important;margin-bottom:7px!important}#pagina-publicar .campo,#pagina-publicar input,#pagina-publicar select,#pagina-publicar textarea{font-size:13px!important}#pagina-publicar .campo{min-height:46px!important;padding-top:10px!important;padding-bottom:10px!important}#pagina-publicar textarea.campo{min-height:105px!important;line-height:1.5!important}#pagina-publicar .ajuda,#pagina-publicar .cep-ajuda-em{font-size:10.5px!important;line-height:1.45!important}#pagina-publicar .form-grid,#pagina-publicar .grid-2,#pagina-publicar .campos-duplos{gap:13px!important}#pagina-publicar .beneficios-v128{margin:19px 0 21px!important;padding:19px 20px 18px!important}#pagina-publicar .beneficios-topo-v128{margin-bottom:14px!important;padding-bottom:13px!important}#pagina-publicar .beneficios-topo-v128 strong{font-size:17px!important}#pagina-publicar .beneficios-topo-v128 p{font-size:11.5px!important}#pagina-publicar .beneficios-grid-v128{gap:8px!important}#pagina-publicar .beneficio-v128 label{min-height:58px!important;padding:9px 32px 9px 10px!important;font-size:12.5px!important}#pagina-publicar .beneficio-v128 label span:first-child{width:32px!important;height:32px!important;flex-basis:32px!important}#pagina-publicar .beneficio-v128 label span:first-child:before{width:18px!important;height:18px!important}#pagina-publicar .beneficio-outro-v128{margin-top:11px!important;padding-top:11px!important}#pagina-publicar .beneficio-outro-v128:before{top:24px!important}#pagina-publicar .beneficio-outro-v128:after{top:29px!important}#pagina-publicar .endereco-cep-v130{margin-top:9px!important;padding:14px!important}#pagina-publicar .endereco-campo-v130 label{font-size:11.5px!important}#pagina-publicar .privacidade-endereco-v130{margin-top:11px!important}#pagina-publicar .privacidade-endereco-v130&gt;strong{font-size:12px!important}#pagina-publicar .privacidade-opcao-v130 label{min-height:58px!important;padding:10px!important}#pagina-publicar .privacidade-opcao-v130 label b{font-size:11.5px!important}#pagina-publicar .privacidade-opcao-v130 label small{font-size:10px!important}#pagina-publicar .contato-candidatura-box{padding:18px!important;margin-top:12px!important}#pagina-publicar .contato-opcoes{gap:8px!important}#pagina-publicar .contato-opcao{min-height:70px!important}#pagina-publicar .contato-opcao label{padding:10px 12px!important;font-size:12px!important}#pagina-publicar button[type=&quot;submit&quot;],#pagina-publicar .btn-publicar{min-height:48px!important;font-size:13px!important;border-radius:10px!important}@media(max-width:900px){#pagina-publicar .page-header-inner{padding-right:245px!important}#pagina-publicar .page-header:before{right:3%!important;width:205px!important;height:112px!important}}@media(max-width:680px){#pagina-publicar .page-header{min-height:165px!important}#pagina-publicar .page-header-inner{min-height:165px!important;padding:20px 20px!important}#pagina-publicar .page-header:before{opacity:.13!important;right:-50px!important;width:220px!important}#pagina-publicar .page-header h1{font-size:25px!important}#pagina-publicar #formVaga{padding:19px 14px 24px!important}}</style><script src='empregamais_lote6.js?v=9fc5e012087a'></script><script type='text/javascript'>//<![CDATA[
 (function(){
 if(window.__M3V157)return; window.__M3V157=true;
 function moverDinamicos(){
@@ -38011,7 +37754,7 @@ window.addEventListener("load",function(){setTimeout(marcarCardsV229,900)});
   window.addEventListener('load',function(){setTimeout(atualizar,700);});
 })();
 //]]></script>
-<script src='empregamais_confidencial_definitivo_v1.js?v=232b320740ac' type='text/javascript'></script><script src='empregamais_controles_vaga_v1.js?v=5b41d3835eda'></script><script src='empregamais_revisao_completa_v1.js?v=b6f5bedcf03d' type='text/javascript'></script><style type='text/css'>#pagina-publicar #benV128_cesta_basica + label span:first-child:before{background-image:url(&quot;data:image/svg+xml,%3Csvg xmlns=&#39;http://www.w3.org/2000/svg&#39;viewBox=&#39;0 0 24 24&#39;fill=&#39;none&#39;stroke=&#39;%230876ca&#39;stroke-width=&#39;1.7&#39;stroke-linecap=&#39;round&#39;stroke-linejoin=&#39;round&#39;%3E%3Cpath d=&#39;M4 10h16l-1.5 10h-13L4 10Z&#39;/%3E%3Cpath d=&#39;m8 10 4-6 4 6M8 14v2M12 14v2M16 14v2&#39;/%3E%3C/svg%3E&quot;)!important;}#pagina-publicar #benV128_celular_corporativo + label span:first-child:before{background-image:url(&quot;data:image/svg+xml,%3Csvg xmlns=&#39;http://www.w3.org/2000/svg&#39;viewBox=&#39;0 0 24 24&#39;fill=&#39;none&#39;stroke=&#39;%230876ca&#39;stroke-width=&#39;1.7&#39;stroke-linecap=&#39;round&#39;stroke-linejoin=&#39;round&#39;%3E%3Crect x=&#39;7&#39;y=&#39;2.5&#39;width=&#39;10&#39;height=&#39;19&#39;rx=&#39;2&#39;/%3E%3Cpath d=&#39;M10 5h4M11 18.5h2&#39;/%3E%3C/svg%3E&quot;)!important;}#pagina-publicar #benV128_convenio_sesc + label span:first-child:before{background-image:url(&quot;data:image/svg+xml,%3Csvg xmlns=&#39;http://www.w3.org/2000/svg&#39;viewBox=&#39;0 0 24 24&#39;fill=&#39;none&#39;stroke=&#39;%230876ca&#39;stroke-width=&#39;1.7&#39;stroke-linecap=&#39;round&#39;stroke-linejoin=&#39;round&#39;%3E%3Cpath d=&#39;m8 12 3 3 5-6&#39;/%3E%3Ccircle cx=&#39;12&#39;cy=&#39;12&#39;r=&#39;9&#39;/%3E%3C/svg%3E&quot;)!important;}#pagina-publicar .em-benefit-select-v10{position:relative;width:100%;z-index:30}#pagina-publicar .em-benefit-select-v10-btn{width:100%;min-height:46px;box-sizing:border-box;padding:10px 38px 10px 13px;border:1px solid #c8dceb;border-radius:10px;background:#fff;color:#173b5d;font:inherit;text-align:left;cursor:pointer;position:relative;}#pagina-publicar .em-benefit-select-v10-btn:after{content:&quot;&quot;!important;position:absolute!important;right:14px!important;top:50%!important;width:0!important;height:0!important;border-left:4px solid transparent!important;border-right:4px solid transparent!important;border-top:6px solid #173b5d!important;transform:translateY(-25%)!important;background:none!important;}#pagina-publicar .em-benefit-select-v10-list{display:none;position:absolute;left:0;right:0;top:calc(100% + 4px);background:#fff;border:1px solid #c8dceb;border-radius:10px;box-shadow:0 12px 26px rgba(15,58,91,.16);padding:5px;z-index:2147483600;max-height:230px;overflow:auto;}#pagina-publicar .em-benefit-select-v10.open .em-benefit-select-v10-list{display:block}#pagina-publicar .em-benefit-select-v10-opt{display:block;width:100%;border:0;border-radius:7px;background:#fff;color:#173b5d;text-align:left;padding:10px 11px;font:inherit;cursor:pointer;}#pagina-publicar .em-benefit-select-v10-opt:hover,#pagina-publicar .em-benefit-select-v10-opt.selected{background:#eef6ff}#pagina-publicar select.em-benefit-native-v10{position:absolute!important;left:-99999px!important;width:1px!important;height:1px!important;opacity:0!important;pointer-events:none!important;}</style><script type='text/javascript'>
+<script src='empregamais_confidencial_definitivo_v1.js?v=232b320740ac' type='text/javascript'></script><script src='empregamais_controles_vaga_v1.js?v=5b41d3835eda'></script><script src='empregamais_revisao_completa_v1.js?v=b6f5bedcf03d' type='text/javascript'></script><style type='text/css'>#pagina-publicar #benV128_cesta_basica + label span:first-child:before{background-image:url([bad url])!important;}#pagina-publicar #benV128_celular_corporativo + label span:first-child:before{background-image:url([bad url])!important;}#pagina-publicar #benV128_convenio_sesc + label span:first-child:before{background-image:url([bad url])!important;}#pagina-publicar .em-benefit-select-v10{position:relative;width:100%;z-index:30}#pagina-publicar .em-benefit-select-v10-btn{width:100%;min-height:46px;box-sizing:border-box;padding:10px 38px 10px 13px;border:1px solid #c8dceb;border-radius:10px;background:#fff;color:#173b5d;font:inherit;text-align:left;cursor:pointer;position:relative;}#pagina-publicar .em-benefit-select-v10-btn:after{content:&quot;&quot;!important;position:absolute!important;right:14px!important;top:50%!important;width:0!important;height:0!important;border-left:4px solid transparent!important;border-right:4px solid transparent!important;border-top:6px solid #173b5d!important;transform:translateY(-25%)!important;background:none!important;}#pagina-publicar .em-benefit-select-v10-list{display:none;position:absolute;left:0;right:0;top:calc(100% + 4px);background:#fff;border:1px solid #c8dceb;border-radius:10px;box-shadow:0 12px 26px rgba(15,58,91,.16);padding:5px;z-index:2147483600;max-height:230px;overflow:auto;}#pagina-publicar .em-benefit-select-v10.open .em-benefit-select-v10-list{display:block}#pagina-publicar .em-benefit-select-v10-opt{display:block;width:100%;border:0;border-radius:7px;background:#fff;color:#173b5d;text-align:left;padding:10px 11px;font:inherit;cursor:pointer;}#pagina-publicar .em-benefit-select-v10-opt:hover,#pagina-publicar .em-benefit-select-v10-opt.selected{background:#eef6ff}#pagina-publicar select.em-benefit-native-v10{position:absolute!important;left:-99999px!important;width:1px!important;height:1px!important;opacity:0!important;pointer-events:none!important;}</style><script type='text/javascript'>
 //<![CDATA[
 (function(){
 "use strict";
@@ -38272,7 +38015,7 @@ window.__EM_HERO_AUTOCOMPLETE_V3=true;
  document.addEventListener('click',function(){setTimeout(limparDestaqueInterno,40)},true);
  setTimeout(limparDestaqueInterno,100);setTimeout(limparDestaqueInterno,500);
 })();
-//]]></script><style id='em-destaques-v14-unico'>#pagina-home section.container:has(#listaDestaques) >.titulo-secao{display:none!important}#pagina-home section.container:has(#listaDestaques){max-width:1240px!important;padding:28px 24px 42px!important}#pagina-home .destaques-seta-em{display:none!important}#pagina-home .destaques-carrossel-em{width:100%!important;max-width:none!important;margin:0!important;padding:0!important}#pagina-home #emDestV14{width:100%!important;box-sizing:border-box!important;margin:0 0 22px!important;display:grid!important;grid-template-columns:340px minmax(0,1fr) 275px!important;gap:28px!important;align-items:center!important;}#pagina-home #emDestV14 .copy{min-width:0!important}#pagina-home #emDestV14 .eyebrow{display:flex!important;align-items:center!important;gap:10px!important;margin:0 0 13px!important;color:#52769b!important;font:500 9px/1 Inter,Arial,sans-serif!important;letter-spacing:3px!important;text-transform:uppercase!important;white-space:nowrap!important}#pagina-home #emDestV14 .eyebrow:before{content:""!important;width:46px!important;height:2px!important;flex:0 0 46px!important;background:#e99a00!important}#pagina-home #emDestV14 h2{margin:0 0 7px!important;color:#082f5b!important;font:800 29px/1.15 Inter,Arial,sans-serif!important;letter-spacing:-.65px!important;white-space:nowrap!important}#pagina-home #emDestV14 p{margin:0!important;color:#52769b!important;font:500 14px/1.45 Inter,Arial,sans-serif!important;white-space:nowrap!important}#pagina-home #emDestV14 .logos-viewport{width:100%!important;min-width:0!important;height:82px!important;overflow:hidden!important;display:flex!important;align-items:center!important}#pagina-home #emDestV14 .logos-track{display:flex!important;align-items:center!important;gap:10px!important;width:max-content!important;animation:emV14Move 28s linear infinite!important}#pagina-home #emDestV14 .logo-box{width:68px!important;height:68px!important;flex:0 0 68px!important;box-sizing:border-box!important;padding:7px!important;display:flex!important;align-items:center!important;justify-content:center!important;border:1px solid #d8e5ef!important;border-radius:11px!important;background:#fff!important}#pagina-home #emDestV14 .logo-box img{width:100%!important;height:100%!important;display:block!important;object-fit:contain!important}#pagina-home #emDestV14 .logo-fallback{width:100%!important;height:100%!important;display:flex!important;align-items:center!important;justify-content:center!important;border-radius:7px!important;background:#edf6fd!important;color:#0866c6!important;font:800 16px Inter,Arial,sans-serif!important}#pagina-home #emDestV14 .logos-viewport:hover .logos-track{animation-play-state:paused!important}@keyframes emV14Move{from{transform:translateX(0)}to{transform:translateX(-50%)}}#pagina-home #emDestV14 .all-btn{width:275px!important;height:50px!important;display:flex!important;align-items:center!important;justify-content:center!important;border:1px solid #8fc5ee!important;border-radius:11px!important;background:#fff!important;color:#0866c6!important;font:800 11px Inter,Arial,sans-serif!important;cursor:pointer!important;white-space:nowrap!important;box-shadow:0 5px 16px rgba(8,102,198,.07)!important}#pagina-home #listaDestaques{display:grid!important;grid-template-columns:repeat(4,minmax(0,1fr))!important;gap:15px!important;width:100%!important;overflow:visible!important;padding:0!important}#pagina-home #listaDestaques>.card-destaque{width:100%!important;min-width:0!important;max-width:none!important;height:318px!important;min-height:318px!important;max-height:318px!important;margin:0!important;overflow:hidden!important;box-sizing:border-box!important}#pagina-home #listaDestaques:not(.em-v14-all)>.card-destaque:nth-child(n+9){display:none!important}@media(max-width:1050px){#pagina-home #emDestV14{grid-template-columns:320px minmax(0,1fr)!important}#pagina-home #emDestV14 .all-btn{grid-column:1/-1!important}}@media(max-width:980px){#pagina-home #listaDestaques{grid-template-columns:repeat(2,minmax(0,1fr))!important}}@media(max-width:700px){#pagina-home #emDestV14{grid-template-columns:1fr!important;gap:12px!important;margin-bottom:16px!important}#pagina-home #emDestV14 .logos-viewport{display:none!important}#pagina-home section.container:has(#listaDestaques){padding:20px 16px!important;box-sizing:border-box!important;min-width:0!important;max-width:100%!important}#pagina-home #emDestV14 h2{font-size:24px!important;white-space:normal!important}#pagina-home #emDestV14 p{font-size:12px!important;white-space:normal!important}#pagina-home #emDestV14 .all-btn{width:100%!important;grid-column:auto!important}#pagina-home #listaDestaques{grid-template-columns:1fr!important}}</style><script id='em-destaques-v14-unico-js'>
+//]]></script><style id='em-destaques-v14-unico'>#pagina-home section.container:has(#listaDestaques) >.titulo-secao{display:none!important}#pagina-home section.container:has(#listaDestaques){max-width:1240px!important;padding:28px 24px 42px!important}#pagina-home .destaques-seta-em{display:none!important}#pagina-home .destaques-carrossel-em{width:100%!important;max-width:none!important;margin:0!important;padding:0!important}#pagina-home #emDestV14{width:100%!important;box-sizing:border-box!important;margin:0 0 22px!important;display:grid!important;grid-template-columns:340px minmax(0,1fr) 275px!important;gap:28px!important;align-items:center!important;}#pagina-home #emDestV14 .copy{min-width:0!important}#pagina-home #emDestV14 .eyebrow{display:flex!important;align-items:center!important;gap:10px!important;margin:0 0 13px!important;color:#52769b!important;font:500 9px/1 Inter,Arial,sans-serif!important;letter-spacing:3px!important;text-transform:uppercase!important;white-space:nowrap!important}#pagina-home #emDestV14 .eyebrow:before{content:""!important;width:46px!important;height:2px!important;flex:0 0 46px!important;background:#e99a00!important}#pagina-home #emDestV14 h2{margin:0 0 7px!important;color:#082f5b!important;font:800 29px/1.15 Inter,Arial,sans-serif!important;letter-spacing:-.65px!important;white-space:nowrap!important}#pagina-home #emDestV14 p{margin:0!important;color:#52769b!important;font:500 14px/1.45 Inter,Arial,sans-serif!important;white-space:nowrap!important}#pagina-home #emDestV14 .logos-viewport{width:100%!important;min-width:0!important;height:82px!important;overflow:hidden!important;display:flex!important;align-items:center!important}#pagina-home #emDestV14 .logos-track{display:flex!important;align-items:center!important;gap:10px!important;width:max-content!important;animation:emV14Move 28s linear infinite!important}#pagina-home #emDestV14 .logo-box{width:68px!important;height:68px!important;flex:0 0 68px!important;box-sizing:border-box!important;padding:7px!important;display:flex!important;align-items:center!important;justify-content:center!important;border:1px solid #d8e5ef!important;border-radius:11px!important;background:#fff!important}#pagina-home #emDestV14 .logo-box img{width:100%!important;height:100%!important;display:block!important;object-fit:contain!important}#pagina-home #emDestV14 .logo-fallback{width:100%!important;height:100%!important;display:flex!important;align-items:center!important;justify-content:center!important;border-radius:7px!important;background:#edf6fd!important;color:#0866c6!important;font:800 16px Inter,Arial,sans-serif!important}#pagina-home #emDestV14 .logos-viewport:hover .logos-track{animation-play-state:paused!important}@keyframes emV14Move{from{transform:translateX(0)}to{transform:translateX(-50%)}}#pagina-home #emDestV14 .all-btn{width:275px!important;height:50px!important;display:flex!important;align-items:center!important;justify-content:center!important;border:1px solid #8fc5ee!important;border-radius:11px!important;background:#fff!important;color:#0866c6!important;font:800 11px Inter,Arial,sans-serif!important;cursor:pointer!important;white-space:nowrap!important;box-shadow:0 5px 16px rgba(8,102,198,.07)!important}#pagina-home #listaDestaques{display:grid!important;grid-template-columns:repeat(4,minmax(0,1fr))!important;gap:15px!important;width:100%!important;overflow:visible!important;padding:0!important}#pagina-home #listaDestaques>.card-destaque{width:100%!important;min-width:0!important;max-width:none!important;height:318px!important;min-height:318px!important;max-height:318px!important;margin:0!important;overflow:hidden!important;box-sizing:border-box!important}#pagina-home #listaDestaques:not(.em-v14-all)>.card-destaque:nth-child(n/**/+9){display:none!important}@media(max-width:1050px){#pagina-home #emDestV14{grid-template-columns:320px minmax(0,1fr)!important}#pagina-home #emDestV14 .all-btn{grid-column:1/-1!important}}@media(max-width:980px){#pagina-home #listaDestaques{grid-template-columns:repeat(2,minmax(0,1fr))!important}}@media(max-width:700px){#pagina-home #emDestV14{grid-template-columns:1fr!important;gap:12px!important;margin-bottom:16px!important}#pagina-home #emDestV14 .logos-viewport{display:none!important}#pagina-home section.container:has(#listaDestaques){padding:20px 16px!important;box-sizing:border-box!important;min-width:0!important;max-width:100%!important}#pagina-home #emDestV14 h2{font-size:24px!important;white-space:normal!important}#pagina-home #emDestV14 p{font-size:12px!important;white-space:normal!important}#pagina-home #emDestV14 .all-btn{width:100%!important;grid-column:auto!important}#pagina-home #listaDestaques{grid-template-columns:1fr!important}}</style><script id='em-destaques-v14-unico-js'>
 //<![CDATA[
 (function(){
  function build(){
@@ -38779,7 +38522,7 @@ function moverAreasRefV1(dir){
     renderFinalUmaVez();
   }
 })();
-//]]></script><style id='em-selo-nova-v31'>#pagina-home #listaVagas .em-lista-final{position:relative!important}#pagina-home #listaVagas .em-selo-nova-v31{position:absolute!important;top:13px!important;right:14px!important;z-index:8!important;display:inline-flex!important;align-items:center!important;gap:5px!important;height:25px!important;padding:0 9px!important;border:1px solid #1672e8!important;border-radius:8px!important;background:#eef6ff!important;color:#075bd8!important;font:800 10px/1 Inter,Arial,sans-serif!important;letter-spacing:.15px!important;cursor:help!important;box-shadow:0 2px 6px rgba(12,94,210,.06)!important;}#pagina-home #listaVagas .em-selo-nova-v31 .ponto{width:8px!important;height:8px!important;border-radius:50%!important;background:#0867ef!important;}#pagina-home #listaVagas .em-tooltip-nova-v31{position:absolute!important;top:45px!important;right:10px!important;z-index:30!important;width:205px!important;padding:11px 12px!important;border-radius:9px!important;background:#103b69!important;color:#fff!important;box-shadow:0 8px 22px rgba(4,35,68,.22)!important;opacity:0!important;visibility:hidden!important;transform:translateY(-4px)!important;transition:opacity .18s ease,transform .18s ease!important;pointer-events:none!important;font:500 11px/1.45 Inter,Arial,sans-serif!important;}#pagina-home #listaVagas .em-tooltip-nova-v31:before{content:&quot;&quot;!important;position:absolute!important;top:-6px!important;right:25px!important;width:12px!important;height:12px!important;background:#103b69!important;transform:rotate(45deg)!important;}#pagina-home #listaVagas .em-tooltip-nova-v31 strong{display:block!important;margin-bottom:3px!important;font-size:12px!important;color:#fff!important;}#pagina-home #listaVagas .em-selo-nova-v31:hover + .em-tooltip-nova-v31,#pagina-home #listaVagas .em-selo-nova-v31:focus + .em-tooltip-nova-v31,#pagina-home #listaVagas .em-tooltip-nova-v31.aberto{opacity:1!important;visibility:visible!important;transform:translateY(0)!important;}</style><script id='em-selo-nova-v31-js'>
+//]]></script><style id='em-selo-nova-v31'>#pagina-home #listaVagas .em-selo-nova-v31{position:absolute!important;top:13px!important;right:14px!important;z-index:8!important;display:inline-flex!important;align-items:center!important;gap:5px!important;height:25px!important;padding:0 9px!important;border:1px solid #1672e8!important;border-radius:8px!important;background:#eef6ff!important;color:#075bd8!important;font:800 10px/1 Inter,Arial,sans-serif!important;letter-spacing:.15px!important;cursor:help!important;box-shadow:0 2px 6px rgba(12,94,210,.06)!important;}#pagina-home #listaVagas .em-selo-nova-v31 .ponto{width:8px!important;height:8px!important;border-radius:50%!important;background:#0867ef!important;}#pagina-home #listaVagas .em-tooltip-nova-v31{position:absolute!important;top:45px!important;right:10px!important;z-index:30!important;width:205px!important;padding:11px 12px!important;border-radius:9px!important;background:#103b69!important;color:#fff!important;box-shadow:0 8px 22px rgba(4,35,68,.22)!important;opacity:0!important;visibility:hidden!important;transform:translateY(-4px)!important;transition:opacity .18s ease,transform .18s ease!important;pointer-events:none!important;font:500 11px/1.45 Inter,Arial,sans-serif!important;}#pagina-home #listaVagas .em-tooltip-nova-v31:before{content:&quot;&quot;!important;position:absolute!important;top:-6px!important;right:25px!important;width:12px!important;height:12px!important;background:#103b69!important;transform:rotate(45deg)!important;}#pagina-home #listaVagas .em-tooltip-nova-v31 strong{display:block!important;margin-bottom:3px!important;font-size:12px!important;color:#fff!important;}#pagina-home #listaVagas .em-selo-nova-v31:hover + .em-tooltip-nova-v31,#pagina-home #listaVagas .em-selo-nova-v31:focus + .em-tooltip-nova-v31,#pagina-home #listaVagas .em-tooltip-nova-v31.aberto{opacity:1!important;visibility:visible!important;transform:translateY(0)!important;}</style><script id='em-selo-nova-v31-js'>
 //<![CDATA[
 (function(){
  var LIMITE=48*60*60*1000;
@@ -40252,7 +39995,7 @@ var queued=false;
 new MutationObserver(function(){if(queued)return;queued=true;requestAnimationFrame(function(){queued=false;bind();});}).observe(document.body,{childList:true,subtree:true});
 bind();
 })();
-//]]></script><style id='em-vaga-hero-v93-final' type='text/css'> #pagina-vaga .vaga-cabecalho.em-vaga-hero-v88{ position:relative!important;overflow:hidden!important;padding:18px 20px 16px!important;border:1px solid #c6def2!important;border-radius:18px!important;background:radial-gradient(circle at 88% 4%,rgba(29,132,220,.09),transparent 28%), linear-gradient(135deg,#fbfdff 0%,#f4f9fe 58%,#edf6fd 100%)!important;box-shadow:0 8px 24px rgba(20,67,104,.055)!important;color:#0b3768!important } #pagina-vaga .vaga-cabecalho.em-vaga-hero-v88:before{ content:&quot;&quot;!important;position:absolute!important;right:-115px!important;top:-145px!important;width:440px!important;height:290px!important;border-radius:50%!important;border:0!important;background:rgba(36,139,225,.045)!important;pointer-events:none!important;z-index:0!important } #pagina-vaga .vaga-cabecalho.em-vaga-hero-v88:after{display:none!important;content:none!important} #pagina-vaga .em-vaga-hero-v88 .vaga-cabecalho-top{ position:relative!important;z-index:2!important;display:grid!important;grid-template-columns:118px minmax(0,1fr)!important;gap:20px!important;align-items:center!important;width:calc(100% - 172px)!important;max-width:none!important;min-height:118px!important;margin:0!important;padding:0!important } #pagina-vaga .em-vaga-hero-v88 #logoDetalhe{ display:block!important;width:118px!important;height:118px!important;min-width:118px!important;max-width:118px!important;margin:0!important;padding:9px!important;object-fit:contain!important;border:1px solid #cfe1f0!important;border-radius:17px!important;background:#fff!important;box-shadow:0 6px 17px rgba(17,66,103,.065)!important } #pagina-vaga .em-vaga-hero-v88 .vaga-cabecalho-top&gt;div{min-width:0!important;padding:0!important} #pagina-vaga .em-vaga-hero-v88 #detalheEmpresaCab{ display:flex!important;align-items:center!important;flex-wrap:wrap!important;gap:7px!important;margin:0 0 7px!important;color:#164b7b!important;font-size:13px!important;line-height:1.15!important;font-weight:650!important } #pagina-vaga .em-vaga-hero-v88 #detalheCargoCab{ width:100%!important;max-width:920px!important;margin:0 0 6px!important;padding:0!important;color:#082f63!important;font-size:25px!important;line-height:1.05!important;font-weight:900!important;letter-spacing:-.025em!important;text-transform:uppercase!important;text-shadow:none!important } #pagina-vaga .em-vaga-hero-v88 .em-vaga-ref-subtitle-v1{ max-width:760px!important;margin:0 0 8px!important;color:#607d97!important;font-size:11px!important;line-height:1.3!important } #pagina-vaga .em-vaga-hero-v88 .tags{margin:0!important;gap:6px!important} #pagina-vaga .em-vaga-hero-v88 .tag{ min-height:27px!important;padding:5px 11px!important;border:1px solid #c8e1f5!important;border-radius:999px!important;background:#eaf5ff!important;color:#0869bb!important;font-size:9.5px!important;font-weight:850!important;box-shadow:none!important } #pagina-vaga .em-vaga-hero-v88 .empresa-verificada-mini, #pagina-vaga .em-vaga-hero-v88 .empresa-verificada-v30{ min-height:28px!important;padding:5px 10px!important;border:1px solid #b9daf5!important;border-radius:999px!important;background:#e7f3ff!important;color:#0872ca!important;font-size:10px!important;font-weight:800!important;box-shadow:none!important } #pagina-vaga .em-vaga-hero-v88 .em-hero-destaque-v88{ position:absolute!important;z-index:6!important;right:20px!important;top:18px!important;width:154px!important;min-width:154px!important;height:62px!important;padding:7px 10px!important;display:flex!important;align-items:center!important;gap:10px!important;border:1px solid #bed9f0!important;border-radius:12px!important;background:rgba(247,251,255,.95)!important;color:#154a7d!important;box-shadow:0 5px 15px rgba(17,68,108,.045)!important } #pagina-vaga .em-vaga-hero-v88 .em-hero-destaque-v88[hidden]{display:none!important} #pagina-vaga .em-vaga-hero-v88 .em-hero-destaque-ico-v88{ width:40px!important;height:48px!important;min-width:40px!important;display:flex!important;align-items:center!important;justify-content:center!important;border-radius:7px 7px 10px 10px!important;background:linear-gradient(180deg,#1476d2,#07509d)!important;color:#fff!important;font-size:24px!important;box-shadow:none!important } #pagina-vaga .em-vaga-hero-v88 .em-hero-destaque-v88&gt;span:last-child{ color:#164a7d!important;font-size:9.5px!important;line-height:1.05!important;font-weight:750!important } #pagina-vaga .em-vaga-hero-v88 .em-hero-destaque-v88 strong{color:#073a70!important;font-size:13px!important;font-weight:900!important} #pagina-vaga .em-vaga-hero-v88 .em-info-bar-v1{ position:relative!important;z-index:2!important;display:grid!important;grid-template-columns:.92fr 1fr 1fr 1.34fr!important;width:100%!important;height:64px!important;min-height:64px!important;gap:0!important;margin:14px 0 0!important;padding:0!important;border:1px solid #c7def1!important;border-radius:13px!important;background:rgba(255,255,255,.88)!important;box-shadow:0 3px 10px rgba(17,67,104,.025)!important;overflow:hidden!important } #pagina-vaga .em-vaga-hero-v88 .em-info-cell-v1{ position:relative!important;display:flex!important;flex-direction:column!important;justify-content:center!important;height:64px!important;min-height:64px!important;margin:0!important;padding:8px 12px 8px 62px!important;border:0!important;border-radius:0!important;background:transparent!important;box-shadow:none!important;overflow:hidden!important } #pagina-vaga .em-vaga-hero-v88 .em-info-cell-v1:not(:last-child):after{ content:&quot;&quot;!important;display:block!important;position:absolute!important;right:0!important;top:13px!important;bottom:13px!important;width:1px!important;background:#cbdfee!important } #pagina-vaga .em-vaga-hero-v88 .em-info-icon-v1{ position:absolute!important;left:15px!important;top:50%!important;transform:translateY(-50%)!important;width:38px!important;height:38px!important;min-width:38px!important;display:flex!important;align-items:center!important;justify-content:center!important;border:0!important;border-radius:50%!important;background:#e3f1fd!important;color:#0874d0!important;box-shadow:none!important } #pagina-vaga .em-vaga-hero-v88 .em-info-icon-v1 svg{ width:21px!important;height:21px!important;stroke-width:1.8!important } #pagina-vaga .em-vaga-hero-v88 .em-info-cell-v1 span:not(.em-info-icon-v1){ display:block!important;margin:0 0 4px!important;color:#5c7994!important;font-size:8.5px!important;line-height:1!important;font-weight:800!important;white-space:nowrap!important } #pagina-vaga .em-vaga-hero-v88 .em-info-cell-v1 strong{ display:block!important;margin:0!important;color:#0a3768!important;font-size:11.5px!important;line-height:1!important;font-weight:900!important;white-space:nowrap!important;overflow:visible!important;text-overflow:clip!important;text-transform:uppercase!important } #pagina-vaga .em-vaga-hero-v88 .em-info-distance-v1{display:none!important} #pagina-vaga .em-vaga-hero-v88 .em-info-cell-v1:nth-child(1){background:#eef9f3!important;border-right:1px solid #cce8d8!important} #pagina-vaga .em-vaga-hero-v88 .em-info-cell-v1:nth-child(2){background:#eef6ff!important;border-right:1px solid #cbdff4!important} #pagina-vaga .em-vaga-hero-v88 .em-info-cell-v1:nth-child(3){background:#f5f0ff!important;border-right:1px solid #ded1f3!important} #pagina-vaga .em-vaga-hero-v88 .em-info-cell-v1:nth-child(4){background:#fff0f2!important} #pagina-vaga .em-vaga-hero-v88 .em-info-cell-v1:nth-child(1) .em-info-icon-v1{background-color:#e1f5e9!important} #pagina-vaga .em-vaga-hero-v88 .em-info-cell-v1:nth-child(2) .em-info-icon-v1{background-color:#e4effd!important} #pagina-vaga .em-vaga-hero-v88 .em-info-cell-v1:nth-child(3) .em-info-icon-v1{background-color:#eee6fb!important} #pagina-vaga .em-vaga-hero-v88 .em-info-cell-v1:nth-child(4) .em-info-icon-v1{background-color:#fde5e8!important} #pagina-vaga .em-vaga-hero-v88 .em-info-cell-v1:nth-child(1) .em-info-icon-v1, #pagina-vaga .em-vaga-hero-v88 .em-info-cell-v1:nth-child(2) .em-info-icon-v1, #pagina-vaga .em-vaga-hero-v88 .em-info-cell-v1:nth-child(3) .em-info-icon-v1, #pagina-vaga .em-vaga-hero-v88 .em-info-cell-v1:nth-child(4) .em-info-icon-v1{ font-size:0!important;background-repeat:no-repeat!important;background-position:center!important;background-size:22px 22px!important } #pagina-vaga .em-vaga-hero-v88 .em-info-cell-v1:nth-child(1) .em-info-icon-v1{ background-color:#e3f1fd!important;background-image:url(&quot;data:image/svg+xml,%3Csvg xmlns=&#39;http://www.w3.org/2000/svg&#39; viewBox=&#39;0 0 24 24&#39; fill=&#39;none&#39; stroke=&#39;%231a9a5b&#39; stroke-width=&#39;1.8&#39; stroke-linecap=&#39;round&#39; stroke-linejoin=&#39;round&#39;%3E%3Cellipse cx=&#39;9&#39; cy=&#39;6&#39; rx=&#39;5&#39; ry=&#39;2.4&#39;/%3E%3Cpath d=&#39;M4 6v4c0 1.3 2.2 2.4 5 2.4s5-1.1 5-2.4V6M4 10v4c0 1.3 2.2 2.4 5 2.4 1.1 0 2.1-.2 3-.5&#39;/%3E%3Cellipse cx=&#39;16.5&#39; cy=&#39;13&#39; rx=&#39;3.5&#39; ry=&#39;1.8&#39;/%3E%3Cpath d=&#39;M13 13v4c0 1 1.6 1.8 3.5 1.8S20 18 20 17v-4M13 16.5v2c0 1 1.6 1.8 3.5 1.8S20 19.5 20 18.5v-2&#39;/%3E%3C/svg%3E&quot;)!important } #pagina-vaga .em-vaga-hero-v88 .em-info-cell-v1:nth-child(2) .em-info-icon-v1{ background-color:#e3f1fd!important;background-image:url(&quot;data:image/svg+xml,%3Csvg xmlns=&#39;http://www.w3.org/2000/svg&#39; viewBox=&#39;0 0 24 24&#39; fill=&#39;none&#39; stroke=&#39;%237b57c7&#39; stroke-width=&#39;1.8&#39; stroke-linecap=&#39;round&#39; stroke-linejoin=&#39;round&#39;%3E%3Crect x=&#39;3&#39; y=&#39;7&#39; width=&#39;18&#39; height=&#39;12&#39; rx=&#39;2&#39;/%3E%3Cpath d=&#39;M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2M3 12h18M10 12v2h4v-2&#39;/%3E%3C/svg%3E&quot;)!important } #pagina-vaga .em-vaga-hero-v88 .em-info-cell-v1:nth-child(3) .em-info-icon-v1{ background-color:#e3f1fd!important;background-image:url(&quot;data:image/svg+xml,%3Csvg xmlns=&#39;http://www.w3.org/2000/svg&#39; viewBox=&#39;0 0 24 24&#39; fill=&#39;none&#39; stroke=&#39;%23d85b6a&#39; stroke-width=&#39;1.8&#39; stroke-linecap=&#39;round&#39; stroke-linejoin=&#39;round&#39;%3E%3Crect x=&#39;3&#39; y=&#39;4&#39; width=&#39;18&#39; height=&#39;13&#39; rx=&#39;2&#39;/%3E%3Cpath d=&#39;M8 21h8M12 17v4&#39;/%3E%3C/svg%3E&quot;)!important } #pagina-vaga .em-vaga-hero-v88 .em-info-cell-v1:nth-child(4) .em-info-icon-v1{ background-color:#e3f1fd!important;background-image:url(&quot;data:image/svg+xml,%3Csvg xmlns=&#39;http://www.w3.org/2000/svg&#39; viewBox=&#39;0 0 24 24&#39; fill=&#39;none&#39; stroke=&#39;%230874d0&#39; stroke-width=&#39;1.8&#39; stroke-linecap=&#39;round&#39; stroke-linejoin=&#39;round&#39;%3E%3Cpath d=&#39;M20 10c0 5-8 11-8 11S4 15 4 10a8 8 0 1 1 16 0Z&#39;/%3E%3Ccircle cx=&#39;12&#39; cy=&#39;10&#39; r=&#39;2.5&#39;/%3E%3C/svg%3E&quot;)!important } #pagina-vaga .em-vaga-hero-v88 .em-info-icon-v1&gt;*{visibility:hidden!important} #pagina-vaga .em-vaga-hero-v88 .em-hero-beneficios-v88{ position:relative!important;z-index:2!important;display:grid!important;grid-template-columns:150px minmax(0,1fr)!important;align-items:center!important;gap:10px!important;width:100%!important;margin:9px 0 0!important;padding:8px 10px!important;border:1px solid #cddfee!important;border-radius:12px!important;background:rgba(255,255,255,.79)!important;box-shadow:none!important } #pagina-vaga .em-vaga-hero-v88 .em-hero-beneficios-v88[hidden]{display:none!important} #pagina-vaga .em-vaga-hero-v88 .em-hero-beneficios-titulo-v88{ min-height:30px!important;margin:0!important;padding:0 10px 0 0!important;display:flex!important;align-items:center!important;gap:8px!important;border-right:1px solid #d2e3f0!important;color:#123f6d!important;font-size:10.5px!important;line-height:1.08!important;font-weight:900!important } #pagina-vaga .em-vaga-hero-v88 .em-hero-beneficios-titulo-v88:before{ width:25px!important;height:25px!important;min-width:25px!important;border:0!important;border-radius:7px!important;background:#e4f2fd!important;color:#0874d0!important;font-size:14px!important } #pagina-vaga .em-vaga-hero-v88 .em-hero-beneficios-lista-v88{display:flex!important;align-items:center!important;flex-wrap:wrap!important;gap:6px!important} #pagina-vaga .em-vaga-hero-v88 .em-hero-beneficio-v88{ min-height:29px!important;padding:4px 8px!important;border:1px solid #dbe8f3!important;border-radius:8px!important;background:#f4f9fe!important;color:#194a73!important;font-size:9.5px!important;font-weight:750!important;box-shadow:none!important } #pagina-vaga .em-vaga-hero-v88 .em-hero-beneficio-v88:before{ width:18px!important;height:18px!important;min-width:18px!important;border-radius:5px!important;background:#e4f2fd!important;color:#0874d0!important } @media(max-width:900px){ #pagina-vaga .em-vaga-hero-v88 .vaga-cabecalho-top{width:100%!important;grid-template-columns:100px minmax(0,1fr)!important} #pagina-vaga .em-vaga-hero-v88 #logoDetalhe{width:100px!important;height:100px!important;min-width:100px!important} #pagina-vaga .em-vaga-hero-v88 .em-hero-destaque-v88{position:relative!important;right:auto!important;top:auto!important;margin:0 0 10px auto!important} } @media(max-width:680px){ #pagina-vaga .vaga-cabecalho.em-vaga-hero-v88{padding:14px!important} #pagina-vaga .em-vaga-hero-v88 #detalheCargoCab{font-size:20px!important} #pagina-vaga .em-vaga-hero-v88 .em-info-bar-v1{display:flex!important;overflow-x:auto!important;height:62px!important} #pagina-vaga .em-vaga-hero-v88 .em-info-cell-v1{flex:0 0 165px!important;height:62px!important;min-height:62px!important} #pagina-vaga .em-vaga-hero-v88 .em-hero-beneficios-v88{grid-template-columns:1fr!important} #pagina-vaga .em-vaga-hero-v88 .em-hero-beneficios-titulo-v88{border-right:0!important;border-bottom:1px solid #d2e3f0!important;padding:0 0 7px!important} } #pagina-vaga .vaga-cabecalho-top .empresa-verificada-v30, #pagina-vaga .vaga-cabecalho-top .selo-verificado-card-em, #pagina-vaga .vaga-cabecalho-top .selo-verificacao, #pagina-vaga .vaga-cabecalho-top .empresa-publica-status-cadastro-em{ display:none!important } #pagina-vaga .vaga-cabecalho-top #detalheEmpresaCab&gt;.empresa-verificada-mini{ display:inline-flex!important } #pagina-vaga #detalheEmpresaCab&gt;.empresa-verificada-mini:before{ content:&quot;\\2713&quot;!important } #pagina-vaga .em-vaga-hero-v88 .em-info-bar-v1{ grid-template-columns:.9fr 1fr 1fr 1.38fr!important } #pagina-vaga .em-vaga-hero-v88 .em-info-cell-v1:nth-child(1){background:#edf9f2!important} #pagina-vaga .em-vaga-hero-v88 .em-info-cell-v1:nth-child(2){background:#edf6ff!important} #pagina-vaga .em-vaga-hero-v88 .em-info-cell-v1:nth-child(3){background:#f4effd!important} #pagina-vaga .em-vaga-hero-v88 .em-info-cell-v1:nth-child(4){background:#fff0f2!important} #pagina-vaga .em-vaga-hero-v88 .em-info-cell-v1:nth-child(1) .em-info-icon-v1{background-color:#dcefe4!important} #pagina-vaga .em-vaga-hero-v88 .em-info-cell-v1:nth-child(2) .em-info-icon-v1{background-color:#dcecfb!important} #pagina-vaga .em-vaga-hero-v88 .em-info-cell-v1:nth-child(3) .em-info-icon-v1{background-color:#e9def8!important} #pagina-vaga .em-vaga-hero-v88 .em-info-cell-v1:nth-child(4) .em-info-icon-v1{background-color:#f8dde2!important} #pagina-vaga .em-vaga-hero-v88 .em-info-cell-v1 strong{ white-space:nowrap!important;overflow:visible!important;text-overflow:clip!important } #pagina-vaga .em-vaga-hero-v88 .em-info-cell-v1:nth-child(4) strong{ font-size:10.5px!important;letter-spacing:-.01em!important } </style><style id='em-vaga-v93-ajustes' type='text/css'> #pagina-vaga .em-vaga-hero-v88 .em-info-cell-v1:not(:last-child):after{display:none!important;content:none!important} #pagina-vaga .em-vaga-hero-v88 .em-info-cell-v1 strong{overflow:visible!important;text-overflow:clip!important} #pagina-vaga .em-vaga-hero-v88 .em-info-cell-v1:nth-child(4) strong{font-size:11px!important} #pagina-vaga .em-vaga-hero-v88 .em-info-cell-v1:nth-child(1) .em-info-icon-v1{background-color:#dff3e7!important} #pagina-vaga .em-vaga-hero-v88 .em-info-cell-v1:nth-child(2) .em-info-icon-v1{background-color:#deedfc!important} #pagina-vaga .em-vaga-hero-v88 .em-info-cell-v1:nth-child(3) .em-info-icon-v1{background-color:#eae0f8!important} #pagina-vaga .em-vaga-hero-v88 .em-info-cell-v1:nth-child(4) .em-info-icon-v1{background-color:#f9dfe3!important}
+//]]></script><style id='em-vaga-hero-v93-final' type='text/css'> #pagina-vaga .vaga-cabecalho.em-vaga-hero-v88{ position:relative!important;overflow:hidden!important;padding:18px 20px 16px!important;border:1px solid #c6def2!important;border-radius:18px!important;background:radial-gradient(circle at 88% 4%,rgba(29,132,220,.09),transparent 28%), linear-gradient(135deg,#fbfdff 0%,#f4f9fe 58%,#edf6fd 100%)!important;box-shadow:0 8px 24px rgba(20,67,104,.055)!important;color:#0b3768!important } #pagina-vaga .vaga-cabecalho.em-vaga-hero-v88:before{ content:&quot;&quot;!important;position:absolute!important;right:-115px!important;top:-145px!important;width:440px!important;height:290px!important;border-radius:50%!important;border:0!important;background:rgba(36,139,225,.045)!important;pointer-events:none!important;z-index:0!important } #pagina-vaga .vaga-cabecalho.em-vaga-hero-v88:after{display:none!important;content:none!important} #pagina-vaga .em-vaga-hero-v88 .vaga-cabecalho-top{ position:relative!important;z-index:2!important;display:grid!important;grid-template-columns:118px minmax(0,1fr)!important;gap:20px!important;align-items:center!important;width:calc(100% - 172px)!important;max-width:none!important;min-height:118px!important;margin:0!important;padding:0!important } #pagina-vaga .em-vaga-hero-v88 #logoDetalhe{ display:block!important;width:118px!important;height:118px!important;min-width:118px!important;max-width:118px!important;margin:0!important;padding:9px!important;object-fit:contain!important;border:1px solid #cfe1f0!important;border-radius:17px!important;background:#fff!important;box-shadow:0 6px 17px rgba(17,66,103,.065)!important } #pagina-vaga .em-vaga-hero-v88 .vaga-cabecalho-top&gt;div{min-width:0!important;padding:0!important} #pagina-vaga .em-vaga-hero-v88 #detalheEmpresaCab{ display:flex!important;align-items:center!important;flex-wrap:wrap!important;gap:7px!important;margin:0 0 7px!important;color:#164b7b!important;font-size:13px!important;line-height:1.15!important;font-weight:650!important } #pagina-vaga .em-vaga-hero-v88 #detalheCargoCab{ width:100%!important;max-width:920px!important;margin:0 0 6px!important;padding:0!important;color:#082f63!important;font-size:25px!important;line-height:1.05!important;font-weight:900!important;letter-spacing:-.025em!important;text-transform:uppercase!important;text-shadow:none!important } #pagina-vaga .em-vaga-hero-v88 .em-vaga-ref-subtitle-v1{ max-width:760px!important;margin:0 0 8px!important;color:#607d97!important;font-size:11px!important;line-height:1.3!important } #pagina-vaga .em-vaga-hero-v88 .tags{margin:0!important;gap:6px!important} #pagina-vaga .em-vaga-hero-v88 .tag{ min-height:27px!important;padding:5px 11px!important;border:1px solid #c8e1f5!important;border-radius:999px!important;background:#eaf5ff!important;color:#0869bb!important;font-size:9.5px!important;font-weight:850!important;box-shadow:none!important } #pagina-vaga .em-vaga-hero-v88 .empresa-verificada-mini, #pagina-vaga .em-vaga-hero-v88 .empresa-verificada-v30{ min-height:28px!important;padding:5px 10px!important;border:1px solid #b9daf5!important;border-radius:999px!important;background:#e7f3ff!important;color:#0872ca!important;font-size:10px!important;font-weight:800!important;box-shadow:none!important } #pagina-vaga .em-vaga-hero-v88 .em-hero-destaque-v88{ position:absolute!important;z-index:6!important;right:20px!important;top:18px!important;width:154px!important;min-width:154px!important;height:62px!important;padding:7px 10px!important;display:flex!important;align-items:center!important;gap:10px!important;border:1px solid #bed9f0!important;border-radius:12px!important;background:rgba(247,251,255,.95)!important;color:#154a7d!important;box-shadow:0 5px 15px rgba(17,68,108,.045)!important } #pagina-vaga .em-vaga-hero-v88 .em-hero-destaque-v88[hidden]{display:none!important} #pagina-vaga .em-vaga-hero-v88 .em-hero-destaque-ico-v88{ width:40px!important;height:48px!important;min-width:40px!important;display:flex!important;align-items:center!important;justify-content:center!important;border-radius:7px 7px 10px 10px!important;background:linear-gradient(180deg,#1476d2,#07509d)!important;color:#fff!important;font-size:24px!important;box-shadow:none!important } #pagina-vaga .em-vaga-hero-v88 .em-hero-destaque-v88&gt;span:last-child{ color:#164a7d!important;font-size:9.5px!important;line-height:1.05!important;font-weight:750!important } #pagina-vaga .em-vaga-hero-v88 .em-hero-destaque-v88 strong{color:#073a70!important;font-size:13px!important;font-weight:900!important} #pagina-vaga .em-vaga-hero-v88 .em-info-bar-v1{ position:relative!important;z-index:2!important;display:grid!important;grid-template-columns:.92fr 1fr 1fr 1.34fr!important;width:100%!important;height:64px!important;min-height:64px!important;gap:0!important;margin:14px 0 0!important;padding:0!important;border:1px solid #c7def1!important;border-radius:13px!important;background:rgba(255,255,255,.88)!important;box-shadow:0 3px 10px rgba(17,67,104,.025)!important;overflow:hidden!important } #pagina-vaga .em-vaga-hero-v88 .em-info-cell-v1{ position:relative!important;display:flex!important;flex-direction:column!important;justify-content:center!important;height:64px!important;min-height:64px!important;margin:0!important;padding:8px 12px 8px 62px!important;border:0!important;border-radius:0!important;background:transparent!important;box-shadow:none!important;overflow:hidden!important } #pagina-vaga .em-vaga-hero-v88 .em-info-cell-v1:not(:last-child):after{ content:&quot;&quot;!important;display:block!important;position:absolute!important;right:0!important;top:13px!important;bottom:13px!important;width:1px!important;background:#cbdfee!important } #pagina-vaga .em-vaga-hero-v88 .em-info-icon-v1{ position:absolute!important;left:15px!important;top:50%!important;transform:translateY(-50%)!important;width:38px!important;height:38px!important;min-width:38px!important;display:flex!important;align-items:center!important;justify-content:center!important;border:0!important;border-radius:50%!important;background:#e3f1fd!important;color:#0874d0!important;box-shadow:none!important } #pagina-vaga .em-vaga-hero-v88 .em-info-icon-v1 svg{ width:21px!important;height:21px!important;stroke-width:1.8!important } #pagina-vaga .em-vaga-hero-v88 .em-info-cell-v1 span:not(.em-info-icon-v1){ display:block!important;margin:0 0 4px!important;color:#5c7994!important;font-size:8.5px!important;line-height:1!important;font-weight:800!important;white-space:nowrap!important } #pagina-vaga .em-vaga-hero-v88 .em-info-cell-v1 strong{ display:block!important;margin:0!important;color:#0a3768!important;font-size:11.5px!important;line-height:1!important;font-weight:900!important;white-space:nowrap!important;overflow:visible!important;text-overflow:clip!important;text-transform:uppercase!important } #pagina-vaga .em-vaga-hero-v88 .em-info-distance-v1{display:none!important} #pagina-vaga .em-vaga-hero-v88 .em-info-cell-v1:nth-child(1){background:#eef9f3!important;border-right:1px solid #cce8d8!important} #pagina-vaga .em-vaga-hero-v88 .em-info-cell-v1:nth-child(2){background:#eef6ff!important;border-right:1px solid #cbdff4!important} #pagina-vaga .em-vaga-hero-v88 .em-info-cell-v1:nth-child(3){background:#f5f0ff!important;border-right:1px solid #ded1f3!important} #pagina-vaga .em-vaga-hero-v88 .em-info-cell-v1:nth-child(4){background:#fff0f2!important} #pagina-vaga .em-vaga-hero-v88 .em-info-cell-v1:nth-child(1) .em-info-icon-v1{background-color:#e1f5e9!important} #pagina-vaga .em-vaga-hero-v88 .em-info-cell-v1:nth-child(2) .em-info-icon-v1{background-color:#e4effd!important} #pagina-vaga .em-vaga-hero-v88 .em-info-cell-v1:nth-child(3) .em-info-icon-v1{background-color:#eee6fb!important} #pagina-vaga .em-vaga-hero-v88 .em-info-cell-v1:nth-child(4) .em-info-icon-v1{background-color:#fde5e8!important} #pagina-vaga .em-vaga-hero-v88 .em-info-cell-v1:nth-child(1) .em-info-icon-v1, #pagina-vaga .em-vaga-hero-v88 .em-info-cell-v1:nth-child(2) .em-info-icon-v1, #pagina-vaga .em-vaga-hero-v88 .em-info-cell-v1:nth-child(3) .em-info-icon-v1, #pagina-vaga .em-vaga-hero-v88 .em-info-cell-v1:nth-child(4) .em-info-icon-v1{ font-size:0!important;background-repeat:no-repeat!important;background-position:center!important;background-size:22px 22px!important } #pagina-vaga .em-vaga-hero-v88 .em-info-cell-v1:nth-child(1) .em-info-icon-v1{ background-color:#e3f1fd!important;background-image:url([bad url])!important } #pagina-vaga .em-vaga-hero-v88 .em-info-cell-v1:nth-child(2) .em-info-icon-v1{ background-color:#e3f1fd!important;background-image:url([bad url])!important } #pagina-vaga .em-vaga-hero-v88 .em-info-cell-v1:nth-child(3) .em-info-icon-v1{ background-color:#e3f1fd!important;background-image:url([bad url])!important } #pagina-vaga .em-vaga-hero-v88 .em-info-cell-v1:nth-child(4) .em-info-icon-v1{ background-color:#e3f1fd!important;background-image:url([bad url])!important } #pagina-vaga .em-vaga-hero-v88 .em-info-icon-v1&gt;*{visibility:hidden!important} #pagina-vaga .em-vaga-hero-v88 .em-hero-beneficios-v88{ position:relative!important;z-index:2!important;display:grid!important;grid-template-columns:150px minmax(0,1fr)!important;align-items:center!important;gap:10px!important;width:100%!important;margin:9px 0 0!important;padding:8px 10px!important;border:1px solid #cddfee!important;border-radius:12px!important;background:rgba(255,255,255,.79)!important;box-shadow:none!important } #pagina-vaga .em-vaga-hero-v88 .em-hero-beneficios-v88[hidden]{display:none!important} #pagina-vaga .em-vaga-hero-v88 .em-hero-beneficios-titulo-v88{ min-height:30px!important;margin:0!important;padding:0 10px 0 0!important;display:flex!important;align-items:center!important;gap:8px!important;border-right:1px solid #d2e3f0!important;color:#123f6d!important;font-size:10.5px!important;line-height:1.08!important;font-weight:900!important } #pagina-vaga .em-vaga-hero-v88 .em-hero-beneficios-titulo-v88:before{ width:25px!important;height:25px!important;min-width:25px!important;border:0!important;border-radius:7px!important;background:#e4f2fd!important;color:#0874d0!important;font-size:14px!important } #pagina-vaga .em-vaga-hero-v88 .em-hero-beneficios-lista-v88{display:flex!important;align-items:center!important;flex-wrap:wrap!important;gap:6px!important} #pagina-vaga .em-vaga-hero-v88 .em-hero-beneficio-v88{ min-height:29px!important;padding:4px 8px!important;border:1px solid #dbe8f3!important;border-radius:8px!important;background:#f4f9fe!important;color:#194a73!important;font-size:9.5px!important;font-weight:750!important;box-shadow:none!important } #pagina-vaga .em-vaga-hero-v88 .em-hero-beneficio-v88:before{ width:18px!important;height:18px!important;min-width:18px!important;border-radius:5px!important;background:#e4f2fd!important;color:#0874d0!important } @media(max-width:900px){ #pagina-vaga .em-vaga-hero-v88 .vaga-cabecalho-top{width:100%!important;grid-template-columns:100px minmax(0,1fr)!important} #pagina-vaga .em-vaga-hero-v88 #logoDetalhe{width:100px!important;height:100px!important;min-width:100px!important} #pagina-vaga .em-vaga-hero-v88 .em-hero-destaque-v88{position:relative!important;right:auto!important;top:auto!important;margin:0 0 10px auto!important} } @media(max-width:680px){ #pagina-vaga .vaga-cabecalho.em-vaga-hero-v88{padding:14px!important} #pagina-vaga .em-vaga-hero-v88 #detalheCargoCab{font-size:20px!important} #pagina-vaga .em-vaga-hero-v88 .em-info-bar-v1{display:flex!important;overflow-x:auto!important;height:62px!important} #pagina-vaga .em-vaga-hero-v88 .em-info-cell-v1{flex:0 0 165px!important;height:62px!important;min-height:62px!important} #pagina-vaga .em-vaga-hero-v88 .em-hero-beneficios-v88{grid-template-columns:1fr!important} #pagina-vaga .em-vaga-hero-v88 .em-hero-beneficios-titulo-v88{border-right:0!important;border-bottom:1px solid #d2e3f0!important;padding:0 0 7px!important} } #pagina-vaga .vaga-cabecalho-top .empresa-verificada-v30, #pagina-vaga .vaga-cabecalho-top .selo-verificado-card-em, #pagina-vaga .vaga-cabecalho-top .selo-verificacao, #pagina-vaga .vaga-cabecalho-top .empresa-publica-status-cadastro-em{ display:none!important } #pagina-vaga .vaga-cabecalho-top #detalheEmpresaCab&gt;.empresa-verificada-mini{ display:inline-flex!important } #pagina-vaga #detalheEmpresaCab&gt;.empresa-verificada-mini:before{ content:&quot;\\2713&quot;!important } #pagina-vaga .em-vaga-hero-v88 .em-info-bar-v1{ grid-template-columns:.9fr 1fr 1fr 1.38fr!important } #pagina-vaga .em-vaga-hero-v88 .em-info-cell-v1:nth-child(1){background:#edf9f2!important} #pagina-vaga .em-vaga-hero-v88 .em-info-cell-v1:nth-child(2){background:#edf6ff!important} #pagina-vaga .em-vaga-hero-v88 .em-info-cell-v1:nth-child(3){background:#f4effd!important} #pagina-vaga .em-vaga-hero-v88 .em-info-cell-v1:nth-child(4){background:#fff0f2!important} #pagina-vaga .em-vaga-hero-v88 .em-info-cell-v1:nth-child(1) .em-info-icon-v1{background-color:#dcefe4!important} #pagina-vaga .em-vaga-hero-v88 .em-info-cell-v1:nth-child(2) .em-info-icon-v1{background-color:#dcecfb!important} #pagina-vaga .em-vaga-hero-v88 .em-info-cell-v1:nth-child(3) .em-info-icon-v1{background-color:#e9def8!important} #pagina-vaga .em-vaga-hero-v88 .em-info-cell-v1:nth-child(4) .em-info-icon-v1{background-color:#f8dde2!important} #pagina-vaga .em-vaga-hero-v88 .em-info-cell-v1 strong{ white-space:nowrap!important;overflow:visible!important;text-overflow:clip!important } #pagina-vaga .em-vaga-hero-v88 .em-info-cell-v1:nth-child(4) strong{ font-size:10.5px!important;letter-spacing:-.01em!important } </style><style id='em-vaga-v93-ajustes' type='text/css'> #pagina-vaga .em-vaga-hero-v88 .em-info-cell-v1:not(:last-child):after{display:none!important;content:none!important} #pagina-vaga .em-vaga-hero-v88 .em-info-cell-v1 strong{overflow:visible!important;text-overflow:clip!important} #pagina-vaga .em-vaga-hero-v88 .em-info-cell-v1:nth-child(4) strong{font-size:11px!important} #pagina-vaga .em-vaga-hero-v88 .em-info-cell-v1:nth-child(1) .em-info-icon-v1{background-color:#dff3e7!important} #pagina-vaga .em-vaga-hero-v88 .em-info-cell-v1:nth-child(2) .em-info-icon-v1{background-color:#deedfc!important} #pagina-vaga .em-vaga-hero-v88 .em-info-cell-v1:nth-child(3) .em-info-icon-v1{background-color:#eae0f8!important} #pagina-vaga .em-vaga-hero-v88 .em-info-cell-v1:nth-child(4) .em-info-icon-v1{background-color:#f9dfe3!important}
 #pagina-vaga #detalheEmpresaCab&gt;.empresa-verificada-mini{
  box-sizing:border-box!important;
  position:relative!important;
@@ -40276,7 +40019,7 @@ bind();
  overflow:visible!important
 }
 #pagina-vaga #detalheEmpresaCab&gt;.empresa-verificada-mini:before{
- content:&quot;\2713&quot;!important;
+ content:&quot;✓&quot;!important;
  position:absolute!important;
  left:7px!important;
  top:50%!important;
@@ -40761,94 +40504,49 @@ function montar(){
 }
 if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",montar);else montar();setTimeout(montar,500);
 })();
-</script><style id="em-vagas-montserrat-candidaturas-v1">
-html body #pagina-home #listaVagas article.em-lista-final,
-html body #pagina-home #listaVagas article.em-lista-final *{font-family:Montserrat,Arial,sans-serif!important}
-html body #pagina-home #listaVagas article.em-lista-final .em-lista-titulo{font-size:18px!important;line-height:1.22!important;font-weight:800!important;letter-spacing:-.2px!important;color:#092b57!important}
-html body #pagina-home #listaVagas article.em-lista-final .em-lista-empresa{font-weight:500!important;color:#50677c!important}
-html body #pagina-home #listaVagas article.em-lista-final .em-lista-resumo{font-weight:500!important;color:#50677c!important;line-height:1.55!important}
-html body #pagina-home #listaVagas article.em-lista-final .em-lista-footer{display:flex!important;align-items:center!important;gap:14px!important}
-html body #pagina-home #listaVagas article.em-lista-final .em-lista-candidaturas{display:inline-flex!important;align-items:center!important;gap:5px!important;color:#657d94!important;font-size:10px!important;font-weight:500!important;white-space:nowrap!important}
-html body #pagina-home #listaVagas article.em-lista-final .em-lista-candidaturas svg{width:14px!important;height:14px!important;fill:none!important;stroke:currentColor!important;stroke-width:1.7!important;stroke-linecap:round!important;stroke-linejoin:round!important}
-html body #pagina-home #listaVagas article.em-lista-final .em-lista-acoes{margin-left:auto!important}
-html body #pagina-home #listaVagas article.em-lista-final .em-lista-footer{display:flex!important;align-items:center!important;gap:10px!important;margin-top:auto!important}
-html body #pagina-home #listaVagas article.em-lista-final .em-lista-data{margin-left:auto!important;position:static!important;display:flex!important;align-items:center!important;text-align:right!important;white-space:nowrap!important}
-html body #pagina-home #listaVagas article.em-lista-final .em-lista-data svg{display:none!important}
-html body #pagina-home #listaVagas article.em-lista-final .em-lista-data span{font-size:9px!important;line-height:1.2!important;color:#71859a!important}
-html body #pagina-home #listaVagas article.em-lista-final .em-lista-acoes{margin-left:0!important;display:flex!important;align-items:center!important}
-html body #pagina-home #listaVagas article.em-lista-final .em-lista-fav{display:none!important}
-html body #pagina-home #listaVagas article.em-lista-final .em-lista-pouca-concorrencia{display:inline-flex!important;align-items:center!important;height:22px!important;padding:0 8px!important;border-radius:999px!important;background:#e9f8ef!important;color:#16804b!important;font-size:9px!important;font-weight:700!important;white-space:nowrap!important}
-html body #pagina-home #listaVagas article.em-lista-final .em-lista-empresa{text-transform:uppercase!important}
-</style><style id="em-vagas-horizontal-v27">
+</script><style id="em-vagas-horizontal-v27">
 html body #pagina-home #listaVagas{display:grid!important;grid-template-columns:minmax(0,1fr)!important;gap:16px!important}
-html body #pagina-home #listaVagas article.em-lista-final{display:grid!important;grid-template-columns:68px minmax(0,1fr) 175px!important;grid-template-rows:auto auto auto auto auto!important;gap:0 16px!important;min-width:0!important;width:100%!important;height:auto!important;min-height:0px!important;max-height:none!important;box-sizing:border-box!important;padding:14px 16px!important;align-content:start!important;background:#fff!important;border:1px solid #d7e3f0!important;border-radius:15px!important;overflow:hidden!important}
-html body #pagina-home #listaVagas article.em-lista-final .em-lista-logo{grid-column:1!important;grid-row:1 / 6!important;width:64px!important;height:64px!important;min-width:0!important;min-height:0!important;align-self:start!important;margin:0!important}
-html body #pagina-home #listaVagas article.em-lista-final .em-lista-cab{grid-column:2!important;grid-row:1!important;min-height:0!important;margin:0 0 7px!important}
-html body #pagina-home #listaVagas article.em-lista-final .em-lista-titulo{grid-column:2!important;grid-row:2!important;font-size:22px!important;line-height:1.2!important;margin:0 0 6px!important;max-height:none!important;overflow-wrap:anywhere!important}
-html body #pagina-home #listaVagas article.em-lista-final .em-lista-meta{grid-column:2!important;grid-row:3!important;display:flex!important;flex-wrap:wrap!important;gap:7px!important;padding:0!important;margin:0 0 6px!important;border:0!important;min-width:0!important}
-html body #pagina-home #listaVagas article.em-lista-final .em-lista-salario{position:static!important;display:inline-flex!important;align-items:center!important;width:auto!important;height:26px!important;min-height:0!important;margin:0!important;padding:0 9px!important;border:1px solid #bfe8d5!important;border-radius:6px!important;background:#effbf5!important;color:#008b57!important}
-html body #pagina-home #listaVagas article.em-lista-final .em-lista-salario small{display:none!important}
-html body #pagina-home #listaVagas article.em-lista-final .em-lista-salario strong{font:700 11px/1 Inter,Arial,sans-serif!important;color:#008b57!important;white-space:nowrap!important}
-html body #pagina-home #listaVagas article.em-lista-final .em-lista-resumo{grid-column:2!important;grid-row:4!important;display:-webkit-box!important;-webkit-box-orient:vertical!important;-webkit-line-clamp:2!important;overflow:hidden!important;overflow-wrap:anywhere!important;width:100%!important;height:auto!important;min-height:0!important;max-height:38px!important;font-size:12px!important;line-height:19px!important;margin:0 0 6px!important}
-html body #pagina-home #listaVagas article.em-lista-final .em-lista-footer{display:contents!important}
-html body #pagina-home #listaVagas article.em-lista-final .em-lista-pouca-concorrencia{grid-column:2!important;grid-row:5!important;justify-self:start!important;align-self:center!important;margin:0!important;position:static!important}
-html body #pagina-home #listaVagas article.em-lista-final .em-lista-candidaturas{grid-column:2!important;grid-row:5!important;justify-self:start!important;align-self:center!important;margin:0!important;font-size:12px!important;line-height:22px!important}
-html body #pagina-home #listaVagas article.em-lista-final:has(.em-lista-pouca-concorrencia) .em-lista-candidaturas{margin-left:155px!important}
-html body #pagina-home #listaVagas article.em-lista-final .em-lista-data{grid-column:3!important;grid-row:4!important;position:static!important;display:block!important;align-self:end!important;justify-self:end!important;width:auto!important;min-width:0!important;margin:0 0 10px!important;padding:0!important;text-align:right!important;white-space:nowrap!important}
-html body #pagina-home #listaVagas article.em-lista-final .em-lista-data span{font-size:11px!important;line-height:1.4!important;white-space:nowrap!important}
-html body #pagina-home #listaVagas article.em-lista-final .em-lista-data svg,html body #pagina-home #listaVagas article.em-lista-final .em-lista-data::before{display:none!important}
-html body #pagina-home #listaVagas article.em-lista-final .em-lista-acoes{grid-column:3!important;grid-row:5!important;display:flex!important;position:static!important;align-self:end!important;justify-self:end!important;width:165px!important;min-height:0!important;grid-template-columns:none!important;grid-template-rows:none!important;margin:0!important;padding:0!important}
-html body #pagina-home #listaVagas article.em-lista-final .em-lista-acoes::after{display:none!important}
-html body #pagina-home #listaVagas article.em-lista-final .em-lista-ver{position:static!important;display:flex!important;align-items:center!important;justify-content:center!important;width:165px!important;height:38px!important;margin:0!important;border-radius:9px!important}
-html body #pagina-home #listaVagas article.em-lista-final .em-lista-fav{display:flex!important;position:static!important;grid-column:3!important;grid-row:1 / 3!important;align-self:start!important;justify-self:end!important;width:32px!important;height:32px!important;margin:0!important;padding:0!important;border:0!important;background:transparent!important;color:#526984!important;font-size:27px!important}
-@media(max-width:760px){
-html body #pagina-home #listaVagas article.em-lista-final{grid-template-columns:60px minmax(0,1fr)!important;grid-template-rows:auto auto auto auto auto auto auto!important;gap:0 12px!important;padding:16px!important;min-height:0!important}
-html body #pagina-home #listaVagas article.em-lista-final .em-lista-logo{width:56px!important;height:56px!important;grid-row:1 / 3!important}
-html body #pagina-home #listaVagas article.em-lista-final .em-lista-titulo{font-size:19px!important;padding-right:24px!important}
-html body #pagina-home #listaVagas article.em-lista-final .em-lista-meta{grid-column:1 / 3!important;margin-top:8px!important}
-html body #pagina-home #listaVagas article.em-lista-final .em-lista-resumo{grid-column:1 / 3!important}
-html body #pagina-home #listaVagas article.em-lista-final .em-lista-pouca-concorrencia{grid-column:1 / 3!important;grid-row:5!important;margin-bottom:5px!important}
-html body #pagina-home #listaVagas article.em-lista-final .em-lista-candidaturas{grid-column:1 / 3!important;grid-row:6!important;margin-left:0!important}
-html body #pagina-home #listaVagas article.em-lista-final .em-lista-data{grid-column:1 / 3!important;grid-row:7!important;justify-self:start!important;margin:12px 0 8px!important}
-html body #pagina-home #listaVagas article.em-lista-final .em-lista-acoes{grid-column:1 / 3!important;grid-row:8!important;width:100%!important}
-html body #pagina-home #listaVagas article.em-lista-final .em-lista-ver{width:100%!important}
-html body #pagina-home #listaVagas article.em-lista-final .em-lista-fav{grid-column:2!important;grid-row:1!important}
-}
-</style><style id="em-font-global-v28">html body,html body :is(p,span,a,div,label,input,textarea,select,button,li,td,th,small,strong,b,h1,h2,h3,h4,h5,h6){font-family:Montserrat,Arial,sans-serif!important}html body{font-weight:500}html body :is(input,textarea,select){font-weight:500!important}html body :is(button,.btn){font-weight:600!important}</style><style id="em-card-type-v29">html body #pagina-home #listaVagas article.em-lista-final .em-lista-empresa{font-weight:600!important;font-size:11px!important}
-html body #pagina-home #listaVagas article.em-lista-final .em-lista-titulo{font-weight:800!important}
-html body #pagina-home #listaVagas article.em-lista-final .em-lista-resumo{font-weight:600!important;font-size:12px!important;line-height:19px!important;max-height:38px!important;-webkit-line-clamp:2!important}
-html body #pagina-home #listaVagas article.em-lista-final .em-lista-meta-item{padding:4px 7px!important;min-height:24px!important;gap:4px!important}
-html body #pagina-home #listaVagas article.em-lista-final .em-lista-meta-item b{font-weight:600!important;font-size:10px!important}
-html body #pagina-home #listaVagas article.em-lista-final .em-lista-candidaturas,html body #pagina-home #listaVagas article.em-lista-final .em-lista-data span{font-weight:600!important}
-html body #pagina-home #listaVagas article.em-lista-final .em-lista-ver{font-weight:700!important}
-</style><style id="em-concorrencia-svg-v30">html body #pagina-home #listaVagas article.em-lista-final .em-lista-pouca-concorrencia::before{content:none!important;display:none!important}html body #pagina-home #listaVagas article.em-lista-final .em-lista-pouca-concorrencia{display:inline-flex!important;align-items:center!important;gap:5px!important}html body #pagina-home #listaVagas article.em-lista-final .em-lista-pouca-concorrencia svg{display:block!important;width:13px!important;height:13px!important;flex:0 0 13px!important;fill:currentColor!important;stroke:none!important;overflow:visible!important}</style><style id="em-info-compacta-v31">html body #pagina-home #listaVagas{gap:12px!important}
-html body #pagina-home #listaVagas article.em-lista-final{padding:12px 14px!important;column-gap:12px!important;row-gap:0!important;grid-template-columns:60px minmax(0,1fr) 170px!important}
-html body #pagina-home #listaVagas article.em-lista-final .em-lista-logo{width:56px!important;height:56px!important}
-html body #pagina-home #listaVagas article.em-lista-final .em-lista-cab{margin:0 0 4px!important}
-html body #pagina-home #listaVagas article.em-lista-final .em-lista-titulo{margin:0 0 6px!important}
-html body #pagina-home #listaVagas article.em-lista-final .em-lista-meta{gap:4px!important;margin:0 0 6px!important}
-html body #pagina-home #listaVagas article.em-lista-final .em-lista-meta-item{min-height:22px!important;padding:3px 6px!important}
-html body #pagina-home #listaVagas article.em-lista-final .em-lista-salario{height:22px!important;padding:0 7px!important}
-html body #pagina-home #listaVagas article.em-lista-final .em-lista-resumo{margin:0 0 6px!important;line-height:18px!important;max-height:36px!important;-webkit-line-clamp:2!important}
-html body #pagina-home #listaVagas article.em-lista-final .em-lista-data{margin-bottom:6px!important}
-@media(max-width:760px){html body #pagina-home #listaVagas article.em-lista-final{grid-template-columns:56px minmax(0,1fr)!important}html body #pagina-home #listaVagas article.em-lista-final .em-lista-meta{margin-top:6px!important}html body #pagina-home #listaVagas article.em-lista-final .em-lista-data{margin:8px 0 6px!important}}
-</style><style id="em-indicadores-v32">html body #pagina-home #listaVagas article.em-lista-final .em-lista-indicadores{grid-column:2!important;grid-row:5!important;display:flex!important;align-items:center!important;flex-wrap:wrap!important;gap:6px 12px!important;min-width:0!important}
-html body #pagina-home #listaVagas article.em-lista-final .em-lista-indicadores :is(.em-lista-pouca-concorrencia,.em-lista-candidaturas){position:static!important;margin:0!important;flex:0 0 auto!important;font-size:10px!important}
-html body #pagina-home #listaVagas article.em-lista-final .em-lista-rapida{display:inline-flex!important;align-items:center!important;gap:5px!important;padding:4px 7px!important;border-radius:999px!important;background:#eef4ff!important;color:#1762bc!important;font-size:10px!important;font-weight:600!important;line-height:1.2!important;white-space:nowrap!important}
-html body #pagina-home #listaVagas article.em-lista-final .em-lista-rapida svg{width:13px!important;height:13px!important;flex:0 0 13px!important;fill:none!important;stroke:currentColor!important;stroke-width:1.8!important;stroke-linejoin:round!important}
-@media(max-width:760px){html body #pagina-home #listaVagas article.em-lista-final .em-lista-indicadores{grid-column:1 / 3!important;grid-row:5 / 7!important}}
-</style><style id="em-card-hover-v33">html body #pagina-home #listaVagas article.em-lista-final{transition:transform .2s ease,box-shadow .2s ease,border-color .2s ease!important}
-@media(hover:hover) and (pointer:fine){html body #pagina-home #listaVagas article.em-lista-final:hover{transform:translateY(-4px)!important;border-color:#b9d1e9!important;box-shadow:0 10px 24px rgba(20,65,110,.12)!important}}
-@media(prefers-reduced-motion:reduce){html body #pagina-home #listaVagas article.em-lista-final{transition:none!important}html body #pagina-home #listaVagas article.em-lista-final:hover{transform:none!important}}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</style><style id="em-info-compacta-v31">html body #pagina-home #listaVagas{gap:12px!important}
+
+
+
+
+
+
+
+
+
+
 </style><style id="em-proximidade-v34">html body #emPerto{margin:12px 0 14px;padding:16px;border:1px solid #c4def7;border-radius:12px;background:#eef7ff;color:#0c315c}
 html body #emPerto h3{margin:0 0 4px;font-size:19px;font-weight:800}html body #emPerto>p{margin:0 0 12px;font-size:12px;font-weight:500}
 html body #emPertoForm{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr) minmax(0,1.1fr);gap:14px;align-items:start}
 html body #emPerto label{display:block;margin-bottom:5px;font-size:12px;font-weight:700}html body #emPerto input,html body #emPerto select{box-sizing:border-box;width:100%;height:40px;padding:0 12px;background:#fff;border:1px solid #c8dcef;border-radius:8px;color:#173b61;font-size:13px}
 html body #emPertoBuscar{height:40px;margin-top:20px;display:flex;align-items:center;justify-content:center;gap:7px;border:0;border-radius:8px;background:#076cf0;color:#fff;font-size:12px;font-weight:700;cursor:pointer}html body #emPertoBuscar:disabled{opacity:.7;cursor:wait}
-html body #emPerto svg,html body #listaVagas .em-lista-distancia svg{width:16px;height:16px;flex:0 0 16px;fill:none;stroke:currentColor;stroke-width:1.8}
+html body #emPerto svg{width:16px;height:16px;flex:0 0 16px;fill:none;stroke:currentColor;stroke-width:1.8}
 html body #emPertoLocal,html body #emPertoLimpar{padding:0;border:0;background:none;color:#0765cc;font-size:11px;cursor:pointer}html body #emPertoLocal{margin-top:6px}
 html body #emPerto .em-perto-rodape{display:flex;flex-wrap:wrap;gap:8px;justify-content:space-between;margin-top:10px;font-size:10px;line-height:1.5;color:#55708b}
-html body #listaVagas .em-lista-distancia{display:inline-flex;align-items:center;gap:4px;background:#eaf4ff;color:#0860ba;border-radius:6px;padding:4px 7px;font-size:10px;font-weight:600}
+
 @media(max-width:760px){html body #emPertoForm{grid-template-columns:1fr 1fr;gap:10px}html body #emPertoBuscar{grid-column:1 / 3;margin-top:0;width:100%}html body #emPerto h3{font-size:17px}}
 </style><script id="em-proximidade-v34-js">(function(){
 'use strict';
@@ -40876,22 +40574,16 @@ html body #emPerto .em-perto-rodape{margin-top:6px!important;align-items:center!
 html body #emPertoStatus{flex:1 1 180px!important}html body #emPertoLimpar{font-size:10px!important}
 @media(max-width:480px){html body #emPertoForm{grid-template-columns:1fr 1fr!important}html body #emPertoBuscar{grid-column:1 / 3!important;height:32px!important}html body #emPerto{padding:9px!important}}
 </style><style id="em-remove-toolbar-v36">html body #pagina-home .vagas-toolbar{display:none!important}</style><style id="em-card-altura-v37">html body #pagina-home #listaVagas{gap:10px!important}
-html body #pagina-home #listaVagas article.em-lista-final{padding:10px 12px!important;grid-template-rows:auto auto auto auto auto!important;align-content:start!important;min-height:0!important;height:auto!important}
-html body #pagina-home #listaVagas article.em-lista-final .em-lista-cab{height:auto!important;min-height:0!important;margin-bottom:3px!important}
-html body #pagina-home #listaVagas article.em-lista-final .em-lista-titulo{margin-bottom:4px!important;line-height:1.15!important}
-html body #pagina-home #listaVagas article.em-lista-final .em-lista-meta{margin-bottom:5px!important;gap:4px!important;min-height:0!important}
-html body #pagina-home #listaVagas article.em-lista-final :is(.em-lista-meta-item,.em-lista-salario,.em-lista-distancia){box-sizing:border-box!important;height:22px!important;min-height:0!important;padding:2px 6px!important;line-height:1.1!important}
-html body #pagina-home #listaVagas article.em-lista-final .em-lista-resumo{line-height:17px!important;max-height:34px!important;margin-bottom:5px!important}
-html body #pagina-home #listaVagas article.em-lista-final .em-lista-indicadores{gap:5px 9px!important;align-self:center!important}
-html body #pagina-home #listaVagas article.em-lista-final .em-lista-ver{height:32px!important}
-html body #pagina-home #listaVagas article.em-lista-final .em-lista-data{margin-bottom:4px!important}
-html body #pagina-home #listaVagas article.em-lista-final .em-lista-logo{width:50px!important;height:50px!important}
-</style><style id="em-logo-ampliada-v38">html body #pagina-home #listaVagas article.em-lista-final{grid-template-columns:82px minmax(0,1fr) 170px!important;column-gap:14px!important}
-html body #pagina-home #listaVagas article.em-lista-final .em-lista-logo{grid-column:1!important;grid-row:1 / 4!important;align-self:stretch!important;width:80px!important;height:100%!important;min-height:72px!important;max-height:90px!important;box-sizing:border-box!important}
-html body #pagina-home #listaVagas article.em-lista-final .em-lista-logo :is(img,.logo-empresa,.logo-placeholder){width:100%!important;height:100%!important;object-fit:contain!important;padding:5px!important;box-sizing:border-box!important}
-@media(max-width:760px){html body #pagina-home #listaVagas article.em-lista-final{grid-template-columns:72px minmax(0,1fr)!important;column-gap:12px!important}html body #pagina-home #listaVagas article.em-lista-final .em-lista-logo{grid-row:1 / 3!important;width:70px!important;min-height:60px!important;max-height:80px!important}}
-</style><style id="em-logo-preenchimento-v39">html body #pagina-home #listaVagas article.em-lista-final .em-lista-logo{padding:0!important;overflow:hidden!important}
-html body #pagina-home #listaVagas article.em-lista-final .em-lista-logo :is(img,.logo-empresa,.logo-placeholder){display:block!important;width:100%!important;height:100%!important;min-width:0!important;min-height:0!important;max-width:none!important;max-height:none!important;margin:0!important;padding:0!important;object-fit:contain!important;object-position:center!important;border:0!important;border-radius:0!important}
+
+
+
+
+
+
+
+
+
+
 </style><style id="em-empresas-linha-v41">html body #pagina-home #emFaixaLogosV41{box-sizing:border-box;width:min(1180px,calc(100% - 32px));margin:24px auto;padding:24px 18px 20px;background:#fff;border-top:1px solid #dfebf5;border-bottom:1px solid #dfebf5;text-align:center}
 html body #pagina-home #emFaixaLogosV41[hidden]{display:none!important}
 html body #pagina-home #emFaixaLogosV41 h2{margin:0 0 18px;color:#10345c;font:700 22px/1.25 Inter,Arial,sans-serif}
@@ -40909,13 +40601,10 @@ function montar(){var vagasSecao=document.getElementById('vagas');if(!vagasSecao
 function iniciar(){montar();var lista=document.getElementById('listaVagas');if(lista)new MutationObserver(montar).observe(lista,{childList:true});}
 if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',iniciar);else iniciar();
 })();
-</script><style id="em-card-borda-azul-v42">html body #pagina-home #listaVagas article.em-lista-final{border:1px solid #173f70!important}html body #pagina-home #listaVagas article.em-lista-final:hover{border-color:#0b2d57!important}</style><style id="em-empresa-azul-nota-v43">
-html body #pagina-home #listaVagas .em-lista-empresa>span:first-child{color:#173f70!important}
-html body #pagina-home #listaVagas .em-lista-empresa .em-lista-nota-empresa{display:inline-flex!important;align-items:center;font-size:11px!important;font-weight:700!important;color:#805c12!important;white-space:nowrap;text-transform:none!important;letter-spacing:0!important}
-</style>
+</script>
 <style id="em-selos-concorrencia-atividade-v44">
-html body #pagina-home #listaVagas .em-lista-pouca-concorrencia[data-nivel="moderada"]{background:#eaf2ff!important;color:#215aa0!important;border-color:#cadcf6!important}
-html body #pagina-home #listaVagas .em-lista-pouca-concorrencia[data-nivel="alta"]{background:#fff1e3!important;color:#a65313!important;border-color:#f4d5b5!important}
+
+
 html body #pagina-home #listaVagas .em-recrutamento-demo{display:inline-flex!important;align-items:center;gap:4px;padding:3px 7px;border-radius:6px;background:#f1ebff!important;color:#7043a6!important;font-size:10px!important;font-weight:700!important;line-height:1.2;text-transform:none!important;letter-spacing:0!important;white-space:nowrap}
 html body #pagina-home #listaVagas .em-recrutamento-demo svg{width:13px;height:13px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
 </style>
@@ -40924,7 +40613,7 @@ html body #pagina-home #filtrosLateral.em-filtros-blocos .filtros-cab{padding:14
 html body #pagina-home #filtrosLateral .em-filtro-bloco{display:block!important;margin:0 0 8px!important;padding:0!important;background:#fff!important;border:1px solid #dfe7ef!important;border-radius:6px!important;overflow:hidden!important}
 html body #pagina-home #filtrosLateral .em-filtro-bloco>summary{display:flex!important;align-items:center!important;justify-content:space-between!important;gap:12px!important;padding:16px 18px 10px!important;list-style:none!important;cursor:pointer!important;color:#143654!important;font-size:14px!important;font-weight:750!important}
 html body #pagina-home #filtrosLateral .em-filtro-bloco>summary::-webkit-details-marker{display:none}
-html body #pagina-home #filtrosLateral .em-filtro-bloco>summary::after{content:''!important;width:7px!important;height:7px!important;border-top:2px solid #1476d4!important;border-right:2px solid #1476d4!important;transform:rotate(-45deg)!important;flex:0 0 7px!important;margin-top:5px!important}
+html body #pagina-home #filtrosLateral .em-filtro-bloco>summary::after{content:""!important;width:7px!important;height:7px!important;border-top:2px solid #1476d4!important;border-right:2px solid #1476d4!important;transform:rotate(-45deg)!important;flex:0 0 7px!important;margin-top:5px!important}
 html body #pagina-home #filtrosLateral .em-filtro-bloco:not([open])>summary{padding-bottom:16px!important}
 html body #pagina-home #filtrosLateral .em-filtro-bloco:not([open])>summary::after{transform:rotate(135deg)!important;margin-top:-3px!important}
 html body #pagina-home #filtrosLateral .em-filtro-bloco>summary:focus-visible{outline:2px solid #1476d4!important;outline-offset:-3px!important}
@@ -41261,12 +40950,12 @@ window.addEventListener("storage",init);
 if(typeof irPara==="function"){var original=irPara;window.irPara=function(){var r=original.apply(this,arguments);setTimeout(init,100);return r;};}
 document.addEventListener("click",function(ev){if(ev.target.closest("button,a"))setTimeout(refresh,300);});
 })();
-</script><style id="em-logos-destaques-v1">html body #pagina-home #listaVagas#listaVagas article.em-lista-final .em-lista-cab{align-items:center!important}
-html body #pagina-home #listaVagas#listaVagas article.em-lista-final .em-logo-destaque-previa{display:inline-flex!important;align-items:center!important;justify-content:center!important;flex:0 0 38px!important;width:38px!important;height:38px!important;background:#fff!important;border:1px solid #dbe4ef!important;border-radius:7px!important;overflow:hidden!important;color:#173f70!important;font-size:18px!important;font-weight:700!important}
+</script><style id="em-logos-destaques-v1">
+
 html body #pagina-home #listaDestaques#listaDestaques .dz-logo{display:flex!important;visibility:visible!important;opacity:1!important}
 html body #pagina-home #listaDestaques#listaDestaques .em-logo-destaque-previa{display:flex!important;align-items:center!important;justify-content:center!important;width:100%!important;height:100%!important;background:#fff!important;color:#173f70!important;border-radius:8px!important;overflow:hidden!important;font-size:26px!important;font-weight:700!important}
 html body #pagina-home :is(#listaVagas#listaVagas,#listaDestaques#listaDestaques) .em-logo-destaque-previa>img{display:block!important;visibility:visible!important;opacity:1!important;width:100%!important;height:100%!important;max-width:100%!important;max-height:100%!important;object-fit:contain!important;padding:4px!important;box-sizing:border-box!important;border:0!important;border-radius:0!important;margin:0!important}
-@media(max-width:760px){html body #pagina-home #listaVagas#listaVagas article.em-lista-final .em-logo-destaque-previa{width:32px!important;height:32px!important;flex-basis:32px!important}}</style><style id="em-company-menu-compact-light">html body header #menuContaEmpresa#menuContaEmpresa{width:286px!important;padding:6px!important;border:1px solid #dce7f2!important;border-radius:12px!important;box-shadow:0 8px 24px rgba(24,55,88,.12)!important;max-height:calc(100vh - 90px)!important;overflow-y:auto!important}
+</style><style id="em-company-menu-compact-light">html body header #menuContaEmpresa#menuContaEmpresa{width:286px!important;padding:6px!important;border:1px solid #dce7f2!important;border-radius:12px!important;box-shadow:0 8px 24px rgba(24,55,88,.12)!important;max-height:calc(100vh - 90px)!important;overflow-y:auto!important}
 html body header #menuContaEmpresa#menuContaEmpresa .menu-empresa-identidade-v140{background:#edf5ff!important;color:#234d78!important;min-height:0!important;padding:14px 12px!important;margin:0 0 4px!important;border-radius:8px!important;gap:10px!important}
 html body header #menuContaEmpresa#menuContaEmpresa .menu-empresa-avatar-v140{width:34px!important;height:34px!important;min-width:34px!important;background:#dceaff!important;color:#2465ac!important;border:1px solid #c4daf4!important;font-size:13px!important;box-shadow:none!important}
 html body header #menuContaEmpresa#menuContaEmpresa .menu-empresa-identidade-texto-v140 strong{color:#234d78!important;font-size:12px!important;line-height:1.4!important}
@@ -41313,7 +41002,7 @@ html body #pagina-home #vagas#vagas>.titulo-secao{display:flex!important;flex-di
 html body #pagina-home #vagas#vagas .em-recentes-kicker{color:#1268d4!important;font-family:Montserrat,Arial,sans-serif!important;font-size:10px!important;font-weight:600!important;letter-spacing:2px!important;line-height:1.5!important}
 html body #pagina-home #vagas#vagas>.titulo-secao h2{font-family:Montserrat,Arial,sans-serif!important;font-size:30px!important;font-weight:800!important;line-height:1.2!important;color:#102c50!important;margin:0!important;padding:0!important}
 html body #pagina-home #vagas#vagas>.titulo-secao p{font-size:14px!important;font-weight:400!important;line-height:1.6!important;color:#708299!important;margin:0!important;padding:0!important}
-html body #pagina-home #vagas#vagas>.titulo-secao::after{content:''!important;display:block!important;width:44px!important;height:3px!important;background:#1268d4!important;border-radius:3px!important;margin-top:4px!important}
+html body #pagina-home #vagas#vagas>.titulo-secao::after{content:""!important;display:block!important;width:44px!important;height:3px!important;background:#1268d4!important;border-radius:3px!important;margin-top:4px!important}
 html body #pagina-home #vagas#vagas>.filtros-chips-home{display:flex!important;justify-content:center!important;align-items:center!important;flex-wrap:wrap!important;gap:8px!important;padding:0 12px 22px!important;margin:0 0 20px!important;border-top:0!important;border-bottom:1px solid #e6edf5!important}
 html body #pagina-home #vagas#vagas .filtro-chip-home{height:36px!important;padding:0 17px!important;border:1px solid #d2e1f3!important;border-radius:999px!important;background:white!important;color:#173b64!important;font-family:Montserrat,Arial,sans-serif!important;font-size:12px!important;font-weight:500!important;box-shadow:none!important}
 html body #pagina-home #vagas#vagas .filtro-chip-home.ativo{background:#1268d4!important;border-color:#1268d4!important;color:white!important}
@@ -41337,7 +41026,7 @@ function limparFiltrosRecentesEM(){
 })();
 </script><style id="em-recentes-blue-band-v4">
 html body #pagina-home #vagas#vagas>.em-recentes-blue-band{position:relative!important;isolation:isolate!important;overflow:hidden!important;background:#eaf4ff!important;border-bottom:1px solid #deebf9!important;margin:0 0 20px!important;padding:22px 16px 18px!important;border-radius:14px 14px 0 0!important}
-html body #pagina-home #vagas#vagas>.em-recentes-blue-band::before,html body #pagina-home #vagas#vagas>.em-recentes-blue-band::after{content:''!important;display:block!important;position:absolute!important;top:0!important;bottom:0!important;width:250px!important;background-image:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22280%22%20height%3D%22210%22%20viewBox%3D%220%200%20280%20210%22%20fill%3D%22none%22%20stroke%3D%22%231268d4%22%20stroke-opacity%3D%22.13%22%20stroke-width%3D%221%22%3E%3Cpath%20d%3D%22M%20-80%200%20C%2020%2060%20120%2070%20135%20210%22%2F%3E%3Cpath%20d%3D%22M%20-62%200%20C%2038%2060%20138%2070%20153%20210%22%2F%3E%3Cpath%20d%3D%22M%20-44%200%20C%2056%2060%20156%2070%20171%20210%22%2F%3E%3Cpath%20d%3D%22M%20-26%200%20C%2074%2060%20174%2070%20189%20210%22%2F%3E%3Cpath%20d%3D%22M%20-8%200%20C%2092%2060%20192%2070%20207%20210%22%2F%3E%3Cpath%20d%3D%22M%2010%200%20C%20110%2060%20210%2070%20225%20210%22%2F%3E%3Cpath%20d%3D%22M%2028%200%20C%20128%2060%20228%2070%20243%20210%22%2F%3E%3Cpath%20d%3D%22M%2046%200%20C%20146%2060%20246%2070%20261%20210%22%2F%3E%3C%2Fsvg%3E")!important;background-size:cover!important;background-repeat:no-repeat!important;z-index:-1!important;pointer-events:none!important}
+html body #pagina-home #vagas#vagas>.em-recentes-blue-band::before,html body #pagina-home #vagas#vagas>.em-recentes-blue-band::after{content:""!important;display:block!important;position:absolute!important;top:0!important;bottom:0!important;width:250px!important;background-image:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22280%22%20height%3D%22210%22%20viewBox%3D%220%200%20280%20210%22%20fill%3D%22none%22%20stroke%3D%22%231268d4%22%20stroke-opacity%3D%22.13%22%20stroke-width%3D%221%22%3E%3Cpath%20d%3D%22M%20-80%200%20C%2020%2060%20120%2070%20135%20210%22%2F%3E%3Cpath%20d%3D%22M%20-62%200%20C%2038%2060%20138%2070%20153%20210%22%2F%3E%3Cpath%20d%3D%22M%20-44%200%20C%2056%2060%20156%2070%20171%20210%22%2F%3E%3Cpath%20d%3D%22M%20-26%200%20C%2074%2060%20174%2070%20189%20210%22%2F%3E%3Cpath%20d%3D%22M%20-8%200%20C%2092%2060%20192%2070%20207%20210%22%2F%3E%3Cpath%20d%3D%22M%2010%200%20C%20110%2060%20210%2070%20225%20210%22%2F%3E%3Cpath%20d%3D%22M%2028%200%20C%20128%2060%20228%2070%20243%20210%22%2F%3E%3Cpath%20d%3D%22M%2046%200%20C%20146%2060%20246%2070%20261%20210%22%2F%3E%3C%2Fsvg%3E")!important;background-size:cover!important;background-repeat:no-repeat!important;z-index:-1!important;pointer-events:none!important}
 html body #pagina-home #vagas#vagas>.em-recentes-blue-band::before{left:0!important}
 html body #pagina-home #vagas#vagas>.em-recentes-blue-band::after{right:0!important;transform:rotate(180deg)!important}
 html body #pagina-home #vagas#vagas .em-recentes-blue-band>.titulo-secao{display:flex!important;flex-direction:column!important;align-items:center!important;text-align:center!important;gap:7px!important;padding:0!important;margin:0 0 16px!important;border:0!important}
@@ -41852,7 +41541,7 @@ html body #pagina-home #emHeroFloripa:before,html body #pagina-home #emHeroFlori
 html body #pagina-home #emHeroFloripa .hero-premium-inner-em{display:grid!important;grid-template-columns:minmax(0,.86fr) minmax(0,1fr)!important;align-items:center!important;gap:64px!important;max-width:1180px!important;width:100%!important;margin:0 auto!important;padding:0!important;text-align:left!important}
 html body #pagina-home #emHeroFloripa .hero-copy-em{max-width:none!important;margin:0!important;text-align:left!important;padding:0!important}
 html body #pagina-home #emHeroFloripa .hero-kicker-em{display:flex!important;align-items:center!important;gap:9px!important;color:#d3eaff!important;font:700 11px/1.5 Inter,Arial,sans-serif!important;letter-spacing:.8px!important;margin:0 0 18px!important}
-html body #pagina-home #emHeroFloripa .hero-kicker-em:before{content:''!important;width:7px!important;height:7px!important;background:#9fd3ff!important;border-radius:50%!important}
+html body #pagina-home #emHeroFloripa .hero-kicker-em:before{content:""!important;width:7px!important;height:7px!important;background:#9fd3ff!important;border-radius:50%!important}
 html body #pagina-home #emHeroFloripa h1{color:white!important;font:800 42px/1.15 Inter,Arial,sans-serif!important;letter-spacing:-1.3px!important;margin:0 0 20px!important;max-width:520px!important;text-align:left!important}
 html body #pagina-home #emHeroFloripa h1 span{display:block!important;color:#a9d7ff!important}
 html body #pagina-home #emHeroFloripa .hero-copy-em p{color:#e8f3ff!important;font:400 15px/1.75 Inter,Arial,sans-serif!important;margin:0!important;max-width:470px!important;text-align:left!important}
@@ -41873,35 +41562,6 @@ html body #pagina-home #emHeroFloripa .em-hero-all{display:inline-block!importan
 html body #pagina-home #emHeroFloripa .em-hero-actions button:focus-visible{outline:3px solid #9fd3ff!important;outline-offset:3px!important}
 @media(max-width:980px){html body #pagina-home #emHeroFloripa .hero-premium-inner-em{gap:32px!important}html body #pagina-home #emHeroFloripa h1{font-size:35px!important}html body #pagina-home #emHeroFloripa #emHeroRefBusca{grid-template-columns:minmax(0,1fr)!important}}
 @media(max-width:700px){html body #pagina-home #emHeroFloripa.hero.hero-premium-em{padding:36px 20px!important}html body #pagina-home #emHeroFloripa .hero-premium-inner-em{grid-template-columns:minmax(0,1fr)!important;gap:28px!important}html body #pagina-home #emHeroFloripa h1{font-size:32px!important;letter-spacing:-.7px!important}html body #pagina-home #emHeroFloripa .hero-copy-em p{font-size:14px!important}html body #pagina-home #emHeroFloripa .hero-search-shell-em{padding:20px!important;border-radius:18px!important}html body #pagina-home #emHeroFloripa .em-hero-chips button{font-size:11px!important}}
-</style><style id="em-job-cards-compact-v1">
-html body #pagina-home #listaVagas#listaVagas#listaVagas article.vaga-card.em-lista-final{padding:12px 18px!important;row-gap:0!important;height:auto!important;min-height:0!important;border:1px solid #dce5ef!important;border-radius:10px!important;box-shadow:none!important;background:#fff!important}
-html body #pagina-home #listaVagas#listaVagas#listaVagas article.vaga-card.em-lista-final .em-lista-empresa{font-size:12px!important;line-height:18px!important;font-weight:400!important;text-transform:none!important;color:#5b6d82!important}
-html body #pagina-home #listaVagas#listaVagas#listaVagas article.vaga-card.em-lista-final .em-lista-cab{min-height:18px!important;margin:0!important}
-html body #pagina-home #listaVagas#listaVagas#listaVagas article.vaga-card.em-lista-final .em-lista-titulo{font-family:Montserrat,Arial,sans-serif!important;font-size:21px!important;line-height:1.25!important;font-weight:700!important;letter-spacing:-.35px!important;color:#12345f!important;text-transform:none!important;margin:2px 0 5px!important;max-height:none!important}
-html body #pagina-home #listaVagas#listaVagas#listaVagas article.vaga-card.em-lista-final .em-lista-meta{display:flex!important;flex-wrap:wrap!important;gap:7px 18px!important;align-items:center!important;margin:0 0 6px!important}
-html body #pagina-home #listaVagas#listaVagas#listaVagas article.vaga-card.em-lista-final .em-lista-meta-item b{font-size:12px!important;line-height:18px!important;font-weight:400!important;text-transform:none!important;color:#586e87!important}
-html body #pagina-home #listaVagas#listaVagas#listaVagas article.vaga-card.em-lista-final .em-lista-meta-item svg{width:15px!important;height:15px!important}
-html body #pagina-home #listaVagas#listaVagas#listaVagas article.vaga-card.em-lista-final .em-lista-salario strong{font-size:14px!important;font-weight:700!important;color:#12345f!important}
-html body #pagina-home #listaVagas#listaVagas#listaVagas article.vaga-card.em-lista-final .em-lista-resumo{display:block!important;-webkit-line-clamp:unset!important;line-clamp:unset!important;white-space:nowrap!important;text-overflow:ellipsis!important;overflow:hidden!important;width:100%!important;min-width:0!important;height:20px!important;max-height:20px!important;font-size:13px!important;line-height:20px!important;color:#5f7188!important;margin:0 0 7px!important;padding:0!important}
-html body #pagina-home #listaVagas#listaVagas#listaVagas article.vaga-card.em-lista-final .em-lista-footer{border-top:1px solid #e9eef5!important;padding-top:7px!important;margin-top:0!important;background:transparent!important;row-gap:10px!important;column-gap:12px!important;align-items:center!important}
-html body #pagina-home #listaVagas#listaVagas#listaVagas article.vaga-card.em-lista-final :is(.em-lista-rapida,.em-recrutamento-demo){font-size:12px!important;font-weight:400!important;line-height:18px!important;padding:0!important}
-html body #pagina-home #listaVagas#listaVagas#listaVagas article.vaga-card.em-lista-final .em-lista-rapida{color:#1473df!important}
-html body #pagina-home #listaVagas#listaVagas#listaVagas article.vaga-card.em-lista-final .em-recrutamento-demo{color:#5f7188!important;display:inline-flex!important;align-items:center!important;gap:7px!important}
-html body #pagina-home #listaVagas#listaVagas#listaVagas article.vaga-card.em-lista-final .em-recrutamento-demo svg{display:none!important}
-html body #pagina-home #listaVagas#listaVagas#listaVagas article.vaga-card.em-lista-final .em-recrutamento-demo:before{content:''!important;display:inline-block!important;width:7px!important;height:7px!important;border-radius:50%!important;background:#29a34b!important;flex:0 0 7px!important}
-html body #pagina-home #listaVagas#listaVagas#listaVagas article.vaga-card.em-lista-final .em-lista-data{font-size:11px!important;color:#718096!important}
-html body #pagina-home #listaVagas#listaVagas#listaVagas article.vaga-card.em-lista-final .em-lista-ver{min-height:34px!important;height:34px!important;font-size:12px!important;font-weight:600!important;border-radius:7px!important;padding:0 18px!important;box-shadow:none!important}
-html body #pagina-home #listaVagas#listaVagas#listaVagas article.vaga-card.em-lista-final .em-lista-fav{color:#5b718d!important}
-html body #pagina-home #listaVagas#listaVagas#listaVagas article.vaga-card.em-lista-final .em-whatsapp-share{width:30px!important;height:30px!important;min-width:30px!important;min-height:30px!important}
-@media(max-width:760px){
-html body #pagina-home #listaVagas#listaVagas#listaVagas article.vaga-card.em-lista-final{padding:12px 14px!important}
-html body #pagina-home #listaVagas#listaVagas#listaVagas article.vaga-card.em-lista-final .em-lista-titulo{font-size:19px!important;line-height:1.3!important}
-html body #pagina-home #listaVagas#listaVagas#listaVagas article.vaga-card.em-lista-final .em-lista-meta{gap:7px 12px!important}
-html body #pagina-home #listaVagas#listaVagas#listaVagas article.vaga-card.em-lista-final .em-lista-meta-item b{font-size:12px!important}
-html body #pagina-home #listaVagas#listaVagas#listaVagas article.vaga-card.em-lista-final .em-lista-resumo{font-size:13px!important}
-html body #pagina-home #listaVagas#listaVagas#listaVagas article.vaga-card.em-lista-final :is(.em-lista-rapida,.em-recrutamento-demo){font-size:11px!important}
-html body #pagina-home #listaVagas#listaVagas#listaVagas article.vaga-card.em-lista-final .em-lista-ver{font-size:12px!important;padding:0 12px!important}
-}
 </style><style id="em-job-end-v1-css">
 html body #pagina-vaga#pagina-vaga#pagina-vaga .vaga-rodape-info-com-denuncia{display:none!important}
 #emJobEnd{width:100%;box-sizing:border-box;margin:20px 0 0;font-family:Montserrat,Arial,sans-serif}
@@ -41940,7 +41600,7 @@ root.querySelector('.je-similar').onclick=function(){var v=data().v;if(typeof li
 function start(){init();var page=document.getElementById('pagina-vaga');if(page)new MutationObserver(function(){if(!document.getElementById('emJobEnd'))init();}).observe(page,{childList:true,subtree:true});}
 if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',start,{once:true});else start();
 })();</script><style id="em-remove-security-panel-v1">html body #pagina-vaga#pagina-vaga#pagina-vaga .seguranca-transparencia-vaga-em{display:none!important}</style><style id="em-swap-fit-security-v1-css">#emJobEnd .je-fit-slot{margin-top:18px;width:100%;min-width:0}</style><script id="em-swap-fit-security-v1-js">(function(){function trocar(){var root=document.getElementById('emJobEnd'),fit=document.getElementById('aderenciaVagaEM');if(!root||!fit||root.contains(fit))return;var tools=root.querySelector('.je-tools');if(!tools)return;var slot=document.createElement('div');slot.className='je-fit-slot';root.insertBefore(slot,tools);slot.appendChild(fit);}function iniciar(){trocar();var page=document.getElementById('pagina-vaga');if(page)new MutationObserver(trocar).observe(page,{childList:true,subtree:true});}if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',iniciar,{once:true});else iniciar();})();</script><style id="em-company-publishing-guide-v1">#cf120Empresa .cf106-journey{grid-template-columns:repeat(4,minmax(0,1fr))!important}#cf120Empresa .cf-company-options{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}#cf120Empresa .cf-company-options small{color:#1766bf;font-size:11px;font-weight:700;letter-spacing:.06em}#cf120Empresa .cf-company-options .cf106-btn{margin-top:16px}#cf120Empresa .cf120-feature-grid{grid-template-columns:repeat(3,minmax(0,1fr))!important}@media(max-width:980px){#cf120Empresa .cf106-journey{grid-template-columns:repeat(2,minmax(0,1fr))!important}}@media(max-width:650px){#cf120Empresa .cf106-journey,#cf120Empresa .cf-company-options,#cf120Empresa .cf120-feature-grid{grid-template-columns:minmax(0,1fr)!important}}</style>
-<link rel="stylesheet" href="vagas-demo.css?v=20261019-compact-montserrat-2">
+<link rel="stylesheet" href="vagas-demo.css?v=20261019-clean-layout">
 <script src="vagas-demo.js?v=20261019-featured-chips1-20261017-brand-vector-2"></script>
 <script src="vagas-atualizacao.js?v=egress-20261012"></script>
 <script src="aderencia-recrutador.js?v=20261016-criteria-1"></script>
@@ -42008,7 +41668,7 @@ html body #pagina-home#pagina-home #emCandidateSignupBanner#emCandidateSignupBan
 @media(max-width:900px){html body #pagina-home#pagina-home #emCandidateSignupBanner#emCandidateSignupBanner{gap:14px!important;padding:10px 16px!important}html body #pagina-home#pagina-home #emCandidateSignupBanner#emCandidateSignupBanner .em-signup-copy h2{font-size:17px!important}html body #pagina-home#pagina-home #emCandidateSignupBanner#emCandidateSignupBanner .em-signup-copy p{font-size:13px!important}}
 @media(max-width:600px){html body #pagina-home#pagina-home #emCandidateSignupBanner#emCandidateSignupBanner{grid-template-columns:30px minmax(0,1fr)!important;gap:0 10px!important;padding:12px!important}html body #pagina-home#pagina-home #emCandidateSignupBanner#emCandidateSignupBanner .em-signup-icon{grid-row:1/3!important;align-self:start!important}html body #pagina-home#pagina-home #emCandidateSignupBanner#emCandidateSignupBanner .em-signup-icon svg{width:28px!important;height:35px!important}html body #pagina-home#pagina-home #emCandidateSignupBanner#emCandidateSignupBanner .em-signup-copy{padding:0 0 9px!important}html body #pagina-home#pagina-home #emCandidateSignupBanner#emCandidateSignupBanner .em-signup-copy h2{font-size:15px!important}html body #pagina-home#pagina-home #emCandidateSignupBanner#emCandidateSignupBanner .em-signup-copy p{font-size:12px!important}html body #pagina-home#pagina-home #emCandidateSignupBanner#emCandidateSignupBanner .em-signup-button{padding:10px 12px!important;font-size:11px!important}}
 </style><style id="em-job-titles-dark-reference">
-html body #pagina-home#pagina-home #listaVagas#listaVagas#listaVagas#listaVagas article.vaga-card.em-lista-final.em-recent-model3 .em-lista-titulo,
+
 html body #pagina-home#pagina-home #listaDestaques#listaDestaques#listaDestaques#listaDestaques#listaDestaques article.em-featured-reference.em-featured-reference .dz-titulo,
 html body .pagina :is(.vaga-titulo,.em-lista-titulo,.dz-titulo,.em-rec-title,.jh-title),
 html body #emJobHeaderReference#emJobHeaderReference .jh-title,
@@ -42053,43 +41713,7 @@ html body #pagina-home#pagina-home #listaDestaques#listaDestaques#listaDestaques
 html body #pagina-home#pagina-home #listaDestaques#listaDestaques#listaDestaques#listaDestaques#listaDestaques article.em-featured-reference.em-featured-reference .dz-infos .dz-info:nth-child(3){grid-column:1!important;grid-row:2!important}
 html body #pagina-home#pagina-home #listaDestaques#listaDestaques#listaDestaques#listaDestaques#listaDestaques article.em-featured-reference.em-featured-reference .dz-infos .dz-salario{grid-column:2!important;grid-row:2!important}
 html body #pagina-home#pagina-home #listaDestaques#listaDestaques#listaDestaques#listaDestaques#listaDestaques article.em-featured-reference.em-featured-reference .dz-infos .dz-info:nth-child(1)>span{display:block!important;white-space:normal!important;max-height:none!important;overflow:visible!important}
-</style><style id="em-recent-metadata-inline-subtle">
-html body #pagina-home#pagina-home #listaVagas#listaVagas#listaVagas#listaVagas article.vaga-card.em-lista-final.em-recent-model3 .em-lista-meta{display:flex!important;flex-direction:row!important;flex-wrap:wrap!important;align-items:center!important;justify-content:flex-start!important;gap:6px!important;width:100%!important;max-width:none!important;margin:7px 0!important;min-width:0!important}
-html body #pagina-home#pagina-home #listaVagas#listaVagas#listaVagas#listaVagas article.vaga-card.em-lista-final.em-recent-model3 .em-lista-meta .em-lista-meta-item,html body #pagina-home#pagina-home #listaVagas#listaVagas#listaVagas#listaVagas article.vaga-card.em-lista-final.em-recent-model3 .em-lista-meta .em-lista-salario{box-sizing:border-box!important;display:inline-flex!important;align-items:center!important;justify-content:center!important;flex:0 1 auto!important;gap:6px!important;min-width:0!important;width:auto!important;max-width:100%!important;min-height:32px!important;height:auto!important;padding:6px 10px!important;margin:0!important;background:#fafbfc!important;border:1px solid #edf0f4!important;border-radius:5px!important;color:#374151!important;font:400 12px/1.4 Inter,Arial,sans-serif!important;text-align:center!important}
-html body #pagina-home#pagina-home #listaVagas#listaVagas#listaVagas#listaVagas article.vaga-card.em-lista-final.em-recent-model3 .em-lista-meta :is(b,strong){font:400 12px/1.4 Inter,Arial,sans-serif!important;text-transform:none!important;text-align:center!important;color:#374151!important}
-html body #pagina-home#pagina-home #listaVagas#listaVagas#listaVagas#listaVagas article.vaga-card.em-lista-final.em-recent-model3 .em-lista-meta .em-lista-data{display:inline-flex!important;align-items:center!important;gap:5px!important;flex:0 1 auto!important;margin:0 0 0 2px!important;padding:0!important}
-html body #pagina-home#pagina-home #listaVagas#listaVagas#listaVagas#listaVagas article.vaga-card.em-lista-final.em-recent-model3 .em-recent-salary-icon{background:transparent!important;border:0!important;padding:0!important;width:15px!important;height:15px!important;flex:0 0 15px!important}
-html body #pagina-home#pagina-home #listaVagas#listaVagas#listaVagas#listaVagas article.vaga-card.em-lista-final.em-recent-model3 .em-lista-meta svg{width:13px!important;height:13px!important;color:#7c8998!important;stroke:#7c8998!important}
-</style><style id="em-candidate-softer-numbers">html body #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato.cp-enhanced :is(.cp-home-summary strong,.cp-home-summary b,.cp-interview-time,.cp-interview-date strong){color:#4b5563!important}</style><style id="em-recent-larger-logo-compact">
-html body #pagina-home#pagina-home #listaVagas#listaVagas#listaVagas#listaVagas article.vaga-card.em-lista-final.em-recent-model3{padding:10px 14px!important;gap:5px!important;min-height:0!important}
-html body #pagina-home#pagina-home #listaVagas#listaVagas#listaVagas#listaVagas article.vaga-card.em-lista-final.em-recent-model3 .em-lista-cab{align-items:center!important;gap:10px!important}
-html body #pagina-home#pagina-home #listaVagas#listaVagas#listaVagas#listaVagas article.vaga-card.em-lista-final.em-recent-model3 .em-recent-logo{flex:0 0 88px!important;width:88px!important;min-width:88px!important;max-width:88px!important;height:50px!important;min-height:50px!important;max-height:50px!important}
-html body #pagina-home#pagina-home #listaVagas#listaVagas#listaVagas#listaVagas article.vaga-card.em-lista-final.em-recent-model3 .em-recent-logo img{width:100%!important;height:100%!important;object-fit:contain!important;padding:0!important}
-html body #pagina-home#pagina-home #listaVagas#listaVagas#listaVagas#listaVagas article.vaga-card.em-lista-final.em-recent-model3 .em-lista-meta{margin:3px 0!important}
-html body #pagina-home#pagina-home #listaVagas#listaVagas#listaVagas#listaVagas article.vaga-card.em-lista-final.em-recent-model3 .em-lista-meta :is(.em-lista-meta-item,.em-lista-salario){min-height:26px!important;padding:3px 8px!important}
-html body #pagina-home#pagina-home #listaVagas#listaVagas#listaVagas#listaVagas article.vaga-card.em-lista-final.em-recent-model3 .em-lista-resumo{margin:0!important;line-height:1.4!important;max-height:36px!important;-webkit-line-clamp:2!important}
-html body #pagina-home#pagina-home #listaVagas#listaVagas#listaVagas#listaVagas article.vaga-card.em-lista-final.em-recent-model3 .em-lista-footer{padding-top:6px!important;gap:6px 10px!important}
-@media(max-width:760px){html body #pagina-home#pagina-home #listaVagas#listaVagas#listaVagas#listaVagas article.vaga-card.em-lista-final.em-recent-model3{padding:10px!important}html body #pagina-home#pagina-home #listaVagas#listaVagas#listaVagas#listaVagas article.vaga-card.em-lista-final.em-recent-model3 .em-recent-logo{flex-basis:72px!important;width:72px!important;min-width:72px!important;max-width:72px!important;height:46px!important;min-height:46px!important;max-height:46px!important}}
-</style><style id="em-recent-title-proportions">
-html body #pagina-home#pagina-home #listaVagas#listaVagas#listaVagas#listaVagas article.vaga-card.em-lista-final.em-recent-model3 .em-lista-cab{align-items:center!important;column-gap:12px!important}
-html body #pagina-home#pagina-home #listaVagas#listaVagas#listaVagas#listaVagas article.vaga-card.em-lista-final.em-recent-model3 .em-recent-heading{flex:1 1 340px!important;gap:3px!important;align-self:center!important}
-html body #pagina-home#pagina-home #listaVagas#listaVagas#listaVagas#listaVagas article.vaga-card.em-lista-final.em-recent-model3 .em-lista-titulo{font-family:Montserrat,Arial,sans-serif!important;font-size:22px!important;line-height:1.2!important;font-weight:700!important;letter-spacing:-.25px!important;margin:0!important;text-transform:uppercase!important;white-space:normal!important;overflow-wrap:normal!important;word-break:normal!important}
-html body #pagina-home#pagina-home #listaVagas#listaVagas#listaVagas#listaVagas article.vaga-card.em-lista-final.em-recent-model3 .em-lista-empresa{font-size:13px!important;line-height:1.35!important;margin:0!important}
-html body #pagina-home#pagina-home #listaVagas#listaVagas#listaVagas#listaVagas article.vaga-card.em-lista-final.em-recent-model3 .em-recent-badges{max-width:46%!important;align-self:center!important;flex-shrink:1!important;justify-content:flex-end!important}
-@media(max-width:760px){html body #pagina-home#pagina-home #listaVagas#listaVagas#listaVagas#listaVagas article.vaga-card.em-lista-final.em-recent-model3 .em-recent-heading{flex:1 1 0!important}html body #pagina-home#pagina-home #listaVagas#listaVagas#listaVagas#listaVagas article.vaga-card.em-lista-final.em-recent-model3 .em-lista-titulo{font-size:20px!important;line-height:1.25!important;overflow-wrap:anywhere!important}html body #pagina-home#pagina-home #listaVagas#listaVagas#listaVagas#listaVagas article.vaga-card.em-lista-final.em-recent-model3 .em-recent-badges{max-width:100%!important;justify-content:flex-start!important}}
-</style><style id="em-recent-green-location-salary">
-html body #pagina-home#pagina-home #listaVagas#listaVagas#listaVagas#listaVagas article.vaga-card.em-lista-final.em-recent-model3 .em-lista-meta .em-lista-meta-item:first-child{background:transparent!important;border:0!important;border-radius:0!important;padding:0!important;min-height:26px!important;align-items:center!important;gap:5px!important;color:#18834b!important}
-html body #pagina-home#pagina-home #listaVagas#listaVagas#listaVagas#listaVagas article.vaga-card.em-lista-final.em-recent-model3 .em-lista-meta .em-lista-meta-item:first-child b{color:#18834b!important}
-html body #pagina-home#pagina-home #listaVagas#listaVagas#listaVagas#listaVagas article.vaga-card.em-lista-final.em-recent-model3 .em-lista-meta .em-lista-meta-item:first-child svg{display:block!important;align-self:center!important;flex:0 0 14px!important;width:14px!important;height:14px!important;margin:0!important;position:static!important;transform:none!important;color:#18834b!important;stroke:#18834b!important}
-html body #pagina-home#pagina-home #listaVagas#listaVagas#listaVagas#listaVagas article.vaga-card.em-lista-final.em-recent-model3 .em-lista-meta .em-lista-salario,html body #pagina-home#pagina-home #listaVagas#listaVagas#listaVagas#listaVagas article.vaga-card.em-lista-final.em-recent-model3 .em-lista-meta .em-lista-salario :is(strong,b){color:#18834b!important}
-html body #pagina-home#pagina-home #listaVagas#listaVagas#listaVagas#listaVagas article.vaga-card.em-lista-final.em-recent-model3 .em-lista-meta .em-lista-salario svg{color:#18834b!important;stroke:#18834b!important;align-self:center!important;margin:0!important;position:static!important;transform:none!important}
-</style><style id="em-recent-metadata-contrast">
-html body #pagina-home#pagina-home #listaVagas#listaVagas#listaVagas#listaVagas article.vaga-card.em-lista-final.em-recent-model3 .em-lista-meta,html body #pagina-home#pagina-home #listaVagas#listaVagas#listaVagas#listaVagas article.vaga-card.em-lista-final.em-recent-model3 .em-lista-meta :is(.em-lista-meta-item,.em-lista-data),html body #pagina-home#pagina-home #listaVagas#listaVagas#listaVagas#listaVagas article.vaga-card.em-lista-final.em-recent-model3 .em-lista-meta .em-lista-meta-item :is(b,strong,span),html body #pagina-home#pagina-home #listaVagas#listaVagas#listaVagas#listaVagas article.vaga-card.em-lista-final.em-recent-model3 .em-lista-meta .em-lista-data :is(b,strong,span){color:#263445!important;font-weight:500!important}
-html body #pagina-home#pagina-home #listaVagas#listaVagas#listaVagas#listaVagas article.vaga-card.em-lista-final.em-recent-model3 .em-lista-meta svg{color:#526174!important;stroke:#526174!important}
-html body #pagina-home#pagina-home #listaVagas#listaVagas#listaVagas#listaVagas article.vaga-card.em-lista-final.em-recent-model3 .em-lista-meta .em-lista-meta-item:first-child,html body #pagina-home#pagina-home #listaVagas#listaVagas#listaVagas#listaVagas article.vaga-card.em-lista-final.em-recent-model3 .em-lista-meta .em-lista-meta-item:first-child :is(b,strong,span),html body #pagina-home#pagina-home #listaVagas#listaVagas#listaVagas#listaVagas article.vaga-card.em-lista-final.em-recent-model3 .em-lista-meta .em-lista-salario,html body #pagina-home#pagina-home #listaVagas#listaVagas#listaVagas#listaVagas article.vaga-card.em-lista-final.em-recent-model3 .em-lista-meta .em-lista-salario :is(b,strong,span){color:#116b3a!important;font-weight:500!important}
-html body #pagina-home#pagina-home #listaVagas#listaVagas#listaVagas#listaVagas article.vaga-card.em-lista-final.em-recent-model3 .em-lista-meta .em-lista-meta-item:first-child svg,html body #pagina-home#pagina-home #listaVagas#listaVagas#listaVagas#listaVagas article.vaga-card.em-lista-final.em-recent-model3 .em-lista-meta .em-lista-salario svg{color:#116b3a!important;stroke:#116b3a!important}
-html body #pagina-home#pagina-home #listaVagas#listaVagas#listaVagas#listaVagas article.vaga-card.em-lista-final.em-recent-model3 .em-lista-resumo{color:#293548!important}
-</style><style id="em-hero-option2">
+</style><style id="em-candidate-softer-numbers">html body #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato.cp-enhanced :is(.cp-home-summary strong,.cp-home-summary b,.cp-interview-time,.cp-interview-date strong){color:#4b5563!important}</style><style id="em-hero-option2">
 html body #pagina-home #emHeroFloripa#emHeroFloripa#emHeroFloripa.hero.hero-premium-em{background:#0080c9!important;background-image:none!important;padding:38px 32px!important;margin:0!important;min-height:0!important;height:auto!important;color:#fff!important;overflow:visible!important}
 html body #pagina-home #emHeroFloripa#emHeroFloripa#emHeroFloripa::before,html body #pagina-home #emHeroFloripa#emHeroFloripa#emHeroFloripa::after,html body #pagina-home #emHeroFloripa#emHeroFloripa#emHeroFloripa .hero-copy-em h1::after{display:none!important;content:none!important}
 html body #pagina-home #emHeroFloripa#emHeroFloripa#emHeroFloripa .hero-premium-inner-em{display:grid!important;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr)!important;align-items:center!important;gap:40px!important;width:100%!important;max-width:none!important;padding:0!important;margin:0 auto!important}
@@ -42134,7 +41758,7 @@ html body #pagina-candidatos-empresa .em-app-option2 .em-gc27-stat:last-child{bo
 html body #pagina-candidatos-empresa .em-app-option2 .em-gc27-stat strong{font:600 14px Inter,Arial,sans-serif!important;padding:4px 9px!important;border-radius:20px!important;background:#f0f4f8!important;color:#354b63!important}
 html body #pagina-candidatos-empresa .em-app-option2 .em-gc27-stat strong::before{content:none!important}
 html body #pagina-candidatos-empresa .em-app-option2 .em-gc27-stat span{font:600 12px/1.35 Inter,Arial,sans-serif!important;color:inherit!important}
-html body #pagina-candidatos-empresa .em-app-option2 .em-gc27-stat span::before{content:'';display:inline-block;width:7px;height:7px;border-radius:50%;margin-right:7px;background:var(--stage,#086be6)}
+html body #pagina-candidatos-empresa .em-app-option2 .em-gc27-stat span::before{content:"";display:inline-block;width:7px;height:7px;border-radius:50%;margin-right:7px;background:var(--stage,#086be6)}
 html body #pagina-candidatos-empresa .em-app-option2 .em-gc27-stat:nth-child(2){--stage:#aa760d}html body #pagina-candidatos-empresa .em-app-option2 .em-gc27-stat:nth-child(3){--stage:#008da8}html body #pagina-candidatos-empresa .em-app-option2 .em-gc27-stat:nth-child(4){--stage:#7940c9}html body #pagina-candidatos-empresa .em-app-option2 .em-gc27-stat:nth-child(5){--stage:#22864c}html body #pagina-candidatos-empresa .em-app-option2 .em-gc27-stat:nth-child(6){--stage:#00877d}html body #pagina-candidatos-empresa .em-app-option2 .em-gc27-stat:nth-child(7){--stage:#c73550}
 html body #pagina-candidatos-empresa .em-app-option2 .em-gc27-stat.active{background:#edf5ff!important;color:#086be6!important;box-shadow:inset 0 0 0 1px #086be6!important;border-radius:8px!important}
 html body #pagina-candidatos-empresa .em-app-option2 .em-gc27-stat:focus-visible{outline:3px solid #93bfff!important;outline-offset:2px!important}

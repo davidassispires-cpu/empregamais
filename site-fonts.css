@@ -8,14 +8,14 @@
   }
 }
 /* One local Poppins source per weight, including legacy family aliases. */
-@font-face{font-family:'Poppins';font-style:normal;font-weight:100 499;font-display:optional;src:url('assets/fonts/poppins-400.woff2') format('woff2')}
-@font-face{font-family:'Poppins';font-style:normal;font-weight:500 599;font-display:optional;src:url('assets/fonts/poppins-500.woff2') format('woff2')}
-@font-face{font-family:'Poppins';font-style:normal;font-weight:600 699;font-display:optional;src:url('assets/fonts/poppins-600.woff2') format('woff2')}
-@font-face{font-family:'Poppins';font-style:normal;font-weight:700 900;font-display:optional;src:url('assets/fonts/poppins-700.woff2') format('woff2')}
-@font-face{font-family:'Inter';font-style:normal;font-weight:100 499;font-display:optional;src:url('assets/fonts/poppins-400.woff2') format('woff2')}
-@font-face{font-family:'Inter';font-style:normal;font-weight:500 599;font-display:optional;src:url('assets/fonts/poppins-500.woff2') format('woff2')}
-@font-face{font-family:'Inter';font-style:normal;font-weight:600 699;font-display:optional;src:url('assets/fonts/poppins-600.woff2') format('woff2')}
-@font-face{font-family:'Inter';font-style:normal;font-weight:700 900;font-display:optional;src:url('assets/fonts/poppins-700.woff2') format('woff2')}
+
+
+
+
+
+
+
+
 
 
 
@@ -42,7 +42,7 @@
   #listaCandidaturas.cp-applications-list-view .cp-application-list-row,
   #listaCandidaturas.cp-applications-list-view .cp-application-list-row * {
     box-sizing: border-box !important;
-    font-family: 'Montserrat Applications', Montserrat, Arial, sans-serif !important;
+    
   }
   #listaCandidaturas.cp-applications-list-view .cp-application-list-row {
     display: grid !important;
@@ -235,7 +235,7 @@
   #listaCandidaturas.cp-applications-list-view .cp-journey-step-state { color: #526174 !important; font-size: 10px !important; line-height: 1.4 !important; }
   #listaCandidaturas.cp-applications-list-view .cp-card-journey .cp-journey-step-state { display: none !important; }
   #listaCandidaturas.cp-applications-list-view .cp-card-journey li:not(:last-child)::after {
-    content: '' !important;
+    content: "" !important;
     position: absolute !important;
     top: 15px !important;
     left: 50% !important;
@@ -584,7 +584,7 @@
   body *:not(:is(.fa, .fas, .far, .fal, .fab, .material-icons, .material-symbols-outlined, .bi)),
   input::placeholder,
   textarea::placeholder {
-    font-family: Inter, Arial, sans-serif !important;
+    
   }
 }
 
@@ -592,18 +592,18 @@
 @layer field-feedback {
   html body #pagina-candidatos-empresa .em-jh-card>h3,
   html body #pagina-candidatos-empresa .em-gc27-title {
-    font-family: Inter, Arial, sans-serif !important;
+    
     font-weight: 700 !important;
     text-transform: uppercase !important;
   }
 }
 
-/* Approved model 1: minimal recruiter application cards. */
+
 @layer field-feedback {
   html body #pagina-candidatos-empresa .em-jh-card.em-app-card,
   html body #pagina-candidatos-empresa .em-jh-card.em-app-card * {
     box-sizing: border-box !important;
-    font-family: Montserrat, Inter, Arial, sans-serif !important;
+    
   }
   html body #pagina-candidatos-empresa .em-jh-card.em-app-card {
     grid-template-columns: 44px minmax(0,1fr) !important;
@@ -789,102 +789,102 @@
       [class*="descricao"],[class*="location"],[class*="localizacao"],
       [class*="meta"],[class*="muted"],[class*="caption"],
       .cp-role,.cp-location,.cp-completion,.cp-overview-card div>span,
-      .cp-avatar-box>small,.cp-profile-objective p,.cp-profile-objective small) {font-family:Inter,Arial,sans-serif!important;font-weight:500!important}
+      .cp-avatar-box>small,.cp-profile-objective p,.cp-profile-objective small) {font-weight:500!important;}
   :is(p,small,label,dt,dd,li,input,textarea,select,
       [class*="subtitle"],[class*="subtitulo"],[class*="description"],
       [class*="descricao"],[class*="location"],[class*="localizacao"],
       [class*="meta"],[class*="muted"],[class*="caption"],
       .cp-role,.cp-location,.cp-completion,.cp-overview-card div>span,
-      .cp-avatar-box>small):not(:is(header *,nav *,footer *,aside *,button *,a *,#emHeroFloripa *,[role="button"] *,[class*="badge"],[class*="status"],[class*="error"],[class*="success"])) {color:#667594!important}
+      .cp-avatar-box>small):not(:is(header *,nav *,footer *,aside *,button *,a *,#emHeroFloripa *,[role="button"] *,[class*="badge"],[class*="status"],[class*="error"],[class*="success"])) {color:#667594!important;}
 }
 
 /* Compact public footer only while a recruiter workspace is active. */
 @media(max-width:760px){
- body:is([data-recruiter-demo],:has(:is(#pagina-painel-empresa,#pagina-demo-recrutador).ativa))>footer.rodape{padding:18px 16px!important;margin-top:0!important}
- body:is([data-recruiter-demo],:has(:is(#pagina-painel-empresa,#pagina-demo-recrutador).ativa))>footer.rodape .rodape-grid{display:flex!important;justify-content:space-between!important;gap:12px!important;align-items:center!important}
+ body:is([data-recruiter-demo],:has(:is(#pagina-painel-empresa,#pagina-demo-recrutador).ativa))>footer.rodape{padding:18px 16px!important;margin-top:0!important;}
+ body:is([data-recruiter-demo],:has(:is(#pagina-painel-empresa,#pagina-demo-recrutador).ativa))>footer.rodape .rodape-grid{display:flex!important;justify-content:space-between!important;gap:12px!important;align-items:center!important;}
  body:is([data-recruiter-demo],:has(:is(#pagina-painel-empresa,#pagina-demo-recrutador).ativa))>footer.rodape .rodape-grid>div:not(:first-child):not(:last-child),
  body:is([data-recruiter-demo],:has(:is(#pagina-painel-empresa,#pagina-demo-recrutador).ativa))>footer.rodape .rodape-grid p,
  body:is([data-recruiter-demo],:has(:is(#pagina-painel-empresa,#pagina-demo-recrutador).ativa))>footer.rodape .rodape-grid h3,
- body:is([data-recruiter-demo],:has(:is(#pagina-painel-empresa,#pagina-demo-recrutador).ativa))>footer.rodape .rodape-admin>button{display:none!important}
- body:is([data-recruiter-demo],:has(:is(#pagina-painel-empresa,#pagina-demo-recrutador).ativa))>footer.rodape .rodape-grid>div:last-child{display:flex!important;gap:12px!important}
- body:is([data-recruiter-demo],:has(:is(#pagina-painel-empresa,#pagina-demo-recrutador).ativa))>footer.rodape button{min-height:44px!important;margin:0!important}
- body:is([data-recruiter-demo],:has(:is(#pagina-painel-empresa,#pagina-demo-recrutador).ativa))>footer.rodape .rodape-admin{margin-top:10px!important;padding-top:10px!important}
+ body:is([data-recruiter-demo],:has(:is(#pagina-painel-empresa,#pagina-demo-recrutador).ativa))>footer.rodape .rodape-admin>button{display:none!important;}
+ body:is([data-recruiter-demo],:has(:is(#pagina-painel-empresa,#pagina-demo-recrutador).ativa))>footer.rodape .rodape-grid>div:last-child{display:flex!important;gap:12px!important;}
+ body:is([data-recruiter-demo],:has(:is(#pagina-painel-empresa,#pagina-demo-recrutador).ativa))>footer.rodape button{min-height:44px!important;margin:0!important;}
+ body:is([data-recruiter-demo],:has(:is(#pagina-painel-empresa,#pagina-demo-recrutador).ativa))>footer.rodape .rodape-admin{margin-top:10px!important;padding-top:10px!important;}
 }
 
 @media(max-width:760px){
- html body #pagina-home#pagina-home{width:100%!important;max-width:100%!important;min-width:0!important;box-sizing:border-box!important}
- html body #pagina-home#pagina-home :is(.container,.home-layout,.home-main,.home-sidebar,.hero-inner,.hero-search-shell-em,#emPerto,#listaVagas){min-width:0!important;max-width:100%!important;box-sizing:border-box!important}
- html body #pagina-home#pagina-home #emHeroFloripa .hero-copy-em p{color:#e4edff!important;opacity:1!important}
- html body #pagina-home#pagina-home #emHeroFloripa .hero-copy-em h1{color:#fff!important}
- html body #pagina-home#pagina-home #emPerto{width:100%!important;margin-left:0!important;margin-right:0!important}
- html body #pagina-home#pagina-home #listaVagas>*{min-width:0!important;max-width:100%!important;box-sizing:border-box!important}
- html body #pagina-home#pagina-home #listaVagas :is(button,a){max-width:100%!important}
+ html body #pagina-home#pagina-home{width:100%!important;max-width:100%!important;min-width:0!important;box-sizing:border-box!important;}
+ html body #pagina-home#pagina-home :is(.container,.home-layout,.home-main,.home-sidebar,.hero-inner,.hero-search-shell-em,#emPerto,#listaVagas){min-width:0!important;max-width:100%!important;box-sizing:border-box!important;}
+ html body #pagina-home#pagina-home #emHeroFloripa .hero-copy-em p{color:#e4edff!important;opacity:1!important;}
+ html body #pagina-home#pagina-home #emHeroFloripa .hero-copy-em h1{color:#fff!important;}
+ html body #pagina-home#pagina-home #emPerto{width:100%!important;margin-left:0!important;margin-right:0!important;}
+ html body #pagina-home#pagina-home #listaVagas>*{min-width:0!important;max-width:100%!important;box-sizing:border-box!important;}
+ html body #pagina-home#pagina-home #listaVagas :is(button,a){max-width:100%!important;}
 }
 /* Resume workspace: petroleum blue foundation and warm orange actions. */
-html body #pagina-curriculo#pagina-curriculo{--cv-ink:#34333d;--cv-accent:#0080c9;--cv-border:#eff6ff;--cv-soft:#f8fbff;--roxo:#0080c9;--roxoClaro:#f8fbff;background:#f8fbff!important;color:#34333d!important}
-html body #pagina-curriculo#pagina-curriculo .container-menor:has(#cvResumeWizard){width:calc(100% - 40px)!important;max-width:1180px!important;padding:16px 0 32px!important}
-html body #pagina-curriculo#pagina-curriculo .cv-purple-hero{position:relative!important;isolation:isolate;grid-template-columns:minmax(0,1fr) 30%!important;gap:10px 20px!important;background:radial-gradient(ellipse at 95% 0%,#0080c9,transparent 65%),linear-gradient(110deg,#0080c9,#0080c9)!important;border:0!important;border-radius:18px!important;padding:22px 26px 16px!important;color:#fff!important;box-shadow:0 5px 18px #29575108!important}
-html body #pagina-curriculo#pagina-curriculo .cv-purple-hero:after{border-color:#95cdc722!important;box-shadow:0 0 0 65px #bee1dd08!important;z-index:-1!important}
-html body #pagina-curriculo#pagina-curriculo .cv-purple-hero h2{color:#fff!important;font-size:clamp(24px,2.4vw,32px)!important;font-weight:700!important;line-height:1.15!important;letter-spacing:-.6px!important;max-width:650px!important}
-html body #pagina-curriculo#pagina-curriculo .cv-purple-hero h2 span{color:#93c5fd!important}
-html body #pagina-curriculo#pagina-curriculo .cv-purple-hero .cv-hero-back{color:#eff6ff!important;min-height:28px!important}
-html body #pagina-curriculo#pagina-curriculo .cv-purple-hero .cv85-kicker{color:#d5e5f5!important;letter-spacing:1px!important;margin:7px 0 10px!important}
-html body #pagina-curriculo#pagina-curriculo .cv-purple-hero .cv85-kicker span{background:#ffffff12!important;border:1px solid #ffffff45!important;color:#eff6ff!important;border-radius:6px!important}
-html body #pagina-curriculo#pagina-curriculo .cv-purple-hero .cv85-hero-copy p{color:#eff6ff!important;font-size:13px!important;line-height:1.6!important;font-weight:400!important}
-html body #pagina-curriculo#pagina-curriculo .cv-purple-hero .cv-hero-step-chips{gap:7px!important;margin-top:13px!important}
-html body #pagina-curriculo#pagina-curriculo .cv-purple-hero .cv-hero-step-chips span{background:#ffffff10!important;border:1px solid #ffffff33!important;color:#eff6ff!important;font-size:10px!important}
-html body #pagina-curriculo#pagina-curriculo .cv-purple-hero .cv-hero-step-chips span:before{background:#ff981f2b!important;color:#d5e5f5!important}
-html body #pagina-curriculo#pagina-curriculo .cv-purple-hero .cv-hero-illustration{max-height:185px!important}
-html body #pagina-curriculo#pagina-curriculo .cv-purple-hero .cv-hero-illustration svg{max-height:185px!important;filter:drop-shadow(0 10px 10px #29575130)}
-html body #pagina-curriculo#pagina-curriculo .cv-purple-hero .cv85-score{background:#ffffffed!important;border:0!important;padding:10px 14px!important;min-height:38px!important;border-radius:10px!important;gap:9px!important;box-shadow:none!important}
-html body #pagina-curriculo#pagina-curriculo .cv-purple-hero .cv85-score :is(strong,.cv-rail-label){color:#34333d!important}
-html body #pagina-curriculo#pagina-curriculo .cv-purple-hero .cv85-score>span{color:#0080c9!important}
-html body #pagina-curriculo#pagina-curriculo .cv-purple-hero .cv-rail-track{background:#eff6ff!important;height:7px!important}
-html body #pagina-curriculo#pagina-curriculo .cv-purple-hero .cv-rail-track i{background:linear-gradient(90deg,#93c5fd,#0080c9)!important}
-html body #pagina-curriculo#pagina-curriculo .cv-purple-hero .cv-rail-hint{border-color:#eff6ff!important;color:#0080c9!important}
-html body #pagina-curriculo#pagina-curriculo #cvResumeWizard.cv-wizard{gap:16px!important;margin-top:18px!important}
-html body #pagina-curriculo#pagina-curriculo #cvResumeWizard .cv-context-guide{background:#fff!important;border:1px solid #eff6ff!important;border-left:4px solid #0080c9!important;border-radius:13px!important;padding:17px 22px!important;box-shadow:0 3px 14px #29575104!important}
-html body #pagina-curriculo#pagina-curriculo #cvResumeWizard .cv-context-guide :is(small,h2){color:#34333d!important}
-html body #pagina-curriculo#pagina-curriculo #cvResumeWizard .cv-context-guide>p{color:#0080c9!important;border-color:#eff6ff!important;font-weight:400!important}
-html body #pagina-curriculo#pagina-curriculo #cvResumeWizard .cv-guide-tip{background:#f8fbff!important;border-color:#d5e5f5!important;color:#0080c9!important;border-radius:10px!important}
-html body #pagina-curriculo#pagina-curriculo #cvResumeWizard #curriculoOnlineV84{border:1px solid #eff6ff!important;border-radius:16px!important;padding:22px 24px!important;box-shadow:0 5px 20px #29575105!important;background:#fff!important}
-html body #pagina-curriculo#pagina-curriculo #cvResumeWizard .cv-step-nav{gap:7px!important;border-bottom-color:#eff6ff!important;padding-bottom:14px!important;scrollbar-width:thin!important;scrollbar-color:#d5e5f5 transparent!important}
-html body #pagina-curriculo#pagina-curriculo #cvResumeWizard .cv-step-nav button{padding:8px 10px!important;border:1px solid transparent!important;border-radius:10px!important;background:#f4f8fa!important;color:#0080c9!important;gap:7px!important;transition:background .15s,border-color .15s}
-html body #pagina-curriculo#pagina-curriculo #cvResumeWizard .cv-step-nav button:hover{background:#f8fbff!important;border-color:#eff6ff!important}
-html body #pagina-curriculo#pagina-curriculo #cvResumeWizard .cv-step-nav button>span{background:#eff6ff!important;color:#34333d!important;border-radius:8px!important;width:27px!important;height:27px!important;flex-basis:27px!important}
-html body #pagina-curriculo#pagina-curriculo #cvResumeWizard .cv-step-nav button[aria-current=step]{color:#0080c9!important;background:#f8fbff!important;border-color:#d5e5f5!important}
-html body #pagina-curriculo#pagina-curriculo #cvResumeWizard .cv-step-nav button[aria-current=step]>span{background:#0080c9!important;color:#fff!important}
-html body #pagina-curriculo#pagina-curriculo #cvResumeWizard .cv-step-nav button.complete:not([aria-current=step]){background:#f8fbff!important;color:#34333d!important}
-html body #pagina-curriculo#pagina-curriculo #cvResumeWizard .cv-step-nav button.complete:not([aria-current=step])>span{background:#34333d!important;color:#fff!important}
-html body #pagina-curriculo#pagina-curriculo #cvResumeWizard :is(.cv85-section-head h3,.cv-entry-title){color:#34333d!important;font-weight:700!important}
-html body #pagina-curriculo#pagina-curriculo #cvResumeWizard .cv85-section-head>div>small{color:#0080c9!important;letter-spacing:1px!important}
-html body #pagina-curriculo#pagina-curriculo #cvResumeWizard .cv85-number{width:44px!important;height:44px!important;min-width:44px!important;border-radius:12px!important;background:#f8fbff!important;color:#34333d!important}
-html body #pagina-curriculo#pagina-curriculo #cvResumeWizard .curriculo-campo-v84{color:#34333d!important;font-weight:600!important;font-size:12px!important}
-html body #pagina-curriculo#pagina-curriculo #cvResumeWizard :is(input:not([type=checkbox]):not([type=radio]):not([type=hidden]),select,textarea){border:1px solid #eff6ff!important;border-radius:9px!important;background:#fbfdfe!important;color:#34333d!important;font:400 14px/1.5 Inter,Arial,sans-serif!important;box-shadow:none!important}
-html body #pagina-curriculo#pagina-curriculo #cvResumeWizard :is(input:not([type=checkbox]):not([type=radio]):not([type=hidden]),select,textarea):focus{outline:0!important;border-color:#0080c9!important;box-shadow:0 0 0 3px #78bfb720!important;background:#fff!important}
-html body #pagina-curriculo#pagina-curriculo #cvResumeWizard :is(input,textarea)::placeholder{color:#93c5fd!important;opacity:1!important}
-html body #pagina-curriculo#pagina-curriculo #cvResumeWizard :is(.cv-professional-field>svg,.cv-entry-title svg){stroke:#0080c9!important;color:#0080c9!important}
-html body #pagina-curriculo#pagina-curriculo #cvResumeWizard :is(.cv-entry,.cv-entry-card){border:1px solid #eff6ff!important;border-radius:13px!important;background:#fbfdfe!important}
-html body #pagina-curriculo#pagina-curriculo #cvResumeWizard .cv-wizard-actions{border-color:#eff6ff!important;gap:12px!important}
-html body #pagina-curriculo#pagina-curriculo #cvResumeWizard .cv-wizard-actions button{border-radius:9px!important;border:1px solid #eff6ff!important;background:#fff!important;color:#34333d!important;min-height:40px!important;padding:10px 18px!important;font-weight:600!important;box-shadow:none!important}
-html body #pagina-curriculo#pagina-curriculo #cvResumeWizard .cv-wizard-actions button:last-child{background:linear-gradient(110deg,#0080c9,#0080c9)!important;border-color:#0080c9!important;color:#fff!important}
-html body #pagina-curriculo#pagina-curriculo #cvResumeWizard .cv-scroll-arrow{background:#34333d!important;color:#fff!important;box-shadow:0 3px 10px #29575120!important}
-html body #pagina-curriculo#pagina-curriculo #cvResumeWizard .cv-scroll-arrow:disabled{background:#f8fbff!important;color:#93c5fd!important;box-shadow:none!important}
-html body #pagina-curriculo#pagina-curriculo #cvResumeWizard :is(.cv-add-entry,.cv-chip,.cv-choice){border-color:#eff6ff!important;background:#f8fbff!important;color:#34333d!important}
-html body #pagina-curriculo#pagina-curriculo #cvResumeWizard :is(.cv-preference-trigger,.cv-multi-trigger){border-color:#eff6ff!important;background:#f7fbfd!important;color:#34333d!important;border-radius:9px!important}
+html body #pagina-curriculo#pagina-curriculo{--cv-ink:#34333d;--cv-accent:#0080c9;--cv-border:#eff6ff;--cv-soft:#f8fbff;--roxo:#0080c9;--roxoClaro:#f8fbff;background:#f8fbff!important;color:#34333d!important;}
+html body #pagina-curriculo#pagina-curriculo .container-menor:has(#cvResumeWizard){width:calc(100% - 40px)!important;max-width:1180px!important;padding:16px 0 32px!important;}
+html body #pagina-curriculo#pagina-curriculo .cv-purple-hero{position:relative!important;isolation:isolate;grid-template-columns:minmax(0,1fr) 30%!important;gap:10px 20px!important;background:radial-gradient(ellipse at 95% 0%,#0080c9,transparent 65%),linear-gradient(110deg,#0080c9,#0080c9)!important;border:0!important;border-radius:18px!important;padding:22px 26px 16px!important;color:#fff!important;box-shadow:0 5px 18px #29575108!important;}
+html body #pagina-curriculo#pagina-curriculo .cv-purple-hero:after{border-color:#95cdc722!important;box-shadow:0 0 0 65px #bee1dd08!important;z-index:-1!important;}
+html body #pagina-curriculo#pagina-curriculo .cv-purple-hero h2{color:#fff!important;font-size:clamp(24px,2.4vw,32px)!important;font-weight:700!important;line-height:1.15!important;letter-spacing:-.6px!important;max-width:650px!important;}
+html body #pagina-curriculo#pagina-curriculo .cv-purple-hero h2 span{color:#93c5fd!important;}
+html body #pagina-curriculo#pagina-curriculo .cv-purple-hero .cv-hero-back{color:#eff6ff!important;min-height:28px!important;}
+html body #pagina-curriculo#pagina-curriculo .cv-purple-hero .cv85-kicker{color:#d5e5f5!important;letter-spacing:1px!important;margin:7px 0 10px!important;}
+html body #pagina-curriculo#pagina-curriculo .cv-purple-hero .cv85-kicker span{background:#ffffff12!important;border:1px solid #ffffff45!important;color:#eff6ff!important;border-radius:6px!important;}
+html body #pagina-curriculo#pagina-curriculo .cv-purple-hero .cv85-hero-copy p{color:#eff6ff!important;font-size:13px!important;line-height:1.6!important;font-weight:400!important;}
+html body #pagina-curriculo#pagina-curriculo .cv-purple-hero .cv-hero-step-chips{gap:7px!important;margin-top:13px!important;}
+html body #pagina-curriculo#pagina-curriculo .cv-purple-hero .cv-hero-step-chips span{background:#ffffff10!important;border:1px solid #ffffff33!important;color:#eff6ff!important;font-size:10px!important;}
+html body #pagina-curriculo#pagina-curriculo .cv-purple-hero .cv-hero-step-chips span:before{background:#ff981f2b!important;color:#d5e5f5!important;}
+html body #pagina-curriculo#pagina-curriculo .cv-purple-hero .cv-hero-illustration{max-height:185px!important;}
+html body #pagina-curriculo#pagina-curriculo .cv-purple-hero .cv-hero-illustration svg{max-height:185px!important;filter:drop-shadow(0 10px 10px #29575130);}
+html body #pagina-curriculo#pagina-curriculo .cv-purple-hero .cv85-score{background:#ffffffed!important;border:0!important;padding:10px 14px!important;min-height:38px!important;border-radius:10px!important;gap:9px!important;box-shadow:none!important;}
+html body #pagina-curriculo#pagina-curriculo .cv-purple-hero .cv85-score :is(strong,.cv-rail-label){color:#34333d!important;}
+html body #pagina-curriculo#pagina-curriculo .cv-purple-hero .cv85-score>span{color:#0080c9!important;}
+html body #pagina-curriculo#pagina-curriculo .cv-purple-hero .cv-rail-track{background:#eff6ff!important;height:7px!important;}
+html body #pagina-curriculo#pagina-curriculo .cv-purple-hero .cv-rail-track i{background:linear-gradient(90deg,#93c5fd,#0080c9)!important;}
+html body #pagina-curriculo#pagina-curriculo .cv-purple-hero .cv-rail-hint{border-color:#eff6ff!important;color:#0080c9!important;}
+html body #pagina-curriculo#pagina-curriculo #cvResumeWizard.cv-wizard{gap:16px!important;margin-top:18px!important;}
+html body #pagina-curriculo#pagina-curriculo #cvResumeWizard .cv-context-guide{background:#fff!important;border:1px solid #eff6ff!important;border-left:4px solid #0080c9!important;border-radius:13px!important;padding:17px 22px!important;box-shadow:0 3px 14px #29575104!important;}
+html body #pagina-curriculo#pagina-curriculo #cvResumeWizard .cv-context-guide :is(small,h2){color:#34333d!important;}
+html body #pagina-curriculo#pagina-curriculo #cvResumeWizard .cv-context-guide>p{color:#0080c9!important;border-color:#eff6ff!important;font-weight:400!important;}
+html body #pagina-curriculo#pagina-curriculo #cvResumeWizard .cv-guide-tip{background:#f8fbff!important;border-color:#d5e5f5!important;color:#0080c9!important;border-radius:10px!important;}
+html body #pagina-curriculo#pagina-curriculo #cvResumeWizard #curriculoOnlineV84{border:1px solid #eff6ff!important;border-radius:16px!important;padding:22px 24px!important;box-shadow:0 5px 20px #29575105!important;background:#fff!important;}
+html body #pagina-curriculo#pagina-curriculo #cvResumeWizard .cv-step-nav{gap:7px!important;border-bottom-color:#eff6ff!important;padding-bottom:14px!important;scrollbar-width:thin!important;scrollbar-color:#d5e5f5 transparent!important;}
+html body #pagina-curriculo#pagina-curriculo #cvResumeWizard .cv-step-nav button{padding:8px 10px!important;border:1px solid transparent!important;border-radius:10px!important;background:#f4f8fa!important;color:#0080c9!important;gap:7px!important;transition:background .15s,border-color .15s;}
+html body #pagina-curriculo#pagina-curriculo #cvResumeWizard .cv-step-nav button:hover{background:#f8fbff!important;border-color:#eff6ff!important;}
+html body #pagina-curriculo#pagina-curriculo #cvResumeWizard .cv-step-nav button>span{background:#eff6ff!important;color:#34333d!important;border-radius:8px!important;width:27px!important;height:27px!important;flex-basis:27px!important;}
+html body #pagina-curriculo#pagina-curriculo #cvResumeWizard .cv-step-nav button[aria-current=step]{color:#0080c9!important;background:#f8fbff!important;border-color:#d5e5f5!important;}
+html body #pagina-curriculo#pagina-curriculo #cvResumeWizard .cv-step-nav button[aria-current=step]>span{background:#0080c9!important;color:#fff!important;}
+html body #pagina-curriculo#pagina-curriculo #cvResumeWizard .cv-step-nav button.complete:not([aria-current=step]){background:#f8fbff!important;color:#34333d!important;}
+html body #pagina-curriculo#pagina-curriculo #cvResumeWizard .cv-step-nav button.complete:not([aria-current=step])>span{background:#34333d!important;color:#fff!important;}
+html body #pagina-curriculo#pagina-curriculo #cvResumeWizard :is(.cv85-section-head h3,.cv-entry-title){color:#34333d!important;font-weight:700!important;}
+html body #pagina-curriculo#pagina-curriculo #cvResumeWizard .cv85-section-head>div>small{color:#0080c9!important;letter-spacing:1px!important;}
+html body #pagina-curriculo#pagina-curriculo #cvResumeWizard .cv85-number{width:44px!important;height:44px!important;min-width:44px!important;border-radius:12px!important;background:#f8fbff!important;color:#34333d!important;}
+html body #pagina-curriculo#pagina-curriculo #cvResumeWizard .curriculo-campo-v84{color:#34333d!important;font-weight:600!important;font-size:12px!important;}
+html body #pagina-curriculo#pagina-curriculo #cvResumeWizard :is(input:not([type=checkbox]):not([type=radio]):not([type=hidden]),select,textarea){border:1px solid #eff6ff!important;border-radius:9px!important;background:#fbfdfe!important;color:#34333d!important;font:400 14px/1.5 Inter,Arial,sans-serif!important;box-shadow:none!important;}
+html body #pagina-curriculo#pagina-curriculo #cvResumeWizard :is(input:not([type=checkbox]):not([type=radio]):not([type=hidden]),select,textarea):focus{outline:0!important;border-color:#0080c9!important;box-shadow:0 0 0 3px #78bfb720!important;background:#fff!important;}
+html body #pagina-curriculo#pagina-curriculo #cvResumeWizard :is(input,textarea)::placeholder{color:#93c5fd!important;opacity:1!important;}
+html body #pagina-curriculo#pagina-curriculo #cvResumeWizard :is(.cv-professional-field>svg,.cv-entry-title svg){stroke:#0080c9!important;color:#0080c9!important;}
+html body #pagina-curriculo#pagina-curriculo #cvResumeWizard :is(.cv-entry,.cv-entry-card){border:1px solid #eff6ff!important;border-radius:13px!important;background:#fbfdfe!important;}
+html body #pagina-curriculo#pagina-curriculo #cvResumeWizard .cv-wizard-actions{border-color:#eff6ff!important;gap:12px!important;}
+html body #pagina-curriculo#pagina-curriculo #cvResumeWizard .cv-wizard-actions button{border-radius:9px!important;border:1px solid #eff6ff!important;background:#fff!important;color:#34333d!important;min-height:40px!important;padding:10px 18px!important;font-weight:600!important;box-shadow:none!important;}
+html body #pagina-curriculo#pagina-curriculo #cvResumeWizard .cv-wizard-actions button:last-child{background:linear-gradient(110deg,#0080c9,#0080c9)!important;border-color:#0080c9!important;color:#fff!important;}
+html body #pagina-curriculo#pagina-curriculo #cvResumeWizard .cv-scroll-arrow{background:#34333d!important;color:#fff!important;box-shadow:0 3px 10px #29575120!important;}
+html body #pagina-curriculo#pagina-curriculo #cvResumeWizard .cv-scroll-arrow:disabled{background:#f8fbff!important;color:#93c5fd!important;box-shadow:none!important;}
+html body #pagina-curriculo#pagina-curriculo #cvResumeWizard :is(.cv-add-entry,.cv-chip,.cv-choice){border-color:#eff6ff!important;background:#f8fbff!important;color:#34333d!important;}
+html body #pagina-curriculo#pagina-curriculo #cvResumeWizard :is(.cv-preference-trigger,.cv-multi-trigger){border-color:#eff6ff!important;background:#f7fbfd!important;color:#34333d!important;border-radius:9px!important;}
 @layer site-typography{
- html body #pagina-curriculo#pagina-curriculo .cv-purple-hero :is(h2,.cv85-hero-copy h2){color:#fff!important;font-weight:700!important}
- html body #pagina-curriculo#pagina-curriculo .cv-purple-hero h2 span{color:#93c5fd!important}
- html body #pagina-curriculo#pagina-curriculo .cv-purple-hero :is(.cv85-kicker,.cv-hero-back){color:#eff6ff!important}
- html body #pagina-curriculo#pagina-curriculo .cv-purple-hero .cv85-hero-copy p{color:#eff6ff!important;font-weight:400!important}
- html body #pagina-curriculo#pagina-curriculo .cv-purple-hero .cv-hero-step-chips span{color:#eff6ff!important}
- html body #pagina-curriculo#pagina-curriculo #cvResumeWizard .cv-context-guide :is(h2,small){color:#34333d!important}
- html body #pagina-curriculo#pagina-curriculo #cvResumeWizard .curriculo-campo-v84{color:#34333d!important;font-weight:600!important}
- html body #pagina-curriculo#pagina-curriculo #cvResumeWizard .cv-step-nav button[aria-current=step] strong{color:#0080c9!important}
- html body #pagina-curriculo#pagina-curriculo #cvResumeWizard .cv-wizard-actions button:last-child{color:#fff!important}
+ html body #pagina-curriculo#pagina-curriculo .cv-purple-hero :is(h2,.cv85-hero-copy h2){color:#fff!important;font-weight:700!important;}
+ html body #pagina-curriculo#pagina-curriculo .cv-purple-hero h2 span{color:#93c5fd!important;}
+ html body #pagina-curriculo#pagina-curriculo .cv-purple-hero :is(.cv85-kicker,.cv-hero-back){color:#eff6ff!important;}
+ html body #pagina-curriculo#pagina-curriculo .cv-purple-hero .cv85-hero-copy p{color:#eff6ff!important;font-weight:400!important;}
+ html body #pagina-curriculo#pagina-curriculo .cv-purple-hero .cv-hero-step-chips span{color:#eff6ff!important;}
+ html body #pagina-curriculo#pagina-curriculo #cvResumeWizard .cv-context-guide :is(h2,small){color:#34333d!important;}
+ html body #pagina-curriculo#pagina-curriculo #cvResumeWizard .curriculo-campo-v84{color:#34333d!important;font-weight:600!important;}
+ html body #pagina-curriculo#pagina-curriculo #cvResumeWizard .cv-step-nav button[aria-current=step] strong{color:#0080c9!important;}
+ html body #pagina-curriculo#pagina-curriculo #cvResumeWizard .cv-wizard-actions button:last-child{color:#fff!important;}
 }
-@media(max-width:760px){html body #pagina-curriculo#pagina-curriculo .container-menor:has(#cvResumeWizard){width:calc(100% - 24px)!important}html body #pagina-curriculo#pagina-curriculo .cv-purple-hero{padding:20px 18px 14px!important;grid-template-columns:minmax(0,1fr) 26%!important}html body #pagina-curriculo#pagina-curriculo .cv-purple-hero .cv-hero-illustration{max-height:145px!important}html body #pagina-curriculo#pagina-curriculo #cvResumeWizard #curriculoOnlineV84{padding:17px!important}html body #pagina-curriculo#pagina-curriculo #cvResumeWizard .cv-context-guide{padding:16px!important}}
-@media(max-width:540px){html body #pagina-curriculo#pagina-curriculo .cv-purple-hero{grid-template-columns:1fr!important}html body #pagina-curriculo#pagina-curriculo .cv-purple-hero .cv-hero-illustration{display:none!important}html body #pagina-curriculo#pagina-curriculo #cvResumeWizard .cv-step-nav button{min-height:42px!important}html body #pagina-curriculo#pagina-curriculo .cv-purple-hero .cv85-score{flex-wrap:wrap!important}html body #pagina-curriculo#pagina-curriculo .cv-purple-hero .cv-rail-label{display:none!important}}
+@media(max-width:760px){html body #pagina-curriculo#pagina-curriculo .container-menor:has(#cvResumeWizard){width:calc(100% - 24px)!important;}html body #pagina-curriculo#pagina-curriculo .cv-purple-hero{padding:20px 18px 14px!important;grid-template-columns:minmax(0,1fr) 26%!important;}html body #pagina-curriculo#pagina-curriculo .cv-purple-hero .cv-hero-illustration{max-height:145px!important;}html body #pagina-curriculo#pagina-curriculo #cvResumeWizard #curriculoOnlineV84{padding:17px!important;}html body #pagina-curriculo#pagina-curriculo #cvResumeWizard .cv-context-guide{padding:16px!important;}}
+@media(max-width:540px){html body #pagina-curriculo#pagina-curriculo .cv-purple-hero{grid-template-columns:1fr!important;}html body #pagina-curriculo#pagina-curriculo .cv-purple-hero .cv-hero-illustration{display:none!important;}html body #pagina-curriculo#pagina-curriculo #cvResumeWizard .cv-step-nav button{min-height:42px!important;}html body #pagina-curriculo#pagina-curriculo .cv-purple-hero .cv85-score{flex-wrap:wrap!important;}html body #pagina-curriculo#pagina-curriculo .cv-purple-hero .cv-rail-label{display:none!important;}}
 
 /* Standard candidate headers: equal desktop height and breathing room above rails. */
 @media(min-width:761px){
@@ -905,463 +905,463 @@ html body #pagina-curriculo#pagina-curriculo #cvResumeWizard :is(.cv-preference-
  html body #pagina-curriculo#pagina-curriculo#pagina-curriculo .cv85-kicker{
   margin:3px 0 6px!important;font-size:9px!important;line-height:1.3!important;
  }
- html body #pagina-curriculo#pagina-curriculo#pagina-curriculo .cv85-kicker span{padding:3px 7px!important}
+ html body #pagina-curriculo#pagina-curriculo#pagina-curriculo .cv85-kicker span{padding:3px 7px!important;}
  html body #pagina-curriculo#pagina-curriculo#pagina-curriculo .cv-purple-hero h2{
   font-size:26px!important;line-height:1.1!important;margin:0 0 6px!important;
  }
- html body #pagina-curriculo#pagina-curriculo#pagina-curriculo .cv85-hero-copy p{font-size:12px!important;line-height:1.5!important;margin:0!important}
+ html body #pagina-curriculo#pagina-curriculo#pagina-curriculo .cv85-hero-copy p{font-size:12px!important;line-height:1.5!important;margin:0!important;}
  html body #pagina-candidaturas#pagina-candidaturas#pagina-candidaturas .cp-applications-chips,
- html body #pagina-curriculo#pagina-curriculo#pagina-curriculo .cv-hero-step-chips{margin-top:8px!important;gap:8px!important}
- html body #pagina-curriculo#pagina-curriculo#pagina-curriculo .cv-hero-step-chips span{padding:4px 9px!important;min-height:24px!important;box-sizing:border-box!important}
- html body #pagina-candidaturas#pagina-candidaturas#pagina-candidaturas .cp-applications-chips span{min-height:28px!important;padding:4px 9px!important}
+ html body #pagina-curriculo#pagina-curriculo#pagina-curriculo .cv-hero-step-chips{margin-top:8px!important;gap:8px!important;}
+ html body #pagina-curriculo#pagina-curriculo#pagina-curriculo .cv-hero-step-chips span{padding:4px 9px!important;min-height:24px!important;box-sizing:border-box!important;}
+ html body #pagina-candidaturas#pagina-candidaturas#pagina-candidaturas .cp-applications-chips span{min-height:28px!important;padding:4px 9px!important;}
  html body #pagina-candidaturas#pagina-candidaturas#pagina-candidaturas .cp-applications-rail,
  html body #pagina-curriculo#pagina-curriculo#pagina-curriculo .cv85-score{
   height:36px!important;min-height:36px!important;max-height:36px!important;margin:0!important;padding:8px 14px!important;box-sizing:border-box!important;align-self:end!important;
  }
  html body #pagina-candidaturas#pagina-candidaturas#pagina-candidaturas .cp-applications-art,
- html body #pagina-curriculo#pagina-curriculo#pagina-curriculo .cv-hero-illustration{height:100%!important;max-height:158px!important;min-height:0!important}
+ html body #pagina-curriculo#pagina-curriculo#pagina-curriculo .cv-hero-illustration{height:100%!important;max-height:158px!important;min-height:0!important;}
  html body #pagina-candidaturas#pagina-candidaturas#pagina-candidaturas .cp-applications-art>svg,
- html body #pagina-curriculo#pagina-curriculo#pagina-curriculo .cv-hero-illustration>svg{max-height:158px!important}
+ html body #pagina-curriculo#pagina-curriculo#pagina-curriculo .cv-hero-illustration>svg{max-height:158px!important;}
 }
 @layer site-typography{
  @media(min-width:761px){
-  html body #pagina-curriculo#pagina-curriculo#pagina-curriculo .cv-purple-hero h2{font-size:26px!important;line-height:1.1!important}
-  html body #pagina-curriculo#pagina-curriculo#pagina-curriculo .cv85-hero-copy p{font-size:12px!important;line-height:1.5!important}
+  html body #pagina-curriculo#pagina-curriculo#pagina-curriculo .cv-purple-hero h2{font-size:26px!important;line-height:1.1!important;}
+  html body #pagina-curriculo#pagina-curriculo#pagina-curriculo .cv85-hero-copy p{font-size:12px!important;line-height:1.5!important;}
  }
 }
 
 /* Shared soft palette throughout the signed-in candidate workspace. */
 @layer site-typography {
- html body.cp-shell-active{--candidate-primary:#34333d;--candidate-accent:#0080c9;--candidate-soft:#f8fbff;--roxo:#0080c9;--roxoClaro:#f8fbff;--azul:#34333d}
- html body.cp-shell-active #cpCandidateHeader#cpCandidateHeader .cp-toolbar{background:#f8fbff!important;border-bottom:1px solid #eff6ff!important}
- html body.cp-shell-active #cpCandidateHeader#cpCandidateHeader .cp-navigation button[data-route][aria-current=page]{--nav-stroke:#34333d;--nav-accent:#0080c9;--nav-fill:#f8fbff;background:#f8fbff!important;color:#0080c9!important;box-shadow:none!important}
- html body.cp-shell-active #cpCandidateHeader#cpCandidateHeader .cp-navigation button[aria-current=page]>span{color:#0080c9!important}
- html body.cp-shell-active #cpCandidateHeader#cpCandidateHeader .cp-navigation button[aria-current=page] svg{color:#34333d!important}
- html body.cp-shell-active #cpCandidateHeader#cpCandidateHeader .cp-navigation button[aria-current=page]>.cp-card-icon{background:#fff!important;border-color:#eff6ff!important}
- html body.cp-shell-active #cpCandidateHeader#cpCandidateHeader .cp-navigation button[aria-current=page]:hover{background:#eff6ff!important}
- html body.cp-shell-active #cpCandidateHeader#cpCandidateHeader .cp-navigation button[data-route=messages]>.cp-message-count{background:#dc2626!important;color:#fff!important}
- html body.cp-shell-active #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato{--cp-navy:#34333d;--cp-lilac:#0080c9;--cp-pale-lilac:#f8fbff}
+ html body.cp-shell-active{--candidate-primary:#34333d;--candidate-accent:#0080c9;--candidate-soft:#f8fbff;--roxo:#0080c9;--roxoClaro:#f8fbff;--azul:#34333d;}
+ html body.cp-shell-active #cpCandidateHeader#cpCandidateHeader .cp-toolbar{background:#f8fbff!important;border-bottom:1px solid #eff6ff!important;}
+ html body.cp-shell-active #cpCandidateHeader#cpCandidateHeader .cp-navigation button[data-route][aria-current=page]{--nav-stroke:#34333d;--nav-accent:#0080c9;--nav-fill:#f8fbff;background:#f8fbff!important;color:#0080c9!important;box-shadow:none!important;}
+ html body.cp-shell-active #cpCandidateHeader#cpCandidateHeader .cp-navigation button[aria-current=page]>span{color:#0080c9!important;}
+ html body.cp-shell-active #cpCandidateHeader#cpCandidateHeader .cp-navigation button[aria-current=page] svg{color:#34333d!important;}
+ html body.cp-shell-active #cpCandidateHeader#cpCandidateHeader .cp-navigation button[aria-current=page]>.cp-card-icon{background:#fff!important;border-color:#eff6ff!important;}
+ html body.cp-shell-active #cpCandidateHeader#cpCandidateHeader .cp-navigation button[aria-current=page]:hover{background:#eff6ff!important;}
+ html body.cp-shell-active #cpCandidateHeader#cpCandidateHeader .cp-navigation button[data-route=messages]>.cp-message-count{background:#dc2626!important;color:#fff!important;}
+ html body.cp-shell-active #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato{--cp-navy:#34333d;--cp-lilac:#0080c9;--cp-pale-lilac:#f8fbff;}
  html body.cp-shell-active #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato .cp-home-intro,
  html body.cp-shell-active #pagina-curriculo#pagina-curriculo .cv-purple-hero,
- html body.cp-shell-active #pagina-candidaturas#pagina-candidaturas .cp-applications-hero{background:linear-gradient(110deg,#0080c9,#0080c9)!important}
- html body.cp-shell-active #pagina-curriculo#pagina-curriculo{--cv-ink:#34333d;--cv-accent:#0080c9;--cv-soft:#f8fbff;--roxo:#0080c9;color:#34333d!important}
+ html body.cp-shell-active #pagina-candidaturas#pagina-candidaturas .cp-applications-hero{background:linear-gradient(110deg,#0080c9,#0080c9)!important;}
+ html body.cp-shell-active #pagina-curriculo#pagina-curriculo{--cv-ink:#34333d;--cv-accent:#0080c9;--cv-soft:#f8fbff;--roxo:#0080c9;color:#34333d!important;}
  html body.cp-shell-active :is(#pagina-painel-candidato,#pagina-curriculo,#pagina-perfil,#pagina-mensagens,#pagina-vagas-salvas,#pagina-vagas) :is(.btn-primary,.btn-principal,.btn-roxo,.ep-primary,.m3-welcome button,.cp-search button,.cp-banner button),
  html body.cp-shell-active #pagina-curriculo#pagina-curriculo #cvResumeWizard .cv-wizard-actions button:last-child,
  html body.cp-shell-active #cpCandidateHeader#cpCandidateHeader .m3-help button{
- background:#fff3e8!important;color:#ff981f!important;border:1px solid #efd0b8!important;box-shadow:none!important}
- html body.cp-shell-active #pagina-curriculo#pagina-curriculo #cvResumeWizard .cv-step-nav button[aria-current=step]{background:#f8fbff!important;border-color:#d5e5f5!important;color:#0080c9!important}
- html body.cp-shell-active #pagina-curriculo#pagina-curriculo #cvResumeWizard .cv-step-nav button[aria-current=step]>span{background:#fff!important;color:#0080c9!important;border:1px solid #d5e5f5!important}
- html body.cp-shell-active #pagina-curriculo#pagina-curriculo #cvResumeWizard .cv-step-nav button[aria-current=step] :is(strong,small){color:#0080c9!important}
- html body.cp-shell-active #pagina-curriculo#pagina-curriculo .cv-purple-hero .cv-rail-track i{background:#93c5fd!important}
- html body.cp-shell-active #pagina-curriculo#pagina-curriculo #cvResumeWizard .cv-scroll-arrow{background:#eff6ff!important;color:#34333d!important}
- html body.cp-shell-active #pagina-curriculo#pagina-curriculo #cvResumeWizard :is(.cv85-section-head h3,.cv-entry-title){color:#34333d!important}
- html body.cp-shell-active #emCandidateProfile#emCandidateProfile .ep-primary{background:#f8fbff!important;color:#0080c9!important;border-color:#d5e5f5!important;box-shadow:none!important}
- html body.cp-shell-active #emCandidateProfile#emCandidateProfile :is(h2,h3,.ep-photo-copy strong){color:#34333d!important}
- html body.cp-shell-active #emCandidateProfile#emCandidateProfile .ep-head{background:linear-gradient(110deg,#f8fbff,#f8fbff)!important;border-color:#eff6ff!important}
- html body.cp-shell-active #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato .cp-overview-icon{background:#f8fbff!important;color:#34333d!important}
- html body.cp-shell-active #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato .em-personal-grid article>a{background:#f8fbff!important;color:#0080c9!important;border-color:#d5e5f5!important}
- html body.cp-shell-active :is(#pagina-painel-candidato,#pagina-curriculo,#pagina-perfil,#pagina-mensagens,#pagina-vagas-salvas,#pagina-vagas) :is(input,select,textarea){accent-color:#0080c9}
- html body.cp-shell-active :is(#pagina-painel-candidato,#pagina-curriculo,#pagina-perfil,#pagina-mensagens,#pagina-vagas-salvas,#pagina-vagas) :is(button,a,input,select,textarea):focus-visible{outline-color:#93c5fd!important}
+ background:#fff3e8!important;color:#ff981f!important;border:1px solid #efd0b8!important;box-shadow:none!important;}
+ html body.cp-shell-active #pagina-curriculo#pagina-curriculo #cvResumeWizard .cv-step-nav button[aria-current=step]{background:#f8fbff!important;border-color:#d5e5f5!important;color:#0080c9!important;}
+ html body.cp-shell-active #pagina-curriculo#pagina-curriculo #cvResumeWizard .cv-step-nav button[aria-current=step]>span{background:#fff!important;color:#0080c9!important;border:1px solid #d5e5f5!important;}
+ html body.cp-shell-active #pagina-curriculo#pagina-curriculo #cvResumeWizard .cv-step-nav button[aria-current=step] :is(strong,small){color:#0080c9!important;}
+ html body.cp-shell-active #pagina-curriculo#pagina-curriculo .cv-purple-hero .cv-rail-track i{background:#93c5fd!important;}
+ html body.cp-shell-active #pagina-curriculo#pagina-curriculo #cvResumeWizard .cv-scroll-arrow{background:#eff6ff!important;color:#34333d!important;}
+ html body.cp-shell-active #pagina-curriculo#pagina-curriculo #cvResumeWizard :is(.cv85-section-head h3,.cv-entry-title){color:#34333d!important;}
+ html body.cp-shell-active #emCandidateProfile#emCandidateProfile .ep-primary{background:#f8fbff!important;color:#0080c9!important;border-color:#d5e5f5!important;box-shadow:none!important;}
+ html body.cp-shell-active #emCandidateProfile#emCandidateProfile :is(h2,h3,.ep-photo-copy strong){color:#34333d!important;}
+ html body.cp-shell-active #emCandidateProfile#emCandidateProfile .ep-head{background:linear-gradient(110deg,#f8fbff,#f8fbff)!important;border-color:#eff6ff!important;}
+ html body.cp-shell-active #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato .cp-overview-icon{background:#f8fbff!important;color:#34333d!important;}
+ html body.cp-shell-active #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato .em-personal-grid article>a{background:#f8fbff!important;color:#0080c9!important;border-color:#d5e5f5!important;}
+ html body.cp-shell-active :is(#pagina-painel-candidato,#pagina-curriculo,#pagina-perfil,#pagina-mensagens,#pagina-vagas-salvas,#pagina-vagas) :is(input,select,textarea){accent-color:#0080c9;}
+ html body.cp-shell-active :is(#pagina-painel-candidato,#pagina-curriculo,#pagina-perfil,#pagina-mensagens,#pagina-vagas-salvas,#pagina-vagas) :is(button,a,input,select,textarea):focus-visible{outline-color:#93c5fd!important;}
 }
 
 /* Aqua top bar for the candidate workspace. */
 @layer site-typography {
- html body.cp-shell-active #cpCandidateHeader#cpCandidateHeader .cp-toolbar{background:#0080c9!important;border-bottom:1px solid #0080c9!important;color:#fff!important}
- html body.cp-shell-active #cpCandidateHeader#cpCandidateHeader .cp-toolbar :is(button,a,.cp-greeting-name,.cp-account-chevron,.cp-notifications){color:#fff!important}
- html body.cp-shell-active #cpCandidateHeader#cpCandidateHeader .cp-toolbar svg{color:#fff!important}
- html body.cp-shell-active #cpCandidateHeader#cpCandidateHeader .cp-user-avatar{background:#eff6ff!important;color:#34333d!important;border-color:#d5e5f5!important}
+ html body.cp-shell-active #cpCandidateHeader#cpCandidateHeader .cp-toolbar{background:#0080c9!important;border-bottom:1px solid #0080c9!important;color:#fff!important;}
+ html body.cp-shell-active #cpCandidateHeader#cpCandidateHeader .cp-toolbar :is(button,a,.cp-greeting-name,.cp-account-chevron,.cp-notifications){color:#fff!important;}
+ html body.cp-shell-active #cpCandidateHeader#cpCandidateHeader .cp-toolbar svg{color:#fff!important;}
+ html body.cp-shell-active #cpCandidateHeader#cpCandidateHeader .cp-user-avatar{background:#eff6ff!important;color:#34333d!important;border-color:#d5e5f5!important;}
 }
 
 /* Petroleum accent on the left edge of the floating candidate sidebar. */
 @media (min-width: 851px) {
  @layer field-feedback {
-  html body.cp-shell-active #cpCandidateHeader .cp-navigation {border:0!important;border-left:3px solid #0080c9!important;box-sizing:border-box!important}
+  html body.cp-shell-active #cpCandidateHeader .cp-navigation {border:0!important;border-left:3px solid #0080c9!important;box-sizing:border-box!important;}
  }
 }
 
 /* Candidate plan comparison and Premium compatibility. */
 @layer site-typography{
- html body #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato .cp-fit-and-alert{display:flex!important;flex-direction:column!important;align-items:stretch!important;gap:10px!important;margin-top:12px!important;padding-top:12px!important;border-top:1px solid #eff6ff!important}
- html body #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato .cp-fit-panel{display:flex!important;align-items:center!important;gap:12px!important;width:100%!important;max-width:none!important;white-space:normal!important;padding:14px!important;border:1px solid #eff6ff!important;border-radius:10px!important;background:#f8fbff!important;text-align:left!important;height:auto!important;min-height:90px!important;color:#374151!important;box-shadow:none!important}
- html body #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato .cp-fit-panel>svg{width:26px!important;height:26px!important;flex:0 0 26px!important;color:#0080c9!important}
- html body #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato .cp-fit-copy{display:flex!important;flex:1!important;min-width:0!important;flex-direction:column!important;gap:5px!important}
- html body #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato .cp-fit-copy strong{font-size:20px!important;line-height:1.2!important;color:#374151!important}
- html body #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato .cp-fit-copy small{font-size:11px!important;line-height:1.5!important;color:#667085!important}
- html body #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato .cp-fit-premium-label{font-size:9px!important;letter-spacing:.8px!important;font-weight:700!important;color:#0080c9!important}
- html body #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato .cp-fit-panel-action{font-size:11px!important;font-weight:600!important;color:#34333d!important;flex:0 0 auto!important}
- html body #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato .is-locked{background:#f8fbff!important;border-color:#eff6ff!important}
- html body #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato .is-locked .cp-fit-copy strong{font-size:14px!important}
- html body #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato .cp-fit-meter{height:5px!important;border-radius:10px!important;overflow:hidden!important;background:#eff6ff!important;display:block!important;max-width:230px!important;margin-top:3px!important}
- html body #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato .cp-fit-meter>span{display:block!important;height:100%!important;background:#0080c9!important;border-radius:10px!important}
- html body .cp-demo-plans{display:flex!important;justify-content:space-between!important;align-items:center!important;flex-wrap:wrap!important;gap:14px!important;padding:16px 20px!important;margin:0 0 18px!important;border:1px solid #eff6ff!important;border-radius:12px!important;background:#fff!important;color:#374151!important}
- html body .cp-demo-plans strong{font-size:14px!important;color:#374151!important}
- html body .cp-demo-plans p{font-size:11px!important;color:#667085!important;margin:5px 0 0!important}
- html body .cp-demo-plans nav{display:flex!important;flex-wrap:wrap!important;gap:8px!important}
- html body .cp-demo-plans a{padding:10px 15px!important;border:1px solid #eff6ff!important;border-radius:8px!important;background:#fff!important;color:#374151!important;text-decoration:none!important;font-size:12px!important;font-weight:600!important}
- html body .cp-demo-plans a[aria-current=page]{background:#f8fbff!important;border-color:#93c5fd!important;color:#34333d!important}
+ html body #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato .cp-fit-and-alert{display:flex!important;flex-direction:column!important;align-items:stretch!important;gap:10px!important;margin-top:12px!important;padding-top:12px!important;border-top:1px solid #eff6ff!important;}
+ html body #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato .cp-fit-panel{display:flex!important;align-items:center!important;gap:12px!important;width:100%!important;max-width:none!important;white-space:normal!important;padding:14px!important;border:1px solid #eff6ff!important;border-radius:10px!important;background:#f8fbff!important;text-align:left!important;height:auto!important;min-height:90px!important;color:#374151!important;box-shadow:none!important;}
+ html body #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato .cp-fit-panel>svg{width:26px!important;height:26px!important;flex:0 0 26px!important;color:#0080c9!important;}
+ html body #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato .cp-fit-copy{display:flex!important;flex:1!important;min-width:0!important;flex-direction:column!important;gap:5px!important;}
+ html body #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato .cp-fit-copy strong{font-size:20px!important;line-height:1.2!important;color:#374151!important;}
+ html body #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato .cp-fit-copy small{font-size:11px!important;line-height:1.5!important;color:#667085!important;}
+ html body #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato .cp-fit-premium-label{font-size:9px!important;letter-spacing:.8px!important;font-weight:700!important;color:#0080c9!important;}
+ html body #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato .cp-fit-panel-action{font-size:11px!important;font-weight:600!important;color:#34333d!important;flex:0 0 auto!important;}
+ html body #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato .is-locked{background:#f8fbff!important;border-color:#eff6ff!important;}
+ html body #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato .is-locked .cp-fit-copy strong{font-size:14px!important;}
+ html body #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato .cp-fit-meter{height:5px!important;border-radius:10px!important;overflow:hidden!important;background:#eff6ff!important;display:block!important;max-width:230px!important;margin-top:3px!important;}
+ html body #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato .cp-fit-meter>span{display:block!important;height:100%!important;background:#0080c9!important;border-radius:10px!important;}
+ html body .cp-demo-plans{display:flex!important;justify-content:space-between!important;align-items:center!important;flex-wrap:wrap!important;gap:14px!important;padding:16px 20px!important;margin:0 0 18px!important;border:1px solid #eff6ff!important;border-radius:12px!important;background:#fff!important;color:#374151!important;}
+ html body .cp-demo-plans strong{font-size:14px!important;color:#374151!important;}
+ html body .cp-demo-plans p{font-size:11px!important;color:#667085!important;margin:5px 0 0!important;}
+ html body .cp-demo-plans nav{display:flex!important;flex-wrap:wrap!important;gap:8px!important;}
+ html body .cp-demo-plans a{padding:10px 15px!important;border:1px solid #eff6ff!important;border-radius:8px!important;background:#fff!important;color:#374151!important;text-decoration:none!important;font-size:12px!important;font-weight:600!important;}
+ html body .cp-demo-plans a[aria-current=page]{background:#f8fbff!important;border-color:#93c5fd!important;color:#34333d!important;}
 }
-@media(max-width:650px){@layer site-typography{html body #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato .cp-fit-panel{flex-wrap:wrap!important}html body #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato .cp-fit-panel-action{padding-left:38px!important}}}
+@media(max-width:650px){@layer site-typography{html body #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato .cp-fit-panel{flex-wrap:wrap!important;}html body #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato .cp-fit-panel-action{padding-left:38px!important;}}}
 
 /* Candidate mobile layout. Keep every override inside this breakpoint so the
    existing desktop cascade, branding and navigation remain unchanged. */
 @media (max-width:760px) {
  @layer site-typography {
-  html body.cp-shell-active {--cp-sidebar-width:0px;--cp-header-height:48px!important}
-  html body.cp-shell-active .pagina.cp-tab-content {width:100%!important;margin-left:0!important;padding-top:16px!important}
-  html body.cp-shell-active>footer {width:100%!important;margin-left:0!important}
-  html body.cp-shell-active #cpCandidateHeader#cpCandidateHeader {height:auto!important;min-height:0!important;padding-top:48px!important}
-  html body.cp-shell-active #cpCandidateHeader#cpCandidateHeader .cp-toolbar {height:48px!important;min-height:48px!important;padding:0 14px!important}
-  html body.cp-shell-active #cpCandidateHeader#cpCandidateHeader .cp-navigation {position:relative!important;inset:auto!important;display:flex!important;flex-direction:row!important;flex-wrap:nowrap!important;width:100%!important;max-width:100%!important;height:auto!important;max-height:none!important;margin:0!important;padding:8px 14px!important;gap:8px!important;overflow-x:auto!important;overflow-y:hidden!important;scroll-padding-inline:14px;overscroll-behavior-x:contain;border-radius:0!important;box-sizing:border-box!important}
-  html body.cp-shell-active #cpCandidateHeader#cpCandidateHeader .cp-navigation button[data-route] {flex:0 0 auto!important;width:auto!important;min-width:0!important;min-height:44px!important;height:44px!important;padding:0 12px!important;gap:8px!important;scroll-margin-inline:14px}
-  html body.cp-shell-active #cpCandidateHeader#cpCandidateHeader .cp-navigation :is(.m3-brand,.m3-help,.cp-nav-section-label) {display:none!important}
-  html body.cp-shell-active #cpCandidateHeader#cpCandidateHeader .cp-navigation button[data-route]>span:not(.cp-card-icon) {font-size:12px!important;white-space:nowrap!important}
-  html body.cp-shell-active #cpCandidateHeader#cpCandidateHeader .cp-navigation button[data-route=messages] {padding-right:30px!important}
-  html body.cp-shell-active .pagina.cp-tab-content :is(.container-dashboard,.container-menor) {width:100%!important;max-width:none!important;margin-inline:0!important;padding:0 14px 24px!important;box-sizing:border-box!important;min-width:0!important}
-  html body.cp-shell-active .pagina.cp-tab-content :is(input,select,textarea) {box-sizing:border-box!important;max-width:100%!important;font-size:16px!important}
-  html body.cp-shell-active .pagina.cp-tab-content :is(button,a) {touch-action:manipulation}
-  html body.cp-shell-active .cp-demo-plans {width:100%!important;padding:14px!important;gap:12px!important;box-sizing:border-box!important}
-  html.em-candidate-demo body.cp-shell-active .pagina>.cp-demo-plans {width:calc(100% - 28px)!important;margin:0 14px 16px!important}
-  html body.cp-shell-active .cp-demo-plans nav {display:flex!important;width:100%!important;gap:8px!important}
-  html body.cp-shell-active .cp-demo-plans nav a {flex:1!important;min-height:44px!important;padding:10px 8px!important;box-sizing:border-box!important;text-align:center!important}
+  html body.cp-shell-active {--cp-sidebar-width:0px;--cp-header-height:48px!important;}
+  html body.cp-shell-active .pagina.cp-tab-content {width:100%!important;margin-left:0!important;padding-top:16px!important;}
+  html body.cp-shell-active>footer {width:100%!important;margin-left:0!important;}
+  html body.cp-shell-active #cpCandidateHeader#cpCandidateHeader {height:auto!important;min-height:0!important;padding-top:48px!important;}
+  html body.cp-shell-active #cpCandidateHeader#cpCandidateHeader .cp-toolbar {height:48px!important;min-height:48px!important;padding:0 14px!important;}
+  html body.cp-shell-active #cpCandidateHeader#cpCandidateHeader .cp-navigation {position:relative!important;inset:auto!important;display:flex!important;flex-direction:row!important;flex-wrap:nowrap!important;width:100%!important;max-width:100%!important;height:auto!important;max-height:none!important;margin:0!important;padding:8px 14px!important;gap:8px!important;overflow-x:auto!important;overflow-y:hidden!important;scroll-padding-inline:14px;overscroll-behavior-x:contain;border-radius:0!important;box-sizing:border-box!important;}
+  html body.cp-shell-active #cpCandidateHeader#cpCandidateHeader .cp-navigation button[data-route] {flex:0 0 auto!important;width:auto!important;min-width:0!important;min-height:44px!important;height:44px!important;padding:0 12px!important;gap:8px!important;scroll-margin-inline:14px;}
+  html body.cp-shell-active #cpCandidateHeader#cpCandidateHeader .cp-navigation :is(.m3-brand,.m3-help,.cp-nav-section-label) {display:none!important;}
+  html body.cp-shell-active #cpCandidateHeader#cpCandidateHeader .cp-navigation button[data-route]>span:not(.cp-card-icon) {font-size:12px!important;white-space:nowrap!important;}
+  html body.cp-shell-active #cpCandidateHeader#cpCandidateHeader .cp-navigation button[data-route=messages] {padding-right:30px!important;}
+  html body.cp-shell-active .pagina.cp-tab-content :is(.container-dashboard,.container-menor) {width:100%!important;max-width:none!important;margin-inline:0!important;padding:0 14px 24px!important;box-sizing:border-box!important;min-width:0!important;}
+  html body.cp-shell-active .pagina.cp-tab-content :is(input,select,textarea) {box-sizing:border-box!important;max-width:100%!important;font-size:16px!important;}
+  html body.cp-shell-active .pagina.cp-tab-content :is(button,a) {touch-action:manipulation;}
+  html body.cp-shell-active .cp-demo-plans {width:100%!important;padding:14px!important;gap:12px!important;box-sizing:border-box!important;}
+  html.em-candidate-demo body.cp-shell-active .pagina>.cp-demo-plans {width:calc(100% - 28px)!important;margin:0 14px 16px!important;}
+  html body.cp-shell-active .cp-demo-plans nav {display:flex!important;width:100%!important;gap:8px!important;}
+  html body.cp-shell-active .cp-demo-plans nav a {flex:1!important;min-height:44px!important;padding:10px 8px!important;box-sizing:border-box!important;text-align:center!important;}
 
-  html body #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato :is(.cp-layout,.cp-opportunities,.cp-follow-grid,.cp-value-grid,.cp-recommendations-grid) {grid-template-columns:minmax(0,1fr)!important;min-width:0!important;gap:14px!important}
-  html body #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato .cp-home-summary {grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:10px!important}
-  html body #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato .cp-overview-card {min-width:0!important;height:auto!important;min-height:88px!important;padding:12px!important;gap:8px!important}
-  html body #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato .cp-overview-card div>span {font-size:12px!important;white-space:normal!important}
-  html body #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato .cp-overview-icon {width:32px!important;height:32px!important;flex-basis:32px!important}
-  html body #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato .cp-overview-arrow {display:none!important}
-  html body #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato .cp-home-intro {height:auto!important;min-height:210px!important;padding:22px 20px!important}
-  html body #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato .m3-welcome {min-width:0!important;max-width:100%!important}
-  html body #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato .m3-welcome h1 {font-size:32px!important}
-  html body #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato .m3-welcome p {font-size:13px!important;max-width:100%!important}
-  html body #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato :is(#emPersonalDashboard,.cp-panel,.cp-home-activity>section) {padding:16px!important;min-width:0!important}
-  html body #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato .em-personal-head {flex-wrap:wrap!important;gap:8px!important}
-  html body #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato .em-personal-grid article {grid-template-columns:36px minmax(0,1fr)!important;gap:8px 10px!important;padding:14px!important;min-width:0!important}
-  html body #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato .em-personal-grid .cp-job-symbol {width:36px!important;height:40px!important;grid-row:1/3!important}
-  html body #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato .em-personal-grid article :is(h3,p,small) {min-width:0!important;white-space:normal!important;overflow-wrap:break-word!important}
-  html body #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato .em-personal-grid .cp-recommended-salary {grid-column:2!important;grid-row:4!important;text-align:left!important}
-  html body #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato .em-personal-grid .em-personal-reasons {grid-column:2!important;grid-row:5!important;flex-wrap:wrap!important}
-  html body #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato .em-personal-grid article>a {grid-column:2!important;grid-row:6!important;justify-self:start!important;min-height:44px!important;display:inline-flex!important;align-items:center!important;white-space:normal!important}
-  html body #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato .em-personal-grid .cp-fit-and-alert {grid-column:1/-1!important;grid-row:7!important;width:100%!important;min-width:0!important;box-sizing:border-box!important}
-  html body #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato .cp-fit-panel {display:grid!important;grid-template-columns:26px minmax(0,1fr)!important;gap:10px!important;width:100%!important;min-width:0!important;padding:14px!important;box-sizing:border-box!important}
-  html body #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato .cp-fit-copy {grid-column:2!important;min-width:0!important}
-  html body #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato .cp-fit-panel-action {grid-column:2!important;white-space:normal!important;padding-left:0!important}
-  html body #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato .cp-home-activity h3 {font-size:16px!important}
-  html body #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato .cp-latest-list article {flex-wrap:wrap!important}
-  html body #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato .cp-application-end {width:100%!important;max-width:none!important;align-items:flex-start!important;text-align:left!important;padding-left:56px!important;box-sizing:border-box!important}
-  html body.cp-shell-active #cpPreparationWorkspace .cp-recommendation-footer {align-items:stretch!important;flex-direction:column!important;gap:12px!important}
-  html body.cp-shell-active #cpPreparationWorkspace .cp-recommendation-footer>div {display:flex!important;flex-wrap:wrap!important;gap:8px!important}
-  html body.cp-shell-active #cpPreparationWorkspace .cp-recommendation-footer button {min-height:44px!important;white-space:normal!important}
+  html body #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato :is(.cp-layout,.cp-opportunities,.cp-follow-grid,.cp-value-grid,.cp-recommendations-grid) {grid-template-columns:minmax(0,1fr)!important;min-width:0!important;gap:14px!important;}
+  html body #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato .cp-home-summary {grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:10px!important;}
+  html body #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato .cp-overview-card {min-width:0!important;height:auto!important;min-height:88px!important;padding:12px!important;gap:8px!important;}
+  html body #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato .cp-overview-card div>span {font-size:12px!important;white-space:normal!important;}
+  html body #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato .cp-overview-icon {width:32px!important;height:32px!important;flex-basis:32px!important;}
+  html body #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato .cp-overview-arrow {display:none!important;}
+  html body #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato .cp-home-intro {height:auto!important;min-height:210px!important;padding:22px 20px!important;}
+  html body #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato .m3-welcome {min-width:0!important;max-width:100%!important;}
+  html body #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato .m3-welcome h1 {font-size:32px!important;}
+  html body #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato .m3-welcome p {font-size:13px!important;max-width:100%!important;}
+  html body #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato :is(#emPersonalDashboard,.cp-panel,.cp-home-activity>section) {padding:16px!important;min-width:0!important;}
+  html body #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato .em-personal-head {flex-wrap:wrap!important;gap:8px!important;}
+  html body #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato .em-personal-grid article {grid-template-columns:36px minmax(0,1fr)!important;gap:8px 10px!important;padding:14px!important;min-width:0!important;}
+  html body #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato .em-personal-grid .cp-job-symbol {width:36px!important;height:40px!important;grid-row:1/3!important;}
+  html body #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato .em-personal-grid article :is(h3,p,small) {min-width:0!important;white-space:normal!important;overflow-wrap:break-word!important;}
+  html body #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato .em-personal-grid .cp-recommended-salary {grid-column:2!important;grid-row:4!important;text-align:left!important;}
+  html body #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato .em-personal-grid .em-personal-reasons {grid-column:2!important;grid-row:5!important;flex-wrap:wrap!important;}
+  html body #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato .em-personal-grid article>a {grid-column:2!important;grid-row:6!important;justify-self:start!important;min-height:44px!important;display:inline-flex!important;align-items:center!important;white-space:normal!important;}
+  html body #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato .em-personal-grid .cp-fit-and-alert {grid-column:1/-1!important;grid-row:7!important;width:100%!important;min-width:0!important;box-sizing:border-box!important;}
+  html body #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato .cp-fit-panel {display:grid!important;grid-template-columns:26px minmax(0,1fr)!important;gap:10px!important;width:100%!important;min-width:0!important;padding:14px!important;box-sizing:border-box!important;}
+  html body #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato .cp-fit-copy {grid-column:2!important;min-width:0!important;}
+  html body #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato .cp-fit-panel-action {grid-column:2!important;white-space:normal!important;padding-left:0!important;}
+  html body #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato .cp-home-activity h3 {font-size:16px!important;}
+  html body #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato .cp-latest-list article {flex-wrap:wrap!important;}
+  html body #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato .cp-application-end {width:100%!important;max-width:none!important;align-items:flex-start!important;text-align:left!important;padding-left:56px!important;box-sizing:border-box!important;}
+  html body.cp-shell-active #cpPreparationWorkspace .cp-recommendation-footer {align-items:stretch!important;flex-direction:column!important;gap:12px!important;}
+  html body.cp-shell-active #cpPreparationWorkspace .cp-recommendation-footer>div {display:flex!important;flex-wrap:wrap!important;gap:8px!important;}
+  html body.cp-shell-active #cpPreparationWorkspace .cp-recommendation-footer button {min-height:44px!important;white-space:normal!important;}
 
-  html body.cp-shell-active #pagina-candidaturas#pagina-candidaturas#pagina-candidaturas .cp-applications-hero {height:auto!important;min-height:0!important;grid-template-columns:minmax(0,1fr)!important;padding:20px 16px 14px!important}
-  html body.cp-shell-active #pagina-candidaturas#pagina-candidaturas#pagina-candidaturas .cp-applications-art {display:none!important}
-  html body.cp-shell-active #pagina-candidaturas#pagina-candidaturas#pagina-candidaturas .cp-applications-rail {flex-wrap:wrap!important;gap:6px!important}
-  html body.cp-shell-active #pagina-candidaturas#pagina-candidaturas#pagina-candidaturas .cp-applications-rail span {border:0!important;padding:0!important}
-  html body.cp-shell-active #cpApplicationFilters {padding:14px!important}
-  html body.cp-shell-active #cpApplicationFilters .cp-application-filter-buttons {grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:8px!important}
-  html body.cp-shell-active #cpApplicationFilters [data-cp-filter=todas] {grid-column:1/-1!important}
-  html body.cp-shell-active #pagina-candidaturas #listaCandidaturas {grid-template-columns:minmax(0,1fr)!important}
-  html body.cp-shell-active #pagina-candidaturas .candidatura-top {flex-wrap:wrap!important;gap:10px!important}
-  html body.cp-shell-active #pagina-candidaturas .candidatura-top h3 {font-size:16px!important;line-height:1.4!important;min-width:0!important}
-  html body.cp-shell-active dialog.cp-process-modal[open] {width:calc(100vw - 24px)!important;max-width:calc(100vw - 24px)!important;max-height:calc(100dvh - 24px)!important;overflow:auto!important}
-  html body.cp-shell-active .cp-process-modal :is(.cp-process-modal-header,.cp-process-body,.cp-process-modal-footer) {padding:16px!important}
-  html body.cp-shell-active .cp-process-modal .cp-process-tabs {overflow-x:auto!important;justify-content:flex-start!important}
-  html body.cp-shell-active .cp-process-modal .cp-process-tabs button {flex-shrink:0!important;min-height:44px!important}
-  html body.cp-shell-active .cp-process-modal :is(.cp-process-support,.cp-process-grid) {grid-template-columns:minmax(0,1fr)!important}
+  html body.cp-shell-active #pagina-candidaturas#pagina-candidaturas#pagina-candidaturas .cp-applications-hero {height:auto!important;min-height:0!important;grid-template-columns:minmax(0,1fr)!important;padding:20px 16px 14px!important;}
+  html body.cp-shell-active #pagina-candidaturas#pagina-candidaturas#pagina-candidaturas .cp-applications-art {display:none!important;}
+  html body.cp-shell-active #pagina-candidaturas#pagina-candidaturas#pagina-candidaturas .cp-applications-rail {flex-wrap:wrap!important;gap:6px!important;}
+  html body.cp-shell-active #pagina-candidaturas#pagina-candidaturas#pagina-candidaturas .cp-applications-rail span {border:0!important;padding:0!important;}
+  html body.cp-shell-active #cpApplicationFilters {padding:14px!important;}
+  html body.cp-shell-active #cpApplicationFilters .cp-application-filter-buttons {grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:8px!important;}
+  html body.cp-shell-active #cpApplicationFilters [data-cp-filter=todas] {grid-column:1/-1!important;}
+  html body.cp-shell-active #pagina-candidaturas #listaCandidaturas {grid-template-columns:minmax(0,1fr)!important;}
+  html body.cp-shell-active #pagina-candidaturas .candidatura-top {flex-wrap:wrap!important;gap:10px!important;}
+  html body.cp-shell-active #pagina-candidaturas .candidatura-top h3 {font-size:16px!important;line-height:1.4!important;min-width:0!important;}
+  html body.cp-shell-active dialog.cp-process-modal[open] {width:calc(100vw - 24px)!important;max-width:calc(100vw - 24px)!important;max-height:calc(100dvh - 24px)!important;overflow:auto!important;}
+  html body.cp-shell-active .cp-process-modal :is(.cp-process-modal-header,.cp-process-body,.cp-process-modal-footer) {padding:16px!important;}
+  html body.cp-shell-active .cp-process-modal .cp-process-tabs {overflow-x:auto!important;justify-content:flex-start!important;}
+  html body.cp-shell-active .cp-process-modal .cp-process-tabs button {flex-shrink:0!important;min-height:44px!important;}
+  html body.cp-shell-active .cp-process-modal :is(.cp-process-support,.cp-process-grid) {grid-template-columns:minmax(0,1fr)!important;}
 
   /* SVGs in saved jobs had no explicit dimensions and expanded to 300x150. */
-  html body.cp-shell-active #listaVagasSalvas svg {width:22px!important;height:22px!important;max-width:22px!important;max-height:22px!important;flex-shrink:0!important;fill:none!important;stroke:currentColor!important;stroke-width:1.8!important}
-  html body.cp-shell-active #listaVagasSalvas :is(.vaga-card,.card-vaga) {width:100%!important;min-width:0!important;box-sizing:border-box!important}
-  html body.cp-shell-active #listaVagasSalvas :is(button,a) {min-height:44px!important;white-space:normal!important}
+  html body.cp-shell-active #listaVagasSalvas svg {width:22px!important;height:22px!important;max-width:22px!important;max-height:22px!important;flex-shrink:0!important;fill:none!important;stroke:currentColor!important;stroke-width:1.8!important;}
+  html body.cp-shell-active #listaVagasSalvas :is(.vaga-card,.card-vaga) {width:100%!important;min-width:0!important;box-sizing:border-box!important;}
+  html body.cp-shell-active #listaVagasSalvas :is(button,a) {min-height:44px!important;white-space:normal!important;}
 
-  html body.cp-shell-active #pagina-perfil.ep-inline-profile-page #emCandidateProfile#emCandidateProfile {width:calc(100% - 28px)!important;margin-inline:14px!important;box-sizing:border-box!important}
-  html body.cp-shell-active #emCandidateProfile#emCandidateProfile .ep-head {grid-template-columns:minmax(0,1fr)!important;padding:18px!important;gap:14px!important}
-  html body.cp-shell-active #emCandidateProfile#emCandidateProfile .ep-hero-art {display:none!important}
-  html body.cp-shell-active #emCandidateProfile#emCandidateProfile form {grid-template-columns:minmax(0,1fr)!important}
-  html body.cp-shell-active #emCandidateProfile#emCandidateProfile :is(.ep-grid,.ep-contact-card .ep-grid,.ep-diversity-card>.ep-grid) {grid-template-columns:minmax(0,1fr)!important;gap:16px!important}
-  html body.cp-shell-active #emCandidateProfile#emCandidateProfile .ep-grid label {grid-column:1!important;min-width:0!important}
-  html body.cp-shell-active #emCandidateProfile#emCandidateProfile :is(section,.ep-photo-card) {padding:18px!important;min-width:0!important}
-  html body.cp-shell-active #emCandidateProfile#emCandidateProfile .ep-footer {padding:0!important;gap:8px!important;flex-wrap:wrap!important}
-  html body.cp-shell-active #emCandidateProfile#emCandidateProfile .ep-footer button {flex:1 1 140px!important;min-height:44px!important;white-space:normal!important}
+  html body.cp-shell-active #pagina-perfil.ep-inline-profile-page #emCandidateProfile#emCandidateProfile {width:calc(100% - 28px)!important;margin-inline:14px!important;box-sizing:border-box!important;}
+  html body.cp-shell-active #emCandidateProfile#emCandidateProfile .ep-head {grid-template-columns:minmax(0,1fr)!important;padding:18px!important;gap:14px!important;}
+  html body.cp-shell-active #emCandidateProfile#emCandidateProfile .ep-hero-art {display:none!important;}
+  html body.cp-shell-active #emCandidateProfile#emCandidateProfile form {grid-template-columns:minmax(0,1fr)!important;}
+  html body.cp-shell-active #emCandidateProfile#emCandidateProfile :is(.ep-grid,.ep-contact-card .ep-grid,.ep-diversity-card>.ep-grid) {grid-template-columns:minmax(0,1fr)!important;gap:16px!important;}
+  html body.cp-shell-active #emCandidateProfile#emCandidateProfile .ep-grid label {grid-column:1!important;min-width:0!important;}
+  html body.cp-shell-active #emCandidateProfile#emCandidateProfile :is(section,.ep-photo-card) {padding:18px!important;min-width:0!important;}
+  html body.cp-shell-active #emCandidateProfile#emCandidateProfile .ep-footer {padding:0!important;gap:8px!important;flex-wrap:wrap!important;}
+  html body.cp-shell-active #emCandidateProfile#emCandidateProfile .ep-footer button {flex:1 1 140px!important;min-height:44px!important;white-space:normal!important;}
 
-  html body.cp-shell-active #pagina-curriculo #cvResumeWizard.cv-wizard {height:auto!important;min-height:0!important;grid-template-columns:minmax(0,1fr)!important}
-  html body.cp-shell-active #pagina-curriculo #cvResumeWizard.cv-wizard>.cv86-editor {height:auto!important;max-height:none!important;overflow:visible!important;padding-right:0!important}
-  html body.cp-shell-active #pagina-curriculo #cvResumeWizard #curriculoOnlineV84 {height:auto!important;max-height:none!important;overflow:visible!important;padding:16px!important}
-  html body.cp-shell-active #pagina-curriculo #cvResumeWizard .curriculo-grid-v84 {grid-template-columns:minmax(0,1fr)!important;min-width:0!important}
-  html body.cp-shell-active #pagina-curriculo #cvResumeWizard .cv-wizard-actions {flex-wrap:wrap!important}
-  html body.cp-shell-active #pagina-curriculo #cvResumeWizard .cv-wizard-actions button {flex:1 1 120px!important;min-height:44px!important;white-space:normal!important}
+  html body.cp-shell-active #pagina-curriculo #cvResumeWizard.cv-wizard {height:auto!important;min-height:0!important;grid-template-columns:minmax(0,1fr)!important;}
+  html body.cp-shell-active #pagina-curriculo #cvResumeWizard.cv-wizard>.cv86-editor {height:auto!important;max-height:none!important;overflow:visible!important;padding-right:0!important;}
+  html body.cp-shell-active #pagina-curriculo #cvResumeWizard #curriculoOnlineV84 {height:auto!important;max-height:none!important;overflow:visible!important;padding:16px!important;}
+  html body.cp-shell-active #pagina-curriculo #cvResumeWizard .curriculo-grid-v84 {grid-template-columns:minmax(0,1fr)!important;min-width:0!important;}
+  html body.cp-shell-active #pagina-curriculo #cvResumeWizard .cv-wizard-actions {flex-wrap:wrap!important;}
+  html body.cp-shell-active #pagina-curriculo #cvResumeWizard .cv-wizard-actions button {flex:1 1 120px!important;min-height:44px!important;white-space:normal!important;}
 
-  html body.cp-shell-active #pagina-curriculo #cvResumeWizard :is(.cv-fields-frame,.cv-fields-viewport) {height:auto!important;max-height:none!important;overflow:visible!important;overscroll-behavior:auto!important;flex:none!important;padding:0!important}
-  html body.cp-shell-active #pagina-curriculo #cvResumeWizard .cv-scroll-arrow {display:none!important}
-  html body.cp-shell-active #pagina-curriculo #cvResumeWizard .cv-fields-frame:before,html body.cp-shell-active #pagina-curriculo #cvResumeWizard .cv-fields-frame:after {display:none!important}
-  html body.cp-shell-active #listaVagasSalvas {display:grid!important;grid-template-columns:minmax(0,1fr)!important;gap:14px!important}
-  html body.cp-shell-active #listaVagasSalvas .em-lista-final {position:relative!important;display:flex!important;flex-direction:column!important;gap:12px!important;padding:16px!important;background:#fff!important;border:1px solid #eff6ff!important;border-radius:12px!important;min-height:0!important}
-  html body.cp-shell-active #listaVagasSalvas .em-lista-cab {padding-right:42px!important}
-  html body.cp-shell-active #listaVagasSalvas :is(.em-lista-empresa,.em-lista-meta-item,.em-lista-data,.em-lista-urgente,.em-lista-indicadores>span) {display:flex!important;align-items:center!important;gap:7px!important;min-width:0!important}
-  html body.cp-shell-active #listaVagasSalvas :is(.em-lista-meta,.em-lista-indicadores) {display:flex!important;flex-wrap:wrap!important;gap:10px!important}
-  html body.cp-shell-active #listaVagasSalvas .em-lista-meta-item {font-size:12px!important}
-  html body.cp-shell-active #listaVagasSalvas .em-lista-meta-item b {font-weight:500!important}
-  html body.cp-shell-active #listaVagasSalvas .em-lista-titulo {margin:0!important;font-size:18px!important;line-height:1.4!important}
-  html body.cp-shell-active #listaVagasSalvas .em-lista-resumo {font-size:13px!important;line-height:1.6!important;margin:0!important;overflow-wrap:break-word!important}
-  html body.cp-shell-active #listaVagasSalvas .em-lista-footer {display:grid!important;gap:12px!important;border-top:1px solid #eff6ff!important;padding-top:12px!important}
-  html body.cp-shell-active #listaVagasSalvas .em-lista-salario {display:flex!important;align-items:center!important;gap:6px!important;color:#34333d!important}
-  html body.cp-shell-active #listaVagasSalvas .em-lista-data {font-size:11px!important}
-  html body.cp-shell-active #listaVagasSalvas .em-lista-indicadores {font-size:11px!important}
-  html body.cp-shell-active #listaVagasSalvas .em-lista-ver {display:flex!important;align-items:center!important;justify-content:center!important;gap:12px!important;width:100%!important;padding:12px!important;border:0!important;border-radius:8px!important;background:#34333d!important;color:#fff!important}
-  html body.cp-shell-active #listaVagasSalvas .em-lista-fav {position:absolute!important;right:12px!important;top:12px!important;width:44px!important;height:44px!important;min-width:44px!important;padding:0!important;background:#f8fbff!important;color:#34333d!important;border:0!important;border-radius:8px!important;font-size:23px!important}
+  html body.cp-shell-active #pagina-curriculo #cvResumeWizard :is(.cv-fields-frame,.cv-fields-viewport) {height:auto!important;max-height:none!important;overflow:visible!important;overscroll-behavior:auto!important;flex:none!important;padding:0!important;}
+  html body.cp-shell-active #pagina-curriculo #cvResumeWizard .cv-scroll-arrow {display:none!important;}
+  html body.cp-shell-active #pagina-curriculo #cvResumeWizard .cv-fields-frame:before,html body.cp-shell-active #pagina-curriculo #cvResumeWizard .cv-fields-frame:after {display:none!important;}
+  html body.cp-shell-active #listaVagasSalvas {display:grid!important;grid-template-columns:minmax(0,1fr)!important;gap:14px!important;}
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
  }
 }
 
 /* Reference correction and cache-safe recommendation styles. */
 
 @layer site-typography{
-html body #pagina-painel-candidato#pagina-painel-candidato.cp-enhanced #cpPreparationWorkspace#cpPreparationWorkspace .cp-recommendations-grid{gap:16px!important;align-items:stretch!important}
-html body #pagina-painel-candidato#pagina-painel-candidato.cp-enhanced #cpPreparationWorkspace#cpPreparationWorkspace .cp-recommendation-card{min-height:0!important;height:auto!important;gap:9px!important;padding:14px 16px!important;border:1px solid #93c5fd!important;border-left:5px solid #0080c9!important;border-radius:12px!important;background:linear-gradient(#f8fbff 0 94px,#fff 94px)!important;box-shadow:0 3px 10px #285b5708!important}
-html body #pagina-painel-candidato#pagina-painel-candidato.cp-enhanced #cpPreparationWorkspace#cpPreparationWorkspace .cp-recommendation-card:hover{border-color:#0080c9!important;box-shadow:0 4px 14px #285b5710!important}
-html body #pagina-painel-candidato#pagina-painel-candidato.cp-enhanced #cpPreparationWorkspace#cpPreparationWorkspace .cp-recommendation-top{grid-template-columns:34px minmax(0,1fr) 132px!important;gap:10px!important;align-items:start!important}
-html body #pagina-painel-candidato#pagina-painel-candidato.cp-enhanced #cpPreparationWorkspace#cpPreparationWorkspace .cp-recommendation-top>.cp-small-icon{width:34px!important;height:36px!important;background:#fff!important;border:1px solid #d5e5f5!important;border-radius:9px!important}
-html body #pagina-painel-candidato#pagina-painel-candidato.cp-enhanced #cpPreparationWorkspace#cpPreparationWorkspace .cp-recommendation-heading h2{font-size:15px!important;line-height:1.3!important;margin:2px 0 5px!important;color:#374151!important}
-html body #pagina-painel-candidato#pagina-painel-candidato.cp-enhanced #cpPreparationWorkspace#cpPreparationWorkspace .cp-recommendation-heading p{font-size:11px!important;line-height:1.4!important;color:#667085!important}
-html body #pagina-painel-candidato#pagina-painel-candidato.cp-enhanced #cpPreparationWorkspace#cpPreparationWorkspace .cp-recommendation-fit{display:flex!important;flex-direction:column!important;gap:3px!important;padding:0 0 0 12px!important;border:0!important;border-left:1px solid #eff6ff!important;background:transparent!important;border-radius:0!important;grid-column:auto!important;min-height:0!important}
-html body #pagina-painel-candidato#pagina-painel-candidato.cp-enhanced #cpPreparationWorkspace#cpPreparationWorkspace .cp-recommendation-premium{display:inline-flex!important;align-self:flex-start!important;background:#eff6ff!important;color:#34333d!important;font-size:8px!important;font-weight:700!important;line-height:15px!important;letter-spacing:.5px!important;padding:0 6px!important;border-radius:4px!important}
-html body #pagina-painel-candidato#pagina-painel-candidato.cp-enhanced #cpPreparationWorkspace#cpPreparationWorkspace .cp-recommendation-fit-label{font-size:8px!important;line-height:11px!important;letter-spacing:.5px!important;color:#667085!important}
-html body #pagina-painel-candidato#pagina-painel-candidato.cp-enhanced #cpPreparationWorkspace#cpPreparationWorkspace .cp-recommendation-match{font-size:26px!important;line-height:1!important;color:#374151!important}
-html body #pagina-painel-candidato#pagina-painel-candidato.cp-enhanced #cpPreparationWorkspace#cpPreparationWorkspace .cp-recommendation-match>span{font-size:14px!important;color:#667085!important}
-html body #pagina-painel-candidato#pagina-painel-candidato.cp-enhanced #cpPreparationWorkspace#cpPreparationWorkspace .cp-recommendation-meter{display:grid!important;grid-template-columns:repeat(20,minmax(0,1fr))!important;gap:0!important;height:6px!important;border-radius:9px!important;background:#eff6ff!important}
-html body #pagina-painel-candidato#pagina-painel-candidato.cp-enhanced #cpPreparationWorkspace#cpPreparationWorkspace .cp-recommendation-meter>span{height:6px!important;border-radius:0!important;background:linear-gradient(to right,#0080c9 var(--cp-segment-fill),#eff6ff var(--cp-segment-fill))!important}
-html body #pagina-painel-candidato#pagina-painel-candidato.cp-enhanced #cpPreparationWorkspace#cpPreparationWorkspace .cp-recommendation-fit-caption{font-size:8px!important;line-height:11px!important;color:#667085!important}
-html body #pagina-painel-candidato#pagina-painel-candidato.cp-enhanced #cpPreparationWorkspace#cpPreparationWorkspace .cp-recommendation-chips{gap:5px!important}
-html body #pagina-painel-candidato#pagina-painel-candidato.cp-enhanced #cpPreparationWorkspace#cpPreparationWorkspace .cp-recommendation-chips>span{padding:3px 7px!important;font-size:10px!important;line-height:15px!important;background:#f8fbff!important;border-color:#eff6ff!important;color:#4b5563!important}
-html body #pagina-painel-candidato#pagina-painel-candidato.cp-enhanced #cpPreparationWorkspace#cpPreparationWorkspace .cp-recommendation-salary{font-size:15px!important;line-height:1.4!important;color:#374151!important}
-html body #pagina-painel-candidato#pagina-painel-candidato.cp-enhanced #cpPreparationWorkspace#cpPreparationWorkspace .cp-recommendation-reasons{gap:5px!important}
-html body #pagina-painel-candidato#pagina-painel-candidato.cp-enhanced #cpPreparationWorkspace#cpPreparationWorkspace .cp-recommendation-reasons>span{padding:2px 6px!important;font-size:9px!important;line-height:14px!important;color:#667085!important;background:#f4f6f5!important}
-html body #pagina-painel-candidato#pagina-painel-candidato.cp-enhanced #cpPreparationWorkspace#cpPreparationWorkspace .cp-recommendation-footer{padding:9px 0 0!important;gap:7px!important;border-top:1px solid #eff6ff!important;margin-top:auto!important}
-html body #pagina-painel-candidato#pagina-painel-candidato.cp-enhanced #cpPreparationWorkspace#cpPreparationWorkspace .cp-recommendation-footer>small{font-size:9px!important;color:#667085!important}
-html body #pagina-painel-candidato#pagina-painel-candidato.cp-enhanced #cpPreparationWorkspace#cpPreparationWorkspace .cp-recommendation-footer button{min-height:34px!important;padding:7px 10px!important;border-radius:7px!important;font-size:10px!important;line-height:16px!important}
-html body #pagina-painel-candidato#pagina-painel-candidato.cp-enhanced #cpPreparationWorkspace#cpPreparationWorkspace .cp-recommendation-footer .cp-primary{background:#0080c9!important;color:#fff!important;border:1px solid #d5e5f5!important;box-shadow:none!important}
-html body #pagina-painel-candidato#pagina-painel-candidato.cp-enhanced #cpPreparationWorkspace#cpPreparationWorkspace .cp-recommendation-footer .cp-text-button{background:#fff!important;color:#374151!important;border-color:#93c5fd!important}
+html body #pagina-painel-candidato#pagina-painel-candidato.cp-enhanced #cpPreparationWorkspace#cpPreparationWorkspace .cp-recommendations-grid{gap:16px!important;align-items:stretch!important;}
+html body #pagina-painel-candidato#pagina-painel-candidato.cp-enhanced #cpPreparationWorkspace#cpPreparationWorkspace .cp-recommendation-card{min-height:0!important;height:auto!important;gap:9px!important;padding:14px 16px!important;border:1px solid #93c5fd!important;border-left:5px solid #0080c9!important;border-radius:12px!important;background:linear-gradient(#f8fbff 0 94px,#fff 94px)!important;box-shadow:0 3px 10px #285b5708!important;}
+html body #pagina-painel-candidato#pagina-painel-candidato.cp-enhanced #cpPreparationWorkspace#cpPreparationWorkspace .cp-recommendation-card:hover{border-color:#0080c9!important;box-shadow:0 4px 14px #285b5710!important;}
+html body #pagina-painel-candidato#pagina-painel-candidato.cp-enhanced #cpPreparationWorkspace#cpPreparationWorkspace .cp-recommendation-top{grid-template-columns:34px minmax(0,1fr) 132px!important;gap:10px!important;align-items:start!important;}
+html body #pagina-painel-candidato#pagina-painel-candidato.cp-enhanced #cpPreparationWorkspace#cpPreparationWorkspace .cp-recommendation-top>.cp-small-icon{width:34px!important;height:36px!important;background:#fff!important;border:1px solid #d5e5f5!important;border-radius:9px!important;}
+html body #pagina-painel-candidato#pagina-painel-candidato.cp-enhanced #cpPreparationWorkspace#cpPreparationWorkspace .cp-recommendation-heading h2{font-size:15px!important;line-height:1.3!important;margin:2px 0 5px!important;color:#374151!important;}
+html body #pagina-painel-candidato#pagina-painel-candidato.cp-enhanced #cpPreparationWorkspace#cpPreparationWorkspace .cp-recommendation-heading p{font-size:11px!important;line-height:1.4!important;color:#667085!important;}
+html body #pagina-painel-candidato#pagina-painel-candidato.cp-enhanced #cpPreparationWorkspace#cpPreparationWorkspace .cp-recommendation-fit{display:flex!important;flex-direction:column!important;gap:3px!important;padding:0 0 0 12px!important;border:0!important;border-left:1px solid #eff6ff!important;background:transparent!important;border-radius:0!important;grid-column:auto!important;min-height:0!important;}
+html body #pagina-painel-candidato#pagina-painel-candidato.cp-enhanced #cpPreparationWorkspace#cpPreparationWorkspace .cp-recommendation-premium{display:inline-flex!important;align-self:flex-start!important;background:#eff6ff!important;color:#34333d!important;font-size:8px!important;font-weight:700!important;line-height:15px!important;letter-spacing:.5px!important;padding:0 6px!important;border-radius:4px!important;}
+html body #pagina-painel-candidato#pagina-painel-candidato.cp-enhanced #cpPreparationWorkspace#cpPreparationWorkspace .cp-recommendation-fit-label{font-size:8px!important;line-height:11px!important;letter-spacing:.5px!important;color:#667085!important;}
+html body #pagina-painel-candidato#pagina-painel-candidato.cp-enhanced #cpPreparationWorkspace#cpPreparationWorkspace .cp-recommendation-match{font-size:26px!important;line-height:1!important;color:#374151!important;}
+html body #pagina-painel-candidato#pagina-painel-candidato.cp-enhanced #cpPreparationWorkspace#cpPreparationWorkspace .cp-recommendation-match>span{font-size:14px!important;color:#667085!important;}
+html body #pagina-painel-candidato#pagina-painel-candidato.cp-enhanced #cpPreparationWorkspace#cpPreparationWorkspace .cp-recommendation-meter{display:grid!important;grid-template-columns:repeat(20,minmax(0,1fr))!important;gap:0!important;height:6px!important;border-radius:9px!important;background:#eff6ff!important;}
+html body #pagina-painel-candidato#pagina-painel-candidato.cp-enhanced #cpPreparationWorkspace#cpPreparationWorkspace .cp-recommendation-meter>span{height:6px!important;border-radius:0!important;background:linear-gradient(to right,#0080c9 var(--cp-segment-fill),#eff6ff var(--cp-segment-fill))!important;}
+html body #pagina-painel-candidato#pagina-painel-candidato.cp-enhanced #cpPreparationWorkspace#cpPreparationWorkspace .cp-recommendation-fit-caption{font-size:8px!important;line-height:11px!important;color:#667085!important;}
+html body #pagina-painel-candidato#pagina-painel-candidato.cp-enhanced #cpPreparationWorkspace#cpPreparationWorkspace .cp-recommendation-chips{gap:5px!important;}
+html body #pagina-painel-candidato#pagina-painel-candidato.cp-enhanced #cpPreparationWorkspace#cpPreparationWorkspace .cp-recommendation-chips>span{padding:3px 7px!important;font-size:10px!important;line-height:15px!important;background:#f8fbff!important;border-color:#eff6ff!important;color:#4b5563!important;}
+html body #pagina-painel-candidato#pagina-painel-candidato.cp-enhanced #cpPreparationWorkspace#cpPreparationWorkspace .cp-recommendation-salary{font-size:15px!important;line-height:1.4!important;color:#374151!important;}
+html body #pagina-painel-candidato#pagina-painel-candidato.cp-enhanced #cpPreparationWorkspace#cpPreparationWorkspace .cp-recommendation-reasons{gap:5px!important;}
+html body #pagina-painel-candidato#pagina-painel-candidato.cp-enhanced #cpPreparationWorkspace#cpPreparationWorkspace .cp-recommendation-reasons>span{padding:2px 6px!important;font-size:9px!important;line-height:14px!important;color:#667085!important;background:#f4f6f5!important;}
+html body #pagina-painel-candidato#pagina-painel-candidato.cp-enhanced #cpPreparationWorkspace#cpPreparationWorkspace .cp-recommendation-footer{padding:9px 0 0!important;gap:7px!important;border-top:1px solid #eff6ff!important;margin-top:auto!important;}
+html body #pagina-painel-candidato#pagina-painel-candidato.cp-enhanced #cpPreparationWorkspace#cpPreparationWorkspace .cp-recommendation-footer>small{font-size:9px!important;color:#667085!important;}
+html body #pagina-painel-candidato#pagina-painel-candidato.cp-enhanced #cpPreparationWorkspace#cpPreparationWorkspace .cp-recommendation-footer button{min-height:34px!important;padding:7px 10px!important;border-radius:7px!important;font-size:10px!important;line-height:16px!important;}
+html body #pagina-painel-candidato#pagina-painel-candidato.cp-enhanced #cpPreparationWorkspace#cpPreparationWorkspace .cp-recommendation-footer .cp-primary{background:#0080c9!important;color:#fff!important;border:1px solid #d5e5f5!important;box-shadow:none!important;}
+html body #pagina-painel-candidato#pagina-painel-candidato.cp-enhanced #cpPreparationWorkspace#cpPreparationWorkspace .cp-recommendation-footer .cp-text-button{background:#fff!important;color:#374151!important;border-color:#93c5fd!important;}
 }
 @media(max-width:640px){@layer site-typography{
-html body #pagina-painel-candidato#pagina-painel-candidato.cp-enhanced #cpPreparationWorkspace#cpPreparationWorkspace .cp-recommendation-top{grid-template-columns:30px minmax(0,1fr) 106px!important;gap:7px!important}
-html body #pagina-painel-candidato#pagina-painel-candidato.cp-enhanced #cpPreparationWorkspace#cpPreparationWorkspace .cp-recommendation-top>.cp-small-icon{width:30px!important;height:32px!important}
-html body #pagina-painel-candidato#pagina-painel-candidato.cp-enhanced #cpPreparationWorkspace#cpPreparationWorkspace .cp-recommendation-heading h2{font-size:13px!important}
-html body #pagina-painel-candidato#pagina-painel-candidato.cp-enhanced #cpPreparationWorkspace#cpPreparationWorkspace .cp-recommendation-fit{grid-column:auto!important;padding-left:8px!important}
-html body #pagina-painel-candidato#pagina-painel-candidato.cp-enhanced #cpPreparationWorkspace#cpPreparationWorkspace .cp-recommendation-fit>*{grid-column:auto!important;grid-row:auto!important}
-html body #pagina-painel-candidato#pagina-painel-candidato.cp-enhanced #cpPreparationWorkspace#cpPreparationWorkspace .cp-recommendation-card{padding:12px!important;gap:9px!important}
-html body #pagina-painel-candidato#pagina-painel-candidato.cp-enhanced #cpPreparationWorkspace#cpPreparationWorkspace .cp-recommendation-footer{flex-direction:column!important;align-items:stretch!important}
-html body #pagina-painel-candidato#pagina-painel-candidato.cp-enhanced #cpPreparationWorkspace#cpPreparationWorkspace .cp-recommendation-footer button{min-height:44px!important}
+html body #pagina-painel-candidato#pagina-painel-candidato.cp-enhanced #cpPreparationWorkspace#cpPreparationWorkspace .cp-recommendation-top{grid-template-columns:30px minmax(0,1fr) 106px!important;gap:7px!important;}
+html body #pagina-painel-candidato#pagina-painel-candidato.cp-enhanced #cpPreparationWorkspace#cpPreparationWorkspace .cp-recommendation-top>.cp-small-icon{width:30px!important;height:32px!important;}
+html body #pagina-painel-candidato#pagina-painel-candidato.cp-enhanced #cpPreparationWorkspace#cpPreparationWorkspace .cp-recommendation-heading h2{font-size:13px!important;}
+html body #pagina-painel-candidato#pagina-painel-candidato.cp-enhanced #cpPreparationWorkspace#cpPreparationWorkspace .cp-recommendation-fit{grid-column:auto!important;padding-left:8px!important;}
+html body #pagina-painel-candidato#pagina-painel-candidato.cp-enhanced #cpPreparationWorkspace#cpPreparationWorkspace .cp-recommendation-fit>*{grid-column:auto!important;grid-row:auto!important;}
+html body #pagina-painel-candidato#pagina-painel-candidato.cp-enhanced #cpPreparationWorkspace#cpPreparationWorkspace .cp-recommendation-card{padding:12px!important;gap:9px!important;}
+html body #pagina-painel-candidato#pagina-painel-candidato.cp-enhanced #cpPreparationWorkspace#cpPreparationWorkspace .cp-recommendation-footer{flex-direction:column!important;align-items:stretch!important;}
+html body #pagina-painel-candidato#pagina-painel-candidato.cp-enhanced #cpPreparationWorkspace#cpPreparationWorkspace .cp-recommendation-footer button{min-height:44px!important;}
 }}
 
 @layer site-typography{
-html body #pagina-painel-candidato#pagina-painel-candidato.cp-enhanced #cpPreparationWorkspace#cpPreparationWorkspace .cp-recommendation-premium{display:inline-flex!important;align-items:center!important;gap:5px!important;padding:3px 7px!important;line-height:14px!important;background:#eff6ff!important;border-radius:5px!important;color:#34333d!important}
-html body #pagina-painel-candidato#pagina-painel-candidato.cp-enhanced #cpPreparationWorkspace#cpPreparationWorkspace .cp-recommendation-premium svg{width:13px!important;height:13px!important;fill:currentColor!important;stroke-width:1!important}
-html body #pagina-painel-candidato#pagina-painel-candidato.cp-enhanced #cpPreparationWorkspace#cpPreparationWorkspace .cp-recommendation-chips>span,html body #pagina-painel-candidato#pagina-painel-candidato.cp-enhanced #cpPreparationWorkspace#cpPreparationWorkspace .cp-recommendation-reasons>span{display:inline-flex!important;align-items:center!important;gap:5px!important}
-html body #pagina-painel-candidato#pagina-painel-candidato.cp-enhanced #cpPreparationWorkspace#cpPreparationWorkspace .cp-recommendation-chips svg,html body #pagina-painel-candidato#pagina-painel-candidato.cp-enhanced #cpPreparationWorkspace#cpPreparationWorkspace .cp-recommendation-reasons svg{width:14px!important;height:14px!important;flex:none!important;color:#0080c9!important}
-html body #pagina-painel-candidato#pagina-painel-candidato.cp-enhanced #cpPreparationWorkspace#cpPreparationWorkspace .cp-recommendation-top>.cp-small-icon svg{width:23px!important;height:23px!important;color:#0080c9!important}
-html body #pagina-painel-candidato#pagina-painel-candidato.cp-enhanced #cpPreparationWorkspace#cpPreparationWorkspace .cp-recommendation-footer .cp-primary{background:#0080c9!important;color:#fff!important;border:1px solid #93c5fd!important;box-shadow:none!important}
-html body #pagina-painel-candidato#pagina-painel-candidato.cp-enhanced #cpPreparationWorkspace#cpPreparationWorkspace .cp-recommendation-footer .cp-primary:hover{background:#006da9!important;border-color:#006da9!important}
-html body #pagina-painel-candidato#pagina-painel-candidato.cp-enhanced #cpPreparationWorkspace#cpPreparationWorkspace .cp-recommendation-card{background:linear-gradient(#f8fbff 0 108px,#fff 108px)!important}
+html body #pagina-painel-candidato#pagina-painel-candidato.cp-enhanced #cpPreparationWorkspace#cpPreparationWorkspace .cp-recommendation-premium{display:inline-flex!important;align-items:center!important;gap:5px!important;padding:3px 7px!important;line-height:14px!important;background:#eff6ff!important;border-radius:5px!important;color:#34333d!important;}
+html body #pagina-painel-candidato#pagina-painel-candidato.cp-enhanced #cpPreparationWorkspace#cpPreparationWorkspace .cp-recommendation-premium svg{width:13px!important;height:13px!important;fill:currentColor!important;stroke-width:1!important;}
+html body #pagina-painel-candidato#pagina-painel-candidato.cp-enhanced #cpPreparationWorkspace#cpPreparationWorkspace .cp-recommendation-chips>span,html body #pagina-painel-candidato#pagina-painel-candidato.cp-enhanced #cpPreparationWorkspace#cpPreparationWorkspace .cp-recommendation-reasons>span{display:inline-flex!important;align-items:center!important;gap:5px!important;}
+html body #pagina-painel-candidato#pagina-painel-candidato.cp-enhanced #cpPreparationWorkspace#cpPreparationWorkspace .cp-recommendation-chips svg,html body #pagina-painel-candidato#pagina-painel-candidato.cp-enhanced #cpPreparationWorkspace#cpPreparationWorkspace .cp-recommendation-reasons svg{width:14px!important;height:14px!important;flex:none!important;color:#0080c9!important;}
+html body #pagina-painel-candidato#pagina-painel-candidato.cp-enhanced #cpPreparationWorkspace#cpPreparationWorkspace .cp-recommendation-top>.cp-small-icon svg{width:23px!important;height:23px!important;color:#0080c9!important;}
+html body #pagina-painel-candidato#pagina-painel-candidato.cp-enhanced #cpPreparationWorkspace#cpPreparationWorkspace .cp-recommendation-footer .cp-primary{background:#0080c9!important;color:#fff!important;border:1px solid #93c5fd!important;box-shadow:none!important;}
+html body #pagina-painel-candidato#pagina-painel-candidato.cp-enhanced #cpPreparationWorkspace#cpPreparationWorkspace .cp-recommendation-footer .cp-primary:hover{background:#006da9!important;border-color:#006da9!important;}
+html body #pagina-painel-candidato#pagina-painel-candidato.cp-enhanced #cpPreparationWorkspace#cpPreparationWorkspace .cp-recommendation-card{background:linear-gradient(#f8fbff 0 108px,#fff 108px)!important;}
 }
 
 /* Premium overview banner and the dedicated Premium account hub. */
 @layer site-typography{
-html body #pagina-premium-candidato.candidato-premium-v92>.premium-candidato-hero-v78{display:none!important}
-html body #pagina-premium-candidato.candidato-premium-v92>.premium-candidato-main-v78{width:calc(100% - 40px)!important;max-width:1180px!important;margin:0 auto!important;padding:28px 0 48px!important}
-html body #pagina-premium-candidato.candidato-premium-v92>.premium-candidato-main-v78>:is(.premium-intro-v78,.premium-beneficios-grid-v78,.premium-comparacao-v78){display:none!important}
-html body #pagina-painel-candidato#pagina-painel-candidato #premium92Banner{display:flex!important;align-items:center!important;justify-content:space-between!important;gap:20px!important;padding:18px 22px!important;margin:0 0 16px!important;border:1px solid #d5e5f5!important;border-left:5px solid #0080c9!important;border-radius:13px!important;background:linear-gradient(110deg,#fff,#f8fbff)!important;box-shadow:0 3px 12px #285b5705!important;color:#374151!important}
-html body #pagina-painel-candidato#pagina-painel-candidato #premium92Banner .p92-left{display:flex!important;align-items:center!important;gap:14px!important;min-width:0!important}
-html body #pagina-painel-candidato#pagina-painel-candidato #premium92Banner .premium92-crown{display:grid!important;place-items:center!important;width:44px!important;height:46px!important;flex:0 0 44px!important;border-radius:12px!important;background:#eff6ff!important;border:1px solid #d5e5f5!important;color:#0080c9!important;box-shadow:none!important}
-html body #pagina-painel-candidato#pagina-painel-candidato #premium92Banner .premium92-crown svg{width:26px!important;height:26px!important}
-html body #pagina-painel-candidato#pagina-painel-candidato #premium92Banner small{font-size:9px!important;line-height:1.5!important;letter-spacing:1px!important;font-weight:700!important;color:#0080c9!important}
-html body #pagina-painel-candidato#pagina-painel-candidato #premium92Banner h3{font-size:18px!important;line-height:1.4!important;font-weight:700!important;margin:3px 0!important;color:#374151!important}
-html body #pagina-painel-candidato#pagina-painel-candidato #premium92Banner p{font-size:12px!important;line-height:1.5!important;margin:0!important;color:#667085!important}
-html body #pagina-painel-candidato#pagina-painel-candidato #premium92Banner .premium92-validade{flex:none!important;text-align:left!important;padding:10px 14px!important;border:1px solid #eff6ff!important;border-radius:9px!important;background:#fff!important}
-html body #pagina-painel-candidato#pagina-painel-candidato #premium92Banner .premium92-validade span{display:block!important;font-size:9px!important;letter-spacing:.5px!important;line-height:1.5!important;color:#667085!important}
-html body #pagina-painel-candidato#pagina-painel-candidato #premium92Banner .premium92-validade strong{display:block!important;font-size:14px!important;line-height:1.5!important;color:#374151!important}
-html body #pagina-premium-candidato#pagina-premium-candidato #centralPremiumV93{padding:20px!important;margin:0 0 18px!important;border:1px solid #d0e4dc!important;border-radius:15px!important;background:#fff!important;box-shadow:0 3px 14px #285b5704!important;color:#374151!important}
-html body #pagina-premium-candidato#pagina-premium-candidato #centralPremiumV93[hidden]{display:none!important}
-html body #pagina-premium-candidato#pagina-premium-candidato #centralPremiumV93 .cp93-head{display:flex!important;justify-content:space-between!important;align-items:center!important;gap:16px!important;margin:0 0 16px!important}
-html body #pagina-premium-candidato#pagina-premium-candidato #centralPremiumV93 .cp93-head small{font-size:9px!important;font-weight:700!important;letter-spacing:1px!important;color:#438c87!important}
-html body #pagina-premium-candidato#pagina-premium-candidato #centralPremiumV93 .cp93-head h2{font-size:21px!important;line-height:1.35!important;color:#374151!important;margin:5px 0!important}
-html body #pagina-premium-candidato#pagina-premium-candidato #centralPremiumV93 .cp93-head p{font-size:12px!important;line-height:1.5!important;color:#667085!important;margin:0!important}
-html body #pagina-premium-candidato#pagina-premium-candidato #centralPremiumV93 .cp93-pill{flex:none!important;white-space:nowrap!important;font-size:9px!important;font-weight:700!important;letter-spacing:.4px!important;padding:6px 9px!important;background:#fff4e4!important;border:1px solid #edd7b4!important;border-radius:6px!important;color:#ff981f!important}
-html body #pagina-premium-candidato#pagina-premium-candidato #centralPremiumV93 .cp93-metrics{display:grid!important;grid-template-columns:repeat(5,minmax(0,1fr))!important;gap:10px!important;margin-bottom:16px!important}
-html body #pagina-premium-candidato#pagina-premium-candidato #centralPremiumV93 .cp93-metric{display:grid!important;grid-template-columns:1fr 32px!important;gap:5px!important;align-content:start!important;padding:13px!important;border:1px solid #dce8e3!important;border-radius:10px!important;background:#f8fbfa!important;box-shadow:none!important;min-width:0!important}
-html body #pagina-premium-candidato#pagina-premium-candidato #centralPremiumV93 .cp93-metric-icon{grid-column:2!important;grid-row:1/4!important;display:grid!important;place-items:center!important;width:32px!important;height:34px!important;border:1px solid #d6e9e1!important;border-radius:9px!important;background:#edf6f2!important;color:#438c87!important;font-style:normal!important}
-html body #pagina-premium-candidato#pagina-premium-candidato #centralPremiumV93 .cp93-metric-icon svg{width:21px!important;height:21px!important}
-html body #pagina-premium-candidato#pagina-premium-candidato #centralPremiumV93 .cp93-metric>span{grid-column:1!important;font-size:8px!important;line-height:1.5!important;letter-spacing:.3px!important;color:#667085!important;font-weight:600!important}
-html body #pagina-premium-candidato#pagina-premium-candidato #centralPremiumV93 .cp93-metric>strong{grid-column:1!important;font-size:26px!important;font-weight:700!important;line-height:1.1!important;margin:0!important;color:#374151!important}
-html body #pagina-premium-candidato#pagina-premium-candidato #centralPremiumV93 .cp93-metric>em{grid-column:1!important;font-size:10px!important;font-style:normal!important;line-height:1.4!important;color:#667085!important}
-html body #pagina-premium-candidato#pagina-premium-candidato #centralPremiumV93 .cp93-grid{display:grid!important;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr)!important;gap:16px!important}
-html body #pagina-premium-candidato#pagina-premium-candidato #centralPremiumV93 .cp93-box{min-width:0!important;padding:16px!important;border:1px solid #dce8e3!important;border-radius:11px!important;background:#fff!important}
-html body #pagina-premium-candidato#pagina-premium-candidato #centralPremiumV93 .cp93-box h3{margin:0 0 5px!important;font-size:15px!important;line-height:1.4!important;color:#374151!important}
-html body #pagina-premium-candidato#pagina-premium-candidato #centralPremiumV93 .cp93-box>p{margin:0 0 12px!important;font-size:11px!important;line-height:1.5!important;color:#667085!important}
-html body #pagina-premium-candidato#pagina-premium-candidato #centralPremiumV93 .cp93-app{padding:12px 0!important;border-color:#e6eeea!important}
-html body #pagina-premium-candidato#pagina-premium-candidato #centralPremiumV93 .cp93-app-top{display:flex!important;justify-content:space-between!important;align-items:start!important;gap:10px!important}
-html body #pagina-premium-candidato#pagina-premium-candidato #centralPremiumV93 .cp93-app strong{font-size:12px!important;line-height:1.5!important;color:#374151!important}
-html body #pagina-premium-candidato#pagina-premium-candidato #centralPremiumV93 .cp93-app small{font-size:10px!important;line-height:1.5!important;color:#667085!important}
-html body #pagina-premium-candidato#pagina-premium-candidato #centralPremiumV93 .cp93-status{font-size:9px!important;line-height:1.5!important;padding:5px 8px!important;background:#eff7f4!important;color:#285b57!important;border:1px solid #d4e7df!important;border-radius:6px!important;white-space:normal!important}
-html body #pagina-premium-candidato#pagina-premium-candidato #centralPremiumV93 .cp93-line{flex-wrap:wrap!important;font-size:10px!important;line-height:1.5!important;color:#667085!important}
-html body #pagina-premium-candidato#pagina-premium-candidato #centralPremiumV93 .cp93-dot.ok{background:#438c87!important}
-html body #pagina-premium-candidato#pagina-premium-candidato #centralPremiumV93 .cp93-feature{padding:9px 0!important;gap:10px!important;border-color:#e6eeea!important;align-items:center!important}
-html body #pagina-premium-candidato#pagina-premium-candidato #centralPremiumV93 .cp93-icon{display:grid!important;place-items:center!important;width:32px!important;height:34px!important;flex:0 0 32px!important;border-radius:9px!important;background:#edf6f2!important;border:1px solid #d6e9e1!important;color:#438c87!important}
-html body #pagina-premium-candidato#pagina-premium-candidato #centralPremiumV93 .cp93-icon svg{width:20px!important;height:20px!important}
-html body #pagina-premium-candidato#pagina-premium-candidato #centralPremiumV93 .cp93-feature b{font-size:11px!important;line-height:1.4!important;color:#374151!important}
-html body #pagina-premium-candidato#pagina-premium-candidato #centralPremiumV93 .cp93-feature span{font-size:10px!important;line-height:1.5!important;color:#667085!important;margin-top:3px!important}
-html body #pagina-premium-candidato#pagina-premium-candidato #centralPremiumV93 .cp93-bar i{background:#438c87!important}
-html body #pagina-premium-candidato#pagina-premium-candidato #centralPremiumV93 .cp93-ad-top{font-size:10px!important;color:#667085!important}
-html body #pagina-premium-candidato#pagina-premium-candidato #centralPremiumV93 .cp93-empty{font-size:12px!important;line-height:1.6!important;color:#667085!important;background:#f8fbfa!important}
-html body #pagina-painel-candidato#pagina-painel-candidato:not(.candidato-premium-v92) #premium92Banner{display:none!important}
+html body #pagina-premium-candidato.candidato-premium-v92>.premium-candidato-hero-v78{display:none!important;}
+html body #pagina-premium-candidato.candidato-premium-v92>.premium-candidato-main-v78{width:calc(100% - 40px)!important;max-width:1180px!important;margin:0 auto!important;padding:28px 0 48px!important;}
+html body #pagina-premium-candidato.candidato-premium-v92>.premium-candidato-main-v78>:is(.premium-intro-v78,.premium-beneficios-grid-v78,.premium-comparacao-v78){display:none!important;}
+html body #pagina-painel-candidato#pagina-painel-candidato #premium92Banner{display:flex!important;align-items:center!important;justify-content:space-between!important;gap:20px!important;padding:18px 22px!important;margin:0 0 16px!important;border:1px solid #d5e5f5!important;border-left:5px solid #0080c9!important;border-radius:13px!important;background:linear-gradient(110deg,#fff,#f8fbff)!important;box-shadow:0 3px 12px #285b5705!important;color:#374151!important;}
+html body #pagina-painel-candidato#pagina-painel-candidato #premium92Banner .p92-left{display:flex!important;align-items:center!important;gap:14px!important;min-width:0!important;}
+html body #pagina-painel-candidato#pagina-painel-candidato #premium92Banner .premium92-crown{display:grid!important;place-items:center!important;width:44px!important;height:46px!important;flex:0 0 44px!important;border-radius:12px!important;background:#eff6ff!important;border:1px solid #d5e5f5!important;color:#0080c9!important;box-shadow:none!important;}
+html body #pagina-painel-candidato#pagina-painel-candidato #premium92Banner .premium92-crown svg{width:26px!important;height:26px!important;}
+html body #pagina-painel-candidato#pagina-painel-candidato #premium92Banner small{font-size:9px!important;line-height:1.5!important;letter-spacing:1px!important;font-weight:700!important;color:#0080c9!important;}
+html body #pagina-painel-candidato#pagina-painel-candidato #premium92Banner h3{font-size:18px!important;line-height:1.4!important;font-weight:700!important;margin:3px 0!important;color:#374151!important;}
+html body #pagina-painel-candidato#pagina-painel-candidato #premium92Banner p{font-size:12px!important;line-height:1.5!important;margin:0!important;color:#667085!important;}
+html body #pagina-painel-candidato#pagina-painel-candidato #premium92Banner .premium92-validade{flex:none!important;text-align:left!important;padding:10px 14px!important;border:1px solid #eff6ff!important;border-radius:9px!important;background:#fff!important;}
+html body #pagina-painel-candidato#pagina-painel-candidato #premium92Banner .premium92-validade span{display:block!important;font-size:9px!important;letter-spacing:.5px!important;line-height:1.5!important;color:#667085!important;}
+html body #pagina-painel-candidato#pagina-painel-candidato #premium92Banner .premium92-validade strong{display:block!important;font-size:14px!important;line-height:1.5!important;color:#374151!important;}
+html body #pagina-premium-candidato#pagina-premium-candidato #centralPremiumV93{padding:20px!important;margin:0 0 18px!important;border:1px solid #d0e4dc!important;border-radius:15px!important;background:#fff!important;box-shadow:0 3px 14px #285b5704!important;color:#374151!important;}
+html body #pagina-premium-candidato#pagina-premium-candidato #centralPremiumV93[hidden]{display:none!important;}
+html body #pagina-premium-candidato#pagina-premium-candidato #centralPremiumV93 .cp93-head{display:flex!important;justify-content:space-between!important;align-items:center!important;gap:16px!important;margin:0 0 16px!important;}
+html body #pagina-premium-candidato#pagina-premium-candidato #centralPremiumV93 .cp93-head small{font-size:9px!important;font-weight:700!important;letter-spacing:1px!important;color:#438c87!important;}
+html body #pagina-premium-candidato#pagina-premium-candidato #centralPremiumV93 .cp93-head h2{font-size:21px!important;line-height:1.35!important;color:#374151!important;margin:5px 0!important;}
+html body #pagina-premium-candidato#pagina-premium-candidato #centralPremiumV93 .cp93-head p{font-size:12px!important;line-height:1.5!important;color:#667085!important;margin:0!important;}
+html body #pagina-premium-candidato#pagina-premium-candidato #centralPremiumV93 .cp93-pill{flex:none!important;white-space:nowrap!important;font-size:9px!important;font-weight:700!important;letter-spacing:.4px!important;padding:6px 9px!important;background:#fff4e4!important;border:1px solid #edd7b4!important;border-radius:6px!important;color:#ff981f!important;}
+html body #pagina-premium-candidato#pagina-premium-candidato #centralPremiumV93 .cp93-metrics{display:grid!important;grid-template-columns:repeat(5,minmax(0,1fr))!important;gap:10px!important;margin-bottom:16px!important;}
+html body #pagina-premium-candidato#pagina-premium-candidato #centralPremiumV93 .cp93-metric{display:grid!important;grid-template-columns:1fr 32px!important;gap:5px!important;align-content:start!important;padding:13px!important;border:1px solid #dce8e3!important;border-radius:10px!important;background:#f8fbfa!important;box-shadow:none!important;min-width:0!important;}
+html body #pagina-premium-candidato#pagina-premium-candidato #centralPremiumV93 .cp93-metric-icon{grid-column:2!important;grid-row:1/4!important;display:grid!important;place-items:center!important;width:32px!important;height:34px!important;border:1px solid #d6e9e1!important;border-radius:9px!important;background:#edf6f2!important;color:#438c87!important;font-style:normal!important;}
+html body #pagina-premium-candidato#pagina-premium-candidato #centralPremiumV93 .cp93-metric-icon svg{width:21px!important;height:21px!important;}
+html body #pagina-premium-candidato#pagina-premium-candidato #centralPremiumV93 .cp93-metric>span{grid-column:1!important;font-size:8px!important;line-height:1.5!important;letter-spacing:.3px!important;color:#667085!important;font-weight:600!important;}
+html body #pagina-premium-candidato#pagina-premium-candidato #centralPremiumV93 .cp93-metric>strong{grid-column:1!important;font-size:26px!important;font-weight:700!important;line-height:1.1!important;margin:0!important;color:#374151!important;}
+html body #pagina-premium-candidato#pagina-premium-candidato #centralPremiumV93 .cp93-metric>em{grid-column:1!important;font-size:10px!important;font-style:normal!important;line-height:1.4!important;color:#667085!important;}
+html body #pagina-premium-candidato#pagina-premium-candidato #centralPremiumV93 .cp93-grid{display:grid!important;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr)!important;gap:16px!important;}
+html body #pagina-premium-candidato#pagina-premium-candidato #centralPremiumV93 .cp93-box{min-width:0!important;padding:16px!important;border:1px solid #dce8e3!important;border-radius:11px!important;background:#fff!important;}
+html body #pagina-premium-candidato#pagina-premium-candidato #centralPremiumV93 .cp93-box h3{margin:0 0 5px!important;font-size:15px!important;line-height:1.4!important;color:#374151!important;}
+html body #pagina-premium-candidato#pagina-premium-candidato #centralPremiumV93 .cp93-box>p{margin:0 0 12px!important;font-size:11px!important;line-height:1.5!important;color:#667085!important;}
+html body #pagina-premium-candidato#pagina-premium-candidato #centralPremiumV93 .cp93-app{padding:12px 0!important;border-color:#e6eeea!important;}
+html body #pagina-premium-candidato#pagina-premium-candidato #centralPremiumV93 .cp93-app-top{display:flex!important;justify-content:space-between!important;align-items:start!important;gap:10px!important;}
+html body #pagina-premium-candidato#pagina-premium-candidato #centralPremiumV93 .cp93-app strong{font-size:12px!important;line-height:1.5!important;color:#374151!important;}
+html body #pagina-premium-candidato#pagina-premium-candidato #centralPremiumV93 .cp93-app small{font-size:10px!important;line-height:1.5!important;color:#667085!important;}
+html body #pagina-premium-candidato#pagina-premium-candidato #centralPremiumV93 .cp93-status{font-size:9px!important;line-height:1.5!important;padding:5px 8px!important;background:#eff7f4!important;color:#285b57!important;border:1px solid #d4e7df!important;border-radius:6px!important;white-space:normal!important;}
+html body #pagina-premium-candidato#pagina-premium-candidato #centralPremiumV93 .cp93-line{flex-wrap:wrap!important;font-size:10px!important;line-height:1.5!important;color:#667085!important;}
+html body #pagina-premium-candidato#pagina-premium-candidato #centralPremiumV93 .cp93-dot.ok{background:#438c87!important;}
+html body #pagina-premium-candidato#pagina-premium-candidato #centralPremiumV93 .cp93-feature{padding:9px 0!important;gap:10px!important;border-color:#e6eeea!important;align-items:center!important;}
+html body #pagina-premium-candidato#pagina-premium-candidato #centralPremiumV93 .cp93-icon{display:grid!important;place-items:center!important;width:32px!important;height:34px!important;flex:0 0 32px!important;border-radius:9px!important;background:#edf6f2!important;border:1px solid #d6e9e1!important;color:#438c87!important;}
+html body #pagina-premium-candidato#pagina-premium-candidato #centralPremiumV93 .cp93-icon svg{width:20px!important;height:20px!important;}
+html body #pagina-premium-candidato#pagina-premium-candidato #centralPremiumV93 .cp93-feature b{font-size:11px!important;line-height:1.4!important;color:#374151!important;}
+html body #pagina-premium-candidato#pagina-premium-candidato #centralPremiumV93 .cp93-feature span{font-size:10px!important;line-height:1.5!important;color:#667085!important;margin-top:3px!important;}
+html body #pagina-premium-candidato#pagina-premium-candidato #centralPremiumV93 .cp93-bar i{background:#438c87!important;}
+html body #pagina-premium-candidato#pagina-premium-candidato #centralPremiumV93 .cp93-ad-top{font-size:10px!important;color:#667085!important;}
+html body #pagina-premium-candidato#pagina-premium-candidato #centralPremiumV93 .cp93-empty{font-size:12px!important;line-height:1.6!important;color:#667085!important;background:#f8fbfa!important;}
+html body #pagina-painel-candidato#pagina-painel-candidato:not(.candidato-premium-v92) #premium92Banner{display:none!important;}
 }
-@media(max-width:1100px){@layer site-typography{html body #pagina-premium-candidato#pagina-premium-candidato #centralPremiumV93 .cp93-metrics{grid-template-columns:repeat(3,minmax(0,1fr))!important}html body #pagina-premium-candidato#pagina-premium-candidato #centralPremiumV93 .cp93-grid{grid-template-columns:1fr!important}}}
-@media(max-width:600px){@layer site-typography{html body #pagina-painel-candidato#pagina-painel-candidato #premium92Banner{padding:15px!important;align-items:stretch!important;flex-direction:column!important;gap:12px!important}html body #pagina-painel-candidato#pagina-painel-candidato #premium92Banner h3{font-size:16px!important}html body #pagina-premium-candidato#pagina-premium-candidato #centralPremiumV93{padding:14px!important}html body #pagina-premium-candidato#pagina-premium-candidato #centralPremiumV93 .cp93-head{align-items:flex-start!important;flex-direction:column!important;gap:10px!important}html body #pagina-premium-candidato#pagina-premium-candidato #centralPremiumV93 .cp93-head h2{font-size:18px!important}html body #pagina-premium-candidato#pagina-premium-candidato #centralPremiumV93 .cp93-metrics{grid-template-columns:repeat(2,minmax(0,1fr))!important}html body #pagina-premium-candidato#pagina-premium-candidato #centralPremiumV93 .cp93-box{padding:13px!important}html body #pagina-premium-candidato#pagina-premium-candidato #centralPremiumV93 .cp93-app-top{flex-wrap:wrap!important}}}
+@media(max-width:1100px){@layer site-typography{html body #pagina-premium-candidato#pagina-premium-candidato #centralPremiumV93 .cp93-metrics{grid-template-columns:repeat(3,minmax(0,1fr))!important;}html body #pagina-premium-candidato#pagina-premium-candidato #centralPremiumV93 .cp93-grid{grid-template-columns:1fr!important;}}}
+@media(max-width:600px){@layer site-typography{html body #pagina-painel-candidato#pagina-painel-candidato #premium92Banner{padding:15px!important;align-items:stretch!important;flex-direction:column!important;gap:12px!important;}html body #pagina-painel-candidato#pagina-painel-candidato #premium92Banner h3{font-size:16px!important;}html body #pagina-premium-candidato#pagina-premium-candidato #centralPremiumV93{padding:14px!important;}html body #pagina-premium-candidato#pagina-premium-candidato #centralPremiumV93 .cp93-head{align-items:flex-start!important;flex-direction:column!important;gap:10px!important;}html body #pagina-premium-candidato#pagina-premium-candidato #centralPremiumV93 .cp93-head h2{font-size:18px!important;}html body #pagina-premium-candidato#pagina-premium-candidato #centralPremiumV93 .cp93-metrics{grid-template-columns:repeat(2,minmax(0,1fr))!important;}html body #pagina-premium-candidato#pagina-premium-candidato #centralPremiumV93 .cp93-box{padding:13px!important;}html body #pagina-premium-candidato#pagina-premium-candidato #centralPremiumV93 .cp93-app-top{flex-wrap:wrap!important;}}}
 
-/* Model 2: compact peach application cards. */
+
 @layer site-typography{
-html body #pagina-candidaturas#pagina-candidaturas#pagina-candidaturas{background:#f8fbff!important;color:#374151!important}
-html body #pagina-candidaturas#pagina-candidaturas#pagina-candidaturas .candidatura-item{padding:0!important;overflow:hidden!important;border:1px solid #eff6ff!important;border-top:4px solid #0080c9!important;border-radius:12px!important;background:#fff!important;display:flex!important;flex-direction:column!important;gap:0!important;min-height:0!important;box-shadow:0 3px 10px #6f371405!important}
-html body #pagina-candidaturas#pagina-candidaturas#pagina-candidaturas #listaCandidaturas{align-items:stretch!important;gap:18px!important}
-html body #pagina-candidaturas#pagina-candidaturas#pagina-candidaturas .candidatura-top{padding:16px 18px!important;background:#f8fbff!important;min-height:82px!important;border-bottom:1px solid #eff6ff!important;align-items:center!important;gap:8px!important}
-html body #pagina-candidaturas#pagina-candidaturas#pagina-candidaturas .candidatura-top h3{font-size:15px!important;line-height:1.4!important;color:#374151!important;margin:0 0 4px!important}
-html body #pagina-candidaturas#pagina-candidaturas#pagina-candidaturas .candidatura-top p{color:#667085!important;font-size:12px!important}
-html body #pagina-candidaturas#pagina-candidaturas#pagina-candidaturas .cp-application-emblem{background:#f8fbff!important;color:#0080c9!important;border:1px solid #eff6ff!important;border-radius:10px!important;width:36px!important;height:38px!important}
-html body #pagina-candidaturas#pagina-candidaturas#pagina-candidaturas .cp-application-emblem svg{width:23px!important;height:23px!important}
-html body #pagina-candidaturas#pagina-candidaturas#pagina-candidaturas .status-processo{background:#fff!important;border:1px solid #d5e5f5!important;color:#0080c9!important;font-size:10px!important;padding:5px 8px!important;border-radius:20px!important}
-html body #pagina-candidaturas#pagina-candidaturas#pagina-candidaturas .cp-application-date{margin:13px 18px 0!important;padding:0!important;color:#667085!important;font-size:12px!important}
-html body #pagina-candidaturas#pagina-candidaturas#pagina-candidaturas .cp-application-date svg{color:#0080c9!important}
-html body #pagina-candidaturas#pagina-candidaturas#pagina-candidaturas .cp-application-viewed{margin:9px 18px 0!important;padding:7px 9px!important;background:#f8fbff!important;border-color:#eff6ff!important;color:#667085!important;font-size:11px!important}
-html body #pagina-candidaturas#pagina-candidaturas#pagina-candidaturas .cp-application-viewed strong{color:#4b5563!important;font-size:11px!important}
-html body #pagina-candidaturas#pagina-candidaturas#pagina-candidaturas .cp-application-viewed small{font-size:10px!important;color:#667085!important}
-html body #pagina-candidaturas#pagina-candidaturas#pagina-candidaturas .cp-card-journey{display:flex!important;list-style:none!important;margin:16px 18px!important;padding:0!important;gap:0!important}
-html body #pagina-candidaturas#pagina-candidaturas#pagina-candidaturas .cp-card-journey li{position:relative!important;flex:1!important;display:flex!important;flex-direction:column!important;align-items:center!important;gap:5px!important;font-size:10px!important;color:#667085!important;z-index:0!important}
-html body #pagina-candidaturas#pagina-candidaturas#pagina-candidaturas .cp-card-journey li:not(:last-child):after{content:'';position:absolute;top:12px;left:50%;width:100%;height:1px;background:#e5e7eb;z-index:-1}
-html body #pagina-candidaturas#pagina-candidaturas#pagina-candidaturas .cp-card-journey i{display:grid!important;place-items:center!important;width:24px!important;height:24px!important;border:1px solid #dedfe2!important;border-radius:50%!important;background:#fff!important;font-style:normal!important;font-size:10px!important}
-html body #pagina-candidaturas#pagina-candidaturas#pagina-candidaturas .cp-card-journey .is-done i{background:#0080c9!important;color:#fff!important;border-color:#0080c9!important}
-html body #pagina-candidaturas#pagina-candidaturas#pagina-candidaturas .cp-card-journey .is-current i{background:#f8fbff!important;color:#0080c9!important;border:2px solid #0080c9!important}
-html body #pagina-candidaturas#pagina-candidaturas#pagina-candidaturas .cp-card-journey .is-current span{font-weight:700!important;color:#374151!important}
-html body #pagina-candidaturas#pagina-candidaturas#pagina-candidaturas .cp-process-details{display:flex!important;gap:10px!important;padding:12px 18px!important;margin-top:auto!important;border-top:1px solid #eff6ff!important;background:#f8fbff!important}
-html body #pagina-candidaturas#pagina-candidaturas#pagina-candidaturas .cp-process-trigger{display:flex!important;align-items:center!important;justify-content:center!important;gap:8px!important;flex:1!important;width:auto!important;min-height:39px!important;padding:9px 12px!important;border-radius:7px!important;background:#0080c9!important;border:1px solid #0080c9!important;color:#fff!important;font-size:11px!important;font-weight:600!important}
-html body #pagina-candidaturas#pagina-candidaturas#pagina-candidaturas .cp-cancel-trigger{flex:0 1 auto!important;min-height:39px!important;padding:9px 10px!important;border:1px solid #d9dce1!important;border-radius:7px!important;background:#fff!important;color:#667085!important;font:500 11px Inter,Arial,sans-serif!important;cursor:pointer!important}
-html body #pagina-candidaturas#pagina-candidaturas#pagina-candidaturas .cp-cancel-trigger:hover{color:#a43826!important;border-color:#93c5fd!important}
-html body #pagina-candidaturas#pagina-candidaturas#pagina-candidaturas .cp-applications-hero{background:#f8fbff!important;border-color:#d5e5f5!important;color:#374151!important;box-shadow:none!important}
-html body #pagina-candidaturas#pagina-candidaturas#pagina-candidaturas .cp-applications-hero h1{color:#374151!important}
-html body #pagina-candidaturas#pagina-candidaturas#pagina-candidaturas .cp-applications-hero p{color:#667085!important}
-html body #pagina-candidaturas#pagina-candidaturas#pagina-candidaturas .cp-applications-kicker,html body #pagina-candidaturas#pagina-candidaturas#pagina-candidaturas .cp-applications-kicker span{color:#0080c9!important;background:transparent!important}
-html body #pagina-candidaturas#pagina-candidaturas#pagina-candidaturas .cp-applications-back{color:#0080c9!important;background:#fff!important;border-color:#d5e5f5!important}
-html body #pagina-candidaturas#pagina-candidaturas#pagina-candidaturas #cpApplicationFilters{border-color:#eff6ff!important}
-html body #pagina-candidaturas#pagina-candidaturas#pagina-candidaturas #cpApplicationFilters .cp-application-filter-buttons{grid-template-columns:repeat(4,minmax(0,1fr))!important;gap:8px!important}
-html body #pagina-candidaturas#pagina-candidaturas#pagina-candidaturas #cpApplicationFilters [data-cp-filter]{background:#f8fbff!important;border-color:#eff6ff!important;color:#667085!important;--filter-accent:#0080c9;--filter-soft:#f8fbff}
-html body #pagina-candidaturas#pagina-candidaturas#pagina-candidaturas #cpApplicationFilters [aria-pressed=true]{background:#f8fbff!important;border-color:#93c5fd!important;color:#0080c9!important}
-html body #pagina-candidaturas#pagina-candidaturas#pagina-candidaturas #cpApplicationFilters strong{color:#374151!important}
-html body dialog.cp-cancel-modal{box-sizing:border-box;width:min(480px,calc(100vw - 32px));max-height:calc(100dvh - 40px);padding:25px;border:1px solid #ead6c6;border-radius:14px;color:#4b5563;background:white;font:13px/1.6 Inter,Arial,sans-serif;overflow:auto}
-html body dialog.cp-cancel-modal::backdrop{background:#1f293766}
-html body dialog.cp-cancel-modal h2{font-size:20px;color:#374151;margin:0 0 10px}
-html body dialog.cp-cancel-modal .cp-cancel-job{font-weight:700;color:#ff981f}
-html body dialog.cp-cancel-modal footer{display:flex;gap:10px;justify-content:flex-end;flex-wrap:wrap;margin-top:20px}
-html body dialog.cp-cancel-modal button{border:1px solid #d1d5db;border-radius:7px;padding:10px 12px;background:#fff;color:#4b5563;font:600 12px Inter,Arial,sans-serif;cursor:pointer}
-html body dialog.cp-cancel-modal .cp-confirm-cancel{background:#ff981f;color:#fff;border-color:#ff981f}
-html body dialog.cp-cancel-modal button:disabled{opacity:.5;cursor:wait}
-html body dialog.cp-cancel-modal .cp-cancel-status{color:#a43826}
+html body #pagina-candidaturas#pagina-candidaturas#pagina-candidaturas{background:#f8fbff!important;color:#374151!important;}
+html body #pagina-candidaturas#pagina-candidaturas#pagina-candidaturas .candidatura-item{padding:0!important;overflow:hidden!important;border:1px solid #eff6ff!important;border-top:4px solid #0080c9!important;border-radius:12px!important;background:#fff!important;display:flex!important;flex-direction:column!important;gap:0!important;min-height:0!important;box-shadow:0 3px 10px #6f371405!important;}
+html body #pagina-candidaturas#pagina-candidaturas#pagina-candidaturas #listaCandidaturas{align-items:stretch!important;gap:18px!important;}
+html body #pagina-candidaturas#pagina-candidaturas#pagina-candidaturas .candidatura-top{padding:16px 18px!important;background:#f8fbff!important;min-height:82px!important;border-bottom:1px solid #eff6ff!important;align-items:center!important;gap:8px!important;}
+html body #pagina-candidaturas#pagina-candidaturas#pagina-candidaturas .candidatura-top h3{font-size:15px!important;line-height:1.4!important;color:#374151!important;margin:0 0 4px!important;}
+html body #pagina-candidaturas#pagina-candidaturas#pagina-candidaturas .candidatura-top p{color:#667085!important;font-size:12px!important;}
+html body #pagina-candidaturas#pagina-candidaturas#pagina-candidaturas .cp-application-emblem{background:#f8fbff!important;color:#0080c9!important;border:1px solid #eff6ff!important;border-radius:10px!important;width:36px!important;height:38px!important;}
+html body #pagina-candidaturas#pagina-candidaturas#pagina-candidaturas .cp-application-emblem svg{width:23px!important;height:23px!important;}
+html body #pagina-candidaturas#pagina-candidaturas#pagina-candidaturas .status-processo{background:#fff!important;border:1px solid #d5e5f5!important;color:#0080c9!important;font-size:10px!important;padding:5px 8px!important;border-radius:20px!important;}
+html body #pagina-candidaturas#pagina-candidaturas#pagina-candidaturas .cp-application-date{margin:13px 18px 0!important;padding:0!important;color:#667085!important;font-size:12px!important;}
+html body #pagina-candidaturas#pagina-candidaturas#pagina-candidaturas .cp-application-date svg{color:#0080c9!important;}
+html body #pagina-candidaturas#pagina-candidaturas#pagina-candidaturas .cp-application-viewed{margin:9px 18px 0!important;padding:7px 9px!important;background:#f8fbff!important;border-color:#eff6ff!important;color:#667085!important;font-size:11px!important;}
+html body #pagina-candidaturas#pagina-candidaturas#pagina-candidaturas .cp-application-viewed strong{color:#4b5563!important;font-size:11px!important;}
+html body #pagina-candidaturas#pagina-candidaturas#pagina-candidaturas .cp-application-viewed small{font-size:10px!important;color:#667085!important;}
+html body #pagina-candidaturas#pagina-candidaturas#pagina-candidaturas .cp-card-journey{display:flex!important;list-style:none!important;margin:16px 18px!important;padding:0!important;gap:0!important;}
+html body #pagina-candidaturas#pagina-candidaturas#pagina-candidaturas .cp-card-journey li{position:relative!important;flex:1!important;display:flex!important;flex-direction:column!important;align-items:center!important;gap:5px!important;font-size:10px!important;color:#667085!important;z-index:0!important;}
+html body #pagina-candidaturas#pagina-candidaturas#pagina-candidaturas .cp-card-journey li:not(:last-child):after{content:"";position:absolute;top:12px;left:50%;width:100%;height:1px;background:#e5e7eb;z-index:-1;}
+html body #pagina-candidaturas#pagina-candidaturas#pagina-candidaturas .cp-card-journey i{display:grid!important;place-items:center!important;width:24px!important;height:24px!important;border:1px solid #dedfe2!important;border-radius:50%!important;background:#fff!important;font-style:normal!important;font-size:10px!important;}
+html body #pagina-candidaturas#pagina-candidaturas#pagina-candidaturas .cp-card-journey .is-done i{background:#0080c9!important;color:#fff!important;border-color:#0080c9!important;}
+html body #pagina-candidaturas#pagina-candidaturas#pagina-candidaturas .cp-card-journey .is-current i{background:#f8fbff!important;color:#0080c9!important;border:2px solid #0080c9!important;}
+html body #pagina-candidaturas#pagina-candidaturas#pagina-candidaturas .cp-card-journey .is-current span{font-weight:700!important;color:#374151!important;}
+html body #pagina-candidaturas#pagina-candidaturas#pagina-candidaturas .cp-process-details{display:flex!important;gap:10px!important;padding:12px 18px!important;margin-top:auto!important;border-top:1px solid #eff6ff!important;background:#f8fbff!important;}
+html body #pagina-candidaturas#pagina-candidaturas#pagina-candidaturas .cp-process-trigger{display:flex!important;align-items:center!important;justify-content:center!important;gap:8px!important;flex:1!important;width:auto!important;min-height:39px!important;padding:9px 12px!important;border-radius:7px!important;background:#0080c9!important;border:1px solid #0080c9!important;color:#fff!important;font-size:11px!important;font-weight:600!important;}
+html body #pagina-candidaturas#pagina-candidaturas#pagina-candidaturas .cp-cancel-trigger{flex:0 1 auto!important;min-height:39px!important;padding:9px 10px!important;border:1px solid #d9dce1!important;border-radius:7px!important;background:#fff!important;color:#667085!important;font:500 11px Inter,Arial,sans-serif!important;cursor:pointer!important;}
+html body #pagina-candidaturas#pagina-candidaturas#pagina-candidaturas .cp-cancel-trigger:hover{color:#a43826!important;border-color:#93c5fd!important;}
+html body #pagina-candidaturas#pagina-candidaturas#pagina-candidaturas .cp-applications-hero{background:#f8fbff!important;border-color:#d5e5f5!important;color:#374151!important;box-shadow:none!important;}
+html body #pagina-candidaturas#pagina-candidaturas#pagina-candidaturas .cp-applications-hero h1{color:#374151!important;}
+html body #pagina-candidaturas#pagina-candidaturas#pagina-candidaturas .cp-applications-hero p{color:#667085!important;}
+html body #pagina-candidaturas#pagina-candidaturas#pagina-candidaturas .cp-applications-kicker,html body #pagina-candidaturas#pagina-candidaturas#pagina-candidaturas .cp-applications-kicker span{color:#0080c9!important;background:transparent!important;}
+html body #pagina-candidaturas#pagina-candidaturas#pagina-candidaturas .cp-applications-back{color:#0080c9!important;background:#fff!important;border-color:#d5e5f5!important;}
+html body #pagina-candidaturas#pagina-candidaturas#pagina-candidaturas #cpApplicationFilters{border-color:#eff6ff!important;}
+html body #pagina-candidaturas#pagina-candidaturas#pagina-candidaturas #cpApplicationFilters .cp-application-filter-buttons{grid-template-columns:repeat(4,minmax(0,1fr))!important;gap:8px!important;}
+html body #pagina-candidaturas#pagina-candidaturas#pagina-candidaturas #cpApplicationFilters [data-cp-filter]{background:#f8fbff!important;border-color:#eff6ff!important;color:#667085!important;--filter-accent:#0080c9;--filter-soft:#f8fbff;}
+html body #pagina-candidaturas#pagina-candidaturas#pagina-candidaturas #cpApplicationFilters [aria-pressed=true]{background:#f8fbff!important;border-color:#93c5fd!important;color:#0080c9!important;}
+html body #pagina-candidaturas#pagina-candidaturas#pagina-candidaturas #cpApplicationFilters strong{color:#374151!important;}
+html body dialog.cp-cancel-modal{box-sizing:border-box;width:min(480px,calc(100vw - 32px));max-height:calc(100dvh - 40px);padding:25px;border:1px solid #ead6c6;border-radius:14px;color:#4b5563;background:white;font:13px/1.6 Inter,Arial,sans-serif;overflow:auto;}
+html body dialog.cp-cancel-modal::backdrop{background:#1f293766;}
+html body dialog.cp-cancel-modal h2{font-size:20px;color:#374151;margin:0 0 10px;}
+html body dialog.cp-cancel-modal .cp-cancel-job{font-weight:700;color:#ff981f;}
+html body dialog.cp-cancel-modal footer{display:flex;gap:10px;justify-content:flex-end;flex-wrap:wrap;margin-top:20px;}
+html body dialog.cp-cancel-modal button{border:1px solid #d1d5db;border-radius:7px;padding:10px 12px;background:#fff;color:#4b5563;font:600 12px Inter,Arial,sans-serif;cursor:pointer;}
+html body dialog.cp-cancel-modal .cp-confirm-cancel{background:#ff981f;color:#fff;border-color:#ff981f;}
+html body dialog.cp-cancel-modal button:disabled{opacity:.5;cursor:wait;}
+html body dialog.cp-cancel-modal .cp-cancel-status{color:#a43826;}
 }
-@media(max-width:600px){@layer site-typography{html body #pagina-candidaturas#pagina-candidaturas#pagina-candidaturas #cpApplicationFilters .cp-application-filter-buttons{grid-template-columns:repeat(2,minmax(0,1fr))!important}html body #pagina-candidaturas#pagina-candidaturas#pagina-candidaturas .cp-process-details{flex-wrap:wrap!important}html body #pagina-candidaturas#pagina-candidaturas#pagina-candidaturas .cp-process-trigger,html body #pagina-candidaturas#pagina-candidaturas#pagina-candidaturas .cp-cancel-trigger{min-height:44px!important;flex:1 1 100%!important}}}
+@media(max-width:600px){@layer site-typography{html body #pagina-candidaturas#pagina-candidaturas#pagina-candidaturas #cpApplicationFilters .cp-application-filter-buttons{grid-template-columns:repeat(2,minmax(0,1fr))!important;}html body #pagina-candidaturas#pagina-candidaturas#pagina-candidaturas .cp-process-details{flex-wrap:wrap!important;}html body #pagina-candidaturas#pagina-candidaturas#pagina-candidaturas .cp-process-trigger,html body #pagina-candidaturas#pagina-candidaturas#pagina-candidaturas .cp-cancel-trigger{min-height:44px!important;flex:1 1 100%!important;}}}
 
 
 /* Field format feedback; does not indicate verified identity or saved data. */
 @layer field-feedback{
-html body input.em-field-valid,html body select.em-field-valid,html body textarea.em-field-valid{border-color:#5b9b7a!important;color:#374151!important;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none'%3E%3Ccircle cx='12' cy='12' r='9' fill='%23edf7f0'/%3E%3Cpath d='m7 12 3 3 7-7' stroke='%23357854' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E")!important;background-repeat:no-repeat!important;background-size:20px 20px!important;background-position:right 10px center!important;padding-right:38px!important}
-html body input.em-field-invalid,html body select.em-field-invalid,html body textarea.em-field-invalid{border-color:#c65f55!important;color:#374151!important;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none'%3E%3Ccircle cx='12' cy='12' r='9' fill='%23fff1ef' stroke='%23b64d43'/%3E%3Cpath d='m9 9 6 6m0-6-6 6' stroke='%23b64d43' stroke-width='1.8' stroke-linecap='round'/%3E%3C/svg%3E")!important;background-repeat:no-repeat!important;background-size:20px 20px!important;background-position:right 10px center!important;padding-right:38px!important}
-html body select:is(.em-field-valid,.em-field-invalid){background-position:right 30px center!important;padding-right:58px!important}
-html body textarea:is(.em-field-valid,.em-field-invalid){background-position:right 10px top 12px!important}
-html body :is(input,select,textarea).em-field-valid:focus{outline:2px solid #c6dfd0!important;outline-offset:2px!important}
-html body :is(input,select,textarea).em-field-invalid:focus{outline:2px solid #f0cbc6!important;outline-offset:2px!important}
-html body .em-field-message{display:block!important;grid-column:1/-1!important;margin:5px 0 8px!important;padding:0!important;color:#a43e35!important;font:400 12px/1.5 Inter,Arial,sans-serif!important;letter-spacing:normal!important;white-space:normal!important}
+html body input.em-field-valid,html body select.em-field-valid,html body textarea.em-field-valid{border-color:#5b9b7a!important;color:#374151!important;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none'%3E%3Ccircle cx='12' cy='12' r='9' fill='%23edf7f0'/%3E%3Cpath d='m7 12 3 3 7-7' stroke='%23357854' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E")!important;background-repeat:no-repeat!important;background-size:20px 20px!important;background-position:right 10px center!important;padding-right:38px!important;}
+html body input.em-field-invalid,html body select.em-field-invalid,html body textarea.em-field-invalid{border-color:#c65f55!important;color:#374151!important;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none'%3E%3Ccircle cx='12' cy='12' r='9' fill='%23fff1ef' stroke='%23b64d43'/%3E%3Cpath d='m9 9 6 6m0-6-6 6' stroke='%23b64d43' stroke-width='1.8' stroke-linecap='round'/%3E%3C/svg%3E")!important;background-repeat:no-repeat!important;background-size:20px 20px!important;background-position:right 10px center!important;padding-right:38px!important;}
+html body select:is(.em-field-valid,.em-field-invalid){background-position:right 30px center!important;padding-right:58px!important;}
+html body textarea:is(.em-field-valid,.em-field-invalid){background-position:right 10px top 12px!important;}
+html body :is(input,select,textarea).em-field-valid:focus{outline:2px solid #c6dfd0!important;outline-offset:2px!important;}
+html body :is(input,select,textarea).em-field-invalid:focus{outline:2px solid #f0cbc6!important;outline-offset:2px!important;}
+html body .em-field-message{display:block!important;grid-column:1/-1!important;margin:5px 0 8px!important;padding:0!important;color:#a43e35!important;font:400 12px/1.5 Inter,Arial,sans-serif!important;letter-spacing:normal!important;white-space:normal!important;}
 }
 
-@layer field-feedback{html body label:has(>input.em-field-valid),html body label:has(>input.em-field-invalid),html body label:has(>select.em-field-valid),html body label:has(>select.em-field-invalid),html body label:has(>textarea.em-field-valid),html body label:has(>textarea.em-field-invalid){align-content:start!important;align-self:start!important}html body form label:has(>input){align-content:start!important}}
+@layer field-feedback{html body label:has(>input.em-field-valid),html body label:has(>input.em-field-invalid),html body label:has(>select.em-field-valid),html body label:has(>select.em-field-invalid),html body label:has(>textarea.em-field-valid),html body label:has(>textarea.em-field-invalid){align-content:start!important;align-self:start!important;}html body form label:has(>input){align-content:start!important;}}
 
-/* Approved profile model 2: petroleum headings, neutral fields, burnt orange actions. */
+
 @layer site-typography {
- html body.cp-shell-active #emCandidateProfile#emCandidateProfile :is(h2,h3,.ep-photo-copy strong){color:#0080c9!important}
- html body.cp-shell-active #emCandidateProfile#emCandidateProfile .ep-head{background:#f1f5f9!important;border-color:#dce5ea!important}
- html body.cp-shell-active #emCandidateProfile#emCandidateProfile :is(h3 svg,.ep-eyebrow){color:#0080c9!important}
- html body.cp-shell-active #emCandidateProfile#emCandidateProfile label{color:#374151!important}
- html body.cp-shell-active #emCandidateProfile#emCandidateProfile :is(p,small){color:#64748b!important}
- html body.cp-shell-active #emCandidateProfile#emCandidateProfile .ep-primary{background:#0080c9!important;border-color:#0080c9!important;color:#fff!important;box-shadow:none!important}
- html body.cp-shell-active #emCandidateProfile#emCandidateProfile .ep-primary:hover{background:#0080c9!important;border-color:#0080c9!important}
- html body.cp-shell-active #emCandidateProfile#emCandidateProfile button:not(.ep-primary){background:#fff!important;color:#0080c9!important;border-color:#d1d5db!important}
- html body.cp-shell-active #emCandidateProfile#emCandidateProfile :is(input,select){accent-color:#0080c9}
- html body.cp-shell-active #emCandidateProfile#emCandidateProfile :is(input,select):not(.em-field-invalid){border-color:#d1d5db!important;color:#374151!important;background-color:#fff!important}
- html body.cp-shell-active #emCandidateProfile#emCandidateProfile input:disabled{background-color:#f1f5f9!important;color:#64748b!important}
- html body.cp-shell-active #emCandidateProfile#emCandidateProfile :focus-visible{outline:2px solid #0080c9!important;outline-offset:2px!important}
- html body.cp-shell-active #emCandidateProfile#emCandidateProfile .ep-privacy-note{display:flex;align-items:flex-start;gap:10px;padding:12px;margin:0 0 18px;background:#f1f5f9;border-radius:8px;font-size:12px!important;line-height:1.6}
- #emCandidateProfile .ep-privacy-note>svg{width:18px;height:18px;flex:0 0 18px;color:#64748b}
+ html body.cp-shell-active #emCandidateProfile#emCandidateProfile :is(h2,h3,.ep-photo-copy strong){color:#0080c9!important;}
+ html body.cp-shell-active #emCandidateProfile#emCandidateProfile .ep-head{background:#f1f5f9!important;border-color:#dce5ea!important;}
+ html body.cp-shell-active #emCandidateProfile#emCandidateProfile :is(h3 svg,.ep-eyebrow){color:#0080c9!important;}
+ html body.cp-shell-active #emCandidateProfile#emCandidateProfile label{color:#374151!important;}
+ html body.cp-shell-active #emCandidateProfile#emCandidateProfile :is(p,small){color:#64748b!important;}
+ html body.cp-shell-active #emCandidateProfile#emCandidateProfile .ep-primary{background:#0080c9!important;border-color:#0080c9!important;color:#fff!important;box-shadow:none!important;}
+ html body.cp-shell-active #emCandidateProfile#emCandidateProfile .ep-primary:hover{background:#0080c9!important;border-color:#0080c9!important;}
+ html body.cp-shell-active #emCandidateProfile#emCandidateProfile button:not(.ep-primary){background:#fff!important;color:#0080c9!important;border-color:#d1d5db!important;}
+ html body.cp-shell-active #emCandidateProfile#emCandidateProfile :is(input,select){accent-color:#0080c9;}
+ html body.cp-shell-active #emCandidateProfile#emCandidateProfile :is(input,select):not(.em-field-invalid){border-color:#d1d5db!important;color:#374151!important;background-color:#fff!important;}
+ html body.cp-shell-active #emCandidateProfile#emCandidateProfile input:disabled{background-color:#f1f5f9!important;color:#64748b!important;}
+ html body.cp-shell-active #emCandidateProfile#emCandidateProfile :focus-visible{outline:2px solid #0080c9!important;outline-offset:2px!important;}
+ html body.cp-shell-active #emCandidateProfile#emCandidateProfile .ep-privacy-note{display:flex;align-items:flex-start;gap:10px;padding:12px;margin:0 0 18px;background:#f1f5f9;border-radius:8px;font-size:12px!important;line-height:1.6;}
+ #emCandidateProfile .ep-privacy-note>svg{width:18px;height:18px;flex:0 0 18px;color:#64748b;}
 }
 @layer field-feedback {
- html body #emCandidateProfile :is(input,select,textarea).em-field-valid{border-color:#d1d5db!important;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none'%3E%3Ccircle cx='12' cy='12' r='9' fill='%23fff0e5'/%3E%3Cpath d='m7 12 3 3 7-7' stroke='%23b84c1b' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E")!important}
- html body #emCandidateProfile :is(input,select,textarea).em-field-valid:focus{outline-color:#0080c9!important}
+ html body #emCandidateProfile :is(input,select,textarea).em-field-valid{border-color:#d1d5db!important;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none'%3E%3Ccircle cx='12' cy='12' r='9' fill='%23fff0e5'/%3E%3Cpath d='m7 12 3 3 7-7' stroke='%23b84c1b' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E")!important;}
+ html body #emCandidateProfile :is(input,select,textarea).em-field-valid:focus{outline-color:#0080c9!important;}
 }
 
 /* Approved clear grouped candidate Premium sidebar. */
 @layer field-feedback {
- html body.cp-shell-active #cpCandidateHeader#cpCandidateHeader .cp-navigation[data-menu-model="4"]{background:#fafcfd!important;padding:22px 16px 16px!important;gap:0!important;border:1px solid #dae3e9!important;border-radius:12px!important;box-shadow:none!important;overflow-y:auto!important;scrollbar-width:thin}
- html body.cp-shell-active #cpCandidateHeader#cpCandidateHeader .cp-navigation[data-menu-model="4"] .m3-brand{font-size:25px!important;font-weight:650!important;color:#0080c9!important;padding:0 7px!important;margin:0 0 22px!important;letter-spacing:-.6px!important}
- html body.cp-shell-active #cpCandidateHeader#cpCandidateHeader .cp-navigation[data-menu-model="4"] .m3-brand>span{color:#0080c9!important}
- html body.cp-shell-active #cpCandidateHeader#cpCandidateHeader .cp-navigation[data-menu-model="4"] .m3-help{display:none!important}
- html body.cp-shell-active #cpCandidateHeader#cpCandidateHeader .cp-navigation[data-menu-model="4"] .m4-menu-group{display:flex!important;flex-direction:column!important;gap:2px!important;padding:12px 0!important;margin:0!important;border-bottom:1px solid #dbe3e9!important;flex:none!important}
- html body.cp-shell-active #cpCandidateHeader#cpCandidateHeader .cp-navigation[data-menu-model="4"] .m4-menu-caption{display:block!important;color:#516475!important;font-size:9px!important;line-height:1.4!important;font-weight:650!important;letter-spacing:1.2px!important;padding:0 8px!important;margin:0 0 8px!important}
- html body.cp-shell-active #cpCandidateHeader#cpCandidateHeader .cp-navigation[data-menu-model="4"] button[data-route]{position:relative!important;display:flex!important;align-items:center!important;gap:12px!important;width:100%!important;min-height:38px!important;height:38px!important;flex:0 0 38px!important;padding:0 9px!important;margin:0!important;border:0!important;border-radius:6px!important;background:transparent!important;box-shadow:none!important;color:#0080c9!important;text-align:left!important;outline:none!important}
- html body.cp-shell-active #cpCandidateHeader#cpCandidateHeader .cp-navigation[data-menu-model="4"] button[data-route]>span:not(.cp-card-icon):not(.cp-message-count){color:#0080c9!important;font-size:13px!important;font-weight:450!important;line-height:1.3!important}
- html body.cp-shell-active #cpCandidateHeader#cpCandidateHeader .cp-navigation[data-menu-model="4"] button[data-route]>.cp-card-icon{display:grid!important;place-items:center!important;width:21px!important;height:24px!important;min-width:21px!important;flex:0 0 21px!important;padding:0!important;background:none!important;border:0!important;border-radius:0!important;box-shadow:none!important;color:#0080c9!important}
- html body.cp-shell-active #cpCandidateHeader#cpCandidateHeader .cp-navigation[data-menu-model="4"] svg{width:21px!important;height:21px!important;color:#0080c9!important;flex-shrink:0!important}
- html body.cp-shell-active #cpCandidateHeader#cpCandidateHeader .cp-navigation[data-menu-model="4"] button[data-route]:after{display:none!important}
- html body.cp-shell-active #cpCandidateHeader#cpCandidateHeader .cp-navigation[data-menu-model="4"] button[data-route]:hover{background:#edf2f6!important}
- html body.cp-shell-active #cpCandidateHeader#cpCandidateHeader .cp-navigation[data-menu-model="4"] button[data-route][aria-current=page]{background:#e4effa!important;border:0!important;box-shadow:none!important}
- html body.cp-shell-active #cpCandidateHeader#cpCandidateHeader .cp-navigation[data-menu-model="4"] button[data-route][aria-current=page]>span:not(.cp-card-icon):not(.cp-message-count){color:#0080c9!important;font-weight:650!important}
- html body.cp-shell-active #cpCandidateHeader#cpCandidateHeader .cp-navigation[data-menu-model="4"] button.m4-resume-action{display:flex!important;align-items:center!important;justify-content:center!important;gap:10px!important;flex:0 0 40px!important;width:100%!important;height:40px!important;min-height:40px!important;margin:0 0 8px!important;padding:0 9px!important;border:1px solid #cfd9e1!important;border-radius:7px!important;background:#f0f4f7!important;box-shadow:none!important;color:#0080c9!important;font:600 13px/1.3 Inter,Arial,sans-serif!important}
- html body.cp-shell-active #cpCandidateHeader#cpCandidateHeader .cp-navigation[data-menu-model="4"] .m4-resume-action span{color:#0080c9!important;font-size:13px!important}
- html body.cp-shell-active #cpCandidateHeader#cpCandidateHeader .cp-navigation[data-menu-model="4"] button.m4-plan-card{height:70px!important;min-height:70px!important;flex-basis:70px!important;align-items:flex-start!important;padding:13px 9px!important;gap:10px!important;border:1px solid #d4dee7!important;border-radius:8px!important;background:#fff!important}
- html body.cp-shell-active #cpCandidateHeader#cpCandidateHeader .cp-navigation[data-menu-model="4"] .m4-plan-copy{display:flex!important;flex-direction:column!important;gap:8px!important;min-width:0!important;flex:1!important;white-space:normal!important}
- html body.cp-shell-active #cpCandidateHeader#cpCandidateHeader .cp-navigation[data-menu-model="4"] .m4-plan-copy strong{color:#0080c9!important;font:650 13px/1.3 Inter,Arial,sans-serif!important}
- html body.cp-shell-active #cpCandidateHeader#cpCandidateHeader .cp-navigation[data-menu-model="4"] .m4-plan-copy small{color:#536b7d!important;font:400 10px/1.3 Inter,Arial,sans-serif!important;white-space:nowrap!important}
- html body.cp-shell-active #cpCandidateHeader#cpCandidateHeader .cp-navigation[data-menu-model="4"] button .m4-plan-status{position:absolute!important;top:13px!important;right:23px!important;padding:3px 6px!important;border-radius:5px!important;background:#f0f8ff!important;color:#0080c9!important;font-size:9px!important;font-weight:500!important}
- html body.cp-shell-active #cpCandidateHeader#cpCandidateHeader .cp-navigation[data-menu-model="4"] button .m4-plan-chevron{margin-left:auto!important;position:absolute!important;right:9px!important;top:19px!important;font-size:20px!important;line-height:1!important}
- html body.cp-shell-active #cpCandidateHeader#cpCandidateHeader .cp-navigation[data-menu-model="4"] button[data-route]:focus-visible,html body.cp-shell-active #cpCandidateHeader#cpCandidateHeader .cp-navigation[data-menu-model="4"] .m4-resume-action:focus-visible{outline:2px solid #0080c9!important;outline-offset:2px!important}
- html body.cp-shell-active #cpCandidateHeader#cpCandidateHeader .cp-navigation[data-menu-model="4"] button[data-route=messages]{padding-right:34px!important}
- html body.cp-shell-active #cpCandidateHeader#cpCandidateHeader .cp-navigation[data-menu-model="4"] .m4-support{margin-top:12px!important;flex:none!important;color:#0080c9!important;font:400 12px/1.5 Inter,Arial,sans-serif!important}
- html body.cp-shell-active #cpCandidateHeader#cpCandidateHeader .cp-navigation[data-menu-model="4"] .m4-support summary{display:flex!important;gap:12px!important;align-items:center!important;cursor:pointer!important;padding:5px 9px!important;list-style:none!important}
- html body.cp-shell-active #cpCandidateHeader#cpCandidateHeader .cp-navigation[data-menu-model="4"] .m4-support summary::-webkit-details-marker{display:none}
- html body.cp-shell-active #cpCandidateHeader#cpCandidateHeader .cp-navigation[data-menu-model="4"] .m4-support p{padding:10px!important;background:#edf3f7!important;border-radius:6px!important;font-size:11px!important;color:#536b7d!important}
+ html body.cp-shell-active #cpCandidateHeader#cpCandidateHeader .cp-navigation[data-menu-model="4"]{background:#fafcfd!important;padding:22px 16px 16px!important;gap:0!important;border:1px solid #dae3e9!important;border-radius:12px!important;box-shadow:none!important;overflow-y:auto!important;scrollbar-width:thin;}
+ html body.cp-shell-active #cpCandidateHeader#cpCandidateHeader .cp-navigation[data-menu-model="4"] .m3-brand{font-size:25px!important;font-weight:650!important;color:#0080c9!important;padding:0 7px!important;margin:0 0 22px!important;letter-spacing:-.6px!important;}
+ html body.cp-shell-active #cpCandidateHeader#cpCandidateHeader .cp-navigation[data-menu-model="4"] .m3-brand>span{color:#0080c9!important;}
+ html body.cp-shell-active #cpCandidateHeader#cpCandidateHeader .cp-navigation[data-menu-model="4"] .m3-help{display:none!important;}
+ html body.cp-shell-active #cpCandidateHeader#cpCandidateHeader .cp-navigation[data-menu-model="4"] .m4-menu-group{display:flex!important;flex-direction:column!important;gap:2px!important;padding:12px 0!important;margin:0!important;border-bottom:1px solid #dbe3e9!important;flex:none!important;}
+ html body.cp-shell-active #cpCandidateHeader#cpCandidateHeader .cp-navigation[data-menu-model="4"] .m4-menu-caption{display:block!important;color:#516475!important;font-size:9px!important;line-height:1.4!important;font-weight:650!important;letter-spacing:1.2px!important;padding:0 8px!important;margin:0 0 8px!important;}
+ html body.cp-shell-active #cpCandidateHeader#cpCandidateHeader .cp-navigation[data-menu-model="4"] button[data-route]{position:relative!important;display:flex!important;align-items:center!important;gap:12px!important;width:100%!important;min-height:38px!important;height:38px!important;flex:0 0 38px!important;padding:0 9px!important;margin:0!important;border:0!important;border-radius:6px!important;background:transparent!important;box-shadow:none!important;color:#0080c9!important;text-align:left!important;outline:none!important;}
+ html body.cp-shell-active #cpCandidateHeader#cpCandidateHeader .cp-navigation[data-menu-model="4"] button[data-route]>span:not(.cp-card-icon):not(.cp-message-count){color:#0080c9!important;font-size:13px!important;font-weight:450!important;line-height:1.3!important;}
+ html body.cp-shell-active #cpCandidateHeader#cpCandidateHeader .cp-navigation[data-menu-model="4"] button[data-route]>.cp-card-icon{display:grid!important;place-items:center!important;width:21px!important;height:24px!important;min-width:21px!important;flex:0 0 21px!important;padding:0!important;background:none!important;border:0!important;border-radius:0!important;box-shadow:none!important;color:#0080c9!important;}
+ html body.cp-shell-active #cpCandidateHeader#cpCandidateHeader .cp-navigation[data-menu-model="4"] svg{width:21px!important;height:21px!important;color:#0080c9!important;flex-shrink:0!important;}
+ html body.cp-shell-active #cpCandidateHeader#cpCandidateHeader .cp-navigation[data-menu-model="4"] button[data-route]:after{display:none!important;}
+ html body.cp-shell-active #cpCandidateHeader#cpCandidateHeader .cp-navigation[data-menu-model="4"] button[data-route]:hover{background:#edf2f6!important;}
+ html body.cp-shell-active #cpCandidateHeader#cpCandidateHeader .cp-navigation[data-menu-model="4"] button[data-route][aria-current=page]{background:#e4effa!important;border:0!important;box-shadow:none!important;}
+ html body.cp-shell-active #cpCandidateHeader#cpCandidateHeader .cp-navigation[data-menu-model="4"] button[data-route][aria-current=page]>span:not(.cp-card-icon):not(.cp-message-count){color:#0080c9!important;font-weight:650!important;}
+ html body.cp-shell-active #cpCandidateHeader#cpCandidateHeader .cp-navigation[data-menu-model="4"] button.m4-resume-action{display:flex!important;align-items:center!important;justify-content:center!important;gap:10px!important;flex:0 0 40px!important;width:100%!important;height:40px!important;min-height:40px!important;margin:0 0 8px!important;padding:0 9px!important;border:1px solid #cfd9e1!important;border-radius:7px!important;background:#f0f4f7!important;box-shadow:none!important;color:#0080c9!important;font:600 13px/1.3 Inter,Arial,sans-serif!important;}
+ html body.cp-shell-active #cpCandidateHeader#cpCandidateHeader .cp-navigation[data-menu-model="4"] .m4-resume-action span{color:#0080c9!important;font-size:13px!important;}
+ html body.cp-shell-active #cpCandidateHeader#cpCandidateHeader .cp-navigation[data-menu-model="4"] button.m4-plan-card{height:70px!important;min-height:70px!important;flex-basis:70px!important;align-items:flex-start!important;padding:13px 9px!important;gap:10px!important;border:1px solid #d4dee7!important;border-radius:8px!important;background:#fff!important;}
+ html body.cp-shell-active #cpCandidateHeader#cpCandidateHeader .cp-navigation[data-menu-model="4"] .m4-plan-copy{display:flex!important;flex-direction:column!important;gap:8px!important;min-width:0!important;flex:1!important;white-space:normal!important;}
+ html body.cp-shell-active #cpCandidateHeader#cpCandidateHeader .cp-navigation[data-menu-model="4"] .m4-plan-copy strong{color:#0080c9!important;font:650 13px/1.3 Inter,Arial,sans-serif!important;}
+ html body.cp-shell-active #cpCandidateHeader#cpCandidateHeader .cp-navigation[data-menu-model="4"] .m4-plan-copy small{color:#536b7d!important;font:400 10px/1.3 Inter,Arial,sans-serif!important;white-space:nowrap!important;}
+ html body.cp-shell-active #cpCandidateHeader#cpCandidateHeader .cp-navigation[data-menu-model="4"] button .m4-plan-status{position:absolute!important;top:13px!important;right:23px!important;padding:3px 6px!important;border-radius:5px!important;background:#f0f8ff!important;color:#0080c9!important;font-size:9px!important;font-weight:500!important;}
+ html body.cp-shell-active #cpCandidateHeader#cpCandidateHeader .cp-navigation[data-menu-model="4"] button .m4-plan-chevron{margin-left:auto!important;position:absolute!important;right:9px!important;top:19px!important;font-size:20px!important;line-height:1!important;}
+ html body.cp-shell-active #cpCandidateHeader#cpCandidateHeader .cp-navigation[data-menu-model="4"] button[data-route]:focus-visible,html body.cp-shell-active #cpCandidateHeader#cpCandidateHeader .cp-navigation[data-menu-model="4"] .m4-resume-action:focus-visible{outline:2px solid #0080c9!important;outline-offset:2px!important;}
+ html body.cp-shell-active #cpCandidateHeader#cpCandidateHeader .cp-navigation[data-menu-model="4"] button[data-route=messages]{padding-right:34px!important;}
+ html body.cp-shell-active #cpCandidateHeader#cpCandidateHeader .cp-navigation[data-menu-model="4"] .m4-support{margin-top:12px!important;flex:none!important;color:#0080c9!important;font:400 12px/1.5 Inter,Arial,sans-serif!important;}
+ html body.cp-shell-active #cpCandidateHeader#cpCandidateHeader .cp-navigation[data-menu-model="4"] .m4-support summary{display:flex!important;gap:12px!important;align-items:center!important;cursor:pointer!important;padding:5px 9px!important;list-style:none!important;}
+ html body.cp-shell-active #cpCandidateHeader#cpCandidateHeader .cp-navigation[data-menu-model="4"] .m4-support summary::-webkit-details-marker{display:none;}
+ html body.cp-shell-active #cpCandidateHeader#cpCandidateHeader .cp-navigation[data-menu-model="4"] .m4-support p{padding:10px!important;background:#edf3f7!important;border-radius:6px!important;font-size:11px!important;color:#536b7d!important;}
  @media(max-width:850px){
-  html body.cp-shell-active #cpCandidateHeader#cpCandidateHeader .cp-navigation[data-menu-model="4"]{flex-direction:row!important;gap:7px!important;padding:8px 14px!important;border:0!important;border-radius:0!important;overflow-y:hidden!important;overflow-x:auto!important}
-  html body.cp-shell-active #cpCandidateHeader#cpCandidateHeader .cp-navigation[data-menu-model="4"] .m4-menu-group{display:contents!important}
-  html body.cp-shell-active #cpCandidateHeader#cpCandidateHeader .cp-navigation[data-menu-model="4"] :is(.m4-menu-caption,.m4-resume-action,.m4-support,.m4-plan-status,.m4-plan-chevron){display:none!important}
-  html body.cp-shell-active #cpCandidateHeader#cpCandidateHeader .cp-navigation[data-menu-model="4"] button[data-route]{width:auto!important;min-width:0!important;flex:0 0 auto!important;height:44px!important;min-height:44px!important;padding:0 11px!important;gap:8px!important}
-  html body.cp-shell-active #cpCandidateHeader#cpCandidateHeader .cp-navigation[data-menu-model="4"] button.m4-plan-card{height:44px!important;min-height:44px!important;padding:0 11px!important;align-items:center!important;flex:0 0 auto!important;background:#fff!important}
-  html body.cp-shell-active #cpCandidateHeader#cpCandidateHeader .cp-navigation[data-menu-model="4"] .m4-plan-copy small{display:none!important}
-  html body.cp-shell-active #cpCandidateHeader#cpCandidateHeader .cp-navigation[data-menu-model="4"] button[data-route=messages]{padding-right:34px!important}
+  html body.cp-shell-active #cpCandidateHeader#cpCandidateHeader .cp-navigation[data-menu-model="4"]{flex-direction:row!important;gap:7px!important;padding:8px 14px!important;border:0!important;border-radius:0!important;overflow-y:hidden!important;overflow-x:auto!important;}
+  html body.cp-shell-active #cpCandidateHeader#cpCandidateHeader .cp-navigation[data-menu-model="4"] .m4-menu-group{display:contents!important;}
+  html body.cp-shell-active #cpCandidateHeader#cpCandidateHeader .cp-navigation[data-menu-model="4"] :is(.m4-menu-caption,.m4-resume-action,.m4-support,.m4-plan-status,.m4-plan-chevron){display:none!important;}
+  html body.cp-shell-active #cpCandidateHeader#cpCandidateHeader .cp-navigation[data-menu-model="4"] button[data-route]{width:auto!important;min-width:0!important;flex:0 0 auto!important;height:44px!important;min-height:44px!important;padding:0 11px!important;gap:8px!important;}
+  html body.cp-shell-active #cpCandidateHeader#cpCandidateHeader .cp-navigation[data-menu-model="4"] button.m4-plan-card{height:44px!important;min-height:44px!important;padding:0 11px!important;align-items:center!important;flex:0 0 auto!important;background:#fff!important;}
+  html body.cp-shell-active #cpCandidateHeader#cpCandidateHeader .cp-navigation[data-menu-model="4"] .m4-plan-copy small{display:none!important;}
+  html body.cp-shell-active #cpCandidateHeader#cpCandidateHeader .cp-navigation[data-menu-model="4"] button[data-route=messages]{padding-right:34px!important;}
  }
 }
 
 /* Compact welcome banner with a high-contrast search action. */
 @layer field-feedback {
- html body.cp-shell-active #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato .cp-home-intro{height:180px!important;min-height:0!important;padding:16px 28px!important;margin-bottom:14px!important;overflow:hidden!important}
- html body.cp-shell-active #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato .m3-welcome{flex:0 0 54%!important;position:relative!important;z-index:2!important;min-width:0!important}
- html body.cp-shell-active #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato .m3-welcome small{display:block!important;font-size:9px!important;line-height:1.3!important;letter-spacing:1.1px!important}
- html body.cp-shell-active #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato .m3-welcome h1{font-size:32px!important;line-height:1.1!important;margin:8px 0!important}
- html body.cp-shell-active #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato .m3-welcome p{font-size:13px!important;line-height:1.45!important;margin:0 0 10px!important;color:#fff!important}
- html body.cp-shell-active #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato .m3-welcome button{display:inline-flex!important;align-items:center!important;justify-content:center!important;gap:16px!important;min-height:36px!important;height:36px!important;padding:8px 15px!important;border:1px solid #0080c9!important;border-radius:7px!important;background:#0080c9!important;color:#fff!important;box-shadow:none!important;font:600 12px/1.3 Inter,Arial,sans-serif!important}
- html body.cp-shell-active #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato .m3-welcome button span{color:#fff!important;font-size:18px!important}
- html body.cp-shell-active #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato .m3-welcome button:hover{background:#34333d!important;border-color:#34333d!important}
- html body.cp-shell-active #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato .m3-welcome button:focus-visible{outline:2px solid #fff!important;outline-offset:3px!important}
- html body.cp-shell-active #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato .m3-art{width:34%!important;max-width:310px!important;right:10%!important;bottom:-3px!important}
- html body.cp-shell-active #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato .m3-motto{right:2%!important;top:20px!important;max-width:100px!important;font-size:8px!important;line-height:1.6!important;letter-spacing:1px!important}
- @media(max-width:1100px){html body.cp-shell-active #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato .m3-motto{display:none!important}html body.cp-shell-active #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato .m3-art{right:1%!important;width:40%!important}}
+ html body.cp-shell-active #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato .cp-home-intro{height:180px!important;min-height:0!important;padding:16px 28px!important;margin-bottom:14px!important;overflow:hidden!important;}
+ html body.cp-shell-active #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato .m3-welcome{flex:0 0 54%!important;position:relative!important;z-index:2!important;min-width:0!important;}
+ html body.cp-shell-active #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato .m3-welcome small{display:block!important;font-size:9px!important;line-height:1.3!important;letter-spacing:1.1px!important;}
+ html body.cp-shell-active #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato .m3-welcome h1{font-size:32px!important;line-height:1.1!important;margin:8px 0!important;}
+ html body.cp-shell-active #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato .m3-welcome p{font-size:13px!important;line-height:1.45!important;margin:0 0 10px!important;color:#fff!important;}
+ html body.cp-shell-active #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato .m3-welcome button{display:inline-flex!important;align-items:center!important;justify-content:center!important;gap:16px!important;min-height:36px!important;height:36px!important;padding:8px 15px!important;border:1px solid #0080c9!important;border-radius:7px!important;background:#0080c9!important;color:#fff!important;box-shadow:none!important;font:600 12px/1.3 Inter,Arial,sans-serif!important;}
+ html body.cp-shell-active #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato .m3-welcome button span{color:#fff!important;font-size:18px!important;}
+ html body.cp-shell-active #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato .m3-welcome button:hover{background:#34333d!important;border-color:#34333d!important;}
+ html body.cp-shell-active #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato .m3-welcome button:focus-visible{outline:2px solid #fff!important;outline-offset:3px!important;}
+ html body.cp-shell-active #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato .m3-art{width:34%!important;max-width:310px!important;right:10%!important;bottom:-3px!important;}
+ html body.cp-shell-active #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato .m3-motto{right:2%!important;top:20px!important;max-width:100px!important;font-size:8px!important;line-height:1.6!important;letter-spacing:1px!important;}
+ @media(max-width:1100px){html body.cp-shell-active #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato .m3-motto{display:none!important;}html body.cp-shell-active #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato .m3-art{right:1%!important;width:40%!important;}}
  @media(max-width:650px){
- html body.cp-shell-active #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato .cp-home-intro{height:auto!important;min-height:172px!important;padding:16px 18px!important}
- html body.cp-shell-active #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato .m3-welcome{flex-basis:100%!important}
- html body.cp-shell-active #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato .m3-welcome h1{font-size:28px!important}
- html body.cp-shell-active #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato .m3-welcome p{font-size:12px!important;max-width:100%!important}
- html body.cp-shell-active #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato .m3-art{width:42%!important;right:-18px!important;opacity:.14!important}
+ html body.cp-shell-active #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato .cp-home-intro{height:auto!important;min-height:172px!important;padding:16px 18px!important;}
+ html body.cp-shell-active #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato .m3-welcome{flex-basis:100%!important;}
+ html body.cp-shell-active #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato .m3-welcome h1{font-size:28px!important;}
+ html body.cp-shell-active #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato .m3-welcome p{font-size:12px!important;max-width:100%!important;}
+ html body.cp-shell-active #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato .m3-art{width:42%!important;right:-18px!important;opacity:.14!important;}
  }
 }
 
@@ -1369,7 +1369,7 @@ html body .em-field-message{display:block!important;grid-column:1/-1!important;m
 /* Poppins is the portal typeface. Legacy names keep runtime font overrides consistent. */
 @layer field-feedback {
  html body,html body :is(h1,h2,h3,h4,h5,h6,p,span,small,strong,a,button,input,textarea,select,option,label,legend,li,dt,dd,td,th,summary,blockquote){
-  font-family:'Poppins',Arial,sans-serif!important;
+  
  }
 }
 
@@ -1381,7 +1381,7 @@ html body .em-field-message{display:block!important;grid-column:1/-1!important;m
     border:1px solid #e0e7ef!important;border-radius:9px!important;background:#f8fafc!important;
     box-shadow:none!important;min-width:0!important;
   }
-  html body #pagina-candidatos-empresa .em-app-history-hint>div {min-width:0!important}
+  html body #pagina-candidatos-empresa .em-app-history-hint>div {min-width:0!important;}
   html body #pagina-candidatos-empresa .em-app-history-hint strong {
     display:block!important;font-size:12px!important;line-height:1.5!important;font-weight:600!important;
     color:#243b53!important;-webkit-text-fill-color:#243b53!important;
@@ -1397,11 +1397,11 @@ html body .em-field-message{display:block!important;grid-column:1/-1!important;m
     background:#fff!important;color:#0864c5!important;-webkit-text-fill-color:#0864c5!important;
     font-size:12px!important;font-weight:600!important;line-height:1.5!important;white-space:normal!important;cursor:pointer!important;
   }
-  html body #pagina-candidatos-empresa .em-app-history-hint button:hover {background:#edf5ff!important}
-  html body #pagina-candidatos-empresa .em-app-history-hint button:focus-visible {outline:3px solid #93c5fd!important;outline-offset:3px!important}
+  html body #pagina-candidatos-empresa .em-app-history-hint button:hover {background:#edf5ff!important;}
+  html body #pagina-candidatos-empresa .em-app-history-hint button:focus-visible {outline:3px solid #93c5fd!important;outline-offset:3px!important;}
   @media(max-width:700px) {
-    html body #pagina-candidatos-empresa .em-app-history-hint {flex-direction:column!important;align-items:stretch!important}
-    html body #pagina-candidatos-empresa .em-app-history-hint button {align-self:flex-start!important}
+    html body #pagina-candidatos-empresa .em-app-history-hint {flex-direction:column!important;align-items:stretch!important;}
+    html body #pagina-candidatos-empresa .em-app-history-hint button {align-self:flex-start!important;}
   }
 }
 @layer candidate-palette {
@@ -1422,12 +1422,12 @@ html body .em-field-message{display:block!important;grid-column:1/-1!important;m
     background:#fff!important;box-shadow:0 1px 2px #17365404!important;
     transition:border-color .15s,box-shadow .15s!important;
   }
-  html body #pagina-candidatos-empresa .em-jh-reference.em-app-hub .em-app-select-shell:hover {border-color:#9bb9d9!important}
+  html body #pagina-candidatos-empresa .em-jh-reference.em-app-hub .em-app-select-shell:hover {border-color:#9bb9d9!important;}
   html body #pagina-candidatos-empresa .em-jh-reference.em-app-hub .em-app-select-shell:focus-within {
     border-color:#0874ef!important;outline:2px solid #b8d6ff!important;outline-offset:1px!important;
   }
   html body #pagina-candidatos-empresa .em-jh-reference.em-app-hub .em-app-select-shell:after {
-    content:''!important;position:absolute!important;right:11px!important;top:calc(50% - 4px)!important;
+    content:""!important;position:absolute!important;right:11px!important;top:calc(50% - 4px)!important;
     width:6px!important;height:6px!important;border-right:1.5px solid #607a97!important;
     border-bottom:1.5px solid #607a97!important;transform:rotate(45deg)!important;pointer-events:none!important;
   }
@@ -1455,7 +1455,7 @@ html body .em-field-message{display:block!important;grid-column:1/-1!important;m
     border-color:#d5e0ed!important;border-radius:8px!important;
     background:#fff!important;box-shadow:0 1px 2px #17365404!important;
   }
-  html body #pagina-candidatos-empresa .em-jh-reference.em-app-hub .em-app-search #emJhText:hover {border-color:#9bb9d9!important}
+  html body #pagina-candidatos-empresa .em-jh-reference.em-app-hub .em-app-search #emJhText:hover {border-color:#9bb9d9!important;}
   html body #pagina-candidatos-empresa .em-jh-reference.em-app-hub .em-app-search #emJhText:focus-visible {
     border-color:#0874ef!important;outline:2px solid #b8d6ff!important;outline-offset:1px!important;
   }
@@ -1474,7 +1474,7 @@ html body .em-field-message{display:block!important;grid-column:1/-1!important;m
   html body #pagina-publicar.em-publish-in-panel .em-publish-heading {
     padding:0!important;margin:0 0 16px!important;border:0!important;background:transparent!important;box-shadow:none!important;
   }
-  html body #pagina-publicar.em-publish-in-panel .em-publish-heading small {display:none!important}
+  html body #pagina-publicar.em-publish-in-panel .em-publish-heading small {display:none!important;}
   html body #pagina-publicar.em-publish-in-panel .em-publish-heading h1 {
     margin:0!important;padding:0!important;font-size:32px!important;font-weight:800!important;line-height:1.2!important;
     letter-spacing:-.8px!important;color:#16365e!important;-webkit-text-fill-color:#16365e!important;
@@ -1483,8 +1483,8 @@ html body .em-field-message{display:block!important;grid-column:1/-1!important;m
     margin:8px 0 0!important;padding:0!important;font-size:14px!important;font-weight:500!important;line-height:1.6!important;
   }
   @media(max-width:700px) {
-    html body #pagina-publicar.em-publish-in-panel .em-publish-heading h1 {font-size:26px!important}
-    html body #pagina-publicar.em-publish-in-panel .em-publish-heading p {font-size:12px!important}
+    html body #pagina-publicar.em-publish-in-panel .em-publish-heading h1 {font-size:26px!important;}
+    html body #pagina-publicar.em-publish-in-panel .em-publish-heading p {font-size:12px!important;}
   }
 }
 
@@ -1492,20 +1492,29 @@ html body .em-field-message{display:block!important;grid-column:1/-1!important;m
    because important declarations in later layers cannot override this one. */
 @layer candidate-palette {
  @media(max-width:767px) {
-  html body.cp-shell-active #cpCandidateHeader#cpCandidateHeader#cpCandidateHeader .cp-navigation {display:none!important}
-  html body.cp-shell-active #cpCandidateHeader#cpCandidateHeader {width:100%!important;height:48px!important;min-height:48px!important;padding:0!important;margin:0!important}
-  html body.cp-shell-active #cpCandidateHeader#cpCandidateHeader .cp-toolbar {position:fixed!important;inset:0 0 auto!important;width:100%!important;height:48px!important;min-height:48px!important;box-sizing:border-box!important}
-  html body.cp-shell-active .pagina.cp-tab-content {width:100%!important;margin-inline:0!important;padding-top:16px!important}
-  html body.cp-shell-active {padding-top:0!important;padding-bottom:calc(76px + env(safe-area-inset-bottom,0px))!important}
-  html body.cp-shell-active #emMobileCandidateNav button {touch-action:manipulation}
-  html body.cp-shell-active #pagina-painel-candidato.cp-messages-active .container-dashboard > .em-chat {display:grid!important}
-  html body.cp-shell-active #pagina-painel-candidato:not(.cp-messages-active) .container-dashboard > .em-chat {display:none!important}
+  html body.cp-shell-active #cpCandidateHeader#cpCandidateHeader#cpCandidateHeader .cp-navigation {display:none!important;}
+  html body.cp-shell-active #cpCandidateHeader#cpCandidateHeader {width:100%!important;height:48px!important;min-height:48px!important;padding:0!important;margin:0!important;}
+  html body.cp-shell-active #cpCandidateHeader#cpCandidateHeader .cp-toolbar {position:fixed!important;inset:0 0 auto!important;width:100%!important;height:48px!important;min-height:48px!important;box-sizing:border-box!important;}
+  html body.cp-shell-active .pagina.cp-tab-content {width:100%!important;margin-inline:0!important;padding-top:16px!important;}
+  html body.cp-shell-active {padding-top:0!important;padding-bottom:calc(76px + env(safe-area-inset-bottom,0px))!important;}
+  html body.cp-shell-active #emMobileCandidateNav button {touch-action:manipulation;}
+  html body.cp-shell-active #pagina-painel-candidato.cp-messages-active .container-dashboard > .em-chat {display:grid!important;}
+  html body.cp-shell-active #pagina-painel-candidato:not(.cp-messages-active) .container-dashboard > .em-chat {display:none!important;}
  }
 }
 
 /* Actual Montserrat variable file shared across the portal. */
-@font-face{font-family:'Montserrat';font-style:normal;font-weight:100 900;font-display:swap;src:url('assets/fonts/cf-montserrat.woff') format('woff')}
-@font-face{font-family:'Montserrat Applications';font-style:normal;font-weight:100 900;font-display:swap;src:url('assets/fonts/cf-montserrat.woff') format('woff')}
+
+
 @layer candidate-palette {
- html body, html body * {font-family:'Montserrat',Arial,sans-serif!important}
+ html body, html body * {}
+}
+
+/* Portal typography: one font file and one shared family declaration. */
+@font-face{font-family:Montserrat;font-style:normal;font-weight:100 900;font-display:swap;src:url('assets/fonts/cf-montserrat.woff') format('woff')}
+@layer candidate-palette {
+ html body, html body * {font-family:Montserrat,Arial,sans-serif!important}
+ html body{font-weight:500}
+ html body :is(input,textarea,select){font-weight:500!important}
+ html body :is(button,.btn){font-weight:600!important}
 }
