@@ -711,3 +711,14 @@ html body #pagina-home#pagina-home #listaDestaques#listaDestaques#listaDestaques
 html body #pagina-home#pagina-home #listaDestaques#listaDestaques#listaDestaques#listaDestaques article.em-featured-reference.em-featured-reference.em-featured-orange2 button:focus-visible {outline:3px solid #9dc4fb!important;outline-offset:2px!important}
 html body #pagina-home#pagina-home #listaDestaques#listaDestaques#listaDestaques#listaDestaques article.em-featured-reference.em-featured-reference.em-featured-orange2 .dz-botao:hover {background:#ed6909!important}
 }
+
+@layer candidate-palette {
+html body #pagina-home #emDestV14 #emFeaturedQuickFilters{grid-column:1/-1!important;display:flex!important;align-items:center!important;flex-wrap:wrap!important;gap:8px!important;margin:0!important;padding:0!important;width:100%!important}
+html body #pagina-home #emFeaturedQuickFilters button{display:inline-flex!important;align-items:center!important;justify-content:center!important;gap:7px!important;min-height:34px!important;padding:7px 15px!important;border:1px solid #ced8e5!important;border-radius:999px!important;background:#fff!important;color:#34445b!important;font:500 12px/18px Inter,Arial,sans-serif!important;white-space:nowrap!important;box-shadow:none!important;cursor:pointer!important}
+html body #pagina-home #emFeaturedQuickFilters button:hover,html body #pagina-home #emFeaturedQuickFilters button[aria-pressed=true]{border-color:#1468df!important;background:#edf4ff!important;color:#0b5dcc!important}
+html body #pagina-home #emFeaturedQuickFilters button:focus-visible{outline:3px solid #9dc4fb!important;outline-offset:2px!important}
+html body #pagina-home #emFeaturedQuickFilters svg{width:16px!important;height:16px!important;flex:0 0 16px!important}
+html body #pagina-home #listaDestaques article.em-quick-excluded{display:none!important}
+html body #pagina-home #emFeaturedQuickEmpty{padding:18px!important;border:1px solid #dce5ef!important;border-radius:8px!important;background:#fff!important;color:#526174!important;font:400 13px/1.5 Inter,Arial,sans-serif!important}
+html body #pagina-home #emFeaturedQuickEmpty[hidden]{display:none!important}
+}
