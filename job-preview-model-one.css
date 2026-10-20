@@ -613,3 +613,9 @@ html body #pagina-home #emJobBrowser[data-layout="model-one"][data-presentation=
 html body #pagina-home #emJobBrowser[data-layout="model-one"][data-presentation="priority"] #listaVagas .em-recent-blocks.em-recent-discreet .em-r4-salary::before{grid-column:1/-1!important;grid-row:1!important;width:100%!important;text-align:center!important;padding:0!important}
 html body #pagina-home #emJobBrowser[data-layout="model-one"][data-presentation="priority"] #listaVagas .em-recent-blocks.em-recent-discreet .em-r4-salary::after{position:static!important;grid-column:1!important;grid-row:2!important;align-self:center!important;transform:none!important;width:16px!important;height:16px!important;margin:0!important}
 }
+
+@layer candidate-palette {
+html body #pagina-home #emJobBrowser[data-layout="model-one"][data-presentation="priority"] #listaVagas .em-recent-blocks.em-recent-discreet :is(.em-r4-location,.em-r4-salary,.em-r4-education){grid-template-columns:16px minmax(0,max-content)!important;justify-content:center!important;text-align:center!important}
+html body #pagina-home #emJobBrowser[data-layout="model-one"][data-presentation="priority"] #listaVagas .em-recent-blocks.em-recent-discreet :is(.em-r4-location,.em-r4-education)>span{text-align:center!important;justify-self:center!important}
+html body #pagina-home #emJobBrowser[data-layout="model-one"][data-presentation="priority"] #listaVagas .em-recent-blocks.em-recent-discreet :is(.em-r4-location,.em-r4-salary,.em-r4-education)::before{text-align:center!important;justify-self:center!important}
+}
