@@ -777,6 +777,7 @@
       var apply = card.querySelector('.em-lista-ver');
       if (!title || !company || !apply) return card;
       var highlighted = enabled(job.destaque) || enabled(job.emDestaque) || enabled(job.destacada);
+      var urgent = enabled(job.urgente) || enabled(job.contratacaoUrgente);
       var confidential = typeof win.vagaEhConfidencialEM === 'function' ? win.vagaEhConfidencialEM(job) : enabled(job.confidencial);
       var originalLogo = card.querySelector('.em-logo-destaque-previa img,.em-lista-logo img');
       var originalSalary = card.querySelector('.em-lista-salario strong');
@@ -866,13 +867,20 @@
       // Saving and applying stay in the full details; previews show only essential facts.
       card.replaceChildren(heading,metaRow,footer);
       card.classList.add('em-recent-blocks');
-      var label = highlighted ? 'Destaque' : enabled(job.urgente) || enabled(job.contratacaoUrgente) ? 'Contratação urgente' : '';
+      var label = urgent ? 'Contratação urgente' : highlighted ? 'Vaga em destaque' : '';
       if (label) {
-        var status=node('span','em-r4-status'); status.setAttribute('data-kind',highlighted?'featured':'urgent');
-        if (highlighted) status.innerHTML=svg(paths.featured);
-        status.appendChild(node('span','',label)); heading.appendChild(status);
+        var status=node('div','em-r4-status'); status.setAttribute('data-kind',urgent?'urgent':'featured');
+        var statusMain=node('span','em-r4-status-main');
+        statusMain.innerHTML=svg(urgent?'<circle cx="12" cy="12" r="9"/><path d="M12 6v6l4 2"/>':paths.featured);
+        statusMain.appendChild(node('span','',label)); status.appendChild(statusMain);
+        if (urgent && highlighted) {
+          var secondary=node('span','em-r4-secondary-status'); secondary.innerHTML=svg(paths.featured);
+          secondary.appendChild(node('span','','Destaque')); status.appendChild(secondary);
+        }
+        card.insertBefore(status,heading);
       }
       card.classList.add('em-recent-discreet');
+      card.setAttribute('data-em-priority',urgent?'urgent':highlighted?'featured':'standard');
       card.setAttribute('data-em-highlighted',String(highlighted)); card.setAttribute('data-em-confidential',String(confidential));
       var publicCompany = company.querySelector('span');
       card.__emJobEntry = {job:job, apply:apply, save:save, openState:openState, titleButton:titleButton, company:company, highlighted:highlighted, confidential:confidential,

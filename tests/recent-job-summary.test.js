@@ -116,10 +116,11 @@ test('public vacancy previews display the company logo on ordinary and featured 
   assert(featured.querySelector('.em-r4-logo'));
   assert.deepEqual(env.logoRequests,['real-job','urgent','featured']);
   const badge=featured.querySelector('.em-r4-status');
-  assert.equal(badge.textContent,'Destaque');
+  assert.equal(badge.textContent,'Vaga em destaque');
   assert.equal(badge.getAttribute('data-kind'),'featured');
   const facts=featured.querySelector('.em-r4-facts');
-  assert.equal(badge.parentNode,featured.querySelector('.em-r4-heading'));
+  assert.equal(badge.parentNode,featured);
+  assert.equal(featured.firstChild,badge);
   assert.equal(facts.firstChild,featured.querySelector('.em-r4-location'));
   assert.equal(featured.querySelector('.em-r4-journey'),null);
   assert.equal(featured.querySelector('.em-r2-benefits'),null);
