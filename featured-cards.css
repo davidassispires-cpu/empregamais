@@ -136,8 +136,15 @@
     grid-column: 1 / -1 !important; grid-row: 3 !important;
     display: inline-flex !important; justify-self: start !important; align-items: center !important; gap: 6px !important;
     height: 26px !important; margin: 0 !important; padding: 4px 10px !important;
+    max-width: 100% !important; min-width: 0 !important; overflow: hidden !important;
     border: 0 !important; border-radius: 999px !important;
     background: #f0f2f5 !important; color: #52647b !important; font-size: 11px !important; white-space: nowrap !important;
+  }
+  html body #pagina-home #listaDestaques .em-featured-reference .dz-work-meta > span {
+    font-size: inherit !important; line-height: inherit !important; flex-shrink: 0 !important;
+  }
+  html body #pagina-home #listaDestaques .em-featured-reference .dz-work-meta > .dz-work-area {
+    flex: 0 1 auto !important; overflow: hidden !important; text-overflow: ellipsis !important;
   }
   html body #pagina-home #listaDestaques .em-featured-reference .dz-info svg {
     width: 16px !important; height: 16px !important; flex: 0 0 16px !important;
