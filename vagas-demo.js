@@ -704,7 +704,7 @@
       var locate = browserNode('button', 'em-jb-locate', 'Localizar na lista'); locate.type = 'button';
       locate.setAttribute('aria-label', 'Localizar ' + summaryText(info.title) + ' na lista');
       locate.onclick = function () { locateSelectedJob(state); }; context.appendChild(locate);
-      var header = browserNode('header', 'em-jb-header');
+      var header = browserNode('header', 'em-jb-header em-jb-header-model2');
       header.appendChild(browserNode('p', 'em-jb-job-id', 'ID da vaga: ' + String(job.id || '')));
       var headerContent = browserNode('div', 'em-jb-header-content'); header.appendChild(headerContent);
       var logo = browserNode('div', 'em-jb-logo'); logo.setAttribute('aria-hidden', 'true');
@@ -718,6 +718,7 @@
       } else logo.textContent = initials;
       headerContent.appendChild(logo);
       var identity = browserNode('div', 'em-jb-identity'); headerContent.appendChild(identity);
+      identity.appendChild(header.querySelector('.em-jb-job-id'));
       var badges = browserNode('div', 'em-jb-badges');
       if (entry.highlighted) badges.appendChild(browserNode('span', 'em-jb-badge', 'Destaque'));
 
@@ -768,8 +769,8 @@
         urgentNotice.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 6v6l4 2"/></svg>';
         var urgentCopy = browserNode('div','em-jb-urgency-copy');
         urgentCopy.appendChild(browserNode('strong','','Contratação urgente'));
-        urgentCopy.appendChild(browserNode('p','','A empresa está priorizando o preenchimento desta vaga.'));
-        urgentNotice.appendChild(urgentCopy); headerActions.appendChild(urgentNotice);
+        urgentCopy.appendChild(browserNode('p','','Processo seletivo em andamento. Candidate-se o quanto antes.'));
+        urgentNotice.appendChild(urgentCopy); headerContent.appendChild(urgentNotice);
         headerActions.classList.add('em-jb-has-urgency');
       }
 
@@ -808,7 +809,7 @@
       };
       var email = shareControl('a', 'em-jb-share-email', 'E-mail', '<rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 6 9 7 9-7"/>');
       email.href = 'mailto:?subject=' + encodeURIComponent(shareText) + '&body=' + encodeURIComponent('Confira esta vaga: ' + shareText + '\n' + shareUrl);
-      share.appendChild(shareButtons); share.appendChild(shareStatus); header.appendChild(share);
+      share.appendChild(shareButtons); share.appendChild(shareStatus); headerActions.appendChild(share);
       header.appendChild(headerMeta);
       panel.appendChild(header);
       var body = browserNode('div', 'em-jb-body'), facts = browserNode('div', 'em-jb-facts');
