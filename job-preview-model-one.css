@@ -3,7 +3,7 @@
 @layer candidate-palette {
 html body #pagina-home #emJobBrowser[data-layout="model-one"]{grid-template-columns:minmax(300px,.38fr) minmax(0,.62fr)!important;gap:18px!important;align-items:start!important}
 html body #pagina-home #emJobBrowser[data-layout="model-one"] .em-job-results::after{display:none!important}
-html body #pagina-home #emJobBrowser[data-layout="model-one"] #listaVagas{gap:14px!important}
+html body #pagina-home #emJobBrowser[data-layout="model-one"] #listaVagas{gap:22px!important}
 html body #pagina-home #emJobBrowser[data-layout="model-one"] .em-job-panel{container-type:inline-size!important;container-name:em-job-preview!important;min-width:0!important;min-height:0!important;height:auto!important;border:1px solid #e1e7ef!important;border-radius:12px!important;box-shadow:0 3px 14px #10274408!important;background:#fff!important}
 html body #pagina-home #emJobBrowser[data-layout="model-one"] .em-job-panel,
 html body #pagina-home #emJobBrowser[data-layout="model-one"] .em-job-panel *{text-align:left!important}
@@ -76,9 +76,9 @@ html body #pagina-home #emJobBrowser[data-layout="model-one"] .em-jb-context{pos
 html body #pagina-home #emJobBrowser[data-layout="model-one"] .em-jb-context-copy{position:absolute!important;width:1px!important;height:1px!important;padding:0!important;margin:-1px!important;overflow:hidden!important;clip:rect(0,0,0,0)!important;white-space:nowrap!important}
 html body #pagina-home #emJobBrowser[data-layout="model-one"] .em-jb-locate{min-height:30px!important;padding:5px 0!important;font-size:10px!important;line-height:1.5!important}
 html body #pagina-home #emJobBrowser[data-layout="model-one"] .em-jb-comparison{font-size:11px!important;line-height:1.6!important}
-html body #pagina-home #emJobBrowser[data-layout="model-one"] #listaVagas .em-recent-blocks{--em-card-pad:14px!important;gap:12px!important;padding:14px!important;border:1px solid #e1e7ef!important;border-radius:11px!important;background:#fff!important;box-shadow:0 2px 7px #10274405!important}
+html body #pagina-home #emJobBrowser[data-layout="model-one"] #listaVagas .em-recent-blocks{--em-card-pad:20px!important;min-height:148px!important;justify-content:space-between!important;gap:20px!important;padding:20px 18px!important;border:1px solid #e1e7ef!important;border-radius:11px!important;background:#fff!important;box-shadow:0 2px 7px #10274405!important}
 html body #pagina-home #emJobBrowser[data-layout="model-one"] #listaVagas .em-recent-blocks[data-em-selected="true"]{border-color:#5197ee!important;background:#f8fbff!important;box-shadow:0 2px 8px #1769aa08!important}
-html body #pagina-home #emJobBrowser[data-layout="model-one"] #listaVagas .em-r4-heading{grid-template-columns:40px minmax(0,1fr)!important;gap:4px 10px!important}
+html body #pagina-home #emJobBrowser[data-layout="model-one"] #listaVagas .em-r4-heading{grid-template-columns:40px minmax(0,1fr)!important;gap:8px 10px!important}
 html body #pagina-home #emJobBrowser[data-layout="model-one"] #listaVagas .em-r4-logo{width:40px!important;height:40px!important;flex-basis:40px!important;border-radius:8px!important;background:#f3f7fc!important;padding:3px!important}
 html body #pagina-home #emJobBrowser[data-layout="model-one"] #listaVagas .em-r4-title-line{display:flex!important;align-items:flex-start!important;gap:7px!important;min-width:0!important}
 html body #pagina-home #emJobBrowser[data-layout="model-one"] #listaVagas .em-r4-title{flex:1!important;min-width:0!important;font-size:15px!important;font-weight:600!important;line-height:1.4!important}
