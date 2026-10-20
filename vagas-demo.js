@@ -772,6 +772,43 @@
         headerActions.classList.add('em-jb-has-urgency');
       }
       header.appendChild(headerMeta);
+
+      var share = browserNode('section', 'em-jb-share');
+      share.setAttribute('aria-label', 'Compartilhar esta vaga');
+      share.appendChild(browserNode('p', 'em-jb-share-title', 'Compartilhar esta vaga'));
+      var shareButtons = browserNode('div', 'em-jb-share-buttons');
+      var shareUrl = new URL(String(win.location.pathname || '') + '?pagina=vaga&id=' + encodeURIComponent(job.id), win.location.href).href;
+      var shareText = summaryText(info.title) + ' — ' + summaryText(info.company);
+      function shareControl(tag, className, label, path) {
+        var control = browserNode(tag, 'em-jb-share-button ' + className);
+        control.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' + path + '</svg>';
+        control.appendChild(browserNode('span', '', label));
+        shareButtons.appendChild(control); return control;
+      }
+      var whatsapp = shareControl('a', 'em-jb-share-whatsapp', 'WhatsApp', '<path d="M20 11.5a8 8 0 0 1-11.8 7L3 20l1.5-5.1A8 8 0 1 1 20 11.5Z"/><path d="M8 7c0 5 4 9 8 9l1-3-3-1-1 1c-1.5-.6-2.4-1.5-3-3l1-1-1-3Z"/>');
+      whatsapp.href = 'https://wa.me/?text=' + encodeURIComponent(shareText + '\n' + shareUrl);
+      whatsapp.target = '_blank'; whatsapp.rel = 'noopener noreferrer';
+      var copy = shareControl('button', 'em-jb-share-copy', 'Copiar link', '<path d="m10 13 4-4M8 15l-1 1a3.5 3.5 0 0 1-5-5l4-4a3.5 3.5 0 0 1 5 0M16 9l1-1a3.5 3.5 0 0 1 5 5l-4 4a3.5 3.5 0 0 1-5 0"/>');
+      copy.type = 'button';
+      var shareStatus = browserNode('span', 'em-jb-share-status'); shareStatus.setAttribute('role', 'status');
+      copy.onclick = async function () {
+        try {
+          if (win.navigator.clipboard && win.navigator.clipboard.writeText) await win.navigator.clipboard.writeText(shareUrl);
+          else {
+            var field = browserNode('textarea', 'em-jb-copy-field'); field.value = shareUrl;
+            share.appendChild(field); field.select();
+            var copied = doc.execCommand('copy'); field.remove();
+            if (!copied) throw new Error('copy');
+          }
+          copy.querySelector('span').textContent = 'Link copiado';
+          shareStatus.textContent = 'Link da vaga copiado.';
+        } catch (error) {
+          shareStatus.textContent = 'Copie o link: ' + shareUrl;
+        }
+      };
+      var email = shareControl('a', 'em-jb-share-email', 'E-mail', '<rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 6 9 7 9-7"/>');
+      email.href = 'mailto:?subject=' + encodeURIComponent(shareText) + '&body=' + encodeURIComponent('Confira esta vaga: ' + shareText + '\n' + shareUrl);
+      share.appendChild(shareButtons); share.appendChild(shareStatus); header.appendChild(share);
       panel.appendChild(header);
       var body = browserNode('div', 'em-jb-body'), facts = browserNode('div', 'em-jb-facts');
       var detailIcons = {
