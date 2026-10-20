@@ -382,19 +382,21 @@ window.abrirPaginaCadastroCandidatoV103=abrirPaginaCadastroV103;
 (function(){
 function restaurarHomeV109(){
 var q=new URLSearchParams(location.search);
-var pagina=q.get("pagina");
-if(pagina)return;
+if(q.get("pagina"))return;
 var home=document.getElementById("pagina-home");
 if(!home)return;
-home.style.removeProperty("display");
-if(typeof window.mostrarPagina==="function"){
-window.mostrarPagina("home");
-}else{
-document.querySelectorAll(".pagina").forEach(function(x){x.classList.remove("ativa")});
-home.classList.add("ativa");
+var alreadyActive=home.classList.contains("ativa");
+if(!alreadyActive){
+ home.style.removeProperty("display");
+ if(typeof window.mostrarPagina==="function")window.mostrarPagina("home");
+ else{
+  document.querySelectorAll(".pagina").forEach(function(x){x.classList.remove("ativa")});
+  home.classList.add("ativa");
+ }
 }
-if(typeof window.renderizarVagas==="function"){
-try{window.renderizarVagas()}catch(e){}
+var list=document.getElementById("listaVagas");
+if((!list||!list.querySelector("article"))&&typeof window.renderizarVagas==="function"){
+ try{window.renderizarVagas()}catch(e){}
 }
 }
 if(document.readyState==="loading"){

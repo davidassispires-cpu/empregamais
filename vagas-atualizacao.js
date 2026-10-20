@@ -84,3 +84,38 @@
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', resume, { once: true });
   else resume();
 })();
+
+/* Keep identical background refreshes from replacing the visible vacancy list. */
+(function () {
+  'use strict';
+  var previousKey = null, rendering = false;
+  function install() {
+    var original = window.renderizarVagas;
+    if (typeof original !== 'function' || original.__emStableJobs) return;
+    function stableRender() {
+      if (rendering) return;
+      var home = document.getElementById('pagina-home');
+      var list = document.getElementById('listaVagas');
+      if (!home || !home.classList.contains('ativa') || !list) return original.apply(this, arguments);
+      var key;
+      try {
+        var jobs = typeof window.todasAsVagasPublicas === 'function' ? window.todasAsVagasPublicas() : null;
+        var inputs = Array.from(home.querySelectorAll('input,select')).map(function (el) {
+          return [el.id,el.value,el.checked];
+        });
+        var proximity = window.emProximidade;
+        key = JSON.stringify([jobs,inputs,proximity && [proximity.ativa,proximity.raio,proximity.distancias]]);
+      } catch (_) { return original.apply(this, arguments); }
+      if (previousKey === key && list.querySelector('article')) return;
+      rendering = true;
+      var result;
+      try { result = original.apply(this, arguments); previousKey = key; }
+      finally { rendering = false; }
+      return result;
+    }
+    stableRender.__emStableJobs = true;
+    window.renderizarVagas = stableRender;
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded',install,{once:true});
+  else install();
+})();
