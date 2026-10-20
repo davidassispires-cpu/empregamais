@@ -414,7 +414,17 @@ html body #pagina-home #emJobBrowser[data-layout="model-one"][data-presentation=
 }
 html body #pagina-home #emJobBrowser[data-layout="model-one"][data-presentation="priority"] #listaVagas .em-r4-footer-badge svg {width:13px!important;height:13px!important;flex:0 0 13px!important;}
 html body #pagina-home #emJobBrowser[data-layout="model-one"][data-presentation="priority"] #listaVagas .em-r4-footer-featured svg {fill:#bd8832!important;stroke:#bd8832!important;}
-html body #pagina-home #emJobBrowser[data-layout="model-one"][data-presentation="priority"] #listaVagas .em-r4-footer-urgent {border-color:#e9babc!important;background:#fff6f6!important;color:#af313d!important;}
+html body #pagina-home #emJobBrowser[data-layout="model-one"][data-presentation="priority"] #listaVagas .em-recent-blocks[data-em-priority="urgent"] .em-r4-title {width:calc(100% - 76px)!important;align-self:start!important;}
+html body #pagina-home #emJobBrowser[data-layout="model-one"][data-presentation="priority"] #listaVagas .em-recent-blocks[data-em-priority="urgent"] .em-r4-footer-badges {display:contents!important;}
+html body #pagina-home #emJobBrowser[data-layout="model-one"][data-presentation="priority"] #listaVagas .em-r4-footer-featured {grid-column:1/-1!important;grid-row:auto!important;justify-self:end!important;}
+html body #pagina-home #emJobBrowser[data-layout="model-one"][data-presentation="priority"] #listaVagas .em-r4-footer-urgent {
+  grid-column:1/-1!important;grid-row:3!important;justify-self:end!important;align-self:start!important;
+  margin:3px 0 0!important;padding:2px 5px!important;gap:3px!important;
+  border-color:#e9babc!important;background:#fff6f6!important;color:#af313d!important;
+  font-size:10px!important;line-height:14px!important;
+}
+html body #pagina-home #emJobBrowser[data-layout="model-one"][data-presentation="priority"] #listaVagas .em-r4-footer-urgent>span {font-size:inherit!important;line-height:inherit!important;}
+html body #pagina-home #emJobBrowser[data-layout="model-one"][data-presentation="priority"] #listaVagas .em-r4-footer-urgent svg {width:10px!important;height:10px!important;flex-basis:10px!important;}
 html body #pagina-home #emJobBrowser[data-layout="model-one"][data-presentation="priority"] #listaVagas .em-r4-distance {grid-column:1/-1!important;grid-row:auto!important;justify-self:start!important;}
 html body #pagina-home #emJobBrowser[data-layout="model-one"][data-presentation="priority"] #listaVagas .em-r4-similar {
   grid-column:1/-1!important;grid-row:auto!important;align-self:stretch!important;
@@ -430,6 +440,8 @@ html body #pagina-home #emJobBrowser[data-layout="model-one"][data-presentation=
 @media(max-width:540px) {
   html body #pagina-home #emJobBrowser[data-layout="model-one"][data-presentation="priority"] #listaVagas .em-recent-blocks {--em-card-pad:16px!important;grid-template-rows:24px 18px minmax(50px,auto) 26px minmax(72px,auto)!important;}
   html body #pagina-home #emJobBrowser[data-layout="model-one"][data-presentation="priority"] #listaVagas .em-r4-title {font-size:18px!important;line-height:25px!important;}
+  html body #pagina-home #emJobBrowser[data-layout="model-one"][data-presentation="priority"] #listaVagas .em-recent-blocks[data-em-priority="urgent"] .em-r4-title {width:100%!important;}
+  html body #pagina-home #emJobBrowser[data-layout="model-one"][data-presentation="priority"] #listaVagas .em-recent-blocks[data-em-priority="urgent"] .em-r4-title-select::before {content:""!important;float:right!important;width:76px!important;height:25px!important;}
   html body #pagina-home #emJobBrowser[data-layout="model-one"][data-presentation="priority"] #listaVagas .em-r4-location {
     grid-template-columns:14px minmax(0,1fr)!important;grid-template-rows:15px auto!important;
     align-content:center!important;gap:2px 6px!important;padding:8px!important;min-height:72px!important;
