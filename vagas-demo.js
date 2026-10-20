@@ -513,6 +513,7 @@
       if (!home || !list || !column || !area) return null;
       var root = browserNode('div', 'em-job-browser'); root.id = 'emJobBrowser';
       root.setAttribute('data-view', 'list');
+      root.setAttribute('data-layout', 'model-one');
       var panel = browserNode('section', 'em-job-panel'); panel.id = 'emJobPanel';
       panel.setAttribute('aria-label', 'Detalhes da vaga');
       var status = browserNode('p', 'em-job-selection-status');
@@ -601,19 +602,32 @@
       contextCopy.appendChild(contextTitle); context.appendChild(contextCopy);
       var locate = browserNode('button', 'em-jb-locate', 'Localizar na lista'); locate.type = 'button';
       locate.setAttribute('aria-label', 'Localizar ' + summaryText(info.title) + ' na lista');
-      locate.onclick = function () { locateSelectedJob(state); }; context.appendChild(locate); panel.appendChild(context);
+      locate.onclick = function () { locateSelectedJob(state); }; context.appendChild(locate);
       var header = browserNode('header', 'em-jb-header');
       var headerContent = browserNode('div', 'em-jb-header-content'); header.appendChild(headerContent);
+      var logo = browserNode('div', 'em-jb-logo'); logo.setAttribute('aria-hidden', 'true');
+      var sourceLogo = entry.confidential ? null : card.querySelector('.em-r4-logo img');
+      var initials = entry.confidential ? '' : summaryText(info.company).replace(/\(demo\)/ig, '').trim().split(/\s+/).slice(0,2).map(function (word) { return word.charAt(0); }).join('').toLocaleUpperCase('pt-BR');
+      if (sourceLogo) {
+        var image = doc.createElement('img'); image.src = sourceLogo.getAttribute('src') || sourceLogo.src; image.alt = '';
+        image.onerror = function () { logo.textContent = initials; }; logo.appendChild(image);
+      } else if (entry.confidential) {
+        logo.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="5" y="10" width="14" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3M12 14v3"/></svg>';
+      } else logo.textContent = initials;
+      headerContent.appendChild(logo);
+      var identity = browserNode('div', 'em-jb-identity'); headerContent.appendChild(identity);
       var badges = browserNode('div', 'em-jb-badges');
       if (entry.highlighted) badges.appendChild(browserNode('span', 'em-jb-badge', 'Destaque'));
       if (enabled(job.urgente) || enabled(job.contratacaoUrgente)) badges.appendChild(browserNode('span', 'em-jb-badge em-jb-urgent', 'Contratação urgente'));
-      if (entry.confidential) badges.appendChild(browserNode('span', 'em-jb-badge em-jb-confidential', 'Empresa confidencial'));
-
       var title = browserNode('h2', 'em-jb-title', summaryText(info.title)); title.id = 'emJobPanelTitle'; title.tabIndex = -1;
-      headerContent.appendChild(title);
+      var titleLine = browserNode('div', 'em-jb-title-line'); titleLine.appendChild(title);
+      if (badges.children.length) titleLine.appendChild(badges);
+      identity.appendChild(titleLine);
       var company = browserNode('div', 'em-jb-company');
       companyIdentity(company, job, info.company, entry.company.__emOriginalCompanyClick);
-      headerContent.appendChild(company);
+      var companyName = company.querySelector('.em-company-name');
+      if (isDemo(job) && companyName) companyName.textContent = companyName.textContent.replace(/\s*\(demo\)/ig, '');
+      identity.appendChild(company);
       var headerMeta = browserNode('div', 'em-jb-header-meta');
       function headerFact(className, text, path) {
         var fact = browserNode('p', className);
@@ -621,10 +635,9 @@
         fact.appendChild(browserNode('span', '', summaryText(text))); headerMeta.appendChild(fact);
       }
       headerFact('em-jb-location', info.location, '<path d="M20 10c0 6-8 12-8 12S4 16 4 10a8 8 0 1 1 16 0Z"/><circle cx="12" cy="10" r="2.5"/>');
-      headerFact('em-jb-header-pay', info.salary, '<rect x="3" y="5" width="18" height="15" rx="2"/><path d="M3 8h18M16 12h5v5h-5z"/>');
+      headerFact('em-jb-header-contract', String(job.contrato || job.tipoContrato || 'Contrato não informado').replace(/^Efetivo\s*[–-]\s*CLT$/i, 'CLT'), '<path d="M5 3h10l4 4v14H5ZM14 3v5h5M8 12h8M8 16h6"/>');
       headerFact('em-jb-header-modality', job.modalidade || 'Modalidade não informada', '<rect x="3" y="7" width="18" height="14" rx="2"/><path d="M8 7V3h8v4M3 12h18"/>');
-      if (badges.children.length) headerContent.appendChild(badges);
-      headerContent.appendChild(headerMeta);
+      headerFact('em-jb-header-pay', info.salary, '<circle cx="12" cy="12" r="9"/><path d="M12 6v12M15 8H10a2 2 0 0 0 0 4h4a2 2 0 0 1 0 4H9"/>');
       var candidate = browserNode('button', 'em-jb-apply', 'Candidatar-se'); candidate.type = 'button';
       candidate.onclick = function () {
         if (isDemo(job)) { explainDemo(); return; }
@@ -641,6 +654,7 @@
       savedState(); save.onclick = function () { entry.save.click(); savedState(); };
       var headerActions = browserNode('div', 'em-jb-header-actions');
       headerActions.appendChild(candidate); headerActions.appendChild(save); headerContent.appendChild(headerActions);
+      header.appendChild(headerMeta);
       panel.appendChild(header);
       var body = browserNode('div', 'em-jb-body'), facts = browserNode('div', 'em-jb-facts');
       var detailIcons = {
@@ -664,8 +678,8 @@
         fact.appendChild(detailIcon(detailIcons[label] || detailIcons['Área']));
         fact.appendChild(browserNode('dt', '', label)); fact.appendChild(browserNode('dd', '', text)); facts.appendChild(fact);
       }
-      addFact('Salário', info.salary, true); addFact('Contrato', job.contrato || job.tipoContrato || 'Não informado');
-      addFact('Modalidade', job.modalidade || 'Não informada'); addFact('Jornada', job.jornada); addFact('Horário', job.horario);
+      // Salary, contract, modality and location already appear once in the header.
+      addFact('Jornada', job.jornada); addFact('Horário', job.horario);
       addFact('Experiência', job.experiencia); addFact('Escolaridade', typeof win.textoEscolaridadeVaga === 'function' ? win.textoEscolaridadeVaga(job) : job.escolaridade);
       addFact('Área', job.area); if (job.pcd && job.pcd !== 'Não exclusiva para PcD') addFact('Vaga para PcD', job.pcd);
       var factNodes = Array.from(facts.children); facts.replaceChildren();
@@ -675,14 +689,13 @@
           if (nodes[i + 1]) pair.appendChild(nodes[i + 1]); container.appendChild(pair);
         }
       }
-      fillFactPairs(facts, factNodes.filter(function (fact) { return fact.getAttribute('data-em-primary') === 'true'; }));
-      body.appendChild(facts);
-      var secondary = factNodes.filter(function (fact) { return fact.getAttribute('data-em-primary') !== 'true'; });
+      var secondary = factNodes;
+      var extra = null;
       if (secondary.length) {
-        var extra = browserNode('details', 'em-jb-extra');
+        extra = browserNode('details', 'em-jb-extra');
         extra.appendChild(browserNode('summary', '', 'Mais informações'));
         var secondaryFacts = browserNode('div', 'em-jb-facts'); fillFactPairs(secondaryFacts, secondary);
-        extra.appendChild(secondaryFacts); body.appendChild(extra);
+        extra.appendChild(secondaryFacts);
       }
       function addSection(label, value) {
         var text = summaryText(value); if (!text) return;
@@ -696,12 +709,24 @@
             var item = browserNode('li', '');
             item.appendChild(detailIcon('<circle cx="12" cy="12" r="9"/><path d="m7 12 3 3 7-7"/>')); item.appendChild(browserNode('span', '', benefit)); list.appendChild(item);
           }); section.appendChild(list);
-        } else section.appendChild(browserNode('p', '', text));
+        } else {
+          var lines = text.split(/\n+/).filter(function (line) { return line.trim(); });
+          if (lines.length > 1) {
+            var contentList = browserNode('ul', 'em-jb-content-list');
+            lines.forEach(function (line) { contentList.appendChild(browserNode('li', '', line.replace(/^\s*[•·*-]\s*/, ''))); });
+            section.appendChild(contentList);
+          } else section.appendChild(browserNode('p', '', text));
+        }
         body.appendChild(section);
       }
       var description = job.descricao || job.descricaoVaga || job.resumo || 'A empresa não informou a descrição desta vaga.';
       if (isDemo(job)) description = String(description).replace(/\s*Vaga de demonstração do \+Empregos\.[\s\S]*?candidaturas reais\./g, '');
-      addSection('Descrição da vaga', description);
+      var summary = summaryText(job.resumo);
+      if (summary && summary !== summaryText(description)) {
+        var intro = browserNode('section', 'em-jb-intro');
+        intro.appendChild(browserNode('h3', '', 'Sobre a vaga')); intro.appendChild(browserNode('p', '', summary)); body.appendChild(intro);
+      }
+      addSection('Responsabilidades', description);
       addSection('Requisitos', job.requisitos || 'Não informados.');
       var benefits = [], seen = Object.create(null);
       [job.beneficiosTags, job.beneficios, job.beneficiosSelecionados, job.benefits].forEach(function (source) {
@@ -711,17 +736,19 @@
         });
       });
       addSection('Benefícios', benefits.length ? benefits.join('\n') : 'Não informados.');
+      if (extra) body.appendChild(extra);
 
-      var footer = browserNode('footer', 'em-jb-footer');
+      var footer = browserNode('div', 'em-jb-footer'); footer.setAttribute('role', 'group');
       footer.setAttribute('aria-label', 'Candidatura à vaga');
       if (isDemo(job)) {
-        var note = browserNode('p', 'em-jb-demo', 'Vaga de demonstração. Esta oportunidade é fictícia e não recebe candidaturas reais.');
+        var note = browserNode('p', 'em-jb-demo', 'Vaga de demonstração: não recebe candidaturas reais.');
         note.setAttribute('role', 'note'); footer.appendChild(note);
       }
-      body.appendChild(browserNode('p', 'em-jb-date', info.date));
+      var previewFooter = browserNode('div', 'em-jb-preview-footer');
+      previewFooter.appendChild(browserNode('p', 'em-jb-date', info.date.replace(/\s*·\s*Demonstração\s*$/, '')));
       var full = browserNode('a', 'em-jb-full', 'Abrir página da vaga');
       full.href = String(win.location.pathname || '') + '?pagina=vaga&id=' + encodeURIComponent(job.id);
-      body.appendChild(full);
+      previewFooter.appendChild(full); body.appendChild(previewFooter); footer.appendChild(context);
       var navigation = browserNode('div', 'em-jb-tabs'); navigation.setAttribute('role', 'tablist'); navigation.setAttribute('aria-label', 'Informações da vaga');
       panel.appendChild(navigation);
       var companyPanel = browserNode('div', 'em-jb-body');
@@ -849,6 +876,11 @@
       title.replaceChildren(titleButton);
       company.classList.add('em-r4-company');
       company.querySelectorAll('.em-lista-nota-empresa').forEach(function(el){el.remove();});
+      if (isDemo(job)) {
+        var visibleName = company.querySelector('.em-company-name');
+        if (visibleName) visibleName.textContent = visibleName.textContent.replace(/\s*\(demo\)/ig, '');
+        company.appendChild(node('span', 'em-r4-demo-label', 'Demo'));
+      }
       var titleLine = node('div','em-r4-title-line');
       titleLine.appendChild(title);
       copy.appendChild(titleLine); copy.appendChild(company);
@@ -901,7 +933,7 @@
       // Saving and applying stay in the full details; previews show only essential facts.
       card.replaceChildren(heading,metaRow,footer);
       card.classList.add('em-recent-blocks');
-      var label = urgent ? 'Contratação urgente' : highlighted ? 'Vaga em destaque' : '';
+      var label = urgent ? 'Urgente' : highlighted ? 'Destaque' : '';
       if (label) {
         var status=node('div','em-r4-status'); status.setAttribute('data-kind',urgent?'urgent':'featured');
         var statusMain=node('span','em-r4-status-main');
@@ -911,14 +943,14 @@
           var secondary=node('span','em-r4-secondary-status'); secondary.innerHTML=svg(paths.featured);
           secondary.appendChild(node('span','','Destaque')); status.appendChild(secondary);
         }
-        card.insertBefore(status,heading);
+        titleLine.appendChild(status);
       }
       card.classList.add('em-recent-discreet');
       card.setAttribute('data-em-priority',urgent?'urgent':highlighted?'featured':'standard');
       card.setAttribute('data-em-highlighted',String(highlighted)); card.setAttribute('data-em-confidential',String(confidential));
       var publicCompany = company.querySelector('span');
       card.__emJobEntry = {job:job, apply:apply, save:save, openState:openState, titleButton:titleButton, company:company, highlighted:highlighted, confidential:confidential,
-        info:{title:title.textContent, company:confidential ? 'Empresa confidencial' : (publicCompany ? publicCompany.textContent : company.textContent), location:city+(uf.length===2?' – '+uf.toUpperCase():''), salary:salaryValue, date:date.textContent}};
+        info:{title:title.textContent, company:confidential ? 'Empresa confidencial' : summaryText(publicName || (publicCompany ? publicCompany.textContent : company.textContent)), location:city+(uf.length===2?' – '+uf.toUpperCase():''), salary:salaryValue, date:date.textContent}};
       card.onclick = function (event) {
         if (event.target && event.target.closest && event.target.closest('button,a,input,select,textarea,label,.em-r4-company')) return;
         showDetails(event);

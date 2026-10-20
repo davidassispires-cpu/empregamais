@@ -116,11 +116,11 @@ test('public vacancy previews display the company logo on ordinary and featured 
   assert(featured.querySelector('.em-r4-logo'));
   assert.deepEqual(env.logoRequests,['real-job','urgent','featured']);
   const badge=featured.querySelector('.em-r4-status');
-  assert.equal(badge.textContent,'Vaga em destaque');
+  assert.equal(badge.textContent,'Destaque');
   assert.equal(badge.getAttribute('data-kind'),'featured');
   const facts=featured.querySelector('.em-r4-facts');
-  assert.equal(badge.parentNode,featured);
-  assert.equal(featured.firstChild,badge);
+  assert.equal(badge.parentNode,featured.querySelector('.em-r4-title-line'));
+  assert.equal(featured.firstChild,featured.querySelector('.em-r4-heading'));
   assert.equal(facts.firstChild,featured.querySelector('.em-r4-location'));
   assert.equal(featured.querySelector('.em-r4-journey'),null);
   assert.equal(featured.querySelector('.em-r2-benefits'),null);
@@ -131,7 +131,7 @@ test('public vacancy previews display the company logo on ordinary and featured 
     const copy=card.querySelector('.em-r4-copy');
     assert.equal(copy.children[0],card.querySelector('.em-r4-title-line'));
     assert.equal(copy.children[1],card.querySelector('.em-r4-company'));
-    assert.equal(card.querySelector('.em-r4-title-line').querySelector('.em-r4-status'),null);
+    assert.equal(card.querySelector('.em-r4-title-line').querySelectorAll('.em-r4-status').length,card===normal?0:1);
   }
 });
 
@@ -332,13 +332,16 @@ test('vacancy tabs switch content in place and compare actual listed jobs',()=>{
 });
 
 
-test('only four essential facts appear outside the collapsed extra details',()=>{
+test('essential facts appear once in the header while additional details remain available',()=>{
  const env=fixture(true,true);env.render([{id:'one',area:'Administração',escolaridade:'Ensino médio',experiencia:'Desejável'}]);
  const panel=env.doc.getElementById('emJobPanel'),body=panel.querySelector('.em-jb-body');
- const primary=body.children[0],extra=body.querySelector('.em-jb-extra');
- assert.equal(primary.querySelectorAll('.em-jb-fact').length,4);
+ const primary=panel.querySelector('.em-jb-header-meta'),extra=body.querySelector('.em-jb-extra');
+ assert.equal(primary.children.length,4);
+ assert.equal(panel.querySelectorAll('.em-jb-header-pay').length,1);
+ assert.equal(body.querySelector('.em-jb-pay'),null);
  assert(extra);assert.equal(extra.tagName,'DETAILS');assert.equal(extra.getAttribute('open'),null);
  assert.match(extra.textContent,/Horário/);assert.match(extra.textContent,/Experiência/);
+ assert.match(extra.textContent,/Jornada/);
  assert(!primary.textContent.includes('Escolaridade'));
 });
 
