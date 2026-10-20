@@ -1,8 +1,5 @@
 /* Recent-vacancy previews: compact essential layout. */
-@font-face{font-family:"Recent Montserrat";font-style:normal;font-weight:100 900;font-display:swap;src:url("assets/fonts/cf-montserrat.woff") format("woff")}
-@layer portal-typography {
- html body #pagina-home #listaVagas .em-recent-blocks,html body #pagina-home #listaVagas .em-recent-blocks *{font-family:"Recent Montserrat",Montserrat,Arial,sans-serif!important}
-}
+
 @layer candidate-palette {
 #listaVagas {container-type:inline-size;container-name:em-recent-list}
 .em-recent-blocks {
@@ -15,7 +12,7 @@
  cursor:pointer!important;scroll-margin-block:16px!important;
  transition:transform .16s ease,box-shadow .16s ease,background-color .16s ease,border-color .16s ease!important;
 }
-.em-recent-blocks,.em-recent-blocks * {font-family:"Recent Montserrat",Montserrat,Arial,sans-serif!important;font-style:normal!important;letter-spacing:normal!important;text-align:left!important}
+.em-recent-blocks,.em-recent-blocks * {font-family:Poppins,sans-serif!important;font-style:normal!important;letter-spacing:normal!important;text-align:left!important}
 .em-recent-blocks *, .em-recent-blocks *::before, .em-recent-blocks *::after {box-sizing:border-box!important}
 .em-recent-blocks::before,.em-recent-blocks::after {display:none!important;content:none!important}
 .em-recent-blocks[hidden],.em-recent-blocks[style*="display: none"],.em-recent-blocks[style*="display:none"]{display:none!important}

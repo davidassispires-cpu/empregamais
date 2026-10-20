@@ -1,13 +1,13 @@
 /* O formulário de vagas acompanha o padrão visual do Perfil Empresarial. */
-#pagina-publicar.em-publish-in-panel{font:13px Inter,Arial,sans-serif!important;color:#18324f!important}
+#pagina-publicar.em-publish-in-panel{font:13px Poppins,sans-serif!important;color:#18324f!important}
 #pagina-publicar.em-publish-in-panel .em-job-shell{width:100%!important;max-width:1100px!important;margin:0 auto!important;padding:0!important}
 #pagina-publicar.em-publish-in-panel .em-publish-heading{margin-bottom:20px}
-#pagina-publicar.em-publish-in-panel .em-publish-heading small{font:700 10px Inter,Arial,sans-serif;letter-spacing:1.2px;color:#2870b8}
-#pagina-publicar.em-publish-in-panel .em-publish-heading h1{font:750 28px Inter,Arial,sans-serif!important;color:#18324f!important;margin:8px 0!important}
-#pagina-publicar.em-publish-in-panel .em-publish-heading p{font:13px/1.65 Inter,Arial,sans-serif!important;color:#6a7d92!important;margin:0!important}
+#pagina-publicar.em-publish-in-panel .em-publish-heading small{font:700 10px Poppins,sans-serif;letter-spacing:1.2px;color:#2870b8}
+#pagina-publicar.em-publish-in-panel .em-publish-heading h1{font:750 28px Poppins,sans-serif!important;color:#18324f!important;margin:8px 0!important}
+#pagina-publicar.em-publish-in-panel .em-publish-heading p{font:13px/1.65 Poppins,sans-serif!important;color:#6a7d92!important;margin:0!important}
 #pagina-publicar.em-publish-in-panel .em-job-top{border:1px solid #dce7f1!important;border-radius:12px!important;padding:7px!important;margin:0 0 16px!important;background:#fff!important;box-shadow:none!important}
 #pagina-publicar.em-publish-in-panel #emJobProgress{display:grid!important;grid-template-columns:repeat(4,minmax(0,1fr))!important;gap:6px!important}
-#pagina-publicar.em-publish-in-panel #emJobProgress .em-job-step{display:flex!important;align-items:center!important;gap:9px!important;padding:11px 9px!important;border-radius:8px!important;text-align:left!important;color:#315372!important;font:600 12px Inter,Arial,sans-serif!important}
+#pagina-publicar.em-publish-in-panel #emJobProgress .em-job-step{display:flex!important;align-items:center!important;gap:9px!important;padding:11px 9px!important;border-radius:8px!important;text-align:left!important;color:#315372!important;font:600 12px Poppins,sans-serif!important}
 #pagina-publicar.em-publish-in-panel #emJobProgress .em-job-step:before{display:none!important}
 #pagina-publicar.em-publish-in-panel #emJobProgress .em-job-num{width:25px!important;height:25px!important;flex:0 0 25px!important;margin:0!important;background:#edf2f7!important;color:#6a7c91!important;font-size:11px!important}
 #pagina-publicar.em-publish-in-panel #emJobProgress .em-job-step.active{background:#edf5ff!important;color:#0870df!important}
@@ -16,18 +16,18 @@
 #pagina-publicar.em-publish-in-panel #formVaga{margin:0!important;padding:0!important;background:transparent!important;box-shadow:none!important;border:0!important;width:100%!important;max-width:none!important}
 #pagina-publicar.em-publish-in-panel #formVaga .em-job-card{border:1px solid #dce7f1!important;border-radius:12px!important;background:#fff!important;box-shadow:0 5px 18px #18324f05!important;padding:0!important;overflow:hidden!important}
 #pagina-publicar.em-publish-in-panel #formVaga .em-job-card-head{padding:24px 24px 17px!important;border-bottom:1px solid #e8eef5!important;background:#fff!important}
-#pagina-publicar.em-publish-in-panel #formVaga .em-job-card-head h2{font:700 20px Inter,Arial,sans-serif!important;color:#18324f!important;margin:0 0 7px!important}
-#pagina-publicar.em-publish-in-panel #formVaga .em-job-card-head p{font:13px/1.65 Inter,Arial,sans-serif!important;color:#6a7d92!important;margin:0!important}
+#pagina-publicar.em-publish-in-panel #formVaga .em-job-card-head h2{font:700 20px Poppins,sans-serif!important;color:#18324f!important;margin:0 0 7px!important}
+#pagina-publicar.em-publish-in-panel #formVaga .em-job-card-head p{font:13px/1.65 Poppins,sans-serif!important;color:#6a7d92!important;margin:0!important}
 #pagina-publicar.em-publish-in-panel #formVaga .em-job-body{padding:24px!important}
 #pagina-publicar.em-publish-in-panel #formVaga .em-grid{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:18px!important}
 #pagina-publicar.em-publish-in-panel #formVaga .em-field{min-width:0!important}
-#pagina-publicar.em-publish-in-panel #formVaga .em-field label{font:600 12px/1.6 Inter,Arial,sans-serif!important;color:#18324f!important;margin:0 0 7px!important}
-#pagina-publicar.em-publish-in-panel #formVaga .em-field input:not([type=checkbox]):not([type=radio]),#pagina-publicar.em-publish-in-panel #formVaga .em-field select,#pagina-publicar.em-publish-in-panel #formVaga .em-field textarea{width:100%!important;box-sizing:border-box!important;border:1px solid #d4dfeb!important;border-radius:8px!important;background:#fff!important;padding:11px 12px!important;font:13px/1.6 Inter,Arial,sans-serif!important;color:#213e5b!important;box-shadow:none!important;min-height:0!important}
+#pagina-publicar.em-publish-in-panel #formVaga .em-field label{font:600 12px/1.6 Poppins,sans-serif!important;color:#18324f!important;margin:0 0 7px!important}
+#pagina-publicar.em-publish-in-panel #formVaga .em-field input:not([type=checkbox]):not([type=radio]),#pagina-publicar.em-publish-in-panel #formVaga .em-field select,#pagina-publicar.em-publish-in-panel #formVaga .em-field textarea{width:100%!important;box-sizing:border-box!important;border:1px solid #d4dfeb!important;border-radius:8px!important;background:#fff!important;padding:11px 12px!important;font:13px/1.6 Poppins,sans-serif!important;color:#213e5b!important;box-shadow:none!important;min-height:0!important}
 #pagina-publicar.em-publish-in-panel #formVaga .em-field textarea{min-height:100px!important;resize:vertical!important}
 #pagina-publicar.em-publish-in-panel #formVaga input::placeholder,#pagina-publicar.em-publish-in-panel #formVaga textarea::placeholder{color:#94a3b3!important}
 #pagina-publicar.em-publish-in-panel #formVaga .em-field input:focus,#pagina-publicar.em-publish-in-panel #formVaga .em-field select:focus,#pagina-publicar.em-publish-in-panel #formVaga .em-field textarea:focus{outline:2px solid #94c6ff!important;outline-offset:1px!important}
 #pagina-publicar.em-publish-in-panel #formVaga .em-job-actions{padding:17px 24px!important;border-top:1px solid #e6edf5!important;background:#fff!important;gap:12px!important;flex-wrap:wrap!important}
-#pagina-publicar.em-publish-in-panel #formVaga .em-btn{font:600 12px Inter,Arial,sans-serif!important;border-radius:8px!important;padding:11px 15px!important;min-height:0!important;box-shadow:none!important}
+#pagina-publicar.em-publish-in-panel #formVaga .em-btn{font:600 12px Poppins,sans-serif!important;border-radius:8px!important;padding:11px 15px!important;min-height:0!important;box-shadow:none!important}
 #pagina-publicar.em-publish-in-panel #formVaga .em-btn-back{border:1px solid #d8e3ef!important;background:#fff!important;color:#315372!important}
 #pagina-publicar.em-publish-in-panel #formVaga .em-btn-next,#pagina-publicar.em-publish-in-panel #formVaga .em-btn-publish{background:#0874eb!important;border:1px solid #0874eb!important;color:#fff!important}
 #pagina-publicar.em-publish-in-panel #formVaga .em-review-box{border:1px solid #e3edf7!important;border-radius:9px!important;padding:18px!important;box-shadow:none!important}
@@ -41,7 +41,7 @@
 #pagina-publicar.em-publish-in-panel #formVaga .em-job-card-head{position:relative;padding-left:102px!important;min-height:104px!important;padding-right:155px!important}
 #pagina-publicar.em-publish-in-panel .publish-section-icon{position:absolute;left:24px;top:23px;width:58px;height:58px;border-radius:12px;background:#e5f1ff;display:grid;place-items:center;color:#153e70}
 #pagina-publicar.em-publish-in-panel .publish-section-icon svg{width:29px;height:29px}
-#pagina-publicar.em-publish-in-panel .publish-step-badge{position:absolute;right:24px;top:30px;padding:7px 11px;border-radius:20px;background:#fff0e2;color:#cb601c;font:700 10px Inter,sans-serif}
+#pagina-publicar.em-publish-in-panel .publish-step-badge{position:absolute;right:24px;top:30px;padding:7px 11px;border-radius:20px;background:#fff0e2;color:#cb601c;font:700 10px Poppins,sans-serif}
 #pagina-publicar.em-publish-in-panel #formVaga .em-job-card{box-shadow:0 7px 25px #17365508!important;border-color:#e5ecf4!important}
 #pagina-publicar.em-publish-in-panel .publish-input-wrap{position:relative}
 #pagina-publicar.em-publish-in-panel .publish-field-icon{position:absolute;left:13px;top:50%;transform:translateY(-50%);color:#7b889e;pointer-events:none;display:flex}
@@ -52,8 +52,8 @@
 #pagina-publicar.em-publish-in-panel .publish-logo-placeholder>svg{width:42px;height:42px}
 #pagina-publicar.em-publish-in-panel .publish-logo-placeholder:has(img)>svg{display:none}
 #pagina-publicar.em-publish-in-panel #previewLogo img{max-width:78px!important;max-height:78px!important;object-fit:contain}
-#pagina-publicar.em-publish-in-panel .publish-logo-upload strong{font:700 14px Inter,sans-serif;color:#18324f}
-#pagina-publicar.em-publish-in-panel .publish-logo-upload p{font:12px/1.6 Inter,sans-serif;color:#7d8ca1;margin:5px 0 10px}
+#pagina-publicar.em-publish-in-panel .publish-logo-upload strong{font:700 14px Poppins,sans-serif;color:#18324f}
+#pagina-publicar.em-publish-in-panel .publish-logo-upload p{font:12px/1.6 Poppins,sans-serif;color:#7d8ca1;margin:5px 0 10px}
 #pagina-publicar.em-publish-in-panel #formVaga label.publish-upload-button{display:inline-flex!important;align-items:center;gap:8px;border:1px solid #0874eb;border-radius:7px;padding:8px 12px;cursor:pointer;color:#0874eb!important;background:#fff}
 #pagina-publicar.em-publish-in-panel .publish-upload-button svg{width:17px;height:17px}
 #pagina-publicar.em-publish-in-panel .publish-file-name{display:block;color:#718198;font-size:10px}
@@ -63,7 +63,7 @@
 #pagina-publicar.em-publish-in-panel .publish-mode-field{grid-column:1/-1!important}
 #pagina-publicar.em-publish-in-panel #formVaga .publish-mode-original{display:none!important}
 #pagina-publicar.em-publish-in-panel .publish-mode-options{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
-#pagina-publicar.em-publish-in-panel .publish-mode-options button{display:flex;align-items:center;gap:12px;border:1px solid #d4deeb;background:#fff;border-radius:9px;padding:14px;color:#243c5b;font:600 12px Inter,sans-serif;cursor:pointer;min-width:0}
+#pagina-publicar.em-publish-in-panel .publish-mode-options button{display:flex;align-items:center;gap:12px;border:1px solid #d4deeb;background:#fff;border-radius:9px;padding:14px;color:#243c5b;font:600 12px Poppins,sans-serif;cursor:pointer;min-width:0}
 #pagina-publicar.em-publish-in-panel .publish-mode-options svg{width:22px;height:22px;color:#718198}
 #pagina-publicar.em-publish-in-panel .publish-mode-options i{margin-left:auto;width:16px;height:16px;border:2px solid #a9b4c4;border-radius:50%;flex-shrink:0}
 #pagina-publicar.em-publish-in-panel .publish-mode-options button.selected{background:#f1f7ff;border-color:#0874eb;box-shadow:0 0 0 1px #0874eb}
@@ -72,7 +72,7 @@
 #pagina-publicar.em-publish-in-panel .publish-mode-options button:focus-visible{outline:2px solid #94c6ff;outline-offset:3px}
 #pagina-publicar.em-publish-in-panel #formVaga .publish-draft{display:inline-flex;align-items:center;gap:8px;margin-left:auto!important}
 #pagina-publicar.em-publish-in-panel .publish-draft svg{width:17px;height:17px}
-#pagina-publicar.em-publish-in-panel .publish-draft-status{font:12px Inter,sans-serif;color:#24774b;padding:12px 20px;background:#edf8f1;border-radius:8px}
+#pagina-publicar.em-publish-in-panel .publish-draft-status{font:12px Poppins,sans-serif;color:#24774b;padding:12px 20px;background:#edf8f1;border-radius:8px}
 @media(max-width:700px){#pagina-publicar.em-publish-in-panel #formVaga .em-job-card-head{padding:18px 18px 18px 78px!important;min-height:106px!important}#pagina-publicar.em-publish-in-panel .publish-section-icon{left:18px;top:18px;width:44px;height:44px}#pagina-publicar.em-publish-in-panel .publish-step-badge{position:static;display:inline-block;margin-top:8px}#pagina-publicar.em-publish-in-panel .publish-mode-options{gap:8px}#pagina-publicar.em-publish-in-panel .publish-mode-options button{padding:12px 8px;gap:6px;font-size:11px}}
 @media(max-width:480px){#pagina-publicar.em-publish-in-panel .publish-mode-options{grid-template-columns:1fr}#pagina-publicar.em-publish-in-panel .publish-logo-upload{gap:12px}#pagina-publicar.em-publish-in-panel .publish-logo-placeholder{width:70px;height:70px}}
 
@@ -109,19 +109,19 @@
 #pagina-publicar.em-publish-in-panel #formVaga .publish-contact-choice.selected{background:#f1f7ff!important;border-color:#0874eb!important;box-shadow:0 0 0 1px #0874eb}
 #pagina-publicar.em-publish-in-panel #formVaga .publish-contact-symbol{display:flex;color:#0874eb;flex-shrink:0}
 #pagina-publicar.em-publish-in-panel #formVaga .publish-contact-symbol svg{width:24px;height:24px}
-#pagina-publicar.em-publish-in-panel #formVaga .publish-contact-choice strong{display:block;font:700 14px Inter,sans-serif;color:#18324f}
-#pagina-publicar.em-publish-in-panel #formVaga .publish-contact-choice small{display:block;margin-top:5px;font:11px/1.6 Inter,sans-serif;color:#718198}
+#pagina-publicar.em-publish-in-panel #formVaga .publish-contact-choice strong{display:block;font:700 14px Poppins,sans-serif;color:#18324f}
+#pagina-publicar.em-publish-in-panel #formVaga .publish-contact-choice small{display:block;margin-top:5px;font:11px/1.6 Poppins,sans-serif;color:#718198}
 #pagina-publicar.em-publish-in-panel #formVaga .publish-contact-choice input{margin-left:auto!important;accent-color:#0874eb;flex-shrink:0}
-#pagina-publicar.em-publish-in-panel #formVaga .publish-contact-help{font:12px/1.7 Inter,sans-serif;color:#60758d;background:#f3f7fc;padding:12px 16px;border-radius:8px}
+#pagina-publicar.em-publish-in-panel #formVaga .publish-contact-help{font:12px/1.7 Poppins,sans-serif;color:#60758d;background:#f3f7fc;padding:12px 16px;border-radius:8px}
 #pagina-publicar.em-publish-in-panel #formVaga .publish-contact-choice .publish-choice-icon{display:none!important}
-#pagina-publicar.em-publish-in-panel #formVaga .em-review-section{color:#314b65!important;font:12px/1.8 Inter,sans-serif!important}
+#pagina-publicar.em-publish-in-panel #formVaga .em-review-section{color:#314b65!important;font:12px/1.8 Poppins,sans-serif!important}
 #pagina-publicar.em-publish-in-panel #formVaga .em-review-section strong{color:#18324f!important}
 @media(max-width:760px){#pagina-publicar.em-publish-in-panel #emJobProgress{grid-template-columns:repeat(2,minmax(0,1fr))!important}#pagina-publicar.em-publish-in-panel #formVaga .publish-contact-options{grid-template-columns:1fr}}
 
 /* Navegação de retorno visível no início e no rodapé de cada etapa. */
 #pagina-publicar.em-publish-in-panel #formVaga .em-job-actions{display:flex!important;visibility:visible!important}
 #pagina-publicar.em-publish-in-panel #formVaga button.publish-back-button{display:inline-flex!important;align-items:center!important;visibility:visible!important;opacity:1!important;position:static!important;order:-1!important;margin:0 auto 0 0!important}
-#pagina-publicar.em-publish-in-panel #formVaga button.publish-step-back{display:inline-flex!important;align-items:center!important;visibility:visible!important;opacity:1!important;margin:12px 0 0!important;padding:6px 0!important;border:0!important;background:transparent!important;color:#1769aa!important;font:600 12px Inter,sans-serif!important;cursor:pointer!important;box-shadow:none!important}
+#pagina-publicar.em-publish-in-panel #formVaga button.publish-step-back{display:inline-flex!important;align-items:center!important;visibility:visible!important;opacity:1!important;margin:12px 0 0!important;padding:6px 0!important;border:0!important;background:transparent!important;color:#1769aa!important;font:600 12px Poppins,sans-serif!important;cursor:pointer!important;box-shadow:none!important}
 #pagina-publicar.em-publish-in-panel #formVaga button.publish-step-back:hover{color:#084d8c!important;text-decoration:underline}
 #pagina-publicar.em-publish-in-panel #formVaga button.publish-step-back:focus-visible{outline:2px solid #94c6ff!important;outline-offset:4px!important}
 
@@ -148,9 +148,9 @@
 #pagina-publicar.em-publish-in-panel #formVaga .publish-extras{display:none!important;margin-top:28px;padding-top:26px;border-top:1px solid #e1e9f3}
 #pagina-publicar.em-publish-in-panel.publish-free-extras #formVaga .publish-extras{display:block!important}
 #pagina-publicar.em-publish-in-panel.publish-free-extras #formVaga .publish-legacy-extras{display:none!important}
-#pagina-publicar.em-publish-in-panel #formVaga .publish-extras-heading>span{font:700 10px Inter,sans-serif;letter-spacing:1px;color:#d37829}
-#pagina-publicar.em-publish-in-panel #formVaga .publish-extras-heading h3{margin:8px 0;font:700 19px Inter,sans-serif;color:#18324f}
-#pagina-publicar.em-publish-in-panel #formVaga .publish-extras-heading p{margin:0 0 20px;font:12px/1.7 Inter,sans-serif;color:#718198}
+#pagina-publicar.em-publish-in-panel #formVaga .publish-extras-heading>span{font:700 10px Poppins,sans-serif;letter-spacing:1px;color:#d37829}
+#pagina-publicar.em-publish-in-panel #formVaga .publish-extras-heading h3{margin:8px 0;font:700 19px Poppins,sans-serif;color:#18324f}
+#pagina-publicar.em-publish-in-panel #formVaga .publish-extras-heading p{margin:0 0 20px;font:12px/1.7 Poppins,sans-serif;color:#718198}
 #pagina-publicar.em-publish-in-panel #formVaga .publish-extras-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
 #pagina-publicar.em-publish-in-panel #formVaga label.publish-extra-card{display:flex!important;flex-direction:column!important;position:relative!important;gap:0!important;padding:20px!important;margin:0!important;border:1px solid #dfe7f1!important;border-radius:12px!important;background:#fff!important;cursor:pointer;box-shadow:0 5px 16px #16334f06;transition:border-color .15s,box-shadow .15s}
 #pagina-publicar.em-publish-in-panel #formVaga .publish-extra-card:hover{border-color:#afcaeb!important;box-shadow:0 7px 20px #16334f0c}
@@ -159,16 +159,16 @@
 #pagina-publicar.em-publish-in-panel #formVaga .publish-extra-card:nth-child(2) .publish-extra-icon{background:#fff0ed;color:#d96942}
 #pagina-publicar.em-publish-in-panel #formVaga .publish-extra-card:nth-child(3) .publish-extra-icon{background:#edf4ff;color:#2868aa}
 #pagina-publicar.em-publish-in-panel #formVaga .publish-extra-icon svg{width:23px;height:23px}
-#pagina-publicar.em-publish-in-panel #formVaga .publish-extra-card>strong{font:700 15px Inter,sans-serif;color:#18324f}
-#pagina-publicar.em-publish-in-panel #formVaga .publish-extra-card>p{font:11px/1.8 Inter,sans-serif;color:#728196;margin:10px 0 20px;flex:1}
-#pagina-publicar.em-publish-in-panel #formVaga .publish-extra-price{font:700 23px Inter,sans-serif;color:#18324f;margin-bottom:18px}
-#pagina-publicar.em-publish-in-panel #formVaga .publish-extra-price small{font:11px Inter,sans-serif;color:#718198}
-#pagina-publicar.em-publish-in-panel #formVaga .publish-extra-select{display:flex;align-items:center;gap:9px;border-top:1px solid #e1e9f3;padding-top:14px;font:600 11px Inter,sans-serif;color:#37618e}
+#pagina-publicar.em-publish-in-panel #formVaga .publish-extra-card>strong{font:700 15px Poppins,sans-serif;color:#18324f}
+#pagina-publicar.em-publish-in-panel #formVaga .publish-extra-card>p{font:11px/1.8 Poppins,sans-serif;color:#728196;margin:10px 0 20px;flex:1}
+#pagina-publicar.em-publish-in-panel #formVaga .publish-extra-price{font:700 23px Poppins,sans-serif;color:#18324f;margin-bottom:18px}
+#pagina-publicar.em-publish-in-panel #formVaga .publish-extra-price small{font:11px Poppins,sans-serif;color:#718198}
+#pagina-publicar.em-publish-in-panel #formVaga .publish-extra-select{display:flex;align-items:center;gap:9px;border-top:1px solid #e1e9f3;padding-top:14px;font:600 11px Poppins,sans-serif;color:#37618e}
 #pagina-publicar.em-publish-in-panel #formVaga .publish-extra-select input{accent-color:#0874eb;width:16px!important;height:16px!important;margin:0!important}
 #pagina-publicar.em-publish-in-panel #formVaga .publish-extras .publish-choice-icon{display:none!important}
-#pagina-publicar.em-publish-in-panel #formVaga .publish-extras-total{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-top:18px;padding:16px 20px;border:1px solid #dce7f3;border-radius:10px;background:#f3f7fc;font:600 12px Inter,sans-serif;color:#526b84}
-#pagina-publicar.em-publish-in-panel #formVaga .publish-extras-total strong{font:700 20px Inter,sans-serif;color:#18324f}
-#pagina-publicar.em-publish-in-panel #formVaga .publish-extras-note{font:11px/1.8 Inter,sans-serif;color:#77869a;margin:12px 0 0}
+#pagina-publicar.em-publish-in-panel #formVaga .publish-extras-total{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-top:18px;padding:16px 20px;border:1px solid #dce7f3;border-radius:10px;background:#f3f7fc;font:600 12px Poppins,sans-serif;color:#526b84}
+#pagina-publicar.em-publish-in-panel #formVaga .publish-extras-total strong{font:700 20px Poppins,sans-serif;color:#18324f}
+#pagina-publicar.em-publish-in-panel #formVaga .publish-extras-note{font:11px/1.8 Poppins,sans-serif;color:#77869a;margin:12px 0 0}
 @media(max-width:760px){#pagina-publicar.em-publish-in-panel #formVaga .publish-extras-grid{grid-template-columns:1fr}}
 
 /* Cards e botões da referência aprovada. */
@@ -177,14 +177,14 @@
 #pagina-publicar.em-publish-in-panel #formVaga .publish-extra-card{display:flex!important;flex-direction:column!important;padding:24px!important;border:1px solid #e0e8f3!important;border-radius:14px!important;background:#fff!important;box-shadow:0 6px 20px #183b6408!important;min-width:0}
 #pagina-publicar.em-publish-in-panel #formVaga .publish-extra-card.selected{border-color:#0874eb!important;background:#f2f8ff!important;box-shadow:0 0 0 1px #0874eb!important}
 #pagina-publicar.em-publish-in-panel #formVaga .publish-extra-card>strong{font-size:17px!important;line-height:1.4!important}
-#pagina-publicar.em-publish-in-panel #formVaga .publish-extra-duration{align-self:flex-start;display:inline-flex;margin-top:10px;padding:5px 9px;border-radius:20px;background:#fff2df;color:#cb721f;font:700 10px Inter,sans-serif}
+#pagina-publicar.em-publish-in-panel #formVaga .publish-extra-duration{align-self:flex-start;display:inline-flex;margin-top:10px;padding:5px 9px;border-radius:20px;background:#fff2df;color:#cb721f;font:700 10px Poppins,sans-serif}
 #pagina-publicar.em-publish-in-panel #formVaga .publish-extra-card:nth-child(2) .publish-extra-duration{background:#fff0eb;color:#d56741}
 #pagina-publicar.em-publish-in-panel #formVaga .publish-extra-card:nth-child(3) .publish-extra-duration{background:#eaf3ff;color:#1769bd}
 #pagina-publicar.em-publish-in-panel #formVaga .publish-extra-card>p{font-size:12px!important;margin:12px 0 20px!important}
 #pagina-publicar.em-publish-in-panel #formVaga .publish-extra-price{font-size:25px!important;margin-bottom:18px!important}
 #pagina-publicar.em-publish-in-panel #formVaga .publish-extra-select{display:block!important;border:0!important;padding:0!important}
 #pagina-publicar.em-publish-in-panel #formVaga .publish-extra-select>input{position:absolute!important;opacity:0!important;width:1px!important;height:1px!important;pointer-events:none!important}
-#pagina-publicar.em-publish-in-panel #formVaga button.publish-extra-button{display:flex!important;align-items:center!important;justify-content:center!important;gap:8px!important;width:100%!important;min-height:44px!important;padding:10px 8px!important;border:1px solid #0874eb!important;border-radius:9px!important;background:#fff!important;color:#0874eb!important;font:600 11px Inter,sans-serif!important;cursor:pointer!important;box-shadow:none!important}
+#pagina-publicar.em-publish-in-panel #formVaga button.publish-extra-button{display:flex!important;align-items:center!important;justify-content:center!important;gap:8px!important;width:100%!important;min-height:44px!important;padding:10px 8px!important;border:1px solid #0874eb!important;border-radius:9px!important;background:#fff!important;color:#0874eb!important;font:600 11px Poppins,sans-serif!important;cursor:pointer!important;box-shadow:none!important}
 #pagina-publicar.em-publish-in-panel #formVaga .publish-extra-button svg{width:18px;height:18px;flex-shrink:0}
 #pagina-publicar.em-publish-in-panel #formVaga .selected button.publish-extra-button{background:#0874eb!important;color:#fff!important}
 #pagina-publicar.em-publish-in-panel #formVaga .publish-extra-button:hover{box-shadow:0 4px 12px #0874eb20!important}
@@ -192,43 +192,43 @@
 #pagina-publicar.em-publish-in-panel #formVaga .publish-extras-total>span{display:flex;align-items:center;gap:10px;color:#18324f}
 #pagina-publicar.em-publish-in-panel #formVaga .publish-extras-total svg{width:23px;height:23px;color:#0874eb}
 #pagina-publicar.em-publish-in-panel #formVaga .publish-extras-total>strong{border-left:1px solid #d5e1ef;padding-left:22px}
-#pagina-publicar.em-publish-in-panel #formVaga .publish-extras-total strong small{display:block;font:11px Inter,sans-serif;color:#718198;margin-bottom:4px}
+#pagina-publicar.em-publish-in-panel #formVaga .publish-extras-total strong small{display:block;font:11px Poppins,sans-serif;color:#718198;margin-bottom:4px}
 @media(max-width:760px){#pagina-publicar.em-publish-in-panel #formVaga .publish-extras-heading h3{font-size:21px!important}}
 
 
 /* v236 - Serviços opcionais conforme referência aprovada 08/10/2026 */
 #pagina-publicar.em-publish-in-panel #formVaga .publish-extras{margin-top:30px!important;padding:28px 0 0!important;border-top:1px solid #e3eaf4!important}
-#pagina-publicar.em-publish-in-panel #formVaga .publish-extras-heading h3{margin:0 0 5px!important;font:800 27px/1.15 Inter,sans-serif!important;letter-spacing:-.65px!important;color:#0d1d43!important}
-#pagina-publicar.em-publish-in-panel #formVaga .publish-extras-heading p{margin:0 0 22px!important;font:500 13px/1.55 Inter,sans-serif!important;color:#63759b!important}
+#pagina-publicar.em-publish-in-panel #formVaga .publish-extras-heading h3{margin:0 0 5px!important;font:800 27px/1.15 Poppins,sans-serif!important;letter-spacing:-.65px!important;color:#0d1d43!important}
+#pagina-publicar.em-publish-in-panel #formVaga .publish-extras-heading p{margin:0 0 22px!important;font:500 13px/1.55 Poppins,sans-serif!important;color:#63759b!important}
 #pagina-publicar.em-publish-in-panel #formVaga .publish-extras-grid{grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:14px!important}
 #pagina-publicar.em-publish-in-panel #formVaga .publish-extra-card{padding:20px 20px 18px!important;border-radius:14px!important;min-height:315px!important}
 #pagina-publicar.em-publish-in-panel #formVaga .publish-extra-card.selected{background:#f6faff!important}
 #pagina-publicar.em-publish-in-panel #formVaga .publish-extra-icon{width:45px!important;height:45px!important;border-radius:11px!important;margin-bottom:10px!important}
 #pagina-publicar.em-publish-in-panel #formVaga .publish-extra-icon svg{width:25px!important;height:25px!important}
-#pagina-publicar.em-publish-in-panel #formVaga .publish-extra-card>strong{font:800 17px/1.25 Inter,sans-serif!important;color:#0d1d43!important}
-#pagina-publicar.em-publish-in-panel #formVaga .publish-extra-duration{margin-top:8px!important;padding:4px 9px!important;font:700 10px Inter,sans-serif!important}
-#pagina-publicar.em-publish-in-panel #formVaga .publish-extra-card>p{margin:10px 0 14px!important;font:500 12px/1.5 Inter,sans-serif!important;color:#5f7195!important;min-height:37px}
-#pagina-publicar.em-publish-in-panel #formVaga .publish-extra-price{margin:0 0 14px!important;font:800 23px/1 Inter,sans-serif!important;color:#0d1d43!important}
-#pagina-publicar.em-publish-in-panel #formVaga .publish-extra-price small{font:500 11px Inter,sans-serif!important;color:#6d7da0!important}
+#pagina-publicar.em-publish-in-panel #formVaga .publish-extra-card>strong{font:800 17px/1.25 Poppins,sans-serif!important;color:#0d1d43!important}
+#pagina-publicar.em-publish-in-panel #formVaga .publish-extra-duration{margin-top:8px!important;padding:4px 9px!important;font:700 10px Poppins,sans-serif!important}
+#pagina-publicar.em-publish-in-panel #formVaga .publish-extra-card>p{margin:10px 0 14px!important;font:500 12px/1.5 Poppins,sans-serif!important;color:#5f7195!important;min-height:37px}
+#pagina-publicar.em-publish-in-panel #formVaga .publish-extra-price{margin:0 0 14px!important;font:800 23px/1 Poppins,sans-serif!important;color:#0d1d43!important}
+#pagina-publicar.em-publish-in-panel #formVaga .publish-extra-price small{font:500 11px Poppins,sans-serif!important;color:#6d7da0!important}
 #pagina-publicar.em-publish-in-panel #formVaga .publish-extra-select{margin-top:auto!important}
-#pagina-publicar.em-publish-in-panel #formVaga button.publish-extra-button{min-height:44px!important;border-radius:9px!important;font:700 12px Inter,sans-serif!important}
+#pagina-publicar.em-publish-in-panel #formVaga button.publish-extra-button{min-height:44px!important;border-radius:9px!important;font:700 12px Poppins,sans-serif!important}
 #pagina-publicar.em-publish-in-panel #formVaga .publish-extras-total{margin-top:16px!important;padding:13px 18px!important;border-radius:11px!important;background:#f3f8ff!important}
-#pagina-publicar.em-publish-in-panel #formVaga .publish-extras-total>span{font:700 12px Inter,sans-serif!important;color:#0d1d43!important}
-#pagina-publicar.em-publish-in-panel #formVaga .publish-extras-total>strong{font:800 20px Inter,sans-serif!important;color:#0d1d43!important}
-#pagina-publicar.em-publish-in-panel #formVaga .publish-extras-note{margin:10px 0 0!important;font:500 10.5px/1.55 Inter,sans-serif!important;color:#71809d!important}
+#pagina-publicar.em-publish-in-panel #formVaga .publish-extras-total>span{font:700 12px Poppins,sans-serif!important;color:#0d1d43!important}
+#pagina-publicar.em-publish-in-panel #formVaga .publish-extras-total>strong{font:800 20px Poppins,sans-serif!important;color:#0d1d43!important}
+#pagina-publicar.em-publish-in-panel #formVaga .publish-extras-note{margin:10px 0 0!important;font:500 10.5px/1.55 Poppins,sans-serif!important;color:#71809d!important}
 @media(max-width:900px){#pagina-publicar.em-publish-in-panel #formVaga .publish-extras-grid{grid-template-columns:1fr!important}#pagina-publicar.em-publish-in-panel #formVaga .publish-extra-card{min-height:0!important}}
 
 
 /* v237 - controle de privacidade/local da vaga */
 #pagina-publicar.em-publish-in-panel #formVaga .publish-address-visibility{grid-column:1/-1!important;margin-top:8px!important}
-#pagina-publicar.em-publish-in-panel #formVaga .publish-address-visibility>label{display:block!important;margin-bottom:10px!important;font:700 12px Inter,sans-serif!important;color:#18324f!important}
+#pagina-publicar.em-publish-in-panel #formVaga .publish-address-visibility>label{display:block!important;margin-bottom:10px!important;font:700 12px Poppins,sans-serif!important;color:#18324f!important}
 #pagina-publicar.em-publish-in-panel #formVaga .publish-address-options{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
 #pagina-publicar.em-publish-in-panel #formVaga .publish-address-options>label{display:block!important;margin:0!important;cursor:pointer}
 #pagina-publicar.em-publish-in-panel #formVaga .publish-address-options input{position:absolute!important;opacity:0!important;pointer-events:none!important}
 #pagina-publicar.em-publish-in-panel #formVaga .publish-address-options span{display:grid;grid-template-columns:28px 1fr;grid-template-rows:auto auto;column-gap:9px;align-items:center;min-height:74px;padding:12px 13px;border:1px solid #d8e3f0;border-radius:10px;background:#fff;transition:.15s}
 #pagina-publicar.em-publish-in-panel #formVaga .publish-address-options svg{grid-row:1/3;width:21px;height:21px;color:#2472c8}
-#pagina-publicar.em-publish-in-panel #formVaga .publish-address-options b{font:700 11.5px Inter,sans-serif;color:#18324f}
-#pagina-publicar.em-publish-in-panel #formVaga .publish-address-options small{font:500 9.5px/1.35 Inter,sans-serif;color:#73839a}
+#pagina-publicar.em-publish-in-panel #formVaga .publish-address-options b{font:700 11.5px Poppins,sans-serif;color:#18324f}
+#pagina-publicar.em-publish-in-panel #formVaga .publish-address-options small{font:500 9.5px/1.35 Poppins,sans-serif;color:#73839a}
 #pagina-publicar.em-publish-in-panel #formVaga .publish-address-options input:checked+span{border-color:#0874eb;background:#f3f8ff;box-shadow:0 0 0 1px #0874eb}
 #pagina-publicar.em-publish-in-panel #formVaga .publish-address-options>label:hover span{border-color:#9fc5ee}
 #pagina-publicar.em-publish-in-panel #formVaga .publish-address-field.full{grid-column:1/-1!important}
@@ -256,12 +256,12 @@
 #pagina-publicar.em-publish-in-panel #formVaga .publish-extra-top{display:flex!important;align-items:center!important;justify-content:space-between!important;margin-bottom:16px!important}
 #pagina-publicar.em-publish-in-panel #formVaga .publish-extra-top .publish-extra-icon{margin:0!important;width:40px!important;height:40px!important}
 #pagina-publicar.em-publish-in-panel #formVaga .publish-extra-top .publish-extra-duration{margin:0!important;font-size:11px!important;padding:6px 10px!important}
-#pagina-publicar.em-publish-in-panel #formVaga .publish-extra-card>strong{font:700 17px/1.4 Inter,sans-serif!important}
+#pagina-publicar.em-publish-in-panel #formVaga .publish-extra-card>strong{font:700 17px/1.4 Poppins,sans-serif!important}
 #pagina-publicar.em-publish-in-panel #formVaga .publish-extra-card>p{flex:none!important;min-height:38px!important;margin:8px 0 16px!important;font-size:12px!important;line-height:1.6!important}
 #pagina-publicar.em-publish-in-panel #formVaga .publish-extra-benefits{display:grid!important;gap:12px!important;padding:16px 0!important;margin:0!important;list-style:none!important;border-top:1px solid #e8eef5!important}
-#pagina-publicar.em-publish-in-panel #formVaga .publish-extra-benefits li{display:flex!important;align-items:flex-start!important;gap:8px!important;font:500 12px/1.6 Inter,sans-serif!important;color:#38516d!important;margin:0!important;padding:0!important}
+#pagina-publicar.em-publish-in-panel #formVaga .publish-extra-benefits li{display:flex!important;align-items:flex-start!important;gap:8px!important;font:500 12px/1.6 Poppins,sans-serif!important;color:#38516d!important;margin:0!important;padding:0!important}
 #pagina-publicar.em-publish-in-panel #formVaga .publish-extra-benefits svg{width:16px!important;height:16px!important;flex:0 0 16px!important;color:#0874eb!important;margin-top:2px!important}
-#pagina-publicar.em-publish-in-panel #formVaga .publish-extra-use{font:500 11px/1.7 Inter,sans-serif!important;color:#576e89!important;background:#f4f7fb!important;border-radius:8px!important;padding:12px!important;margin:0 0 20px!important}
+#pagina-publicar.em-publish-in-panel #formVaga .publish-extra-use{font:500 11px/1.7 Poppins,sans-serif!important;color:#576e89!important;background:#f4f7fb!important;border-radius:8px!important;padding:12px!important;margin:0 0 20px!important}
 #pagina-publicar.em-publish-in-panel #formVaga .publish-extra-footer{margin-top:auto!important;padding-top:18px!important;border-top:1px solid #e8eef5!important}
 #pagina-publicar.em-publish-in-panel #formVaga .publish-extra-price{font-weight:700!important;font-size:24px!important;margin-bottom:16px!important}
 #pagina-publicar.em-publish-in-panel #formVaga .publish-extra-button{font-weight:600!important}
@@ -283,8 +283,8 @@
 #pagina-publicar.em-publish-in-panel #formVaga .publish-extra-top .publish-extra-icon{width:52px!important;height:52px!important;border-radius:50%!important;margin:0 auto!important}
 #pagina-publicar.em-publish-in-panel #formVaga .publish-extra-top .publish-extra-icon svg{width:28px!important;height:28px!important}
 #pagina-publicar.em-publish-in-panel #formVaga .publish-extra-top .publish-extra-duration{display:none!important}
-#pagina-publicar.em-publish-in-panel #formVaga .publish-extra-card>strong{font:700 19px/1.35 Inter,sans-serif!important}
-#pagina-publicar.em-publish-in-panel #formVaga .publish-extra-card>strong::after{content:"15 dias";display:table;margin:9px auto 0;padding:5px 12px;border-radius:20px;background:#e8f3ff;color:#0874eb;font:600 12px/1.3 Inter,sans-serif}
+#pagina-publicar.em-publish-in-panel #formVaga .publish-extra-card>strong{font:700 19px/1.35 Poppins,sans-serif!important}
+#pagina-publicar.em-publish-in-panel #formVaga .publish-extra-card>strong::after{content:"15 dias";display:table;margin:9px auto 0;padding:5px 12px;border-radius:20px;background:#e8f3ff;color:#0874eb;font:600 12px/1.3 Poppins,sans-serif}
 #pagina-publicar.em-publish-in-panel #formVaga .publish-extra-card[data-service="urgencia"]>strong::after{content:"7 dias"}
 #pagina-publicar.em-publish-in-panel #formVaga .publish-extra-card>p{display:none!important}
 #pagina-publicar.em-publish-in-panel #formVaga .publish-extra-benefits{gap:9px!important;padding:16px 0 10px!important;border:0!important}
@@ -305,16 +305,16 @@
 #pagina-publicar.em-publish-in-panel #formVaga .publish-extra-card[data-service="urgencia"] .publish-extra-icon{background:#ffe9e4!important;color:#fa6550!important}
 #pagina-publicar.em-publish-in-panel #formVaga .publish-extra-card[data-service="confidencial"] .publish-extra-icon{background:#e2f2ff!important;color:#0860d5!important}
 #pagina-publicar.em-publish-in-panel #formVaga .publish-extra-top .publish-extra-icon svg{width:33px!important;height:33px!important;stroke-width:2.2!important}
-#pagina-publicar.em-publish-in-panel #formVaga .publish-extra-card>strong{font:800 21px/1.3 Inter,sans-serif!important;letter-spacing:-.45px!important;color:#071a43!important}
-#pagina-publicar.em-publish-in-panel #formVaga .publish-extra-card>strong::after{font:600 14px/1.3 Inter,sans-serif!important;background:#dff0ff!important;padding:5px 14px!important;margin-top:8px!important}
+#pagina-publicar.em-publish-in-panel #formVaga .publish-extra-card>strong{font:800 21px/1.3 Poppins,sans-serif!important;letter-spacing:-.45px!important;color:#071a43!important}
+#pagina-publicar.em-publish-in-panel #formVaga .publish-extra-card>strong::after{font:600 14px/1.3 Poppins,sans-serif!important;background:#dff0ff!important;padding:5px 14px!important;margin-top:8px!important}
 #pagina-publicar.em-publish-in-panel #formVaga .publish-extra-benefits{gap:12px!important;padding:14px 0 12px!important;width:100%!important;box-sizing:border-box!important}
-#pagina-publicar.em-publish-in-panel #formVaga .publish-extra-benefits li{justify-content:flex-start!important;gap:10px!important;font:400 15px/1.45 Inter,sans-serif!important;text-align:left!important;color:#0b2149!important}
+#pagina-publicar.em-publish-in-panel #formVaga .publish-extra-benefits li{justify-content:flex-start!important;gap:10px!important;font:400 15px/1.45 Poppins,sans-serif!important;text-align:left!important;color:#0b2149!important}
 #pagina-publicar.em-publish-in-panel #formVaga .publish-extra-benefits svg{display:block!important;width:20px!important;height:20px!important;flex:0 0 20px!important;box-sizing:border-box!important;padding:3px!important;border-radius:50%!important;background:linear-gradient(135deg,#3f9fff,#0874ff)!important;color:#fff!important;stroke-width:2.5!important}
-#pagina-publicar.em-publish-in-panel #formVaga .publish-extra-card[data-service="confidencial"] .publish-extra-use{font:400 12px/1.5 Inter,sans-serif!important;color:#4d6590!important;margin:0 0 10px!important}
+#pagina-publicar.em-publish-in-panel #formVaga .publish-extra-card[data-service="confidencial"] .publish-extra-use{font:400 12px/1.5 Poppins,sans-serif!important;color:#4d6590!important;margin:0 0 10px!important}
 #pagina-publicar.em-publish-in-panel #formVaga .publish-extra-footer{margin-top:0!important;padding-top:15px!important}
-#pagina-publicar.em-publish-in-panel #formVaga .publish-extra-price{font:800 30px/1.2 Inter,sans-serif!important;color:#071a43!important;margin:0 0 14px!important;letter-spacing:-.5px!important}
-#pagina-publicar.em-publish-in-panel #formVaga .publish-extra-price small{font:400 15px/1.2 Inter,sans-serif!important;letter-spacing:0!important;color:#52698d!important}
-#pagina-publicar.em-publish-in-panel #formVaga button.publish-extra-button{min-height:46px!important;font:700 15px/1.3 Inter,sans-serif!important;border:1.5px solid #0874ff!important;border-radius:7px!important;color:#0064f5!important}
+#pagina-publicar.em-publish-in-panel #formVaga .publish-extra-price{font:800 30px/1.2 Poppins,sans-serif!important;color:#071a43!important;margin:0 0 14px!important;letter-spacing:-.5px!important}
+#pagina-publicar.em-publish-in-panel #formVaga .publish-extra-price small{font:400 15px/1.2 Poppins,sans-serif!important;letter-spacing:0!important;color:#52698d!important}
+#pagina-publicar.em-publish-in-panel #formVaga button.publish-extra-button{min-height:46px!important;font:700 15px/1.3 Poppins,sans-serif!important;border:1.5px solid #0874ff!important;border-radius:7px!important;color:#0064f5!important}
 #pagina-publicar.em-publish-in-panel #formVaga .publish-extra-button>svg{display:none!important}
 #pagina-publicar.em-publish-in-panel #formVaga .selected button.publish-extra-button{color:#fff!important}
 @media(min-width:901px){#pagina-publicar.em-publish-in-panel #formVaga .publish-extra-footer{margin-top:auto!important}#pagina-publicar.em-publish-in-panel #formVaga .publish-extra-card{min-height:360px!important}}
@@ -324,54 +324,54 @@
 #pagina-publicar.publish-reference .em-job-shell{max-width:1100px!important}
 #pagina-publicar.publish-reference .em-publish-heading{position:relative;padding-right:180px;margin-bottom:22px}
 #pagina-publicar.publish-reference .em-publish-heading h1{color:#092147!important;font-size:32px!important;letter-spacing:-.8px}
-#pagina-publicar.publish-reference .em-publish-heading p{font:14px/1.6 Inter,Arial,sans-serif!important}
-#pagina-publicar.publish-reference .publish-save-indicator{position:absolute;right:0;top:32px;display:flex;align-items:center;gap:8px;color:#466286;font:13px Inter,Arial,sans-serif}
+#pagina-publicar.publish-reference .em-publish-heading p{font:14px/1.6 Poppins,sans-serif!important}
+#pagina-publicar.publish-reference .publish-save-indicator{position:absolute;right:0;top:32px;display:flex;align-items:center;gap:8px;color:#466286;font:13px Poppins,sans-serif}
 #pagina-publicar.publish-reference .publish-save-indicator svg{width:22px;height:22px;padding:4px;border-radius:50%;background:#d8f5ee;color:#00968b;box-sizing:border-box}
 #pagina-publicar.publish-reference .em-job-top{padding:18px 12px!important;border-radius:12px!important;margin-bottom:18px!important}
 #pagina-publicar.publish-reference #emJobProgress{grid-template-columns:repeat(6,minmax(0,1fr))!important;gap:0!important}
-#pagina-publicar.publish-reference #emJobProgress .em-job-step{position:relative;padding:5px 9px!important;background:transparent!important;font:500 12px Inter,Arial,sans-serif!important;white-space:nowrap}
+#pagina-publicar.publish-reference #emJobProgress .em-job-step{position:relative;padding:5px 9px!important;background:transparent!important;font:500 12px Poppins,sans-serif!important;white-space:nowrap}
 #pagina-publicar.publish-reference #emJobProgress .em-job-step:not(:last-child):after{content:'';height:2px;background:#d5dfed;flex:1;min-width:8px;margin-left:4px}
 #pagina-publicar.publish-reference #emJobProgress .em-job-step.active:after,#pagina-publicar.publish-reference #emJobProgress .em-job-step.done:after{background:#0874ff}
 #pagina-publicar.publish-reference #emJobProgress .em-job-num{width:32px!important;height:32px!important;flex-basis:32px!important;font-size:13px!important;display:grid!important;place-items:center!important;border-radius:50%!important}
-#pagina-publicar.publish-reference #formVaga #avisoEdicaoVaga:not(:empty){border:1px solid #c5dfff!important;background:#eaf4ff!important;color:#0758bb!important;padding:13px 18px!important;margin-bottom:18px!important;border-radius:8px!important;font:13px/1.5 Inter,Arial,sans-serif!important}
+#pagina-publicar.publish-reference #formVaga #avisoEdicaoVaga:not(:empty){border:1px solid #c5dfff!important;background:#eaf4ff!important;color:#0758bb!important;padding:13px 18px!important;margin-bottom:18px!important;border-radius:8px!important;font:13px/1.5 Poppins,sans-serif!important}
 #pagina-publicar.publish-reference #formVaga .em-job-card-head{box-sizing:border-box!important;min-height:94px!important;padding:23px 160px 23px 102px!important}
 #pagina-publicar.publish-reference .publish-section-icon{width:56px;height:56px;top:20px}
-#pagina-publicar.publish-reference #formVaga .publish-step-badge{position:absolute!important;top:30px;background:#eff6ff;color:#0758bb;border-radius:8px;font:600 12px Inter,Arial,sans-serif}
+#pagina-publicar.publish-reference #formVaga .publish-step-badge{position:absolute!important;top:30px;background:#eff6ff;color:#0758bb;border-radius:8px;font:600 12px Poppins,sans-serif}
 #pagina-publicar.publish-reference .publish-step-back{display:none!important}
 #pagina-publicar.publish-reference #formVaga .em-job-card-head h2{color:#092147!important}
 #pagina-publicar.publish-reference #formVaga [data-panel="1"] .em-job-body{display:grid!important;grid-template-columns:minmax(0,2fr) minmax(250px,1fr)!important;gap:22px!important;padding:24px!important;align-items:start}
 #pagina-publicar.publish-reference #formVaga .em-grid{gap:18px 22px!important;align-items:start!important}
-#pagina-publicar.publish-reference #formVaga .em-field label{font:600 13px/1.5 Inter,Arial,sans-serif!important;margin-bottom:6px!important;display:block}
+#pagina-publicar.publish-reference #formVaga .em-field label{font:600 13px/1.5 Poppins,sans-serif!important;margin-bottom:6px!important;display:block}
 #pagina-publicar.publish-reference #formVaga .publish-field-icon{display:none!important}
-#pagina-publicar.publish-reference #formVaga .publish-input-wrap input,#pagina-publicar.publish-reference #formVaga .publish-input-wrap select,#pagina-publicar.publish-reference #formVaga .em-field input:not([type=file]):not([type=checkbox]):not([type=radio]),#pagina-publicar.publish-reference #formVaga .em-field select{padding:10px 12px!important;height:42px!important;min-height:42px!important;border-radius:6px!important;font:14px/1.4 Inter,Arial,sans-serif!important;background:#fff!important}
-#pagina-publicar.publish-reference .publish-title-hint{display:block;margin-top:5px;color:#6780a2;font:12px/1.5 Inter,Arial,sans-serif}
+#pagina-publicar.publish-reference #formVaga .publish-input-wrap input,#pagina-publicar.publish-reference #formVaga .publish-input-wrap select,#pagina-publicar.publish-reference #formVaga .em-field input:not([type=file]):not([type=checkbox]):not([type=radio]),#pagina-publicar.publish-reference #formVaga .em-field select{padding:10px 12px!important;height:42px!important;min-height:42px!important;border-radius:6px!important;font:14px/1.4 Poppins,sans-serif!important;background:#fff!important}
+#pagina-publicar.publish-reference .publish-title-hint{display:block;margin-top:5px;color:#6780a2;font:12px/1.5 Poppins,sans-serif}
 #pagina-publicar.publish-reference #formVaga .em-field:has(.publish-logo-upload){padding:0!important;background:transparent!important;border:0!important;margin:0!important}
 #pagina-publicar.publish-reference #formVaga .publish-logo-upload{gap:16px!important;margin:0!important;padding:0!important;border:0!important;background:transparent!important}
 #pagina-publicar.publish-reference #formVaga .publish-logo-placeholder{width:64px!important;height:64px!important;border-radius:10px!important}
 #pagina-publicar.publish-reference #formVaga .publish-logo-placeholder>svg{width:32px!important;height:32px!important}
 #pagina-publicar.publish-reference #previewLogo img{max-width:56px!important;max-height:56px!important}
 #pagina-publicar.publish-reference #formVaga .publish-logo-upload p{margin:4px 0!important}
-#pagina-publicar.publish-reference #formVaga label.publish-upload-button{margin:0 0 0 auto!important;white-space:nowrap!important;border:1px solid #87b5ff!important;border-radius:6px!important;background:#fff!important;color:#0874ff!important;padding:10px 12px!important;font:600 12px Inter,Arial,sans-serif!important;display:inline-flex!important}
+#pagina-publicar.publish-reference #formVaga label.publish-upload-button{margin:0 0 0 auto!important;white-space:nowrap!important;border:1px solid #87b5ff!important;border-radius:6px!important;background:#fff!important;color:#0874ff!important;padding:10px 12px!important;font:600 12px Poppins,sans-serif!important;display:inline-flex!important}
 #pagina-publicar.publish-reference #formVaga .publish-reference-mode .publish-mode-options,#pagina-publicar.publish-reference #formVaga .publish-reference-mode .em-select-v4,#pagina-publicar.publish-reference #formVaga .publish-reference-mode .em-benefit-select-v10-btn{display:none!important}
 #pagina-publicar.publish-reference #formVaga .publish-reference-mode select#modalidadeVaga{display:block!important;position:static!important;opacity:1!important;pointer-events:auto!important;clip-path:none!important;width:100%!important;margin:0!important;border:1px solid #ccd5e2!important}
 #pagina-publicar.publish-reference .publish-reference-aside{padding-left:22px;border-left:1px solid #e0e9f5;display:grid;gap:18px;align-self:stretch}
-#pagina-publicar.publish-reference .publish-reference-aside h3{font:700 17px/1.4 Inter,Arial,sans-serif!important;color:#092147!important;margin:0 0 18px!important}
+#pagina-publicar.publish-reference .publish-reference-aside h3{font:700 17px/1.4 Poppins,sans-serif!important;color:#092147!important;margin:0 0 18px!important}
 #pagina-publicar.publish-reference .publish-reference-tips{padding:20px 18px;border-radius:10px;background:#f0f7ff}
 #pagina-publicar.publish-reference .publish-reference-tips ol{list-style:none;counter-reset:tips;display:grid;gap:18px;padding:0;margin:0}
-#pagina-publicar.publish-reference .publish-reference-tips li{counter-increment:tips;display:flex;align-items:center;gap:12px;color:#49658b;font:13px/1.5 Inter,Arial,sans-serif}
+#pagina-publicar.publish-reference .publish-reference-tips li{counter-increment:tips;display:flex;align-items:center;gap:12px;color:#49658b;font:13px/1.5 Poppins,sans-serif}
 #pagina-publicar.publish-reference .publish-reference-tips li:before{content:counter(tips);display:grid;place-items:center;width:34px;height:34px;flex:0 0 34px;border-radius:50%;background:#dcecff;color:#0874ff;font-weight:600}
 #pagina-publicar.publish-reference .publish-reference-preview{border:1px solid #dce7f5;border-radius:10px;padding:20px 18px;background:#f9fbff;align-self:start}
 #pagina-publicar.publish-reference .publish-reference-preview-row{display:flex;gap:14px;align-items:flex-start}
 #pagina-publicar.publish-reference .publish-reference-preview-icon{display:grid;place-items:center;background:#eaf3ff;color:#6b97d2;border-radius:10px;width:60px;height:60px;flex:0 0 60px}
 #pagina-publicar.publish-reference .publish-reference-preview-icon svg{width:30px;height:30px}
-#pagina-publicar.publish-reference .publish-preview-title{font:600 14px/1.5 Inter,Arial,sans-serif;color:#092147;overflow-wrap:anywhere}
-#pagina-publicar.publish-reference .publish-preview-location{font:12px/1.5 Inter,Arial,sans-serif;color:#587199;margin:5px 0 9px}
+#pagina-publicar.publish-reference .publish-preview-title{font:600 14px/1.5 Poppins,sans-serif;color:#092147;overflow-wrap:anywhere}
+#pagina-publicar.publish-reference .publish-preview-location{font:12px/1.5 Poppins,sans-serif;color:#587199;margin:5px 0 9px}
 #pagina-publicar.publish-reference .publish-preview-chips{display:flex;flex-wrap:wrap;gap:6px}
-#pagina-publicar.publish-reference .publish-preview-chips span{padding:4px 10px;background:#eaf1fb;color:#49658b;border-radius:20px;font:11px/1.4 Inter,Arial,sans-serif}
+#pagina-publicar.publish-reference .publish-preview-chips span{padding:4px 10px;background:#eaf1fb;color:#49658b;border-radius:20px;font:11px/1.4 Poppins,sans-serif}
 #pagina-publicar.publish-reference #formVaga .em-job-actions{display:flex!important;justify-content:flex-end!important;align-items:center!important;padding:16px 24px!important}
 #pagina-publicar.publish-reference #formVaga [data-panel="1"] .publish-back-button{display:none!important}
-#pagina-publicar.publish-reference .publish-required-note{margin-right:auto;color:#617899;font:12px Inter,Arial,sans-serif}
-#pagina-publicar.publish-reference #formVaga .em-btn{min-height:44px!important;padding:12px 22px!important;font:600 13px Inter,Arial,sans-serif!important;border-radius:7px!important}
+#pagina-publicar.publish-reference .publish-required-note{margin-right:auto;color:#617899;font:12px Poppins,sans-serif}
+#pagina-publicar.publish-reference #formVaga .em-btn{min-height:44px!important;padding:12px 22px!important;font:600 13px Poppins,sans-serif!important;border-radius:7px!important}
 @media(max-width:1000px){#pagina-publicar.publish-reference #emJobProgress .em-job-step{font-size:11px!important;padding:4px!important;gap:5px!important}#pagina-publicar.publish-reference #emJobProgress .em-job-step:after{display:none}#pagina-publicar.publish-reference #formVaga [data-panel="1"] .em-job-body{grid-template-columns:minmax(0,1.6fr) minmax(220px,1fr)!important}}
 @media(max-width:760px){#pagina-publicar.publish-reference{padding:14px!important}#pagina-publicar.publish-reference .em-publish-heading{padding-right:0}#pagina-publicar.publish-reference .publish-save-indicator{position:static;margin-top:10px}#pagina-publicar.publish-reference #emJobProgress{grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:12px 5px!important}#pagina-publicar.publish-reference #formVaga [data-panel="1"] .em-job-body{grid-template-columns:1fr!important;padding:18px!important}#pagina-publicar.publish-reference .publish-reference-aside{border-left:0;padding-left:0;grid-template-columns:1fr 1fr}#pagina-publicar.publish-reference #formVaga .em-job-card-head{padding:20px 110px 20px 76px!important}#pagina-publicar.publish-reference .publish-section-icon{left:16px;width:44px;height:44px}#pagina-publicar.publish-reference #formVaga .publish-step-badge{position:absolute!important;right:14px;padding:6px;font-size:11px}#pagina-publicar.publish-reference #formVaga .em-job-card-head h2{font-size:18px!important}}
 @media(max-width:480px){#pagina-publicar.publish-reference .publish-reference-aside{grid-template-columns:1fr}#pagina-publicar.publish-reference #formVaga .em-grid{grid-template-columns:1fr!important}#pagina-publicar.publish-reference #formVaga .publish-logo-upload{flex-wrap:wrap}#pagina-publicar.publish-reference #formVaga label.publish-upload-button{margin-left:80px!important}#pagina-publicar.publish-reference .publish-required-note{width:100%}#pagina-publicar.publish-reference #formVaga .em-job-actions .em-btn{flex:1;padding:12px!important}#pagina-publicar.publish-reference #formVaga .em-job-card-head{padding-right:18px!important;padding-bottom:48px!important}#pagina-publicar.publish-reference #formVaga .publish-step-badge{position:absolute!important;top:auto;bottom:12px}}
@@ -380,10 +380,10 @@
 
 /* Job publishing follows the candidate resume form palette and controls. */
 @layer site-typography{
-html body #pagina-publicar#pagina-publicar#pagina-publicar{color:#343b4b!important;font-family:Inter,Arial,sans-serif!important}
+html body #pagina-publicar#pagina-publicar#pagina-publicar{color:#343b4b!important;font-family:Poppins,sans-serif!important}
 html body #pagina-publicar#pagina-publicar#pagina-publicar :is(.em-job-top,.em-job-card){background:#fff!important;border:1px solid #d3d9e4!important;border-radius:12px!important;box-shadow:none!important}
 html body #pagina-publicar#pagina-publicar#pagina-publicar #emJobProgress{display:flex!important;flex-wrap:nowrap!important;gap:7px!important;overflow-x:auto!important;padding:8px 0 12px!important;scrollbar-width:thin!important;scrollbar-color:#d5e5f5 transparent!important}
-html body #pagina-publicar#pagina-publicar#pagina-publicar #emJobProgress .em-job-step{display:flex!important;align-items:center!important;flex:0 0 auto!important;gap:7px!important;padding:8px 10px!important;border:1px solid #d3d9e4!important;border-radius:10px!important;background:#f3f4f6!important;color:#343b4b!important;font:600 12px/1.4 Inter,Arial,sans-serif!important}
+html body #pagina-publicar#pagina-publicar#pagina-publicar #emJobProgress .em-job-step{display:flex!important;align-items:center!important;flex:0 0 auto!important;gap:7px!important;padding:8px 10px!important;border:1px solid #d3d9e4!important;border-radius:10px!important;background:#f3f4f6!important;color:#343b4b!important;font:600 12px/1.4 Poppins,sans-serif!important}
 html body #pagina-publicar#pagina-publicar#pagina-publicar #emJobProgress .em-job-step:after{display:none!important}
 html body #pagina-publicar#pagina-publicar#pagina-publicar #emJobProgress .em-job-num{width:27px!important;height:27px!important;flex:0 0 27px!important;border-radius:8px!important;background:#e5e7eb!important;color:#343b4b!important}
 html body #pagina-publicar#pagina-publicar#pagina-publicar #emJobProgress .em-job-step.active{color:#0080c9!important;background:#f3f4f6!important}
@@ -392,7 +392,7 @@ html body #pagina-publicar#pagina-publicar#pagina-publicar #emJobProgress .em-jo
 html body #pagina-publicar#pagina-publicar#pagina-publicar :is(.em-job-card-head h2,.em-publish-heading h1,.em-field>label){color:#0080c9!important;font-weight:600!important}
 html body #pagina-publicar#pagina-publicar#pagina-publicar .em-job-card-head h2{font-size:22px!important;font-weight:700!important}
 html body #pagina-publicar#pagina-publicar#pagina-publicar :is(.em-job-card-head p,.em-publish-heading p,.publish-title-hint,.em-field>small){color:#4c5b70!important;font-weight:400!important;line-height:1.5!important}
-html body #pagina-publicar#pagina-publicar#pagina-publicar #formVaga :is(input:not([type=checkbox]):not([type=radio]):not([type=file]):not([type=hidden]),select,textarea){box-sizing:border-box!important;border:1px solid #d3d9e4!important;border-radius:9px!important;background:#f8f9fb!important;color:#343b4b!important;min-height:44px!important;font:400 14px/1.5 Inter,Arial,sans-serif!important;box-shadow:none!important;padding:10px 12px!important}
+html body #pagina-publicar#pagina-publicar#pagina-publicar #formVaga :is(input:not([type=checkbox]):not([type=radio]):not([type=file]):not([type=hidden]),select,textarea){box-sizing:border-box!important;border:1px solid #d3d9e4!important;border-radius:9px!important;background:#f8f9fb!important;color:#343b4b!important;min-height:44px!important;font:400 14px/1.5 Poppins,sans-serif!important;box-shadow:none!important;padding:10px 12px!important}
 html body #pagina-publicar#pagina-publicar#pagina-publicar #formVaga :is(input,textarea)::placeholder{color:#7c889a!important;opacity:1!important}
 html body #pagina-publicar#pagina-publicar#pagina-publicar #formVaga :is(input,select,textarea):focus{outline:0!important;border-color:#0080c9!important;box-shadow:0 0 0 3px #0080c918!important;background:#fff!important}
 html body #pagina-publicar#pagina-publicar#pagina-publicar #formVaga :is(input[type=checkbox],input[type=radio]){accent-color:#0080c9!important}
@@ -462,7 +462,7 @@ html body #pagina-publicar#pagina-publicar#pagina-publicar .publish-process-remo
 
 /* Publishing content shares the recruiter navigation typeface. */
 @layer site-typography {
-html body #pagina-publicar#pagina-publicar#pagina-publicar,html body #pagina-publicar#pagina-publicar#pagina-publicar * {font-family:Poppins,Arial,sans-serif!important;font-style:normal!important}
+html body #pagina-publicar#pagina-publicar#pagina-publicar,html body #pagina-publicar#pagina-publicar#pagina-publicar * {font-family:Poppins,sans-serif!important;font-style:normal!important}
 }
 
 /* Full-width postcode result, independent of the compact CEP input. */
@@ -501,10 +501,10 @@ html body dialog.publish-text-dialog.publish-text-dialog textarea{width:100%!imp
 html body dialog.publish-text-dialog.publish-text-dialog .publish-text-dialog-footer{display:flex!important;justify-content:flex-end!important;margin-top:18px!important}
 html body dialog.publish-text-dialog.publish-text-dialog .publish-text-dialog-footer button{border:0!important;padding:11px 24px!important;background:#0066ee!important;color:white!important;--candidate-contrast-ink:#fff;border-radius:8px!important;cursor:pointer!important;font-weight:600!important}
 html body #pagina-publicar#pagina-publicar#pagina-publicar .publish-text-expand{position:relative!important}
-html body #pagina-publicar#pagina-publicar#pagina-publicar .publish-text-expand:is(:hover,:focus-visible)::after{content:attr(data-tooltip);position:absolute;bottom:calc(100% + 8px);right:0;width:230px;white-space:normal;padding:10px 12px;border-radius:8px;background:#173550;color:white;font:400 12px/1.5 Poppins,Arial,sans-serif;box-shadow:0 4px 16px #10274425;z-index:10;text-align:left;pointer-events:none}
+html body #pagina-publicar#pagina-publicar#pagina-publicar .publish-text-expand:is(:hover,:focus-visible)::after{content:attr(data-tooltip);position:absolute;bottom:calc(100% + 8px);right:0;width:230px;white-space:normal;padding:10px 12px;border-radius:8px;background:#173550;color:white;font:400 12px/1.5 Poppins,sans-serif;box-shadow:0 4px 16px #10274425;z-index:10;text-align:left;pointer-events:none}
 }
 
-@layer site-typography {html body dialog.publish-text-dialog.publish-text-dialog {z-index:2147483647!important;font-family:Poppins,Arial,sans-serif!important;transform:none!important;float:none!important}html body dialog.publish-text-dialog.publish-text-dialog * {font-family:Poppins,Arial,sans-serif!important}html body:has(dialog.publish-text-dialog[open]) {overflow:hidden!important}}
+@layer site-typography {html body dialog.publish-text-dialog.publish-text-dialog {z-index:2147483647!important;font-family:Poppins,sans-serif!important;transform:none!important;float:none!important}html body dialog.publish-text-dialog.publish-text-dialog * {font-family:Poppins,sans-serif!important}html body:has(dialog.publish-text-dialog[open]) {overflow:hidden!important}}
 
 /* Model 3: centered minimal publishing step navigation. */
 @layer site-typography {
@@ -524,11 +524,11 @@ html body #pagina-publicar#pagina-publicar#pagina-publicar #emJobProgress .em-jo
 
 /* Opção 3: painel integrado de serviços avulsos. */
 @layer site-typography {
-html body #pagina-publicar#pagina-publicar#pagina-publicar #formVaga .publish-extras-integrated{width:100%!important;box-sizing:border-box!important;margin-top:30px!important;padding-top:26px!important;border-top:1px solid #e3e8ef!important;font-family:Poppins,Arial,sans-serif!important;--candidate-contrast-ink:#173f59}
-html body #pagina-publicar#pagina-publicar#pagina-publicar #formVaga .publish-extras-integrated *{box-sizing:border-box!important;font-family:Poppins,Arial,sans-serif!important}
+html body #pagina-publicar#pagina-publicar#pagina-publicar #formVaga .publish-extras-integrated{width:100%!important;box-sizing:border-box!important;margin-top:30px!important;padding-top:26px!important;border-top:1px solid #e3e8ef!important;font-family:Poppins,sans-serif!important;--candidate-contrast-ink:#173f59}
+html body #pagina-publicar#pagina-publicar#pagina-publicar #formVaga .publish-extras-integrated *{box-sizing:border-box!important;font-family:Poppins,sans-serif!important}
 html body #pagina-publicar#pagina-publicar#pagina-publicar #formVaga .publish-extras-integrated .publish-extras-heading{text-align:left!important;margin:0 0 22px!important}
-html body #pagina-publicar#pagina-publicar#pagina-publicar #formVaga .publish-extras-integrated .publish-extras-heading h3{margin:0 0 7px!important;font:700 26px/1.3 Poppins,Arial,sans-serif!important;letter-spacing:-.6px!important;color:#102a43!important;--candidate-contrast-ink:#102a43}
-html body #pagina-publicar#pagina-publicar#pagina-publicar #formVaga .publish-extras-integrated .publish-extras-heading p{margin:0!important;font:400 14px/1.6 Poppins,Arial,sans-serif!important;color:#64748b!important;--candidate-contrast-ink:#64748b}
+html body #pagina-publicar#pagina-publicar#pagina-publicar #formVaga .publish-extras-integrated .publish-extras-heading h3{margin:0 0 7px!important;font:700 26px/1.3 Poppins,sans-serif!important;letter-spacing:-.6px!important;color:#102a43!important;--candidate-contrast-ink:#102a43}
+html body #pagina-publicar#pagina-publicar#pagina-publicar #formVaga .publish-extras-integrated .publish-extras-heading p{margin:0!important;font:400 14px/1.6 Poppins,sans-serif!important;color:#64748b!important;--candidate-contrast-ink:#64748b}
 html body #pagina-publicar#pagina-publicar#pagina-publicar #formVaga .publish-extras-integrated .publish-extras-grid{display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:0!important;align-items:stretch!important;border:1px solid #dce3eb!important;border-radius:12px!important;overflow:hidden!important;background:#fff!important}
 html body #pagina-publicar#pagina-publicar#pagina-publicar #formVaga .publish-extras-integrated .publish-extra-card{position:relative!important;display:flex!important;flex-direction:column!important;min-width:0!important;min-height:0!important;height:auto!important;margin:0!important;padding:0!important;border:0!important;border-radius:0!important;background:#fff!important;box-shadow:none!important;text-align:center!important;gap:0!important}
 html body #pagina-publicar#pagina-publicar#pagina-publicar #formVaga .publish-extras-integrated .publish-extra-card + .publish-extra-card{border-left:1px solid #e0e6ee!important}
@@ -537,27 +537,27 @@ html body #pagina-publicar#pagina-publicar#pagina-publicar #formVaga .publish-ex
 html body #pagina-publicar#pagina-publicar#pagina-publicar #formVaga .publish-extras-integrated .publish-extra-top{display:flex!important;flex-direction:column!important;align-items:center!important;justify-content:flex-start!important;gap:0!important;min-height:152px!important;padding:26px 20px 0!important;margin:0!important}
 html body #pagina-publicar#pagina-publicar#pagina-publicar #formVaga .publish-extras-integrated .publish-extra-top .publish-extra-icon{display:grid!important;place-items:center!important;width:44px!important;height:44px!important;margin:0 0 15px!important;border:0!important;border-radius:0!important;background:transparent!important;color:#173f59!important;--candidate-contrast-ink:#173f59}
 html body #pagina-publicar#pagina-publicar#pagina-publicar #formVaga .publish-extras-integrated .publish-extra-icon svg{display:block!important;width:42px!important;height:42px!important;stroke-width:1.7!important}
-html body #pagina-publicar#pagina-publicar#pagina-publicar #formVaga .publish-extras-integrated .publish-extra-title{display:block!important;margin:0!important;font:700 18px/1.4 Poppins,Arial,sans-serif!important;letter-spacing:-.35px!important;color:#102a43!important;--candidate-contrast-ink:#102a43}
+html body #pagina-publicar#pagina-publicar#pagina-publicar #formVaga .publish-extras-integrated .publish-extra-title{display:block!important;margin:0!important;font:700 18px/1.4 Poppins,sans-serif!important;letter-spacing:-.35px!important;color:#102a43!important;--candidate-contrast-ink:#102a43}
 html body #pagina-publicar#pagina-publicar#pagina-publicar #formVaga .publish-extras-integrated .publish-extra-title::after{display:none!important;content:none!important}
-html body #pagina-publicar#pagina-publicar#pagina-publicar #formVaga .publish-extras-integrated .publish-extra-top .publish-extra-duration{display:inline-flex!important;align-self:center!important;margin:10px 0 0!important;padding:5px 13px!important;border-radius:20px!important;background:#eaf4fd!important;color:#1769a6!important;font:600 12px/1.4 Poppins,Arial,sans-serif!important;--candidate-contrast-ink:#1769a6}
-html body #pagina-publicar#pagina-publicar#pagina-publicar #formVaga .publish-extras-integrated .publish-extra-price{display:block!important;white-space:nowrap!important;padding:0!important;margin:24px 20px 0!important;font:700 31px/1.3 Poppins,Arial,sans-serif!important;letter-spacing:-.8px!important;color:#102a43!important;--candidate-contrast-ink:#102a43}
-html body #pagina-publicar#pagina-publicar#pagina-publicar #formVaga .publish-extras-integrated .publish-extra-price small{font:400 12px/1.4 Poppins,Arial,sans-serif!important;letter-spacing:0!important;color:#64748b!important;--candidate-contrast-ink:#64748b}
+html body #pagina-publicar#pagina-publicar#pagina-publicar #formVaga .publish-extras-integrated .publish-extra-top .publish-extra-duration{display:inline-flex!important;align-self:center!important;margin:10px 0 0!important;padding:5px 13px!important;border-radius:20px!important;background:#eaf4fd!important;color:#1769a6!important;font:600 12px/1.4 Poppins,sans-serif!important;--candidate-contrast-ink:#1769a6}
+html body #pagina-publicar#pagina-publicar#pagina-publicar #formVaga .publish-extras-integrated .publish-extra-price{display:block!important;white-space:nowrap!important;padding:0!important;margin:24px 20px 0!important;font:700 31px/1.3 Poppins,sans-serif!important;letter-spacing:-.8px!important;color:#102a43!important;--candidate-contrast-ink:#102a43}
+html body #pagina-publicar#pagina-publicar#pagina-publicar #formVaga .publish-extras-integrated .publish-extra-price small{font:400 12px/1.4 Poppins,sans-serif!important;letter-spacing:0!important;color:#64748b!important;--candidate-contrast-ink:#64748b}
 html body #pagina-publicar#pagina-publicar#pagina-publicar #formVaga .publish-extras-integrated .publish-extra-benefits{display:grid!important;gap:13px!important;align-content:start!important;width:auto!important;margin:20px 22px 24px!important;padding:22px 0 0!important;border:0!important;border-top:1px solid #e0e6ee!important;list-style:none!important}
-html body #pagina-publicar#pagina-publicar#pagina-publicar #formVaga .publish-extras-integrated .publish-extra-benefits li{display:flex!important;align-items:flex-start!important;justify-content:flex-start!important;gap:10px!important;margin:0!important;padding:0!important;text-align:left!important;font:400 12px/1.6 Poppins,Arial,sans-serif!important;color:#52657b!important;--candidate-contrast-ink:#52657b}
+html body #pagina-publicar#pagina-publicar#pagina-publicar #formVaga .publish-extras-integrated .publish-extra-benefits li{display:flex!important;align-items:flex-start!important;justify-content:flex-start!important;gap:10px!important;margin:0!important;padding:0!important;text-align:left!important;font:400 12px/1.6 Poppins,sans-serif!important;color:#52657b!important;--candidate-contrast-ink:#52657b}
 html body #pagina-publicar#pagina-publicar#pagina-publicar #formVaga .publish-extras-integrated .publish-extra-benefits svg{display:block!important;width:18px!important;height:18px!important;flex:0 0 18px!important;margin:1px 0 0!important;padding:3px!important;border-radius:50%!important;background:#0874ef!important;color:#fff!important;stroke-width:2.3!important;--candidate-contrast-ink:#fff}
 html body #pagina-publicar#pagina-publicar#pagina-publicar #formVaga .publish-extras-integrated .publish-extra-footer{width:100%!important;margin:auto 0 0!important;padding:18px 22px 20px!important;border:0!important;background:#f6f8fb!important}
 html body #pagina-publicar#pagina-publicar#pagina-publicar #formVaga .publish-extras-integrated .publish-extra-select{display:block!important;width:100%!important;margin:0!important;padding:0!important;border:0!important}
 html body #pagina-publicar#pagina-publicar#pagina-publicar #formVaga .publish-extras-integrated .publish-extra-select input{display:none!important}
-html body #pagina-publicar#pagina-publicar#pagina-publicar #formVaga .publish-extras-integrated button.publish-extra-button{display:flex!important;align-items:center!important;justify-content:center!important;gap:7px!important;width:100%!important;min-height:46px!important;margin:0!important;padding:11px 8px!important;border:1px solid #0874ef!important;border-radius:7px!important;background:#fff!important;color:#0865d0!important;box-shadow:none!important;font:600 12px/1.5 Poppins,Arial,sans-serif!important;cursor:pointer!important;--candidate-contrast-ink:#0865d0}
+html body #pagina-publicar#pagina-publicar#pagina-publicar #formVaga .publish-extras-integrated button.publish-extra-button{display:flex!important;align-items:center!important;justify-content:center!important;gap:7px!important;width:100%!important;min-height:46px!important;margin:0!important;padding:11px 8px!important;border:1px solid #0874ef!important;border-radius:7px!important;background:#fff!important;color:#0865d0!important;box-shadow:none!important;font:600 12px/1.5 Poppins,sans-serif!important;cursor:pointer!important;--candidate-contrast-ink:#0865d0}
 html body #pagina-publicar#pagina-publicar#pagina-publicar #formVaga .publish-extras-integrated button.publish-extra-button:hover{background:#edf5ff!important;box-shadow:none!important}
 html body #pagina-publicar#pagina-publicar#pagina-publicar #formVaga .publish-extras-integrated button.publish-extra-button:focus-visible{outline:2px solid #0874ef!important;outline-offset:3px!important}
 html body #pagina-publicar#pagina-publicar#pagina-publicar #formVaga .publish-extras-integrated .selected button.publish-extra-button{border-color:#173f59!important;background:#173f59!important;color:#fff!important;--candidate-contrast-ink:#fff}
 html body #pagina-publicar#pagina-publicar#pagina-publicar #formVaga .publish-extras-integrated .publish-extra-button > svg{display:block!important;width:16px!important;height:16px!important;flex:0 0 16px!important;color:inherit!important;--candidate-contrast-ink:inherit}
 html body #pagina-publicar#pagina-publicar#pagina-publicar #formVaga .publish-extras-integrated .publish-extras-total{display:flex!important;align-items:center!important;justify-content:space-between!important;gap:16px!important;margin:16px 0 0!important;padding:14px 18px!important;border:1px solid #e0e6ee!important;border-radius:9px!important;background:#f8fafc!important}
-html body #pagina-publicar#pagina-publicar#pagina-publicar #formVaga .publish-extras-integrated .publish-extras-total > span{font:400 12px/1.5 Poppins,Arial,sans-serif!important;color:#64748b!important;--candidate-contrast-ink:#64748b}
-html body #pagina-publicar#pagina-publicar#pagina-publicar #formVaga .publish-extras-integrated .publish-extras-total > strong{padding:0!important;border:0!important;font:700 21px/1.4 Poppins,Arial,sans-serif!important;color:#102a43!important;text-align:right!important;--candidate-contrast-ink:#102a43}
-html body #pagina-publicar#pagina-publicar#pagina-publicar #formVaga .publish-extras-integrated .publish-extras-total strong small{display:block!important;margin:0 0 2px!important;font:400 11px/1.4 Poppins,Arial,sans-serif!important;color:#64748b!important;--candidate-contrast-ink:#64748b}
-html body #pagina-publicar#pagina-publicar#pagina-publicar #formVaga .publish-extras-integrated .publish-extras-note{margin:12px 0 0!important;font:400 11px/1.7 Poppins,Arial,sans-serif!important;color:#64748b!important;--candidate-contrast-ink:#64748b}
+html body #pagina-publicar#pagina-publicar#pagina-publicar #formVaga .publish-extras-integrated .publish-extras-total > span{font:400 12px/1.5 Poppins,sans-serif!important;color:#64748b!important;--candidate-contrast-ink:#64748b}
+html body #pagina-publicar#pagina-publicar#pagina-publicar #formVaga .publish-extras-integrated .publish-extras-total > strong{padding:0!important;border:0!important;font:700 21px/1.4 Poppins,sans-serif!important;color:#102a43!important;text-align:right!important;--candidate-contrast-ink:#102a43}
+html body #pagina-publicar#pagina-publicar#pagina-publicar #formVaga .publish-extras-integrated .publish-extras-total strong small{display:block!important;margin:0 0 2px!important;font:400 11px/1.4 Poppins,sans-serif!important;color:#64748b!important;--candidate-contrast-ink:#64748b}
+html body #pagina-publicar#pagina-publicar#pagina-publicar #formVaga .publish-extras-integrated .publish-extras-note{margin:12px 0 0!important;font:400 11px/1.7 Poppins,sans-serif!important;color:#64748b!important;--candidate-contrast-ink:#64748b}
 @media(max-width:1100px){
 html body #pagina-publicar#pagina-publicar#pagina-publicar #formVaga .publish-extras-integrated .publish-extra-top{padding-right:14px!important;padding-left:14px!important}
 html body #pagina-publicar#pagina-publicar#pagina-publicar #formVaga .publish-extras-integrated .publish-extra-title{font-size:16px!important}

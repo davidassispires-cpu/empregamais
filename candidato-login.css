@@ -1,5 +1,5 @@
 /* Painel integrado de acesso do candidato. */
-html body #pagina-login-candidato{background:#f4f8fc!important;color:#153654!important;padding:28px 24px 44px!important;font-family:Inter,Arial,sans-serif!important}
+html body #pagina-login-candidato{background:#f4f8fc!important;color:#153654!important;padding:28px 24px 44px!important;font-family:Poppins,sans-serif!important}
 html body #pagina-login-candidato>.page-header{display:none!important}
 html body #pagina-login-candidato .cand-login-breadcrumb{display:flex;gap:12px;align-items:center;max-width:1080px;margin:0 auto 20px;color:#637d96;font-size:12px;font-weight:500}
 html body #pagina-login-candidato .cand-login-breadcrumb button{border:0;background:transparent;padding:0;color:#617b94;font:inherit;cursor:pointer}
@@ -23,18 +23,18 @@ html body #pagina-login-candidato .login-tipo{display:block!important;background
 html body #pagina-login-candidato .login-candidato-card-text{font-size:13px!important;line-height:1.65!important;color:#647b94!important;margin:0 0 28px!important}
 html body #pagina-login-candidato .grupo{margin:0 0 18px!important}
 html body #pagina-login-candidato .grupo label{display:block!important;font-size:12px!important;font-weight:600!important;line-height:1.5!important;color:#1b3854!important;margin:0 0 8px!important}
-html body #pagina-login-candidato .campo{box-sizing:border-box!important;width:100%!important;height:48px!important;min-height:48px!important;border:1px solid #cbd9e8!important;border-radius:9px!important;background:#fff!important;padding:0 14px!important;font:500 14px Inter,Arial,sans-serif!important;color:#193b5b!important;box-shadow:none!important}
+html body #pagina-login-candidato .campo{box-sizing:border-box!important;width:100%!important;height:48px!important;min-height:48px!important;border:1px solid #cbd9e8!important;border-radius:9px!important;background:#fff!important;padding:0 14px!important;font:500 14px Poppins,sans-serif!important;color:#193b5b!important;box-shadow:none!important}
 html body #pagina-login-candidato .campo::placeholder{color:#7b90a7!important}
 html body #pagina-login-candidato .campo:focus{outline:2px solid #2b8bdd!important;outline-offset:2px!important}
 html body #pagina-login-candidato .cand-password-wrap{position:relative}
 html body #pagina-login-candidato #loginCandSenha{padding-right:52px!important}
 html body #pagina-login-candidato .cand-password-toggle{position:absolute;right:3px;top:2px;width:44px;height:44px;border:0;background:transparent;color:#6b8097;display:flex;align-items:center;justify-content:center;cursor:pointer}
 html body #pagina-login-candidato .cand-password-toggle svg{width:20px;height:20px}
-html body #pagina-login-candidato .login-senha-link{display:block!important;margin:-3px 0 20px auto!important;padding:0!important;background:transparent!important;border:0!important;color:#0969bb!important;font:600 12px Inter,Arial,sans-serif!important;cursor:pointer;text-align:right!important}
-html body #pagina-login-candidato button[type=submit]{width:100%!important;min-height:48px!important;padding:12px 18px!important;border:0!important;border-radius:9px!important;background:#1475c3!important;color:#fff!important;font:600 13px Inter,Arial,sans-serif!important;box-shadow:0 5px 13px rgba(20,117,195,.13)!important;cursor:pointer}
+html body #pagina-login-candidato .login-senha-link{display:block!important;margin:-3px 0 20px auto!important;padding:0!important;background:transparent!important;border:0!important;color:#0969bb!important;font:600 12px Poppins,sans-serif!important;cursor:pointer;text-align:right!important}
+html body #pagina-login-candidato button[type=submit]{width:100%!important;min-height:48px!important;padding:12px 18px!important;border:0!important;border-radius:9px!important;background:#1475c3!important;color:#fff!important;font:600 13px Poppins,sans-serif!important;box-shadow:0 5px 13px rgba(20,117,195,.13)!important;cursor:pointer}
 html body #pagina-login-candidato button[type=submit]:hover{background:#0d65ac!important}
 html body #pagina-login-candidato .login-ajuda{border-top:1px solid #e1e9f2!important;padding:21px 0 0!important;margin:25px 0 0!important;text-align:center!important;color:#637a93!important;font-size:12px!important;line-height:1.5!important}
-html body #pagina-login-candidato .login-ajuda button{display:block!important;width:100%!important;min-height:46px!important;padding:10px 16px!important;margin:14px 0 0!important;border:1px solid #1174c4!important;border-radius:9px!important;background:#fff!important;color:#126abb!important;font:600 13px Inter,Arial,sans-serif!important;cursor:pointer}
+html body #pagina-login-candidato .login-ajuda button{display:block!important;width:100%!important;min-height:46px!important;padding:10px 16px!important;margin:14px 0 0!important;border:1px solid #1174c4!important;border-radius:9px!important;background:#fff!important;color:#126abb!important;font:600 13px Poppins,sans-serif!important;cursor:pointer}
 html body #pagina-login-candidato .login-ajuda button:hover{background:#f0f7ff!important}
 html body #pagina-login-candidato .cand-login-security{display:flex;align-items:center;justify-content:center;gap:8px;margin-top:22px;font-size:11px;color:#72879e}
 html body #pagina-login-candidato .cand-login-security svg{width:14px;height:14px}

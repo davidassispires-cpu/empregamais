@@ -1,5 +1,5 @@
 @layer candidate-palette {
-.pt-root.pt-root{--pt-accent:#0065ed;--pt-ink:#17384e;--pt-muted:#64748b;display:block!important;min-width:0!important;font:400 14px/1.6 Poppins,Arial,sans-serif!important;color:var(--pt-ink)!important;text-align:left!important}
+.pt-root.pt-root{--pt-accent:#0065ed;--pt-ink:#17384e;--pt-muted:#64748b;display:block!important;min-width:0!important;font:400 14px/1.6 Poppins,sans-serif!important;color:var(--pt-ink)!important;text-align:left!important}
 .pt-root.pt-root *{box-sizing:border-box!important;font-family:inherit!important}
 .pt-root.pt-root [hidden]{display:none!important}
 .pt-root.pt-root h2,.pt-root.pt-root h3,.pt-root.pt-root p{margin:0!important}

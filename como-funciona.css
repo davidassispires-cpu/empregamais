@@ -3,7 +3,7 @@
   --guide-accent:#703baa; --guide-deep:#3f2469; --guide-soft:#f5f0fb; --guide-line:#e5dcf0;
   --guide-ink:#20354e; --guide-body:#53657b;
   display:block; min-height:0; background:#f7f9fc; color:var(--guide-ink);
-  font-family:Inter,Arial,sans-serif!important; font-size:15px; line-height:1.6; padding:24px 0 44px;
+  font-family:Poppins,sans-serif!important; font-size:15px; line-height:1.6; padding:24px 0 44px;
 }
 #pagina-como-funciona #comoFuncionaV106[data-publico="empresa"] {--guide-accent:#1767b8;--guide-deep:#123c65;--guide-soft:#eff6fd;--guide-line:#dce8f4;}
 #comoFuncionaV106 .cf-guide-shell {width:min(1180px,calc(100% - 48px));margin:0 auto;}
@@ -139,10 +139,10 @@
 @media(prefers-reduced-motion:reduce){#comoFuncionaV106 .cf-guide-step {transition:none;}#comoFuncionaV106 .cf-guide-stage-copy,#comoFuncionaV106 .cf-guide-graphic {animation:none;}}
 
 /* Company carousel: faithful, responsive recreation of the approved previews. */
-@font-face {font-family:'CF Inter';src:url('assets/fonts/inter-latin-variable.woff2') format('woff');font-style:normal;font-weight:400 800;font-display:swap;}
+
 /* Important declarations in this layer take precedence over the old global font rules. */
 @layer cf-company-type {
- #pagina-como-funciona #comoFuncionaV106[data-publico="empresa"],#pagina-como-funciona #comoFuncionaV106[data-publico="empresa"] :is(*,h1,h2,h3,p,button,a,summary) {font-family:'CF Inter',Inter,Arial,sans-serif!important;}
+ #pagina-como-funciona #comoFuncionaV106[data-publico="empresa"],#pagina-como-funciona #comoFuncionaV106[data-publico="empresa"] :is(*,h1,h2,h3,p,button,a,summary) {font-family:Poppins,sans-serif!important;}
  #comoFuncionaV106 .cf-company-wordmark,#comoFuncionaV106 .cf-company-wordmark>b {font-weight:800!important;}
  #comoFuncionaV106 .cf-company-slide-copy h1,#comoFuncionaV106 .cf-company-slide-copy h1 span {font-weight:800!important;}
  #comoFuncionaV106 .cf-company-visual strong,#comoFuncionaV106 .cf-company-cta,#comoFuncionaV106 .cf-company-demo-button {font-weight:700!important;}

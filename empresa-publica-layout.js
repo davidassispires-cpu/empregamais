@@ -122,17 +122,17 @@ function start(){
 html body #pagina-empresa-publica .em-company-sidebar{display:flex;flex-direction:column;gap:16px;min-width:0;align-self:start}
 html body #pagina-empresa-publica .em-company-sidebar>.gp-summary,html body #pagina-empresa-publica .em-company-sidebar>.ep-reference-summary{width:100%;box-sizing:border-box}
 html body #pagina-empresa-publica .em-company-history{background:#fff;border:1px solid #dce5ef;border-radius:12px;padding:22px;box-shadow:0 3px 12px #17324e06;box-sizing:border-box}
-html body #pagina-empresa-publica .em-company-history h2{font:700 18px/1.4 Inter,Arial,sans-serif!important;color:#17324e!important;margin:0 0 16px!important;text-align:left!important}
-html body #pagina-empresa-publica .em-history-label{font:600 12px/1.5 Inter,Arial,sans-serif;color:#526b87;margin:0 0 12px}
+html body #pagina-empresa-publica .em-company-history h2{font:700 18px/1.4 Poppins,sans-serif!important;color:#17324e!important;margin:0 0 16px!important;text-align:left!important}
+html body #pagina-empresa-publica .em-history-label{font:600 12px/1.5 Poppins,sans-serif;color:#526b87;margin:0 0 12px}
 html body #pagina-empresa-publica .em-history-gauge{height:74px;display:flex;align-items:flex-end;gap:5px;margin-bottom:15px}
 html body #pagina-empresa-publica .em-history-gauge span{flex:1;border-radius:4px;background:linear-gradient(130deg,#d9eaff,#abcdf6);clip-path:polygon(0 15%,100% 0,100% 100%,0 100%)}
-html body #pagina-empresa-publica .em-history-status{font:700 13px/1.5 Inter,Arial,sans-serif;color:#1768b4;margin:0 0 5px}
-html body #pagina-empresa-publica .em-history-description{font:400 12px/1.6 Inter,Arial,sans-serif;color:#728397;margin:0}
+html body #pagina-empresa-publica .em-history-status{font:700 13px/1.5 Poppins,sans-serif;color:#1768b4;margin:0 0 5px}
+html body #pagina-empresa-publica .em-history-description{font:400 12px/1.6 Poppins,sans-serif;color:#728397;margin:0}
 html body #pagina-empresa-publica .em-history-metrics{border-top:1px solid #e4ebf4;padding-top:15px;margin:17px 0 0}
 html body #pagina-empresa-publica .em-history-metrics>div{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:8px 0}
-html body #pagina-empresa-publica .em-history-metrics dt{display:flex;align-items:center;gap:8px;font:500 12px/1.5 Inter,Arial,sans-serif;color:#526b87}
-html body #pagina-empresa-publica .em-history-metrics dd{font:600 12px/1.5 Inter,Arial,sans-serif;color:#17324e;margin:0;text-align:right}
-html body #pagina-empresa-publica .em-history-icon{display:grid;place-items:center;flex:0 0 28px;width:28px;height:28px;background:#eef5fd;border-radius:50%;color:#42678f;font:18px Arial,sans-serif}
+html body #pagina-empresa-publica .em-history-metrics dt{display:flex;align-items:center;gap:8px;font:500 12px/1.5 Poppins,sans-serif;color:#526b87}
+html body #pagina-empresa-publica .em-history-metrics dd{font:600 12px/1.5 Poppins,sans-serif;color:#17324e;margin:0;text-align:right}
+html body #pagina-empresa-publica .em-history-icon{display:grid;place-items:center;flex:0 0 28px;width:28px;height:28px;background:#eef5fd;border-radius:50%;color:#42678f;font:18px Poppins,sans-serif}
 @media(max-width:760px){html body #pagina-empresa-publica .em-company-history{padding:20px}}
 `;document.head.appendChild(style);configure();var page=document.getElementById('pagina-empresa-publica');if(page)new MutationObserver(schedule).observe(page,{childList:true,subtree:true});window.addEventListener('load',schedule);window.addEventListener('popstate',schedule);
 }
@@ -192,24 +192,24 @@ function start(){
  var style=el('style');style.textContent=`
 html body #pagina-empresa-publica .em-company-filters{background:white;border:1px solid #d1e2f5;border-radius:10px;padding:18px;margin:18px 0 16px}
 html body #pagina-empresa-publica .em-company-filter-fields{display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr auto;gap:12px;align-items:end}
-html body #pagina-empresa-publica .em-company-filter-field{display:flex;flex-direction:column;gap:7px;min-width:0;font:600 12px Inter,Arial,sans-serif;color:#17324e}
-html body #pagina-empresa-publica .em-company-filters input,html body #pagina-empresa-publica .em-company-filters select,html body #pagina-empresa-publica .em-company-result-toolbar select{box-sizing:border-box;width:100%;height:40px;border:1px solid #cbdcf0;border-radius:6px;background:#fff;padding:0 10px;color:#41556c;font:400 13px Inter,Arial,sans-serif}
-html body #pagina-empresa-publica .em-company-filter-submit{height:40px;border:0;border-radius:6px;background:#0875ee;color:white;padding:0 18px;font:600 13px Inter,Arial,sans-serif;cursor:pointer}
-html body #pagina-empresa-publica .em-company-filter-clear{display:block;margin:10px 0 0 auto;border:0;background:transparent;padding:0;color:#0875ee;font:400 12px Inter,Arial,sans-serif;text-decoration:underline;cursor:pointer}
-html body #pagina-empresa-publica .em-company-result-toolbar{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:0 0 14px;font:400 12px Inter,Arial,sans-serif;color:#526b87}
+html body #pagina-empresa-publica .em-company-filter-field{display:flex;flex-direction:column;gap:7px;min-width:0;font:600 12px Poppins,sans-serif;color:#17324e}
+html body #pagina-empresa-publica .em-company-filters input,html body #pagina-empresa-publica .em-company-filters select,html body #pagina-empresa-publica .em-company-result-toolbar select{box-sizing:border-box;width:100%;height:40px;border:1px solid #cbdcf0;border-radius:6px;background:#fff;padding:0 10px;color:#41556c;font:400 13px Poppins,sans-serif}
+html body #pagina-empresa-publica .em-company-filter-submit{height:40px;border:0;border-radius:6px;background:#0875ee;color:white;padding:0 18px;font:600 13px Poppins,sans-serif;cursor:pointer}
+html body #pagina-empresa-publica .em-company-filter-clear{display:block;margin:10px 0 0 auto;border:0;background:transparent;padding:0;color:#0875ee;font:400 12px Poppins,sans-serif;text-decoration:underline;cursor:pointer}
+html body #pagina-empresa-publica .em-company-result-toolbar{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:0 0 14px;font:400 12px Poppins,sans-serif;color:#526b87}
 html body #pagina-empresa-publica .em-company-result-toolbar p{margin:0!important}
 html body #pagina-empresa-publica .em-company-result-toolbar label{display:flex;align-items:center;gap:8px;white-space:nowrap}
 html body #pagina-empresa-publica .em-company-result-toolbar select{width:150px;height:34px}
 html body #pagina-empresa-publica .em-company-job-grid{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:14px!important}
 html body #pagina-empresa-publica .em-company-vacancy-card{padding:18px!important;min-height:0!important;border:1px solid #d1e2f5!important;border-radius:10px!important;background:#fff!important;position:relative;box-sizing:border-box}
 html body #pagina-empresa-publica .em-company-vacancy-card[hidden],html body #pagina-empresa-publica .em-company-filter-empty[hidden]{display:none!important}
-html body #pagina-empresa-publica .gp-job.em-company-vacancy-card h3{font:700 16px/1.4 Inter,Arial,sans-serif!important;text-transform:none!important;margin:0 0 9px!important;color:#17324e!important}
-html body #pagina-empresa-publica .gp-job .em-company-city{font:400 12px/1.5 Inter,Arial,sans-serif!important;margin:0 0 7px!important;color:#526b87!important}
-html body #pagina-empresa-publica .gp-job .em-company-salary{font:600 13px/1.5 Inter,Arial,sans-serif!important;color:#17324e!important;margin:0 0 10px!important}
+html body #pagina-empresa-publica .gp-job.em-company-vacancy-card h3{font:700 16px/1.4 Poppins,sans-serif!important;text-transform:none!important;margin:0 0 9px!important;color:#17324e!important}
+html body #pagina-empresa-publica .gp-job .em-company-city{font:400 12px/1.5 Poppins,sans-serif!important;margin:0 0 7px!important;color:#526b87!important}
+html body #pagina-empresa-publica .gp-job .em-company-salary{font:600 13px/1.5 Poppins,sans-serif!important;color:#17324e!important;margin:0 0 10px!important}
 html body #pagina-empresa-publica .gp-job .em-company-tags{display:flex;flex-wrap:wrap;gap:6px;margin:0 120px 0 0!important;min-height:32px;align-items:center}
-html body #pagina-empresa-publica .em-company-tags span{background:#eef5ff;border-radius:20px;padding:5px 10px;color:#1768b4;font:400 11px Inter,Arial,sans-serif}
-html body #pagina-empresa-publica .gp-job.em-company-vacancy-card>a{position:absolute;right:18px;bottom:18px;padding:9px 12px!important;border-radius:6px!important;background:#0875ee;color:#fff;font:600 12px Inter,Arial,sans-serif!important;text-decoration:none}
-html body #pagina-empresa-publica .em-company-filter-empty{color:#526b87;font:400 13px/1.6 Inter,Arial,sans-serif;background:white;border:1px solid #dce5ef;padding:18px;border-radius:8px}
+html body #pagina-empresa-publica .em-company-tags span{background:#eef5ff;border-radius:20px;padding:5px 10px;color:#1768b4;font:400 11px Poppins,sans-serif}
+html body #pagina-empresa-publica .gp-job.em-company-vacancy-card>a{position:absolute;right:18px;bottom:18px;padding:9px 12px!important;border-radius:6px!important;background:#0875ee;color:#fff;font:600 12px Poppins,sans-serif!important;text-decoration:none}
+html body #pagina-empresa-publica .em-company-filter-empty{color:#526b87;font:400 13px/1.6 Poppins,sans-serif;background:white;border:1px solid #dce5ef;padding:18px;border-radius:8px}
 @media(max-width:900px){html body #pagina-empresa-publica .em-company-filter-fields{grid-template-columns:repeat(2,minmax(0,1fr))}html body #pagina-empresa-publica .em-company-filter-submit{grid-column:1/-1}}
 @media(max-width:600px){html body #pagina-empresa-publica .em-company-job-grid{grid-template-columns:1fr!important}html body #pagina-empresa-publica .em-company-result-toolbar{align-items:flex-start;flex-direction:column}html body #pagina-empresa-publica .em-company-filter-fields{grid-template-columns:1fr}}
 `;document.head.appendChild(style);setup();var page=document.getElementById('pagina-empresa-publica');if(page)new MutationObserver(schedule).observe(page,{childList:true,subtree:true});window.addEventListener('load',schedule);window.addEventListener('popstate',schedule);
@@ -267,24 +267,24 @@ html body #pagina-empresa-publica .em-process-reviews{padding:24px!important}
 html body #pagina-empresa-publica .em-review-intro{margin-bottom:20px!important}
 html body #pagina-empresa-publica .em-review-summary{padding:18px 0;border-bottom:1px solid #e4ebf4;margin-bottom:22px}
 html body #pagina-empresa-publica .em-review-overall{display:flex;align-items:center;flex-wrap:wrap;gap:12px}
-html body #pagina-empresa-publica .em-review-overall>strong{font:700 32px Inter,Arial,sans-serif;color:#17324e}
-html body #pagina-empresa-publica .em-review-overall>span:last-child{font:400 12px Inter,Arial,sans-serif;color:#728397}
-html body #pagina-empresa-publica .em-review-stars{font:28px/1.4 Arial,sans-serif;color:#e7a800;letter-spacing:3px}
+html body #pagina-empresa-publica .em-review-overall>strong{font:700 32px Poppins,sans-serif;color:#17324e}
+html body #pagina-empresa-publica .em-review-overall>span:last-child{font:400 12px Poppins,sans-serif;color:#728397}
+html body #pagina-empresa-publica .em-review-stars{font:28px/1.4 Poppins,sans-serif;color:#e7a800;letter-spacing:3px}
 html body #pagina-empresa-publica .em-review-score-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;margin-top:22px}
 html body #pagina-empresa-publica .em-review-score-grid>div{display:flex;flex-direction:column;gap:5px}
-html body #pagina-empresa-publica .em-review-score-grid strong{font:700 20px Inter,Arial,sans-serif;color:#1768b4}
-html body #pagina-empresa-publica .em-review-score-grid span{font:400 12px Inter,Arial,sans-serif;color:#526b87}
+html body #pagina-empresa-publica .em-review-score-grid strong{font:700 20px Poppins,sans-serif;color:#1768b4}
+html body #pagina-empresa-publica .em-review-score-grid span{font:400 12px Poppins,sans-serif;color:#526b87}
 html body #pagina-empresa-publica .em-review-invite{background:#f3f8ff;border:1px solid #d1e2f5;border-radius:10px;padding:22px}
-html body #pagina-empresa-publica .em-review-invite h3{font:700 17px/1.5 Inter,Arial,sans-serif!important;color:#17324e!important;margin:0 0 7px!important}
+html body #pagina-empresa-publica .em-review-invite h3{font:700 17px/1.5 Poppins,sans-serif!important;color:#17324e!important;margin:0 0 7px!important}
 html body #pagina-empresa-publica .em-review-invite>.em-review-stars{display:block;margin:12px 0}
-html body #pagina-empresa-publica .em-review-button{background:#0875ee;color:white;border:0;border-radius:6px;font:600 13px Inter,Arial,sans-serif;padding:11px 18px;cursor:pointer}
+html body #pagina-empresa-publica .em-review-button{background:#0875ee;color:white;border:0;border-radius:6px;font:600 13px Poppins,sans-serif;padding:11px 18px;cursor:pointer}
 html body #pagina-empresa-publica .em-review-button:disabled{opacity:.6;cursor:wait}
 html body #pagina-empresa-publica .em-review-rule{font-size:12px!important;line-height:1.6!important;margin:12px 0!important}
 html body #pagina-empresa-publica .em-review-status{margin:12px 0!important;color:#17324e!important}
 html body #pagina-empresa-publica .em-review-form{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;margin-top:18px;border-top:1px solid #d1e2f5;padding-top:18px}
 html body #pagina-empresa-publica .em-review-form[hidden]{display:none!important}
-html body #pagina-empresa-publica .em-review-form label{display:flex;flex-direction:column;gap:8px;font:600 12px/1.5 Inter,Arial,sans-serif;color:#17324e}
-html body #pagina-empresa-publica .em-review-form select{width:100%;min-height:40px;border:1px solid #cbdcf0;border-radius:6px;padding:8px;background:white;color:#41556c;font:400 13px Inter,Arial,sans-serif}
+html body #pagina-empresa-publica .em-review-form label{display:flex;flex-direction:column;gap:8px;font:600 12px/1.5 Poppins,sans-serif;color:#17324e}
+html body #pagina-empresa-publica .em-review-form select{width:100%;min-height:40px;border:1px solid #cbdcf0;border-radius:6px;padding:8px;background:white;color:#41556c;font:400 13px Poppins,sans-serif}
 html body #pagina-empresa-publica .em-review-form>label:first-child,html body #pagina-empresa-publica .em-review-form>.em-review-rule{grid-column:1/-1}
 html body #pagina-empresa-publica .em-review-form>.em-review-button{justify-self:start}
 @media(max-width:600px){html body #pagina-empresa-publica .em-review-form{grid-template-columns:1fr}html body #pagina-empresa-publica .em-review-score-grid{grid-template-columns:repeat(2,minmax(0,1fr))}html body #pagina-empresa-publica .em-review-invite{padding:16px}}
@@ -330,18 +330,18 @@ html body #pagina-empresa-publica .em-hiring-subtitle{margin-bottom:20px!importa
 .em-hiring-metrics{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin:20px 0}
 .em-hiring-card{background:white;border:1px solid #d1e2f5;border-radius:10px;padding:22px;min-width:0;box-sizing:border-box}
 .em-hiring-metrics .em-hiring-card{display:flex;flex-direction:column;gap:10px}
-.em-hiring-metrics span{font:600 13px Inter,Arial,sans-serif;color:#17324e}
-.em-hiring-metrics strong{font:700 28px/1.3 Inter,Arial,sans-serif;color:#0875ee;overflow-wrap:anywhere}
-.em-hiring-metrics small{font:400 12px/1.5 Inter,Arial,sans-serif;color:#728397}
+.em-hiring-metrics span{font:600 13px Poppins,sans-serif;color:#17324e}
+.em-hiring-metrics strong{font:700 28px/1.3 Poppins,sans-serif;color:#0875ee;overflow-wrap:anywhere}
+.em-hiring-metrics small{font:400 12px/1.5 Poppins,sans-serif;color:#728397}
 .em-hiring-layout{display:grid;grid-template-columns:minmax(0,1.6fr) minmax(0,1fr);gap:18px}
-html body #pagina-empresa-publica .em-hiring-card h3{font:700 17px Inter,Arial,sans-serif!important;margin:0 0 22px!important;color:#17324e!important}
+html body #pagina-empresa-publica .em-hiring-card h3{font:700 17px Poppins,sans-serif!important;margin:0 0 22px!important;color:#17324e!important}
 .em-hiring-chart{display:flex;align-items:flex-end;gap:14px;min-height:180px;border-bottom:1px solid #d1e2f5;padding:0 8px}
-.em-hiring-month{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;gap:8px;min-width:0;font:500 11px Inter,Arial,sans-serif;color:#526b87}
+.em-hiring-month{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;gap:8px;min-width:0;font:500 11px Poppins,sans-serif;color:#526b87}
 .em-hiring-bar{width:70%;min-height:2px;background:linear-gradient(#0875ee,#168fff);border-radius:3px 3px 0 0}
 .em-hiring-month>span:first-child{color:#17324e;font-weight:700}
 .em-hiring-month>span:last-child{padding-bottom:9px;text-align:center}
 .em-hiring-area{margin-bottom:20px}
-.em-hiring-area>div:first-child{display:flex;justify-content:space-between;gap:12px;font:500 13px Inter,Arial,sans-serif;color:#17324e}
+.em-hiring-area>div:first-child{display:flex;justify-content:space-between;gap:12px;font:500 13px Poppins,sans-serif;color:#17324e}
 .em-hiring-track{height:7px;border-radius:8px;background:#e6edf5;margin-top:10px;overflow:hidden}
 .em-hiring-track span{display:block;height:100%;background:#0875ee;border-radius:8px}
 html body #pagina-empresa-publica .em-hiring-note{padding:15px 18px;background:#eaf4ff;border:1px solid #d1e2f5;border-radius:8px;margin:20px 0 14px!important;color:#42678f!important}
@@ -393,19 +393,19 @@ function schedule(){if(queued)return;queued=true;requestAnimationFrame(function(
 function start(){var style=el('style');style.textContent=`
 
 #pagina-empresa-publica .em-pay-header{display:flex;align-items:flex-start;justify-content:space-between;gap:20px;margin-bottom:22px}
-#pagina-empresa-publica .em-pay-header h2{font:700 26px/1.25 Inter,Arial,sans-serif!important;color:#17324e!important;margin:0 0 8px!important}
-#pagina-empresa-publica .em-pay-subtitle{font:400 15px/1.6 Inter,Arial,sans-serif!important;color:#627b98!important;margin:0!important}
-.em-pay-help{flex:0 0 auto;max-width:280px}.em-pay-help summary{cursor:pointer;border:1px solid #bdd3ee;border-radius:8px;padding:11px 16px;color:#0968d5;font:600 14px/1.4 Inter,Arial,sans-serif;background:#fff}
+#pagina-empresa-publica .em-pay-header h2{font:700 26px/1.25 Poppins,sans-serif!important;color:#17324e!important;margin:0 0 8px!important}
+#pagina-empresa-publica .em-pay-subtitle{font:400 15px/1.6 Poppins,sans-serif!important;color:#627b98!important;margin:0!important}
+.em-pay-help{flex:0 0 auto;max-width:280px}.em-pay-help summary{cursor:pointer;border:1px solid #bdd3ee;border-radius:8px;padding:11px 16px;color:#0968d5;font:600 14px/1.4 Poppins,sans-serif;background:#fff}
 .em-pay-help summary:focus-visible{outline:3px solid #92c5ff;outline-offset:3px}
 #pagina-empresa-publica .em-company-announced-pay .em-pay-note{margin:12px 0 0!important;padding:14px;background:#eef6ff;border-radius:8px;color:#42678f;font-size:13px!important;line-height:1.6!important}
-#pagina-empresa-publica .em-pay-count{display:flex;flex-wrap:wrap;gap:12px 24px;margin:0 0 22px!important;color:#42678f;font:600 15px/1.5 Inter,Arial,sans-serif!important}
+#pagina-empresa-publica .em-pay-count{display:flex;flex-wrap:wrap;gap:12px 24px;margin:0 0 22px!important;color:#42678f;font:600 15px/1.5 Poppins,sans-serif!important}
 .em-pay-count span+span{border-left:1px solid #d1e2f5;padding-left:24px}
-.em-pay-table-wrap{overflow-x:auto}.em-pay-table{width:100%;border-collapse:collapse;text-align:left;font:400 15px/1.5 Inter,Arial,sans-serif;color:#526b87}
+.em-pay-table-wrap{overflow-x:auto}.em-pay-table{width:100%;border-collapse:collapse;text-align:left;font:400 15px/1.5 Poppins,sans-serif;color:#526b87}
 .em-pay-table caption{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)}
 .em-pay-table th{background:#eff6fe;color:#294f78;font-weight:700;font-size:14px}.em-pay-table td,.em-pay-table th{padding:18px 14px;border-bottom:1px solid #e4ebf4;vertical-align:middle}.em-pay-table td:first-child{font-weight:600;color:#173b60;overflow-wrap:anywhere}.em-pay-table .em-pay-value{font-weight:700;font-size:19px;color:#0865d6;white-space:nowrap}.em-pay-badge{display:inline-block;white-space:nowrap;padding:5px 12px;border-radius:20px;background:#eef6ff;color:#0968d5;font-size:13px;font-weight:600}.em-pay-unique{display:block;color:#728397;font-size:12px;margin-top:5px}
-#pagina-empresa-publica .em-pay-footer{margin:18px 0 0!important;font:400 13px/1.6 Inter,Arial,sans-serif!important;color:#627b98!important}
+#pagina-empresa-publica .em-pay-footer{margin:18px 0 0!important;font:400 13px/1.6 Poppins,sans-serif!important;color:#627b98!important}
 #pagina-empresa-publica .em-pay-empty{padding:25px 0!important}.em-pay-table-wrap[hidden],.em-pay-empty[hidden]{display:none!important}
-@media(max-width:700px){#pagina-empresa-publica .em-pay-header{flex-direction:column;gap:14px}#pagina-empresa-publica .em-pay-header h2{font-size:22px!important}.em-pay-help{max-width:100%;width:100%}.em-pay-count span+span{border:0;padding:0}.em-pay-table-wrap{overflow:visible}.em-pay-table,.em-pay-table tbody{display:block;width:100%;min-width:0}.em-pay-table thead{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)}.em-pay-table tr{display:block;border:1px solid #d1e2f5;border-radius:10px;margin-bottom:12px;padding:14px;background:#fff}.em-pay-table td{display:flex;justify-content:space-between;align-items:baseline;gap:14px;padding:8px 0;border:0;text-align:right}.em-pay-table td:first-child{display:block;text-align:left;font-size:16px;padding:0 0 12px;border-bottom:1px solid #e4ebf4;margin-bottom:6px}.em-pay-table td:not(:first-child):before{content:attr(data-label);font:500 12px/1.5 Inter,Arial,sans-serif;color:#627b98;text-align:left;flex:0 0 95px}.em-pay-table .em-pay-value{font-size:20px;white-space:normal}.em-pay-table .em-pay-total{flex-wrap:wrap}.em-pay-unique{margin:0;font-size:12px}}
+@media(max-width:700px){#pagina-empresa-publica .em-pay-header{flex-direction:column;gap:14px}#pagina-empresa-publica .em-pay-header h2{font-size:22px!important}.em-pay-help{max-width:100%;width:100%}.em-pay-count span+span{border:0;padding:0}.em-pay-table-wrap{overflow:visible}.em-pay-table,.em-pay-table tbody{display:block;width:100%;min-width:0}.em-pay-table thead{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)}.em-pay-table tr{display:block;border:1px solid #d1e2f5;border-radius:10px;margin-bottom:12px;padding:14px;background:#fff}.em-pay-table td{display:flex;justify-content:space-between;align-items:baseline;gap:14px;padding:8px 0;border:0;text-align:right}.em-pay-table td:first-child{display:block;text-align:left;font-size:16px;padding:0 0 12px;border-bottom:1px solid #e4ebf4;margin-bottom:6px}.em-pay-table td:not(:first-child):before{content:attr(data-label);font:500 12px/1.5 Poppins,sans-serif;color:#627b98;text-align:left;flex:0 0 95px}.em-pay-table .em-pay-value{font-size:20px;white-space:normal}.em-pay-table .em-pay-total{flex-wrap:wrap}.em-pay-unique{margin:0;font-size:12px}}
 `;document.head.appendChild(style);setup();var page=document.getElementById('pagina-empresa-publica');if(page)new MutationObserver(schedule).observe(page,{childList:true,subtree:true});window.addEventListener('load',schedule);window.addEventListener('popstate',schedule);window.addEventListener('storage',schedule);}
 if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',start,{once:true});else start();
 })();

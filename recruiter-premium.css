@@ -1,6 +1,6 @@
 @layer site-typography {
 /* Compact Premium tools, shared between the recruiter shadow root and dialogs. */
-.emp-premium.emp-premium{--emp-ink:#17384e!important;--emp-muted:#667b8e!important;--emp-blue:#0065ed!important;--emp-line:#dce5ed!important;box-sizing:border-box!important;font:400 13px/1.6 Poppins,Arial,sans-serif!important;color:var(--emp-ink)!important;text-align:left!important}
+.emp-premium.emp-premium{--emp-ink:#17384e!important;--emp-muted:#667b8e!important;--emp-blue:#0065ed!important;--emp-line:#dce5ed!important;box-sizing:border-box!important;font:400 13px/1.6 Poppins,sans-serif!important;color:var(--emp-ink)!important;text-align:left!important}
 .emp-premium.emp-premium *{box-sizing:border-box!important;font-family:inherit!important}
 .emp-premium.emp-premium [hidden]{display:none!important}
 .emp-premium.emp-premium h2,.emp-premium.emp-premium p,.emp-premium.emp-premium fieldset{margin:0!important}
@@ -36,7 +36,7 @@
 .emp-premium.emp-premium .emp-picker-list{display:grid!important;grid-template-columns:1fr 1fr!important;gap:6px 12px!important;max-height:260px!important;overflow:auto!important;overscroll-behavior:contain!important}
 .emp-premium.emp-premium .emp-pick-row{display:flex!important;align-items:center!important;gap:11px!important;min-height:60px!important;padding:9px 10px!important;border:1px solid #e0e7ee!important;border-radius:8px!important;background:#fff!important;cursor:pointer!important}
 .emp-premium.emp-premium .emp-pick-row strong{font-size:12px!important;overflow-wrap:anywhere!important}
-#listaCandidatosEmpresa .emp-card-select.emp-card-select{display:inline-flex!important;flex-direction:row!important;align-items:center!important;justify-content:flex-end!important;gap:7px!important;padding:3px 0!important;margin:2px 0 0!important;font:500 11px/1.5 Poppins,Arial,sans-serif!important;color:#60758b!important;cursor:pointer!important}
+#listaCandidatosEmpresa .emp-card-select.emp-card-select{display:inline-flex!important;flex-direction:row!important;align-items:center!important;justify-content:flex-end!important;gap:7px!important;padding:3px 0!important;margin:2px 0 0!important;font:500 11px/1.5 Poppins,sans-serif!important;color:#60758b!important;cursor:pointer!important}
 #listaCandidatosEmpresa .emp-card-select input{display:inline-block!important;width:16px!important;height:16px!important;min-height:16px!important;margin:0!important;padding:0!important;accent-color:#0065ed!important}
 .emp-premium.emp-premium .emp-tasks{display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:0!important;border-top:1px solid #e7edf4!important}
 .emp-premium.emp-premium .emp-task{display:grid!important;grid-template-columns:auto 1fr auto!important;align-items:center!important;gap:12px!important;min-height:78px!important;padding:14px 18px!important;border:0!important;border-right:1px solid #e7edf4!important;background:#fff!important;color:var(--emp-ink)!important;text-align:left!important}
@@ -82,7 +82,7 @@ dialog.emp-dialog::backdrop{background:#102d436e!important;backdrop-filter:blur(
 .emp-dialog.emp-premium .emp-dialog-head h2{font-size:23px!important;font-weight:650!important;margin:4px 0 3px!important}
 .emp-dialog.emp-premium .emp-dialog-head p{font-size:12px!important;color:var(--emp-muted)!important}
 .emp-dialog.emp-premium .emp-eyebrow{font-size:9px!important;letter-spacing:1.15px!important;font-weight:600!important;color:#3d7dbb!important}
-.emp-dialog.emp-premium .emp-icon-btn{display:grid!important;place-items:center!important;width:36px!important;height:36px!important;flex:none!important;padding:0!important;border:1px solid #dce5ed!important;border-radius:8px!important;background:#fff!important;color:#5b7187!important;font:400 23px/1 Arial,sans-serif!important}
+.emp-dialog.emp-premium .emp-icon-btn{display:grid!important;place-items:center!important;width:36px!important;height:36px!important;flex:none!important;padding:0!important;border:1px solid #dce5ed!important;border-radius:8px!important;background:#fff!important;color:#5b7187!important;font:400 23px/1 Poppins,sans-serif!important}
 .emp-dialog.emp-premium .emp-dialog-body{padding:20px 24px!important}
 .emp-dialog.emp-premium .emp-table-scroll{max-width:100%!important;overflow:auto!important;overscroll-behavior:contain!important;border:1px solid #dce5ed!important;border-radius:10px!important;margin-bottom:14px!important}
 .emp-dialog.emp-premium .emp-compare-table{width:100%!important;min-width:680px!important;border-collapse:collapse!important;table-layout:fixed!important;font-size:12px!important}
@@ -122,7 +122,7 @@ dialog.emp-dialog::backdrop{background:#102d436e!important;backdrop-filter:blur(
 .emp-premium.emp-today .emp-task span{color:#35465b!important;font-weight:550!important}
 
 /* Stable daily typography, independent of inherited button shorthand. */
-.emp-premium.emp-today .emp-task{font:550 13px/1.45 Poppins,Arial,sans-serif!important}
+.emp-premium.emp-today .emp-task{font:550 13px/1.45 Poppins,sans-serif!important}
 .emp-premium.emp-today .emp-task span{font-size:13px!important;line-height:1.45!important;font-weight:550!important}
 .emp-premium.emp-today .emp-task strong{font-size:26px!important;line-height:1.2!important;font-weight:650!important;font-variant-numeric:tabular-nums!important;min-width:1.2em!important}
 .emp-premium.emp-today .emp-task i{font-size:20px!important;line-height:1!important}

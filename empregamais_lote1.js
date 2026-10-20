@@ -74,7 +74,7 @@ if(document.getElementById("em-preview-banner")) return;
 var b=document.createElement("div");
 b.id="em-preview-banner";
 b.textContent="MODO DE PRÉ-VISUALIZAÇÃO — alterações no Supabase ficam desativadas enquanto o serviço estiver bloqueado.";
-b.style.cssText="position:fixed;left:0;right:0;bottom:0;z-index:2147483647;background:#fff7ed;color:#9a3412;border-top:1px solid #fdba74;padding:9px 14px;text-align:center;font:600 12px/1.35 Inter,Arial,sans-serif;box-shadow:0 -4px 18px rgba(0,0,0,.08)";
+b.style.cssText="position:fixed;left:0;right:0;bottom:0;z-index:2147483647;background:#fff7ed;color:#9a3412;border-top:1px solid #fdba74;padding:9px 14px;text-align:center;font:600 12px/1.35 Poppins,sans-serif;box-shadow:0 -4px 18px rgba(0,0,0,.08)";
 document.body.appendChild(b);
 }
 function getEmpresa(){

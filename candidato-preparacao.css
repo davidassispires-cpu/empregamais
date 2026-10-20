@@ -6,7 +6,7 @@ html body #pagina-painel-candidato#pagina-painel-candidato.cp-enhanced{
 }
 html body #pagina-painel-candidato#pagina-painel-candidato.cp-enhanced,
 html body #pagina-painel-candidato#pagina-painel-candidato.cp-enhanced :is(h1,h2,h3,h4,p,span,small,strong,a,button,input,textarea,select,dt,dd,label,legend,summary,li){
- font-family:Inter,Arial,sans-serif!important;letter-spacing:normal!important;
+ font-family:Poppins,sans-serif!important;letter-spacing:normal!important;
 }
 html body #pagina-painel-candidato#pagina-painel-candidato.cp-enhanced .cp-profile{
  background:#fff!important;border:1px solid var(--cp-border)!important;border-radius:14px!important;
@@ -707,8 +707,8 @@ html body #pagina-candidaturas#pagina-candidaturas .cp-applications-art>svg{widt
 
 /* Account trigger matches the approved popover reference. */
 html body.cp-shell-active #cpCandidateHeader .cp-greeting{display:flex!important;align-items:center;gap:12px!important;padding:0 4px 0 16px!important;background:transparent!important;border:0!important;border-left:1px solid #d5e5f5!important;border-radius:0!important;color:#34333d!important;box-shadow:none!important}
-html body.cp-shell-active #cpCandidateHeader .cp-user-avatar{display:grid!important;place-items:center;width:44px!important;height:44px!important;flex:0 0 44px!important;border:0!important;border-radius:50%!important;background-color:#eff6ff!important;color:#34333d!important;font:600 17px Inter,Arial,sans-serif!important;opacity:1!important;visibility:visible!important}
-html body.cp-shell-active #cpCandidateHeader .cp-greeting-name{display:block!important;font:600 16px Inter,Arial,sans-serif!important;color:#34333d!important;white-space:nowrap}
+html body.cp-shell-active #cpCandidateHeader .cp-user-avatar{display:grid!important;place-items:center;width:44px!important;height:44px!important;flex:0 0 44px!important;border:0!important;border-radius:50%!important;background-color:#eff6ff!important;color:#34333d!important;font:600 17px Poppins,sans-serif!important;opacity:1!important;visibility:visible!important}
+html body.cp-shell-active #cpCandidateHeader .cp-greeting-name{display:block!important;font:600 16px Poppins,sans-serif!important;color:#34333d!important;white-space:nowrap}
 html body.cp-shell-active #cpCandidateHeader .cp-account-chevron{display:block!important;width:19px!important;height:19px!important;margin-left:0;color:#34333d!important}
 html body.cp-shell-active #cpCandidateHeader .cp-notifications{color:#34333d!important}
 html body.cp-shell-active #cpCandidateHeader .cp-notifications svg{width:25px!important;height:25px!important}
@@ -716,11 +716,11 @@ html body.cp-shell-active #cpCandidateHeader .cp-notifications svg{width:25px!im
 
 /* Approved option 6: compact modular navigation cards. */
 html body.cp-shell-active #cpCandidateHeader .cp-navigation{background:#fff!important;padding:24px 16px!important;gap:8px!important}
-html body.cp-shell-active #cpCandidateHeader .cp-navigation .cp-nav-section-label{position:relative;width:100%;margin:0 0 12px!important;padding:0 0 12px!important;border:0!important;color:#34333d!important;font:700 12px Inter,Arial,sans-serif!important;letter-spacing:.4px!important;text-transform:uppercase}
+html body.cp-shell-active #cpCandidateHeader .cp-navigation .cp-nav-section-label{position:relative;width:100%;margin:0 0 12px!important;padding:0 0 12px!important;border:0!important;color:#34333d!important;font:700 12px Poppins,sans-serif!important;letter-spacing:.4px!important;text-transform:uppercase}
 html body.cp-shell-active #cpCandidateHeader .cp-navigation .cp-nav-section-label:after{content:"";display:block;position:absolute;bottom:0;left:0;width:35px;height:3px;border-radius:2px;background:#34333d}
 html body.cp-shell-active #cpCandidateHeader .cp-navigation .cp-nav-section-label:not(:first-child){margin-top:22px!important}
 html body.cp-shell-active #cpCandidateHeader .cp-navigation button{position:relative;display:flex!important;align-items:center!important;gap:0!important;width:100%!important;min-height:49px!important;height:49px!important;padding:0 25px 0 0!important;margin:0!important;border:1px solid #eff6ff!important;border-radius:7px!important;background:#fff!important;box-shadow:none!important;overflow:hidden!important;color:#34333d!important;text-align:left!important}
-html body.cp-shell-active #cpCandidateHeader .cp-navigation button>span:not(.cp-card-icon){padding:0 11px!important;font:500 13px Inter,Arial,sans-serif!important;letter-spacing:0!important;color:#34333d!important;white-space:nowrap}
+html body.cp-shell-active #cpCandidateHeader .cp-navigation button>span:not(.cp-card-icon){padding:0 11px!important;font:500 13px Poppins,sans-serif!important;letter-spacing:0!important;color:#34333d!important;white-space:nowrap}
 html body.cp-shell-active #cpCandidateHeader .cp-navigation button>.cp-card-icon{display:grid!important;place-items:center!important;align-self:stretch!important;width:50px!important;min-width:50px!important;flex:0 0 50px!important;padding:7px!important;margin:0!important;border-right:1px solid #eff6ff!important;border-radius:0!important;background:#f8fbff!important;color:#34333d!important}
 html body.cp-shell-active #cpCandidateHeader .cp-navigation button .cp-nav-icon{width:29px!important;height:29px!important;flex:none!important;color:#34333d!important}
 html body.cp-shell-active #cpCandidateHeader .cp-navigation button:after{content:""!important;display:block!important;position:absolute;right:13px;top:19px;width:7px;height:7px;border-top:2px solid #93c5fd;border-right:2px solid #93c5fd;transform:rotate(45deg);background:none!important}
@@ -776,7 +776,7 @@ html body.cp-shell-active #cpCandidateHeader#cpCandidateHeader .cp-navigation bu
  min-width:22px!important;width:auto!important;height:22px!important;padding:0 5px!important;
  box-sizing:border-box!important;border-radius:7px!important;background:#FEF2F2!important;
  color:#B91C1C!important;border:1px solid #FECACA!important;
- font:700 12px/1 Inter,Arial,sans-serif!important;box-shadow:none!important;
+ font:700 12px/1 Poppins,sans-serif!important;box-shadow:none!important;
 }
 html body.cp-shell-active #cpCandidateHeader#cpCandidateHeader .cp-navigation button .cp-message-count[hidden]{display:none!important}
 
@@ -786,9 +786,9 @@ html body.cp-shell-active #cpCandidateHeader#cpCandidateHeader .cp-toolbar{backg
 html body.cp-shell-active #cpCandidateHeader#cpCandidateHeader .cp-toolbar>strong,html body.cp-shell-active #cpCandidateHeader#cpCandidateHeader .cp-toolbar-context{visibility:hidden}
 html body.cp-shell-active #cpCandidateHeader#cpCandidateHeader .cp-navigation{top:24px!important;left:24px!important;bottom:24px!important;width:246px!important;max-height:calc(100dvh - 48px)!important;border:0!important;border-radius:18px!important;padding:24px 14px!important;gap:7px!important;box-shadow:0 8px 32px #23494505!important;z-index:1001;overflow-y:auto!important}
 html body.cp-shell-active #cpCandidateHeader#cpCandidateHeader .cp-nav-section-label{display:none!important}
-.m3-brand{padding:0 10px 28px;font:750 27px/1.3 Inter,Arial,sans-serif;color:#34333d;letter-spacing:-1px}.m3-brand span{color:#0080c9!important}
+.m3-brand{padding:0 10px 28px;font:750 27px/1.3 Poppins,sans-serif;color:#34333d;letter-spacing:-1px}.m3-brand span{color:#0080c9!important}
 html body.cp-shell-active #cpCandidateHeader#cpCandidateHeader .cp-navigation button{background:transparent!important;border:0!important;box-shadow:none!important;min-height:52px!important;height:52px!important;flex:0 0 52px!important;border-radius:13px!important;padding:0 12px!important;gap:12px!important;overflow:visible!important}
-html body.cp-shell-active #cpCandidateHeader#cpCandidateHeader .cp-navigation button>span:not(.cp-card-icon){font:500 14px/1.3 Inter,Arial,sans-serif!important;padding:0!important;color:#34333d!important}
+html body.cp-shell-active #cpCandidateHeader#cpCandidateHeader .cp-navigation button>span:not(.cp-card-icon){font:500 14px/1.3 Poppins,sans-serif!important;padding:0!important;color:#34333d!important}
 html body.cp-shell-active #cpCandidateHeader#cpCandidateHeader .cp-navigation button>.cp-card-icon{border:0!important;background:transparent!important;padding:0!important;width:26px!important;min-width:26px!important;flex:0 0 26px!important;color:#34333d!important}
 html body.cp-shell-active #cpCandidateHeader#cpCandidateHeader .cp-card-icon svg{width:25px!important;height:25px!important}
 html body.cp-shell-active #cpCandidateHeader#cpCandidateHeader .cp-navigation button:after{display:none!important}
@@ -796,14 +796,14 @@ html body.cp-shell-active #cpCandidateHeader#cpCandidateHeader .cp-navigation bu
 html body.cp-shell-active #cpCandidateHeader#cpCandidateHeader .cp-navigation button[aria-current=page]{background:linear-gradient(110deg,#0080c9,#0080c9)!important;box-shadow:0 4px 10px #ff981f12!important}
 html body.cp-shell-active #cpCandidateHeader#cpCandidateHeader .cp-navigation button[aria-current=page]>span{color:#fff!important;font-weight:650!important}
 html body.cp-shell-active #cpCandidateHeader#cpCandidateHeader .cp-navigation button[aria-current=page] svg{color:#fff!important}
-.m3-help{margin:20px 4px 0;padding:20px 16px 16px;border-top:1px solid #eff6ff;background:linear-gradient(#f8fbff,#f8fbff);border-radius:14px;color:#34333d}.m3-help strong{display:block;font:700 18px/1.25 Inter,Arial,sans-serif}.m3-help p{font:400 12px/1.5 Inter,Arial,sans-serif;color:#0080c9;margin:12px 0}.m3-help svg{width:100%;height:90px}.m3-help button{border:1px solid #0080c9!important;color:#0080c9!important;justify-content:center!important;font-weight:650!important;min-height:38px!important}
+.m3-help{margin:20px 4px 0;padding:20px 16px 16px;border-top:1px solid #eff6ff;background:linear-gradient(#f8fbff,#f8fbff);border-radius:14px;color:#34333d}.m3-help strong{display:block;font:700 18px/1.25 Poppins,sans-serif}.m3-help p{font:400 12px/1.5 Poppins,sans-serif;color:#0080c9;margin:12px 0}.m3-help svg{width:100%;height:90px}.m3-help button{border:1px solid #0080c9!important;color:#0080c9!important;justify-content:center!important;font-weight:650!important;min-height:38px!important}
 html body #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato.cp-enhanced{background:#f8fbff!important;--cp-navy:#34333d;--cp-bg:#f8fbff}
 html body #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato .container-dashboard{max-width:1600px!important;padding:8px 26px 32px!important}
 html body #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato .cp-home-intro{display:flex!important;align-items:center;justify-content:space-between;position:relative;overflow:hidden;min-height:290px;padding:32px 38px!important;border-radius:18px!important;background:linear-gradient(110deg,#0080c9,#0080c9)!important;margin:0 0 18px!important;box-sizing:border-box;gap:12px}
-.m3-welcome{position:relative;z-index:1;flex:1}.m3-welcome>small{color:#eff6ff!important;font:500 10px Inter,Arial,sans-serif!important;letter-spacing:1.7px!important}
-html body #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato .cp-home-intro h1{font:750 clamp(30px,3.6vw,53px)/1.15 Inter,Arial,sans-serif!important;letter-spacing:-1px!important;color:white!important;margin:16px 0 12px!important}
-html body #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato .cp-home-intro p{font:400 16px/1.55 Inter,Arial,sans-serif!important;color:#eff6ff!important;margin:0 0 22px!important}
-.m3-welcome button{background:#0080c9!important;color:#fff!important;border:0!important;border-radius:11px;padding:13px 22px;font:650 13px Inter,Arial,sans-serif;cursor:pointer}.m3-welcome button span{margin-left:24px;font-size:21px}.m3-art{width:44%;max-width:460px;flex-shrink:0}.m3-art svg{display:block;width:100%;height:auto}
+.m3-welcome{position:relative;z-index:1;flex:1}.m3-welcome>small{color:#eff6ff!important;font:500 10px Poppins,sans-serif!important;letter-spacing:1.7px!important}
+html body #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato .cp-home-intro h1{font:750 clamp(30px,3.6vw,53px)/1.15 Poppins,sans-serif!important;letter-spacing:-1px!important;color:white!important;margin:16px 0 12px!important}
+html body #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato .cp-home-intro p{font:400 16px/1.55 Poppins,sans-serif!important;color:#eff6ff!important;margin:0 0 22px!important}
+.m3-welcome button{background:#0080c9!important;color:#fff!important;border:0!important;border-radius:11px;padding:13px 22px;font:650 13px Poppins,sans-serif;cursor:pointer}.m3-welcome button span{margin-left:24px;font-size:21px}.m3-art{width:44%;max-width:460px;flex-shrink:0}.m3-art svg{display:block;width:100%;height:auto}
 html body #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato :is(.cp-profile,.cp-search,.cp-banner){display:none!important}
 /* Stretch every dashboard row after changing the legacy grid to a column flex layout. */
 html body #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato .cp-layout{display:flex!important;flex-direction:column!important;align-items:stretch!important;min-width:0!important;gap:18px!important}
@@ -830,7 +830,7 @@ html body #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candida
 html body #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato .cp-home-intro{background-color:#34333d!important}
 html body #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato .m3-welcome p{color:#eff6ff!important}
 html body #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato .m3-welcome small{color:#d5e5f5!important}
-html body #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato .m3-welcome h1{font-family:Inter,Arial,sans-serif!important;font-weight:750!important}
+html body #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato .m3-welcome h1{font-family:Poppins,sans-serif!important;font-weight:750!important}
 html body #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato .cp-overview-arrow{display:grid!important;place-items:center!important;flex:0 0 25px!important;width:25px!important;height:25px!important;padding:2px!important}
 html body #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato .cp-overview-arrow svg{width:17px!important;height:17px!important}
 html body #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato .cp-home-activity h3{font-size:19px!important}
@@ -868,16 +868,16 @@ html body #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candida
 
 /* Model 3 refinement: one consistent size and color hierarchy. */
 @layer site-typography {
- html body.cp-shell-active #pagina-painel-candidato.cp-enhanced .cp-home-intro .m3-welcome h1{font-family:Inter,Arial,sans-serif!important;font-size:42px!important;font-weight:700!important;line-height:1.1!important;color:#fff!important}
- html body.cp-shell-active #pagina-painel-candidato.cp-enhanced .cp-home-intro .m3-welcome p{font-family:Inter,Arial,sans-serif!important;font-size:15px!important;font-weight:400!important;line-height:1.5!important;color:#eff6ff!important}
+ html body.cp-shell-active #pagina-painel-candidato.cp-enhanced .cp-home-intro .m3-welcome h1{font-family:Poppins,sans-serif!important;font-size:42px!important;font-weight:700!important;line-height:1.1!important;color:#fff!important}
+ html body.cp-shell-active #pagina-painel-candidato.cp-enhanced .cp-home-intro .m3-welcome p{font-family:Poppins,sans-serif!important;font-size:15px!important;font-weight:400!important;line-height:1.5!important;color:#eff6ff!important}
  html body.cp-shell-active #pagina-painel-candidato.cp-enhanced .cp-home-intro .m3-welcome small{font-size:10px!important;font-weight:500!important;letter-spacing:1.3px!important;color:#eff6ff!important}
  html body.cp-shell-active #pagina-painel-candidato.cp-enhanced .cp-home-intro .m3-welcome button{color:#fff!important;font-size:13px!important;font-weight:600!important}
- html body.cp-shell-active #pagina-painel-candidato.cp-enhanced .cp-home-intro .m3-motto{color:#eff6ff!important;font:500 9px/1.7 Inter,Arial,sans-serif!important;letter-spacing:1.4px!important}
- html body.cp-shell-active #cpCandidateHeader .m3-help strong{font:700 17px/1.22 Inter,Arial,sans-serif!important;color:#34333d!important}
- html body.cp-shell-active #cpCandidateHeader .m3-help p{font:400 12px/1.35 Inter,Arial,sans-serif!important;color:#0080c9!important}
- html body.cp-shell-active #cpCandidateHeader .m3-help button{font:600 12px/1.3 Inter,Arial,sans-serif!important;color:#0080c9!important}
+ html body.cp-shell-active #pagina-painel-candidato.cp-enhanced .cp-home-intro .m3-motto{color:#eff6ff!important;font:500 9px/1.7 Poppins,sans-serif!important;letter-spacing:1.4px!important}
+ html body.cp-shell-active #cpCandidateHeader .m3-help strong{font:700 17px/1.22 Poppins,sans-serif!important;color:#34333d!important}
+ html body.cp-shell-active #cpCandidateHeader .m3-help p{font:400 12px/1.35 Poppins,sans-serif!important;color:#0080c9!important}
+ html body.cp-shell-active #cpCandidateHeader .m3-help button{font:600 12px/1.3 Poppins,sans-serif!important;color:#0080c9!important}
  html body.cp-shell-active #pagina-painel-candidato.cp-enhanced .em-personal-head a{color:#0080c9!important}
- html body.cp-shell-active #pagina-painel-candidato.cp-enhanced .cp-overview-card div>span{font:400 13px/1.3 Inter,Arial,sans-serif!important;color:#0080c9!important}
+ html body.cp-shell-active #pagina-painel-candidato.cp-enhanced .cp-overview-card div>span{font:400 13px/1.3 Poppins,sans-serif!important;color:#0080c9!important}
 }
 html body.cp-shell-active{--candidate-primary:#0080c9!important;--candidate-soft:#f8fbff!important;--roxo:#0080c9!important;--roxoClaro:#f8fbff!important}
 html body #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato.cp-enhanced{--cp-lilac:#0080c9;--cp-pale-lilac:#f8fbff;--roxo:#0080c9;--roxoClaro:#f8fbff}
@@ -922,7 +922,7 @@ html body.cp-shell-active #cpCandidateHeader#cpCandidateHeader .cp-navigation bu
 html body.cp-shell-active #cpCandidateHeader#cpCandidateHeader .cp-navigation .cp-card-icon .m3-nav-svg{width:25px!important;height:27px!important;flex:none!important;filter:drop-shadow(0 1px 1px #29575112)}
 html body.cp-shell-active #cpCandidateHeader#cpCandidateHeader .cp-navigation button[data-route][aria-current=page]{--nav-stroke:#fff;--nav-accent:#fff;--nav-fill:#ffffff18}
 html body.cp-shell-active #cpCandidateHeader#cpCandidateHeader .cp-navigation button[data-route][aria-current=page]>.cp-card-icon{background:#ffffff15!important;border-color:#ffffff32!important;box-shadow:none!important}
-html body.cp-shell-active #cpCandidateHeader#cpCandidateHeader .cp-navigation button[data-route=messages]>.cp-message-count{display:grid!important;place-items:center!important;right:12px!important;width:20px!important;height:20px!important;min-width:20px!important;padding:0!important;border:0!important;border-radius:50%!important;background:#dc2626!important;color:#fff!important;box-shadow:none!important;font:700 11px/20px Inter,Arial,sans-serif!important}
+html body.cp-shell-active #cpCandidateHeader#cpCandidateHeader .cp-navigation button[data-route=messages]>.cp-message-count{display:grid!important;place-items:center!important;right:12px!important;width:20px!important;height:20px!important;min-width:20px!important;padding:0!important;border:0!important;border-radius:50%!important;background:#dc2626!important;color:#fff!important;box-shadow:none!important;font:700 11px/20px Poppins,sans-serif!important}
 html body.cp-shell-active #cpCandidateHeader#cpCandidateHeader .cp-navigation button[data-route=messages]>.cp-message-count[hidden]{display:none!important}
 @layer site-typography{html body.cp-shell-active #cpCandidateHeader#cpCandidateHeader .cp-navigation button[data-route=messages]>.cp-message-count{color:#fff!important;font-size:11px!important;font-weight:700!important}}
 @media(max-width:850px){html body.cp-shell-active #cpCandidateHeader#cpCandidateHeader .cp-navigation button[data-route]{gap:9px!important;min-width:155px!important}html body.cp-shell-active #cpCandidateHeader#cpCandidateHeader .cp-navigation button[data-route]>.cp-card-icon{width:32px!important;height:32px!important;min-width:32px!important;flex-basis:32px!important}}
@@ -1129,11 +1129,11 @@ html body #pagina-candidaturas#pagina-candidaturas#pagina-candidaturas .cp-card-
   width:min(480px,calc(100vw - 32px))!important;max-width:480px!important;height:fit-content!important;max-height:calc(100dvh - 32px)!important;
   padding:24px!important;border:1px solid #dce4e7!important;border-radius:14px!important;
   background:#fff!important;color:#475569!important;box-shadow:0 20px 70px #102a4333!important;overflow:auto!important;
-  font:400 14px/1.6 Inter,Arial,sans-serif!important;
+  font:400 14px/1.6 Poppins,sans-serif!important;
  }
  html body dialog.cp-cancel-modal.cp-cancel-modal::backdrop{background:#102a4370!important}
- html body dialog.cp-cancel-modal.cp-cancel-modal h2{font:700 22px/1.3 Inter,Arial,sans-serif!important;color:#243747!important;margin:0 0 10px!important}
- html body dialog.cp-cancel-modal.cp-cancel-modal p{font:400 14px/1.6 Inter,Arial,sans-serif!important;color:#526174!important;margin:0 0 12px!important}
+ html body dialog.cp-cancel-modal.cp-cancel-modal h2{font:700 22px/1.3 Poppins,sans-serif!important;color:#243747!important;margin:0 0 10px!important}
+ html body dialog.cp-cancel-modal.cp-cancel-modal p{font:400 14px/1.6 Poppins,sans-serif!important;color:#526174!important;margin:0 0 12px!important}
  html body dialog.cp-cancel-modal.cp-cancel-modal .cp-cancel-job{font-weight:600!important;color:#34333d!important}
  html body dialog.cp-cancel-modal.cp-cancel-modal .cp-cancel-status:empty{display:none!important}
  html body dialog.cp-cancel-modal.cp-cancel-modal footer{
@@ -1144,7 +1144,7 @@ html body #pagina-candidaturas#pagina-candidaturas#pagina-candidaturas .cp-card-
  html body dialog.cp-cancel-modal.cp-cancel-modal button{
   position:static!important;box-sizing:border-box!important;min-height:42px!important;width:auto!important;flex:1 1 auto!important;
   padding:10px 14px!important;margin:0!important;border:1px solid #cad5dc!important;border-radius:8px!important;
-  background:#fff!important;color:#314b5d!important;box-shadow:none!important;font:600 13px/1.4 Inter,Arial,sans-serif!important;
+  background:#fff!important;color:#314b5d!important;box-shadow:none!important;font:600 13px/1.4 Poppins,sans-serif!important;
   white-space:normal!important;cursor:pointer!important;
  }
  html body dialog.cp-cancel-modal.cp-cancel-modal .cp-confirm-cancel{background:#b6432e!important;border-color:#b6432e!important;color:#fff!important}
@@ -1160,7 +1160,7 @@ html body #pagina-candidaturas#pagina-candidaturas#pagina-candidaturas .cp-card-
 @layer site-typography {
  html body.cp-shell-active #cpCandidateHeader#cpCandidateHeader#cpCandidateHeader .cp-navigation,
  html body.cp-shell-active #cpCandidateHeader#cpCandidateHeader#cpCandidateHeader .cp-navigation *{
-  font-family:'Montserrat Applications',Montserrat,Arial,sans-serif!important;font-style:normal!important;
+  font-family:Poppins,sans-serif!important;font-style:normal!important;
  }
  html body.cp-shell-active #cpCandidateHeader#cpCandidateHeader#cpCandidateHeader .cp-navigation button[data-route][aria-current=page]{
   --nav-stroke:#34333d!important;--nav-accent:#0080c9!important;--nav-fill:#eff6ff!important;
@@ -1196,7 +1196,7 @@ html body #pagina-candidaturas#pagina-candidaturas#pagina-candidaturas .cp-card-
  html body #pagina-candidaturas#pagina-candidaturas#pagina-candidaturas :is(p,small,span,a,button,label,strong,dt,dd,time) *,
  html body dialog.cp-cancel-modal.cp-cancel-modal :is(p,small,span,a,button,label,strong),
  html body dialog.cp-process-modal.cp-process-modal :is(p,small,span,a,button,label,strong,dt,dd){
-  font-family:'Montserrat Applications',Montserrat,Arial,sans-serif!important;
+  font-family:Poppins,sans-serif!important;
   font-style:normal!important;
  }
 }
@@ -1205,7 +1205,7 @@ html body #pagina-candidaturas#pagina-candidaturas#pagina-candidaturas .cp-card-
 @layer field-feedback {
  html body #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato,
  html body #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato *{
-  font-family:'Montserrat Applications',Montserrat,Arial,sans-serif!important;
+  font-family:Poppins,sans-serif!important;
   font-style:normal!important;
  }
  html body #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato :is(p,small,label,dt,dd),
@@ -1329,7 +1329,7 @@ html body.cp-shell-active :is(#cpCandidateHeader#cpCandidateHeader#cpCandidateHe
 
 /* Premium vacancy indicator uses the approved candidate palette. */
 @layer field-feedback {
-html body .cp-low-competition{display:inline-flex!important;align-items:center!important;gap:5px!important;max-width:100%;padding:4px 8px!important;margin:5px 0!important;border:1px solid #e7ca66!important;border-radius:6px!important;background:#fff8df!important;color:#0080c9!important;font:600 10px/1.4 Inter,Arial,sans-serif!important;white-space:nowrap!important}
+html body .cp-low-competition{display:inline-flex!important;align-items:center!important;gap:5px!important;max-width:100%;padding:4px 8px!important;margin:5px 0!important;border:1px solid #e7ca66!important;border-radius:6px!important;background:#fff8df!important;color:#0080c9!important;font:600 10px/1.4 Poppins,sans-serif!important;white-space:nowrap!important}
 html body .cp-low-competition svg{width:13px!important;height:13px!important;flex:0 0 13px!important;stroke:currentColor!important;fill:none!important}
 }
 

@@ -25,7 +25,7 @@
  }
  function show(text){
   feedback=text;var host=document.getElementById('listaCandidatosEmpresa');if(!host)return;
-  var bar=document.getElementById('emRecruiterStateSync');if(!bar){bar=document.createElement('div');bar.id='emRecruiterStateSync';bar.setAttribute('role','status');bar.setAttribute('aria-live','polite');bar.style.cssText='display:flex;flex-wrap:wrap;gap:10px;align-items:center;padding:10px 0;color:#52657a;font:500 12px/1.5 Inter,Arial,sans-serif';var span=document.createElement('span'),button=document.createElement('button');button.type='button';button.textContent='Sincronizar alterações';button.onclick=function(){sync(true);};bar.append(span,button);host.prepend(bar);}
+  var bar=document.getElementById('emRecruiterStateSync');if(!bar){bar=document.createElement('div');bar.id='emRecruiterStateSync';bar.setAttribute('role','status');bar.setAttribute('aria-live','polite');bar.style.cssText='display:flex;flex-wrap:wrap;gap:10px;align-items:center;padding:10px 0;color:#52657a;font:500 12px/1.5 Poppins,sans-serif';var span=document.createElement('span'),button=document.createElement('button');button.type='button';button.textContent='Sincronizar alterações';button.onclick=function(){sync(true);};bar.append(span,button);host.prepend(bar);}
   bar.firstChild.textContent=text;bar.lastChild.disabled=busy;
  }
  function switchOwner(){

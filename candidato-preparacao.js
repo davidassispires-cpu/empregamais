@@ -309,7 +309,7 @@
   if(conf||!demo)return icon('briefcase');
   var retail=String(job.empresa||'').indexOf('Varejo')>=0;
   var initials=retail?'VD':'ED',color=retail?'#5b4b8a':'#00689d';
-  return '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40" role="img" aria-label="'+escape('Logo fictícia de '+(job.empresa||'Empresa Demonstração'))+'" style="width:30px;height:30px;max-width:none;flex:none"><rect width="40" height="40" rx="8" fill="'+color+'"/><path d="M8 10h24" stroke="#fff" stroke-opacity=".45" stroke-width="2"/><text x="20" y="27" text-anchor="middle" fill="#fff" font-family="Arial,sans-serif" font-size="16" font-weight="700" letter-spacing="-1">'+initials+'</text></svg>';
+  return '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40" role="img" aria-label="'+escape('Logo fictícia de '+(job.empresa||'Empresa Demonstração'))+'" style="width:30px;height:30px;max-width:none;flex:none"><rect width="40" height="40" rx="8" fill="'+color+'"/><path d="M8 10h24" stroke="#fff" stroke-opacity=".45" stroke-width="2"/><text x="20" y="27" text-anchor="middle" fill="#fff" font-family="Poppins,sans-serif" font-size="16" font-weight="700" letter-spacing="-1">'+initials+'</text></svg>';
  }
  function recommendationIndicator(percent,id){
   if(typeof percent!=='number'||!Number.isFinite(percent))return '';
@@ -508,7 +508,7 @@
  function applyWorkspaceFont(scope){
   if(!scope)return;
   scope.querySelectorAll('h1,h2,h3,h4,p,span,small,strong,button,a,label,legend,input,textarea,dt,dd,li,summary').forEach(function(el){
-   var family="'Montserrat Applications', Montserrat, Arial, sans-serif";
+   var family="Poppins,sans-serif";
    if(el.style.getPropertyValue('font-family')!==family)el.style.setProperty('font-family',family,'important');
   });
  }
@@ -553,7 +553,7 @@
  function styles(){if(document.getElementById('emCandidateProfileStyle'))return;var el=document.createElement('style');el.id='emCandidateProfileStyle';el.textContent=`
  #emCandidateProfile{width:min(720px,calc(100vw - 32px));max-height:calc(100dvh - 32px);box-sizing:border-box;padding:0;border:1px solid #d3def3;border-radius:18px;background:#fff;color:#34333d;box-shadow:0 24px 80px #29575133;overflow:auto}
  #emCandidateProfile::backdrop{background:#0080c966}
- #emCandidateProfile *{box-sizing:border-box;font-family:Inter,Arial,sans-serif!important}
+ #emCandidateProfile *{box-sizing:border-box;font-family:Poppins,sans-serif!important}
  #emCandidateProfile .ep-head{display:flex;justify-content:space-between;gap:16px;padding:24px 28px;border-bottom:1px solid #e9eef8}
  #emCandidateProfile h2{font-size:23px!important;margin:0 0 6px;font-weight:700!important}#emCandidateProfile h3{font-size:16px!important;margin:0 0 12px;font-weight:650!important}
  #emCandidateProfile p{font-size:12px!important;line-height:1.7;color:#64748b!important;margin:0 0 14px}
@@ -779,12 +779,12 @@
   panel=document.createElement('section');panel.id='emCandidateAccountMenu';panel.setAttribute('aria-label','Minha conta');
   var photo=/^data:image\/(jpeg|png|webp);base64,/.test(p.fotoPerfil||'')?'<img alt="" src="'+p.fotoPerfil+'">':'<span class="em-account-initials">'+esc(name.split(/\s+/).filter(Boolean).slice(0,2).map(function(x){return x[0];}).join('').toUpperCase())+'</span>';
   panel.innerHTML='<div class="em-account-top"><span class="em-account-avatar">'+photo+'</span><div><strong>'+esc(name)+'</strong><small>Minha conta</small></div><button type="button" data-account="close" aria-label="Fechar menu">×</button></div><div class="em-account-links">'+[['alerts','Alertas de vagas','bell'],['access','Dados de acesso','key'],['communications','Comunicações','mail'],['premium-candidato','Conhecer Premium','crown']].map(function(r){return '<button type="button" data-account="'+r[0]+'">'+'<span class="em-account-card-icon">'+icon(r[2])+'</span><span>'+r[1]+'</span></button>';}).join('')+'</div><button type="button" class="em-account-logout" data-account="logout">'+icon('power')+'Encerrar sessão</button>';
-  var footer=document.createElement('div');footer.className='em-account-footer';footer.appendChild(panel.querySelector('.em-account-logout'));panel.appendChild(footer);panel.querySelectorAll('.em-account-initials').forEach(function(el){el.style.setProperty('color','#fff','important');});panel.querySelectorAll('*').forEach(function(el){el.style.setProperty('font-family','Inter, Arial, sans-serif','important');});document.body.appendChild(panel);button.setAttribute('aria-controls',panel.id);button.setAttribute('aria-expanded','true');place();
+  var footer=document.createElement('div');footer.className='em-account-footer';footer.appendChild(panel.querySelector('.em-account-logout'));panel.appendChild(footer);panel.querySelectorAll('.em-account-initials').forEach(function(el){el.style.setProperty('color','#fff','important');});panel.querySelectorAll('*').forEach(function(el){el.style.setProperty('font-family','Poppins,sans-serif','important');});document.body.appendChild(panel);button.setAttribute('aria-controls',panel.id);button.setAttribute('aria-expanded','true');place();
   panel.onclick=function(e){var b=e.target.closest('[data-account]');if(!b)return;var key=b.dataset.account;if(key==='close')close(true);else if(key==='logout'){close();if(window.sairTodasContas)window.sairTodasContas();}else if(['access','communications','visibility','status'].includes(key))info(key);else go(key==='alerts'?'painel-candidato':key);};
   if(keyboard)panel.querySelector('[data-account=alerts]').focus();
  }
  var style=document.createElement('style');style.textContent=`
- #emCandidateAccountMenu{position:fixed;z-index:10050;box-sizing:border-box;width:410px;max-width:calc(100vw - 24px);padding:0;background:#fff;border:1px solid #93c5fd;border-radius:10px;box-shadow:0 9px 21px #29575124;color:#34333d;font-family:Inter,Arial,sans-serif}
+ #emCandidateAccountMenu{position:fixed;z-index:10050;box-sizing:border-box;width:410px;max-width:calc(100vw - 24px);padding:0;background:#fff;border:1px solid #93c5fd;border-radius:10px;box-shadow:0 9px 21px #29575124;color:#34333d;font-family:Poppins,sans-serif}
  #emCandidateAccountMenu *{box-sizing:border-box}
  #emCandidateAccountMenu:before{content:'';position:absolute;top:-9px;right:60px;width:16px;height:16px;background:white;border-left:1px solid #93c5fd;border-top:1px solid #93c5fd;transform:rotate(45deg)}
  #emCandidateAccountMenu .em-account-top{position:relative;display:flex;align-items:center;gap:14px;min-height:83px;padding:18px;border-bottom:1px solid #eff6ff;background:white;border-radius:10px 10px 0 0}
@@ -917,12 +917,12 @@
  #cpCandidateHeader .cp-resume-complete>.cp-card-icon{grid-column:1;grid-row:1/3}
  #cpCandidateHeader .cp-resume-complete>span:not(.cp-card-icon):not(.cp-resume-state){grid-column:2;grid-row:1;font-weight:700!important}
  #cpCandidateHeader .cp-resume-state{display:contents!important}
- #cpCandidateHeader .cp-resume-state small{grid-column:2;grid-row:2;font:500 11px/1.3 Inter,Arial,sans-serif!important;color:#0080c9!important}
+ #cpCandidateHeader .cp-resume-state small{grid-column:2;grid-row:2;font:500 11px/1.3 Poppins,sans-serif!important;color:#0080c9!important}
  #cpCandidateHeader .cp-resume-state svg{grid-column:3;grid-row:1/3;width:20px!important;height:20px!important;color:#2858a0!important}
- #cpCandidateHeader .cp-recommendation-count{display:inline-grid!important;place-items:center!important;margin-left:auto!important;flex:0 0 auto!important;min-width:20px!important;height:20px!important;padding:0 4px!important;border-radius:20px!important;background:#dc2626!important;color:#fff!important;font:700 11px/20px Inter,Arial,sans-serif!important}
+ #cpCandidateHeader .cp-recommendation-count{display:inline-grid!important;place-items:center!important;margin-left:auto!important;flex:0 0 auto!important;min-width:20px!important;height:20px!important;padding:0 4px!important;border-radius:20px!important;background:#dc2626!important;color:#fff!important;font:700 11px/20px Poppins,sans-serif!important}
  html body.cp-shell-active #cpCandidateHeader .cp-navigation button.cp-recommendation-notice{position:relative!important;display:block!important;width:100%!important;box-sizing:border-box!important;margin:3px 0 7px!important;padding:10px 23px 10px 11px!important;border:1px solid #fed3b0!important;border-left:3px solid #f28b36!important;border-radius:6px!important;background:#fff!important;text-align:left!important;white-space:normal!important;min-height:0!important;color:#243b63!important}
- #cpCandidateHeader .cp-recommendation-notice strong{display:block!important;font:600 11px/1.45 Inter,Arial,sans-serif!important;color:#243b63!important}
- #cpCandidateHeader .cp-recommendation-notice small{display:block!important;margin-top:4px!important;font:500 11px/1.3 Inter,Arial,sans-serif!important;color:#62738a!important}
+ #cpCandidateHeader .cp-recommendation-notice strong{display:block!important;font:600 11px/1.45 Poppins,sans-serif!important;color:#243b63!important}
+ #cpCandidateHeader .cp-recommendation-notice small{display:block!important;margin-top:4px!important;font:500 11px/1.3 Poppins,sans-serif!important;color:#62738a!important}
  #cpCandidateHeader .cp-recommendation-notice>span{position:absolute;right:9px;top:50%;transform:translateY(-50%);color:#ed7825!important;font-size:23px!important}
  #cpCandidateHeader .cp-recommendation-notice:focus-visible{outline:2px solid #0080c9!important;outline-offset:2px!important}
  `;document.head.appendChild(style);

@@ -211,7 +211,7 @@ return old.apply(this,arguments);
   var home=document.getElementById('pagina-home'),list=document.getElementById('listaVagas'),filters=document.getElementById('filtrosLateral');if(!home||!list||!filters||document.getElementById('emHomeProfessional'))return;
   var style=document.createElement('style');style.id='emHomeProfessional';style.textContent=`
 html body #pagina-home#pagina-home{background:#f6f7fb!important}
-html body #pagina-home#pagina-home :is(h1,h2,h3,p,button,input,select,article,span){font-family:Inter,Arial,sans-serif!important;font-style:normal!important}
+html body #pagina-home#pagina-home :is(h1,h2,h3,p,button,input,select,article,span){font-family:Poppins,sans-serif!important;font-style:normal!important}
 html body #pagina-home#pagina-home #emHeroFloripa.hero{padding:28px 24px!important;min-height:0!important}
 html body #pagina-home#pagina-home #emHeroFloripa .hero-premium-inner-em{gap:28px!important}
 html body #pagina-home#pagina-home #emHeroFloripa h1{font-size:32px!important;margin-bottom:10px!important;line-height:1.2!important}

@@ -113,7 +113,7 @@ html body #pagina-home #listaDestaques.destaques{display:grid!important;grid-tem
 html body #pagina-home #listaDestaques .card-destaque{width:100%!important;min-width:0!important;max-width:none!important;height:auto!important;min-height:280px!important;max-height:none!important;overflow:visible!important;display:flex!important;flex-direction:column!important;padding:16px!important;border:1px solid #e1e8f2!important;border-radius:14px!important;background:#fff!important;box-shadow:0 3px 12px rgba(15,42,77,.05)!important;}
 html body #pagina-home #listaDestaques .card-destaque .vaga-card-top{height:auto!important;min-height:0!important;flex:0 0 auto!important;}
 html body #pagina-home #listaDestaques .card-destaque .vaga-card-footer{display:flex!important;flex-direction:column!important;width:100%!important;height:auto!important;min-height:0!important;max-height:none!important;margin-top:auto!important;padding-top:12px!important;}
-html body #pagina-home #listaDestaques .card-destaque .btn-azul{display:flex!important;align-items:center!important;justify-content:center!important;box-sizing:border-box!important;width:100%!important;max-width:none!important;height:48px!important;min-height:48px!important;padding:0 12px!important;margin:0!important;border:0!important;border-radius:9px!important;background:#ff941e!important;color:#fff!important;font:750 14px Inter,Arial,sans-serif!important;box-shadow:none!important;}
+html body #pagina-home #listaDestaques .card-destaque .btn-azul{display:flex!important;align-items:center!important;justify-content:center!important;box-sizing:border-box!important;width:100%!important;max-width:none!important;height:48px!important;min-height:48px!important;padding:0 12px!important;margin:0!important;border:0!important;border-radius:9px!important;background:#ff941e!important;color:#fff!important;font:750 14px Poppins,sans-serif!important;box-shadow:none!important;}
 html body #pagina-home #listaDestaques .card-destaque .btn-azul:hover{background:#e9810c!important;}
 @media(max-width:759px){html body #pagina-home #listaDestaques.destaques{grid-template-columns:1fr!important;}}
 
@@ -485,7 +485,7 @@ html body #pagina-home#pagina-home #vagas .em-job-browser-controls .vagas-toolba
 html body #pagina-home#pagina-home #vagas .em-job-browser-controls .ordenacao {display:flex!important;align-items:center!important;gap:8px!important;min-width:0!important}
 html body #pagina-home#pagina-home #vagas .em-job-browser-filters {flex:0 0 auto!important;min-width:0!important;margin:0!important}
 html body #pagina-home#pagina-home #vagas .em-job-browser-filters[open] {flex-basis:100%!important}
-html body #pagina-home#pagina-home #vagas .em-job-browser-filters>summary {--candidate-contrast-ink:#0078bd!important;cursor:pointer!important;width:max-content!important;max-width:100%!important;padding:10px 14px!important;border:1px solid #d8e3ee!important;border-radius:7px!important;background:#fff!important;color:#0078bd!important;font:600 12px/1.5 Montserrat,Arial,sans-serif!important}
+html body #pagina-home#pagina-home #vagas .em-job-browser-filters>summary {--candidate-contrast-ink:#0078bd!important;cursor:pointer!important;width:max-content!important;max-width:100%!important;padding:10px 14px!important;border:1px solid #d8e3ee!important;border-radius:7px!important;background:#fff!important;color:#0078bd!important;font:600 12px/1.5 Poppins,sans-serif!important}
 html body #pagina-home#pagina-home #vagas#vagas #emJobBrowserFilters #filtrosLateral {display:grid!important;grid-template-columns:minmax(220px,280px) minmax(0,1fr)!important;align-items:start!important;gap:20px!important;position:static!important;inset:auto!important;width:100%!important;max-width:none!important;height:auto!important;max-height:none!important;margin:14px 0 0!important;padding:18px!important;border:1px solid #e0e6ee!important;border-radius:10px!important;background:#fff!important;overflow:visible!important;box-shadow:none!important;transform:none!important}
 html body #pagina-home#pagina-home #vagas#vagas #emJobBrowserFilters .em-home-filter-panel {display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;align-items:start!important;gap:12px!important;width:100%!important;min-width:0!important;margin:0!important}
 html body #pagina-home#pagina-home #vagas#vagas #emJobBrowserFilters .em-home-filter-panel>.filtros-cab {grid-column:1/-1!important}
@@ -514,7 +514,7 @@ html body #pagina-home #emJobBrowser #listaVagas {gap:12px!important;width:100%!
 
 html body #pagina-home #emJobBrowser .em-job-panel {--candidate-contrast-ink:#526174!important;grid-column:2!important;position:sticky!important;top:96px!important;display:block!important;width:100%!important;min-width:0!important;min-height:min(420px,calc(100dvh - 120px))!important;max-height:calc(100dvh - 120px)!important;overflow:auto!important;overscroll-behavior:contain!important;scrollbar-gutter:stable!important;border:1px solid #dce3ec!important;border-radius:12px!important;background:#fff!important;box-shadow:0 2px 8px #10274406!important;color:#526174!important;scroll-margin-top:96px!important}
 html body #pagina-home #emJobBrowser .em-job-panel,
-html body #pagina-home #emJobBrowser .em-job-panel * {font-family:Montserrat,Inter,Arial,sans-serif!important;font-style:normal!important;letter-spacing:normal!important;box-sizing:border-box!important}
+html body #pagina-home #emJobBrowser .em-job-panel * {font-family:Poppins,sans-serif!important;font-style:normal!important;letter-spacing:normal!important;box-sizing:border-box!important}
 
 
 
@@ -576,10 +576,7 @@ html body #pagina-home#pagina-home #vagas .em-job-browser-filters>summary:focus-
 }
 
 
-@font-face {
-  font-family:"EM Recent Montserrat";font-style:normal;font-weight:100 900;font-display:swap;
-  src:url("assets/fonts/cf-montserrat.woff") format("woff");
-}
+
 
 @layer candidate-palette {
 
@@ -593,7 +590,7 @@ html body #pagina-home#pagina-home #vagas .em-job-browser-controls .resultados s
 html body #pagina-home#pagina-home #vagas .em-job-browser-controls .ordenacao {color:#64748b!important;font-size:12px!important}
 html body #pagina-home#pagina-home #vagas .em-job-browser-controls .ordenacao select {
   height:36px!important;margin:0!important;padding:6px 28px 6px 10px!important;border:1px solid #dce4ed!important;border-radius:7px!important;
-  background-color:#fff!important;color:#334155!important;font:500 12px/1.5 Montserrat,Arial,sans-serif!important;
+  background-color:#fff!important;color:#334155!important;font:500 12px/1.5 Poppins,sans-serif!important;
 }
 html body #pagina-home#pagina-home #vagas .em-job-browser-filters>summary {padding:8px 13px!important;border-color:#dce4ed!important;border-radius:7px!important}
 html body #pagina-home #emJobBrowser {gap:32px!important}
@@ -635,7 +632,7 @@ html body #pagina-home #emJobBrowser .em-job-panel {
 }
 html body #pagina-home #emJobBrowser .em-job-panel,
 html body #pagina-home #emJobBrowser .em-job-panel * {
-  font-family:"EM Recent Montserrat",Montserrat,Arial,sans-serif!important;font-synthesis:none!important;text-align:center!important;
+  font-family:Poppins,sans-serif!important;font-synthesis:none!important;text-align:center!important;
 }
 
 
@@ -712,7 +709,7 @@ html body #pagina-home #emJobBrowser .em-jb-footer .em-jb-demo {
 
 @layer candidate-palette {
 html body #pagina-home#pagina-home #listaDestaques#listaDestaques#listaDestaques#listaDestaques article.em-featured-reference.em-featured-reference.em-featured-orange2 {display:grid!important;grid-template-columns:minmax(0,1fr)!important;grid-template-areas:"heading" "title" "info" "salary" "footer"!important;grid-template-rows:44px 44px 66px 40px 38px!important;gap:10px!important;height:310px!important;min-height:310px!important;max-height:310px!important;padding:18px 14px!important;border:1px solid #dfe5ed!important;border-left:1px solid #dfe5ed!important;border-radius:10px!important;background:#fff!important;box-shadow:0 2px 5px #10274408!important;align-content:start!important}
-html body #pagina-home#pagina-home #listaDestaques#listaDestaques#listaDestaques#listaDestaques article.em-featured-reference.em-featured-reference.em-featured-orange2 * {font-family:Inter,Arial,sans-serif!important;font-style:normal!important;box-sizing:border-box!important}
+html body #pagina-home#pagina-home #listaDestaques#listaDestaques#listaDestaques#listaDestaques article.em-featured-reference.em-featured-reference.em-featured-orange2 * {font-family:Poppins,sans-serif!important;font-style:normal!important;box-sizing:border-box!important}
 html body #pagina-home#pagina-home #listaDestaques#listaDestaques#listaDestaques#listaDestaques article.em-featured-reference.em-featured-reference.em-featured-orange2::before, html body #pagina-home#pagina-home #listaDestaques#listaDestaques#listaDestaques#listaDestaques article.em-featured-reference.em-featured-reference.em-featured-orange2::after {display:none!important;content:none!important}
 html body #pagina-home#pagina-home #listaDestaques#listaDestaques#listaDestaques#listaDestaques article.em-featured-reference.em-featured-reference.em-featured-orange2 .dz-corpo, html body #pagina-home#pagina-home #listaDestaques#listaDestaques#listaDestaques#listaDestaques article.em-featured-reference.em-featured-reference.em-featured-orange2 .dz-cab-texto {display:contents!important}
 html body #pagina-home#pagina-home #listaDestaques#listaDestaques#listaDestaques#listaDestaques article.em-featured-reference.em-featured-reference.em-featured-orange2 .dz-cab {grid-area:heading!important;display:grid!important;grid-template-columns:42px minmax(0,1fr) auto!important;grid-template-rows:44px!important;grid-template-areas:"logo company date"!important;align-items:center!important;gap:8px!important;width:100%!important;min-width:0!important;height:44px!important;min-height:44px!important;padding:0!important;margin:0!important}
@@ -744,12 +741,12 @@ html body #pagina-home#pagina-home #listaDestaques#listaDestaques#listaDestaques
 
 @layer candidate-palette {
 html body #pagina-home #emDestV14 #emFeaturedQuickFilters{grid-column:1/-1!important;display:flex!important;align-items:center!important;flex-wrap:wrap!important;gap:8px!important;margin:0!important;padding:0!important;width:100%!important}
-html body #pagina-home #emFeaturedQuickFilters button{display:inline-flex!important;align-items:center!important;justify-content:center!important;gap:7px!important;min-height:34px!important;padding:7px 15px!important;border:1px solid #ced8e5!important;border-radius:999px!important;background:#fff!important;color:#34445b!important;font:500 12px/18px Inter,Arial,sans-serif!important;white-space:nowrap!important;box-shadow:none!important;cursor:pointer!important}
+html body #pagina-home #emFeaturedQuickFilters button{display:inline-flex!important;align-items:center!important;justify-content:center!important;gap:7px!important;min-height:34px!important;padding:7px 15px!important;border:1px solid #ced8e5!important;border-radius:999px!important;background:#fff!important;color:#34445b!important;font:500 12px/18px Poppins,sans-serif!important;white-space:nowrap!important;box-shadow:none!important;cursor:pointer!important}
 html body #pagina-home #emFeaturedQuickFilters button:hover,html body #pagina-home #emFeaturedQuickFilters button[aria-pressed=true]{border-color:#1468df!important;background:#edf4ff!important;color:#0b5dcc!important}
 html body #pagina-home #emFeaturedQuickFilters button:focus-visible{outline:3px solid #9dc4fb!important;outline-offset:2px!important}
 html body #pagina-home #emFeaturedQuickFilters svg{width:16px!important;height:16px!important;flex:0 0 16px!important}
 html body #pagina-home #listaDestaques article.em-quick-excluded{display:none!important}
-html body #pagina-home #emFeaturedQuickEmpty{padding:18px!important;border:1px solid #dce5ef!important;border-radius:8px!important;background:#fff!important;color:#526174!important;font:400 13px/1.5 Inter,Arial,sans-serif!important}
+html body #pagina-home #emFeaturedQuickEmpty{padding:18px!important;border:1px solid #dce5ef!important;border-radius:8px!important;background:#fff!important;color:#526174!important;font:400 13px/1.5 Poppins,sans-serif!important}
 html body #pagina-home #emFeaturedQuickEmpty[hidden]{display:none!important}
 }
 
@@ -760,9 +757,9 @@ html body #pagina-home#pagina-home #listaDestaques#listaDestaques#listaDestaques
 html body #pagina-home#pagina-home #listaDestaques#listaDestaques#listaDestaques#listaDestaques article.em-featured-reference.em-featured-reference.em-featured-orange2 .dz-logo {width:52px!important;min-width:52px!important;max-width:52px!important;height:52px!important}
 html body #pagina-home#pagina-home #listaDestaques#listaDestaques#listaDestaques#listaDestaques article.em-featured-reference.em-featured-reference.em-featured-orange2 .dz-empresa {align-self:center!important;display:flex!important;align-items:center!important;min-height:52px!important;line-height:17px!important}
 html body #pagina-home#pagina-home #listaDestaques#listaDestaques#listaDestaques#listaDestaques article.em-featured-reference.em-featured-reference.em-featured-orange2 .dz-date {display:none!important}
-html body #pagina-home#pagina-home #listaDestaques#listaDestaques#listaDestaques#listaDestaques article.em-featured-reference.em-featured-reference.em-featured-orange2 .dz-selo {grid-area:badge!important;position:static!important;inset:auto!important;align-self:start!important;display:inline-flex!important;align-items:center!important;justify-content:center!important;gap:4px!important;width:auto!important;min-width:0!important;height:22px!important;min-height:22px!important;margin:0!important;padding:3px 6px!important;border:1px solid #f0d7b4!important;border-radius:5px!important;background:#fff7eb!important;color:#925d12!important;font:600 9px/14px Inter,Arial,sans-serif!important;white-space:nowrap!important;box-shadow:none!important;transform:none!important}
+html body #pagina-home#pagina-home #listaDestaques#listaDestaques#listaDestaques#listaDestaques article.em-featured-reference.em-featured-reference.em-featured-orange2 .dz-selo {grid-area:badge!important;position:static!important;inset:auto!important;align-self:start!important;display:inline-flex!important;align-items:center!important;justify-content:center!important;gap:4px!important;width:auto!important;min-width:0!important;height:22px!important;min-height:22px!important;margin:0!important;padding:3px 6px!important;border:1px solid #f0d7b4!important;border-radius:5px!important;background:#fff7eb!important;color:#925d12!important;font:600 9px/14px Poppins,sans-serif!important;white-space:nowrap!important;box-shadow:none!important;transform:none!important}
 html body #pagina-home#pagina-home #listaDestaques#listaDestaques#listaDestaques#listaDestaques article.em-featured-reference.em-featured-reference.em-featured-orange2 .dz-selo strong {font-size:0!important}
-html body #pagina-home#pagina-home #listaDestaques#listaDestaques#listaDestaques#listaDestaques article.em-featured-reference.em-featured-reference.em-featured-orange2 .dz-selo strong::after {content:"Destaque";font:600 9px/14px Inter,Arial,sans-serif!important;color:#925d12!important}
+html body #pagina-home#pagina-home #listaDestaques#listaDestaques#listaDestaques#listaDestaques article.em-featured-reference.em-featured-reference.em-featured-orange2 .dz-selo strong::after {content:"Destaque";font:600 9px/14px Poppins,sans-serif!important;color:#925d12!important}
 html body #pagina-home#pagina-home #listaDestaques#listaDestaques#listaDestaques#listaDestaques article.em-featured-reference.em-featured-reference.em-featured-orange2 .dz-selo svg {width:11px!important;height:11px!important;fill:currentColor!important}
 html body #pagina-home#pagina-home #listaDestaques#listaDestaques#listaDestaques#listaDestaques article.em-featured-reference.em-featured-reference.em-featured-orange2 {grid-template-rows:54px 44px 56px 40px 38px!important}
 }
@@ -771,7 +768,7 @@ html body #pagina-home#pagina-home #listaDestaques#listaDestaques#listaDestaques
 /* Quick job summary: native modal with keyboard support and no page scroll-lock mutation. */
 @layer candidate-palette {
 html body dialog.em-job-summary,
-html body dialog.em-job-summary * {box-sizing:border-box!important;font-family:Montserrat,Inter,Arial,sans-serif!important;font-style:normal!important}
+html body dialog.em-job-summary * {box-sizing:border-box!important;font-family:Poppins,sans-serif!important;font-style:normal!important}
 html body dialog.em-job-summary {
   --candidate-contrast-ink:#374151!important;
   position:fixed!important;inset:0!important;margin:auto!important;width:calc(100% - 32px)!important;max-width:680px!important;
@@ -828,7 +825,7 @@ html body dialog.em-job-summary button:focus-visible {outline:3px solid #90bcf4!
 
 
 
-@font-face{font-family:"Recent Montserrat";font-style:normal;font-weight:100 900;font-display:swap;src:url("assets/fonts/cf-montserrat.woff") format("woff")}
+
 
 
 
@@ -969,7 +966,7 @@ html body :is(#pagina-home,#pagina-vaga,#pagina-empresa-publica,dialog.em-job-su
 html body :is(#pagina-home,#pagina-vaga,#pagina-empresa-publica,dialog.em-job-summary) .em-company-verification circle{fill:currentColor!important;stroke:none!important}
 html body :is(#pagina-home,#pagina-vaga,#pagina-empresa-publica,dialog.em-job-summary) .em-company-verification path{fill:none!important;stroke:#fff!important}
 html body :is(#pagina-home,#pagina-vaga,#pagina-empresa-publica,dialog.em-job-summary) .em-company-verification-label {
- color:#148355!important;font-family:"Recent Montserrat",Montserrat,Arial,sans-serif!important;font-size:10px!important;font-weight:500!important;
+ color:#148355!important;font-family:Poppins,sans-serif!important;font-size:10px!important;font-weight:500!important;
  line-height:1.3!important;letter-spacing:normal!important;white-space:nowrap!important;text-transform:none!important;
 }
 html body .em-company-verification-card {
@@ -977,14 +974,14 @@ html body .em-company-verification-card {
  border:1px solid #dfe5ec!important;border-radius:12px!important;background:#fff!important;color:#526174!important;box-shadow:0 10px 32px #10274426!important;pointer-events:auto!important;text-align:left!important;
 }
 html body .em-company-verification-card[hidden]{display:none!important}
-html body .em-company-verification-card *{box-sizing:border-box!important;font-family:"Recent Montserrat",Montserrat,Arial,sans-serif!important;font-style:normal!important;text-align:left!important}
+html body .em-company-verification-card *{box-sizing:border-box!important;font-family:Poppins,sans-serif!important;font-style:normal!important;text-align:left!important}
 html body .em-company-verification-card .em-company-verification-heading{display:block!important;margin:0 0 8px!important;color:#148355!important;font-size:14px!important;font-weight:600!important;line-height:1.4!important}
 html body .em-company-verification-card p{margin:0!important;color:#526174!important;font-size:12px!important;font-weight:400!important;line-height:1.65!important}
 html body .em-company-verification-card .em-company-verification-demo{margin-top:10px!important;padding:9px!important;border-radius:7px!important;background:#f1f8f4!important;color:#3e6751!important;font-size:11px!important}
 html body :is(.em-company-verification,.em-company-profile-link):focus-visible{outline:2px solid #0875cc!important;outline-offset:3px!important}
 html body #pagina-empresa-publica[data-em-demo-profile="true"]>:not(#emDemoCompanyProfile){display:none!important}
 html body #pagina-empresa-publica #emDemoCompanyProfile {display:grid!important;gap:20px!important;max-width:1140px!important;margin:0 auto!important;padding:28px 24px 48px!important;color:#102744!important}
-html body #emDemoCompanyProfile *{box-sizing:border-box!important;font-family:"Recent Montserrat",Montserrat,Arial,sans-serif!important;font-style:normal!important}
+html body #emDemoCompanyProfile *{box-sizing:border-box!important;font-family:Poppins,sans-serif!important;font-style:normal!important}
 html body #emDemoCompanyProfile .em-dc-back{justify-self:start!important;color:#0875cc!important;font-size:13px!important;text-decoration:none!important}
 html body #emDemoCompanyProfile .em-dc-header{display:flex!important;align-items:center!important;flex-wrap:wrap!important;gap:16px!important;padding:24px!important;border:1px solid #e1e5eb!important;border-radius:12px!important;background:#fff!important;box-shadow:0 4px 18px #10274408!important}
 html body #emDemoCompanyProfile .em-dc-logo{width:64px!important;height:64px!important;object-fit:contain!important;border-radius:10px!important;background:#f6f8fb!important;padding:6px!important}

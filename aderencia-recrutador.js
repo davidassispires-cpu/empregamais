@@ -70,7 +70,7 @@ var styled=false;
 function styles(){if(styled)return;styled=true;var style=global.document.createElement('style');style.id='em-explainable-recruiter-adherence';style.textContent=`
 @layer field-feedback{
 html body #emCandidateDetails#emCandidateDetails .em-candidate-modal-body{overflow-y:auto!important;min-height:0!important;flex:1 1 auto!important}
-html body #emCandidateDetails#emCandidateDetails .em-adherence-report,html body #emCandidateDetails#emCandidateDetails .em-adherence-report *{box-sizing:border-box!important;font-family:Poppins,Arial,sans-serif!important;color:#344054!important;letter-spacing:normal!important}
+html body #emCandidateDetails#emCandidateDetails .em-adherence-report,html body #emCandidateDetails#emCandidateDetails .em-adherence-report *{box-sizing:border-box!important;font-family:Poppins,sans-serif!important;color:#344054!important;letter-spacing:normal!important}
 html body #emCandidateDetails#emCandidateDetails .em-adherence-report{padding:18px!important;background:#fff!important;border:1px solid #dfe5eb!important;border-radius:10px!important;max-height:none!important;overflow:visible!important}
 html body #emCandidateDetails#emCandidateDetails .em-ar-header h2{font-size:22px!important;line-height:1.3!important;color:#173f59!important;margin:7px 0!important}
 html body #emCandidateDetails#emCandidateDetails .em-ar-eyebrow{font-size:10px!important;font-weight:600!important;color:#667085!important}
