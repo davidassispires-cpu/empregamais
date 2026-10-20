@@ -771,7 +771,6 @@
         urgentNotice.appendChild(urgentCopy); headerActions.appendChild(urgentNotice);
         headerActions.classList.add('em-jb-has-urgency');
       }
-      header.appendChild(headerMeta);
 
       var share = browserNode('section', 'em-jb-share');
       share.setAttribute('aria-label', 'Compartilhar esta vaga');
@@ -809,6 +808,7 @@
       var email = shareControl('a', 'em-jb-share-email', 'E-mail', '<rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 6 9 7 9-7"/>');
       email.href = 'mailto:?subject=' + encodeURIComponent(shareText) + '&body=' + encodeURIComponent('Confira esta vaga: ' + shareText + '\n' + shareUrl);
       share.appendChild(shareButtons); share.appendChild(shareStatus); header.appendChild(share);
+      header.appendChild(headerMeta);
       panel.appendChild(header);
       var body = browserNode('div', 'em-jb-body'), facts = browserNode('div', 'em-jb-facts');
       var detailIcons = {
