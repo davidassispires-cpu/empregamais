@@ -706,7 +706,7 @@
       var locate = browserNode('button', 'em-jb-locate', 'Localizar na lista'); locate.type = 'button';
       locate.setAttribute('aria-label', 'Localizar ' + summaryText(info.title) + ' na lista');
       locate.onclick = function () { locateSelectedJob(state); }; context.appendChild(locate);
-      var header = browserNode('header', 'em-jb-header em-jb-header-model2');
+      var header = browserNode('header', 'em-jb-header em-jb-header-model2 em-jb-info-model2');
       header.appendChild(browserNode('p', 'em-jb-job-id', 'ID da vaga: ' + String(job.id || '')));
       var headerContent = browserNode('div', 'em-jb-header-content'); header.appendChild(headerContent);
       var logo = browserNode('div', 'em-jb-logo'); logo.setAttribute('aria-hidden', 'true');
@@ -776,9 +776,10 @@
         headerActions.classList.add('em-jb-has-urgency');
       }
 
-      var share = browserNode('section', 'em-jb-share');
+      var share = browserNode('details', 'em-jb-share');
       share.setAttribute('aria-label', 'Compartilhar esta vaga');
-      share.appendChild(browserNode('p', 'em-jb-share-title', 'Compartilhar esta vaga'));
+      var shareToggle = browserNode('summary', 'em-jb-share-title', 'Compartilhar');
+      share.appendChild(shareToggle);
       var shareButtons = browserNode('div', 'em-jb-share-buttons');
       var shareUrl = new URL(String(win.location.pathname || '') + '?pagina=vaga&id=' + encodeURIComponent(job.id), win.location.href || doc.baseURI || 'https://davidassispires-cpu.github.io/empregamais/').href;
       var shareText = summaryText(info.title) + ' — ' + summaryText(info.company);
@@ -812,7 +813,13 @@
       var email = shareControl('a', 'em-jb-share-email', 'E-mail', '<rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 6 9 7 9-7"/>');
       email.href = 'mailto:?subject=' + encodeURIComponent(shareText) + '&body=' + encodeURIComponent('Confira esta vaga: ' + shareText + '\n' + shareUrl);
       share.appendChild(shareButtons); share.appendChild(shareStatus); headerActions.appendChild(share);
+      var topMeta = browserNode('div', 'em-jb-top-meta');
+      topMeta.appendChild(identity.querySelector('.em-jb-job-id'));
+      var publicationFact = headerMeta.querySelector('.em-jb-header-published');
+      if (publicationFact) topMeta.appendChild(publicationFact);
+      headerContent.appendChild(topMeta);
       header.appendChild(headerMeta);
+      header.appendChild(headerActions);
       panel.appendChild(header);
       var body = browserNode('div', 'em-jb-body'), facts = browserNode('div', 'em-jb-facts');
       var detailIcons = {
