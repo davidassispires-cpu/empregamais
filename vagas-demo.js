@@ -749,6 +749,8 @@
       var full = browserNode('a', 'em-jb-full', 'Abrir página da vaga');
       full.href = String(win.location.pathname || '') + '?pagina=vaga&id=' + encodeURIComponent(job.id);
       previewFooter.appendChild(full); body.appendChild(previewFooter); footer.appendChild(context);
+      var footerCandidate = browserNode('button', 'em-jb-apply em-jb-apply-bottom', 'Candidatar-se'); footerCandidate.type = 'button';
+      footerCandidate.onclick = candidate.onclick; footer.appendChild(footerCandidate);
       var navigation = browserNode('div', 'em-jb-tabs'); navigation.setAttribute('role', 'tablist'); navigation.setAttribute('aria-label', 'Informações da vaga');
       panel.appendChild(navigation);
       var companyPanel = browserNode('div', 'em-jb-body');

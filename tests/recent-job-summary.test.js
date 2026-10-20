@@ -253,15 +253,17 @@ test('rerendering retains the selected vacancy by ID and refreshes its details',
 test('panel applications use the selected real vacancy and saved state stays synchronized',()=>{
   const env=fixture(true,true),cards=env.render([{id:'one'},{id:'two'}]);
   cards[1].querySelector('.em-r4-title-select').click();
-  const panel=env.doc.getElementById('emJobPanel');panel.querySelector('.em-jb-apply').click();
-  assert.deepEqual(env.contacts,['two']);assert.deepEqual(env.routes,[]);
+  const panel=env.doc.getElementById('emJobPanel'),applyButtons=panel.querySelectorAll('.em-jb-apply');
+  assert.equal(applyButtons.length,2);
+  applyButtons.forEach(button=>button.click());
+  assert.deepEqual(env.contacts,['two','two']);assert.deepEqual(env.routes,[]);
   panel.querySelector('.em-jb-save').click();
   assert.equal(cards[1].__emJobEntry.save.getAttribute('aria-pressed'),'true');
   assert.equal(panel.querySelector('.em-jb-save').getAttribute('aria-pressed'),'true');
   panel.querySelector('.em-jb-save').click();
   assert.equal(cards[1].__emJobEntry.save.getAttribute('aria-pressed'),'false');
   delete env.win.abrirContatoExternoVaga;
-  panel.querySelector('.em-jb-apply').click();
+  panel.querySelector('.em-jb-apply-bottom').click();
   assert.deepEqual(env.applications,[{id:'two',originalButton:true}]);
 });
 
@@ -272,8 +274,8 @@ test('the inline panel protects confidential identity and prevents applications 
   assert(panel.textContent.includes('Empresa confidencial'));
   assert(!panel.textContent.includes('IDENTIDADE PRIVADA'));assert(!panel.textContent.includes('DADOS PRIVADOS'));
   assert.equal(panel.querySelector('img'),null);
-  panel.querySelector('.em-jb-apply').click();
-  assert.equal(env.messages.length,1);assert.deepEqual(env.contacts,[]);assert.deepEqual(env.applications,[]);
+  panel.querySelectorAll('.em-jb-apply').forEach(button=>button.click());
+  assert.equal(env.messages.length,2);assert.deepEqual(env.contacts,[]);assert.deepEqual(env.applications,[]);
   assert(panel.querySelector('.em-jb-demo').textContent.includes('não recebe candidaturas reais'));
 });
 
