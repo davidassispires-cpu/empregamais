@@ -233,7 +233,7 @@
 
   function install(win) {
     var featuredStyles = win.document.querySelector('link[href*="featured-cards.css"]');
-    if (featuredStyles) featuredStyles.setAttribute('href', 'featured-cards.css?v=20261020-information-blocks-3');
+    if (featuredStyles) featuredStyles.setAttribute('href', 'featured-cards.css?v=20261020-area-company-badges');
     var route = new URLSearchParams(win.location.search).get('pagina');
     if (win.__emPublicDemoJobs || route === 'demo-candidato' || route === 'demo-recrutador') return;
     win.__emPublicDemoJobs = true;
@@ -1058,6 +1058,10 @@
       if (uf.length !== 2) { var suffix = originalPlace && /[/•–-]\s*([A-Za-z]{2})$/.exec(originalPlace.textContent.trim()); uf = suffix ? suffix[1] : ''; }
       facts.appendChild(fact('em-r4-location','<path d="M20 10c0 6-8 12-8 12S4 16 4 10a8 8 0 1 1 16 0Z"/><circle cx="12" cy="10" r="2.5"/>',city+(uf.length===2?' – '+uf.toUpperCase():'')));
       var terms = node('div','em-r4-terms');
+      var areaName = String(job.area || job.areaAtuacao || job.areaProfissional || '').trim() || 'Área não informada';
+      var areaLabel = node('span','em-r4-area',areaName); areaLabel.title = areaName;
+      var areaDivider = node('span','em-r4-area-divider','·'); areaDivider.setAttribute('aria-hidden','true');
+      terms.appendChild(areaLabel); terms.appendChild(areaDivider);
       terms.appendChild(fact('em-r4-modality','<rect x="3" y="7" width="18" height="14" rx="2"/><path d="M8 7V3h8v4M3 12h18"/>',job.modalidade || 'Modalidade não informada'));
       terms.appendChild(node('span','em-r4-contract',' · '+String(job.contrato || job.tipoContrato || 'Contrato não informado').replace(/^Efetivo\s*[–-]\s*CLT$/i,'CLT')));
       facts.appendChild(terms);
