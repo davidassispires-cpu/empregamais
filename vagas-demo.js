@@ -705,6 +705,7 @@
       locate.setAttribute('aria-label', 'Localizar ' + summaryText(info.title) + ' na lista');
       locate.onclick = function () { locateSelectedJob(state); }; context.appendChild(locate);
       var header = browserNode('header', 'em-jb-header');
+      header.appendChild(browserNode('p', 'em-jb-job-id', 'ID da vaga: ' + String(job.id || '')));
       var headerContent = browserNode('div', 'em-jb-header-content'); header.appendChild(headerContent);
       var logo = browserNode('div', 'em-jb-logo'); logo.setAttribute('aria-hidden', 'true');
       var sourceLogo = entry.confidential ? null : card.querySelector('.em-r4-logo img');
@@ -894,15 +895,11 @@
 
       var footer = browserNode('div', 'em-jb-footer'); footer.setAttribute('role', 'group');
       footer.setAttribute('aria-label', 'Candidatura à vaga');
-      if (isDemo(job)) {
-        var note = browserNode('p', 'em-jb-demo', 'Vaga de demonstração: não recebe candidaturas reais.');
-        note.setAttribute('role', 'note'); footer.appendChild(note);
-      }
-      var previewFooter = browserNode('div', 'em-jb-preview-footer');
-      previewFooter.appendChild(browserNode('p', 'em-jb-date', info.date.replace(/\s*·\s*Demonstração\s*$/, '')));
-      var full = browserNode('a', 'em-jb-full', 'Abrir página da vaga');
-      full.href = String(win.location.pathname || '') + '?pagina=vaga&id=' + encodeURIComponent(job.id);
-      previewFooter.appendChild(full); body.appendChild(previewFooter); footer.appendChild(context);
+      var report = browserNode('button', 'em-jb-report', 'Denunciar vaga'); report.type = 'button'; report.setAttribute('data-vaga-id', String(job.id || ''));
+      report.onclick = function () {
+        if (typeof win.abrirPopupDenunciaEmpregaMais === 'function') win.abrirPopupDenunciaEmpregaMais(job.id);
+      };
+      footer.appendChild(report);
       var footerCandidate = browserNode('button', 'em-jb-apply em-jb-apply-bottom', 'Candidatar-se'); footerCandidate.type = 'button';
       footerCandidate.onclick = candidate.onclick; footer.appendChild(footerCandidate);
       var navigation = browserNode('div', 'em-jb-tabs'); navigation.setAttribute('role', 'tablist'); navigation.setAttribute('aria-label', 'Informações da vaga');
