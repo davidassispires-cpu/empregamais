@@ -630,7 +630,7 @@
               var saved = typeof win.vagaEstaSalva === 'function' && win.vagaEstaSalva(peer.id);
               save.setAttribute('aria-pressed', String(!!saved));
               save.setAttribute('aria-label', (saved ? 'Remover vaga dos salvos: ' : 'Salvar vaga: ') + summaryText(peer.cargo));
-              save.innerHTML = '<svg viewBox="0 0 24 24" fill="' + (saved ? 'currentColor' : 'none') + '" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M6 3h12v18l-6-4-6 4V3Z"/></svg>';
+              save.innerHTML = '<svg viewBox="0 0 24 24" fill="' + (saved ? 'currentColor' : 'none') + '" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M6 3h12v18l-6-4-6 4V3Z"/></svg><span class="em-jb-save-label">'+(saved ? 'Vaga salva' : 'Salvar vaga')+'</span>';
             }
             save.onclick = function (event) { event.preventDefault(); event.stopPropagation(); win.alternarFavorito(peer.id); updateSimilarSave(); };
             updateSimilarSave(); item.appendChild(save);
@@ -710,15 +710,22 @@
       if (isDemo(job) && companyName) companyName.textContent = companyName.textContent.replace(/\s*\(demo\)/ig, '');
       identity.appendChild(company);
       var headerMeta = browserNode('div', 'em-jb-header-meta');
-      function headerFact(className, text, path) {
+      function headerFact(className, label, text, path) {
         var fact = browserNode('p', className);
         fact.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'+path+'</svg>';
-        fact.appendChild(browserNode('span', '', summaryText(text))); headerMeta.appendChild(fact);
+        var copy = browserNode('span', 'em-jb-fact-copy');
+        copy.appendChild(browserNode('small', 'em-jb-fact-label', label));
+        copy.appendChild(browserNode('span', 'em-jb-fact-value', summaryText(text)));
+        fact.appendChild(copy); headerMeta.appendChild(fact);
       }
-      headerFact('em-jb-location', info.location, '<path d="M20 10c0 6-8 12-8 12S4 16 4 10a8 8 0 1 1 16 0Z"/><circle cx="12" cy="10" r="2.5"/>');
-      headerFact('em-jb-header-contract', String(job.contrato || job.tipoContrato || 'Contrato não informado').replace(/^Efetivo\s*[–-]\s*CLT$/i, 'CLT'), '<path d="M5 3h10l4 4v14H5ZM14 3v5h5M8 12h8M8 16h6"/>');
-      headerFact('em-jb-header-modality', job.modalidade || 'Modalidade não informada', '<rect x="3" y="7" width="18" height="14" rx="2"/><path d="M8 7V3h8v4M3 12h18"/>');
-      headerFact('em-jb-header-pay', info.salary, '<circle cx="12" cy="12" r="9"/><path d="M12 6v12M15 8H10a2 2 0 0 0 0 4h4a2 2 0 0 1 0 4H9"/>');
+      var contract = String(job.contrato || job.tipoContrato || '').replace(/^Efetivo\s*[–-]\s*CLT$/i, 'CLT');
+      var rawPublished = job.dataPublicacao || job.publicadaEm || job.criadoEm || '';
+      var publishedDate = rawPublished ? new Date(/^\d{4}-\d{2}-\d{2}$/.test(rawPublished) ? rawPublished+'T12:00:00' : rawPublished) : null;
+      var publishedLabel = publishedDate && !isNaN(publishedDate.getTime()) ? publishedDate.toLocaleDateString('pt-BR', {day:'numeric',month:'short',year:'numeric'}) : 'Não informada';
+      headerFact('em-jb-location', 'Local', info.location, '<path d="M20 10c0 6-8 12-8 12S4 16 4 10a8 8 0 1 1 16 0Z"/><circle cx="12" cy="10" r="2.5"/>');
+      headerFact('em-jb-header-modality', 'Modalidade', [job.modalidade || 'Não informada', contract].filter(Boolean).join(' · '), '<rect x="3" y="7" width="18" height="14" rx="2"/><path d="M8 7V3h8v4M3 12h18"/>');
+      headerFact('em-jb-header-pay', 'Salário', info.salary, '<rect x="2" y="5" width="20" height="14" rx="2"/><circle cx="12" cy="12" r="3"/><path d="M5 8h1M18 16h1"/>');
+      headerFact('em-jb-header-published', 'Publicado em', publishedLabel, '<rect x="3" y="5" width="18" height="16" rx="2"/><path d="M7 3v4M17 3v4M3 10h18M7 14h2M13 14h2M7 18h2"/>');
       var candidate = browserNode('button', 'em-jb-apply', 'Candidatar-se'); candidate.type = 'button';
       candidate.onclick = function () {
         if (isDemo(job)) { explainDemo(); return; }
