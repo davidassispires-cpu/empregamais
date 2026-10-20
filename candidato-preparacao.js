@@ -730,7 +730,7 @@
  function watch(root){if(observed.has(root))return;observed.add(root);new MutationObserver(schedule).observe(root,{childList:true,subtree:true});}
  function scan(root){watch(root);var updates=[];root.querySelectorAll('*').forEach(function(el){
   if(el.shadowRoot)scan(el.shadowRoot);
-  if(el.closest('#emCandidateProfile,.m3-welcome,#emCandidateAccountMenu,svg,script,style,h1,h2,h3,h4,h5,h6,[aria-hidden=true],.fa,.fas,.far,.fab,.material-icons,.material-symbols-outlined'))return;
+  if(el.closest('#emCandidateProfile,.m3-welcome,#emCandidateAccountMenu,.em-r4-footer-urgent,svg,script,style,h1,h2,h3,h4,h5,h6,[aria-hidden=true],.fa,.fas,.far,.fab,.material-icons,.material-symbols-outlined'))return;
   var text=Array.from(el.childNodes).some(function(n){return n.nodeType===3&&n.textContent.trim();});
   if(!text&&!el.matches('input:not([type=checkbox]):not([type=radio]),textarea,select'))return;
   var style=getComputedStyle(el),size=parseFloat(style.fontSize);
