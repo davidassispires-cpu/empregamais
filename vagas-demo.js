@@ -1072,6 +1072,11 @@
       actions.appendChild(salary);
       var metaRow = node('div','em-r4-meta-row');
       metaRow.appendChild(facts); metaRow.appendChild(actions);
+      var educationValue = typeof win.textoEscolaridadeVaga === 'function' ? win.textoEscolaridadeVaga(job) : job.escolaridade;
+      if (!educationValue && typeof job.escolaridadeMinima === 'string') educationValue = job.escolaridadeMinima;
+      var education = fact('em-r4-education','<path d="m2 8 10-5 10 5-10 5ZM6 10v7c4 3 8 3 12 0v-7M22 8v8"/>',summaryText(educationValue || 'Não informada'));
+      education.setAttribute('aria-label', 'Escolaridade: ' + summaryText(educationValue || 'Não informada'));
+      metaRow.appendChild(education);
       function showDetails(event){
         event.preventDefault(); event.stopPropagation();
         if (selectBrowserJob(card, titleButton, true)) return;
