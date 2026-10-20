@@ -232,6 +232,8 @@
   }
 
   function install(win) {
+    var featuredStyles = win.document.querySelector('link[href*="featured-cards.css"]');
+    if (featuredStyles) featuredStyles.setAttribute('href', 'featured-cards.css?v=20261020-compact-reference-2');
     var route = new URLSearchParams(win.location.search).get('pagina');
     if (win.__emPublicDemoJobs || route === 'demo-candidato' || route === 'demo-recrutador') return;
     win.__emPublicDemoJobs = true;
