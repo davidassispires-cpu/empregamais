@@ -602,3 +602,14 @@ html body #pagina-home #emJobBrowser[data-layout="model-one"][data-presentation=
 html body #pagina-home #emJobBrowser[data-layout="model-one"][data-presentation="priority"] .em-jb-header.em-jb-header-model2.em-jb-info-model2 .em-jb-header-actions :is(.em-jb-apply,.em-jb-save,.em-jb-share-title){border-radius:24px!important}
 html body #pagina-home #emJobBrowser[data-layout="model-one"][data-presentation="priority"] #listaVagas .em-recent-blocks :is(.em-r4-location,.em-r4-salary,.em-r4-education){border-radius:16px!important}
 }
+
+/* Rótulos centralizados e ícones na linha dos valores. */
+@layer candidate-palette {
+html body #pagina-home #emJobBrowser[data-layout="model-one"][data-presentation="priority"] #listaVagas .em-recent-blocks.em-recent-discreet :is(.em-r4-location,.em-r4-education){grid-template-columns:16px minmax(0,1fr)!important;grid-template-rows:auto auto!important;align-content:center!important;column-gap:5px!important;row-gap:3px!important}
+html body #pagina-home #emJobBrowser[data-layout="model-one"][data-presentation="priority"] #listaVagas .em-recent-blocks.em-recent-discreet :is(.em-r4-location,.em-r4-education)::before{grid-column:1/-1!important;grid-row:1!important;width:100%!important;text-align:center!important}
+html body #pagina-home #emJobBrowser[data-layout="model-one"][data-presentation="priority"] #listaVagas .em-recent-blocks.em-recent-discreet :is(.em-r4-location,.em-r4-education)>svg{grid-column:1!important;grid-row:2!important;align-self:center!important;margin:0!important}
+html body #pagina-home #emJobBrowser[data-layout="model-one"][data-presentation="priority"] #listaVagas .em-recent-blocks.em-recent-discreet :is(.em-r4-location,.em-r4-education)>span{grid-column:2!important;grid-row:2!important;align-self:center!important}
+html body #pagina-home #emJobBrowser[data-layout="model-one"][data-presentation="priority"] #listaVagas .em-recent-blocks.em-recent-discreet .em-r4-salary{display:grid!important;grid-template-columns:16px minmax(0,1fr)!important;grid-template-rows:auto auto!important;align-content:center!important;align-items:center!important;column-gap:5px!important;row-gap:3px!important;padding:7px!important;text-align:left!important}
+html body #pagina-home #emJobBrowser[data-layout="model-one"][data-presentation="priority"] #listaVagas .em-recent-blocks.em-recent-discreet .em-r4-salary::before{grid-column:1/-1!important;grid-row:1!important;width:100%!important;text-align:center!important;padding:0!important}
+html body #pagina-home #emJobBrowser[data-layout="model-one"][data-presentation="priority"] #listaVagas .em-recent-blocks.em-recent-discreet .em-r4-salary::after{position:static!important;grid-column:1!important;grid-row:2!important;align-self:center!important;transform:none!important;width:16px!important;height:16px!important;margin:0!important}
+}
