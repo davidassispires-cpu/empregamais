@@ -777,7 +777,7 @@
       share.setAttribute('aria-label', 'Compartilhar esta vaga');
       share.appendChild(browserNode('p', 'em-jb-share-title', 'Compartilhar esta vaga'));
       var shareButtons = browserNode('div', 'em-jb-share-buttons');
-      var shareUrl = new URL(String(win.location.pathname || '') + '?pagina=vaga&id=' + encodeURIComponent(job.id), win.location.href).href;
+      var shareUrl = new URL(String(win.location.pathname || '') + '?pagina=vaga&id=' + encodeURIComponent(job.id), win.location.href || doc.baseURI || 'https://davidassispires-cpu.github.io/empregamais/').href;
       var shareText = summaryText(info.title) + ' — ' + summaryText(info.company);
       function shareControl(tag, className, label, path) {
         var control = browserNode(tag, 'em-jb-share-button ' + className);
