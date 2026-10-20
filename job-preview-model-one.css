@@ -596,3 +596,9 @@ html body #pagina-home #emJobBrowser[data-layout="model-one"][data-presentation=
 html body #pagina-home #emJobBrowser[data-layout="model-one"][data-presentation="priority"] .em-jb-header.em-jb-header-model2.em-jb-info-model2 .em-jb-header-actions.em-jb-has-urgency{grid-template-columns:repeat(2,minmax(0,1fr))!important}
 html body #pagina-home #emJobBrowser[data-layout="model-one"][data-presentation="priority"] .em-jb-header.em-jb-header-model2.em-jb-info-model2 .em-jb-share{grid-column:1/-1!important}}
 }
+
+/* Cantos arredondados nas ações e nos blocos de informações. */
+@layer candidate-palette {
+html body #pagina-home #emJobBrowser[data-layout="model-one"][data-presentation="priority"] .em-jb-header.em-jb-header-model2.em-jb-info-model2 .em-jb-header-actions :is(.em-jb-apply,.em-jb-save,.em-jb-share-title){border-radius:24px!important}
+html body #pagina-home #emJobBrowser[data-layout="model-one"][data-presentation="priority"] #listaVagas .em-recent-blocks :is(.em-r4-location,.em-r4-salary,.em-r4-education){border-radius:16px!important}
+}
