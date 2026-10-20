@@ -284,3 +284,14 @@ html body #pagina-vaga#pagina-vaga#pagina-vaga #emJobHeaderReference#emJobHeader
 @media(max-width:700px){html body #pagina-home #emJobBrowser[data-layout="model-one"] .em-jb-header-meta{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:16px 0!important}html body #pagina-home #emJobBrowser[data-layout="model-one"] .em-jb-header-meta p:nth-child(3){border-left:0!important;padding-left:0!important}}
 @media(max-width:420px){html body #pagina-home #emJobBrowser[data-layout="model-one"] .em-jb-header-actions{flex-wrap:wrap!important}html body #pagina-home #emJobBrowser[data-layout="model-one"] .em-jb-apply{flex:1 1 100%!important}html body #pagina-home #emJobBrowser[data-layout="model-one"] .em-jb-save{flex:0 1 auto!important}}
 }
+
+@layer candidate-palette {
+html body #pagina-vaga#pagina-vaga#pagina-vaga #emJobHeaderReference#emJobHeaderReference .jh-top{border-bottom:0!important;padding-bottom:0!important}
+html body #pagina-vaga#pagina-vaga#pagina-vaga #emJobHeaderReference#emJobHeaderReference .jh-actions{display:flex!important;align-items:center!important;flex-wrap:wrap!important;gap:14px!important;margin:20px 0!important;padding:0!important}
+html body #pagina-vaga#pagina-vaga#pagina-vaga #emJobHeaderReference#emJobHeaderReference #btnCandidatar#btnCandidatar{flex:0 1 260px!important;width:260px!important;min-height:50px!important;padding:12px 20px!important;margin:0!important;background:#1268e8!important;border:1px solid #1268e8!important;border-radius:7px!important;font:600 15px/1.5 Poppins,sans-serif!important}
+html body #pagina-vaga#pagina-vaga#pagina-vaga #emJobHeaderReference#emJobHeaderReference .jh-save{display:inline-flex!important;align-items:center!important;justify-content:center!important;gap:10px!important;min-height:50px!important;padding:10px 16px!important;margin:0!important;border:1px solid #d4dfee!important;border-radius:7px!important;background:#fff!important;color:#465873!important;font:400 14px/1.5 Poppins,sans-serif!important;cursor:pointer!important}
+html body #pagina-vaga#pagina-vaga#pagina-vaga #emJobHeaderReference#emJobHeaderReference .jh-save svg{width:22px!important;height:22px!important;color:#123f82!important}
+html body #pagina-vaga#pagina-vaga#pagina-vaga #emJobHeaderReference#emJobHeaderReference .jh-tiles{border-top:1px solid #dce1e7!important;gap:0!important}
+html body #pagina-vaga#pagina-vaga#pagina-vaga #emJobHeaderReference#emJobHeaderReference .jh-icon{background:transparent!important;border:0!important;color:#74849d!important;width:24px!important;height:24px!important;padding:0!important}
+html body #pagina-vaga#pagina-vaga#pagina-vaga #emJobHeaderReference#emJobHeaderReference .jh-icon svg{width:24px!important;height:24px!important}
+}
