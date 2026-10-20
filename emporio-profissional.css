@@ -1,8 +1,3 @@
-500;600;700;800&display=swap"[bad string]
-
-
-
-
 :root{--azul:#165ec9;--azulEscuro:#12365d;--laranja:#f27932;--fundo:#f5f7fb;--texto:#172c45;--borda:#e2e8f0}
 html body,html body button,html body input,html body select,html body textarea{font-family:Poppins,sans-serif!important}
 html body{background:#f5f7fb!important;color:#172c45!important}
@@ -32,8 +27,6 @@ html body #pagina-home #listaVagas{display:grid!important;grid-template-columns:
 html body #pagina-home #listaVagas>div{border:1px solid #e0e7f0!important;border-radius:16px!important;background:white!important;box-shadow:0 4px 16px #16345806!important;min-width:0!important;width:auto!important;margin:0!important;transition:box-shadow .2s,transform .2s}
 html body #pagina-home #listaVagas>div:hover{box-shadow:0 10px 28px #16345812!important;transform:translateY(-3px)}
 html body #pagina-home #listaVagas h3{font-size:17px!important;line-height:1.45!important;font-weight:700!important;color:#163458!important}
-html body #pagina-home #listaDestaques>div{border-radius:16px!important;border:1px solid #dce5f2!important;box-shadow:0 6px 20px #1634580a!important}
-html body #pagina-home #listaDestaques h3{font-size:17px!important;line-height:1.4!important}
 html body #filtrosLateral{border:1px solid #e1e8f1!important;border-radius:16px!important;background:#fff!important;padding:22px!important}
 html body input.campo,html body select.campo,html body textarea.campo{border:1px solid #d8e2ed!important;border-radius:10px!important;background:#fff!important;padding:12px!important}
 html body .filtro-pill{border-radius:9px!important;background:#fff!important;border:1px solid #dce5ef!important;font-size:12px!important;font-weight:600!important}
@@ -249,40 +242,7 @@ html body :is(#em-type-a#em-type-b#em-type-c#em-type-d,#pagina-home) #filtrosLat
 /* Tipografia única do portal — Poppins */
 :root body, :root body * {font-family:Poppins,sans-serif!important;}
 
-/* Vagas em destaque: referência aprovada, grade larga e responsiva. */
-html body #pagina-home #listaDestaques{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:22px!important;width:100%!important;max-width:none!important;overflow:visible!important;padding:4px 0 24px!important}
-html body #pagina-home #listaDestaques>.destaque-zero-m6{width:100%!important;min-width:0!important;max-width:none!important;height:auto!important;min-height:0!important;max-height:none!important;padding:0!important;border:1px solid #dce7f4!important;border-radius:18px!important;background:#fff!important;box-shadow:0 7px 24px rgba(24,62,106,.045)!important;transition:transform .2s ease,box-shadow .2s ease!important}
-html body #pagina-home #listaDestaques>.destaque-zero-m6:hover{transform:translateY(-5px)!important;box-shadow:0 15px 34px rgba(24,62,106,.12)!important}
-html body #pagina-home #listaDestaques .destaque-zero-m6 *{font-family:Poppins,sans-serif!important;box-sizing:border-box!important}
-html body #pagina-home #listaDestaques .destaque-zero-m6 .dz-cab{height:auto!important;min-height:158px!important;max-height:none!important;flex:0 0 auto!important;padding:66px 24px 18px!important;grid-template-columns:78px minmax(0,1fr)!important;gap:18px!important;background:#fff!important}
-html body #pagina-home #listaDestaques .dz-cab:before{display:none!important}
-html body #pagina-home #listaDestaques .destaque-zero-m6 .dz-logo{width:78px!important;height:78px!important;border-radius:13px!important;overflow:hidden!important;position:static!important;background:#edf5ff!important;border:1px solid #e3edfa!important;box-shadow:none!important}
-html body #pagina-home #listaDestaques .destaque-zero-m6 .dz-logo .logo-placeholder{background:#edf5ff!important;color:#1664d9!important;font-size:28px!important}
-html body #pagina-home #listaDestaques .destaque-zero-m6 .dz-cab-texto{padding:0!important;overflow:visible!important}
-html body #pagina-home #listaDestaques .destaque-zero-m6 .dz-empresa{font-size:13px!important;font-weight:500!important;color:#60738e!important;margin-bottom:7px!important;text-decoration:none!important}
-html body #pagina-home #listaDestaques .destaque-zero-m6 .dz-titulo{position:static!important;font-size:22px!important;font-weight:750!important;line-height:1.28!important;text-transform:none!important;color:#092d58!important;white-space:normal!important;word-break:normal!important;overflow-wrap:normal!important;overflow:visible!important;max-height:none!important;display:block!important;margin:0!important}
-html body #pagina-home #listaDestaques .destaque-zero-m6 .dz-selo{position:absolute!important;top:20px!important;left:24px!important;right:auto!important;width:auto!important;height:30px!important;padding:0 11px!important;border:0!important;border-radius:9px!important;background:#fff0d8!important;color:#b86405!important;box-shadow:none!important;gap:7px!important}
-html body #pagina-home #listaDestaques .dz-selo svg{width:17px!important;height:17px!important;fill:#fa9b21!important;stroke:none!important}
-html body #pagina-home #listaDestaques .dz-selo strong{font-size:11px!important;text-transform:none!important;letter-spacing:0!important}
-html body #pagina-home #listaDestaques .dz-verificada{left:auto!important;right:24px!important;top:20px!important}
-html body #pagina-home #listaDestaques .destaque-zero-m6 .dz-corpo{padding:0 24px 22px!important;display:grid!important;grid-template-columns:minmax(0,1fr) minmax(130px,.8fr)!important;gap:16px!important;align-content:start!important;flex:1!important}
-html body #pagina-home #listaDestaques .dz-area{grid-column:1/-1!important;justify-self:start!important;min-height:30px!important;height:auto!important;padding:6px 11px!important;margin:0!important;width:auto!important;border:0!important;border-radius:20px!important;background:#eaf4ff!important;color:#125aaa!important;justify-content:flex-start!important}
-html body #pagina-home #listaDestaques .dz-area strong{font-size:12px!important}
-html body #pagina-home #listaDestaques .dz-infos{grid-column:1/-1!important;display:flex!important;flex-wrap:wrap!important;gap:12px 18px!important;padding:4px 0!important;margin:0!important;border:0!important}
-html body #pagina-home #listaDestaques .dz-info{width:auto!important;flex:0 1 auto!important;padding:0!important;border:0!important;gap:7px!important;font-size:12px!important;line-height:1.5!important;color:#536b89!important;text-transform:none!important}
-html body #pagina-home #listaDestaques .dz-info svg{width:18px!important;height:18px!important;stroke:#1664b8!important}
-html body #pagina-home #listaDestaques .dz-resumo{grid-column:1/-1!important;margin:0!important;padding:0 0 18px!important;color:#60738e!important;font-size:13px!important;line-height:1.65!important;display:-webkit-box!important;-webkit-line-clamp:2!important;-webkit-box-orient:vertical!important;overflow:hidden!important;height:62px!important;min-height:0!important;max-height:62px!important;border-bottom:1px solid #e5edf6!important}
-html body #pagina-home #listaDestaques .dz-salario{grid-column:1!important;align-self:center!important;background:none!important;border:0!important;padding:0!important;margin:0!important;min-height:48px!important;height:auto!important;box-shadow:none!important}
-html body #pagina-home #listaDestaques .dz-money{display:none!important}
-html body #pagina-home #listaDestaques .dz-salario small{font-size:11px!important;color:#7a8ca3!important;margin-bottom:5px!important}
-html body #pagina-home #listaDestaques .dz-salario strong{color:#059669!important;font-size:23px!important;line-height:1.25!important}
-html body #pagina-home #listaDestaques .dz-botao{grid-column:2!important;width:100%!important;margin:0!important;height:47px!important;align-self:center!important;background:#1463e7!important;border-radius:10px!important;box-shadow:0 4px 10px rgba(20,99,231,.12)!important;color:#fff!important;font-size:13px!important}
-html body #pagina-home #listaDestaques .dz-botao:hover{background:#0c50c5!important}
-html body #pagina-home #listaDestaques .dz-botao:focus-visible{outline:3px solid #93baf8!important;outline-offset:3px!important}
-html body #pagina-home #listaDestaques .dz-urgente{grid-column:1/-1!important}
-@media(max-width:760px){html body #pagina-home #listaDestaques{grid-template-columns:1fr!important;gap:16px!important}html body #pagina-home #listaDestaques .destaque-zero-m6 .dz-titulo{font-size:20px!important}}
-@media(max-width:400px){html body #pagina-home #listaDestaques .destaque-zero-m6 .dz-cab{padding-left:16px!important;padding-right:16px!important;grid-template-columns:60px minmax(0,1fr)!important;gap:12px!important}html body #pagina-home #listaDestaques .destaque-zero-m6 .dz-logo{width:60px!important;height:60px!important}html body #pagina-home #listaDestaques .destaque-zero-m6 .dz-corpo{padding-left:16px!important;padding-right:16px!important;grid-template-columns:1fr!important}html body #pagina-home #listaDestaques .dz-botao{grid-column:1!important}html body #pagina-home #listaDestaques .dz-salario strong{font-size:21px!important}}
-@media(prefers-reduced-motion:reduce){html body #pagina-home #listaDestaques>.destaque-zero-m6{transition:none!important}html body #pagina-home #listaDestaques>.destaque-zero-m6:hover{transform:none!important}}
+/* Vagas em destaque: referência aprovada{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:22px!important;width:100%!important;max-width:none!important;overflow:visible!important;padding:4px 0 24px!important}
 
 /* Lista horizontal de oportunidades — layout aprovado. */
 
@@ -338,22 +298,7 @@ html body #pagina-home #listaDestaques .dz-urgente{grid-column:1/-1!important}
 
 
 
-/* Logos visíveis nas prévias, preservando o card compacto. */
-
-
-
-
-
-
-
-
-
-
-
-
-/* Títulos das vagas sempre em maiúsculas. */
-
-html body #pagina-home #listaDestaques .destaque-zero-m6 .dz-titulo,
+/* Logos visíveis nas prévias,
 html body #pagina-vaga #detalheCargoCab,
 html body #pagina-vaga .vaga-titulo{ text-transform:uppercase!important; }
 
@@ -468,91 +413,8 @@ html body #pagina-home #listaVagas{display:grid!important;grid-template-columns:
 
 
 
-/* Vagas recentes v8: logo maior, mais alta e sem moldura. */
-
-
-
-
-
-/* Vagas recentes v9: logo no quadrante superior direito conforme referência. */
-
-
-
-
-
-/* Vagas recentes v10: logo maior e mais próxima do topo direito. */
-
-
-
-
-
-/* Vagas recentes v11: logo realmente maior e encostada no topo direito. */
-
-
-
-
-
-/* Vagas recentes v12: logo visual preenche a área superior direita marcada. */
-
-
-
-
-
-
-/* Vagas recentes v13: remove padding legado da imagem e amplia o desenho real. */
-
-
-
-
-
-
-
-/* Vagas recentes v14: área visual da marca conforme marcação do usuário. */
-
-
-
-
-
-
-/* Vagas recentes v15: logo moderada e alinhada ao início do nome da empresa. */
-
-
-
-
-
-
-/* Vagas recentes v16: logo um pouco menor e topo alinhado ao nome da empresa. */
-
-
-
-
-
-
-/* Vagas recentes v17: topo da logo alinhado à linha do nome da empresa. */
-
-
-
-
-/* Vagas recentes v18: logos somente nas vagas em destaque. */
-
-
-/* Cards de vagas — regra única consolidada (sem camadas legadas de rodapé). */
-
-
-
-
-
-
-
-
-
-
-html body #pagina-home #listaDestaques .destaque-zero-m6 .dz-empresa,
-html body .destaque-zero-m6 .dz-empresa{text-transform:uppercase!important}
-
-html body #pagina-home #listaDestaques .dz-titulo,
-html body .em-lista-titulo,
-html body .dz-titulo{
+/* Vagas recentes v8: logo maior{text-transform:uppercase!important}
+html body .em-lista-titulo{
   font-family:Poppins,sans-serif!important;
   font-size:18px!important;
   font-weight:800!important;
@@ -564,10 +426,7 @@ html body .dz-titulo{
 /* Tipografia geral do portal permanece Poppins; títulos de vagas acima são Poppins. */
 html,body,body *,body *::before,body *::after{font-family:Poppins,sans-serif!important}
 input,select,textarea,button{font-family:Poppins,sans-serif!important}
-
-html body #pagina-home #listaDestaques .dz-titulo,
-html body .em-lista-titulo,
-html body .dz-titulo{font-family:Poppins,sans-serif!important}
+html body .em-lista-titulo{font-family:Poppins,sans-serif!important}
 
 /* Cards recentes v20 — rodapé final sem sobreposição. */
 
@@ -891,105 +750,11 @@ html body #pagina-login-candidato :is(.login-senha-link,.login-ajuda button){col
 html body #pagina-login-candidato .campo:focus{outline-color:#1d4ed8!important}
 
 
-/* Destaques em uma única faixa: quatro no desktop, swipe no celular. */
-html body #pagina-home #listaDestaques#listaDestaques#listaDestaques{display:flex!important;flex-direction:row!important;flex-wrap:nowrap!important;gap:16px!important;overflow-x:auto!important;overflow-y:hidden!important;scroll-snap-type:x mandatory!important;scroll-padding:0!important;width:100%!important;max-width:100%!important;padding:8px 0 18px!important;scrollbar-width:none!important}
-html body #pagina-home #listaDestaques#listaDestaques#listaDestaques::-webkit-scrollbar{display:none}
-html body #pagina-home #listaDestaques#listaDestaques#listaDestaques>*{flex:0 0 calc((100% - 48px)/4)!important;width:calc((100% - 48px)/4)!important;min-width:0!important;max-width:none!important;scroll-snap-align:start!important;box-sizing:border-box!important}
+/* Destaques em uma única faixa: quatro no desktop{display:flex!important;flex-direction:row!important;flex-wrap:nowrap!important;gap:16px!important;overflow-x:auto!important;overflow-y:hidden!important;scroll-snap-type:x mandatory!important;scroll-padding:0!important;width:100%!important;max-width:100%!important;padding:8px 0 18px!important;scrollbar-width:none!important}
 html body #pagina-home .destaques-carrossel-em{min-width:0!important;max-width:100%!important}
-html body #pagina-home #listaDestaques#listaDestaques#listaDestaques .dz-cab{padding:48px 14px 12px!important;gap:10px!important;grid-template-columns:40px minmax(0,1fr)!important;min-height:0!important}
-html body #pagina-home #listaDestaques#listaDestaques#listaDestaques .dz-logo{width:40px!important;height:40px!important}
-html body #pagina-home #listaDestaques#listaDestaques#listaDestaques .dz-titulo{font-size:16px!important;line-height:1.3!important}
-html body #pagina-home #listaDestaques#listaDestaques#listaDestaques .dz-empresa{font-size:11px!important;overflow-wrap:break-word!important}
-@media(max-width:760px){html body #pagina-home #listaDestaques#listaDestaques#listaDestaques{gap:12px!important}html body #pagina-home #listaDestaques#listaDestaques#listaDestaques>*{flex-basis:88%!important;width:88%!important}html body #pagina-home .destaques-seta-em{display:none!important}}
+@media(max-width:760px){html body #pagina-home .destaques-seta-em{display:none!important}}
 
-/* Compartilhar e candidatar-se sempre juntos nos cards mobile. */
-@media(max-width:760px){
-html body #pagina-home :is(#listaVagas#listaVagas#listaVagas,#listaDestaques#listaDestaques#listaDestaques) .em-apply-share{display:flex!important;flex-direction:row!important;flex-wrap:nowrap!important;align-items:center!important;justify-content:flex-end!important;gap:8px!important;min-width:0!important;width:auto!important}
-html body #pagina-home :is(#listaVagas#listaVagas#listaVagas,#listaDestaques#listaDestaques#listaDestaques) .em-apply-share>.em-whatsapp-share{order:0!important;flex:0 0 32px!important;width:32px!important;height:32px!important;min-width:32px!important;margin:0!important;position:static!important}
-
-html body #pagina-home #listaDestaques#listaDestaques#listaDestaques .em-apply-share-featured{width:100%!important}
-html body #pagina-home #listaDestaques#listaDestaques#listaDestaques .em-apply-share-featured>.dz-botao{flex:1 1 auto!important}
-}
-
-/* Cards de destaque legíveis nas quatro colunas. */
-html body #pagina-home #listaDestaques#listaDestaques#listaDestaques .dz-cab{grid-template-columns:56px minmax(0,1fr)!important;gap:10px!important;align-items:center!important}
-html body #pagina-home #listaDestaques#listaDestaques#listaDestaques .dz-logo{width:56px!important;height:56px!important;min-width:56px!important;border-radius:10px!important}
-html body #pagina-home #listaDestaques#listaDestaques#listaDestaques .dz-cab-texto{min-width:0!important}
-html body #pagina-home #listaDestaques#listaDestaques#listaDestaques .dz-titulo{font-size:15px!important;line-height:1.35!important;overflow-wrap:break-word!important}
-html body #pagina-home #listaDestaques#listaDestaques#listaDestaques .dz-corpo{display:grid!important;grid-template-columns:minmax(0,1fr) minmax(0,1fr)!important;padding:0 14px 14px!important;gap:12px 8px!important;min-width:0!important}
-html body #pagina-home #listaDestaques#listaDestaques#listaDestaques .dz-infos{display:grid!important;grid-template-columns:minmax(0,1fr) minmax(0,1fr)!important;gap:8px!important;width:100%!important;min-width:0!important}
-html body #pagina-home #listaDestaques#listaDestaques#listaDestaques .dz-info{display:flex!important;align-items:center!important;width:auto!important;min-width:0!important;border:0!important;padding:0!important;gap:5px!important;font-size:10px!important;line-height:1.4!important;white-space:normal!important;overflow-wrap:break-word!important}
-html body #pagina-home #listaDestaques#listaDestaques#listaDestaques .dz-info:first-child{grid-column:1 / -1!important}
-html body #pagina-home #listaDestaques#listaDestaques#listaDestaques .dz-info>*{min-width:0!important;white-space:normal!important;overflow-wrap:break-word!important}
-html body #pagina-home #listaDestaques#listaDestaques#listaDestaques .dz-info svg{flex:0 0 16px!important;width:16px!important;height:16px!important}
-html body #pagina-home #listaDestaques#listaDestaques#listaDestaques .dz-salario{grid-column:1!important;min-width:0!important;width:auto!important;padding:0!important;margin:0!important;min-height:0!important;align-self:center!important}
-html body #pagina-home #listaDestaques#listaDestaques#listaDestaques .dz-salario strong{font-size:14px!important;line-height:1.35!important;white-space:normal!important;overflow-wrap:break-word!important}
-html body #pagina-home #listaDestaques#listaDestaques#listaDestaques .dz-botao{grid-column:2!important;min-width:0!important;width:100%!important;height:40px!important;padding:8px 5px!important;font-size:10px!important;gap:5px!important;position:static!important;margin:0!important}
-html body #pagina-home #listaDestaques#listaDestaques#listaDestaques .em-apply-share-featured{grid-column:2!important;min-width:0!important;width:100%!important}
-html body #pagina-home #listaDestaques#listaDestaques#listaDestaques .em-apply-share-featured>.em-whatsapp-share{display:none!important}
-
-/* Approved reference: gold/peach badges, identity row, large title, stacked SVG facts. */
-html body #pagina-home #listaDestaques#listaDestaques#listaDestaques>.destaque-zero-m6{display:flex!important;flex-direction:column!important;padding:16px!important;border:1px solid #dce6f2!important;border-radius:14px!important;background:#fff!important;box-shadow:0 5px 18px rgba(20,52,88,.05)!important}
-html body #pagina-home #listaDestaques#listaDestaques#listaDestaques :is(.dz-selo,.dz-urgente,.dz-area){display:none!important}
-html body #pagina-home #listaDestaques#listaDestaques#listaDestaques .em-featured-badges{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 14px;min-height:26px}
-html body #pagina-home #listaDestaques#listaDestaques#listaDestaques .em-featured-badge{display:inline-flex;align-items:center;gap:5px;padding:6px 9px;border:1px solid #ecc56b;border-radius:30px;background:#fff9e7;color:#a47509;max-width:100%;font-family:Poppins,sans-serif;font-size:9px;line-height:1.3}
-html body #pagina-home #listaDestaques#listaDestaques#listaDestaques .em-featured-badge.urgent{background:#fff2eb;border-color:#f3b396;color:#be531c}
-html body #pagina-home #listaDestaques#listaDestaques#listaDestaques .em-featured-badge svg{width:15px;height:15px;flex:none;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
-html body #pagina-home #listaDestaques#listaDestaques#listaDestaques .em-featured-badge strong{font-size:inherit!important;font-weight:800!important;color:inherit!important;white-space:normal!important}
-html body #pagina-home #listaDestaques#listaDestaques#listaDestaques .dz-cab{display:grid!important;grid-template-columns:56px minmax(0,1fr)!important;align-items:center!important;gap:12px 10px!important;padding:0!important;background:#fff!important;margin:0 0 14px!important}
-html body #pagina-home #listaDestaques#listaDestaques#listaDestaques .dz-logo{width:56px!important;height:56px!important;background:#f4f7fc!important;border-radius:10px!important}
-html body #pagina-home #listaDestaques#listaDestaques#listaDestaques .dz-logo img{width:100%!important;height:100%!important;object-fit:contain!important;padding:5px!important}
-html body #pagina-home #listaDestaques#listaDestaques#listaDestaques .dz-cab-texto{min-width:0!important}
-html body #pagina-home #listaDestaques#listaDestaques#listaDestaques .dz-empresa{font-size:11px!important;font-weight:700!important;color:#17395f!important;line-height:1.4!important;text-transform:uppercase!important;text-decoration:none!important;white-space:normal!important;margin:0!important;overflow-wrap:break-word!important}
-html body #pagina-home #listaDestaques#listaDestaques#listaDestaques .dz-titulo{grid-column:1 / -1!important;font-family:Poppins,sans-serif!important;font-size:20px!important;font-weight:800!important;color:#102d50!important;line-height:1.25!important;margin:0!important;padding:0!important;letter-spacing:-.3px!important;text-transform:uppercase!important}
-html body #pagina-home #listaDestaques#listaDestaques#listaDestaques .dz-corpo{padding:0!important;gap:12px 8px!important;flex:1!important}
-html body #pagina-home #listaDestaques#listaDestaques#listaDestaques .dz-infos{display:flex!important;flex-direction:column!important;align-items:flex-start!important;gap:8px!important;padding:0!important;margin:0!important;border:0!important}
-html body #pagina-home #listaDestaques#listaDestaques#listaDestaques .dz-info{width:100%!important;display:flex!important;gap:8px!important;font-size:11px!important;color:#596b81!important;line-height:1.5!important}
-html body #pagina-home #listaDestaques#listaDestaques#listaDestaques .dz-info svg{width:18px!important;height:18px!important;flex:0 0 18px!important;stroke:#596b81!important;stroke-width:1.8!important;fill:none!important}
-html body #pagina-home #listaDestaques#listaDestaques#listaDestaques .dz-resumo{font-size:11px!important;line-height:1.65!important;margin:0!important;padding:0!important;border:0!important;height:auto!important;min-height:37px!important;max-height:none!important;display:-webkit-box!important;-webkit-line-clamp:2!important;-webkit-box-orient:vertical!important;overflow:hidden!important}
-html body #pagina-home #listaDestaques#listaDestaques#listaDestaques .dz-salario{border-top:1px solid #e6edf5!important;padding-top:12px!important;align-self:end!important;margin-top:auto!important}
-html body #pagina-home #listaDestaques#listaDestaques#listaDestaques .dz-salario small{display:none!important}
-html body #pagina-home #listaDestaques#listaDestaques#listaDestaques .dz-salario strong{font-size:14px!important;color:#087c4c!important;font-weight:800!important}
-html body #pagina-home #listaDestaques#listaDestaques#listaDestaques .dz-botao{background:#173b6c!important;border-radius:8px!important;color:#fff!important;font-size:10px!important;height:40px!important;align-self:end!important}
-html body #pagina-home #listaDestaques#listaDestaques#listaDestaques .dz-botao:hover{background:#102f58!important}
-@media(max-width:760px){html body #pagina-home #listaDestaques#listaDestaques#listaDestaques .dz-titulo{font-size:22px!important}html body #pagina-home #listaDestaques#listaDestaques#listaDestaques .dz-empresa{font-size:12px!important}html body #pagina-home #listaDestaques#listaDestaques#listaDestaques .dz-info,html body #pagina-home #listaDestaques#listaDestaques#listaDestaques .dz-resumo{font-size:12px!important}html body #pagina-home #listaDestaques#listaDestaques#listaDestaques .em-featured-badge{font-size:10px}html body #pagina-home #listaDestaques#listaDestaques#listaDestaques .dz-salario strong{font-size:17px!important}}
-
-/* Native reference cards: overrides scoped to approved structure. */
-html body #pagina-home #listaDestaques#listaDestaques#listaDestaques .em-featured-reference{padding:18px!important;display:flex!important;flex-direction:column!important;border:1px solid #dce6f2!important;border-radius:14px!important;background:white!important}
-html body #pagina-home #listaDestaques#listaDestaques#listaDestaques .em-featured-reference .dz-cab{display:grid!important;grid-template-columns:56px minmax(0,1fr)!important;padding:0!important;gap:16px 12px!important;margin:0 0 16px!important;align-items:center!important;height:auto!important}
-html body #pagina-home #listaDestaques#listaDestaques#listaDestaques .em-featured-reference .dz-logo{grid-column:1!important;width:56px!important;height:56px!important;background:#17365e!important;border-radius:11px!important;color:#fff!important}
-html body #pagina-home #listaDestaques#listaDestaques#listaDestaques .em-featured-reference .dz-logo :is(.logo-placeholder,.em-logo-destaque-previa){background:#17365e!important;color:#fff!important;font-size:24px!important;font-weight:800!important}
-html body #pagina-home #listaDestaques#listaDestaques#listaDestaques .em-featured-reference .dz-logo:has(img),html body #pagina-home #listaDestaques#listaDestaques#listaDestaques .em-featured-reference .dz-logo .em-logo-destaque-previa:has(img){background:#fff!important}
-html body #pagina-home #listaDestaques#listaDestaques#listaDestaques .em-featured-reference .dz-cab-texto{grid-column:2!important;min-width:0!important}
-html body #pagina-home #listaDestaques#listaDestaques#listaDestaques .em-featured-reference .dz-empresa{font-size:11px!important;line-height:1.4!important;color:#17365e!important;font-weight:700!important;text-transform:uppercase!important;text-decoration:none!important;margin:0!important}
-html body #pagina-home #listaDestaques#listaDestaques#listaDestaques .em-featured-reference .dz-titulo{grid-column:1 / -1!important;width:100%!important;font-family:Poppins,sans-serif!important;font-size:20px!important;font-weight:800!important;line-height:1.25!important;color:#102d50!important;text-transform:uppercase!important;margin:0!important}
-html body #pagina-home #listaDestaques#listaDestaques#listaDestaques .em-featured-reference :is(.dz-area,.dz-selo,.dz-urgente){display:none!important}
-html body #pagina-home #listaDestaques#listaDestaques#listaDestaques .em-featured-reference .dz-corpo{display:grid!important;grid-template-columns:minmax(0,1fr) minmax(0,1fr)!important;padding:0!important;gap:14px 8px!important;flex:1!important}
-html body #pagina-home #listaDestaques#listaDestaques#listaDestaques .em-featured-reference .dz-infos{grid-column:1 / -1!important;display:flex!important;flex-direction:column!important;align-items:stretch!important;gap:9px!important;padding:0!important;margin:0!important}
-html body #pagina-home #listaDestaques#listaDestaques#listaDestaques .em-featured-reference .dz-info{display:flex!important;justify-content:flex-start!important;align-items:center!important;width:100%!important;min-width:0!important;gap:8px!important;font-size:12px!important;line-height:1.45!important;border:0!important;padding:0!important;color:#596b81!important;text-transform:none!important}
-html body #pagina-home #listaDestaques#listaDestaques#listaDestaques .em-featured-reference .dz-info span{text-transform:none!important;font-size:inherit!important}
-html body #pagina-home #listaDestaques#listaDestaques#listaDestaques .em-featured-reference .dz-info svg{flex:0 0 18px!important;width:18px!important;height:18px!important;fill:none!important;stroke:#596b81!important;stroke-width:1.8!important}
-html body #pagina-home #listaDestaques#listaDestaques#listaDestaques .em-featured-reference .dz-resumo{grid-column:1 / -1!important;font-size:12px!important;line-height:1.65!important;padding:0!important;border:0!important;margin:0!important;height:auto!important;min-height:40px!important}
-html body #pagina-home #listaDestaques#listaDestaques#listaDestaques .em-featured-reference .dz-salario{border:0!important;padding:0!important;margin:0!important;align-self:center!important}
-html body #pagina-home #listaDestaques#listaDestaques#listaDestaques .em-featured-reference .dz-salario small,html body #pagina-home #listaDestaques#listaDestaques#listaDestaques .em-featured-reference .dz-money{display:none!important}
-html body #pagina-home #listaDestaques#listaDestaques#listaDestaques .em-featured-reference .dz-salario strong{color:#087c4c!important;font-size:15px!important;font-weight:800!important}
-html body #pagina-home #listaDestaques#listaDestaques#listaDestaques .em-featured-reference .dz-botao{font-size:10px!important;border-radius:8px!important;background:#173b6c!important;padding:9px 6px!important;height:40px!important}
-html body #pagina-home #listaDestaques#listaDestaques#listaDestaques .em-featured-reference .em-featured-badges{display:flex!important;position:static!important;flex-wrap:wrap!important;gap:6px!important;margin:0 0 16px!important}
-html body #pagina-home #listaDestaques#listaDestaques#listaDestaques .em-featured-reference .em-featured-badge{font-size:9px!important;position:static!important;border-radius:30px!important;padding:6px 9px!important}
-@media(max-width:760px){html body #pagina-home #listaDestaques#listaDestaques#listaDestaques .em-featured-reference .dz-titulo{font-size:23px!important}html body #pagina-home #listaDestaques#listaDestaques#listaDestaques .em-featured-reference .dz-empresa{font-size:12px!important}html body #pagina-home #listaDestaques#listaDestaques#listaDestaques .em-featured-reference .dz-info{font-size:13px!important}html body #pagina-home #listaDestaques#listaDestaques#listaDestaques .em-featured-reference .dz-salario strong{font-size:18px!important}}
-
-/* Compact reference rhythm: remove inherited vertical expansion. */
-html body #pagina-home #listaDestaques#listaDestaques#listaDestaques .em-featured-reference{padding:16px!important;height:auto!important;min-height:0!important;max-height:none!important;justify-content:flex-start!important}
-html body #pagina-home #listaDestaques#listaDestaques#listaDestaques .em-featured-reference .em-featured-badges{margin-bottom:10px!important;min-height:0!important}
-html body #pagina-home #listaDestaques#listaDestaques#listaDestaques .em-featured-reference .em-featured-badge{padding:5px 8px!important}
-html body #pagina-home #listaDestaques#listaDestaques#listaDestaques .em-featured-reference .dz-cab{gap:10px 10px!important;margin-bottom:10px!important;min-height:0!important;flex:0 0 auto!important;align-content:start!important}
-html body #pagina-home #listaDestaques#listaDestaques#listaDestaques .em-featured-reference .dz-titulo{line-height:1.2!important}
-html body #pagina-home #listaDestaques#listaDestaques#listaDestaques .em-featured-reference .dz-corpo{gap:10px 8px!important;flex:0 0 auto!important;align-content:start!important;grid-auto-rows:auto!important}
-html body #pagina-home #listaDestaques#listaDestaques#listaDestaques .em-featured-reference .dz-infos{gap:5px!important;min-height:0!important;height:auto!important;justify-content:flex-start!important}
-html body #pagina-home #listaDestaques#listaDestaques#listaDestaques .em-featured-reference .dz-info{height:auto!important;min-height:0!important;line-height:1.4!important;margin:0!important}
-html body #pagina-home #listaDestaques#listaDestaques#listaDestaques .em-featured-reference .dz-resumo{min-height:0!important;height:auto!important;line-height:1.5!important;margin:0!important}
-html body #pagina-home #listaDestaques#listaDestaques#listaDestaques .em-featured-reference .dz-salario{margin:0!important;min-height:0!important}
-html body #pagina-home #listaDestaques#listaDestaques#listaDestaques .em-featured-reference .dz-botao{height:36px!important}
+/* Approved reference: gold/peach badges, identity row, large title{display:flex!important;flex-direction:column!important;padding:16px!important;border:1px solid #dce6f2!important;border-radius:14px!important;background:#fff!important;box-shadow:0 5px 18px rgba(20,52,88,.05)!important}
 
 /* Correção do fundo e ícones do menu de candidatos. */
 html body header.topo #acoesPublicas#acoesPublicas .header-v98-area .em-candidate-menu.em-account-menu>button.em-account-primary{background:#0080c9!important;background-image:none!important;border:1px solid #0080c9!important;color:white!important;box-shadow:none!important}html body header.topo #acoesPublicas#acoesPublicas .header-v98-area .em-candidate-menu.em-account-menu>button.em-account-primary:hover{background:#006da9!important;border-color:#006da9!important}html body header.topo #acoesPublicas#acoesPublicas .header-v98-area .em-candidate-menu.em-account-menu>button.em-account-primary :is(strong,small,svg,span){color:white!important}html body header.topo #acoesPublicas#acoesPublicas .header-v98-area .em-candidate-menu.em-account-menu>button.em-account-primary .em-account-icon{background:#ffffff26!important}html body header.topo #acoesPublicas#acoesPublicas .header-v98-area .em-candidate-menu.em-account-menu>button:not(.em-account-primary) .em-account-icon{background:#eff6ff!important;color:#0080c9!important}html body header.topo #acoesPublicas#acoesPublicas .header-v98-area .em-candidate-menu.em-account-menu>button:not(.em-account-primary) .em-account-icon svg{color:#0080c9!important;stroke:#0080c9!important}
@@ -998,120 +763,9 @@ html body header.topo #acoesPublicas#acoesPublicas .header-v98-area .em-candidat
 html body :is(#em-site-font#em-font-global#em-font-priority#em-font-theme#em-font-standard#em-font-inter,*){font-family:Poppins,sans-serif!important}
 html body :is(#em-site-font#em-font-global#em-font-priority#em-font-theme#em-font-standard#em-font-inter,*)::before,html body :is(#em-site-font#em-font-global#em-font-priority#em-font-theme#em-font-standard#em-font-inter,*)::after{font-family:Poppins,sans-serif!important}
 
-/* Vagas em destaque: referência compacta com candidatura laranja. */
-html body #pagina-home #listaDestaques#listaDestaques#listaDestaques{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:16px!important}
-html body #pagina-home #listaDestaques#listaDestaques#listaDestaques .em-featured-reference{display:grid!important;grid-template-columns:48px minmax(0,1fr) auto!important;grid-template-areas:"logo title salary" "logo company salary" "info info info" "badges badges badges" "button button button"!important;gap:8px 12px!important;padding:14px!important;border:1px solid #e6edf5!important;border-radius:14px!important;height:auto!important;min-height:0!important;max-height:none!important;background:#fff!important;box-shadow:none!important;align-content:start!important}
-html body #pagina-home #listaDestaques#listaDestaques#listaDestaques .em-featured-reference .dz-cab, html body #pagina-home #listaDestaques#listaDestaques#listaDestaques .em-featured-reference .dz-cab-texto, html body #pagina-home #listaDestaques#listaDestaques#listaDestaques .em-featured-reference .dz-corpo{display:contents!important}
-html body #pagina-home #listaDestaques#listaDestaques#listaDestaques .em-featured-reference .dz-logo{grid-area:logo!important;width:44px!important;height:44px!important;min-height:0!important;margin:0!important;background:#f3f4f6!important;border-radius:10px!important}
-html body #pagina-home #listaDestaques#listaDestaques#listaDestaques .em-featured-reference .dz-logo .em-logo-destaque-previa{background:#f3f4f6!important;color:#0086c9!important;font-size:22px!important}
-html body #pagina-home #listaDestaques#listaDestaques#listaDestaques .em-featured-reference .dz-titulo{grid-area:title!important;font-size:15px!important;line-height:1.35!important;color:#0086c9!important;text-transform:none!important;margin:0!important;padding:0!important;align-self:center!important}
-html body #pagina-home #listaDestaques#listaDestaques#listaDestaques .em-featured-reference .dz-empresa{grid-area:company!important;font-size:12px!important;line-height:1.4!important;color:#39485d!important;text-transform:none!important;text-decoration:none!important;margin:0!important}
-html body #pagina-home #listaDestaques#listaDestaques#listaDestaques .em-featured-reference .dz-salario{grid-area:salary!important;align-self:start!important;margin:0!important;padding:0!important;white-space:nowrap!important}
-html body #pagina-home #listaDestaques#listaDestaques#listaDestaques .em-featured-reference .dz-salario strong{color:#425169!important;font-size:14px!important;font-weight:600!important}
-html body #pagina-home #listaDestaques#listaDestaques#listaDestaques .em-featured-reference .dz-infos{grid-area:info!important;display:flex!important;flex-flow:row wrap!important;gap:5px!important;margin:2px 0 0!important}
-html body #pagina-home #listaDestaques#listaDestaques#listaDestaques .em-featured-reference .dz-info{width:auto!important;max-width:100%!important;display:inline-flex!important;gap:5px!important;padding:5px 9px!important;border-radius:20px!important;background:#f3f4f6!important;color:#425169!important;font-size:12px!important;line-height:1.3!important}
-html body #pagina-home #listaDestaques#listaDestaques#listaDestaques .em-featured-reference .dz-info svg{width:13px!important;height:13px!important;flex-basis:13px!important}
-html body #pagina-home #listaDestaques#listaDestaques#listaDestaques .em-featured-reference .dz-resumo{display:none!important}
-html body #pagina-home #listaDestaques#listaDestaques#listaDestaques .em-featured-reference .em-featured-badges{grid-area:badges!important;display:flex!important;gap:6px!important;margin:0 0 6px!important;min-height:0!important}
-html body #pagina-home #listaDestaques#listaDestaques#listaDestaques .em-featured-reference .em-featured-badge{position:static!important;border-radius:5px!important;font-size:10px!important;padding:5px 8px!important}
-html body #pagina-home #listaDestaques#listaDestaques#listaDestaques .em-featured-reference .em-featured-badge.featured{display:none!important}
-html body #pagina-home #listaDestaques#listaDestaques#listaDestaques .em-featured-reference .em-featured-badge.urgent{background:#ff991b!important;color:#fff!important;border-color:#ff991b!important}
-html body #pagina-home #listaDestaques#listaDestaques#listaDestaques .em-featured-reference .em-public-demo-badge.new{background:#0086c9!important;color:#fff!important;border-color:#0086c9!important}
-html body #pagina-home #listaDestaques#listaDestaques#listaDestaques .em-featured-reference .dz-botao{grid-area:button!important;display:flex!important;align-items:center!important;justify-content:center!important;width:100%!important;height:50px!important;min-height:50px!important;padding:12px!important;border:0!important;border-radius:9px!important;background:#ff991b!important;color:#fff!important;font-size:15px!important;font-weight:800!important;margin:0!important;box-shadow:none!important}
-html body #pagina-home #listaDestaques#listaDestaques#listaDestaques .em-featured-reference .dz-botao:hover{background:#ed8610!important;transform:none!important}
-html body #pagina-home #listaDestaques#listaDestaques#listaDestaques .em-featured-reference .dz-botao:focus-visible{outline:3px solid #153b66!important;outline-offset:3px!important}
-@media(max-width:760px){html body #pagina-home #listaDestaques#listaDestaques#listaDestaques{grid-template-columns:minmax(0,1fr)!important}}
-@media(max-width:380px){html body #pagina-home #listaDestaques#listaDestaques#listaDestaques .em-featured-reference{grid-template-columns:40px minmax(0,1fr)!important;grid-template-areas:"logo title" "logo company" "salary salary" "info info" "badges badges" "button button"!important}}
-
-/* Reset legacy carousel widths and application wrapper placement. */
-html body #pagina-home #listaDestaques#listaDestaques#listaDestaques .em-featured-reference{width:100%!important;min-width:0!important;max-width:100%!important;justify-self:stretch!important;flex:none!important;box-sizing:border-box!important;overflow:hidden!important;border-top:1px solid #e6edf5!important}
-html body #pagina-home #listaDestaques#listaDestaques#listaDestaques .em-featured-reference .em-apply-share-featured{grid-area:button!important;display:flex!important;width:100%!important;min-width:0!important;margin:0!important;align-items:center!important;gap:8px!important}
-html body #pagina-home #listaDestaques#listaDestaques#listaDestaques .em-featured-reference .em-apply-share-featured .dz-botao{grid-area:auto!important;flex:1 1 auto!important;width:100%!important;min-width:0!important;white-space:normal!important}
-html body #pagina-home #listaDestaques#listaDestaques#listaDestaques .em-featured-reference .dz-logo{min-width:44px!important}
-html body #pagina-home #listaDestaques#listaDestaques#listaDestaques .em-featured-reference .dz-titulo{min-width:0!important;word-break:normal!important;overflow-wrap:break-word!important}
-html body #pagina-home #listaDestaques#listaDestaques#listaDestaques .em-featured-reference .dz-empresa{min-width:0!important;white-space:normal!important;overflow-wrap:break-word!important}
-html body #pagina-home #listaDestaques#listaDestaques#listaDestaques{overflow:visible!important;scroll-snap-type:none!important}
-
-/* Salário junto à modalidade; card mais estreito e com maior altura. */
-html body #pagina-home #listaDestaques#listaDestaques#listaDestaques{max-width:1080px!important;margin-left:auto!important;margin-right:auto!important}
-html body #pagina-home #listaDestaques#listaDestaques#listaDestaques .em-featured-reference{grid-template-columns:48px minmax(0,1fr)!important;grid-template-areas:"logo title" "logo company" "info info" "badges badges" "button button"!important;gap:12px 12px!important;padding:18px 14px!important;min-height:238px!important}
-html body #pagina-home #listaDestaques#listaDestaques#listaDestaques .em-featured-reference .dz-infos{display:flex!important;flex-flow:row wrap!important;align-items:center!important;gap:5px!important}
-html body #pagina-home #listaDestaques#listaDestaques#listaDestaques .em-featured-reference .dz-infos .dz-salario{grid-area:auto!important;display:inline-flex!important;align-items:center!important;align-self:center!important;width:auto!important;padding:5px 8px!important;border-radius:20px!important;background:#f3f4f6!important;white-space:nowrap!important}
-html body #pagina-home #listaDestaques#listaDestaques#listaDestaques .em-featured-reference .dz-infos .dz-salario strong{font-size:12px!important;line-height:1.3!important;color:#425169!important;font-weight:700!important}
-html body #pagina-home #listaDestaques#listaDestaques#listaDestaques .em-featured-reference .em-apply-share-featured{align-self:end!important}
-@media(max-width:760px){html body #pagina-home #listaDestaques#listaDestaques#listaDestaques .em-featured-reference{min-height:238px!important}}
-
-/* Quatro cards quadrados por faixa, com carrossel horizontal. */
-html body #pagina-home #listaDestaques#listaDestaques#listaDestaques{display:grid!important;grid-template-columns:none!important;grid-auto-flow:column!important;grid-auto-columns:calc((100% - 48px)/4)!important;grid-template-rows:auto!important;gap:16px!important;width:100%!important;max-width:100%!important;margin:0!important;overflow-x:auto!important;overflow-y:hidden!important;scroll-snap-type:x mandatory!important;scroll-behavior:smooth!important;padding:8px 0 18px!important;align-items:start!important}
-html body #pagina-home #listaDestaques#listaDestaques#listaDestaques .em-featured-reference{width:100%!important;min-width:0!important;max-width:100%!important;aspect-ratio:1 / 1!important;height:auto!important;min-height:0!important;max-height:none!important;padding:14px!important;gap:8px 10px!important;grid-template-rows:auto auto minmax(0,1fr) auto 44px!important;align-content:stretch!important;scroll-snap-align:start!important;overflow:hidden!important}
-html body #pagina-home #listaDestaques#listaDestaques#listaDestaques .em-featured-reference .dz-titulo{font-size:13px!important;line-height:1.3!important;align-self:start!important}
-html body #pagina-home #listaDestaques#listaDestaques#listaDestaques .em-featured-reference .dz-empresa{font-size:11px!important;line-height:1.3!important}
-html body #pagina-home #listaDestaques#listaDestaques#listaDestaques .em-featured-reference .dz-logo{width:40px!important;min-width:40px!important;height:40px!important}
-html body #pagina-home #listaDestaques#listaDestaques#listaDestaques .em-featured-reference .dz-infos{align-content:center!important;gap:4px!important;margin:0!important}
-html body #pagina-home #listaDestaques#listaDestaques#listaDestaques .em-featured-reference .dz-info,html body #pagina-home #listaDestaques#listaDestaques#listaDestaques .em-featured-reference .dz-infos .dz-salario{font-size:10px!important;padding:4px 6px!important}
-html body #pagina-home #listaDestaques#listaDestaques#listaDestaques .em-featured-reference .dz-infos .dz-salario strong{font-size:11px!important}
-html body #pagina-home #listaDestaques#listaDestaques#listaDestaques .em-featured-reference .em-featured-badges{gap:4px!important;margin:0!important;align-content:start!important}
-html body #pagina-home #listaDestaques#listaDestaques#listaDestaques .em-featured-reference .em-featured-badge,html body #pagina-home #listaDestaques#listaDestaques#listaDestaques .em-featured-reference .em-public-demo-badge{font-size:9px!important;padding:4px 6px!important}
-html body #pagina-home #listaDestaques#listaDestaques#listaDestaques .em-featured-reference .dz-botao{height:44px!important;min-height:44px!important;font-size:12px!important;padding:9px 6px!important}
+/* Quatro cards quadrados por faixa{display:grid!important;grid-template-columns:none!important;grid-auto-flow:column!important;grid-auto-columns:calc((100% - 48px)/4)!important;grid-template-rows:auto!important;gap:16px!important;width:100%!important;max-width:100%!important;margin:0!important;overflow-x:auto!important;overflow-y:hidden!important;scroll-snap-type:x mandatory!important;scroll-behavior:smooth!important;padding:8px 0 18px!important;align-items:start!important}
 html body #pagina-home .destaques-carrossel-em{position:relative!important;padding:0 22px!important}
 html body #pagina-home .destaques-carrossel-em .destaques-seta-em{display:flex!important;z-index:10!important}
-@media(max-width:1000px) and (min-width:761px){html body #pagina-home #listaDestaques#listaDestaques#listaDestaques{grid-auto-columns:calc((100% - 32px)/3)!important}}
-@media(max-width:760px){html body #pagina-home #listaDestaques#listaDestaques#listaDestaques{grid-auto-columns:82%!important;gap:12px!important}html body #pagina-home #listaDestaques#listaDestaques#listaDestaques .em-featured-reference{aspect-ratio:1 / 1!important;min-height:0!important}html body #pagina-home .destaques-carrossel-em{padding:0!important}html body #pagina-home .destaques-carrossel-em .destaques-seta-em{display:none!important}}
+@media(max-width:760px){html body #pagina-home .destaques-carrossel-em{padding:0!important}html body #pagina-home .destaques-carrossel-em .destaques-seta-em{display:none!important}}
 
-/* Três vagas visíveis por vez, em cards quadrados maiores. */
-@media(min-width:761px){
-html body #pagina-home #listaDestaques#listaDestaques#listaDestaques{grid-auto-columns:calc((100% - 32px)/3)!important}
-html body #pagina-home #listaDestaques#listaDestaques#listaDestaques .em-featured-reference{padding:18px!important;gap:10px 12px!important;grid-template-columns:48px minmax(0,1fr)!important;grid-template-rows:auto auto minmax(0,1fr) auto 48px!important}
-html body #pagina-home #listaDestaques#listaDestaques#listaDestaques .em-featured-reference .dz-titulo{font-size:15px!important}
-html body #pagina-home #listaDestaques#listaDestaques#listaDestaques .em-featured-reference .dz-empresa{font-size:12px!important}
-html body #pagina-home #listaDestaques#listaDestaques#listaDestaques .em-featured-reference .dz-logo{width:46px!important;height:46px!important;min-width:46px!important}
-html body #pagina-home #listaDestaques#listaDestaques#listaDestaques .em-featured-reference .dz-info,html body #pagina-home #listaDestaques#listaDestaques#listaDestaques .em-featured-reference .dz-infos .dz-salario{font-size:11px!important;padding:5px 7px!important}
-html body #pagina-home #listaDestaques#listaDestaques#listaDestaques .em-featured-reference .dz-infos .dz-salario strong{font-size:12px!important}
-html body #pagina-home #listaDestaques#listaDestaques#listaDestaques .em-featured-reference .em-featured-badge,html body #pagina-home #listaDestaques#listaDestaques#listaDestaques .em-featured-reference .em-public-demo-badge{font-size:10px!important;padding:5px 7px!important}
-html body #pagina-home #listaDestaques#listaDestaques#listaDestaques .em-featured-reference .dz-botao{height:48px!important;min-height:48px!important;font-size:14px!important}
-}
-
-/* Logos maiores e títulos das vagas em caixa alta nos destaques. */
-html body #pagina-home #listaDestaques#listaDestaques#listaDestaques .em-featured-reference{grid-template-columns:64px minmax(0,1fr)!important}
-html body #pagina-home #listaDestaques#listaDestaques#listaDestaques .em-featured-reference .dz-logo{width:60px!important;height:60px!important;min-width:60px!important;border-radius:12px!important}
-html body #pagina-home #listaDestaques#listaDestaques#listaDestaques .em-featured-reference .dz-logo .em-logo-destaque-previa{width:100%!important;height:100%!important}
-html body #pagina-home #listaDestaques#listaDestaques#listaDestaques .em-featured-reference .dz-logo img{width:100%!important;height:100%!important;padding:2px!important;object-fit:contain!important;box-sizing:border-box!important}
-html body #pagina-home #listaDestaques#listaDestaques#listaDestaques .em-featured-reference .dz-titulo{text-transform:uppercase!important}
-@media(max-width:760px){html body #pagina-home #listaDestaques#listaDestaques#listaDestaques .em-featured-reference{grid-template-columns:56px minmax(0,1fr)!important}html body #pagina-home #listaDestaques#listaDestaques#listaDestaques .em-featured-reference .dz-logo{width:52px!important;height:52px!important;min-width:52px!important}}
-
-/* Modelo 3 executivo: hierarquia compacta, resumo em duas linhas. */
-html body #pagina-home #listaDestaques#listaDestaques#listaDestaques .em-featured-reference{position:relative!important;border:1px solid #dfe6ee!important;border-top:1px solid #dfe6ee!important;border-radius:10px!important;background:#fff!important;aspect-ratio:auto!important;height:390px!important;min-height:390px!important;max-height:390px!important;padding:16px!important;grid-template-columns:64px minmax(0,1fr)!important;grid-template-areas:"logo title" "logo company" "badges badges" "info info" "summary summary" "details details" "button button"!important;grid-template-rows:38px 20px 26px 58px 40px 34px 44px!important;gap:7px 12px!important;align-content:space-between!important}
-html body #pagina-home #listaDestaques#listaDestaques#listaDestaques .em-featured-reference::before{content:""!important;position:absolute!important;left:0!important;top:0!important;height:86px!important;width:5px!important;background:#ff741f!important;border-radius:9px 0 4px 0!important}
-html body #pagina-home #listaDestaques#listaDestaques#listaDestaques .em-featured-reference::after,html body #pagina-home #listaDestaques#listaDestaques#listaDestaques .em-featured-reference .dz-cab::before,html body #pagina-home #listaDestaques#listaDestaques#listaDestaques .em-featured-reference .dz-cab::after,html body #pagina-home #listaDestaques#listaDestaques#listaDestaques .em-featured-reference .dz-corpo::before,html body #pagina-home #listaDestaques#listaDestaques#listaDestaques .em-featured-reference .dz-corpo::after,html body #pagina-home #listaDestaques#listaDestaques#listaDestaques .em-featured-reference .dz-botao::before,html body #pagina-home #listaDestaques#listaDestaques#listaDestaques .em-featured-reference .dz-botao::after{display:none!important;content:none!important}
-html body #pagina-home #listaDestaques#listaDestaques#listaDestaques .em-featured-reference .dz-logo{grid-area:logo!important;width:60px!important;height:60px!important;min-width:60px!important;align-self:start!important;background:white!important;border:0!important}
-html body #pagina-home #listaDestaques#listaDestaques#listaDestaques .em-featured-reference .dz-titulo{grid-area:title!important;align-self:center!important;font-size:14px!important;line-height:1.3!important;color:#12549b!important;text-transform:uppercase!important;font-weight:800!important}
-html body #pagina-home #listaDestaques#listaDestaques#listaDestaques .em-featured-reference .dz-empresa{grid-area:company!important;align-self:start!important;font-size:12px!important;color:#637086!important;font-weight:500!important;border:0!important;text-decoration:none!important}
-html body #pagina-home #listaDestaques#listaDestaques#listaDestaques .em-featured-reference .em-featured-badges{grid-area:badges!important;margin:0!important;gap:5px!important;align-items:center!important;flex-wrap:nowrap!important}
-html body #pagina-home #listaDestaques#listaDestaques#listaDestaques .em-featured-reference .em-featured-badge,html body #pagina-home #listaDestaques#listaDestaques#listaDestaques .em-featured-reference .em-public-demo-badge{padding:4px 7px!important;font-size:9px!important;border-radius:20px!important;white-space:nowrap!important}
-html body #pagina-home #listaDestaques#listaDestaques#listaDestaques .em-featured-reference .em-featured-badge.urgent{background:#fff0ee!important;color:#d8453f!important;border:0!important}
-html body #pagina-home #listaDestaques#listaDestaques#listaDestaques .em-featured-reference .em-public-demo-badge.new{background:#e5f4ef!important;color:#247964!important;border:0!important}
-html body #pagina-home #listaDestaques#listaDestaques#listaDestaques .em-featured-reference .em-public-demo-badge.demo{background:#eaf1fc!important;color:#235b9e!important;border:0!important}
-html body #pagina-home #listaDestaques#listaDestaques#listaDestaques .em-featured-reference .dz-infos{grid-area:info!important;display:grid!important;grid-template-columns:1.2fr 1fr!important;grid-template-rows:24px 24px!important;gap:4px 8px!important;align-content:center!important;margin:0!important;padding:0!important}
-html body #pagina-home #listaDestaques#listaDestaques#listaDestaques .em-featured-reference .dz-info{font-size:11px!important;padding:0!important;border:0!important;border-radius:0!important;background:none!important;white-space:normal!important;line-height:1.35!important;gap:6px!important}
-html body #pagina-home #listaDestaques#listaDestaques#listaDestaques .em-featured-reference .dz-info:nth-child(1){grid-column:1!important;grid-row:1!important}
-html body #pagina-home #listaDestaques#listaDestaques#listaDestaques .em-featured-reference .dz-info:nth-child(2){grid-column:1!important;grid-row:2!important}
-html body #pagina-home #listaDestaques#listaDestaques#listaDestaques .em-featured-reference .dz-info:nth-child(3){grid-column:2!important;grid-row:1!important}
-html body #pagina-home #listaDestaques#listaDestaques#listaDestaques .em-featured-reference .dz-infos .dz-salario{grid-column:2!important;grid-row:2!important;background:none!important;border-radius:0!important;padding:0!important}
-html body #pagina-home #listaDestaques#listaDestaques#listaDestaques .em-featured-reference .dz-infos .dz-salario strong{font-size:12px!important;color:#44536b!important;font-weight:600!important}
-html body #pagina-home #listaDestaques#listaDestaques#listaDestaques .em-featured-reference .dz-resumo{grid-area:summary!important;display:-webkit-box!important;-webkit-line-clamp:2!important;-webkit-box-orient:vertical!important;overflow:hidden!important;text-overflow:ellipsis!important;line-height:20px!important;font-size:12px!important;color:#59677d!important;height:40px!important;min-height:40px!important;max-height:40px!important;margin:0!important;padding:0!important;border:0!important}
-html body #pagina-home #listaDestaques#listaDestaques#listaDestaques .em-featured-reference .dz-detalhes-ref{grid-area:details!important;display:flex!important;align-items:center!important;justify-content:space-between!important;gap:8px!important;width:100%!important;border:0!important;border-top:1px solid #e5eaf0!important;background:none!important;padding:8px 0 0!important;color:#596a82!important;font-size:11px!important;font-weight:500!important;cursor:pointer!important;text-align:left!important}
-html body #pagina-home #listaDestaques#listaDestaques#listaDestaques .em-featured-reference .dz-detalhes-ref svg{width:17px!important;height:17px!important;flex:none!important;stroke:currentColor!important;fill:none!important}
-html body #pagina-home #listaDestaques#listaDestaques#listaDestaques .em-featured-reference .em-apply-share-featured{grid-area:button!important;margin:0!important}
-html body #pagina-home #listaDestaques#listaDestaques#listaDestaques .em-featured-reference .dz-botao{height:44px!important;min-height:44px!important;font-size:13px!important;font-weight:700!important;background:#ff791b!important;border-radius:7px!important}
-@media(max-width:760px){html body #pagina-home #listaDestaques#listaDestaques#listaDestaques .em-featured-reference{height:390px!important;min-height:390px!important;max-height:390px!important;grid-template-columns:56px minmax(0,1fr)!important}html body #pagina-home #listaDestaques#listaDestaques#listaDestaques .em-featured-reference .dz-titulo{font-size:13px!important}html body #pagina-home #listaDestaques#listaDestaques#listaDestaques .em-featured-reference .dz-logo{width:52px!important;height:52px!important;min-width:52px!important}}
-
-/* Compactação do modelo executivo e retirada da barra superior. */
-html body #pagina-home#pagina-home #listaDestaques#listaDestaques#listaDestaques#listaDestaques article.em-featured-reference.em-featured-reference{border:1px solid #dfe6ee!important;border-top:1px solid #dfe6ee!important;height:334px!important;min-height:334px!important;max-height:334px!important;aspect-ratio:auto!important;padding:14px!important;grid-template-columns:76px minmax(0,1fr)!important;grid-template-rows:44px 22px 24px 46px 36px 28px 42px!important;gap:6px 12px!important;align-content:space-between!important}
-html body #pagina-home#pagina-home #listaDestaques#listaDestaques#listaDestaques#listaDestaques article.em-featured-reference.em-featured-reference .dz-logo{width:72px!important;height:72px!important;min-width:72px!important;max-width:72px!important;align-self:start!important}
-html body #pagina-home#pagina-home #listaDestaques#listaDestaques#listaDestaques#listaDestaques article.em-featured-reference.em-featured-reference .dz-logo .em-logo-destaque-previa,html body #pagina-home#pagina-home #listaDestaques#listaDestaques#listaDestaques#listaDestaques article.em-featured-reference.em-featured-reference .dz-logo img{width:100%!important;height:100%!important;padding:0!important}
-html body #pagina-home#pagina-home #listaDestaques#listaDestaques#listaDestaques#listaDestaques article.em-featured-reference.em-featured-reference .dz-titulo{font-size:16px!important;line-height:1.3!important;font-weight:800!important;align-self:center!important}
-html body #pagina-home#pagina-home #listaDestaques#listaDestaques#listaDestaques#listaDestaques article.em-featured-reference.em-featured-reference .dz-empresa{font-size:12px!important;line-height:1.3!important}
-html body #pagina-home#pagina-home #listaDestaques#listaDestaques#listaDestaques#listaDestaques article.em-featured-reference.em-featured-reference .dz-resumo{font-size:12px!important;line-height:18px!important;height:36px!important;min-height:36px!important;max-height:36px!important;display:-webkit-box!important;-webkit-box-orient:vertical!important;-webkit-line-clamp:2!important;overflow:hidden!important;color:#59677d!important}
-html body #pagina-home#pagina-home #listaDestaques#listaDestaques#listaDestaques#listaDestaques article.em-featured-reference.em-featured-reference .dz-botao{height:42px!important;min-height:42px!important}
-html body #pagina-home#pagina-home #listaDestaques#listaDestaques#listaDestaques#listaDestaques article.em-featured-reference.em-featured-reference .dz-detalhes-ref{padding-top:6px!important}
-@media(max-width:760px){html body #pagina-home#pagina-home #listaDestaques#listaDestaques#listaDestaques#listaDestaques article.em-featured-reference.em-featured-reference{grid-template-columns:64px minmax(0,1fr)!important;height:350px!important;min-height:350px!important;max-height:350px!important}html body #pagina-home#pagina-home #listaDestaques#listaDestaques#listaDestaques#listaDestaques article.em-featured-reference.em-featured-reference .dz-logo{width:60px!important;height:60px!important;min-width:60px!important;max-width:60px!important}html body #pagina-home#pagina-home #listaDestaques#listaDestaques#listaDestaques#listaDestaques article.em-featured-reference.em-featured-reference .dz-titulo{font-size:15px!important}}
+/* Modelo 3 executivo: hierarquia compacta{position:relative!important;border:1px solid #dfe6ee!important;border-top:1px solid #dfe6ee!important;border-radius:10px!important;background:#fff!important;aspect-ratio:auto!important;height:390px!important;min-height:390px!important;max-height:390px!important;padding:16px!important;grid-template-columns:64px minmax(0,1fr)!important;grid-template-areas:"logo title" "logo company" "badges badges" "info info" "summary summary" "details details" "button button"!important;grid-template-rows:38px 20px 26px 58px 40px 34px 44px!important;gap:7px 12px!important;align-content:space-between!important}
