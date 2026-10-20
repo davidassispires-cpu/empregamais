@@ -1,0 +1,290 @@
+/* Approved corporate header: darker blue hero and a vertical search card. */
+@layer candidate-palette {
+  body:has(#pagina-home.ativa) > header.topo {
+    --candidate-contrast-ink: #42566b !important;
+    background: #fff !important;
+    border-bottom: 1px solid #e6edf4 !important;
+    box-shadow: none !important;
+  }
+  body:has(#pagina-home.ativa) > header.topo .topo-inner {
+    box-sizing: border-box !important;
+    width: 100% !important;
+    max-width: 1440px !important;
+    min-height: 84px !important;
+    margin: 0 auto !important;
+    padding: 16px 40px !important;
+    gap: 28px !important;
+    align-items: center !important;
+  }
+  body:has(#pagina-home.ativa) > header.topo .marca {
+    flex: 0 0 auto !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+  body:has(#pagina-home.ativa) > header.topo .marca-nome {
+    color: #123b60 !important;
+    font-size: 26px !important;
+    font-weight: 700 !important;
+    letter-spacing: -.8px !important;
+  }
+  body:has(#pagina-home.ativa) > header.topo #menuPublico {
+    gap: 26px !important;
+    margin-right: auto !important;
+  }
+  body:has(#pagina-home.ativa) > header.topo #menuPublico .menu-link {
+    background: transparent !important;
+    border: 0 !important;
+    color: #526277 !important;
+    font-size: 15px !important;
+    font-weight: 500 !important;
+    padding: 10px 0 !important;
+    white-space: nowrap !important;
+  }
+  body:has(#pagina-home.ativa) > header.topo #emHeaderNavigation { margin-left: auto !important; }
+  body:has(#pagina-home.ativa) > header.topo #acoesPublicas { gap: 14px !important; align-items: center !important; }
+  body:has(#pagina-home.ativa) > header.topo #acoesPublicas > .header-v98-area[data-publico="cand"] { order: 1 !important; }
+  body:has(#pagina-home.ativa) > header.topo #acoesPublicas > :is(.menu-empresa-v19, .header-v98-area[data-publico="emp"]) { order: 2 !important; }
+  body:has(#pagina-home.ativa) > header.topo #acoesPublicas > .btn-publicar-v19 { order: 3 !important; }
+  body:has(#pagina-home.ativa) > header.topo #acoesPublicas :is(.header-v98-area > button, .btn-candidato-v19, .menu-empresa-btn-v19, .btn-publicar-v19) {
+    box-sizing: border-box !important;
+    min-height: 44px !important;
+    height: 44px !important;
+    padding: 0 17px !important;
+    border: 1px solid transparent !important;
+    border-radius: 8px !important;
+    font-size: 14.5px !important;
+    font-weight: 600 !important;
+    line-height: 1.3 !important;
+    white-space: nowrap !important;
+    box-shadow: none !important;
+  }
+  body:has(#pagina-home.ativa) > header.topo #acoesPublicas :is(.header-v98-area[data-publico="cand"] > button, .btn-candidato-v19) {
+    --candidate-contrast-ink: #0873ba !important;
+    background: #fff !important;
+    border-color: #1680c7 !important;
+    color: #0873ba !important;
+  }
+  body:has(#pagina-home.ativa) > header.topo #acoesPublicas :is(.header-v98-area[data-publico="emp"] > button, .menu-empresa-btn-v19) {
+    background: #fff !important;
+    color: #42566b !important;
+  }
+  body:has(#pagina-home.ativa) > header.topo #acoesPublicas .header-v98-area > button :is(span, svg) { color: inherit !important; font-size: inherit !important; }
+  body:has(#pagina-home.ativa) > header.topo #acoesPublicas .btn-publicar-v19 {
+    --candidate-contrast-ink: #fff !important;
+    background: #0879bc !important;
+    border-color: #0879bc !important;
+    color: #fff !important;
+  }
+  body:has(#pagina-home.ativa) > header.topo #acoesPublicas .header-v98-area > button:hover { background: #f1f7fc !important; }
+  body:has(#pagina-home.ativa) > header.topo #acoesPublicas .btn-publicar-v19:hover { background: #0865a3 !important; border-color: #0865a3 !important; }
+  body:has(#pagina-home.ativa) > header.topo button:focus-visible { outline: 2px solid #0879bc !important; outline-offset: 3px !important; }
+  body:has(#pagina-home.ativa) > header.topo #emHeaderMenuToggle { display: none !important; }
+
+  #pagina-home #emHeroFloripa {
+    box-sizing: border-box !important;
+    position: relative !important;
+    display: flex !important;
+    align-items: center !important;
+    min-height: 460px !important;
+    height: auto !important;
+    margin: 0 !important;
+    padding: 56px 40px !important;
+    overflow: visible !important;
+    background: #0865a3 !important;
+    color: #fff !important;
+    border: 0 !important;
+    border-radius: 0 !important;
+  }
+  #pagina-home #emHeroFloripa::before {
+    content: "" !important;
+    position: absolute !important;
+    inset: 0 !important;
+    display: block !important;
+    pointer-events: none !important;
+    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 500' preserveAspectRatio='none'%3E%3Cg fill='none' stroke='%23fff' stroke-opacity='.16' stroke-width='1.2'%3E%3Cpath d='M-80 180C15 90 155 105 215-15M-100 390C160 360 260 530 525 475S1030 440 1270 420 1440 290 1510 240'/%3E%3C/g%3E%3C/svg%3E") center/100% 100% no-repeat !important;
+  }
+  #pagina-home #emHeroFloripa::after,
+  #pagina-home #emHeroFloripa .hero-copy-em h1::after { content: none !important; display: none !important; }
+  #pagina-home #emHeroFloripa .hero-premium-inner-em {
+    position: relative !important;
+    z-index: 1 !important;
+    display: grid !important;
+    grid-template-columns: minmax(0, 1fr) minmax(360px, .94fr) !important;
+    align-items: center !important;
+    gap: 72px !important;
+    width: 100% !important;
+    max-width: 1360px !important;
+    margin: 0 auto !important;
+    padding: 0 !important;
+  }
+  #pagina-home #emHeroFloripa .hero-copy-em { width: 100% !important; min-width: 0 !important; max-width: none !important; margin: 0 !important; padding: 0 !important; text-align: left !important; }
+  #pagina-home #emHeroFloripa .hero-copy-em h1 {
+    margin: 0 !important;
+    max-width: none !important;
+    color: #fff !important;
+    font-size: clamp(38px, 3.9vw, 56px) !important;
+    font-weight: 700 !important;
+    line-height: 1.15 !important;
+    letter-spacing: -1.2px !important;
+    text-transform: none !important;
+  }
+  #pagina-home #emHeroFloripa .hero-copy-em p {
+    max-width: 570px !important;
+    margin: 24px 0 0 !important;
+    color: #fff !important;
+    font-size: 17px !important;
+    font-weight: 400 !important;
+    line-height: 1.65 !important;
+  }
+  #pagina-home #emHeroFloripa .em-hero-actions { width: 100% !important; min-width: 0 !important; margin: 0 !important; padding: 0 !important; }
+  #pagina-home #emHeroFloripa .hero-search-shell-em {
+    box-sizing: border-box !important;
+    width: 100% !important;
+    min-width: 0 !important;
+    margin: 0 !important;
+    padding: 28px !important;
+    background: #fff !important;
+    border: 1px solid #e3edf5 !important;
+    border-radius: 18px !important;
+    box-shadow: 0 12px 28px #064d7b12 !important;
+  }
+  #pagina-home #emHeroFloripa #emHeroRefBusca {
+    display: grid !important;
+    grid-template-columns: minmax(0, 1fr) !important;
+    align-items: stretch !important;
+    gap: 14px !important;
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    background: transparent !important;
+    border: 0 !important;
+    box-shadow: none !important;
+  }
+  #pagina-home #emHeroFloripa #emHeroRefBusca .em-hero-search-control {
+    box-sizing: border-box !important;
+    position: relative !important;
+    grid-column: 1 !important;
+    grid-row: auto !important;
+    display: flex !important;
+    align-items: center !important;
+    gap: 14px !important;
+    width: 100% !important;
+    min-width: 0 !important;
+    height: 56px !important;
+    min-height: 56px !important;
+    margin: 0 !important;
+    padding: 0 17px !important;
+    background: #fff !important;
+    color: #536a83 !important;
+    border: 1px solid #d0ddeb !important;
+    border-radius: 8px !important;
+    cursor: text !important;
+  }
+  #pagina-home #emHeroFloripa #emHeroRefBusca .em-hero-search-control > svg { width: 22px !important; height: 22px !important; flex: 0 0 22px !important; }
+  #pagina-home #emHeroFloripa #emHeroRefBusca :is(input, select) {
+    box-sizing: border-box !important;
+    display: block !important;
+    flex: 1 1 0 !important;
+    width: 100% !important;
+    min-width: 0 !important;
+    height: 52px !important;
+    min-height: 0 !important;
+    max-height: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    background: #fff !important;
+    border: 0 !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    color: #42566e !important;
+    -webkit-text-fill-color: #42566e !important;
+    font-size: 16px !important;
+    font-weight: 400 !important;
+    line-height: normal !important;
+    text-indent: 0 !important;
+    opacity: 1 !important;
+  }
+  /* Keep the native select; the old enhanced copy would duplicate this field. */
+  #pagina-home #emHeroFloripa #emHeroRefBusca #emHeroTipo {
+    position: static !important;
+    inset: auto !important;
+    appearance: none !important;
+    clip: auto !important;
+    clip-path: none !important;
+    transform: none !important;
+    pointer-events: auto !important;
+    cursor: pointer !important;
+  }
+  #pagina-home #emHeroFloripa :is(#emTipoTriggerV4, #emTipoMenuV4) { display: none !important; }
+  #pagina-home #emHeroFloripa #emHeroRefBusca input::placeholder { color: #53657b !important; opacity: 1 !important; }
+  #pagina-home #emHeroFloripa #emHeroRefBusca .em-hero-search-control:focus-within { outline: 2px solid #1e83c7 !important; outline-offset: 2px !important; border-color: #1e83c7 !important; }
+  #pagina-home #emHeroFloripa #emHeroRefBusca .em-hero-submit {
+    box-sizing: border-box !important;
+    grid-column: 1 !important;
+    grid-row: auto !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 16px !important;
+    width: 100% !important;
+    min-width: 0 !important;
+    height: 58px !important;
+    min-height: 58px !important;
+    margin: 2px 0 0 !important;
+    padding: 0 20px !important;
+    background: #ff7a12 !important;
+    color: #fff !important;
+    border: 1px solid #ff7a12 !important;
+    border-radius: 8px !important;
+    font-size: 18px !important;
+    font-weight: 700 !important;
+    line-height: 1.4 !important;
+    box-shadow: none !important;
+    cursor: pointer !important;
+  }
+  #pagina-home #emHeroFloripa #emHeroRefBusca .em-hero-submit > svg { width: 25px !important; height: 25px !important; flex: 0 0 25px !important; }
+  #pagina-home #emHeroFloripa #emHeroRefBusca .em-hero-submit:hover { background: #ed6b08 !important; border-color: #ed6b08 !important; }
+  #pagina-home #emHeroFloripa #emHeroRefBusca .em-hero-submit:focus-visible { outline: 3px solid #ffb16f !important; outline-offset: 3px !important; }
+
+  @media (min-width: 901px) and (max-width: 1120px) {
+    body:has(#pagina-home.ativa) > header.topo .topo-inner { padding: 16px 24px !important; gap: 20px !important; }
+    body:has(#pagina-home.ativa) > header.topo .marca-nome { font-size: 23px !important; }
+    body:has(#pagina-home.ativa) > header.topo #menuPublico { gap: 20px !important; }
+    body:has(#pagina-home.ativa) > header.topo #menuPublico .menu-link { font-size: 13px !important; }
+    body:has(#pagina-home.ativa) > header.topo #acoesPublicas { gap: 8px !important; }
+    body:has(#pagina-home.ativa) > header.topo #acoesPublicas :is(.header-v98-area > button, .btn-publicar-v19) { padding: 0 11px !important; font-size: 12px !important; }
+    #pagina-home #emHeroFloripa { padding: 48px 32px !important; }
+    #pagina-home #emHeroFloripa .hero-premium-inner-em { gap: 40px !important; }
+    #pagina-home #emHeroFloripa .hero-copy-em h1 { font-size: 42px !important; }
+    #pagina-home #emHeroFloripa .hero-search-shell-em { padding: 24px !important; }
+  }
+  @media (max-width: 900px) {
+    body:has(#pagina-home.ativa) > header.topo .topo-inner { display: flex !important; flex-wrap: wrap !important; justify-content: space-between !important; gap: 12px !important; min-height: 72px !important; padding: 14px 20px !important; }
+    body:has(#pagina-home.ativa) > header.topo .marca-nome { font-size: 24px !important; }
+    body:has(#pagina-home.ativa) > header.topo #emHeaderMenuToggle { display: inline-flex !important; align-items: center !important; justify-content: center !important; gap: 8px !important; min-height: 42px !important; padding: 8px 12px !important; background: #fff !important; border: 1px solid #d6e2ed !important; border-radius: 8px !important; color: #173e60 !important; font-size: 14px !important; font-weight: 500 !important; }
+    body:has(#pagina-home.ativa) > header.topo:not(.em-mobile-menu-open) :is(#menuPublico, #emHeaderNavigation) { display: none !important; }
+    body:has(#pagina-home.ativa) > header.topo.em-mobile-menu-open #menuPublico { display: flex !important; width: 100% !important; flex-basis: 100% !important; gap: 26px !important; margin: 0 !important; padding: 12px 0 !important; border-top: 1px solid #e5edf4 !important; }
+    body:has(#pagina-home.ativa) > header.topo.em-mobile-menu-open #emHeaderNavigation { display: flex !important; flex-basis: 100% !important; width: 100% !important; margin: 0 !important; padding: 0 0 4px !important; }
+    body:has(#pagina-home.ativa) > header.topo #acoesPublicas { flex-direction: column !important; align-items: stretch !important; width: 100% !important; gap: 10px !important; }
+    body:has(#pagina-home.ativa) > header.topo #acoesPublicas :is(.menu-empresa-v19, .header-v98-area) { width: 100% !important; }
+    body:has(#pagina-home.ativa) > header.topo #acoesPublicas :is(.header-v98-area > button, .btn-publicar-v19) { width: 100% !important; }
+    body:has(#pagina-home.ativa) > header.topo #acoesPublicas .header-v98-menu { position: static !important; width: 100% !important; min-width: 0 !important; max-width: 100% !important; margin: 8px 0 0 !important; box-sizing: border-box !important; }
+    body:has(#pagina-home.ativa) > header.topo #acoesPublicas .header-v98-area.open > .header-v98-menu { display: block !important; visibility: visible !important; opacity: 1 !important; pointer-events: auto !important; transform: none !important; }
+    #pagina-home #emHeroFloripa { min-height: 0 !important; padding: 40px 24px !important; }
+    #pagina-home #emHeroFloripa .hero-premium-inner-em { grid-template-columns: minmax(0, 1fr) !important; max-width: 680px !important; gap: 30px !important; }
+    #pagina-home #emHeroFloripa .hero-copy-em h1 { font-size: 42px !important; }
+    #pagina-home #emHeroFloripa .hero-copy-em p { margin-top: 18px !important; font-size: 16px !important; }
+    #pagina-home #emHeroFloripa .hero-search-shell-em { padding: 24px !important; }
+  }
+  @media (max-width: 600px) {
+    #pagina-home #emHeroFloripa { padding: 28px 16px !important; }
+    #pagina-home #emHeroFloripa .hero-premium-inner-em { gap: 24px !important; }
+    #pagina-home #emHeroFloripa .hero-copy-em h1 { font-size: clamp(29px, 8.3vw, 38px) !important; line-height: 1.16 !important; letter-spacing: -.7px !important; }
+    #pagina-home #emHeroFloripa .hero-copy-em p { margin-top: 16px !important; font-size: 14.5px !important; line-height: 1.6 !important; }
+    #pagina-home #emHeroFloripa .hero-search-shell-em { padding: 18px !important; border-radius: 14px !important; }
+    #pagina-home #emHeroFloripa #emHeroRefBusca { gap: 12px !important; }
+    #pagina-home #emHeroFloripa #emHeroRefBusca .em-hero-search-control { height: 52px !important; min-height: 52px !important; padding: 0 12px !important; gap: 10px !important; }
+    #pagina-home #emHeroFloripa #emHeroRefBusca :is(input, select) { height: 48px !important; }
+    #pagina-home #emHeroFloripa #emHeroRefBusca .em-hero-submit { height: 54px !important; min-height: 54px !important; font-size: 16px !important; }
+  }
+}
