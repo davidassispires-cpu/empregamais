@@ -215,6 +215,74 @@ test('the desktop browser keeps results on the left and switches the complete pa
   assert.equal(env.doc.body.querySelector('dialog'),null);
 });
 
+test('similar-company cards expand below the vacancy and keep navigation and saving bound to the other job',()=>{
+  const env=fixture(true,true),cards=env.render([
+    {id:'one',cargo:'Analista Financeiro',area:'Finanças',empresaCnpj:'12345678000190'},
+    {id:'two',cargo:'Assistente Financeiro',area:'FINANCAS',empresaCnpj:'12345678000190'},
+    {id:'other-company',area:'Finanças',empresaCnpj:'98765432000190'},
+    {id:'other-area',cargo:'Programador',area:'Informática',empresaCnpj:'12345678000190'}
+  ]);
+  const toggle=cards[0].querySelector('.em-r4-similar-toggle'),list=cards[0].querySelector('.em-r4-similar-list');
+  assert(toggle);assert.equal(toggle.textContent,'Exibir vagas similares dessa empresa');
+  assert.equal(list.hidden,true);assert.equal(toggle.getAttribute('aria-controls'),list.id);
+  assert.equal(cards[2].querySelector('.em-r4-similar'),null);assert.equal(cards[3].querySelector('.em-r4-similar'),null);
+  assert.equal(list.querySelectorAll('.em-r4-similar-card').length,1);
+  assert.equal(list.querySelector('.em-r4-similar-open').getAttribute('href'),'/empregamais/?pagina=vaga&id=two');
+  assert.equal(toggle.fire('click').stopped,true);assert.equal(list.hidden,false);
+  assert.equal(toggle.getAttribute('aria-expanded'),'true');
+  assert.equal(env.doc.getElementById('emJobPanel').getAttribute('data-vaga-id'),'one');
+  const save=list.querySelector('.em-r4-similar-save');save.click();
+  assert.equal(env.win.vagaEstaSalva('two'),true);assert.equal(env.win.vagaEstaSalva('one'),false);
+  assert.equal(save.getAttribute('aria-pressed'),'true');
+  env.win.filtrarVagas();assert.equal(cards[0].querySelector('.em-r4-similar-list'),list);assert.equal(list.hidden,false);
+  cards[2].querySelector('.em-r4-title-select').click();
+  cards[0].fire('click',{target:list.querySelector('.em-r4-similar-company')});
+  assert.equal(env.doc.getElementById('emJobPanel').getAttribute('data-vaga-id'),'other-company');
+  toggle.click();assert.equal(list.hidden,true);assert.equal(toggle.getAttribute('aria-expanded'),'false');
+});
+
+test('similar vacancies use the full public catalog while excluding closed, expired, confidential and unapproved jobs',()=>{
+  const env=fixture(true,true),base={empresa:'Empresa Exemplo',empresaCnpj:'12345678000190',cargo:'Analista',area:'Administração'};
+  const peer={...base,id:'off-page',cargo:'Assistente',status:'ativa',aprovacao:'aprovada'};
+  let catalog=[peer,{...peer},{...peer,id:'closed',status:'encerrada'},{...peer,id:'paused',status:'pausada'},
+    {...peer,id:'expired',expiraEm:'2000-01-01'},{...peer,id:'pending',aprovacao:'pendente'},
+    {...peer,id:'private',confidencial:true},{...peer,id:'demo-publica-91',demoPublica:true},
+    {...peer,id:'different-area',area:'Tecnologia'}];
+  env.win.todasAsVagasPublicas=()=>catalog;
+  const cards=env.render([{...base,id:'one'}]),list=cards[0].querySelector('.em-r4-similar-list');
+  assert.equal(list.querySelectorAll('.em-r4-similar-card').length,1);
+  assert.equal(list.querySelector('.em-r4-similar-open').getAttribute('href'),'/empregamais/?pagina=vaga&id=off-page');
+  catalog=[];env.win.filtrarVagas();assert.equal(cards[0].querySelector('.em-r4-similar'),null);
+  env.win.todasAsVagasPublicas=()=>[peer];
+  const hidden=env.render([{...base,id:'private-origin',confidencial:true}]);
+  assert.equal(hidden[0].querySelector('.em-r4-similar'),null);
+});
+
+test('similar titles match without an area and public demo jobs never group with real company jobs',()=>{
+  const env=fixture(true,true),cards=env.render([
+    {id:'one',cargo:'Auxiliar Administrativo',area:'',empresa:'Empresa Exemplo'},
+    {id:'two',cargo:'AUXILIAR ADMINISTRATIVO',area:'',empresa:'Empresa Exemplo'},
+    {id:'demo-publica-91',demoPublica:true,cargo:'Auxiliar Administrativo',area:'',empresa:'Empresa Exemplo'},
+    {id:'demo-publica-92',demoPublica:true,cargo:'Auxiliar Administrativo',area:'',empresa:'Empresa Exemplo'},
+    {id:'unknown-one',empresa:'Empresa',area:'Logística'},
+    {id:'unknown-two',empresa:'Empresa',area:'Logística'}
+  ]);
+  assert.equal(cards[0].querySelectorAll('.em-r4-similar-open').length,1);
+  assert.equal(cards[2].querySelectorAll('.em-r4-similar-open').length,1);
+  assert.equal(cards[2].querySelector('.em-r4-similar-open').getAttribute('href'),'/empregamais/?pagina=vaga&id=demo-publica-92');
+  assert.equal(cards[4].querySelector('.em-r4-similar'),null);
+});
+
+test('the selected panel follows job priority and urgency takes precedence over highlight',()=>{
+  const env=fixture(true,true),cards=env.render([{id:'standard'},{id:'featured',destaque:true},{id:'urgent',destaque:true,urgente:true}]);
+  const panel=env.doc.getElementById('emJobPanel');
+  assert.equal(panel.getAttribute('data-em-priority'),'standard');
+  cards[1].querySelector('.em-r4-title-select').click();assert.equal(panel.getAttribute('data-em-priority'),'featured');
+  cards[2].querySelector('.em-r4-title-select').click();assert.equal(panel.getAttribute('data-em-priority'),'urgent');
+  assert.equal(cards[2].getAttribute('data-em-priority'),'urgent');
+  env.render([]);assert.equal(panel.getAttribute('data-em-priority'),null);
+});
+
 test('the right panel exposes the full text, sanitizes rich descriptions and combines benefits',()=>{
   const env=fixture(true,true),description='Atendimento ao cliente. '.repeat(80)+'FIM DA DESCRIÇÃO';
   const requirements='Experiência na função. '.repeat(30)+'FIM DOS REQUISITOS';

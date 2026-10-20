@@ -560,6 +560,86 @@
         return !win.getComputedStyle || win.getComputedStyle(card).display !== 'none';
       });
     }
+    function similarText(value) {
+      return summaryText(value).normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase().replace(/[^a-z0-9]+/g, ' ').trim();
+    }
+    function similarCompanyKey(job) {
+      if (companyIsConfidential(job)) return '';
+      var name = similarText(job.empresa);
+      if (!name || /^(empresa|empresa confidencial|empresa nao informada)$/.test(name)) return '';
+      if (isDemo(job)) return demoCompanyKey(job.empresa);
+      var cnpj = String(job.empresaCnpj || '').replace(/\D/g, '');
+      if (cnpj) return 'cnpj:' + cnpj;
+      if (job.empresaEmail) return 'email:' + String(job.empresaEmail).trim().toLowerCase();
+      return 'company:' + name;
+    }
+    function similarJobIsPublic(job) {
+      if (!job || !job.id || excludedPublicCompany(job) || companyIsConfidential(job)) return false;
+      if (job.aprovacao && job.aprovacao !== 'aprovada') return false;
+      var status = typeof win.statusDaVaga === 'function' ? win.statusDaVaga(job) : job.status || 'ativa';
+      if (!/^(ativa|ativo|publicada|publicado)$/i.test(String(status))) return false;
+      if (typeof win.vagaExpirada === 'function') return !win.vagaExpirada(job);
+      var expiry = String(job.expiraEm || '');
+      if (/^\d{4}-\d{2}-\d{2}$/.test(expiry)) expiry += 'T23:59:59';
+      return !expiry || !isFinite(new Date(expiry).getTime()) || new Date(expiry).getTime() >= Date.now();
+    }
+    var similarListSequence = 0;
+    function syncSimilarVacancies(state) {
+      var catalog = typeof win.todasAsVagasPublicas === 'function' ? win.todasAsVagasPublicas() :
+        Array.from(state.list.children).filter(function (card) { return card.__emJobEntry; }).map(function (card) { return card.__emJobEntry.job; });
+      var groups = Object.create(null), seen = Object.create(null);
+      (Array.isArray(catalog) ? catalog : []).forEach(function (job) {
+        if (!similarJobIsPublic(job) || seen[String(job.id)]) return;
+        seen[String(job.id)] = true;
+        var key = similarCompanyKey(job); if (key) (groups[key] || (groups[key] = [])).push(job);
+      });
+      Array.from(state.list.children).forEach(function (card) {
+        var entry = card.__emJobEntry; if (!entry) return;
+        var job = entry.job, key = similarCompanyKey(job), area = similarText(job.area), title = similarText(job.cargo);
+        var peers = (similarJobIsPublic(job) && key ? groups[key] || [] : []).filter(function (other) {
+          return String(other.id) !== String(job.id) && isDemo(other) === isDemo(job) &&
+            ((area && area === similarText(other.area)) || (title && title === similarText(other.cargo)));
+        });
+        var signature = JSON.stringify(peers.map(function (peer) { return [peer.id,peer.cargo,peer.empresa,peer.cidade,peer.uf,peer.salario]; }));
+        if (signature === entry.similarSignature) return;
+        entry.similarSignature = signature;
+        if (entry.similarBox) entry.similarBox.remove();
+        entry.similarBox = null;
+        if (!peers.length) return;
+        var box = browserNode('div', 'em-r4-similar'), toggle = browserNode('button', 'em-r4-similar-toggle', 'Exibir vagas similares dessa empresa');
+        var list = browserNode('div', 'em-r4-similar-list'); list.id = 'emSimilarJobs' + (++similarListSequence); list.hidden = true;
+        list.setAttribute('role', 'list'); list.setAttribute('aria-label', 'Vagas similares dessa empresa');
+        toggle.type = 'button'; toggle.setAttribute('aria-expanded', 'false'); toggle.setAttribute('aria-controls', list.id);
+        toggle.onclick = function (event) {
+          event.preventDefault(); event.stopPropagation(); list.hidden = !list.hidden;
+          toggle.setAttribute('aria-expanded', String(!list.hidden));
+          toggle.textContent = list.hidden ? 'Exibir vagas similares dessa empresa' : 'Ocultar vagas similares dessa empresa';
+        };
+        peers.forEach(function (peer) {
+          var item = browserNode('article', 'em-r4-similar-card'); item.setAttribute('role', 'listitem');
+          var link = browserNode('a', 'em-r4-similar-open', summaryText(peer.cargo));
+          link.href = String(win.location.pathname || '') + '?pagina=vaga&id=' + encodeURIComponent(peer.id);
+          link.setAttribute('href', link.href); item.appendChild(link);
+          item.appendChild(browserNode('p', 'em-r4-similar-company', summaryText(peer.empresa).replace(/\s*\(demo\)/ig, '') + (isDemo(peer) ? ' · Demo' : '')));
+          var uf = summaryText(peer.uf || peer.estado), city = summaryText(peer.cidade || 'Localidade não informada');
+          item.appendChild(browserNode('p', 'em-r4-similar-location', city + (uf.length === 2 ? ' – ' + uf.toUpperCase() : '')));
+          item.appendChild(browserNode('strong', 'em-r4-similar-salary', summaryText(peer.salario || 'A combinar')));
+          if (typeof win.alternarFavorito === 'function') {
+            var save = browserNode('button', 'em-r4-similar-save'); save.type = 'button';
+            function updateSimilarSave() {
+              var saved = typeof win.vagaEstaSalva === 'function' && win.vagaEstaSalva(peer.id);
+              save.setAttribute('aria-pressed', String(!!saved));
+              save.setAttribute('aria-label', (saved ? 'Remover vaga dos salvos: ' : 'Salvar vaga: ') + summaryText(peer.cargo));
+              save.innerHTML = '<svg viewBox="0 0 24 24" fill="' + (saved ? 'currentColor' : 'none') + '" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M6 3h12v18l-6-4-6 4V3Z"/></svg>';
+            }
+            save.onclick = function (event) { event.preventDefault(); event.stopPropagation(); win.alternarFavorito(peer.id); updateSimilarSave(); };
+            updateSimilarSave(); item.appendChild(save);
+          }
+          list.appendChild(item);
+        });
+        box.appendChild(toggle); box.appendChild(list); entry.similarBox = box; card.appendChild(box);
+      });
+    }
     function markBrowserSelection(state, selected) {
       Array.prototype.forEach.call(state.list.children, function (card) {
         var entry = card.__emJobEntry; if (!entry) return;
@@ -592,6 +672,7 @@
       var panel = state.panel; panel.replaceChildren(); panel.scrollTop = 0;
       panel.setAttribute('data-vaga-id', String(job.id || ''));
       panel.setAttribute('data-em-highlighted', String(entry.highlighted));
+      panel.setAttribute('data-em-priority', enabled(job.urgente) || enabled(job.contratacaoUrgente) ? 'urgent' : entry.highlighted ? 'featured' : 'standard');
       panel.setAttribute('aria-labelledby', 'emJobPanelTitle');
       var back = browserNode('button', 'em-jb-back', '← Voltar às vagas'); back.type = 'button';
       back.onclick = function () { returnToJobList(state); }; panel.appendChild(back);
@@ -818,6 +899,7 @@
     function syncJobBrowser() {
       var home = doc.getElementById('pagina-home'); if (!home || !home.classList.contains('ativa')) return;
       var state = mountJobBrowser(); if (!state) return;
+      syncSimilarVacancies(state);
       var cards = browserCards(state), old = state.selected;
       var id = old && old.__emJobEntry.job.id;
       var current = cards.find(function (card) { return String(card.__emJobEntry.job.id) === String(id); });
@@ -826,6 +908,7 @@
       closeVerification();
       state.selected = null; markBrowserSelection(state, null); state.root.setAttribute('data-view', 'list');
       state.panel.removeAttribute('data-vaga-id'); state.panel.removeAttribute('data-em-highlighted'); state.panel.removeAttribute('aria-labelledby');
+      state.panel.removeAttribute('data-em-priority');
       state.panel.replaceChildren(browserNode('p', 'em-jb-empty', cards.length ? 'Selecione uma vaga para ver todos os detalhes.' : 'Nenhuma vaga corresponde aos filtros. Altere sua busca para ver outras oportunidades.'));
     }
     function recentCard(card, job, featured) {
@@ -954,7 +1037,7 @@
       card.__emJobEntry = {job:job, apply:apply, save:save, openState:openState, titleButton:titleButton, company:company, highlighted:highlighted, confidential:confidential,
         info:{title:title.textContent, company:confidential ? 'Empresa confidencial' : summaryText(publicName || (publicCompany ? publicCompany.textContent : company.textContent)), location:city+(uf.length===2?' – '+uf.toUpperCase():''), salary:salaryValue, date:date.textContent}};
       card.onclick = function (event) {
-        if (event.target && event.target.closest && event.target.closest('button,a,input,select,textarea,label,.em-r4-company')) return;
+        if (event.target && event.target.closest && event.target.closest('button,a,input,select,textarea,label,.em-r4-company,.em-r4-similar')) return;
         showDetails(event);
       };
       return card;
