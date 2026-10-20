@@ -8,60 +8,82 @@
   'use strict';
   var day = 86400000;
   var examples = [
-    {cargo:'Assistente Administrativo',empresa:'Horizonte Serviços',cidade:'Belo Horizonte',area:'Administração',salario:2500,idade:.05,destaque:true,total:8,
-      descricao:'Apoio às rotinas administrativas, atendimento e organização de documentos.',requisitos:'Ensino médio completo, organização e conhecimentos de Excel.'},
-    {cargo:'Analista de Recursos Humanos',empresa:'Conecta Pessoas',cidade:'Contagem',area:'Administração',salario:3800,idade:.15,destaque:true,modalidade:'Híbrido',total:24,
+    {id:2,marca:'carrefour',cargo:'Analista de Recursos Humanos',empresa:'Conecta Pessoas',cidade:'Contagem',area:'Administração',salario:3800,idade:.15,destaque:true,modalidade:'Híbrido',total:24,
       descricao:'Condução de processos seletivos, integração de profissionais e apoio aos indicadores de RH.',requisitos:'Superior em Administração, Psicologia ou áreas afins e experiência com recrutamento.'},
-    {cargo:'Auxiliar de E-commerce',empresa:'Vitrine Digital',cidade:'Betim',area:'Comercial, Vendas',salario:2200,idade:.25,destaque:true,urgente:true,total:5,
+    {id:3,marca:'ipiranga',cargo:'Auxiliar de E-commerce',empresa:'Vitrine Digital',cidade:'Betim',area:'Comercial, Vendas',salario:2200,idade:.25,destaque:true,urgente:true,total:5,
       descricao:'Cadastro de produtos, acompanhamento de pedidos e atendimento nos marketplaces.',requisitos:'Ensino médio completo, boa escrita e familiaridade com compras online.'},
-    {cargo:'Vendedor de Loja',empresa:'Estação Varejo',cidade:'Belo Horizonte',area:'Comercial, Vendas',salario:2100,comissao:true,idade:3,urgente:true,total:18,
-      descricao:'Atendimento consultivo, apresentação de produtos e organização da loja.',requisitos:'Boa comunicação e experiência com atendimento ao público.'},
-    {cargo:'Auxiliar de Logística',empresa:'Operação Logística',cidade:'Contagem',area:'Logística',salario:2350,idade:3.5,confidencial:true,total:6,
+    {id:5,cargo:'Auxiliar de Logística',empresa:'Operação Logística',cidade:'Contagem',area:'Logística',salario:2350,idade:3.5,confidencial:true,total:6,
       descricao:'Separação, conferência e organização de mercadorias no centro de distribuição.',requisitos:'Ensino médio completo e disponibilidade para atuar em escala.'},
-    {cargo:'Operador de Caixa',empresa:'Mercado da Praça',cidade:'Betim',area:'Comercial, Vendas',salario:1950,idade:.35,total:4,
+    {id:6,marca:'carrefour',cargo:'Operador de Caixa',empresa:'Mercado da Praça',cidade:'Betim',area:'Comercial, Vendas',salario:1950,idade:.35,total:4,
       descricao:'Registro de compras, recebimento de pagamentos e fechamento de caixa.',requisitos:'Ensino médio completo e atenção ao atendimento e aos valores recebidos.'},
-    {cargo:'Assistente Financeiro',empresa:'Gestão Horizonte',cidade:'Belo Horizonte',area:'Contábil, Finanças, Economia',salario:2900,idade:4,destaque:true,modalidade:'Híbrido',total:12,
+    {id:7,marca:'ipiranga',cargo:'Assistente Financeiro',empresa:'Gestão Horizonte',cidade:'Belo Horizonte',area:'Contábil, Finanças, Economia',salario:2900,idade:4,destaque:true,modalidade:'Híbrido',total:12,
       descricao:'Controle de contas a pagar e receber, conciliação bancária e atualização de planilhas.',requisitos:'Excel intermediário e experiência em rotinas financeiras.'},
-    {cargo:'Recepcionista',empresa:'Atendimento Integrado',cidade:'Belo Horizonte',area:'Administração',salario:2000,idade:4.5,confidencial:true,total:16,
+    {id:8,cargo:'Recepcionista',empresa:'Atendimento Integrado',cidade:'Belo Horizonte',area:'Administração',salario:2000,idade:4.5,confidencial:true,total:16,
       descricao:'Recepção de visitantes, atendimento telefônico e organização da agenda.',requisitos:'Ensino médio completo, cordialidade e boa comunicação.'},
-    {cargo:'Auxiliar de Produção',empresa:'Indústria Serra Azul',cidade:'Contagem',area:'Industrial, Produção, Fábrica',salario:2180,idade:2.5,urgente:true,total:32,
-      descricao:'Apoio à linha de produção, embalagem e conferência de qualidade dos produtos.',requisitos:'Ensino médio completo e disponibilidade para trabalho presencial.'},
-    {cargo:'Analista de Marketing',empresa:'Ideia Digital',cidade:'Belo Horizonte',area:'Marketing',salario:4200,idade:6,destaque:true,modalidade:'Remoto',total:22,
+    {id:10,marca:'carrefour',cargo:'Analista de Marketing',empresa:'Ideia Digital',cidade:'Belo Horizonte',area:'Marketing',salario:4200,idade:6,destaque:true,modalidade:'Remoto',total:22,
       descricao:'Planejamento de conteúdo, acompanhamento de campanhas e análise de resultados digitais.',requisitos:'Experiência com redes sociais, métricas e ferramentas de marketing digital.'},
-    {cargo:'Atendente de Relacionamento',empresa:'Conexão Atendimento',cidade:'Betim',area:'Comercial, Vendas',salario:1980,idade:.4,urgente:true,total:9,
+    {id:11,marca:'ipiranga',cargo:'Atendente de Relacionamento',empresa:'Conexão Atendimento',cidade:'Betim',area:'Comercial, Vendas',salario:1980,idade:.4,urgente:true,total:9,
       descricao:'Atendimento ao cliente por chat e telefone, registro de solicitações e acompanhamento de soluções.',requisitos:'Ensino médio completo, empatia e boa digitação.'},
-    {cargo:'Estágio em Administração',empresa:'Primeiro Passo Gestão',cidade:'Belo Horizonte',area:'Administração',salario:1400,idade:.5,contrato:'Estágio',modalidade:'Híbrido',jornada:'30 horas semanais',horario:'Segunda a sexta, das 9h às 15h',total:3,
-      descricao:'Apoio no controle de documentos, organização de planilhas e atendimento interno.',requisitos:'Cursando Administração a partir do segundo período.',beneficios:'Vale-transporte; seguro de vida; bolsa de estudos.'},
-    {cargo:'Jovem Aprendiz de Logística',empresa:'Rota Certa Distribuição',cidade:'Contagem',area:'Logística',salario:1050,idade:.6,contrato:'Jovem Aprendiz',jornada:'20 horas semanais',horario:'Segunda a sexta, das 8h às 12h',total:7,
-      descricao:'Aprendizado e apoio às rotinas de recebimento, estoque e expedição.',requisitos:'Ensino médio em andamento ou completo. Não exige experiência.',beneficios:'Vale-transporte; vale-alimentação; formação profissional.'},
-    {cargo:'Técnico de Suporte de TI',empresa:'Nexo Tecnologia',cidade:'Belo Horizonte',area:'Informática, TI, Telecomunicações',salario:3100,idade:7,destaque:true,modalidade:'Híbrido',total:14,
+    {id:14,marca:'carrefour',cargo:'Técnico de Suporte de TI',empresa:'Nexo Tecnologia',cidade:'Belo Horizonte',area:'Informática, TI, Telecomunicações',salario:3100,idade:7,destaque:true,modalidade:'Híbrido',total:14,
       descricao:'Suporte a usuários, configuração de equipamentos e acompanhamento de chamados técnicos.',requisitos:'Curso técnico em informática e conhecimentos de sistemas operacionais e redes.'},
-    {cargo:'Conferente de Mercadorias',empresa:'Via Minas Logística',cidade:'Betim',area:'Logística',salario:2550,idade:2,urgente:true,total:21,
+    {id:15,marca:'ipiranga',cargo:'Conferente de Mercadorias',empresa:'Via Minas Logística',cidade:'Betim',area:'Logística',salario:2550,idade:2,urgente:true,total:21,
       descricao:'Conferência de notas fiscais, volumes e movimentações de entrada e saída de mercadorias.',requisitos:'Experiência com conferência e conhecimentos de controle de estoque.'},
-    {cargo:'Auxiliar de Cozinha',empresa:'Sabor Mineiro',cidade:'Belo Horizonte',area:'Alimentação / Gastronomia',salario:1850,idade:3,urgente:true,jornada:'44 horas semanais',horario:'Escala 6x1, das 7h às 15h20',total:17,
-      descricao:'Pré-preparo de alimentos, organização de insumos e higienização da área de trabalho.',requisitos:'Organização, trabalho em equipe e boas práticas de higiene.',beneficios:'Vale-transporte; alimentação no local; seguro de vida.'},
-    {cargo:'Assistente de Compras',empresa:'Suprimentos Corporativos',cidade:'Contagem',area:'Compras',salario:3200,idade:5,destaque:true,confidencial:true,total:10,
+    {id:17,cargo:'Assistente de Compras',empresa:'Suprimentos Corporativos',cidade:'Contagem',area:'Compras',salario:3200,idade:5,destaque:true,confidencial:true,total:10,
       descricao:'Cotação com fornecedores, acompanhamento de pedidos e controle de prazos de entrega.',requisitos:'Experiência com compras e domínio de planilhas.'},
-    {cargo:'Analista de Dados',empresa:'Horizonte Analytics',cidade:'Belo Horizonte',area:'Informática, TI, Telecomunicações',salario:6500,idade:8,destaque:true,modalidade:'Remoto',contrato:'Prestador de Serviços',jornada:'Horário flexível',horario:'Atuação por entregas, de segunda a sexta',total:26,
+    {id:18,marca:'carrefour',cargo:'Analista de Dados',empresa:'Horizonte Analytics',cidade:'Belo Horizonte',area:'Informática, TI, Telecomunicações',salario:6500,idade:8,destaque:true,modalidade:'Remoto',contrato:'Prestador de Serviços',jornada:'Horário flexível',horario:'Atuação por entregas, de segunda a sexta',total:26,
       descricao:'Construção de relatórios e painéis, análise de indicadores e apoio à tomada de decisões.',requisitos:'Experiência com SQL, Power BI e análise de dados.',beneficios:'Trabalho remoto; horário flexível; capacitação profissional.'},
-    {cargo:'Auxiliar de Serviços Gerais',empresa:'Serviços Operacionais',cidade:'Betim',area:'Administração',salario:1800,idade:4,confidencial:true,contrato:'Temporário',total:11,
+    {id:19,cargo:'Auxiliar de Serviços Gerais',empresa:'Serviços Operacionais',cidade:'Betim',area:'Administração',salario:1800,idade:4,confidencial:true,contrato:'Temporário',total:11,
       descricao:'Limpeza e conservação de ambientes, reposição de materiais e organização dos espaços.',requisitos:'Responsabilidade e disponibilidade para atuação presencial.'},
-    {cargo:'Estoquista',empresa:'Ponto Certo Comércio',cidade:'Belo Horizonte',area:'Logística',salario:2150,idade:.7,total:15,
-      descricao:'Recebimento de mercadorias, organização do estoque e separação de pedidos.',requisitos:'Ensino médio completo e atenção à organização e à conferência de produtos.'}
+    {"id":21,"cargo":"Auxiliar Administrativo","empresa":"Horizonte Serviços","cidade":"Belo Horizonte","area":"Administração","salario":2400,"idade":0.03,"total":4,
+      "descricao":"Organização de documentos, atualização de planilhas e apoio às rotinas do escritório.","requisitos":"Ensino médio completo, boa comunicação e conhecimentos básicos de Excel."},
+    {"id":22,"cargo":"Assistente Comercial","empresa":"Ponto Certo Comércio","cidade":"Contagem","area":"Comercial, Vendas","salario":2600,"idade":0.06,"total":6,
+      "descricao":"Apoio à equipe comercial, elaboração de propostas e acompanhamento de pedidos.","requisitos":"Ensino médio completo e experiência com atendimento e rotinas comerciais."},
+    {"id":23,"cargo":"Analista de Logística","empresa":"Rota Certa Distribuição","cidade":"Betim","area":"Logística","salario":3900,"idade":0.1,"destaque":true,"total":11,
+      "descricao":"Planejamento de entregas, acompanhamento de indicadores e melhoria das rotas de distribuição.","requisitos":"Superior em Logística ou áreas afins e experiência com indicadores operacionais."},
+    {"id":24,"cargo":"Recepcionista de Clínica","empresa":"Clínica Bem Viver","cidade":"Belo Horizonte","area":"Administração","salario":2100,"idade":0.18,"total":8,
+      "descricao":"Recepção de pacientes, agendamento de consultas e organização dos atendimentos.","requisitos":"Ensino médio completo, cordialidade e familiaridade com sistemas de agenda."},
+    {"id":25,"cargo":"Desenvolvedor Front-end","empresa":"Nexo Tecnologia","cidade":"Belo Horizonte","area":"Informática, TI, Telecomunicações","salario":5500,"idade":0.22,"destaque":true,"modalidade":"Remoto","total":13,
+      "descricao":"Desenvolvimento de interfaces web acessíveis, manutenção de componentes e integração com APIs.","requisitos":"Experiência com JavaScript, HTML, CSS e desenvolvimento de interfaces responsivas.","beneficios":"Trabalho remoto; vale-alimentação; plano de saúde; capacitação profissional."},
+    {"id":26,"cargo":"Auxiliar de Departamento Pessoal","empresa":"Conecta Pessoas","cidade":"Contagem","area":"Administração","salario":2500,"idade":0.28,"confidencial":true,"total":7,
+      "descricao":"Apoio ao controle de ponto, organização de documentos e conferência de benefícios.","requisitos":"Conhecimentos de departamento pessoal e atenção à conferência de informações."},
+    {"id":27,"cargo":"Operador de Empilhadeira","empresa":"Via Minas Logística","cidade":"Betim","area":"Logística","salario":2850,"idade":0.32,"urgente":true,"total":9,"horario":"Escala 6x1, das 14h às 22h20",
+      "descricao":"Movimentação segura de cargas, organização do estoque e inspeção diária do equipamento.","requisitos":"Curso de operador de empilhadeira e experiência na função."},
+    {"id":28,"cargo":"Analista Financeiro","empresa":"Gestão Horizonte","cidade":"Belo Horizonte","area":"Contábil, Finanças, Economia","salario":4100,"idade":0.38,"modalidade":"Híbrido","total":12,
+      "descricao":"Análise de fluxo de caixa, conciliação bancária e preparação de relatórios financeiros.","requisitos":"Superior em Administração, Ciências Contábeis ou áreas afins e Excel intermediário."},
+    {"id":29,"cargo":"Assistente de Mídias Sociais","empresa":"Ideia Digital","cidade":"Belo Horizonte","area":"Marketing","salario":2800,"idade":0.45,"modalidade":"Remoto","total":10,
+      "descricao":"Programação de publicações, acompanhamento de comentários e apoio à produção de conteúdo.","requisitos":"Boa escrita, organização e familiaridade com ferramentas de redes sociais.","beneficios":"Trabalho remoto; vale-alimentação; auxílio-internet; cursos de aperfeiçoamento."},
+    {"id":30,"cargo":"Técnico de Segurança do Trabalho","empresa":"Indústria Serra Azul","cidade":"Contagem","area":"Industrial, Produção, Fábrica","salario":3600,"idade":0.55,"confidencial":true,"total":5,
+      "descricao":"Inspeções preventivas, orientação sobre segurança e acompanhamento dos registros da área.","requisitos":"Formação técnica em Segurança do Trabalho e experiência em ambiente industrial."},
+    {"id":31,"cargo":"Assistente de Compras","empresa":"Suprimentos Minas","cidade":"Betim","area":"Compras","salario":2950,"idade":0.65,"total":7,
+      "descricao":"Pesquisa de fornecedores, cotações e acompanhamento de pedidos e entregas.","requisitos":"Experiência em compras, organização e conhecimentos de planilhas."},
+    {"id":32,"cargo":"Cozinheiro","empresa":"Sabor Mineiro","cidade":"Belo Horizonte","area":"Alimentação / Gastronomia","salario":2650,"idade":0.75,"total":6,"horario":"Escala 6x1, das 7h às 15h20",
+      "descricao":"Preparo de refeições, controle de insumos e organização da cozinha conforme boas práticas.","requisitos":"Experiência em cozinha profissional e conhecimento de higiene e manipulação de alimentos.","beneficios":"Vale-transporte; alimentação no local; seguro de vida."},
+    {"id":33,"cargo":"Vendedor Interno","empresa":"Nova Rota Comercial","cidade":"Betim","area":"Comercial, Vendas","salario":2300,"comissao":true,"idade":0.85,"total":14,
+      "descricao":"Atendimento a clientes, apresentação de soluções e acompanhamento de propostas comerciais.","requisitos":"Boa comunicação, experiência com vendas e facilidade para trabalhar com metas."},
+    {"id":34,"cargo":"Estoquista","empresa":"Armazém Central","cidade":"Contagem","area":"Logística","salario":2250,"idade":0.95,"confidencial":true,"total":8,
+      "descricao":"Recebimento de mercadorias, organização do estoque e separação de pedidos.","requisitos":"Ensino médio completo e atenção à conferência e organização de produtos."},
+    {"id":35,"cargo":"Estágio em Tecnologia da Informação","empresa":"Nuvem Soluções","cidade":"Belo Horizonte","area":"Informática, TI, Telecomunicações","salario":1500,"idade":1.05,"contrato":"Estágio","modalidade":"Híbrido","jornada":"30 horas semanais","horario":"Segunda a sexta, das 9h às 15h","total":5,
+      "descricao":"Apoio ao atendimento de chamados, configuração de computadores e documentação técnica.","requisitos":"Cursando ensino superior em tecnologia. Não exige experiência.","beneficios":"Vale-transporte; seguro de vida; bolsa de estudos."},
+    {"id":36,"cargo":"Jovem Aprendiz Administrativo","empresa":"Primeiro Passo Gestão","cidade":"Belo Horizonte","area":"Administração","salario":1100,"idade":1.15,"contrato":"Jovem Aprendiz","jornada":"20 horas semanais","horario":"Segunda a sexta, das 8h às 12h","total":6,
+      "descricao":"Aprendizado em rotinas administrativas, arquivo de documentos e apoio ao atendimento interno.","requisitos":"Ensino médio em andamento ou completo. Não exige experiência.","beneficios":"Vale-transporte; vale-alimentação; formação profissional."},
+    {"id":37,"cargo":"Auxiliar de Qualidade","empresa":"Vertex Industrial","cidade":"Betim","area":"Industrial, Produção, Fábrica","salario":2450,"idade":1.25,"confidencial":true,"total":7,
+      "descricao":"Inspeção visual de produtos, registro de resultados e apoio às melhorias da produção.","requisitos":"Ensino médio completo, atenção aos detalhes e conhecimentos básicos de qualidade."},
+    {"id":38,"cargo":"Supervisor Operacional","empresa":"Estrutura Serviços","cidade":"Contagem","area":"Administração","salario":4300,"idade":1.35,"confidencial":true,"destaque":true,"total":9,
+      "descricao":"Acompanhamento das equipes, organização de escalas e análise dos indicadores de operação.","requisitos":"Experiência com liderança de equipes e organização de processos operacionais."},
+    {"id":39,"cargo":"Auxiliar de Manutenção","empresa":"Base Tec Manutenção","cidade":"Belo Horizonte","area":"Industrial, Produção, Fábrica","salario":2400,"idade":1.45,"total":4,
+      "descricao":"Apoio à manutenção preventiva, organização de ferramentas e registro de serviços executados.","requisitos":"Conhecimentos básicos de manutenção predial e disponibilidade para atuação presencial."},
+    {"id":40,"cargo":"Assistente de Atendimento","empresa":"Conexão Atendimento","cidade":"Betim","area":"Comercial, Vendas","salario":2200,"idade":1.55,"confidencial":true,"urgente":true,"total":8,
+      "descricao":"Atendimento por telefone e chat, registro de solicitações e acompanhamento das soluções.","requisitos":"Ensino médio completo, boa digitação, empatia e comunicação clara."}
   ];
 
-
-  // Marcas usadas exclusivamente como exemplos visuais, sem vínculo ou vaga real.
-  var demoBrands = [
-    {name:'Drogaria Araujo',domain:'araujo.com.br'},
-    {name:'Carrefour',domain:'carrefour.com.br',logo:'https://cdn.jsdelivr.net/gh/glincker/thesvg@main/public/icons/carrefour/default.svg'},
-    {name:'Postos Ipiranga',domain:'ipiranga.com.br',logo:'https://www.ipiranga.com.br/wps/contenthandler/pt-br/!ut/p/digest!jrNKL_3isuc4kfF0Av0GfQ/dav/fs-type1/themes/ipiranga.institucionalv4.theme/assets/img/logo-ipiranga-azul.svg'},
-    {name:'Magazine Luiza',domain:'magazineluiza.com.br'}
-  ];
-  function demoBrand(index) { return demoBrands[index % demoBrands.length]; }
+  // Marcas mantidas apenas nas demonstrações existentes, sem vínculo ou anúncio real.
+  var demoBrands = {
+    carrefour:{name:'Carrefour',logo:'https://cdn.jsdelivr.net/gh/glincker/thesvg@main/public/icons/carrefour/default.svg'},
+    ipiranga:{name:'Postos Ipiranga',logo:'https://www.ipiranga.com.br/wps/contenthandler/pt-br/!ut/p/digest!jrNKL_3isuc4kfF0Av0GfQ/dav/fs-type1/themes/ipiranga.institucionalv4.theme/assets/img/logo-ipiranga-azul.svg'}
+  };
   // Fallback vetorial para identidades de demonstração.
   function demoLogo(index) {
-    var colors = ['#126ca0','#6553a2','#d27625','#127c80','#425b85','#54725a','#a65b72','#304c72'];
+    var colors = ['#16658f','#566193','#b56f2a','#15777b','#53698b','#50745e','#9b596c','#355775','#785b92','#427b83','#74624a','#626d92'];
     var marks = [
       '<path d="M17 47V25l15-8 15 8v22M25 47V33h14v14M23 27h2m14 0h2"/>',
       '<circle cx="24" cy="25" r="6"/><circle cx="41" cy="25" r="6"/><path d="M13 47v-5a11 11 0 0 1 22 0v5m1-15a11 11 0 0 1 16 10v5"/>',
@@ -73,7 +95,7 @@
       '<path d="m32 12 20 12v16L32 52 12 40V24l20-12Zm0 11 10 6v7l-10 6-10-6v-7l10-6Z"/>'
     ];
     var color=colors[index % colors.length];
-    var svg='<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><rect width="64" height="64" rx="14" fill="'+color+'"/><g fill="none" stroke="#fff" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round">'+marks[index % marks.length]+'</g></svg>';
+    var svg='<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><rect width="64" height="64" rx="14" fill="'+color+'10"/><g fill="none" stroke="'+color+'" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">'+marks[index % marks.length]+'</g></svg>';
     return 'data:image/svg+xml;charset=UTF-8,'+encodeURIComponent(svg);
   }
 
@@ -82,11 +104,12 @@
   }
   function createJobs(now) {
     var time = now == null ? Date.now() : new Date(now).getTime();
-    return examples.map(function (item, index) {
+    return examples.map(function (item) {
       var published = new Date(time - item.idade * day);
+      var brand = !item.confidencial && (demoBrands[item.marca] || {name:item.empresa,logo:demoLogo(item.id)});
       return {
-        id:'demo-publica-' + String(index + 1).padStart(2, '0'), demo:true, demoPublica:true,
-        empresa:item.confidencial ? 'Empresa confidencial' : demoBrand(index).name + ' (Demo)', empresaCnpj:'', empresaEmail:'',
+        id:'demo-publica-' + String(item.id).padStart(2, '0'), demo:true, demoPublica:true,
+        empresa:item.confidencial ? 'Empresa confidencial' : brand.name + ' (Demo)', empresaCnpj:'', empresaEmail:'',
         cargo:item.cargo, cidade:item.cidade, uf:'MG', area:item.area,
         modalidade:item.modalidade || 'Presencial', contrato:item.contrato || 'Efetivo – CLT',
         pcd:'Não exclusiva para PcD', salario:'R$ ' + item.salario.toLocaleString('pt-BR', {minimumFractionDigits:2}) + (item.comissao ? ' + comissão' : ''), salarioNumero:item.salario,
@@ -95,7 +118,7 @@
         jornada:item.jornada || '44 horas semanais', horario:item.horario || 'Segunda a sexta, das 8h às 17h48',
         experiencia:/Aprendiz|Estágio/.test(item.cargo) ? 'Não exigida' : 'Desejável experiência na função',
         sobreEmpresa:'Demonstração visual do +Empregos. A marca é usada apenas como exemplo, sem vínculo com a empresa e sem anúncio real de contratação.',
-        logo:!item.confidencial ? (demoBrand(index).logo || 'https://www.google.com/s2/favicons?domain=' + demoBrand(index).domain + '&sz=128') : '', tipoContato:'portal', contatoCandidatura:'',
+        logo:brand ? brand.logo : '', tipoContato:'portal', contatoCandidatura:'',
         destaque:!!item.destaque, destaqueAte:item.destaque ? new Date(time + 15 * day).toISOString() : '',
         urgente:!!item.urgente, contratacaoUrgente:!!item.urgente, urgenteAte:item.urgente ? new Date(time + 7 * day).toISOString() : '',
         confidencial:!!item.confidencial, confidencialAte:item.confidencial ? new Date(time + 15 * day).toISOString() : '',
@@ -105,6 +128,11 @@
     });
   }
   function isDemo(job) { return !!job && job.demoPublica === true && /^demo-publica-\d{2}$/.test(String(job.id)); }
+
+  function excludedPublicCompany(job) {
+    var name = String(job && job.empresa || '').normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
+    return /\b(?:drogaria\s+araujo|magazine\s+luiza|magalu)\b/.test(name);
+  }
 
   function installAreaCarousel(win) {
     var doc = win.document;
@@ -193,6 +221,11 @@
     win.vagasPadrao = (Array.isArray(win.vagasPadrao) ? win.vagasPadrao : []).filter(function (job) {
       return job.id !== 'vaga1' && job.id !== 'vaga2' && !isDemo(job);
     }).concat(createJobs());
+
+    var publicJobs = win.todasAsVagasPublicas;
+    if (typeof publicJobs === 'function') win.todasAsVagasPublicas = function () {
+      return publicJobs.apply(this, arguments).filter(function (job) { return !excludedPublicCompany(job); });
+    };
 
     // Legacy startup callbacks also request the home list while a detail page is open.
     // Build its cards when the visitor actually opens the home page.
@@ -809,6 +842,7 @@
           logo.appendChild(originalLogo);
         } else logo.textContent = initials;
       }
+      title.textContent = String(job.cargo || title.textContent).trim();
       title.classList.add('em-r4-title'); title.title = title.textContent;
       var titleButton = browserNode('button', 'em-r4-title-select', title.textContent); titleButton.type = 'button';
       titleButton.setAttribute('aria-haspopup', 'dialog'); titleButton.setAttribute('aria-controls', 'emRecentJobSummary'); titleButton.setAttribute('aria-expanded', 'false');
