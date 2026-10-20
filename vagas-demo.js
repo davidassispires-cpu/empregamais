@@ -7,6 +7,25 @@
 })(typeof window === 'undefined' ? null : window, function () {
   'use strict';
   var day = 86400000;
+
+  function publicationLabel(value, now) {
+    if (!value) return 'Não informada';
+    var formatter = new Intl.DateTimeFormat('en-CA', {timeZone:'America/Sao_Paulo',year:'numeric',month:'2-digit',day:'2-digit'});
+    function calendar(date) {
+      var p = formatter.formatToParts(date), result = {};
+      p.forEach(function (part) { result[part.type] = part.value; });
+      return [Number(result.year),Number(result.month),Number(result.day)];
+    }
+    var match = /^(\d{4})-(\d{2})-(\d{2})$/.exec(String(value));
+    var date = match ? [Number(match[1]),Number(match[2]),Number(match[3])] : null;
+    if (!date) { var parsed = new Date(value); if (isNaN(parsed.getTime())) return 'Não informada'; date = calendar(parsed); }
+    var current = calendar(now || new Date());
+    var delta = (Date.UTC(current[0],current[1]-1,current[2])-Date.UTC(date[0],date[1]-1,date[2])) / 86400000;
+    if (delta === 0) return 'Hoje';
+    if (delta === 1) return 'Ontem';
+    return String(date[2]).padStart(2,'0')+'/'+String(date[1]).padStart(2,'0')+'/'+date[0];
+  }
+
   var examples = [
     {id:2,marca:'carrefour',cargo:'Analista de Recursos Humanos',empresa:'Conecta Pessoas',cidade:'Contagem',area:'Administração',salario:3800,idade:.15,destaque:true,modalidade:'Híbrido',total:24,
       descricao:'Condução de processos seletivos, integração de profissionais e apoio aos indicadores de RH.',requisitos:'Superior em Administração, Psicologia ou áreas afins e experiência com recrutamento.'},
@@ -514,6 +533,7 @@
       var root = browserNode('div', 'em-job-browser'); root.id = 'emJobBrowser';
       root.setAttribute('data-view', 'list');
       root.setAttribute('data-layout', 'model-one');
+      root.setAttribute('data-presentation', 'priority');
       var panel = browserNode('section', 'em-job-panel'); panel.id = 'emJobPanel';
       panel.setAttribute('aria-label', 'Detalhes da vaga');
       var status = browserNode('p', 'em-job-selection-status');
@@ -699,7 +719,7 @@
       var identity = browserNode('div', 'em-jb-identity'); headerContent.appendChild(identity);
       var badges = browserNode('div', 'em-jb-badges');
       if (entry.highlighted) badges.appendChild(browserNode('span', 'em-jb-badge', 'Destaque'));
-      if (enabled(job.urgente) || enabled(job.contratacaoUrgente)) badges.appendChild(browserNode('span', 'em-jb-badge em-jb-urgent', 'Contratação urgente'));
+
       var title = browserNode('h2', 'em-jb-title', summaryText(info.title)); title.id = 'emJobPanelTitle'; title.tabIndex = -1;
       var titleLine = browserNode('div', 'em-jb-title-line'); titleLine.appendChild(title);
       if (badges.children.length) titleLine.appendChild(badges);
@@ -720,8 +740,7 @@
       }
       var contract = String(job.contrato || job.tipoContrato || '').replace(/^Efetivo\s*[–-]\s*CLT$/i, 'CLT');
       var rawPublished = job.dataPublicacao || job.publicadaEm || job.criadoEm || '';
-      var publishedDate = rawPublished ? new Date(/^\d{4}-\d{2}-\d{2}$/.test(rawPublished) ? rawPublished+'T12:00:00' : rawPublished) : null;
-      var publishedLabel = publishedDate && !isNaN(publishedDate.getTime()) ? publishedDate.toLocaleDateString('pt-BR', {day:'numeric',month:'short',year:'numeric'}) : 'Não informada';
+      var publishedLabel = publicationLabel(rawPublished);
       headerFact('em-jb-location', 'Local', info.location, '<path d="M20 10c0 6-8 12-8 12S4 16 4 10a8 8 0 1 1 16 0Z"/><circle cx="12" cy="10" r="2.5"/>');
       headerFact('em-jb-header-modality', 'Modalidade', [job.modalidade || 'Não informada', contract].filter(Boolean).join(' · '), '<rect x="3" y="7" width="18" height="14" rx="2"/><path d="M8 7V3h8v4M3 12h18"/>');
       headerFact('em-jb-header-pay', 'Salário', info.salary, '<rect x="2" y="5" width="20" height="14" rx="2"/><circle cx="12" cy="12" r="3"/><path d="M5 8h1M18 16h1"/>');
@@ -737,11 +756,21 @@
         var saved = typeof win.vagaEstaSalva === 'function' ? win.vagaEstaSalva(job.id) : entry.save.getAttribute('aria-pressed') === 'true';
         var label = saved ? 'Remover vaga dos salvos' : 'Salvar vaga';
         save.setAttribute('aria-label', label); save.title = label; save.setAttribute('aria-pressed', String(!!saved));
-        save.innerHTML = '<svg viewBox="0 0 24 24" fill="'+(saved ? 'currentColor' : 'none')+'" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3h12v18l-6-4-6 4V3Z"/></svg>';
+        save.innerHTML = '<svg viewBox="0 0 24 24" fill="'+(saved ? 'currentColor' : 'none')+'" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3h12v18l-6-4-6 4V3Z"/></svg><span class="em-jb-save-label">'+(saved ? 'Vaga salva' : 'Salvar vaga')+'</span>';
       }
       savedState(); save.onclick = function () { entry.save.click(); savedState(); };
       var headerActions = browserNode('div', 'em-jb-header-actions');
       headerActions.appendChild(candidate); headerActions.appendChild(save); headerContent.appendChild(headerActions);
+      if (enabled(job.urgente) || enabled(job.contratacaoUrgente)) {
+        var urgentNotice = browserNode('aside','em-jb-urgency-notice');
+        urgentNotice.setAttribute('aria-label','Contratação urgente');
+        urgentNotice.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 6v6l4 2"/></svg>';
+        var urgentCopy = browserNode('div','em-jb-urgency-copy');
+        urgentCopy.appendChild(browserNode('strong','','Contratação urgente'));
+        urgentCopy.appendChild(browserNode('p','','A empresa está priorizando o preenchimento desta vaga.'));
+        urgentNotice.appendChild(urgentCopy); headerActions.appendChild(urgentNotice);
+        headerActions.classList.add('em-jb-has-urgency');
+      }
       header.appendChild(headerMeta);
       panel.appendChild(header);
       var body = browserNode('div', 'em-jb-body'), facts = browserNode('div', 'em-jb-facts');
@@ -977,9 +1006,10 @@
       titleLine.appendChild(title);
       copy.appendChild(titleLine); copy.appendChild(company);
       var rawDate = String(job.dataPublicacao || job.publicadaEm || job.criadoEm || '');
-      var dateMatch = /^(\d{4})-(\d{2})-(\d{2})/.exec(rawDate);
-      var date = node('div','em-r4-date',dateMatch ? 'Publicada em '+dateMatch[3]+'/'+dateMatch[2]+'/'+dateMatch[1] : 'Data de publicação não informada');
-      if (isDemo(job)) date.appendChild(node('span','em-r4-demo',' · Demonstração'));
+      var date = node('div','em-r4-date');
+      date.innerHTML = svg('<rect x="3" y="5" width="18" height="16" rx="2"/><path d="M7 3v4M17 3v4M3 10h18"/>');
+      date.appendChild(node('span','',publicationLabel(rawDate)));
+      date.setAttribute('aria-label','Publicado em '+publicationLabel(rawDate));
       if (!confidential) identity.appendChild(logo);
       identity.appendChild(copy);
       var heading = node('div','em-r4-heading');
@@ -1025,18 +1055,14 @@
       // Saving and applying stay in the full details; previews show only essential facts.
       card.replaceChildren(heading,metaRow,footer);
       card.classList.add('em-recent-blocks');
-      var label = urgent ? 'Urgente' : highlighted ? 'Destaque' : '';
-      if (label) {
-        var status=node('div','em-r4-status'); status.setAttribute('data-kind',urgent?'urgent':'featured');
-        var statusMain=node('span','em-r4-status-main');
-        statusMain.innerHTML=svg(urgent?'<circle cx="12" cy="12" r="9"/><path d="M12 6v6l4 2"/>':paths.featured);
-        statusMain.appendChild(node('span','',label)); status.appendChild(statusMain);
-        if (urgent && highlighted) {
-          var secondary=node('span','em-r4-secondary-status'); secondary.innerHTML=svg(paths.featured);
-          secondary.appendChild(node('span','','Destaque')); status.appendChild(secondary);
-        }
-        titleLine.appendChild(status);
+      var footerBadges=node('div','em-r4-footer-badges');
+      function footerBadge(kind,label,path){
+        var badge=node('span','em-r4-footer-badge em-r4-footer-'+kind);
+        badge.innerHTML=svg(path);badge.appendChild(node('span','',label));footerBadges.appendChild(badge);
       }
+      if(highlighted)footerBadge('featured','Destaque',paths.featured);
+      if(urgent)footerBadge('urgent','Urgente','<circle cx="12" cy="12" r="9"/><path d="M12 6v6l4 2"/>');
+      footer.appendChild(footerBadges);
       card.classList.add('em-recent-discreet');
       card.setAttribute('data-em-priority',urgent?'urgent':highlighted?'featured':'standard');
       card.setAttribute('data-em-highlighted',String(highlighted)); card.setAttribute('data-em-confidential',String(confidential));
@@ -1107,7 +1133,7 @@
     detailNotice();
     installAreaCarousel(win);
   }
-  return {criarVagas:createJobs, ehDemo:isDemo, instalar:install};
+  return {criarVagas:createJobs, ehDemo:isDemo, instalar:install, publicationLabel:publicationLabel};
 });
 
 

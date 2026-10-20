@@ -115,11 +115,15 @@ test('public vacancy previews display the company logo on ordinary and featured 
   assert(urgent.querySelector('.em-r4-logo'));
   assert(featured.querySelector('.em-r4-logo'));
   assert.deepEqual(env.logoRequests,['real-job','urgent','featured']);
-  const badge=featured.querySelector('.em-r4-status');
+  const badge=featured.querySelector('.em-r4-footer-featured');
   assert.equal(badge.textContent,'Destaque');
-  assert.equal(badge.getAttribute('data-kind'),'featured');
+  assert(badge.classList.contains('em-r4-footer-badge'));
   const facts=featured.querySelector('.em-r4-facts');
-  assert.equal(badge.parentNode,featured.querySelector('.em-r4-title-line'));
+  assert.equal(badge.parentNode,featured.querySelector('.em-r4-footer-badges'));
+  assert(featured.querySelector('.em-r4-footer').querySelector('.em-r4-date'));
+  assert(urgent.querySelector('.em-r4-footer-urgent'));
+  const both=env.card({id:'both',urgente:true,destaque:true});
+  assert.equal(both.querySelectorAll('.em-r4-footer-badge').length,2);
   assert.equal(featured.firstChild,featured.querySelector('.em-r4-heading'));
   assert.equal(facts.firstChild,featured.querySelector('.em-r4-location'));
   assert.equal(featured.querySelector('.em-r4-journey'),null);
@@ -131,7 +135,8 @@ test('public vacancy previews display the company logo on ordinary and featured 
     const copy=card.querySelector('.em-r4-copy');
     assert.equal(copy.children[0],card.querySelector('.em-r4-title-line'));
     assert.equal(copy.children[1],card.querySelector('.em-r4-company'));
-    assert.equal(card.querySelector('.em-r4-title-line').querySelectorAll('.em-r4-status').length,card===normal?0:1);
+    assert.equal(card.querySelector('.em-r4-title-line').querySelectorAll('.em-r4-status').length,0);
+    assert.equal(card.querySelectorAll('.em-r4-footer-badge').length,card===normal?0:1);
   }
 });
 
