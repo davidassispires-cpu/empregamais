@@ -1094,7 +1094,13 @@
       save.onclick=function(event){event.preventDefault();event.stopPropagation();if(typeof originalSave==='function')originalSave.call(save,event);else if(typeof win.alternarFavorito==='function')win.alternarFavorito(job.id);updateSave();};
       updateSave();
       // Saving and applying stay in the full details; previews show only essential facts.
-      card.replaceChildren(heading,metaRow,footer);
+      var excerptText = summaryText(job.descricao || job.descricaoVaga || job.resumo || '')
+        .replace(/Vaga de demonstração do \+Empregos\.[\s\S]*$/i, '').replace(/\s+/g, ' ').trim();
+      var excerpt = node('p', 'em-r4-excerpt', excerptText);
+      var excerptStyles = {'display':'-webkit-box','-webkit-box-orient':'vertical','-webkit-line-clamp':'2','line-clamp':'2','overflow':'hidden','max-height':'40px','margin':'0','padding':'0','font-size':'13px','font-weight':'400','line-height':'20px','color':'#52657b','grid-column':'1 / -1','width':'100%','min-width':'0','overflow-wrap':'anywhere'};
+      Object.keys(excerptStyles).forEach(function (key) { excerpt.style.setProperty(key, excerptStyles[key], 'important'); });
+      if (excerptText) card.replaceChildren(heading,excerpt,metaRow,footer);
+      else card.replaceChildren(heading,metaRow,footer);
       card.classList.add('em-recent-blocks');
       var footerBadges=node('div','em-r4-footer-badges');
       function footerBadge(kind,label,path){
