@@ -385,15 +385,11 @@ button{
   grid-template-columns:repeat(3,1fr);
   gap:17px;
 }
-.card-destaque,
 .vaga-card{
   padding:21px;
   background:#fff;
   border:1px solid var(--borda2);
   border-radius:15px;
-}
-.card-destaque{
-  position:relative;
 }
 .selo-destaque{
   position:absolute;
@@ -522,79 +518,6 @@ button{
   background:#fff7f7;
 }
 
-.card-destaque{
-  position:relative;
-  overflow:hidden;
-  padding:23px;
-  background:
-    linear-gradient(180deg,#f4faff 0%,#ffffff 48%);
-  border:2px solid #0d4f82;
-  border-top:4px solid #0d4f82;
-  border-radius:17px;
-  box-shadow:0 10px 28px rgba(23,105,170,.09);
-  transition:.2s;
-}
-.card-destaque:hover{
-  transform:translateY(-3px);
-  border-color:#0a3d66;
-  box-shadow:0 16px 36px rgba(23,105,170,.14);
-}
-.card-destaque .vaga-card-top{
-  padding-top:5px;
-}
-.card-destaque .logo-empresa,
-.card-destaque .logo-placeholder{
-  width:64px;
-  height:64px;
-  border-color:#cfe3f2;
-  box-shadow:0 5px 14px rgba(16,24,40,.06);
-}
-.card-destaque .vaga-empresa{
-  color:#0d5f9d;
-  font-weight:800;
-}
-.card-destaque .vaga-titulo{
-  font-size:19px;
-  line-height:1.35;
-}
-.card-destaque .salario{
-  margin-top:14px;
-  padding-top:12px;
-  border-top:1px solid #dcebf6;
-  color:var(--verde);
-  font-size:14px;
-}
-.card-destaque .vaga-card-footer{
-  margin-top:18px;
-  padding-top:15px;
-  border-top:1px solid #dcebf6;
-}
-.card-destaque .btn-azul{
-  box-shadow:0 5px 14px rgba(23,105,170,.18);
-}
-.card-destaque .selo-destaque{
-  right:14px;
-  top:14px;
-  padding:6px 9px;
-  background:#0d4f82;
-  border:1px solid #0a3d66;
-  color:#ffffff;
-  letter-spacing:.25px;
-}
-.card-destaque .selo-destaque{
-  display:inline-flex;
-  align-items:center;
-  gap:6px;
-  font-weight:800;
-  text-transform:uppercase;
-}
-.card-destaque .estrela-destaque{
-  color:#ffd54a;
-  font-size:13px;
-  line-height:1;
-  display:inline-block;
-}
-
 .vaga-card .vaga-card-top{
   display:block;
 }
@@ -614,16 +537,6 @@ button{
 .vaga-card .vaga-titulo{
   margin-bottom:11px;
   font-size:18px;
-}
-@media(max-width:520px){
-  .card-destaque{
-    padding:20px;
-  }
-  .card-destaque .logo-empresa,
-  .card-destaque .logo-placeholder{
-    width:56px;
-    height:56px;
-  }
 }
 
 .filtros-rapidos{
@@ -1488,8 +1401,7 @@ textarea.campo{
   padding-bottom:18px;
   border-bottom:1px solid var(--borda2);
 }
-.vaga-card,
-.card-destaque{
+.vaga-card{
   border:1px solid #dce3eb;
   border-radius:16px;
   box-shadow:0 4px 14px rgba(16,24,40,.035);
@@ -1507,8 +1419,7 @@ textarea.campo{
   width:3px;
   background:#d5e9f8;
 }
-.vaga-card:hover,
-.card-destaque:hover{
+.vaga-card:hover{
   border-color:#b9d5e9;
   box-shadow:0 12px 28px rgba(16,24,40,.08);
 }
@@ -6222,30 +6133,6 @@ body{
   display:none;
 }
 
-.destaques-carrossel-em .card-destaque{
-  flex:0 0 calc((100% - 42px) / 4) !important;
-  width:auto !important;
-  max-width:none !important;
-  min-width:0 !important;
-  margin:0 !important;
-  scroll-snap-align:start;
-  box-sizing:border-box !important;
-}
-
-.destaques-carrossel-em .card-destaque{
-  padding:15px !important;
-}
-.destaques-carrossel-em .card-destaque .vaga-titulo{
-  font-size:16px !important;
-  line-height:1.25 !important;
-}
-.destaques-carrossel-em .card-destaque .vaga-resumo{
-  display:-webkit-box !important;
-  -webkit-box-orient:vertical !important;
-  -webkit-line-clamp:2 !important;
-  overflow:hidden !important;
-}
-
 .destaques-seta-em{
   position:absolute;
   top:50%;
@@ -6284,28 +6171,16 @@ body{
   .destaques-carrossel-em{
     padding:0 38px;
   }
-  .destaques-carrossel-em .card-destaque{
-    flex-basis:calc((100% - 14px) / 2) !important;
-  }
 }
 
 @media(max-width:640px){
   .destaques-carrossel-em{
     padding:0 32px;
   }
-  .destaques-carrossel-em .card-destaque{
-    flex-basis:100% !important;
-  }
   .destaques-seta-em{
     width:32px;
     height:32px;
     font-size:25px;
-  }
-}
-
-@media(min-width:901px){
-  .destaques-carrossel-em .card-destaque{
-    flex:0 0 calc((100% - 28px) / 3) !important;
   }
 }
 
@@ -6956,130 +6831,6 @@ body{
   white-space:nowrap !important;
 }
 
-#listaDestaques .card-destaque{
-  position:relative !important;
-  overflow:hidden !important;
-  background:#fff !important;
-  border:2px solid #0866c6 !important;
-  border-radius:15px !important;
-  padding:20px 18px 17px !important;
-  box-shadow:0 8px 25px rgba(8,102,198,.09) !important;
-  transition:transform .22s ease,box-shadow .22s ease,border-color .22s ease !important;
-}
-
-#listaDestaques .card-destaque:before{
-  content:"" !important;
-  position:absolute !important;
-  top:0 !important;
-  left:0 !important;
-  right:0 !important;
-  height:5px !important;
-  background:#0866c6 !important;
-}
-
-#listaDestaques .card-destaque:hover{
-  transform:translateY(-4px) !important;
-  border-color:#0759ad !important;
-  box-shadow:0 15px 34px rgba(8,102,198,.17) !important;
-}
-
-#listaDestaques .badge-destaque,
-#listaDestaques .tag-destaque,
-#listaDestaques .destaque-badge,
-#listaDestaques [class*="destaque"]:not(.card-destaque){
-  background:#fff7dd !important;
-  border-color:#ead28a !important;
-  color:#956700 !important;
-}
-
-#listaDestaques .logo-empresa,
-#listaDestaques .logo-placeholder,
-#listaDestaques .logo-detalhe{
-  width:58px !important;
-  height:58px !important;
-  flex:0 0 58px !important;
-  padding:5px !important;
-  box-sizing:border-box !important;
-  object-fit:contain !important;
-  background:#fff !important;
-  border:1px solid #dce6f0 !important;
-  border-radius:12px !important;
-  box-shadow:0 5px 14px rgba(15,23,42,.07) !important;
-}
-
-#listaDestaques .vaga-empresa,
-#listaDestaques .empresa{
-  color:#64748b !important;
-  font-size:11px !important;
-  font-weight:650 !important;
-}
-
-#listaDestaques .vaga-titulo,
-#listaDestaques .job-title{
-  margin-top:11px !important;
-  margin-bottom:10px !important;
-  color:#0f172a !important;
-  font-size:17px !important;
-  line-height:1.28 !important;
-  font-weight:800 !important;
-  letter-spacing:-.01em !important;
-}
-
-#listaDestaques .tags{
-  gap:5px !important;
-  margin:8px 0 !important;
-}
-#listaDestaques .tag{
-  padding:5px 8px !important;
-  border:1px solid #d9e9f8 !important;
-  border-radius:999px !important;
-  background:#f2f8fe !important;
-  color:#456176 !important;
-  font-size:10px !important;
-  font-weight:650 !important;
-}
-
-#listaDestaques .salario,
-#listaDestaques .salary{
-  margin-top:10px !important;
-  color:#16803b !important;
-  font-size:13px !important;
-  font-weight:800 !important;
-}
-
-#listaDestaques .vaga-resumo,
-#listaDestaques .job-snippet,
-#listaDestaques .descricao{
-  color:#64748b !important;
-  font-size:11px !important;
-  line-height:1.5 !important;
-  -webkit-line-clamp:2 !important;
-}
-
-#listaDestaques .vaga-card-footer,
-#listaDestaques .card-footer{
-  margin-top:13px !important;
-  padding-top:12px !important;
-  border-top:1px solid #e4edf5 !important;
-}
-
-#listaDestaques .btn-primary,
-#listaDestaques .btn-ver-vaga,
-#listaDestaques .btn:not(.favorito){
-  border-radius:9px !important;
-  background:#0866c6 !important;
-  border-color:#0866c6 !important;
-  color:#fff !important;
-  font-weight:750 !important;
-  box-shadow:0 5px 12px rgba(8,102,198,.15) !important;
-}
-#listaDestaques .btn-primary:hover,
-#listaDestaques .btn-ver-vaga:hover,
-#listaDestaques .btn:not(.favorito):hover{
-  background:#0759ad !important;
-  border-color:#0759ad !important;
-}
-
 .destaques-seta-em{
   border:2px solid #0866c6 !important;
   background:#fff !important;
@@ -7089,19 +6840,6 @@ body{
 .destaques-seta-em:hover{
   background:#0866c6 !important;
   color:#fff !important;
-}
-
-@media(max-width:640px){
-  #listaDestaques .card-destaque{
-    padding:18px 15px 15px !important;
-  }
-  #listaDestaques .logo-empresa,
-  #listaDestaques .logo-placeholder,
-  #listaDestaques .logo-detalhe{
-    width:52px !important;
-    height:52px !important;
-    flex-basis:52px !important;
-  }
 }
 
 #vagas > .titulo-secao{
@@ -7617,11 +7355,6 @@ section.container > .titulo-secao p,
   margin-left:auto !important;
   margin-right:auto !important;
 }
-
-section.container:has(#listaDestaques){
-  padding-top:34px !important;
-  padding-bottom:36px !important;
-}
 #vagas.home-vagas-caixa,
 #vagas{
   padding-top:34px !important;
@@ -7646,10 +7379,6 @@ section.container:has(#listaDestaques){
 }
 
 @media(max-width:700px){
-  section.container:has(#listaDestaques){
-    padding-top:25px !important;
-    padding-bottom:28px !important;
-  }
   #vagas.home-vagas-caixa,
   #vagas{
     padding-top:27px !important;
@@ -7738,11 +7467,6 @@ section.container:has(#listaDestaques){
 #pagina-home .titulo-secao p{
   margin-top:5px !important;
   color:#748397 !important;
-}
-
-#pagina-home section.container:has(#listaDestaques){
-  padding-top:34px !important;
-  padding-bottom:34px !important;
 }
 #pagina-home #vagas{
   padding-top:34px !important;
@@ -8788,18 +8512,6 @@ section.container:has(#listaDestaques){
     padding:8px !important;
   }
 }
-
-#pagina-home section.container:has(#listaDestaques){padding-top:38px!important;padding-bottom:42px!important}
-#pagina-home section.container:has(#listaDestaques)>.titulo-secao{margin-bottom:22px!important}
-#pagina-home section.container:has(#listaDestaques)>.titulo-secao h2{color:#15273b!important;font-size:27px!important;font-weight:850!important;letter-spacing:-.025em!important}
-#pagina-home #listaDestaques{gap:16px!important}
-#pagina-home #listaDestaques .card-destaque{min-width:0!important;padding:22px!important;border:1px solid #bfdcf4!important;border-top:4px solid #0866c6!important;border-radius:15px!important;background:linear-gradient(180deg,#f7fbff 0,#fff 44%)!important;box-shadow:0 9px 25px rgba(8,102,198,.07)!important}
-#pagina-home #listaDestaques .card-destaque:hover{transform:translateY(-2px)!important;border-color:#78b6e9!important;box-shadow:0 14px 30px rgba(8,102,198,.12)!important}
-#pagina-home #listaDestaques .vaga-empresa{color:#52677c!important;font-size:10px!important;font-weight:700!important}
-#pagina-home #listaDestaques .vaga-titulo{margin:5px 0 10px!important;color:#142235!important;font-size:17px!important;line-height:1.25!important;font-weight:850!important}
-#pagina-home #listaDestaques .salario{margin-top:12px!important;color:#087b3e!important;font-size:14px!important;font-weight:850!important}
-#pagina-home #listaDestaques .vaga-card-footer{margin-top:17px!important;padding-top:14px!important}
-#pagina-home #listaDestaques .btn-azul{min-height:39px!important;padding:0 15px!important;border-radius:9px!important;font-size:11px!important;font-weight:850!important}
 #pagina-home #vagas.home-vagas-caixa{padding:27px!important;border:1px solid #e4eaf0!important;border-radius:18px!important;box-shadow:0 5px 18px rgba(15,23,42,.025)!important}
 #pagina-home #listaVagas{gap:0!important}
 #pagina-home #listaVagas .vaga-card{padding:18px 19px!important;border:0!important;border-bottom:1px solid #e7edf3!important;border-radius:0!important;box-shadow:none!important;background:#fff!important}
@@ -9694,14 +9406,14 @@ h1{font-size:clamp(30px,3vw,42px)!important;line-height:1.15!important}
 h2{font-size:clamp(23px,2vw,28px)!important;line-height:1.2!important}
 h3{font-size:18px!important;line-height:1.3!important}
 
-.vaga-titulo,.card-destaque .vaga-titulo{
+.vaga-titulo{
   font-size:17px!important;
   line-height:1.28!important;
 }
-.vaga-empresa,.card-destaque .vaga-empresa{
+.vaga-empresa{
   font-size:13px!important;
 }
-.vaga-salario,.card-destaque .vaga-salario{
+.vaga-salario{
   font-size:15px!important;
 }
 .vaga-tags,.vaga-tags span,.tag,.badge,.chip{
@@ -9732,136 +9444,12 @@ table,th,td{
   body{font-size:15px!important}
   p,label,input,select,textarea{font-size:15px!important}
   button,.btn,.botao,a.btn{font-size:14px!important}
-  .vaga-titulo,.card-destaque .vaga-titulo{font-size:17px!important}
+  .vaga-titulo{font-size:17px!important}
 }
 
-500;600;700%26display=swap"[bad string]
-
-
-html,body,button,input,select,textarea,header,nav,main,section,article,aside,footer,
-h1,h2,h3,h4,h5,h6,p,span,div,label,a,li,td,th,.btn,.botao,.vaga-card,.card-destaque{
-  font-family:Poppins,sans-serif!important;
-}
-body,p,input,select,textarea{font-weight:500}
-nav,.menu,.menu a,button,.btn,.botao{font-weight:500}
-.vaga-titulo,h3,label{font-weight:600}
-h1,h2{font-weight:700}
-
-body, .home, .pagina-home, main {
-  font-family:Poppins,sans-serif!important;
-}
-
-.hero h1, .home h1, .hero-title, .titulo-principal {
-  font-family:Poppins,sans-serif!important;
-  font-size:clamp(32px,4vw,48px)!important;
-  line-height:1.12!important;
-  font-weight:700!important;
-  letter-spacing:-.025em!important;
-}
-.hero p, .home .hero p, .hero-subtitle, .subtitulo-principal {
-  font-size:16px!important;
-  line-height:1.6!important;
-  font-weight:500!important;
-}
-
-.home h2, .section-title, .titulo-secao,
-.destaques h2, .vagas-recentes h2, .empresas-contratando h2 {
-  font-family:Poppins,sans-serif!important;
-  font-size:26px!important;
-  line-height:1.25!important;
-  font-weight:700!important;
-  letter-spacing:-.015em!important;
-}
-
-.home .vaga-titulo, #listaVagas .vaga-titulo, .card-destaque .vaga-titulo {
-  font-size:17px!important;
-  line-height:1.35!important;
-  font-weight:600!important;
-}
-.home .vaga-empresa, #listaVagas .vaga-empresa, .card-destaque .vaga-empresa {
-  font-size:14px!important;
-  line-height:1.45!important;
-  font-weight:500!important;
-}
-.home .vaga-salario, #listaVagas .vaga-salario, .card-destaque .vaga-salario {
-  font-size:15px!important;
-  line-height:1.4!important;
-  font-weight:600!important;
-}
-.home .vaga-meta, .home .vaga-local, .home .vaga-data,
-#listaVagas .vaga-meta, #listaVagas .vaga-local, #listaVagas .vaga-data {
-  font-size:13.5px!important;
-  line-height:1.45!important;
-}
-
-.home input, .home select, .home button,
-.busca-vagas input, .busca-vagas select, .busca-vagas button,
-.filtros input, .filtros select, .filtros button {
-  font-family:Poppins,sans-serif!important;
-  font-size:15px!important;
-}
-.home label, .filtros label, .busca-vagas label {
-  font-size:14px!important;
-  font-weight:600!important;
-}
-
-.home .btn, .home .botao, .home button,
-.hero .btn, .hero button {
-  font-size:14.5px!important;
-  font-weight:600!important;
-}
-
-.home .categoria, .home .area-card, .home .empresa-card,
-.areas-vagas a, .empresas-contratando a {
-  font-size:14px!important;
-  font-weight:500!important;
-}
-
-.home .numero, .home .contador, .stats strong {
-  font-size:22px!important;
-  font-weight:700!important;
-}
-
-@media(max-width:767px){
-  .hero h1, .home h1, .hero-title, .titulo-principal {
-    font-size:31px!important;
-    line-height:1.15!important;
-  }
-  .hero p, .home .hero p, .hero-subtitle, .subtitulo-principal {
-    font-size:15px!important;
-  }
-  .home h2, .section-title, .titulo-secao,
-  .destaques h2, .vagas-recentes h2, .empresas-contratando h2 {
-    font-size:22px!important;
-  }
-  .home .vaga-titulo, #listaVagas .vaga-titulo, .card-destaque .vaga-titulo {
-    font-size:17px!important;
-  }
-  .home .vaga-empresa, #listaVagas .vaga-empresa, .card-destaque .vaga-empresa {
-    font-size:14px!important;
-  }
-}
-
-#empresasContratando,
-.empresas-contratando,
-.empresas-contratando-section,
-.secao-empresas,
-.company-carousel,
-.empresas-carousel {
-  display:none!important;
-}
-section:has(.empresas-contratando),
-section:has(.company-carousel),
-section:has([id*="empresasContratando"]) {
-  display:none!important;
-}
-
-500;600;700%26display=swap"[bad string]
-
-
-html,body,button,input,select,textarea,header,nav,main,section,article,aside,footer,
+500;600;body,button,input,select,textarea,header,nav,main,section,article,aside,footer,
 h1,h2,h3,h4,h5,h6,p,span,div,label,a,li,td,th,
-.btn,.botao,.vaga-card,.card-destaque{
+.btn,.botao,.vaga-card{
   font-family:Poppins,sans-serif!important;
 }
 body{
@@ -9880,16 +9468,16 @@ label,input,select,textarea{
   line-height:1.45!important;
 }
 
-.vaga-titulo,.card-destaque .vaga-titulo{
+.vaga-titulo{
   font-size:17px!important;
   line-height:1.32!important;
   font-weight:600!important;
 }
-.vaga-empresa,.card-destaque .vaga-empresa{
+.vaga-empresa{
   font-size:14px!important;
   font-weight:500!important;
 }
-.vaga-salario,.card-destaque .vaga-salario{
+.vaga-salario{
   font-size:15px!important;
   font-weight:600!important;
 }
@@ -9916,53 +9504,13 @@ small,.tag,.badge,.chip,.selo-destaque,.selo-verificado{
   h3{font-size:18px!important}
 }
 
-.card-destaque{
-  min-height:0!important;
-  padding:14px!important;
-}
-.card-destaque .vaga-card-top{
-  gap:9px!important;
-}
-.card-destaque .vaga-logo,
-.card-destaque .logo-vaga,
-.card-destaque .vaga-logo-box{
-  width:42px!important;
-  height:42px!important;
-  min-width:42px!important;
-}
-.card-destaque .vaga-titulo{
-  font-size:15px!important;
-  line-height:1.25!important;
-  margin-top:3px!important;
-  margin-bottom:5px!important;
-}
-.card-destaque .vaga-empresa{
-  font-size:11.5px!important;
-  line-height:1.3!important;
-}
-.card-destaque .vaga-salario{
-  font-size:13px!important;
-  line-height:1.35!important;
-}
-.card-destaque .tag,
-.card-destaque .badge,
-.card-destaque .chip,
-.card-destaque .vaga-tags span{
-  font-size:10.5px!important;
-  padding:4px 7px!important;
-}
-.card-destaque .selo-destaque{
-  font-size:10.5px!important;
-  padding:5px 8px!important;
-}
-
 html, body,
 header, nav, main, section, article, aside, footer,
 div, span, p, a, strong, b, small, label, li,
 h1, h2, h3, h4, h5, h6,
 button, input, select, textarea, option,
 table, thead, tbody, tr, th, td,
-.btn, .botao, .vaga-card, .card-destaque,
+.btn, .botao, .vaga-card,
 .vaga-titulo, .vaga-empresa, .vaga-salario,
 .tag, .badge, .chip, .selo-destaque, .selo-verificado {
   font-family:Poppins,sans-serif!important;
@@ -10190,16 +9738,16 @@ p,.texto,.descricao,.subtitulo,.hero p,.hero-subtitle{
   font-weight:500!important;
 }
 
-.vaga-titulo,.card-destaque .vaga-titulo{
+.vaga-titulo{
   font-size:16px!important;
   line-height:1.3!important;
   font-weight:600!important;
 }
-.vaga-empresa,.card-destaque .vaga-empresa{
+.vaga-empresa{
   font-size:12px!important;
   font-weight:500!important;
 }
-.vaga-salario,.card-destaque .vaga-salario{
+.vaga-salario{
   font-size:13px!important;
   font-weight:500!important;
 }
@@ -10598,17 +10146,14 @@ h2{font-weight:600!important}
 h3,h4,h5,h6{font-weight:500!important}
 
 .vaga-titulo,
-.vaga-card h3,
-.card-destaque h3{
+.vaga-card h3{
   font-family:Poppins,sans-serif!important;
   font-weight:600!important;
 }
 .vaga-empresa,
 .vaga-meta,
 .vaga-card p,
-.vaga-card span,
-.card-destaque p,
-.card-destaque span{
+.vaga-card span{
   font-family:Poppins,sans-serif!important;
   font-weight:500!important;
 }
@@ -10639,20 +10184,6 @@ button,.btn{
 .titulo-secao p,
 .home-bloco-cab p{
   font-weight:500!important;
-}
-
-#listaDestaques .card-destaque,
-#listaDestaques .card-destaque *{
-  font-family:Poppins,sans-serif!important;
-}
-#listaDestaques .card-destaque .vaga-empresa,
-#listaDestaques .card-destaque .vaga-meta,
-#listaDestaques .card-destaque span{
-  font-weight:500!important;
-}
-#listaDestaques .card-destaque .vaga-titulo,
-#listaDestaques .card-destaque h3{
-  font-weight:600!important;
 }
 
 html,body,button,input,select,textarea,
@@ -10720,8 +10251,7 @@ input,select,textarea{
 }
 
 .vaga-titulo,
-.vaga-card h3,
-.card-destaque h3{
+.vaga-card h3{
   font-weight:650!important;
   letter-spacing:-.012em!important;
 }
@@ -10730,9 +10260,7 @@ input,select,textarea{
 }
 .vaga-meta,
 .vaga-card p,
-.vaga-card span,
-.card-destaque p,
-.card-destaque span{
+.vaga-card span{
   font-weight:500!important;
   letter-spacing:0!important;
 }
@@ -10787,11 +10315,6 @@ input,select,textarea{
 footer,footer p,footer span,footer a,
 .login-ajuda,.contato-ajuda,small{
   font-weight:500!important;
-}
-
-#listaDestaques .card-destaque,
-#listaDestaques .card-destaque *{
-  font-family:Poppins,sans-serif!important;
 }
 
 :root{
@@ -10872,7 +10395,6 @@ hr{border:0;border-top:1px solid var(--em-borda-suave)}
 
 .form-card,
 .vaga-card,
-.card-destaque,
 .plano-card,
 .plano-card-novo,
 .metrica,
@@ -10963,8 +10485,7 @@ button[class*="btn"],
   background:#f6fafe!important;
 }
 
-.vaga-card,
-.card-destaque{
+.vaga-card{
   background:var(--em-superficie)!important;
 }
 .vaga-titulo{color:var(--em-texto)!important}
@@ -11063,7 +10584,6 @@ th,td{
   }
   .form-card,
   .vaga-card,
-  .card-destaque,
   .plano-card-novo{
     border-radius:var(--em-raio-md)!important;
   }
@@ -11885,8 +11405,7 @@ body.admin-publicando-em #pagina-publicar .vaga-confidencial-topo-em>span{backgr
 #pagina-vaga #vagaDistanciaBadge,
 #pagina-vaga #distanciaVaga,
 #pagina-vaga [class*="distancia-vaga"]:not(.distancia-canonica-em),
-.card-vaga [class*="distancia"]:not(.distancia-canonica-em),
-.card-destaque [class*="distancia"]:not(.distancia-canonica-em){
+.card-vaga [class*="distancia"]:not(.distancia-canonica-em){
  display:none!important;
 }
 
@@ -12154,59 +11673,6 @@ body.admin-publicando-em #pagina-publicar .vaga-confidencial-topo-em>span{backgr
 .admin-verificacao-vazia-final-em{padding:12px;border:1px dashed #dce5ed;border-radius:9px;color:#7b8794;font-size:9.5px}
 @media(max-width:650px){.admin-verificacao-item-final-em{align-items:flex-start;flex-direction:column}.admin-verificacao-item-final-em button{width:100%}}
 
-.card-destaque{
-  position:relative !important;
-  overflow:hidden !important;
-  background:linear-gradient(180deg,#fffaf0 0%,#fffdf8 48%,#ffffff 100%) !important;
-  border:2px solid #c89208 !important;
-  border-top:4px solid #c89208 !important;
-  border-radius:17px !important;
-  box-shadow:0 12px 30px rgba(181,132,10,.18) !important;
-  padding:23px !important;
-}
-.card-destaque:hover{
-  transform:translateY(-3px) !important;
-  border-color:#ad7900 !important;
-  box-shadow:0 18px 38px rgba(181,132,10,.25) !important;
-}
-.card-destaque .vaga-card-top{
-  padding-top:8px !important;
-}
-.card-destaque .logo-empresa,
-.card-destaque .logo-placeholder{
-  border-color:#ead9ad !important;
-  background:#fff !important;
-  box-shadow:0 5px 15px rgba(122,86,0,.09) !important;
-}
-.card-destaque .vaga-empresa{
-  color:#40526b !important;
-}
-.card-destaque .vaga-meta-grid-v9{
-  border-color:#ead8a7 !important;
-  background:linear-gradient(180deg,#fff9e9,#fffdf7) !important;
-}
-.card-destaque .vaga-meta-v9 svg{
-  stroke:#9d7109 !important;
-}
-.card-destaque .salario{
-  border-top-color:#efdfb8 !important;
-}
-.card-destaque .vaga-card-footer{
-  border-top-color:#efdfb8 !important;
-}
-.card-destaque .btn-azul{
-  background:linear-gradient(180deg,#d9a20d,#bd8500) !important;
-  border-color:#ad7900 !important;
-  color:#fff !important;
-  box-shadow:0 6px 16px rgba(181,132,10,.24) !important;
-}
-.card-destaque .btn-azul:hover{
-  background:linear-gradient(180deg,#c99509,#a97500) !important;
-}
-.card-destaque .vaga-prioridade-v9{
-  display:none !important;
-}
-
 .selo-premium-destaque-v61{
   position:absolute;
   z-index:4;
@@ -12248,12 +11714,6 @@ body.admin-publicando-em #pagina-publicar .vaga-confidencial-topo-em>span{backgr
   letter-spacing:.45px;
   white-space:nowrap;
 }
-.card-destaque .vaga-principal{
-  padding-right:0;
-}
-.card-destaque .vaga-titulo{
-  padding-right:105px;
-}
 @media(max-width:520px){
   .selo-premium-destaque-v61{
     min-width:112px;
@@ -12263,7 +11723,6 @@ body.admin-publicando-em #pagina-publicar .vaga-confidencial-topo-em>span{backgr
   .selo-premium-destaque-v61 strong{font-size:10px}
   .selo-premium-destaque-v61 .coroa-v61,
   .selo-premium-destaque-v61 svg{width:23px;height:23px}
-  .card-destaque .vaga-titulo{padding-right:88px}
 }
 
 .selo-premium-destaque-v61{
@@ -12303,25 +11762,6 @@ body.admin-publicando-em #pagina-publicar .vaga-confidencial-topo-em>span{backgr
   letter-spacing:.35px !important;
   color:#9b6900 !important;
 }
-
-.card-destaque .vaga-card-top{
-  padding-top:0 !important;
-  padding-right:105px !important;
-  min-height:70px !important;
-}
-.card-destaque .vaga-titulo{
-  padding-right:0 !important;
-}
-.card-destaque .vaga-principal{
-  padding-right:0 !important;
-}
-
-.card-destaque{
-  border:1.5px solid #d6a52a !important;
-  border-top:4px solid #c89208 !important;
-  background:linear-gradient(180deg,#fffdf7 0%,#ffffff 44%) !important;
-  box-shadow:0 8px 22px rgba(181,132,10,.12) !important;
-}
 @media(max-width:520px){
   .selo-premium-destaque-v61{
     top:11px !important;
@@ -12336,45 +11776,19 @@ body.admin-publicando-em #pagina-publicar .vaga-confidencial-topo-em>span{backgr
     height:15px !important;
     flex-basis:15px !important;
   }
-  .card-destaque .vaga-card-top{
-    padding-right:92px !important;
-  }
 }
 
-.vaga-card,
-.card-destaque{
+.vaga-card{
   display:flex !important;
   flex-direction:column !important;
   height:100% !important;
   min-height:420px !important;
 }
-.vaga-card .vaga-card-footer,
-.card-destaque .vaga-card-footer{
+.vaga-card .vaga-card-footer{
   margin-top:auto !important;
 }
-.vaga-card .btn-azul,
-.card-destaque .btn-azul{
+.vaga-card .btn-azul{
   min-height:44px !important;
-}
-
-.card-destaque{
-  position:relative !important;
-  overflow:hidden !important;
-  border:1.5px solid #d99a17 !important;
-  border-top:4px solid #d99a17 !important;
-  background:
-    radial-gradient(circle at 90% 8%,rgba(245,184,53,.10),transparent 27%),
-    linear-gradient(180deg,#fffdf8 0%,#fffaf1 55%,#ffffff 100%) !important;
-  box-shadow:
-    0 14px 32px rgba(176,116,8,.14),
-    0 2px 5px rgba(16,44,74,.05) !important;
-}
-.card-destaque:hover{
-  transform:translateY(-3px) !important;
-  border-color:#c8860b !important;
-  box-shadow:
-    0 18px 38px rgba(176,116,8,.20),
-    0 3px 7px rgba(16,44,74,.06) !important;
 }
 
 .selo-premium-destaque-v61{
@@ -12430,43 +11844,8 @@ body.admin-publicando-em #pagina-publicar .vaga-confidencial-topo-em>span{backgr
   letter-spacing:.45px !important;
 }
 
-.card-destaque .vaga-card-top{
-  padding-top:7px !important;
-  padding-right:120px !important;
-  min-height:82px !important;
-}
-.card-destaque .vaga-titulo{
-  padding-right:0 !important;
-}
-
-.card-destaque .vaga-meta-grid-v9{
-  border-color:#ead9b5 !important;
-  background:rgba(255,255,255,.68) !important;
-}
-.card-destaque .vaga-meta-v9 svg{
-  stroke:#6b7f97 !important;
-}
-.card-destaque .salario{
-  border-top-color:#efe2c7 !important;
-}
-
-.card-destaque .btn-azul{
-  background:linear-gradient(135deg,#efa516 0%,#dd7f08 58%,#bd6200 100%) !important;
-  border-color:#d27b08 !important;
-  color:#fff !important;
-  box-shadow:0 7px 17px rgba(181,100,0,.18) !important;
-}
-.card-destaque .btn-azul:hover{
-  background:linear-gradient(135deg,#e59a0e 0%,#cf7100 58%,#ad5700 100%) !important;
-  box-shadow:0 9px 20px rgba(181,100,0,.24) !important;
-}
-
-.card-destaque .vaga-prioridade-v9{
-  display:flex !important;
-}
-
 @media(max-width:520px){
-  .vaga-card,.card-destaque{min-height:400px !important}
+  .vaga-card{min-height:400px !important}
   .selo-premium-destaque-v61{
     min-width:120px !important;
     height:42px !important;
@@ -12485,45 +11864,19 @@ body.admin-publicando-em #pagina-publicar .vaga-confidencial-topo-em>span{backgr
     height:18px !important;
     flex-basis:18px !important;
   }
-  .card-destaque .vaga-card-top{
-    padding-right:100px !important;
-  }
 }
 
-.vaga-card,
-.card-destaque{
+.vaga-card{
   min-height:0 !important;
   height:auto !important;
 }
 
-.vaga-card,
-.card-destaque{
+.vaga-card{
   display:flex !important;
   flex-direction:column !important;
 }
-.vaga-card .vaga-card-footer,
-.card-destaque .vaga-card-footer{
+.vaga-card .vaga-card-footer{
   margin-top:auto !important;
-}
-
-.card-destaque{
-  position:relative !important;
-  overflow:hidden !important;
-  border:1.5px solid #d88b0b !important;
-  border-top:4px solid #d88b0b !important;
-  border-radius:16px !important;
-  background:
-    linear-gradient(180deg,#fffaf0 0,#fffdf9 34%,#ffffff 72%) !important;
-  box-shadow:
-    0 10px 25px rgba(177,105,0,.13),
-    0 2px 5px rgba(20,50,80,.04) !important;
-}
-.card-destaque:hover{
-  transform:translateY(-2px) !important;
-  border-color:#c97900 !important;
-  box-shadow:
-    0 15px 31px rgba(177,105,0,.18),
-    0 3px 7px rgba(20,50,80,.05) !important;
 }
 
 .selo-premium-destaque-v61{
@@ -12570,49 +11923,9 @@ body.admin-publicando-em #pagina-publicar .vaga-confidencial-topo-em>span{backgr
   line-height:1 !important;
 }
 
-.card-destaque .vaga-card-top{
-  min-height:70px !important;
-  padding-top:4px !important;
-  padding-right:105px !important;
-}
-.card-destaque .vaga-titulo{
-  padding-right:0 !important;
-}
-
-.card-destaque .vaga-meta-grid-v9{
-  background:rgba(255,255,255,.78) !important;
-  border-color:#e8d4aa !important;
-}
-.card-destaque .salario,
-.card-destaque .vaga-card-footer{
-  border-top-color:#efdfbd !important;
-}
-
-.card-destaque .btn-azul{
-  min-height:44px !important;
-  background:linear-gradient(135deg,#eaa514 0%,#d87d06 58%,#bd6100 100%) !important;
-  border:1px solid #cf7804 !important;
-  color:#fff !important;
-  box-shadow:0 6px 15px rgba(171,92,0,.18) !important;
-}
-.card-destaque .btn-azul:hover{
-  background:linear-gradient(135deg,#df980b 0%,#ca7000 58%,#aa5400 100%) !important;
-}
-
-.vaga-card:not(.card-destaque) .btn-azul{
-  min-height:44px !important;
-}
-
-.card-destaque .vaga-prioridade-v9{
-  display:flex !important;
-}
-
 #carouselDestaques .vaga-card,
-#carouselDestaques .card-destaque,
 .carousel-destaques .vaga-card,
-.carousel-destaques .card-destaque,
-.vagas-destaque-track .vaga-card,
-.vagas-destaque-track .card-destaque{
+.vagas-destaque-track .vaga-card{
   align-self:stretch !important;
 }
 @media(max-width:520px){
@@ -12629,9 +11942,6 @@ body.admin-publicando-em #pagina-publicar .vaga-confidencial-topo-em>span{backgr
     width:16px !important;
     height:16px !important;
     flex-basis:16px !important;
-  }
-  .card-destaque .vaga-card-top{
-    padding-right:88px !important;
   }
 }
 
@@ -13255,1526 +12565,19 @@ button,.btn,.botao,[class*="btn-"],[class*="button"]{
  .home-area-ref-card-v1{min-width:82%;flex-basis:82%}
 }
 
-#pagina-home #listaDestaques{
-  display:grid !important;
-  grid-template-columns:repeat(4,minmax(0,1fr)) !important;
-  gap:16px !important;
-  overflow:visible !important;
-  padding:4px 0 12px !important;
-}
-#pagina-home #listaDestaques .card-destaque{
-  position:relative !important;
-  width:auto !important;
-  min-width:0 !important;
-  max-width:none !important;
-  height:auto !important;
-  min-height:430px !important;
-  margin:0 !important;
-  padding:0 16px 16px !important;
-  display:flex !important;
-  flex-direction:column !important;
-  background:#fff !important;
-  border:1px solid #d8e5f0 !important;
-  border-radius:13px !important;
-  overflow:hidden !important;
-  box-shadow:0 6px 18px rgba(8,47,88,.07) !important;
-  transform:none !important;
-}
-
-#pagina-home #listaDestaques .card-destaque:before{
-  content:"" !important;
-  display:block !important;
-  position:absolute !important;
-  top:0 !important;
-  left:0 !important;
-  right:0 !important;
-  height:116px !important;
-  background:linear-gradient(135deg,#073564 0%,#005b98 100%) !important;
-  z-index:0 !important;
-  opacity:1 !important;
-}
-#pagina-home #listaDestaques .vaga-card-top{
-  position:relative !important;
-  z-index:2 !important;
-  min-height:116px !important;
-  margin:0 -16px 10px !important;
-  padding:14px 16px !important;
-  display:grid !important;
-  grid-template-columns:88px minmax(0,1fr) !important;
-  gap:14px !important;
-  align-items:center !important;
-  background:transparent !important;
-  border:0 !important;
-}
-#pagina-home #listaDestaques .logo-empresa,
-#pagina-home #listaDestaques .logo-placeholder{
-  width:88px !important;
-  height:88px !important;
-  max-width:88px !important;
-  margin:0 !important;
-  padding:7px !important;
-  object-fit:contain !important;
-  background:#fff !important;
-  border:1px solid rgba(255,255,255,.65) !important;
-  border-radius:11px !important;
-  box-shadow:0 3px 10px rgba(0,0,0,.08) !important;
-}
-#pagina-home #listaDestaques .vaga-principal{
-  width:100% !important;
-  min-width:0 !important;
-  padding:0 !important;
-  margin:0 !important;
-}
-
-#pagina-home #listaDestaques .vaga-empresa{
-  margin:0 0 7px !important;
-  color:#e4eef7 !important;
-  font-size:11px !important;
-  line-height:1.3 !important;
-  font-weight:500 !important;
-  text-transform:none !important;
-}
-#pagina-home #listaDestaques .vaga-titulo{
-  min-height:0 !important;
-  margin:0 !important;
-  color:#fff !important;
-  font-size:17px !important;
-  line-height:1.18 !important;
-  font-weight:800 !important;
-  text-transform:uppercase !important;
-}
-
-#pagina-home #listaDestaques .selo-premium-destaque-v61{
-  position:absolute !important;
-  z-index:5 !important;
-  top:14px !important;
-  right:14px !important;
-  width:auto !important;
-  height:29px !important;
-  min-height:29px !important;
-  padding:0 10px !important;
-  display:flex !important;
-  align-items:center !important;
-  gap:5px !important;
-  border:0 !important;
-  border-radius:7px !important;
-  background:#ffd45b !important;
-  color:#473600 !important;
-  box-shadow:0 2px 6px rgba(0,0,0,.08) !important;
-}
-#pagina-home #listaDestaques .selo-premium-destaque-v61 strong{
-  color:#473600 !important;
-  font-size:9px !important;
-  line-height:1 !important;
-}
-#pagina-home #listaDestaques .selo-premium-destaque-v61 svg{
-  width:12px !important;
-  height:12px !important;
-  fill:#473600 !important;
-  stroke:#473600 !important;
-}
-
-#pagina-home #listaDestaques .area-premium-modelo6{
-  position:relative !important;
-  z-index:2 !important;
-  width:100% !important;
-  min-height:45px !important;
-  margin:0 0 13px !important;
-  padding:9px 12px !important;
-  display:flex !important;
-  align-items:center !important;
-  gap:10px !important;
-  background:#eaf4fc !important;
-  border:1px solid #dbeaf6 !important;
-  border-radius:8px !important;
-  color:#123e69 !important;
-}
-#pagina-home #listaDestaques .area-premium-modelo6-icone{
-  width:24px !important;
-  height:24px !important;
-  display:flex !important;
-  align-items:center !important;
-  justify-content:center !important;
-  flex:0 0 24px !important;
-}
-#pagina-home #listaDestaques .area-premium-modelo6 svg{
-  width:19px !important;
-  height:19px !important;
-  fill:none !important;
-  stroke:#075ca5 !important;
-  stroke-width:1.8 !important;
-  stroke-linecap:round !important;
-  stroke-linejoin:round !important;
-}
-#pagina-home #listaDestaques .area-premium-modelo6 strong{
-  color:#123e69 !important;
-  font-size:12px !important;
-  line-height:1.25 !important;
-  font-weight:700 !important;
-}
-
-#pagina-home #listaDestaques .selos-publicos-v56,
-#pagina-home #listaDestaques .vaga-resumo,
-#pagina-home #listaDestaques .vaga-resumo-destaque-v19,
-#pagina-home #listaDestaques .vaga-data,
-#pagina-home #listaDestaques .favorito{
-  display:none !important;
-}
-
-#pagina-home #listaDestaques .vaga-meta-grid-v9{
-  width:100% !important;
-  margin:0 0 13px !important;
-  padding:0 4px !important;
-  display:flex !important;
-  flex-direction:column !important;
-  gap:10px !important;
-  background:transparent !important;
-  border:0 !important;
-}
-#pagina-home #listaDestaques .vaga-meta-v9{
-  width:100% !important;
-  min-height:0 !important;
-  padding:0 !important;
-  display:flex !important;
-  align-items:center !important;
-  gap:10px !important;
-  background:transparent !important;
-  border:0 !important;
-}
-#pagina-home #listaDestaques .vaga-meta-v9 svg{
-  width:18px !important;
-  height:18px !important;
-  flex:0 0 18px !important;
-  fill:none !important;
-  stroke:#0a467d !important;
-  stroke-width:1.7 !important;
-}
-#pagina-home #listaDestaques .vaga-meta-v9 b{
-  color:#173d62 !important;
-  font-size:11px !important;
-  line-height:1.3 !important;
-  font-weight:500 !important;
-  text-transform:none !important;
-}
-
-#pagina-home #listaDestaques .card-destaque > .salario{
-  width:100% !important;
-  min-height:69px !important;
-  margin:auto 0 9px !important;
-  padding:10px 13px 10px 52px !important;
-  display:flex !important;
-  align-items:center !important;
-  position:relative !important;
-  background:#eaf4fc !important;
-  border:1px solid #dbeaf6 !important;
-  border-radius:8px !important;
-  color:#084c88 !important;
-  font-size:20px !important;
-  line-height:1.15 !important;
-  font-weight:800 !important;
-}
-#pagina-home #listaDestaques .card-destaque > .salario:before{
-  content:"$" !important;
-  position:absolute !important;
-  left:13px !important;
-  top:50% !important;
-  transform:translateY(-50%) !important;
-  width:28px !important;
-  height:28px !important;
-  display:flex !important;
-  align-items:center !important;
-  justify-content:center !important;
-  border:2px solid #0872c1 !important;
-  border-radius:50% !important;
-  color:#0872c1 !important;
-  font-size:16px !important;
-  font-weight:800 !important;
-}
-
-#pagina-home #listaDestaques .vaga-card-footer{
-  width:100% !important;
-  margin:0 !important;
-  padding:0 !important;
-  display:block !important;
-  border:0 !important;
-  background:transparent !important;
-}
-#pagina-home #listaDestaques .card-acoes{
-  width:100% !important;
-  display:block !important;
-}
-#pagina-home #listaDestaques .btn-azul{
-  width:100% !important;
-  height:50px !important;
-  margin:0 !important;
-  display:flex !important;
-  align-items:center !important;
-  justify-content:center !important;
-  border:0 !important;
-  border-radius:8px !important;
-  background:linear-gradient(135deg,#073d73 0%,#00639f 100%) !important;
-  color:#fff !important;
-  font-size:13px !important;
-  font-weight:700 !important;
-  box-shadow:none !important;
-}
-#pagina-home #listaDestaques .btn-azul:hover{
-  background:linear-gradient(135deg,#052f59 0%,#00558a 100%) !important;
-}
-
 #pagina-home .destaques-carrossel-em{overflow:visible !important}
 #pagina-home .destaques-seta-em{display:none !important}
-@media(max-width:1100px){
-  #pagina-home #listaDestaques{
-    grid-template-columns:repeat(2,minmax(0,1fr)) !important;
-  }
-}
 @media(max-width:620px){
   #pagina-home .destaques-carrossel-em{overflow:hidden !important}
-  #pagina-home #listaDestaques{
-    display:flex !important;
-    gap:12px !important;
-    overflow-x:auto !important;
-    scroll-snap-type:x mandatory !important;
-    scrollbar-width:none !important;
-    padding:3px 2px 10px !important;
-  }
-  #pagina-home #listaDestaques::-webkit-scrollbar{display:none !important}
-  #pagina-home #listaDestaques .card-destaque{
-    flex:0 0 88% !important;
-    width:88% !important;
-    min-width:88% !important;
-    scroll-snap-align:start !important;
-  }
-  #pagina-home #listaDestaques .vaga-card-top{
-    grid-template-columns:76px minmax(0,1fr) !important;
-  }
-  #pagina-home #listaDestaques .logo-empresa,
-  #pagina-home #listaDestaques .logo-placeholder{
-    width:76px !important;
-    height:76px !important;
-  }
-}
-
-#pagina-home #listaDestaques{
-  display:grid !important;
-  grid-template-columns:repeat(4,minmax(0,1fr)) !important;
-  gap:16px !important;
-  overflow:visible !important;
-  padding:4px 0 12px !important;
 }
 #pagina-home .destaques-carrossel-em{overflow:visible !important}
 #pagina-home .destaques-seta-em{display:none !important}
-.destaque-zero-m6{
-  min-width:0;
-  min-height:430px;
-  display:flex;
-  flex-direction:column;
-  overflow:hidden;
-  background:#fff;
-  border:1px solid #d6e3ef;
-  border-radius:14px;
-  box-shadow:0 8px 22px rgba(8,47,88,.08);
-  font-family:Poppins,sans-serif!important;
-}
-.dz-cab{
-  position:relative;
-  min-height:118px;
-  padding:15px 14px;
-  display:grid;
-  grid-template-columns:82px minmax(0,1fr);
-  gap:13px;
-  align-items:center;
-  background:linear-gradient(135deg,#073461 0%,#005b94 100%);
-}
-.dz-logo{
-  width:82px;
-  height:82px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  overflow:hidden;
-  background:#fff;
-  border-radius:11px;
-  border:1px solid rgba(255,255,255,.7);
-  box-shadow:0 3px 10px rgba(0,0,0,.10);
-}
-.dz-logo img,
-.dz-logo .logo-empresa,
-.dz-logo .logo-placeholder{
-  width:100% !important;
-  height:100% !important;
-  max-width:none !important;
-  margin:0 !important;
-  padding:7px !important;
-  object-fit:contain !important;
-  background:#fff !important;
-  border:0 !important;
-  border-radius:0 !important;
-  box-shadow:none !important;
-}
-.dz-cab-texto{min-width:0;padding-top:23px}
-.dz-empresa{
-  margin-bottom:7px;
-  overflow:hidden;
-  color:#dceaf5;
-  font-size:11px;
-  font-weight:500;
-  line-height:1.25;
-  white-space:nowrap;
-  text-overflow:ellipsis;
-}
-.dz-titulo{
-  margin:0;
-  color:#fff;
-  font-size:16px;
-  font-weight:800;
-  line-height:1.18;
-  text-transform:uppercase;
-  overflow-wrap:anywhere;
-}
-.dz-selo{
-  position:absolute;
-  top:13px;
-  right:13px;
-  height:28px;
-  padding:0 9px;
-  display:flex;
-  align-items:center;
-  gap:5px;
-  border-radius:7px;
-  background:#ffd45b;
-  color:#493600;
-  box-shadow:0 2px 7px rgba(0,0,0,.10);
-}
-.dz-selo span{font-size:12px;line-height:1}
-.dz-selo strong{font-size:9px;line-height:1;font-weight:800;letter-spacing:.15px}
-.dz-corpo{
-  flex:1;
-  padding:11px 14px 14px;
-  display:flex;
-  flex-direction:column;
-}
-.dz-area{
-  min-height:45px;
-  padding:9px 11px;
-  display:flex;
-  align-items:center;
-  gap:9px;
-  background:#eaf4fc;
-  border:1px solid #d9e9f6;
-  border-radius:8px;
-  color:#123e69;
-}
-.dz-area-icone{
-  width:25px;
-  height:25px;
-  flex:0 0 25px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-}
-.dz-area svg{
-  width:19px;
-  height:19px;
-  fill:none;
-  stroke:#075ca5;
-  stroke-width:1.8;
-  stroke-linecap:round;
-  stroke-linejoin:round;
-}
-.dz-area strong{
-  font-size:12px;
-  line-height:1.25;
-  font-weight:700;
-}
-.dz-infos{
-  padding:15px 5px 13px;
-  display:flex;
-  flex-direction:column;
-  gap:11px;
-}
-.dz-info{
-  display:flex;
-  align-items:center;
-  gap:10px;
-  color:#173d62;
-  font-size:11px;
-  line-height:1.25;
-  font-weight:500;
-}
-.dz-info svg{
-  width:18px;
-  height:18px;
-  flex:0 0 18px;
-  fill:none;
-  stroke:#0a467d;
-  stroke-width:1.7;
-  stroke-linecap:round;
-  stroke-linejoin:round;
-}
-.dz-salario{
-  min-height:68px;
-  margin-top:auto;
-  padding:10px 13px;
-  display:flex;
-  align-items:center;
-  gap:12px;
-  background:#eaf4fc;
-  border:1px solid #d9e9f6;
-  border-radius:8px;
-  color:#084c88;
-}
-.dz-money{
-  width:30px;
-  height:30px;
-  flex:0 0 30px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  border:2px solid #0872c1;
-  border-radius:50%;
-  color:#0872c1;
-  font-size:16px;
-  font-weight:800;
-}
-.dz-salario div{min-width:0}
-.dz-salario small{
-  display:block;
-  margin-bottom:2px;
-  color:#285b87;
-  font-size:10px;
-  font-weight:500;
-}
-.dz-salario strong{
-  display:block;
-  color:#084c88;
-  font-size:20px;
-  line-height:1.1;
-  font-weight:800;
-}
-.dz-botao{
-  width:100%;
-  height:48px;
-  margin-top:9px;
-  padding:0 18px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  gap:14px;
-  border:0;
-  border-radius:8px;
-  background:linear-gradient(135deg,#073d73 0%,#00639f 100%);
-  color:#fff;
-  cursor:pointer;
-  font-family:Poppins,sans-serif!important;
-  font-size:13px;
-  font-weight:700;
-  transition:transform .18s ease,box-shadow .18s ease,filter .18s ease;
-}
-.dz-botao b{font-size:19px;font-weight:500}
-.dz-botao:hover{
-  transform:translateY(-1px);
-  filter:brightness(.96);
-  box-shadow:0 6px 14px rgba(7,61,115,.16);
-}
-@media(max-width:1100px){
-  #pagina-home #listaDestaques{
-    grid-template-columns:repeat(2,minmax(0,1fr)) !important;
-  }
-}
 @media(max-width:620px){
   #pagina-home .destaques-carrossel-em{overflow:hidden !important}
-  #pagina-home #listaDestaques{
-    display:flex !important;
-    gap:12px !important;
-    overflow-x:auto !important;
-    scroll-snap-type:x mandatory !important;
-    scrollbar-width:none !important;
-    padding:3px 2px 10px !important;
-  }
-  #pagina-home #listaDestaques::-webkit-scrollbar{display:none}
-  .destaque-zero-m6{
-    flex:0 0 88%;
-    width:88%;
-    min-width:88%;
-    scroll-snap-align:start;
-  }
-  .dz-cab{
-    grid-template-columns:74px minmax(0,1fr);
-  }
-  .dz-logo{width:74px;height:74px}
-}
-
-#pagina-home #listaDestaques{
-  display:grid !important;
-  grid-template-columns:repeat(4,minmax(0,1fr)) !important;
-  gap:15px !important;
-  align-items:stretch !important;
-  overflow:visible !important;
-  padding:4px 0 12px !important;
-}
-#pagina-home #listaDestaques .destaque-zero-m6{
-  min-width:0 !important;
-  min-height:0 !important;
-  height:100% !important;
-  display:flex !important;
-  flex-direction:column !important;
-  overflow:hidden !important;
-  background:#fff !important;
-  border:1px solid #d6e3ee !important;
-  border-radius:13px !important;
-  box-shadow:0 5px 18px rgba(13,54,88,.055) !important;
-  font-family:Poppins,sans-serif!important;
-}
-
-#pagina-home #listaDestaques .destaque-zero-m6 .dz-cab{
-  position:relative !important;
-  min-height:119px !important;
-  padding:42px 14px 13px !important;
-  display:grid !important;
-  grid-template-columns:78px minmax(0,1fr) !important;
-  gap:13px !important;
-  align-items:center !important;
-  background:#fff !important;
-  border:0 !important;
-}
-#pagina-home #listaDestaques .destaque-zero-m6 .dz-logo{
-  width:78px !important;
-  height:72px !important;
-  display:flex !important;
-  align-items:center !important;
-  justify-content:center !important;
-  overflow:hidden !important;
-  background:#fff !important;
-  border:1px solid #dbe7f0 !important;
-  border-radius:10px !important;
-  box-shadow:0 2px 7px rgba(13,54,88,.04) !important;
-}
-#pagina-home #listaDestaques .destaque-zero-m6 .dz-logo img,
-#pagina-home #listaDestaques .destaque-zero-m6 .dz-logo .logo-empresa,
-#pagina-home #listaDestaques .destaque-zero-m6 .dz-logo .logo-placeholder{
-  width:100% !important;
-  height:100% !important;
-  max-width:none !important;
-  padding:7px !important;
-  object-fit:contain !important;
-  background:#fff !important;
-  border:0 !important;
-  box-shadow:none !important;
-}
-
-#pagina-home #listaDestaques .destaque-zero-m6 .dz-cab:before{
-  content:"✓  VERIFICADA" !important;
-  position:absolute !important;
-  top:13px !important;
-  left:14px !important;
-  height:23px !important;
-  padding:0 8px !important;
-  display:flex !important;
-  align-items:center !important;
-  justify-content:center !important;
-  border-radius:6px !important;
-  background:#dcebff !important;
-  color:#075fc4 !important;
-  font-size:9px !important;
-  line-height:1 !important;
-  font-weight:800 !important;
-  letter-spacing:.15px !important;
-}
-#pagina-home #listaDestaques .destaque-zero-m6 .dz-cab-texto{
-  min-width:0 !important;
-  padding:0 !important;
-}
-#pagina-home #listaDestaques .destaque-zero-m6 .dz-titulo{
-  margin:0 0 5px !important;
-  color:#092e59 !important;
-  font-size:15px !important;
-  line-height:1.22 !important;
-  font-weight:750 !important;
-  letter-spacing:-.15px !important;
-  text-transform:none !important;
-  overflow-wrap:anywhere !important;
-}
-#pagina-home #listaDestaques .destaque-zero-m6 .dz-empresa{
-  margin:0 !important;
-  color:#657b91 !important;
-  font-size:10.5px !important;
-  line-height:1.3 !important;
-  font-weight:500 !important;
-  white-space:normal !important;
-}
-#pagina-home #listaDestaques .destaque-zero-m6 .dz-selo{
-  position:absolute !important;
-  top:13px !important;
-  right:13px !important;
-  height:25px !important;
-  padding:0 9px !important;
-  display:flex !important;
-  align-items:center !important;
-  gap:5px !important;
-  border-radius:6px !important;
-  background:#ffe39a !important;
-  color:#5b4300 !important;
-  box-shadow:none !important;
-}
-#pagina-home #listaDestaques .destaque-zero-m6 .dz-selo span{font-size:10px !important}
-#pagina-home #listaDestaques .destaque-zero-m6 .dz-selo strong{
-  color:#5b4300 !important;
-  font-size:8.5px !important;
-  font-weight:800 !important;
-}
-
-#pagina-home #listaDestaques .destaque-zero-m6 .dz-corpo{
-  flex:1 !important;
-  padding:0 14px 13px !important;
-  display:flex !important;
-  flex-direction:column !important;
-}
-
-#pagina-home #listaDestaques .destaque-zero-m6 .dz-area{
-  width:100% !important;
-  min-height:39px !important;
-  padding:7px 10px !important;
-  display:flex !important;
-  align-items:center !important;
-  justify-content:center !important;
-  gap:8px !important;
-  text-align:center !important;
-  background:#edf6fd !important;
-  border:0 !important;
-  border-radius:7px !important;
-  color:#164d7d !important;
-}
-#pagina-home #listaDestaques .destaque-zero-m6 .dz-area-icone{
-  width:19px !important;
-  height:19px !important;
-  flex:0 0 19px !important;
-}
-#pagina-home #listaDestaques .destaque-zero-m6 .dz-area svg{
-  width:17px !important;
-  height:17px !important;
-  stroke:#0b67ad !important;
-}
-#pagina-home #listaDestaques .destaque-zero-m6 .dz-area strong{
-  color:#164d7d !important;
-  font-size:10.5px !important;
-  line-height:1.2 !important;
-  font-weight:600 !important;
-}
-
-#pagina-home #listaDestaques .destaque-zero-m6 .dz-infos{
-  padding:12px 2px 10px !important;
-  display:grid !important;
-  grid-template-columns:minmax(0,1.35fr) minmax(0,.85fr) minmax(0,1fr) !important;
-  gap:0 !important;
-}
-#pagina-home #listaDestaques .destaque-zero-m6 .dz-info{
-  min-width:0 !important;
-  padding:0 7px !important;
-  display:flex !important;
-  align-items:center !important;
-  justify-content:center !important;
-  gap:5px !important;
-  color:#244867 !important;
-  font-size:8.8px !important;
-  line-height:1.2 !important;
-  font-weight:500 !important;
-  text-align:center !important;
-  border-right:1px solid #e3ebf2 !important;
-}
-#pagina-home #listaDestaques .destaque-zero-m6 .dz-info:first-child{padding-left:0 !important}
-#pagina-home #listaDestaques .destaque-zero-m6 .dz-info:last-child{
-  padding-right:0 !important;
-  border-right:0 !important;
-}
-#pagina-home #listaDestaques .destaque-zero-m6 .dz-info svg{
-  width:14px !important;
-  height:14px !important;
-  flex:0 0 14px !important;
-  stroke:#164e80 !important;
-}
-
-#pagina-home #listaDestaques .destaque-zero-m6 .dz-resumo{
-  height:37px !important;
-  min-height:37px !important;
-  margin:0 0 10px !important;
-  padding:0 !important;
-  overflow:hidden !important;
-  display:-webkit-box !important;
-  -webkit-box-orient:vertical !important;
-  -webkit-line-clamp:2 !important;
-  color:#566b80 !important;
-  font-size:10.5px !important;
-  line-height:1.55 !important;
-  font-weight:500 !important;
-}
-
-#pagina-home #listaDestaques .destaque-zero-m6 .dz-resumo:after{display:none !important}
-
-#pagina-home #listaDestaques .destaque-zero-m6 .dz-salario{
-  min-height:53px !important;
-  margin-top:auto !important;
-  padding:9px 0 7px !important;
-  display:flex !important;
-  align-items:center !important;
-  gap:9px !important;
-  background:transparent !important;
-  border:0 !important;
-  border-top:1px solid #e1e9f0 !important;
-  border-radius:0 !important;
-}
-#pagina-home #listaDestaques .destaque-zero-m6 .dz-money{
-  width:25px !important;
-  height:25px !important;
-  flex:0 0 25px !important;
-  border:1.5px solid #0872c1 !important;
-  font-size:12px !important;
-}
-#pagina-home #listaDestaques .destaque-zero-m6 .dz-salario small{
-  margin-bottom:1px !important;
-  color:#667d93 !important;
-  font-size:9px !important;
-}
-#pagina-home #listaDestaques .destaque-zero-m6 .dz-salario strong{
-  color:#092f5c !important;
-  font-size:17px !important;
-  line-height:1.1 !important;
-  font-weight:750 !important;
-  letter-spacing:-.15px !important;
-}
-
-#pagina-home #listaDestaques .destaque-zero-m6 .dz-botao{
-  width:100% !important;
-  height:41px !important;
-  margin-top:4px !important;
-  padding:0 15px !important;
-  border:0 !important;
-  border-radius:7px !important;
-  background:#073f73 !important;
-  color:#fff !important;
-  box-shadow:none !important;
-  font-size:11px !important;
-  font-weight:650 !important;
-}
-#pagina-home #listaDestaques .destaque-zero-m6 .dz-botao b{
-  font-size:16px !important;
-  font-weight:500 !important;
-}
-#pagina-home #listaDestaques .destaque-zero-m6 .dz-botao:hover{
-  background:#052f59 !important;
-  transform:none !important;
-}
-
-@media(max-width:1100px){
-  #pagina-home #listaDestaques{
-    grid-template-columns:repeat(2,minmax(0,1fr)) !important;
-  }
 }
 
 @media(max-width:620px){
   #pagina-home .destaques-carrossel-em{overflow:hidden !important}
-  #pagina-home #listaDestaques{
-    display:flex !important;
-    gap:12px !important;
-    overflow-x:auto !important;
-    scroll-snap-type:x mandatory !important;
-    scrollbar-width:none !important;
-  }
-  #pagina-home #listaDestaques::-webkit-scrollbar{display:none !important}
-  #pagina-home #listaDestaques .destaque-zero-m6{
-    flex:0 0 88% !important;
-    width:88% !important;
-    min-width:88% !important;
-    scroll-snap-align:start !important;
-  }
-}
-
-#pagina-home #listaDestaques .destaque-zero-m6{
-  border:1px solid #d7e3ee !important;
-  border-radius:14px !important;
-  background:#fff !important;
-  box-shadow:0 7px 22px rgba(11,52,89,.055) !important;
-}
-#pagina-home #listaDestaques .destaque-zero-m6 .dz-cab{
-  min-height:132px !important;
-  padding:46px 14px 14px !important;
-  grid-template-columns:86px minmax(0,1fr) !important;
-  gap:14px !important;
-  background:#fff !important;
-}
-#pagina-home #listaDestaques .destaque-zero-m6 .dz-cab:before{
-  display:none !important;
-  content:none !important;
-}
-
-#pagina-home #listaDestaques .destaque-zero-m6 .dz-verificada{
-  position:absolute !important;
-  top:13px !important;
-  left:14px !important;
-  height:25px !important;
-  padding:0 9px 0 6px !important;
-  display:flex !important;
-  align-items:center !important;
-  gap:5px !important;
-  border-radius:7px !important;
-  background:#dcecff !important;
-  color:#0863c6 !important;
-  box-shadow:0 2px 6px rgba(7,95,196,.07) !important;
-}
-#pagina-home #listaDestaques .destaque-zero-m6 .dz-verificada span{
-  width:16px !important;
-  height:16px !important;
-  display:flex !important;
-  align-items:center !important;
-  justify-content:center !important;
-  border-radius:50% !important;
-  background:#0a67cc !important;
-  color:#fff !important;
-  font-size:10px !important;
-  font-weight:900 !important;
-}
-#pagina-home #listaDestaques .destaque-zero-m6 .dz-verificada strong{
-  color:#0863c6 !important;
-  font-size:9px !important;
-  font-weight:800 !important;
-  letter-spacing:.1px !important;
-}
-
-#pagina-home #listaDestaques .destaque-zero-m6 .dz-selo{
-  top:13px !important;
-  right:13px !important;
-  height:28px !important;
-  padding:0 11px !important;
-  gap:6px !important;
-  border:1px solid #f4cf67 !important;
-  border-radius:7px !important;
-  background:linear-gradient(180deg,#ffebad 0%,#ffdc77 100%) !important;
-  color:#4b3900 !important;
-  box-shadow:0 3px 8px rgba(168,119,0,.09) !important;
-}
-#pagina-home #listaDestaques .destaque-zero-m6 .dz-selo span{
-  color:#6a4b00 !important;
-  font-size:12px !important;
-}
-#pagina-home #listaDestaques .destaque-zero-m6 .dz-selo strong{
-  color:#4b3900 !important;
-  font-size:9px !important;
-  font-weight:800 !important;
-  letter-spacing:.2px !important;
-}
-
-#pagina-home #listaDestaques .destaque-zero-m6 .dz-logo{
-  width:86px !important;
-  height:86px !important;
-  border:1px solid #d9e5ef !important;
-  border-radius:11px !important;
-  box-shadow:0 3px 10px rgba(9,48,83,.055) !important;
-}
-
-#pagina-home #listaDestaques .destaque-zero-m6 .dz-cab-texto{
-  display:flex !important;
-  flex-direction:column !important;
-  align-items:flex-start !important;
-  justify-content:center !important;
-}
-#pagina-home #listaDestaques .destaque-zero-m6 .dz-empresa{
-  width:auto !important;
-  max-width:100% !important;
-  margin:0 0 8px !important;
-  padding:5px 9px !important;
-  display:inline-flex !important;
-  align-items:center !important;
-  border-radius:6px !important;
-  background:#edf5fc !important;
-  color:#164b78 !important;
-  font-size:10px !important;
-  line-height:1.15 !important;
-  font-weight:600 !important;
-  white-space:normal !important;
-}
-
-#pagina-home #listaDestaques .destaque-zero-m6 .dz-titulo{
-  margin:0 !important;
-  color:#072f5e !important;
-  font-size:18px !important;
-  line-height:1.12 !important;
-  font-weight:800 !important;
-  letter-spacing:-.3px !important;
-  text-transform:none !important;
-}
-
-#pagina-home #listaDestaques .destaque-zero-m6 .dz-area{
-  min-height:42px !important;
-  justify-content:center !important;
-  text-align:center !important;
-  background:#edf6fd !important;
-  border-radius:7px !important;
-}
-#pagina-home #listaDestaques .destaque-zero-m6 .dz-area strong{
-  font-size:11px !important;
-  font-weight:600 !important;
-}
-
-#pagina-home #listaDestaques .destaque-zero-m6 .dz-resumo{
-  height:39px !important;
-  min-height:39px !important;
-  margin:1px 0 9px !important;
-  color:#566b80 !important;
-  font-size:10.5px !important;
-  line-height:1.55 !important;
-  -webkit-line-clamp:2 !important;
-}
-
-#pagina-home #listaDestaques .destaque-zero-m6 .dz-salario{
-  min-height:58px !important;
-  margin-top:auto !important;
-  padding:9px 0 !important;
-  border-top:1px solid #e1e9f0 !important;
-}
-#pagina-home #listaDestaques .destaque-zero-m6 .dz-salario strong{
-  font-size:18px !important;
-  font-weight:800 !important;
-}
-#pagina-home #listaDestaques .destaque-zero-m6 .dz-botao{
-  height:43px !important;
-  border-radius:8px !important;
-  background:#073f73 !important;
-  font-size:11px !important;
-  font-weight:700 !important;
-}
-
-#pagina-home #listaDestaques .destaque-zero-m6 .dz-corpo{
-  position:relative !important;
-}
-
-#pagina-home #listaDestaques .destaque-zero-m6 .dz-salario{
-  width:44% !important;
-  min-height:58px !important;
-  margin-top:auto !important;
-  margin-bottom:0 !important;
-  padding:8px 0 !important;
-  border-top:1px solid #e1e9f0 !important;
-  background:transparent !important;
-}
-#pagina-home #listaDestaques .destaque-zero-m6 .dz-salario small{
-  font-size:9px !important;
-  color:#667d93 !important;
-}
-#pagina-home #listaDestaques .destaque-zero-m6 .dz-salario strong{
-  font-size:18px !important;
-  line-height:1.08 !important;
-  font-weight:800 !important;
-  color:#092f5c !important;
-}
-#pagina-home #listaDestaques .destaque-zero-m6 .dz-money{
-  display:none !important;
-}
-#pagina-home #listaDestaques .destaque-zero-m6 .dz-botao{
-  position:absolute !important;
-  right:14px !important;
-  bottom:13px !important;
-  width:43% !important;
-  height:42px !important;
-  margin:0 !important;
-  padding:0 13px !important;
-  display:flex !important;
-  align-items:center !important;
-  justify-content:center !important;
-  gap:11px !important;
-  border-radius:8px !important;
-  background:#073f73 !important;
-  color:#fff !important;
-  font-size:11px !important;
-  font-weight:700 !important;
-  box-shadow:0 2px 6px rgba(7,63,115,.10) !important;
-}
-#pagina-home #listaDestaques .destaque-zero-m6 .dz-botao:hover{
-  background:#052f59 !important;
-}
-#pagina-home #listaDestaques .destaque-zero-m6 .dz-botao b{
-  font-size:16px !important;
-}
-
-@media(max-width:620px){
-  #pagina-home #listaDestaques .destaque-zero-m6 .dz-salario{
-    width:45% !important;
-  }
-  #pagina-home #listaDestaques .destaque-zero-m6 .dz-botao{
-    width:43% !important;
-  }
-}
-
-#pagina-home #listaDestaques .destaque-zero-m6 .dz-salario{
-  width:47% !important;
-  min-width:0 !important;
-  min-height:58px !important;
-  padding:8px 0 !important;
-  display:flex !important;
-  align-items:center !important;
-  background:transparent !important;
-}
-#pagina-home #listaDestaques .destaque-zero-m6 .dz-salario > div{
-  width:100% !important;
-  min-width:0 !important;
-}
-#pagina-home #listaDestaques .destaque-zero-m6 .dz-salario small{
-  display:block !important;
-  margin:0 0 3px !important;
-  color:#667d93 !important;
-  font-size:9px !important;
-  line-height:1 !important;
-  font-weight:500 !important;
-}
-#pagina-home #listaDestaques .destaque-zero-m6 .dz-salario strong{
-  display:block !important;
-  width:100% !important;
-  margin:0 !important;
-  color:#092f5c !important;
-  font-size:15px !important;
-  line-height:1.05 !important;
-  font-weight:800 !important;
-  letter-spacing:-.15px !important;
-  white-space:nowrap !important;
-  word-break:normal !important;
-  overflow:visible !important;
-}
-#pagina-home #listaDestaques .destaque-zero-m6 .dz-botao{
-  width:43% !important;
-  height:42px !important;
-  bottom:13px !important;
-}
-
-#pagina-home #listaDestaques .destaque-zero-m6 .dz-area{
-  min-height:48px !important;
-  padding:10px 14px !important;
-  gap:9px !important;
-  border-radius:8px !important;
-}
-#pagina-home #listaDestaques .destaque-zero-m6 .dz-area-icone{
-  width:22px !important;
-  height:22px !important;
-  flex:0 0 22px !important;
-}
-#pagina-home #listaDestaques .destaque-zero-m6 .dz-area svg{
-  width:19px !important;
-  height:19px !important;
-}
-#pagina-home #listaDestaques .destaque-zero-m6 .dz-area strong{
-  font-size:12px !important;
-  line-height:1.25 !important;
-  font-weight:650 !important;
-}
-
-#pagina-home #listaDestaques .destaque-zero-m6 .dz-infos{
-  padding:13px 2px 11px !important;
-  grid-template-columns:minmax(0,1.35fr) minmax(0,.9fr) minmax(0,1fr) !important;
-}
-#pagina-home #listaDestaques .destaque-zero-m6 .dz-info{
-  min-height:25px !important;
-  padding:0 8px !important;
-  gap:6px !important;
-  font-size:10px !important;
-  line-height:1.2 !important;
-  font-weight:550 !important;
-}
-#pagina-home #listaDestaques .destaque-zero-m6 .dz-info svg{
-  width:16px !important;
-  height:16px !important;
-  flex:0 0 16px !important;
-}
-
-#pagina-home #listaDestaques .destaque-zero-m6 .dz-resumo{
-  display:-webkit-box !important;
-  -webkit-box-orient:vertical !important;
-  -webkit-line-clamp:2 !important;
-  overflow:hidden !important;
-  text-overflow:ellipsis !important;
-  height:34px !important;
-  min-height:34px !important;
-  max-height:34px !important;
-  margin:1px 0 10px !important;
-  padding:0 !important;
-  color:#566b80 !important;
-  font-size:10.5px !important;
-  line-height:17px !important;
-  font-weight:500 !important;
-}
-
-#pagina-home #listaDestaques .destaque-zero-m6 .dz-titulo{
-  margin:0 !important;
-  color:#072f5e !important;
-  font-family:Poppins,sans-serif!important;
-  font-size:18px !important;
-  line-height:1.02 !important;
-  font-weight:800 !important;
-  letter-spacing:-.35px !important;
-  text-transform:uppercase !important;
-  font-stretch:condensed !important;
-  overflow-wrap:normal !important;
-  word-break:normal !important;
-}
-
-#pagina-home #listaDestaques .destaque-zero-m6 .dz-urgente{
-  width:100% !important;
-  min-height:38px !important;
-  margin:8px 0 0 !important;
-  padding:6px 10px !important;
-  display:flex !important;
-  align-items:center !important;
-  justify-content:center !important;
-  gap:8px !important;
-  background:#f5f9fd !important;
-  border:1px solid #b9d8f1 !important;
-  border-radius:7px !important;
-  color:#075a9d !important;
-}
-#pagina-home #listaDestaques .destaque-zero-m6 .dz-urgente-icone{
-  width:23px !important;
-  height:23px !important;
-  flex:0 0 23px !important;
-  display:flex !important;
-  align-items:center !important;
-  justify-content:center !important;
-  border-radius:50% !important;
-  background:#0875c9 !important;
-}
-#pagina-home #listaDestaques .destaque-zero-m6 .dz-urgente-icone svg{
-  width:13px !important;
-  height:13px !important;
-  fill:#fff !important;
-  stroke:#fff !important;
-  stroke-width:1.3 !important;
-  stroke-linejoin:round !important;
-}
-#pagina-home #listaDestaques .destaque-zero-m6 .dz-urgente > span:last-child{
-  display:flex !important;
-  flex-direction:column !important;
-  align-items:flex-start !important;
-  line-height:1 !important;
-}
-#pagina-home #listaDestaques .destaque-zero-m6 .dz-urgente small{
-  margin:0 0 2px !important;
-  color:#6b849a !important;
-  font-size:7px !important;
-  line-height:1 !important;
-  font-weight:600 !important;
-  letter-spacing:.35px !important;
-}
-#pagina-home #listaDestaques .destaque-zero-m6 .dz-urgente strong{
-  color:#075a9d !important;
-  font-size:8.5px !important;
-  line-height:1.05 !important;
-  font-weight:800 !important;
-  letter-spacing:.15px !important;
-}
-
-#pagina-home #listaDestaques .destaque-zero-m6 .dz-resumo{
-  display:-webkit-box !important;
-  -webkit-box-orient:vertical !important;
-  -webkit-line-clamp:2 !important;
-  overflow:hidden !important;
-  height:34px !important;
-  min-height:34px !important;
-  max-height:34px !important;
-}
-
-#pagina-home #listaDestaques .destaque-zero-m6 .dz-urgente{
-  width:100% !important;
-  min-height:42px !important;
-  margin:8px 0 0 !important;
-  padding:7px 12px !important;
-  display:flex !important;
-  flex-direction:row !important;
-  align-items:center !important;
-  justify-content:center !important;
-  gap:9px !important;
-  background:#f8fbfe !important;
-  border:1px solid #bfdcf2 !important;
-  border-radius:8px !important;
-  color:#075a9d !important;
-  box-shadow:none !important;
-}
-#pagina-home #listaDestaques .destaque-zero-m6 .dz-urgente-icone{
-  width:22px !important;
-  height:22px !important;
-  flex:0 0 22px !important;
-  display:flex !important;
-  align-items:center !important;
-  justify-content:center !important;
-  border-radius:0 !important;
-  background:transparent !important;
-}
-#pagina-home #listaDestaques .destaque-zero-m6 .dz-urgente-icone svg{
-  width:18px !important;
-  height:18px !important;
-  fill:#0875c9 !important;
-  stroke:#0875c9 !important;
-  stroke-width:1.2 !important;
-}
-#pagina-home #listaDestaques .destaque-zero-m6 .dz-urgente-titulo{
-  color:#075ca8 !important;
-  font-size:10px !important;
-  line-height:1 !important;
-  font-weight:800 !important;
-  letter-spacing:.15px !important;
-  white-space:nowrap !important;
-}
-#pagina-home #listaDestaques .destaque-zero-m6 .dz-urgente-divisor{
-  width:1px !important;
-  height:21px !important;
-  flex:0 0 1px !important;
-  display:block !important;
-  background:#c7d9e8 !important;
-}
-#pagina-home #listaDestaques .destaque-zero-m6 .dz-urgente-texto{
-  color:#52718d !important;
-  font-size:9.5px !important;
-  line-height:1.15 !important;
-  font-weight:500 !important;
-  white-space:nowrap !important;
-}
-
-#pagina-home #listaDestaques .destaque-zero-m6 .dz-urgente > span:last-child{
-  display:block !important;
-  flex-direction:initial !important;
-  align-items:initial !important;
-  line-height:1.15 !important;
-}
-@media(max-width:620px){
-  #pagina-home #listaDestaques .destaque-zero-m6 .dz-urgente{
-    gap:7px !important;
-    padding-left:9px !important;
-    padding-right:9px !important;
-  }
-  #pagina-home #listaDestaques .destaque-zero-m6 .dz-urgente-titulo{
-    font-size:9.5px !important;
-  }
-  #pagina-home #listaDestaques .destaque-zero-m6 .dz-urgente-texto{
-    font-size:9px !important;
-  }
-}
-
-#pagina-home #listaDestaques .destaque-zero-m6.dz-prioridade{
-  border:1px solid #f0a34a !important;
-  box-shadow:0 7px 22px rgba(213,120,20,.075) !important;
-}
-
-#pagina-home #listaDestaques .destaque-zero-m6.dz-prioridade .dz-corpo{
-  position:relative !important;
-}
-#pagina-home #listaDestaques .destaque-zero-m6.dz-prioridade .dz-corpo:after{
-  content:"" !important;
-  position:absolute !important;
-  left:14px !important;
-  right:14px !important;
-  bottom:70px !important;
-  height:1px !important;
-  background:linear-gradient(90deg,#f2a348 0%,#f8d9b3 38%,rgba(248,217,179,0) 100%) !important;
-  pointer-events:none !important;
-}
-
-#pagina-home #listaDestaques .destaque-zero-m6.dz-prioridade .dz-urgente{
-  width:100% !important;
-  min-height:42px !important;
-  margin:8px 0 0 !important;
-  padding:7px 12px !important;
-  display:flex !important;
-  flex-direction:row !important;
-  align-items:center !important;
-  justify-content:center !important;
-  gap:9px !important;
-  background:#fff9f2 !important;
-  border:1px solid #f4c58e !important;
-  border-radius:8px !important;
-  color:#c75a08 !important;
-  box-shadow:none !important;
-}
-#pagina-home #listaDestaques .destaque-zero-m6.dz-prioridade .dz-urgente-icone{
-  width:22px !important;
-  height:22px !important;
-  flex:0 0 22px !important;
-  display:flex !important;
-  align-items:center !important;
-  justify-content:center !important;
-  background:transparent !important;
-}
-#pagina-home #listaDestaques .destaque-zero-m6.dz-prioridade .dz-urgente-icone svg{
-  width:18px !important;
-  height:18px !important;
-  fill:#ef6c00 !important;
-  stroke:#ef6c00 !important;
-}
-#pagina-home #listaDestaques .destaque-zero-m6.dz-prioridade .dz-urgente-titulo{
-  color:#d45f05 !important;
-  font-size:10px !important;
-  font-weight:800 !important;
-  letter-spacing:.15px !important;
-}
-#pagina-home #listaDestaques .destaque-zero-m6.dz-prioridade .dz-urgente-divisor{
-  width:1px !important;
-  height:21px !important;
-  background:#efc69e !important;
-}
-#pagina-home #listaDestaques .destaque-zero-m6.dz-prioridade .dz-urgente-texto{
-  color:#9b6337 !important;
-  font-size:9.5px !important;
-  font-weight:500 !important;
-}
-
-#pagina-home #listaDestaques .destaque-zero-m6.dz-prioridade .dz-area{
-  border-left:3px solid #f2a348 !important;
-}
-
-#pagina-home #listaDestaques .destaque-zero-m6.dz-prioridade .dz-botao{
-  background:#073f73 !important;
-  color:#fff !important;
-}
-
-#pagina-home #listaDestaques .destaque-zero-m6 .dz-info:first-child span{
-  text-transform:uppercase !important;
-  white-space:nowrap !important;
-  font-size:9.5px !important;
-  letter-spacing:.05px !important;
-}
-
-#pagina-home #listaDestaques .destaque-zero-m6 .dz-cab{
-  position:relative !important;
-  min-height:145px !important;
-  padding:15px 14px 13px !important;
-  display:grid !important;
-  grid-template-columns:96px minmax(0,1fr) !important;
-  gap:15px !important;
-  align-items:center !important;
-  background:#fff !important;
-}
-
-#pagina-home #listaDestaques .destaque-zero-m6 .dz-logo{
-  position:relative !important;
-  width:96px !important;
-  height:88px !important;
-  margin-top:30px !important;
-  overflow:visible !important;
-  display:flex !important;
-  align-items:center !important;
-  justify-content:center !important;
-  background:#fff !important;
-  border:1px solid #d7e4ef !important;
-  border-radius:11px !important;
-  box-shadow:0 3px 10px rgba(9,48,83,.05) !important;
-}
-#pagina-home #listaDestaques .destaque-zero-m6 .dz-logo img,
-#pagina-home #listaDestaques .destaque-zero-m6 .dz-logo .logo-empresa,
-#pagina-home #listaDestaques .destaque-zero-m6 .dz-logo .logo-placeholder{
-  width:100% !important;
-  height:100% !important;
-  padding:8px !important;
-  object-fit:contain !important;
-  border-radius:10px !important;
-}
-
-#pagina-home #listaDestaques .destaque-zero-m6 .dz-logo .dz-selo{
-  position:absolute !important;
-  z-index:3 !important;
-  top:-34px !important;
-  left:0 !important;
-  right:auto !important;
-  width:96px !important;
-  height:27px !important;
-  padding:0 7px !important;
-  display:flex !important;
-  align-items:center !important;
-  justify-content:center !important;
-  gap:5px !important;
-  border:1px solid #efc755 !important;
-  border-radius:7px !important;
-  background:linear-gradient(180deg,#ffedb0 0%,#ffda6a 100%) !important;
-  color:#4c3800 !important;
-  box-shadow:0 3px 8px rgba(154,108,0,.10) !important;
-}
-#pagina-home #listaDestaques .destaque-zero-m6 .dz-logo .dz-selo span{
-  font-size:10px !important;
-  line-height:1 !important;
-}
-#pagina-home #listaDestaques .destaque-zero-m6 .dz-logo .dz-selo strong{
-  color:#4c3800 !important;
-  font-size:8.5px !important;
-  line-height:1 !important;
-  font-weight:850 !important;
-  letter-spacing:.15px !important;
-}
-
-#pagina-home #listaDestaques .destaque-zero-m6 .dz-cab > .dz-selo{
-  display:none !important;
-}
-
-#pagina-home #listaDestaques .destaque-zero-m6 .dz-cab-texto{
-  min-width:0 !important;
-  padding-top:15px !important;
-  display:flex !important;
-  flex-direction:column !important;
-  align-items:flex-start !important;
-  justify-content:center !important;
-}
-#pagina-home #listaDestaques .destaque-zero-m6 .dz-empresa{
-  display:inline-flex !important;
-  align-items:center !important;
-  width:auto !important;
-  max-width:100% !important;
-  margin:0 0 8px !important;
-  padding:5px 9px !important;
-  background:#edf6fd !important;
-  border:1px solid #dceaf5 !important;
-  border-radius:6px !important;
-  color:#164e7b !important;
-  font-size:10px !important;
-  line-height:1.05 !important;
-  font-weight:650 !important;
-  letter-spacing:.02px !important;
-  box-shadow:inset 3px 0 0 #9bc9ea !important;
-}
-
-#pagina-home #listaDestaques .destaque-zero-m6 .dz-titulo{
-  width:100% !important;
-  margin:0 !important;
-  color:#062e5d !important;
-  font-family:Poppins,sans-serif!important;
-  font-size:18px !important;
-  line-height:.98 !important;
-  font-weight:900 !important;
-  letter-spacing:-.55px !important;
-  text-transform:uppercase !important;
-  font-stretch:condensed !important;
-  word-break:normal !important;
-  overflow-wrap:normal !important;
-}
-
-#pagina-home #listaDestaques .destaque-zero-m6 .dz-verificada{
-  position:absolute !important;
-  top:11px !important;
-  right:14px !important;
-  left:auto !important;
-  z-index:4 !important;
-}
-
-#pagina-home #listaDestaques .destaque-zero-m6.dz-prioridade{
-  border-color:#f0a34a !important;
-}
-@media(max-width:620px){
-  #pagina-home #listaDestaques .destaque-zero-m6 .dz-cab{
-    grid-template-columns:88px minmax(0,1fr) !important;
-    gap:12px !important;
-  }
-  #pagina-home #listaDestaques .destaque-zero-m6 .dz-logo{
-    width:88px !important;
-    height:82px !important;
-  }
-  #pagina-home #listaDestaques .destaque-zero-m6 .dz-logo .dz-selo{
-    width:88px !important;
-  }
-  #pagina-home #listaDestaques .destaque-zero-m6 .dz-titulo{
-    font-size:17px !important;
-  }
 }
 
 #pagina-home #listaVagas{
@@ -15475,174 +13278,7 @@ button,.btn,.botao,[class*="btn-"],[class*="button"]{
 @media(max-width:1050px){
   #pagina-home #listaVagas{grid-template-columns:1fr !important;}
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-#pagina-home #listaDestaques .destaque-zero-m6 .dz-cab{
-  position:relative !important;
-  min-height:132px !important;
-  padding:48px 14px 13px !important;
-  display:grid !important;
-  grid-template-columns:96px minmax(0,1fr) !important;
-  column-gap:14px !important;
-  align-items:center !important;
-  background:#fff !important;
-}
-
-#pagina-home #listaDestaques .destaque-zero-m6 .dz-selo{
-  position:absolute !important;
-  top:12px !important;
-  left:14px !important;
-  right:auto !important;
-  width:auto !important;
-  min-width:96px !important;
-  height:27px !important;
-  padding:0 10px !important;
-  display:inline-flex !important;
-  align-items:center !important;
-  justify-content:center !important;
-  gap:5px !important;
-  border:1px solid #efc85b !important;
-  border-radius:7px !important;
-  background:linear-gradient(180deg,#fff0ba 0%,#ffdc72 100%) !important;
-  color:#4e3900 !important;
-  box-shadow:0 2px 6px rgba(142,100,0,.08) !important;
-}
-#pagina-home #listaDestaques .destaque-zero-m6 .dz-selo strong{
-  color:#4e3900 !important;
-  font-size:8.5px !important;
-  line-height:1 !important;
-  font-weight:850 !important;
-  letter-spacing:.15px !important;
-}
-
-#pagina-home #listaDestaques .destaque-zero-m6 .dz-logo{
-  width:96px !important;
-  height:88px !important;
-  margin:0 !important;
-  display:flex !important;
-  align-items:center !important;
-  justify-content:center !important;
-  overflow:hidden !important;
-  background:#fff !important;
-  border:1px solid #d7e4ef !important;
-  border-radius:11px !important;
-  box-shadow:0 2px 8px rgba(9,48,83,.035) !important;
-}
-
-#pagina-home #listaDestaques .destaque-zero-m6 .dz-logo{
-  position:relative !important;
-  overflow:visible !important;
-}
-#pagina-home #listaDestaques .destaque-zero-m6 .dz-logo > .dz-selo{
-  position:absolute !important;
-  top:-36px !important;
-  left:0 !important;
-  right:auto !important;
-  min-width:96px !important;
-}
-
-#pagina-home #listaDestaques .destaque-zero-m6 .dz-logo img,
-#pagina-home #listaDestaques .destaque-zero-m6 .dz-logo .logo-empresa,
-#pagina-home #listaDestaques .destaque-zero-m6 .dz-logo .logo-placeholder{
-  max-width:100% !important;
-  max-height:100% !important;
-  object-fit:contain !important;
-}
-
-#pagina-home #listaDestaques .destaque-zero-m6 .dz-cab-texto{
-  min-width:0 !important;
-  padding:0 !important;
-  display:flex !important;
-  flex-direction:column !important;
-  align-items:flex-start !important;
-  justify-content:center !important;
-}
-
-#pagina-home #listaDestaques .destaque-zero-m6 .dz-empresa{
-  display:inline-flex !important;
-  align-items:center !important;
-  width:auto !important;
-  max-width:100% !important;
-  margin:0 0 7px !important;
-  padding:0 0 3px !important;
-  background:transparent !important;
-  border:0 !important;
-  border-bottom:1px solid #b9d7ec !important;
-  border-radius:0 !important;
-  box-shadow:none !important;
-  color:#27618e !important;
-  font-size:9.5px !important;
-  line-height:1.1 !important;
-  font-weight:650 !important;
-  letter-spacing:.01px !important;
-}
-
-#pagina-home #listaDestaques .destaque-zero-m6 .dz-titulo{
-  width:100% !important;
-  margin:0 !important;
-  color:#062e5d !important;
-  font-family:Poppins,sans-serif!important;
-  font-size:18px !important;
-  line-height:.98 !important;
-  font-weight:900 !important;
-  letter-spacing:-.55px !important;
-  text-transform:uppercase !important;
-  font-stretch:condensed !important;
-  word-break:normal !important;
-  overflow-wrap:normal !important;
-}
-
-#pagina-home #listaDestaques .destaque-zero-m6 .dz-verificada{
-  position:static !important;
-  width:16px !important;
-  height:16px !important;
-  min-width:16px !important;
-  margin-left:5px !important;
-  padding:0 !important;
-  display:inline-flex !important;
-  align-items:center !important;
-  justify-content:center !important;
-  border-radius:50% !important;
-  background:#087bd4 !important;
-  color:#fff !important;
-  font-size:0 !important;
-  box-shadow:none !important;
-}
-#pagina-home #listaDestaques .destaque-zero-m6 .dz-verificada:before{
-  content:"✓" !important;
-  font-size:9px !important;
-  font-weight:900 !important;
-}
-
-@media(max-width:620px){
-  #pagina-home #listaDestaques .destaque-zero-m6 .dz-cab{
-    grid-template-columns:84px minmax(0,1fr) !important;
-    column-gap:12px !important;
-    padding:46px 12px 12px !important;
-  }
-  #pagina-home #listaDestaques .destaque-zero-m6 .dz-logo{
-    width:84px !important;
-    height:80px !important;
-  }
-  #pagina-home #listaDestaques .destaque-zero-m6 .dz-logo > .dz-selo{
-    min-width:84px !important;
-  }
-  #pagina-home #listaDestaques .destaque-zero-m6 .dz-titulo{
-    font-size:17px !important;
-  }
-}
-</style><script src='professional-assessments.js?v=20261020-poppins-global' defer></script><script src='empregamais_lote10.js?v=20261020-poppins-global' defer></script><link href='empregamais-safe-v1.css?v=20261020-poppins-global' rel='stylesheet' type='text/css'/><style type='text/css'>.beneficios-v128 label:has(input[value=&quot;cesta_basica&quot;]),.beneficios-v128 label:has(input[value=&quot;Cesta básica&quot;]),.beneficios-v128 label:has(input[value=&quot;Cesta Básica&quot;]),.beneficios-v128 .beneficio-item:has(input[value=&quot;cesta_basica&quot;]),.beneficios-v128 .beneficio-card:has(input[value=&quot;cesta_basica&quot;]){box-sizing:border-box!important;border:1px solid #dbe7f1!important;border-radius:12px!important;background:#fff!important;min-height:58px!important;padding:10px 12px!important;margin:0!important;}</style><style type='text/css'>#formVaga,#pagina-publicar{font-size:15px!important;}#formVaga label,#pagina-publicar label{font-size:14px!important;}#formVaga input,#formVaga select,#formVaga textarea,#formVaga button,#pagina-publicar input,#pagina-publicar select,#pagina-publicar textarea,#pagina-publicar button{font-size:14px!important;}#formVaga small,#formVaga .hint,#formVaga .help,#formVaga .m3-help,#formVaga .m3-sub,#pagina-publicar small{font-size:12.5px!important;line-height:1.45!important;}#formVaga h2,#pagina-publicar h2{font-size:clamp(18px,2vw,21px)!important;}#formVaga h3,#pagina-publicar h3{font-size:clamp(16px,1.8vw,18px)!important;}.beneficios-v128,.beneficios-v128 label,#areasSuperiorV202,#modalAreasSuperiorV203{font-size:14px!important;}#areasSuperiorV202 .asv202-resumo,#modalAreasSuperiorV203 p{font-size:12.5px!important;}@media(max-width:600px){#formVaga,#pagina-publicar{font-size:14.5px!important}#formVaga label,#pagina-publicar label{font-size:13.5px!important}#formVaga input,#formVaga select,#formVaga textarea,#formVaga button,#pagina-publicar input,#pagina-publicar select,#pagina-publicar textarea,#pagina-publicar button{font-size:14px!important;}}</style><style type='text/css'>#pagina-publicar #formVaga *{box-sizing:border-box}#pagina-publicar #formVaga .linha,#pagina-publicar #formVaga .m3-grid{align-items:start!important}#pagina-publicar #formVaga .grupo{min-width:0!important}#pagina-publicar #formVaga .campo,#pagina-publicar #formVaga input.campo,#pagina-publicar #formVaga select.campo{width:100%!important;min-height:48px!important;height:48px!important;margin:0!important;border-radius:11px!important}#pagina-publicar #formVaga textarea.campo{width:100%!important;height:auto!important;min-height:112px!important;margin:0!important;border-radius:11px!important;resize:vertical!important}#pagina-publicar #formVaga button{font-family:Poppins,sans-serif!important;cursor:pointer!important;pointer-events:auto!important}#pagina-publicar #formVaga button:disabled{cursor:not-allowed!important;opacity:.58!important}#pagina-publicar #formVaga .btn-preview-vaga,#pagina-publicar #formVaga #btnSalvarVaga{min-height:50px!important;height:50px!important;border-radius:999px!important;display:inline-flex!important;align-items:center!important;justify-content:center!important;gap:8px!important;padding:0 24px!important;line-height:1!important;margin:0!important;vertical-align:middle!important}#pagina-publicar #formVaga .vaga-confidencial-check-em{min-height:52px!important;align-items:center!important}#pagina-publicar #formVaga .contato-opcoes{align-items:stretch!important}#pagina-publicar #formVaga .contato-opcao{height:auto!important;min-height:72px!important}#pagina-publicar #formVaga .contato-opcao label{height:100%!important;display:flex!important;align-items:center!important;justify-content:center!important;cursor:pointer!important}#pagina-publicar #formVaga .beneficios-grid-v128{align-items:stretch!important}#pagina-publicar #formVaga .beneficio-v128{height:100%!important}#pagina-publicar #formVaga .beneficio-v128 label{height:100%!important;cursor:pointer!important}#pagina-publicar #formVaga input[type=&#39;checkbox&#39;],#pagina-publicar #formVaga input[type=&#39;radio&#39;]{accent-color:#0878c9}#pagina-publicar #formVaga label[for]{cursor:pointer}#pagina-publicar #formVaga .m3-progress{overflow-x:auto!important;scrollbar-width:thin}#pagina-publicar #formVaga .m3-step{min-width:0!important}#pagina-publicar #formVaga .m3-step span{white-space:normal!important;text-align:center!important}#pagina-publicar #formVaga .campo:focus,#pagina-publicar #formVaga input:focus,#pagina-publicar #formVaga select:focus,#pagina-publicar #formVaga textarea:focus{outline:none!important;border-color:#178bd1!important;box-shadow:0 0 0 3px rgba(23,139,209,.10)!important}#pagina-publicar #formVaga .campo:disabled{background:#f4f7fa!important;color:#7b8b99!important}@media(max-width:720px){#pagina-publicar #formVaga .linha,#pagina-publicar #formVaga .m3-grid{grid-template-columns:1fr!important;gap:12px!important}#pagina-publicar #formVaga .btn-preview-vaga,#pagina-publicar #formVaga #btnSalvarVaga{width:100%!important}#pagina-publicar #formVaga .m3-progress{justify-content:flex-start!important}#pagina-publicar #formVaga .m3-step{min-width:118px!important}}</style><style id='em-v77-preload-fix'>
+</style><script src='professional-assessments.js?v=20261020-poppins-global' defer></script><script src='empregamais_lote10.js?v=20261020-poppins-global' defer></script><link href='empregamais-safe-v1.css?v=20261020-featured-clean' rel='stylesheet' type='text/css'/><style type='text/css'>.beneficios-v128 label:has(input[value=&quot;cesta_basica&quot;]),.beneficios-v128 label:has(input[value=&quot;Cesta básica&quot;]),.beneficios-v128 label:has(input[value=&quot;Cesta Básica&quot;]),.beneficios-v128 .beneficio-item:has(input[value=&quot;cesta_basica&quot;]),.beneficios-v128 .beneficio-card:has(input[value=&quot;cesta_basica&quot;]){box-sizing:border-box!important;border:1px solid #dbe7f1!important;border-radius:12px!important;background:#fff!important;min-height:58px!important;padding:10px 12px!important;margin:0!important;}</style><style type='text/css'>#formVaga,#pagina-publicar{font-size:15px!important;}#formVaga label,#pagina-publicar label{font-size:14px!important;}#formVaga input,#formVaga select,#formVaga textarea,#formVaga button,#pagina-publicar input,#pagina-publicar select,#pagina-publicar textarea,#pagina-publicar button{font-size:14px!important;}#formVaga small,#formVaga .hint,#formVaga .help,#formVaga .m3-help,#formVaga .m3-sub,#pagina-publicar small{font-size:12.5px!important;line-height:1.45!important;}#formVaga h2,#pagina-publicar h2{font-size:clamp(18px,2vw,21px)!important;}#formVaga h3,#pagina-publicar h3{font-size:clamp(16px,1.8vw,18px)!important;}.beneficios-v128,.beneficios-v128 label,#areasSuperiorV202,#modalAreasSuperiorV203{font-size:14px!important;}#areasSuperiorV202 .asv202-resumo,#modalAreasSuperiorV203 p{font-size:12.5px!important;}@media(max-width:600px){#formVaga,#pagina-publicar{font-size:14.5px!important}#formVaga label,#pagina-publicar label{font-size:13.5px!important}#formVaga input,#formVaga select,#formVaga textarea,#formVaga button,#pagina-publicar input,#pagina-publicar select,#pagina-publicar textarea,#pagina-publicar button{font-size:14px!important;}}</style><style type='text/css'>#pagina-publicar #formVaga *{box-sizing:border-box}#pagina-publicar #formVaga .linha,#pagina-publicar #formVaga .m3-grid{align-items:start!important}#pagina-publicar #formVaga .grupo{min-width:0!important}#pagina-publicar #formVaga .campo,#pagina-publicar #formVaga input.campo,#pagina-publicar #formVaga select.campo{width:100%!important;min-height:48px!important;height:48px!important;margin:0!important;border-radius:11px!important}#pagina-publicar #formVaga textarea.campo{width:100%!important;height:auto!important;min-height:112px!important;margin:0!important;border-radius:11px!important;resize:vertical!important}#pagina-publicar #formVaga button{font-family:Poppins,sans-serif!important;cursor:pointer!important;pointer-events:auto!important}#pagina-publicar #formVaga button:disabled{cursor:not-allowed!important;opacity:.58!important}#pagina-publicar #formVaga .btn-preview-vaga,#pagina-publicar #formVaga #btnSalvarVaga{min-height:50px!important;height:50px!important;border-radius:999px!important;display:inline-flex!important;align-items:center!important;justify-content:center!important;gap:8px!important;padding:0 24px!important;line-height:1!important;margin:0!important;vertical-align:middle!important}#pagina-publicar #formVaga .vaga-confidencial-check-em{min-height:52px!important;align-items:center!important}#pagina-publicar #formVaga .contato-opcoes{align-items:stretch!important}#pagina-publicar #formVaga .contato-opcao{height:auto!important;min-height:72px!important}#pagina-publicar #formVaga .contato-opcao label{height:100%!important;display:flex!important;align-items:center!important;justify-content:center!important;cursor:pointer!important}#pagina-publicar #formVaga .beneficios-grid-v128{align-items:stretch!important}#pagina-publicar #formVaga .beneficio-v128{height:100%!important}#pagina-publicar #formVaga .beneficio-v128 label{height:100%!important;cursor:pointer!important}#pagina-publicar #formVaga input[type=&#39;checkbox&#39;],#pagina-publicar #formVaga input[type=&#39;radio&#39;]{accent-color:#0878c9}#pagina-publicar #formVaga label[for]{cursor:pointer}#pagina-publicar #formVaga .m3-progress{overflow-x:auto!important;scrollbar-width:thin}#pagina-publicar #formVaga .m3-step{min-width:0!important}#pagina-publicar #formVaga .m3-step span{white-space:normal!important;text-align:center!important}#pagina-publicar #formVaga .campo:focus,#pagina-publicar #formVaga input:focus,#pagina-publicar #formVaga select:focus,#pagina-publicar #formVaga textarea:focus{outline:none!important;border-color:#178bd1!important;box-shadow:0 0 0 3px rgba(23,139,209,.10)!important}#pagina-publicar #formVaga .campo:disabled{background:#f4f7fa!important;color:#7b8b99!important}@media(max-width:720px){#pagina-publicar #formVaga .linha,#pagina-publicar #formVaga .m3-grid{grid-template-columns:1fr!important;gap:12px!important}#pagina-publicar #formVaga .btn-preview-vaga,#pagina-publicar #formVaga #btnSalvarVaga{width:100%!important}#pagina-publicar #formVaga .m3-progress{justify-content:flex-start!important}#pagina-publicar #formVaga .m3-step{min-width:118px!important}}</style><style id='em-v77-preload-fix'>
 html:not(.em-v77-ready) body{visibility:hidden!important}
 html.em-v77-ready body{visibility:visible!important}
 </style><script id='em-v77-preload-js' type='text/javascript'>
@@ -15881,9 +13517,8 @@ html body>header.topo #acoesPublicas .em-candidate-menu>button.em-account-primar
 #emCandidateSignupBanner .em-signup-button:focus-visible{outline:3px solid white;outline-offset:4px}
 @media(max-width:900px){#pagina-home #emCandidateSignupBanner{gap:16px}#emCandidateSignupBanner .em-signup-icon{flex-basis:76px}#emCandidateSignupBanner .em-signup-copy p{font-size:13px}#emCandidateSignupBanner .em-signup-button{padding:14px 12px;margin-right:16px;font-size:12px}}
 @media(max-width:600px){#pagina-home #emCandidateSignupBanner{width:calc(100% - 28px);display:grid;grid-template-columns:58px minmax(0,1fr);gap:0 14px;margin:18px auto}#emCandidateSignupBanner .em-signup-icon{grid-row:1/3;height:100%}#emCandidateSignupBanner .em-signup-icon svg{width:34px;height:44px}#emCandidateSignupBanner .em-signup-copy{padding:14px 12px 10px 0}#emCandidateSignupBanner .em-signup-copy h2{font-size:14px;line-height:1.35}#emCandidateSignupBanner .em-signup-copy p{font-size:12px}#emCandidateSignupBanner .em-signup-button{grid-column:2;justify-self:start;margin:0 12px 14px 0;padding:11px 14px;font-size:11px}}
-</style><link rel="preload" as="style" href="emporio-profissional.css?v=20261020-poppins-global"><link rel="preload" as="style" href="vagas-demo.css?v=20261020-poppins-global"><style id="em-home-card-first-paint">
-html body #pagina-home#pagina-home #listaDestaques#listaDestaques>article:not(.em-featured-reference){visibility:hidden!important}
-</style><link rel="stylesheet" href="emporio-profissional.css?v=20261020-poppins-global"><link rel="stylesheet" href="vagas-demo.css?v=20261020-poppins-global"><link rel="stylesheet" href="recent-vacancies.css?v=20261020-poppins-global"><link rel="stylesheet" href="job-preview-model-one.css?v=20261020-model3-structure-2"></head><body><header class='topo'><div class='topo-inner'><button class='marca' onclick='irPara(&quot;home&quot;)' type='button'><span class='marca-nome'>+Empregos</span></button><button id='emHeaderMenuToggle' class='em-header-menu-toggle' type='button' aria-controls='emHeaderNavigation' aria-expanded='false'><svg viewBox='0 0 24 24' width='20' height='20' fill='none' stroke='currentColor' stroke-width='2' aria-hidden='true'><path d='M4 6h16M4 12h16M4 18h16'/></svg><span>Menu</span></button><nav class='menu-principal menu-v19' id='menuPublico'><button class='menu-link' onclick='irPara(&quot;home&quot;);rolarVagas();' type='button'>Buscar vagas</button><button class='menu-link' onclick='irPara(&quot;como-funciona&quot;)' type='button'>Como funciona</button></nav><div class='acoes-topo' id='emHeaderNavigation'><div class='acoes-publicas-v19' id='acoesPublicas'><div class='menu-empresa-v19'><button class='menu-link menu-empresa-btn-v19' type='button'>Para empresas <span>&#8964;</span></button></div><button class='btn btn-claro btn-candidato-v19' onclick='irPara(&quot;login-candidato&quot;)' type='button'>Área do candidato <span>&#8964;</span></button><button class='btn btn-empresa btn-publicar-v19' onclick='abrirPublicacao()' type='button'>+ Publicar vaga</button></div><div class='conta-topo' id='contaCandidatoTopo'><button class='btn-conta' onclick='alternarContaMenu(&quot;menuContaCandidato&quot;)' type='button'><span class='avatar' id='avatarCandidato'>C</span><span class='conta-nome' id='nomeCandidatoTopo'>
+</style><link rel="preload" as="style" href="emporio-profissional.css?v=20261020-featured-clean"><link rel="preload" as="style" href="vagas-demo.css?v=20261020-featured-clean"><style id="em-home-card-first-paint">
+</style><link rel="stylesheet" href="emporio-profissional.css?v=20261020-featured-clean"><link rel="stylesheet" href="vagas-demo.css?v=20261020-featured-clean"><link rel="stylesheet" href="recent-vacancies.css?v=20261020-poppins-global"><link rel="stylesheet" href="job-preview-model-one.css?v=20261020-featured-clean"><link rel="stylesheet" href="featured-cards.css?v=20261020-clean-1"></head><body><header class='topo'><div class='topo-inner'><button class='marca' onclick='irPara(&quot;home&quot;)' type='button'><span class='marca-nome'>+Empregos</span></button><button id='emHeaderMenuToggle' class='em-header-menu-toggle' type='button' aria-controls='emHeaderNavigation' aria-expanded='false'><svg viewBox='0 0 24 24' width='20' height='20' fill='none' stroke='currentColor' stroke-width='2' aria-hidden='true'><path d='M4 6h16M4 12h16M4 18h16'/></svg><span>Menu</span></button><nav class='menu-principal menu-v19' id='menuPublico'><button class='menu-link' onclick='irPara(&quot;home&quot;);rolarVagas();' type='button'>Buscar vagas</button><button class='menu-link' onclick='irPara(&quot;como-funciona&quot;)' type='button'>Como funciona</button></nav><div class='acoes-topo' id='emHeaderNavigation'><div class='acoes-publicas-v19' id='acoesPublicas'><div class='menu-empresa-v19'><button class='menu-link menu-empresa-btn-v19' type='button'>Para empresas <span>&#8964;</span></button></div><button class='btn btn-claro btn-candidato-v19' onclick='irPara(&quot;login-candidato&quot;)' type='button'>Área do candidato <span>&#8964;</span></button><button class='btn btn-empresa btn-publicar-v19' onclick='abrirPublicacao()' type='button'>+ Publicar vaga</button></div><div class='conta-topo' id='contaCandidatoTopo'><button class='btn-conta' onclick='alternarContaMenu(&quot;menuContaCandidato&quot;)' type='button'><span class='avatar' id='avatarCandidato'>C</span><span class='conta-nome' id='nomeCandidatoTopo'>
 Candidato
 </span><span>&#8964;</span></button><div class='conta-menu' id='menuContaCandidato'><button onclick='irPara(&quot;painel-candidato&quot;)' type='button'>
 &#9635; Meu painel
@@ -37827,7 +35462,7 @@ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',
 
 <style id='empregamais-tipografia-arial-v1' type='text/css'>:root{--em-font-text:Poppins,sans-serif;}html,body,input,textarea,select,button,label,p,a,span,small,strong,b,em,li,td,th,h1,h2,h3,h4,h5,h6,.btn,.button,[class*=&#39;btn-&#39;],[class*=&#39;button&#39;],.card,.vaga-card,.job-card,[class*=&#39;titulo&#39;],[class*=&#39;title&#39;],[class*=&#39;subtitulo&#39;],[class*=&#39;subtitle&#39;],[class*=&#39;salario&#39;],[class*=&#39;empresa&#39;],[class*=&#39;local&#39;],[class*=&#39;modalidade&#39;],[class*=&#39;contrato&#39;],[class*=&#39;badge&#39;],[class*=&#39;tag&#39;],nav,header,main,section,aside,footer{font-family:Poppins,sans-serif!important;}h1,h2,h3,h4,h5,h6,strong,b,button,.btn,.button,[class*=&#39;btn-&#39;],[class*=&#39;button&#39;],[class*=&#39;titulo&#39;],[class*=&#39;title&#39;],[class*=&#39;badge&#39;],[class*=&#39;tag&#39;],th{font-weight:500 !important;}h1{font-size:32px !important;line-height:1.15 !important;}h2{font-size:26px !important;line-height:1.2 !important;}h3{font-size:24px !important;line-height:1.22 !important;}h4{font-size:20px !important;line-height:1.25 !important;}h5{font-size:18px !important;line-height:1.3 !important;}h6{font-size:16px !important;line-height:1.35 !important;}body,p,li,td,label,input,textarea,select{font-size:16px;line-height:1.5;}button,.btn,.button,[class*=&#39;btn-&#39;],[class*=&#39;button&#39;]{font-size:16px !important;line-height:1.25 !important;}small,.small,[class*=&#39;data&#39;],[class*=&#39;date&#39;],[class*=&#39;meta&#39;]{font-size:14px;}.vaga-card h2,.vaga-card h3,.vaga-card .vaga-titulo,.vaga-card [class*=&#39;titulo&#39;],.job-card h2,.job-card h3,.job-card [class*=&#39;title&#39;],[class*=&#39;vaga-card&#39;] h2,[class*=&#39;vaga-card&#39;] h3,[class*=&#39;vaga-card&#39;] [class*=&#39;titulo&#39;]{font-size:21px !important;line-height:1.22 !important;font-weight:500 !important;}.vaga-card [class*=&#39;empresa&#39;],.job-card [class*=&#39;empresa&#39;],[class*=&#39;vaga-card&#39;] [class*=&#39;empresa&#39;]{font-size:16px !important;}.vaga-card [class*=&#39;local&#39;],.vaga-card [class*=&#39;modalidade&#39;],.vaga-card [class*=&#39;contrato&#39;],.job-card [class*=&#39;local&#39;],[class*=&#39;vaga-card&#39;] [class*=&#39;local&#39;]{font-size:15px !important;}.vaga-card [class*=&#39;salario&#39;],.job-card [class*=&#39;salario&#39;],[class*=&#39;vaga-card&#39;] [class*=&#39;salario&#39;]{font-size:16px !important;}#pagina-vaga h1,#pagina-vaga .vaga-titulo,#pagina-vaga [class*=&#39;titulo-vaga&#39;]{font-size:28px !important;line-height:1.18 !important;font-weight:500 !important;}#pagina-vaga h2,#pagina-vaga .section-title,#pagina-vaga [class*=&#39;secao-titulo&#39;]{font-size:24px !important;line-height:1.22 !important;font-weight:500 !important;}#pagina-vaga p,#pagina-vaga li,#pagina-vaga .descricao-vaga,#pagina-vaga [class*=&#39;descricao&#39;]{font-size:17px;line-height:1.5;}#pagina-vaga [class*=&#39;empresa&#39;]{font-size:17px;}#pagina-vaga [class*=&#39;local&#39;],#pagina-vaga [class*=&#39;modalidade&#39;],#pagina-vaga [class*=&#39;contrato&#39;]{font-size:16px;}#pagina-vaga [class*=&#39;salario&#39;]{font-size:16px;}#pagina-vaga .vagas-recomendadas h2,#pagina-vaga .vagas-recomendadas h3,#pagina-vaga [class*=&#39;recomendad&#39;] &gt;h2,#pagina-vaga [class*=&#39;recomendad&#39;] &gt;h3,#pagina-vaga [class*=&#39;similar&#39;] &gt;h2,#pagina-vaga [class*=&#39;similar&#39;] &gt;h3{font-size:24px !important;font-weight:500 !important;}#pagina-vaga .vagas-recomendadas .vaga-card h3,#pagina-vaga [class*=&#39;recomendad&#39;] .vaga-card h3,#pagina-vaga [class*=&#39;similar&#39;] .vaga-card h3{font-size:20px !important;font-weight:500 !important;}[class*=&#39;painel&#39;] nav a,[class*=&#39;painel&#39;] [role=&#39;tab&#39;],[class*=&#39;sidebar&#39;] a{font-size:16px !important;font-weight:500 !important;}[class*=&#39;painel&#39;] h1{font-size:30px !important;font-weight:500 !important;}[class*=&#39;painel&#39;] h2{font-size:24px !important;font-weight:500 !important;}[class*=&#39;painel&#39;] h3{font-size:20px !important;font-weight:500 !important;}.fa,.fas,.far,.fal,.fab,[class^=&#39;fa-&#39;],[class*=&#39;fa-&#39;],.material-icons,.material-symbols-outlined,.bi,[class^=&#39;bi-&#39;],[class*=&#39;bi-&#39;]{font-family:Poppins,sans-serif!important;Font Awesome 6 Free&#39;,&#39;Font Awesome 5 Free&#39;,&#39;FontAwesome&#39;,&#39;Material Icons&#39;,&#39;Material Symbols Outlined&#39;,&#39;bootstrap-icons&#39;!important;}@media(max-width:768px){h1{font-size:28px !important;}h2{font-size:24px !important;}h3{font-size:21px !important;}body,p,li,td,label,input,textarea,select{font-size:16px;}#pagina-vaga h1,#pagina-vaga .vaga-titulo,#pagina-vaga [class*=&#39;titulo-vaga&#39;]{font-size:26px !important;}.vaga-card h2,.vaga-card h3,.vaga-card .vaga-titulo,.job-card h2,.job-card h3{font-size:20px !important;}}</style>
 
-<style id='empregamais-titulos-calibri-v1' type='text/css'>#pagina-vaga h1,#pagina-vaga .vaga-titulo,#pagina-vaga [class*=&#39;titulo-vaga&#39;],.vaga-card h2,.vaga-card h3,.vaga-card .vaga-titulo,.job-card h2,.job-card h3,.job-card [class*=&#39;title&#39;],[class*=&#39;vaga-card&#39;] h2,[class*=&#39;vaga-card&#39;] h3,[class*=&#39;vaga-card&#39;] [class*=&#39;titulo&#39;],#pagina-vaga .vagas-recomendadas .vaga-card h2,#pagina-vaga .vagas-recomendadas .vaga-card h3,#pagina-vaga [class*=&#39;recomendad&#39;] .vaga-card h2,#pagina-vaga [class*=&#39;recomendad&#39;] .vaga-card h3,#pagina-vaga [class*=&#39;similar&#39;] .vaga-card h2,#pagina-vaga [class*=&#39;similar&#39;] .vaga-card h3{font-family:Poppins,sans-serif!important;Segoe UI&#39;,Poppins,sans-serif !important;font-weight:700 !important;text-transform:uppercase !important;letter-spacing:.1px !important;}#pagina-vaga h1,#pagina-vaga .vaga-titulo,#pagina-vaga [class*=&#39;titulo-vaga&#39;]{font-size:28px !important;line-height:1.16 !important;}.vaga-card h2,.vaga-card h3,.vaga-card .vaga-titulo,.job-card h2,.job-card h3,.job-card [class*=&#39;title&#39;],[class*=&#39;vaga-card&#39;] h2,[class*=&#39;vaga-card&#39;] h3,[class*=&#39;vaga-card&#39;] [class*=&#39;titulo&#39;]{font-size:20px !important;line-height:1.22 !important;}@media(max-width:768px){#pagina-vaga h1,#pagina-vaga .vaga-titulo,#pagina-vaga [class*=&#39;titulo-vaga&#39;]{font-size:25px !important;}.vaga-card h2,.vaga-card h3,.vaga-card .vaga-titulo,.job-card h2,.job-card h3{font-size:19px !important;}}</style><style id='em-destaques-banner-final-v1'>#pagina-home section.container:has(#listaDestaques) &gt;.titulo-secao{display:none!important}#pagina-home section.container:has(#listaDestaques){padding-top:28px!important}#emDestaquesHeroFinal{display:block!important;width:100%!important;box-sizing:border-box!important;margin:0 0 28px!important;padding:30px 0 24px!important;border:0!important;border-radius:22px!important;overflow:hidden!important;background:linear-gradient(135deg,#07548f 0%,#0874c4 54%,#07548f 100%)!important;box-shadow:0 12px 30px rgba(4,67,116,.16)!important;color:#fff!important;text-align:center!important;position:relative!important}#emDestaquesHeroFinal:before{content:&#39;&#39;;position:absolute;inset:0;background:radial-gradient(circle at 50% -20%,rgba(255,255,255,.18),transparent 42%);pointer-events:none}#emDestaquesHeroFinal .em-coroa{position:relative;color:#f7bd32;font-size:30px;line-height:1;margin:0 auto 10px}#emDestaquesHeroFinal .em-coroa:before,#emDestaquesHeroFinal .em-coroa:after{content:&#39;&#39;;display:inline-block;width:120px;max-width:18vw;height:1px;background:linear-gradient(90deg,transparent,#f7bd32);vertical-align:middle;margin:0 18px 8px}#emDestaquesHeroFinal .em-coroa:after{background:linear-gradient(90deg,#f7bd32,transparent)}#emDestaquesHeroFinal h2{position:relative;margin:0!important;color:#fff!important;font-family:Poppins,sans-serif!important;font-size:34px!important;line-height:1.12!important;font-weight:500!important;letter-spacing:.5px!important;text-transform:uppercase!important}#emDestaquesHeroFinal .em-impacto{position:relative;margin:9px 18px 23px!important;color:#fff!important;font-family:Poppins,sans-serif!important;font-size:19px!important;line-height:1.35!important;font-weight:500!important}#emDestaquesHeroFinal .em-logos-viewport{position:relative;width:100%!important;overflow:hidden!important;padding:0!important;margin:0!important}#emDestaquesHeroFinal .em-logos-track{display:flex!important;align-items:center!important;gap:14px!important;width:max-content!important;padding:0 14px!important;will-change:transform}#emDestaquesHeroFinal .em-logo-card{width:180px!important;height:92px!important;flex:0 0 180px!important;display:flex!important;align-items:center!important;justify-content:center!important;box-sizing:border-box!important;padding:15px!important;background:#fff!important;border:1px solid rgba(216,228,240,.95)!important;border-radius:15px!important;box-shadow:0 7px 18px rgba(3,43,78,.13)!important}#emDestaquesHeroFinal .em-logo-card img{display:block!important;max-width:145px!important;max-height:58px!important;width:auto!important;height:auto!important;object-fit:contain!important}#emDestaquesHeroFinal .em-logos-track.em-animar{animation:emLogosMarquee 28s linear infinite!important}#emDestaquesHeroFinal .em-logos-track.em-estatico{width:100%!important;justify-content:center!important;padding:0!important}@keyframes emLogosMarquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}#emDestaquesHeroFinal .em-rodape{position:relative;display:flex!important;align-items:center!important;justify-content:center!important;gap:16px!important;margin:23px 24px 0!important;color:rgba(255,255,255,.86)!important;font-family:Poppins,sans-serif!important;font-size:12px!important;font-weight:500!important;letter-spacing:3px!important;text-transform:uppercase!important}#emDestaquesHeroFinal .em-rodape:before,#emDestaquesHeroFinal .em-rodape:after{content:&#39;&#39;;height:1px;max-width:210px;flex:1;background:rgba(255,255,255,.45)}#pagina-home #listaDestaques .card-destaque{position:relative!important;min-height:220px!important;padding:24px 22px 20px!important;background:#fff!important;border:1.5px solid #e2a315!important;border-radius:17px!important;box-shadow:0 8px 22px rgba(15,23,42,.07)!important;overflow:hidden!important}#pagina-home #listaDestaques .card-destaque:hover{transform:translateY(-3px)!important;box-shadow:0 13px 28px rgba(15,23,42,.11)!important}#pagina-home #listaDestaques .card-destaque .selo-destaque,#pagina-home #listaDestaques .card-destaque .badge-destaque,#pagina-home #listaDestaques .card-destaque [class*=&#39;selo-destaque&#39;]{top:0!important;right:0!important;border:0!important;border-radius:0 16px 0 22px!important;padding:13px 18px!important;background:linear-gradient(135deg,#f3b51c,#d99100)!important;color:#fff!important;font-family:Poppins,sans-serif!important;font-size:11px!important;font-weight:500!important;text-transform:uppercase!important}#pagina-home #listaDestaques .card-destaque .vaga-titulo,#pagina-home #listaDestaques .card-destaque h3{font-family:Poppins,sans-serif!important;Segoe UI&#39;,Poppins,sans-serif!important;font-size:19px!important;line-height:1.2!important;font-weight:700!important;text-transform:uppercase!important;color:#102d50!important}@media(max-width:700px){#emDestaquesHeroFinal{border-radius:17px!important;padding:24px 0 20px!important}#emDestaquesHeroFinal h2{font-size:27px!important}#emDestaquesHeroFinal .em-impacto{font-size:16px!important;margin-bottom:19px!important}#emDestaquesHeroFinal .em-logo-card{width:145px!important;flex-basis:145px!important;height:78px!important}#emDestaquesHeroFinal .em-logo-card img{max-width:116px!important;max-height:48px!important}#emDestaquesHeroFinal .em-rodape{font-size:10px!important;letter-spacing:1.8px!important;margin-top:19px!important}.destaques-carrossel-em{padding-left:18px!important;padding-right:18px!important}}</style><script id='em-destaques-banner-final-js-v1'>
+<style id='empregamais-titulos-calibri-v1' type='text/css'>#pagina-vaga h1,#pagina-vaga .vaga-titulo,#pagina-vaga [class*=&#39;titulo-vaga&#39;],.vaga-card h2,.vaga-card h3,.vaga-card .vaga-titulo,.job-card h2,.job-card h3,.job-card [class*=&#39;title&#39;],[class*=&#39;vaga-card&#39;] h2,[class*=&#39;vaga-card&#39;] h3,[class*=&#39;vaga-card&#39;] [class*=&#39;titulo&#39;],#pagina-vaga .vagas-recomendadas .vaga-card h2,#pagina-vaga .vagas-recomendadas .vaga-card h3,#pagina-vaga [class*=&#39;recomendad&#39;] .vaga-card h2,#pagina-vaga [class*=&#39;recomendad&#39;] .vaga-card h3,#pagina-vaga [class*=&#39;similar&#39;] .vaga-card h2,#pagina-vaga [class*=&#39;similar&#39;] .vaga-card h3{font-family:Poppins,sans-serif!important;Segoe UI&#39;,Poppins,sans-serif !important;font-weight:700 !important;text-transform:uppercase !important;letter-spacing:.1px !important;}#pagina-vaga h1,#pagina-vaga .vaga-titulo,#pagina-vaga [class*=&#39;titulo-vaga&#39;]{font-size:28px !important;line-height:1.16 !important;}.vaga-card h2,.vaga-card h3,.vaga-card .vaga-titulo,.job-card h2,.job-card h3,.job-card [class*=&#39;title&#39;],[class*=&#39;vaga-card&#39;] h2,[class*=&#39;vaga-card&#39;] h3,[class*=&#39;vaga-card&#39;] [class*=&#39;titulo&#39;]{font-size:20px !important;line-height:1.22 !important;}@media(max-width:768px){#pagina-vaga h1,#pagina-vaga .vaga-titulo,#pagina-vaga [class*=&#39;titulo-vaga&#39;]{font-size:25px !important;}.vaga-card h2,.vaga-card h3,.vaga-card .vaga-titulo,.job-card h2,.job-card h3{font-size:19px !important;}}</style><style id='em-destaques-banner-final-v1'>#pagina-home section.container:has(#listaDestaques) &gt;.titulo-secao{display:none!important}#emDestaquesHeroFinal{display:block!important;width:100%!important;box-sizing:border-box!important;margin:0 0 28px!important;padding:30px 0 24px!important;border:0!important;border-radius:22px!important;overflow:hidden!important;background:linear-gradient(135deg,#07548f 0%,#0874c4 54%,#07548f 100%)!important;box-shadow:0 12px 30px rgba(4,67,116,.16)!important;color:#fff!important;text-align:center!important;position:relative!important}#emDestaquesHeroFinal:before{content:&#39;&#39;;position:absolute;inset:0;background:radial-gradient(circle at 50% -20%,rgba(255,255,255,.18),transparent 42%);pointer-events:none}#emDestaquesHeroFinal .em-coroa{position:relative;color:#f7bd32;font-size:30px;line-height:1;margin:0 auto 10px}#emDestaquesHeroFinal .em-coroa:before,#emDestaquesHeroFinal .em-coroa:after{content:&#39;&#39;;display:inline-block;width:120px;max-width:18vw;height:1px;background:linear-gradient(90deg,transparent,#f7bd32);vertical-align:middle;margin:0 18px 8px}#emDestaquesHeroFinal .em-coroa:after{background:linear-gradient(90deg,#f7bd32,transparent)}#emDestaquesHeroFinal h2{position:relative;margin:0!important;color:#fff!important;font-family:Poppins,sans-serif!important;font-size:34px!important;line-height:1.12!important;font-weight:500!important;letter-spacing:.5px!important;text-transform:uppercase!important}#emDestaquesHeroFinal .em-impacto{position:relative;margin:9px 18px 23px!important;color:#fff!important;font-family:Poppins,sans-serif!important;font-size:19px!important;line-height:1.35!important;font-weight:500!important}#emDestaquesHeroFinal .em-logos-viewport{position:relative;width:100%!important;overflow:hidden!important;padding:0!important;margin:0!important}#emDestaquesHeroFinal .em-logos-track{display:flex!important;align-items:center!important;gap:14px!important;width:max-content!important;padding:0 14px!important;will-change:transform}#emDestaquesHeroFinal .em-logo-card{width:180px!important;height:92px!important;flex:0 0 180px!important;display:flex!important;align-items:center!important;justify-content:center!important;box-sizing:border-box!important;padding:15px!important;background:#fff!important;border:1px solid rgba(216,228,240,.95)!important;border-radius:15px!important;box-shadow:0 7px 18px rgba(3,43,78,.13)!important}#emDestaquesHeroFinal .em-logo-card img{display:block!important;max-width:145px!important;max-height:58px!important;width:auto!important;height:auto!important;object-fit:contain!important}#emDestaquesHeroFinal .em-logos-track.em-animar{animation:emLogosMarquee 28s linear infinite!important}#emDestaquesHeroFinal .em-logos-track.em-estatico{width:100%!important;justify-content:center!important;padding:0!important}@keyframes emLogosMarquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}#emDestaquesHeroFinal .em-rodape{position:relative;display:flex!important;align-items:center!important;justify-content:center!important;gap:16px!important;margin:23px 24px 0!important;color:rgba(255,255,255,.86)!important;font-family:Poppins,sans-serif!important;font-size:12px!important;font-weight:500!important;letter-spacing:3px!important;text-transform:uppercase!important}#emDestaquesHeroFinal .em-rodape:before,#emDestaquesHeroFinal .em-rodape:after{content:&#39;&#39;;height:1px;max-width:210px;flex:1;background:rgba(255,255,255,.45)}#pagina-home #listaDestaques .card-destaque .selo-destaque,#pagina-home #listaDestaques .card-destaque .badge-destaque,#pagina-home #listaDestaques .card-destaque [class*=&#39;selo-destaque&#39;]{top:0!important;right:0!important;border:0!important;border-radius:0 16px 0 22px!important;padding:13px 18px!important;background:linear-gradient(135deg,#f3b51c,#d99100)!important;color:#fff!important;font-family:Poppins,sans-serif!important;font-size:11px!important;font-weight:500!important;text-transform:uppercase!important}@media(max-width:700px){#emDestaquesHeroFinal{border-radius:17px!important;padding:24px 0 20px!important}#emDestaquesHeroFinal h2{font-size:27px!important}#emDestaquesHeroFinal .em-impacto{font-size:16px!important;margin-bottom:19px!important}#emDestaquesHeroFinal .em-logo-card{width:145px!important;flex-basis:145px!important;height:78px!important}#emDestaquesHeroFinal .em-logo-card img{max-width:116px!important;max-height:48px!important}#emDestaquesHeroFinal .em-rodape{font-size:10px!important;letter-spacing:1.8px!important;margin-top:19px!important}.destaques-carrossel-em{padding-left:18px!important;padding-right:18px!important}}</style><script id='em-destaques-banner-final-js-v1'>
 //<![CDATA[
 (function(){
  if(window.__EM_DESTAQUES_HERO_FINAL_V1)return; window.__EM_DESTAQUES_HERO_FINAL_V1=true;
@@ -38015,7 +35650,7 @@ window.__EM_HERO_AUTOCOMPLETE_V3=true;
  document.addEventListener('click',function(){setTimeout(limparDestaqueInterno,40)},true);
  setTimeout(limparDestaqueInterno,100);setTimeout(limparDestaqueInterno,500);
 })();
-//]]></script><style id='em-destaques-v14-unico'>#pagina-home section.container:has(#listaDestaques) >.titulo-secao{display:none!important}#pagina-home section.container:has(#listaDestaques){max-width:1240px!important;padding:28px 24px 42px!important}#pagina-home .destaques-seta-em{display:none!important}#pagina-home .destaques-carrossel-em{width:100%!important;max-width:none!important;margin:0!important;padding:0!important}#pagina-home #emDestV14{width:100%!important;box-sizing:border-box!important;margin:0 0 22px!important;display:grid!important;grid-template-columns:340px minmax(0,1fr) 275px!important;gap:28px!important;align-items:center!important;}#pagina-home #emDestV14 .copy{min-width:0!important}#pagina-home #emDestV14 .eyebrow{display:flex!important;align-items:center!important;gap:10px!important;margin:0 0 13px!important;color:#52769b!important;font:500 9px/1 Poppins,sans-serif!important;letter-spacing:3px!important;text-transform:uppercase!important;white-space:nowrap!important}#pagina-home #emDestV14 .eyebrow:before{content:""!important;width:46px!important;height:2px!important;flex:0 0 46px!important;background:#e99a00!important}#pagina-home #emDestV14 h2{margin:0 0 7px!important;color:#082f5b!important;font:800 29px/1.15 Poppins,sans-serif!important;letter-spacing:-.65px!important;white-space:nowrap!important}#pagina-home #emDestV14 p{margin:0!important;color:#52769b!important;font:500 14px/1.45 Poppins,sans-serif!important;white-space:nowrap!important}#pagina-home #emDestV14 .logos-viewport{width:100%!important;min-width:0!important;height:82px!important;overflow:hidden!important;display:flex!important;align-items:center!important}#pagina-home #emDestV14 .logos-track{display:flex!important;align-items:center!important;gap:10px!important;width:max-content!important;animation:emV14Move 28s linear infinite!important}#pagina-home #emDestV14 .logo-box{width:68px!important;height:68px!important;flex:0 0 68px!important;box-sizing:border-box!important;padding:7px!important;display:flex!important;align-items:center!important;justify-content:center!important;border:1px solid #d8e5ef!important;border-radius:11px!important;background:#fff!important}#pagina-home #emDestV14 .logo-box img{width:100%!important;height:100%!important;display:block!important;object-fit:contain!important}#pagina-home #emDestV14 .logo-fallback{width:100%!important;height:100%!important;display:flex!important;align-items:center!important;justify-content:center!important;border-radius:7px!important;background:#edf6fd!important;color:#0866c6!important;font:800 16px Poppins,sans-serif!important}#pagina-home #emDestV14 .logos-viewport:hover .logos-track{animation-play-state:paused!important}@keyframes emV14Move{from{transform:translateX(0)}to{transform:translateX(-50%)}}#pagina-home #emDestV14 .all-btn{width:275px!important;height:50px!important;display:flex!important;align-items:center!important;justify-content:center!important;border:1px solid #8fc5ee!important;border-radius:11px!important;background:#fff!important;color:#0866c6!important;font:800 11px Poppins,sans-serif!important;cursor:pointer!important;white-space:nowrap!important;box-shadow:0 5px 16px rgba(8,102,198,.07)!important}#pagina-home #listaDestaques{display:grid!important;grid-template-columns:repeat(4,minmax(0,1fr))!important;gap:15px!important;width:100%!important;overflow:visible!important;padding:0!important}#pagina-home #listaDestaques>.card-destaque{width:100%!important;min-width:0!important;max-width:none!important;height:318px!important;min-height:318px!important;max-height:318px!important;margin:0!important;overflow:hidden!important;box-sizing:border-box!important}#pagina-home #listaDestaques:not(.em-v14-all)>.card-destaque:nth-child(n/**/+9){display:none!important}@media(max-width:1050px){#pagina-home #emDestV14{grid-template-columns:320px minmax(0,1fr)!important}#pagina-home #emDestV14 .all-btn{grid-column:1/-1!important}}@media(max-width:980px){#pagina-home #listaDestaques{grid-template-columns:repeat(2,minmax(0,1fr))!important}}@media(max-width:700px){#pagina-home #emDestV14{grid-template-columns:1fr!important;gap:12px!important;margin-bottom:16px!important}#pagina-home #emDestV14 .logos-viewport{display:none!important}#pagina-home section.container:has(#listaDestaques){padding:20px 16px!important;box-sizing:border-box!important;min-width:0!important;max-width:100%!important}#pagina-home #emDestV14 h2{font-size:24px!important;white-space:normal!important}#pagina-home #emDestV14 p{font-size:12px!important;white-space:normal!important}#pagina-home #emDestV14 .all-btn{width:100%!important;grid-column:auto!important}#pagina-home #listaDestaques{grid-template-columns:1fr!important}}</style><script id='em-destaques-v14-unico-js'>
+//]]></script><style id='em-destaques-v14-unico'>#pagina-home .destaques-seta-em{display:none!important}#pagina-home .destaques-carrossel-em{width:100%!important;max-width:none!important;margin:0!important;padding:0!important}#pagina-home #emDestV14{width:100%!important;box-sizing:border-box!important;margin:0 0 22px!important;display:grid!important;grid-template-columns:340px minmax(0,1fr) 275px!important;gap:28px!important;align-items:center!important;}#pagina-home #emDestV14 .copy{min-width:0!important}#pagina-home #emDestV14 .eyebrow{display:flex!important;align-items:center!important;gap:10px!important;margin:0 0 13px!important;color:#52769b!important;font:500 9px/1 Poppins,sans-serif!important;letter-spacing:3px!important;text-transform:uppercase!important;white-space:nowrap!important}#pagina-home #emDestV14 .eyebrow:before{content:""!important;width:46px!important;height:2px!important;flex:0 0 46px!important;background:#e99a00!important}#pagina-home #emDestV14 h2{margin:0 0 7px!important;color:#082f5b!important;font:800 29px/1.15 Poppins,sans-serif!important;letter-spacing:-.65px!important;white-space:nowrap!important}#pagina-home #emDestV14 p{margin:0!important;color:#52769b!important;font:500 14px/1.45 Poppins,sans-serif!important;white-space:nowrap!important}#pagina-home #emDestV14 .logos-viewport{width:100%!important;min-width:0!important;height:82px!important;overflow:hidden!important;display:flex!important;align-items:center!important}#pagina-home #emDestV14 .logos-track{display:flex!important;align-items:center!important;gap:10px!important;width:max-content!important;animation:emV14Move 28s linear infinite!important}#pagina-home #emDestV14 .logo-box{width:68px!important;height:68px!important;flex:0 0 68px!important;box-sizing:border-box!important;padding:7px!important;display:flex!important;align-items:center!important;justify-content:center!important;border:1px solid #d8e5ef!important;border-radius:11px!important;background:#fff!important}#pagina-home #emDestV14 .logo-box img{width:100%!important;height:100%!important;display:block!important;object-fit:contain!important}#pagina-home #emDestV14 .logo-fallback{width:100%!important;height:100%!important;display:flex!important;align-items:center!important;justify-content:center!important;border-radius:7px!important;background:#edf6fd!important;color:#0866c6!important;font:800 16px Poppins,sans-serif!important}#pagina-home #emDestV14 .logos-viewport:hover .logos-track{animation-play-state:paused!important}@keyframes emV14Move{from{transform:translateX(0)}to{transform:translateX(-50%)}}#pagina-home #emDestV14 .all-btn{width:275px!important;height:50px!important;display:flex!important;align-items:center!important;justify-content:center!important;border:1px solid #8fc5ee!important;border-radius:11px!important;background:#fff!important;color:#0866c6!important;font:800 11px Poppins,sans-serif!important;cursor:pointer!important;white-space:nowrap!important;box-shadow:0 5px 16px rgba(8,102,198,.07)!important}@media(max-width:1050px){#pagina-home #emDestV14{grid-template-columns:320px minmax(0,1fr)!important}#pagina-home #emDestV14 .all-btn{grid-column:1/-1!important}}@media(max-width:700px){#pagina-home #emDestV14{grid-template-columns:1fr!important;gap:12px!important;margin-bottom:16px!important}#pagina-home #emDestV14 .logos-viewport{display:none!important}#pagina-home #emDestV14 h2{font-size:24px!important;white-space:normal!important}#pagina-home #emDestV14 p{font-size:12px!important;white-space:normal!important}#pagina-home #emDestV14 .all-btn{width:100%!important;grid-column:auto!important}}</style><script id='em-destaques-v14-unico-js'>
 //<![CDATA[
 (function(){
  function build(){
@@ -38052,7 +35687,7 @@ window.__EM_HERO_AUTOCOMPLETE_V3=true;
  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',build);else build();
  window.addEventListener('load',function(){setTimeout(build,500)});
 })();
-//]]></script><style id='em-destaques-v18-oculta-somente-original'>#pagina-home .em-destaques-original-off{display:none!important;visibility:hidden!important;opacity:0!important;height:0!important;min-height:0!important;max-height:0!important;margin:0!important;padding:0!important;border:0!important;overflow:hidden!important;}</style><style id='em-ajuste-apenas-espaco-destaques-v19'>#pagina-home #emCategoriasHomeV2{margin-bottom:0!important;}#pagina-home section.container:has(#listaDestaques){padding-top:0!important;}@media(max-width:700px){#pagina-home #emCategoriasHomeV2{margin-bottom:0!important;}#pagina-home section.container:has(#listaDestaques){padding-top:0!important;}}</style><style id='em-cards-ajuste-visual-seguro-v20a'>#pagina-home #listaDestaques .card-destaque,#pagina-home #listaDestaques .card-destaque *{font-family:Poppins,sans-serif!important;}#pagina-home #listaDestaques .card-destaque{height:332px!important;min-height:332px!important;max-height:332px!important;padding-bottom:12px!important;overflow:hidden!important;}#pagina-home #listaDestaques .card-destaque .vaga-card-top{min-height:88px!important;margin-bottom:8px!important;align-items:flex-start!important;}#pagina-home #listaDestaques .card-destaque .vaga-principal{min-width:0!important;padding-top:4px!important;}#pagina-home #listaDestaques .card-destaque .vaga-empresa{display:block!important;margin:0 0 7px!important;padding:0!important;color:#536d88!important;font-size:10px!important;line-height:1.05!important;font-weight:600!important;}#pagina-home #listaDestaques .card-destaque .vaga-titulo{margin:0!important;padding:0!important;color:#062b59!important;font-size:15px!important;line-height:1.12!important;font-weight:700!important;}#pagina-home #listaDestaques .card-destaque .selos-publicos-v56{position:relative!important;z-index:20!important;display:flex!important;align-items:center!important;justify-content:center!important;width:100%!important;min-height:34px!important;height:34px!important;margin:0 0 8px!important;padding:0!important;overflow:visible!important;}#pagina-home #listaDestaques .card-destaque .selo-publico-v56.urgente{position:relative!important;z-index:21!important;display:flex!important;align-items:center!important;justify-content:center!important;gap:7px!important;box-sizing:border-box!important;width:100%!important;height:32px!important;min-height:32px!important;margin:0!important;padding:4px 10px!important;transform:none!important;text-align:center!important;}#pagina-home #listaDestaques .card-destaque .urgente-texto-v8{display:flex!important;flex-direction:column!important;align-items:center!important;justify-content:center!important;gap:1px!important;margin:0!important;text-align:center!important;}#pagina-home #listaDestaques .card-destaque .urgente-texto-v8 small,#pagina-home #listaDestaques .card-destaque .urgente-texto-v8 strong{display:block!important;width:auto!important;margin:0!important;padding:0!important;text-align:center!important;line-height:1!important;}#pagina-home #listaDestaques .card-destaque .vaga-meta-grid-v9{position:relative!important;z-index:5!important;margin-top:0!important;}#pagina-home #listaDestaques .card-destaque .vaga-card-footer{position:relative!important;z-index:10!important;flex:0 0 auto!important;width:100%!important;margin-top:7px!important;padding:7px 0 0!important;box-sizing:border-box!important;}#pagina-home #listaDestaques .card-destaque .btn-azul{display:flex!important;align-items:center!important;justify-content:center!important;width:100%!important;height:38px!important;min-height:38px!important;margin:0!important;padding:0 12px!important;box-sizing:border-box!important;border-radius:8px!important;font-family:Poppins,sans-serif!important;font-size:11px!important;font-weight:700!important;}#pagina-home #listaDestaques .card-destaque &gt;.salario{flex:0 0 auto!important;margin-top:auto!important;padding:8px 0!important;font-family:Poppins,sans-serif!important;}@media(max-width:700px){#pagina-home #listaDestaques .card-destaque{height:auto!important;min-height:332px!important;max-height:none!important;}}</style><style id='em-cards-legiveis-v20b'>#pagina-home #listaDestaques .card-destaque,#pagina-home #listaDestaques .card-destaque *{font-family:Poppins,sans-serif!important;}#pagina-home #listaDestaques .card-destaque{display:flex!important;flex-direction:column!important;height:390px!important;min-height:390px!important;max-height:390px!important;padding:16px 14px 14px!important;box-sizing:border-box!important;overflow:hidden!important;}#pagina-home #listaDestaques .card-destaque .vaga-card-top{flex:0 0 98px!important;min-height:98px!important;height:98px!important;margin:0 0 10px!important;overflow:visible!important;}#pagina-home #listaDestaques .card-destaque .vaga-principal{padding-top:3px!important;overflow:visible!important;}#pagina-home #listaDestaques .card-destaque .vaga-empresa{display:block!important;margin:0 0 8px!important;color:#536d88!important;font-size:11px!important;line-height:1.1!important;font-weight:600!important;}#pagina-home #listaDestaques .card-destaque .vaga-titulo{display:-webkit-box!important;-webkit-box-orient:vertical!important;-webkit-line-clamp:3!important;max-height:57px!important;margin:0!important;overflow:hidden!important;color:#062b59!important;font-size:17px!important;line-height:1.12!important;font-weight:700!important;}#pagina-home #listaDestaques .card-destaque .selos-publicos-v56{position:relative!important;z-index:30!important;flex:0 0 38px!important;width:100%!important;height:38px!important;min-height:38px!important;display:flex!important;align-items:center!important;justify-content:center!important;margin:0 0 10px!important;padding:0!important;overflow:visible!important;}#pagina-home #listaDestaques .card-destaque .selos-publicos-v56:empty{display:none!important;flex-basis:0!important;height:0!important;min-height:0!important;margin:0!important;}#pagina-home #listaDestaques .card-destaque .selo-publico-v56.urgente{position:relative!important;z-index:31!important;width:100%!important;height:36px!important;min-height:36px!important;display:flex!important;align-items:center!important;justify-content:center!important;gap:8px!important;margin:0!important;padding:4px 10px!important;box-sizing:border-box!important;transform:none!important;}#pagina-home #listaDestaques .card-destaque .urgente-texto-v8{display:flex!important;flex-direction:column!important;align-items:center!important;justify-content:center!important;text-align:center!important;}#pagina-home #listaDestaques .card-destaque .urgente-texto-v8 small{font-size:8px!important;}#pagina-home #listaDestaques .card-destaque .urgente-texto-v8 strong{font-size:9px!important;}#pagina-home #listaDestaques .card-destaque .vaga-meta-grid-v9{flex:0 0 auto!important;margin:0 0 9px!important;}#pagina-home #listaDestaques .card-destaque .vaga-meta-v9{min-height:35px!important;padding:6px 9px!important;}#pagina-home #listaDestaques .card-destaque .vaga-meta-v9 b{font-size:9px!important;line-height:1.1!important;}#pagina-home #listaDestaques .card-destaque .vaga-resumo,#pagina-home #listaDestaques .card-destaque .vaga-resumo-destaque-v19{display:-webkit-box!important;-webkit-box-orient:vertical!important;-webkit-line-clamp:3!important;flex:0 1 auto!important;max-height:48px!important;margin:0 0 7px!important;overflow:hidden!important;font-size:11px!important;line-height:1.35!important;}#pagina-home #listaDestaques .card-destaque &gt;.salario{flex:0 0 auto!important;margin:auto 0 0!important;padding:9px 0!important;font-size:16px!important;line-height:1.1!important;}#pagina-home #listaDestaques .card-destaque .vaga-card-footer{position:relative!important;flex:0 0 49px!important;width:100%!important;height:49px!important;min-height:49px!important;margin:0!important;padding:8px 0 0!important;box-sizing:border-box!important;overflow:visible!important;}#pagina-home #listaDestaques .card-destaque .btn-azul{width:100%!important;height:41px!important;min-height:41px!important;margin:0!important;padding:0 14px!important;box-sizing:border-box!important;font-size:12px!important;}#modalPreviewEstavel,#modalPreviewEstavel *,#conteudoPreviewEstavel,#conteudoPreviewEstavel *,.modal-preview-vaga,.modal-preview-vaga *{font-family:Poppins,sans-serif!important;}#modalPreviewEstavel .modal-conteudo,#modalPreviewEstavel #conteudoPreviewEstavel{overflow:visible!important;max-height:none!important;}#modalPreviewEstavel .card-destaque,#modalPreviewEstavel .vaga-card{height:auto!important;min-height:360px!important;max-height:none!important;overflow:visible!important;}@media(max-width:700px){#pagina-home #listaDestaques .card-destaque{height:auto!important;min-height:390px!important;max-height:none!important;}}</style><style id='em-destaques-interna-v20c'>#pagina-home #listaDestaques{align-items:stretch!important;}#pagina-home #listaDestaques .card-destaque{display:flex!important;flex-direction:column!important;height:410px!important;min-height:410px!important;max-height:410px!important;padding:16px 14px 14px!important;box-sizing:border-box!important;overflow:hidden!important;font-family:Poppins,sans-serif!important;}#pagina-home #listaDestaques .vaga-card-top{flex:0 0 100px!important;height:100px!important;min-height:100px!important;margin:0 0 10px!important;}#pagina-home #listaDestaques .vaga-empresa{margin:2px 0 8px!important;font:600 11px/1.08 Poppins,sans-serif!important;}#pagina-home #listaDestaques .vaga-titulo{display:-webkit-box!important;-webkit-box-orient:vertical!important;-webkit-line-clamp:3!important;max-height:58px!important;margin:0!important;overflow:hidden!important;font:700 17px/1.12 Poppins,sans-serif!important;}#pagina-home #listaDestaques .selos-publicos-v56{position:relative!important;z-index:50!important;flex:0 0 38px!important;height:38px!important;min-height:38px!important;margin:0 0 10px!important;display:flex!important;align-items:center!important;justify-content:center!important;overflow:visible!important;}#pagina-home #listaDestaques .selos-publicos-v56:empty{display:none!important;flex-basis:0!important;height:0!important;min-height:0!important;margin:0!important;}#pagina-home #listaDestaques .selo-publico-v56.urgente{position:relative!important;inset:auto!important;z-index:51!important;transform:none!important;width:100%!important;height:36px!important;min-height:36px!important;margin:0!important;display:flex!important;align-items:center!important;justify-content:center!important;}#pagina-home #listaDestaques .vaga-meta-grid-v9{position:relative!important;z-index:10!important;flex:0 0 auto!important;width:100%!important;margin:0 0 9px!important;}#pagina-home #listaDestaques .vaga-meta-v9{min-height:36px!important;}#pagina-home #listaDestaques .vaga-meta-v9 b{font-size:9px!important;}#pagina-home #listaDestaques .vaga-resumo,#pagina-home #listaDestaques .vaga-resumo-destaque-v19{display:-webkit-box!important;-webkit-box-orient:vertical!important;-webkit-line-clamp:3!important;flex:0 1 auto!important;max-height:49px!important;margin:0 0 8px!important;overflow:hidden!important;font:500 11px/1.4 Poppins,sans-serif!important;}#pagina-home #listaDestaques .card-destaque &gt;.salario{flex:0 0 37px!important;min-height:37px!important;margin:auto 0 0!important;padding:8px 0!important;box-sizing:border-box!important;font:700 16px/1.1 Poppins,sans-serif!important;}#pagina-home #listaDestaques .vaga-card-footer{flex:0 0 50px!important;height:50px!important;min-height:50px!important;margin:0!important;padding:8px 0 0!important;box-sizing:border-box!important;overflow:visible!important;}#pagina-home #listaDestaques .btn-azul{height:42px!important;min-height:42px!important;font:700 12px/1 Poppins,sans-serif!important;}#pagina-vaga{background:#f6f8fb!important;font-family:Poppins,sans-serif!important;}#pagina-vaga .detalhe-layout{width:min(1180px,calc(100% - 40px))!important;margin:24px auto 50px!important;display:grid!important;grid-template-columns:minmax(0,1fr) 310px!important;gap:24px!important;align-items:start!important;}#pagina-vaga .vaga-cabecalho{position:relative!important;width:100%!important;padding:24px!important;box-sizing:border-box!important;overflow:visible!important;border:1px solid #dce5ed!important;border-radius:16px!important;background:#fff!important;box-shadow:0 7px 22px rgba(15,45,75,.05)!important;}#pagina-vaga .vaga-cabecalho-top{display:flex!important;align-items:center!important;gap:20px!important;min-width:0!important;}#pagina-vaga #logoDetalhe{width:88px!important;height:88px!important;min-width:88px!important;flex:0 0 88px!important;padding:7px!important;box-sizing:border-box!important;object-fit:contain!important;border:1px solid #dce5ed!important;border-radius:14px!important;background:#fff!important;}#pagina-vaga .em-vaga-ref-main-v1{min-width:0!important;flex:1!important;}#pagina-vaga #detalheEmpresaCab{display:flex!important;flex-wrap:wrap!important;align-items:center!important;gap:7px!important;margin:0 0 7px!important;color:#567089!important;font-size:14px!important;line-height:1.25!important;font-weight:650!important;}#pagina-vaga #detalheCargoCab{margin:0 0 9px!important;overflow-wrap:anywhere!important;color:#062b59!important;font-size:30px!important;line-height:1.12!important;font-weight:800!important;}#pagina-vaga .em-vaga-ref-subtitle-v1{margin:0 0 10px!important;color:#66798a!important;font-size:13px!important;line-height:1.45!important;}#pagina-vaga .em-info-bar-v1{display:grid!important;grid-template-columns:repeat(4,minmax(0,1fr))!important;width:100%!important;margin-top:20px!important;overflow:hidden!important;border:1px solid #dce5ed!important;border-radius:12px!important;background:#fff!important;}#pagina-vaga .em-info-cell-v1{min-width:0!important;min-height:72px!important;padding:13px!important;box-sizing:border-box!important;}#pagina-vaga .em-info-cell-v1 span{font-size:10px!important;}#pagina-vaga .em-info-cell-v1 strong{display:block!important;overflow-wrap:anywhere!important;font-size:14px!important;line-height:1.25!important;}#pagina-vaga .conteudo-vaga-box{margin-top:18px!important;padding:24px!important;border:1px solid #e0e7ee!important;border-radius:16px!important;background:#fff!important;box-shadow:0 5px 18px rgba(15,45,75,.035)!important;}#pagina-vaga .bloco-detalhe{margin:0!important;padding:20px 0!important;border-bottom:1px solid #edf1f4!important;}#pagina-vaga .bloco-detalhe:first-child{padding-top:0!important}#pagina-vaga .bloco-detalhe:last-of-type{border-bottom:0!important}#pagina-vaga .bloco-detalhe h2{margin:0 0 10px!important;color:#062b59!important;font-size:20px!important;line-height:1.2!important;}#pagina-vaga .bloco-detalhe p{margin:0!important;color:#44586b!important;font-size:15px!important;line-height:1.7!important;white-space:pre-line!important;overflow-wrap:anywhere!important;}#pagina-vaga aside,#pagina-vaga .aplicar-lateral,#pagina-vaga .empresa-lateral{min-width:0!important;box-sizing:border-box!important;}#pagina-vaga .aplicar-lateral,#pagina-vaga .empresa-lateral{overflow:hidden!important;border-radius:14px!important;}@media(max-width:800px){#pagina-home #listaDestaques .card-destaque{height:auto!important;min-height:410px!important;max-height:none!important;}#pagina-vaga .detalhe-layout{width:min(100% - 24px,720px)!important;grid-template-columns:1fr!important;gap:16px!important;margin-top:16px!important;}#pagina-vaga .vaga-cabecalho{padding:18px!important}#pagina-vaga .vaga-cabecalho-top{align-items:flex-start!important;gap:14px!important;}#pagina-vaga #logoDetalhe{width:72px!important;height:72px!important;min-width:72px!important;flex-basis:72px!important;}#pagina-vaga #detalheCargoCab{font-size:23px!important;}#pagina-vaga #detalheEmpresaCab{font-size:12px!important;}#pagina-vaga .em-info-bar-v1{grid-template-columns:1fr 1fr!important;}#pagina-vaga .conteudo-vaga-box{padding:18px!important;}}</style><style id='em-preview-v223-referencia-v20g'>#modalPreviewEstavel .preview-ref-v20g{position:relative;display:flex;flex-direction:column;width:100%;max-width:360px;min-height:350px;margin:0 auto;padding:14px 13px 13px;box-sizing:border-box;overflow:hidden;border:1px solid #e3a10a;border-radius:16px;background:#fff;box-shadow:0 7px 18px rgba(20,45,70,.06);font-family:Poppins,sans-serif!important}#modalPreviewEstavel .preview-ref-v20g .dest-v20g{position:absolute;top:0;right:0;width:97px;height:53px;display:flex;align-items:center;justify-content:center;gap:5px;border-radius:0 15px 0 18px;background:linear-gradient(135deg,#f7b51c,#d98700);color:#fff;font-size:9px;font-weight:800}#modalPreviewEstavel .preview-ref-v20g .top-v20g{display:grid;grid-template-columns:68px minmax(0,1fr);gap:12px;align-items:center;min-height:80px;padding-right:91px;margin-bottom:9px}#modalPreviewEstavel .preview-ref-v20g .logo-v20g{width:68px;height:68px;display:flex;align-items:center;justify-content:center;overflow:hidden;box-sizing:border-box;border:1px solid #dce5ec;border-radius:11px;background:#fff;color:#0b6398;font-size:22px}#modalPreviewEstavel .preview-ref-v20g .logo-v20g img{width:100%;height:100%;object-fit:contain;padding:6px;box-sizing:border-box}#modalPreviewEstavel .preview-ref-v20g .empresa-v20g{margin:0 0 7px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:#536d88;font-size:10px;line-height:1.15;font-weight:650}#modalPreviewEstavel .preview-ref-v20g .cargo-v20g{display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:3;max-height:62px;overflow:hidden;color:#062b59;font-size:18px;line-height:1.08;font-weight:800;text-transform:uppercase}#modalPreviewEstavel .preview-ref-v20g .meta-v20g{display:grid;grid-template-columns:1fr 1fr;margin:0 0 8px;overflow:hidden;border:1px solid #dce4eb;border-radius:10px}#modalPreviewEstavel .preview-ref-v20g .meta-v20g div{min-height:34px;display:flex;align-items:center;gap:6px;padding:6px 9px;box-sizing:border-box;border-right:1px solid #dce4eb;border-bottom:1px solid #dce4eb;color:#536d88;font-size:9px;font-weight:700}#modalPreviewEstavel .preview-ref-v20g .meta-v20g div:nth-child(even){border-right:0}#modalPreviewEstavel .preview-ref-v20g .meta-v20g div:last-child{border-bottom:0}#modalPreviewEstavel .preview-ref-v20g .desc-v20g{display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:4;max-height:62px;margin:0 0 8px;overflow:hidden;color:#4f5963;font-size:11px;line-height:1.3}#modalPreviewEstavel .preview-ref-v20g .sal-v20g{display:flex;align-items:center;gap:9px;margin:auto 0 0;padding:8px 0 9px;border-bottom:1px solid #e6e6e6;color:#07833e;font-size:17px;font-weight:800}#modalPreviewEstavel .preview-ref-v20g .sal-v20g i{width:22px;height:22px;display:flex;align-items:center;justify-content:center;border:2px solid #0788cf;border-radius:50%;color:#0788cf;font-size:12px;font-style:normal}#modalPreviewEstavel .preview-ref-v20g .ver-v20g{height:40px;margin-top:8px;display:flex;align-items:center;justify-content:center;gap:20px;border-radius:9px;background:linear-gradient(90deg,#f8b31b,#da8100);color:#fff;font-size:12px;font-weight:800}#modalPreviewEstavel .aviso-revisao-v223{max-width:360px;margin:0 auto 10px;box-sizing:border-box}</style><script id='em-painel-recrutador-v3-acoes' type='text/javascript'>
+//]]></script><style id='em-destaques-v18-oculta-somente-original'>#pagina-home .em-destaques-original-off{display:none!important;visibility:hidden!important;opacity:0!important;height:0!important;min-height:0!important;max-height:0!important;margin:0!important;padding:0!important;border:0!important;overflow:hidden!important;}</style><style id='em-ajuste-apenas-espaco-destaques-v19'>#pagina-home #emCategoriasHomeV2{margin-bottom:0!important;}@media(max-width:700px){#pagina-home #emCategoriasHomeV2{margin-bottom:0!important;}}</style><style id='em-cards-ajuste-visual-seguro-v20a'>#pagina-home #listaDestaques .card-destaque &gt;.salario{flex:0 0 auto!important;margin-top:auto!important;padding:8px 0!important;font-family:Poppins,sans-serif!important;}</style><style id='em-cards-legiveis-v20b'>#pagina-home #listaDestaques .card-destaque &gt;.salario{flex:0 0 auto!important;margin:auto 0 0!important;padding:9px 0!important;font-size:16px!important;line-height:1.1!important;}#modalPreviewEstavel,#modalPreviewEstavel *,#conteudoPreviewEstavel,#conteudoPreviewEstavel *,.modal-preview-vaga,.modal-preview-vaga *{font-family:Poppins,sans-serif!important;}#modalPreviewEstavel .modal-conteudo,#modalPreviewEstavel #conteudoPreviewEstavel{overflow:visible!important;max-height:none!important;}#modalPreviewEstavel .vaga-card{height:auto!important;min-height:360px!important;max-height:none!important;overflow:visible!important;}</style><style id='em-destaques-interna-v20c'>#pagina-home #listaDestaques .card-destaque &gt;.salario{flex:0 0 37px!important;min-height:37px!important;margin:auto 0 0!important;padding:8px 0!important;box-sizing:border-box!important;font:700 16px/1.1 Poppins,sans-serif!important;}#pagina-vaga{background:#f6f8fb!important;font-family:Poppins,sans-serif!important;}#pagina-vaga .detalhe-layout{width:min(1180px,calc(100% - 40px))!important;margin:24px auto 50px!important;display:grid!important;grid-template-columns:minmax(0,1fr) 310px!important;gap:24px!important;align-items:start!important;}#pagina-vaga .vaga-cabecalho{position:relative!important;width:100%!important;padding:24px!important;box-sizing:border-box!important;overflow:visible!important;border:1px solid #dce5ed!important;border-radius:16px!important;background:#fff!important;box-shadow:0 7px 22px rgba(15,45,75,.05)!important;}#pagina-vaga .vaga-cabecalho-top{display:flex!important;align-items:center!important;gap:20px!important;min-width:0!important;}#pagina-vaga #logoDetalhe{width:88px!important;height:88px!important;min-width:88px!important;flex:0 0 88px!important;padding:7px!important;box-sizing:border-box!important;object-fit:contain!important;border:1px solid #dce5ed!important;border-radius:14px!important;background:#fff!important;}#pagina-vaga .em-vaga-ref-main-v1{min-width:0!important;flex:1!important;}#pagina-vaga #detalheEmpresaCab{display:flex!important;flex-wrap:wrap!important;align-items:center!important;gap:7px!important;margin:0 0 7px!important;color:#567089!important;font-size:14px!important;line-height:1.25!important;font-weight:650!important;}#pagina-vaga #detalheCargoCab{margin:0 0 9px!important;overflow-wrap:anywhere!important;color:#062b59!important;font-size:30px!important;line-height:1.12!important;font-weight:800!important;}#pagina-vaga .em-vaga-ref-subtitle-v1{margin:0 0 10px!important;color:#66798a!important;font-size:13px!important;line-height:1.45!important;}#pagina-vaga .em-info-bar-v1{display:grid!important;grid-template-columns:repeat(4,minmax(0,1fr))!important;width:100%!important;margin-top:20px!important;overflow:hidden!important;border:1px solid #dce5ed!important;border-radius:12px!important;background:#fff!important;}#pagina-vaga .em-info-cell-v1{min-width:0!important;min-height:72px!important;padding:13px!important;box-sizing:border-box!important;}#pagina-vaga .em-info-cell-v1 span{font-size:10px!important;}#pagina-vaga .em-info-cell-v1 strong{display:block!important;overflow-wrap:anywhere!important;font-size:14px!important;line-height:1.25!important;}#pagina-vaga .conteudo-vaga-box{margin-top:18px!important;padding:24px!important;border:1px solid #e0e7ee!important;border-radius:16px!important;background:#fff!important;box-shadow:0 5px 18px rgba(15,45,75,.035)!important;}#pagina-vaga .bloco-detalhe{margin:0!important;padding:20px 0!important;border-bottom:1px solid #edf1f4!important;}#pagina-vaga .bloco-detalhe:first-child{padding-top:0!important}#pagina-vaga .bloco-detalhe:last-of-type{border-bottom:0!important}#pagina-vaga .bloco-detalhe h2{margin:0 0 10px!important;color:#062b59!important;font-size:20px!important;line-height:1.2!important;}#pagina-vaga .bloco-detalhe p{margin:0!important;color:#44586b!important;font-size:15px!important;line-height:1.7!important;white-space:pre-line!important;overflow-wrap:anywhere!important;}#pagina-vaga aside,#pagina-vaga .aplicar-lateral,#pagina-vaga .empresa-lateral{min-width:0!important;box-sizing:border-box!important;}#pagina-vaga .aplicar-lateral,#pagina-vaga .empresa-lateral{overflow:hidden!important;border-radius:14px!important;}@media(max-width:800px){#pagina-vaga .detalhe-layout{width:min(100% - 24px,720px)!important;grid-template-columns:1fr!important;gap:16px!important;margin-top:16px!important;}#pagina-vaga .vaga-cabecalho{padding:18px!important}#pagina-vaga .vaga-cabecalho-top{align-items:flex-start!important;gap:14px!important;}#pagina-vaga #logoDetalhe{width:72px!important;height:72px!important;min-width:72px!important;flex-basis:72px!important;}#pagina-vaga #detalheCargoCab{font-size:23px!important;}#pagina-vaga #detalheEmpresaCab{font-size:12px!important;}#pagina-vaga .em-info-bar-v1{grid-template-columns:1fr 1fr!important;}#pagina-vaga .conteudo-vaga-box{padding:18px!important;}}</style><style id='em-preview-v223-referencia-v20g'>#modalPreviewEstavel .preview-ref-v20g{position:relative;display:flex;flex-direction:column;width:100%;max-width:360px;min-height:350px;margin:0 auto;padding:14px 13px 13px;box-sizing:border-box;overflow:hidden;border:1px solid #e3a10a;border-radius:16px;background:#fff;box-shadow:0 7px 18px rgba(20,45,70,.06);font-family:Poppins,sans-serif!important}#modalPreviewEstavel .preview-ref-v20g .dest-v20g{position:absolute;top:0;right:0;width:97px;height:53px;display:flex;align-items:center;justify-content:center;gap:5px;border-radius:0 15px 0 18px;background:linear-gradient(135deg,#f7b51c,#d98700);color:#fff;font-size:9px;font-weight:800}#modalPreviewEstavel .preview-ref-v20g .top-v20g{display:grid;grid-template-columns:68px minmax(0,1fr);gap:12px;align-items:center;min-height:80px;padding-right:91px;margin-bottom:9px}#modalPreviewEstavel .preview-ref-v20g .logo-v20g{width:68px;height:68px;display:flex;align-items:center;justify-content:center;overflow:hidden;box-sizing:border-box;border:1px solid #dce5ec;border-radius:11px;background:#fff;color:#0b6398;font-size:22px}#modalPreviewEstavel .preview-ref-v20g .logo-v20g img{width:100%;height:100%;object-fit:contain;padding:6px;box-sizing:border-box}#modalPreviewEstavel .preview-ref-v20g .empresa-v20g{margin:0 0 7px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:#536d88;font-size:10px;line-height:1.15;font-weight:650}#modalPreviewEstavel .preview-ref-v20g .cargo-v20g{display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:3;max-height:62px;overflow:hidden;color:#062b59;font-size:18px;line-height:1.08;font-weight:800;text-transform:uppercase}#modalPreviewEstavel .preview-ref-v20g .meta-v20g{display:grid;grid-template-columns:1fr 1fr;margin:0 0 8px;overflow:hidden;border:1px solid #dce4eb;border-radius:10px}#modalPreviewEstavel .preview-ref-v20g .meta-v20g div{min-height:34px;display:flex;align-items:center;gap:6px;padding:6px 9px;box-sizing:border-box;border-right:1px solid #dce4eb;border-bottom:1px solid #dce4eb;color:#536d88;font-size:9px;font-weight:700}#modalPreviewEstavel .preview-ref-v20g .meta-v20g div:nth-child(even){border-right:0}#modalPreviewEstavel .preview-ref-v20g .meta-v20g div:last-child{border-bottom:0}#modalPreviewEstavel .preview-ref-v20g .desc-v20g{display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:4;max-height:62px;margin:0 0 8px;overflow:hidden;color:#4f5963;font-size:11px;line-height:1.3}#modalPreviewEstavel .preview-ref-v20g .sal-v20g{display:flex;align-items:center;gap:9px;margin:auto 0 0;padding:8px 0 9px;border-bottom:1px solid #e6e6e6;color:#07833e;font-size:17px;font-weight:800}#modalPreviewEstavel .preview-ref-v20g .sal-v20g i{width:22px;height:22px;display:flex;align-items:center;justify-content:center;border:2px solid #0788cf;border-radius:50%;color:#0788cf;font-size:12px;font-style:normal}#modalPreviewEstavel .preview-ref-v20g .ver-v20g{height:40px;margin-top:8px;display:flex;align-items:center;justify-content:center;gap:20px;border-radius:9px;background:linear-gradient(90deg,#f8b31b,#da8100);color:#fff;font-size:12px;font-weight:800}#modalPreviewEstavel .aviso-revisao-v223{max-width:360px;margin:0 auto 10px;box-sizing:border-box}</style><script id='em-painel-recrutador-v3-acoes' type='text/javascript'>
 //<![CDATA[
 (function(){
 if(window.__EM_PR_V3_ACOES)return;window.__EM_PR_V3_ACOES=true;
@@ -40214,7 +37849,7 @@ header .v99-removido{display:none!important}
 #pagina-home #filtrosLateral input:checked+label,#pagina-home #filtrosLateral .ativo{background:#e8f5fd!important;color:#086da9!important}
 @media(max-width:700px){#pagina-home #listaVagas .vaga-card .vaga-meta>span,#pagina-home #listaVagas .vaga-card .vaga-tags>span,#pagina-home #listaVagas .vaga-card .tag{white-space:normal!important;text-align:center!important}}
 </style>
-<style id="em-destaques-layout-v32">#pagina-home #listaDestaques{align-items:stretch!important}#pagina-home #listaDestaques>*{height:500px!important;min-height:500px!important;max-height:500px!important;display:flex!important;flex-direction:column!important;box-sizing:border-box!important;overflow:hidden!important}#pagina-home #listaDestaques .destaque-zero-m6 .dz-cab{position:relative!important;height:145px!important;min-height:145px!important;max-height:145px!important;flex:0 0 145px!important;padding:48px 14px 13px!important;display:grid!important;grid-template-columns:96px minmax(0,1fr)!important;column-gap:18px!important;align-items:center!important;box-sizing:border-box!important}#pagina-home #listaDestaques .destaque-zero-m6 .dz-logo{position:relative!important;width:96px!important;height:88px!important;margin:0!important;overflow:visible!important;box-sizing:border-box!important}#pagina-home #listaDestaques .destaque-zero-m6 .dz-cab-texto{width:100%!important;min-width:0!important;max-width:100%!important;padding:0!important;overflow:hidden!important;box-sizing:border-box!important}#pagina-home #listaDestaques .destaque-zero-m6 .dz-titulo{position:static!important;width:100%!important;max-width:100%!important;margin:0!important;padding:0!important;font-size:18px!important;line-height:1.05!important;white-space:normal!important;word-break:normal!important;overflow-wrap:break-word!important;overflow:hidden!important;box-sizing:border-box!important}#pagina-home #listaDestaques .destaque-zero-m6 .dz-empresa{max-width:100%!important;white-space:nowrap!important;overflow:hidden!important;text-overflow:ellipsis!important}@media(max-width:700px){#pagina-home #listaDestaques .destaque-zero-m6 .dz-cab{grid-template-columns:84px minmax(0,1fr)!important;column-gap:13px!important;padding:46px 12px 12px!important}#pagina-home #listaDestaques .destaque-zero-m6 .dz-logo{width:84px!important;height:80px!important}#pagina-home #listaDestaques .destaque-zero-m6 .dz-titulo{font-size:17px!important}}</style><link rel="stylesheet" href="emporio-profissional.css?v=20261020-poppins-global"><style id="em-feedback-envio-vaga">#btnSalvarVaga.em-enviando-vaga{cursor:wait!important;opacity:.88!important;display:inline-flex!important;align-items:center!important;justify-content:center!important;gap:9px!important}.em-spinner-vaga{width:17px;height:17px;border:2px solid rgba(255,255,255,.45);border-top-color:#fff;border-radius:50%;display:inline-block;animation:emSpinVaga .7s linear infinite}@keyframes emSpinVaga{to{transform:rotate(360deg)}}</style><style id="em-auth-header-visibility-fix">
+<style id="em-destaques-layout-v32"></style><link rel="stylesheet" href="emporio-profissional.css?v=20261020-featured-clean"><style id="em-feedback-envio-vaga">#btnSalvarVaga.em-enviando-vaga{cursor:wait!important;opacity:.88!important;display:inline-flex!important;align-items:center!important;justify-content:center!important;gap:9px!important}.em-spinner-vaga{width:17px;height:17px;border:2px solid rgba(255,255,255,.45);border-top-color:#fff;border-radius:50%;display:inline-block;animation:emSpinVaga .7s linear infinite}@keyframes emSpinVaga{to{transform:rotate(360deg)}}</style><style id="em-auth-header-visibility-fix">
 html body.em-empresa-logada>header.topo #acoesPublicas,
 html body.em-candidato-logado>header.topo #acoesPublicas,
 html body.em-admin-logado>header.topo #acoesPublicas{display:none!important}
@@ -40951,10 +38586,6 @@ if(typeof irPara==="function"){var original=irPara;window.irPara=function(){var 
 document.addEventListener("click",function(ev){if(ev.target.closest("button,a"))setTimeout(refresh,300);});
 })();
 </script><style id="em-logos-destaques-v1">
-
-html body #pagina-home #listaDestaques#listaDestaques .dz-logo{display:flex!important;visibility:visible!important;opacity:1!important}
-html body #pagina-home #listaDestaques#listaDestaques .em-logo-destaque-previa{display:flex!important;align-items:center!important;justify-content:center!important;width:100%!important;height:100%!important;background:#fff!important;color:#173f70!important;border-radius:8px!important;overflow:hidden!important;font-size:26px!important;font-weight:700!important}
-html body #pagina-home :is(#listaVagas#listaVagas,#listaDestaques#listaDestaques) .em-logo-destaque-previa>img{display:block!important;visibility:visible!important;opacity:1!important;width:100%!important;height:100%!important;max-width:100%!important;max-height:100%!important;object-fit:contain!important;padding:4px!important;box-sizing:border-box!important;border:0!important;border-radius:0!important;margin:0!important}
 </style><style id="em-company-menu-compact-light">html body header #menuContaEmpresa#menuContaEmpresa{width:286px!important;padding:6px!important;border:1px solid #dce7f2!important;border-radius:12px!important;box-shadow:0 8px 24px rgba(24,55,88,.12)!important;max-height:calc(100vh - 90px)!important;overflow-y:auto!important}
 html body header #menuContaEmpresa#menuContaEmpresa .menu-empresa-identidade-v140{background:#edf5ff!important;color:#234d78!important;min-height:0!important;padding:14px 12px!important;margin:0 0 4px!important;border-radius:8px!important;gap:10px!important}
 html body header #menuContaEmpresa#menuContaEmpresa .menu-empresa-avatar-v140{width:34px!important;height:34px!important;min-width:34px!important;background:#dceaff!important;color:#2465ac!important;border:1px solid #c4daf4!important;font-size:13px!important;box-shadow:none!important}
@@ -41535,7 +39166,7 @@ document.addEventListener("DOMContentLoaded",update);window.addEventListener("lo
 <script src="empresa-perfil-profissional.js?v=20261020-poppins-global"></script>
 
 <link rel='stylesheet' href='candidatura-detalhes.css?v=20261020-poppins-global'/><link rel='stylesheet' href='empresa-publica-layout.css?v=20261020-poppins-global'/><script src='empresa-publica-layout.js?v=20261020-poppins-global'></script><script src="recruiter-sync-and-reports.js?v=20261020-poppins-global"></script><script src="recruiter-preselection.js?v=20261019-preselection-1" defer></script><link rel="stylesheet" href="vagas-recomendadas.css?v=20261020-poppins-global"><script src="candidato-candidaturas.js?v=20261020-poppins-global"></script><script src="candidato-candidaturas-sync.js?v=20261016-palette-complete"></script>
-<script src="vagas-recomendadas.js?v=20261020-poppins-global"></script><link rel="stylesheet" href="vaga-cabecalho.css?v=20261020-poppins-global"><script src="vaga-cabecalho.js?v=20261020-model3-structure-2"></script><script src="emporio-griff-publica.js?v=30c0bdd43fd9"></script><link rel="stylesheet" href="vaga-portal.css?v=20261020-poppins-global"><script src="vaga-portal.js?v=666def68e997"></script><script src="vaga-descricao.js?v=61bd3874412c"></script><link rel="stylesheet" href="entrevistas.css?v=20261020-poppins-global"><script src="entrevistas.js?v=20261020-poppins-global"></script><style id="em-hero-floripa-layout-css">
+<script src="vagas-recomendadas.js?v=20261020-poppins-global"></script><link rel="stylesheet" href="vaga-cabecalho.css?v=20261020-poppins-global"><script src="vaga-cabecalho.js?v=20261020-featured-clean"></script><script src="emporio-griff-publica.js?v=30c0bdd43fd9"></script><link rel="stylesheet" href="vaga-portal.css?v=20261020-poppins-global"><script src="vaga-portal.js?v=666def68e997"></script><script src="vaga-descricao.js?v=61bd3874412c"></script><link rel="stylesheet" href="entrevistas.css?v=20261020-poppins-global"><script src="entrevistas.js?v=20261020-poppins-global"></script><style id="em-hero-floripa-layout-css">
 html body #pagina-home #emHeroFloripa.hero.hero-premium-em{padding:58px 24px!important;background:linear-gradient(115deg,#064881 0%,#0b61b3 62%,#1976d2 100%)!important;color:#fff!important;min-height:0!important;overflow:hidden!important;position:relative!important}
 html body #pagina-home #emHeroFloripa:before,html body #pagina-home #emHeroFloripa:after{display:none!important}
 html body #pagina-home #emHeroFloripa .hero-premium-inner-em{display:grid!important;grid-template-columns:minmax(0,.86fr) minmax(0,1fr)!important;align-items:center!important;gap:64px!important;max-width:1180px!important;width:100%!important;margin:0 auto!important;padding:0!important;text-align:left!important}
@@ -41600,8 +39231,8 @@ root.querySelector('.je-similar').onclick=function(){var v=data().v;if(typeof li
 function start(){init();var page=document.getElementById('pagina-vaga');if(page)new MutationObserver(function(){if(!document.getElementById('emJobEnd'))init();}).observe(page,{childList:true,subtree:true});}
 if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',start,{once:true});else start();
 })();</script><style id="em-remove-security-panel-v1">html body #pagina-vaga#pagina-vaga#pagina-vaga .seguranca-transparencia-vaga-em{display:none!important}</style><style id="em-swap-fit-security-v1-css">#emJobEnd .je-fit-slot{margin-top:18px;width:100%;min-width:0}</style><script id="em-swap-fit-security-v1-js">(function(){function trocar(){var root=document.getElementById('emJobEnd'),fit=document.getElementById('aderenciaVagaEM');if(!root||!fit||root.contains(fit))return;var tools=root.querySelector('.je-tools');if(!tools)return;var slot=document.createElement('div');slot.className='je-fit-slot';root.insertBefore(slot,tools);slot.appendChild(fit);}function iniciar(){trocar();var page=document.getElementById('pagina-vaga');if(page)new MutationObserver(trocar).observe(page,{childList:true,subtree:true});}if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',iniciar,{once:true});else iniciar();})();</script><style id="em-company-publishing-guide-v1">#cf120Empresa .cf106-journey{grid-template-columns:repeat(4,minmax(0,1fr))!important}#cf120Empresa .cf-company-options{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}#cf120Empresa .cf-company-options small{color:#1766bf;font-size:11px;font-weight:700;letter-spacing:.06em}#cf120Empresa .cf-company-options .cf106-btn{margin-top:16px}#cf120Empresa .cf120-feature-grid{grid-template-columns:repeat(3,minmax(0,1fr))!important}@media(max-width:980px){#cf120Empresa .cf106-journey{grid-template-columns:repeat(2,minmax(0,1fr))!important}}@media(max-width:650px){#cf120Empresa .cf106-journey,#cf120Empresa .cf-company-options,#cf120Empresa .cf120-feature-grid{grid-template-columns:minmax(0,1fr)!important}}</style>
-<link rel="stylesheet" href="vagas-demo.css?v=20261020-poppins-global">
-<script src="vagas-demo.js?v=20261020-model3-structure-2"></script>
+<link rel="stylesheet" href="vagas-demo.css?v=20261020-featured-clean">
+<script src="vagas-demo.js?v=20261020-featured-clean"></script>
 <script src="vagas-atualizacao.js?v=egress-20261012"></script>
 <script src="aderencia-recrutador.js?v=20261020-poppins-global"></script>
 <script src="candidatos-cards-compactos.js?v=20261020-poppins-global"></script>
@@ -41638,8 +39269,6 @@ html body #pagina-home #emCandidateSignupBanner .em-signup-copy{padding:16px 0!i
 html body #pagina-home #emCandidateSignupBanner .em-signup-copy h2{color:#fff!important;font:700 19px/1.3 Poppins,sans-serif!important;margin:0 0 5px!important;letter-spacing:0!important}
 html body #pagina-home #emCandidateSignupBanner .em-signup-copy p{color:#e3edf6!important;font:400 14px/1.4 Poppins,sans-serif!important;margin:0!important}
 html body #pagina-home #emCandidateSignupBanner .em-signup-button{background:#ff861d!important;color:#fff!important;padding:14px 18px!important;font:700 12px/1.3 Poppins,sans-serif!important}
-html body #pagina-home>section.container:has(#listaDestaques){padding-bottom:0!important;margin-bottom:0!important}
-html body #pagina-home .destaques-carrossel-em:has(#listaDestaques){margin-bottom:0!important;padding-bottom:0!important}
 html body #pagina-home #emCandidateSignupBanner+section.home-vagas-caixa{margin-top:12px!important}
 @media(max-width:600px){html body #pagina-home #emCandidateSignupBanner{margin:10px auto!important;gap:0 12px!important;grid-template-columns:48px minmax(0,1fr)!important}html body #pagina-home #emCandidateSignupBanner .em-signup-icon{margin:12px 0!important}html body #pagina-home #emCandidateSignupBanner .em-signup-copy{padding:12px 12px 8px 0!important}html body #pagina-home #emCandidateSignupBanner .em-signup-copy h2{font-size:13px!important}html body #pagina-home #emCandidateSignupBanner .em-signup-copy p{font-size:12px!important}html body #pagina-home #emCandidateSignupBanner .em-signup-button{padding:10px 12px!important;font-size:11px!important}}
 </style><style id="em-signup-search-blue-white">html body #pagina-home#pagina-home #emCandidateSignupBanner#emCandidateSignupBanner{background:#1268e8!important}html body #pagina-home#pagina-home #emCandidateSignupBanner#emCandidateSignupBanner .em-signup-copy :is(h2,p){color:#fff!important;opacity:1!important}html body #pagina-home#pagina-home #emCandidateSignupBanner#emCandidateSignupBanner .em-signup-icon{color:#fff!important}</style><style id="em-signup-clean-model-2">
@@ -41668,51 +39297,18 @@ html body #pagina-home#pagina-home #emCandidateSignupBanner#emCandidateSignupBan
 @media(max-width:900px){html body #pagina-home#pagina-home #emCandidateSignupBanner#emCandidateSignupBanner{gap:14px!important;padding:10px 16px!important}html body #pagina-home#pagina-home #emCandidateSignupBanner#emCandidateSignupBanner .em-signup-copy h2{font-size:17px!important}html body #pagina-home#pagina-home #emCandidateSignupBanner#emCandidateSignupBanner .em-signup-copy p{font-size:13px!important}}
 @media(max-width:600px){html body #pagina-home#pagina-home #emCandidateSignupBanner#emCandidateSignupBanner{grid-template-columns:30px minmax(0,1fr)!important;gap:0 10px!important;padding:12px!important}html body #pagina-home#pagina-home #emCandidateSignupBanner#emCandidateSignupBanner .em-signup-icon{grid-row:1/3!important;align-self:start!important}html body #pagina-home#pagina-home #emCandidateSignupBanner#emCandidateSignupBanner .em-signup-icon svg{width:28px!important;height:35px!important}html body #pagina-home#pagina-home #emCandidateSignupBanner#emCandidateSignupBanner .em-signup-copy{padding:0 0 9px!important}html body #pagina-home#pagina-home #emCandidateSignupBanner#emCandidateSignupBanner .em-signup-copy h2{font-size:15px!important}html body #pagina-home#pagina-home #emCandidateSignupBanner#emCandidateSignupBanner .em-signup-copy p{font-size:12px!important}html body #pagina-home#pagina-home #emCandidateSignupBanner#emCandidateSignupBanner .em-signup-button{padding:10px 12px!important;font-size:11px!important}}
 </style><style id="em-job-titles-dark-reference">
-
-html body #pagina-home#pagina-home #listaDestaques#listaDestaques#listaDestaques#listaDestaques#listaDestaques article.em-featured-reference.em-featured-reference .dz-titulo,
-html body .pagina :is(.vaga-titulo,.em-lista-titulo,.dz-titulo,.em-rec-title,.jh-title),
 html body #emJobHeaderReference#emJobHeaderReference .jh-title,
 html body #emRecommendedCarousel#emRecommendedCarousel .em-rec-title,
-html body #pagina-home #listaDestaques .card-destaque h3,
 html body #pagina-home #listaVagas .vaga-card h3{color:#102f52!important}
-html body .pagina :is(.vaga-titulo,.em-lista-titulo,.dz-titulo,.em-rec-title,.jh-title) a{color:inherit!important}
-</style><style id="em-featured-apply-search-blue">html body #pagina-home#pagina-home #listaDestaques#listaDestaques#listaDestaques#listaDestaques#listaDestaques :is(.dz-botao,.btn-candidatar,.candidatar,button[class*="candidatar"],a[class*="candidatar"]){background:#1268e8!important;background-image:none!important;border-color:#1268e8!important;color:#fff!important}html body #pagina-home#pagina-home #listaDestaques#listaDestaques#listaDestaques#listaDestaques#listaDestaques :is(.dz-botao,.btn-candidatar,.candidatar,button[class*="candidatar"],a[class*="candidatar"]):hover{background:#0d56c5!important;border-color:#0d56c5!important;color:#fff!important}</style><style id="em-home-fluid-aligned-widths">
-html body #pagina-home#pagina-home{--em-home-gutter:32px}
-html body #pagina-home#pagina-home>section.container:has(#listaDestaques),html body #pagina-home#pagina-home>#emCandidateSignupBanner#emCandidateSignupBanner,html body #pagina-home#pagina-home>section.home-vagas-caixa#vagas{box-sizing:border-box!important;width:calc(100% - var(--em-home-gutter) * 2)!important;max-width:none!important;min-width:0!important;margin-left:auto!important;margin-right:auto!important}
-html body #pagina-home#pagina-home>section.container:has(#listaDestaques){padding-left:0!important;padding-right:0!important}
+</style><style id="em-featured-apply-search-blue"></style><style id="em-home-fluid-aligned-widths">
+html body #pagina-home#pagina-home{--em-home-gutter:32px}html body #pagina-home#pagina-home>#emCandidateSignupBanner#emCandidateSignupBanner,html body #pagina-home#pagina-home>section.home-vagas-caixa#vagas{box-sizing:border-box!important;width:calc(100% - var(--em-home-gutter) * 2)!important;max-width:none!important;min-width:0!important;margin-left:auto!important;margin-right:auto!important}
 html body #pagina-home#pagina-home #emHeroFloripa#emHeroFloripa.hero.hero-premium-em{padding-left:var(--em-home-gutter)!important;padding-right:var(--em-home-gutter)!important}
 html body #pagina-home#pagina-home #emHeroFloripa#emHeroFloripa .hero-premium-inner-em{box-sizing:border-box!important;width:100%!important;max-width:none!important;min-width:0!important;margin-left:auto!important;margin-right:auto!important}
-html body #pagina-home#pagina-home>section.container:has(#listaDestaques) .destaques-carrossel-em{box-sizing:border-box!important;width:100%!important;max-width:none!important;min-width:0!important;margin-left:0!important;margin-right:0!important}
-html body #pagina-home#pagina-home #listaDestaques#listaDestaques#listaDestaques#listaDestaques#listaDestaques{box-sizing:border-box!important;width:100%!important;max-width:none!important;min-width:0!important}
 @media(max-width:760px){html body #pagina-home#pagina-home{--em-home-gutter:16px}}
-</style><style id="em-featured-four-per-row">@media(min-width:1100px){html body #pagina-home#pagina-home #listaDestaques#listaDestaques#listaDestaques#listaDestaques#listaDestaques{display:grid!important;grid-template-columns:none!important;grid-auto-flow:column!important;grid-auto-columns:calc((100% - 48px)/4)!important;gap:16px!important}}@media(min-width:761px) and (max-width:1099px){html body #pagina-home#pagina-home #listaDestaques#listaDestaques#listaDestaques#listaDestaques#listaDestaques{grid-auto-columns:calc((100% - 32px)/3)!important;gap:16px!important}}</style><style id="em-featured-light-metadata-option-1">
-html body #pagina-home#pagina-home #listaDestaques#listaDestaques#listaDestaques#listaDestaques#listaDestaques article.em-featured-reference.em-featured-reference{height:310px!important;min-height:310px!important;max-height:310px!important;grid-template-rows:84px 64px 36px 30px 42px!important}
-html body #pagina-home#pagina-home #listaDestaques#listaDestaques#listaDestaques#listaDestaques#listaDestaques article.em-featured-reference.em-featured-reference .dz-infos{grid-template-columns:repeat(2,minmax(0,1fr))!important;grid-template-rows:repeat(2,29px)!important;gap:6px 10px!important;height:64px!important;min-height:64px!important;max-height:64px!important;text-align:left!important}
-html body #pagina-home#pagina-home #listaDestaques#listaDestaques#listaDestaques#listaDestaques#listaDestaques article.em-featured-reference.em-featured-reference .dz-infos :is(.dz-info,.dz-salario){background:transparent!important;border:0!important;box-shadow:none!important;border-radius:0!important;display:flex!important;justify-content:flex-start!important;align-items:center!important;gap:6px!important;padding:0!important;margin:0!important;height:29px!important;min-height:29px!important;max-height:29px!important;text-align:left!important;color:#596273!important;font:400 11px/1.3 Poppins,sans-serif!important;text-transform:none!important}
-html body #pagina-home#pagina-home #listaDestaques#listaDestaques#listaDestaques#listaDestaques#listaDestaques article.em-featured-reference.em-featured-reference .dz-infos .dz-info>span{font:400 11px/1.3 Poppins,sans-serif!important;text-transform:none!important;text-align:left!important;color:#596273!important}
-html body #pagina-home#pagina-home #listaDestaques#listaDestaques#listaDestaques#listaDestaques#listaDestaques article.em-featured-reference.em-featured-reference .dz-infos .dz-salario strong{font:600 12px/1.3 Poppins,sans-serif!important;text-align:left!important;color:#374151!important}
-html body #pagina-home#pagina-home #listaDestaques#listaDestaques#listaDestaques#listaDestaques#listaDestaques article.em-featured-reference.em-featured-reference .dz-infos .dz-salario>div{text-align:left!important}
-html body #pagina-home#pagina-home #listaDestaques#listaDestaques#listaDestaques#listaDestaques#listaDestaques article.em-featured-reference.em-featured-reference .dz-infos svg{width:14px!important;height:14px!important;flex:0 0 14px!important;color:#768292!important;stroke-width:1.5!important}
+</style><style id="em-featured-four-per-row"></style><style id="em-featured-light-metadata-option-1">
 </style><style id="em-featured-centered-uniform-salary">
-html body #pagina-home#pagina-home #listaDestaques#listaDestaques#listaDestaques#listaDestaques#listaDestaques article.em-featured-reference.em-featured-reference .dz-infos{justify-items:stretch!important;text-align:center!important}
-html body #pagina-home#pagina-home #listaDestaques#listaDestaques#listaDestaques#listaDestaques#listaDestaques article.em-featured-reference.em-featured-reference .dz-infos :is(.dz-info,.dz-salario){justify-content:center!important;text-align:center!important;font:400 11px/1.3 Poppins,sans-serif!important;color:#596273!important}
-html body #pagina-home#pagina-home #listaDestaques#listaDestaques#listaDestaques#listaDestaques#listaDestaques article.em-featured-reference.em-featured-reference .dz-infos .dz-info>span,html body #pagina-home#pagina-home #listaDestaques#listaDestaques#listaDestaques#listaDestaques#listaDestaques article.em-featured-reference.em-featured-reference .dz-infos .dz-salario strong{font:400 11px/1.3 Poppins,sans-serif!important;text-align:center!important;color:#596273!important}
-html body #pagina-home#pagina-home #listaDestaques#listaDestaques#listaDestaques#listaDestaques#listaDestaques article.em-featured-reference.em-featured-reference .dz-infos .dz-salario>div{text-align:center!important}
-html body #pagina-home#pagina-home #listaDestaques#listaDestaques#listaDestaques#listaDestaques#listaDestaques article.em-featured-reference.em-featured-reference .dz-infos .dz-salario::before{content:""!important;display:block!important;width:14px!important;height:14px!important;flex:0 0 14px!important;background:transparent!important;border:0!important;border-radius:0!important;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23768292' stroke-width='1.5'%3E%3Cellipse cx='10' cy='6' rx='7' ry='3'/%3E%3Cpath d='M3 6v5c0 4 14 4 14 0V6M3 11v5c0 3 9 4 13 2M17 10c6 0 6 6 0 6m5-3v5c0 3-8 4-8 1'/%3E%3C/svg%3E")!important;background-size:contain!important;background-repeat:no-repeat!important}
-html body #pagina-home#pagina-home #listaDestaques#listaDestaques#listaDestaques#listaDestaques#listaDestaques article.em-featured-reference.em-featured-reference .dz-infos .dz-salario:has(svg)::before{display:none!important}
 </style><style id="em-featured-subtle-blocks-description-font">
-html body #pagina-home#pagina-home #listaDestaques#listaDestaques#listaDestaques#listaDestaques#listaDestaques article.em-featured-reference.em-featured-reference{height:330px!important;min-height:330px!important;max-height:330px!important;grid-template-rows:84px 84px 36px 30px 42px!important}
-html body #pagina-home#pagina-home #listaDestaques#listaDestaques#listaDestaques#listaDestaques#listaDestaques article.em-featured-reference.em-featured-reference .dz-infos{grid-template-columns:repeat(2,minmax(0,1fr))!important;grid-template-rows:repeat(2,39px)!important;gap:6px!important;height:84px!important;min-height:84px!important;max-height:84px!important}
-html body #pagina-home#pagina-home #listaDestaques#listaDestaques#listaDestaques#listaDestaques#listaDestaques article.em-featured-reference.em-featured-reference .dz-infos :is(.dz-info,.dz-salario){box-sizing:border-box!important;background:#fafbfc!important;border:1px solid #edf0f4!important;border-radius:5px!important;display:flex!important;align-items:center!important;justify-content:center!important;gap:5px!important;height:39px!important;min-height:39px!important;max-height:39px!important;padding:4px 5px!important;font:400 12px/1.4 Poppins,sans-serif!important;color:#374151!important;text-align:center!important}
-html body #pagina-home#pagina-home #listaDestaques#listaDestaques#listaDestaques#listaDestaques#listaDestaques article.em-featured-reference.em-featured-reference .dz-infos .dz-info>span,html body #pagina-home#pagina-home #listaDestaques#listaDestaques#listaDestaques#listaDestaques#listaDestaques article.em-featured-reference.em-featured-reference .dz-infos .dz-salario strong,html body #pagina-home#pagina-home #listaDestaques#listaDestaques#listaDestaques#listaDestaques#listaDestaques article.em-featured-reference.em-featured-reference .dz-infos .dz-salario>div{font:400 12px/1.4 Poppins,sans-serif!important;color:#374151!important;text-align:center!important;text-transform:none!important;max-height:34px!important}
-html body #pagina-home#pagina-home #listaDestaques#listaDestaques#listaDestaques#listaDestaques#listaDestaques article.em-featured-reference.em-featured-reference .dz-resumo{font:400 12px/18px Poppins,sans-serif!important;color:#374151!important;text-align:center!important}
-html body #pagina-home#pagina-home #listaDestaques#listaDestaques#listaDestaques#listaDestaques#listaDestaques article.em-featured-reference.em-featured-reference .dz-infos svg{width:13px!important;height:13px!important;flex:0 0 13px!important;color:#7c8998!important}
 </style><style id="em-featured-city-contract-salary">
-html body #pagina-home#pagina-home #listaDestaques#listaDestaques#listaDestaques#listaDestaques#listaDestaques article.em-featured-reference.em-featured-reference .dz-infos .dz-info:nth-child(1){grid-column:1 / -1!important;grid-row:1!important}
-html body #pagina-home#pagina-home #listaDestaques#listaDestaques#listaDestaques#listaDestaques#listaDestaques article.em-featured-reference.em-featured-reference .dz-infos .dz-info:nth-child(2){display:none!important}
-html body #pagina-home#pagina-home #listaDestaques#listaDestaques#listaDestaques#listaDestaques#listaDestaques article.em-featured-reference.em-featured-reference .dz-infos .dz-info:nth-child(3){grid-column:1!important;grid-row:2!important}
-html body #pagina-home#pagina-home #listaDestaques#listaDestaques#listaDestaques#listaDestaques#listaDestaques article.em-featured-reference.em-featured-reference .dz-infos .dz-salario{grid-column:2!important;grid-row:2!important}
-html body #pagina-home#pagina-home #listaDestaques#listaDestaques#listaDestaques#listaDestaques#listaDestaques article.em-featured-reference.em-featured-reference .dz-infos .dz-info:nth-child(1)>span{display:block!important;white-space:normal!important;max-height:none!important;overflow:visible!important}
 </style><style id="em-candidate-softer-numbers">html body #pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato#pagina-painel-candidato.cp-enhanced :is(.cp-home-summary strong,.cp-home-summary b,.cp-interview-time,.cp-interview-date strong){color:#4b5563!important}</style><style id="em-hero-option2">
 html body #pagina-home #emHeroFloripa#emHeroFloripa#emHeroFloripa.hero.hero-premium-em{background:#0080c9!important;background-image:none!important;padding:38px 32px!important;margin:0!important;min-height:0!important;height:auto!important;color:#fff!important;overflow:visible!important}
 html body #pagina-home #emHeroFloripa#emHeroFloripa#emHeroFloripa::before,html body #pagina-home #emHeroFloripa#emHeroFloripa#emHeroFloripa::after,html body #pagina-home #emHeroFloripa#emHeroFloripa#emHeroFloripa .hero-copy-em h1::after{display:none!important;content:none!important}

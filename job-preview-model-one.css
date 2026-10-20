@@ -256,7 +256,6 @@ html body #pagina-vaga#pagina-vaga#pagina-vaga #emJobHeaderReference#emJobHeader
 }
 
 @layer candidate-palette {
-html body #pagina-home #listaDestaques#listaDestaques#listaDestaques#listaDestaques#listaDestaques article.em-featured-reference.em-featured-reference,
 html body #pagina-home #listaVagas .em-r4-similar-card{border:1px solid #c7cbd1!important}
 html body #pagina-home #emJobBrowser[data-layout="model-one"] .em-jb-badge:not(.em-jb-urgent)::before{content:""!important;display:inline-block!important;width:13px!important;height:13px!important;margin-right:5px!important;background:#c28f36!important;clip-path:polygon(50% 0,61% 35%,98% 35%,68% 57%,79% 93%,50% 71%,21% 93%,32% 57%,2% 35%,39% 35%)!important}
 html body #pagina-home #emJobBrowser[data-layout="model-one"] .em-jb-badge.em-jb-urgent{color:#ad3a42!important;border-color:#e7b9bb!important}

@@ -23,29 +23,6 @@
     #pagina-home #emHeroRefBusca :is(input, select) { font-size: 16px !important; }
     /* The track scrolls, not the document. Each slide fits completely. */
     #pagina-home .destaques-carrossel-em { min-width: 0 !important; padding: 0 !important; }
-    #pagina-home #listaDestaques {
-      display: flex !important; width: 100% !important; max-width: 100% !important;
-      gap: 12px !important; padding: 6px 0 12px !important;
-      overflow-x: auto !important; scroll-snap-type: x mandatory !important;
-      scroll-padding-inline: 0 !important; overscroll-behavior-x: contain;
-    }
-    #pagina-home #listaDestaques > article {
-      flex: 0 0 100% !important; width: 100% !important;
-      min-width: 0 !important; max-width: 100% !important;
-      scroll-snap-align: start !important; scroll-snap-stop: always;
-    }
-    #pagina-home #listaDestaques article.em-featured-reference {
-      display: grid !important; height: auto !important; min-height: 0 !important; max-height: none !important;
-      aspect-ratio: auto !important; align-content: start !important;
-      grid-template-columns: 52px minmax(0, 1fr) !important;
-      grid-template-areas: "logo title" "logo company" "info info" "summary summary" "details details" "button button" !important;
-      grid-template-rows: auto auto auto auto auto auto !important;
-      gap: 8px 10px !important; padding: 14px !important;
-    }
-    #pagina-home #listaDestaques .em-featured-reference .dz-logo { width: 52px !important; min-width: 52px !important; max-width: 52px !important; height: 52px !important; }
-    #pagina-home #listaDestaques .em-featured-reference .dz-titulo { font-size: 15px !important; line-height: 1.35 !important; overflow-wrap: anywhere !important; }
-    #pagina-home #listaDestaques .em-featured-reference .em-featured-badges { display: none !important; }
-    #pagina-home #listaDestaques .em-featured-reference .dz-botao { min-height: 44px !important; height: 44px !important; }
     #pagina-home .destaques-seta-em { display: none !important; }
     #pagina-home #vagas .vagas-area { display: flex !important; flex-direction: column !important; gap: 16px !important; }
     #pagina-home #vagas .vagas-area > * { width: 100% !important; min-width: 0 !important; max-width: 100% !important; }
@@ -64,53 +41,9 @@
     #pagina-home #emHomeFiltersToggle { min-height: 44px !important; }
 
     /* Legacy cards used named grid tracks and percentage flex bases. Reset
-       both placement and sizing, rather than only changing the font size. */
-    #pagina-home #listaDestaques .em-featured-reference :is(.dz-cab,.dz-cab-texto,.dz-corpo) {
+       both placement and sizing{
       display: contents !important;
     }
-    #pagina-home #listaDestaques .em-featured-reference :is(.dz-logo,.dz-titulo,.dz-empresa,.dz-infos,.dz-resumo,.dz-detalhes-ref,.em-apply-share-featured) {
-      position: static !important; inset: auto !important; transform: none !important;
-      min-width: 0 !important; max-width: 100% !important; margin: 0 !important;
-    }
-    #pagina-home #listaDestaques .em-featured-reference .dz-logo { grid-area: logo !important; }
-    #pagina-home #listaDestaques .em-featured-reference .dz-titulo {
-      grid-area: title !important; display: block !important; width: 100% !important;
-      height: auto !important; min-height: 0 !important; max-height: none !important;
-      padding: 0 !important; white-space: normal !important; text-align: left !important;
-      overflow: visible !important; align-self: start !important;
-    }
-    #pagina-home #listaDestaques .em-featured-reference .dz-empresa {
-      grid-area: company !important; font-size: 12px !important; line-height: 1.4 !important;
-      white-space: normal !important; overflow-wrap: anywhere !important; text-align: left !important;
-    }
-    #pagina-home #listaDestaques .em-featured-reference .dz-infos {
-      grid-area: info !important; display: grid !important; width: 100% !important;
-      grid-template-columns: repeat(2,minmax(0,1fr)) !important;
-      grid-template-rows: auto auto !important; grid-auto-rows: auto !important;
-      height: auto !important; min-height: 0 !important; max-height: none !important;
-      gap: 6px !important; padding: 0 !important;
-    }
-    #pagina-home #listaDestaques .em-featured-reference .dz-infos :is(.dz-info,.dz-salario) {
-      min-width: 0 !important; width: 100% !important; height: auto !important;
-      min-height: 34px !important; max-height: none !important;
-      padding: 6px !important; white-space: normal !important; overflow-wrap: anywhere !important;
-    }
-    #pagina-home #listaDestaques .em-featured-reference .dz-infos .dz-info:nth-child(1) { grid-column: 1 / -1 !important; grid-row: 1 !important; }
-    #pagina-home #listaDestaques .em-featured-reference .dz-infos .dz-info:nth-child(2) { display: none !important; }
-    #pagina-home #listaDestaques .em-featured-reference .dz-infos .dz-info:nth-child(3) { grid-column: 1 !important; grid-row: 2 !important; }
-    #pagina-home #listaDestaques .em-featured-reference .dz-infos .dz-salario { grid-area: auto !important; grid-column: 2 !important; grid-row: 2 !important; }
-    #pagina-home #listaDestaques .em-featured-reference .dz-infos :is(span,strong,div) { max-height: none !important; white-space: normal !important; overflow-wrap: anywhere !important; }
-    #pagina-home #listaDestaques .em-featured-reference .dz-resumo {
-      grid-area: summary !important; height: auto !important; min-height: 0 !important;
-      max-height: 40px !important; line-height: 20px !important; padding: 0 !important;
-    }
-    #pagina-home #listaDestaques .em-featured-reference .dz-detalhes-ref {
-      grid-area: details !important; min-height: 44px !important; width: 100% !important;
-      white-space: normal !important; padding: 8px 0 !important;
-    }
-    #pagina-home #listaDestaques .em-featured-reference .em-apply-share-featured { grid-area: button !important; width: 100% !important; }
-    #pagina-home #listaDestaques .em-featured-reference .dz-botao { width: 100% !important; white-space: normal !important; }
-    #pagina-home #listaDestaques .em-featured-reference .dz-logo img { width: 100% !important; height: 100% !important; object-fit: contain !important; }
 
     
     
