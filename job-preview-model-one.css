@@ -631,3 +631,9 @@ html body #pagina-home #emJobBrowser[data-layout="model-one"][data-presentation=
 html body #pagina-home #emJobBrowser[data-layout="model-one"][data-presentation="priority"] #listaVagas .em-recent-blocks.em-recent-discreet .em-r4-footer-badges{grid-row:1/3!important}
 @media(max-width:540px){html body #pagina-home #emJobBrowser[data-layout="model-one"][data-presentation="priority"] #listaVagas .em-recent-blocks.em-recent-discreet .em-r4-title{font-size:20px!important;font-weight:800!important}}
 }
+
+/* Nome da empresa: azul legível e peso regular. */
+@layer candidate-palette {
+html body #pagina-home #emJobBrowser[data-layout="model-one"][data-presentation="priority"] #listaVagas .em-recent-blocks.em-recent-discreet .em-r4-company{color:#0966bc!important;--candidate-contrast-ink:#0966bc!important;font-size:13px!important;font-weight:400!important;line-height:1.5!important}
+html body #pagina-home #emJobBrowser[data-layout="model-one"][data-presentation="priority"] #listaVagas .em-recent-blocks.em-recent-discreet .em-r4-company .em-company-profile-link,html body #pagina-home #emJobBrowser[data-layout="model-one"][data-presentation="priority"] #listaVagas .em-recent-blocks.em-recent-discreet .em-r4-company .em-company-name{color:#0966bc!important;font-size:13px!important;font-weight:400!important;line-height:1.5!important}
+}
