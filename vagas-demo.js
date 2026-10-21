@@ -1081,8 +1081,14 @@
       metaRow.appendChild(facts); metaRow.appendChild(actions);
       var educationValue = typeof win.textoEscolaridadeVaga === 'function' ? win.textoEscolaridadeVaga(job) : job.escolaridade;
       if (!educationValue && typeof job.escolaridadeMinima === 'string') educationValue = job.escolaridadeMinima;
-      var education = fact('em-r4-education','<path d="m2 8 10-5 10 5-10 5ZM6 10v7c4 3 8 3 12 0v-7M22 8v8"/>',summaryText(educationValue || 'Não informada'));
-      education.setAttribute('aria-label', 'Escolaridade: ' + summaryText(educationValue || 'Não informada'));
+      var educationText = summaryText(educationValue || 'Não informada');
+      var educationPath = '<path d="m2 8 10-5 10 5-10 5ZM6 10v7c4 3 8 3 12 0v-7M22 8v8"/>';
+      var educationInline = fact('em-r4-education-inline', educationPath, educationText);
+      educationInline.setAttribute('aria-label', 'Escolaridade: ' + educationText);
+      educationInline.title = 'Escolaridade: ' + educationText;
+      terms.appendChild(educationInline);
+      var education = fact('em-r4-education', educationPath, educationText);
+      education.setAttribute('aria-label', 'Escolaridade: ' + educationText);
       metaRow.appendChild(education);
       function showDetails(event){
         event.preventDefault(); event.stopPropagation();
