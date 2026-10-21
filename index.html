@@ -9116,41 +9116,40 @@ section.container > .titulo-secao p,
   }
 }
 
-#pagina-home .paginacao-vagas-em{
-  display:flex !important;
-  align-items:center !important;
-  justify-content:center !important;
-  flex-wrap:wrap !important;
-  gap:6px !important;
-  margin:22px 0 5px !important;
+/* Full-width vacancy pagination — approved model 2. */
+#pagina-home #paginacaoVagasEM {
+  display:grid!important;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr)!important;
+  align-items:center!important;gap:20px!important;width:100%!important;box-sizing:border-box!important;
+  margin:22px 0 5px!important;padding:20px 24px!important;border:1px solid #dce5ef!important;
+  border-radius:12px!important;background:#fff!important;color:#303e50!important;
+  font-family:Poppins,sans-serif!important;
 }
-#pagina-home .paginacao-vagas-em button{
-  min-width:36px !important;
-  height:36px !important;
-  padding:0 10px !important;
-  border:1px solid #d6e3ec !important;
-  border-radius:9px !important;
-  background:#fff !important;
-  color:#40566d !important;
-  font-size:10px !important;
-  font-weight:800 !important;
-  cursor:pointer !important;
-  transition:.18s ease !important;
+#pagina-home #paginacaoVagasEM .em-pagination-summary {display:flex;align-items:center;gap:14px;min-width:0;text-align:left}
+#pagina-home #paginacaoVagasEM .em-pagination-icon {width:30px;height:30px;flex:none;color:#0866c6}
+#pagina-home #paginacaoVagasEM .em-pagination-summary strong {display:block;font-size:14px;font-weight:600;line-height:1.5;color:#303e50}
+#pagina-home #paginacaoVagasEM .em-pagination-summary small {display:block;margin-top:2px;font-size:12px;font-weight:400;line-height:1.5;color:#68788c}
+#pagina-home #paginacaoVagasEM .em-pagination-pages {display:flex;align-items:center;justify-content:center;gap:7px}
+#pagina-home #paginacaoVagasEM button {display:inline-flex!important;align-items:center!important;justify-content:center!important;gap:10px!important;min-width:38px!important;height:40px!important;margin:0!important;padding:0 12px!important;border:1px solid #d6e1ec!important;border-radius:8px!important;background:#fff!important;color:#34465d!important;font:500 12px/1 Poppins,sans-serif!important;cursor:pointer!important;box-shadow:none!important;transition:background .15s!important}
+#pagina-home #paginacaoVagasEM button:hover {background:#f0f6ff!important;border-color:#0866c6!important;color:#0866c6!important}
+#pagina-home #paginacaoVagasEM button.ativo {background:#0866c6!important;border-color:#0866c6!important;color:#fff!important}
+#pagina-home #paginacaoVagasEM button:focus-visible {outline:2px solid #0866c6;outline-offset:3px}
+#pagina-home #paginacaoVagasEM button:disabled {opacity:.4!important;cursor:default!important}
+#pagina-home #paginacaoVagasEM .em-pagination-next {justify-self:end;border-color:#0866c6!important;color:#0866c6!important;padding-inline:20px!important}
+#pagina-home #paginacaoVagasEM .em-pagination-next svg {width:18px;height:18px}
+#pagina-home #paginacaoVagasEM .em-pagination-ellipsis {padding:0 3px;color:#68788c}
+@media(max-width:900px) {
+ #pagina-home #paginacaoVagasEM {grid-template-columns:minmax(0,1fr) auto!important;gap:14px!important;padding:16px!important}
+ #pagina-home #paginacaoVagasEM .em-pagination-pages {grid-row:2;grid-column:1/-1}
 }
-#pagina-home .paginacao-vagas-em button:hover{
-  border-color:#8dbde5 !important;
-  color:#0866c6 !important;
-  background:#f4faff !important;
-}
-#pagina-home .paginacao-vagas-em button.ativo{
-  border-color:#0866c6 !important;
-  background:#0866c6 !important;
-  color:#fff !important;
-  box-shadow:0 5px 13px rgba(8,102,198,.18) !important;
-}
-#pagina-home .paginacao-vagas-em button:disabled{
-  opacity:.38 !important;
-  cursor:default !important;
+@media(max-width:420px) {
+ #pagina-home #paginacaoVagasEM {padding:14px 12px!important;gap:12px!important}
+ #pagina-home #paginacaoVagasEM .em-pagination-summary {gap:8px}
+ #pagina-home #paginacaoVagasEM .em-pagination-icon {width:23px;height:23px}
+ #pagina-home #paginacaoVagasEM .em-pagination-summary strong {font-size:11px}
+ #pagina-home #paginacaoVagasEM .em-pagination-summary small {font-size:10px}
+ #pagina-home #paginacaoVagasEM .em-pagination-next {padding-inline:10px!important;font-size:11px!important}
+ #pagina-home #paginacaoVagasEM .em-pagination-pages {gap:5px}
+ #pagina-home #paginacaoVagasEM button {min-width:32px!important;padding-inline:8px!important}
 }
 
 #pagina-vaga .logo-previa-publica-em{
@@ -29278,38 +29277,46 @@ if(e>=inicio && e<fim){
 elegiveis[e].style.setProperty("display","grid","important");
 }
 }
-paginacao.innerHTML="";
-if(totalPaginas<=1){
-paginacao.style.display="none";
-return;
-}
-paginacao.style.display="flex";
-function botao(rotulo,pagina,classe,desabilitado){
+paginacao.replaceChildren();
+paginacao.setAttribute("role","navigation");
+paginacao.setAttribute("aria-label","Paginação de vagas");
+var resumo=document.createElement("div");
+resumo.className="em-pagination-summary";
+resumo.setAttribute("role","status");
+resumo.setAttribute("aria-live","polite");
+resumo.innerHTML='<svg class="em-pagination-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="7" width="18" height="14" rx="2"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2M3 11l9 5 9-5M12 14v3"/></svg>';
+var texto=document.createElement("div"), total=document.createElement("strong"), indicador=document.createElement("small");
+total.textContent=elegiveis.length.toLocaleString("pt-BR")+(elegiveis.length===1 ? " vaga encontrada" : " vagas encontradas");
+indicador.textContent="Página "+(paginaVagasEM+1)+" de "+totalPaginas;
+texto.append(total,indicador);resumo.appendChild(texto);paginacao.appendChild(resumo);
+var numeros=document.createElement("div");numeros.className="em-pagination-pages";paginacao.appendChild(numeros);
+function botao(rotulo,pagina,classe,desabilitado,alvo){
 var b=document.createElement("button");
-b.type="button";
-b.textContent=rotulo;
-if(classe){b.className=classe;}
-b.disabled=!!desabilitado;
+b.type="button";b.textContent=rotulo;b.className=classe||"";b.disabled=!!desabilitado;
+b.setAttribute("aria-label",classe==="em-pagination-next" ? "Próxima página" : "Ir para página "+(pagina+1));
+if(pagina===paginaVagasEM && classe==="ativo") b.setAttribute("aria-current","page");
 b.onclick=function(){
-paginaVagasEM=pagina;
-aplicarPaginacaoVagasEM();
-var alvo=document.getElementById("vagas");
-if(alvo){
-alvo.scrollIntoView({behavior:"smooth",block:"start"});
-}
+paginaVagasEM=pagina;aplicarPaginacaoVagasEM();
+var atual=paginacao.querySelector('[aria-current="page"]');if(atual) atual.focus({preventScroll:true});
+var vagas=document.getElementById("vagas");
+if(vagas) vagas.scrollIntoView({behavior:window.matchMedia('(prefers-reduced-motion: reduce)').matches ? "auto" : "smooth",block:"start"});
 };
-paginacao.appendChild(b);
+(alvo||numeros).appendChild(b);return b;
 }
-botao("\u2039",paginaVagasEM-1,"",paginaVagasEM===0);
+if(paginaVagasEM>0) {
+var anterior=botao("‹",paginaVagasEM-1,"",false);anterior.setAttribute("aria-label","Página anterior");
+}
+var paginas=[];
 for(var p=0;p<totalPaginas;p++){
-botao(
-String(p+1),
-p,
-p===paginaVagasEM ? "ativo" : "",
-false
-);
+if(totalPaginas<=5 || p===0 || p===totalPaginas-1 || Math.abs(p-paginaVagasEM)<=1 || (paginaVagasEM===0 && p===2) || (paginaVagasEM===totalPaginas-1 && p===totalPaginas-3)) paginas.push(p);
 }
-botao("\u203A",paginaVagasEM+1,"",paginaVagasEM===totalPaginas-1);
+paginas.forEach(function(p,i){
+if(i && p-paginas[i-1]>1){var reticencias=document.createElement("span");reticencias.className="em-pagination-ellipsis";reticencias.textContent="…";reticencias.setAttribute("aria-hidden","true");numeros.appendChild(reticencias);}
+botao(String(p+1),p,p===paginaVagasEM ? "ativo" : "",false);
+});
+var proxima=botao("Próxima",paginaVagasEM+1,"em-pagination-next",paginaVagasEM===totalPaginas-1,paginacao);
+proxima.insertAdjacentHTML("beforeend",'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12h16m-6-6 6 6-6 6"/></svg>');
+
 }
 function sincronizarFiltroEPaginacaoVagasEM(){
 var lista=document.getElementById("listaVagas");
