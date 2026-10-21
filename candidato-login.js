@@ -187,14 +187,14 @@ body.candidate-solid-active .topo .menu-empresa-btn-v19{background:#c8e6ff!impor
  function setup(){
   const list=document.getElementById('listaVagas');if(!list||document.getElementById('emVisitorTools'))return;
   const root=document.createElement('section');root.id='emVisitorTools';root.setAttribute('aria-label','Sua busca por vagas');
-  const recent=document.createElement('section');recent.className='em-visitor-recent';recent.hidden=true;
-  const recentHead=document.createElement('div');recentHead.className='em-visitor-head';const recentTitle=document.createElement('h3');recentTitle.textContent='Vagas vistas recentemente';
-  const clear=document.createElement('button');clear.type='button';clear.className='em-visitor-link';clear.textContent='Limpar histórico';recentHead.append(recentTitle,clear);
+  const recent=document.createElement('section');recent.id='emRecentHeaderHistory';recent.className='em-visitor-recent';recent.hidden=true;
+  const recentHead=document.createElement('div');recentHead.className='em-visitor-head';const recentTitle=document.createElement('h3');recentTitle.innerHTML='<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="M12 6v6l4 2" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg><span>Vistas recentemente</span>';
+  const clear=document.createElement('button');clear.type='button';clear.className='em-visitor-link';clear.textContent='Limpar histórico';clear.setAttribute('aria-label','Limpar histórico de vagas vistas');recentHead.append(recentTitle,clear);
   const recentGrid=document.createElement('div');recentGrid.className='em-visitor-grid';recent.append(recentHead,recentGrid);
   const news=document.createElement('section');news.className='em-visitor-news';news.hidden=true;
   const newsHead=document.createElement('div');newsHead.className='em-visitor-head';const newsText=document.createElement('p');
   const toggle=document.createElement('button');toggle.type='button';toggle.className='em-visitor-link';toggle.textContent='Ver novas vagas';toggle.setAttribute('aria-expanded','false');toggle.setAttribute('aria-controls','emNewVisitJobs');
-  newsHead.append(newsText,toggle);const newsGrid=document.createElement('div');newsGrid.id='emNewVisitJobs';newsGrid.className='em-visitor-grid em-visitor-news-grid';newsGrid.hidden=true;news.append(newsHead,newsGrid);root.append(news,recent);list.before(root);
+  newsHead.append(newsText,toggle);const newsGrid=document.createElement('div');newsGrid.id='emNewVisitJobs';newsGrid.className='em-visitor-grid em-visitor-news-grid';newsGrid.hidden=true;news.append(newsHead,newsGrid);root.append(news);const header=document.querySelector('#vagas .em-recent-split-header');(header||root).appendChild(recent);list.before(root);
   let expanded=false;
   function link(job){
    const a=document.createElement('a');a.className='em-visitor-job';a.href='?pagina=vaga&id='+encodeURIComponent(job.id);
@@ -220,189 +220,12 @@ body.candidate-solid-active .topo .menu-empresa-btn-v19{background:#c8e6ff!impor
   function trackRoute(){const p=new URLSearchParams(location.search);if(p.get('pagina')==='vaga'&&p.get('id')){const history=read(HISTORY_KEY,[]);if(!Array.isArray(history)||!history[0]||String(history[0].id)!==p.get('id'))remember(p.get('id'));}render(false);}
   let pending=false;new MutationObserver(()=>{if(pending)return;pending=true;setTimeout(()=>{pending=false;trackRoute();},80);}).observe(list,{childList:true,subtree:true});
   window.addEventListener('popstate',trackRoute);window.addEventListener('load',trackRoute);window.addEventListener('storage',()=>render(true));trackRoute();
-  const style=document.createElement('style');style.textContent=`
-#emVisitorTools{margin:0 0 18px!important;display:grid;gap:14px;min-width:0}
-#emVisitorTools .em-visitor-recent{border:1px solid #e1e8f1;border-radius:10px;background:#fff;padding:16px}
-#emVisitorTools .em-visitor-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:0 0 12px}
-#emVisitorTools h3{margin:0;font-size:14px;color:#183b5f;line-height:1.4;font-weight:700}
-#emVisitorTools .em-visitor-link{border:0;background:transparent;padding:3px 0;color:#1768b4;font-size:11px;cursor:pointer;white-space:nowrap}
-#emVisitorTools .em-visitor-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
-#emVisitorTools .em-visitor-job{display:block;text-decoration:none;border:1px solid #e3ebf4;border-radius:8px;padding:12px;background:#fff;min-width:0}
-#emVisitorTools .em-visitor-job:hover{border-color:#9fc3e6;background:#f8fbff}
-#emVisitorTools .em-visitor-job strong{display:block;font-size:12px;font-weight:600;line-height:1.4;color:#23445f;margin:0 0 5px;overflow-wrap:anywhere}
-#emVisitorTools .em-visitor-job span{display:block;font-size:10px;line-height:1.5;color:#7b8c9c;overflow-wrap:anywhere}
-#emVisitorTools .em-visitor-news{background:#edf6ff;border:1px solid #d6e8fb;border-radius:9px;padding:12px 16px}
-#emVisitorTools .em-visitor-news .em-visitor-head{margin-bottom:0}
-#emVisitorTools .em-visitor-news p{margin:0;font-size:12px;line-height:1.5;color:#245b90;font-weight:600}
-#emVisitorTools .em-visitor-news-grid{margin-top:12px}
-#emVisitorTools[hidden],#emVisitorTools [hidden]{display:none!important}
-@media(max-width:700px){#emVisitorTools .em-visitor-grid{grid-template-columns:1fr}#emVisitorTools .em-visitor-head{align-items:flex-start}#emVisitorTools .em-visitor-recent{padding:14px}#emVisitorTools .em-visitor-news .em-visitor-head{flex-wrap:wrap}}
-`;document.head.append(style);
+
  }
  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',setup);else setup();
 })();
 
-(function(){
- function alignRecentHeader(){
-  const style=document.createElement('style');style.id='em-recent-header-left';
-  style.textContent=`
-#pagina-home #vagas#vagas#vagas .em-recentes-blue-band{padding-left:16px!important;padding-right:16px!important;text-align:left!important}
-#pagina-home #vagas#vagas#vagas .em-recentes-centered{display:block!important;position:static!important;transform:none!important;text-align:left!important;align-items:flex-start!important;justify-content:flex-start!important;width:100%!important;max-width:none!important;margin:0 0 16px!important;padding:0!important}
-#pagina-home #vagas#vagas#vagas .em-recentes-centered h2,#pagina-home #vagas#vagas#vagas .em-recentes-centered p,#pagina-home #vagas#vagas#vagas .em-recentes-kicker{text-align:left!important;margin-left:0!important;margin-right:0!important}
-#pagina-home #vagas#vagas#vagas .em-recentes-blue-band .filtros-chips-home{display:flex!important;justify-content:flex-start!important;align-items:center!important;text-align:left!important;margin-left:0!important;margin-right:0!important;padding-left:0!important;padding-right:0!important}
-@media(max-width:600px){#pagina-home #vagas#vagas#vagas .em-recentes-blue-band{padding-left:14px!important;padding-right:14px!important}}
-`;document.head.appendChild(style);
- }
- if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',alignRecentHeader);else alignRecentHeader();
-})();
-
-(function(){
- function arrangeHeader(){
-  const band=document.querySelector('#vagas .em-recentes-blue-band'),history=document.querySelector('#emVisitorTools .em-visitor-recent');if(!band||!history)return;
-  const title=band.querySelector('.em-recentes-centered'),filters=band.querySelector('.filtros-chips-home');if(!title||!filters)return;
-  const left=document.createElement('div');left.className='em-recent-header-main';band.insertBefore(left,band.firstChild);left.append(title,filters);
-  history.id='emRecentHeaderHistory';band.appendChild(history);band.classList.add('em-recent-split-header');
-  function sync(){band.classList.toggle('em-header-has-history',!history.hidden);const root=document.getElementById('emVisitorTools');if(root){const news=root.querySelector('.em-visitor-news');root.hidden=!news||news.hidden;}}
-  new MutationObserver(sync).observe(history,{attributes:true,attributeFilter:['hidden']});sync();
-  const style=document.createElement('style');style.textContent=`
-#pagina-home #vagas#vagas#vagas .em-recent-split-header{display:grid!important;grid-template-columns:minmax(0,1fr)!important;gap:24px!important;align-items:start!important;padding:20px 16px!important}
-#pagina-home #vagas#vagas#vagas .em-recent-split-header.em-header-has-history{grid-template-columns:minmax(0,1fr) 300px!important}
-#pagina-home #vagas#vagas#vagas .em-recent-header-main{min-width:0!important;text-align:left!important}
-#pagina-home #vagas#vagas#vagas .em-recent-header-main .em-recentes-centered{display:block!important;text-align:left!important;margin:0 0 18px!important;padding:0!important;max-width:none!important}
-#pagina-home #vagas#vagas#vagas .em-recent-header-main .em-recentes-centered h2{font-size:26px!important;line-height:1.25!important}
-#pagina-home #vagas#vagas#vagas .em-recent-header-main .filtros-chips-home{justify-content:flex-start!important;flex-wrap:wrap!important;gap:8px!important}
-#emRecentHeaderHistory{box-sizing:border-box;width:100%;min-width:0;border:1px solid #dbe7f2;border-radius:10px;background:#fff;padding:12px}
-#emRecentHeaderHistory .em-visitor-head{display:flex;align-items:center;justify-content:space-between;gap:8px;margin:0 0 10px}
-#emRecentHeaderHistory h3{font-size:12px;line-height:1.4;font-weight:700;color:#173b60;margin:0}
-#emRecentHeaderHistory .em-visitor-link{border:0;background:transparent;color:#1768b4;font-size:10px;padding:0;cursor:pointer;white-space:nowrap}
-#emRecentHeaderHistory .em-visitor-grid{display:grid;grid-template-columns:1fr;gap:6px}
-#emRecentHeaderHistory .em-visitor-job{display:block;min-width:0;border:1px solid #e5edf5;border-radius:6px;padding:7px 9px;background:#fff;text-decoration:none}
-#emRecentHeaderHistory .em-visitor-job strong{display:block;font-size:11px;line-height:1.4;font-weight:600;color:#234663;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;margin:0 0 2px}
-#emRecentHeaderHistory .em-visitor-job span{display:block;font-size:9px;line-height:1.4;color:#8293a3;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-#emRecentHeaderHistory .em-visitor-job:hover{border-color:#accce9;background:#f7fbff}
-#emRecentHeaderHistory[hidden]{display:none!important}
-@media(max-width:900px){#pagina-home #vagas#vagas#vagas .em-recent-split-header.em-header-has-history{grid-template-columns:minmax(0,1fr) 260px!important;gap:16px!important}}
-@media(max-width:700px){#pagina-home #vagas#vagas#vagas .em-recent-split-header.em-header-has-history{grid-template-columns:1fr!important}#pagina-home #vagas#vagas#vagas .em-recent-split-header{gap:16px!important;padding:18px 14px!important}#emRecentHeaderHistory .em-visitor-grid{grid-template-columns:1fr!important}}
-`;document.head.appendChild(style);
- }
- if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',arrangeHeader);else arrangeHeader();
-})();
-
-(function(){
- function polishRecentPanel(){
-  const band=document.querySelector('#vagas .em-recentes-blue-band'),title=band&&band.querySelector('.em-recentes-centered'),history=document.getElementById('emRecentHeaderHistory');if(!band||!title)return;
-  const left=band.querySelector('.em-recent-header-main');
-  [left,title].concat(Array.from(title.querySelectorAll('h2,p,span'))).filter(Boolean).forEach(node=>{node.style.setProperty('text-align','left','important');node.style.setProperty('margin-left','0','important');node.style.setProperty('margin-right','0','important');});
-  title.style.setProperty('display','block','important');title.style.setProperty('align-items','flex-start','important');
-  const h2=title.querySelector('h2');if(h2){h2.style.setProperty('width','100%','important');h2.style.setProperty('font-size','27px','important');}
-  if(history){const heading=history.querySelector('h3');if(heading&&!heading.querySelector('svg')){const clock=document.createElementNS('http://www.w3.org/2000/svg','svg');clock.setAttribute('viewBox','0 0 24 24');clock.setAttribute('aria-hidden','true');clock.innerHTML='<circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="M12 6v6l4 2" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>';heading.prepend(clock);}const clear=history.querySelector('.em-visitor-link');if(clear){clear.textContent='Limpar histórico';clear.setAttribute('aria-label','Limpar histórico de vagas vistas');}}
-  const style=document.createElement('style');style.textContent=`
-#pagina-home #vagas#vagas#vagas#vagas .em-recent-split-header{background:#f5f9fe!important;background-image:none!important;border:1px solid #e4ecf5!important;border-radius:12px!important;padding:24px!important;gap:24px!important;align-items:center!important;overflow:hidden!important}
-#pagina-home #vagas#vagas#vagas#vagas .em-recent-split-header:before,#pagina-home #vagas#vagas#vagas#vagas .em-recent-split-header:after{display:none!important}
-#pagina-home #vagas#vagas#vagas#vagas .em-recent-split-header.em-header-has-history{grid-template-columns:minmax(0,1fr) 360px!important}
-#pagina-home #vagas#vagas#vagas#vagas .em-recentes-kicker{font-size:10px!important;font-weight:600!important;letter-spacing:1.1px!important;color:#1768b4!important;display:block!important;margin:0 0 9px!important}
-#pagina-home #vagas#vagas#vagas#vagas .em-recentes-centered h2{color:#15334f!important;line-height:1.25!important;font-weight:700!important;margin:0 0 10px!important}
-#pagina-home #vagas#vagas#vagas#vagas .em-recentes-centered p{font-size:13px!important;line-height:1.6!important;color:#728397!important;margin:0!important}
-#pagina-home #vagas#vagas#vagas#vagas .em-recent-header-main .em-recentes-centered{margin-bottom:22px!important;border:0!important}
-#pagina-home #vagas#vagas#vagas#vagas .em-recent-header-main .filtros-chips-home{border:0!important;padding:0!important;margin:0!important;gap:8px!important}
-#pagina-home #vagas#vagas#vagas#vagas .filtro-chip-home{min-height:36px!important;padding:8px 13px!important;border-radius:8px!important;background:#fff!important;border:1px solid #d7e2ef!important;color:#264764!important;font-size:11px!important;font-weight:500!important;box-shadow:none!important}
-#pagina-home #vagas#vagas#vagas#vagas .filtro-chip-home.ativo{background:#1768b4!important;border-color:#1768b4!important;color:#fff!important;font-weight:600!important}
-#emRecentHeaderHistory#emRecentHeaderHistory#emRecentHeaderHistory{padding:16px!important;border:1px solid #e0e8f2!important;border-radius:10px!important;background:#fff!important}
-#emRecentHeaderHistory#emRecentHeaderHistory .em-visitor-head{margin:0 0 12px!important;align-items:center!important;gap:12px!important}
-#emRecentHeaderHistory#emRecentHeaderHistory h3{display:flex!important;align-items:center!important;gap:8px!important;font-size:12px!important;line-height:1.4!important;color:#173b60!important;font-weight:600!important;margin:0!important}
-#emRecentHeaderHistory#emRecentHeaderHistory h3 svg{width:21px;height:21px;flex-shrink:0}
-#emRecentHeaderHistory#emRecentHeaderHistory .em-visitor-link{font-size:11px!important}
-#emRecentHeaderHistory#emRecentHeaderHistory .em-visitor-grid{gap:0!important}
-#emRecentHeaderHistory#emRecentHeaderHistory .em-visitor-job{position:relative!important;border:0!important;border-bottom:1px solid #edf1f6!important;border-radius:0!important;background:#fff!important;padding:10px 20px 10px 0!important}
-#emRecentHeaderHistory#emRecentHeaderHistory .em-visitor-job:last-child{border-bottom:0!important;padding-bottom:0!important}
-#emRecentHeaderHistory#emRecentHeaderHistory .em-visitor-job:after{content:'›';position:absolute;right:0;top:50%;transform:translateY(-50%);font-size:22px;color:#5a7896}
-#emRecentHeaderHistory#emRecentHeaderHistory .em-visitor-job strong{font-size:12px!important;line-height:1.4!important;font-weight:600!important;margin:0 0 4px!important}
-#emRecentHeaderHistory#emRecentHeaderHistory .em-visitor-job span{font-size:10px!important;line-height:1.4!important;color:#8493a3!important}
-#emRecentHeaderHistory#emRecentHeaderHistory .em-visitor-job:hover strong{color:#1768b4!important}
-@media(max-width:1000px){#pagina-home #vagas#vagas#vagas#vagas .em-recent-split-header.em-header-has-history{grid-template-columns:minmax(0,1fr) 310px!important;gap:18px!important}}
-@media(max-width:700px){#pagina-home #vagas#vagas#vagas#vagas .em-recent-split-header.em-header-has-history{grid-template-columns:1fr!important}#pagina-home #vagas#vagas#vagas#vagas .em-recent-split-header{padding:18px 16px!important}#pagina-home #vagas#vagas#vagas#vagas .em-recentes-centered h2{font-size:24px!important}}
-`;document.head.append(style);
- }
- if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',polishRecentPanel);else polishRecentPanel();
-})();
-
-(function(){
- function finalizeRecentDesign(){
-  const band=document.querySelector('#vagas .em-recentes-blue-band'),left=band&&band.querySelector('.em-recent-header-main');if(!left)return;
-  const old=left.querySelector('.em-recentes-centered');
-  const title=document.createElement('header');title.className='em-recent-title-final';
-  title.innerHTML='<h2>Vagas recentes</h2><p>Confira as últimas oportunidades publicadas</p>';
-  const filters=left.querySelector('.filtros-chips-home');
-  if(filters){const buttons=Array.from(filters.querySelectorAll('button'));['Todas','Presencial','Híbrido','Remoto','Mais filtros'].forEach(label=>{const button=buttons.find(b=>b.textContent.trim()===label);if(button)filters.appendChild(button);});buttons.filter(b=>['CLT','Estágio'].includes(b.textContent.trim())).forEach(b=>b.remove());const more=filters.querySelector('.filtro-chip-mais');if(more)more.innerHTML='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18"/><circle cx="8" cy="6" r="2"/><circle cx="16" cy="12" r="2"/><circle cx="8" cy="18" r="2"/></svg><span>Mais filtros</span>';}title.querySelector('h2').style.setProperty('text-align','left','important');
-  if(old)old.replaceWith(title);else left.prepend(title);
-  const history=document.getElementById('emRecentHeaderHistory');
-  if(history){const heading=history.querySelector('h3');if(heading){Array.from(heading.childNodes).filter(n=>n.nodeType===3).forEach(n=>n.textContent='Vistas recentemente');}}
-  const style=document.createElement('style');style.id='em-recent-reference-final';style.textContent=`
-#pagina-home #vagas#vagas#vagas#vagas#vagas .em-recent-split-header{background:#f5f9fe!important;background-image:none!important;display:grid!important;align-items:center!important;padding:18px 22px!important;gap:20px!important;min-height:0!important;border:1px solid #e0e8f2!important;border-radius:12px!important}
-#pagina-home #vagas#vagas#vagas#vagas#vagas .em-recent-split-header.em-header-has-history{grid-template-columns:minmax(0,1.8fr) minmax(340px,1fr)!important}
-#pagina-home #vagas#vagas#vagas#vagas#vagas .em-recent-header-main{display:block!important;min-width:0!important;text-align:left!important;padding:0 24px 0 0!important;border-right:1px solid #e0e8f2!important}
-#pagina-home #vagas#vagas#vagas#vagas#vagas .em-recent-title-final{display:block!important;position:static!important;width:100%!important;margin:0 0 16px!important;padding:0!important;background:none!important;text-align:left!important;border:0!important;transform:none!important}
-#pagina-home #vagas#vagas#vagas#vagas#vagas .em-recent-title-final>span{display:block!important;text-align:left!important;color:#1768b4!important;font:600 11px/1.5 Poppins,sans-serif!important;letter-spacing:.5px!important;margin:0 0 6px!important}
-#pagina-home #vagas#vagas#vagas#vagas#vagas .em-recent-title-final>h2{display:block!important;text-align:left!important;color:#122e4d!important;font:700 30px/1.2 Poppins,sans-serif!important;letter-spacing:-.6px!important;margin:0 0 7px!important;padding:0!important}
-#pagina-home #vagas#vagas#vagas#vagas#vagas .em-recent-title-final>p{display:block!important;text-align:left!important;color:#71839a!important;font:400 14px/1.45 Poppins,sans-serif!important;margin:0!important;padding:0!important}
-#pagina-home #vagas#vagas#vagas#vagas#vagas .filtros-chips-home{display:flex!important;justify-content:flex-start!important;gap:8px!important;flex-wrap:wrap!important;background:none!important;border:0!important;margin:0!important;padding:0!important}
-#pagina-home #vagas#vagas#vagas#vagas#vagas .filtro-chip-home{height:36px!important;min-height:36px!important;padding:0 13px!important;border-radius:8px!important;font:500 12px/1 Poppins,sans-serif!important;border:1px solid #d3e0ee!important}
-#emRecentHeaderHistory#emRecentHeaderHistory#emRecentHeaderHistory#emRecentHeaderHistory{padding:12px 16px!important;min-height:0!important;background:#fff!important;border-radius:11px!important}
-#emRecentHeaderHistory#emRecentHeaderHistory#emRecentHeaderHistory .em-visitor-head{margin:0 0 8px!important;gap:10px!important}
-#emRecentHeaderHistory#emRecentHeaderHistory#emRecentHeaderHistory h3{font:600 14px/1.4 Poppins,sans-serif!important;gap:10px!important;white-space:nowrap!important}
-#emRecentHeaderHistory#emRecentHeaderHistory#emRecentHeaderHistory h3 svg{width:24px!important;height:24px!important}
-#emRecentHeaderHistory#emRecentHeaderHistory#emRecentHeaderHistory .em-visitor-link{font-size:12px!important}
-#emRecentHeaderHistory#emRecentHeaderHistory#emRecentHeaderHistory .em-visitor-job{padding:9px 22px 9px 0!important;border:0!important;border-bottom:1px solid #e8edf3!important;box-shadow:none!important;outline:0!important}
-#emRecentHeaderHistory#emRecentHeaderHistory#emRecentHeaderHistory .em-visitor-job:last-child{border-bottom:0!important;padding-bottom:3px!important}
-#emRecentHeaderHistory#emRecentHeaderHistory#emRecentHeaderHistory .em-visitor-job:focus-visible{outline:2px solid #1768b4!important;outline-offset:2px!important}
-#emRecentHeaderHistory#emRecentHeaderHistory#emRecentHeaderHistory .em-visitor-job strong{font:600 14px/1.4 Poppins,sans-serif!important;margin-bottom:3px!important}
-#emRecentHeaderHistory#emRecentHeaderHistory#emRecentHeaderHistory .em-visitor-job span{font:400 11px/1.5 Poppins,sans-serif!important}
-@media(max-width:1100px){#pagina-home #vagas#vagas#vagas#vagas#vagas .em-recent-split-header.em-header-has-history{grid-template-columns:minmax(0,1.6fr) minmax(300px,1fr)!important}#emRecentHeaderHistory#emRecentHeaderHistory#emRecentHeaderHistory h3{font-size:12px!important}#pagina-home #vagas#vagas#vagas#vagas#vagas .em-recent-title-final>h2{font-size:30px!important}}
-@media(max-width:800px){#pagina-home #vagas#vagas#vagas#vagas#vagas .em-recent-split-header.em-header-has-history{grid-template-columns:1fr!important}#pagina-home #vagas#vagas#vagas#vagas#vagas .em-recent-header-main{border-right:0!important;padding-right:0!important}#pagina-home #vagas#vagas#vagas#vagas#vagas .em-recent-split-header{padding:20px!important;min-height:0!important}#pagina-home #vagas#vagas#vagas#vagas#vagas .em-recent-title-final{margin-bottom:20px!important}#pagina-home #vagas#vagas#vagas#vagas#vagas .em-recent-title-final>h2{font-size:28px!important}}
-`;document.head.append(style);
- }
- if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',finalizeRecentDesign);else finalizeRecentDesign();
-})();
-
-(function(){
- function alignTitles(){
-  document.querySelectorAll('#emDestV14 .copy,#emDestV14 h2,#emDestV14 p,#emDestV14 .eyebrow,#vagas .em-recent-title-final,#vagas .em-recent-title-final h2').forEach(function(el){el.style.setProperty('text-align','left','important');el.style.setProperty('justify-content','flex-start','important');});
-  var style=document.createElement('style');style.textContent='#pagina-home #emDestV14#emDestV14 .copy,#pagina-home #emDestV14#emDestV14 h2,#pagina-home #emDestV14#emDestV14 p{text-align:left!important;margin-left:0!important}#pagina-home #vagas#vagas#vagas#vagas#vagas .em-recent-title-final{margin-bottom:16px!important}#pagina-home #vagas#vagas#vagas#vagas#vagas .em-recent-title-final h2{text-align:left!important;margin:0!important}';document.head.appendChild(style);
- }
- if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',alignTitles,{once:true});else alignTitles();
- window.addEventListener('load',alignTitles,{once:true});
-})();
-
-(function(){
- function compactHistory(){
-  var style=document.createElement('style');style.id='em-history-two-compact';style.textContent=`
-#emRecentHeaderHistory#emRecentHeaderHistory#emRecentHeaderHistory#emRecentHeaderHistory#emRecentHeaderHistory{padding:10px 14px!important;min-height:0!important;height:auto!important}
-#emRecentHeaderHistory#emRecentHeaderHistory#emRecentHeaderHistory#emRecentHeaderHistory .em-visitor-head{margin-bottom:6px!important}
-#emRecentHeaderHistory#emRecentHeaderHistory#emRecentHeaderHistory#emRecentHeaderHistory .em-visitor-job{padding:7px 20px 7px 0!important}
-#emRecentHeaderHistory#emRecentHeaderHistory#emRecentHeaderHistory#emRecentHeaderHistory .em-visitor-job:last-child{padding-bottom:0!important}
-#emRecentHeaderHistory#emRecentHeaderHistory#emRecentHeaderHistory#emRecentHeaderHistory .em-visitor-job strong{margin-bottom:2px!important}
-#pagina-home #vagas#vagas#vagas#vagas#vagas#vagas .em-recent-split-header{min-height:0!important;padding-top:14px!important;padding-bottom:14px!important}
-
-#pagina-home #vagas#vagas#vagas#vagas#vagas#vagas .em-recent-split-header{background:#fff!important;border-color:#e1e7ef!important;box-shadow:0 3px 16px #17324e06!important;padding:22px 24px!important;gap:26px!important}
-#pagina-home #vagas#vagas#vagas#vagas#vagas#vagas .em-recent-split-header.em-header-has-history{grid-template-columns:minmax(0,1.55fr) minmax(340px,1fr)!important}
-#pagina-home #vagas#vagas#vagas#vagas#vagas#vagas .em-recent-title-final{margin-bottom:20px!important;background:transparent!important}
-#pagina-home #vagas#vagas#vagas#vagas#vagas#vagas .em-recent-title-final h2{font-size:27px!important;margin:0 0 7px!important;background:transparent!important}
-#pagina-home #vagas#vagas#vagas#vagas#vagas#vagas .em-recent-title-final p{font-size:13px!important;color:#71839a!important}
-#pagina-home #vagas#vagas#vagas#vagas#vagas#vagas .filtro-chip-home{display:inline-flex!important;align-items:center!important;justify-content:center!important;gap:7px!important;height:38px!important;padding:0 16px!important;background:#fff!important;color:#25435f!important;border-color:#dce5ef!important}
-#pagina-home #vagas#vagas#vagas#vagas#vagas#vagas .filtro-chip-home.ativo{background:#0875ee!important;border-color:#0875ee!important;color:white!important}
-#pagina-home #vagas#vagas#vagas#vagas#vagas#vagas .filtro-chip-mais svg{width:17px;height:17px;fill:white;stroke:currentColor;stroke-width:1.7}
-#pagina-home #vagas#vagas#vagas#vagas#vagas#vagas .filtro-chip-home:focus-visible{outline:2px solid #0875ee!important;outline-offset:3px!important}
-#emRecentHeaderHistory#emRecentHeaderHistory#emRecentHeaderHistory#emRecentHeaderHistory#emRecentHeaderHistory{padding:0!important;border:0!important;background:transparent!important;border-radius:0!important;box-shadow:none!important}
-#emRecentHeaderHistory#emRecentHeaderHistory#emRecentHeaderHistory#emRecentHeaderHistory .em-visitor-head{margin-bottom:8px!important;flex-wrap:wrap!important;gap:8px!important}
-#emRecentHeaderHistory#emRecentHeaderHistory#emRecentHeaderHistory#emRecentHeaderHistory h3{font-size:13px!important;white-space:normal!important}
-#emRecentHeaderHistory#emRecentHeaderHistory#emRecentHeaderHistory#emRecentHeaderHistory .em-visitor-link{font-size:11px!important;white-space:nowrap!important}
-#emRecentHeaderHistory#emRecentHeaderHistory#emRecentHeaderHistory#emRecentHeaderHistory .em-visitor-job strong{font-size:13px!important}
-@media(max-width:900px){#pagina-home #vagas#vagas#vagas#vagas#vagas#vagas .em-recent-split-header.em-header-has-history{grid-template-columns:1fr!important}#pagina-home #vagas#vagas#vagas#vagas#vagas#vagas .em-recent-header-main{border-right:0!important;padding-right:0!important}#emRecentHeaderHistory#emRecentHeaderHistory#emRecentHeaderHistory#emRecentHeaderHistory#emRecentHeaderHistory{border-top:1px solid #e4ebf3!important;padding-top:18px!important}}
-@media(max-width:560px){#pagina-home #vagas#vagas#vagas#vagas#vagas#vagas .em-recent-split-header{padding:18px 16px!important;gap:18px!important}#pagina-home #vagas#vagas#vagas#vagas#vagas#vagas .em-recent-title-final h2{font-size:24px!important}#pagina-home #vagas#vagas#vagas#vagas#vagas#vagas .filtro-chip-home{padding:0 12px!important}}
-`;document.head.appendChild(style);
- }
- if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',compactHistory,{once:true});else compactHistory();
-})();
+/* Public recent-header markup and styling are ready before first paint. */
 
 (function(){
  function setupProfessionalFilters(){
