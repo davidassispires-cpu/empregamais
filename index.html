@@ -9117,6 +9117,7 @@ section.container > .titulo-secao p,
 }
 
 /* Full-width vacancy pagination — approved model 2. */
+#pagina-home .em-pagination-container {container:em-pagination / inline-size;width:100%;min-width:0;grid-column:1/-1}
 #pagina-home #paginacaoVagasEM {
   display:grid!important;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr)!important;
   align-items:center!important;gap:20px!important;width:100%!important;box-sizing:border-box!important;
@@ -9124,10 +9125,10 @@ section.container > .titulo-secao p,
   border-radius:12px!important;background:#fff!important;color:#303e50!important;
   font-family:Poppins,sans-serif!important;
 }
-#pagina-home #paginacaoVagasEM .em-pagination-summary {display:flex;align-items:center;gap:14px;min-width:0;text-align:left}
+#pagina-home #paginacaoVagasEM .em-pagination-summary {display:flex;align-items:center;gap:14px;min-width:0;text-align:left;overflow-wrap:normal}
 #pagina-home #paginacaoVagasEM .em-pagination-icon {width:30px;height:30px;flex:none;color:#0866c6}
 #pagina-home #paginacaoVagasEM .em-pagination-summary strong {display:block;font-size:14px;font-weight:600;line-height:1.5;color:#303e50}
-#pagina-home #paginacaoVagasEM .em-pagination-summary small {display:block;margin-top:2px;font-size:12px;font-weight:400;line-height:1.5;color:#68788c}
+#pagina-home #paginacaoVagasEM .em-pagination-summary small {display:block;white-space:nowrap;margin-top:2px;font-size:12px;font-weight:400;line-height:1.5;color:#68788c}
 #pagina-home #paginacaoVagasEM .em-pagination-pages {display:flex;align-items:center;justify-content:center;gap:7px}
 #pagina-home #paginacaoVagasEM button {display:inline-flex!important;align-items:center!important;justify-content:center!important;gap:10px!important;min-width:38px!important;height:40px!important;margin:0!important;padding:0 12px!important;border:1px solid #d6e1ec!important;border-radius:8px!important;background:#fff!important;color:#34465d!important;font:500 12px/1 Poppins,sans-serif!important;cursor:pointer!important;box-shadow:none!important;transition:background .15s!important}
 #pagina-home #paginacaoVagasEM button:hover {background:#f0f6ff!important;border-color:#0866c6!important;color:#0866c6!important}
@@ -9137,11 +9138,11 @@ section.container > .titulo-secao p,
 #pagina-home #paginacaoVagasEM .em-pagination-next {justify-self:end;border-color:#0866c6!important;color:#0866c6!important;padding-inline:20px!important}
 #pagina-home #paginacaoVagasEM .em-pagination-next svg {width:18px;height:18px}
 #pagina-home #paginacaoVagasEM .em-pagination-ellipsis {padding:0 3px;color:#68788c}
-@media(max-width:900px) {
+@container em-pagination (max-width:760px) {
  #pagina-home #paginacaoVagasEM {grid-template-columns:minmax(0,1fr) auto!important;gap:14px!important;padding:16px!important}
  #pagina-home #paginacaoVagasEM .em-pagination-pages {grid-row:2;grid-column:1/-1}
 }
-@media(max-width:420px) {
+@container em-pagination (max-width:420px) {
  #pagina-home #paginacaoVagasEM {padding:14px 12px!important;gap:12px!important}
  #pagina-home #paginacaoVagasEM .em-pagination-summary {gap:8px}
  #pagina-home #paginacaoVagasEM .em-pagination-icon {width:23px;height:23px}
@@ -13561,7 +13562,7 @@ Sair
 &#9776; Filtros
 </button><div class='vagas-area'><div><div class='vagas-toolbar'><p class='resultados' id='contador'>
 Carregando vagas...
-</p><div class='ordenacao'><span>Ordenar:</span><select id='ordenacaoVagas' onchange='renderizarVagas()'><option value='recentes'>Mais recentes</option><option value='maiorSalario'>Maior salário</option><option value='menorSalario'>Menor salário</option><option value='cargo'>Cargo A-Z</option></select></div></div><div class='lista-vagas' id='listaVagas'></div><div class='paginacao-vagas-em' id='paginacaoVagasEM'></div><div class='sem-vaga' id='semVaga'>
+</p><div class='ordenacao'><span>Ordenar:</span><select id='ordenacaoVagas' onchange='renderizarVagas()'><option value='recentes'>Mais recentes</option><option value='maiorSalario'>Maior salário</option><option value='menorSalario'>Menor salário</option><option value='cargo'>Cargo A-Z</option></select></div></div><div class='lista-vagas' id='listaVagas'></div><div class='em-pagination-container'><div class='paginacao-vagas-em' id='paginacaoVagasEM'></div></div><div class='sem-vaga' id='semVaga'>
 Nenhuma vaga encontrada.
 </div></div><aside class='filtros-lateral' id='filtrosLateral'><div class='filtros-cab'><h3>Filtrar vagas</h3><button class='limpar-link' onclick='document.querySelectorAll(&quot;#filtrosLateral input,#filtrosLateral select&quot;).forEach(function(campo){campo.value=&quot;&quot;});filtrarVagas()' type='button'>
 Limpar
