@@ -665,3 +665,23 @@ html body #pagina-home #emJobBrowser[data-layout="model-one"][data-presentation=
 html body #pagina-home #emJobBrowser[data-layout="model-one"][data-presentation="priority"] #listaVagas .em-recent-blocks.em-recent-discreet .em-r4-title{font-size:20px!important}
 @media(max-width:540px){html body #pagina-home #emJobBrowser[data-layout="model-one"][data-presentation="priority"] #listaVagas .em-recent-blocks.em-recent-discreet .em-r4-title{font-size:18px!important}}
 }
+
+/* Tipografia mais leve e empresas em maiúsculas nas vagas e prévias. */
+@layer candidate-palette {
+html body #pagina-home#pagina-home #emJobBrowser[data-layout="model-one"] .em-jb-title,
+html body #pagina-home#pagina-home #emJobBrowser[data-layout="model-one"][data-presentation="priority"] .em-jb-header.em-jb-header-model2.em-jb-info-model2 .em-jb-title,
+html body #pagina-home#pagina-home #emJobBrowser[data-layout="model-one"][data-presentation="priority"] #listaVagas .em-recent-blocks.em-recent-discreet .em-r4-title,
+html body #pagina-home#pagina-home #listaDestaques .em-featured-reference .dz-titulo,
+html body #pagina-vaga#pagina-vaga#pagina-vaga #emJobHeaderReference .jh-title,
+html body #pagina-vaga#pagina-vaga#pagina-vaga .em-jb-title {font-weight:600!important}
+html body #pagina-home#pagina-home #emJobBrowser .em-jb-company,
+html body #pagina-home#pagina-home #emJobBrowser .em-jb-company :is(.em-company-profile-link,.em-company-name),
+html body #pagina-home#pagina-home #emJobBrowser #listaVagas .em-recent-blocks.em-recent-discreet .em-r4-company,
+html body #pagina-home#pagina-home #emJobBrowser #listaVagas .em-recent-blocks.em-recent-discreet .em-r4-company :is(.em-company-profile-link,.em-company-name),
+html body #pagina-home#pagina-home #listaDestaques .em-featured-reference .dz-empresa,
+html body #pagina-home#pagina-home #listaDestaques .em-featured-reference .dz-empresa :is(.em-company-profile-link,.em-company-name),
+html body #pagina-vaga#pagina-vaga#pagina-vaga #emJobHeaderReference .jh-company,
+html body #pagina-vaga#pagina-vaga#pagina-vaga #emJobHeaderReference .jh-company *,
+html body #pagina-vaga#pagina-vaga#pagina-vaga .em-jb-company,
+html body #pagina-vaga#pagina-vaga#pagina-vaga .em-jb-company :is(.em-company-profile-link,.em-company-name) {text-transform:uppercase!important;font-weight:400!important}
+}
