@@ -1,21 +1,23 @@
 @layer candidate-palette {
+html body #pagina-home #emHomeVacancyFilters {box-sizing:border-box!important;min-width:0!important;width:min(calc(100% - 48px),1180px)!important;max-width:1180px!important;padding:20px 24px 0!important}
+html body #pagina-home #emHomeVacancyFilters:empty {display:none!important}
 html body #pagina-home#pagina-home #vagas#vagas .em-job-browser-controls>.vagas-toolbar {display:none!important}
-html body #pagina-home #vagas .em-vf-bar {flex:1 0 100%!important;min-width:0!important;width:100%!important;margin:0!important;padding:14px 0!important;border-block:1px solid #e5ebf2!important;background:#fff!important;box-sizing:border-box!important}
-html body #pagina-home #vagas .em-vf-row {display:flex!important;align-items:center!important;justify-content:center!important;flex-wrap:wrap!important;gap:8px!important;width:100%!important}
-html body #pagina-home #vagas .em-vf-trigger {display:inline-flex!important;align-items:center!important;justify-content:space-between!important;gap:10px!important;flex:1 1 auto!important;min-height:44px!important;margin:0!important;padding:10px 16px!important;border:1px solid #1767bd!important;border-radius:999px!important;background:#fff!important;color:#52647c!important;font:400 12px/1.5 Poppins,sans-serif!important;box-shadow:none!important;text-transform:none!important;cursor:pointer!important;white-space:nowrap!important;transition:border-color .15s,background .15s!important}
-html body #pagina-home #vagas .em-vf-trigger:hover {border-color:#125da9!important;background:#f1f7ff!important}
-html body #pagina-home #vagas .em-vf-trigger[data-active=true] {border-color:#1767bd!important;background:#eef5ff!important;color:#125da9!important;font-weight:500!important}
-html body #pagina-home #vagas .em-vf-count {display:inline-flex!important;align-items:center!important;justify-content:center!important;width:17px!important;height:17px!important;border-radius:50%!important;background:#1767bd!important;color:#fff!important;font:500 10px/1 Poppins,sans-serif!important}
-html body #pagina-home #vagas .em-vf-chevron {width:7px!important;height:7px!important;border:solid currentColor!important;border-width:0 1.5px 1.5px 0!important;transform:translateY(-2px) rotate(45deg)!important;flex:0 0 7px!important}
-html body #pagina-home #vagas .em-vf-trigger[aria-expanded=true] .em-vf-chevron {transform:translateY(2px) rotate(225deg)!important}
-html body #pagina-home #vagas .em-vf-active {display:flex!important;align-items:center!important;flex-wrap:wrap!important;gap:7px!important;margin:12px 0 0!important;padding:0!important}
-html body #pagina-home #vagas .em-vf-chip {display:inline-flex!important;align-items:center!important;gap:9px!important;max-width:100%!important;min-height:29px!important;padding:4px 10px!important;border:1px solid #d6e5f7!important;border-radius:6px!important;background:#f1f6fd!important;color:#235a91!important;font:400 11px/1.5 Poppins,sans-serif!important;text-transform:none!important;box-shadow:none!important;cursor:pointer!important;text-align:left!important}
-html body #pagina-home #vagas .em-vf-chip span {font-size:16px!important;line-height:1!important}
-html body #pagina-home #vagas .em-vf-clear-all {padding:5px 4px!important;margin:0 0 0 3px!important;border:0!important;background:none!important;color:#1266b7!important;font:500 11px/1.5 Poppins,sans-serif!important;text-decoration:underline!important;text-underline-offset:3px!important;cursor:pointer!important;box-shadow:none!important}
-html body #pagina-home #vagas .em-vf-advanced>summary {display:none!important}
-html body #pagina-home #vagas .em-vf-advanced:not([open]) {display:none!important}
-html body #pagina-home #vagas .em-vf-advanced[open] {flex-basis:100%!important}
-html body #pagina-home #vagas :is(.em-vf-active,.em-vf-count)[hidden] {display:none!important}
+html body #pagina-home .em-vf-bar {flex:1 0 100%!important;min-width:0!important;width:100%!important;margin:0!important;padding:14px 0!important;border-block:1px solid #e5ebf2!important;background:#fff!important;box-sizing:border-box!important}
+html body #pagina-home .em-vf-row {display:flex!important;align-items:center!important;justify-content:center!important;flex-wrap:wrap!important;gap:8px!important;width:100%!important}
+html body #pagina-home .em-vf-trigger {display:inline-flex!important;align-items:center!important;justify-content:space-between!important;gap:10px!important;flex:1 1 auto!important;min-height:44px!important;margin:0!important;padding:10px 16px!important;border:1px solid #1767bd!important;border-radius:999px!important;background:#fff!important;color:#52647c!important;font:400 12px/1.5 Poppins,sans-serif!important;box-shadow:none!important;text-transform:none!important;cursor:pointer!important;white-space:nowrap!important;transition:border-color .15s,background .15s!important}
+html body #pagina-home .em-vf-trigger:hover {border-color:#125da9!important;background:#f1f7ff!important}
+html body #pagina-home .em-vf-trigger[data-active=true] {border-color:#1767bd!important;background:#eef5ff!important;color:#125da9!important;font-weight:500!important}
+html body #pagina-home .em-vf-count {display:inline-flex!important;align-items:center!important;justify-content:center!important;width:17px!important;height:17px!important;border-radius:50%!important;background:#1767bd!important;color:#fff!important;font:500 10px/1 Poppins,sans-serif!important}
+html body #pagina-home .em-vf-chevron {width:7px!important;height:7px!important;border:solid currentColor!important;border-width:0 1.5px 1.5px 0!important;transform:translateY(-2px) rotate(45deg)!important;flex:0 0 7px!important}
+html body #pagina-home .em-vf-trigger[aria-expanded=true] .em-vf-chevron {transform:translateY(2px) rotate(225deg)!important}
+html body #pagina-home .em-vf-active {display:flex!important;align-items:center!important;flex-wrap:wrap!important;gap:7px!important;margin:12px 0 0!important;padding:0!important}
+html body #pagina-home .em-vf-chip {display:inline-flex!important;align-items:center!important;gap:9px!important;max-width:100%!important;min-height:29px!important;padding:4px 10px!important;border:1px solid #d6e5f7!important;border-radius:6px!important;background:#f1f6fd!important;color:#235a91!important;font:400 11px/1.5 Poppins,sans-serif!important;text-transform:none!important;box-shadow:none!important;cursor:pointer!important;text-align:left!important}
+html body #pagina-home .em-vf-chip span {font-size:16px!important;line-height:1!important}
+html body #pagina-home .em-vf-clear-all {padding:5px 4px!important;margin:0 0 0 3px!important;border:0!important;background:none!important;color:#1266b7!important;font:500 11px/1.5 Poppins,sans-serif!important;text-decoration:underline!important;text-underline-offset:3px!important;cursor:pointer!important;box-shadow:none!important}
+html body #pagina-home .em-vf-advanced>summary {display:none!important}
+html body #pagina-home .em-vf-advanced:not([open]) {display:none!important}
+html body #pagina-home .em-vf-advanced[open] {flex-basis:100%!important}
+html body #pagina-home :is(.em-vf-active,.em-vf-count)[hidden] {display:none!important}
 html body .em-vf-popover {position:fixed!important;z-index:10010!important;box-sizing:border-box!important;display:flex!important;flex-direction:column!important;gap:12px!important;width:300px;max-width:calc(100vw - 32px)!important;max-height:min(460px,calc(100dvh - 32px))!important;overflow-y:auto!important;overscroll-behavior:contain!important;margin:0!important;padding:16px!important;border:1px solid #dce5ef!important;border-radius:13px!important;background:#fff!important;box-shadow:0 14px 45px #12305224,0 2px 8px #1230520d!important;color:#31465e!important;text-align:left!important;font:400 13px/1.5 Poppins,sans-serif!important}
 html body .em-vf-popover[hidden],html body .em-vf-popover [hidden] {display:none!important}
 html body .em-vf-popover *,html body .em-vf-popover *::before,html body .em-vf-popover *::after {box-sizing:border-box!important;font-family:Poppins,sans-serif!important;font-style:normal!important;letter-spacing:normal!important}
@@ -42,13 +44,14 @@ html body .em-vf-popover #emPertoBuscar {grid-column:1!important;min-height:40px
 html body .em-vf-popover #emPerto .em-perto-rodape {display:flex!important;gap:9px!important;margin:12px 0 0!important;font:400 11px/1.5 Poppins,sans-serif!important}
 html body .em-vf-popover #emPertoStatus {flex:1 0 100%!important;font:400 11px/1.5 Poppins,sans-serif!important;color:#657b92!important}
 html body .em-vf-popover :is(#emPertoLocal,#emPertoLimpar) {display:inline-flex!important;align-items:center!important;gap:5px!important;width:auto!important;min-height:28px!important;margin:0!important;padding:4px 0!important;border:0!important;border-radius:0!important;background:none!important;box-shadow:none!important;font:400 11px/1.5 Poppins,sans-serif!important;color:#1767bd!important;text-transform:none!important;cursor:pointer!important}
-html body #pagina-home #vagas .em-vf-trigger:focus-visible,html body #pagina-home #vagas :is(.em-vf-chip,.em-vf-clear-all):focus-visible,html body .em-vf-popover :is(button,input,select):focus-visible {outline:2px solid #3983d2!important;outline-offset:3px!important}
+html body #pagina-home .em-vf-trigger:focus-visible,html body #pagina-home :is(.em-vf-chip,.em-vf-clear-all):focus-visible,html body .em-vf-popover :is(button,input,select):focus-visible {outline:2px solid #3983d2!important;outline-offset:3px!important}
 @media(max-width:600px) {
-  html body #pagina-home #vagas .em-vf-bar {padding:12px 0!important}
-  html body #pagina-home #vagas .em-vf-row {gap:7px!important}
-  html body #pagina-home #vagas .em-vf-trigger {min-height:44px!important;padding:10px 12px!important;font-size:11px!important;gap:8px!important}
+  html body #pagina-home #emHomeVacancyFilters {width:100%!important;max-width:none!important;padding:16px 16px 0!important}
+  html body #pagina-home .em-vf-bar {padding:12px 0!important}
+  html body #pagina-home .em-vf-row {gap:7px!important}
+  html body #pagina-home .em-vf-trigger {min-height:44px!important;padding:10px 12px!important;font-size:11px!important;gap:8px!important}
   html body .em-vf-popover {max-height:calc(100dvh - 32px)!important}
   html body .em-vf-option {min-height:42px!important}
 }
-@media(prefers-reduced-motion:reduce) {html body #pagina-home #vagas .em-vf-trigger {transition:none!important}}
+@media(prefers-reduced-motion:reduce) {html body #pagina-home .em-vf-trigger {transition:none!important}}
 }

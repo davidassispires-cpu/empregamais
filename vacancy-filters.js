@@ -84,7 +84,9 @@
     var row = node('div', 'em-vf-row'), active = node('div', 'em-vf-active'); active.hidden = true;
     bar.appendChild(row); bar.appendChild(active);
     var legacy = doc.getElementById('emJobBrowserFilters');
-    controls.insertBefore(bar, legacy || null);
+    var homeFilters = doc.getElementById('emHomeVacancyFilters');
+    if (homeFilters) homeFilters.appendChild(bar);
+    else controls.insertBefore(bar, legacy || null);
     if (legacy) legacy.classList.add('em-vf-advanced');
     var counter = doc.getElementById('contador');
     if (counter) { counter.setAttribute('role', 'status'); counter.setAttribute('aria-live', 'polite'); }
