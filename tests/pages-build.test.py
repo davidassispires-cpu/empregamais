@@ -2,6 +2,7 @@
 from pathlib import Path
 from html.parser import HTMLParser
 import os
+import json
 import subprocess
 import sys
 import tempfile
@@ -35,3 +36,11 @@ with tempfile.TemporaryDirectory() as directory:
     assert built.count('src="form-validation.js?v=build-regression"') == 1
     assert built.rfind('src="form-validation.js?v=build-regression"') > built.rfind('candidato-preparacao.js?v=build-regression')
 print('PASS: generated page preserves every inline script and appends validation only once at document end')
+
+# An accidental HTML insertion inside the printable resume used to terminate
+# its script early and expose the remainder beneath the public footer.
+subprocess.run(
+    ['node', '-e', 'const vm=require("node:vm");const fs=require("node:fs");JSON.parse(fs.readFileSync(0,"utf8")).forEach(code=>new vm.Script(code));'],
+    input=json.dumps(Scripts(built).scripts), text=True, check=True,
+)
+print('PASS: every inline script in the deployed HTML has valid JavaScript syntax')
