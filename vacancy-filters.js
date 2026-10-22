@@ -85,8 +85,12 @@
     bar.appendChild(row); bar.appendChild(active);
     var legacy = doc.getElementById('emJobBrowserFilters');
     var homeFilters = doc.getElementById('emHomeVacancyFilters');
-    if (homeFilters) homeFilters.appendChild(bar);
-    else controls.insertBefore(bar, legacy || null);
+    var recentHeader = doc.querySelector('#vagas .em-recent-header-main');
+    var quickFilters = doc.querySelector('#vagas .filtros-chips-home');
+    if (recentHeader) {
+      if (quickFilters) recentHeader.insertBefore(bar, quickFilters);
+      else recentHeader.appendChild(bar);
+    } else controls.insertBefore(bar, legacy || null);
     if (legacy) legacy.classList.add('em-vf-advanced');
     var counter = doc.getElementById('contador');
     if (counter) { counter.setAttribute('role', 'status'); counter.setAttribute('aria-live', 'polite'); }
