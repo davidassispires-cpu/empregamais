@@ -363,7 +363,7 @@
         var rating = browserNode('span', 'em-company-demo-rating');
         rating.setAttribute('aria-label', 'Nota ilustrativa de demonstração: 4,1 de 5. Não representa avaliações reais.');
         rating.title = 'Avaliação ilustrativa de demonstração. Não representa avaliações reais da empresa.';
-        rating.innerHTML = '<span class="em-company-rating-value">4,1</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.8-6.2-3.2L5.8 21 7 14.2 2 9.3l6.9-1Z"/></svg><small>demo</small>';
+        rating.innerHTML = '<span class="em-company-rating-value">4,1</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.8-6.2-3.2L5.8 21 7 14.2 2 9.3l6.9-1Z"/></svg>';
         company.replaceChildren(rating, link);
       }
       var verified = isDemo(job) || record && typeof win.empresaEstaVerificada === 'function' && win.empresaEstaVerificada(record);
@@ -1039,7 +1039,7 @@
         card.setAttribute('data-empresa','Empresa confidencial');
         logo.innerHTML = svg('<rect x="5" y="10" width="14" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3M12 14v3"/>');
       } else {
-        var publicName = company.querySelector('span'); publicName = publicName ? publicName.textContent : company.textContent;
+        var publicName = (company.querySelector('.em-company-name') || company.querySelector('span')); publicName = publicName ? publicName.textContent : company.textContent;
         var initials = String(publicName || 'Empresa').replace(/\(demo\)/ig,'').trim().split(/\s+/).slice(0,2).map(function(part){return part.charAt(0);}).join('').toLocaleUpperCase('pt-BR');
         if (!originalLogo && typeof win.logoPreviaDestaqueEM === 'function') {
           originalLogo = win.logoPreviaDestaqueEM(job).querySelector('img');
@@ -1112,7 +1112,7 @@
       function showDetails(event){
         event.preventDefault(); event.stopPropagation();
         if (selectBrowserJob(card, titleButton, true)) return;
-        var publicCompany = company.querySelector('span');
+        var publicCompany = (company.querySelector('.em-company-name') || company.querySelector('span'));
         openJobSummary(job, {
           title:title.textContent,
           company:confidential ? 'Empresa confidencial' : (publicCompany ? publicCompany.textContent : company.textContent),
@@ -1150,7 +1150,7 @@
       card.classList.add('em-recent-discreet');
       card.setAttribute('data-em-priority',urgent?'urgent':highlighted?'featured':'standard');
       card.setAttribute('data-em-highlighted',String(highlighted)); card.setAttribute('data-em-confidential',String(confidential));
-      var publicCompany = company.querySelector('span');
+      var publicCompany = (company.querySelector('.em-company-name') || company.querySelector('span'));
       card.__emJobEntry = {job:job, apply:apply, save:save, openState:openState, titleButton:titleButton, company:company, highlighted:highlighted, confidential:confidential,
         info:{title:title.textContent, company:confidential ? 'Empresa confidencial' : summaryText(publicName || (publicCompany ? publicCompany.textContent : company.textContent)), location:city+(uf.length===2?' – '+uf.toUpperCase():''), salary:salaryValue, date:date.textContent}};
       card.onclick = function (event) {
