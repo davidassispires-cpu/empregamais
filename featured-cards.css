@@ -231,3 +231,9 @@ html body #pagina-home#pagina-home #listaVagas#listaVagas .em-r4-heading:not(:ha
 html body #pagina-home#pagina-home #listaVagas#listaVagas .em-r4-excerpt{font-size:13px!important;line-height:19px!important;max-height:38px!important}
 }
 
+/* Match the featured section to the fluid recent-vacancies width on desktop. */
+@layer candidate-palette {
+@media(min-width:761px){
+html body #pagina-home#pagina-home #emFeaturedHome{box-sizing:border-box!important;width:calc(100% - 64px)!important;max-width:none!important;min-width:0!important;margin-left:32px!important;margin-right:32px!important;padding-left:0!important;padding-right:0!important}
+}
+}
