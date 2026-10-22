@@ -1,12 +1,12 @@
 /* Approved corporate header: darker blue hero and a vertical search card. */
 @layer candidate-palette {
-  body:has(#pagina-home.ativa) > header.topo {
+  body:has(#pagina-home.ativa,#pagina-vagas-destaque.ativa) > header.topo {
     --candidate-contrast-ink: #42566b !important;
     background: #fff !important;
     border-bottom: 1px solid #e6edf4 !important;
     box-shadow: none !important;
   }
-  body:has(#pagina-home.ativa) > header.topo .topo-inner {
+  body:has(#pagina-home.ativa,#pagina-vagas-destaque.ativa) > header.topo .topo-inner {
     box-sizing: border-box !important;
     width: 100% !important;
     max-width: 1440px !important;
@@ -16,22 +16,22 @@
     gap: 28px !important;
     align-items: center !important;
   }
-  body:has(#pagina-home.ativa) > header.topo .marca {
+  body:has(#pagina-home.ativa,#pagina-vagas-destaque.ativa) > header.topo .marca {
     flex: 0 0 auto !important;
     margin: 0 !important;
     padding: 0 !important;
   }
-  body:has(#pagina-home.ativa) > header.topo .marca-nome {
+  body:has(#pagina-home.ativa,#pagina-vagas-destaque.ativa) > header.topo .marca-nome {
     color: #123b60 !important;
     font-size: 26px !important;
     font-weight: 700 !important;
     letter-spacing: -.8px !important;
   }
-  body:has(#pagina-home.ativa) > header.topo #menuPublico {
+  body:has(#pagina-home.ativa,#pagina-vagas-destaque.ativa) > header.topo #menuPublico {
     gap: 26px !important;
     margin-right: auto !important;
   }
-  body:has(#pagina-home.ativa) > header.topo #menuPublico .menu-link {
+  body:has(#pagina-home.ativa,#pagina-vagas-destaque.ativa) > header.topo #menuPublico .menu-link {
     background: transparent !important;
     border: 0 !important;
     color: #526277 !important;
@@ -40,12 +40,12 @@
     padding: 10px 0 !important;
     white-space: nowrap !important;
   }
-  body:has(#pagina-home.ativa) > header.topo #emHeaderNavigation { margin-left: auto !important; }
-  body:has(#pagina-home.ativa) > header.topo #acoesPublicas { gap: 14px !important; align-items: center !important; }
-  body:has(#pagina-home.ativa) > header.topo #acoesPublicas > .header-v98-area[data-publico="cand"] { order: 1 !important; }
-  body:has(#pagina-home.ativa) > header.topo #acoesPublicas > :is(.menu-empresa-v19, .header-v98-area[data-publico="emp"]) { order: 2 !important; }
-  body:has(#pagina-home.ativa) > header.topo #acoesPublicas > .btn-publicar-v19 { order: 3 !important; }
-  body:has(#pagina-home.ativa) > header.topo #acoesPublicas :is(.header-v98-area > button, .btn-candidato-v19, .menu-empresa-btn-v19, .btn-publicar-v19) {
+  body:has(#pagina-home.ativa,#pagina-vagas-destaque.ativa) > header.topo #emHeaderNavigation { margin-left: auto !important; }
+  body:has(#pagina-home.ativa,#pagina-vagas-destaque.ativa) > header.topo #acoesPublicas { gap: 14px !important; align-items: center !important; }
+  body:has(#pagina-home.ativa,#pagina-vagas-destaque.ativa) > header.topo #acoesPublicas > .header-v98-area[data-publico="cand"] { order: 1 !important; }
+  body:has(#pagina-home.ativa,#pagina-vagas-destaque.ativa) > header.topo #acoesPublicas > :is(.menu-empresa-v19, .header-v98-area[data-publico="emp"]) { order: 2 !important; }
+  body:has(#pagina-home.ativa,#pagina-vagas-destaque.ativa) > header.topo #acoesPublicas > .btn-publicar-v19 { order: 3 !important; }
+  body:has(#pagina-home.ativa,#pagina-vagas-destaque.ativa) > header.topo #acoesPublicas :is(.header-v98-area > button, .btn-candidato-v19, .menu-empresa-btn-v19, .btn-publicar-v19) {
     box-sizing: border-box !important;
     min-height: 44px !important;
     height: 44px !important;
@@ -58,27 +58,27 @@
     white-space: nowrap !important;
     box-shadow: none !important;
   }
-  body:has(#pagina-home.ativa) > header.topo #acoesPublicas :is(.header-v98-area[data-publico="cand"] > button, .btn-candidato-v19) {
+  body:has(#pagina-home.ativa,#pagina-vagas-destaque.ativa) > header.topo #acoesPublicas :is(.header-v98-area[data-publico="cand"] > button, .btn-candidato-v19) {
     --candidate-contrast-ink: #0873ba !important;
     background: #fff !important;
     border-color: #1680c7 !important;
     color: #0873ba !important;
   }
-  body:has(#pagina-home.ativa) > header.topo #acoesPublicas :is(.header-v98-area[data-publico="emp"] > button, .menu-empresa-btn-v19) {
+  body:has(#pagina-home.ativa,#pagina-vagas-destaque.ativa) > header.topo #acoesPublicas :is(.header-v98-area[data-publico="emp"] > button, .menu-empresa-btn-v19) {
     background: #fff !important;
     color: #42566b !important;
   }
-  body:has(#pagina-home.ativa) > header.topo #acoesPublicas .header-v98-area > button :is(span, svg) { color: inherit !important; font-size: inherit !important; }
-  body:has(#pagina-home.ativa) > header.topo #acoesPublicas .btn-publicar-v19 {
+  body:has(#pagina-home.ativa,#pagina-vagas-destaque.ativa) > header.topo #acoesPublicas .header-v98-area > button :is(span, svg) { color: inherit !important; font-size: inherit !important; }
+  body:has(#pagina-home.ativa,#pagina-vagas-destaque.ativa) > header.topo #acoesPublicas .btn-publicar-v19 {
     --candidate-contrast-ink: #fff !important;
     background: #0879bc !important;
     border-color: #0879bc !important;
     color: #fff !important;
   }
-  body:has(#pagina-home.ativa) > header.topo #acoesPublicas .header-v98-area > button:hover { background: #f1f7fc !important; }
-  body:has(#pagina-home.ativa) > header.topo #acoesPublicas .btn-publicar-v19:hover { background: #0865a3 !important; border-color: #0865a3 !important; }
-  body:has(#pagina-home.ativa) > header.topo button:focus-visible { outline: 2px solid #0879bc !important; outline-offset: 3px !important; }
-  body:has(#pagina-home.ativa) > header.topo #emHeaderMenuToggle { display: none !important; }
+  body:has(#pagina-home.ativa,#pagina-vagas-destaque.ativa) > header.topo #acoesPublicas .header-v98-area > button:hover { background: #f1f7fc !important; }
+  body:has(#pagina-home.ativa,#pagina-vagas-destaque.ativa) > header.topo #acoesPublicas .btn-publicar-v19:hover { background: #0865a3 !important; border-color: #0865a3 !important; }
+  body:has(#pagina-home.ativa,#pagina-vagas-destaque.ativa) > header.topo button:focus-visible { outline: 2px solid #0879bc !important; outline-offset: 3px !important; }
+  body:has(#pagina-home.ativa,#pagina-vagas-destaque.ativa) > header.topo #emHeaderMenuToggle { display: none !important; }
 
   #pagina-home #emHeroFloripa {
     box-sizing: border-box !important;
@@ -247,29 +247,29 @@
   #pagina-home #emHeroFloripa #emHeroRefBusca .em-hero-submit:focus-visible { outline: 3px solid #ffb16f !important; outline-offset: 3px !important; }
 
   @media (min-width: 901px) and (max-width: 1120px) {
-    body:has(#pagina-home.ativa) > header.topo .topo-inner { padding: 16px 24px !important; gap: 20px !important; }
-    body:has(#pagina-home.ativa) > header.topo .marca-nome { font-size: 23px !important; }
-    body:has(#pagina-home.ativa) > header.topo #menuPublico { gap: 20px !important; }
-    body:has(#pagina-home.ativa) > header.topo #menuPublico .menu-link { font-size: 13px !important; }
-    body:has(#pagina-home.ativa) > header.topo #acoesPublicas { gap: 8px !important; }
-    body:has(#pagina-home.ativa) > header.topo #acoesPublicas :is(.header-v98-area > button, .btn-publicar-v19) { padding: 0 11px !important; font-size: 12px !important; }
+    body:has(#pagina-home.ativa,#pagina-vagas-destaque.ativa) > header.topo .topo-inner { padding: 16px 24px !important; gap: 20px !important; }
+    body:has(#pagina-home.ativa,#pagina-vagas-destaque.ativa) > header.topo .marca-nome { font-size: 23px !important; }
+    body:has(#pagina-home.ativa,#pagina-vagas-destaque.ativa) > header.topo #menuPublico { gap: 20px !important; }
+    body:has(#pagina-home.ativa,#pagina-vagas-destaque.ativa) > header.topo #menuPublico .menu-link { font-size: 13px !important; }
+    body:has(#pagina-home.ativa,#pagina-vagas-destaque.ativa) > header.topo #acoesPublicas { gap: 8px !important; }
+    body:has(#pagina-home.ativa,#pagina-vagas-destaque.ativa) > header.topo #acoesPublicas :is(.header-v98-area > button, .btn-publicar-v19) { padding: 0 11px !important; font-size: 12px !important; }
     #pagina-home #emHeroFloripa { padding: 48px 32px !important; }
     #pagina-home #emHeroFloripa .hero-premium-inner-em { gap: 40px !important; }
     #pagina-home #emHeroFloripa .hero-copy-em h1 { font-size: 42px !important; }
     #pagina-home #emHeroFloripa .hero-search-shell-em { padding: 24px !important; }
   }
   @media (max-width: 900px) {
-    body:has(#pagina-home.ativa) > header.topo .topo-inner { display: flex !important; flex-wrap: wrap !important; justify-content: space-between !important; gap: 12px !important; min-height: 72px !important; padding: 14px 20px !important; }
-    body:has(#pagina-home.ativa) > header.topo .marca-nome { font-size: 24px !important; }
-    body:has(#pagina-home.ativa) > header.topo #emHeaderMenuToggle { display: inline-flex !important; align-items: center !important; justify-content: center !important; gap: 8px !important; min-height: 42px !important; padding: 8px 12px !important; background: #fff !important; border: 1px solid #d6e2ed !important; border-radius: 8px !important; color: #173e60 !important; font-size: 14px !important; font-weight: 500 !important; }
-    body:has(#pagina-home.ativa) > header.topo:not(.em-mobile-menu-open) :is(#menuPublico, #emHeaderNavigation) { display: none !important; }
-    body:has(#pagina-home.ativa) > header.topo.em-mobile-menu-open #menuPublico { display: flex !important; width: 100% !important; flex-basis: 100% !important; gap: 26px !important; margin: 0 !important; padding: 12px 0 !important; border-top: 1px solid #e5edf4 !important; }
-    body:has(#pagina-home.ativa) > header.topo.em-mobile-menu-open #emHeaderNavigation { display: flex !important; flex-basis: 100% !important; width: 100% !important; margin: 0 !important; padding: 0 0 4px !important; }
-    body:has(#pagina-home.ativa) > header.topo #acoesPublicas { flex-direction: column !important; align-items: stretch !important; width: 100% !important; gap: 10px !important; }
-    body:has(#pagina-home.ativa) > header.topo #acoesPublicas :is(.menu-empresa-v19, .header-v98-area) { width: 100% !important; }
-    body:has(#pagina-home.ativa) > header.topo #acoesPublicas :is(.header-v98-area > button, .btn-publicar-v19) { width: 100% !important; }
-    body:has(#pagina-home.ativa) > header.topo #acoesPublicas .header-v98-menu { position: static !important; width: 100% !important; min-width: 0 !important; max-width: 100% !important; margin: 8px 0 0 !important; box-sizing: border-box !important; }
-    body:has(#pagina-home.ativa) > header.topo #acoesPublicas .header-v98-area.open > .header-v98-menu { display: block !important; visibility: visible !important; opacity: 1 !important; pointer-events: auto !important; transform: none !important; }
+    body:has(#pagina-home.ativa,#pagina-vagas-destaque.ativa) > header.topo .topo-inner { display: flex !important; flex-wrap: wrap !important; justify-content: space-between !important; gap: 12px !important; min-height: 72px !important; padding: 14px 20px !important; }
+    body:has(#pagina-home.ativa,#pagina-vagas-destaque.ativa) > header.topo .marca-nome { font-size: 24px !important; }
+    body:has(#pagina-home.ativa,#pagina-vagas-destaque.ativa) > header.topo #emHeaderMenuToggle { display: inline-flex !important; align-items: center !important; justify-content: center !important; gap: 8px !important; min-height: 42px !important; padding: 8px 12px !important; background: #fff !important; border: 1px solid #d6e2ed !important; border-radius: 8px !important; color: #173e60 !important; font-size: 14px !important; font-weight: 500 !important; }
+    body:has(#pagina-home.ativa,#pagina-vagas-destaque.ativa) > header.topo:not(.em-mobile-menu-open) :is(#menuPublico, #emHeaderNavigation) { display: none !important; }
+    body:has(#pagina-home.ativa,#pagina-vagas-destaque.ativa) > header.topo.em-mobile-menu-open #menuPublico { display: flex !important; width: 100% !important; flex-basis: 100% !important; gap: 26px !important; margin: 0 !important; padding: 12px 0 !important; border-top: 1px solid #e5edf4 !important; }
+    body:has(#pagina-home.ativa,#pagina-vagas-destaque.ativa) > header.topo.em-mobile-menu-open #emHeaderNavigation { display: flex !important; flex-basis: 100% !important; width: 100% !important; margin: 0 !important; padding: 0 0 4px !important; }
+    body:has(#pagina-home.ativa,#pagina-vagas-destaque.ativa) > header.topo #acoesPublicas { flex-direction: column !important; align-items: stretch !important; width: 100% !important; gap: 10px !important; }
+    body:has(#pagina-home.ativa,#pagina-vagas-destaque.ativa) > header.topo #acoesPublicas :is(.menu-empresa-v19, .header-v98-area) { width: 100% !important; }
+    body:has(#pagina-home.ativa,#pagina-vagas-destaque.ativa) > header.topo #acoesPublicas :is(.header-v98-area > button, .btn-publicar-v19) { width: 100% !important; }
+    body:has(#pagina-home.ativa,#pagina-vagas-destaque.ativa) > header.topo #acoesPublicas .header-v98-menu { position: static !important; width: 100% !important; min-width: 0 !important; max-width: 100% !important; margin: 8px 0 0 !important; box-sizing: border-box !important; }
+    body:has(#pagina-home.ativa,#pagina-vagas-destaque.ativa) > header.topo #acoesPublicas .header-v98-area.open > .header-v98-menu { display: block !important; visibility: visible !important; opacity: 1 !important; pointer-events: auto !important; transform: none !important; }
     #pagina-home #emHeroFloripa { min-height: 0 !important; padding: 40px 24px !important; }
     #pagina-home #emHeroFloripa .hero-premium-inner-em { grid-template-columns: minmax(0, 1fr) !important; max-width: 680px !important; gap: 30px !important; }
     #pagina-home #emHeroFloripa .hero-copy-em h1 { font-size: 42px !important; }

@@ -729,7 +729,7 @@
  function background(el){for(var n=el;n;){var s=getComputedStyle(n);if(s.backgroundImage!=='none')return null;var v=s.backgroundColor,c=rgb(v);if(c&&(!/^rgba/.test(v)||Number((v.match(/[\d.]+/g)||[])[3])>=1)&&v!=='transparent')return c;n=n.parentElement||(n.getRootNode&&n.getRootNode().host);}return [255,255,255];}
  function watch(root){if(observed.has(root))return;observed.add(root);new MutationObserver(schedule).observe(root,{childList:true,subtree:true});}
  function scan(root){watch(root);var updates=[];root.querySelectorAll('*').forEach(function(el){
-  if(el.closest('#pagina-home,#pagina-vaga,header.topo,footer,.em-vf-popover'))return;
+  if(el.closest('#pagina-home,#pagina-vaga,#pagina-vagas-destaque,header.topo,footer,.em-vf-popover'))return;
   if(el.shadowRoot)scan(el.shadowRoot);
   if(el.closest('#emCandidateProfile,.m3-welcome,#emCandidateAccountMenu,#listaVagas .em-r4-footer-badge,#listaVagas .em-r4-terms,#listaDestaques .dz-work-meta,svg,script,style,h1,h2,h3,h4,h5,h6,[aria-hidden=true],.fa,.fas,.far,.fab,.material-icons,.material-symbols-outlined'))return;
   var text=Array.from(el.childNodes).some(function(n){return n.nodeType===3&&n.textContent.trim();});
