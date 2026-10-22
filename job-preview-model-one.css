@@ -729,3 +729,10 @@ html body #pagina-home#pagina-home #emJobBrowser .em-jb-top-meta{flex-wrap:wrap!
 @container em-job-preview (max-width:620px){html body #pagina-home#pagina-home #emJobBrowser .em-jb-selection-label{flex-basis:100%!important}}
 @media(max-width:760px){html body #pagina-home#pagina-home #emJobBrowser .em-r4-selection-pointer{display:none!important}html body #pagina-home#pagina-home #emJobBrowser .em-jb-selection-label{flex-basis:100%!important}}
 }
+
+/* Illustrative company scores on public demo vacancies only. */
+@layer candidate-palette {
+html body .em-company-demo-rating{display:inline-flex!important;align-items:center!important;gap:4px!important;flex:0 0 auto!important;color:#173b5e!important;font-size:13px!important;font-weight:400!important;line-height:1.4!important;white-space:nowrap!important;text-transform:none!important}
+html body .em-company-demo-rating svg{display:block!important;width:16px!important;height:16px!important;flex:0 0 16px!important;fill:#ffc928!important;color:#ffc928!important;stroke:none!important}
+html body .em-company-demo-rating small{font-size:9px!important;font-weight:400!important;color:#68788b!important;text-transform:none!important;margin-right:3px!important}
+}
