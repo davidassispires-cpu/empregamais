@@ -30,10 +30,22 @@
         timestamp(a.dataPublicacao || a.publicadaEm || a.criadoEm);
     });
   }
+  function normalizeSearch(value) {
+    return String(value || '').normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase().trim().replace(/\s+/g, ' ');
+  }
+  function filterFeaturedJobs(jobs, query) {
+    var term = normalizeSearch(query && query.term), city = normalizeSearch(query && query.city);
+    var words = term ? term.split(' ') : [];
+    return (Array.isArray(jobs) ? jobs : []).filter(function (job) {
+      var text = normalizeSearch([job.cargo, job.empresa, job.area, job.descricao, job.resumo, job.modalidade, job.contrato].join(' '));
+      var location = normalizeSearch([job.cidade, job.estado, job.uf].join(' '));
+      return words.every(function (word) { return text.indexOf(word) !== -1; }) && (!city || location.indexOf(city) !== -1);
+    });
+  }
   function install(win) {
     if (win.__emFeaturedVacanciesInstalled) return;
     win.__emFeaturedVacanciesInstalled = true;
-    var doc = win.document, previousKey = null;
+    var doc = win.document, previousKey = null, search = {term:'',city:''};
     function active() {
       var page = doc.getElementById('pagina-vagas-destaque');
       return page && page.classList.contains('ativa');
@@ -44,7 +56,7 @@
       if (!list) return;
       var catalog = win.todasAsVagasPublicas();
       if (typeof win.statusDaVaga === 'function') catalog = catalog.filter(function (job) { return win.statusDaVaga(job) === 'ativa'; });
-      var jobs = selectFeaturedJobs(catalog), key = JSON.stringify(jobs);
+      var jobs = filterFeaturedJobs(selectFeaturedJobs(catalog), search), key = JSON.stringify([search, jobs]);
       if (previousKey === key) return;
       var cards = jobs.map(function (job) {
         var card = win.criarCardVaga(job, true);
@@ -65,9 +77,19 @@
       var count = doc.getElementById('emFeaturedJobsCount');
       if (count) count.textContent = jobs.length + (jobs.length === 1 ? ' vaga em destaque' : ' vagas em destaque');
       var empty = doc.getElementById('emFeaturedJobsEmpty');
-      if (empty) empty.hidden = jobs.length > 0;
+      if (empty) {
+        empty.hidden = jobs.length > 0;
+        empty.textContent = search.term || search.city ? 'Nenhuma vaga em destaque encontrada para esta busca.' : 'Nenhuma vaga em destaque disponível no momento.';
+      }
       list.setAttribute('aria-busy', 'false');
     }
+    var form = doc.getElementById('emFeaturedSearchForm');
+    if (form) form.onsubmit = function (event) {
+      event.preventDefault();
+      var term = doc.getElementById('emFeaturedSearchTerm'), city = doc.getElementById('emFeaturedSearchCity');
+      search = {term:term ? term.value.trim() : '',city:city ? city.value.trim() : ''};
+      render();
+    };
     win.renderizarVagasDestaque = render;
     var originalRender = win.renderizarVagas;
     if (typeof originalRender === 'function') win.renderizarVagas = function () {
@@ -86,5 +108,5 @@
     win.addEventListener('pageshow', refresh);
     win.addEventListener('storage', function (event) { if (event.key === 'vagasEmpregaMais') refresh(); });
   }
-  return {selectFeaturedJobs:selectFeaturedJobs,install:install};
+  return {selectFeaturedJobs:selectFeaturedJobs,filterFeaturedJobs:filterFeaturedJobs,install:install};
 });

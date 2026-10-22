@@ -1,8 +1,52 @@
 'use strict';
 const test=require('node:test'),assert=require('node:assert/strict'),fs=require('node:fs'),vm=require('node:vm');
-const {selectFeaturedJobs,install}=require('../featured-vacancies.js');
+const {selectFeaturedJobs,filterFeaturedJobs,install}=require('../featured-vacancies.js');
 const now='2026-10-22T12:00:00Z';
 function job(id,extra={}){return {id,cargo:'Analista',empresa:'Empresa',status:'ativa',aprovacao:'aprovada',destaque:true,dataPublicacao:'2026-10-20',...extra};}
+
+test('featured searches combine keywords and city regardless of accents, spacing or case',()=>{
+ const rows=[job('logistica',{cargo:'Analista de Logística',cidade:'Betim – MG',empresa:'Mercado Livre'}),
+  job('rh',{cargo:'Analista de Recursos Humanos',cidade:'Belo Horizonte – MG',descricao:'Seleção de profissionais'}),
+  job('normal',{destaque:false,cargo:'Analista de Logística',cidade:'Betim – MG'})];
+ const featured=selectFeaturedJobs(rows,now);
+ assert.deepEqual(filterFeaturedJobs(featured,{term:'  LOGISTICA   analista ',city:'betim'}).map(j=>j.id),['logistica']);
+ assert.deepEqual(filterFeaturedJobs(featured,{term:'selecao',city:'BELO HORIZONTE'}).map(j=>j.id),['rh']);
+ assert.deepEqual(filterFeaturedJobs(featured,{term:'mercado livre',city:'Betim'}).map(j=>j.id),['logistica']);
+ assert.deepEqual(filterFeaturedJobs(featured,{term:'logística',city:'Belo Horizonte'}),[]);
+ assert.deepEqual(filterFeaturedJobs(featured,{term:'',city:''}).map(j=>j.id),['logistica','rh']);
+});
+
+test('the banner submit filters its own listing, announces empty results and restores all featured jobs',()=>{
+ const elements={'pagina-vagas-destaque':{classList:{contains:()=>true}},
+  emFeaturedJobsList:{children:[],replaceChildren(...children){this.children=children;},setAttribute(){}},
+  emFeaturedJobsCount:{},emFeaturedJobsEmpty:{hidden:true},emFeaturedSearchForm:{},
+  emFeaturedSearchTerm:{value:''},emFeaturedSearchCity:{value:''}};
+ const win={document:{readyState:'complete',getElementById:id=>elements[id],querySelector:()=>null,addEventListener(){}},
+  todasAsVagasPublicas:()=>[job('a',{cargo:'Logística',cidade:'Betim'}),job('b',{cargo:'Contador',cidade:'Belo Horizonte'})],
+  criarCardVaga:value=>({id:value.id,querySelector:()=>null}),addEventListener(){}};
+ install(win);assert.equal(elements.emFeaturedJobsList.children.length,2);
+ let prevented=0;const submit=()=>elements.emFeaturedSearchForm.onsubmit({preventDefault(){prevented++;}});
+ elements.emFeaturedSearchTerm.value='logistica';submit();
+ assert.equal(elements.emFeaturedJobsList.children[0].id,'a');assert.equal(elements.emFeaturedJobsCount.textContent,'1 vaga em destaque');
+ elements.emFeaturedSearchCity.value='Belo Horizonte';submit();
+ assert.equal(elements.emFeaturedJobsList.children.length,0);assert.equal(elements.emFeaturedJobsEmpty.hidden,false);
+ assert.equal(elements.emFeaturedJobsEmpty.textContent,'Nenhuma vaga em destaque encontrada para esta busca.');
+ elements.emFeaturedSearchTerm.value='';elements.emFeaturedSearchCity.value='';submit();
+ assert.equal(elements.emFeaturedJobsList.children.length,2);assert.equal(elements.emFeaturedJobsEmpty.hidden,true);assert.equal(prevented,3);
+});
+
+test('the existing global form loaders leave featured searches available for repeated submissions',()=>{
+ const source=fs.readFileSync(require.resolve('../empregamais_lote6.js'),'utf8');
+ const start=source.indexOf('(function(){\nif(window.EmpregaMaisLoadingV134)return;');
+ const end=source.indexOf('\n//\n;\n//\n',start);
+ assert(start>=0&&end>start);
+ let submit;
+ const context={window:{addEventListener(){}},document:{addEventListener(type,handler){if(type==='submit')submit=handler;}}};
+ vm.createContext(context);vm.runInContext(source.slice(start,end),context);
+ const form={id:'emFeaturedSearchForm',checkValidity:()=>true,matches:()=>false,closest:()=>null,
+  querySelector(){throw Error('A local search must not disable its button or start the global loader');}};
+ submit({target:form});submit({target:form});
+});
 
 test('only explicit active and approved highlights appear, including supported flag aliases',()=>{
  const rows=[job('a'),job('b',{destaque:false,emDestaque:'true'}),job('c',{destaque:false,destacada:1}),
@@ -60,3 +104,4 @@ test('similar-company actions return to the public home list with the real compa
  install(win);control.onclick({preventDefault(){},stopPropagation(){}});
  assert.equal(route,'home');assert.equal(field.value,'Empresa Exemplo');assert.equal(filtered,1);assert.equal(scrolled,true);
 });
+
