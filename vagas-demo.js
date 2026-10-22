@@ -1073,7 +1073,7 @@
       date.innerHTML = svg('<rect x="3" y="5" width="18" height="16" rx="2"/><path d="M7 3v4M17 3v4M3 10h18"/>');
       date.appendChild(node('span','',publicationLabel(rawDate)));
       date.setAttribute('aria-label','Publicado em '+publicationLabel(rawDate));
-      if (!confidential) identity.appendChild(logo);
+      if (!confidential && (highlighted || urgent)) identity.appendChild(logo);
       identity.appendChild(copy);
       var heading = node('div','em-r4-heading');
       heading.appendChild(identity);
@@ -1162,6 +1162,13 @@
     var makeCard = win.criarCardVaga;
     if (typeof makeCard === 'function') win.criarCardVaga = function (job, featured) {
       var card = makeCard.apply(this, arguments);
+      if (card) {
+        var confidentialLogo = typeof win.vagaEhConfidencialEM === 'function' ? win.vagaEhConfidencialEM(job) : enabled(job.confidencial);
+        var promotedLogo = enabled(job.destaque) || enabled(job.emDestaque) || enabled(job.destacada) || enabled(job.urgente) || enabled(job.contratacaoUrgente);
+        card.setAttribute('data-em-show-logo', String(!confidentialLogo && promotedLogo));
+        if (confidentialLogo || !promotedLogo) card.querySelectorAll('.dz-logo,.em-lista-logo').forEach(function(logo){logo.remove();});
+      }
+
       if (card) companyIdentity(card.querySelector('.em-lista-empresa,.em-featured-company,.dz-empresa,.vaga-empresa'), job);
       if (!card || !isDemo(job)) return recentCard(card, job, featured);
       card.classList.add('em-public-demo-card');
