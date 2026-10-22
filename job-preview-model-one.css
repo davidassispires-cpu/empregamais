@@ -824,3 +824,18 @@ html body #pagina-home#pagina-home #emJobBrowser[data-layout="model-one"][data-p
 html body #pagina-home#pagina-home #emJobBrowser[data-layout="model-one"][data-presentation="priority"] .em-jb-footer-published .em-jb-fact-label{position:absolute!important;width:1px!important;height:1px!important;padding:0!important;margin:-1px!important;overflow:hidden!important;clip-path:inset(50%)!important;white-space:nowrap!important}
 }
 }
+
+/* Larger company logo on the right of the vacancy identity. */
+@layer candidate-palette {
+html body #pagina-home#pagina-home #emJobBrowser[data-layout="model-one"][data-presentation="priority"] .em-jb-header.em-jb-header-model2.em-jb-info-model2 .em-jb-header-content{grid-template-columns:minmax(0,1fr) 80px!important}
+html body #pagina-home#pagina-home #emJobBrowser[data-layout="model-one"][data-presentation="priority"] .em-jb-header.em-jb-header-model2.em-jb-info-model2 .em-jb-logo{grid-column:2!important;grid-row:2!important;justify-self:end!important;align-self:center!important;width:80px!important;height:80px!important}
+html body #pagina-home#pagina-home #emJobBrowser[data-layout="model-one"][data-presentation="priority"] .em-jb-header.em-jb-header-model2.em-jb-info-model2 .em-jb-identity{grid-column:1!important;grid-row:2!important;min-width:0!important}
+@container em-job-preview (max-width:560px){
+html body #pagina-home#pagina-home #emJobBrowser[data-layout="model-one"][data-presentation="priority"] .em-jb-header.em-jb-header-model2.em-jb-info-model2 .em-jb-header-content{grid-template-columns:minmax(0,1fr) 72px!important}
+html body #pagina-home#pagina-home #emJobBrowser[data-layout="model-one"][data-presentation="priority"] .em-jb-header.em-jb-header-model2.em-jb-info-model2 .em-jb-logo{width:72px!important;height:72px!important}
+}
+@media(max-width:760px){
+html body #pagina-home#pagina-home #emJobBrowser[data-layout="model-one"][data-presentation="priority"] .em-jb-header.em-jb-header-model2.em-jb-info-model2 .em-jb-header-content{grid-template-columns:minmax(0,1fr) 72px!important}
+html body #pagina-home#pagina-home #emJobBrowser[data-layout="model-one"][data-presentation="priority"] .em-jb-header.em-jb-header-model2.em-jb-info-model2 .em-jb-logo{width:72px!important;height:72px!important}
+}
+}
