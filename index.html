@@ -22787,7 +22787,7 @@ if(destaque){
   botao.type="button";
   botao.className="dz-botao";
   botao.innerHTML='<span>Candidatar-se</span>';
-  botao.onclick=function(){irPara("vaga",vaga.id);};
+  botao.onclick=function(e){if(e){e.preventDefault();e.stopPropagation();}irPara("vaga",vaga.id);};
   var footer=document.createElement('div');footer.className='dz-orange-footer';footer.appendChild(botao);
   var saveFeatured=document.createElement('button');saveFeatured.type='button';saveFeatured.className='dz-save-featured';
   saveFeatured.innerHTML='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M6 3h12v18l-6-4-6 4V3Z"/></svg>';
@@ -23000,7 +23000,7 @@ nomeEmpresaLista.textContent=textoListaLegivel(vaga.empresa||"Empresa",true);
     if(e){e.preventDefault();e.stopPropagation();}
     var id=String(vaga.id||"").trim();
     if(!id)return;
-    window.location.href=window.location.pathname+"?pagina=vaga&id="+encodeURIComponent(id);
+    irPara("vaga",id);
   };
   cardLista.appendChild(favLista);
   acoesLista.appendChild(verLista);
@@ -23347,7 +23347,8 @@ ver.className =
 ver.innerHTML =
 "<span>Candidatar-se</span><b aria-hidden='true'>→</b>";
 ver.onclick =
-function(){
+function(e){
+if(e){e.preventDefault();e.stopPropagation();}
 irPara(
 "vaga",
 vaga.id
@@ -33122,7 +33123,28 @@ html body #pagina-candidatos-empresa .em-app-option2 #emPremiumCompare [hidden]{
 html body #pagina-candidatos-empresa .em-app-option2 #emPremiumCompare .emp-feedback:empty{display:none!important}
 @media(max-width:1100px){html body #pagina-candidatos-empresa .em-app-option2 .em-gc27-stats{grid-template-columns:repeat(4,minmax(0,1fr))!important}html body #pagina-candidatos-empresa .em-app-option2 .em-gc27-kpi{padding:0 12px!important;min-width:70px!important}html body #pagina-candidatos-empresa .em-app-option2 .em-gc27-title{font-size:20px!important}}
 @media(max-width:700px){html body #pagina-candidatos-empresa .em-job-workspace.em-app-option2{padding:10px!important}html body #pagina-candidatos-empresa .em-app-option2 .em-gc27-head{padding:16px!important;grid-template-columns:1fr!important}html body #pagina-candidatos-empresa .em-app-option2 .em-gc27-job{flex-wrap:wrap!important;gap:12px!important}html body #pagina-candidatos-empresa .em-app-option2 .em-gc27-job>div:nth-child(2){flex:1!important;min-width:0!important}html body #pagina-candidatos-empresa .em-app-option2 .em-gc27-kpis{width:100%!important;margin:0!important}html body #pagina-candidatos-empresa .em-app-option2 .em-gc27-kpi{flex:1!important}html body #pagina-candidatos-empresa .em-app-option2 .em-gc27-meta{grid-column:1!important}html body #pagina-candidatos-empresa .em-app-option2 .em-gc27-stats{grid-template-columns:repeat(2,minmax(0,1fr))!important}html body #pagina-candidatos-empresa .em-app-option2 #emPremiumCompare .emp-bar{flex-wrap:wrap!important}html body #pagina-candidatos-empresa .em-app-option2 #emPremiumCompare .emp-actions{flex-wrap:wrap!important}}
-</style></body></html>";w.document.write(content);w.document.close();}
+</style><script id="em-home-apply-navigation-v1">
+(function(){
+"use strict";
+var selectors="#pagina-home .dz-botao,#pagina-home .em-lista-ver,#pagina-home .vaga-card .card-acoes .btn-azul,#pagina-home .card-destaque .card-acoes .btn-azul,#pagina-vagas-destaque .dz-botao,#pagina-vagas-destaque .em-lista-ver";
+document.addEventListener("click",function(e){
+var button=e.target&&e.target.closest?e.target.closest(selectors):null;
+if(!button)return;
+var card=button.closest("[data-vaga-id],.vaga-card,.card-destaque,.destaque-zero-m6");
+var id=button.getAttribute("data-vaga-id")||(card&&card.getAttribute("data-vaga-id"));
+if(!id&&card&&typeof localizarVaga==="function"){
+var title=card.getAttribute("data-titulo"),company=card.getAttribute("data-empresa");
+if(typeof carregarVagas==="function"){
+var list=carregarVagas();var match=list.find(function(v){return String(v.cargo||"")===String(title||"")&&String(v.empresa||"")===String(company||"");});if(match)id=match.id;
+}
+}
+if(!id)return;
+e.preventDefault();e.stopImmediatePropagation();
+if(typeof irPara==="function")irPara("vaga",id);
+else location.href=location.pathname+"?pagina=vaga&id="+encodeURIComponent(id);
+},true);
+})();
+</script></body></html>";w.document.write(content);w.document.close();}
 function init(){if(!document.getElementById("curriculoOnlineV84"))return;document.getElementById("cvAddExperienciaV84").onclick=function(){document.getElementById("cvExperienciasV84").appendChild(exp())};document.getElementById("cvAddFormacaoV84").onclick=function(){document.getElementById("cvFormacoesV84").appendChild(form())};document.getElementById("cvSalvarV84").onclick=salvar;document.getElementById("cvVisualizarV84").onclick=visualizar;carregar();}
 window.EmpregaMaisCurriculoOnlineV84={ler:ler,salvar:salvar,carregar:carregar};window.addEventListener("load",function(){setTimeout(init,400)});
 })();
