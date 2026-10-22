@@ -711,3 +711,8 @@ html body #pagina-vaga#pagina-vaga#pagina-vaga #emJobHeaderReference .jh-company
 html body #pagina-vaga#pagina-vaga#pagina-vaga .em-jb-company,
 html body #pagina-vaga#pagina-vaga#pagina-vaga .em-jb-company :is(.em-company-profile-link,.em-company-name) {text-transform:uppercase!important;font-weight:400!important}
 }
+
+/* Equal application actions in the inline vacancy preview. */
+@layer candidate-palette {
+html body #pagina-home #emJobBrowser[data-layout="model-one"][data-presentation="priority"] #emJobPanel .em-jb-apply{border-radius:999px!important;font-size:18px!important;font-weight:600!important;text-transform:uppercase!important;min-height:52px!important}
+}
