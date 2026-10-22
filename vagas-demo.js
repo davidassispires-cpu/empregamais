@@ -761,9 +761,11 @@
       var rawPublished = job.dataPublicacao || job.publicadaEm || job.criadoEm || '';
       var publishedLabel = publicationLabel(rawPublished);
       headerFact('em-jb-location', 'Local', info.location, '<path d="M20 10c0 6-8 12-8 12S4 16 4 10a8 8 0 1 1 16 0Z"/><circle cx="12" cy="10" r="2.5"/>');
-      headerFact('em-jb-header-modality', 'Modalidade', [job.modalidade || 'Não informada', contract].filter(Boolean).join(' · '), '<rect x="3" y="7" width="18" height="14" rx="2"/><path d="M8 7V3h8v4M3 12h18"/>');
+      headerFact('em-jb-header-modality', 'Modelo de trabalho', job.modalidade || 'Não informada', '<rect x="3" y="7" width="18" height="14" rx="2"/><path d="M8 7V3h8v4M3 12h18"/>');
       headerFact('em-jb-header-pay', 'Salário', info.salary, '<rect x="2" y="5" width="20" height="14" rx="2"/><circle cx="12" cy="12" r="3"/><path d="M5 8h1M18 16h1"/>');
       headerFact('em-jb-header-published', 'Publicado em', publishedLabel, '<rect x="3" y="5" width="18" height="16" rx="2"/><path d="M7 3v4M17 3v4M3 10h18M7 14h2M13 14h2M7 18h2"/>');
+      headerFact('em-jb-header-contract', 'Tipo de contratação', contract || 'Não informado', '<rect x="3" y="7" width="18" height="14" rx="2"/><path d="M8 7V3h8v4M3 12h18"/>');
+      headerFact('em-jb-header-education', 'Escolaridade', (typeof win.textoEscolaridadeVaga === 'function' ? win.textoEscolaridadeVaga(job) : job.escolaridade || job.escolaridadeMinima) || 'Não informada', '<path d="m2 8 10-5 10 5-10 5ZM6 10v7c4 3 8 3 12 0v-7M22 8v8"/>');
       var candidate = browserNode('button', 'em-jb-apply', 'Candidatar-se'); candidate.type = 'button';
       candidate.onclick = function () {
         if (isDemo(job)) { explainDemo(); return; }
@@ -840,7 +842,7 @@
       }
       headerContent.appendChild(topMeta);
       header.appendChild(headerMeta);
-      header.appendChild(headerActions);
+      headerContent.appendChild(headerActions);
       panel.appendChild(header);
       var body = browserNode('div', 'em-jb-body'), facts = browserNode('div', 'em-jb-facts');
       var detailIcons = {
@@ -866,7 +868,7 @@
       }
       // Salary, contract, modality and location already appear once in the header.
       addFact('Jornada', job.jornada); addFact('Horário', job.horario);
-      addFact('Experiência', job.experiencia); addFact('Escolaridade', typeof win.textoEscolaridadeVaga === 'function' ? win.textoEscolaridadeVaga(job) : job.escolaridade);
+      addFact('Experiência', job.experiencia);
       addFact('Área', job.area); if (job.pcd && job.pcd !== 'Não exclusiva para PcD') addFact('Vaga para PcD', job.pcd);
       var factNodes = Array.from(facts.children); facts.replaceChildren();
       function fillFactPairs(container, nodes) {

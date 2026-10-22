@@ -38,7 +38,11 @@
   var saveButton=document.createElement('button');saveButton.type='button';saveButton.className='jh-save';
   function refreshSaved(){var saved=typeof window.vagaEstaSalva==='function'&&window.vagaEstaSalva(model.id);saveButton.setAttribute('aria-pressed',String(!!saved));saveButton.innerHTML='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M6 3h12v18l-6-4-6 4V3Z"/></svg><span>'+(saved?'Vaga salva':'Salvar vaga')+'</span>';}
   saveButton.onclick=function(){if(typeof window.alternarFavorito==='function')window.alternarFavorito(model.id);refreshSaved();};refreshSaved();actions.appendChild(saveButton);
-  root.querySelector('.jh-top').insertAdjacentElement('afterend',actions);
+  var top=root.querySelector('.jh-top'),identity=top.children[1];
+  identity.prepend(identity.querySelector('.jh-title'));
+  top.appendChild(actions);
+  var share=document.createElement('button');share.type='button';share.className='jh-share';share.textContent='Compartilhar';
+  share.onclick=async function(){try{if(navigator.share)await navigator.share({title:model.title,url:location.href});else if(navigator.clipboard){await navigator.clipboard.writeText(location.href);share.textContent='Link copiado';}}catch(e){}};actions.appendChild(share);
   var companyButton=root.querySelector('.jh-company');companyButton.onclick=function(){var original=document.getElementById('detalheEmpresaCab');if(!confidential&&verified&&(companyKey==='66909443000108'||companyName.indexOf('emporio griff')===0)&&typeof window.emAbrirGriffPublica==='function')window.emAbrirGriffPublica();else if(!confidential&&original)original.click();};if(confidential)companyButton.disabled=true;
   var seal=root.querySelector('.jh-verified');if(seal){
    var tip=seal.querySelector('.jh-verified-tip'),close=document.createElement('button');close.type='button';close.className='jh-vt-close';close.textContent='×';close.setAttribute('aria-label','Fechar informações de verificação');close.title='Fechar';tip.querySelector('.jh-vt-head').appendChild(close);

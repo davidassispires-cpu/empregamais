@@ -31,8 +31,8 @@
 
   var layout=page.querySelector('.detalhe-layout'),main=layout&&layout.querySelector(':scope > main');
   var mobile=window.matchMedia('(max-width:800px)').matches;
-  if(mobile&&main&&infoSection.nextElementSibling!==box)box.before(infoSection);
-  else if(!mobile&&company&&company.nextElementSibling!==infoSection)company.after(infoSection);
+  // Keep additional conditions visible in the unified vacancy content.
+  if(main&&box.nextElementSibling!==infoSection)box.after(infoSection);
   var benefits=Array.from(page.querySelectorAll('#detalheBeneficiosTags span')).map(function(el){return el.textContent.trim();});
   var source={description:text('detalheDescricao'),requirements:text('detalheRequisitos'),benefits:benefits,benefitText:text('detalheBeneficios'),rows:[
    ['Área de atuação',v.area],['Escolaridade',v.escolaridade],['Experiência',v.experiencia],['Jornada',v.jornada],['Horário',v.horario],
