@@ -364,7 +364,7 @@
         rating.setAttribute('aria-label', 'Nota ilustrativa de demonstração: 4,1 de 5. Não representa avaliações reais.');
         rating.title = 'Avaliação ilustrativa de demonstração. Não representa avaliações reais da empresa.';
         rating.innerHTML = '<span class="em-company-rating-value">4,1</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.8-6.2-3.2L5.8 21 7 14.2 2 9.3l6.9-1Z"/></svg>';
-        company.replaceChildren(rating, link);
+        company.replaceChildren(link, rating);
       }
       var verified = isDemo(job) || record && typeof win.empresaEstaVerificada === 'function' && win.empresaEstaVerificada(record);
       if (verified) company.appendChild(verificationSeal(job));

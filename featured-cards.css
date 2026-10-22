@@ -119,3 +119,10 @@ html body :is(#pagina-home#pagina-home #listaDestaques#listaDestaques,#pagina-va
 
 }
 
+
+/* Keep company ratings after the name in the same featured-card row. */
+@layer candidate-palette {
+html body :is(#pagina-home#pagina-home #listaDestaques#listaDestaques,#pagina-vagas-destaque#pagina-vagas-destaque #emFeaturedJobsList#emFeaturedJobsList) .em-featured-reference .dz-empresa:has(>.em-company-demo-rating){display:flex!important;flex-wrap:nowrap!important;align-items:center!important;gap:6px!important;min-width:0!important;max-width:100%!important}
+html body :is(#pagina-home#pagina-home #listaDestaques#listaDestaques,#pagina-vagas-destaque#pagina-vagas-destaque #emFeaturedJobsList#emFeaturedJobsList) .em-featured-reference .dz-empresa:has(>.em-company-demo-rating)>.em-company-profile-link{flex:0 1 auto!important;min-width:0!important;max-width:100%!important}
+html body :is(#pagina-home#pagina-home #listaDestaques#listaDestaques,#pagina-vagas-destaque#pagina-vagas-destaque #emFeaturedJobsList#emFeaturedJobsList) .em-featured-reference .dz-empresa>.em-company-demo-rating{flex:0 0 auto!important;line-height:20px!important;white-space:nowrap!important}
+}
