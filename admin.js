@@ -244,7 +244,8 @@
   function refreshCurrent() {showConnection('');if(sources[state.section])loadList(state.section);else if(state.section==='overview'){$('content').innerHTML=loading;overview(++state.sequence);}else go(state.section);}
   function dashboard() {
     $('loginPanel').hidden=true;$('dashboard').hidden=false;$('previewNotice').hidden=!preview;$('sessionLabel').textContent=preview?'Prévia · dados de exemplo':session?.email||'Administrador';
-    $('navigation').innerHTML=Object.entries(sections).map(([key,[name,,glyph]])=>'<button type="button" class="nav-button" data-go="'+key+'">'+icon(glyph)+'<span>'+E(name)+'</span></button>').join('');
+    const groups=[['PRINCIPAL',['overview']],['GESTÃO DO PORTAL',['jobs','companies','candidates','applications']],['COMERCIAL',['subscriptions','plans']],['ATENDIMENTO E CONTROLE',['verifications','reports','support','history','settings']]];
+    $('navigation').innerHTML=groups.map(([title,keys])=>'<div class="nav-group"><p class="nav-group-label">'+title+'</p>'+keys.map(key=>'<button type="button" class="nav-button" data-go="'+key+'">'+icon(sections[key][2])+'<span>'+E(sections[key][0])+'</span></button>').join('')+'</div>').join('');
     go(location.hash.slice(1)||'overview');
   }
   async function signOut() {

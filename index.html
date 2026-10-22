@@ -1,5 +1,12 @@
 <!DOCTYPE html>
-<html lang="pt-BR"><head><script id="em-candidatura-clique-fix-v2">
+<html lang="pt-BR"><head><script id="em-admin-workspace-route">
+(function(){
+  function adminRoute(name){return name==='admin'||name==='login-admin';}
+  function openAdmin(){var url=new URL('admin.html',location.href);if(new URLSearchParams(location.search).get('modo')==='previa')url.searchParams.set('modo','previa');location.replace(url.href);}
+  window.abrirNovoPainelAdminEM=openAdmin;
+  if(adminRoute(new URLSearchParams(location.search).get('pagina')))openAdmin();
+})();
+</script><script id="em-candidatura-clique-fix-v2">
 (function(){
   "use strict";
   var seletor="#btnCandidatar,#btnCandidatarMobile,#btnCandidatarFinalEM,#btnCandidatarDetalhe,[data-candidatar-v94]";
@@ -14595,6 +14602,7 @@ paginas[i]
 }
 }
 function mostrarPagina(nome){
+if(nome==="admin"||nome==="login-admin"){window.abrirNovoPainelAdminEM();return;}
 esconderPaginas();
 var pagina =
 document.getElementById(
@@ -14619,6 +14627,7 @@ function irPara(
 pagina,
 id
 ){
+if(pagina==="admin"||pagina==="login-admin"){window.abrirNovoPainelAdminEM();return;}
 var url =
 window.location.pathname;
 if(

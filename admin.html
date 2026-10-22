@@ -6,10 +6,10 @@
   <meta name="robots" content="noindex,nofollow">
   <meta name="description" content="Área administrativa do +Empregos.">
   <title>Painel administrativo | +Empregos</title>
-  <link rel="stylesheet" href="admin.css?v=20261020-poppins-global">
+  <link rel="stylesheet" href="admin.css?v=20261022-admin-workspace">
   <script defer src="admin-catalog.js?v=1"></script>
   <script defer src="admin-core.js?v=1"></script>
-  <script defer src="admin.js?v=20261018-support-2"></script>
+  <script defer src="admin.js?v=20261022-admin-workspace"></script>
 </head>
 <body>
   <section id="loginPanel" class="login-panel" aria-labelledby="loginTitle">
@@ -33,14 +33,15 @@
   <div id="dashboard" class="layout" hidden>
     <aside class="sidebar">
       <a class="brand" href="./">+Empregos</a>
-      <div class="sidebar-caption">ADMINISTRAÇÃO DO PORTAL</div>
+      <div class="sidebar-caption">CENTRAL DE GESTÃO</div>
       <nav id="navigation" aria-label="Menu administrativo"></nav>
       <div class="sidebar-footer"><span id="sessionLabel"></span><button id="signOut" class="button quiet" type="button">Sair</button></div>
     </aside>
     <main id="main" tabindex="-1">
+      <div class="workspace-topbar"><span>ADMINISTRAÇÃO <span class="topbar-divider">/</span> +EMPREGOS</span><a href="./" class="portal-link">Voltar ao portal <span aria-hidden="true">↗</span></a></div>
       <header class="page-heading">
-        <div><p class="eyebrow">PAINEL DO ADMINISTRADOR</p><h1 id="pageTitle">Visão geral</h1><p id="pageSubtitle">Acompanhe o portal e o que precisa da sua atenção.</p></div>
-        <div class="heading-actions"><a class="button" href="./" target="_blank" rel="noopener">Ver portal ↗</a><button id="refresh" class="button" type="button">Atualizar</button></div>
+        <div><p class="eyebrow">CENTRAL ADMINISTRATIVA</p><h1 id="pageTitle">Visão geral</h1><p id="pageSubtitle">Acompanhe o portal e o que precisa da sua atenção.</p></div>
+        <div class="heading-actions"><a class="button" href="./" target="_blank" rel="noopener">Abrir portal ↗</a><button id="refresh" class="button" type="button">Atualizar</button></div>
       </header>
       <div id="previewNotice" class="preview-notice" hidden><div><strong>Prévia do painel ADM</strong><span>Dados de exemplo. As alterações ficam somente neste navegador.</span></div><a href="admin.html">Entrar com dados reais →</a></div>
       <div id="connectionNotice" class="connection-notice" role="alert" hidden></div>

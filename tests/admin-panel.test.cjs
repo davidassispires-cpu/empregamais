@@ -39,3 +39,16 @@ test('admin catalog matches the actual portal plan catalog',()=>{
  const catalog=JSON.parse(JSON.stringify(context.window.EMAdminCatalog));assert.deepEqual(catalog,require('../planos-config.js').catalog);
  assert.deepEqual(['mensal','trimestral','semestral','anual'].map(k=>catalog[k].vagas),[8,30,70,150]);assert.equal(catalog.mensal.destaques,0);
 });
+
+test('legacy administrative routes open the independent workspace without copying credentials',()=>{
+ const html=fs.readFileSync(path.join(__dirname,'../index.html'),'utf8');
+ const code=html.match(/<script id="em-admin-workspace-route">([\s\S]*?)<\/script>/)[1];
+ for(const route of ['admin','login-admin']){
+  const destinations=[];const location={href:'https://example.com/empregamais/?pagina='+route+'&token=private',search:'?pagina='+route+'&token=private',replace:url=>destinations.push(url)};
+  vm.runInNewContext(code,{window:{},location,URL,URLSearchParams});
+  assert.deepEqual(destinations,['https://example.com/empregamais/admin.html']);
+ }
+ const destinations=[];
+ vm.runInNewContext(code,{window:{},location:{href:'https://example.com/empregamais/?pagina=home',search:'?pagina=home',replace:url=>destinations.push(url)},URL,URLSearchParams});
+ assert.equal(destinations.length,0);
+});
