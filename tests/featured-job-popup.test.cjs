@@ -2,6 +2,9 @@
 const test = require('node:test');
 const assert = require('node:assert/strict');
 const {jobDetails,publicText} = require('../featured-vacancies.js');
+const fs = require('node:fs');
+const path = require('node:path');
+const vm = require('node:vm');
 
 test('featured detail preserves the complete description and requirements without preview limits', () => {
   const description = 'Responsabilidade detalhada.\n'.repeat(180) + 'ÚLTIMA INFORMAÇÃO';
@@ -46,4 +49,40 @@ test('facts retain public values, publication uses the Brazilian calendar and sa
   assert.deepEqual(result.facts,[['Área','Tecnologia'],['Jornada','44 horas semanais'],['Horário','08h às 17h'],
     ['Experiência','2 anos'],['Escolaridade','Superior completo']]);
   assert.equal(jobDetails({id:'2',dataPublicacao:'invalid'}).date,'Não informada');
+});
+
+function legacyNavigation(popupEnabled) {
+  const source = fs.readFileSync(path.join(__dirname,'../empregamais_lote9.js'),'utf8');
+  const clickStart = source.indexOf('/* Corrige CTA Candidatar-se nos cards da lista V203 */');
+  const clickEnd = source.indexOf('/* Rodapé profissional dos cards de vaga V204 */',clickStart);
+  const mobileStart = source.indexOf('/* Mobile: garante abertura da vaga pelo CTA Candidatar-se V205 */');
+  const mobileEnd = source.indexOf('\n(function(){\n var pending=false;',mobileStart);
+  assert(clickStart >= 0 && clickEnd > clickStart && mobileStart >= 0 && mobileEnd > mobileStart);
+  const handlers = [], navigations = [];
+  const document = {readyState:'complete',getElementById:()=>null,
+    addEventListener:(type,handler)=>handlers.push([type,handler])};
+  const window = {irPara:(page,id)=>navigations.push({page,id}),
+    addEventListener:(type,handler)=>handlers.push([type,handler])};
+  const location = {pathname:'/empregamais/',assign:url=>navigations.push({url})};
+  vm.runInNewContext(source.slice(clickStart,clickEnd)+source.slice(mobileStart,mobileEnd),
+    {window,document,location,URL});
+  const card = {getAttribute:name=>name==='data-vaga-id'?'job-exact-id':
+    name==='data-em-featured-popup'&&popupEnabled?'true':null};
+  const button = {textContent:'Candidatar-se',closest:selector=>selector==='#pagina-vaga'?null:card};
+  const event = {target:{closest:()=>button},preventDefault(){},stopPropagation(){},stopImmediatePropagation(){}};
+  assert.equal(handlers.length,3);
+  handlers.forEach(([,handler])=>handler(event));
+  return navigations;
+}
+
+test('legacy click and mobile pointer handlers yield to the featured popup', () => {
+  assert.deepEqual(legacyNavigation(true),[]);
+});
+
+test('legacy routing keeps working for cards outside the popup integration', () => {
+  assert.deepEqual(legacyNavigation(false),[
+    {page:'vaga',id:'job-exact-id'},
+    {url:'/empregamais/?pagina=vaga&id=job-exact-id'},
+    {url:'/empregamais/?pagina=vaga&id=job-exact-id'}
+  ]);
 });

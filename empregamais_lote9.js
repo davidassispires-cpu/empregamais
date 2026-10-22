@@ -555,6 +555,7 @@ document.addEventListener('click',function(e){
  if(t.indexOf('candidatar-se')!==0)return;
  if(b.closest('#pagina-vaga'))return;
  var card=b.closest('[class*="vaga"],article,.card');if(!card)return;
+ if(card.getAttribute('data-em-featured-popup')==='true')return;
  var id=vagaIdDoCard(card);if(!id)return;
  e.preventDefault();e.stopPropagation();if(e.stopImmediatePropagation)e.stopImmediatePropagation();
  abrir(id);
@@ -605,6 +606,7 @@ function go(e){
  if(!/^candidatar-se/i.test(String(b.textContent||'').replace(/\s+/g,' ').trim()))return;
  if(b.closest('#pagina-vaga'))return;
  var card=b.closest('.vaga-card,.card-vaga,[class*="vaga-card"],article,.card');
+ if(card&&card.getAttribute('data-em-featured-popup')==='true')return;
  var id=idCard(card);if(!id)return;
  e.preventDefault();e.stopPropagation();
  location.assign(location.pathname+'?pagina=vaga&id='+encodeURIComponent(id));
@@ -622,6 +624,7 @@ document.addEventListener('pointerup',go,true);
   window.addEventListener('click',function(event){
    var button=event.target.closest&&event.target.closest('.dz-botao');if(!button)return;
    var card=button.closest('.destaque-zero-m6,.em-featured-reference');if(!card)return;
+   if(card.getAttribute('data-em-featured-popup')==='true')return;
    var id=card.getAttribute('data-vaga-id')||card.getAttribute('data-id');
    if(!id&&typeof window.todasAsVagasPublicas==='function'){
     var matches=window.todasAsVagasPublicas().filter(function(v){return String(v.cargo||'')===card.getAttribute('data-titulo')&&String(v.empresa||'')===card.getAttribute('data-empresa')&&String(v.cidade||'')===card.getAttribute('data-cidade');});
@@ -674,3 +677,4 @@ html body #pagina-home #listaVagas#listaVagas#listaVagas .em-status-quick{color:
  }
  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',start,{once:true});else start();
 })();
+

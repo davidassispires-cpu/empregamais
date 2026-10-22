@@ -253,6 +253,7 @@
       var card = makeCard.apply(this,arguments);
       if (card && featured) {
         card.__emFeaturedPopupJob = job;
+        card.setAttribute('data-em-featured-popup','true');
         var button = card.querySelector('.dz-botao');
         if (button) { button.setAttribute('aria-haspopup','dialog'); button.setAttribute('aria-expanded','false'); button.setAttribute('aria-controls','emFeaturedJobPopup'); button.setAttribute('aria-label','Ver detalhes de '+publicText(job.cargo)); }
       }
@@ -261,6 +262,7 @@
     doc.querySelectorAll('#listaDestaques .dz-botao,#emFeaturedJobsList .dz-botao').forEach(function (button) {
       button.setAttribute('aria-haspopup','dialog'); button.setAttribute('aria-expanded','false'); button.setAttribute('aria-controls','emFeaturedJobPopup');
       var card = button.closest('.em-featured-reference');
+      if (card) card.setAttribute('data-em-featured-popup','true');
       button.setAttribute('aria-label','Ver detalhes de '+publicText(card && card.getAttribute('data-titulo')));
     });
     doc.addEventListener('click',function (event) {
