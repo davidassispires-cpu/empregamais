@@ -309,3 +309,9 @@ html body #pagina-home#pagina-home #emHeroFloripa .em-hero-popular button:focus-
 @media(max-width:900px){html body #pagina-home#pagina-home #emHeroFloripa{padding:25px 24px!important}html body #pagina-home#pagina-home #emHeroFloripa .hero-premium-inner-em{max-width:1240px!important}html body #pagina-home#pagina-home #emHeroFloripa #emHeroRefBusca{grid-template-columns:repeat(2,minmax(0,1fr))!important}}
 @media(max-width:520px){html body #pagina-home#pagina-home #emHeroFloripa{padding:24px 16px!important}html body #pagina-home#pagina-home #emHeroFloripa .hero-copy-em h1{font-size:27px!important}html body #pagina-home#pagina-home #emHeroFloripa #emHeroRefBusca{grid-template-columns:minmax(0,1fr)!important}html body #pagina-home#pagina-home #emHeroFloripa .em-hero-popular{font-size:11px!important;gap:6px 9px!important}}
 }
+
+@layer candidate-palette {
+html body #pagina-home#pagina-home #emHeroFloripa #emHeroRefBusca .em-hero-search-control:focus-within{outline:none!important;border-color:#1e83c7!important;box-shadow:0 0 0 1px #1e83c7!important}
+html body #pagina-home#pagina-home #emHeroFloripa #emHeroRefBusca :is(input,select):focus{outline:none!important;box-shadow:none!important}
+html body #pagina-home#pagina-home #emHeroFloripa #emHeroRefBusca .em-hero-submit:focus-visible{outline:2px solid #0865a3!important;outline-offset:3px!important}
+}
