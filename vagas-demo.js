@@ -1120,7 +1120,7 @@
       var excerptText = summaryText(job.descricao || job.descricaoVaga || job.resumo || '')
         .replace(/Vaga de demonstração do \+Empregos\.[\s\S]*$/i, '').replace(/\s+/g, ' ').trim();
       var excerpt = node('p', 'em-r4-excerpt', excerptText);
-      var excerptStyles = {'display':'-webkit-box','-webkit-box-orient':'vertical','-webkit-line-clamp':'2','line-clamp':'2','overflow':'hidden','max-height':'40px','margin':'0','padding':'0','font-size':'14px','font-weight':'400','line-height':'20px','color':'#52657b','grid-column':'1 / -1','width':'100%','min-width':'0','overflow-wrap':'anywhere'};
+      var excerptStyles = {'display':'-webkit-box','-webkit-box-orient':'vertical','-webkit-line-clamp':'2','line-clamp':'2','overflow':'hidden','max-height':'44px','margin':'0','padding':'0','font-size':'15px','font-weight':'400','line-height':'22px','color':'#52657b','grid-column':'1 / -1','width':'100%','min-width':'0','overflow-wrap':'anywhere'};
       Object.keys(excerptStyles).forEach(function (key) { excerpt.style.setProperty(key, excerptStyles[key], 'important'); });
       if (excerptText) card.replaceChildren(heading,excerpt,metaRow,footer);
       else card.replaceChildren(heading,metaRow,footer);
