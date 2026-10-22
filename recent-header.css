@@ -67,3 +67,16 @@
     html body #pagina-home #vagas .filtro-chip-home {padding:0 12px!important}
   }
 }
+
+/* Public home: recent vacancies share the featured heading composition. */
+@layer candidate-palette {
+html body #pagina-home#pagina-home #emCandidateSignupBanner,
+html body #pagina-home#pagina-home #emRecentHeaderHistory,
+html body #pagina-home#pagina-home #emVisitorTools .em-visitor-recent{display:none!important}
+html body #pagina-home#pagina-home #vagas .em-recent-split-header{display:block!important;background:transparent!important;border:0!important;box-shadow:none!important;border-radius:0!important;padding:0!important;gap:0!important;margin:0 0 24px!important}
+html body #pagina-home#pagina-home #vagas .em-recent-header-main{border:0!important;padding:0!important}
+html body #pagina-home#pagina-home #vagas .em-recent-title-final{background:transparent!important;box-shadow:none!important;margin:0 0 22px!important}
+html body #pagina-home#pagina-home #vagas .em-recent-title-final h2{color:#0865a3!important;font-size:28px!important;line-height:1.2!important;font-weight:700!important;letter-spacing:-.6px!important;margin:0 0 8px!important}
+html body #pagina-home#pagina-home #vagas .em-recent-title-final h2::before{content:"ENCONTRE SUA OPORTUNIDADE"!important;display:block!important;position:static!important;width:auto!important;height:auto!important;transform:none!important;border:0!important;border-radius:0!important;padding:0 0 0 56px!important;margin:0 0 12px!important;background:linear-gradient(#ff7b0b,#ff7b0b) left center / 45px 2px no-repeat!important;color:#c95500!important;font:500 9px/1.5 Poppins,sans-serif!important;letter-spacing:2.5px!important}
+html body #pagina-home#pagina-home #vagas .em-recent-title-final p{color:#0865a3!important;font-size:14px!important;line-height:1.5!important}
+}
