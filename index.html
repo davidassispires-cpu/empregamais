@@ -33130,8 +33130,10 @@ else if(b.classList.contains("cand94-ja")){b.disabled=false;b.classList.remove("
 }
 var aberturaSeq=0;
 function abrir(v){
-vaga=v||window.vagaAtual;if(!vaga)return;
-if(!em()){if(typeof irPara==="function")irPara("login-candidato");else alert("Entre na sua conta de candidato para se candidatar.");return}
+vaga=v||window.vagaAtual;
+if(!vaga&&typeof vagaAtual!=="undefined")vaga=vagaAtual;
+if(!vaga){alert("Não foi possível identificar a vaga. Abra a vaga novamente.");return;}
+if(!((typeof candidatoEstaLogado==="function"&&candidatoEstaLogado())||sessionStorage.getItem("empregaMaisPapel")==="candidato")||!em()){if(typeof irPara==="function")irPara("login-candidato");else alert("Entre na sua conta de candidato para se candidatar.");return}
 var seq=++aberturaSeq, atual=vaga, email=em(),btn=document.getElementById("cand94Enviar");
 erro("");
 document.getElementById("cand94Vaga").textContent=(vaga.cargo||vaga.titulo||"Vaga")+" • "+(vaga.empresa||"");
@@ -33164,6 +33166,7 @@ dialog.addEventListener("close",function(){dialog.remove();});
 dialog.appendChild(host);document.body.appendChild(dialog);dialog.showModal();
 }
 async function enviar(){
+if(!((typeof candidatoEstaLogado==="function"&&candidatoEstaLogado())||sessionStorage.getItem("empregaMaisPapel")==="candidato")||!em()){modal(false);if(typeof irPara==="function")irPara("login-candidato");return;}
 erro("");var c=cand(), online=cv(), file=document.getElementById("cand94File").files[0];
 if(modo==="online"&&!online){erro("Você ainda não possui um currículo online salvo.");return}
 if(modo==="arquivo"&&!file){erro("Selecione um arquivo de currículo.");return}
@@ -33191,7 +33194,9 @@ var tx=String(b.textContent||"").toLowerCase(), href=String(b.getAttribute("href
 var eh=(tx.indexOf("candidatar")>=0||tx.indexOf("candidatura")>=0)&&(href.indexOf("mailto:")>=0||b.id==="btnCandidatar"||b.id==="btnCandidatarMobile"||b.id==="btnCandidatarFinalEM"||b.id==="btnCandidatarDetalhe");
 if(!eh)return;
 if(document.getElementById("pagina-vaga")&&!document.getElementById("pagina-vaga").classList.contains("ativa")&&href.indexOf("mailto:")<0)return;
-e.preventDefault();e.stopImmediatePropagation();abrir(window.vagaAtual)
+e.preventDefault();e.stopImmediatePropagation();
+var atual=window.vagaAtual||(typeof vagaAtual!=="undefined"?vagaAtual:null);
+abrir(atual)
 }
 document.addEventListener("click",interceptar,true);
 document.getElementById("cand94Fechar").onclick=function(){modal(false)};
