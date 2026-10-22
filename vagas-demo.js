@@ -722,7 +722,8 @@
       locate.setAttribute('aria-label', 'Localizar ' + summaryText(info.title) + ' na lista');
       locate.onclick = function () { locateSelectedJob(state); }; context.appendChild(locate);
       var header = browserNode('header', 'em-jb-header em-jb-header-model2 em-jb-info-model2');
-      header.appendChild(browserNode('p', 'em-jb-job-id', 'ID da vaga: ' + String(job.id || '')));
+      var jobId = browserNode('p', 'em-jb-job-id', 'ID da vaga: ' + String(job.id || ''));
+      jobId.title = jobId.textContent;
       var headerContent = browserNode('div', 'em-jb-header-content'); header.appendChild(headerContent);
       var logo = browserNode('div', 'em-jb-logo'); logo.setAttribute('aria-hidden', 'true');
       var sourceLogo = entry.confidential ? null : card.querySelector('.em-r4-logo img');
@@ -735,7 +736,6 @@
       } else logo.textContent = initials;
       headerContent.appendChild(logo);
       var identity = browserNode('div', 'em-jb-identity'); headerContent.appendChild(identity);
-      identity.appendChild(header.querySelector('.em-jb-job-id'));
       var badges = browserNode('div', 'em-jb-badges');
       if (entry.highlighted) badges.appendChild(browserNode('span', 'em-jb-badge', 'Destaque'));
 
@@ -833,9 +833,11 @@
       var selectionLabel = browserNode('span', 'em-jb-selection-label');
       selectionLabel.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="m8 12 3 3 5-6"/></svg><span>VAGA SELECIONADA</span>';
       topMeta.appendChild(selectionLabel);
-      topMeta.appendChild(identity.querySelector('.em-jb-job-id'));
       var publicationFact = headerMeta.querySelector('.em-jb-header-published');
-      if (publicationFact) topMeta.appendChild(publicationFact);
+      if (publicationFact) {
+        publicationFact.className = 'em-jb-footer-published';
+        publicationFact.remove();
+      }
       headerContent.appendChild(topMeta);
       header.appendChild(headerMeta);
       header.appendChild(headerActions);
@@ -924,6 +926,10 @@
 
       var footer = browserNode('div', 'em-jb-footer'); footer.setAttribute('role', 'group');
       footer.setAttribute('aria-label', 'Candidatura à vaga');
+      var footerMeta = browserNode('div', 'em-jb-footer-meta');
+      footerMeta.appendChild(jobId);
+      if (publicationFact) footerMeta.appendChild(publicationFact);
+      footer.appendChild(footerMeta);
       var report = browserNode('button', 'em-jb-report', 'Denunciar vaga'); report.type = 'button'; report.setAttribute('data-vaga-id', String(job.id || ''));
       report.onclick = function () {
         if (typeof win.abrirPopupDenunciaEmpregaMais === 'function') win.abrirPopupDenunciaEmpregaMais(job.id);

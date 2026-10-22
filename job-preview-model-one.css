@@ -800,3 +800,27 @@ html body #pagina-home#pagina-home #emJobBrowser[data-layout="model-one"][data-p
 html body #pagina-home#pagina-home #emJobBrowser[data-layout="model-one"][data-presentation="priority"] #listaVagas#listaVagas .em-recent-blocks.em-recent-discreet:is([data-em-confidential="true"],[data-em-show-logo="false"]) .em-r4-title{grid-column:1/-1!important;grid-row:1!important;width:100%!important;margin:0!important}
 html body #pagina-home#pagina-home #emJobBrowser[data-layout="model-one"][data-presentation="priority"] #listaVagas#listaVagas .em-recent-blocks.em-recent-discreet:is([data-em-confidential="true"],[data-em-show-logo="false"]) .em-r4-company{grid-column:1/-1!important;grid-row:2!important;width:100%!important;margin:0!important}
 }
+
+/* Vacancy identity and publication align with the report action in the footer. */
+@layer candidate-palette {
+html body #pagina-home#pagina-home #emJobBrowser[data-layout="model-one"][data-presentation="priority"] .em-jb-footer{grid-template-columns:minmax(0,1fr) auto!important;align-items:center!important;gap:12px!important}
+html body #pagina-home#pagina-home #emJobBrowser[data-layout="model-one"][data-presentation="priority"] .em-jb-footer-meta{grid-column:1!important;grid-row:1!important;display:flex!important;flex-direction:row!important;align-items:center!important;flex-wrap:nowrap!important;gap:16px!important;min-width:0!important;max-width:100%!important}
+html body #pagina-home#pagina-home #emJobBrowser[data-layout="model-one"][data-presentation="priority"] .em-jb-footer .em-jb-job-id{flex:1 1 auto!important;min-width:0!important;max-width:100%!important;margin:0!important;color:#65748a!important;font-size:12px!important;font-weight:400!important;line-height:18px!important;white-space:nowrap!important;overflow:hidden!important;text-overflow:ellipsis!important}
+html body #pagina-home#pagina-home #emJobBrowser[data-layout="model-one"][data-presentation="priority"] .em-jb-footer-published{display:flex!important;align-items:center!important;flex:0 0 auto!important;gap:5px!important;margin:0!important;color:#65748a!important;font-size:12px!important;line-height:18px!important;white-space:nowrap!important}
+html body #pagina-home#pagina-home #emJobBrowser[data-layout="model-one"][data-presentation="priority"] .em-jb-footer-published>svg{width:16px!important;height:16px!important;flex:0 0 16px!important}
+html body #pagina-home#pagina-home #emJobBrowser[data-layout="model-one"][data-presentation="priority"] .em-jb-footer-published .em-jb-fact-copy{display:flex!important;flex-direction:row!important;align-items:center!important;gap:4px!important;min-width:0!important;white-space:nowrap!important}
+html body #pagina-home#pagina-home #emJobBrowser[data-layout="model-one"][data-presentation="priority"] .em-jb-footer-published .em-jb-fact-label{font-size:11px!important;line-height:18px!important}
+html body #pagina-home#pagina-home #emJobBrowser[data-layout="model-one"][data-presentation="priority"] .em-jb-footer-published .em-jb-fact-value{font-size:12px!important;font-weight:500!important;line-height:18px!important;white-space:nowrap!important}
+html body #pagina-home#pagina-home #emJobBrowser[data-layout="model-one"][data-presentation="priority"] .em-jb-footer .em-jb-report{grid-column:2!important;grid-row:1!important;justify-self:end!important;margin:0!important;white-space:nowrap!important}
+html body #pagina-home#pagina-home #emJobBrowser[data-layout="model-one"][data-presentation="priority"] .em-jb-footer .em-jb-apply-bottom{grid-row:2!important}
+@container em-job-preview (max-width:560px){
+html body #pagina-home#pagina-home #emJobBrowser[data-layout="model-one"][data-presentation="priority"] .em-jb-footer-meta{flex-direction:column!important;align-items:flex-start!important;gap:3px!important}
+html body #pagina-home#pagina-home #emJobBrowser[data-layout="model-one"][data-presentation="priority"] .em-jb-footer-published{min-width:0!important;max-width:100%!important}
+html body #pagina-home#pagina-home #emJobBrowser[data-layout="model-one"][data-presentation="priority"] .em-jb-footer-published .em-jb-fact-label{position:absolute!important;width:1px!important;height:1px!important;padding:0!important;margin:-1px!important;overflow:hidden!important;clip-path:inset(50%)!important;white-space:nowrap!important}
+}
+@media(max-width:600px){
+html body #pagina-home#pagina-home #emJobBrowser[data-layout="model-one"][data-presentation="priority"] .em-jb-footer-meta{flex-direction:column!important;align-items:flex-start!important;gap:3px!important}
+html body #pagina-home#pagina-home #emJobBrowser[data-layout="model-one"][data-presentation="priority"] .em-jb-footer-published{min-width:0!important;max-width:100%!important}
+html body #pagina-home#pagina-home #emJobBrowser[data-layout="model-one"][data-presentation="priority"] .em-jb-footer-published .em-jb-fact-label{position:absolute!important;width:1px!important;height:1px!important;padding:0!important;margin:-1px!important;overflow:hidden!important;clip-path:inset(50%)!important;white-space:nowrap!important}
+}
+}
