@@ -7,7 +7,7 @@ const demo = require('../vagas-demo.js');
 function fixture(nativeDialog = true, withBrowser = false, withObserver = false, setup = null) {
   const doc = {activeElement:null, readyState:'complete'};
   class Element {
-    constructor(tag) { this.tagName=tag.toUpperCase(); this.className=''; this.children=[]; this.attributes={}; this.listeners={}; this.style={}; this._text=''; this.open=false; }
+    constructor(tag) { this.tagName=tag.toUpperCase(); this.className=''; this.children=[]; this.attributes={}; this.listeners={}; this.style={setProperty(name,value){this[name]=value;}}; this._text=''; this.open=false; }
     get classList() { return {contains:name=>this.className.split(/\s+/).includes(name),add:(...names)=>{this.className=[...new Set(this.className.split(/\s+/).concat(names))].filter(Boolean).join(' ');}}; }
     get textContent() { return this._text + this.children.map(child=>child.textContent).join(''); }
     set textContent(value) { this.replaceChildren(); this._text=String(value); }
@@ -37,7 +37,7 @@ function fixture(nativeDialog = true, withBrowser = false, withObserver = false,
     querySelector(selector) { return this.querySelectorAll(selector)[0] || null; }
     closest(selector) {
       const parts=selector.split(',').map(part=>part.trim());let node=this;
-      while(node){if(parts.some(part=>part[0]==='.'?node.classList.contains(part.slice(1)):node.tagName===part.toUpperCase()))return node;node=node.parentNode;}
+      while(node){if(parts.some(part=>part[0]==='.'?node.classList.contains(part.slice(1)):part[0]==='#'?node.id===part.slice(1):node.tagName===part.toUpperCase()))return node;node=node.parentNode;}
       return null;
     }
     addEventListener(type,handler) { (this.listeners[type] ||= []).push(handler); }
@@ -548,3 +548,17 @@ test('opening a company from a fallback summary removes the dialog before naviga
  assert.equal(env.doc.getElementById('emRecentJobSummary'),null);
  assert.deepEqual(env.routes,[['empresa-publica','demo-empresa-magazine-luiza']]);
 });
+
+ test('window capture sends both preview actions to the selected application flow before legacy navigation',()=>{
+  const env=fixture(true,true);
+  env.render([{id:'selected'}]);
+  const opened=[];env.win.EmpregaMaisCandidaturaV94={abrir:job=>opened.push(job.id)};
+  const panel=env.doc.getElementById('emJobPanel');
+  panel.querySelectorAll('.em-jb-apply').forEach(button=>{
+    let stopped=false;
+    const event={target:{closest:()=>button},preventDefault(){},stopImmediatePropagation(){stopped=true}};
+    (env.listeners.click||[]).forEach(handler=>handler(event));
+    assert(stopped);
+  });
+  assert.deepEqual(opened,['selected','selected']);assert.deepEqual(env.routes,[]);
+ });
