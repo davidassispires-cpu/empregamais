@@ -672,6 +672,9 @@
         var entry = card.__emJobEntry; if (!entry) return;
         var active = card === selected;
         card.setAttribute('data-em-selected', String(active));
+        var pointer = card.querySelector('.em-r4-selection-pointer');
+        if (!pointer) { pointer = browserNode('span', 'em-r4-selection-pointer'); pointer.setAttribute('aria-hidden', 'true'); card.appendChild(pointer); }
+        pointer.hidden = !active;
         entry.titleButton.setAttribute('aria-controls', 'emJobPanel');
         entry.titleButton.setAttribute('aria-expanded', String(active));
         entry.titleButton.setAttribute('aria-current', String(active));
@@ -820,6 +823,9 @@
       email.href = 'mailto:?subject=' + encodeURIComponent(shareText) + '&body=' + encodeURIComponent('Confira esta vaga: ' + shareText + '\n' + shareUrl);
       share.appendChild(shareButtons); share.appendChild(shareStatus); headerActions.appendChild(share);
       var topMeta = browserNode('div', 'em-jb-top-meta');
+      var selectionLabel = browserNode('span', 'em-jb-selection-label');
+      selectionLabel.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="m8 12 3 3 5-6"/></svg><span>VAGA SELECIONADA</span>';
+      topMeta.appendChild(selectionLabel);
       topMeta.appendChild(identity.querySelector('.em-jb-job-id'));
       var publicationFact = headerMeta.querySelector('.em-jb-header-published');
       if (publicationFact) topMeta.appendChild(publicationFact);

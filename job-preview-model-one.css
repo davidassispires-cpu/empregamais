@@ -716,3 +716,16 @@ html body #pagina-vaga#pagina-vaga#pagina-vaga .em-jb-company :is(.em-company-pr
 @layer candidate-palette {
 html body #pagina-home #emJobBrowser[data-layout="model-one"][data-presentation="priority"] #emJobPanel .em-jb-apply{border-radius:999px!important;font-size:18px!important;font-weight:600!important;text-transform:uppercase!important;min-height:52px!important}
 }
+
+/* Connect the selected result to its matching inline preview. */
+@layer candidate-palette {
+html body #pagina-home#pagina-home #emJobBrowser[data-layout="model-one"] #listaVagas .em-recent-blocks[data-em-selected="true"]{position:relative!important;background:#edf5ff!important;border-color:#1268e8!important;box-shadow:inset 5px 0 #1268e8!important;overflow:visible!important}
+html body #pagina-home#pagina-home #emJobBrowser .em-r4-selection-pointer{position:absolute!important;right:-12px!important;top:50%!important;transform:translateY(-50%)!important;display:block!important;width:0!important;height:0!important;border-top:11px solid transparent!important;border-bottom:11px solid transparent!important;border-left:12px solid #1268e8!important;pointer-events:none!important;z-index:2!important}
+html body #pagina-home#pagina-home #emJobBrowser .em-r4-selection-pointer[hidden]{display:none!important}
+html body #pagina-home#pagina-home #emJobBrowser #emJobPanel[data-vaga-id]{border:1px solid #8bb5f5!important}
+html body #pagina-home#pagina-home #emJobBrowser .em-jb-selection-label{display:inline-flex!important;align-items:center!important;gap:7px!important;flex:0 0 auto!important;color:#1268e8!important;font-size:11px!important;font-weight:600!important;line-height:1.4!important;white-space:nowrap!important}
+html body #pagina-home#pagina-home #emJobBrowser .em-jb-selection-label svg{width:19px!important;height:19px!important;flex:0 0 19px!important}
+html body #pagina-home#pagina-home #emJobBrowser .em-jb-top-meta{flex-wrap:wrap!important;row-gap:7px!important}
+@container em-job-preview (max-width:620px){html body #pagina-home#pagina-home #emJobBrowser .em-jb-selection-label{flex-basis:100%!important}}
+@media(max-width:760px){html body #pagina-home#pagina-home #emJobBrowser .em-r4-selection-pointer{display:none!important}html body #pagina-home#pagina-home #emJobBrowser .em-jb-selection-label{flex-basis:100%!important}}
+}
