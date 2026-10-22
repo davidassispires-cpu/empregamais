@@ -843,7 +843,8 @@ html body #pagina-home#pagina-home #emJobBrowser[data-layout="model-one"][data-p
 
 /* Remove blue decorative borders and dividers from the selected vacancy. */
 @layer candidate-palette {
-html body #pagina-home#pagina-home #emJobBrowser[data-layout="model-one"][data-presentation="priority"] #emJobPanel#emJobPanel{border-color:transparent!important}
+html body #pagina-home#pagina-home #emJobBrowser[data-layout="model-one"][data-presentation="priority"] #emJobPanel#emJobPanel{background:#fff!important;border-color:#c7cbd1!important;box-shadow:0 4px 10px #1027440d,0 12px 28px #1027441a!important}
+html body #pagina-home#pagina-home #emJobBrowser[data-layout="model-one"][data-presentation="priority"] #emJobPanel#emJobPanel>.em-jb-header{background:transparent!important;box-shadow:none!important}
 html body #pagina-home#pagina-home #emJobBrowser[data-layout="model-one"][data-presentation="priority"] #emJobPanel#emJobPanel :is(.em-jb-header-meta,.em-jb-header-meta>p,.em-jb-header-actions,.em-jb-tabs,.em-jb-tab,.em-jb-requirements,.em-jb-benefits,.em-jb-benefit-list li,.em-jb-preview-footer,.em-jb-footer){border-color:transparent!important}
 html body #pagina-home#pagina-home #emJobBrowser[data-layout="model-one"][data-presentation="priority"] #emJobPanel#emJobPanel :is(.em-jb-apply,.em-jb-save,.em-jb-share-title,.em-jb-share-buttons,.em-jb-share-button:not(.em-jb-share-whatsapp)){border-color:transparent!important}
 html body #pagina-home#pagina-home #emJobBrowser[data-layout="model-one"][data-presentation="priority"] #emJobPanel#emJobPanel :is(button,summary,a):focus-visible{outline:2px solid #64748b!important;outline-offset:3px!important}
