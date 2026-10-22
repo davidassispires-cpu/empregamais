@@ -757,7 +757,8 @@
       var candidate = browserNode('button', 'em-jb-apply', 'Candidatar-se'); candidate.type = 'button';
       candidate.onclick = function () {
         if (isDemo(job)) { explainDemo(); return; }
-        if (typeof win.abrirContatoExternoVaga === 'function') win.abrirContatoExternoVaga(job);
+        if (win.EmpregaMaisCandidaturaV94 && typeof win.EmpregaMaisCandidaturaV94.abrir === 'function') win.EmpregaMaisCandidaturaV94.abrir(job);
+        else if (typeof win.abrirContatoExternoVaga === 'function') win.abrirContatoExternoVaga(job);
         else entry.apply.click();
       };
       var save = browserNode('button', 'em-jb-save'); save.type = 'button';
@@ -1195,6 +1196,11 @@
     // Window capture runs before the legacy document-level application handler.
     win.addEventListener('click', function (event) {
       var button = event.target && event.target.closest && event.target.closest('button,a');
+      if (button && button.closest('#emJobPanel') && button.classList.contains('em-jb-apply')) {
+        event.preventDefault(); event.stopImmediatePropagation();
+        if (typeof button.onclick === 'function') button.onclick();
+        return;
+      }
       if (!currentDemo() || !button || !button.closest('#pagina-vaga') || !/candidatar/i.test(button.textContent || '')) return;
       event.preventDefault(); event.stopImmediatePropagation(); explainDemo();
     }, true);
