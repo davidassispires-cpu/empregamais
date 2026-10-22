@@ -55,3 +55,9 @@ html body #pagina-home .em-vf-trigger:focus-visible,html body #pagina-home :is(.
 }
 @media(prefers-reduced-motion:reduce) {html body #pagina-home .em-vf-trigger {transition:none!important}}
 }
+
+@layer candidate-palette {
+html body #pagina-home#pagina-home #vagas#vagas .filtros-chips-home{display:none!important}
+html body #pagina-home#pagina-home #vagas#vagas .em-vf-bar{padding:0!important;border:0!important;background:transparent!important}
+html body #pagina-home#pagina-home #vagas#vagas .em-vf-row{justify-content:flex-start!important}
+}
