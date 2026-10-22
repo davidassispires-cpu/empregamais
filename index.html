@@ -1,5 +1,52 @@
 <!DOCTYPE html>
-<html lang="pt-BR"><head><link rel="preload" href="assets/fonts/poppins-400.woff2" as="font" type="font/woff2" crossorigin><link rel="preload" href="assets/fonts/poppins-500.woff2" as="font" type="font/woff2" crossorigin><link rel="preload" href="assets/fonts/poppins-600.woff2" as="font" type="font/woff2" crossorigin><link rel="preload" href="assets/fonts/poppins-700.woff2" as="font" type="font/woff2" crossorigin><link id="site-typography" rel="stylesheet" href="site-fonts.css?v=20261020-poppins-global"><link rel="stylesheet" href="candidato-paleta.css?v=20261020-poppins-global"><script src="processo-seletivo-etapas.js?v=20261014-demo-sync-1"></script><script src="candidato-demo.js?v=20261016-palette-complete"></script><script src="planos-config.js?v=b6a3200687d6"></script><style id="em-portal-boot-css">.pagina.ativa{min-height:calc(100dvh - 72px)}html[data-em-booting] .rodape{visibility:hidden!important}html[data-em-initial-route="demo-recrutador"][data-em-booting] body:after{content:"Carregando painel…";position:fixed;top:35vh;left:0;right:0;text-align:center;color:#526b82;font:500 14px Poppins,sans-serif;pointer-events:none;z-index:1}html[data-em-initial-route="demo-recrutador"]:has(#emRecruiterPanel) body:after{display:none}</style><script id="em-portal-boot">
+<html lang="pt-BR"><head><script id="em-candidatura-clique-fix-v2">
+(function(){
+  "use strict";
+  var seletor="#btnCandidatar,#btnCandidatarMobile,#btnCandidatarFinalEM,#btnCandidatarDetalhe,[data-candidatar-v94]";
+  function desbloquear(){
+    var pagina=document.getElementById("pagina-vaga");
+    if(!pagina)return;
+    pagina.querySelectorAll(seletor).forEach(function(b){
+      if(b.disabled)b.disabled=false;
+      if(b.hasAttribute("disabled"))b.removeAttribute("disabled");
+    });
+  }
+  function vagaSelecionada(){
+    var v=window.vagaAtual||(typeof vagaAtual!=="undefined"?vagaAtual:null);
+    if(v&&v.id)return v;
+    var id=new URLSearchParams(location.search).get("id");
+    return id&&typeof localizarVaga==="function"?localizarVaga(id):null;
+  }
+  document.addEventListener("click",function(e){
+    var b=e.target&&e.target.closest?e.target.closest(seletor):null;
+    if(!b||!b.closest("#pagina-vaga"))return;
+    e.preventDefault();
+    e.stopImmediatePropagation();
+    var v=vagaSelecionada();
+    if(!v){alert("Não foi possível identificar esta vaga. Atualize a página e tente novamente.");return;}
+    if(window.EmpregaMaisCandidaturaV94&&typeof window.EmpregaMaisCandidaturaV94.abrir==="function"){
+      window.EmpregaMaisCandidaturaV94.abrir(v);
+    }else if(typeof abrirCandidaturaProtegida==="function"){
+      abrirCandidaturaProtegida(v.id);
+    }else{
+      alert("O formulário de candidatura não foi carregado. Atualize a página.");
+    }
+  },true);
+  function iniciar(){
+    desbloquear();
+    var pagina=document.getElementById("pagina-vaga");
+    if(!pagina)return;
+    var agendado=false;
+    new MutationObserver(function(){
+      if(agendado)return;
+      agendado=true;
+      queueMicrotask(function(){agendado=false;desbloquear();});
+    }).observe(pagina,{subtree:true,childList:true,attributes:true,attributeFilter:["disabled"]});
+  }
+  if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",iniciar,{once:true});
+  else iniciar();
+})();
+</script><link rel="preload" href="assets/fonts/poppins-400.woff2" as="font" type="font/woff2" crossorigin><link rel="preload" href="assets/fonts/poppins-500.woff2" as="font" type="font/woff2" crossorigin><link rel="preload" href="assets/fonts/poppins-600.woff2" as="font" type="font/woff2" crossorigin><link rel="preload" href="assets/fonts/poppins-700.woff2" as="font" type="font/woff2" crossorigin><link id="site-typography" rel="stylesheet" href="site-fonts.css?v=20261020-poppins-global"><link rel="stylesheet" href="candidato-paleta.css?v=20261020-poppins-global"><script src="processo-seletivo-etapas.js?v=20261014-demo-sync-1"></script><script src="candidato-demo.js?v=20261016-palette-complete"></script><script src="planos-config.js?v=b6a3200687d6"></script><style id="em-portal-boot-css">.pagina.ativa{min-height:calc(100dvh - 72px)}html[data-em-booting] .rodape{visibility:hidden!important}html[data-em-initial-route="demo-recrutador"][data-em-booting] body:after{content:"Carregando painel…";position:fixed;top:35vh;left:0;right:0;text-align:center;color:#526b82;font:500 14px Poppins,sans-serif;pointer-events:none;z-index:1}html[data-em-initial-route="demo-recrutador"]:has(#emRecruiterPanel) body:after{display:none}</style><script id="em-portal-boot">
 (function(){
  var h=document.documentElement,route=new URLSearchParams(location.search).get('pagina')||'home';
  if(!/^[a-z][a-z0-9-]{0,59}$/.test(route))route='home';if(route==='inicio')route='home';
