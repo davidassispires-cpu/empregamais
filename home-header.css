@@ -315,3 +315,13 @@ html body #pagina-home#pagina-home #emHeroFloripa #emHeroRefBusca .em-hero-searc
 html body #pagina-home#pagina-home #emHeroFloripa #emHeroRefBusca :is(input,select):focus{outline:none!important;box-shadow:none!important}
 html body #pagina-home#pagina-home #emHeroFloripa #emHeroRefBusca .em-hero-submit:focus-visible{outline:2px solid #0865a3!important;outline-offset:3px!important}
 }
+
+/* Featured heading follows the public blue and orange identity. */
+@layer candidate-palette {
+html body #pagina-home#pagina-home #emDestV14 h2{color:#0865a3!important}
+html body #pagina-home#pagina-home #emDestV14 .eyebrow{color:#c95500!important}
+html body #pagina-home#pagina-home #emDestV14 .eyebrow::before{background:#ff7b0b!important}
+html body #pagina-home#pagina-home #emDestV14 .copy p{color:#0865a3!important}
+html body #pagina-home#pagina-home #emDestV14 .all-btn{color:#0865a3!important;border-color:#0865a3!important}
+html body #pagina-home#pagina-home #emDestV14 .all-btn:hover{color:#c95500!important;border-color:#ff7b0b!important}
+}
