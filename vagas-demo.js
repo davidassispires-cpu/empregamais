@@ -339,7 +339,7 @@
     function companyIdentity(company, job, displayName, originalClick) {
       if (!company || !job) return;
       if (companyIsConfidential(job)) { company.textContent = 'Empresa confidencial'; company.onclick = null; return; }
-      var name = summaryText(displayName || job.empresa || company.textContent || 'Empresa');
+      var name = summaryText(job.empresa || displayName || company.textContent || 'Empresa');
       var record = isDemo(job) ? null : companyRecord(job), target = '';
       var legacyClick = originalClick || company.__emOriginalCompanyClick || company.onclick;
       company.__emOriginalCompanyClick = legacyClick; company.onclick = null;
@@ -1039,7 +1039,7 @@
         card.setAttribute('data-empresa','Empresa confidencial');
         logo.innerHTML = svg('<rect x="5" y="10" width="14" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3M12 14v3"/>');
       } else {
-        var publicName = (company.querySelector('.em-company-name') || company.querySelector('span')); publicName = publicName ? publicName.textContent : company.textContent;
+        var publicName = (company.querySelector('.em-company-name') || company.querySelector('span')); publicName = job.empresa || (publicName ? publicName.textContent : company.textContent);
         var initials = String(publicName || 'Empresa').replace(/\(demo\)/ig,'').trim().split(/\s+/).slice(0,2).map(function(part){return part.charAt(0);}).join('').toLocaleUpperCase('pt-BR');
         if (!originalLogo && typeof win.logoPreviaDestaqueEM === 'function') {
           originalLogo = win.logoPreviaDestaqueEM(job).querySelector('img');
@@ -1115,7 +1115,7 @@
         var publicCompany = (company.querySelector('.em-company-name') || company.querySelector('span'));
         openJobSummary(job, {
           title:title.textContent,
-          company:confidential ? 'Empresa confidencial' : (publicCompany ? publicCompany.textContent : company.textContent),
+          company:confidential ? 'Empresa confidencial' : (job.empresa || (publicCompany ? publicCompany.textContent : company.textContent)),
           location:city+(uf.length===2?' – '+uf.toUpperCase():''),
           salary:salaryValue,
           date:date.textContent
@@ -1152,7 +1152,7 @@
       card.setAttribute('data-em-highlighted',String(highlighted)); card.setAttribute('data-em-confidential',String(confidential));
       var publicCompany = (company.querySelector('.em-company-name') || company.querySelector('span'));
       card.__emJobEntry = {job:job, apply:apply, save:save, openState:openState, titleButton:titleButton, company:company, highlighted:highlighted, confidential:confidential,
-        info:{title:title.textContent, company:confidential ? 'Empresa confidencial' : summaryText(publicName || (publicCompany ? publicCompany.textContent : company.textContent)), location:city+(uf.length===2?' – '+uf.toUpperCase():''), salary:salaryValue, date:date.textContent}};
+        info:{title:title.textContent, company:confidential ? 'Empresa confidencial' : summaryText(publicName || (job.empresa || (publicCompany ? publicCompany.textContent : company.textContent))), location:city+(uf.length===2?' – '+uf.toUpperCase():''), salary:salaryValue, date:date.textContent}};
       card.onclick = function (event) {
         if (event.target && event.target.closest && event.target.closest('button,a,input,select,textarea,label,.em-r4-company,.em-r4-similar')) return;
         showDetails(event);
