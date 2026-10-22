@@ -736,3 +736,15 @@ html body .em-company-demo-rating{display:inline-flex!important;align-items:cent
 html body .em-company-demo-rating svg{display:block!important;width:16px!important;height:16px!important;flex:0 0 16px!important;fill:#ffc928!important;color:#ffc928!important;stroke:none!important}
 html body .em-company-demo-rating small{font-size:9px!important;font-weight:400!important;color:#68788b!important;text-transform:none!important;margin-right:3px!important}
 }
+
+/* Two larger facts on one line; education stays in the gray information strip. */
+@layer candidate-palette {
+html body #pagina-home#pagina-home #emJobBrowser[data-layout="model-one"][data-presentation="priority"] #listaVagas .em-recent-blocks.em-recent-discreet .em-r4-education{display:none!important}
+html body #pagina-home#pagina-home #emJobBrowser[data-layout="model-one"][data-presentation="priority"] #listaVagas .em-recent-blocks.em-recent-discreet :is(.em-r4-location,.em-r4-salary){display:flex!important;align-items:center!important;justify-content:center!important;gap:8px!important;width:calc((100% - 8px)/2)!important;min-width:0!important;max-width:none!important;min-height:48px!important;height:48px!important;grid-column:1/-1!important;grid-row:4!important;padding:10px!important;font-size:14px!important;line-height:20px!important;font-weight:600!important;white-space:nowrap!important;box-sizing:border-box!important}
+html body #pagina-home#pagina-home #emJobBrowser #listaVagas .em-recent-blocks.em-recent-discreet .em-r4-location{justify-self:start!important}
+html body #pagina-home#pagina-home #emJobBrowser #listaVagas .em-recent-blocks.em-recent-discreet .em-r4-salary{justify-self:end!important}
+html body #pagina-home#pagina-home #emJobBrowser #listaVagas .em-recent-blocks.em-recent-discreet :is(.em-r4-location,.em-r4-salary)::before{content:none!important;display:none!important}
+html body #pagina-home#pagina-home #emJobBrowser #listaVagas .em-recent-blocks.em-recent-discreet .em-r4-location>span{font-size:14px!important;line-height:20px!important;min-width:0!important;overflow:hidden!important;text-overflow:ellipsis!important;white-space:nowrap!important}
+html body #pagina-home#pagina-home #emJobBrowser #listaVagas .em-recent-blocks.em-recent-discreet .em-r4-location>svg{width:18px!important;height:18px!important;flex:0 0 18px!important;margin:0!important}
+html body #pagina-home#pagina-home #emJobBrowser #listaVagas .em-recent-blocks.em-recent-discreet .em-r4-salary::after{position:static!important;order:-1!important;transform:none!important;width:18px!important;height:18px!important;flex:0 0 18px!important;margin:0!important}
+}
