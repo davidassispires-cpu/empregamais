@@ -518,3 +518,72 @@
 @media(max-width:950px){#emBusinessNew .cb-hero{gap:26px;padding-top:24px}#emBusinessNew h1{font-size:36px}#emBusinessNew .cb-product-inner{padding:16px}#emBusinessNew .cb-product-heading h2{font-size:16px}#emBusinessNew .cb-feature-layout{gap:20px}#emBusinessNew .cb-steps{grid-template-columns:repeat(2,1fr)}#emBusinessNew .cb-plans{gap:26px}#emBusinessNew .cb-benefit-strip{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:700px){#comoFuncionaV106:has(#emBusinessNew:not([hidden])) .cf-guide-shell{width:calc(100% - 32px)}#emBusinessNew .cb-hero,#emBusinessNew .cb-feature-layout,#emBusinessNew .cb-plans,#emBusinessNew .cb-faq{grid-template-columns:1fr;gap:26px}#emBusinessNew .cb-hero{padding:24px 0 32px}#emBusinessNew .cb-product{transform:none}#emBusinessNew h1{font-size:36px}#emBusinessNew h2{font-size:27px}#emBusinessNew .cb-section{padding:44px 0}#emBusinessNew .cb-feature-preview{padding:26px}#emBusinessNew .cb-steps-section{padding:30px 20px}#emBusinessNew .cb-benefit-strip span{font-size:10px;justify-content:flex-start}#emBusinessNew .cb-plan-cards{gap:10px}#emBusinessNew .cb-plan-cards article{padding:20px 16px}#emBusinessNew .cb-final{padding:36px 16px}#emBusinessNew .cb-faq{padding-top:0}}
 @media(prefers-reduced-motion:reduce){#emBusinessNew *{scroll-behavior:auto!important;transition:none!important}}
+
+/* Compact blue and orange guide, both audiences. */
+@layer candidate-palette {
+html body #pagina-como-funciona #comoFuncionaV106#comoFuncionaV106 {
+ --guide-accent:#0969d6;--guide-deep:#102e59;--guide-soft:#eef5ff;--guide-line:#dce6f3;--guide-ink:#163252;
+ background:#f4f7fb!important;padding:18px 0 28px!important;
+}
+html body #pagina-como-funciona #comoFuncionaV106 .cf-guide-shell{width:min(1180px,calc(100% - 32px))!important}
+html body #pagina-como-funciona #comoFuncionaV106 :is(h1,h2,h3){color:#163252!important;font-style:normal!important}
+html body #pagina-como-funciona #comoFuncionaV106 .cf-page-header{display:flex;justify-content:space-between;align-items:center;gap:20px;padding:18px 24px;background:#fff;border:1px solid #dce6f3;border-left:4px solid #f58a20;border-radius:12px;margin-bottom:14px}
+html body #pagina-como-funciona #comoFuncionaV106 .cf-page-header span{font-size:10px;font-weight:700;letter-spacing:1.6px;color:#0969d6}
+html body #pagina-como-funciona #comoFuncionaV106 .cf-page-header h2{font-size:24px!important;line-height:1.3!important;margin:3px 0!important}
+html body #pagina-como-funciona #comoFuncionaV106 .cf-page-header p{font-size:12px!important;color:#61728a}
+html body #pagina-como-funciona #comoFuncionaV106 .cf-page-header a{font-size:12px;color:#0969d6;font-weight:600;white-space:nowrap}
+html body #pagina-como-funciona #comoFuncionaV106 .cf-guide-tabs{margin:0 0 14px;max-width:450px}
+html body #pagina-como-funciona #comoFuncionaV106 .cf-guide-tab[aria-selected="true"]{background:#0969d6!important;color:#fff!important}
+html body #pagina-como-funciona #comoFuncionaV106 .cf-guide-hero{padding:22px 26px;text-align:left;background:#102e59!important;border:0;border-bottom:4px solid #f58a20}
+html body #pagina-como-funciona #comoFuncionaV106 .cf-guide-hero h1{color:#fff!important;font-size:29px!important;max-width:none;margin:0}
+html body #pagina-como-funciona #comoFuncionaV106 .cf-guide-hero p{margin:8px 0 0;max-width:850px;font-size:14px!important}
+html body #pagina-como-funciona #comoFuncionaV106 .cf-guide-hero .cf-guide-kicker{color:#ffab4f}
+html body #pagina-como-funciona #comoFuncionaV106 .cf-guide-hero .cf-guide-actions{justify-content:flex-start;margin-top:14px}
+html body #pagina-como-funciona #comoFuncionaV106 .cf-guide-hero .cf-guide-button:not(.secondary){background:#f58a20!important;border-color:#f58a20!important;color:#102e59!important}
+html body #pagina-como-funciona #comoFuncionaV106 .cf-guide-section{margin-top:16px}
+html body #pagina-como-funciona #comoFuncionaV106 .cf-guide-stage{padding:18px;gap:20px;grid-template-columns:1fr 1fr}
+html body #pagina-como-funciona #comoFuncionaV106 .cf-guide-stage-copy{text-align:left;max-width:none}
+html body #pagina-como-funciona #comoFuncionaV106 .cf-guide-stage-copy h3{font-size:23px!important}
+html body #pagina-como-funciona #comoFuncionaV106 .cf-guide-graphic>svg{max-width:390px}
+html body #pagina-como-funciona #comoFuncionaV106 .cf-guide-stage-copy p{font-size:14px!important}
+html body #pagina-como-funciona #comoFuncionaV106 .cf-guide-step,html body #pagina-como-funciona #comoFuncionaV106 .cf-guide-card{padding:16px;align-items:flex-start;text-align:left;border-color:#dce6f3;border-top:3px solid #f58a20}
+html body #pagina-como-funciona #comoFuncionaV106 .cf-guide-icon-box{background:#eef5ff;color:#0969d6}
+html body #pagina-como-funciona #comoFuncionaV106 .cf-guide-heading{text-align:left;margin-bottom:12px}
+html body #pagina-como-funciona #comoFuncionaV106 .cf-guide-heading h2{font-size:22px!important}
+html body #pagina-como-funciona #comoFuncionaV106 .cf-guide-heading p{margin:5px 0 0}
+html body #pagina-como-funciona #comoFuncionaV106 .cf-guide-final{margin-top:16px;padding:20px;border-top:3px solid #f58a20}
+html body #pagina-como-funciona #comoFuncionaV106 #emBusinessNew .cb-hero{padding:24px;gap:28px;background:#102e59;border-radius:12px;border-bottom:4px solid #f58a20}
+html body #pagina-como-funciona #comoFuncionaV106 #emBusinessNew .cb-hero h1{color:#fff!important;font-size:34px!important}
+html body #pagina-como-funciona #comoFuncionaV106 #emBusinessNew .cb-hero h1 em{color:#ffa642!important;font-style:normal}
+html body #pagina-como-funciona #comoFuncionaV106 #emBusinessNew .cb-hero-copy>p{color:#dbe8fa!important;font-size:14px!important;margin-top:12px}
+html body #pagina-como-funciona #comoFuncionaV106 #emBusinessNew .cb-hero-note{color:#dbe8fa}
+html body #pagina-como-funciona #comoFuncionaV106 #emBusinessNew .cb-hero .cb-eyebrow{color:#ffa642}
+html body #pagina-como-funciona #comoFuncionaV106 #emBusinessNew .cb-hero .cf-guide-button:not(.secondary){background:#f58a20!important;border-color:#f58a20!important;color:#102e59!important}
+html body #pagina-como-funciona #comoFuncionaV106 #emBusinessNew .cb-product{transform:none;box-shadow:none}
+html body #pagina-como-funciona #comoFuncionaV106 #emBusinessNew .cb-product-inner{padding:16px}
+html body #pagina-como-funciona #comoFuncionaV106 #emBusinessNew .cb-benefit-strip{gap:12px;padding:14px 0;border:0}
+html body #pagina-como-funciona #comoFuncionaV106 #emBusinessNew .cb-benefit-strip>span{padding:14px 10px;border:1px solid #dce6f3;border-top:3px solid #f58a20;border-radius:9px;background:#fff}
+html body #pagina-como-funciona #comoFuncionaV106 #emBusinessNew .cb-section{padding:20px;margin:0 0 16px;background:#fff;border:1px solid #dce6f3;border-radius:12px}
+html body #pagina-como-funciona #comoFuncionaV106 #emBusinessNew .cb-section-head{margin-bottom:16px;max-width:none}
+html body #pagina-como-funciona #comoFuncionaV106 #emBusinessNew h2{font-size:24px!important}
+html body #pagina-como-funciona #comoFuncionaV106 #emBusinessNew .cb-eyebrow{margin-bottom:8px;color:#bf6209}
+html body #pagina-como-funciona #comoFuncionaV106 #emBusinessNew .cb-feature-layout{gap:16px}
+html body #pagina-como-funciona #comoFuncionaV106 #emBusinessNew .cb-feature{padding:14px;border-color:#dce6f3}
+html body #pagina-como-funciona #comoFuncionaV106 #emBusinessNew .cb-feature-preview{padding:22px;border-left:3px solid #f58a20}
+html body #pagina-como-funciona #comoFuncionaV106 #emBusinessNew .cb-steps-section{padding:20px;margin-bottom:16px;border:1px solid #dce6f3;background:#fff}
+html body #pagina-como-funciona #comoFuncionaV106 #emBusinessNew .cb-steps{gap:12px}
+html body #pagina-como-funciona #comoFuncionaV106 #emBusinessNew .cb-steps article{padding:16px;background:#f4f8fe;border:1px solid #dce6f3;border-radius:9px}
+html body #pagina-como-funciona #comoFuncionaV106 #emBusinessNew .cb-steps article>span{color:#f58a20}
+html body #pagina-como-funciona #comoFuncionaV106 #emBusinessNew .cb-plans,html body #pagina-como-funciona #comoFuncionaV106 #emBusinessNew .cb-faq{gap:24px}
+html body #pagina-como-funciona #comoFuncionaV106 #emBusinessNew .cb-plan-cards article{padding:18px;border-top:3px solid #f58a20}
+html body #pagina-como-funciona #comoFuncionaV106 #emBusinessNew .cb-final{padding:24px;background:#eaf3ff;border:1px solid #dce6f3;border-top:3px solid #f58a20;border-radius:12px}
+@media(max-width:700px){
+html body #pagina-como-funciona #comoFuncionaV106 .cf-page-header{padding:14px;align-items:flex-start}
+html body #pagina-como-funciona #comoFuncionaV106 .cf-page-header a{white-space:normal;text-align:right}
+html body #pagina-como-funciona #comoFuncionaV106 .cf-guide-stage{grid-template-columns:1fr}
+html body #pagina-como-funciona #comoFuncionaV106 #emBusinessNew .cb-hero{padding:20px;grid-template-columns:1fr}
+html body #pagina-como-funciona #comoFuncionaV106 #emBusinessNew .cb-hero h1{font-size:28px!important}
+html body #pagina-como-funciona #comoFuncionaV106 #emBusinessNew .cb-benefit-strip{grid-template-columns:1fr 1fr}
+html body #pagina-como-funciona #comoFuncionaV106 #emBusinessNew .cb-section{padding:16px}
+}
+}
