@@ -939,7 +939,13 @@
       var footerCandidate = browserNode('button', 'em-jb-apply em-jb-apply-bottom', 'Candidatar-se'); footerCandidate.type = 'button';
       footerCandidate.onclick = candidate.onclick; footer.appendChild(footerCandidate);
       var navigation = browserNode('div', 'em-jb-tabs'); navigation.setAttribute('role', 'tablist'); navigation.setAttribute('aria-label', 'Informações da vaga');
-      panel.appendChild(navigation);
+      var navigationRow = browserNode('div', 'em-jb-navigation-row');
+      var navigationActions = browserNode('div', 'em-jb-navigation-actions');
+      navigationActions.setAttribute('role', 'group');
+      navigationActions.setAttribute('aria-label', 'Salvar e compartilhar vaga');
+      navigationActions.appendChild(save); navigationActions.appendChild(share);
+      navigationRow.appendChild(navigation); navigationRow.appendChild(navigationActions);
+      panel.appendChild(navigationRow);
       var companyPanel = browserNode('div', 'em-jb-body');
       companyPanel.appendChild(browserNode('h3', '', 'Sobre a empresa'));
       companyPanel.appendChild(browserNode('p', '', entry.confidential ? 'A identidade da empresa é confidencial.' : summaryText(job.sobreEmpresa || job.descricaoEmpresa || 'A empresa ainda não disponibilizou uma apresentação.')));
