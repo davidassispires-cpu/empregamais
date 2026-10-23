@@ -325,3 +325,12 @@ html body #pagina-home#pagina-home #emDestV14 .copy p{color:#0865a3!important}
 html body #pagina-home#pagina-home #emDestV14 .all-btn{color:#0865a3!important;border-color:#0865a3!important}
 html body #pagina-home#pagina-home #emDestV14 .all-btn:hover{color:#c95500!important;border-color:#ff7b0b!important}
 }
+
+/* Slightly larger popular searches, kept within one desktop row. */
+@layer candidate-palette {
+@media(min-width:1000px){
+html body #pagina-home#pagina-home #emHeroFloripa .em-hero-popular{box-sizing:border-box!important;max-width:100%!important;min-width:0!important;flex-wrap:nowrap!important;gap:clamp(5px,.7vw,10px)!important;font-size:clamp(12px,1.05vw,14px)!important;white-space:nowrap!important}
+html body #pagina-home#pagina-home #emHeroFloripa .em-hero-popular>span{flex:0 0 auto!important;font-size:inherit!important;white-space:nowrap!important}
+html body #pagina-home#pagina-home #emHeroFloripa .em-hero-popular button{flex:0 1 auto!important;min-width:0!important;font-size:inherit!important;line-height:1.5!important;white-space:nowrap!important}
+}
+}
