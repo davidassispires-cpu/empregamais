@@ -397,6 +397,8 @@
   doc.querySelectorAll('#listaVagas>*,#listaDestaques .em-featured-reference,#emFeaturedJobsList .em-featured-reference').forEach(function(card){
    var entry=card.__emJobEntry,job=entry&&entry.job||card.__emFeaturedPopupJob;
    if(!job)return;jobs.set(String(job.id),job);
+   var similar=card.querySelector('.dz-company-jobs');
+   if(similar && similar.textContent!=='Exibir vagas similares'){similar.textContent='Exibir vagas similares';similar.setAttribute('aria-label','Exibir vagas similares dessa empresa');}
    var host=card.querySelector('.em-r4-footer-badges')||card.querySelector('.dz-infos');
    badge(host,classify(job).quick);
   });
