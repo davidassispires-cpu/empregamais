@@ -293,3 +293,32 @@
   }
   return {install:install,matchesExtras:matchesExtras,seniority:seniority,calendarDay:calendarDay};
 });
+
+/* Company carousel: keep original company filtering and support keyboard/touch. */
+(function(){
+ if(typeof document==='undefined')return;
+ function init(){
+  var scheduled=false;
+  function enhance(){
+   scheduled=false;
+   var section=document.getElementById('emFaixaLogosV41'),track=section&&section.querySelector('.em-logos-linha-v41');
+   if(!track)return;
+   if(!section.querySelector('.em-company-arrow')){
+    track.setAttribute('role','group');track.setAttribute('aria-label','Carrossel de empresas com vagas abertas');
+    [-1,1].forEach(function(direction){
+     var b=document.createElement('button');b.type='button';b.className='em-company-arrow';b.dataset.direction=direction;b.setAttribute('aria-label',direction<0?'Empresas anteriores':'Próximas empresas');
+     b.innerHTML='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="'+(direction<0?'m15 6-6 6 6 6':'m9 6 6 6-6 6')+'"/></svg>';
+     b.onclick=function(){track.scrollBy({left:direction*track.clientWidth,behavior:window.matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth'});};
+     section.appendChild(b);
+    });
+    track.addEventListener('scroll',update,{passive:true});
+    if(typeof ResizeObserver!=='undefined')new ResizeObserver(update).observe(track);
+   }
+   update();
+   function update(){section.querySelectorAll('.em-company-arrow').forEach(function(b){b.disabled=Number(b.dataset.direction)<0?track.scrollLeft<=2:track.scrollLeft>=track.scrollWidth-track.clientWidth-2;});}
+  }
+  new MutationObserver(function(){if(!scheduled){scheduled=true;requestAnimationFrame(enhance);}}).observe(document.body,{childList:true,subtree:true});
+  enhance();
+ }
+ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init,{once:true});else init();
+})();
