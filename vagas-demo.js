@@ -888,7 +888,7 @@
         var text = summaryText(value); if (!text) return;
         var kind = label === 'Requisitos' ? 'requirements' : label === 'Benefícios' ? 'benefits' : 'description';
         var section = browserNode('section', 'em-jb-section em-jb-' + kind);
-        section.appendChild(detailIcon(kind === 'benefits' ? '<rect x="3" y="8" width="18" height="13" rx="1"/><path d="M12 8v13M3 12h18M12 8H7a3 3 0 1 1 3-3l2 3 2-3a3 3 0 1 1 3 3Z"/>' : kind === 'requirements' ? detailIcons['Escolaridade'] : detailIcons['Contrato']));
+        section.appendChild(detailIcon({"description":"<rect x=\"3\" y=\"7\" width=\"18\" height=\"14\" rx=\"2\"/><path d=\"M8 7V3h8v4M3 12h18M10 12v3h4v-3\"/>","requirements":"<path d=\"M14 2H5v20h14V7Z\"/><path d=\"M14 2v5h5M8 11h4M8 15h2m2 2 2 2 4-5\"/>","benefits":"<rect x=\"3\" y=\"8\" width=\"18\" height=\"4\" rx=\"1\"/><path d=\"M5 12v9h14v-9M12 8v13M12 8H8a3 3 0 1 1 3-3l1 3Zm0 0h4a3 3 0 1 0-3-3l-1 3Z\"/>"}[kind]));
         section.appendChild(browserNode('h3', '', label));
         if (kind === 'benefits') {
           var list = browserNode('ul', 'em-jb-benefit-list');
