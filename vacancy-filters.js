@@ -87,6 +87,20 @@
     var homeFilters = doc.getElementById('emHomeVacancyFilters');
     var recentHeader = doc.querySelector('#vagas .em-recent-header-main');
     var quickFilters = doc.querySelector('#vagas .filtros-chips-home');
+    if (recentHeader && !doc.getElementById('emRecentSteps')) {
+      var steps = node('aside', 'em-recent-steps'); steps.id = 'emRecentSteps';
+      steps.setAttribute('aria-label', 'Como encontrar sua próxima oportunidade');
+      var paths = ['<path d="M14 2H5v20h14V7Z"/><path d="M14 2v5h5M8 12h8M8 16h6"/>', '<path d="m22 2-7 20-4-9-9-4L22 2ZM11 13 22 2"/>', '<path d="M18 8a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9M10 21h4"/>'];
+      [['Crie seu currículo grátis', 'Preencha seu perfil profissional.'], ['Candidate-se com um clique', 'Encontre a vaga ideal para você.'], ['Acompanhe suas candidaturas', 'Veja as novidades do processo.']].forEach(function (copy, i) {
+        var card = node('div', 'em-recent-step');
+        var icon = node('span', 'em-step-icon'); icon.setAttribute('aria-hidden', 'true');
+        icon.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">' + paths[i] + '</svg>';
+        var text = node('div', 'em-step-copy'); text.appendChild(node('strong', '', copy[0])); text.appendChild(node('span', '', copy[1]));
+        var number = node('span', 'em-step-number', '0' + (i + 1)); number.setAttribute('aria-hidden', 'true');
+        card.appendChild(icon); card.appendChild(text); card.appendChild(number); steps.appendChild(card);
+      });
+      recentHeader.appendChild(steps); recentHeader.classList.add('em-has-recent-steps');
+    }
     if (recentHeader) {
       if (quickFilters) recentHeader.insertBefore(bar, quickFilters);
       else recentHeader.appendChild(bar);

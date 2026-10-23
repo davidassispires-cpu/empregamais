@@ -80,3 +80,21 @@ html body #pagina-home#pagina-home #vagas .em-recent-title-final h2{color:#0865a
 html body #pagina-home#pagina-home #vagas .em-recent-title-final h2::before{content:"ENCONTRE SUA OPORTUNIDADE"!important;display:block!important;position:static!important;width:auto!important;height:auto!important;transform:none!important;border:0!important;border-radius:0!important;padding:0 0 0 56px!important;margin:0 0 12px!important;background:linear-gradient(#ff7b0b,#ff7b0b) left center / 45px 2px no-repeat!important;color:#c95500!important;font:500 9px/1.5 Poppins,sans-serif!important;letter-spacing:2.5px!important}
 html body #pagina-home#pagina-home #vagas .em-recent-title-final p{color:#0865a3!important;font-size:14px!important;line-height:1.5!important}
 }
+
+/* Model 3: compact guidance beside the recent heading, filters below. */
+@layer candidate-palette {
+html body #pagina-home#pagina-home #vagas .em-recent-header-main.em-has-recent-steps{display:grid!important;grid-template-columns:minmax(290px,.8fr) minmax(0,2fr)!important;align-items:center!important;gap:20px 26px!important}
+html body #pagina-home#pagina-home #vagas .em-has-recent-steps .em-recent-title-final{grid-column:1!important;grid-row:1!important;margin:0!important;width:auto!important}
+html body #pagina-home#pagina-home #vagas #emRecentSteps{grid-column:2!important;grid-row:1!important;display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:10px!important;margin:0!important;min-width:0!important}
+html body #pagina-home#pagina-home #vagas .em-recent-step{position:relative!important;box-sizing:border-box!important;display:flex!important;align-items:center!important;gap:9px!important;min-width:0!important;min-height:88px!important;padding:15px 12px!important;border-radius:10px!important;background:#f0f4fc!important;color:#123f82!important;overflow:hidden!important}
+html body #pagina-home#pagina-home #vagas .em-recent-step::before{content:"";position:absolute;top:0;left:12px;width:36px;height:2px;background:#f28c18}
+html body #pagina-home#pagina-home #vagas .em-step-icon{display:grid!important;place-items:center!important;flex:0 0 34px!important;height:38px!important;border-radius:8px!important;background:#ffe5c7!important;color:#123f82!important}
+html body #pagina-home#pagina-home #vagas .em-step-icon svg{width:23px!important;height:23px!important}
+html body #pagina-home#pagina-home #vagas .em-step-copy{position:relative!important;min-width:0!important;z-index:1!important}
+html body #pagina-home#pagina-home #vagas .em-step-copy strong{display:block!important;margin:0 0 4px!important;color:#123f82!important;font:600 11px/1.4 Poppins,sans-serif!important}
+html body #pagina-home#pagina-home #vagas .em-step-copy>span{display:block!important;color:#536780!important;font:400 10px/1.5 Poppins,sans-serif!important}
+html body #pagina-home#pagina-home #vagas .em-step-number{position:absolute!important;top:3px!important;right:7px!important;color:#dce5f7!important;font:600 34px/1 Poppins,sans-serif!important;pointer-events:none!important}
+html body #pagina-home#pagina-home #vagas .em-has-recent-steps>:not(.em-recent-title-final):not(#emRecentSteps){grid-column:1/-1!important}
+@media(max-width:1050px){html body #pagina-home#pagina-home #vagas .em-recent-header-main.em-has-recent-steps{grid-template-columns:1fr!important}html body #pagina-home#pagina-home #vagas #emRecentSteps{grid-column:1!important;grid-row:2!important}}
+@media(max-width:600px){html body #pagina-home#pagina-home #vagas #emRecentSteps{grid-template-columns:1fr!important;gap:8px!important}html body #pagina-home#pagina-home #vagas .em-recent-step{min-height:65px!important;padding:12px!important}html body #pagina-home#pagina-home #vagas .em-step-copy strong{font-size:12px!important}html body #pagina-home#pagina-home #vagas .em-step-copy>span{font-size:11px!important}}
+}
