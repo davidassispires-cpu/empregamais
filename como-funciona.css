@@ -520,7 +520,6 @@
 @media(prefers-reduced-motion:reduce){#emBusinessNew *{scroll-behavior:auto!important;transition:none!important}}
 
 /* Compact blue and orange guide, both audiences. */
-@layer candidate-palette {
 html body #pagina-como-funciona #comoFuncionaV106#comoFuncionaV106 {
  --guide-accent:#0969d6;--guide-deep:#102e59;--guide-soft:#eef5ff;--guide-line:#dce6f3;--guide-ink:#163252;
  background:#f4f7fb!important;padding:18px 0 28px!important;
@@ -585,5 +584,4 @@ html body #pagina-como-funciona #comoFuncionaV106 #emBusinessNew .cb-hero{paddin
 html body #pagina-como-funciona #comoFuncionaV106 #emBusinessNew .cb-hero h1{font-size:28px!important}
 html body #pagina-como-funciona #comoFuncionaV106 #emBusinessNew .cb-benefit-strip{grid-template-columns:1fr 1fr}
 html body #pagina-como-funciona #comoFuncionaV106 #emBusinessNew .cb-section{padding:16px}
-}
 }
