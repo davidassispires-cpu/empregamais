@@ -160,7 +160,7 @@
       if (sourceLogo) { var logo = node('img','em-fjp-logo'); logo.src = sourceLogo.src; logo.alt = ''; identity.appendChild(logo); }
       header.appendChild(identity); dialog.appendChild(header);
       var body = node('div','em-fjp-body'), facts = node('div','em-fjp-main-facts');
-      [['Localização',info.location,'location'],['Salário',info.salary,'salary'],['Modalidade',[info.modality,info.contract].filter(Boolean).join(' · '),'work']].forEach(function (fact) {
+      [['Localização',info.location,'location'],['Salário',info.salary,'salary'],['Modalidade',info.modality,'work'],['Contrato',info.contract || 'Não informado','work']].forEach(function (fact) {
         var box = node('div','em-fjp-fact'), copy = node('div',''); box.appendChild(icon(fact[2]));
         copy.appendChild(node('span','em-fjp-label',fact[0])); copy.appendChild(node('strong','em-fjp-value',fact[1])); box.appendChild(copy); facts.appendChild(box);
       }); body.appendChild(facts);
@@ -168,24 +168,26 @@
       var status = node('p','em-fjp-status'); status.setAttribute('role','status'); status.hidden = true;
       body.appendChild(status);
       if (info.demo) body.appendChild(node('p','em-fjp-demo','Vaga de demonstração. Esta oportunidade é fictícia e não recebe candidaturas reais.'));
-      function section(label, text) {
-        var block = node('section','em-fjp-section'); block.appendChild(node('h3','',label)); block.appendChild(node('p','',text)); body.appendChild(block);
+      var contentGrid = node('div','em-fjp-content-grid'), sections = node('div','em-fjp-sections'), sidebar = node('aside','em-fjp-sidebar');
+      function section(label, text, target) {
+        var block = node('section','em-fjp-section'); block.appendChild(node('h3','',label)); block.appendChild(node('p','',text)); (target || sections).appendChild(block); return block;
       }
-      section('Sobre a vaga',info.description);
-      if (info.activities && info.activities !== info.description) section('Responsabilidades',info.activities);
+      section('Descrição da vaga',info.description);
       section('Requisitos',info.requirements);
+      section('Responsabilidades',info.activities && info.activities !== info.description ? info.activities : 'Consulte as atividades descritas na apresentação da vaga.');
       var benefits = node('section','em-fjp-section'); benefits.appendChild(node('h3','','Benefícios'));
       if (info.benefits.length) {
         var list = node('ul','em-fjp-benefits'); info.benefits.forEach(function (item) { list.appendChild(node('li','',item)); }); benefits.appendChild(list);
       } else benefits.appendChild(node('p','','Não informados.'));
-      body.appendChild(benefits);
+      sections.appendChild(benefits);
       if (info.facts.length) {
-        var details = node('section','em-fjp-section'); details.appendChild(node('h3','','Informações adicionais'));
+        var details = node('section','em-fjp-section'); details.appendChild(node('h3','','Informações da vaga'));
         var fields = node('dl','em-fjp-extra-facts'); info.facts.forEach(function (pair) {
           var field = node('div',''); field.appendChild(node('dt','',pair[0])); field.appendChild(node('dd','',pair[1])); fields.appendChild(field);
-        }); details.appendChild(fields); body.appendChild(details);
+        }); details.appendChild(fields); sidebar.appendChild(details);
       }
-      if (info.about) section('Sobre a empresa',info.about);
+      if (info.about) section('Sobre a empresa',info.about,sidebar);
+      contentGrid.appendChild(sections); if (sidebar.children.length) contentGrid.appendChild(sidebar); else contentGrid.classList.add('em-fjp-no-sidebar'); body.appendChild(contentGrid);
       dialog.appendChild(body);
       var footer = node('footer','em-fjp-footer'), metadata = node('div','em-fjp-footer-meta'), publication = node('div','em-fjp-publication');
       publication.appendChild(node('span','','ID da vaga: '+info.id)); publication.appendChild(node('span','','Publicado em '+info.date)); metadata.appendChild(publication);
