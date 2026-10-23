@@ -992,3 +992,11 @@ html body #pagina-home#pagina-home#pagina-home #emJobBrowser[data-layout="model-
 html body #pagina-home#pagina-home#pagina-home #emJobBrowser[data-layout="model-one"][data-presentation="priority"] #emJobPanel#emJobPanel .em-jb-navigation-row .em-jb-tab{padding:10px 3px!important;font-size:11px!important}
 }
 }
+
+/* Larger, legible vacancy section headings and descriptions. */
+@layer candidate-palette {
+html body #pagina-home#pagina-home#pagina-home #emJobBrowser[data-layout="model-one"][data-presentation="priority"] #emJobPanel#emJobPanel .em-jb-section>h3{font-size:20px!important;line-height:28px!important;min-height:28px!important;font-weight:700!important}
+html body #pagina-home#pagina-home#pagina-home #emJobBrowser[data-layout="model-one"][data-presentation="priority"] #emJobPanel#emJobPanel .em-jb-section>p,html body #pagina-home#pagina-home#pagina-home #emJobBrowser[data-layout="model-one"][data-presentation="priority"] #emJobPanel#emJobPanel .em-jb-content-list,html body #pagina-home#pagina-home#pagina-home #emJobBrowser[data-layout="model-one"][data-presentation="priority"] #emJobPanel#emJobPanel .em-jb-content-list li,html body #pagina-home#pagina-home#pagina-home #emJobBrowser[data-layout="model-one"][data-presentation="priority"] #emJobPanel#emJobPanel .em-jb-benefit-list,html body #pagina-home#pagina-home#pagina-home #emJobBrowser[data-layout="model-one"][data-presentation="priority"] #emJobPanel#emJobPanel .em-jb-benefit-list li,html body #pagina-home#pagina-home#pagina-home #emJobBrowser[data-layout="model-one"][data-presentation="priority"] #emJobPanel#emJobPanel .em-jb-benefit-list li>span:not(.em-jb-icon){font-size:15px!important;line-height:1.8!important;color:#40536d!important}
+html body #pagina-vaga#pagina-vaga#pagina-vaga#pagina-vaga .em-job-reading>.bloco-detalhe>h2{font-size:22px!important;line-height:1.4!important}
+html body #pagina-vaga#pagina-vaga#pagina-vaga#pagina-vaga .em-job-reading .em-job-text,html body #pagina-vaga#pagina-vaga#pagina-vaga#pagina-vaga .em-job-reading .em-job-text :is(p,li){font-size:16px!important;line-height:1.8!important;font-weight:400!important;color:#40536d!important}
+}
