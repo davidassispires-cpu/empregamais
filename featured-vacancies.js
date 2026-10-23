@@ -141,7 +141,7 @@
       dialog.setAttribute('aria-labelledby','emFeaturedPopupTitle'); dialog.setAttribute('aria-modal','true');
       var header = node('header','em-fjp-header'), top = node('div','em-fjp-top');
       top.appendChild(node('span','em-fjp-eyebrow','Detalhes da vaga'));
-      var close = node('button','em-fjp-close'); close.type = 'button'; close.setAttribute('aria-label','Fechar detalhes da vaga'); close.setAttribute('autofocus',''); close.appendChild(icon('close'));
+      var close = node('button','em-fjp-close'); close.type = 'button'; close.setAttribute('aria-label','Fechar detalhes da vaga'); close.setAttribute('autofocus',''); close.appendChild(icon('close')); close.appendChild(node('span','','Fechar'));
       close.onclick = function () { closePopup(); }; top.appendChild(close); header.appendChild(top);
       var identity = node('div','em-fjp-identity'), heading = node('div','em-fjp-heading');
       var title = node('h2','em-fjp-title',info.title); title.id = 'emFeaturedPopupTitle'; heading.appendChild(title);
@@ -155,9 +155,14 @@
       } else company.appendChild(node('span','',info.company));
       var rating = !info.confidential && card && card.querySelector('.em-company-demo-rating');
       if (rating) company.appendChild(rating.cloneNode(true));
-      heading.appendChild(company); identity.appendChild(heading);
+      heading.appendChild(company);
       var sourceLogo = !info.confidential && card && card.querySelector('.dz-logo img');
       if (sourceLogo) { var logo = node('img','em-fjp-logo'); logo.src = sourceLogo.src; logo.alt = ''; identity.appendChild(logo); }
+      identity.appendChild(heading);
+      var aboutHeader=node('section','em-fjp-about-header');
+      aboutHeader.appendChild(node('h3','','Sobre a empresa'));
+      aboutHeader.appendChild(node('p','',(info.about && info.about.length>210 ? info.about.slice(0,207)+'…' : info.about) || (info.confidential ? 'A identidade da empresa é preservada neste anúncio.' : 'A empresa ainda não informou sua apresentação institucional.')));
+      identity.appendChild(aboutHeader);
       header.appendChild(identity); dialog.appendChild(header);
       var body = node('div','em-fjp-body'), facts = node('div','em-fjp-main-facts');
       [['Localização',info.location,'location'],['Salário',info.salary,'salary'],['Modalidade',info.modality,'work'],['Contrato',info.contract || 'Não informado','work']].forEach(function (fact) {
@@ -187,9 +192,19 @@
         }); details.appendChild(fields);
       } else details.appendChild(node('p','','Não foram informadas condições adicionais.'));
       sidebar.appendChild(details);
-      if (info.about) section('Sobre a empresa',info.about,sidebar);
+
       contentGrid.appendChild(sections); contentGrid.appendChild(middle); contentGrid.appendChild(sidebar); body.appendChild(contentGrid);
-      dialog.appendChild(body);
+      if(info.about && info.about.length>210){var fullAbout=section('Sobre a empresa — apresentação completa',info.about,body);var readAbout=node('button','em-fjp-read-about','Ler apresentação completa');readAbout.type='button';readAbout.onclick=function(){body.scrollTo({top:fullAbout.offsetTop-body.offsetTop,behavior:'smooth'});};aboutHeader.appendChild(readAbout);}
+      var viewport=node('div','em-fjp-viewport'),scrollControls=node('nav','em-fjp-scroll-controls');
+      body.id='emFeaturedPopupBody'; body.tabIndex=0; body.setAttribute('aria-label','Conteúdo completo da vaga');
+      scrollControls.setAttribute('aria-label','Navegar pelo conteúdo da vaga');
+      var up=node('button','em-fjp-scroll-up'),down=node('button','em-fjp-scroll-down');
+      [up,down].forEach(function(button,index){button.type='button';button.setAttribute('aria-controls',body.id);button.setAttribute('aria-label',index?'Descer conteúdo da vaga':'Subir conteúdo da vaga');button.title=button.getAttribute('aria-label');button.innerHTML='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="'+(index?'m6 9 6 6 6-6':'m6 15 6-6 6 6')+'"/></svg>';button.onclick=function(){body.scrollBy({top:(index?1:-1)*Math.max(100,body.clientHeight*.65),behavior:win.matchMedia&&win.matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth'});};scrollControls.appendChild(button);});
+      function updateScroll(){up.disabled=body.scrollTop<=2;down.disabled=body.scrollTop+body.clientHeight>=body.scrollHeight-2;}
+      body.addEventListener('scroll',updateScroll);
+      if(typeof win.ResizeObserver==='function'){var scrollObserver=new win.ResizeObserver(updateScroll);scrollObserver.observe(body);scrollObserver.observe(contentGrid);dialog.addEventListener('close',function(){scrollObserver.disconnect();});}
+      viewport.appendChild(body);viewport.appendChild(scrollControls);dialog.appendChild(viewport);
+      (win.requestAnimationFrame||win.setTimeout)(updateScroll);
       var footer = node('footer','em-fjp-footer'), metadata = node('div','em-fjp-footer-meta'), publication = node('div','em-fjp-publication');
       publication.appendChild(node('span','','ID da vaga: '+info.id)); publication.appendChild(node('span','','Publicado em '+info.date)); metadata.appendChild(publication);
       if (typeof win.abrirPopupDenunciaEmpregaMais === 'function') {
