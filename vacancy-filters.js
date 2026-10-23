@@ -322,3 +322,23 @@
  }
  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init,{once:true});else init();
 })();
+
+/* Approved full-width pagination below list and preview. */
+(function(){
+ if(typeof document==='undefined')return;
+ function mount(){
+  var queued=false;
+  function position(){
+   queued=false;
+   var browser=document.getElementById('emJobBrowser'),pager=document.getElementById('paginacaoVagasEM');
+   if(!browser||!pager)return;
+   var container=pager.closest('.em-pagination-container');
+   if(!container)return;
+   if(browser.nextElementSibling!==container)browser.insertAdjacentElement('afterend',container);
+   container.classList.add('em-pagination-fullwidth');
+  }
+  new MutationObserver(function(){if(!queued){queued=true;requestAnimationFrame(position);}}).observe(document.body,{childList:true,subtree:true});
+  position();
+ }
+ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',mount,{once:true});else mount();
+})();
