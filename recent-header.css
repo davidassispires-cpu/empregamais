@@ -108,3 +108,27 @@ html body #pagina-home #emHomeJobAlert p{color:#48566a!important}
 html body #pagina-home #emHomeJobAlert button{background:#123f82!important;color:#fff!important;border-radius:8px!important}
 html body #pagina-home #emHomeJobAlert button:hover{background:#0b326c!important}
 @media(max-width:700px){html body #pagina-home #emHomeJobAlert{padding:18px!important;gap:14px!important}}
+
+/* Shared vacancy: compact reading and aligned additional conditions. */
+@layer candidate-palette {
+html body #pagina-vaga#pagina-vaga#pagina-vaga#pagina-vaga#pagina-vaga .detalhe-layout{box-sizing:border-box!important;width:calc(100% - 40px)!important;max-width:1120px!important;margin:20px auto!important;padding:24px!important}
+html body #pagina-vaga#pagina-vaga#pagina-vaga#pagina-vaga#pagina-vaga .conteudo-vaga-box.em-job-panel{display:block!important;min-height:0!important;height:auto!important;margin:18px 0 0!important;padding:0!important;border:0!important;background:transparent!important}
+html body #pagina-vaga#pagina-vaga#pagina-vaga#pagina-vaga#pagina-vaga .em-job-reading{display:block!important;min-height:0!important;height:auto!important;padding:0!important;margin:0!important}
+html body #pagina-vaga#pagina-vaga#pagina-vaga#pagina-vaga#pagina-vaga .em-job-reading>.bloco-detalhe{min-height:0!important;height:auto!important;margin:0!important;padding:16px 0!important;border:0!important;border-bottom:1px solid #edf1f6!important;text-align:left!important}
+html body #pagina-vaga#pagina-vaga#pagina-vaga#pagina-vaga#pagina-vaga .em-job-reading>.bloco-detalhe>h2{font:600 20px/1.4 Poppins,sans-serif!important;color:#123f82!important;margin:0 0 8px!important;text-align:left!important}
+html body #pagina-vaga#pagina-vaga#pagina-vaga#pagina-vaga#pagina-vaga .em-job-reading .em-job-text{margin:0!important;min-height:0!important;height:auto!important;color:#40536d!important;font:400 15px/1.75 Poppins,sans-serif!important}
+html body #pagina-vaga#pagina-vaga#pagina-vaga#pagina-vaga#pagina-vaga .em-job-reading .em-job-text :is(p,li){font:inherit!important;color:inherit!important;margin-top:0!important;margin-bottom:8px!important;overflow-wrap:anywhere!important}
+html body #pagina-vaga#pagina-vaga#pagina-vaga#pagina-vaga#pagina-vaga .em-job-information{margin:18px 0!important;padding:18px!important;background:#f8faff!important;border:1px solid #e1e8f1!important;border-radius:10px!important;min-height:0!important}
+html body #pagina-vaga#pagina-vaga#pagina-vaga#pagina-vaga#pagina-vaga .em-job-information.em-job-information h2{font:600 18px/1.4 Poppins,sans-serif!important;color:#123f82!important;margin:0 0 14px!important;text-align:left!important}
+html body #pagina-vaga#pagina-vaga#pagina-vaga#pagina-vaga#pagina-vaga #emJobInformation{display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:12px!important;min-height:0!important}
+html body #pagina-vaga#pagina-vaga#pagina-vaga#pagina-vaga#pagina-vaga #emJobInformation>div{display:block!important;min-height:0!important;margin:0!important;padding:12px!important;border:1px solid #e3eaf3!important;border-radius:8px!important;background:#fff!important;text-align:left!important}
+html body #pagina-vaga#pagina-vaga#pagina-vaga#pagina-vaga#pagina-vaga #emJobInformation#emJobInformation dt{display:flex!important;justify-content:flex-start!important;align-items:center!important;gap:7px!important;text-align:left!important;color:#64748b!important;font:400 12px/1.5 Poppins,sans-serif!important}
+html body #pagina-vaga#pagina-vaga#pagina-vaga#pagina-vaga#pagina-vaga #emJobInformation#emJobInformation dt>span{text-align:left!important}
+html body #pagina-vaga#pagina-vaga#pagina-vaga#pagina-vaga#pagina-vaga #emJobInformation#emJobInformation dd{margin:6px 0 0!important;text-align:left!important;color:#243e5b!important;font:500 13px/1.5 Poppins,sans-serif!important}
+html body #pagina-vaga#pagina-vaga#pagina-vaga#pagina-vaga#pagina-vaga #emJobInformation .em-condition-icon{color:#0875ee!important;width:18px!important;height:18px!important;flex-basis:18px!important}
+html body #pagina-vaga#pagina-vaga#pagina-vaga#pagina-vaga#pagina-vaga .em-job-information:not(:has(#emJobInformation>div)){display:none!important}
+html body #pagina-vaga#pagina-vaga#pagina-vaga#pagina-vaga#pagina-vaga #emJobHeaderReference .jh-title{font:600 clamp(22px,2.5vw,30px)/1.3 Poppins,sans-serif!important;overflow-wrap:anywhere!important;margin-bottom:4px!important}
+html body #pagina-vaga#pagina-vaga#pagina-vaga#pagina-vaga#pagina-vaga #emJobHeaderReference .jh-actions :is(.jh-save,.jh-share){box-sizing:border-box!important;min-height:36px!important;height:36px!important;flex:0 0 auto!important;width:auto!important;font:400 12px/1.5 Poppins,sans-serif!important}
+@media(max-width:800px){html body #pagina-vaga#pagina-vaga#pagina-vaga#pagina-vaga#pagina-vaga #emJobInformation{grid-template-columns:repeat(2,minmax(0,1fr))!important}html body #pagina-vaga#pagina-vaga#pagina-vaga#pagina-vaga#pagina-vaga .detalhe-layout{width:calc(100% - 24px)!important;margin:12px auto!important;padding:16px!important}}
+@media(max-width:480px){html body #pagina-vaga#pagina-vaga#pagina-vaga#pagina-vaga#pagina-vaga #emJobInformation{grid-template-columns:1fr!important}html body #pagina-vaga#pagina-vaga#pagina-vaga#pagina-vaga#pagina-vaga .em-job-information{padding:14px!important}}
+}
