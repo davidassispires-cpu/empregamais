@@ -186,3 +186,17 @@ html body #pagina-home#pagina-home#pagina-home #paginacaoVagasEM button:hover:no
 @media(max-width:1000px){html body #pagina-home#pagina-home#pagina-home #paginacaoVagasEM#paginacaoVagasEM{grid-template-columns:1fr auto!important;gap:14px!important;padding:18px!important}html body #pagina-home#pagina-home#pagina-home #paginacaoVagasEM .em-pagination-pages{grid-row:2!important;grid-column:1/-1!important}html body #pagina-home#pagina-home#pagina-home #paginacaoVagasEM button.em-pagination-next{grid-column:2!important}}
 @media(max-width:480px){html body #pagina-home#pagina-home#pagina-home #paginacaoVagasEM .em-pagination-summary strong{font-size:12px!important}html body #pagina-home#pagina-home#pagina-home #paginacaoVagasEM .em-pagination-summary small{font-size:11px!important}html body #pagina-home#pagina-home#pagina-home #paginacaoVagasEM .em-pagination-summary{gap:8px!important}html body #pagina-home#pagina-home#pagina-home #paginacaoVagasEM button.em-pagination-next{min-width:98px!important;padding:0 12px!important}html body #pagina-home#pagina-home#pagina-home #paginacaoVagasEM button{min-width:36px!important;width:36px!important;height:42px!important}}
 }
+
+/* Seven compact companies per desktop view. */
+@layer candidate-palette {
+html body #pagina-home#pagina-home #emFaixaLogosV41#emFaixaLogosV41{padding:22px 44px!important}
+html body #pagina-home#pagina-home #emFaixaLogosV41#emFaixaLogosV41 h2{margin-bottom:16px!important}
+html body #pagina-home#pagina-home #emFaixaLogosV41#emFaixaLogosV41 .em-logos-linha-v41{gap:16px!important}
+html body #pagina-home#pagina-home #emFaixaLogosV41#emFaixaLogosV41 .em-logos-linha-v41>button{flex:0 0 calc((100% - 96px)/7)!important;min-width:0!important;min-height:100px!important;padding:8px 4px!important;gap:8px!important;box-sizing:border-box!important}
+html body #pagina-home#pagina-home #emFaixaLogosV41#emFaixaLogosV41 .em-logo-faixa-v41{width:110px!important;max-width:100%!important;height:52px!important;max-height:52px!important}
+html body #pagina-home#pagina-home #emFaixaLogosV41#emFaixaLogosV41 .em-logo-faixa-v41 img{max-height:52px!important;max-width:100%!important}
+html body #pagina-home#pagina-home #emFaixaLogosV41#emFaixaLogosV41 .em-logo-faixa-v41 svg{width:40px!important;height:40px!important}
+html body #pagina-home#pagina-home #emFaixaLogosV41#emFaixaLogosV41 .em-logos-linha-v41>button>span{font:500 10px/1.4 Poppins,sans-serif!important}
+@media(max-width:1000px){html body #pagina-home#pagina-home #emFaixaLogosV41#emFaixaLogosV41 .em-logos-linha-v41>button{flex-basis:calc((100% - 48px)/4)!important}}
+@media(max-width:600px){html body #pagina-home#pagina-home #emFaixaLogosV41#emFaixaLogosV41 .em-logos-linha-v41>button{flex-basis:calc((100% - 16px)/2)!important}}
+}

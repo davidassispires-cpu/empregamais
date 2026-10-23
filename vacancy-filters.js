@@ -312,6 +312,20 @@
      section.appendChild(b);
     });
     track.addEventListener('scroll',update,{passive:true});
+    var hovered=false;
+    section.addEventListener('mouseenter',function(){hovered=true;});
+    section.addEventListener('mouseleave',function(){hovered=false;});
+    var reduced=window.matchMedia('(prefers-reduced-motion: reduce)');
+    setInterval(function(){
+     if(document.hidden||hovered||section.contains(document.activeElement)||reduced.matches||!section.isConnected)return;
+     var bounds=section.getBoundingClientRect();
+     if(bounds.bottom<=0||bounds.top>=window.innerHeight||track.scrollWidth<=track.clientWidth+2)return;
+     var first=track.querySelector('button');if(!first)return;
+     var step=first.getBoundingClientRect().width+(parseFloat(getComputedStyle(track).gap)||16);
+     var end=track.scrollWidth-track.clientWidth;
+     track.scrollTo({left:track.scrollLeft>=end-2?0:Math.min(end,track.scrollLeft+step),behavior:'smooth'});
+    },3500);
+
     if(typeof ResizeObserver!=='undefined')new ResizeObserver(update).observe(track);
    }
    update();
