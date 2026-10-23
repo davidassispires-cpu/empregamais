@@ -391,6 +391,18 @@
   });
   badge(host,channel.quick);
  }
+
+ function stableSeals(scope,job){
+  if(!scope||!job)return;
+  var host=scope.querySelector('.em-channel-badges');
+  if(!host){host=doc.createElement('div');host.className='em-channel-badges';host.setAttribute('aria-label','Selos da vaga');scope.appendChild(host);}
+  badge(host,classify(job).quick);
+  var date=job.dataPublicacao||job.publicadaEm||job.criadoEm||job.criado_em||job.created_at;
+  var age=Date.now()-new Date(date||'').getTime(),fresh=Number.isFinite(age)&&age>=0&&age<=48*3600000;
+  var current=host.querySelector('.em-channel-new');
+  if(!fresh){if(current)current.remove();}
+  else if(!current){var n=doc.createElement('span');n.className='em-channel-new';n.title='Publicada nas últimas 48 horas';n.innerHTML='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3c1.2 5.2 3.8 7.8 9 9-5.2 1.2-7.8 3.8-9 9-1.2-5.2-3.8-7.8-9-9 5.2-1.2 7.8-3.8 9-9Z"/><path d="m3 3 2 2m14 14 2 2M21 3l-2 2M5 19l-2 2"/></svg><span>Nova vaga</span>';host.appendChild(n);}
+ }
  function refresh(){
   queued=false;
   var jobs=new Map();
@@ -400,10 +412,10 @@
    var similar=card.querySelector('.dz-company-jobs');
    if(similar && similar.textContent!=='Exibir vagas similares'){similar.textContent='Exibir vagas similares';similar.setAttribute('aria-label','Exibir vagas similares dessa empresa');}
    var host=card.querySelector('.em-r4-footer-badges')||card.querySelector('.dz-infos');
-   badge(host,classify(job).quick);
+   if(entry)stableSeals(card,job);else badge(host,classify(job).quick);
   });
   var panel=doc.getElementById('emJobPanel');
-  if(panel)apply(panel,jobs.get(panel.getAttribute('data-vaga-id')),'.em-jb-apply',panel.querySelector('.em-jb-company'));
+  if(panel){var selected=jobs.get(panel.getAttribute('data-vaga-id'));apply(panel,selected,'.em-jb-apply',null);stableSeals(panel.querySelector('.em-jb-header'),selected);}
   var popup=doc.getElementById('emFeaturedJobPopup');
   if(popup)apply(popup,popup.__emChannelJob,'.em-fjp-apply',popup.querySelector('.em-fjp-footer-meta'));
   var page=doc.getElementById('pagina-vaga');
