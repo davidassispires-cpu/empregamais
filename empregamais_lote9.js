@@ -642,7 +642,7 @@ document.addEventListener('pointerup',go,true);
 
 (function(){
  var pending=false;
- var paths={new:'<path d="m13 2-9 12h7l-1 8 10-12h-7l0-8Z"/>',active:'<path d="M3 12h4l3-7 4 14 3-7h4"/>',low:'<path d="M5 5v14h14M8 9l4 4 4-5M16 8v4"/>',quick:'<path d="m13 2-9 12h7l-1 8 10-12h-7l0-8Z"/>'};
+ var paths={new:'<path d="M12 3c1.2 5.2 3.8 7.8 9 9-5.2 1.2-7.8 3.8-9 9-1.2-5.2-3.8-7.8-9-9 5.2-1.2 7.8-3.8 9-9Z"/><path d="m3 3 2 2m14 14 2 2M21 3l-2 2M5 19l-2 2"/>',active:'<path d="M3 12h4l3-7 4 14 3-7h4"/>',low:'<path d="M5 5v14h14M8 9l4 4 4-5M16 8v4"/>',quick:'<path d="m13 2-9 12h7l-1 8 10-12h-7l0-8Z"/>'};
  function badge(kind,label,hint){return '<span class="em-status-badge em-status-'+kind+'" title="'+hint+'"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'+paths[kind]+'</svg><span>'+label+'</span></span>';}
  function paint(){
   var jobs=typeof window.todasAsVagasPublicas==='function'?window.todasAsVagasPublicas():[];
