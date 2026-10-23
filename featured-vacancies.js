@@ -179,7 +179,7 @@
       if (info.benefits.length) {
         var list = node('ul','em-fjp-benefits'); info.benefits.forEach(function (item) { list.appendChild(node('li','',item)); }); benefits.appendChild(list);
       } else benefits.appendChild(node('p','','Não informados.'));
-      sections.appendChild(benefits);
+      sidebar.appendChild(benefits);
       if (info.facts.length) {
         var details = node('section','em-fjp-section'); details.appendChild(node('h3','','Informações da vaga'));
         var fields = node('dl','em-fjp-extra-facts'); info.facts.forEach(function (pair) {

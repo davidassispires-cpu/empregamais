@@ -312,3 +312,20 @@ html body #emFeaturedJobPopup :is(.em-fjp-apply,.em-fjp-secondary){min-height:42
 @media(max-width:850px){html body #emFeaturedJobPopup .em-fjp-content-grid{grid-template-columns:1fr!important}html body #emFeaturedJobPopup .em-fjp-sidebar{padding-left:0!important;border-left:0!important}html body #emFeaturedJobPopup .em-fjp-extra-facts{grid-template-columns:repeat(2,minmax(0,1fr))!important}}
 @media(max-width:560px){html body #emFeaturedJobPopup .em-fjp-sections{grid-template-columns:1fr!important}html body #emFeaturedJobPopup .em-fjp-main-facts{grid-template-columns:repeat(2,minmax(0,1fr))!important}html body #emFeaturedJobPopup .em-fjp-title{font-size:19px!important}}
 }
+
+/* Approved model 2: blue identity header and editorial content columns. */
+@layer candidate-palette {
+html body #emFeaturedJobPopup .em-fjp-header{background:#123f82!important;color:#fff!important;padding:12px 22px 18px!important}
+html body #emFeaturedJobPopup .em-fjp-title,html body #emFeaturedJobPopup .em-fjp-company,html body #emFeaturedJobPopup .em-fjp-eyebrow{color:#fff!important}
+html body #emFeaturedJobPopup .em-fjp-eyebrow{color:#dbe8fa!important}
+html body #emFeaturedJobPopup .em-fjp-identity{flex-direction:row-reverse!important;gap:18px!important}
+html body #emFeaturedJobPopup .em-fjp-logo{box-sizing:border-box!important;flex:0 0 72px!important;width:72px!important;height:72px!important;background:#fff!important;border-radius:9px!important;padding:9px!important}
+html body #emFeaturedJobPopup .em-fjp-content-grid{grid-template-columns:minmax(0,2fr) minmax(230px,1fr)!important;align-items:start!important}
+html body #emFeaturedJobPopup .em-fjp-sections>.em-fjp-section:first-child{grid-column:1/-1!important;border:0!important;padding:0 0 10px!important}
+html body #emFeaturedJobPopup .em-fjp-sections>.em-fjp-section:nth-child(2){grid-column:2!important;grid-row:2!important}
+html body #emFeaturedJobPopup .em-fjp-sections>.em-fjp-section:nth-child(3){grid-column:1!important;grid-row:2!important}
+html body #emFeaturedJobPopup .em-fjp-sections>.em-fjp-section{border-top:1px solid #e1e9f4!important}
+html body #emFeaturedJobPopup .em-fjp-sidebar>.em-fjp-section{padding:14px!important;background:#edf4fd!important;border-radius:10px!important}
+@media(max-width:850px){html body #emFeaturedJobPopup .em-fjp-content-grid{grid-template-columns:1fr!important}}
+@media(max-width:560px){html body #emFeaturedJobPopup .em-fjp-sections>.em-fjp-section{grid-column:1!important;grid-row:auto!important}html body #emFeaturedJobPopup .em-fjp-logo{flex-basis:54px!important;width:54px!important;height:54px!important}}
+}
