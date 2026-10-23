@@ -98,3 +98,13 @@ html body #pagina-home#pagina-home #vagas .em-has-recent-steps>:not(.em-recent-t
 @media(max-width:1050px){html body #pagina-home#pagina-home #vagas .em-recent-header-main.em-has-recent-steps{grid-template-columns:1fr!important}html body #pagina-home#pagina-home #vagas #emRecentSteps{grid-column:1!important;grid-row:2!important}}
 @media(max-width:600px){html body #pagina-home#pagina-home #vagas #emRecentSteps{grid-template-columns:1fr!important;gap:8px!important}html body #pagina-home#pagina-home #vagas .em-recent-step{min-height:65px!important;padding:12px!important}html body #pagina-home#pagina-home #vagas .em-step-copy strong{font-size:12px!important}html body #pagina-home#pagina-home #vagas .em-step-copy>span{font-size:11px!important}}
 }
+
+/* Email alert: approved white banner with orange accent and blue action. */
+html body #pagina-home #emHomeJobAlert{position:relative!important;overflow:hidden!important;border:1px solid #d5e4f7!important;border-left:6px solid #f28c18!important;border-radius:12px!important;background:#fff!important;padding:24px 30px!important;gap:22px!important}
+html body #pagina-home #emHomeJobAlert .em-alert-bell{background:#fff2e3!important;color:#f28c18!important;border-radius:12px!important}
+html body #pagina-home #emHomeJobAlert .em-alert-bell i{display:none!important}
+html body #pagina-home #emHomeJobAlert h2{color:#123f82!important;font-weight:600!important}
+html body #pagina-home #emHomeJobAlert p{color:#48566a!important}
+html body #pagina-home #emHomeJobAlert button{background:#123f82!important;color:#fff!important;border-radius:8px!important}
+html body #pagina-home #emHomeJobAlert button:hover{background:#0b326c!important}
+@media(max-width:700px){html body #pagina-home #emHomeJobAlert{padding:18px!important;gap:14px!important}}
