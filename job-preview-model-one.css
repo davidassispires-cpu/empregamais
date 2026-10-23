@@ -1000,3 +1000,16 @@ html body #pagina-home#pagina-home#pagina-home #emJobBrowser[data-layout="model-
 html body #pagina-vaga#pagina-vaga#pagina-vaga#pagina-vaga .em-job-reading>.bloco-detalhe>h2{font-size:22px!important;line-height:1.4!important}
 html body #pagina-vaga#pagina-vaga#pagina-vaga#pagina-vaga .em-job-reading .em-job-text,html body #pagina-vaga#pagina-vaga#pagina-vaga#pagina-vaga .em-job-reading .em-job-text :is(p,li){font-size:16px!important;line-height:1.8!important;font-weight:400!important;color:#40536d!important}
 }
+
+/* Align identity at the top and keep the company close to the vacancy title. */
+@layer candidate-palette {
+html body #pagina-home#pagina-home#pagina-home #emJobBrowser[data-layout="model-one"][data-presentation="priority"] #emJobPanel#emJobPanel{padding-top:16px!important}
+html body #pagina-home#pagina-home#pagina-home #emJobBrowser[data-layout="model-one"][data-presentation="priority"] #emJobPanel#emJobPanel .em-jb-header.em-jb-header-model2.em-jb-info-model2 .em-jb-header-content{grid-template-rows:min-content minmax(46px,auto)!important;row-gap:4px!important;align-items:start!important}
+html body #pagina-home#pagina-home#pagina-home #emJobBrowser[data-layout="model-one"][data-presentation="priority"] #emJobPanel#emJobPanel .em-jb-header.em-jb-header-model2.em-jb-info-model2 .em-jb-logo{align-self:start!important;margin-top:0!important}
+html body #pagina-home#pagina-home#pagina-home #emJobBrowser[data-layout="model-one"][data-presentation="priority"] #emJobPanel#emJobPanel .em-jb-title-line{align-self:start!important;align-items:flex-start!important;padding:0!important;margin:0!important}
+html body #pagina-home#pagina-home#pagina-home #emJobBrowser[data-layout="model-one"][data-presentation="priority"] #emJobPanel#emJobPanel .em-jb-company{align-self:start!important;align-items:center!important;margin:0!important;padding:0!important;line-height:21px!important}
+html body #pagina-home#pagina-home#pagina-home #emJobBrowser[data-layout="model-one"][data-presentation="priority"] #emJobPanel#emJobPanel .em-jb-header.em-jb-header-model2.em-jb-info-model2 .em-jb-header-actions{align-self:end!important}
+@container em-job-preview (max-width:560px){
+html body #pagina-home#pagina-home#pagina-home #emJobBrowser[data-layout="model-one"][data-presentation="priority"] #emJobPanel#emJobPanel .em-jb-header.em-jb-header-model2.em-jb-info-model2 .em-jb-header-content{grid-template-rows:min-content min-content 46px!important;row-gap:4px!important}
+}
+}
