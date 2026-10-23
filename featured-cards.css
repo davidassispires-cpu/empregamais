@@ -403,3 +403,5 @@ html body :is(#pagina-home#pagina-home #listaDestaques#listaDestaques,#pagina-va
 html body :is(#pagina-home#pagina-home #listaDestaques#listaDestaques,#pagina-vagas-destaque#pagina-vagas-destaque #emFeaturedJobsList#emFeaturedJobsList) .em-featured-reference .dz-company-jobs{grid-column:1/3!important;max-width:100%!important;justify-self:start!important}
 html body :is(#pagina-home#pagina-home #listaDestaques#listaDestaques,#pagina-vagas-destaque#pagina-vagas-destaque #emFeaturedJobsList#emFeaturedJobsList) .em-featured-reference .dz-date{grid-column:3!important;justify-self:end!important}
 }
+
+@layer candidate-palette {html body #pagina-home#pagina-home #listaDestaques#listaDestaques .em-featured-reference.em-featured-reference .dz-titulo.dz-titulo,html body #pagina-vagas-destaque#pagina-vagas-destaque #emFeaturedJobsList#emFeaturedJobsList .em-featured-reference.em-featured-reference .dz-titulo.dz-titulo{font-size:20px!important;line-height:25px!important;max-height:25px!important}}
