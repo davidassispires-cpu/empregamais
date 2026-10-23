@@ -132,3 +132,20 @@ html body #pagina-vaga#pagina-vaga#pagina-vaga#pagina-vaga#pagina-vaga #emJobHea
 @media(max-width:800px){html body #pagina-vaga#pagina-vaga#pagina-vaga#pagina-vaga#pagina-vaga #emJobInformation{grid-template-columns:repeat(2,minmax(0,1fr))!important}html body #pagina-vaga#pagina-vaga#pagina-vaga#pagina-vaga#pagina-vaga .detalhe-layout{width:calc(100% - 24px)!important;margin:12px auto!important;padding:16px!important}}
 @media(max-width:480px){html body #pagina-vaga#pagina-vaga#pagina-vaga#pagina-vaga#pagina-vaga #emJobInformation{grid-template-columns:1fr!important}html body #pagina-vaga#pagina-vaga#pagina-vaga#pagina-vaga#pagina-vaga .em-job-information{padding:14px!important}}
 }
+
+/* Quiet company-logo strip inspired by the supplied reference. */
+@layer candidate-palette {
+html body #pagina-home#pagina-home #emFaixaLogosV41#emFaixaLogosV41{background:#fff!important;border:0!important;border-radius:0!important;box-shadow:none!important;padding:30px 20px!important;margin:24px auto!important}
+html body #pagina-home#pagina-home #emFaixaLogosV41#emFaixaLogosV41 h2{margin:0 0 25px!important;color:#536174!important;font:500 11px/1.6 Poppins,sans-serif!important;letter-spacing:1.8px!important;text-transform:uppercase!important;text-align:center!important}
+html body #pagina-home#pagina-home #emFaixaLogosV41#emFaixaLogosV41 .em-logos-linha-v41{display:flex!important;align-items:center!important;justify-content:flex-start!important;gap:32px!important;overflow-x:auto!important;overflow-y:hidden!important;scrollbar-width:none!important;padding:5px 0!important;scroll-snap-type:x proximity!important}
+html body #pagina-home#pagina-home #emFaixaLogosV41#emFaixaLogosV41 .em-logos-linha-v41::-webkit-scrollbar{display:none!important}
+html body #pagina-home#pagina-home #emFaixaLogosV41#emFaixaLogosV41 button{flex:0 0 calc((100% - 160px)/6)!important;min-width:135px!important;max-width:none!important;gap:8px!important;padding:8px!important;border:0!important;background:transparent!important;box-shadow:none!important;scroll-snap-align:start!important}
+html body #pagina-home#pagina-home #emFaixaLogosV41#emFaixaLogosV41 .em-logo-faixa-v41{width:135px!important;max-width:135px!important;height:46px!important;max-height:46px!important;background:transparent!important;border:0!important;border-radius:0!important;filter:grayscale(1)!important;opacity:.65!important;transform:none!important;box-shadow:none!important}
+html body #pagina-home#pagina-home #emFaixaLogosV41#emFaixaLogosV41 .em-logo-faixa-v41 :is(div,span,svg){background:transparent!important;border:0!important;border-radius:0!important;box-shadow:none!important}
+html body #pagina-home#pagina-home #emFaixaLogosV41#emFaixaLogosV41 button:not(:has(img)) .em-logo-faixa-v41{display:none!important}
+html body #pagina-home#pagina-home #emFaixaLogosV41#emFaixaLogosV41 button>span{max-width:100%!important;font:400 9px/1.5 Poppins,sans-serif!important;letter-spacing:0!important;color:#7c828b!important;text-overflow:ellipsis!important;white-space:nowrap!important}
+html body #pagina-home#pagina-home #emFaixaLogosV41#emFaixaLogosV41 button:not(:has(img))>span{font-size:12px!important;font-weight:500!important;white-space:normal!important;text-wrap:balance!important;color:#858a91!important}
+html body #pagina-home#pagina-home #emFaixaLogosV41#emFaixaLogosV41 button:hover .em-logo-faixa-v41{opacity:1!important;transform:none!important;filter:grayscale(1)!important}
+html body #pagina-home#pagina-home #emFaixaLogosV41#emFaixaLogosV41 button:focus-visible{outline:2px solid #0875ee!important;outline-offset:2px!important}
+@media(max-width:700px){html body #pagina-home#pagina-home #emFaixaLogosV41#emFaixaLogosV41{padding:24px 14px!important}html body #pagina-home#pagina-home #emFaixaLogosV41#emFaixaLogosV41 .em-logos-linha-v41{gap:20px!important}html body #pagina-home#pagina-home #emFaixaLogosV41#emFaixaLogosV41 h2{font-size:10px!important;letter-spacing:1px!important}}
+}
