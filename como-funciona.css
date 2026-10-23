@@ -585,3 +585,7 @@ html body #pagina-como-funciona #comoFuncionaV106 #emBusinessNew .cb-hero h1{fon
 html body #pagina-como-funciona #comoFuncionaV106 #emBusinessNew .cb-benefit-strip{grid-template-columns:1fr 1fr}
 html body #pagina-como-funciona #comoFuncionaV106 #emBusinessNew .cb-section{padding:16px}
 }
+
+@layer candidate-palette {
+html body:has(#pagina-como-funciona:not([hidden])) #acoesPublicas .btn-candidato-v19.btn-candidato-v19{background:#0969d6!important;border-color:#0969d6!important;color:#fff!important}
+}
