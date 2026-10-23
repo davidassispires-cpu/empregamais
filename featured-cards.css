@@ -347,3 +347,11 @@ html body #emFeaturedJobPopup .em-fjp-model1 .em-fjp-extra-facts{grid-template-c
 @media(max-width:850px){html body #emFeaturedJobPopup .em-fjp-content-grid.em-fjp-model1{grid-template-columns:repeat(2,minmax(0,1fr))!important}html body #emFeaturedJobPopup .em-fjp-model1>.em-fjp-sidebar{grid-column:1/-1!important}}
 @media(max-width:560px){html body #emFeaturedJobPopup .em-fjp-content-grid.em-fjp-model1{grid-template-columns:1fr!important}}
 }
+
+/* Home carousel: three cards across, two rows per view. */
+@layer candidate-palette {
+html body #pagina-home#pagina-home #listaDestaques#listaDestaques{display:grid!important;grid-auto-flow:column!important;grid-template-columns:none!important;grid-template-rows:repeat(2,208px)!important;grid-auto-columns:calc((100% - 32px)/3)!important;grid-auto-rows:208px!important;gap:16px!important;overflow-x:auto!important;overflow-y:hidden!important;scroll-snap-type:x mandatory!important;scrollbar-width:none!important}
+html body #pagina-home#pagina-home #listaDestaques#listaDestaques::-webkit-scrollbar{display:none!important}
+@media(max-width:900px){html body #pagina-home#pagina-home #listaDestaques#listaDestaques{grid-auto-columns:calc((100% - 16px)/2)!important}}
+@media(max-width:600px){html body #pagina-home#pagina-home #listaDestaques#listaDestaques{grid-auto-columns:100%!important}}
+}
