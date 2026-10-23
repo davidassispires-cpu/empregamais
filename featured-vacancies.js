@@ -168,26 +168,27 @@
       var status = node('p','em-fjp-status'); status.setAttribute('role','status'); status.hidden = true;
       body.appendChild(status);
       if (info.demo) body.appendChild(node('p','em-fjp-demo','Vaga de demonstração. Esta oportunidade é fictícia e não recebe candidaturas reais.'));
-      var contentGrid = node('div','em-fjp-content-grid'), sections = node('div','em-fjp-sections'), sidebar = node('aside','em-fjp-sidebar');
+      var contentGrid = node('div','em-fjp-content-grid em-fjp-model1'), sections = node('div','em-fjp-sections'), middle = node('div','em-fjp-middle'), sidebar = node('aside','em-fjp-sidebar');
       function section(label, text, target) {
         var block = node('section','em-fjp-section'); block.appendChild(node('h3','',label)); block.appendChild(node('p','',text)); (target || sections).appendChild(block); return block;
       }
       section('Descrição da vaga',info.description);
-      section('Requisitos',info.requirements);
       section('Responsabilidades',info.activities && info.activities !== info.description ? info.activities : 'Consulte as atividades descritas na apresentação da vaga.');
+      section('Requisitos',info.requirements,middle);
       var benefits = node('section','em-fjp-section'); benefits.appendChild(node('h3','','Benefícios'));
       if (info.benefits.length) {
         var list = node('ul','em-fjp-benefits'); info.benefits.forEach(function (item) { list.appendChild(node('li','',item)); }); benefits.appendChild(list);
       } else benefits.appendChild(node('p','','Não informados.'));
-      sidebar.appendChild(benefits);
+      middle.appendChild(benefits);
+      var details = node('section','em-fjp-section'); details.appendChild(node('h3','','Informações da vaga'));
       if (info.facts.length) {
-        var details = node('section','em-fjp-section'); details.appendChild(node('h3','','Informações da vaga'));
         var fields = node('dl','em-fjp-extra-facts'); info.facts.forEach(function (pair) {
           var field = node('div',''); field.appendChild(node('dt','',pair[0])); field.appendChild(node('dd','',pair[1])); fields.appendChild(field);
-        }); details.appendChild(fields); sidebar.appendChild(details);
-      }
+        }); details.appendChild(fields);
+      } else details.appendChild(node('p','','Não foram informadas condições adicionais.'));
+      sidebar.appendChild(details);
       if (info.about) section('Sobre a empresa',info.about,sidebar);
-      contentGrid.appendChild(sections); if (sidebar.children.length) contentGrid.appendChild(sidebar); else contentGrid.classList.add('em-fjp-no-sidebar'); body.appendChild(contentGrid);
+      contentGrid.appendChild(sections); contentGrid.appendChild(middle); contentGrid.appendChild(sidebar); body.appendChild(contentGrid);
       dialog.appendChild(body);
       var footer = node('footer','em-fjp-footer'), metadata = node('div','em-fjp-footer-meta'), publication = node('div','em-fjp-publication');
       publication.appendChild(node('span','','ID da vaga: '+info.id)); publication.appendChild(node('span','','Publicado em '+info.date)); metadata.appendChild(publication);
