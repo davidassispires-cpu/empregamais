@@ -356,3 +356,59 @@
  }
  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',mount,{once:true});else mount();
 })();
+
+/* Public application channel labels and quick-application badge. */
+(function(root){
+ function classify(job){
+  job=job||{};
+  var value=String(job.candidatura_tipo||job.tipoContato||job.tipoCandidatura||job.canalCandidatura||'portal').trim().toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'');
+  if(/whats|^wa$/.test(value))return {kind:'whatsapp',quick:false,label:'Candidatura via WhatsApp'};
+  if(/link|extern|site|url/.test(value))return {kind:'external',quick:false,label:'Candidatura no site da empresa'};
+  if(/^(portal|email|e-mail|pdf|online|curriculo|curriculo_online|curriculo online|interno|interna)$/.test(value))return {kind:value==='email'||value==='e-mail'?'email':'portal',quick:true,label:'Candidatar-se'};
+  return {kind:'unknown',quick:false,label:'Candidatar-se'};
+ }
+ if(typeof module==='object'&&module.exports)module.exports.applicationChannel=classify;
+ if(!root||!root.document)return;
+ root.emApplicationChannel=classify;
+ var doc=root.document,queued=false;
+ function badge(host,quick){
+  if(!host)return;
+  var existing=host.querySelector('.em-quick-application');
+  if(!quick){if(existing)existing.remove();return;}
+  if(existing)return;
+  var b=doc.createElement('span');b.className='em-quick-application';b.title='Envio de currículo em PDF ou currículo online pelo portal ou e-mail indicado na vaga.';
+  b.innerHTML='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m13 2-9 12h7l-1 8 10-12h-7l1-8Z"/></svg><span>Candidatura rápida</span>';
+  host.appendChild(b);
+ }
+ function apply(scope,job,selector,host){
+  if(!scope||!job)return;
+  var channel=classify(job);
+  scope.querySelectorAll(selector).forEach(function(button){
+   // Preserve completed/blocked application states and existing handlers.
+   if(button.disabled||/enviada|candidatou|encerrad|indispon[ií]vel/i.test(button.textContent||''))return;
+   if(button.textContent.trim()!==channel.label)button.textContent=channel.label;
+   if(button.getAttribute('title')!==channel.label)button.title=channel.label;
+  });
+  badge(host,channel.quick);
+ }
+ function refresh(){
+  queued=false;
+  var jobs=new Map();
+  doc.querySelectorAll('#listaVagas>*,#listaDestaques .em-featured-reference,#emFeaturedJobsList .em-featured-reference').forEach(function(card){
+   var entry=card.__emJobEntry,job=entry&&entry.job||card.__emFeaturedPopupJob;
+   if(!job)return;jobs.set(String(job.id),job);
+   var host=card.querySelector('.em-r4-footer-badges')||card.querySelector('.dz-infos');
+   badge(host,classify(job).quick);
+  });
+  var panel=doc.getElementById('emJobPanel');
+  if(panel)apply(panel,jobs.get(panel.getAttribute('data-vaga-id')),'.em-jb-apply',panel.querySelector('.em-jb-company'));
+  var popup=doc.getElementById('emFeaturedJobPopup');
+  if(popup)apply(popup,popup.__emChannelJob,'.em-fjp-apply',popup.querySelector('.em-fjp-footer-meta'));
+  var page=doc.getElementById('pagina-vaga');
+  if(page&&root.vagaAtual)apply(page,root.vagaAtual,'#btnCandidatar,#btnCandidatarMobile,#btnCandidatarFinalEM,#btnCandidatarDetalhe,.jh-apply',page.querySelector('#emJobHeaderReference .jh-company')||page.querySelector('.jh-actions'));
+ }
+ function schedule(){if(!queued){queued=true;root.requestAnimationFrame(refresh);}}
+ function start(){new MutationObserver(schedule).observe(doc.body,{childList:true,subtree:true,characterData:true});refresh();}
+ if(doc.readyState==='loading')doc.addEventListener('DOMContentLoaded',start,{once:true});else start();
+ root.addEventListener('popstate',schedule);
+})(typeof window==='undefined'?null:window);

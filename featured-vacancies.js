@@ -137,7 +137,7 @@
       if (typeof win.vagaEhConfidencialEM === 'function') options.confidential = win.vagaEhConfidencialEM(job);
       if (typeof win.textoEscolaridadeVaga === 'function') options.education = win.textoEscolaridadeVaga(job);
       var info = jobDetails(job, options);
-      var dialog = node('dialog','em-featured-job-popup'); dialog.id = 'emFeaturedJobPopup';
+      var dialog = node('dialog','em-featured-job-popup'); dialog.id = 'emFeaturedJobPopup'; dialog.__emChannelJob=job;
       dialog.setAttribute('aria-labelledby','emFeaturedPopupTitle'); dialog.setAttribute('aria-modal','true');
       var header = node('header','em-fjp-header'), top = node('div','em-fjp-top');
       top.appendChild(node('span','em-fjp-eyebrow','Detalhes da vaga'));

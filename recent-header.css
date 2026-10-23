@@ -200,3 +200,13 @@ html body #pagina-home#pagina-home #emFaixaLogosV41#emFaixaLogosV41 .em-logos-li
 @media(max-width:1000px){html body #pagina-home#pagina-home #emFaixaLogosV41#emFaixaLogosV41 .em-logos-linha-v41>button{flex-basis:calc((100% - 48px)/4)!important}}
 @media(max-width:600px){html body #pagina-home#pagina-home #emFaixaLogosV41#emFaixaLogosV41 .em-logos-linha-v41>button{flex-basis:calc((100% - 16px)/2)!important}}
 }
+
+/* Application channel indicators. */
+@layer candidate-palette {
+html body .em-quick-application.em-quick-application{display:inline-flex!important;align-items:center!important;gap:4px!important;flex:0 0 auto!important;max-width:100%!important;padding:3px 7px!important;border:1px solid #cfe3fb!important;border-radius:5px!important;background:#eef6ff!important;color:#0969d6!important;font:500 10px/1.4 Poppins,sans-serif!important;white-space:nowrap!important;letter-spacing:0!important;text-transform:none!important}
+html body .em-quick-application.em-quick-application svg{width:13px!important;height:13px!important;flex:none!important;color:#0969d6!important}
+html body .em-quick-application.em-quick-application>span{font:inherit!important;color:inherit!important}
+html body #emJobPanel .em-jb-company:has(.em-quick-application){flex-wrap:wrap!important}
+html body .em-featured-reference .dz-infos .em-quick-application{font-size:9px!important;padding:1px 4px!important;margin-left:3px!important}
+html body #emFeaturedJobPopup#emFeaturedJobPopup .em-fjp-apply,html body #emJobPanel#emJobPanel .em-jb-apply{white-space:normal!important;line-height:1.25!important;overflow-wrap:normal!important;min-width:0!important}
+}
