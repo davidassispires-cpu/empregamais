@@ -264,3 +264,16 @@ html body :is(#pagina-home#pagina-home #listaDestaques#listaDestaques,#pagina-va
 html body :is(#pagina-home#pagina-home #listaDestaques#listaDestaques,#pagina-vagas-destaque#pagina-vagas-destaque #emFeaturedJobsList#emFeaturedJobsList) .em-featured-reference :is(.dz-info:first-child>span,.dz-salario strong,.dz-education strong){font-size:10.5px!important}
 }
 }
+
+/* Compact cards without excerpts; keep all facts on one line. */
+@layer candidate-palette {
+html body :is(#pagina-home#pagina-home #listaDestaques#listaDestaques,#pagina-vagas-destaque#pagina-vagas-destaque #emFeaturedJobsList#emFeaturedJobsList){grid-template-rows:none!important;grid-auto-rows:208px!important}
+html body :is(#pagina-home#pagina-home #listaDestaques#listaDestaques,#pagina-vagas-destaque#pagina-vagas-destaque #emFeaturedJobsList#emFeaturedJobsList) .em-featured-reference{height:208px!important;min-height:208px!important;max-height:208px!important;grid-template-rows:54px 24px 50px 34px!important}
+html body :is(#pagina-home#pagina-home #listaDestaques#listaDestaques,#pagina-vagas-destaque#pagina-vagas-destaque #emFeaturedJobsList#emFeaturedJobsList) .em-featured-reference .dz-resumo{display:none!important}
+html body :is(#pagina-home#pagina-home #listaDestaques#listaDestaques,#pagina-vagas-destaque#pagina-vagas-destaque #emFeaturedJobsList#emFeaturedJobsList) .em-featured-reference .dz-titulo{font-size:18px!important;line-height:23px!important;max-height:23px!important;white-space:nowrap!important;text-wrap:nowrap!important;overflow:hidden!important;text-overflow:ellipsis!important}
+html body :is(#pagina-home#pagina-home #listaDestaques#listaDestaques,#pagina-vagas-destaque#pagina-vagas-destaque #emFeaturedJobsList#emFeaturedJobsList) .em-featured-reference :is(.dz-empresa,.dz-empresa .em-company-profile-link){font-size:14px!important;white-space:nowrap!important;overflow:hidden!important;text-overflow:ellipsis!important}
+html body :is(#pagina-home#pagina-home #listaDestaques#listaDestaques,#pagina-vagas-destaque#pagina-vagas-destaque #emFeaturedJobsList#emFeaturedJobsList) .em-featured-reference .dz-work-meta{font-size:13px!important;white-space:nowrap!important;flex-wrap:nowrap!important;overflow:hidden!important;text-overflow:ellipsis!important}
+html body :is(#pagina-home#pagina-home #listaDestaques#listaDestaques,#pagina-vagas-destaque#pagina-vagas-destaque #emFeaturedJobsList#emFeaturedJobsList) .em-featured-reference :is(.dz-info:first-child>span,.dz-salario strong,.dz-education strong){font-size:11.5px!important;line-height:16px!important;white-space:nowrap!important;overflow:hidden!important;text-overflow:ellipsis!important}
+html body :is(#pagina-home#pagina-home #listaDestaques#listaDestaques,#pagina-vagas-destaque#pagina-vagas-destaque #emFeaturedJobsList#emFeaturedJobsList) .em-featured-reference :is(.dz-info:first-child::before,.dz-salario small,.dz-education small){font-size:10px!important;line-height:14px!important;white-space:nowrap!important}
+html body :is(#pagina-home#pagina-home #listaDestaques#listaDestaques,#pagina-vagas-destaque#pagina-vagas-destaque #emFeaturedJobsList#emFeaturedJobsList) .em-featured-reference :is(.dz-date,.dz-company-jobs){grid-row:4!important;font-size:12px!important;white-space:nowrap!important;overflow:hidden!important;text-overflow:ellipsis!important}
+}
